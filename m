@@ -1,86 +1,173 @@
-Return-Path: <devicetree+bounces-6582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E416A7BBE1E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EE77BBE2F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21C851C2093C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:57:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46A1C1C20A0C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED723418A;
-	Fri,  6 Oct 2023 17:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B17347D2;
+	Fri,  6 Oct 2023 17:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExVRjuA7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NuTJnx0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44061170C
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 17:56:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0AAFC433C8;
-	Fri,  6 Oct 2023 17:56:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696615017;
-	bh=M7cM0uzrZk4lKMKjA93C2oMjoATI9WLt5iEp4Pa0My4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ExVRjuA7T/H0LaeJ0jyf3NZMtrc0lM6wOK+ekvS3Hq8ZCLXMYeoBcRONIckkYnR9e
-	 R9KWM6wDzcE5q6jwvZF8lMhKkQ1lgD5XgMAmF7JJPxu8HLrXCruZvJdtW+N4EFMC/7
-	 +MgEyPdqIsG0GVwqs1Zo00lHWuag9pWExwjTRXjr6/1rfLAWPo85X4OULjN1ooa7MU
-	 QE2wvKipHSHuTUa2DvBuP+DGUrlVwrPA7dr5beW5tSBoKlXJNaQzu4hKecZwWebxPT
-	 cSOeYmHLA64elgkUGOYkMirnChTWEZcTn5lG+t94KgeZRNsGwZCdyYGcGdRGZ4Z1JF
-	 KS5ex2P3lOVhA==
-Received: (nullmailer pid 70487 invoked by uid 1000);
-	Fri, 06 Oct 2023 17:56:54 -0000
-Date: Fri, 6 Oct 2023 12:56:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Martin Kaiser <martin@kaiser.cx>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: pinctrl: st,stm32: fix phandle-array warning
-Message-ID: <169661501435.70432.16755877986670034633.robh@kernel.org>
-References: <20231006082247.3830719-1-martin@kaiser.cx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7F5341BB
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 17:58:03 +0000 (UTC)
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA65AC5;
+	Fri,  6 Oct 2023 10:58:00 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-77433d61155so150058585a.2;
+        Fri, 06 Oct 2023 10:58:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696615080; x=1697219880; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lLvfcfjTt5FPbCb7jmi7H5VpIo6AQyBiwiFzkClCnXo=;
+        b=NuTJnx0KUR8WGCoC5tM6KKfeOWNYQDq+YWTv/GJ9ntuw8fyxSfH+3isYbwnLC9xe/6
+         SnHs7eHZOS46dCAEru3aCMoUAgLzhXGk05h3HaMxeHzZSNr38LwPWvC3EW4ave56p7/c
+         VJ0cgon6vWR+HvgrFOtNKLfRmdFSnUhQRsNfBXnSbg2Q5dnH+h1VowjxvG3dMC/GQpjM
+         LqwZMtIfrR1YRmFhghqm6QGJzOmurRxsRog9YUtfUDw4z4Jhpbs/OK8OdSqOkr1RZiBX
+         B2wV/WhPNgnrd0jKvahge/ie2DmhdRGsJ8poPvsqmGa2XyJr8MzMqavojxfA9SRKxglG
+         BwhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696615080; x=1697219880;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lLvfcfjTt5FPbCb7jmi7H5VpIo6AQyBiwiFzkClCnXo=;
+        b=U3QywjadlqiwiBtK2og6wMmCf+5x+2PqwMR7Nnj09rhDsVlGEbjZKrf0p0JPzB7vvZ
+         12C311wS7gEQxd594w0L8D6CzSAk64EL3kTUhKEN5KOQS0CmzRNjakkhBm9FL20c/Ec5
+         +g9FMXhKbdRU9bRo1DkBe4qeNwnvOlBGKmEPXsGWLFAb/JaTzYKdOOHtd8VdygknJGTI
+         7JOjhKKqIaNba+Ao1fbgJ+ngSupCY71XY/6Oxw2nFrOOxc7NpBfJTTAoVBDElirSyXoY
+         x6XqOhR3voXx/IEptbmR3K80Mvcd7B+0+Si522GcT0ht1TO3oPB8BEAfm1QXJngNTICz
+         cXvA==
+X-Gm-Message-State: AOJu0YxczYdoA7HQTtAi2Hi9zplpCQibAxP2qUDrUb2GcDCXJ7vL/Djt
+	8JShWLg2z8Kk464FHlcG8ZRYmGagxD4qUqjgfT2SKJPhFdM=
+X-Google-Smtp-Source: AGHT+IEOBvsmsRBdXDPeJMHImtJpkRSdNhjXDv5yS6UjSRSIA/n51PsmjWr01IwPPVdGctOTNRLPhqS8TpubGLRqTbA=
+X-Received: by 2002:a05:6214:5585:b0:626:f3d:9e46 with SMTP id
+ mi5-20020a056214558500b006260f3d9e46mr9141180qvb.18.1696615079856; Fri, 06
+ Oct 2023 10:57:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006082247.3830719-1-martin@kaiser.cx>
+References: <20231006160437.15627-1-ddrokosov@salutedevices.com> <20231006160437.15627-4-ddrokosov@salutedevices.com>
+In-Reply-To: <20231006160437.15627-4-ddrokosov@salutedevices.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 6 Oct 2023 20:57:23 +0300
+Message-ID: <CAHp75VceobJuEnpQY2Hi1hrjTDCSa-zxi7zxaWt5-k9haGDFUg@mail.gmail.com>
+Subject: Re: [PATCH v1 03/11] leds: aw200xx: support HWEN hardware control
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kernel@sberdevices.ru, 
+	rockosov@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+On Fri, Oct 6, 2023 at 7:04=E2=80=AFPM Dmitry Rokosov
+<ddrokosov@salutedevices.com> wrote:
+>
+> HWEN is hardware control, which is used for enable/disable aw200xx chip.
+> It's high active, internally pulled down to GND.
+>
+> After HWEN pin set high the chip begins to load the OTP information,
+> which takes 200us to complete. About 200us wait time is needed for
+> internal oscillator startup and display SRAM initialization. After
+> display SRAM initialization, the registers in page1 to page5 can be
+
+pages 1 to 5
 
 
-On Fri, 06 Oct 2023 10:22:48 +0200, Martin Kaiser wrote:
-> make CHECK_DTBS=y st/stm32f469-disco.dtb
-> 
-> brings up a warning about a missing argument:
-> 
-> stm32f469-disco.dtb: pinctrl@40020000: st,syscfg:0: [21, 8] is too short
-> 
-> The description of the third entry indicates that this entry is optional.
-> The code in stm32_pctrl_dt_setup_irq parses st,syscfg and treats the third
-> entry as optional. It defaults to 0xf if not present in the devicetree.
-> 
-> Update the schema to require at least two entries, use the same syntax as
-> the description of renesas,ipmmu-main in
-> Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml.
-> 
-> Signed-off-by: Martin Kaiser <martin@kaiser.cx>
-> ---
-> 
-> I tested the following cases, all of them returned the expected result:
-> 
->    st,syscfg = <&syscfg>;              (too short)
->    st,syscfg = <&syscfg 0x8>;          (ok)
->    st,syscfg = <&syscfg 0x8 0x0>;      (ok)
->    st,syscfg = <&syscfg 0x8 0x0 0x0>;  (too long)
-> 
->  .../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml          | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+> configured via i2c interface.
 
-Acked-by: Rob Herring <robh@kernel.org>
+...
 
+> +#include <linux/of_gpio.h>
+
+Definitely not.
+
+Use agnostic APIs.
+
+...
+
+> @@ -116,6 +117,7 @@ struct aw200xx {
+>         struct mutex mutex;
+
+>         u32 num_leds;
+>         u32 display_rows;
+> +       int hwen;
+>         struct aw200xx_led leds[];
+
+Side note: add a patch to use __counted_by() here.
+
+>  };
+
+...
+
+> +       if (!gpio_is_valid(chip->hwen))
+
+Absolutely not. You may not use legacy GPIO APIs.
+
+> +               return;
+> +
+> +       gpio_set_value(chip->hwen, 1);
+
+Ditto.
+
+...
+
+> +       usleep_range(400, 500);
+
+fsleep() ?
+
+...
+
+> +static void aw200xx_disable(const struct aw200xx *const chip)
+> +{
+> +       if (gpio_is_valid(chip->hwen))
+> +               gpio_set_value(chip->hwen, 0);
+> +}
+
+As per above.
+
+...
+
+> +static void aw200xx_probe_hwen(struct device *dev, struct aw200xx *chip)
+> +{
+> +       chip->hwen =3D of_get_named_gpio(dev->of_node, "awinic,hwen-gpio"=
+, 0);
+> +       if (gpio_is_valid(chip->hwen))
+> +               if (devm_gpio_request_one(dev, chip->hwen, GPIOF_OUT_INIT=
+_HIGH,
+> +                                         "AW200XX HWEN")) {
+> +                       dev_warn(dev, "Can't request gpio %d, tag it inva=
+lid\n",
+> +                                chip->hwen);
+> +                       chip->hwen =3D -EINVAL;
+> +               }
+> +}
+
+Please, rewrite this completely using supported APIs and not
+deprecated or obsolete ones.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
