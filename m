@@ -1,249 +1,215 @@
-Return-Path: <devicetree+bounces-6593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510DE7BBE95
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 20:17:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B2D7BBEA1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 20:24:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0948A28203E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:17:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D763A1C20904
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9037B37157;
-	Fri,  6 Oct 2023 18:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7BB374C1;
+	Fri,  6 Oct 2023 18:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="a4xmoO4G"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="y9WvyswB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E752F2AB3B
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 18:17:46 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5230BE
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:17:44 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5a21ea6baccso30131507b3.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 11:17:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1696616264; x=1697221064; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=N1kuvdFzr7bMP1IyvjWvGqylFglQ5IsaUBjLbA0R1mM=;
-        b=a4xmoO4GZ73ejvQkrJkOg3duyXBftjR8hPVC6flQ8283gwkdjBcZkLyICnz8Ym9dAp
-         KCm5eLekK93VLj3hl4JdFBMIm0+sCzLDUNVC2uMdn9pSL7/MQQPSMdXAf/syfUFnelEU
-         kVFWZnAib2iyYsijgpmPxEJjnuQ2BIIILo1wQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696616264; x=1697221064;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N1kuvdFzr7bMP1IyvjWvGqylFglQ5IsaUBjLbA0R1mM=;
-        b=o0aom9uQ+wVRiL8HK0X8JQ8OUQsWKgjByBZ2ixcc3Q8BmQeDR/J1wKevYF0mxzkJa7
-         l66rEfmeyMTgmABnfMg0g/59QnKeK7WlpSnCjD080n+/zHCTJqUQVYwmhLTzfXtIWfVt
-         xgRmeDrtElRjtLmM6SMDtDIpdu6N5kXiuuhHmdv0jh4dYg8B/CVervlEVELSjqui9fZu
-         pRF5Dl0QXTxaaBU6QiJsFLgr4mirh0qDhruuoibHcnrAbweJ4gV1MqTZYJ8A6vzGdgJo
-         tr9Y2+hyV51nYm9iZP1GBZPTC+YJN83TT8+N9Nrparbivq8eRiZs1DmabuoKo7A1J7Te
-         He3w==
-X-Gm-Message-State: AOJu0Yybkc9y5+N7TmiipQHPUpQnwtoYdtvg0P8dyGEzCm0yTsu3PnK0
-	f0I6+V5VYMh6wKXXKWcXETapYljOzkmhvFlxDGP/m2Md6tKFQwJHC13/Uw==
-X-Google-Smtp-Source: AGHT+IGIR7IRjqzwhRUNpXjT8dLojncj3fRT3VJBx9+8GCPm7ydQ54cLXAEYShIToVA6nQy5pwi/6OxP9yHrPkR3CRA=
-X-Received: by 2002:a81:6d47:0:b0:59f:81c4:631a with SMTP id
- i68-20020a816d47000000b0059f81c4631amr11073507ywc.24.1696616263670; Fri, 06
- Oct 2023 11:17:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7920C34CF8
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 18:24:13 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2098C2;
+	Fri,  6 Oct 2023 11:24:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jWakINuh19Sakc3u5JfFpIQCzJ8/ainMCeQqZcEiXmqwAAtiq3RcEdjhiHcsOagMV1Ms+iel6mLYJjY+atkcyO9+ns+B3AzZy/1+XaDb0zaw1SlbhbRuFM4WNod1G053oMwCzOaMWQYuz3EIi97oc7yWCiNpEZddGcDksnk46I6uQcs4qL4x5TpYIchSdEEet/5NFVbK+U54R/P44Oobp8XHqM84e5NoI4NQOf6krqEtqQJadRC+4QV0oSoWo53ybP5jgd15gEGdo58dM8ythW0/jO7kClnbqASqvUpyS9/NRaz2+2OFdiQxP/3sLNUJPU9eqY0tHV0QcpZF2jzSuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0k1FDFL0IIbqh0oPdF7xZEKzNU3VqaS5Es7s01Wbl6E=;
+ b=X9B6CAk1HJmt6FNAPiRYzazrM+TnNxVjkFxYlEHxPFOjeevmxBJtEHurNpTTPF8OjlE+tLewjliHdRbeTKq7JTjOeMscUoWjFiVdY6edmIRvCDPrggOKAWg+EoZm1WcXqWX5cLQ+tcqsogiY6j0ELdcb7FQsigPJBPrkFaJlnvQ1IGMKTVoSC2CC2IprIKszCNzDoPxcu+H7kZhxeY0yaOydaymT7L7aeDCLGSG/AavfD8nIm4GLasa7mutHK/guLhBwNcJaVayECQy//9Du5Ztg68M/tj0KJd8og9r2WipZMPxe3F86hWOxzfKhc/VQlN7gIi2FPVtU00cuvMbJtQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0k1FDFL0IIbqh0oPdF7xZEKzNU3VqaS5Es7s01Wbl6E=;
+ b=y9WvyswBEox7jL4cG1nj2X//ad8RQfOZf/wnWb/kmVrNaJV//ao3aNZ7eKv7Bj0sJARNAkZu92/jFbYMs3wwcqmdltrSKdYlGI+oOuj12ibTFy2yXgvr8ZSOnU/6K1Lq3isc/xmhf5hxvnFgvE9zsQiPjmwM7xjiaWfPUubtgVM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
+ by MW4PR12MB8612.namprd12.prod.outlook.com (2603:10b6:303:1ec::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.42; Fri, 6 Oct
+ 2023 18:24:09 +0000
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::8304:46bd:5017:3dcb]) by BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::8304:46bd:5017:3dcb%7]) with mapi id 15.20.6838.033; Fri, 6 Oct 2023
+ 18:24:09 +0000
+Message-ID: <cd1e8583-67a5-4b50-b1bb-304d14d3c170@amd.com>
+Date: Fri, 6 Oct 2023 13:24:06 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: zynqmp: add destination mailbox
+ compatible
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, michal.simek@amd.com, shubhrajyoti.datta@amd.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231005170825.3521669-1-tanmay.shah@amd.com>
+ <20231006175348.GA4076821-robh@kernel.org>
+From: Tanmay Shah <tanmay.shah@amd.com>
+In-Reply-To: <20231006175348.GA4076821-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0201.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::26) To BY5PR12MB3683.namprd12.prod.outlook.com
+ (2603:10b6:a03:1a5::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com> <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
-In-Reply-To: <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Fri, 6 Oct 2023 12:17:23 -0600
-Message-ID: <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: Ard Biesheuvel <ardb@kernel.org>
-Cc: devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, Lean Sheng Tan <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
-	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
-	U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|MW4PR12MB8612:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27f8dc21-dafc-409d-6938-08dbc6996e54
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	+5uBzHmlJCiSfd0g0wVqCC7pogMIbU1DB7BYiP81YND6sFeDooR4nDsjm+hhG8bVKCtXNKaF/sqy3erDvGC3b5+L6kwnY1BftXYpmjbpPnpUB/xeiyNdQ5Vm0ep6lfqwW01Tm1ht8eIQz/HK+9XCRkPs73RF12hLjjOxTNxyg1qkOALeKRYqCMaSttbCKar4mT3fPggRkJsB61obtNHo9FCXEj1SOkaj6PivyzizE4bJhAoJKx3A4X70l+86qB1s/TOHau4+IvEvuxK83B07zcLWX8LKLfyWFEmliOYw0JITdpTmMGfIckgdo/IzMxHeFeOF/E8ht25i4shCz5B8XMXY/7sgcHfkr0mlQP8NA4UJFwncNZUnftvYaf0BKzI7cLS8yR2uIlcKIy2N3R0CvDuzCUe24hR5wRnDVROK3wCuutSe8iPifyBVaQi2TlmqO7pFQmHyzZUfyEcrvGpaoJt8NXMINsN4BobQZ5yqKCNvb+v7LFrrAFPjFL8OGpqDmrYpo2/XzI6r0blbxp78T1o+F7NhkacK9vJOgiRLW+UCtI9rLHiv+4h+LSP94ZdlYWw4Yo4RlrrTx5KW1o4HgZs0OH5X77hE3gtm4HYMMXJS34Bl3Hq07ERGdUwpBnKXQDm56+AMqLAcxBMdSxIWdg==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(396003)(366004)(39860400002)(136003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(478600001)(6486002)(6506007)(6512007)(6666004)(53546011)(15650500001)(2616005)(26005)(83380400001)(2906002)(6916009)(5660300002)(4326008)(44832011)(8676002)(316002)(66946007)(36756003)(66476007)(66556008)(8936002)(41300700001)(38100700002)(31696002)(86362001)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?M2tPUHZDcU9ycnBCUnF2WkpmeW5GYW9haHBwUVdOWG9LYm92alV5UTBVUFN0?=
+ =?utf-8?B?WGlCWlRjNU1BNjYvMUtGM1c2WFNycWdHcU1FbURMaFpwdnBwZlhrY1BKZ01O?=
+ =?utf-8?B?QWtOcUNmenU2S01Mc0FpSTRWbXgzRDBnSXh1OWduZUdRNnRlamZqcjJrek95?=
+ =?utf-8?B?a0wyeW92cEJKZFd0aVJYTStVQ3psWTNJbHp0ZTVpZXplK0tsWkp4bDhxUXJ2?=
+ =?utf-8?B?ZGIvZm14amg3RGp1R2R4TFpub0Z1MWorNFZTU0t4NTFwcWZFcCtPc0dLV1Ay?=
+ =?utf-8?B?QklFYktOaE1PZ0k4Z01xM3NhMnFrb2hwZTlWRGY4MUpFRHFRdmE0bFMwWUVy?=
+ =?utf-8?B?TGRJTXRLeG1JMTBKczdtOE5tMHlJTkZUK25LWFI4a1RLY0s3KzFwV3F0aFpW?=
+ =?utf-8?B?OHJ1UGltZG45WFpoVjY1K29kOHduclhqUVN1OVFLYUVSWDY1clJ1ZVZreVBy?=
+ =?utf-8?B?aDdLVmpXRWM2a1h2am9ZSm9jUnhlbnhmVVMzd0MxZnpNalE2bHRSQWQ5YTl4?=
+ =?utf-8?B?OWJ6Y1FhM3JpcUgyM0pxUm54U2ppQmo2ZGw3czQ3NFQ1VzVWaFFQOHZzU21L?=
+ =?utf-8?B?VGFBWDNXTjhiQ1czL0dxL0tqSHVRdEd5WHdvU2xyYk42ZWFIdkJXeVd0WVpG?=
+ =?utf-8?B?T3dkTmQ1cHdmamZaTWV2T3VoK2lGU2ZLL24vL2dzL1dIa0ExaXc3aWJDOWNt?=
+ =?utf-8?B?bXRjRjNBekVKbUVJRmlTNG80bXF4ZXcxVmVHaWx5S3FvLzEvYm92TG0yTS9v?=
+ =?utf-8?B?Zm5SZWV4UTNzclJVTlBVcHZlcUNwcjdlbDNueHFkcTVuQUZpVEtLRHNaYnlj?=
+ =?utf-8?B?bklJTzFLQTlPbWFNai9IczRlQ1VKbWtxeFVnbEwzUmJ5bE5oRUhGYUxTUzhF?=
+ =?utf-8?B?bWNzSmtiZGlWRHZXOSsrWTZXL21vNi9wWVhaV25KdXE3eWNPcDVQNHpOakJV?=
+ =?utf-8?B?WUhtMHhjVjJCRDhVdE5uWGJWTHl2ZitHeFhzUEZtajNBSE15cHVjbWx4TzBR?=
+ =?utf-8?B?UXYwekJLRllPRmdxUGNqUWVxSWRYdkhNQ250Z3dUbXprcllsV2NlOXhZb2cw?=
+ =?utf-8?B?b3VyOW5MbXhrdTVGZm4xTlljY2F0UlRzMjZndnZpYlNTSDVzOWgzSVFycUJP?=
+ =?utf-8?B?dzRyL3MwemhKQmEzRXNDZ1dFOHI1OE54Q3NySE1xVXJjUHo5R0dFdHd5OVJ2?=
+ =?utf-8?B?MytCdFpJOFVCRXVFU25qb1VqMFU0QkwxU2IwZ3ZaVi80K24zOEdTdHRiMlVa?=
+ =?utf-8?B?QW40UkszUDFZMCtNMjNPY2hrQU1NQzFGWGpJU0JpWkl5b1JCcmc1UVlTVi9K?=
+ =?utf-8?B?OUxPU0dzem9uaHNCNGpOUTZucjRqSGVOSkdQQ1FDckptWkg4M0FueSt3N2Rr?=
+ =?utf-8?B?MHNWcmNITWFnTml2dmlVc1ljZ1dmc2d6VVBHTDVyMnhuQXdiSjFzUFdRR1Qr?=
+ =?utf-8?B?V1g3ZGx5c1d2bXJ2c0lWRUpDb2sreXhyZ3gzN1U4RFYxOEFqZFRnT0RZbGZQ?=
+ =?utf-8?B?NXV1R05STDYvc3FZdThINlNyaU5UK2VSSTBvRllrcGRhUEZDV1VmMnF0aGZm?=
+ =?utf-8?B?UUtOMGo2MGNxZDhWM3V5S3h2em5KUXBzK3VBanhteGxINVhVeVNHWERQeUZH?=
+ =?utf-8?B?RmFXdDJMYmc5WHdSUzZpZ1NLL05vRE1ZUjJWU0pSMjhGY1lXeDhoQ0NYNEdL?=
+ =?utf-8?B?aFY0ZnYzV0tyWHFJa1MwMTZVTDdZL3hHZGQvUjhiSE40d01kK0Q3Z095cWZF?=
+ =?utf-8?B?Mm9pdTVTaGIwM3B0RUZUekNJRGlsMlZGRWFqWFJtaXJmNHhQZ3Uvdzk5K3ZE?=
+ =?utf-8?B?eGtmaE9UdDRuUXRPVUcrS3NWMktuWlNrc1N1RzhTcEQ3REVVRnJSNVlVdEhm?=
+ =?utf-8?B?YnN5U1pFU1cyVWVMRzQyVXNCb2s3ODdQLy9yR2xSc21WR0RodXl3RjB1NXhL?=
+ =?utf-8?B?TDBmNVZ3YVBkNHdpTlJIUDd5UzBLOXRGSUZTeHFKZGJ3cloyRDV0VzAzd2U0?=
+ =?utf-8?B?ckF3NFBSeHBSVWJZUmFPdUc1R05EMFduOGkxTERDdW81NnlmUXNtZm83aHpV?=
+ =?utf-8?B?T25JOTFCRWtUYSt5ZWYwZElLUHdPOUkzbHloUGFWTFRaNmpIZmR6ajdvVGlr?=
+ =?utf-8?Q?PlvIFr4zisY/MBwME1s49ojlA?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27f8dc21-dafc-409d-6938-08dbc6996e54
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2023 18:24:09.1125
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UcocV7HnSnEKHC337tNzaY/PZF4YZwO16WoCIwLoQswxKbrDx/L0+dBSH2fq+YY2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB8612
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
 	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Ard,
 
-On Fri, 6 Oct 2023 at 11:33, Ard Biesheuvel <ardb@kernel.org> wrote:
+On 10/6/23 12:53 PM, Rob Herring wrote:
+> On Thu, Oct 05, 2023 at 10:08:24AM -0700, Tanmay Shah wrote:
+> > Current dt-bindings does not contain compatible property
+> > for child mailbox node. Child mailbox nodes are used
+> > to represent destination (remote) IPI agents. The compatible
+> > property for all destination mailboxes must be required.
+> > 
+> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > ---
+> >  .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml           | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+> > index aeaddbf574b0..8b15a0532120 100644
+> > --- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+> > +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+> > @@ -74,6 +74,10 @@ patternProperties:
+> >      type: object  # DT nodes are json objects
+> >      additionalProperties: false
+> >      properties:
+> > +
+> > +      compatible:
+> > +        const: xlnx,zynqmp-ipi-dest-mailbox
+> > +
+> >        xlnx,ipi-id:
+> >          description:
+> >            Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> > @@ -95,6 +99,7 @@ patternProperties:
+> >            - const: remote_response_region
+> >  
+> >      required:
+> > +      - compatible
 >
-> On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wrote:
-> > >
-> > > It is common to split firmware into 'Platform Init', which does the
-> > > initial hardware setup and a "Payload" which selects the OS to be booted.
-> > > Thus an handover interface is required between these two pieces.
-> > >
-> > > Where UEFI boot-time services are not available, but UEFI firmware is
-> > > present on either side of this interface, information about memory usage
-> > > and attributes must be presented to the "Payload" in some form.
-> > >
-> > > This aims to provide an small schema addition for the memory mapping
-> > > needed to keep these two pieces working together well.
-> > >
-> > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > ---
-> > >
-> > > Changes in v7:
-> > > - Rename acpi-reclaim to acpi
-> > > - Drop individual mention of when memory can be reclaimed
-> > > - Rewrite the item descriptions
-> > > - Add back the UEFI text (with trepidation)
-> >
-> > I am again checking on this series. Can it be applied, please?
-> >
->
-> Apologies for the delay in response. I have been away.
+> A new required property is an ABI break, but nothing about that in the 
+> commit msg.
 
-OK, I hope you had a nice trip.
 
->
-> >
-> > >
-> > > Changes in v6:
-> > > - Drop mention of UEFI
-> > > - Use compatible strings instead of node names
-> > >
-> > > Changes in v5:
-> > > - Drop the memory-map node (should have done that in v4)
-> > > - Tidy up schema a bit
-> > >
-> > > Changes in v4:
-> > > - Make use of the reserved-memory node instead of creating a new one
-> > >
-> > > Changes in v3:
-> > > - Reword commit message again
-> > > - cc a lot more people, from the FFI patch
-> > > - Split out the attributes into the /memory nodes
-> > >
-> > > Changes in v2:
-> > > - Reword commit message
-> > >
-> > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
-> > >  1 file changed, 71 insertions(+)
-> > >  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.yaml
-> > >
-> > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > new file mode 100644
-> > > index 0000000..f7fbdfd
-> > > --- /dev/null
-> > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > @@ -0,0 +1,71 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Common memory reservations
-> > > +
-> > > +description: |
-> > > +  Specifies that the reserved memory region can be used for the purpose
-> > > +  indicated by its compatible string.
-> > > +
-> > > +  Clients may reuse this reserved memory if they understand what it is for,
-> > > +  subject to the notes below.
-> > > +
-> > > +maintainers:
-> > > +  - Simon Glass <sjg@chromium.org>
-> > > +
-> > > +allOf:
-> > > +  - $ref: reserved-memory.yaml
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    description: |
-> > > +      This describes some common memory reservations, with the compatible
-> > > +      string indicating what it is used for:
-> > > +
-> > > +         acpi: Advanced Configuration and Power Interface (ACPI) tables
-> > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This is reserved by
-> > > +           the firmware for its use and is required to be saved and restored
-> > > +           across an NVS sleep
-> > > +         boot-code: Contains code used for booting which is not needed by the OS
-> > > +         boot-code: Contains data used for booting which is not needed by the OS
-> > > +         runtime-code: Contains code used for interacting with the system when
-> > > +           running the OS
-> > > +         runtime-data: Contains data used for interacting with the system when
-> > > +           running the OS
-> > > +
-> > > +    enum:
-> > > +      - acpi
-> > > +      - acpi-nvs
-> > > +      - boot-code
-> > > +      - boot-data
-> > > +      - runtime-code
-> > > +      - runtime-data
-> > > +
->
-> As I mentioned a few times already, I don't think these compatibles
-> should be introduced here.
->
-> A reserved region has a specific purpose, and the compatible should be
-> more descriptive than the enum above. If the consumer does not
-> understand this purpose, it should simply treat the memory as reserved
-> and not touch it. Alternatively, these regions can be referenced from
-> other DT nodes using phandles if needed.
+Hi Rob,
 
-We still need some description of what these regions are used for, so
-that the payload can use the correct regions. I do not have any other
-solution to this problem. We are in v7 at present. At least explain
-where you want the compatible strings to be introduced.
+Thanks for reviews. This does not break backward compatibility yet as
 
-What sort of extra detail are you looking for? Please be specific and
-preferably add some suggestions so I can close this out ASAP.
+relative zynqmp mailbox driver isn't expecting compatible property.
+
+But, any new functionality should consider using it.
+
+I will explain this in commit message in next revision. Other than that, I hope it's
+
+correct to add such compatible property to identify the node.
+
+
+Thanks,
+
+Tanmay
 
 >
->
-> > > +  reg:
-> > > +    description: region of memory that is reserved for the purpose indicated
-> > > +      by the compatible string.
-> > > +
-> > > +required:
-> > > +  - reg
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    reserved-memory {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <1>;
-> > > +
-> > > +        reserved@12340000 {
-> > > +            compatible = "boot-code";
-> > > +            reg = <0x12340000 0x00800000>;
-> > > +        };
-> > > +
-> > > +        reserved@43210000 {
-> > > +            compatible = "boot-data";
-> > > +            reg = <0x43210000 0x00800000>;
-> > > +        };
-> > > +    };
-> > > --
-> > > 2.42.0.515.g380fc7ccd1-goog
-
-Regards,
-Simon
+> >        - reg
+> >        - reg-names
+> >        - "#mbox-cells"
+> > @@ -124,6 +129,7 @@ examples:
+> >          ranges;
+> >  
+> >          mailbox: mailbox@ff9905c0 {
+> > +          compatible = "xlnx,zynqmp-ipi-dest-mailbox";
+> >            reg = <0x0 0xff9905c0 0x0 0x20>,
+> >                  <0x0 0xff9905e0 0x0 0x20>,
+> >                  <0x0 0xff990e80 0x0 0x20>,
+> > 
+> > base-commit: 7d730f1bf6f39ece2d9f3ae682f12e5b593d534d
+> > -- 
+> > 2.25.1
+> > 
 
