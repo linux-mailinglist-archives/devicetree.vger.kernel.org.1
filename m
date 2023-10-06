@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3387BC2E3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:22:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44FF47BC2F5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112FD281F48
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:22:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63BB61C20975
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F03A45F77;
-	Fri,  6 Oct 2023 23:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2D947345;
+	Fri,  6 Oct 2023 23:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJlfwBt6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y0PIMkCN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48444487
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:21:57 +0000 (UTC)
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E24B9B6
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:21:53 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c00e1d4c08so33101601fa.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:21:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778E044487
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:32:53 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5606193
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:32:51 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5045cb9c091so3469989e87.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:32:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696634512; x=1697239312; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696635169; x=1697239969; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y2hTgynvyU8HD1veXrLbrqbx40e596jXkVNUJT4I/tk=;
-        b=VJlfwBt6d7x9HD2eclYA3JZzQfK9R04HJQZKIe1d8wFEZqHIUypU2/4ZokqttIJL7p
-         LtkLk1fLiutbZcdk9BC2PL1OytXoXSAh/zeQVtPIf2AArAXUsxC0B6x2LtHYIpvBzUsV
-         3SKT1xxuScwseUNzkNNBM/gg3f/O1vbE7t3GwHQC4nhIH4E+6oXN43YqMuaGXCzKQJHk
-         z5MNZ64HtOtrIyEjh7S1ZEkbyvXcOnAFZT5jpSR4brKf5GT/07igFipLlF564wEwTvaE
-         rwKYYkkW3gjtXkGBows84g+6sd76N2zYrmRhdjmNzRvxT8Zu40wf6DNVp0+QDl9Ov2Yw
-         YKoA==
+        bh=CBdkACARktQj/BUAzO0d3dZU3fqLQe8rUQ2Y7YM0Idc=;
+        b=y0PIMkCN+7+HKA70URuZZ6T/ZZ/z3uIJV6arqlQDaaoBRbrIG/JVyKtEpYSheuWeHh
+         oPyLMYXnfO21hwiOSs2T+64vSfmdGAMmEN0KfOHcGgM4QbwqErD3upMvicabchLSp3+s
+         ny3AszBr2RZu7RrSqZGaohvyJqgnjvE5jEa39HgbCOXNFJBYcB3Msqr4228jHXsP1fDr
+         r/D0Q3pyKmbbRY5D5SUxbd4u9j0MpIApzUsWQ6WHkb4JrDD0ozHYIjToh01I4ihs2ik/
+         sNK+O6DGD/uKWaHe5QIH3W5wBuENs0bQk+FvqNKYRF0PnDAD+G6FIz6sElUBvITThmMm
+         5EEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696634512; x=1697239312;
+        d=1e100.net; s=20230601; t=1696635169; x=1697239969;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y2hTgynvyU8HD1veXrLbrqbx40e596jXkVNUJT4I/tk=;
-        b=Ltf6z/MuuNPpBuIzU4tZmse3b96EhpbgdRypI5MsyPpGvlRVACZSai/+IAOdNx/5lO
-         SfqOwGakZB/Ou6Qd9jokpWm/LuPgAtYDpYq7yO/1TQrcHi1uNljiUgtlpj9kUyyvjvdg
-         IuC4/idwd/OZOivr+m9BWcsm7UQCOxdT1Lur0sOVI0yFAo7slflQtHwOJjy8bd8o5VXJ
-         v3xabFx+NmJ+I5hIt3IPqdT490t0zUGBIJ8uc4hL85JAeFIH6xli/n9R8kKSxwvpm2or
-         7AMSJv7ihlGUXhgbi93msvBEwlnHwAxXhSlw+b/WAkqwOm2JCXxC6R4WmnyZ4Dea+Cqe
-         31UA==
-X-Gm-Message-State: AOJu0YyUZcStCifwabzPiqXOTPPGdbvGrXM/UVNj4vSoZo+hWCEVz/ZG
-	YdTlYCt+NxlHmLxsnYvbh8jLeQ==
-X-Google-Smtp-Source: AGHT+IHvlqzcq38thoX3PZn34o6zqZkwWj8ZiJlIwZnWxtg1XOZmelZD9GDdYV04RWUkP0T3ij0O7g==
-X-Received: by 2002:a2e:9a89:0:b0:2c1:7a96:c770 with SMTP id p9-20020a2e9a89000000b002c17a96c770mr8335693lji.19.1696634512183;
-        Fri, 06 Oct 2023 16:21:52 -0700 (PDT)
+        bh=CBdkACARktQj/BUAzO0d3dZU3fqLQe8rUQ2Y7YM0Idc=;
+        b=DL4e+d1uTSrEndnVxSO2IrfBzv8co10vNS0lwCl+tBV5TYi+M4d42gTrD/CwRUvSMR
+         IvIexpitMls9XUq9SR7e7i413RP7tGNyRZ/MqurTePCUJBjyZLLS+s3vywuabBjNYq/A
+         PO6Lbt+UJ893dKREh1kStWBABmvX+QG9FJIR9ZGeCaw9k5EphxYxh1ihcbRj9T1R9wpG
+         GicX6xHoKjnt/MJuzwjiSUJjPzdXvJxC0g7q1vRgNMuNhqCRVJr+pS30V1Bfq6ZVWcLI
+         idkZd6kHoH6pqU517MVwe9trQ9Jcyryh6RSnHXB1Y8TeqmdsHaYT1vd/0DqWVr0KoVux
+         ZERg==
+X-Gm-Message-State: AOJu0Yxc48zUxmf74AjvDvRnHPhnoyIlwaO58389qfU29zi4j7MvivRi
+	BTkO7l/XcrmcGSV/YkcgZq7cxw==
+X-Google-Smtp-Source: AGHT+IHwU4sYwr94MWkFEDLPbT+iSK4FSvWZfKmUnM6f2jkur0QlNvIi+BqqPl6MnY+NtVY6Q/1T0g==
+X-Received: by 2002:a05:6512:473:b0:4fb:8948:2b28 with SMTP id x19-20020a056512047300b004fb89482b28mr7632978lfd.63.1696635168835;
+        Fri, 06 Oct 2023 16:32:48 -0700 (PDT)
 Received: from [192.168.200.173] (178235177147.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.147])
-        by smtp.gmail.com with ESMTPSA id w11-20020a2e998b000000b002bffbe767cbsm973514lji.85.2023.10.06.16.21.50
+        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b00502e2ab7118sm473280lfh.50.2023.10.06.16.32.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 16:21:51 -0700 (PDT)
-Message-ID: <b8f2d7f1-16e2-4e6a-9c84-37da393f74a3@linaro.org>
-Date: Sat, 7 Oct 2023 01:21:49 +0200
+        Fri, 06 Oct 2023 16:32:48 -0700 (PDT)
+Message-ID: <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
+Date: Sat, 7 Oct 2023 01:32:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] i2c: qcom-cci: Add sc8280xp compatible
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
 Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
- andersson@kernel.org, loic.poulain@linaro.org, rfoss@kernel.org,
- andi.shyti@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, todor.too@gmail.com,
- mchehab@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231006120159.3413789-1-bryan.odonoghue@linaro.org>
- <20231006120159.3413789-3-bryan.odonoghue@linaro.org>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, luca.weiss@fairphone.com
+References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
+ <20231003175456.14774-3-quic_kbajaj@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,21 +112,71 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231006120159.3413789-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <20231003175456.14774-3-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 6.10.2023 14:01, Bryan O'Donoghue wrote:
-> Add sc8280xp compatible with cci_v2_data parameters.
+On 3.10.2023 19:54, Komal Bajaj wrote:
+> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
+> platform. QCM6490 is derived from SC7280 meant for various
+> form factor including IoT.
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Supported features are, as of now:
+> * Debug UART
+> * eMMC
+> * USB
+> 
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-Drop this patch, it adds nothing useful
+[...]
+
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
+> new file mode 100644
+> index 000000000000..b93270cae9ae
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
+> @@ -0,0 +1,94 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "sc7280.dtsi"
+> +
+> +/*
+> + * Delete unused sc7280 memory nodes and define the memory regions
+> + * required by qcm6490
+> + */
+> +/delete-node/ &rmtfs_mem;
+> +/delete-node/ &wlan_ce_mem;
+> +
+> +/{
+> +	reserved-memory {
+> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
+> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		camera_mem: camera@84300000 {
+Uhh.. this is totally not the same memory map that I have on a
+random msm-5.4 source+devicetree drop (which does in turn align
+with the one on QCM6490 Fairphone 5, as it should because it's
+a rebadged reference device for the most part)..
+
+Did you guys *really* redo it between software releases?
+
+This SoC family has been on the market for quite some time,
+breaking software expectations like that is not cool, especially
+on a product with a promised lifespan of 10 years or whatever!
+
+With that, this really seems more of a change that would belong
+in the IDP dts than the 6490-common one..
 
 Konrad
 
