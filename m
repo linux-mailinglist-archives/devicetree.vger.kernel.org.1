@@ -1,144 +1,136 @@
-Return-Path: <devicetree+bounces-6445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64257BB67D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:34:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586277BB693
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:39:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C5F1C2099E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:34:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7ED55282224
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238021C6A2;
-	Fri,  6 Oct 2023 11:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6D11C6B0;
+	Fri,  6 Oct 2023 11:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jIINuBiO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v2HtZ0NR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06DF11C69C
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:34:28 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B85CE;
-	Fri,  6 Oct 2023 04:34:25 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 396BYAi1067584;
-	Fri, 6 Oct 2023 06:34:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696592050;
-	bh=L/qBAZRai9WwR2dMYvfxO/fOppmi703eQAvgBvW19LU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jIINuBiOF5EPoD7GkfNHSFzXOwb7d8EJYYNw+j68gWbGGeJwXTQpIDw8vJBOSm73M
-	 9YSXxsSkPwBFeKYe0rV2KA2v80wprYnLimES3lNQ+xiVbjzFSgTeDT5UGjnV4mwFxc
-	 biRn59B1MwZdczEwnHtW8b8ABOuH4uyZOpna9oVU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 396BYAIw020690
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Oct 2023 06:34:10 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 6
- Oct 2023 06:34:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 6 Oct 2023 06:34:10 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 396BYAEJ024616;
-	Fri, 6 Oct 2023 06:34:10 -0500
-Date: Fri, 6 Oct 2023 06:34:10 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Keerthy <j-keerthy@ti.com>
-CC: <robh+dt@kernel.org>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 5/7] arm64: dts: ti: k3-j784s4-mcu: Add the mcu domain
- watchdog instances
-Message-ID: <20231006113410.tibvxxkeuujqnbv4@evolution>
-References: <20231006042901.6474-1-j-keerthy@ti.com>
- <20231006042901.6474-6-j-keerthy@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FD11C68F
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:39:04 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940B7D6
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 04:39:00 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-405361bb94eso19505545e9.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 04:39:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696592339; x=1697197139; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
+        b=v2HtZ0NRf5Yc3Qf6QSvYMEwwY96J3+J9QZuQwWUB5SFkQqTnmWoI+ISd1Rm9h1T6pJ
+         sOEZYv8zW5YtaL8PL2Y2jqlbSANPlbZgt+4lSP54pzqG7Y6sjvYiOXgFp8zrSq5Dv0MF
+         ZorPj4NiXT7j4ZT2/M2KySGb6SfwLLojZTtu/wQ0O3/Y492+wqW+xyK74eyqO/Z/IzH8
+         N/3CYyIOi+vsEuMn0sN1KqibERIQ/cGUTZydhm1JUpkYNRwwIxa2ksLoNJCY6DV7oH/C
+         Masnjo2qn7JuO2pOrFIs7CkdlpBg53K/ygFCz58GIQ3i+N6jv3DvmU9snpT/98Sqwqdp
+         35ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696592339; x=1697197139;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
+        b=L9aKpzHpBlDN/FmQNDwe/f+fbRwDe6uBbQCE6eEsZF2+rI7IcYcKc8ZdUPAMr7RIMd
+         VkNtUTQ/DpP5Yk0SgYb8zJyCcSpstH6+qKJQxYV7J+yPqWLW3P2ZIzruJvoCKI+bLryM
+         rX4T1p7snxXrCOD+a1eA+fa8aZ1npq1Z7hvUZ4J3tyMc2ZJSfsz41DOw2aNOGPSVkoyq
+         PdTVfvABrYZDieBU4ISq6Fl68bHF4mvZ+7Xof+HWVRS9yi644GeHOVDonBxyKrKIqbkR
+         lMJ+9Cx7/j/5LKFefqa+zpzBYCza4c0l2+UPGOFtyF2XaegZP7JFE8FsntvRu0jzj870
+         DLAg==
+X-Gm-Message-State: AOJu0YwP9KO2ltSjumjZN8anAAJbazYh2IkvoklafI55Skk7qhUbv0e0
+	0zjgXg8jNJDjryXl84bX2Ys6wg==
+X-Google-Smtp-Source: AGHT+IGLqMrlBobTtK4ubGlWM7ey7sxhWNYax4656ew/AmwVJYYvVcHii1oOhmdar1qG9oSo3EgJ6g==
+X-Received: by 2002:a05:600c:294a:b0:3f5:fff8:d4f3 with SMTP id n10-20020a05600c294a00b003f5fff8d4f3mr7527680wmd.7.1696592338825;
+        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id p13-20020a5d68cd000000b0031ae8d86af4sm1442191wrw.103.2023.10.06.04.38.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
+From: neil.armstrong@linaro.org
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Da Xue <da.xue@libretech.co>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: (subset) [PATCH 0/2] arm64: dts: amlogic: add libretech cottonwood support
+Date: Fri,  6 Oct 2023 13:38:55 +0200
+Message-Id: <169659226645.1467422.5247587231855706519.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231002141020.2403652-1-jbrunet@baylibre.com>
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231006042901.6474-6-j-keerthy@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 09:58-20231006, Keerthy wrote:
-> There are totally 2 instances of watchdog module in MCU domain.
-> These instances are coupled with the MCU domain R5F instances.
+From: Neil Armstrong <neil.armstrong@linaro.org>
 
-> Disabling them as they are not used by Linux.
-Device tree is hardware description - not tied to how Linux uses it.
+Hi,
 
-Reason these wdts are disabled by default is because they are tightly
-coupled with R5Fs.
-
+On Mon, 02 Oct 2023 16:10:18 +0200, Jerome Brunet wrote:
+> This patchset adds support for the Libretech cottonwood board family.
+> The 2 boards are based on the same PCB, with an RPi B form factor.
 > 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->  .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> index a7b5c4cb7d3e..809a0b1cf038 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> @@ -714,4 +714,28 @@
->  		ti,esm-pins = <63>;
->  		bootph-pre-ram;
->  	};
-> +
-> +	/*
-> +	 * The 2 RTI instances are couple with MCU R5Fs so keeping them
-> +	 * disabled as these will be used by their respective firmware
-> +	 */
-> +	mcu_watchdog0: watchdog@40600000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x40600000 0x00 0x100>;
-> +		clocks = <&k3_clks 367 1>;
-> +		power-domains = <&k3_pds 367 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 367 0>;
-> +		assigned-clock-parents = <&k3_clks 367 4>;
-> +		status = "disabled";
-> +	};
-> +
-> +	mcu_watchdog1: watchdog@40610000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x40610000 0x00 0x100>;
-> +		clocks = <&k3_clks 368 1>;
-> +		power-domains = <&k3_pds 368 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 368 0>;
-> +		assigned-clock-parents = <&k3_clks 368 4>;
-
-Please DONOT ignore the review comments - I did ask the documentation in
-dts as well. reason being that this is what people will see rather than
-dig up the commit log. it should be intutive when reading the dts why
-nodes are disabled by default Vs the standard of leaving it enabled by
-default. Given esp that these peripherals do not have anything to do
-with board semantics (pinmux or something similar) to be complete.
-
-> +		status = "disabled";
-> +	};
->  };
-> -- 
-> 2.17.1
+> This patchset depends on the usb support for the gl3510 [0]
+> Without it, there will be dt check warnings and usb may not come up properly.
 > 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+
+[1/2] dt-bindings: arm: amlogic: add libretech cottonwood support
+      https://git.kernel.org/amlogic/c/7eb73b8abdae401ac70fd7d463df118a4a2404a9
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Neil
 
