@@ -1,249 +1,299 @@
-Return-Path: <devicetree+bounces-6419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24837BB48F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:53:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1135B7BB49A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:55:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0D581C2097C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:53:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 401901C2097C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE29014277;
-	Fri,  6 Oct 2023 09:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E70514288;
+	Fri,  6 Oct 2023 09:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="p/Yjr8SJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LZnfMslZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74B4125B3
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:53:46 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC78BE
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 02:53:43 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40666aa674fso17471195e9.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 02:53:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0575FF9D9
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:55:10 +0000 (UTC)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFF2AD
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 02:55:08 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1c735473d1aso15085595ad.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 02:55:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696586022; x=1697190822; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=EAsXkny87ZOF57hq2rRzij47Q/y5dvWojHFo8373xlo=;
-        b=p/Yjr8SJzp0FOZvU9tGkYOv8Sy5p+MEBUZH350LpCar5L7/wzXgLi3NIoXCcM5yNE6
-         8siV/oHsbWfT10ihKrAfmopoRfeJcdM7pJcE2zl4ruLyYG2x/JKZ+fQQj5kyCxFowOLE
-         CfPuau5HCGuGeQ4vQBSBa5NJNYGt1lkmyC5fjnM83xpfMm0l8U8L3NHfMNMUO7pjrk8d
-         hZrbM851eZ8jZGBQzBrKoEGtKcFLyBiounrN/3unxBfFDEzL+EpoLwJmodejLveqJNtK
-         cTZIWhntZeeyJIK6H2Nvso2ZT+FSUQhpg8uH2GbVEsSu5ZBkhQQyHNLklkBJy+tfQpwL
-         nGxw==
+        d=linaro.org; s=google; t=1696586108; x=1697190908; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=va6279LqB/seoOCOHbdXG67T3Sqj31GhP8cK9knO7lQ=;
+        b=LZnfMslZotV92c5PlQ0A5N0WIv9zbDDWmUlX4qMNCiqR8Kcys/ygvcB3cAk1knt+qC
+         EaGRZyX9rzZSrZr6ciYMitFfYuzAiUkxGTaSue53PXkOpWyoNOnqOoJBzmCBXqNfEq/f
+         +4IydxWml0PMdDZ9/Zps3KEvmAJ5f5ItfqPAauA4QdnHl9k0unSbfXFVlPU8KMezHGbv
+         KyBBsltr+sQuoeEUo+q/AOG8GgWwifnVAPYCuygYSSgCUafmYAW1syOQ9cD+1lDO4QXD
+         tQDFlKC0LPhjY7L4rzHAcWXmnZ9qbMa3UzUb3M5sLdogmqGkhMhesUbqn4z6Dfj+lEyO
+         wvpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696586022; x=1697190822;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EAsXkny87ZOF57hq2rRzij47Q/y5dvWojHFo8373xlo=;
-        b=HrAP4I/RVT3LzUiRrYwccU5MtnizBe7+CkhpH2AA7bpa1wS8CqKW7vpeHKANxe5+2t
-         DMblalSwA3pMy9aKkFa/IOXInPj6M9W751qgIiqVPnicgINiuUwlyCHJ9rQtHrht0UQ1
-         md0bQzdolR+l+ihiBCI0r0U7oCifD6KFHOOHen4fDG0K/h1aqMkRzrKLToBbIEBcdqv2
-         gm8FhmvsI37QvXdIYlnclXkU0L4H3S8b37NQX/7cMyZHTDtK1y+4rqspsplZ+puKDRvQ
-         GtZ4qB5fdp5bntQXJBjbzuxjzwb0rCZ30A7uX4U4vxceKw6WbP1mGvaoJ2SR6JTaGawV
-         EcYA==
-X-Gm-Message-State: AOJu0Yyx/ghByEMCDw1taYJjhy4CTj9MWn8WxRdBqgc5yZZ81dZpZMwH
-	b2av2l+Bfc6z3V6RGWS6JIBzKg==
-X-Google-Smtp-Source: AGHT+IHrcOMJ9DKWXLL+OqURxmxVAi/wXO6noduuqphftmmCBE8BiZD7h8nJrZjcg+IQZX0E+BghMg==
-X-Received: by 2002:a05:600c:2a4e:b0:3fe:fc0f:52e2 with SMTP id x14-20020a05600c2a4e00b003fefc0f52e2mr6934953wme.37.1696586022042;
-        Fri, 06 Oct 2023 02:53:42 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:8f44:72b3:5bcb:6c6b])
-        by smtp.gmail.com with ESMTPSA id c5-20020a05600c0ac500b0040586360a36sm5579460wmr.17.2023.10.06.02.53.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 02:53:41 -0700 (PDT)
-References: <20231002141020.2403652-1-jbrunet@baylibre.com>
- <20231002141020.2403652-3-jbrunet@baylibre.com>
- <b81a296d-0640-4b2e-aab6-c9de37d10206@linaro.org>
- <1j5y3ozvmk.fsf@starbuckisacylon.baylibre.com>
- <3e69ae4b-5d9e-42ee-a21e-151de8fbb996@linaro.org>
- <1j8r8hxutt.fsf@starbuckisacylon.baylibre.com>
- <036a9fef-02fd-4bfd-afb5-50724f15176c@linaro.org>
- <1j4jj4xik6.fsf@starbuckisacylon.baylibre.com>
- <78c8d21f-99b1-40ed-a76f-fdf3cbb42274@linaro.org>
-User-agent: mu4e 1.8.13; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
-Date: Fri, 06 Oct 2023 11:52:58 +0200
-In-reply-to: <78c8d21f-99b1-40ed-a76f-fdf3cbb42274@linaro.org>
-Message-ID: <1jzg0wvzyz.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1696586108; x=1697190908;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=va6279LqB/seoOCOHbdXG67T3Sqj31GhP8cK9knO7lQ=;
+        b=geP+p6XQVr5v5rsbz/blHvZCHpcrRg4aixkDyPiPGGumAdaAmPhbrVeGzMosa+OgMM
+         THGimZ1NFGHR4AQP4Q84wOsz/+L6Mjs6Kaoj7nYBWLi26wLrO+DRIkBMbNHb79VpSSkB
+         5OWpQ+ncZlIiXidxzzNOQ0tAB/udqLZimqYMwb+FbODj2S0jCArgjbhHi+au8/sJ4awn
+         dxVlmDrsXEZRBSOg7i+JIfyU1v1mvz2/VeXEM5ILDBr1cqxsbJ13m/AADdh7VOmMIcjk
+         9juA4t+7A2fLwqYAn38rsUlURsyfM2cp7rQTf76nnj8ABMn6K93Mx62wPwS3jE35lucv
+         SpQA==
+X-Gm-Message-State: AOJu0YztKpJkBGjVkiffS8yzPMj/vRVK9ED/CVFj6Q2K2xOzjiG18P6Z
+	ByAtuO2F3cWOeHc+HThXcb6d+A==
+X-Google-Smtp-Source: AGHT+IFcNrFSTODFX+dGgwWocT0UzAFWNQzLB1H3jlWLEy7tDCtTRcn8etVzAnGEe7SIBHS8vPII1Q==
+X-Received: by 2002:a17:903:110d:b0:1c1:fe97:bf34 with SMTP id n13-20020a170903110d00b001c1fe97bf34mr9060380plh.24.1696586108092;
+        Fri, 06 Oct 2023 02:55:08 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id a12-20020a170902ee8c00b001bde65894c8sm3372472pld.268.2023.10.06.02.55.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Oct 2023 02:55:07 -0700 (PDT)
+Message-ID: <1006be55-85be-4f13-90c3-ec9c06996534@linaro.org>
+Date: Fri, 6 Oct 2023 11:55:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: adc: provide max34408/9 device tree
+ binding document
+Content-Language: en-US
+To: Ivan Mikhaylov <fr0st61te@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231005185537.32267-1-fr0st61te@gmail.com>
+ <20231005185537.32267-2-fr0st61te@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231005185537.32267-2-fr0st61te@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On 05/10/2023 20:55, Ivan Mikhaylov wrote:
+> The hardware binding for i2c current monitoring device with overcurrent
+> control.
+> 
+> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
+> ---
+>  .../bindings/iio/adc/maxim,max34408.yaml      | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> new file mode 100644
+> index 000000000000..4262bedb4bfa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/maxim,max34408.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Two- and four-channel current monitors with overcurrent control
+> +
+> +maintainers:
+> +  - Ivan Mikhaylov <fr0st61te@gmail.com>
+> +
+> +description: |
+> +  The MAX34408/MAX34409 are two- and four-channel current monitors that are
+> +  configured and monitored with a standard I2C/SMBus serial interface. Each
+> +  unidirectional current sensor offers precision high-side operation with a
+> +  low full-scale sense voltage. The devices automatically sequence through
+> +  two or four channels and collect the current-sense samples and average them
+> +  to reduce the effect of impulse noise. The raw ADC samples are compared to
+> +  user-programmable digital thresholds to indicate overcurrent conditions.
+> +  Overcurrent conditions trigger a hardware output to provide an immediate
+> +  indication to shut down any necessary external circuitry.
+> +
+> +  Specifications about the devices can be found at:
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max34408
+> +      - maxim,max34409
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  shutdown-gpios:
+> +    description:
+> +      Shutdown Output. Open-drain output. This output transitions to high impedance
+> +      when any of the digital comparator thresholds are exceeded as long as the ENA
+> +      pin is high.
+> +    maxItems: 1
+> +
+> +  shtdn-enable-gpios:
 
-On Fri 06 Oct 2023 at 10:32, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Are these both GPIOs different than standard powerdown-gpios? I suspect
+one is different, but the other should be the same. If both are
+different, use different names. shutdown gpios is the same as powerdown
+gpios....
 
-> On 06/10/2023 10:21, Jerome Brunet wrote:
->> On Thu 05 Oct 2023 at 12:04, Neil Armstrong <neil.armstrong@linaro.org>
->> wrote:
->> 
->>> On 05/10/2023 11:42, Jerome Brunet wrote:
->>>> On Tue 03 Oct 2023 at 09:35, Neil Armstrong <neil.armstrong@linaro.org>
->>>> wrote:
->>>>
->>>>> On 02/10/2023 20:57, Jerome Brunet wrote:
->>>>>> On Mon 02 Oct 2023 at 18:45, Neil Armstrong <neil.armstrong@linaro.org>
->>>>>> wrote:
->>>>>>
->>>>>
->>>>> <snip>
->>>>>
->>>>>>>> +&usb3_pcie_phy {
->>>>>>>> +	#address-cells = <1>;
->>>>>>>> +	#size-cells = <0>;
->>>>>>>> +	phy-supply = <&vcc_5v>;
->>>>>>>> +
->>>>>>>> +	hub: hub@1 {
->>>>>>>> +		compatible = "usb5e3,626";
->>>>>>>> +		reg = <1>;
->>>>>>>> +		reset-gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
->>>>>>>> +	};
->>>>>>>
->>>>>>> Not sure the PHY is the right place to put the USB HUB,
->>>>>>> and it's probable the HUB is connected to both the USB2 and USB3 lines
->>>>>> It is connected to the USB3.0 only
->>>>>>
->>>>>>> so you should have both USB IDs in DT like it'd done for the Odroid-C4:
->>>>>>>
->>>>>>> / {
->>>>>>> ...
->>>>>>>             /* USB hub supports both USB 2.0 and USB 3.0 root hub */
->>>>>>>             usb-hub {
->>>>>>>                     dr_mode = "host";
->>>>>>>                     #address-cells = <1>;
->>>>>>>                     #size-cells = <0>;
->>>>>>>
->>>>>>>                     /* 2.0 hub on port 1 */
->>>>>>>                     hub_2_0: hub@1 {
->>>>>>>                             compatible = "usb2109,2817";
->>>>>>>                             reg = <1>;
->>>>>>>                             peer-hub = <&hub_3_0>;
->>>>>>>                             reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
->>>>>>>                             vdd-supply = <&vcc_5v>;
->>>>>>>                     };
->>>>>>>
->>>>>>>                     /* 3.1 hub on port 4 */
->>>>>>>                     hub_3_0: hub@2 {
->>>>>>>                             compatible = "usb2109,817";
->>>>>>>                             reg = <2>;
->>>>>>>                             peer-hub = <&hub_2_0>;
->>>>>>>                             reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
->>>>>>>                             vdd-supply = <&vcc_5v>;
->>>>>>>                     };
->>>>>>>             };
->>>>>>> ...
->>>>>>> };
->>>>>>>
->>>>>>> if it only has a single USB ID, then it should go under the dwc3 node.
->>>>>> The usb controller is connected to the PHY and what's coming out of the
->>>>>> PHY
->>>>>> goes to the hub. It seems logical to hub the hub under it.
->>>>>> Why bypass the PHY ?
->>>>>
->>>>> The USB bindings the USB devices nodes should be under the controller's node,
->>>>> not the PHY, see:
->>>>>
->>>>> Documentation/devicetree/bindings/usb/usb-hcd.yaml
->>>>> ...
->>>>> patternProperties:
->>>>>     "^.*@[0-9a-f]{1,2}$":
->>>>>       description: The hard wired USB devices
->>>>>       type: object
->>>>>       $ref: /schemas/usb/usb-device.yaml
->>>>> ...
->>>>> and the example.
->>>>>
->>>>> Subnodes aren't allowed in the PHY node.
->>>> Ok, that is what schema says.
->>>> HW wise there is possible problem though.
->>>> The phy node has the power supply to the bus.
->>>> In that case it is a controllable one.
->>>> If fixed USB devices go under the controller instead of the PHY, isn't
->>>> it possible that the kernel may attempt to probe them before the bus is
->>>> powered ? For this particular board, it would make the reset we are
->>>> trying to apply useless.
->>>
->>> The usb core has a special handling for those usb hubs doing the power
->>> up at the right time during the USB setup, including the PHY powering up.
->>> So the power sequence should be fine.
->>>
->>> This has been done on Odroid-C2 and Odroid-N2 already.
->> Tried it. Unfortunately something is off with the hub under the dwc3 node
->> I often get this error (like once in 3 boots):
->> [    0.419301] usbcore: registered new interface driver usbfs
->> [    0.424434] usbcore: registered new interface driver hub
->> [    0.429696] usbcore: registered new device driver usb
->> [    0.921460] usbcore: registered new interface driver usb-storage
->> [    0.968157] usbcore: registered new interface driver usbhid
->> [    0.972114] usbhid: USB HID core driver
->> [    1.132529] dwc3-meson-g12a ffe09000.usb: USB2 ports: 2
->> [    1.134897] dwc3-meson-g12a ffe09000.usb: USB3 ports: 1
->> [    1.144451] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
->> [    1.147231] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
->> [    1.154464] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
->> [    1.219515] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->> [    1.469260] usb 1-1: new high-speed USB device number 2 using xhci-hcd
->> [    1.745395] usb 2-1: new SuperSpeed USB device number 2 using xhci-hcd
->> [    9.794777] usbcore: registered new device driver onboard-usb-hub
->> [   10.255484] onboard-usb-hub 1-1: Failed to suspend device, error -32
->> [   10.261699] onboard-usb-hub 1-1: can't set config #1, error -71
->> [   10.287500] onboard-usb-hub 1-1: Failed to suspend device, error -32
->> [   10.287844] onboard-usb-hub 1-1: USB disconnect, device number 2
->> [   10.573277] usb 1-1: new high-speed USB device number 3 using xhci-hcd
->> [   10.921468] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
->> [   11.193453] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
->> While it works reliably when the onboard-usb-hub is under the phy node.
->> I added the 5v supply as vdd under the hub for good measure.
->
-> The .reset_us you used from genesys_gl852g is probably too low, you may need to use a bigger one then.
->
+> +    description:
+> +      SHTDN Enable Input. CMOS digital input. Connect to GND to clear the latch and
+> +      unconditionally deassert (force low) the SHTDN output and reset the shutdown
+> +      delay. Connect to VDD to enable normal latch operation of the SHTDN output.
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-Indeed. This seems to do the trick.
-I'll change this
+required goes after patternProperties.
 
-Thx
+> +
+> +patternProperties:
+> +  "^channel@[0-3]$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    description:
+> +      Represents the internal channels of the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        items:
+> +          minimum: 0
+> +          maximum: 3
+> +
+> +      maxim,rsense-val-micro-ohms:
+> +        description:
+> +          Adjust the Rsense value to monitor higher or lower current levels for
+> +          input.
+> +        enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000, 500000]
+> +        default: 1000
+> +
+> +    required:
+> +      - reg
+> +      - maxim,rsense-val-micro-ohms
+> +
+> +    unevaluatedProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: maxim,max34408
+> +    then:
+> +      patternProperties:
+> +        "^channel@[2-3]$": false
+> +        "^channel@[0-1]$":
+> +          properties:
+> +            reg:
+> +              minimum: 0
+> +              maximum: 1
+> +    else:
+> +      patternProperties:
+> +        "^channel@[0-3]$":
+> +          properties:
+> +            reg:
+> +              minimum: 0
+> +              maximum: 3
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +
 
-> Neil
->
->> 
->>>
->>> Neil
->>>
->>>>
->>>>>
->>>>> Neil
->>>>>
->>>>>>
->>>>>>>
->>>>>>>> +};
->>>>>>>> +
->>>>>>>> +&usb {
->>>>>>>> +	status = "okay";
->>>>>>>> +};
->>>>>
->>>>> <snip>
->>>>
->> 
+Stray blank line.
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@1e {
+> +              compatible = "maxim,max34409";
+> +              reg = <0x1e>;
+> +
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+
+Missing blank line
+
+
+Extend example with GPIOs to make it as complete as reasonable/possible.
+
+Best regards,
+Krzysztof
 
 
