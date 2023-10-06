@@ -1,279 +1,121 @@
-Return-Path: <devicetree+bounces-6424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED437BB51C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:27:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C43DF7BB520
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 747BC28218D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:27:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00EA41C2098E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD03156CD;
-	Fri,  6 Oct 2023 10:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DD3156D1;
+	Fri,  6 Oct 2023 10:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B86yaQq7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZW7CKuJt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F646FA1
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:27:08 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2AFCF4;
-	Fri,  6 Oct 2023 03:27:04 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 396AQUom051359;
-	Fri, 6 Oct 2023 05:26:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696587990;
-	bh=7uDHChuQq/jcdTtHkM6HxUZGeZgR/X+sPfZ/pEKZioM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=B86yaQq7XPuT1flwhDgQn2FYNBWx2C1d9C8LgZgaFg/++wgUq7mtocvMmvgWLLCof
-	 UGrsexvHKx25Sv8ID5j3vDk+V+UT0nXjmYeHCLfmG1bj1S1LPLoENQ0HD6ZSoeTci7
-	 u5/RIKURwrlUwZoN11wysFrVGEOb9cn5tVwFHPeI=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 396AQUMK113773
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Oct 2023 05:26:30 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 6
- Oct 2023 05:26:30 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 6 Oct 2023 05:26:30 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 396AQSbx012160;
-	Fri, 6 Oct 2023 05:26:28 -0500
-Date: Fri, 6 Oct 2023 15:56:25 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Vinod Koul
-	<vkoul@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Mauro Carvalho Chehab
-	<mchehab+samsung@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Benoit Parrot <bparrot@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
-        <nm@ti.com>, <devarsht@ti.com>, <a-bhatia1@ti.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Julien Massot
-	<julien.massot@collabora.com>
-Subject: Re: [PATCH v9 13/13] media: ti: Add CSI2RX support for J721E
-Message-ID: <x7qd7h7jmadf563u2wbfsxwp7s4isvkyqqpmw7t5e6qhccrwkc@yq24sfgl75pe>
-References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
- <20230811-upstream_csi-v9-13-8943f7a68a81@ti.com>
- <ad042065-33a2-d42e-ce2e-628464102fc3@ideasonboard.com>
- <wgkjek77bolf5wabki7uhm6cxjy5g5z2ncoc6urr7dv5y6wnaw@yfh7ccogxfea>
- <20230829155513.GG6477@pendragon.ideasonboard.com>
- <ZR1txMVk+4oHLEKU@matsya>
- <20231004200312.GE30342@pendragon.ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F636FA1
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:27:50 +0000 (UTC)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7309F;
+	Fri,  6 Oct 2023 03:27:49 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-2773f2e599cso1416990a91.1;
+        Fri, 06 Oct 2023 03:27:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696588069; x=1697192869; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lySe1hMe8uGNZO8PPWsTJao8eRENoz2n4qp0tx6fqRg=;
+        b=ZW7CKuJtK2Xs1PoiEO8xCgRm6BC39EqXTciRmOqtsBtaHVvKPOsATJoara4P+SaGcK
+         M+cT9tlYhb0p0Q+DtckuZORDBIEdUHmZPJWa9rlAjQaHwUNy9UseZbHZba/fGuE75qV2
+         VevkSm3jvfYE8rRCN/H1Zpmq3aX3q/cHLJ5CNRVF8aM9AFetqN/qMYXYWWXneWzMN0X0
+         SUnG5fGMzjub941qfkU7KpfE/+Dx/voi+t32yC5hsbN6lc7y6iFOhRCRwvkAq+xDahqI
+         1+PLyn0ouMNVGsGKFx2A4gEYm59jFBxlHZ09T6QVLde8CcwdjkXof+7fZeczZiysJaM7
+         xS7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696588069; x=1697192869;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lySe1hMe8uGNZO8PPWsTJao8eRENoz2n4qp0tx6fqRg=;
+        b=k9sYd8lVDVfPYkZTHQsJDDSDbzP/NjHaPRjur2Fm+PFtBJoUR4TgzZ5iZrnpszRBtY
+         tLVGyV48RNrQtUim/mvEs2SMY7Qt9tbe9UNoehGoYWPtEcF5y6eP6m4rhTLItHArTqzw
+         2CtVihqIKcCJD2zv0RML82jXNIOa0nvqK7Tm79cCPgGc0nX1rcVBtAVWWPEQYvR9iGss
+         e6tQadyXe67ECQnlg0sQwNMc6dZylRc8egmI+bnGG2t2NS11JcRliemuXwHL97RWyIiH
+         QWurEVJAwPFg63wE/nzIjWRbqMqPaD0AVfCppBLx0DnUq+cm0JLJdGbM3x+m5za5a1YR
+         /YTA==
+X-Gm-Message-State: AOJu0YydMRu8T9UE5NOZBNqHx1u3YlIzEA6+dhiiZfbpdgpzfqNWxHRf
+	H2SP6oiC2XJ3sAYXL9vp/EfrTwRrk1ZqgTSGqhQ=
+X-Google-Smtp-Source: AGHT+IH6SXgFj0kmejgotdy2ONeMvmaauQTRhUwpyQJu2H3/YxhXrZu30hvf8PM6m0+CdwnGziyGnGt2LCRWHQBqFKs=
+X-Received: by 2002:a17:90b:1801:b0:268:314f:8f35 with SMTP id
+ lw1-20020a17090b180100b00268314f8f35mr7307299pjb.6.1696588068971; Fri, 06 Oct
+ 2023 03:27:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jzhpceyqp4shtsmp"
-Content-Disposition: inline
-In-Reply-To: <20231004200312.GE30342@pendragon.ideasonboard.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230928151631.149333-1-jcmvbkbc@gmail.com> <20230928151631.149333-6-jcmvbkbc@gmail.com>
+ <2023100326-crushing-septic-4856@gregkh> <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
+ <2023100544-rendering-identify-e0ad@gregkh> <CAMo8Bf+wS+qiX2mMZm0i8dt7xkDO8RvroP8RF=78zxgFj-zwaA@mail.gmail.com>
+ <2023100625-water-molehill-4a8f@gregkh>
+In-Reply-To: <2023100625-water-molehill-4a8f@gregkh>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Fri, 6 Oct 2023 03:27:37 -0700
+Message-ID: <CAMo8BfLfBEQVTyBXw=K2wsgGF+ZUfJhffX4ax8kX+k_DPSOKYg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---jzhpceyqp4shtsmp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Oct 6, 2023 at 2:34=E2=80=AFAM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+> If you only want your code being used in Linux, then stick with
+> "GPL-2.0".  If you want your code to be able to be copied into other
+> GPLv3 licensed code bodies (like Hurd and others), then license it as
+> "GPL-2.0-or-later".  Your call.
 
-Hi Laurent, Vignesh, Vinod,
+Thanks. From that point of view I prefer GPL-2.0-or-later.
 
-I have some good news, there is an upper bound on the amount of data=20
-stored in the FIFOs (~32KB), so we don't need to allocate a buffer of=20
-the full frame size.
+> > > Yes, but not all do.  If you don't need to do anything special, it ca=
+n
+> > > just claim to be a normal device, we've had threads about this on the
+> > > list before.  If you don't need to determine in userspace from the tt=
+y
+> > > connection what device it is, just use the default one instead.
+> >
+> > Ok, it looks like having
+> >
+> > #define PORT_ESP32ACM (-1)
+> >
+> > in the driver source should be ok? I've tested that it works.
+>
+> Hah, I like that hack.  But why not just use PORT_UNKNOWN?
 
-On Oct 04, 2023 at 23:03:12 +0300, Laurent Pinchart wrote:
-> On Wed, Oct 04, 2023 at 07:21:00PM +0530, Vinod Koul wrote:
-> > On 29-08-23, 18:55, Laurent Pinchart wrote:
-> > > Hi Jai,
-> > >=20
-> > > (CC'ing Vinod, the maintainer of the DMA engine subsystem, for a
-> > > question below)
-> >=20
-> > Sorry this got lost
->=20
-> No worries.
->=20
-> > > On Fri, Aug 18, 2023 at 03:55:06PM +0530, Jai Luthra wrote:
-> > > > On Aug 15, 2023 at 16:00:51 +0300, Tomi Valkeinen wrote:
-> > > > > On 11/08/2023 13:47, Jai Luthra wrote:
-> > > > > > From: Pratyush Yadav <p.yadav@ti.com>
-> > >=20
-> > > [snip]
-> > >=20
-> > > > > > +static int ti_csi2rx_start_streaming(struct vb2_queue *vq, uns=
-igned int count)
-> > > > > > +{
-> > > > > > +	struct ti_csi2rx_dev *csi =3D vb2_get_drv_priv(vq);
-> > > > > > +	struct ti_csi2rx_dma *dma =3D &csi->dma;
-> > > > > > +	struct ti_csi2rx_buffer *buf;
-> > > > > > +	unsigned long flags;
-> > > > > > +	int ret =3D 0;
-> > > > > > +
-> > > > > > +	spin_lock_irqsave(&dma->lock, flags);
-> > > > > > +	if (list_empty(&dma->queue))
-> > > > > > +		ret =3D -EIO;
-> > > > > > +	spin_unlock_irqrestore(&dma->lock, flags);
-> > > > > > +	if (ret)
-> > > > > > +		return ret;
-> > > > > > +
-> > > > > > +	dma->drain.len =3D csi->v_fmt.fmt.pix.sizeimage;
-> > > > > > +	dma->drain.vaddr =3D dma_alloc_coherent(csi->dev, dma->drain.=
-len,
-> > > > > > +					      &dma->drain.paddr, GFP_KERNEL);
-> > > > > > +	if (!dma->drain.vaddr)
-> > > > > > +		return -ENOMEM;
-> > > > >=20
-> > > > > This is still allocating a large buffer every time streaming is s=
-tarted (and
-> > > > > with streams support, a separate buffer for each stream?).
-> > > > >=20
-> > > > > Did you check if the TI DMA can do writes to a constant address? =
-That would
-> > > > > be the best option, as then the whole buffer allocation problem g=
-oes away.
-> > > >=20
-> > > > I checked with Vignesh, the hardware can support a scenario where w=
-e=20
-> > > > flush out all the data without allocating a buffer, but I couldn't =
-find=20
-> > > > a way to signal that via the current dmaengine framework APIs. Will=
- look=20
-> > > > into it further as it will be important for multi-stream support.
-> > >=20
-> > > That would be the best option. It's not immediately apparent to me if
-> > > the DMA engine API supports such a use case.
-> > > dmaengine_prep_interleaved_dma() gives you finer grain control on the
-> > > source and destination increments, but I haven't seen a way to instru=
-ct
-> > > the DMA engine to direct writes to /dev/null (so to speak). Vinod, is
-> > > this something that is supported, or could be supported ?
-> >=20
-> > Write to a dummy buffer could have the same behaviour, no?
->=20
-> Yes, but if the DMA engine can write to /dev/null, that avoids
-> allocating a dummy buffer, which is nicer. For video use cases, dummy
-> buffers are often large.
->=20
-> > > > > Alternatively, can you flush the buffers with multiple one line t=
-ransfers?
-> > > > > The flushing shouldn't be performance critical, so even if that's=
- slower
-> > > > > than a normal full-frame DMA, it shouldn't matter much. And if th=
-at can be
-> > > > > done, a single probe time line-buffer allocation should do the tr=
-ick.
-> > > >=20
-> > > > There will be considerable overhead if we queue many DMA transactio=
-ns=20
-> > > > (in the order of 1000s or even 100s), which might not be okay for t=
-he=20
-> > > > scenarios where we have to drain mid-stream. Will have to run some=
-=20
-> > > > experiments to see if that is worth it.
-> > > >=20
-> > > > But one optimization we can for sure do is re-use a single drain bu=
-ffer=20
-> > > > for all the streams. We will need to ensure to re-allocate the buff=
-er=20
-> > > > for the "largest" framesize supported across the different streams =
-at=20
-> > > > stream-on time.
-> > >=20
-> > > If you implement .device_prep_interleaved_dma() in the DMA engine dri=
-ver
-> > > you could write to a single line buffer, assuming that the hardware w=
-ould
-> > > support so in a generic way.
-> > >=20
-> > > > My guess is the endpoint is not buffering a full-frame's worth of d=
-ata,=20
-> > > > I will also check if we can upper bound that size to something feas=
-ible.
-
-According to the spec the endpoint buffers a maximum of 2048 x (128-bit)=20
-samples, which comes out to be 32KiB.
-
-I ran some experiments after disabling the drain and looking at the=20
-subsequent corrupt frames with stale data, and it was always in=20
-multiples of (< 20x) 128-bit samples.
-
-Given we have an upper bound, I think a practical solution for now is to=20
-allocate a single re-usable 32KiB buffer at probe time (will send v10=20
-with this fix).
-
-Although it would be ideal if we can do this without *any* buffers at=20
-all.
-
-> > > >=20
-> > > > > Other than this drain buffer topic, I think this looks fine. So, =
-I'm going
-> > > > > to give Rb, but I do encourage you to look more into optimizing t=
-his drain
-> > > > > buffer.
-> > > >=20
-> > > > Thank you!
-> > > >=20
-> > > > > Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
+A lot of functionality doesn't work with PORT_UNKNOWN, e.g.
+console or modem control.
+I've got the idea of using -1 from this email:
+https://lore.kernel.org/linux-serial/502240f7-2cac-4fe6-9e27-f9861db3666d@a=
+pp.fastmail.com/
 
 --=20
-Thanks,
-Jai
-
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---jzhpceyqp4shtsmp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmUf4M4ACgkQQ96R+SSa
-cUVzQxAAo+osmT3qMYJ2j5ZIle3NBcSnWBUVdCQQsdGFSZC7u1g60zVXXKFBo1En
-/0xerHCo/QN5M0etfOQVXLtKRDKeLYq67irREf4lUy99dEw8QQd3Irw3yjvlafnz
-38mYD1jdX36FDj4fcOVz+3uNK5nSFAeJQCrojbQWJmpqsVRibc8Bj8LlwDbwNupG
-MEn4az55uJ3qMTyk8SH/uPcfQMK7ORMPYsdXPEQbbzisK6QH/R/2eF3RD/nQSwmA
-6kOLHgnUbIHp/dWlytKk1PpoP/cYFxYpF3z7Qt/ytbVDVvOpUxhunpUU22ctP8rw
-QJ1zW46aZVM5v+IaL+g3645LUMQ92lpFgct9mjO6OnB0Pzs0aFiDxOSdUY4qwEJb
-c2YwJNLBGMPUvhOFlzzmEhU7QpedZVMEekI0TSC2lCHwG/WnFfrR0DeNPtJsjyyW
-3alu03ezmnYFKvPM+JtRU5QJQMkFMkNaJKqVZaywjBDdCfsq8paOPjuIORtyq1MW
-enpuvhmIP36fOkLGDKdFYVvEz9afx4UsyF397d450AWtrdsMT6gwJJS5IlQ08VGs
-f8oBp8xtBKDxkcC6nBlLzjyPiDfdk5lZF8E0rYZUneb0olGfrxCkvir+ZPqKLkjk
-yLCg6nZB+ANHUfD0ttmlBZusgp4ShiDu3V0EBS8jk2jEeLuxQAU=
-=J+Ca
------END PGP SIGNATURE-----
-
---jzhpceyqp4shtsmp--
+Thanks.
+-- Max
 
