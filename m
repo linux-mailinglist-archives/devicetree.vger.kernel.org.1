@@ -1,185 +1,132 @@
-Return-Path: <devicetree+bounces-6738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A957BC9B6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 22:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BB07BCA8A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 01:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E67881C20899
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 20:15:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C763A1C208D6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 23:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEDD328D9;
-	Sat,  7 Oct 2023 20:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72BC339B8;
+	Sat,  7 Oct 2023 23:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="A1lblkpK";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MyYd0mb0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lOGaSjWP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50F41845
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 20:14:56 +0000 (UTC)
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217F9C5;
-	Sat,  7 Oct 2023 13:14:55 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id B11963200AFB;
-	Sat,  7 Oct 2023 16:14:51 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Sat, 07 Oct 2023 16:14:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-	1696709691; x=1696796091; bh=HAd1G1CE8pMJy+IQqhNmJgcfkB8TtDe7tK8
-	J8WflhKQ=; b=A1lblkpKm1sih/Lz24VdS7Kqa27QIOHQxeLLmg8DW3ZhnJOsvYg
-	X0Kzqog/j1RGX+Ag3jyXUisBGhU4xvevkxSPpfVfFl/L9jRVZoCxSDL64W/BOTOK
-	PVhjzdg96Ohnnr6u/r8lpKvtXoC5jjDDrF+tefaY2nvuKep/RIfmndRXWpnec9Ko
-	WHLSBxpSN+OClSXW8SfUxwZKQYKQK4o6h598Ax9lkSJTbB7K47qqn+k/DZIUKlus
-	xqsn+sCyj8wf4qKTTy7pLzMiWisINlYFbMTT2Ngw2Va3NPSG2kTIODDGYvhYlGxz
-	WEp5us7/Vmzee2HxghnXI8giqwtmkykgOUA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1696709691; x=1696796091; bh=HAd1G1CE8pMJy+IQqhNmJgcfkB8TtDe7tK8
-	J8WflhKQ=; b=MyYd0mb0piU10gXi8GuZntCd+O9GcH7SazJXKah19uzTqldK11i
-	Pc88fUtnls7jXyw+3GZxcemfk2gxYwouFiXs15LFaTrgKTpekpP5yKrV94oKDIbf
-	TRpn0JSEoSu/X7ndo72Bl9jOgPr5aHF8Ww3ABb/SgCyxdUgT5zAvEIBJbVe2oODb
-	FxK3Qj4NtajUXHOzNKPPIGmZkrhWwtdX96myNbaJzufV9R2BXOfg6QWTOqjrZHlf
-	JwlGeMkMxOC+w7VaxmUKLOasEchr/oK0xOEum73rdGqL8km5XIcmxoJc92mrVq1G
-	tng6l0Xkpkr73nGmMOPEKWziRo+04NX9ZMA==
-X-ME-Sender: <xms:OrwhZRAPlNhx_Bvd-XO17N_zoRlfdORCB5MDks69NG2Bj-aQcUwwiw>
-    <xme:OrwhZfjlSEcq07lAWr3TCJf8ZPBe7p5v_2qtS2jis65AZ7uC_ZRPta1anNjpuFtF3
-    m5iquGjkyxQ8z6HNi8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeelgddugeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
-    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:OrwhZckSp-A9biPxEJktOQlu4jPHjgc7ZJ2VnylTeQGSw2VfWRV74w>
-    <xmx:OrwhZbwBM6auAYtjcxGFWXgjsKZDhi2aRtneDrSgeMn43F7laynBDQ>
-    <xmx:OrwhZWRp2nSlaAyP_Yad9U-rM_D4KIDhznsD4XYeACoJ22EqZAvyDA>
-    <xmx:O7whZbIc_jFD4cQA8GYruD9tMo5TIrxpJ3Cmi_iLTlznhWkJl_20fg>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 07853B60089; Sat,  7 Oct 2023 16:14:49 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E896339AE
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 23:48:51 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9249B9;
+	Sat,  7 Oct 2023 16:48:46 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bffd6c1460so39205901fa.3;
+        Sat, 07 Oct 2023 16:48:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696722525; x=1697327325; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z8ks13CH2P8HB9Lhw96RBJaDRb016JT/2wf8+AM60Gk=;
+        b=lOGaSjWP/j625+UeYhfQlh9h1TfHh72UP9qD9fEphq+3M80RcFKiLYFsWRgAnjGsUv
+         /B2dQ/99/nD4PXg3Bc1hFAlU0BFYYj7H0kPCU8AiVBoTwpcT2WTrMwodUcw7lF5VYigD
+         M0qg+pqO23wl+So/hEiN/NPGzJg8MY2+5XTOj44ijhPncKl89AQVKdg42i5lF+28c0if
+         g7cQcRWCXGaVG8Q5T3WjyvK7Dqlhpy8v0+ADqyo9dnV0b03+FSb4oFJg9S82T321syf5
+         DBjh9a9OGSJ5chS8R2MaJeiPmot+6nhvmI4w+Vh6edctRxKcvL0poj0D/xXXPTXqkCaN
+         uApQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696722525; x=1697327325;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z8ks13CH2P8HB9Lhw96RBJaDRb016JT/2wf8+AM60Gk=;
+        b=ozbTAHQTHr3KCrYh4uaI8VkriZ2Guo40JoY44DKYV9W32N9ckpo8dsqC3GFrnue3xU
+         thXDAieVyw4mscad1RhUW6wu5Of0sUJQMQKjqkfciHQsCvWEkAoDPutYgZKK1Ynu3rTB
+         iXPEKcMTw06geTTwvheLWBhMThKI/n01tH736iRuFMpjG1lwNQXejn/wOWVzAvHr5kvz
+         17Eru5oJZhWuD+9cdr4W/L+BJLyPSMJb9W4yJoXPQQUyYQLTK3JvbyldUXYJB6fHSLBZ
+         djE0NI/PomPFFWyY43t1tqayLIoZJfPBhnyWi0UAq+v+Ra2JCQj4L5zzmGC6gHqUXv7E
+         zVZQ==
+X-Gm-Message-State: AOJu0YzopGaLEn2upDIjPsJf6Db3FK1sXfKSmGw5tw44TqWQLvHO0Z6R
+	cRVf/dRJleGcfP8SJ+aV0C+UiJUMKIYkTqS9/7w=
+X-Google-Smtp-Source: AGHT+IGS7nEmTf3cidl+rNO7f+1JByk7touGUV35eqP8aMO2DsO6rnjLJdjqKOp7yCgEOfNrRZyxfw==
+X-Received: by 2002:a2e:914e:0:b0:2c1:7d85:73e3 with SMTP id q14-20020a2e914e000000b002c17d8573e3mr10995854ljg.49.1696722524411;
+        Sat, 07 Oct 2023 16:48:44 -0700 (PDT)
+Received: from fr.lan ([46.31.31.132])
+        by smtp.googlemail.com with ESMTPSA id k7-20020a2e8887000000b002c0336f0f27sm1359871lji.119.2023.10.07.16.48.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Oct 2023 16:48:43 -0700 (PDT)
+From: Ivan Mikhaylov <fr0st61te@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Ivan Mikhaylov <fr0st61te@gmail.com>
+Subject: [PATCH v5 0/2] Add maxim max34408/34409 ADC driver and yaml
+Date: Sun,  8 Oct 2023 02:48:36 +0300
+Message-ID: <20231007234838.8748-1-fr0st61te@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
-In-Reply-To: <20231004161038.2818327-4-gregory.clement@bootlin.com>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-4-gregory.clement@bootlin.com>
-Date: Sat, 07 Oct 2023 21:14:29 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 03/11] MIPS: support RAM beyond 32-bit
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add Maxim max34408/34409 ADC driver and yaml for it. Until now it
+supports only current monitioring function without overcurrent
+threshold/delay, shutdown delay configuration, alert interrupt.
 
+Changes from v1:
+   - minor changes from Rob's comments for yaml
+   - add ena, shtdn and make 4 inputs for R sense from Jonathan's comments for yaml
+   - add _REG suffix and make prefix for bitmasks and statuses
+   - add SCALE/OFFSET instead of AVG/PROCESSED from Jonathan and
+     Lars-Peter comments
+   - add chip data from Jonathan and Lars-Peter comments
+   - minor changes from Lars-Peter and Jonathan comments for driver
 
-=E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=E5=
-=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
->
-> Support platforms where RAM is mapped beyond 32-bit.
->
-> The kernel parameter ddr32_alias allows to setup the alias to point
-> outside the first 4 GB of memory.
+Changes from v2:
+   - add channels into hardware description into yaml
+   - add rsense property per channel
+   - rename pins for shtdn and ena pins
+   - make one array for input_rsense values
 
-Are you trying to fix the problem that if kernel text is loaded in
-XKPHYS there is no way to to set EBASE to that region?
+Changes from v3:
+   - change *_34408_OCT3 and 4 to *_34409_OCT3 and 4
+   - change of_property_read_u32 to fwnode family calls
+   - add i2c dev table
+   - change of_match_device to i2c_of_match_device
+   - change match->data to i2c_get_match_data 
 
-The common practice for other 64bit MIPS system is to load kernel
-in KSEG0 and add low 4G mirror with rest of the high memory to buddy
-system. By doing this Kernel still have access to all memory beyond
-32 bit, the only draw back is Kernel's text and data can't be relocted
-beyond 32-bit.
+Changes from v4:
+   - minor changes in yaml
 
-Loading kernel into KSEG0 (i.e. with KBUILD_SYM32) have significant bene=
-fit
-on performance, so I think you shouldn't try to load kernel into XKPHYS
-without a good reason, but it might be helpful to add a BUG_ON at
-CPS driver to handle such situation.
+Ivan Mikhaylov (2):
+  dt-bindings: adc: provide max34408/9 device tree binding document
+  iio: adc: Add driver support for MAX34408/9
 
-Btw: Is your target hardware publicly available? Folks at CIP United
-are looking for EyeQ5 boards for a while, they are supporting MIPS R6
-support at various projects.
+ .../bindings/iio/adc/maxim,max34408.yaml      | 141 +++++++++
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max34408.c                    | 278 ++++++++++++++++++
+ 4 files changed, 431 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+ create mode 100644 drivers/iio/adc/max34408.c
 
-Thanks
-Jiaxun
+-- 
+2.42.0
 
->
-> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/kernel/smp-cps.c | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
-> index 47e76722a306..fcfb19487612 100644
-> --- a/arch/mips/kernel/smp-cps.c
-> +++ b/arch/mips/kernel/smp-cps.c
-> @@ -34,6 +34,16 @@ static unsigned __init core_vpe_count(unsigned int=20
-> cluster, unsigned core)
->  	return min(smp_max_threads, mips_cps_numvps(cluster, core));
->  }
->=20
-> +static int ddr32_alias;
-> +
-> +static int __init ddr32_alias_setup(char *str)
-> +{
-> +	get_option(&str, &ddr32_alias);
-> +
-> +	return 0;
-> +}
-> +early_param("ddr32_alias", ddr32_alias_setup);
-> +
->  /**
->   * plat_core_entry - query reset vector for NMI/reset
->   *
-> @@ -52,7 +62,7 @@ static u32 plat_core_entry(void)
->  {
->  #if defined(CONFIG_USE_XKPHYS)
->  	return (UNCAC_ADDR(mips_cps_core_entry) & 0xffffffff)
-> -			| CM_GCR_Cx_RESET_BASE_MODE;
-> +			| ddr32_alias | CM_GCR_Cx_RESET_BASE_MODE;
->  #else
->  	return CKSEG1ADDR((unsigned long)mips_cps_core_entry);
->  #endif
-> --=20
-> 2.40.1
-
---=20
-- Jiaxun
 
