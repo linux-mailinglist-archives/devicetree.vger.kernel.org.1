@@ -1,184 +1,121 @@
-Return-Path: <devicetree+bounces-6693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB3B7BC77C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:31:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9DE7BC794
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17390281A99
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 12:31:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 835771C208C5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 12:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4B01D68A;
-	Sat,  7 Oct 2023 12:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F66EEEB6;
+	Sat,  7 Oct 2023 12:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W9OLyJmU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EKLiB6j6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F3D1F5EA
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 12:30:58 +0000 (UTC)
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E146FC5
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 05:30:53 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5045cb9c091so3981816e87.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 05:30:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696681852; x=1697286652; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mLPFclkATy4LIwppN+u/n/AESvBYT+nNmBG9F7Vienk=;
-        b=W9OLyJmU3Ve9iNg8C/RatCORpDZoC4fMk+WSRNFA23rBojAwg421BgmDtt1QjiihIP
-         JaSO2YlMWsYdyvbF/aFlyCuKIvRc+/s210RnvkON5IJOH2hmsJt6U4SYTcw+/GYhUNnK
-         GtBF8+ppOucZC3XnIt0QcRi9upjzAPN/RWWjkVxIMD/XttHjD5FH906qYH/SkOJOUCqg
-         fJM/TApyRvhSDqVamf75xJ9ukmS9pIOjJjCIVDOR+4zJ2zMVkWNSmbf3wkJ5NZUln+Gp
-         kdRP7pWECRx+GFfPsY2CsMqEfS6CrHmudJ6RJD1hn9TOQGnj3eoduUcLYuDk645JiWde
-         ONng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696681852; x=1697286652;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mLPFclkATy4LIwppN+u/n/AESvBYT+nNmBG9F7Vienk=;
-        b=nJwQ4mMTPDxq+s31OxIjlQB0hCxRSSBH3lnHd68GaWD73SzZSUv2HMx4F2CbeUTHLM
-         fZz4hTSGCwyHzhrcf4Te7Y1eYUOcaGgaH+03KvhXJWea3FzB69MZVtNASkYQn/Sk470e
-         3L3IOoM8jr4sIr+Et99KHOS9U4VikTIElcTnLCPLb0ME96bhzzF5VEKRONFuZgu+dyDh
-         5BgOrXbKHDHYbbVxBr8Y3uASNmwnQ8HgT4Jk2QNmT+mCChUWQNjRWOt7Ctwe+CnwN5YS
-         wcLjJkNj7EkWftdUlWqRoohboww79hgVMVL5NJxsv0+tL9/+v0C2LPIsjZElFK1L84Ek
-         cgNQ==
-X-Gm-Message-State: AOJu0YzSO/yTJSEzcDSXF4vbBH29sYU1GDOX7mB81WaBxi0jdJlzHoau
-	ykD3VAc2X3svZXlqFZH+Klw6tQ==
-X-Google-Smtp-Source: AGHT+IFfVwOKbEvfCSN6p85x/+ek9Cp7A2gMPeASsX4kzVNHmRMBMp8jA/k+CbOdx3BU+9aXusB9/w==
-X-Received: by 2002:a05:6512:531:b0:4fd:fabf:b6ee with SMTP id o17-20020a056512053100b004fdfabfb6eemr8753564lfc.9.1696681851775;
-        Sat, 07 Oct 2023 05:30:51 -0700 (PDT)
-Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
-        by smtp.gmail.com with ESMTPSA id 28-20020ac25f5c000000b005068d6de988sm410569lfz.226.2023.10.07.05.30.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Oct 2023 05:30:51 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 07 Oct 2023 14:30:50 +0200
-Subject: [PATCH v2 2/2] rtc: rtc7301: Support byte-addressed IO
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418AA273C8
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 12:36:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCAC8C433C7;
+	Sat,  7 Oct 2023 12:36:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696682219;
+	bh=wd3K4oxHlD/woVxzd2nYXKDZbLbHeSvR4ulHU8RrABg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EKLiB6j6LeN/5G7rq025d6MXeimCJ78gRoaXsUQ6ZM5jUfzApzdY+olS/bxvLo6Go
+	 1xFMGcJ5/ijD1jmZdNCXV+acnA549eUzeSGwOgBxcl1SytX6Wiawv+GzzyweuOaz1q
+	 G3CFbS+6Q29NuFCeZL3z0l4MS8MqULK8VFl470q5MibBHL6iRNR3+ZACKr18jh6V5s
+	 u1Q5Pvcskcai2FE9nw+gyMDHaWIlJ9E2O1qLL1PiWnNsH2K5Em6qLKrBRCmPlQmVDe
+	 p4u88jZNOXQfOJKAiQuxR7NMGEL2lmAX0TGxERtq+X63jYchFbReuwUJijAL+Y1N+e
+	 Y5isgWmtwA/Pg==
+Date: Sat, 7 Oct 2023 13:36:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com, devicetree@vger.kernel.org, guoren@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+	xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
+Subject: Re: [PATCH v5 00/10] Add Milk-V Pioneer RISC-V board support
+Message-ID: <20231007-green-correct-11d08f650ddd@spud>
+References: <cover.1696663037.git.unicorn_wang@outlook.com>
+ <20231007-grasp-retake-0463858c13df@spud>
+ <MA0P287MB0332F80102F534CBD7412ED3FEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+ <20231007-kennel-lustily-59b0a9867aaa@spud>
+ <MA0P287MB03329460B9F3B79B1148A6FDFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231007-rtc-7301-regwidth-v2-2-c913aa95f666@linaro.org>
-References: <20231007-rtc-7301-regwidth-v2-0-c913aa95f666@linaro.org>
-In-Reply-To: <20231007-rtc-7301-regwidth-v2-0-c913aa95f666@linaro.org>
-To: Alessandro Zummo <a.zummo@towertech.it>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Akinobu Mita <akinobu.mita@gmail.com>, 
- Howard Harte <hharte@magicandroidapps.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Tf1cZ/0kl4RD2FsG"
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB03329460B9F3B79B1148A6FDFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
 
-The old RTC7301 driver in OpenWrt used byte access, but the
-current mainline Linux driver uses 32bit word access.
 
-Make this configurable using device properties using the
-standard property "reg-io-width" in e.g. device tree.
+--Tf1cZ/0kl4RD2FsG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This is needed for the USRobotics USR8200 which has the
-chip connected using byte accesses.
+On Sat, Oct 07, 2023 at 08:25:55PM +0800, Chen Wang wrote:
+> On 2023/10/7 19:04, Conor Dooley wrote:
+> > On Sat, Oct 07, 2023 at 06:58:51PM +0800, Chen Wang wrote:
+> > > On 2023/10/7 18:17, Conor Dooley wrote:
+> > > > On Sat, Oct 07, 2023 at 03:52:04PM +0800, Chen Wang wrote:
+> > > > > From: Chen Wang <unicorn_wang@outlook.com>
 
-Debugging and testing by Howard Harte.
+> > > > > Changes in v5:
+> > > > >     The patch series is based on v6.6-rc1. You can simply review =
+or test
+> > > > >     the patches at the link [7].
+> > > > >     - dts: changed plic to support external interrupt
+> > > > >     - pickup improvements from Conor, details refer to [8].
+> > > > Did you? I only see them partially picked up. I'll just replace pat=
+ch 8
+> > > > with the patch 8 from this series I think.
+> > > Yes, only the patch 8 of this series(v5) is updated for plic node. Fo=
+r other
+> > > patches, I just cherry-picked them from previous "sophon" branch.
+> > But added my signoff? I ended up seeing my signoff on the patch where I
+> > disagreed with the commit message, which was confusing to me.
+>=20
+> Oh, I used to think I can keep the exising signoff and I didn't mean to a=
+dd
+> it.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/rtc/rtc-r7301.c | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
+I added mine when I applied the patches. It no longer makes sense when
+you resent another version.
 
-diff --git a/drivers/rtc/rtc-r7301.c b/drivers/rtc/rtc-r7301.c
-index 5dbaeb7af648..ef913cf8593f 100644
---- a/drivers/rtc/rtc-r7301.c
-+++ b/drivers/rtc/rtc-r7301.c
-@@ -14,6 +14,7 @@
- #include <linux/module.h>
- #include <linux/mod_devicetable.h>
- #include <linux/delay.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/platform_device.h>
- #include <linux/rtc.h>
-@@ -55,12 +56,23 @@ struct rtc7301_priv {
- 	u8 bank;
- };
- 
--static const struct regmap_config rtc7301_regmap_config = {
-+/*
-+ * When the device is memory-mapped, some platforms pack the registers into
-+ * 32-bit access using the lower 8 bits at each 4-byte stride, while others
-+ * expose them as simply consecutive bytes.
-+ */
-+static const struct regmap_config rtc7301_regmap_32_config = {
- 	.reg_bits = 32,
- 	.val_bits = 8,
- 	.reg_stride = 4,
- };
- 
-+static const struct regmap_config rtc7301_regmap_8_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.reg_stride = 1,
-+};
-+
- static u8 rtc7301_read(struct rtc7301_priv *priv, unsigned int reg)
- {
- 	int reg_stride = regmap_get_reg_stride(priv->regmap);
-@@ -356,7 +368,9 @@ static int __init rtc7301_rtc_probe(struct platform_device *dev)
- 	void __iomem *regs;
- 	struct rtc7301_priv *priv;
- 	struct rtc_device *rtc;
-+	static const struct regmap_config *mapconf;
- 	int ret;
-+	u32 val;
- 
- 	priv = devm_kzalloc(&dev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -366,8 +380,25 @@ static int __init rtc7301_rtc_probe(struct platform_device *dev)
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
- 
-+	ret = device_property_read_u32(&dev->dev, "reg-io-width", &val);
-+	if (ret)
-+		/* Default to 32bit accesses */
-+		val = 4;
-+
-+	switch (val) {
-+	case 1:
-+		mapconf = &rtc7301_regmap_8_config;
-+		break;
-+	case 4:
-+		mapconf = &rtc7301_regmap_32_config;
-+		break;
-+	default:
-+		dev_err(&dev->dev, "invalid reg-io-width %d\n", val);
-+		return -EINVAL;
-+	}
-+
- 	priv->regmap = devm_regmap_init_mmio(&dev->dev, regs,
--					     &rtc7301_regmap_config);
-+					     mapconf);
- 	if (IS_ERR(priv->regmap))
- 		return PTR_ERR(priv->regmap);
- 
+> Anyway, I agree your suggestion to create a new patch with only one
+> change should be better, I will follow this in later work.
 
--- 
-2.41.0
+:)
 
+> Regarding your changes on sg2042 series, I have acked in another email : =
+https://lore.kernel.org/linux-riscv/MA0P287MB0332BA73D0135CC73CAEA16DFEC8A@=
+MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/.
+> If anything else required, please feel free let me know.
+
+An ack on Jisheng's series for the cv1800b would be nice.
+
+--Tf1cZ/0kl4RD2FsG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSFQ5gAKCRB4tDGHoIJi
+0pn8AP9lSD88TcKQzLgGJZ2jLjHvd4kbFCFoxErzLHVKHTarEwD8C/COpPh0Tv0y
+BHrAiTYX9e+RiWYdxS+p74nRdO0/Fgk=
+=8x9P
+-----END PGP SIGNATURE-----
+
+--Tf1cZ/0kl4RD2FsG--
 
