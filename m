@@ -1,208 +1,293 @@
-Return-Path: <devicetree+bounces-6717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC7D7BC8A8
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:37:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881A87BC8C0
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C673281E42
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:37:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B46C71C2093D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD482E62E;
-	Sat,  7 Oct 2023 15:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0E12E652;
+	Sat,  7 Oct 2023 15:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iM+oqokm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B8Bch5vj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2723029428
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:37:01 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05C3B9
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 08:36:59 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-406618d0992so30538325e9.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 08:36:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696693018; x=1697297818; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1xZba6X+aKTOLDEfwKhIa7yrx7NXyDPJ4bqJc+OxuDQ=;
-        b=iM+oqokmR7r8fgcz6LM3DhKMU/wm6oKZvIDkT5F60yeZ6EycXh8DC79a/JdQy6H0fj
-         wiex/NXBlyhJxL3sh+stoCYHibheCo3hw3PFUXXcx79Svyzk3JWXeRRcmwHpE75DFJYc
-         u4ZKzOihHf5LxScZ84xiIe9aLIgdn4O5GY6yStk0tQNerFfr3t7nokS6rQYFRdZS8Pu7
-         30yt0x89t1mvkpOyI4E7fQxvd3AjplL0GpFBLHCogcQ9v7DzItjBrwn4z2jyEgYGg6LS
-         KaB6ZlOzDxSfPnn4wvSMqDn8vfa8YYF+9zKFhdWXfrezwRXIkeAsgGE0dt8EuaD/gHYJ
-         5N7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696693018; x=1697297818;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1xZba6X+aKTOLDEfwKhIa7yrx7NXyDPJ4bqJc+OxuDQ=;
-        b=hD2s5lv1+xC1vX49w1voiwg+yFjztjc6hACjSF2OTmhjYCqySFkmpeUsnv7u3lCMc3
-         FjcksaMan2uY1JqWwNZPX0g/A0k0WskROJaGFU93BSuyQubAKb0u/bpmSr3u4DEhVM1U
-         KUf3OopPlQAYYuVwFlksoR/ARQcXgO64pGgN6cv3sz22tS18J/+gg5fB1pNm/KsSRdSH
-         XqgYMQnvs2sfHMK/gSNOI90rTiq4lLdpa1arLDzo+r6P6VLY1jOHCHk0T/swuVJtuCoW
-         e8dCH6pwx3CQA+l59y81aNWsDYU1GxWnrolqNS43k83RoxXDEcVhoSZCTbMLSazBFu4C
-         4KJw==
-X-Gm-Message-State: AOJu0Yzy9aZ3DgUI7ljh+RxA9PGTOvB3onfdQf8yHTcWcCKn7gADjGeK
-	IbnU/E83n61cLF5kCSZWrJnAGA==
-X-Google-Smtp-Source: AGHT+IFe2rgb6dWE9FJ0bfkNFgsGR1xKXc24Vxh+YeI+CC3Wan0a0cZSzIvopTHGip0+1ymo6sFbtA==
-X-Received: by 2002:adf:e8ca:0:b0:31f:e1b4:583d with SMTP id k10-20020adfe8ca000000b0031fe1b4583dmr11185601wrn.56.1696693018176;
-        Sat, 07 Oct 2023 08:36:58 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id e8-20020adffc48000000b0031f3ad17b2csm4522101wrs.52.2023.10.07.08.36.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Oct 2023 08:36:57 -0700 (PDT)
-Message-ID: <6b59155f-96d7-4d14-b08e-1ca1fa3c45ab@linaro.org>
-Date: Sat, 7 Oct 2023 17:36:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A82EE2E62D;
+	Sat,  7 Oct 2023 15:48:36 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FABB9;
+	Sat,  7 Oct 2023 08:48:34 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 397Fha3T004400;
+	Sat, 7 Oct 2023 15:48:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=G4TdZ8i8V7a+fr2OMVlmA693hl1zq8vEWjM3XQILhCY=;
+ b=B8Bch5vjNXorhiNls6wdcgWJQfbiz9kSBePFV4n8myxQ6EeSoRJtRZqYq06ZIVFztxol
+ 4+rxwTX3o5VTidQEoAbXPKbRhmjBSmLoNp4r6MfapFWymD0vVPsvJKTkyZEZTVpXnqgJ
+ fANJNhPDfi+hovABw6QjtViSGIxRc32colyu2tb/zXSoX2XVuEl6eQ0UX7OfMVytRb3G
+ SvSdgLKNdS6nZOFqBmFadvkLKlLmqT1PZb4iCOgP2hwRl5RZEY4PoeVC3F4M1OWctaTM
+ ThUtgFKTKPkG2NqjYHieQuX3PVfeIEUWrz9OOzlEO9KTO5KW2QMf7SBfxH0VKDveNYv/ Pw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tjxnqs139-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 07 Oct 2023 15:48:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 397FmL0h002535
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 7 Oct 2023 15:48:21 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Sat, 7 Oct 2023 08:48:15 -0700
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi
+	<balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Johan Hovold
+	<johan@kernel.org>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v13 00/10] Add multiport support for DWC3 controllers
+Date: Sat, 7 Oct 2023 21:17:56 +0530
+Message-ID: <20231007154806.605-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] media: i2c: Introduce a driver for the Techwell
- TW9900 decoder
-Content-Language: en-US
-To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
- heiko@sntech.de, hverkuil-cisco@xs4all.nl,
- laurent.pinchart@ideasonboard.com, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
- alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
- paul.kocialkowski@bootlin.com
-References: <cover.1696608809.git.mehdi.djait@bootlin.com>
- <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: N5LF4abYI0Z-ylJjSubp0jPpnVHHxTgO
+X-Proofpoint-GUID: N5LF4abYI0Z-ylJjSubp0jPpnVHHxTgO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-07_12,2023-10-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 adultscore=0 spamscore=0 bulkscore=0 mlxlogscore=742
+ mlxscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310070143
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 06/10/2023 18:25, Mehdi Djait wrote:
-> The Techwell video decoder supports PAL, NTSC input formats,
-> and outputs a BT.656 signal.
-> 
-> This commit adds support for this device, with basic support for NTSC
-> and PAL, along with brightness and contrast controls.
-> 
-> The TW9900 is capable of doing automatic standard detection, this is
-> implemented with support for PAL and NTSC autodetection.
-> 
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+Currently the DWC3 driver supports only single port controller which
+requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+DWC3 controller with multiple ports that can operate in host mode.
+Some of the port supports both SS+HS and other port supports only HS
+mode.
 
-...
+This change primarily refactors the Phy logic in core driver to allow
+multiport support with Generic Phy's.
 
-> +
-> +static int tw9900_check_id(struct tw9900 *tw9900,
-> +			   struct i2c_client *client)
-> +{
-> +	struct device *dev = &tw9900->client->dev;
-> +	int ret;
-> +
-> +	ret = tw9900_read_reg(client, TW9900_CHIP_ID);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret != TW9900_CHIP_ID) {
-> +		dev_err(dev, "Unexpected decoder id(0x%x)\n", ret);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dev_info(dev, "Detected TW9900 (0x%x) decoder\n", TW9900_CHIP_ID);
+Changes have been tested on  QCOM SoC SA8295P which has 4 ports (2
+are HS+SS capable and 2 are HS only capable).
 
-dev_dbg
-Do not spam log with simple success messages.
+Changes in v13:
+This series is a subset of patches in v11 as the first 3 patches in v11
+have been mereged into usb-next.
+Moved dr_mode property from platform specific files to common sc8280xp DT.
+Fixed function call wrapping, added comments and replaced #defines with
+enum in dwc3-qcom for identifying IRQ index appropriately.
+Fixed nitpicks pointed out in v11 for suspend-resume handling.
+Added reported-by tag for phy refactoring patch as a compile error was
+found by kernel test bot [1].
+Removed reviewed-by tag of maintainer for phy refactoring patch as a minor
+change of increasing phy-names array size by 2-bytes was done to fix
+compilation issue mentioned in [1].
 
-Why do you always print 0x0 (TW9900_CHIP_ID) here? It does not make
-sense, drop.
+Changes in v12:
+Pushed as a subset of acked but no-yet-merged patches of v11 with intent
+of making rebase of other patches easy. Active reviewers from community
+suggested that it would be better to push the whole series in one go as it
+would give good clarity and context for all the patches in the series.
+So pushed v13 for the same addressing comments received in v11.
 
+Changes in v11:
+Implemented port_count calculation by reading interrupt-names from DT.
+Refactored IRQ handling in dwc3-qcom.
+Moving of macros to xhci-ext-caps.h made as a separate patch.
+Names of interrupts to be displayed on /proc/interrupts set to the ones
+present in DT.
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int tw9900_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct v4l2_ctrl_handler *hdl;
-> +	struct tw9900 *tw9900;
-> +	int ret = 0;
-> +
-> +	tw9900 = devm_kzalloc(dev, sizeof(*tw9900), GFP_KERNEL);
-> +	if (!tw9900)
-> +		return -ENOMEM;
-> +
-> +	tw9900->client = client;
-> +	tw9900->cur_mode = &supported_modes[0];
-> +
-> +	tw9900->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(tw9900->reset_gpio))
-> +		tw9900->reset_gpio = NULL;
-> +
-> +	tw9900->regulator = devm_regulator_get(&tw9900->client->dev, "vdd");
-> +	if (IS_ERR(tw9900->regulator)) {
-> +		dev_err(dev, "Failed to get power regulator\n");
+Changes in v10:
+Refactored phy init/exit/power-on/off functions in dwc3 core
+Refactored dwc3-qcom irq registration and handling
+Implemented wakeup for multiport irq's
+Moved few macros from xhci.h to xhci-ext-caps.h
+Fixed nits pointed out in v9
+Fixed Co-developed by and SOB tags in patches 5 and 11
 
-return dev_err_probe()
+Changes in v9:
+Added IRQ support for DP/DM/SS MP Irq's of SC8280
+Refactored code to read port count by accessing xhci registers
 
+Changes in v8:
+Reorganised code in patch-5
+Fixed nitpicks in code according to comments received on v7
+Fixed indentation in DT patches
+Added drive strength for pinctrl nodes in SA8295 DT
 
-Best regards,
-Krzysztof
+Changes in v7:
+Added power event irq's for Multiport controller.
+Udpated commit text for patch-9 (adding DT changes for enabling first
+port of multiport controller on sa8540-ride).
+Fixed check-patch warnings for driver code.
+Fixed DT binding errors for changes in snps,dwc3.yaml
+Reabsed code on top of usb-next
+
+Changes in v6:
+Updated comments in code after.
+Updated variables names appropriately as per review comments.
+Updated commit text in patch-2 and added additional info as per review
+comments.
+The patch header in v5 doesn't have "PATHCH v5" notation present. Corrected
+it in this version.
+
+Changes in v5:
+Added DT support for first port of Teritiary USB controller on SA8540-Ride
+Added support for reading port info from XHCI Extended Params registers.
+
+Changes in RFC v4:
+Added DT support for SA8295p.
+
+Changes in RFC v3:
+Incase any PHY init fails, then clear/exit the PHYs that
+are already initialized.
+
+Changes in RFC v2:
+Changed dwc3_count_phys to return the number of PHY Phandles in the node.
+This will be used now in dwc3_extract_num_phys to increment num_usb2_phy 
+and num_usb3_phy.
+
+Added new parameter "ss_idx" in dwc3_core_get_phy_ny_node and changed its
+structure such that the first half is for HS-PHY and second half is for
+SS-PHY.
+
+In dwc3_core_get_phy, for multiport controller, only if SS-PHY phandle is
+present, pass proper SS_IDX else pass -1.
+
+Tests done on v13:
+
+1) MP controller enumerting devices on different ports:
+
+/ # lsusb
+Bus 001 Device 001: ID 1d6b:0002
+Bus 001 Device 003: ID 03f0:0024
+Bus 001 Device 002: ID 17ef:6099
+Bus 002 Device 001: ID 1d6b:0003
+
+2) Interrupt registration for 3 controllers of sa8295p-adp
+
+/ # cat /proc/interrupts | grep phy
+171: 0 0 0 0 0 0 0 0 PDC 127 Level     dp_hs_phy_1
+172: 0 0 0 0 0 0 0 0 PDC 126 Level     dm_hs_phy_1
+173: 0 0 0 0 0 0 0 0 PDC 129 Level     dp_hs_phy_2
+174: 0 0 0 0 0 0 0 0 PDC 128 Level     dm_hs_phy_2
+175: 0 0 0 0 0 0 0 0 PDC 131 Level     dp_hs_phy_3
+176: 0 0 0 0 0 0 0 0 PDC 130 Level     dm_hs_phy_3
+177: 0 0 0 0 0 0 0 0 PDC 133 Level     dp_hs_phy_4
+178: 0 0 0 0 0 0 0 0 PDC 132 Level     dm_hs_phy_4
+179: 0 0 0 0 0 0 0 0 PDC  16 Level     ss_phy_1
+180: 0 0 0 0 0 0 0 0 PDC  17 Level     ss_phy_2
+182: 0 0 0 0 0 0 0 0 PDC  14 Level     dp_hs_phy_irq
+183: 0 0 0 0 0 0 0 0 PDC  15 Level     dm_hs_phy_irq
+184: 0 0 0 0 0 0 0 0 PDC 138 Level     ss_phy_irq
+190: 0 0 0 0 0 0 0 0 PDC  12 Level     dp_hs_phy_irq
+191: 0 0 0 0 0 0 0 0 PDC  13 Level     dm_hs_phy_irq
+192: 0 0 0 0 0 0 0 0 PDC 136 Level     ss_phy_irq
+
+3) Wakeup was tested on all 4 ports of tertiary controller by
+a) Connecting peripheral after device is suspended and checking wakeup
+b) Removing peripheral after device is suspended and checking wakeup
+c) Connecting keyboard and checking if button press wakes up system
+
+4) Testing interrupt registration on single port controller SM8550-MTP
+
+/ # cat /proc/interrupts | grep phy
+146:  0 0 0 0 0 0 0 0     GICv3 162 Level     hs_phy_irq
+147:  0 0 0 0 0 0 0 0       PDC  17 Level     ss_phy_irq
+148:  0 0 0 0 0 0 0 0       PDC  15 Level     dm_hs_phy_irq
+149:  0 0 0 0 0 0 0 0       PDC  14 Level     dp_hs_phy_irq
+
+5) ADB enumeration and working on SM8550-MTP has been tested
+
+[1]: https://lore.kernel.org/all/202309200156.CxQ3yaLY-lkp@intel.com/
+
+Links to previous versions:
+Link to v12: https://lore.kernel.org/all/20231004165922.25642-1-quic_kriskura@quicinc.com/
+Link to v11: https://lore.kernel.org/all/20230828133033.11988-1-quic_kriskura@quicinc.com/
+Link to v10: https://lore.kernel.org/all/20230727223307.8096-1-quic_kriskura@quicinc.com/
+Link to v9: https://lore.kernel.org/all/20230621043628.21485-1-quic_kriskura@quicinc.com/
+Link to v8: https://lore.kernel.org/all/20230514054917.21318-1-quic_kriskura@quicinc.com/
+Link to v7: https://lore.kernel.org/all/20230501143445.3851-1-quic_kriskura@quicinc.com/
+Link to v6: https://lore.kernel.org/all/20230405125759.4201-1-quic_kriskura@quicinc.com/
+Link to v5: https://lore.kernel.org/all/20230310163420.7582-1-quic_kriskura@quicinc.com/
+Link to RFC v4: https://lore.kernel.org/all/20230115114146.12628-1-quic_kriskura@quicinc.com/
+Link to RFC v3: https://lore.kernel.org/all/1654709787-23686-1-git-send-email-quic_harshq@quicinc.com/#r
+Link to RFC v2: https://lore.kernel.org/all/1653560029-6937-1-git-send-email-quic_harshq@quicinc.com/#r
+
+Andrew Halaney (1):
+  arm64: dts: qcom: sa8540-ride: Enable first port of tertiary usb
+    controller
+
+Harsh Agarwal (1):
+  usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+
+Krishna Kurapati (8):
+  usb: dwc3: core: Access XHCI address space temporarily to read port
+    info
+  usb: dwc3: core: Skip setting event buffers for host only controllers
+  usb: dwc3: qcom: Add helper function to request threaded IRQ
+  usb: dwc3: qcom: Refactor IRQ handling in QCOM Glue driver
+  usb: dwc3: qcom: Enable wakeup for applicable ports of multiport
+  usb: dwc3: qcom: Add multiport suspend/resume support for wrapper
+  arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
+  arm64: dts: qcom: sa8295p: Enable tertiary controller and its 4 USB
+    ports
+
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts  |  49 ++++
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts |  21 ++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi    |  84 ++++++
+ drivers/usb/dwc3/core.c                   | 324 +++++++++++++++++-----
+ drivers/usb/dwc3/core.h                   |  16 +-
+ drivers/usb/dwc3/drd.c                    |  15 +-
+ drivers/usb/dwc3/dwc3-qcom.c              | 323 ++++++++++++++-------
+ 7 files changed, 642 insertions(+), 190 deletions(-)
+
+-- 
+2.42.0
 
 
