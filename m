@@ -1,447 +1,217 @@
-Return-Path: <devicetree+bounces-6633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DFB7BC387
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 03:09:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A107BC3E6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 03:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E556D28209E
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:09:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C6D31C20937
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5EA1119;
-	Sat,  7 Oct 2023 01:09:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E515137C;
+	Sat,  7 Oct 2023 01:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dTeice77"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BNrxiFIf";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="uZ1Grb5n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7FCEA8
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 01:08:59 +0000 (UTC)
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6471BF
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 18:08:52 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c7373cff01so29413315ad.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 18:08:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD2C1377
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 01:49:50 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1433B6;
+	Fri,  6 Oct 2023 18:49:42 -0700 (PDT)
+X-UUID: c5044d2c64b311eea33bb35ae8d461a2-20231007
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
+	b=BNrxiFIfn98l5Wlm1Cxpts1g1+WOjlCbz84VtrBKvISwi1o4DoUitX0/QFeBd3aSt3N4CBs6VREF5ImpDaEicGsONKs05kCjm+ecyuyUhxpuIhv8lxXmmNI2/cD2UeCONYKYCPjNmLaFcweRW9P2KXusvLLmAre8DMDJNBKmnqM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:257dad40-9a67-4a8f-ba72-6e4fc5b69359,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:5f78ec9,CLOUDID:df2689f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+	NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: c5044d2c64b311eea33bb35ae8d461a2-20231007
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <irui.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1632934427; Sat, 07 Oct 2023 09:49:36 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sat, 7 Oct 2023 09:49:35 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sat, 7 Oct 2023 09:49:35 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mcjXJu7jQpdZ4Cd3H/och5sbIibNWd8vy8NykJsz4khGUahvH3+/RvNyzlU5dyzRSN9fihuAHU2eosq4+0D8AhUmMhhG4RUsnZWw+8wzGeIbJZ26ReZNwjAKOYUZUldlqd6Lku+PSnudIfalbc3PzPnJsQP8IwM41gfAohX9S/NR6cVQRzmduGkMuwAO79CxmHp61CVFxWFvuDO6Ouk/CU7ipUSJDgv2FJexa94lNGb4itoNW+7ecAyN3/RWvGB/tfS1O/ur4HAkflapEAjPDeYTbo90id2ctbN3DLzwJ0JGaUsrWW5gMPuWo43tsdIan4qFnEw5fA+mSd4bE+toQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
+ b=agOzgkIOWkkfVZUa467XVXCdGbYtLl+cEl/HSdY8lmnWFQHY+U9/spztWOfH/L73LyJyXpHxeidVAEAbAV1jXtEGHGDjbd1wKuXQeb2thoiutxVXKaoPhr3Gw192t19TPXjG0bAoblkUX9WY8QfyYNblJ+ChNS/vQ4Yoa+YlGGSzpOLkoVwniWz5YBAYtyM9ADQl0khOgDbpQvDhFWvu4NPzZodkVcycIf5GUKratlf+cviM5HqcY0SO4XFKQi07AyncMrWHnqCQ1iIC1U7G13XYq6xMqi690aqn/gof1f0rd1Mmce6Nd25ayNOEVKNND6kvwRcJn74AwfhW+nCxsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696640932; x=1697245732; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0gKkumzJlB1AJAaEBL/3zAyHlpON0qICZEOpcp7SbAQ=;
-        b=dTeice77ZUOpWM83KL/phho7/lS06ON9lmG7UvUGAhSGH7E8IRf792QnhnTPvDPrSc
-         jJbZYPx3J7TekUHPIVbH/UYPkyLs72r2Ug3qevMBiLKQRuuXi9UUhoqERWpSBI1EcpK0
-         eWzVcA2HFxvJI1otgL6Plk4Wo3lcZ752NmVUee74FkhYy9kd/ACZh7P0+Qy+OTdP5W0k
-         nz/Fbk/7JkuVxS5cMuZr5n7XI9R3Di1k0KLbWF9wRfIWgi8hwxnQ+vLmJO1tZubyLb/l
-         LcrEYAo/sJVGfqydIbjqhnO7tukcF6Pk65LxhZN5j2t60eb8A817kaD22hJoBtzLc+VA
-         4qnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696640932; x=1697245732;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0gKkumzJlB1AJAaEBL/3zAyHlpON0qICZEOpcp7SbAQ=;
-        b=JGzezR2p+vhGh08EL1eO6RGWcOIhq3A4NVMqQKxTW9GcmE5/dds/Tp2ro2mglXOQ7d
-         LphP8itihlbhF7SDuhWBDsHbuNU6mQodxHlxNX5/SRUzBlpz2oXBJKZJbpbAHoy8ZU8X
-         J+Sd099uvXfHWC0gvQ53ztUhFTqjn1OhtM3E0njA8IHy0ignVKECoFiMUAl3Km3VoZt5
-         +fjer144hsQOJLhQzTlyC4JaUn4aZAzn7CGambLpqm7U51TkQIiac8SVuKG8PoWxBCFV
-         D29M9eTx7uOYJSOg+ULh6pRbjM/LCwhIKuEGQULqsQEDZ0OkJdGlJF/lgKZeZM47GM+k
-         lXOA==
-X-Gm-Message-State: AOJu0Yx6YrZZ6WnhYyMIwucopRrmr/+6anOmzh5K4wGmEZHNMdyMYrn3
-	/v6Z4TjR6GgNaGfgLVwhvcxeu5KtPaDzDF+tB3x0HA==
-X-Google-Smtp-Source: AGHT+IHMlzOByq27nliJcaGOpNfGMHtU3ypBHuuHm9Bu+ikfNLw+CbrbDZi7WzhODMicpvBhiWJhKVG9lv0MQBORogA=
-X-Received: by 2002:a17:90a:1c0f:b0:263:f521:da3e with SMTP id
- s15-20020a17090a1c0f00b00263f521da3emr10764154pjs.2.1696640932299; Fri, 06
- Oct 2023 18:08:52 -0700 (PDT)
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
+ b=uZ1Grb5nz/NuMX+fmeJyPJKPKII80/FXxaCw07s85I+vay0kV8rJuioz9GKZ+hIMj7H6MSbHQ3OJkYW5G5lTsRJzBOUQZTCTuwNuxpCazoPFZhFa0mZ6PIs6fRrSUT8VUEryg485SSsousqe/bkhNsbhL1Fu876WqMoVKIjQ5CE=
+Received: from SEZPR03MB7947.apcprd03.prod.outlook.com (2603:1096:101:187::6)
+ by TYZPR03MB5775.apcprd03.prod.outlook.com (2603:1096:400:89::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.38; Sat, 7 Oct
+ 2023 01:49:33 +0000
+Received: from SEZPR03MB7947.apcprd03.prod.outlook.com
+ ([fe80::c468:315e:d2f2:c3e]) by SEZPR03MB7947.apcprd03.prod.outlook.com
+ ([fe80::c468:315e:d2f2:c3e%4]) with mapi id 15.20.6838.033; Sat, 7 Oct 2023
+ 01:49:32 +0000
+From: =?utf-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>
+To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "mchehab@kernel.org"
+	<mchehab@kernel.org>, "angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "nicolas.dufresne@collabora.com"
+	<nicolas.dufresne@collabora.com>, "hverkuil-cisco@xs4all.nl"
+	<hverkuil-cisco@xs4all.nl>, =?utf-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?=
+	<Yunfei.Dong@mediatek.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?TWFvZ3VhbmcgTWVuZyAo5a2f5q+b5bm/KQ==?=
+	<Maoguang.Meng@mediatek.com>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] media: mediatek: vcodec: Fix encoder access NULL
+ pointer
+Thread-Topic: [PATCH 1/2] media: mediatek: vcodec: Fix encoder access NULL
+ pointer
+Thread-Index: AQHZ8GL1WluehHzAaEyDLlbMzNGOyrA2VFmAgALqHICAAbGOAIACsCcA
+Date: Sat, 7 Oct 2023 01:49:13 +0000
+Message-ID: <507eec52c2d91508feacc4c24de27328477fee4b.camel@mediatek.com>
+References: <20230926101909.15030-1-irui.wang@mediatek.com>
+	 <36356e37-9abd-4dec-a716-9822b67bd0fa@xs4all.nl>
+	 <54962983-fa23-4ecc-9874-f59a1387cf70@xs4all.nl>
+	 <ef1d5a63-6a83-46fc-b593-2d507a1ce097@xs4all.nl>
+In-Reply-To: <ef1d5a63-6a83-46fc-b593-2d507a1ce097@xs4all.nl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEZPR03MB7947:EE_|TYZPR03MB5775:EE_
+x-ms-office365-filtering-correlation-id: 188204f7-bfe8-4f21-1f0b-08dbc6d79b82
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: k207K1WJgutPsrOJWh7sdAakTTDx4po8LLYslV0t1PjWNB8NbUhj9OD480fzzJO0pDwPNQMogSSaXJykhEZKKZBL41LYuukqIjTHBgjvUALxelc/pnq0ssHAHXzc8BKd0GIQCPt4+rVTKPlNf60jGtuPlj8J6kWLLZJOmBRcdHX0/nVWpFN7JYpc7RBi+aLM3G5ah3y/xAa7xPBV3t2S8jMG3acEiUbRu1KjI9GwGG87QsVxFRix3QsrYsm7Hq9ZPkSgnqco5/wDu0H10az1ee/4rvB/dD4doyUVI7rekEjHDHKyuN9/VwfdBNAu2Aj8GyWyW25dbGLEDqb3VKatJpk7Eh0GdSKg9R0TJkuEXCoCaJQwg2du2szeby7O1PmsHwU7Wv3HC6nHA94UBdwiRD7LNC2WeZU1YCTFHo4DCbu+08dX6FxX2q4c/6TtoY9p1WGVlYEqSCulTdKqvCv3j0U/5N/Tv0LQbjMMGn0n95Nvs0q7HtQx/CHSztBe02zQWjMzPAPbFs5DRDqFMX/oEjFKp0Ik+5h4Kz9jqkJ9qliwCLKYVtolf1erUjJP0pfbyMFhu+QJi+BLq0VgRcMQs65jZSdnqTPQX+1ElkP1PUpDtGnBzTl9dje5HX00x0LA1jGciuA13eayKGFv/dNRkrVAwF//xlWExFa/bu+/Ngc=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7947.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(376002)(136003)(39860400002)(396003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(6512007)(6506007)(53546011)(2616005)(478600001)(6486002)(71200400001)(6666004)(83380400001)(2906002)(26005)(7416002)(64756008)(66946007)(66556008)(66476007)(66446008)(54906003)(110136005)(91956017)(76116006)(4326008)(8676002)(316002)(6636002)(8936002)(41300700001)(5660300002)(85182001)(36756003)(38100700002)(38070700005)(122000001)(86362001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NDRUbHVhMWNFN2Z1NlF2SG82K1FVc0JMbDRVcWs4LzVPQmkraGx0YnNoWVA4?=
+ =?utf-8?B?MzBvUkVXN1RybEM3M0ZMMUJnM0RoMTF3Y2VHR08vRVpsRVJNaVlvbGZEVzJQ?=
+ =?utf-8?B?dThKWUluWW1XeDFLeHZkM3VHOVlnUWdZT0VPSTB5MUpRSzBPTWtVM0piQjRj?=
+ =?utf-8?B?bThOUDJlZnpXQ0hlSmlHdGlSeUdLMCs3RGVVekMyeE42aWR0RkRvK1cvc2o4?=
+ =?utf-8?B?K2pjUEdvNWh5UG0xNGkxOHVuM1p2VnFzQngxSWQ4eHVKcEN3NlA2RG1yaGV5?=
+ =?utf-8?B?ZnhuUG8zZXB2QW5DUDFIT1VTVzZTVVcrcDhCRCtuVmsydGRYYzZJSHNubjJm?=
+ =?utf-8?B?QWNqZGVvMnliRkUxSVh5YVVkNzNEOVdDc04xSDBCaVBNL0xUYlZVckMxbjYw?=
+ =?utf-8?B?WWpHSG9nTlNXdzhWbHdObVJNTjBSci9RcEpjcmRWRmxiUno2SWw4MFRqUlAx?=
+ =?utf-8?B?T3hjTlM1RUNjOXN3c200dG1IMXpmWTJUU0tCMXBDMm1zOUtDUW5DSURCRzBm?=
+ =?utf-8?B?UTUvZitxaVc3aVVnTW03OUlkUWxRR0FPaHZONkQ4Q05LdFRMSXNEeGIxd05s?=
+ =?utf-8?B?d3hyMzl5emoxNlY5VzVrVUx1ZTkreHBvTmtXajRveTNmdlVNWFhIWFFZOGMz?=
+ =?utf-8?B?WG12dzZRT0tINUN1NDFZRXM1dHpPekp0QTVycmNPUThFdGdsZk83TUlCb1Ro?=
+ =?utf-8?B?U1hzTkpUTzA5YkZFNG5BNmtMTXRkMyt3dzI3L1hXS3luZjBRcFFXdmVOdGtv?=
+ =?utf-8?B?QmorVUliRXc1UThaQTVDV21PZGFJT25PMTVsSEpLSjV6ZDFacWUvc0dTeDUr?=
+ =?utf-8?B?SzJNYmRQcWs2N1oyZWNqRUpxeXpQdGtDKzJlNnZtTE1EWkxQMDVGdUQ4N3Vn?=
+ =?utf-8?B?MDJodFRpa0N4ZXI5UDB2RjlXQmgzSEdiQXpWTmhBVmlFMEpSVE1vM2tuZVh5?=
+ =?utf-8?B?ZjU3TlZTNDNoVTJ3YjFWQXNSbXBJNHFUa1pCcjBBbit4SjU4cVd1Wm95NVlV?=
+ =?utf-8?B?UXM5aU44clFOVWpxUEVDcTRHUWZqRi90ZjFhM0NVSTdnN291U2hLN0JodEF0?=
+ =?utf-8?B?U1pERFJBSk1Vb3BuU2piNUxpYTRpU05keXIvMmtPbXhKMU1tM2pqaHBRYWxT?=
+ =?utf-8?B?Q3IvRWxJdDVnRUdJRTZ1SXNtS0dGdFhZZmlSUE1xQVYrcmdhZkVpaWozYmk3?=
+ =?utf-8?B?aUp5K2dDNTJMZDRHU1lVODBDNGJBclFyQ1ZtWHBPRkQyMWk4ekZKbjlQV1Rj?=
+ =?utf-8?B?RWZhWEFoQ3ZMUFFjTnVHdkVqYUZPVmozSFJqZnRkWUM2MzA0YkFjL3VwODJI?=
+ =?utf-8?B?NG1uenVkeEd3NnVjTEFSM3JUbkxSTG5kZFovUkZTZlRrK2tBWmNxUnRjNW5p?=
+ =?utf-8?B?QWkyYUh5cmpXbVcxMEZnbEFUTDdDNHFpL210SnlmTzNqQTBtMjNJZ0gwd29Y?=
+ =?utf-8?B?eWIyNTJrYkxCRWcvK2RYM1FiTkRndDZtNjBNS2ZRWUNlK3k2ck1GWHZEdFM1?=
+ =?utf-8?B?eWRtMXAvazdycmc0Tm5zaGlYWjFLSzJ3aDBZekVwcGs5TjBiS1FIWFZkK3pi?=
+ =?utf-8?B?OGJ6cGtCa3lNMWZVblRVSlFvRXVONmcrbTV2VTczLzQ3YUNqazNqTkZPcG5r?=
+ =?utf-8?B?Q0s0RTdXdWZZdjJuNEhGQTA0alVDN01ZUk1nTnAxZmM2eWY4VmdXOTVtaUdF?=
+ =?utf-8?B?NVI1YURzY3ZDZDBjdDZFVU4vSExFMXlkdkdhODd5d05hL1Zaa29yQTd6VDNM?=
+ =?utf-8?B?L2FEN0pZbStBc2VDaWliU2dVcHJoRS93Z1RqNmozQWJoZDVIS2lFRk8ySVgv?=
+ =?utf-8?B?KzZSeFRqMGhsN2owTWt2UVlYSFN0djA5NUpvU1RJYVdoZkRoU2pnRkhjWmFk?=
+ =?utf-8?B?UEZEb3kyUnlydTRNK25MMjdZR0U1bkpONWFIWDV4YTZxWWZQZDk0Tmd6ZjZr?=
+ =?utf-8?B?TXptM1FvN3VJcWRSaUlmSitrdGNTOCtTTHp4Mit0dFBaZXcvbDZOMkV4T0dN?=
+ =?utf-8?B?bkFaTDVtb3RkM0M1SDgweHdmZVg1OURSZ2o2alp0K2FWRlQxTUlZVjdyY3ZS?=
+ =?utf-8?B?ZzRYaVJyVTBWamtYdkpWY2c4aERsWnQ2UVRnaGx1eEZlUlRVd0VCd05kWUxw?=
+ =?utf-8?B?UWIwK0xqNXBYOTNraTFwVm5qeHRTTFV1Ky9YYWxHblhUT2Q4alBoOVI1aXJv?=
+ =?utf-8?B?R1E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FD7C33AA272FDE49B4FB447684448AF0@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231006090258.278369-1-tudor.ambarus@linaro.org>
-In-Reply-To: <20231006090258.278369-1-tudor.ambarus@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Fri, 6 Oct 2023 20:08:40 -0500
-Message-ID: <CAPLW+4m2a=joAo5vQUXruy1f2tVwMyf6dP0S+Z+W4Y2B7u3muA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: exynos: set USI mode in board dts
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, peter.griffin@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7947.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 188204f7-bfe8-4f21-1f0b-08dbc6d79b82
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2023 01:49:13.1753
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Utv9Ak2vmmXG3sd9nt5iLE3Gomf7EWl3hTswxW6kmbomEKmqL3t/ekYVu8lqZyegGuhztOSUQ+Z9XUen4bbD/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5775
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Oct 6, 2023 at 4:03=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
-org> wrote:
->
-> The Universal Serial Interface (USI) provides selectable serial protocol
-> (UART, SPI, I2C). Only one function can be used at a time. The SoC
-> provides flexibility for boards to choose the protocol desired. Instead
-> of selecting the USI protocol mode in the SoC dtsi file, select the mode
-> in the board dts file as the USI IP can work in either of the 3 modes,
-> but the board uses just one. Where the USI node was not enabled in the
-> board dts file, just remove the samsung,mode specified in dtsi.
->
-
-I can comment only on Exynos850 changes, as I don't have the TRM for
-ExynosAutoV9.
-
-All USIs found in PERI block have actual default values, which are
-reset values of corresponding sysreg SW_CONF registers. Exactly those
-values are specified in 'samsung,mode' properties in exynos850.dtsi.
-Corresponding regmap_update_bits() driver call would skip writing
-those values (as it reads the same reset values from the registers
-first), which is also kinda nice consequence of having those defaults.
-I still think it's important to stress (in exynos850.dtsi) that PERI
-USIs have actual HW defaults, by specifying their values. If some
-particular Exynos850-based board wants to actually override that mode,
-it can be done in that board's dts file. So yeah, it was designed that
-way, and I'd say it's better to leave 'samsung,mode' in dtsi for PERI
-USIs as is.
-
-Now CMGP USIs are a different story. They don't have any sensible
-reset values in their sysreg SW_CONF registers (i.e. all I2C/SPI/UART
-SW_CONF reg fields have '0' reset value). So maybe removing
-'samsung,mode' for CMGP USIs in exynos850.dtsi is a reasonable thing
-to do. It won't make any functional change at the moment, but it can
-be valuable, as a way to emphasize those CMGP USIs don't have any HW
-defaults and their mode must be chosen for each particular board.
-
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
->  .../boot/dts/exynos/exynos850-e850-96.dts     |  2 ++
->  arch/arm64/boot/dts/exynos/exynos850.dtsi     |  8 ------
->  .../boot/dts/exynos/exynosautov9-sadk.dts     |  2 ++
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 25 -------------------
->  4 files changed, 4 insertions(+), 33 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm6=
-4/boot/dts/exynos/exynos850-e850-96.dts
-> index 6ed38912507f..615c1d6647ea 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-> @@ -15,6 +15,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         model =3D "WinLink E850-96 board";
-> @@ -187,6 +188,7 @@ &serial_0 {
->  };
->
->  &usi_uart {
-> +       samsung,mode =3D <USI_V2_UART>;
->         samsung,clkreq-on; /* needed for UART mode */
->         status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/=
-dts/exynos/exynos850.dtsi
-> index aa077008b3be..db35ee742a27 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-> @@ -12,7 +12,6 @@
->
->  #include <dt-bindings/clock/exynos850.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> -#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         /* Also known under engineering name Exynos3830 */
-> @@ -574,7 +573,6 @@ usi_uart: usi@138200c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x138200c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_peri 0x1010>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -600,7 +598,6 @@ usi_hsi2c_0: usi@138a00c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x138a00c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_peri 0x1020>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -628,7 +625,6 @@ usi_hsi2c_1: usi@138b00c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x138b00c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_peri 0x1030>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -656,7 +652,6 @@ usi_hsi2c_2: usi@138c00c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x138c00c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_peri 0x1040>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -684,7 +679,6 @@ usi_spi_0: usi@139400c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x139400c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_peri 0x1050>;
-> -                       samsung,mode =3D <USI_V2_SPI>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -698,7 +692,6 @@ usi_cmgp0: usi@11d000c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x11d000c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_cmgp 0x2000>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -738,7 +731,6 @@ usi_cmgp1: usi@11d200c0 {
->                         compatible =3D "samsung,exynos850-usi";
->                         reg =3D <0x11d200c0 0x20>;
->                         samsung,sysreg =3D <&sysreg_cmgp 0x2010>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm6=
-4/boot/dts/exynos/exynosautov9-sadk.dts
-> index bc1815f6ada2..91d302703366 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> @@ -9,6 +9,7 @@
->  /dts-v1/;
->  #include "exynosautov9.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         model =3D "Samsung ExynosAuto v9 SADK board";
-> @@ -79,6 +80,7 @@ &ufs_1 {
->  };
->
->  &usi_0 {
-> +       samsung,mode =3D <USI_V2_UART>;
->         samsung,clkreq-on; /* needed for UART mode */
->         status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/bo=
-ot/dts/exynos/exynosautov9.dtsi
-> index b228cd7e351e..92f4b738834a 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -9,7 +9,6 @@
->  #include <dt-bindings/clock/samsung,exynosautov9.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/soc/samsung,boot-mode.h>
-> -#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         compatible =3D "samsung,exynosautov9";
-> @@ -392,7 +391,6 @@ usi_0: usi@103000c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103000c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1000>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -454,7 +452,6 @@ usi_i2c_0: usi@103100c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103100c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1004>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -483,7 +480,6 @@ usi_1: usi@103200c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103200c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1008>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -545,7 +541,6 @@ usi_i2c_1: usi@103300c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103300c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x100c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -574,7 +569,6 @@ usi_2: usi@103400c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103400c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1010>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -636,7 +630,6 @@ usi_i2c_2: usi@103500c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103500c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1014>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -665,7 +658,6 @@ usi_3: usi@103600c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103600c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1018>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -727,7 +719,6 @@ usi_i2c_3: usi@103700c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103700c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x101c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -756,7 +747,6 @@ usi_4: usi@103800c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103800c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1020>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -818,7 +808,6 @@ usi_i2c_4: usi@103900c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103900c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1024>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -847,7 +836,6 @@ usi_5: usi@103a00c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103a00c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x1028>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -909,7 +897,6 @@ usi_i2c_5: usi@103b00c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x103b00c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric0 0x102c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -938,7 +925,6 @@ usi_6: usi@109000c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109000c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1000>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1000,7 +986,6 @@ usi_i2c_6: usi@109100c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109100c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1004>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1029,7 +1014,6 @@ usi_7: usi@109200c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109200c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1008>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1091,7 +1075,6 @@ usi_i2c_7: usi@109300c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109300c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x100c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1120,7 +1103,6 @@ usi_8: usi@109400c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109400c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1010>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1182,7 +1164,6 @@ usi_i2c_8: usi@109500c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109500c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1014>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1211,7 +1192,6 @@ usi_9: usi@109600c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109600c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1018>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1273,7 +1253,6 @@ usi_i2c_9: usi@109700c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109700c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x101c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1302,7 +1281,6 @@ usi_10: usi@109800c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109800c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1020>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1364,7 +1342,6 @@ usi_i2c_10: usi@109900c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109900c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1024>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1393,7 +1370,6 @@ usi_11: usi@109a00c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109a00c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x1028>;
-> -                       samsung,mode =3D <USI_V2_UART>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> @@ -1453,7 +1429,6 @@ usi_i2c_11: usi@109b00c0 {
->                                      "samsung,exynos850-usi";
->                         reg =3D <0x109b00c0 0x20>;
->                         samsung,sysreg =3D <&syscon_peric1 0x102c>;
-> -                       samsung,mode =3D <USI_V2_I2C>;
->                         #address-cells =3D <1>;
->                         #size-cells =3D <1>;
->                         ranges;
-> --
-> 2.42.0.609.gbb76f46606-goog
->
+RGVhciBIYW5zLA0KDQpTb3JyeSBmb3IgbGF0ZSByZXNwb25zZSwgd2UgaGF2ZSBqdXN0IHJldHVy
+bmVkIHRvIG9mZmljZSBhZnRlcg0KdmFjYXRpb24uIFllcywgaXQncyBhIGZpeCBhbmQgdGhhbmsg
+eW91IHZlcnkgbXVjaCBmb3IgYWNjZXB0aW5nIGl0Lg0KDQpCZXN0IFJlZ2FyZHMNCg0KT24gVGh1
+LCAyMDIzLTEwLTA1IGF0IDEwOjQ2ICswMjAwLCBIYW5zIFZlcmt1aWwgd3JvdGU6DQo+ICAJIA0K
+PiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRh
+Y2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250
+ZW50Lg0KPiAgT24gMDQvMTAvMjAyMyAwODo1NCwgSGFucyBWZXJrdWlsIHdyb3RlOg0KPiA+IFBp
+bmchIElzIHRoaXMgYSBmaXggZm9yIDYuNiBvciBub3Q/DQo+ID4gDQo+ID4gUmVnYXJkcywNCj4g
+PiANCj4gPiBIYW5zDQo+ID4gDQo+ID4gT24gMDIvMTAvMjAyMyAxMjoyNCwgSGFucyBWZXJrdWls
+IHdyb3RlOg0KPiA+PiBPbiAyNi8wOS8yMDIzIDEyOjE5LCBJcnVpIFdhbmcgd3JvdGU6DQo+ID4+
+PiBOZWVkIHRvIHNldCB0aGUgcHJpdmF0ZSBkYXRhIHdpdGggZW5jb2RlciBkZXZpY2UsIG9yIHdp
+bGwgYWNjZXNzDQo+ID4+PiBOVUxMIHBvaW50ZXIgaW4gZW5jb2RlciBoYW5kbGVyLg0KPiA+Pj4N
+Cj4gPj4+IEZpeGVzOiAxOTcyZTMyNDMxZWQgKCJtZWRpYTogbWVkaWF0ZWs6IHZjb2RlYzogRml4
+IHBvc3NpYmxlDQo+IGludmFsaWQgbWVtb3J5IGFjY2VzcyBmb3IgZW5jb2RlciIpDQo+ID4+Pg0K
+PiA+Pj4gU2lnbmVkLW9mZi1ieTogSXJ1aSBXYW5nIDxpcnVpLndhbmdAbWVkaWF0ZWsuY29tPg0K
+PiA+Pj4gLS0tDQo+ID4+PiAgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay92Y29kZWMv
+ZW5jb2Rlci92ZW5jX3ZwdV9pZi5jIHwgMw0KPiArKy0NCj4gPj4+ICAxIGZpbGUgY2hhbmdlZCwg
+MiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4+Pg0KPiA+Pj4gZGlmZiAtLWdpdA0K
+PiBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192
+cHVfaWYuYw0KPiBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29k
+ZXIvdmVuY192cHVfaWYuYw0KPiA+Pj4gaW5kZXggZDI5OWNjMjk2MmE1Li5hZTYyOTBkMjhmOGUg
+MTAwNjQ0DQo+ID4+PiAtLS0NCj4gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL21lZGlhdGVrL3Zj
+b2RlYy9lbmNvZGVyL3ZlbmNfdnB1X2lmLmMNCj4gPj4+ICsrKw0KPiBiL2RyaXZlcnMvbWVkaWEv
+cGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192cHVfaWYuYw0KPiA+Pj4gQEAg
+LTEzOCw3ICsxMzgsOCBAQCBpbnQgdnB1X2VuY19pbml0KHN0cnVjdCB2ZW5jX3ZwdV9pbnN0ICp2
+cHUpDQo+ID4+PiAgdnB1LT5jdHgtPnZwdV9pbnN0ID0gdnB1Ow0KPiA+Pj4gIA0KPiA+Pj4gIHN0
+YXR1cyA9IG10a192Y29kZWNfZndfaXBpX3JlZ2lzdGVyKHZwdS0+Y3R4LT5kZXYtPmZ3X2hhbmRs
+ZXIsDQo+IHZwdS0+aWQsDQo+ID4+PiAtICAgIHZwdV9lbmNfaXBpX2hhbmRsZXIsICJ2ZW5jIiwg
+TlVMTCk7DQo+ID4+PiArICAgIHZwdV9lbmNfaXBpX2hhbmRsZXIsICJ2ZW5jIiwNCj4gPj4+ICsg
+ICAgdnB1LT5jdHgtPmRldik7DQo+ID4+PiAgDQo+ID4+PiAgaWYgKHN0YXR1cykgew0KPiA+Pj4g
+IG10a192ZW5jX2Vycih2cHUtPmN0eCwgInZwdV9pcGlfcmVnaXN0ZXIgZmFpbCAlZCIsIHN0YXR1
+cyk7DQo+ID4+DQo+ID4+IElzIHRoaXMgYSBmaXggdGhhdCBzaG91bGQgZ28gdG8gNi42Pw0KPiAN
+Cj4gVGhpcyBsb29rcyBsaWtlIGEgcmVhbCBidWcsIHNvIEknbGwgcXVldWUgdGhpcyB1cCBmb3Ig
+Ni42Lg0KPiANCj4gUmVnYXJkcywNCj4gDQo+IEhhbnMNCg==
 
