@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0B77BC8A1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC7D7BC8A8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5BFE281E2E
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:35:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C673281E42
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2C92AB48;
-	Sat,  7 Oct 2023 15:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD482E62E;
+	Sat,  7 Oct 2023 15:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3j5cnI4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iM+oqokm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9102EDDC8
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2723029428
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:37:01 +0000 (UTC)
 Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFAEBA
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 08:34:55 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4065dea9a33so30230685e9.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 08:34:55 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05C3B9
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 08:36:59 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-406618d0992so30538325e9.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 08:36:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696692894; x=1697297694; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696693018; x=1697297818; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wr53mbjj7z6Om3CmnSPHM3BX5fVMfyoxQkiYy/wbWTY=;
-        b=f3j5cnI4JK2ishEmATaOaR0/uN323y0h3XCyqvrUwmwZkvonY6xsmzFHRRrRMLCjgm
-         F3+OYpqqspblFqaUU7ncYlt6aDvtOu6s3fCj6VsccQhRoGryoU1J/NyfFUXuGZ47NMu4
-         qRMlg0qqUY76OOoNjGG8pE/U43afJt/CrFpFVOMYQNh2cw6emMv1JiLmqu8oJkluOdvn
-         brQ8gHKmN8uYL6hJykJ1qRA20hv2yNMI/j7WmMwS5kAG6w6Y3Jfx2Sq52n0f1GenER2/
-         bngVekY07i7adh+iJKoTpow3dBUCud3qavyU3OF5yicskBMcQRwIt5+0H9f72aYwBSBH
-         GLDg==
+        bh=1xZba6X+aKTOLDEfwKhIa7yrx7NXyDPJ4bqJc+OxuDQ=;
+        b=iM+oqokmR7r8fgcz6LM3DhKMU/wm6oKZvIDkT5F60yeZ6EycXh8DC79a/JdQy6H0fj
+         wiex/NXBlyhJxL3sh+stoCYHibheCo3hw3PFUXXcx79Svyzk3JWXeRRcmwHpE75DFJYc
+         u4ZKzOihHf5LxScZ84xiIe9aLIgdn4O5GY6yStk0tQNerFfr3t7nokS6rQYFRdZS8Pu7
+         30yt0x89t1mvkpOyI4E7fQxvd3AjplL0GpFBLHCogcQ9v7DzItjBrwn4z2jyEgYGg6LS
+         KaB6ZlOzDxSfPnn4wvSMqDn8vfa8YYF+9zKFhdWXfrezwRXIkeAsgGE0dt8EuaD/gHYJ
+         5N7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696692894; x=1697297694;
+        d=1e100.net; s=20230601; t=1696693018; x=1697297818;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wr53mbjj7z6Om3CmnSPHM3BX5fVMfyoxQkiYy/wbWTY=;
-        b=GyCUF+oro1XY8oafjkF9DoKS6CJKRBAV4dT7x6nvqEK8S4VR3sZkEfksLAYADOeTnA
-         zZxUq5fNTjiAnCiWWfnA0VImYEYE1B3RcAT6gT8J4SYJcEwyC3nj1+UcgfkjEQBRBd1r
-         9kBpa0W3/TpyzGl9Ur2Q59BvdzNu0Bgbn5VFADOQngpx6UUQGD3FixDL0AR6eIXbLnLM
-         kExTOaLfCxH2pcuNxY4G1oirhN91JMB6H1VYEQ78Whd5BPfdt6HyuFBAMA4UHS5piygt
-         qGRzlrpyV3az+b7xG68uJKrt8TUSFinUMlm4ZtZxjVVkmVc7Qq7YZKilGULXMHRAziaE
-         DvVA==
-X-Gm-Message-State: AOJu0YwNam0fh/Bytust3Ust9tPRAuJc8y9Xh6mUbz5I/rWgAPN/oPxU
-	L7INusg7LqTFQ3Un34xj8j+/nQ==
-X-Google-Smtp-Source: AGHT+IFy5xSzQK1o3KDadPi6iarG1BdGaZJT2Wgg0SfxtG+HKoUaeYy0j0u/uski/e7ZNQXoqYty2A==
-X-Received: by 2002:a5d:43c2:0:b0:321:5969:d465 with SMTP id v2-20020a5d43c2000000b003215969d465mr10362241wrr.65.1696692894241;
-        Sat, 07 Oct 2023 08:34:54 -0700 (PDT)
+        bh=1xZba6X+aKTOLDEfwKhIa7yrx7NXyDPJ4bqJc+OxuDQ=;
+        b=hD2s5lv1+xC1vX49w1voiwg+yFjztjc6hACjSF2OTmhjYCqySFkmpeUsnv7u3lCMc3
+         FjcksaMan2uY1JqWwNZPX0g/A0k0WskROJaGFU93BSuyQubAKb0u/bpmSr3u4DEhVM1U
+         KUf3OopPlQAYYuVwFlksoR/ARQcXgO64pGgN6cv3sz22tS18J/+gg5fB1pNm/KsSRdSH
+         XqgYMQnvs2sfHMK/gSNOI90rTiq4lLdpa1arLDzo+r6P6VLY1jOHCHk0T/swuVJtuCoW
+         e8dCH6pwx3CQA+l59y81aNWsDYU1GxWnrolqNS43k83RoxXDEcVhoSZCTbMLSazBFu4C
+         4KJw==
+X-Gm-Message-State: AOJu0Yzy9aZ3DgUI7ljh+RxA9PGTOvB3onfdQf8yHTcWcCKn7gADjGeK
+	IbnU/E83n61cLF5kCSZWrJnAGA==
+X-Google-Smtp-Source: AGHT+IFe2rgb6dWE9FJ0bfkNFgsGR1xKXc24Vxh+YeI+CC3Wan0a0cZSzIvopTHGip0+1ymo6sFbtA==
+X-Received: by 2002:adf:e8ca:0:b0:31f:e1b4:583d with SMTP id k10-20020adfe8ca000000b0031fe1b4583dmr11185601wrn.56.1696693018176;
+        Sat, 07 Oct 2023 08:36:58 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id t4-20020a0560001a4400b0032763287473sm4564545wry.75.2023.10.07.08.34.52
+        by smtp.gmail.com with ESMTPSA id e8-20020adffc48000000b0031f3ad17b2csm4522101wrs.52.2023.10.07.08.36.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Oct 2023 08:34:53 -0700 (PDT)
-Message-ID: <8f73b55b-e5f2-4b4c-a92d-e8f20f84d542@linaro.org>
-Date: Sat, 7 Oct 2023 17:34:52 +0200
+        Sat, 07 Oct 2023 08:36:57 -0700 (PDT)
+Message-ID: <6b59155f-96d7-4d14-b08e-1ca1fa3c45ab@linaro.org>
+Date: Sat, 7 Oct 2023 17:36:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
+Subject: Re: [PATCH v6 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
 Content-Language: en-US
 To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
  heiko@sntech.de, hverkuil-cisco@xs4all.nl,
@@ -79,7 +79,7 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
  paul.kocialkowski@bootlin.com
 References: <cover.1696608809.git.mehdi.djait@bootlin.com>
- <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
+ <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,91 +125,82 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
+In-Reply-To: <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 06/10/2023 18:25, Mehdi Djait wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards, such as PAL and NTSC, and outputs a BT.656 video
-> signal.
+> The Techwell video decoder supports PAL, NTSC input formats,
+> and outputs a BT.656 signal.
 > 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection
+> This commit adds support for this device, with basic support for NTSC
+> and PAL, along with brightness and contrast controls.
+> 
+> The TW9900 is capable of doing automatic standard detection, this is
+> implemented with support for PAL and NTSC autodetection.
 > 
 > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> ---
 
-Thank you for your patch. There is something to discuss/improve.
-
-
-
-> +properties:
-> +  compatible:
-> +    const: techwell,tw9900
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: VDD power supply
-> +
-> +  reset-gpios:
-> +    description: GPIO descriptor for the RESET input pin
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      Video port for the decoder output.
-> +
-> +additionalProperties: false
-
-This goes after required: block
+...
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +static int tw9900_check_id(struct tw9900 *tw9900,
+> +			   struct i2c_client *client)
+> +{
+> +	struct device *dev = &tw9900->client->dev;
+> +	int ret;
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
+> +	ret = tw9900_read_reg(client, TW9900_CHIP_ID);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ret != TW9900_CHIP_ID) {
+> +		dev_err(dev, "Unexpected decoder id(0x%x)\n", ret);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_info(dev, "Detected TW9900 (0x%x) decoder\n", TW9900_CHIP_ID);
 
-Use 4 spaces for example indentation.
+dev_dbg
+Do not spam log with simple success messages.
+
+Why do you always print 0x0 (TW9900_CHIP_ID) here? It does not make
+sense, drop.
+
 
 > +
-> +            tw9900: tw9900@44 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-Also, drop unused labels
-
-> +                    compatible = "techwell,tw9900";
-> +                    reg = <0x44>;
+> +	return 0;
+> +}
 > +
-> +                    vdd-supply = <&tw9900_supply>;
-> +                    reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+> +static int tw9900_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct v4l2_ctrl_handler *hdl;
+> +	struct tw9900 *tw9900;
+> +	int ret = 0;
 > +
-> +                    port {
-> +                            tw9900_out: endpoint {
-> +                                    remote-endpoint = <&vip_in>;
-> +                            };
-> +                    };
-> +            };
-> +    };
+> +	tw9900 = devm_kzalloc(dev, sizeof(*tw9900), GFP_KERNEL);
+> +	if (!tw9900)
+> +		return -ENOMEM;
+> +
+> +	tw9900->client = client;
+> +	tw9900->cur_mode = &supported_modes[0];
+> +
+> +	tw9900->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(tw9900->reset_gpio))
+> +		tw9900->reset_gpio = NULL;
+> +
+> +	tw9900->regulator = devm_regulator_get(&tw9900->client->dev, "vdd");
+> +	if (IS_ERR(tw9900->regulator)) {
+> +		dev_err(dev, "Failed to get power regulator\n");
+
+return dev_err_probe()
+
 
 Best regards,
 Krzysztof
