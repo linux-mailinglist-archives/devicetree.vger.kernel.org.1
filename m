@@ -1,108 +1,128 @@
-Return-Path: <devicetree+bounces-6685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB027BC736
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 13:36:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C81117BC76B
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:15:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4DBD1C2093C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 11:36:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51761281D5B
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 12:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B858B1945D;
-	Sat,  7 Oct 2023 11:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9465C1C6A9;
+	Sat,  7 Oct 2023 12:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dyxskFVa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A220168DE
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 11:36:33 +0000 (UTC)
-Received: from cloudserver094114.home.pl (cloudserver094114.home.pl [79.96.170.134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D96BD;
-	Sat,  7 Oct 2023 04:36:29 -0700 (PDT)
-Received: from localhost (127.0.0.1) (HELO v370.home.net.pl)
- by /usr/run/smtp (/usr/run/postfix/private/idea_relay_lmtp) via UNIX with SMTP (IdeaSmtpServer 5.2.0)
- id b51d04623ba10436; Sat, 7 Oct 2023 13:36:28 +0200
-Received: from kreacher.localnet (unknown [195.136.19.94])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by v370.home.net.pl (Postfix) with ESMTPSA id DF0816621FA;
-	Sat,  7 Oct 2023 13:36:27 +0200 (CEST)
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-To: Linux PM <linux-pm@vger.kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, Zhang Rui <rui.zhang@intel.com>, LKML <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>, Amit Kucheria <amitk@kernel.org>
-Subject: [PATCH v3] thermal: Remove Amit Kucheria from MAINTAINERS
-Date: Sat, 07 Oct 2023 13:36:27 +0200
-Message-ID: <5725069.DvuYhMxLoT@kreacher>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35CF8168DE
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 12:15:17 +0000 (UTC)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC02B6
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 05:15:15 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c131ddfc95so37155251fa.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 05:15:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696680913; x=1697285713; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=awHR0gSsMLCE0LchcanHftVtRcwXvk49Jk6bRCcu1R8=;
+        b=dyxskFVa+nZkkYP+djKmycESLIAA3LW80XEkCouzcM5y1x0DLVXMhRIap14PbvEY6L
+         GxLDO8uCyx3B2mwbURenZiN6Bq5m8HC5k4Ov9U/tMl9T2RhGF73Rtz/71NkIB/0qgwJ7
+         oXiUsVLGROa8NEI/UXQFHPC8QDPt9XYQbLsKTsOU50n3KVJapazQNQuRMr2E+7oiOOEk
+         4mLCcxEB7vVRtcfeR3s5DlblfjLeHHrkGWtSQltYPzlqZ0iVdX1nM8LbDKWDfL2M61pq
+         27FGBToL1Do4XrYQNzKhlAX5QVPqH62tgVsCCV4vQOnoRpAn8Af9Zv11MszKAZ02NtRC
+         U7+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696680913; x=1697285713;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=awHR0gSsMLCE0LchcanHftVtRcwXvk49Jk6bRCcu1R8=;
+        b=aaOSWTx36/3LWvq2856HvXvihESd6EtUBYWOiGz0j7IZwCH7ugaTSfjBExOhDEsG/b
+         I16xg67u5SwSkYdntRXEjA7mEfuGwpPZT390bf8ap0ms0v9hBu0griOHjZhHNgXPzil5
+         FTAsvajP+tFdtkLOIbTpIFwnUBQ+nV2PMQ2JMS3aiWVsqZU/M8V4TjnM4WqU0TEbx0iD
+         S1iydm7mXq+WicmqLqjS3AsM1AwShCgmP07YOHPe63UglETSXDvxtD5MhTrZ+xWUdnBC
+         NP+bBCy47oD6panQ0gr0jsWT0LpvIaRA/u6XTM738b6DmR1c2Q474kWFifmZczwjJZJ9
+         3KvQ==
+X-Gm-Message-State: AOJu0Yw2k8ax8tO2GWGB5l/Q2cvx8oz/kozm8lTTuz5XF+qYyb9AV/Tv
+	WliwcZrb7pfMZ4v/VUNexKKybw==
+X-Google-Smtp-Source: AGHT+IG5HygFVbQqWCR4H69nF6Tajsc52qi51RdxotX8cVX6JXVo0nMScNWHeKkB3rf8WGjLGUbAKg==
+X-Received: by 2002:ac2:4431:0:b0:503:258d:643c with SMTP id w17-20020ac24431000000b00503258d643cmr8513051lfl.21.1696680913119;
+        Sat, 07 Oct 2023 05:15:13 -0700 (PDT)
+Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
+        by smtp.gmail.com with ESMTPSA id v3-20020a197403000000b00502fe164ce6sm667819lfe.204.2023.10.07.05.15.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Oct 2023 05:15:12 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v3 0/3] Device tree updates for IXP4xx
+Date: Sat, 07 Oct 2023 14:15:10 +0200
+Message-Id: <20231007-ixp4xx-usr8200-v3-0-ec46edd1ff0e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="UTF-8"
-X-CLIENT-IP: 195.136.19.94
-X-CLIENT-HOSTNAME: 195.136.19.94
-X-VADE-SPAMSTATE: clean
-X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrgeelgdegvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfjqffogffrnfdpggftiffpkfenuceurghilhhouhhtmecuudehtdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkggfgtgesthfuredttddtjeenucfhrhhomhepfdftrghfrggvlhculfdrucghhihsohgtkhhifdcuoehrjhifsehrjhifhihsohgtkhhirdhnvghtqeenucggtffrrghtthgvrhhnpeefvddtfeffveeguefgtdeiuddtieelheegkefhhefgkeefuddutdehgfdvudduieenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppeduleehrddufeeirdduledrleegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudelhedrudefiedrudelrdelgedphhgvlhhopehkrhgvrggthhgvrhdrlhhotggrlhhnvghtpdhmrghilhhfrhhomhepfdftrghfrggvlhculfdrucghhihsohgtkhhifdcuoehrjhifsehrjhifhihsohgtkhhirdhnvghtqedpnhgspghrtghpthhtohepuddupdhrtghpthhtoheplhhinhhugidqphhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghrohdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhrihhnihhvrghsrdhprghnughruhhvrggurges
- lhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehruhhirdiihhgrnhhgsehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-DCC--Metrics: v370.home.net.pl 1024; Body=11 Fuz1=11 Fuz2=11
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM9LIWUC/33MQQ6CMBCF4auQrq1pp4DAynsYF7UtMImhZKpND
+ eHuFuJGFy7fS/5vYcERusC6YmHkIgb0Ux7qUDAz6mlwHG3eDAQo0cqWY5rLlPgzUANC8BuUorF
+ 1b7StWI5mcj2mHbxc8x4xPDy9dj/K7f1QUP1SUXLBjT2BBieNa+X5jpMmf/Q0sM2K8L+H3JdKQ
+ S2NVBqar35d1zcIQ9dG7QAAAA==
+To: Peter Denison <openwrt@marshadder.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Krzysztof Halasa <khalasa@piap.pl>
+Cc: Imre Kaloz <kaloz@openwrt.org>, Ted Hess <thess@kitschensync.net>, 
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-Subject: [PATCH v2] thermal: Remove Amit Kucheria from MAINTAINERS
+This adds missing vendors and compatibles.
 
-Amit Kucheria has not been participating in kernel development in any
-way or form for quite some time, so it is not useful to list him as a
-designated reviewer for the thermal subsystem or as the thermal zone DT
-binding maintainer.
+I can merge this through the ARM SoC tree unless
+Rob wants to take it.
 
-Remove him from the THERMAL entry in MAINTAINERS and list Daniel Lezcano
-as the new thermal zone DT binding maintainer.
-
-Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
+Changes in v3:
+- Skip compatible triplet for the Linksys/Gemtek device
+- Alter the device tree to just use one of them in an additional
+  patch (intended to be merged with the binding update)
+- Link to v2: https://lore.kernel.org/r/20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org
 
-v2 -> v3: List Daniel Lezcano as the thermal zone DT binding maintainer.
+Changes in v2:
+- Speling mistake: adiend -> adieng
+- Link to v1: https://lore.kernel.org/r/20230925-ixp4xx-usr8200-v1-0-cd72a2e1ce91@linaro.org
 
 ---
- Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    2 +-
- MAINTAINERS                                                  |    1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
+Linus Walleij (3):
+      dt-bindings: Add vendor prefixes
+      dt-bindings: arm: List more IXP4xx devices
+      ARM: dts: Use only the Linksys compatible for now
 
-Index: linux-pm/MAINTAINERS
-===================================================================
---- linux-pm.orig/MAINTAINERS
-+++ linux-pm/MAINTAINERS
-@@ -21363,7 +21363,6 @@ F:	drivers/media/radio/radio-raremono.c
- THERMAL
- M:	Rafael J. Wysocki <rafael@kernel.org>
- M:	Daniel Lezcano <daniel.lezcano@linaro.org>
--R:	Amit Kucheria <amitk@kernel.org>
- R:	Zhang Rui <rui.zhang@intel.com>
- L:	linux-pm@vger.kernel.org
- S:	Supported
-Index: linux-pm/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-===================================================================
---- linux-pm.orig/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-+++ linux-pm/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-sche
- title: Thermal zone
- 
- maintainers:
--  - Amit Kucheria <amitk@kernel.org>
-+  - Daniel Lezcano <daniel.lezcano@linaro.org>
- 
- description: |
-   Thermal management is achieved in devicetree by describing the sensor hardware
+ Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml  | 16 ++++++++++++++++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml   | 14 ++++++++++++++
+ .../boot/dts/intel/ixp/intel-ixp42x-linksys-wrv54g.dts   |  2 +-
+ 3 files changed, 31 insertions(+), 1 deletion(-)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230919-ixp4xx-usr8200-b2408d6fcad5
 
-
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
 
