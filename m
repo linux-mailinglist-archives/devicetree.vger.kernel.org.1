@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 961767BC89F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:33:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0B77BC8A1
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51024281E4B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:33:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5BFE281E2E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624A82AB47;
-	Sat,  7 Oct 2023 15:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2C92AB48;
+	Sat,  7 Oct 2023 15:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sb3RpmXA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3j5cnI4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB94DDC8
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:33:32 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C2D7BC
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 08:33:27 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso28741975e9.2
-        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 08:33:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9102EDDC8
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:34:57 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFAEBA
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 08:34:55 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4065dea9a33so30230685e9.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 08:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696692806; x=1697297606; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696692894; x=1697297694; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GwBp/+fuaE9lnpKd/mh8SgwHaNFm5bGjDkMscsT9cBk=;
-        b=Sb3RpmXAGlAwcaxuQvnmAJ6K6GdDwYLGVjIzJb2j53rOV7JysQttW6wSb7stuK+oaH
-         NAS6EPEdHsBHFnP2BZxPrAza8zkB38zNfzXjASgtbqBdBHeDrfp++ZlrUaiqyHWMvaR1
-         buuuK3xfdmbEmgyNIgXXMT0VWxEdTDTsFEq2NgclXzPHjt1XfEnIBIvooCJDIZunoY2q
-         M97TI/mevwq6E5ejDQVlZBRxjgbBu5V/HO/NDuFRXPO54GArkHowxVDjilSdi9RD81Bw
-         MkVHepHu9YV4He+Qo8UaPOXgTzsGVTExBxNZO3Nxig6eH5ZVIcjPDMQVO8xImhpyD5jK
-         aCjw==
+        bh=Wr53mbjj7z6Om3CmnSPHM3BX5fVMfyoxQkiYy/wbWTY=;
+        b=f3j5cnI4JK2ishEmATaOaR0/uN323y0h3XCyqvrUwmwZkvonY6xsmzFHRRrRMLCjgm
+         F3+OYpqqspblFqaUU7ncYlt6aDvtOu6s3fCj6VsccQhRoGryoU1J/NyfFUXuGZ47NMu4
+         qRMlg0qqUY76OOoNjGG8pE/U43afJt/CrFpFVOMYQNh2cw6emMv1JiLmqu8oJkluOdvn
+         brQ8gHKmN8uYL6hJykJ1qRA20hv2yNMI/j7WmMwS5kAG6w6Y3Jfx2Sq52n0f1GenER2/
+         bngVekY07i7adh+iJKoTpow3dBUCud3qavyU3OF5yicskBMcQRwIt5+0H9f72aYwBSBH
+         GLDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696692806; x=1697297606;
+        d=1e100.net; s=20230601; t=1696692894; x=1697297694;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GwBp/+fuaE9lnpKd/mh8SgwHaNFm5bGjDkMscsT9cBk=;
-        b=ZxO+rdWwvP6y+Ko6q6yNH2aE08xx89E1yYHYCiPLc79yQIHcj1c51wGya8ly8rJr6W
-         H+0ikbJ2ZcJBiqQ7rgBEMrZ1/UodsfLhSmM9GzfGLboBrjBktdn4Jl9lpr/7T8edrD1P
-         pJe4X8FzjK4JyJmK6pEj5jiJAVF4kK2RUizz9YXrI9ad4yx7cVbrk1AvK0tpkZvHM3rV
-         VBer2hg82Tn4oMFjkdZjYECYt3JfJFKDuS/8abSO6mJ4t48OiTpyPmS+hPSyLEiwiIFY
-         nBlcdGQqeR4GGzkRtIakT7Clc3MEkePo4SY1WWaeAWU3uE3krSmi7kAHaJKVEGgFQV1v
-         SOiA==
-X-Gm-Message-State: AOJu0YzkVR9T+GEz/XOO+pIwMMb7DuvsDK1vmjZXalrheK2dwQVfQjTw
-	gHKeisn7kmdVLIpnOp8EYhFPkw==
-X-Google-Smtp-Source: AGHT+IGIvkVDkVvtJaQkmLFuI0uxkHq2cYbtkYv6hi+V4myy1zrhI9myxu6dSL8iELsAcXuy9PoYew==
-X-Received: by 2002:a1c:ed17:0:b0:3fe:d1e9:e6b8 with SMTP id l23-20020a1ced17000000b003fed1e9e6b8mr10282448wmh.12.1696692805848;
-        Sat, 07 Oct 2023 08:33:25 -0700 (PDT)
+        bh=Wr53mbjj7z6Om3CmnSPHM3BX5fVMfyoxQkiYy/wbWTY=;
+        b=GyCUF+oro1XY8oafjkF9DoKS6CJKRBAV4dT7x6nvqEK8S4VR3sZkEfksLAYADOeTnA
+         zZxUq5fNTjiAnCiWWfnA0VImYEYE1B3RcAT6gT8J4SYJcEwyC3nj1+UcgfkjEQBRBd1r
+         9kBpa0W3/TpyzGl9Ur2Q59BvdzNu0Bgbn5VFADOQngpx6UUQGD3FixDL0AR6eIXbLnLM
+         kExTOaLfCxH2pcuNxY4G1oirhN91JMB6H1VYEQ78Whd5BPfdt6HyuFBAMA4UHS5piygt
+         qGRzlrpyV3az+b7xG68uJKrt8TUSFinUMlm4ZtZxjVVkmVc7Qq7YZKilGULXMHRAziaE
+         DvVA==
+X-Gm-Message-State: AOJu0YwNam0fh/Bytust3Ust9tPRAuJc8y9Xh6mUbz5I/rWgAPN/oPxU
+	L7INusg7LqTFQ3Un34xj8j+/nQ==
+X-Google-Smtp-Source: AGHT+IFy5xSzQK1o3KDadPi6iarG1BdGaZJT2Wgg0SfxtG+HKoUaeYy0j0u/uski/e7ZNQXoqYty2A==
+X-Received: by 2002:a5d:43c2:0:b0:321:5969:d465 with SMTP id v2-20020a5d43c2000000b003215969d465mr10362241wrr.65.1696692894241;
+        Sat, 07 Oct 2023 08:34:54 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id t4-20020a0560001a4400b0032763287473sm4564545wry.75.2023.10.07.08.33.24
+        by smtp.gmail.com with ESMTPSA id t4-20020a0560001a4400b0032763287473sm4564545wry.75.2023.10.07.08.34.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Oct 2023 08:33:25 -0700 (PDT)
-Message-ID: <a9b4bead-bf0b-47f9-a5f7-028d43e9ad67@linaro.org>
-Date: Sat, 7 Oct 2023 17:33:23 +0200
+        Sat, 07 Oct 2023 08:34:53 -0700 (PDT)
+Message-ID: <8f73b55b-e5f2-4b4c-a92d-e8f20f84d542@linaro.org>
+Date: Sat, 7 Oct 2023 17:34:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: vendor-prefixes: Add techwell vendor
- prefix
+Subject: Re: [PATCH v6 2/3] media: dt-bindings: media: i2c: Add bindings for
+ TW9900
 Content-Language: en-US
 To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
  heiko@sntech.de, hverkuil-cisco@xs4all.nl,
@@ -79,7 +79,7 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
  paul.kocialkowski@bootlin.com
 References: <cover.1696608809.git.mehdi.djait@bootlin.com>
- <944ce349236e007f5a4d4fad3ba48d75009644ca.1696608809.git.mehdi.djait@bootlin.com>
+ <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,22 +125,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <944ce349236e007f5a4d4fad3ba48d75009644ca.1696608809.git.mehdi.djait@bootlin.com>
+In-Reply-To: <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 06/10/2023 18:25, Mehdi Djait wrote:
-> Add prefix for Techwell, Inc.
+> The Techwell TW9900 is a video decoder supporting multiple input
+> standards, such as PAL and NTSC, and outputs a BT.656 video
+> signal.
+> 
+> It's designed to be low-power, posesses some features such as a
+> programmable comb-filter, and automatic input standard detection
 > 
 > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
 > ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thank you for your patch. There is something to discuss/improve.
+
+
+
+> +properties:
+> +  compatible:
+> +    const: techwell,tw9900
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: VDD power supply
+> +
+> +  reset-gpios:
+> +    description: GPIO descriptor for the RESET input pin
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Video port for the decoder output.
+> +
+> +additionalProperties: false
+
+This goes after required: block
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+
+Use 4 spaces for example indentation.
+
+> +
+> +            tw9900: tw9900@44 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Also, drop unused labels
+
+> +                    compatible = "techwell,tw9900";
+> +                    reg = <0x44>;
+> +
+> +                    vdd-supply = <&tw9900_supply>;
+> +                    reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+> +
+> +                    port {
+> +                            tw9900_out: endpoint {
+> +                                    remote-endpoint = <&vip_in>;
+> +                            };
+> +                    };
+> +            };
+> +    };
 
 Best regards,
 Krzysztof
