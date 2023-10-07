@@ -1,217 +1,156 @@
-Return-Path: <devicetree+bounces-6634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A107BC3E6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 03:49:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3797BC414
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 04:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C6D31C20937
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:49:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0F7A1C20869
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 02:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E515137C;
-	Sat,  7 Oct 2023 01:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC1C1389;
+	Sat,  7 Oct 2023 02:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BNrxiFIf";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="uZ1Grb5n"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="Vwdi+Rwm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD2C1377
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 01:49:50 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1433B6;
-	Fri,  6 Oct 2023 18:49:42 -0700 (PDT)
-X-UUID: c5044d2c64b311eea33bb35ae8d461a2-20231007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
-	b=BNrxiFIfn98l5Wlm1Cxpts1g1+WOjlCbz84VtrBKvISwi1o4DoUitX0/QFeBd3aSt3N4CBs6VREF5ImpDaEicGsONKs05kCjm+ecyuyUhxpuIhv8lxXmmNI2/cD2UeCONYKYCPjNmLaFcweRW9P2KXusvLLmAre8DMDJNBKmnqM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:257dad40-9a67-4a8f-ba72-6e4fc5b69359,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:5f78ec9,CLOUDID:df2689f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: c5044d2c64b311eea33bb35ae8d461a2-20231007
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <irui.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1632934427; Sat, 07 Oct 2023 09:49:36 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 7 Oct 2023 09:49:35 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sat, 7 Oct 2023 09:49:35 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92AA1377
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 02:07:32 +0000 (UTC)
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2053.outbound.protection.outlook.com [40.107.104.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F32BE;
+	Fri,  6 Oct 2023 19:07:31 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mcjXJu7jQpdZ4Cd3H/och5sbIibNWd8vy8NykJsz4khGUahvH3+/RvNyzlU5dyzRSN9fihuAHU2eosq4+0D8AhUmMhhG4RUsnZWw+8wzGeIbJZ26ReZNwjAKOYUZUldlqd6Lku+PSnudIfalbc3PzPnJsQP8IwM41gfAohX9S/NR6cVQRzmduGkMuwAO79CxmHp61CVFxWFvuDO6Ouk/CU7ipUSJDgv2FJexa94lNGb4itoNW+7ecAyN3/RWvGB/tfS1O/ur4HAkflapEAjPDeYTbo90id2ctbN3DLzwJ0JGaUsrWW5gMPuWo43tsdIan4qFnEw5fA+mSd4bE+toQg==
+ b=MieEGUnR1Gcf7beK8dFMdyfOIX2JGGsKZ8Hso3yvsRELz0L/bBbKce1a7GSB9vs+Bn8vs0/eIT6TFqQXzL6ayRh8UnDD8jt5ruekv/jErhHwrBx6J/ZbM5Uq1xMY/nX/RDQ5/ykKpa6lhGErJUzydTSDcArCmBQt10j61nCuLLOd5UdZuJFThyVgzwqoznkL+R70x7gEyqdxD9SQX94tfNqWjgBt1ZBd7aZEDcQYJldWTdHVuGCmWgSb++Pd24Xb5d4i0CGAQZUIrtb/F59z2XEUCMqM9if9EOgECy1jxPqJVhZf0YyV9ceZ8v2GIvXEqCYNr/2XFExXI44FM+B3Qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
- b=agOzgkIOWkkfVZUa467XVXCdGbYtLl+cEl/HSdY8lmnWFQHY+U9/spztWOfH/L73LyJyXpHxeidVAEAbAV1jXtEGHGDjbd1wKuXQeb2thoiutxVXKaoPhr3Gw192t19TPXjG0bAoblkUX9WY8QfyYNblJ+ChNS/vQ4Yoa+YlGGSzpOLkoVwniWz5YBAYtyM9ADQl0khOgDbpQvDhFWvu4NPzZodkVcycIf5GUKratlf+cviM5HqcY0SO4XFKQi07AyncMrWHnqCQ1iIC1U7G13XYq6xMqi690aqn/gof1f0rd1Mmce6Nd25ayNOEVKNND6kvwRcJn74AwfhW+nCxsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ bh=NSx9Mf4EfQOTtlGXcpmwLF9odZ9iD7TmE0cKtFGgkU0=;
+ b=WOZKfjmUC4UaVnOabGntzNT/RgeUixK6tFUKH/tFtURXxBba/JlmX35XM3+bJoVmtna1GIZBleiumc8ww+mw+cGPoUSKdE6usHeOdiS7HNa2Y9a2KmwTvfrf2uxI4kSB2yC+Ej6CsoxBNS3IYI1/iE/0BFWPvEiz6jUBYe5OcBqqOaJQdJVskClsLaAxBxFvvkk0vDA3SykCjWQe6/22cA7DoJYcsQO1/0AzgygaLcZgsB0VO7wTFABjQic3jfIn+UHJQ4NKAzSbzx+7kf7FKsYIOvwwDttzoniloXqqczGCprehyZ4dmpotghOMA3o/mOpem8DIj6BonyCVaJiKpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vX5X6/ugProL7a2CYeWbRJg2dAyrJrf81xZT6wz6v/s=;
- b=uZ1Grb5nz/NuMX+fmeJyPJKPKII80/FXxaCw07s85I+vay0kV8rJuioz9GKZ+hIMj7H6MSbHQ3OJkYW5G5lTsRJzBOUQZTCTuwNuxpCazoPFZhFa0mZ6PIs6fRrSUT8VUEryg485SSsousqe/bkhNsbhL1Fu876WqMoVKIjQ5CE=
-Received: from SEZPR03MB7947.apcprd03.prod.outlook.com (2603:1096:101:187::6)
- by TYZPR03MB5775.apcprd03.prod.outlook.com (2603:1096:400:89::11) with
+ bh=NSx9Mf4EfQOTtlGXcpmwLF9odZ9iD7TmE0cKtFGgkU0=;
+ b=Vwdi+RwmGi5NqWV1VrXn5iev/jAhAb91o3pVh0o9a8bvpQCdnyK/kIDt16lKnL2mpTvmTNGWtp4bu9cYX5pKI/odxogdggdQBHTCOHhkzshEh1wEaRGW5Ww54f6JRnxcH13juBcs0m8Ml6fQ2yZSehrKz6xj6d9sjI817MsF4vU=
+Received: from DU2PR04CA0075.eurprd04.prod.outlook.com (2603:10a6:10:232::20)
+ by AS8PR02MB9315.eurprd02.prod.outlook.com (2603:10a6:20b:57e::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.38; Sat, 7 Oct
- 2023 01:49:33 +0000
-Received: from SEZPR03MB7947.apcprd03.prod.outlook.com
- ([fe80::c468:315e:d2f2:c3e]) by SEZPR03MB7947.apcprd03.prod.outlook.com
- ([fe80::c468:315e:d2f2:c3e%4]) with mapi id 15.20.6838.033; Sat, 7 Oct 2023
- 01:49:32 +0000
-From: =?utf-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>
-To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "nicolas.dufresne@collabora.com"
-	<nicolas.dufresne@collabora.com>, "hverkuil-cisco@xs4all.nl"
-	<hverkuil-cisco@xs4all.nl>, =?utf-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?=
-	<Yunfei.Dong@mediatek.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>,
-	=?utf-8?B?TWFvZ3VhbmcgTWVuZyAo5a2f5q+b5bm/KQ==?=
-	<Maoguang.Meng@mediatek.com>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] media: mediatek: vcodec: Fix encoder access NULL
- pointer
-Thread-Topic: [PATCH 1/2] media: mediatek: vcodec: Fix encoder access NULL
- pointer
-Thread-Index: AQHZ8GL1WluehHzAaEyDLlbMzNGOyrA2VFmAgALqHICAAbGOAIACsCcA
-Date: Sat, 7 Oct 2023 01:49:13 +0000
-Message-ID: <507eec52c2d91508feacc4c24de27328477fee4b.camel@mediatek.com>
-References: <20230926101909.15030-1-irui.wang@mediatek.com>
-	 <36356e37-9abd-4dec-a716-9822b67bd0fa@xs4all.nl>
-	 <54962983-fa23-4ecc-9874-f59a1387cf70@xs4all.nl>
-	 <ef1d5a63-6a83-46fc-b593-2d507a1ce097@xs4all.nl>
-In-Reply-To: <ef1d5a63-6a83-46fc-b593-2d507a1ce097@xs4all.nl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEZPR03MB7947:EE_|TYZPR03MB5775:EE_
-x-ms-office365-filtering-correlation-id: 188204f7-bfe8-4f21-1f0b-08dbc6d79b82
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: k207K1WJgutPsrOJWh7sdAakTTDx4po8LLYslV0t1PjWNB8NbUhj9OD480fzzJO0pDwPNQMogSSaXJykhEZKKZBL41LYuukqIjTHBgjvUALxelc/pnq0ssHAHXzc8BKd0GIQCPt4+rVTKPlNf60jGtuPlj8J6kWLLZJOmBRcdHX0/nVWpFN7JYpc7RBi+aLM3G5ah3y/xAa7xPBV3t2S8jMG3acEiUbRu1KjI9GwGG87QsVxFRix3QsrYsm7Hq9ZPkSgnqco5/wDu0H10az1ee/4rvB/dD4doyUVI7rekEjHDHKyuN9/VwfdBNAu2Aj8GyWyW25dbGLEDqb3VKatJpk7Eh0GdSKg9R0TJkuEXCoCaJQwg2du2szeby7O1PmsHwU7Wv3HC6nHA94UBdwiRD7LNC2WeZU1YCTFHo4DCbu+08dX6FxX2q4c/6TtoY9p1WGVlYEqSCulTdKqvCv3j0U/5N/Tv0LQbjMMGn0n95Nvs0q7HtQx/CHSztBe02zQWjMzPAPbFs5DRDqFMX/oEjFKp0Ik+5h4Kz9jqkJ9qliwCLKYVtolf1erUjJP0pfbyMFhu+QJi+BLq0VgRcMQs65jZSdnqTPQX+1ElkP1PUpDtGnBzTl9dje5HX00x0LA1jGciuA13eayKGFv/dNRkrVAwF//xlWExFa/bu+/Ngc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7947.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(376002)(136003)(39860400002)(396003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(6512007)(6506007)(53546011)(2616005)(478600001)(6486002)(71200400001)(6666004)(83380400001)(2906002)(26005)(7416002)(64756008)(66946007)(66556008)(66476007)(66446008)(54906003)(110136005)(91956017)(76116006)(4326008)(8676002)(316002)(6636002)(8936002)(41300700001)(5660300002)(85182001)(36756003)(38100700002)(38070700005)(122000001)(86362001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NDRUbHVhMWNFN2Z1NlF2SG82K1FVc0JMbDRVcWs4LzVPQmkraGx0YnNoWVA4?=
- =?utf-8?B?MzBvUkVXN1RybEM3M0ZMMUJnM0RoMTF3Y2VHR08vRVpsRVJNaVlvbGZEVzJQ?=
- =?utf-8?B?dThKWUluWW1XeDFLeHZkM3VHOVlnUWdZT0VPSTB5MUpRSzBPTWtVM0piQjRj?=
- =?utf-8?B?bThOUDJlZnpXQ0hlSmlHdGlSeUdLMCs3RGVVekMyeE42aWR0RkRvK1cvc2o4?=
- =?utf-8?B?K2pjUEdvNWh5UG0xNGkxOHVuM1p2VnFzQngxSWQ4eHVKcEN3NlA2RG1yaGV5?=
- =?utf-8?B?ZnhuUG8zZXB2QW5DUDFIT1VTVzZTVVcrcDhCRCtuVmsydGRYYzZJSHNubjJm?=
- =?utf-8?B?QWNqZGVvMnliRkUxSVh5YVVkNzNEOVdDc04xSDBCaVBNL0xUYlZVckMxbjYw?=
- =?utf-8?B?WWpHSG9nTlNXdzhWbHdObVJNTjBSci9RcEpjcmRWRmxiUno2SWw4MFRqUlAx?=
- =?utf-8?B?T3hjTlM1RUNjOXN3c200dG1IMXpmWTJUU0tCMXBDMm1zOUtDUW5DSURCRzBm?=
- =?utf-8?B?UTUvZitxaVc3aVVnTW03OUlkUWxRR0FPaHZONkQ4Q05LdFRMSXNEeGIxd05s?=
- =?utf-8?B?d3hyMzl5emoxNlY5VzVrVUx1ZTkreHBvTmtXajRveTNmdlVNWFhIWFFZOGMz?=
- =?utf-8?B?WG12dzZRT0tINUN1NDFZRXM1dHpPekp0QTVycmNPUThFdGdsZk83TUlCb1Ro?=
- =?utf-8?B?U1hzTkpUTzA5YkZFNG5BNmtMTXRkMyt3dzI3L1hXS3luZjBRcFFXdmVOdGtv?=
- =?utf-8?B?QmorVUliRXc1UThaQTVDV21PZGFJT25PMTVsSEpLSjV6ZDFacWUvc0dTeDUr?=
- =?utf-8?B?SzJNYmRQcWs2N1oyZWNqRUpxeXpQdGtDKzJlNnZtTE1EWkxQMDVGdUQ4N3Vn?=
- =?utf-8?B?MDJodFRpa0N4ZXI5UDB2RjlXQmgzSEdiQXpWTmhBVmlFMEpSVE1vM2tuZVh5?=
- =?utf-8?B?ZjU3TlZTNDNoVTJ3YjFWQXNSbXBJNHFUa1pCcjBBbit4SjU4cVd1Wm95NVlV?=
- =?utf-8?B?UXM5aU44clFOVWpxUEVDcTRHUWZqRi90ZjFhM0NVSTdnN291U2hLN0JodEF0?=
- =?utf-8?B?U1pERFJBSk1Vb3BuU2piNUxpYTRpU05keXIvMmtPbXhKMU1tM2pqaHBRYWxT?=
- =?utf-8?B?Q3IvRWxJdDVnRUdJRTZ1SXNtS0dGdFhZZmlSUE1xQVYrcmdhZkVpaWozYmk3?=
- =?utf-8?B?aUp5K2dDNTJMZDRHU1lVODBDNGJBclFyQ1ZtWHBPRkQyMWk4ekZKbjlQV1Rj?=
- =?utf-8?B?RWZhWEFoQ3ZMUFFjTnVHdkVqYUZPVmozSFJqZnRkWUM2MzA0YkFjL3VwODJI?=
- =?utf-8?B?NG1uenVkeEd3NnVjTEFSM3JUbkxSTG5kZFovUkZTZlRrK2tBWmNxUnRjNW5p?=
- =?utf-8?B?QWkyYUh5cmpXbVcxMEZnbEFUTDdDNHFpL210SnlmTzNqQTBtMjNJZ0gwd29Y?=
- =?utf-8?B?eWIyNTJrYkxCRWcvK2RYM1FiTkRndDZtNjBNS2ZRWUNlK3k2ck1GWHZEdFM1?=
- =?utf-8?B?eWRtMXAvazdycmc0Tm5zaGlYWjFLSzJ3aDBZekVwcGs5TjBiS1FIWFZkK3pi?=
- =?utf-8?B?OGJ6cGtCa3lNMWZVblRVSlFvRXVONmcrbTV2VTczLzQ3YUNqazNqTkZPcG5r?=
- =?utf-8?B?Q0s0RTdXdWZZdjJuNEhGQTA0alVDN01ZUk1nTnAxZmM2eWY4VmdXOTVtaUdF?=
- =?utf-8?B?NVI1YURzY3ZDZDBjdDZFVU4vSExFMXlkdkdhODd5d05hL1Zaa29yQTd6VDNM?=
- =?utf-8?B?L2FEN0pZbStBc2VDaWliU2dVcHJoRS93Z1RqNmozQWJoZDVIS2lFRk8ySVgv?=
- =?utf-8?B?KzZSeFRqMGhsN2owTWt2UVlYSFN0djA5NUpvU1RJYVdoZkRoU2pnRkhjWmFk?=
- =?utf-8?B?UEZEb3kyUnlydTRNK25MMjdZR0U1bkpONWFIWDV4YTZxWWZQZDk0Tmd6ZjZr?=
- =?utf-8?B?TXptM1FvN3VJcWRSaUlmSitrdGNTOCtTTHp4Mit0dFBaZXcvbDZOMkV4T0dN?=
- =?utf-8?B?bkFaTDVtb3RkM0M1SDgweHdmZVg1OURSZ2o2alp0K2FWRlQxTUlZVjdyY3ZS?=
- =?utf-8?B?ZzRYaVJyVTBWamtYdkpWY2c4aERsWnQ2UVRnaGx1eEZlUlRVd0VCd05kWUxw?=
- =?utf-8?B?UWIwK0xqNXBYOTNraTFwVm5qeHRTTFV1Ky9YYWxHblhUT2Q4alBoOVI1aXJv?=
- =?utf-8?B?R1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FD7C33AA272FDE49B4FB447684448AF0@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Sat, 7 Oct
+ 2023 02:07:28 +0000
+Received: from DU6PEPF00009523.eurprd02.prod.outlook.com
+ (2603:10a6:10:232:cafe::f0) by DU2PR04CA0075.outlook.office365.com
+ (2603:10a6:10:232::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.30 via Frontend
+ Transport; Sat, 7 Oct 2023 02:07:28 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=axis.com;
+Received-SPF: Fail (protection.outlook.com: domain of axis.com does not
+ designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com;
+Received: from mail.axis.com (195.60.68.100) by
+ DU6PEPF00009523.mail.protection.outlook.com (10.167.8.4) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Sat, 7 Oct 2023 02:07:27 +0000
+Received: from SE-MAILARCH01W.axis.com (10.20.40.15) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sat, 7 Oct
+ 2023 04:07:27 +0200
+Received: from se-mail01w.axis.com (10.20.40.7) by SE-MAILARCH01W.axis.com
+ (10.20.40.15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sat, 7 Oct
+ 2023 04:07:27 +0200
+Received: from se-intmail01x.se.axis.com (10.0.5.60) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Sat, 7 Oct 2023 04:07:27 +0200
+Received: from lnxchenhuiz2.sh.cn.axis.com (lnxchenhuiz2.sh.cn.axis.com [192.168.77.59])
+	by se-intmail01x.se.axis.com (Postfix) with ESMTP id CC29C2895;
+	Sat,  7 Oct 2023 04:07:26 +0200 (CEST)
+Received: from lnxchenhuiz2.sh.cn.axis.com (localhost [127.0.0.1])
+	by lnxchenhuiz2.sh.cn.axis.com (8.15.2/8.15.2/Debian-22) with ESMTP id 39727PY51912667;
+	Sat, 7 Oct 2023 10:07:25 +0800
+Received: (from chenhuiz@localhost)
+	by lnxchenhuiz2.sh.cn.axis.com (8.15.2/8.15.2/Submit) id 39727Pq91912666;
+	Sat, 7 Oct 2023 10:07:25 +0800
+From: Hermes Zhang <Hermes.Zhang@axis.com>
+To: <sre@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <kernel@axis.com>, Hermes Zhang
+	<chenhuiz@axis.com>, <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH 1/2] dt-bindings: power: supply: bq24190: Add BQ24296 compatible
+Date: Sat, 7 Oct 2023 10:07:00 +0800
+Message-ID: <20231007020701.1912553-2-Hermes.Zhang@axis.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20231007020701.1912553-1-Hermes.Zhang@axis.com>
+References: <20231007020701.1912553-1-Hermes.Zhang@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7947.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 188204f7-bfe8-4f21-1f0b-08dbc6d79b82
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2023 01:49:13.1753
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF00009523:EE_|AS8PR02MB9315:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ee0ebae-f40b-48ba-7131-08dbc6da2811
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	KEa24qfhiek74SqCg53kJp0sqBlbBIG0nJAN2cs2GP5CJ81eaHdgwnP9hfU3ixAG5dmVxq0U2ymQ3Mh6RSMUJMB3CRSfq2jRT+2NoYXrd4NxxOXRiOqGjTaV0CBafmfcmjJSycf0ZpV+nlEm4Y6WyGUPFxaW7o+aGDXbtQvp78ENECsUU504VtzuidRrBtoJuZMstGgm0v+C02KMY6XomMoBxwGxnFGCDDVhEUKUDKiygfV/+vcUxetymp5UjmlzT9laZNvMNPJRtjLTBugapGBIldLKGzvtdH8uQLdvuVZRU6wf0fpvjozP+6yipzsXK4p5RgO6UQEA2Vt5feaq7XjlIrUEJPckQ5h2tka2BSJT9tgMKq+JQ1G22AIiKhVb2CSLNJXQBzE6DfYpI3j0YfYHlAenPdBl8+FHxY6KJXv/INdSjpP1iYLA0RQSO6Fk6qJIXtUNXbAoJIfTudpxyQh91smGmlrILmprteC38QLTCDwIwwLeUM8dwjn3HiibpWqsuySOIh2bmvXuO+CGhgbf5ZaAMRXCngbugodLEpeaY25f3RiddhNBXVtQxlPqFQ7BBi3meu9hXYqoiKnyFPqHKTCn0MPYJMbUbl4bES+rZBmMeVk7XIqwNFm5mb/+hHJvpe72bB2owWzf45OshloP82JxYf03DA0LThVBaY5O10+K5y3xQq4nYHrIcrqUtTWU6sb3NgPW6TffsRScVX73rohWgCaHjojlkaPsH9Hva28Zian7yWDjWo/O38EJDYlHjRRzMXiiQ17SfjTmkg==
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(376002)(396003)(136003)(39860400002)(230922051799003)(82310400011)(451199024)(1800799009)(64100799003)(186009)(36840700001)(46966006)(40470700004)(41300700001)(1076003)(110136005)(70206006)(2616005)(54906003)(42186006)(316002)(70586007)(8676002)(26005)(5660300002)(4326008)(8936002)(336012)(478600001)(6666004)(426003)(40460700003)(47076005)(2906002)(83380400001)(4744005)(81166007)(82740400003)(36756003)(40480700001)(36860700001)(356005)(86362001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2023 02:07:27.9834
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Utv9Ak2vmmXG3sd9nt5iLE3Gomf7EWl3hTswxW6kmbomEKmqL3t/ekYVu8lqZyegGuhztOSUQ+Z9XUen4bbD/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5775
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
-	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ee0ebae-f40b-48ba-7131-08dbc6da2811
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF00009523.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR02MB9315
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-RGVhciBIYW5zLA0KDQpTb3JyeSBmb3IgbGF0ZSByZXNwb25zZSwgd2UgaGF2ZSBqdXN0IHJldHVy
-bmVkIHRvIG9mZmljZSBhZnRlcg0KdmFjYXRpb24uIFllcywgaXQncyBhIGZpeCBhbmQgdGhhbmsg
-eW91IHZlcnkgbXVjaCBmb3IgYWNjZXB0aW5nIGl0Lg0KDQpCZXN0IFJlZ2FyZHMNCg0KT24gVGh1
-LCAyMDIzLTEwLTA1IGF0IDEwOjQ2ICswMjAwLCBIYW5zIFZlcmt1aWwgd3JvdGU6DQo+ICAJIA0K
-PiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRh
-Y2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250
-ZW50Lg0KPiAgT24gMDQvMTAvMjAyMyAwODo1NCwgSGFucyBWZXJrdWlsIHdyb3RlOg0KPiA+IFBp
-bmchIElzIHRoaXMgYSBmaXggZm9yIDYuNiBvciBub3Q/DQo+ID4gDQo+ID4gUmVnYXJkcywNCj4g
-PiANCj4gPiBIYW5zDQo+ID4gDQo+ID4gT24gMDIvMTAvMjAyMyAxMjoyNCwgSGFucyBWZXJrdWls
-IHdyb3RlOg0KPiA+PiBPbiAyNi8wOS8yMDIzIDEyOjE5LCBJcnVpIFdhbmcgd3JvdGU6DQo+ID4+
-PiBOZWVkIHRvIHNldCB0aGUgcHJpdmF0ZSBkYXRhIHdpdGggZW5jb2RlciBkZXZpY2UsIG9yIHdp
-bGwgYWNjZXNzDQo+ID4+PiBOVUxMIHBvaW50ZXIgaW4gZW5jb2RlciBoYW5kbGVyLg0KPiA+Pj4N
-Cj4gPj4+IEZpeGVzOiAxOTcyZTMyNDMxZWQgKCJtZWRpYTogbWVkaWF0ZWs6IHZjb2RlYzogRml4
-IHBvc3NpYmxlDQo+IGludmFsaWQgbWVtb3J5IGFjY2VzcyBmb3IgZW5jb2RlciIpDQo+ID4+Pg0K
-PiA+Pj4gU2lnbmVkLW9mZi1ieTogSXJ1aSBXYW5nIDxpcnVpLndhbmdAbWVkaWF0ZWsuY29tPg0K
-PiA+Pj4gLS0tDQo+ID4+PiAgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay92Y29kZWMv
-ZW5jb2Rlci92ZW5jX3ZwdV9pZi5jIHwgMw0KPiArKy0NCj4gPj4+ICAxIGZpbGUgY2hhbmdlZCwg
-MiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4+Pg0KPiA+Pj4gZGlmZiAtLWdpdA0K
-PiBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192
-cHVfaWYuYw0KPiBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29k
-ZXIvdmVuY192cHVfaWYuYw0KPiA+Pj4gaW5kZXggZDI5OWNjMjk2MmE1Li5hZTYyOTBkMjhmOGUg
-MTAwNjQ0DQo+ID4+PiAtLS0NCj4gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL21lZGlhdGVrL3Zj
-b2RlYy9lbmNvZGVyL3ZlbmNfdnB1X2lmLmMNCj4gPj4+ICsrKw0KPiBiL2RyaXZlcnMvbWVkaWEv
-cGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192cHVfaWYuYw0KPiA+Pj4gQEAg
-LTEzOCw3ICsxMzgsOCBAQCBpbnQgdnB1X2VuY19pbml0KHN0cnVjdCB2ZW5jX3ZwdV9pbnN0ICp2
-cHUpDQo+ID4+PiAgdnB1LT5jdHgtPnZwdV9pbnN0ID0gdnB1Ow0KPiA+Pj4gIA0KPiA+Pj4gIHN0
-YXR1cyA9IG10a192Y29kZWNfZndfaXBpX3JlZ2lzdGVyKHZwdS0+Y3R4LT5kZXYtPmZ3X2hhbmRs
-ZXIsDQo+IHZwdS0+aWQsDQo+ID4+PiAtICAgIHZwdV9lbmNfaXBpX2hhbmRsZXIsICJ2ZW5jIiwg
-TlVMTCk7DQo+ID4+PiArICAgIHZwdV9lbmNfaXBpX2hhbmRsZXIsICJ2ZW5jIiwNCj4gPj4+ICsg
-ICAgdnB1LT5jdHgtPmRldik7DQo+ID4+PiAgDQo+ID4+PiAgaWYgKHN0YXR1cykgew0KPiA+Pj4g
-IG10a192ZW5jX2Vycih2cHUtPmN0eCwgInZwdV9pcGlfcmVnaXN0ZXIgZmFpbCAlZCIsIHN0YXR1
-cyk7DQo+ID4+DQo+ID4+IElzIHRoaXMgYSBmaXggdGhhdCBzaG91bGQgZ28gdG8gNi42Pw0KPiAN
-Cj4gVGhpcyBsb29rcyBsaWtlIGEgcmVhbCBidWcsIHNvIEknbGwgcXVldWUgdGhpcyB1cCBmb3Ig
-Ni42Lg0KPiANCj4gUmVnYXJkcywNCj4gDQo+IEhhbnMNCg==
+From: Hermes Zhang <chenhuiz@axis.com>
+
+The BQ24296 is most similar to the BQ24196, but the:
+1. OTG config is split from CHG config (REG01)
+2. ICHG (Fast Charge Current limit) range is smaller (<=3008mA)
+3. NTC fault is simplified to 2 bits
+
+Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+---
+ Documentation/devicetree/bindings/power/supply/bq24190.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
+index d3ebc9de8c0b..131b7e57d22f 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
+@@ -20,6 +20,7 @@ properties:
+       - ti,bq24192
+       - ti,bq24192i
+       - ti,bq24196
++      - ti,bq24296
+ 
+   reg:
+     maxItems: 1
+-- 
+2.30.2
+
 
