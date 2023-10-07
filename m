@@ -1,215 +1,133 @@
-Return-Path: <devicetree+bounces-6643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FC97BC4DE
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 07:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7C07BC4E9
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 07:50:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63CE11C208BB
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 05:46:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A8991C208EB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 05:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238EC5C98;
-	Sat,  7 Oct 2023 05:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 105A16ABC;
+	Sat,  7 Oct 2023 05:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="miRvuiJo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="juA1LG2r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876BE9CA52
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 05:46:04 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1FBCE;
-	Fri,  6 Oct 2023 22:46:01 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53829312d12so8544548a12.0;
-        Fri, 06 Oct 2023 22:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696657560; x=1697262360; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=28EjpLmU0JWs2tbhhlyKo79n+tgLbbY2JqMG52GJQ54=;
-        b=miRvuiJoENJ4V7Fe7L9sWH6yGQL4+pg3bkDHHFXYqzSvGjJ0i8i8hqhQ1M/tc6c0tV
-         Um1NnEUBnZY6Uy0sYHIpdneK/3uq8D7qHgjQNBMukHg0ua/6rKlO5akPziPPKLetRnGI
-         HlLDy4wa4Lj3ijLoH4qHatOptXmP68fu1RPbYgR1Y/YYOO9/sMFPMxaxv79g02WNW2tf
-         SCqnwh+aCc3pL4NFmfoem222Lsu4MmBtovlRrs/FMVUxEwqgmjUMZNdJyW5CBECYeVoH
-         ZeJLkKzUft+J8oj8STMYWmggRSRE+B2HN5xP7MaCvVXqVt50W3r53aIwdtFuF6l2TsBo
-         niXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696657560; x=1697262360;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=28EjpLmU0JWs2tbhhlyKo79n+tgLbbY2JqMG52GJQ54=;
-        b=ohQ5jy2xrrGUouhDcUF53l0ivdkfOc/DHrj+Po/O3or/gxZNCgxTayU7ju2XYNw0rW
-         6ICBu4wpHlZE8F7WgRsIw6iJ0FaVA4jcAndV3dmcw8nFJJmG9ejOA2WPsZOWRMMWCBDA
-         N8KTgak3pMPcAwLhKFFIaLsiga5NiSjgiK7LeBuqXCl99ucXW7zy2jFJZ56/Y6lZud/W
-         C/s/aoEbZUcqKKJxv5/WdbPqwDAt4IhAiqFjchexNlsJ3fu344xgKYs4Y2isiwQDu75z
-         tYqnypIFy2c22WwWaODvSPu/ybA+gAmiDqNBw88Y++QbJI8VnoOBTGUuzE1iPweEhWk4
-         iVZg==
-X-Gm-Message-State: AOJu0YxSQMkEOGNGq9/oYftt4pQy3e87mhr9KZCtv+1tltVi4Mce9aMz
-	EeL/86smdA2yGhn2HWcZaDtp2soKejDC+17+5SQ=
-X-Google-Smtp-Source: AGHT+IHA1HYlOdi0Ar0nVTg3qzB6qyPAJjYJ5cjJZ4myeP9TeqvaMuNZzH5/0lvmk/KejpjH6VQOfxGwT4eTR2oTKJE=
-X-Received: by 2002:a05:6402:35ca:b0:52e:3ce8:e333 with SMTP id
- z10-20020a05640235ca00b0052e3ce8e333mr5474640edc.18.1696657559662; Fri, 06
- Oct 2023 22:45:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 221EE2568;
+	Sat,  7 Oct 2023 05:50:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A166BBB;
+	Fri,  6 Oct 2023 22:50:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696657851; x=1728193851;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dkHv+oAcL7tENq1Yd73stD/FY/Ihm49Ba/5lg337PbE=;
+  b=juA1LG2rVJuXSQjjiuekToZHAaOk5iTHOzTB9pFa93PHNcyLmxKPd19t
+   rtDzVcjWbb0qkOSDNVf7YTTBX/bewG/shOxVsM6dwoNmPToVBHH8k7zKA
+   tNF6kULKq1Oledwa3GwymwrtyBaP5nPBUg+DOqRADu4Adg+7eMw5wG+l7
+   iD50e3NV7F12JwYiwu/iALhWQbKY8r9sj2F3nBlpbNeciV8qv/jiRcYim
+   mvi+SuJ8iPdhAQixYlZID3yOQJhpn0K2GvgRvUlhuEY8g2QgxySx/H/Ha
+   yD7Z34t3qcZDobEBDRQEwUXEOpN8dPehEF0iKyiCvL1ODqzvPiOc1k217
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="368973970"
+X-IronPort-AV: E=Sophos;i="6.03,205,1694761200"; 
+   d="scan'208";a="368973970"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Oct 2023 22:50:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="822754753"
+X-IronPort-AV: E=Sophos;i="6.03,205,1694761200"; 
+   d="scan'208";a="822754753"
+Received: from lkp-server01.sh.intel.com (HELO 8a3a91ad4240) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 06 Oct 2023 22:50:47 -0700
+Received: from kbuild by 8a3a91ad4240 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qp0D7-000425-2h;
+	Sat, 07 Oct 2023 05:50:45 +0000
+Date: Sat, 7 Oct 2023 13:50:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Johnston <matt@codeconstruct.com.au>,
+	linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next v4 3/3] mctp i3c: MCTP I3C driver
+Message-ID: <202310071339.iWeOdKQk-lkp@intel.com>
+References: <20231004031316.725107-4-matt@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230928121953.524608-1-keguang.zhang@gmail.com>
- <20230928121953.524608-2-keguang.zhang@gmail.com> <20230928-capacity-husked-305f03680834@spud>
-In-Reply-To: <20230928-capacity-husked-305f03680834@spud>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Sat, 7 Oct 2023 13:45:23 +0800
-Message-ID: <CAJhJPsVT371gPN++UNK-cggb8uVxWqpJAoEbFGV8+syxfvnGAQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: dma: Add Loongson-1 DMA
-To: Conor Dooley <conor@kernel.org>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004031316.725107-4-matt@codeconstruct.com.au>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 29, 2023 at 12:42=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> Hey,
->
-> On Thu, Sep 28, 2023 at 08:19:52PM +0800, Keguang Zhang wrote:
-> > Add devicetree binding document for Loongson-1 DMA.
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> > V4 -> V5:
-> >    A newly added patch
-> >
-> >  .../bindings/dma/loongson,ls1x-dma.yaml       | 64 +++++++++++++++++++
-> >  1 file changed, 64 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls1x=
--dma.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.ya=
-ml b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
-> > new file mode 100644
-> > index 000000000000..51b45d998a58
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/loongson,ls1x-dma.yaml
-> > @@ -0,0 +1,64 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dma/loongson,ls1x-dma.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson-1 DMA Controller
-> > +
-> > +maintainers:
-> > +  - Keguang Zhang <keguang.zhang@gmail.com>
-> > +
-> > +description: |
->
-> This | isn't required as you have no formatting to preserve here.
->
-Will remove '|'.
+Hi Matt,
 
-> > +  Loongson-1 DMA controller provides 3 independent channels for
-> > +  peripherals such as NAND and AC97.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - loongson,ls1b-dma
-> > +      - loongson,ls1c-dma
->
-> From a skim of the driver, these two devices seem to be compatible,
-> and therefore one should fall back to the other.
->
-Got it. How about changing to one const?
-  compatible:
-    const: loongson,ls1-dma
+kernel test robot noticed the following build errors:
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    description: Each channel has a dedicated interrupt line.
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +  interrupt-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - pattern: ch0
-> > +      - pattern: ch1
-> > +      - pattern: ch2
-> > +
-> > +  '#dma-cells':
-> > +    description: The single cell represents the channel index.
->
-> This description is unnecessary.
->
-Will delete the description.
+[auto build test ERROR on net-next/main]
 
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - '#dma-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    dma: dma-controller@1fd01160 {
->
-> This label is unused.
->
-Will delete the lablel.
+url:    https://github.com/intel-lab-lkp/linux/commits/Matt-Johnston/dt-bindings-i3c-Add-mctp-controller-property/20231004-111533
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20231004031316.725107-4-matt%40codeconstruct.com.au
+patch subject: [PATCH net-next v4 3/3] mctp i3c: MCTP I3C driver
+config: x86_64-buildonly-randconfig-005-20231007 (https://download.01.org/0day-ci/archive/20231007/202310071339.iWeOdKQk-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231007/202310071339.iWeOdKQk-lkp@intel.com/reproduce)
 
-> > +        compatible =3D "loongson,ls1b-dma";
-> > +        reg =3D <0x1fd01160 0x18>;
-> > +
-> > +        interrupt-parent =3D <&intc0>;
-> > +        interrupts =3D <13 IRQ_TYPE_EDGE_RISING>,
-> > +                  <14 IRQ_TYPE_EDGE_RISING>,
-> > +                  <15 IRQ_TYPE_EDGE_RISING>;
->
-> Odd mixed indentation here. Bindings use spaces only.
->
-Will fix the indentation.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310071339.iWeOdKQk-lkp@intel.com/
 
-> Thanks,
-> Conor.
->
-> > +        interrupt-names =3D "ch0", "ch1", "ch2";
-> > +
-> > +        #dma-cells =3D <1>;
-> > +    };
-> > --
-> > 2.39.2
-> >
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/net/mctp/mctp-i3c.c:13:0:
+>> drivers/net/mctp/mctp-i3c.c:710:12: error: initializer element is not constant
+     I3C_CLASS(I3C_DCR_MCTP, NULL),
+               ^
+   include/linux/i3c/device.h:166:10: note: in definition of macro 'I3C_CLASS'
+      .dcr = _dcr,      \
+             ^~~~
+   drivers/net/mctp/mctp-i3c.c:710:12: note: (near initialization for 'mctp_i3c_ids[0].dcr')
+     I3C_CLASS(I3C_DCR_MCTP, NULL),
+               ^
+   include/linux/i3c/device.h:166:10: note: in definition of macro 'I3C_CLASS'
+      .dcr = _dcr,      \
+             ^~~~
 
 
+vim +710 drivers/net/mctp/mctp-i3c.c
 
---
-Best regards,
+   708	
+   709	static const struct i3c_device_id mctp_i3c_ids[] = {
+ > 710		I3C_CLASS(I3C_DCR_MCTP, NULL),
+   711		{ 0 },
+   712	};
+   713	
 
-Keguang Zhang
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
