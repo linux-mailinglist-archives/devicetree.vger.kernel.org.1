@@ -1,187 +1,120 @@
-Return-Path: <devicetree+bounces-6690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71BB7BC774
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:26:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDDBA7BC778
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0C8D1C208D9
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 12:26:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 297801C2099E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 12:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954BC1C6B3;
-	Sat,  7 Oct 2023 12:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D1E18628;
+	Sat,  7 Oct 2023 12:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="AaBf+vp5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MKOg0v1l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132D6168DE
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 12:26:10 +0000 (UTC)
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2014.outbound.protection.outlook.com [40.92.102.14])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F280B9;
-	Sat,  7 Oct 2023 05:26:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=buG4SKw1ckSfwXosY8jONBlbt2B4I5jVw3ypX9caHp3KgKtrTi9KNzBQYO/v3jZz8rie3Ab4362NLMq+gcWaJfAf6LJ+OElv8wkl611s4uHpL6yEWkb3mynh+YP48vpTx5X/QODcbuEUBWIWuINR2EXFOPC2eG/WZwpLWsyTZCi09hNbZlEOwpuRFIFd0FpRfnYUVcPzCQsqlx4G6lc7SeboaCJiPbCmJUAWhgfzEj7M9s6XSde1XJ2hEUMGGe7UshGcTFLHlzzutvLMtfdzQfx9L7fcaQlVg46Pj8f+IYPHOGJDYo2hJkDXeUWxg6SFIRUWagmtlCTO1n9L4bb+lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a7Qq/K8WDJfv22UBjEtfIsKqtkFE+NNPzMZwhbqRwDc=;
- b=oFmTKmVqTTs6yvoiAHYuufFlDoFx2nGqr/bamIokPAvH3+5BzPd1JjoUVPZIRPqwyymre8wWNCUn6fR+3i6bIamqG4UNouVbUMZV1PcTYAyiJkFVZCoVk6vaCqqK8HPw0oZiCXm/+MN1NJh0bPrJqx7jRinzXOEsYzDzbi+aaxaI6Z5AXup0LAs7LsgJ7FMuit5EdSBIFV/iRS8pz4it2D7m6G2WPpsfaYYoDSaYUlkbUtkusdJi4FggcnWXMF/zNkPyMAIBC3MRDAOiP/0dK3eeuW/m38gFncXMXwB9mxlQVN2/fWhSc+YJrzwi97fGZPtF0bNPVKj3GbugFxIx9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a7Qq/K8WDJfv22UBjEtfIsKqtkFE+NNPzMZwhbqRwDc=;
- b=AaBf+vp5yEoLb5BcHhh8j6HvRavoT2SQRw76+v8C2Davld3Rlckp2ADa2EsbLo1dXlXdVIpijxMbDmERiQOgBtBMpzqvQAQgcKhrKo1BXAk/3jJ/AGS3YI4XdMVxFkKWoCXXHqq1Oar1dM05a897vbGaMS1mHSZ9RtwvH4Nk0NWGWUWeeTEQtv0Nqx9/KYqd8ZsMj5/g+E3l42Q098cSROg4t+qsokaUhnPGmPQnXcNNzJhB4juK11PLLKkslxzoHVcWkmbVzhh7SCtXEtj/27JmAbCWvDm8gi5ToLAHDs4lZIhLJD2yocjffcTixCXbj7NPBHewChUq2DdwSgM+lQ==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB1978.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1cf::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6838.41; Sat, 7 Oct 2023 12:26:02 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6838.040; Sat, 7 Oct 2023
- 12:26:01 +0000
-Message-ID:
- <MA0P287MB03329460B9F3B79B1148A6FDFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Sat, 7 Oct 2023 20:25:55 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/10] Add Milk-V Pioneer RISC-V board support
-To: Conor Dooley <conor@kernel.org>
-Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, devicetree@vger.kernel.org, guoren@kernel.org,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
- xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
-References: <cover.1696663037.git.unicorn_wang@outlook.com>
- <20231007-grasp-retake-0463858c13df@spud>
- <MA0P287MB0332F80102F534CBD7412ED3FEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <20231007-kennel-lustily-59b0a9867aaa@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20231007-kennel-lustily-59b0a9867aaa@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [mYef3Mz2ZHNtBgJJXJe7tFy+ItH7wngV]
-X-ClientProxiedBy: SI2PR01CA0030.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::15) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <8ee1cfcb-6ef0-45ec-9ac1-31f17a1ee920@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DDF527706
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 12:30:53 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D59AB
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 05:30:51 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50433d8385cso4020397e87.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 05:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696681850; x=1697286650; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sIeLNgJsbwk3FNCig8ASjFZb8D9p0dka+VC6lW5wH7U=;
+        b=MKOg0v1lrVITOk5cdY8HMqSPN7PeYe9jK2c607+poGL9iyUu7OC59geok6e9vVVuju
+         ys0oQXiBcs8Rz/Vh3BBU93OVxtxhEiE6WoGO8mx+iAdm9sYCAlDxc5yZKGukxxdp2mB8
+         BiObA6pH0TdzI/XdruUcZllJwU/9aZiaowz6QBiTO/tksgK/iwMlEpPlImlUlf7iwe1j
+         vadENTD6iyx0FEy9a2uRU8QWIjPcQpOWdNEls6AhkHepzcQG7UuvphEtJP3K/5UKQ9rm
+         Kj/BqYRmB81FgBVEbb501QVd3PGnzLdBXk1EVXtsHvhIrZm9cSLC6vO4rPc6jzFVV6t9
+         30CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696681850; x=1697286650;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sIeLNgJsbwk3FNCig8ASjFZb8D9p0dka+VC6lW5wH7U=;
+        b=uk8fWm2ZG7BKhpIKOBpSYZtDqs/kwET5NBHDg/uWVnKW7u80ny6wpnHiXsLHdPkFtp
+         rCHpgDMGC11KyGfoyUwDzv+sS5vmzujfzbH7ui7QnBaQ8jUrBO0DZCEvWm08+SnrHmdZ
+         hxj0+i3Z1yXOITjC/428o8R7UyCc7DnezkThVwTCZCSFArOTyqKID2PM5Ar1kRyqh5D0
+         uFFZAr0Jta4Qhdn5O5TcO0V/BsDCdEatai1N+91S4PUo+H8Ixo+m+BT4OvIxlF3Ud08X
+         /nd4ziikAnvf34qAS2/HZj9GKUVnef5x6fkATvgXKp0vFwgZbgEmEn4lbDJp75qgMtTw
+         v7fQ==
+X-Gm-Message-State: AOJu0Yw6zsExajrCtMTARp2d9P3aOiIjOBjpowAR3M+moVWgOqbtpb0h
+	tkqtQP0uCmsirF6XR2VPT50o1w==
+X-Google-Smtp-Source: AGHT+IHO4xXrBufwxhsjpWIE3nzW1wS+MvS5Val4ZHwvIwZeoNAme1IVqiu0lSEQ5YYea51HNN/HiA==
+X-Received: by 2002:ac2:5b1b:0:b0:503:2924:f8dd with SMTP id v27-20020ac25b1b000000b005032924f8ddmr9809752lfn.47.1696681850000;
+        Sat, 07 Oct 2023 05:30:50 -0700 (PDT)
+Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
+        by smtp.gmail.com with ESMTPSA id 28-20020ac25f5c000000b005068d6de988sm410569lfz.226.2023.10.07.05.30.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Oct 2023 05:30:49 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/2] Support byte access in the RTC7301 driver
+Date: Sat, 07 Oct 2023 14:30:48 +0200
+Message-Id: <20231007-rtc-7301-regwidth-v2-0-c913aa95f666@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB1978:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2385e4d3-2926-4954-5cd3-08dbc73090f6
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	30RS6KtiZm/mtWi4m4bjT7oDG3K0wBbm8vvcTzpf9ngYTR/MCn2JgIRnME4wzocCPml3Wvm9wsQaBkhFErKn7NsKgP1NfIuBXaKsiXKVgx8Rufb9RfoOk+8Ju1bAKbPz4JnZSDFPmJk+kHcW8gI79c0uXTB0iPRg0GPHqifW/6njCgs4/rao2bTX/XMPghdapdISwIzfowk8wROWHmPJsD10URrMdhKynqIV7B/p8sbRA8OACxyRfLTGAATpAoRmOCCCTnjbsFR/L/7vJF4AHrxMbbtloI4IapWmkKwpPcEwOVpMNzxrYQmS+b/fhRSgApT9nVUyQQxijVlOIs1Rp5vdta5CB+ekVOO7ljkvC0Uounjh6GeoIb5ix9AvQMFIXwQ7+Aoh7R2GhXE29X0G/r2csLRF7ChL0u23bLz1LhJ2llZ8cYlj/Df536EN6lsW67xa4zpfn4rRdiBSwza+YWkofZaPY81YYgJBVKzVJQYyQE3yVi4xuFrHuuXuvyqf2j3O5C/woUDb19p4oCzdWbmbZ3oqhVZQ1+9iTriN+5QsM+FEFG/hiF/ScDfAfx/8VOH9n5820RctQI9Hb0QINZVcWMufGwQRhhi6QxglnZk=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VnNqenpxQjVnYlczdlNYS3pmL3BYTE1Pam9yK2V4VVh4cytkcjliY0JzdWFw?=
- =?utf-8?B?ZzhLQWZZcGVGNzhtNkhoSmZ3a25uUDhId0J1K1BXV1Q2eElaNmhSeW5haFJw?=
- =?utf-8?B?K0tCTTZGMkhXaUk3QzRrWFBtV3BLc1MwUUxHK2ZMZUFyRERZOHgxVzB1bU9w?=
- =?utf-8?B?WG9HTTJvd3pVWllNYmlQbFJYamlETzlsd05jSUFPRk14ZGlnUmNyRlhTY3dL?=
- =?utf-8?B?WUlHaFF3dGpvM3E5c1M4cUNyemRESS9tQWMzUEZ3TkhhdVpaL3Y5MU4zeFg1?=
- =?utf-8?B?Y2pBVERyR0hMcnFGbkdOSkhOdGN5WUh6ZmFQMXAvUTh2SFlDS09QZVQvSGRx?=
- =?utf-8?B?a1NvdGxpMm1mOGFSS1FsWHMxdzZJSjloS3dEcDREMjdMV05wWlNObjlQR2tJ?=
- =?utf-8?B?NS96UEFLTnBZV1p5cnBBZHVGT3N0SlgzU0Z4QWdvL0ZsdWJuTHVDNWhtZzl0?=
- =?utf-8?B?VzlvVEl5U2kydjcwUExwU2RLMEdZVU1HWmd3cWZVR21NNE9zOUp4bTNjSE9P?=
- =?utf-8?B?UnB4VUdxU0FiUllkTjhRWi9xMnl1RXBDMWpScW9EQXdRTlorbk04Q3JLYnFR?=
- =?utf-8?B?Z01lcllaMGl0cGd0dXpsZTVweTJKcTJ5RHE5bWU0Zmh3VEQ2NjhqR3FndXlm?=
- =?utf-8?B?ZG1rNTM3UVJuVnFRUlZVRENianA3bmhhdHBDZHRKbzVSWWhvb3llU0NBWUFE?=
- =?utf-8?B?dWplSFl2OTR3S0tUWWtudEtYTUpMTzJPV213TTE2SnJRbllZMU5jV2F3RWN4?=
- =?utf-8?B?Q3hVbVJYK0FpTnhmdnczSjJaalFlNVd3SmhuK1FjaXZ0QjRLQ1YyTTdFN3o3?=
- =?utf-8?B?aXU3b0QvMXlqc2MxMjNtT2FtUy84NkNFakNOMmFybjRMaE9mZFNOSXRoRm9W?=
- =?utf-8?B?bGdzb05iOUs5S3FHZzRBMkI2azRISzFWZ3FvUWZKY2JuN0dqSU85czVMYXgr?=
- =?utf-8?B?ZFlWdXdRamRxWTlXYWtrUG5yTzFXc2xjSW1qenF2a2xiNGhYeTJhcDhRK2RX?=
- =?utf-8?B?WmtrNEN1VjFlcHpLUjI5RkMwU05oT1pkK1laU3g4YnpySUpIcFFtMlY1R1JR?=
- =?utf-8?B?c3c5YjV1dDNJb2U2K3FiTmVJeXkvRXdxVXZMcXBGQWxkblIwOTN3T0NtSGg1?=
- =?utf-8?B?WGIvNUVJS2Y5WjhTN0FvY0pwVlRObERnb2NSMDNXamRrS3pFRXR2Yjg0a0Nu?=
- =?utf-8?B?eTVRY0RZNzNVZHFUN0s0cFloSjNxQUEzeWdNLzMxSXRTWmpDdEtBbDJzNGV1?=
- =?utf-8?B?U1hrWDMvWTI1V1hLdmF2elc0bTVvbUhGZFd2eU5OUUs0UFIxUUE0WCtLSjlM?=
- =?utf-8?B?NnBnMkpOYlppN25PemhudERLM3RNREt3Nk9CQXZicW1vTnBtdEYxZmNpcXBV?=
- =?utf-8?B?OENIVmVURWlkbHZTV0FYR0FIWU0rbFl2TjRUMXpHSGE1QVc5K0NuYVp4b3hC?=
- =?utf-8?B?Q2JlZFUxejFhVjhURlk5TFkyRzRXNC92akRPS1JBK2xoVHRiMUM4dXVkZ1ps?=
- =?utf-8?B?eldjUjRtTWRkNkVDb0FBRVVFR0JqYkxxcitEOFdSR1NZcm05clRvYVYvbWt4?=
- =?utf-8?B?MktMajRiV0tLSmVBNkRqVXlMNkY4Ky9OZ24yS2R5Q3JueWV5bEtVYUtFOFJh?=
- =?utf-8?Q?gBBcPAk/bbtK/jODQuwCNlrPWP3CRncF+6oriyFB4XHY=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2385e4d3-2926-4954-5cd3-08dbc73090f6
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2023 12:26:01.9078
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1978
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHhPIWUC/32NQQ6CMBBFr0Jmbc1MCQquuIdhAXRoJzHUTAlqC
+ He3cgB3//3kv79BYhVOcCs2UF4lSZwz2FMBY+hnz0ZcZrBoS2wsGV1Gcy0xB/YvcUswVA89cem
+ Q3QB591Se5H04713mIGmJ+jkuVvq1/2wrGTTUIFbVhWoapvYhc6/xHNVDt+/7F/+9gUCzAAAA
+To: Alessandro Zummo <a.zummo@towertech.it>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Akinobu Mita <akinobu.mita@gmail.com>, 
+ Howard Harte <hharte@magicandroidapps.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+This augments the Epson RTC7301 driver so that is supports
+both 8bit byte and 32bit word access.
 
-On 2023/10/7 19:04, Conor Dooley wrote:
-> On Sat, Oct 07, 2023 at 06:58:51PM +0800, Chen Wang wrote:
->> On 2023/10/7 18:17, Conor Dooley wrote:
->>> On Sat, Oct 07, 2023 at 03:52:04PM +0800, Chen Wang wrote:
->>>> From: Chen Wang <unicorn_wang@outlook.com>
->>>>
->>>> Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2]
->>>> in a standard mATX form factor. Add minimal device
->>>> tree files for the SG2042 SOC and the Milk-V Pioneer board.
->>>>
->>>> Now only support basic uart drivers to boot up into a basic console.
->>>>
->>>> Thanks,
->>>> Chen
->>>>
->>>> ---
->>>>
->>>> Changes in v5:
->>>>     The patch series is based on v6.6-rc1. You can simply review or test
->>>>     the patches at the link [7].
->>>>     - dts: changed plic to support external interrupt
->>>>     - pickup improvements from Conor, details refer to [8].
->>> Did you? I only see them partially picked up. I'll just replace patch 8
->>> with the patch 8 from this series I think.
->> Yes, only the patch 8 of this series(v5) is updated for plic node. For other
->> patches, I just cherry-picked them from previous "sophon" branch.
-> But added my signoff? I ended up seeing my signoff on the patch where I
-> disagreed with the commit message, which was confusing to me.
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v2:
+- Specify that the reg-io-width default is 4 if not specified in the
+  device tree.
+- Fix spelling in driver comment.
+- Print error and exit if an invalid width is specified.
+- Link to v1: https://lore.kernel.org/r/20230921-rtc-7301-regwidth-v1-0-1900556181bf@linaro.org
 
-Oh, I used to think I can keep the exising signoff and I didn't mean to 
-add it. Anyway, I agree your suggestion to create a new patch with only 
-one change should be better, I will follow this in later work.
+---
+Linus Walleij (2):
+      rtc: rtc7301: Rewrite bindings in schema
+      rtc: rtc7301: Support byte-addressed IO
 
-Regarding your changes on sg2042 series, I have acked in another email : 
-https://lore.kernel.org/linux-riscv/MA0P287MB0332BA73D0135CC73CAEA16DFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/. 
-If anything else required, please feel free let me know.
+ .../devicetree/bindings/rtc/epson,rtc7301.txt      | 16 -------
+ .../devicetree/bindings/rtc/epson,rtc7301.yaml     | 50 ++++++++++++++++++++++
+ drivers/rtc/rtc-r7301.c                            | 35 ++++++++++++++-
+ 3 files changed, 83 insertions(+), 18 deletions(-)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230921-rtc-7301-regwidth-18ba1e3d0edb
 
-Thanks,
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
-Chen
-
->
->> BTW, what I did this time may be a bit redundant. I would like to ask, if I
->> encounter a similar situation in the future (that is, only one patch needs
->> to be modified, and the others remain unchanged), is there a better way to
->> submit the patchset?
-> You could have sent the plic change as a incremental change on top. So a
-> new patch with just that one change in it.
->
-> Thanks,
-> Conor.
 
