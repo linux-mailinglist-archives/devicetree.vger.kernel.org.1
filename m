@@ -1,71 +1,185 @@
-Return-Path: <devicetree+bounces-6737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC1E7BC97D
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 20:12:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A957BC9B6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 22:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A28FE1C20849
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 18:12:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E67881C20899
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 20:15:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFA018C32;
-	Sat,  7 Oct 2023 18:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEDD328D9;
+	Sat,  7 Oct 2023 20:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ/VGGPH"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="A1lblkpK";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MyYd0mb0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477681FDD
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 18:12:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B4B1EC433CB;
-	Sat,  7 Oct 2023 18:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696702354;
-	bh=oa4kHR/J+jkn7hFyFKROvjJFBDTHlz90wCnpkm+Hd5A=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=eQ/VGGPHnLsbljzF77HhpIAw2ZGB6/Xsy8gQdtjOzaExI109d1YPJ67zYLv5KzLCV
-	 QAfcIBBSuHBUFq1oJENGUhSoZBEYHoYDHKPsTluylWZwBoi3wtnObbgseY0fzyUkjP
-	 HDnetSsNHCYvHOez2I3tnwJUyawgM5N8FDLYnRPBy6dZLuwvThDdAOrdCF4wzRCgrQ
-	 +ymIhRDCTHx/IcFUUMuuvhDuzvdJO2lsY4ep67V2zV7I35qpE7xigwUvYJpUXjDpnp
-	 IBh2Yy/cvu+1mQZXgNm9EieWZcMtriiof9Mvgb39bQ0THti1aZDSPQNyC0cA5DUla8
-	 PyD/8c1xNHVdg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id A1B1FE632D6;
-	Sat,  7 Oct 2023 18:12:34 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.6, take 2
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20231006190106.GA143694-robh@kernel.org>
-References: <20231006190106.GA143694-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20231006190106.GA143694-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.6-2
-X-PR-Tracked-Commit-Id: 19007c629c63c76ae0f8adee9dc076bda4788b46
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 5e5558f5c9d8caa58a57427cd32f870aec3a69fb
-Message-Id: <169670235465.17695.8884013446146011640.pr-tracker-bot@kernel.org>
-Date: Sat, 07 Oct 2023 18:12:34 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50F41845
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 20:14:56 +0000 (UTC)
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217F9C5;
+	Sat,  7 Oct 2023 13:14:55 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id B11963200AFB;
+	Sat,  7 Oct 2023 16:14:51 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Sat, 07 Oct 2023 16:14:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+	1696709691; x=1696796091; bh=HAd1G1CE8pMJy+IQqhNmJgcfkB8TtDe7tK8
+	J8WflhKQ=; b=A1lblkpKm1sih/Lz24VdS7Kqa27QIOHQxeLLmg8DW3ZhnJOsvYg
+	X0Kzqog/j1RGX+Ag3jyXUisBGhU4xvevkxSPpfVfFl/L9jRVZoCxSDL64W/BOTOK
+	PVhjzdg96Ohnnr6u/r8lpKvtXoC5jjDDrF+tefaY2nvuKep/RIfmndRXWpnec9Ko
+	WHLSBxpSN+OClSXW8SfUxwZKQYKQK4o6h598Ax9lkSJTbB7K47qqn+k/DZIUKlus
+	xqsn+sCyj8wf4qKTTy7pLzMiWisINlYFbMTT2Ngw2Va3NPSG2kTIODDGYvhYlGxz
+	WEp5us7/Vmzee2HxghnXI8giqwtmkykgOUA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1696709691; x=1696796091; bh=HAd1G1CE8pMJy+IQqhNmJgcfkB8TtDe7tK8
+	J8WflhKQ=; b=MyYd0mb0piU10gXi8GuZntCd+O9GcH7SazJXKah19uzTqldK11i
+	Pc88fUtnls7jXyw+3GZxcemfk2gxYwouFiXs15LFaTrgKTpekpP5yKrV94oKDIbf
+	TRpn0JSEoSu/X7ndo72Bl9jOgPr5aHF8Ww3ABb/SgCyxdUgT5zAvEIBJbVe2oODb
+	FxK3Qj4NtajUXHOzNKPPIGmZkrhWwtdX96myNbaJzufV9R2BXOfg6QWTOqjrZHlf
+	JwlGeMkMxOC+w7VaxmUKLOasEchr/oK0xOEum73rdGqL8km5XIcmxoJc92mrVq1G
+	tng6l0Xkpkr73nGmMOPEKWziRo+04NX9ZMA==
+X-ME-Sender: <xms:OrwhZRAPlNhx_Bvd-XO17N_zoRlfdORCB5MDks69NG2Bj-aQcUwwiw>
+    <xme:OrwhZfjlSEcq07lAWr3TCJf8ZPBe7p5v_2qtS2jis65AZ7uC_ZRPta1anNjpuFtF3
+    m5iquGjkyxQ8z6HNi8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeelgddugeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
+    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:OrwhZckSp-A9biPxEJktOQlu4jPHjgc7ZJ2VnylTeQGSw2VfWRV74w>
+    <xmx:OrwhZbwBM6auAYtjcxGFWXgjsKZDhi2aRtneDrSgeMn43F7laynBDQ>
+    <xmx:OrwhZWRp2nSlaAyP_Yad9U-rM_D4KIDhznsD4XYeACoJ22EqZAvyDA>
+    <xmx:O7whZbIc_jFD4cQA8GYruD9tMo5TIrxpJ3Cmi_iLTlznhWkJl_20fg>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 07853B60089; Sat,  7 Oct 2023 16:14:49 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Message-Id: <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
+In-Reply-To: <20231004161038.2818327-4-gregory.clement@bootlin.com>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-4-gregory.clement@bootlin.com>
+Date: Sat, 07 Oct 2023 21:14:29 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 03/11] MIPS: support RAM beyond 32-bit
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-The pull request you sent on Fri, 6 Oct 2023 14:01:06 -0500:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.6-2
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/5e5558f5c9d8caa58a57427cd32f870aec3a69fb
+=E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=E5=
+=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
+>
+> Support platforms where RAM is mapped beyond 32-bit.
+>
+> The kernel parameter ddr32_alias allows to setup the alias to point
+> outside the first 4 GB of memory.
 
-Thank you!
+Are you trying to fix the problem that if kernel text is loaded in
+XKPHYS there is no way to to set EBASE to that region?
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+The common practice for other 64bit MIPS system is to load kernel
+in KSEG0 and add low 4G mirror with rest of the high memory to buddy
+system. By doing this Kernel still have access to all memory beyond
+32 bit, the only draw back is Kernel's text and data can't be relocted
+beyond 32-bit.
+
+Loading kernel into KSEG0 (i.e. with KBUILD_SYM32) have significant bene=
+fit
+on performance, so I think you shouldn't try to load kernel into XKPHYS
+without a good reason, but it might be helpful to add a BUG_ON at
+CPS driver to handle such situation.
+
+Btw: Is your target hardware publicly available? Folks at CIP United
+are looking for EyeQ5 boards for a while, they are supporting MIPS R6
+support at various projects.
+
+Thanks
+Jiaxun
+
+>
+> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  arch/mips/kernel/smp-cps.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
+> index 47e76722a306..fcfb19487612 100644
+> --- a/arch/mips/kernel/smp-cps.c
+> +++ b/arch/mips/kernel/smp-cps.c
+> @@ -34,6 +34,16 @@ static unsigned __init core_vpe_count(unsigned int=20
+> cluster, unsigned core)
+>  	return min(smp_max_threads, mips_cps_numvps(cluster, core));
+>  }
+>=20
+> +static int ddr32_alias;
+> +
+> +static int __init ddr32_alias_setup(char *str)
+> +{
+> +	get_option(&str, &ddr32_alias);
+> +
+> +	return 0;
+> +}
+> +early_param("ddr32_alias", ddr32_alias_setup);
+> +
+>  /**
+>   * plat_core_entry - query reset vector for NMI/reset
+>   *
+> @@ -52,7 +62,7 @@ static u32 plat_core_entry(void)
+>  {
+>  #if defined(CONFIG_USE_XKPHYS)
+>  	return (UNCAC_ADDR(mips_cps_core_entry) & 0xffffffff)
+> -			| CM_GCR_Cx_RESET_BASE_MODE;
+> +			| ddr32_alias | CM_GCR_Cx_RESET_BASE_MODE;
+>  #else
+>  	return CKSEG1ADDR((unsigned long)mips_cps_core_entry);
+>  #endif
+> --=20
+> 2.40.1
+
+--=20
+- Jiaxun
 
