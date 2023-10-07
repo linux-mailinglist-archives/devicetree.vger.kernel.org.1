@@ -1,117 +1,108 @@
-Return-Path: <devicetree+bounces-6684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66387BC724
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 13:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB027BC736
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 13:36:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85D281C20948
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 11:34:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4DBD1C2093C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 11:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661091944F;
-	Sat,  7 Oct 2023 11:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="u6NylKEH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B858B1945D;
+	Sat,  7 Oct 2023 11:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B56418651
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 11:34:05 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2228CB9;
-	Sat,  7 Oct 2023 04:33:58 -0700 (PDT)
-X-UUID: 63df5328650511eea33bb35ae8d461a2-20231007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=G2hwZoXcbyNGfedM4B88uDwT0h+xRYSV2MrJHG+Tp70=;
-	b=u6NylKEHefPx9u32F9X61no9/4crwSlY0fqNlz/W58Ust3yRp/qaLMEUOWouFfYb3HlmVLgiauRKzSxfHbSVj4bDo2hKanlmqS8CUJdZRd0mdAMnd0YRPackxq59O+OA7F+ITlAA7XUKU0YkWrSjdPBq/uQwBR5b5q2CQ5YIYro=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:66315b78-29c6-4879-a495-6eddb0bbf174,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:de86e0c3-1e57-4345-9d31-31ad9818b39f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
-X-UUID: 63df5328650511eea33bb35ae8d461a2-20231007
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <irui.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2065451869; Sat, 07 Oct 2023 19:33:51 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 7 Oct 2023 19:33:50 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sat, 7 Oct 2023 19:33:49 +0800
-From: Irui Wang <irui.wang@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>, <nicolas.dufresne@collabora.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>, Irui Wang <irui.wang@mediatek.com>
-CC: <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Maoguang Meng
-	<maoguang.meng@mediatek.com>
-Subject: [PATCH v2] media: mediatek: vcodec: Handle invalid encoder vsi
-Date: Sat, 7 Oct 2023 19:33:47 +0800
-Message-ID: <20231007113347.28863-1-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A220168DE
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 11:36:33 +0000 (UTC)
+Received: from cloudserver094114.home.pl (cloudserver094114.home.pl [79.96.170.134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D96BD;
+	Sat,  7 Oct 2023 04:36:29 -0700 (PDT)
+Received: from localhost (127.0.0.1) (HELO v370.home.net.pl)
+ by /usr/run/smtp (/usr/run/postfix/private/idea_relay_lmtp) via UNIX with SMTP (IdeaSmtpServer 5.2.0)
+ id b51d04623ba10436; Sat, 7 Oct 2023 13:36:28 +0200
+Received: from kreacher.localnet (unknown [195.136.19.94])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by v370.home.net.pl (Postfix) with ESMTPSA id DF0816621FA;
+	Sat,  7 Oct 2023 13:36:27 +0200 (CEST)
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+To: Linux PM <linux-pm@vger.kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, Zhang Rui <rui.zhang@intel.com>, LKML <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>, Amit Kucheria <amitk@kernel.org>
+Subject: [PATCH v3] thermal: Remove Amit Kucheria from MAINTAINERS
+Date: Sat, 07 Oct 2023 13:36:27 +0200
+Message-ID: <5725069.DvuYhMxLoT@kreacher>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="UTF-8"
+X-CLIENT-IP: 195.136.19.94
+X-CLIENT-HOSTNAME: 195.136.19.94
+X-VADE-SPAMSTATE: clean
+X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrgeelgdegvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfjqffogffrnfdpggftiffpkfenuceurghilhhouhhtmecuudehtdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkggfgtgesthfuredttddtjeenucfhrhhomhepfdftrghfrggvlhculfdrucghhihsohgtkhhifdcuoehrjhifsehrjhifhihsohgtkhhirdhnvghtqeenucggtffrrghtthgvrhhnpeefvddtfeffveeguefgtdeiuddtieelheegkefhhefgkeefuddutdehgfdvudduieenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppeduleehrddufeeirdduledrleegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudelhedrudefiedrudelrdelgedphhgvlhhopehkrhgvrggthhgvrhdrlhhotggrlhhnvghtpdhmrghilhhfrhhomhepfdftrghfrggvlhculfdrucghhihsohgtkhhifdcuoehrjhifsehrjhifhihsohgtkhhirdhnvghtqedpnhgspghrtghpthhtohepuddupdhrtghpthhtoheplhhinhhugidqphhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghrohdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhrihhnihhvrghsrdhprghnughruhhvrggurges
+ lhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehruhhirdiihhgrnhhgsehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-DCC--Metrics: v370.home.net.pl 1024; Body=11 Fuz1=11 Fuz2=11
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Handle invalid encoder vsi in vpu_enc_init to ensure the encoder
-vsi is valid for future use.
+From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Subject: [PATCH v2] thermal: Remove Amit Kucheria from MAINTAINERS
 
-Fixes: 1972e32431ed ("media: mediatek: vcodec: Fix possible invalid memory access for encoder")
+Amit Kucheria has not been participating in kernel development in any
+way or form for quite some time, so it is not useful to list him as a
+designated reviewer for the thermal subsystem or as the thermal zone DT
+binding maintainer.
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+Remove him from the THERMAL entry in MAINTAINERS and list Daniel Lezcano
+as the new thermal zone DT binding maintainer.
+
+Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 ---
-changed with v1:
- - add Fixes tag
- - move vsi check to vpu_enc_init
- - update commit message
----
- drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-index d299cc2962a5..39e8f3ac53ca 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-@@ -153,6 +153,11 @@ int vpu_enc_init(struct venc_vpu_inst *vpu)
- 		return -EINVAL;
- 	}
+v2 -> v3: List Daniel Lezcano as the thermal zone DT binding maintainer.
+
+---
+ Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    2 +-
+ MAINTAINERS                                                  |    1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+Index: linux-pm/MAINTAINERS
+===================================================================
+--- linux-pm.orig/MAINTAINERS
++++ linux-pm/MAINTAINERS
+@@ -21363,7 +21363,6 @@ F:	drivers/media/radio/radio-raremono.c
+ THERMAL
+ M:	Rafael J. Wysocki <rafael@kernel.org>
+ M:	Daniel Lezcano <daniel.lezcano@linaro.org>
+-R:	Amit Kucheria <amitk@kernel.org>
+ R:	Zhang Rui <rui.zhang@intel.com>
+ L:	linux-pm@vger.kernel.org
+ S:	Supported
+Index: linux-pm/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+===================================================================
+--- linux-pm.orig/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ linux-pm/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-sche
+ title: Thermal zone
  
-+	if (IS_ERR_OR_NULL(vpu->vsi)) {
-+		mtk_venc_err(vpu->ctx, "invalid venc vsi");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
+ maintainers:
+-  - Amit Kucheria <amitk@kernel.org>
++  - Daniel Lezcano <daniel.lezcano@linaro.org>
  
--- 
-2.18.0
+ description: |
+   Thermal management is achieved in devicetree by describing the sensor hardware
+
+
 
 
