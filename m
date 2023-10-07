@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B4A7BC5D5
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 09:55:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7EEE7BC5D9
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 09:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73520281FDC
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 07:55:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D252A1C20985
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 07:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57D51401F;
-	Sat,  7 Oct 2023 07:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C746314263;
+	Sat,  7 Oct 2023 07:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HHuBOwls"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hpf+sDwC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D81F11C82
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 07:55:36 +0000 (UTC)
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56BEBF;
-	Sat,  7 Oct 2023 00:55:35 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c67060fdfbso1995213a34.2;
-        Sat, 07 Oct 2023 00:55:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C67115480
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 07:55:59 +0000 (UTC)
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB3BA6;
+	Sat,  7 Oct 2023 00:55:54 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id 5614622812f47-3ae214a077cso2104444b6e.0;
+        Sat, 07 Oct 2023 00:55:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696665335; x=1697270135; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1696665354; x=1697270154; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Srl7q1CDQqnOcA8A4KoDbSUD1lo3jJe2F7cZabOFURY=;
-        b=HHuBOwlsTSRMSoV60v13/ntlUOqzPHt9VuiZip4Uj/jzp+WBo6JiM7wtD8v1npFiPQ
-         LLa/qgUXm/xDrojyN2EkYwe3mqjTek/Uk+HJQVJ4YUgt6vn97UCEou8rJ8whyuiomwA0
-         LGO2tjzhXl7hSs8VKCZyKTxBRBmhLWwdFe9zSGsOJQlpR7GUm1fYDZqdxMY4FEmkOQVF
-         ZbUN1PpnDm3wFocViw7YhX3FCPrVOXoqw7D9//dpS9/AdfGX7vWfHH9Ab9JgaGaZn5Z+
-         w63IQbSq2KdAoQ1urusc460FM1u93uXG7buA36quIRbZ2xsUzAog1troMQoziKzkzU4a
-         6+Mg==
+        bh=zyz/NFb2RrzFYehpdBMm3ykpV/RwzR3J4zJlz09rB0I=;
+        b=Hpf+sDwC3ahfBT4ZTVYe9Eq4BFV9YKwzsWK82Nf3CfR4Uift4S71mvhjczcmKa3EGG
+         x+2O+cd5qv/m8XX4fJEba8DbWgg0tbbDj7fJSVaSIFCAQZTCD3o6PqE7h5PYdTW04KaH
+         Uwu/XNdRGfq7ztxSDt3VS6UeytQdpx5uJIUBFKE2aF4mzjh8zkTW5rPhzV6UfoLOMAPE
+         k8Tpw1WbsLKoU3dM+Q51UYSmjPkr1tEyBl3IeEZ8P+Ufwem2g6EzvywnV1PeTkp+xmGF
+         iU+m8yQnOmEyySz9T0z+3oMCWTKR8wxUcneHIIhc+wlpzF8MOC7hZL6ub769KVl80sHw
+         U9UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696665335; x=1697270135;
+        d=1e100.net; s=20230601; t=1696665354; x=1697270154;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Srl7q1CDQqnOcA8A4KoDbSUD1lo3jJe2F7cZabOFURY=;
-        b=XDl3sW7ILifI44TqoI8blkcsM7aFUbbDtMwH4L4jhAxQ55K1Xc+u4IfRlv2nS9wWos
-         TZm+x8gUCcVkj6Fd4CcpKp5XgRjookoSrevmuteZr347QyaR/3RPzM98qA9dzMLYhdW/
-         lLvi1IkrzoeKIeq4fD4mu8ESvq/ICcbkqPt/9xcNTdUZ52b5yy7pBgBylvOTd0Vv6Zuy
-         BHNzl8ZcFgXBY9gnX6zNM+CIuiNViclXvMSKnBBVJHJIht8PB2updzqQQ99QsVM/WAvx
-         ov7dKWgzJydXImumx0Oze9y1oSCInIbO2sSEuPvhNeK2ddcDVLuMTO0U7yKgVPZt3Kux
-         bkFw==
-X-Gm-Message-State: AOJu0Yz9qLOwdY2NbaUTpl/bU7fBltUpML78QbFjpKUP//PyijMBdrnA
-	p0CD4G1quMfhIHRyrR069kc=
-X-Google-Smtp-Source: AGHT+IHs2ohbPpXYA99aB8ELd0gUEDQJsHk9lTEy3E25h+y+yzB9uVSfHjmNczbSroS6r/oWrbw70g==
-X-Received: by 2002:a9d:62cf:0:b0:6b9:cba6:b246 with SMTP id z15-20020a9d62cf000000b006b9cba6b246mr10165678otk.9.1696665334888;
-        Sat, 07 Oct 2023 00:55:34 -0700 (PDT)
+        bh=zyz/NFb2RrzFYehpdBMm3ykpV/RwzR3J4zJlz09rB0I=;
+        b=V0+BEYLHm5R5N71O0XvHP4IC/x3oY6VMLN2Zms3fjiCqy9b7OBzPqKDI0LoQ/Z28Oe
+         Vyzyq6AaYUXv+udvNG8wxqd7Zj6Aj+WGta0R1AHr4pQ3891JUJRjewjr6aXq0DYyUSW+
+         GPSy145yRM8tSHiqczBWpZ0qE7daeddMTNt4RS/qZffu9vBzZWGt3Pqcg7fSxQaY9qE1
+         nszEEfATjYLQ6cvasveTeRwAfefqCOArxX59r6qCAt42OsgKxp/7Yer0i2Ni5ebr8kOA
+         SVjQysTagBZ/+ryLZv6SfRNDpip6uSYZVeRfPgnmf6phDbyfvSvduZe3Jht4tHTru45m
+         Etvw==
+X-Gm-Message-State: AOJu0YwaaKjlCZhQg2v9QN1eTDeiQfDsn/jE8eLPTzIxNU14M1zhQklX
+	co3bLWn+905PNazfWObHyns=
+X-Google-Smtp-Source: AGHT+IFtQR7vQoLjtYMGn4gNnfGRwBQWdenp2J6GsNGMrzno8OB6IiiSMFDAZeL3agfFD/JQvctO8g==
+X-Received: by 2002:a05:6870:d1cf:b0:1c8:d334:a6f5 with SMTP id b15-20020a056870d1cf00b001c8d334a6f5mr12551879oac.7.1696665353690;
+        Sat, 07 Oct 2023 00:55:53 -0700 (PDT)
 Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id x2-20020a056830244200b006c7c1868b05sm666285otr.50.2023.10.07.00.55.33
+        by smtp.gmail.com with ESMTPSA id y20-20020a0568301d9400b006b871010cb1sm858758oti.46.2023.10.07.00.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Oct 2023 00:55:34 -0700 (PDT)
+        Sat, 07 Oct 2023 00:55:52 -0700 (PDT)
 From: Chen Wang <unicornxw@gmail.com>
 To: aou@eecs.berkeley.edu,
 	chao.wei@sophgo.com,
@@ -75,9 +75,9 @@ To: aou@eecs.berkeley.edu,
 	apatel@ventanamicro.com
 Cc: Chen Wang <unicorn_wang@outlook.com>,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 04/10] dt-bindings: riscv: Add T-HEAD C920 compatibles
-Date: Sat,  7 Oct 2023 15:55:27 +0800
-Message-Id: <0783d4e9c9fcea8a84a8a7245f87168d4b698149.1696663037.git.unicorn_wang@outlook.com>
+Subject: [PATCH v5 05/10] dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
+Date: Sat,  7 Oct 2023 15:55:46 +0800
+Message-Id: <c639a1cd1e09c908c44f14d2156b643e577f0831.1696663037.git.unicorn_wang@outlook.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1696663037.git.unicorn_wang@outlook.com>
 References: <cover.1696663037.git.unicorn_wang@outlook.com>
@@ -90,37 +90,36 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 From: Chen Wang <unicorn_wang@outlook.com>
 
-The C920 is RISC-V CPU cores from T-HEAD Semiconductor.
-Notably, the C920 core is used in the SOPHGO's SG2042 SoC.
+Add compatible string for SOPHGO SG2042 plic.
 
 Acked-by: Chao Wei <chao.wei@sophgo.com>
 Reviewed-by: Guo Ren <guoren@kernel.org>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index 38c0b5213736..185a0191bad6 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -47,6 +47,7 @@ properties:
-               - sifive,u74-mc
-               - thead,c906
-               - thead,c910
-+              - thead,c920
-           - const: riscv
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index dc1f28e55266..16f9c4760c0f 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -65,6 +65,7 @@ properties:
        - items:
            - enum:
+               - allwinner,sun20i-d1-plic
++              - sophgo,sg2042-plic
+               - thead,th1520-plic
+           - const: thead,c900-plic
+       - items:
 -- 
 2.25.1
 
