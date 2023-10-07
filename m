@@ -1,145 +1,122 @@
-Return-Path: <devicetree+bounces-6637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F419B7BC4AA
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 06:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2750C7BC4B2
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 06:36:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9FDC1C20948
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 04:27:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D1B1C2091E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 04:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794261FB7;
-	Sat,  7 Oct 2023 04:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2914039D;
+	Sat,  7 Oct 2023 04:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="nrpf2gUm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UVUqHWWG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A8D1FD1
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 04:27:24 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33233BF;
-	Fri,  6 Oct 2023 21:27:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nxrlf22FAtaaa3midmhl3cDaxVHJ59c6ntRpGfkJxGUzASHPwkquM9qGthBTdNhREgR/Blj2D+O4SA1B0ci0+emyZQAXFNPykyhcnYz2BvQl0dUPcCYiIDHwkUWCSv7dgs1ZZS1bFV8oSQwysI4tg7shz+sqg05ht/FP1M96nX8dkLxgeft2uQo3QjsjIdvM1EuX1afN8LihCHDa2pstpRpOo4Qh7778NF5VjWI1CUZoFvmyvqjUM69kgGi4CGDChJu4YheiGQmej+rwQw5l5srJoal/wJULzwLervwPk6ZXfDcLoZ4uBRZN4R5ROBwBQB4TvhIW7cnltMTDZFcccQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=beVl1dPqUEdyNsSiBdvJ22V4gK8AwPSTRuT+j1cVGyM=;
- b=IkBy8IXCs0Y0bYkaAsQpkmz1mSvj04DqIQhy7L4wTFr5Tp2EbnUPzonEbFcyqeWLESM281b+HYhwMzkLrWww+aWrYHVvHkNSjKgkjiHgFoPP6TRD+tOe7bX0125Dpx9y+H4OrmzrNgMN+MdkzNKGEei54tnOX61GyOo4t6P14Lm2yBE+4jC/luePs0VMr7zp7oa7VcEE+/SRUkMTjKVT/k/Z4Mkl3r75KuX3KJohM9SwTAl4tIqS30i2boWbZ0sTUUTpEMGBE8YdDmBu3Nzj0LFl5fBKZXTkNZZi34tuY6A624KNG0YnwJ508iSM316hVoZ7zigOKfDD012KhMuXTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=beVl1dPqUEdyNsSiBdvJ22V4gK8AwPSTRuT+j1cVGyM=;
- b=nrpf2gUmo9wncqNOfXN4i2Gt7CwsAhjuuGZeTMURcN/YC3A8FPrytM8bjVK18pqjEhvAf4tvHKN5V+XCkdvrOOYjud77+oFYZ2AQ6RK9UajRbLhNIEPJ8kR8Ba+7KrAIwN55Zb1I0z/yaSybVEC6f4kGckpaXXNVmBYDeRBnKQ4=
-Received: from PH8PR05CA0002.namprd05.prod.outlook.com (2603:10b6:510:2cc::20)
- by SJ0PR12MB8166.namprd12.prod.outlook.com (2603:10b6:a03:4e2::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.38; Sat, 7 Oct
- 2023 04:27:20 +0000
-Received: from SN1PEPF0002529F.namprd05.prod.outlook.com
- (2603:10b6:510:2cc:cafe::22) by PH8PR05CA0002.outlook.office365.com
- (2603:10b6:510:2cc::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.19 via Frontend
- Transport; Sat, 7 Oct 2023 04:27:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SN1PEPF0002529F.mail.protection.outlook.com (10.167.242.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Sat, 7 Oct 2023 04:27:20 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 6 Oct
- 2023 23:27:20 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 6 Oct
- 2023 21:27:19 -0700
-Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Fri, 6 Oct 2023 23:27:19 -0500
-From: Tanmay Shah <tanmay.shah@amd.com>
-To: <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<michal.simek@amd.com>, <shubhrajyoti.datta@amd.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Tanmay Shah <tanmay.shah@amd.com>
-Subject: [PATCH v2 2/2] dts: zynqmp: add destination mailbox compatible
-Date: Fri, 6 Oct 2023 21:27:02 -0700
-Message-ID: <20231007042702.178028-2-tanmay.shah@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231007042702.178028-1-tanmay.shah@amd.com>
-References: <20231007042702.178028-1-tanmay.shah@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18C0622
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 04:36:36 +0000 (UTC)
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0570DBD;
+	Fri,  6 Oct 2023 21:36:34 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-79fa7e33573so114055739f.0;
+        Fri, 06 Oct 2023 21:36:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696653393; x=1697258193; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ok8Rh3y2ALFjfV49m+uqoRm3bDzIqJbrPJY0knJ9gwg=;
+        b=UVUqHWWGGzj7eh993/JT5iUKgEhCg5HQ9+nTj1HgD0JP4eaKTzMN/9aQdgBdmTnGfS
+         lCMZWn2Zj8AuH8AFhS9LZm5lApx1e9BcamXmSLnoMLbwEN+7OnnrAqNrF1Zj2ieqBcvy
+         UA9L+9tEWq9ID29Z+yGgPWXO1FkMiM2hWiMpjfX49DvaEGFufeMWjnbKvntDbL/F8Ewq
+         oEDKmXNpOwwiaLKiSuW+1zoCHmNfC0+MAOZIBkF14lCE3fZ5HEWKUYF5H89hCAI900Ht
+         q/SPLz8GQd7kXYsRvaysu0NZ27aksNIF8DIveJOPbkmwdjlLSerIeFfEWJ1VlJWS2K3v
+         GyXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696653393; x=1697258193;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ok8Rh3y2ALFjfV49m+uqoRm3bDzIqJbrPJY0knJ9gwg=;
+        b=WjGrnsCUesgMRnzXqLXZZvhgE/uDKOnOuM6Sdke4x5l1lG5M/Ip515i8UrnuVGCsep
+         yhZCUpkjczr7D+o7ED3j5pKL9T7D3thUrogJPztaR6/QkLqtrOkdnsADgfClEGd1Do/x
+         gs2Qpwd9elEgrKr4Yy6mrknGntmMtTXeJzTZHD5ku3gcIjOtIBe0DzrG22VCoA+5dD/S
+         1381v6C4oqkfnHb4I3BNGuo3XexlA1Mv8UyJtyKxBMK9zvPs8JF0ElOlBc/Ux5xFAweI
+         9H3MaSnOC3Dosr0rxcWfbk1v1pJaqDBIu8TXre0ybt8swpFfdtkf/CySxQTh7QjN/kQj
+         OA6Q==
+X-Gm-Message-State: AOJu0YyIXl0FCveBCWvYyLpzpSBirJg/JDujqGA0Fq25FDnnWowDZ+9a
+	0Ep+JHlpprNSIdE9av2AsfI=
+X-Google-Smtp-Source: AGHT+IGhLckTYtMKqGkgFLX/i8qTq5r32gXSFPHAFcqwx410+Tqa7+Semmsr1IEyMXyqd7aTahHTUg==
+X-Received: by 2002:a05:6e02:de8:b0:351:5dea:a596 with SMTP id m8-20020a056e020de800b003515deaa596mr9100722ilj.4.1696653393177;
+        Fri, 06 Oct 2023 21:36:33 -0700 (PDT)
+Received: from celestia.nettie.lan ([2001:470:42c4:101:8a60:ad5:1051:21e3])
+        by smtp.gmail.com with ESMTPSA id x7-20020a92de07000000b0035129b9c61bsm1520910ilm.45.2023.10.06.21.36.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Oct 2023 21:36:32 -0700 (PDT)
+From: Sam Edwards <cfsworks@gmail.com>
+X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?Daniel=20Kukie=C5=82a?= <daniel@kukiela.pl>,
+	Sven Rademakers <sven.rademakers@gmail.com>,
+	Lokesh Poovaragan <loki@gimmeapis.com>,
+	Sam Edwards <CFSworks@gmail.com>
+Subject: [PATCH 0/3] Add initial devicetree for Turing RK1
+Date: Fri,  6 Oct 2023 22:35:57 -0600
+Message-ID: <20231007043600.151908-1-CFSworks@gmail.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529F:EE_|SJ0PR12MB8166:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ebb31e1-1bbc-4e9b-fe36-08dbc6edb269
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	koU3xvtyZBxvuo3yyWud+y3nIyQQ86J7DyebO2FpDpwdoCWjZGG//3nIH34wCBr7ZKZdyBMeZagGgozoG/1QxhDlA5DQN7KgPO8phLCAktZS6aa+hdVJJhiW/vH1P3vRGEbHiXU0Y/SRWmPEyHH6OZUDkTSI7jOa95f49Ac0093BCgEiHINrQNeHQlOWR8r47DEpA8oqonSeHmOEDXEAu4EZGwWMMZEonhRjTOO2SPbSp9YoqiZa5MnJHVEhTNwCnRSJvXK6j2MRAnmwRdVXFxb1MAmYj/ojdzgiHg0EPGDZlUyVi1Gy9pahv2Et/JNGWksllGa8HKbSb7VpmSZVYxv50zk8mTbfpxTA3xebjFHg/vsYIMEY7NVszOe/lH3Bcm4kdTYq0/ZP4xRjaT8aKkFecz8uLAIvwGXSscZgD88HX2gRlgQjdGBHd5o2mxW24DqHH77SLzndQMLWTGpoPgsgQ/C3fG2QECI2lZSKzeoMy4u+STcjR2e8ZOKRvOav5T6fkKWUrcbLJR+WZDV0EMFh6gcOQAh7QvFF+iPOw+dPuuaAgQ0uiv3Msv9XMWWfjb7msyLV8NJj4HgCT6oS3SWI0aZxOEdb9rUGBFYCEsVwRwt0p4mwBM1DfV9eTEW/qJCmUa3zrAjWKP8GmNfIuQcTJ9D8v4wY9QDIq9DcNAzk4rNB26oj5ahoohXaz3RTaTxyKK/IkRQB+bkw84Gcygodr66m06iSmbUJJltur5D4dFc6p//sJFn7riKiOd188MlnYe36nbtQkt5XYnzyBw==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(396003)(376002)(346002)(136003)(230922051799003)(64100799003)(186009)(451199024)(82310400011)(1800799009)(36840700001)(40470700004)(46966006)(2616005)(316002)(70586007)(70206006)(54906003)(40460700003)(6636002)(41300700001)(1076003)(426003)(83380400001)(478600001)(336012)(26005)(36756003)(6666004)(356005)(47076005)(82740400003)(81166007)(86362001)(36860700001)(110136005)(40480700001)(44832011)(15650500001)(2906002)(4744005)(8676002)(4326008)(5660300002)(8936002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2023 04:27:20.5271
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ebb31e1-1bbc-4e9b-fe36-08dbc6edb269
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002529F.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8166
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Each node should have compatible string to identify
-itself. Add missing compatible string for zynqmp
-destination mailbox node.
+Hi list,
 
-Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+The Turing RK1 is an upcoming RK3588-based SoM built on the NVIDIA Jetson-style
+SO-DIMM form factor, meant for compatibility with Jetson carrier boards
+(but by far primarily the Turing Pi 2 cluster board, from the same vendor).
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index b61fc99cd911..8aebac27742e 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -141,6 +141,7 @@ zynqmp_ipi: zynqmp_ipi {
- 
- 		ipi_mailbox_pmu1: mailbox@ff9905c0 {
- 			bootph-all;
-+			compatible = "xlnx,zynqmp-ipi-dest-mailbox";
- 			reg = <0x0 0xff9905c0 0x0 0x20>,
- 			      <0x0 0xff9905e0 0x0 0x20>,
- 			      <0x0 0xff990e80 0x0 0x20>,
+This patch series adds the initial devicetree, which enables most of the card's
+I/O functions. I also have USB and thermal management working, but this depends
+on other patches that haven't yet made their way upstream.
+
+Reviewers, be on your toes: this is my first DT contribution to the kernel.
+Please be tough but patient! :)
+
+Thanks,
+Sam
+
+Sam Edwards (3):
+  dt-bindings: vendor-prefixes: add turing
+  dt-bindings: arm: rockchip: Add Turing RK1
+  arm64: dts: rockchip: Add Turing RK1 SoM support
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-turing-rk1.dts   | 627 ++++++++++++++++++
+ 4 files changed, 635 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dts
+
 -- 
-2.25.1
+2.41.0
 
 
