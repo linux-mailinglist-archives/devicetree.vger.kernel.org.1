@@ -1,238 +1,161 @@
-Return-Path: <devicetree+bounces-6766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6E67BCD4B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:52:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108FE7BCDC6
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 12:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9328A28175A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 08:52:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70748280DBD
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFEC38BE8;
-	Sun,  8 Oct 2023 08:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3375BE4D;
+	Sun,  8 Oct 2023 10:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bhtS5OQx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2811263D1
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 08:52:05 +0000 (UTC)
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FE4CF;
-	Sun,  8 Oct 2023 01:52:04 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id D1CD224E2A4;
-	Sun,  8 Oct 2023 16:52:02 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
- 2023 16:52:01 +0800
-Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
- 2023 16:52:00 +0800
-From: Jack Zhu <jack.zhu@starfivetech.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss
-	<rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-	<bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>
-CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-	<jack.zhu@starfivetech.com>, <changhuang.liang@starfivetech.com>
-Subject: [PATCH v10 8/8] media: staging: media: starfive: camss: Register devices
-Date: Sun, 8 Oct 2023 16:51:54 +0800
-Message-ID: <20231008085154.6757-9-jack.zhu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231008085154.6757-1-jack.zhu@starfivetech.com>
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5474F20E1
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 10:25:59 +0000 (UTC)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F878BA
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:25:56 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-5068692b0d9so2449285e87.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Oct 2023 03:25:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696760754; x=1697365554; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KHbvS0iPxvV8ElF+BY1ncYhQOuuRGi0yZrsHEzBEzZM=;
+        b=bhtS5OQx1Ro6eiFhKnpyC+YpqfmtdryAYty6uZRMi/9gCSJhYb/Lebld9D5VIc5Uun
+         AFHY/Em5QYLVry3xlDcU8NQljq03XVZcSiQqDwAbcUM4R76Zycz4HPMzUC+SgoNs5lGX
+         D+hqd8YNyGP9RPoE5muhWr0u63J0zHxmiGSINC0/zqrl77m7/oVL8HdG34mxR5FN6mAM
+         ajGz+38DG9trMpSS2y6qlxIDO8+Tb/WP6FWNd+pyhqJDx2xbx1r3CVIxMpJVLROGEqLt
+         cZEZNkmK5wTNJZj4zkuB3swMfV2HypihKej9LsbCwFvs2bWkrXaCthoJO/e52PhOfQUA
+         qgoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696760754; x=1697365554;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KHbvS0iPxvV8ElF+BY1ncYhQOuuRGi0yZrsHEzBEzZM=;
+        b=tme/2FZ0JLgifrdgQVH9IZrwkiewPWGCqETnBg5iXWMaYxveHn6+lf2BTODWJtLDXC
+         rQa2nOrqTRoUcFmCgws5SJAObUZb11uAy5y0UCOIQRhuvXEjo6lsd39cXecR/mwB0oaD
+         RF5z/GTXLsC5m4QgXmeYgT+YTYX9JZzAs3PU8PD9fog3c4WbWmfvJ/4aiF2CUwivic3i
+         BREw6wcKwRGRyuIroWVRzvKI8OvUD2LW2Mk7UynLyi0zEceeeW2ZROl0fucNRIdNut3c
+         yzJsXyEOML0wjqdHaq5RbJNE3bsrofVveDBEKiZ51jkhYBUx3Ms5XhnAjfKDuMKFDgCs
+         yZCw==
+X-Gm-Message-State: AOJu0YylTkH/W8f2u6TRGKLeizbZjQWi840d/ane1LZg0p2wPt49wqzL
+	rajXJQIk8m/gBUBbREQLKpqGAw==
+X-Google-Smtp-Source: AGHT+IHyyZR30VhfYWCNM1lo0/NDjP0WqMRn9jzVNmUfsFvwlpYiA6j9mTgQbBDfUicHgGRjKZfy8w==
+X-Received: by 2002:ac2:4e91:0:b0:500:b828:7a04 with SMTP id o17-20020ac24e91000000b00500b8287a04mr10279092lfr.18.1696760754319;
+        Sun, 08 Oct 2023 03:25:54 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id c19-20020a7bc853000000b004064288597bsm8205859wml.30.2023.10.08.03.25.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Oct 2023 03:25:53 -0700 (PDT)
+Message-ID: <30a3c937-f73f-479d-ba62-4963f6ba8eaa@linaro.org>
+Date: Sun, 8 Oct 2023 12:25:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] input: add Adafruit Seesaw Gamepad driver
+To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231007144052.1535417-1-anshulusr@gmail.com>
+ <20231007144052.1535417-2-anshulusr@gmail.com>
+ <a49deeb6-728c-4527-8399-57c52214e1d3@linaro.org>
+ <2281f924-30d1-41c5-b105-d8d28aada5b2@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <2281f924-30d1-41c5-b105-d8d28aada5b2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Register ISP sub-device and video devices for StarFive Camera
-Subsystem.
+On 07/10/2023 18:13, Anshul Dalal wrote:
+>>> +	err = i2c_master_send(client, register_reset, sizeof(register_reset));
+>>> +	if (err < 0)
+>>> +		return err;
+>>> +	if (err != sizeof(register_reset))
+>>> +		return -EIO;
+>>> +	mdelay(10);
+>>
+>> Why 10? This should be explained somehow in the code.
+> 
+> The reason for the delay is to ensure the register reset process is
+> finished before going further. The reference Arduino driver from the
+> manufacturer also had a delay for the same amount though my hardware
+> unit worked fine till 5ms delay. Is there some kernel abstraction I
+> could use to indicate a short delay or will the previous explanation in
+> a comment above the line do?
+> 
 
-Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
----
- .../staging/media/starfive/camss/stf-camss.c  | 97 ++++++++++++++++++-
- 1 file changed, 96 insertions(+), 1 deletion(-)
+Just explain it briefly as a comment.
 
-diff --git a/drivers/staging/media/starfive/camss/stf-camss.c b/drivers/s=
-taging/media/starfive/camss/stf-camss.c
-index 373467322885..b2e0f5b3c910 100644
---- a/drivers/staging/media/starfive/camss/stf-camss.c
-+++ b/drivers/staging/media/starfive/camss/stf-camss.c
-@@ -123,6 +123,85 @@ static int stfcamss_of_parse_ports(struct stfcamss *=
-stfcamss)
- 	return ret;
- }
-=20
-+static int stfcamss_register_devs(struct stfcamss *stfcamss)
-+{
-+	struct stf_capture *cap_yuv =3D &stfcamss->captures[STF_CAPTURE_YUV];
-+	struct stf_isp_dev *isp_dev =3D &stfcamss->isp_dev;
-+	int ret;
-+
-+	ret =3D stf_isp_register(isp_dev, &stfcamss->v4l2_dev);
-+	if (ret < 0) {
-+		dev_err(stfcamss->dev,
-+			"failed to register stf isp%d entity: %d\n", 0, ret);
-+		return ret;
-+	}
-+
-+	ret =3D stf_capture_register(stfcamss, &stfcamss->v4l2_dev);
-+	if (ret < 0) {
-+		dev_err(stfcamss->dev,
-+			"failed to register capture: %d\n", ret);
-+		goto err_isp_unregister;
-+	}
-+
-+	ret =3D media_create_pad_link(&isp_dev->subdev.entity, STF_ISP_PAD_SRC,
-+				    &cap_yuv->video.vdev.entity, 0, 0);
-+	if (ret)
-+		goto err_cap_unregister;
-+
-+	cap_yuv->video.source_subdev =3D &isp_dev->subdev;
-+
-+	return ret;
-+
-+err_cap_unregister:
-+	stf_capture_unregister(stfcamss);
-+err_isp_unregister:
-+	stf_isp_unregister(&stfcamss->isp_dev);
-+
-+	return ret;
-+}
-+
-+static void stfcamss_unregister_devs(struct stfcamss *stfcamss)
-+{
-+	stf_isp_unregister(&stfcamss->isp_dev);
-+	stf_capture_unregister(stfcamss);
-+}
-+
-+static int stfcamss_subdev_notifier_bound(struct v4l2_async_notifier *as=
-ync,
-+					  struct v4l2_subdev *subdev,
-+					  struct v4l2_async_connection *asc)
-+{
-+	struct stfcamss *stfcamss =3D
-+		container_of(async, struct stfcamss, notifier);
-+	struct stfcamss_async_subdev *csd =3D
-+		container_of(asc, struct stfcamss_async_subdev, asd);
-+	enum stf_port_num port =3D csd->port;
-+	struct stf_isp_dev *isp_dev =3D &stfcamss->isp_dev;
-+	struct stf_capture *cap_raw =3D &stfcamss->captures[STF_CAPTURE_RAW];
-+	struct media_pad *pad;
-+	int ret;
-+
-+	if (port =3D=3D STF_PORT_CSI2RX) {
-+		pad =3D &isp_dev->pads[STF_ISP_PAD_SINK];
-+	} else {
-+		dev_err(stfcamss->dev, "not support port %d\n", port);
-+		return -EPERM;
-+	}
-+
-+	ret =3D v4l2_create_fwnode_links_to_pad(subdev, pad, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret =3D media_create_pad_link(&subdev->entity, 1,
-+				    &cap_raw->video.vdev.entity, 0, 0);
-+	if (ret)
-+		return ret;
-+
-+	isp_dev->source_subdev =3D subdev;
-+	cap_raw->video.source_subdev =3D subdev;
-+
-+	return 0;
-+}
-+
- static int stfcamss_subdev_notifier_complete(struct v4l2_async_notifier =
-*ntf)
- {
- 	struct stfcamss *stfcamss =3D
-@@ -133,6 +212,7 @@ static int stfcamss_subdev_notifier_complete(struct v=
-4l2_async_notifier *ntf)
-=20
- static const struct v4l2_async_notifier_operations
- stfcamss_subdev_notifier_ops =3D {
-+	.bound =3D stfcamss_subdev_notifier_bound,
- 	.complete =3D stfcamss_subdev_notifier_complete,
- };
-=20
-@@ -217,6 +297,12 @@ static int stfcamss_probe(struct platform_device *pd=
-ev)
- 		goto err_cleanup_notifier;
- 	}
-=20
-+	ret =3D stf_isp_init(stfcamss);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to init isp: %d\n", ret);
-+		goto err_cleanup_notifier;
-+	}
-+
- 	stfcamss_mc_init(pdev, stfcamss);
-=20
- 	ret =3D v4l2_device_register(stfcamss->dev, &stfcamss->v4l2_dev);
-@@ -231,6 +317,12 @@ static int stfcamss_probe(struct platform_device *pd=
-ev)
- 		goto err_unregister_device;
- 	}
-=20
-+	ret =3D stfcamss_register_devs(stfcamss);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to register subdevice: %d\n", ret);
-+		goto err_unregister_media_dev;
-+	}
-+
- 	pm_runtime_enable(dev);
-=20
- 	stfcamss->notifier.ops =3D &stfcamss_subdev_notifier_ops;
-@@ -239,11 +331,13 @@ static int stfcamss_probe(struct platform_device *p=
-dev)
- 		dev_err(dev, "Failed to register async subdev nodes: %d\n",
- 			ret);
- 		pm_runtime_disable(dev);
--		goto err_unregister_media_dev;
-+		goto err_unregister_subdevs;
- 	}
-=20
- 	return 0;
-=20
-+err_unregister_subdevs:
-+	stfcamss_unregister_devs(stfcamss);
- err_unregister_media_dev:
- 	media_device_unregister(&stfcamss->media_dev);
- err_unregister_device:
-@@ -265,6 +359,7 @@ static int stfcamss_remove(struct platform_device *pd=
-ev)
- {
- 	struct stfcamss *stfcamss =3D platform_get_drvdata(pdev);
-=20
-+	stfcamss_unregister_devs(stfcamss);
- 	v4l2_device_unregister(&stfcamss->v4l2_dev);
- 	media_device_cleanup(&stfcamss->media_dev);
- 	v4l2_async_nf_cleanup(&stfcamss->notifier);
---=20
-2.34.1
+Best regards,
+Krzysztof
 
 
