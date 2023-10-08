@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-6765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2DE7BCD4A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:52:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 423FF7BCD4C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DE0F2816D0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 08:52:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ABC8281D01
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 08:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4732571;
-	Sun,  8 Oct 2023 08:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791EF8820;
+	Sun,  8 Oct 2023 08:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC8653AA
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 08:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BAE6FBC
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 08:52:06 +0000 (UTC)
 Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625F5C5;
-	Sun,  8 Oct 2023 01:52:02 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C7CD6;
+	Sun,  8 Oct 2023 01:52:04 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 0D71324E24A;
-	Sun,  8 Oct 2023 16:51:59 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
- 2023 16:51:58 +0800
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 81ABE24E2BC;
+	Sun,  8 Oct 2023 16:52:03 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
+ 2023 16:51:59 +0800
 Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
  (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
  2023 16:51:58 +0800
@@ -44,9 +44,9 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss
 CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
 	<jack.zhu@starfivetech.com>, <changhuang.liang@starfivetech.com>
-Subject: [PATCH v10 1/8] media: dt-bindings: Add JH7110 Camera Subsystem
-Date: Sun, 8 Oct 2023 16:51:47 +0800
-Message-ID: <20231008085154.6757-2-jack.zhu@starfivetech.com>
+Subject: [PATCH v10 2/8] media: admin-guide: Add starfive_camss.rst for Starfive Camera Subsystem
+Date: Sun, 8 Oct 2023 16:51:48 +0800
+Message-ID: <20231008085154.6757-3-jack.zhu@starfivetech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231008085154.6757-1-jack.zhu@starfivetech.com>
 References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
@@ -68,227 +68,162 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add the bindings documentation for Starfive JH7110 Camera Subsystem
-which is used for handing image sensor data.
+Add starfive_camss.rst file that documents the Starfive Camera
+Subsystem driver which is used for handing image sensor data.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
 ---
- .../bindings/media/starfive,jh7110-camss.yaml | 180 ++++++++++++++++++
- MAINTAINERS                                   |   7 +
- 2 files changed, 187 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/starfive,jh71=
-10-camss.yaml
+ .../admin-guide/media/starfive_camss.rst      | 72 +++++++++++++++++++
+ .../media/starfive_camss_graph.dot            | 12 ++++
+ .../admin-guide/media/v4l-drivers.rst         |  1 +
+ MAINTAINERS                                   |  1 +
+ 4 files changed, 86 insertions(+)
+ create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+ create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.=
+dot
 
-diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-cams=
-s.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.ya=
-ml
+diff --git a/Documentation/admin-guide/media/starfive_camss.rst b/Documen=
+tation/admin-guide/media/starfive_camss.rst
 new file mode 100644
-index 000000000000..c66586d90fa2
+index 000000000000..ca42e9447c47
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-@@ -0,0 +1,180 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/Documentation/admin-guide/media/starfive_camss.rst
+@@ -0,0 +1,72 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
-+title: Starfive SoC CAMSS ISP
++.. include:: <isonum.txt>
 +
-+maintainers:
-+  - Jack Zhu <jack.zhu@starfivetech.com>
-+  - Changhuang Liang <changhuang.liang@starfivetech.com>
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
++Starfive Camera Subsystem driver
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
 +
-+description:
-+  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. =
-It
-+  consists of a VIN controller (Video In Controller, a top-level control=
- unit)
-+  and an ISP.
++Introduction
++------------
 +
-+properties:
-+  compatible:
-+    const: starfive,jh7110-camss
++This file documents the driver for the Starfive Camera Subsystem found o=
+n
++Starfive JH7110 SoC. The driver is located under drivers/staging/media/s=
+tarfive/
++camss.
 +
-+  reg:
-+    maxItems: 2
++The driver implements V4L2, Media controller and v4l2_subdev interfaces.=
+ Camera
++sensor using V4L2 subdev interface in the kernel is supported.
 +
-+  reg-names:
-+    items:
-+      - const: syscon
-+      - const: isp
++The driver has been successfully used on the Gstreamer 1.18.5 with v4l2s=
+rc
++plugin.
 +
-+  clocks:
-+    maxItems: 7
 +
-+  clock-names:
-+    items:
-+      - const: apb_func
-+      - const: wrapper_clk_c
-+      - const: dvp_inv
-+      - const: axiwr
-+      - const: mipi_rx0_pxl
-+      - const: ispcore_2x
-+      - const: isp_axi
++Starfive Camera Subsystem hardware
++----------------------------------
 +
-+  resets:
-+    maxItems: 6
++The Starfive Camera Subsystem hardware consists of::
 +
-+  reset-names:
-+    items:
-+      - const: wrapper_p
-+      - const: wrapper_c
-+      - const: axird
-+      - const: axiwr
-+      - const: isp_top_n
-+      - const: isp_top_axi
++                    |\         +---------------+      +-----------+
++  +----------+      |  \       |               |      |           |
++  |          |      |   |      |               |      |           |
++  |   MIPI   |----->|   |----->|      ISP      |----->|           |
++  |          |      |   |      |               |      |           |
++  +----------+      |   |      |               |      |  Memory   |
++                    |MUX|      +---------------+      | Interface |
++  +----------+      |   |                             |           |
++  |          |      |   |---------------------------->|           |
++  | Parallel |----->|   |                             |           |
++  |          |      |   |                             |           |
++  +----------+      |  /                              |           |
++                    |/                                +-----------+
 +
-+  power-domains:
-+    items:
-+      - description: JH7110 ISP Power Domain Switch Controller.
++- MIPI: The MIPI interface, receiving data from a MIPI CSI-2 camera sens=
+or.
 +
-+  interrupts:
-+    maxItems: 4
++- Parallel: The parallel interface,  receiving data from a parallel sens=
+or.
 +
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
++- ISP: The ISP, processing raw Bayer data from an image sensor and produ=
+cing
++  YUV frames.
 +
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Input port for receiving DVP data.
 +
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
++Topology
++--------
 +
-+            properties:
-+              bus-type:
-+                enum: [5, 6]
++The media controller pipeline graph is as follows:
 +
-+              bus-width:
-+                enum: [8, 10, 12]
++.. _starfive_camss_graph:
 +
-+              data-shift:
-+                enum: [0, 2]
-+                default: 0
++.. kernel-figure:: starfive_camss_graph.dot
++    :alt:   starfive_camss_graph.dot
++    :align: center
 +
-+              hsync-active:
-+                enum: [0, 1]
-+                default: 1
++The driver has 2 video devices:
 +
-+              vsync-active:
-+                enum: [0, 1]
-+                default: 1
++- capture_raw: The capture device, capturing image data directly from a =
+sensor.
++- capture_yuv: The capture device, capturing YUV frame data processed by=
+ the
++  ISP module
 +
-+            required:
-+              - bus-type
-+              - bus-width
++The driver has 3 subdevices:
 +
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input port for receiving CSI data.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - power-domains
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    isp@19840000 {
-+        compatible =3D "starfive,jh7110-camss";
-+        reg =3D <0x19840000 0x10000>,
-+              <0x19870000 0x30000>;
-+        reg-names =3D "syscon", "isp";
-+        clocks =3D <&ispcrg 0>,
-+                 <&ispcrg 13>,
-+                 <&ispcrg 2>,
-+                 <&ispcrg 12>,
-+                 <&ispcrg 1>,
-+                 <&syscrg 51>,
-+                 <&syscrg 52>;
-+        clock-names =3D "apb_func",
-+                      "wrapper_clk_c",
-+                      "dvp_inv",
-+                      "axiwr",
-+                      "mipi_rx0_pxl",
-+                      "ispcore_2x",
-+                      "isp_axi";
-+        resets =3D <&ispcrg 0>,
-+                 <&ispcrg 1>,
-+                 <&ispcrg 10>,
-+                 <&ispcrg 11>,
-+                 <&syscrg 41>,
-+                 <&syscrg 42>;
-+        reset-names =3D "wrapper_p",
-+                      "wrapper_c",
-+                      "axird",
-+                      "axiwr",
-+                      "isp_top_n",
-+                      "isp_top_axi";
-+        power-domains =3D <&pwrc 5>;
-+        interrupts =3D <92>, <87>, <88>, <90>;
-+
-+        ports {
-+            #address-cells =3D <1>;
-+            #size-cells =3D <0>;
-+            port@0 {
-+                reg =3D <0>;
-+                vin_from_sc2235: endpoint {
-+                    remote-endpoint =3D <&sc2235_to_vin>;
-+                    bus-type =3D <5>;
-+                    bus-width =3D <8>;
-+                    data-shift =3D <2>;
-+                    hsync-active =3D <1>;
-+                    vsync-active =3D <0>;
-+                    pclk-sample =3D <1>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg =3D <1>;
-+                vin_from_csi2rx: endpoint {
-+                    remote-endpoint =3D <&csi2rx_to_vin>;
-+                };
-+            };
-+        };
-+    };
++- stf_isp: is responsible for all the isp operations, outputs YUV frames=
+.
++- cdns_csi2rx: a CSI-2 bridge supporting up to 4 CSI lanes in input, and=
+ 4
++  different pixel streams in output.
++- imx219: an image sensor, image data is sent through MIPI CSI-2.
+diff --git a/Documentation/admin-guide/media/starfive_camss_graph.dot b/D=
+ocumentation/admin-guide/media/starfive_camss_graph.dot
+new file mode 100644
+index 000000000000..8eff1f161ac7
+--- /dev/null
++++ b/Documentation/admin-guide/media/starfive_camss_graph.dot
+@@ -0,0 +1,12 @@
++digraph board {
++	rankdir=3DTB
++	n00000001 [label=3D"{{<port0> 0} | stf_isp\n/dev/v4l-subdev0 | {<port1>=
+ 1}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
++	n00000001:port1 -> n00000008 [style=3Ddashed]
++	n00000004 [label=3D"capture_raw\n/dev/video0", shape=3Dbox, style=3Dfil=
+led, fillcolor=3Dyellow]
++	n00000008 [label=3D"capture_yuv\n/dev/video1", shape=3Dbox, style=3Dfil=
+led, fillcolor=3Dyellow]
++	n0000000e [label=3D"{{<port0> 0} | cdns_csi2rx.19800000.csi-bridge\n | =
+{<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=3DMrecord, style=
+=3Dfilled, fillcolor=3Dgreen]
++	n0000000e:port1 -> n00000001:port0 [style=3Ddashed]
++	n0000000e:port1 -> n00000004 [style=3Ddashed]
++	n00000018 [label=3D"{{} | imx219 6-0010\n/dev/v4l-subdev1 | {<port0> 0}=
+}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
++	n00000018:port0 -> n0000000e:port0 [style=3Dbold]
++}
+diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentat=
+ion/admin-guide/media/v4l-drivers.rst
+index 61283d67ceef..f4bb2605f07e 100644
+--- a/Documentation/admin-guide/media/v4l-drivers.rst
++++ b/Documentation/admin-guide/media/v4l-drivers.rst
+@@ -28,6 +28,7 @@ Video4Linux (V4L) driver-specific documentation
+ 	si470x
+ 	si4713
+ 	si476x
++	starfive_camss
+ 	vimc
+ 	visl
+ 	vivid
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 75af99eeda6e..774dcb5b70ca 100644
+index 774dcb5b70ca..2680f7242a6d 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -20448,6 +20448,13 @@ M:	Ion Badulescu <ionut@badula.org>
- S:	Odd Fixes
- F:	drivers/net/ethernet/adaptec/starfire*
+@@ -20453,6 +20453,7 @@ M:	Jack Zhu <jack.zhu@starfivetech.com>
+ M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/admin-guide/media/starfive_camss.rst
+ F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
 =20
-+STARFIVE CAMERA SUBSYSTEM DRIVER
-+M:	Jack Zhu <jack.zhu@starfivetech.com>
-+M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-+
  STARFIVE CRYPTO DRIVER
- M:	Jia Jie Ho <jiajie.ho@starfivetech.com>
- M:	William Qiu <william.qiu@starfivetech.com>
 --=20
 2.34.1
 
