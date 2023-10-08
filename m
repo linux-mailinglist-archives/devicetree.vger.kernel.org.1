@@ -1,177 +1,243 @@
-Return-Path: <devicetree+bounces-6750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 893FE7BCB8B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 03:21:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF777BCBE0
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 05:19:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF67281C02
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 01:21:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B28F281827
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 03:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65DF10E9;
-	Sun,  8 Oct 2023 01:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D17615CC;
+	Sun,  8 Oct 2023 03:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AQsAZLEv"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PjAVUJJu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE7710E6
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 01:21:01 +0000 (UTC)
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90C8C5;
-	Sat,  7 Oct 2023 18:20:59 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id 006d021491bc7-57bc2c2f13dso1841768eaf.2;
-        Sat, 07 Oct 2023 18:20:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696728058; x=1697332858; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aWgVHcNRC0JxhBz17/KtrgsQGECNqtzTGRrjgDLed/g=;
-        b=AQsAZLEvqQRCun3T6bX7HjpNAVhBaylAOxSS//m8T93bTR3Eack2YRvTY0UnBZWCJn
-         EejxO1MDX+hfl3vzgoTt+X78Ic5yIVBzC17iPBky3qT4eP5Rv0GezflE9rQhcWqHGM0Y
-         S5GeFnFNX6CoF/R/oNPK2nKvaxCBB+4SGK8F2pTpETZZ8kanxwvyiffSRL5qFgYobHW3
-         TWzdg7xFeT3j/CB/tafpgidO1xQAguV6R0dJygBRJuAvm43+b1WKTEYsaC+zgcHNCaZK
-         Kg7MmTyttOUcScILPrM9v1W55JYUSHvgXMZHpaE5h7ejxcuwzFPbyg2lQ/L6g5rc/f6v
-         znMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696728058; x=1697332858;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aWgVHcNRC0JxhBz17/KtrgsQGECNqtzTGRrjgDLed/g=;
-        b=D+lwRewcyUYhaf9muldZiaCqRTr9OW+RJOGCahXPbfWdXmyyOJpKkaya9jPc1he2DI
-         VBHezq+KYroq4Ti2FAt04/+BsEtrab0UfFwpKca3k+bOH+JFmDEmm0xH7Pg28AxrRsC4
-         ZkZF+7hrR9J3E+TDTD9Os4JZvsx289ec9edXIbjk9G2YjPvZL+Xt0KVWp/ev8b6iAJxt
-         0ihHAZVTpUUAUzm/JQzkaFOzV/jwOut1rfKnRyGUTfteb19OSPKzGcBMR+Qft66R6VdP
-         r18QZSJ9sBpTSv2GQ8WG/dgNGsfLFIv0MpGY8ZaFBh5wSF7wJMEh1xDOLG/id0gtesyt
-         x/8Q==
-X-Gm-Message-State: AOJu0Yzcc925ji88b2iNmI1Qy+5U/xqb2U3Wg/1c7iEUzvTuGnZXdsE+
-	MTSXJuIOkEdwP56+SQnVAS0=
-X-Google-Smtp-Source: AGHT+IFfdYRJEHhAlgzwgZ8M3LFWwOwHpmK6da0oqhjV2kkLznUJZq4uuvdF7cPIzrB8t5rs8Py5Gg==
-X-Received: by 2002:a05:6358:9691:b0:164:8742:525 with SMTP id o17-20020a056358969100b0016487420525mr4776787rwa.17.1696728058287;
-        Sat, 07 Oct 2023 18:20:58 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p26-20020a63951a000000b0058d26647e45sm1669606pgd.54.2023.10.07.18.20.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Oct 2023 18:20:57 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sat, 7 Oct 2023 18:20:56 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Saravanan Sekar <saravanan@linumiz.com>
-Cc: sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jdelvare@suse.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] regulator: dt-bindings: Add mps,mpq2286
- power-management IC
-Message-ID: <84f4692c-5fee-4d00-b537-570f90191d6e@roeck-us.net>
-References: <20231007165803.239718-1-saravanan@linumiz.com>
- <20231007165803.239718-3-saravanan@linumiz.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E859188
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:19:27 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27758BD;
+	Sat,  7 Oct 2023 20:19:19 -0700 (PDT)
+X-UUID: 75bb6f30658911eea33bb35ae8d461a2-20231008
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=2lncwbw67fIZafoqWE9u36La+aHXLXeJrzy1kQnUnk4=;
+	b=PjAVUJJuSHqHzRTKGPA5OXNAW2UMD/ShP7lruTxpWR84/Y7K5Nbff6s5UWPEiJaggLjKylCKpU4T8hXIcfSiSoLNDmWRODH4VzBlUeoos4aT6J30/7+hCFNquUFmtB5gaRhLcBjZcJ2a5Xq5kyzI9Sq2STdEZcL9FzzMlSfUBnA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:6c9a4b80-1fa8-48ca-b766-41ba7fce0e95,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:1f1fb3bf-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 75bb6f30658911eea33bb35ae8d461a2-20231008
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1277965314; Sun, 08 Oct 2023 11:19:15 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 8 Oct 2023 11:19:13 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 8 Oct 2023 11:19:12 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, "Steve
+ Cho" <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: using encoder device to alloc/free encoder memory
+Date: Sun, 8 Oct 2023 11:19:09 +0800
+Message-ID: <20231008031909.32146-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007165803.239718-3-saravanan@linumiz.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--9.270600-8.000000
+X-TMASE-MatchedRID: EvLd3cwGQhEtJMbDWD8p3hWCVBr+Ay98uoYFb0nRiqOCsBeCv8CM/Xf3
+	4BoKFzcHTg/jfa6b1OczYorSrzJ8m2MAzi+7d0chF6z9HGHKwNuIrmqDVyayv8lgi/vLS272INi
+	phQlaWRN2ZsQ86ifK0L+R4Fk68cCxoXHg+KoW2Ubil2r2x2PwtYfsPVs/8Vw6Ydn5x3tXIpcota
+	sKsNUdSeLzNWBegCW2xl8lw85EaVQLbigRnpKlKWxlRJiH4397GKedVHUXrT7KIf/D+oFxIU+rs
+	1+BI9BmqizkboPGhHnzIgp4i3lt2A==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--9.270600-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 115D3AFDCB6F7F683D4B83FD3D6673B22C9D90B17C7C1E4CDDFDB2404A119D962000:8
+X-MTK: N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sat, Oct 07, 2023 at 10:28:02PM +0530, Saravanan Sekar wrote:
-> Document mpq2286 power-management IC. Instead of simple 'buck', 'buck0' is
-> used to keep the driver common which handles multiple regulators.
+Need to use encoder device to allocate/free encoder memory when calling
+mtk_vcodec_mem_alloc/mtk_vcodec_mem_free, or leading to below crash log
+when test encoder with decoder device.
 
-Sorry for the maybe dumb question, but where can I find the driver
-depencency on buck naming ?
+pc : dma_alloc_attrs+0x44/0xf4
+lr : mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common]
+sp : ffffffc0209f3990
+x29: ffffffc0209f39a0 x28: ffffff8024102a18 x27: 0000000000000000
+x26: 0000000000000000 x25: ffffffc00c06e2d8 x24: 0000000000000001
+x23: 0000000000000cc0 x22: 0000000000000010 x21: 0000000000000800
+x20: ffffff8024102a18 x19: 0000000000000000 x18: 0000000000000000
+x17: 0000000000000009 x16: ffffffe389736a98 x15: 0000000000000078
+x14: ffffffe389704434 x13: 0000000000000007 x12: ffffffe38a2b2560
+x11: 0000000000000800 x10: 0000000000000004 x9 : ffffffe331f07484
+x8 : 5400e9aef2395000 x7 : 0000000000000000 x6 : 000000000000003f
+x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000cc0
+x2 : ffffff8024102a18 x1 : 0000000000000800 x0 : 0000000000000010
+Call trace:
+ dma_alloc_attrs+0x44/0xf4
+ mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common 2819d3d601f3cd06c1f2213ac1b9995134441421]
+ h264_enc_set_param+0x27c/0x378 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ venc_if_set_param+0x4c/0x7c [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ vb2ops_venc_start_streaming+0x1bc/0x328 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ vb2_start_streaming+0x64/0x12c
+ vb2_core_streamon+0x114/0x158
+ vb2_streamon+0x38/0x60
+ v4l2_m2m_streamon+0x48/0x88
+ v4l2_m2m_ioctl_streamon+0x20/0x2c
+ v4l_streamon+0x2c/0x38
+ __video_do_ioctl+0x2c4/0x3dc
+ video_usercopy+0x404/0x934
+ video_ioctl2+0x20/0x2c
+ v4l2_ioctl+0x54/0x64
+ v4l2_compat_ioctl32+0x90/0xa34
+ __arm64_compat_sys_ioctl+0x128/0x13c
+ invoke_syscall+0x4c/0x108
+ el0_svc_common+0x98/0x104
+ do_el0_svc_compat+0x28/0x34
+ el0_svc_compat+0x2c/0x74
+ el0t_32_sync_handler+0xa8/0xcc
+ el0t_32_sync+0x194/0x198
+Code: aa0003f6 aa0203f4 aa0103f5 f900
 
-Thanks,
-Guenter
+'Fixes: 01abf5fbb081c ("media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'")'
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ .../mediatek/vcodec/common/mtk_vcodec_util.c  | 66 ++++++++++++++++++-
+ 1 file changed, 64 insertions(+), 2 deletions(-)
 
-> 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-> ---
->  .../bindings/regulator/mps,mpq2286.yaml       | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml b/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
-> new file mode 100644
-> index 000000000000..594b929fe4b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mps,mpq2286.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Monolithic Power System MPQ2286 PMIC
-> +
-> +maintainers:
-> +  - Saravanan Sekar <saravanan@linumiz.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mps,mpq2286
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
-> +
-> +    properties:
-> +      buck0:
-> +        type: object
-> +        $ref: regulator.yaml#
-> +
-> +        unevaluatedProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@3 {
-> +            compatible = "mps,mpq2286";
-> +            reg = <0x3>;
-> +
-> +            regulators {
-> +                buck0 {
-> +                    regulator-name = "buck0";
-> +                    regulator-min-microvolt = <1600000>;
-> +                    regulator-max-microvolt = <1800000>;
-> +                    regulator-boot-on;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.34.1
-> 
+diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+index 908602031fd0..62bb7290c56d 100644
+--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
++++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+@@ -45,7 +45,7 @@ int mtk_vcodec_write_vdecsys(struct mtk_vcodec_dec_ctx *ctx, unsigned int reg,
+ }
+ EXPORT_SYMBOL(mtk_vcodec_write_vdecsys);
+ 
+-int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
++static int mtk_vcodec_mem_dec_alloc(void *priv, struct mtk_vcodec_mem *mem)
+ {
+ 	unsigned long size = mem->size;
+ 	struct mtk_vcodec_dec_ctx *ctx = priv;
+@@ -64,9 +64,39 @@ int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+ 
+ 	return 0;
+ }
++
++static int mtk_vcodec_mem_enc_alloc(void *priv, struct mtk_vcodec_mem *mem)
++{
++	unsigned long size = mem->size;
++	struct mtk_vcodec_enc_ctx *ctx = priv;
++	struct device *dev = &ctx->dev->plat_dev->dev;
++
++	mem->va = dma_alloc_coherent(dev, size, &mem->dma_addr, GFP_KERNEL);
++	if (!mem->va) {
++		mtk_v4l2_venc_err(ctx, "%s dma_alloc size=%ld failed!", dev_name(dev), size);
++		return -ENOMEM;
++	}
++
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
++			  (unsigned long)mem->dma_addr);
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
++
++	return 0;
++}
++
++int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
++{
++	enum mtk_instance_type inst_type = *((unsigned int *)priv);
++
++	if (inst_type == MTK_INST_ENCODER)
++		return mtk_vcodec_mem_enc_alloc(priv, mem);
++	else
++		return mtk_vcodec_mem_dec_alloc(priv, mem);
++}
+ EXPORT_SYMBOL(mtk_vcodec_mem_alloc);
+ 
+-void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
++static void mtk_vcodec_mem_dec_free(void *priv, struct mtk_vcodec_mem *mem)
+ {
+ 	unsigned long size = mem->size;
+ 	struct mtk_vcodec_dec_ctx *ctx = priv;
+@@ -87,6 +117,38 @@ void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+ 	mem->dma_addr = 0;
+ 	mem->size = 0;
+ }
++
++static void mtk_vcodec_mem_enc_free(void *priv, struct mtk_vcodec_mem *mem)
++{
++	unsigned long size = mem->size;
++	struct mtk_vcodec_enc_ctx *ctx = priv;
++	struct device *dev = &ctx->dev->plat_dev->dev;
++
++	if (!mem->va) {
++		mtk_v4l2_venc_err(ctx, "%s dma_free size=%ld failed!", dev_name(dev), size);
++		return;
++	}
++
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
++			  (unsigned long)mem->dma_addr);
++	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
++
++	dma_free_coherent(dev, size, mem->va, mem->dma_addr);
++	mem->va = NULL;
++	mem->dma_addr = 0;
++	mem->size = 0;
++}
++
++void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
++{
++	enum mtk_instance_type inst_type = *((unsigned int *)priv);
++
++	if (inst_type == MTK_INST_ENCODER)
++		mtk_vcodec_mem_enc_free(priv, mem);
++	else
++		mtk_vcodec_mem_dec_free(priv, mem);
++}
+ EXPORT_SYMBOL(mtk_vcodec_mem_free);
+ 
+ void *mtk_vcodec_get_hw_dev(struct mtk_vcodec_dec_dev *dev, int hw_idx)
+-- 
+2.18.0
+
 
