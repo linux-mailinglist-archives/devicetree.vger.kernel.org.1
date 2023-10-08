@@ -1,100 +1,144 @@
-Return-Path: <devicetree+bounces-6828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E0C7BCFC6
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 21:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DF07BCFCF
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 21:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F04CF281101
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 19:11:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCA362815B4
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 19:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0490A182DC;
-	Sun,  8 Oct 2023 19:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F30199C6;
+	Sun,  8 Oct 2023 19:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="h2gP711h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dI+8ZdyJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A5711725
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 19:11:00 +0000 (UTC)
-Received: from todd.t-8ch.de (todd.t-8ch.de [IPv6:2a01:4f8:c010:41de::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC793AC;
-	Sun,  8 Oct 2023 12:10:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
-	t=1696792257; bh=HTTJDJafn8qJ5y8ypB1X2wmPBXY2xmjffTqJQzQtOmM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h2gP711hueezP+66rwMJLWYR4gkQ+T+bNaaoU1UBRrB5ACZvmSlGFC64Y1V/FNuNy
-	 vg5SHL6shRKFt4Am7e6nAtNyg5GSrGzRuz3erfCVkufo+nUhSbZxsMrfUAE+EtDsL/
-	 DbXCjvYZXzhT80IzWgGBfSVtjFYDC/KDoBZvldhY=
-Date: Sun, 8 Oct 2023 21:10:56 +0200
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
-To: Anshul Dalal <anshulusr@gmail.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shuah Khan <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2 2/2] input: joystick: driver for Adafruit Seesaw
- Gamepad
-Message-ID: <54334f96-a1cc-439b-9de2-ec0187495f35@t-8ch.de>
-References: <20231008172435.2391009-1-anshulusr@gmail.com>
- <20231008172435.2391009-2-anshulusr@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881A714F7F
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 19:33:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D429C433C7;
+	Sun,  8 Oct 2023 19:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696793585;
+	bh=7L4qZqJWK5WwSbCe/JMaRpshZZKeMr+g2ApwVhHBa7Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dI+8ZdyJCGsMfIWOW4GBAv4/QFpr6TvPIO6u5k/abMlpEm/pyOAYlhzRYZvG3Ls4c
+	 6kLpC76ncFiP6GFzV4Vdjin+Aj+6m1y8O6yNMzoCrbI+7cl4nIA8tXXnn0jQtwBANL
+	 SJ4MVyDbykVOwzpeVF8Cxy6zgYwBPACn3RGN7IaeETgTkEOf4arzR+ojndq2pixSQo
+	 ceD1t6HA4wiZ484pWfh3k5gR/a5JXm2w8QWThzmUmsifxKWgaS55OBnDxpTyUF8UO1
+	 0DrEw18/VAeQrOmm28pGsYtSxV67sR3JzcPla7ImwXmsHVyIWzFmJqxK+BdJbZmNJn
+	 lGUad+jBvLupQ==
+Received: (nullmailer pid 145625 invoked by uid 1000);
+	Sun, 08 Oct 2023 19:33:04 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231008172435.2391009-2-anshulusr@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-
-On 2023-10-08 22:54:34+0530, Anshul Dalal wrote:
-> [..]
-> +
-> +	input_report_abs(input, ABS_X, data.x);
-> +	input_report_abs(input, ABS_Y, data.y);
-> +	input_report_key(input, BTN_A, data.button_a);
-> +	input_report_key(input, BTN_B, data.button_b);
-> +	input_report_key(input, BTN_X, data.button_x);
-> +	input_report_key(input, BTN_Y, data.button_y);
-
-FYI the button layout on this device is different from common commercial
-gamepads like XBox, Playstation and Logitech.
-This seems to be common to all gamepads from Adafruit.
-
-Adafruit:
-
-    X
- Y     A
-    B
-
-Others:
-
-    Y
- X     B
-    A
+From: Rob Herring <robh@kernel.org>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel-mentees@lists.linuxfoundation.org, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>
+In-Reply-To: <20231008185709.2448423-1-anshulusr@gmail.com>
+References: <20231008185709.2448423-1-anshulusr@gmail.com>
+Message-Id: <169679358403.145603.2546458624338403625.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input: bindings for Adafruit
+ Seesaw Gamepad
+Date: Sun, 08 Oct 2023 14:33:04 -0500
 
 
-In input-event-codes.h the symbol BTN_A actually maps to BTN_SOUTH,
-matching the common layout. But as you can see this is wrong for this
-device.
-(Same for BTN_B and BTN_EAST)
+On Mon, 09 Oct 2023 00:27:06 +0530, Anshul Dalal wrote:
+> A simple driver for a mini gamepad that communicates over i2c, the gamepad
+> has bidirectional thumb stick input and six buttons.
+> 
+> The gamepad chip utilizes the open framework from Adafruit called 'Seesaw'
+> to transmit the ADC data for the joystick and digital pin state for the
+> buttons. I have only implemented the functionality required to receive the
+> thumb stick and button state.
+> 
+> Product page:
+>   https://www.adafruit.com/product/5743
+> Arduino driver:
+>   https://github.com/adafruit/Adafruit_Seesaw
+> 
+> For testing on a RPi Zero 2W, I utilized the following devicetree overlay:
+> 
+> /dts-v1/;
+> /plugin/;
+> / {
+> 	compatible = "brcm,bcm2835";
+> 	fragment@0 {
+> 		target = <&i2c1>;
+> 		__overlay__ {
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 			joystick@50 {
+> 				compatible = "adafruit,seesaw-gamepad";
+> 				reg = <0x50>;
+> 			};
+> 		};
+> 	};
+> };
+> 
+> I used the above overlay as reference for writing this binding. Though the
+> gamepad also has an interrupt pin that needs to be enabled explicitly (not
+> currently implemented in driver). The pin triggers a rising edge when a
+> button is pressed or joystick is moved which can be detected on a GPIO
+> of the Microcontroller.
+> 
+> I wasn't sure how to represent that functionality in the binding so I have
+> left it out for now.
+> 
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> ---
+> 
+> Changes for v3:
+> - Updated id field to reflect updated file name from previous version
+> - Added `reg` property
+> 
+> Changes for v2:
+> - Renamed file to `adafruit,seesaw-gamepad.yaml`
+> - Removed quotes for `$id` and `$schema`
+> - Removed "Bindings for" from the description
+> - Changed node name to the generic name "joystick"
+> - Changed compatible to 'adafruit,seesaw-gamepad' instead of 'adafruit,seesaw_gamepad'
+> 
+>  .../input/adafruit,seesaw-gamepad.yaml        | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+> 
 
-Weirdly enough for BTN_X/BTN_NORTH and BTN_Y/BNT_WEST the aliasing is
-correct for Adafruit and wrong for the others.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Not sure how to fix this correctly. Maybe the input maintainers know.
+yamllint warnings/errors:
 
-> +	input_report_key(input, BTN_START, data.button_start);
-> +	input_report_key(input, BTN_SELECT, data.button_select);
-> +	input_sync(input);
-> +}
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/input/adafruit-seesaw.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231008185709.2448423-1-anshulusr@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
