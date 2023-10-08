@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBB57BCE27
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 13:22:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D8B7BCE2B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 13:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C909D1C208DC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 11:22:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01FBA1C20A97
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 11:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A0EC120;
-	Sun,  8 Oct 2023 11:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A90C131;
+	Sun,  8 Oct 2023 11:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ocp7eaa3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZukHplNq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597558487
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 11:22:21 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC9E8F
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 04:22:19 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-405361bb94eso36071885e9.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Oct 2023 04:22:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5293B8487
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 11:23:29 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98583AC
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 04:23:28 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-307d20548adso3323354f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Oct 2023 04:23:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696764138; x=1697368938; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696764207; x=1697369007; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5ah2rnm//UH2lja9GiPIS/dEpdsXKUiiiNMTTbaxiXE=;
-        b=ocp7eaa3EcV0CZXMRn0NlKFbW0W4654YavhyfoZHpB8URU5qKyPM/9wGZOkCDQY0Ki
-         9vW52fVRKQDSdMUwHvymmQeUyNrgCfj20v95cJqNII/YtNm8UUyYRGL7e7LIkTx7GSGh
-         Y3Fg3jDE+IjoSixz9jAax8TNKUH4GYK2hep/4Ei1D6FZoye9pDwP2xxpMeHV95JxyqD3
-         fVJJcoZOfWw6aDJRmtpqTDGgWIE90SIP/PgMkW2hTG4wsxLT0ufFRvWgrHuucbk0qIZn
-         OODoZbKCdq6IA6deWHGnET2Xb3AKWDSjyRbUD7+Kcyk/c4Q7O8V/zgOxts0+KRtTclzz
-         eXdQ==
+        bh=Vr1ET5+SkuPnFZ1s1d+78KFHXXPxFeD4Lbiig6TYj9k=;
+        b=ZukHplNqa9cXRGHBhy73DmOb2Yo8y/0LlLexYh8OeYpFDMWC8mlLOufaYZ+h/BQ/JS
+         qW/VNVJSoJgYVdDdK4rNAbeYbK0HIh1mJwHDR91Xk291dM1XXu7FNAhtciQCLwBX8AJy
+         WQNsEdYibQIOoGgvAA97KMPPUIOxoZwcqen+aALLpG8wCnZ/Nb++dS8PrR9f0liseOvd
+         p0YqaYNJJOK1eZ4QYPhq4pbHSFasd5OSX6nPAvZiEe/i4YuLDh+tyz5s9g09BPJYAzDN
+         TDB2eNXG9CO9nBF9TA03jO93XbgXpBU5JRGtD7ww0cQpko5rBU5CICX5rp5myxG9+ws9
+         sYQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696764138; x=1697368938;
+        d=1e100.net; s=20230601; t=1696764207; x=1697369007;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ah2rnm//UH2lja9GiPIS/dEpdsXKUiiiNMTTbaxiXE=;
-        b=e+bM5lG9xH9o9ASURv+NbjlhEwVM0ZF0ivGtT9pDQRnUTFVJEku4mu0/2jQ7jsdes4
-         SUTwBCBuBW8b+PSzwKeliOj2dNGYsNw/qTMTqV80eMX0q9e1UeAUSWLzEcT81H16EVS4
-         OH49ljslocOtbZT/Vsc0NtMkH/F5gYbD1r5EP0MSn5I++uHqsDcAevKVb9cmHRAXNEOk
-         9Sfb0IWN/KCCfHvI1NEGCSYXQewh2uESOvrG0BQihma5lkq5HaUdD0OpeTqfVA60ilur
-         ddoD/rRMzxJwlUx2X/hVLUDM9eCjuKNsYosmNbb0FSulq4YzFWab2gQVdSdWTOkVmky3
-         w/+Q==
-X-Gm-Message-State: AOJu0YxelF6MCFHJY6gN1rPBFr4vojfV/BLbz+EJcgm5Utbsa0As4j4K
-	36DlWImgodZcvELDGa2yCM1NwQ==
-X-Google-Smtp-Source: AGHT+IGAYIdvX6VV/1OeGshPZkMdLF9GshPd9fmvol07AePOluKtPFsHHyx53VhxpgPsbJbBkB++sQ==
-X-Received: by 2002:a05:6000:109:b0:320:1c6:628c with SMTP id o9-20020a056000010900b0032001c6628cmr11892054wrx.65.1696764138014;
-        Sun, 08 Oct 2023 04:22:18 -0700 (PDT)
+        bh=Vr1ET5+SkuPnFZ1s1d+78KFHXXPxFeD4Lbiig6TYj9k=;
+        b=elJKHTdD9vl7ls5KW94d2lZgQCWR/03D3y+1w63SZMEY5Ya8msajo+fzoHoeUcZQMf
+         S4X4+M6YdryWwTVc7JbdUIwqKtq7tCsGCJKbs4wZIzUaOPvnmmUo+w9YjG0BB4G9OcJr
+         r31w59pTYPBQJPWZqoePveRAojGWBCUx9IbQATv+Wpsp2D04XgNXb7eENEITQz0uqSis
+         wQvIpd4+mkvsY3adrLhbuvmtDhpIa6YPqWJ4OuABirD0ez0KqbMOhyidvUJUrw0/MsR7
+         bkMR6hjPF2CGMul4ENCc3Qnag2pKojPisOoVWLN/EyranlsxkvbJwBp7fK68P8FdEh+E
+         GoKw==
+X-Gm-Message-State: AOJu0Yx+uYjH2zS+1r3a9YkZb05DbmJDuV2IHQ9iRVLVsUk8U5qD7V8U
+	ELmbV2E5yT5jsWI8OWdwqPtJ3g==
+X-Google-Smtp-Source: AGHT+IFpk3Jd/n6rdpRUzbC63YJsipQy7G33XzOcAwNTERtheNvBmFoI4hBTLdK/QUzLPlNN7GVe8A==
+X-Received: by 2002:adf:ed88:0:b0:320:28e:b638 with SMTP id c8-20020adfed88000000b00320028eb638mr12192347wro.36.1696764206983;
+        Sun, 08 Oct 2023 04:23:26 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id h9-20020a5d5489000000b003179d5aee67sm6581049wrv.94.2023.10.08.04.22.16
+        by smtp.gmail.com with ESMTPSA id h9-20020a5d5489000000b003179d5aee67sm6581049wrv.94.2023.10.08.04.23.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Oct 2023 04:22:17 -0700 (PDT)
-Message-ID: <f1277686-2dd6-4f86-b249-0d9729e7ee6f@linaro.org>
-Date: Sun, 8 Oct 2023 13:22:16 +0200
+        Sun, 08 Oct 2023 04:23:26 -0700 (PDT)
+Message-ID: <6aa63f7a-7e6b-4723-89f1-f30e0682d489@linaro.org>
+Date: Sun, 8 Oct 2023 13:23:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] riscv: dts: sophgo: add initial CV1812H SoC device
- tree
+Subject: Re: [PATCH v13 08/10] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
 Content-Language: en-US
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <IA1PR20MB495337659E69ADA1A8B1596BBBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231008111627.325468-1-inochiama@outlook.com>
- <IA1PR20MB495360B632D106BBB833D82ABBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+ ahalaney@redhat.com, quic_shazhuss@quicinc.com
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-9-quic_kriskura@quicinc.com>
+ <e0a7dcaf-9303-4ddd-9a75-dd56165698f9@linaro.org>
+ <1fb7bc00-8338-41f6-92ae-84b442f896a3@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,27 +132,53 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB495360B632D106BBB833D82ABBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <1fb7bc00-8338-41f6-92ae-84b442f896a3@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 08/10/2023 13:16, Inochi Amaoto wrote:
-> Add initial device tree for the CV1812H RISC-V SoC by SOPHGO.
+On 08/10/2023 13:21, Krishna Kurapati PSSNV wrote:
 > 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> ---
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi |  95 +------------
->  arch/riscv/boot/dts/sophgo/cv180x.dtsi  | 178 ++++++++++++++++++++++++
->  arch/riscv/boot/dts/sophgo/cv1812h.dtsi |  36 +++++
+> 
+> On 10/8/2023 4:41 PM, Krzysztof Kozlowski wrote:
+>> On 07/10/2023 17:48, Krishna Kurapati wrote:
+>>> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+>>> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+>>> platforms.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 84 ++++++++++++++++++++++++++
+>>>   1 file changed, 84 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> index cad59af7ccef..5f64f75b07db 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> @@ -3330,6 +3330,90 @@ system-cache-controller@9200000 {
+>>>   			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>>>   		};
+>>>   
+>>> +		usb_2: usb@a4f8800 {
+>>> +			compatible = "qcom,sc8280xp-dwc3-mp", "qcom,dwc3";
+>>
+>> There is no such compatible. Scrolling through 3 pages of cover letter,
+>> I did not find dependency listed. I did not scroll more - dependency is
+>> the most important piece, so I would assume it is in the top-part.
+>>
+> Hi Krzysztof,
+> 
+>   I rebased the series on top of latest usb-next. I mentioned in cover 
+> letter that the first 3 patches have been merged on usb-next and this 
+> series has the remaining 10 patches. Apologies, I must have mentioned 
+> commit number of the merged patches as well for better context. The 
+> compatible was merged in the patch [1].
 
-You need to split moving existing code into common file and then send it
-with proper -M/-B/-C argument so the move/copy will be detected.
+OK, I see it now in latest next.
 
 Best regards,
 Krzysztof
