@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-6743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162EE7BCAB0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 02:49:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9237BCAC5
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 02:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59A0F281CE2
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 00:49:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D23D1C2085D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 00:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75B610FA;
-	Sun,  8 Oct 2023 00:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894B8A50;
+	Sun,  8 Oct 2023 00:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uyd+3NBU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bYGBCRfB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A04510E9
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 00:49:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 018E4C433C9;
-	Sun,  8 Oct 2023 00:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA37A3B
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 00:49:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5E8C433C8;
+	Sun,  8 Oct 2023 00:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696726140;
-	bh=SUmtHRxizvYpZ+OdGdpOdYvkpMrA9yBGKptqULjxc+w=;
+	s=k20201202; t=1696726174;
+	bh=NhWxuNLTp7GYGxdpj3kshyvhnq8sbcconl2ofdo1sBs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Uyd+3NBUBvea5+mAFMT4VJglktv8zLPN2p0Az2VGX818nmJFUYM4ByHFIQ9umODoz
-	 uiiYUb1t4n9fDSES/dS1Va3BcKGvsGiM/kBIkBivwe5hNuEEFfaAe/N8spKGTxYj/C
-	 uCA2DoUU9xQN0RneZbou3tJ9BqO2Ux9iinS8/VlibUPl7yqwNHeIjbTqHaliFQL7cQ
-	 SuppTxkyOeit7YvHl7fdbOyoEgHKPbvpb9t/sw5N3WXCwdwAPhWC0fTmG7VqUsl+XF
-	 CYYt+DilObS+pBrkX2eZoPmpVzaO4ipADB2JjfH+A0/XOw/QP9L1NfFCMreL+fgjNr
-	 Wg9yTgbUMambQ==
+	b=bYGBCRfBfMTT3zlzk05eHPrmYqS5w7KTOZONc9PDTfBVyQCc0pMmOGW9mmWKs9vWg
+	 34/yKo7Vzhqo6bG9TXgOQoDwCo02yf2mVtlebqo2ZjtPxH0ezo+tP5n+oSPvKSEHMY
+	 RWVPeCrq/7fPF6uXfPDojolrPxXGSaZBa4A7zZHXyleaAjzsrmElPdV32dYnXwBTdz
+	 FJf9AeL9nON673mqWZA1ziTIy8d/r6DirRAFaCqeBTpG03ETS0AKp7LNd35DCfsqB7
+	 n6cPB/JZ+lv8q6DreqGNmvY8pB2H90umFEvxLHZuzrN8jY6EqsPkQD8Ymr+DNpQGVp
+	 VzCf7sWarJVOQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Arnd Bergmann <arnd@arndb.de>,
+Cc: Tony Lindgren <tony@atomide.com>,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	Carl Philipp Klemm <philipp@uvos.xyz>,
+	Merlijn Wajer <merlijn@wizzup.org>,
+	Pavel Machek <pavel@ucw.cz>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.5 03/18] arm64: dts: mediatek: Fix "mediatek,merge-mute" and "mediatek,merge-fifo-en" types
-Date: Sat,  7 Oct 2023 20:48:37 -0400
-Message-Id: <20231008004853.3767621-3-sashal@kernel.org>
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 02/12] ARM: dts: ti: omap: Fix noisy serial with overrun-throttle-ms for mapphone
+Date: Sat,  7 Oct 2023 20:49:19 -0400
+Message-Id: <20231008004929.3767992-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231008004853.3767621-1-sashal@kernel.org>
-References: <20231008004853.3767621-1-sashal@kernel.org>
+In-Reply-To: <20231008004929.3767992-1-sashal@kernel.org>
+References: <20231008004929.3767992-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,74 +60,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.5.6
+X-stable-base: Linux 6.1.56
 Content-Transfer-Encoding: 8bit
 
-From: Rob Herring <robh@kernel.org>
+From: Tony Lindgren <tony@atomide.com>
 
-[ Upstream commit 5f8456b1faefb06fcf6028dced9f37aa880c779d ]
+[ Upstream commit 5ad37b5e30433afa7a5513e3eb61f69fa0976785 ]
 
-"mediatek,merge-mute" and "mediatek,merge-fifo-en" properties are defined
-and used as boolean properties which in DT have no value.
+On mapphone devices we may get lots of noise on the micro-USB port in debug
+uart mode until the phy-cpcap-usb driver probes. Let's limit the noise by
+using overrun-throttle-ms.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Link: https://lore.kernel.org/r/20230830195650.704737-1-robh@kernel.org
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Note that there is also a related separate issue where the charger cable
+connected may cause random sysrq requests until phy-cpcap-usb probes that
+still remains.
+
+Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Cc: Carl Philipp Klemm <philipp@uvos.xyz>
+Cc: Merlijn Wajer <merlijn@wizzup.org>
+Cc: Pavel Machek <pavel@ucw.cz>
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/motorola-mapphone-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 4dbbf8fdab758..a9e52b50c8c48 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2957,7 +2957,7 @@ merge1: vpp-merge@1c10c000 {
- 			clock-names = "merge","merge_async";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0xc000 0x1000>;
--			mediatek,merge-mute = <1>;
-+			mediatek,merge-mute;
- 			resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE0_DL_ASYNC>;
- 		};
+diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+index c7a1f3ffc48ca..bd4731b929da5 100644
+--- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
++++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+@@ -640,6 +640,7 @@ &uart1 {
+ &uart3 {
+ 	interrupts-extended = <&wakeupgen GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH
+ 			       &omap4_pmx_core 0x17c>;
++	overrun-throttle-ms = <500>;
+ };
  
-@@ -2970,7 +2970,7 @@ merge2: vpp-merge@1c10d000 {
- 			clock-names = "merge","merge_async";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0xd000 0x1000>;
--			mediatek,merge-mute = <1>;
-+			mediatek,merge-mute;
- 			resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE1_DL_ASYNC>;
- 		};
- 
-@@ -2983,7 +2983,7 @@ merge3: vpp-merge@1c10e000 {
- 			clock-names = "merge","merge_async";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0xe000 0x1000>;
--			mediatek,merge-mute = <1>;
-+			mediatek,merge-mute;
- 			resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE2_DL_ASYNC>;
- 		};
- 
-@@ -2996,7 +2996,7 @@ merge4: vpp-merge@1c10f000 {
- 			clock-names = "merge","merge_async";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0xf000 0x1000>;
--			mediatek,merge-mute = <1>;
-+			mediatek,merge-mute;
- 			resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE3_DL_ASYNC>;
- 		};
- 
-@@ -3009,7 +3009,7 @@ merge5: vpp-merge@1c110000 {
- 			clock-names = "merge","merge_async";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c11XXXX 0x0000 0x1000>;
--			mediatek,merge-fifo-en = <1>;
-+			mediatek,merge-fifo-en;
- 			resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC>;
- 		};
- 
+ &uart4 {
 -- 
 2.40.1
 
