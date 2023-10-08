@@ -1,72 +1,79 @@
-Return-Path: <devicetree+bounces-6751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF777BCBE0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 05:19:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AECAC7BCBEC
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 05:36:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B28F281827
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 03:19:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7F7E1C20917
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 03:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D17615CC;
-	Sun,  8 Oct 2023 03:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C89215DA;
+	Sun,  8 Oct 2023 03:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PjAVUJJu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNmONDL/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E859188
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:19:27 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27758BD;
-	Sat,  7 Oct 2023 20:19:19 -0700 (PDT)
-X-UUID: 75bb6f30658911eea33bb35ae8d461a2-20231008
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=2lncwbw67fIZafoqWE9u36La+aHXLXeJrzy1kQnUnk4=;
-	b=PjAVUJJuSHqHzRTKGPA5OXNAW2UMD/ShP7lruTxpWR84/Y7K5Nbff6s5UWPEiJaggLjKylCKpU4T8hXIcfSiSoLNDmWRODH4VzBlUeoos4aT6J30/7+hCFNquUFmtB5gaRhLcBjZcJ2a5Xq5kyzI9Sq2STdEZcL9FzzMlSfUBnA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:6c9a4b80-1fa8-48ca-b766-41ba7fce0e95,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:1f1fb3bf-14cc-44ca-b657-2d2783296e72,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 75bb6f30658911eea33bb35ae8d461a2-20231008
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1277965314; Sun, 08 Oct 2023 11:19:15 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sun, 8 Oct 2023 11:19:13 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sun, 8 Oct 2023 11:19:12 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, "Steve
- Cho" <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: using encoder device to alloc/free encoder memory
-Date: Sun, 8 Oct 2023 11:19:09 +0800
-Message-ID: <20231008031909.32146-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EA0188
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:36:36 +0000 (UTC)
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BD2C2
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 20:36:35 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6c7bbfb7a73so2320220a34.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Oct 2023 20:36:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696736194; x=1697340994; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O46Z79/thQ1J3qOk74OlVCEf6C6SSN1l//6jVCg8hMY=;
+        b=zNmONDL/Rio2cmoS1E9S64+48isst4YaPeRvvYGG5wH4h1H5OMjyYny3I3HDVzlifD
+         FxfhyKPcs35hfheaJDS0IJOhwlz3RXuElxYuAEWGafN7M76vog4AL3NByF8cdWM6eSM8
+         rxeoR59SO4GH6jcIy0slkUpEX1YVAL/iCF4DIDkWK2Np+TryncKSFO649NrMbGZ7uf2q
+         s3rqjavv6gkhu4kX5jxuuBlB5/2lVQ6sfDI9Y78b32qteIJfz0Q17UzBMOte2gMPr5pr
+         lVZMJhDHdjkvfQhdIbQhqSRntfbK5TPR0fRlT9AxwdZ5GWPt4kNJPtls9Jc4X4O81vPZ
+         YTJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696736194; x=1697340994;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O46Z79/thQ1J3qOk74OlVCEf6C6SSN1l//6jVCg8hMY=;
+        b=HaEmNgn6YRM2p3gfNt1H9Rl5Uac9EuSiZ6BQdR90FhxD1O5YxziM8DY7EdKR+Mu1vm
+         IAd6mb76CqdoWnPFS30IgG6Rf8+oWAufck3x9A1Bw0itksZrme1aDTQmxhs6ZuZYC38E
+         3Upa+rIyAyzrvMgq6r1+hCMmoZjUy06qMZEVwV4U71cZUjqdctcgrVehb4bYNkvWAyHf
+         B4svc+qHyn+HVWIFGVut23eC0trLHpdcYGMsEfi/Ut+QC/W4PAauJepY7rAEBZ8omtRo
+         jB4C8MiP6jfv5R025HeBASJUnYifRPbnLru8jT/IYNMMdK2QXv/YeJUFdvwdrTgYJo7I
+         AlvA==
+X-Gm-Message-State: AOJu0Yz2X7On+UXxEcGO81ZUHMDu57WBsdpjqIvuIZxtGcxbq9ddWOnO
+	aihm94xcRjOVuW86/7nBi8atkg==
+X-Google-Smtp-Source: AGHT+IF2WJna5aTcHCff9FDb3AFiiR1caqvPjH4/+qNmboSMrw0kS/evk2m4kO5zetYpq0utIAPz9A==
+X-Received: by 2002:a9d:7a42:0:b0:6b9:4216:c209 with SMTP id z2-20020a9d7a42000000b006b94216c209mr12258669otm.12.1696736194435;
+        Sat, 07 Oct 2023 20:36:34 -0700 (PDT)
+Received: from localhost ([136.62.192.75])
+        by smtp.gmail.com with ESMTPSA id c11-20020a9d684b000000b006c460c58b00sm1104080oto.2.2023.10.07.20.36.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Oct 2023 20:36:34 -0700 (PDT)
+From: Sam Protsenko <semen.protsenko@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Kees Cook <keescook@chromium.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH] arm64: dts: exynos: Add reserved memory for pstore on E850-96
+Date: Sat,  7 Oct 2023 22:36:33 -0500
+Message-Id: <20231008033633.21304-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,170 +81,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--9.270600-8.000000
-X-TMASE-MatchedRID: EvLd3cwGQhEtJMbDWD8p3hWCVBr+Ay98uoYFb0nRiqOCsBeCv8CM/Xf3
-	4BoKFzcHTg/jfa6b1OczYorSrzJ8m2MAzi+7d0chF6z9HGHKwNuIrmqDVyayv8lgi/vLS272INi
-	phQlaWRN2ZsQ86ifK0L+R4Fk68cCxoXHg+KoW2Ubil2r2x2PwtYfsPVs/8Vw6Ydn5x3tXIpcota
-	sKsNUdSeLzNWBegCW2xl8lw85EaVQLbigRnpKlKWxlRJiH4397GKedVHUXrT7KIf/D+oFxIU+rs
-	1+BI9BmqizkboPGhHnzIgp4i3lt2A==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--9.270600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 115D3AFDCB6F7F683D4B83FD3D6673B22C9D90B17C7C1E4CDDFDB2404A119D962000:8
-X-MTK: N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Need to use encoder device to allocate/free encoder memory when calling
-mtk_vcodec_mem_alloc/mtk_vcodec_mem_free, or leading to below crash log
-when test encoder with decoder device.
+Reserve a 2 MiB memory region to record kmsg dumps, console, ftrace and
+userspace messages. The implemented memory split allows capturing and
+reading corresponding ring buffers:
+  * dmesg: 6 dumps, 128 KiB each
+  * console: 128 KiB
+  * ftrace: 128 KiB for each of 8 CPUs (1 MiB total)
+  * userspace messages: 128 KiB
 
-pc : dma_alloc_attrs+0x44/0xf4
-lr : mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common]
-sp : ffffffc0209f3990
-x29: ffffffc0209f39a0 x28: ffffff8024102a18 x27: 0000000000000000
-x26: 0000000000000000 x25: ffffffc00c06e2d8 x24: 0000000000000001
-x23: 0000000000000cc0 x22: 0000000000000010 x21: 0000000000000800
-x20: ffffff8024102a18 x19: 0000000000000000 x18: 0000000000000000
-x17: 0000000000000009 x16: ffffffe389736a98 x15: 0000000000000078
-x14: ffffffe389704434 x13: 0000000000000007 x12: ffffffe38a2b2560
-x11: 0000000000000800 x10: 0000000000000004 x9 : ffffffe331f07484
-x8 : 5400e9aef2395000 x7 : 0000000000000000 x6 : 000000000000003f
-x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000cc0
-x2 : ffffff8024102a18 x1 : 0000000000000800 x0 : 0000000000000010
-Call trace:
- dma_alloc_attrs+0x44/0xf4
- mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common 2819d3d601f3cd06c1f2213ac1b9995134441421]
- h264_enc_set_param+0x27c/0x378 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
- venc_if_set_param+0x4c/0x7c [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
- vb2ops_venc_start_streaming+0x1bc/0x328 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
- vb2_start_streaming+0x64/0x12c
- vb2_core_streamon+0x114/0x158
- vb2_streamon+0x38/0x60
- v4l2_m2m_streamon+0x48/0x88
- v4l2_m2m_ioctl_streamon+0x20/0x2c
- v4l_streamon+0x2c/0x38
- __video_do_ioctl+0x2c4/0x3dc
- video_usercopy+0x404/0x934
- video_ioctl2+0x20/0x2c
- v4l2_ioctl+0x54/0x64
- v4l2_compat_ioctl32+0x90/0xa34
- __arm64_compat_sys_ioctl+0x128/0x13c
- invoke_syscall+0x4c/0x108
- el0_svc_common+0x98/0x104
- do_el0_svc_compat+0x28/0x34
- el0_svc_compat+0x2c/0x74
- el0t_32_sync_handler+0xa8/0xcc
- el0t_32_sync+0x194/0x198
-Code: aa0003f6 aa0203f4 aa0103f5 f900
-
-'Fixes: 01abf5fbb081c ("media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'")'
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- .../mediatek/vcodec/common/mtk_vcodec_util.c  | 66 ++++++++++++++++++-
- 1 file changed, 64 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos850-e850-96.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
-index 908602031fd0..62bb7290c56d 100644
---- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
-+++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
-@@ -45,7 +45,7 @@ int mtk_vcodec_write_vdecsys(struct mtk_vcodec_dec_ctx *ctx, unsigned int reg,
- }
- EXPORT_SYMBOL(mtk_vcodec_write_vdecsys);
+diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+index 8d733361ef82..d54c8fa55c09 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
++++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+@@ -59,6 +59,21 @@ memory@80000000 {
+ 		      <0x8 0x80000000 0x80000000>;
+ 	};
  
--int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
-+static int mtk_vcodec_mem_dec_alloc(void *priv, struct mtk_vcodec_mem *mem)
- {
- 	unsigned long size = mem->size;
- 	struct mtk_vcodec_dec_ctx *ctx = priv;
-@@ -64,9 +64,39 @@ int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
- 
- 	return 0;
- }
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <1>;
++		ranges;
 +
-+static int mtk_vcodec_mem_enc_alloc(void *priv, struct mtk_vcodec_mem *mem)
-+{
-+	unsigned long size = mem->size;
-+	struct mtk_vcodec_enc_ctx *ctx = priv;
-+	struct device *dev = &ctx->dev->plat_dev->dev;
++		ramoops@f0000000 {
++			compatible = "ramoops";
++			reg = <0x0 0xf0000000 0x200000>;
++			record-size = <0x20000>;
++			console-size = <0x20000>;
++			ftrace-size = <0x100000>;
++			pmsg-size = <0x20000>;
++		};
++	};
 +
-+	mem->va = dma_alloc_coherent(dev, size, &mem->dma_addr, GFP_KERNEL);
-+	if (!mem->va) {
-+		mtk_v4l2_venc_err(ctx, "%s dma_alloc size=%ld failed!", dev_name(dev), size);
-+		return -ENOMEM;
-+	}
-+
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
-+			  (unsigned long)mem->dma_addr);
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
-+
-+	return 0;
-+}
-+
-+int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
-+{
-+	enum mtk_instance_type inst_type = *((unsigned int *)priv);
-+
-+	if (inst_type == MTK_INST_ENCODER)
-+		return mtk_vcodec_mem_enc_alloc(priv, mem);
-+	else
-+		return mtk_vcodec_mem_dec_alloc(priv, mem);
-+}
- EXPORT_SYMBOL(mtk_vcodec_mem_alloc);
- 
--void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
-+static void mtk_vcodec_mem_dec_free(void *priv, struct mtk_vcodec_mem *mem)
- {
- 	unsigned long size = mem->size;
- 	struct mtk_vcodec_dec_ctx *ctx = priv;
-@@ -87,6 +117,38 @@ void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
- 	mem->dma_addr = 0;
- 	mem->size = 0;
- }
-+
-+static void mtk_vcodec_mem_enc_free(void *priv, struct mtk_vcodec_mem *mem)
-+{
-+	unsigned long size = mem->size;
-+	struct mtk_vcodec_enc_ctx *ctx = priv;
-+	struct device *dev = &ctx->dev->plat_dev->dev;
-+
-+	if (!mem->va) {
-+		mtk_v4l2_venc_err(ctx, "%s dma_free size=%ld failed!", dev_name(dev), size);
-+		return;
-+	}
-+
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
-+			  (unsigned long)mem->dma_addr);
-+	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
-+
-+	dma_free_coherent(dev, size, mem->va, mem->dma_addr);
-+	mem->va = NULL;
-+	mem->dma_addr = 0;
-+	mem->size = 0;
-+}
-+
-+void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
-+{
-+	enum mtk_instance_type inst_type = *((unsigned int *)priv);
-+
-+	if (inst_type == MTK_INST_ENCODER)
-+		mtk_vcodec_mem_enc_free(priv, mem);
-+	else
-+		mtk_vcodec_mem_dec_free(priv, mem);
-+}
- EXPORT_SYMBOL(mtk_vcodec_mem_free);
- 
- void *mtk_vcodec_get_hw_dev(struct mtk_vcodec_dec_dev *dev, int hw_idx)
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
 -- 
-2.18.0
+2.39.2
 
 
