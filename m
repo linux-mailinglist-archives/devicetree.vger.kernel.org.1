@@ -1,125 +1,1069 @@
-Return-Path: <devicetree+bounces-6763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE607BCC9C
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 08:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C043B7BCD52
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8B121C20899
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 06:25:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80A521C20915
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 08:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64135384;
-	Sun,  8 Oct 2023 06:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kz5F2j3x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C0A2571;
+	Sun,  8 Oct 2023 08:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37111522F
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 06:25:47 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A818C6;
-	Sat,  7 Oct 2023 23:25:45 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9adb9fa7200so771334266b.0;
-        Sat, 07 Oct 2023 23:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696746343; x=1697351143; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3NIZ6HwYzlFusyGWjEQKDrSy6Sb/ORrlNJfmg+KZe3c=;
-        b=Kz5F2j3xWndNl+dWO3ChBKBPXrgh6Y9vGduQ2ADrxjWbJTrtsar0zGa4sGgO62Gg8a
-         HdDwVLlH91JndqsVAGKbg9/CH6PJiAKKtIx39f2hOIEdKT8VAzycyOgMy6Y0obE5EFP+
-         0ajHPy8KvwyyPLrB4mxjPACchcIyTf78QLpiGjAXXQ7+3LXb5FfIHH450M7f46JijqyV
-         99xhCJx9cn/wEIGzXQPSQ3Tis926DKTMjrPZcoZzPW6pooA5VFzQMVu1nLPos5q2xqZk
-         Fo+C7pos2R3OOVGe61+H9rbKNQT9R+HrighbolAXKr9tPI6VgTA94RgIZ6KJBplp6/Ms
-         +isQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696746343; x=1697351143;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3NIZ6HwYzlFusyGWjEQKDrSy6Sb/ORrlNJfmg+KZe3c=;
-        b=c05BnJXj5d8G4+wf/d6kSqGTjBGfMkOK5ETKpJG5Pg2ZDAmDVFti3FcOocmS6QZMTJ
-         HND8mAcuR+LWQ0m86bsIqPK6Tnpr70CqA79l+ErBQNZNHBh6Rzu+V1eaDSZrMic2+xNX
-         coYmYJ4tHErTTAs4MZEpUGDnMwlYZ3mOZexKaeGBK4IiJlaQ9w7Ele0KVg+xP7PrZ5Iq
-         L29dV0Z7zxFE1pfbE8ruLTuR8xGuthfu8NOnzNPLHwAl61QdPmTPNfL6o4chXr1w3rKb
-         Cd9TeNTPwxTIhiIapR3KJwJV6Ybj6oJQPlle81znjmDJOAZAd2CmHZuMIFTqt5ty58fc
-         L8EA==
-X-Gm-Message-State: AOJu0YyI9d97bRWrvVfWG8wB8fNo8L9GGmXch0AIujuVPystEO4taySI
-	eNy6TLwRNbRDdw0jA+P3icR9yufiyQ5lnofqVBY=
-X-Google-Smtp-Source: AGHT+IEpDcKfqVoGO7slR9jC1Tekmva9MXv7wcLZDjo9EnCEFJ2wH7sVv0i+q1UEJL4O4/NvLOgmajsEq0xutLXvH7Y=
-X-Received: by 2002:a17:906:32d4:b0:9ae:5866:9745 with SMTP id
- k20-20020a17090632d400b009ae58669745mr8906344ejk.21.1696746343496; Sat, 07
- Oct 2023 23:25:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BB28838
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 08:52:12 +0000 (UTC)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEE7DF;
+	Sun,  8 Oct 2023 01:52:06 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id E176B822A;
+	Sun,  8 Oct 2023 16:51:58 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
+ 2023 16:51:58 +0800
+Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Oct
+ 2023 16:51:58 +0800
+From: Jack Zhu <jack.zhu@starfivetech.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss
+	<rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+	<bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<jack.zhu@starfivetech.com>, <changhuang.liang@starfivetech.com>
+Subject: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Date: Sun, 8 Oct 2023 16:51:46 +0800
+Message-ID: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-3-jagathjog1996@gmail.com> <ZQggiuLyLGq/ekMS@smile.fi.intel.com>
- <CAM+2EuKXW+FsgY6rp=ugU03owJS6ReeWUNWOcMKiUfomiY_a2Q@mail.gmail.com>
-In-Reply-To: <CAM+2EuKXW+FsgY6rp=ugU03owJS6ReeWUNWOcMKiUfomiY_a2Q@mail.gmail.com>
-From: Jagath Jog J <jagathjog1996@gmail.com>
-Date: Sun, 8 Oct 2023 11:55:32 +0530
-Message-ID: <CAM+2Eu+94awdDtC4RVuCe6Nq_QXj_A5-nv6=iuPLzgybHu1qSQ@mail.gmail.com>
-Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_FILL_THIS_FORM_SHORT
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Andy,
+Hi,
 
+This series is the v10 series that attempts to support the Camera Subsyst=
+em
+found on StarFive JH7110 SoC.
 
-On Wed, Sep 20, 2023 at 4:13=E2=80=AFAM Jagath Jog J <jagathjog1996@gmail.c=
-om> wrote:
->
-> On Mon, Sep 18, 2023 at 3:34=E2=80=AFPM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> >
-> > On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
-> > > The Bosch BMI323 is a 6-axis low-power IMU that provide measurements =
-for
-> > > acceleration, angular rate, and temperature. This sensor includes
-> > > motion-triggered interrupt features, such as a step counter, tap dete=
-ction,
-> > > and activity/inactivity interrupt capabilities.
-> > >
+This series is based on top of the master branch of media_stage repositor=
+y,
+which is tested with a v4l2-compliance compiled from the git repo
+(git://linuxtv.org/v4l-utils.git).
 
-...
+The following are the media graph for the device and the v4l2-compliance
+output.
 
-> > > +static const struct attribute_group bmi323_event_attribute_group =3D=
- {
-> > > +     .attrs =3D bmi323_event_attributes,
-> > > +};
-> >
-> > ATTRIBUTE_GROUPS() ?
->
-> Okay, I will use ATTRIBUTE_GROUPS.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+[the media graph]:
 
-The ATTRIBUTE_GROUP(bmi323_event) macro will define two variables,
-bmi323_event_groups and bmi323_event_group. The event_attrs member
-of iio_info is of type struct attribute_group*, which means that
-bmi323_event_groups will remain unused. Since I am using a single
-event group, Can I keep it the same way?
+digraph board {
+	rankdir=3DTB
+	n00000001 [label=3D"{{<port0> 0} | stf_isp\n/dev/v4l-subdev0 | {<port1> =
+1}}", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
+	n00000001:port1 -> n00000008 [style=3Ddashed]
+	n00000004 [label=3D"capture_raw\n/dev/video0", shape=3Dbox, style=3Dfill=
+ed, fillcolor=3Dyellow]
+	n00000008 [label=3D"capture_yuv\n/dev/video1", shape=3Dbox, style=3Dfill=
+ed, fillcolor=3Dyellow]
+	n0000000e [label=3D"{{<port0> 0} | cdns_csi2rx.19800000.csi-bridge\n | {=
+<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=3DMrecord, style=3D=
+filled, fillcolor=3Dgreen]
+	n0000000e:port1 -> n00000001:port0 [style=3Ddashed]
+	n0000000e:port1 -> n00000004 [style=3Ddashed]
+	n00000018 [label=3D"{{} | imx219 6-0010\n/dev/v4l-subdev1 | {<port0> 0}}=
+", shape=3DMrecord, style=3Dfilled, fillcolor=3Dgreen]
+	n00000018:port0 -> n0000000e:port0 [style=3Dbold]
+}
 
+[the device topology]:
 
-Regards
-Jagath
+Media controller API version 6.6.0
 
-Jagath
+Media device information
+------------------------
+driver          starfive-camss
+model           Starfive Camera Subsystem
+serial         =20
+bus info        platform:19840000.camss
+hw revision     0x0
+driver version  6.6.0
+
+Device topology
+- entity 1: stf_isp (2 pads, 2 links, 0 routes)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		[stream:0 fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb
+		 crop.bounds:(0,0)/1920x1080
+		 crop:(0,0)/1920x1080]
+		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+	pad1: Source
+		[stream:0 fmt:YUYV8_1_5X8/1920x1080 field:none colorspace:srgb
+		 crop.bounds:(0,0)/1920x1080
+		 crop:(0,0)/1920x1080]
+		-> "capture_yuv":0 []
+
+- entity 4: capture_raw (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video0
+	pad0: Sink
+		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+
+- entity 8: capture_yuv (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video1
+	pad0: Sink
+		<- "stf_isp":1 []
+
+- entity 14: cdns_csi2rx.19800000.csi-bridge (5 pads, 3 links, 0 routes)
+             type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+		<- "imx219 6-0010":0 [ENABLED,IMMUTABLE]
+	pad1: Source
+		-> "stf_isp":0 []
+		-> "capture_raw":0 []
+	pad2: Source
+	pad3: Source
+	pad4: Source
+
+- entity 24: imx219 6-0010 (1 pad, 1 link, 0 routes)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev1
+	pad0: Source
+		[stream:0 fmt:SRGGB10_1X10/3280x2464 field:none colorspace:raw xfer:non=
+e ycbcr:601 quantization:full-range
+		 crop.bounds:(8,8)/3280x2464
+		 crop:(8,8)/3280x2464]
+		-> "cdns_csi2rx.19800000.csi-bridge":0 [ENABLED,IMMUTABLE]
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+[the v4l2-compliance output]:
+
+------------
+Test part 1:
+
+v4l2-compliance 1.25.0, 64 bits, 64-bit time_t
+
+Compliance test for starfive-camss device /dev/video1:
+
+Driver Info:
+	Driver name      : starfive-camss
+	Card type        : Starfive Camera Subsystem
+	Bus info         : platform:19840000.camss
+	Driver version   : 6.6.0
+	Capabilities     : 0x84200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           :=20
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+Interface Info:
+	ID               : 0x0300000a
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000008 (8)
+	Name             : capture_yuv
+	Function         : V4L2 I/O
+	Pad 0x01000009   : 0: Sink
+	  Link 0x0200000c: from remote pad 0x1000003 of entity 'stf_isp' (Image =
+Signal Processor): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+
+	Video Capture: Frame #000
+	Video Capture: Frame #001
+	Video Capture: Frame #002
+	Video Capture: Frame #003
+	Video Capture: Frame #004
+	Video Capture: Frame #005
+	Video Capture: Frame #006
+	Video Capture: Frame #007
+	Video Capture: Frame #008
+	Video Capture: Frame #009
+	Video Capture: Frame #010
+	Video Capture: Frame #011
+	Video Capture: Frame #012
+	Video Capture: Frame #013
+	Video Capture: Frame #014
+	Video Capture: Frame #015
+	Video Capture: Frame #016
+	Video Capture: Frame #017
+	Video Capture: Frame #018
+	Video Capture: Frame #019
+	Video Capture: Frame #020
+	Video Capture: Frame #021
+	Video Capture: Frame #022
+	Video Capture: Frame #023
+	Video Capture: Frame #024
+	Video Capture: Frame #025
+	Video Capture: Frame #026
+	Video Capture: Frame #027
+	Video Capture: Frame #028
+	Video Capture: Frame #029
+	Video Capture: Frame #030
+	Video Capture: Frame #031
+	Video Capture: Frame #032
+	Video Capture: Frame #033
+	Video Capture: Frame #034
+	Video Capture: Frame #035
+	Video Capture: Frame #036
+	Video Capture: Frame #037
+	Video Capture: Frame #038
+	Video Capture: Frame #039
+	Video Capture: Frame #040
+	Video Capture: Frame #041
+	Video Capture: Frame #042
+	Video Capture: Frame #043
+	Video Capture: Frame #044
+	Video Capture: Frame #045
+	Video Capture: Frame #046
+	Video Capture: Frame #047
+	Video Capture: Frame #048
+	Video Capture: Frame #049
+	Video Capture: Frame #050
+	Video Capture: Frame #051
+	Video Capture: Frame #052
+	Video Capture: Frame #053
+	Video Capture: Frame #054
+	Video Capture: Frame #055
+	Video Capture: Frame #056
+	Video Capture: Frame #057
+	Video Capture: Frame #058
+	Video Capture: Frame #059
+	                                                 =20
+	test MMAP (no poll): OK
+
+	Video Capture: Frame #000 (select)
+	Video Capture: Frame #001 (select)
+	Video Capture: Frame #002 (select)
+	Video Capture: Frame #003 (select)
+	Video Capture: Frame #004 (select)
+	Video Capture: Frame #005 (select)
+	Video Capture: Frame #006 (select)
+	Video Capture: Frame #007 (select)
+	Video Capture: Frame #008 (select)
+	Video Capture: Frame #009 (select)
+	Video Capture: Frame #010 (select)
+	Video Capture: Frame #011 (select)
+	Video Capture: Frame #012 (select)
+	Video Capture: Frame #013 (select)
+	Video Capture: Frame #014 (select)
+	Video Capture: Frame #015 (select)
+	Video Capture: Frame #016 (select)
+	Video Capture: Frame #017 (select)
+	Video Capture: Frame #018 (select)
+	Video Capture: Frame #019 (select)
+	Video Capture: Frame #020 (select)
+	Video Capture: Frame #021 (select)
+	Video Capture: Frame #022 (select)
+	Video Capture: Frame #023 (select)
+	Video Capture: Frame #024 (select)
+	Video Capture: Frame #025 (select)
+	Video Capture: Frame #026 (select)
+	Video Capture: Frame #027 (select)
+	Video Capture: Frame #028 (select)
+	Video Capture: Frame #029 (select)
+	Video Capture: Frame #030 (select)
+	Video Capture: Frame #031 (select)
+	Video Capture: Frame #032 (select)
+	Video Capture: Frame #033 (select)
+	Video Capture: Frame #034 (select)
+	Video Capture: Frame #035 (select)
+	Video Capture: Frame #036 (select)
+	Video Capture: Frame #037 (select)
+	Video Capture: Frame #038 (select)
+	Video Capture: Frame #039 (select)
+	Video Capture: Frame #040 (select)
+	Video Capture: Frame #041 (select)
+	Video Capture: Frame #042 (select)
+	Video Capture: Frame #043 (select)
+	Video Capture: Frame #044 (select)
+	Video Capture: Frame #045 (select)
+	Video Capture: Frame #046 (select)
+	Video Capture: Frame #047 (select)
+	Video Capture: Frame #048 (select)
+	Video Capture: Frame #049 (select)
+	Video Capture: Frame #050 (select)
+	Video Capture: Frame #051 (select)
+	Video Capture: Frame #052 (select)
+	Video Capture: Frame #053 (select)
+	Video Capture: Frame #054 (select)
+	Video Capture: Frame #055 (select)
+	Video Capture: Frame #056 (select)
+	Video Capture: Frame #057 (select)
+	Video Capture: Frame #058 (select)
+	Video Capture: Frame #059 (select)
+	                                                 =20
+	test MMAP (select): OK
+
+	Video Capture: Frame #000 (epoll)
+	Video Capture: Frame #001 (epoll)
+	Video Capture: Frame #002 (epoll)
+	Video Capture: Frame #003 (epoll)
+	Video Capture: Frame #004 (epoll)
+	Video Capture: Frame #005 (epoll)
+	Video Capture: Frame #006 (epoll)
+	Video Capture: Frame #007 (epoll)
+	Video Capture: Frame #008 (epoll)
+	Video Capture: Frame #009 (epoll)
+	Video Capture: Frame #010 (epoll)
+	Video Capture: Frame #011 (epoll)
+	Video Capture: Frame #012 (epoll)
+	Video Capture: Frame #013 (epoll)
+	Video Capture: Frame #014 (epoll)
+	Video Capture: Frame #015 (epoll)
+	Video Capture: Frame #016 (epoll)
+	Video Capture: Frame #017 (epoll)
+	Video Capture: Frame #018 (epoll)
+	Video Capture: Frame #019 (epoll)
+	Video Capture: Frame #020 (epoll)
+	Video Capture: Frame #021 (epoll)
+	Video Capture: Frame #022 (epoll)
+	Video Capture: Frame #023 (epoll)
+	Video Capture: Frame #024 (epoll)
+	Video Capture: Frame #025 (epoll)
+	Video Capture: Frame #026 (epoll)
+	Video Capture: Frame #027 (epoll)
+	Video Capture: Frame #028 (epoll)
+	Video Capture: Frame #029 (epoll)
+	Video Capture: Frame #030 (epoll)
+	Video Capture: Frame #031 (epoll)
+	Video Capture: Frame #032 (epoll)
+	Video Capture: Frame #033 (epoll)
+	Video Capture: Frame #034 (epoll)
+	Video Capture: Frame #035 (epoll)
+	Video Capture: Frame #036 (epoll)
+	Video Capture: Frame #037 (epoll)
+	Video Capture: Frame #038 (epoll)
+	Video Capture: Frame #039 (epoll)
+	Video Capture: Frame #040 (epoll)
+	Video Capture: Frame #041 (epoll)
+	Video Capture: Frame #042 (epoll)
+	Video Capture: Frame #043 (epoll)
+	Video Capture: Frame #044 (epoll)
+	Video Capture: Frame #045 (epoll)
+	Video Capture: Frame #046 (epoll)
+	Video Capture: Frame #047 (epoll)
+	Video Capture: Frame #048 (epoll)
+	Video Capture: Frame #049 (epoll)
+	Video Capture: Frame #050 (epoll)
+	Video Capture: Frame #051 (epoll)
+	Video Capture: Frame #052 (epoll)
+	Video Capture: Frame #053 (epoll)
+	Video Capture: Frame #054 (epoll)
+	Video Capture: Frame #055 (epoll)
+	Video Capture: Frame #056 (epoll)
+	Video Capture: Frame #057 (epoll)
+	Video Capture: Frame #058 (epoll)
+	Video Capture: Frame #059 (epoll)
+	                                                 =20
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for starfive-camss device /dev/video1: 53, Succeeded: 53, Failed: 0=
+, Warnings: 0
+
+------------
+Test part 2:
+
+v4l2-compliance 1.25.0, 64 bits, 64-bit time_t
+
+Compliance test for starfive-camss device /dev/media0:
+
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           :=20
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+
+Required ioctls:
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/media0 open: OK
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test for unlimited opens: OK
+
+Media Controller ioctls:
+	test MEDIA_IOC_G_TOPOLOGY: OK
+	Entities: 5 Interfaces: 4 Pads: 10 Links: 8
+	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+	test MEDIA_IOC_SETUP_LINK: OK
+
+Total for starfive-camss device /dev/media0: 8, Succeeded: 8, Failed: 0, =
+Warnings: 0
+-------------------------------------------------------------------------=
+-------
+Compliance test for starfive-camss device /dev/video0:
+
+Driver Info:
+	Driver name      : starfive-camss
+	Card type        : Starfive Camera Subsystem
+	Bus info         : platform:19840000.camss
+	Driver version   : 6.6.0
+	Capabilities     : 0x84200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           :=20
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+Interface Info:
+	ID               : 0x03000006
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000004 (4)
+	Name             : capture_raw
+	Function         : V4L2 I/O
+	Pad 0x01000005   : 0: Sink
+	  Link 0x02000016: from remote pad 0x1000010 of entity 'cdns_csi2rx.1980=
+0000.csi-bridge' (Video Interface Bridge): Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for starfive-camss device /dev/video0: 46, Succeeded: 46, Failed: 0=
+, Warnings: 0
+-------------------------------------------------------------------------=
+-------
+Compliance test for starfive-camss device /dev/video1:
+
+Driver Info:
+	Driver name      : starfive-camss
+	Card type        : Starfive Camera Subsystem
+	Bus info         : platform:19840000.camss
+	Driver version   : 6.6.0
+	Capabilities     : 0x84200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           :=20
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+Interface Info:
+	ID               : 0x0300000a
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000008 (8)
+	Name             : capture_yuv
+	Function         : V4L2 I/O
+	Pad 0x01000009   : 0: Sink
+	  Link 0x0200000c: from remote pad 0x1000003 of entity 'stf_isp' (Image =
+Signal Processor): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for starfive-camss device /dev/video1: 46, Succeeded: 46, Failed: 0=
+, Warnings: 0
+-------------------------------------------------------------------------=
+-------
+Compliance test for starfive-camss device /dev/v4l-subdev0:
+
+Driver Info:
+	Driver version   : 6.6.0
+	Capabilities     : 0x00000000
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           :=20
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+Interface Info:
+	ID               : 0x0300001c
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000001 (1)
+	Name             : stf_isp
+	Function         : Image Signal Processor
+	Pad 0x01000002   : 0: Sink
+	  Link 0x02000014: from remote pad 0x1000010 of entity 'cdns_csi2rx.1980=
+0000.csi-bridge' (Video Interface Bridge): Data, Enabled
+	Pad 0x01000003   : 1: Source
+	  Link 0x0200000c: to remote pad 0x1000009 of entity 'capture_yuv' (V4L2=
+ I/O): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev0 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for starfive-camss device /dev/v4l-subdev0: 58, Succeeded: 58, Fail=
+ed: 0, Warnings: 0
+-------------------------------------------------------------------------=
+-------
+Compliance test for device /dev/v4l-subdev1:
+
+Driver Info:
+	Driver version   : 6.6.0
+	Capabilities     : 0x00000000
+
+Required ioctls:
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev1 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 20 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev1: 43, Succeeded: 43, Failed: 0, Warnings=
+: 0
+
+Grand Total for starfive-camss device /dev/media0: 201, Succeeded: 201, F=
+ailed: 0, Warnings: 0
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Changes in v10:
+- Tested the driver with a v4l2-compliance compiled from the git repo
+  (git://linuxtv.org/v4l-utils.git).
+- Rebased on top of the master branch of media_stage repository.
+
+v9 link: https://lore.kernel.org/all/20230914031607.34877-1-jack.zhu@star=
+fivetech.com/
+
+Changes in v9:
+- Rebased on top of the master branch of media_stage repository.
+- Renamed file name.
+- Added of_node_put(node) in the error handling path of
+  stfcamss_of_parse_ports().
+
+v8 link: https://lore.kernel.org/all/20230824080109.89613-1-jack.zhu@star=
+fivetech.com/
+
+Changes in v8:
+- Rebased on v6.5-rc7.
+- Dropped VIN subdev.
+- Created two new video devices: capture_raw and capture_yuv, to replace
+  the previous video devices.
+- Dropped VB2_READ io methods.
+- Recursively called .s_stream() on subdevs.
+
+v7 link: https://lore.kernel.org/all/20230619112838.19797-1-jack.zhu@star=
+fivetech.com/
+
+Changes in v7:
+- HAS_DMA is used instead of DMA_CMA in Kconfig.
+- Dropped some non-essential member variables.
+- Used v4l2_async_nf_add_fwnode_remote() to simplify the relevant code.
+- Modified some Local variable types in the function.
+- Used v4l2_create_fwnode_links_to_pad() to simplify the relevant code.
+- Added error handling for clk_prepare_enable().
+- Simplified stfcamss_format_info struct and modified the relevant code.
+- Dropped enum_input, g_input and s_input.
+- Unified v4l2_ioctl_ops struct.
+- Used v4l2_fh_open()/vb2_fop_release to replace deprecated APIs.
+- Added a camss directory under the starfive directory and modified the
+  patch title.
+
+v6 link: https://lore.kernel.org/all/20230525083202.67933-1-jack.zhu@star=
+fivetech.com/
+
+Changes in v6:
+- Added 'bus-type' in bindings example.
+- Corrected spelling errors.
+- As reviewed by Bryan, used 'nclks' and 'nrsts' variables.
+- Added lccf config for ISP.
+
+v5 link: https://lore.kernel.org/all/20230512102844.51084-1-jack.zhu@star=
+fivetech.com/
+
+Changes in v5:
+- Rebased on v6.4-rc1.
+- Added new patch.
+- Modified ISP driver.
+
+v4 link: https://lore.kernel.org/all/20230413035541.62129-1-jack.zhu@star=
+fivetech.com/
+
+Previous cover letter from v4:
+
+This patch series adds support for the StarFive Camera Subsystem
+found on StarFive JH7110 SoC.
+
+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+Camera sensor using V4L2 subdev interface in the kernel is supported.
+
+The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+GStreamer 1.18.5 with v4l2src plugin is supported.
+
+Previous version link, missing v1 version:
+
+  v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfiv=
+etech.com/
+  v2: https://lore.kernel.org/all/20230310120553.60586-1-jack.zhu@starfiv=
+etech.com/
+
+Jack Zhu (8):
+  media: dt-bindings: Add JH7110 Camera Subsystem
+  media: admin-guide: Add starfive_camss.rst for Starfive Camera
+    Subsystem
+  media: staging: media: starfive: camss: Add core driver
+  media: staging: media: starfive: camss: Add video driver
+  media: staging: media: starfive: camss: Add ISP driver
+  media: staging: media: starfive: camss: Add capture driver
+  media: staging: media: starfive: camss: Add interrupt handling
+  media: staging: media: starfive: camss: Register devices
+
+ .../admin-guide/media/starfive_camss.rst      |  72 +++
+ .../media/starfive_camss_graph.dot            |  12 +
+ .../admin-guide/media/v4l-drivers.rst         |   1 +
+ .../bindings/media/starfive,jh7110-camss.yaml | 180 ++++++
+ MAINTAINERS                                   |   9 +
+ drivers/staging/media/Kconfig                 |   2 +
+ drivers/staging/media/Makefile                |   1 +
+ drivers/staging/media/starfive/Kconfig        |   5 +
+ drivers/staging/media/starfive/Makefile       |   2 +
+ drivers/staging/media/starfive/camss/Kconfig  |  17 +
+ drivers/staging/media/starfive/camss/Makefile |  13 +
+ .../staging/media/starfive/camss/stf-camss.c  | 436 +++++++++++++
+ .../staging/media/starfive/camss/stf-camss.h  | 134 ++++
+ .../media/starfive/camss/stf-capture.c        | 603 ++++++++++++++++++
+ .../media/starfive/camss/stf-capture.h        |  87 +++
+ .../media/starfive/camss/stf-isp-hw-ops.c     | 445 +++++++++++++
+ .../staging/media/starfive/camss/stf-isp.c    | 385 +++++++++++
+ .../staging/media/starfive/camss/stf-isp.h    | 428 +++++++++++++
+ .../staging/media/starfive/camss/stf-video.c  | 572 +++++++++++++++++
+ .../staging/media/starfive/camss/stf-video.h  | 100 +++
+ 20 files changed, 3504 insertions(+)
+ create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+ create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.=
+dot
+ create mode 100644 Documentation/devicetree/bindings/media/starfive,jh71=
+10-camss.yaml
+ create mode 100644 drivers/staging/media/starfive/Kconfig
+ create mode 100644 drivers/staging/media/starfive/Makefile
+ create mode 100644 drivers/staging/media/starfive/camss/Kconfig
+ create mode 100644 drivers/staging/media/starfive/camss/Makefile
+ create mode 100644 drivers/staging/media/starfive/camss/stf-camss.c
+ create mode 100644 drivers/staging/media/starfive/camss/stf-camss.h
+ create mode 100644 drivers/staging/media/starfive/camss/stf-capture.c
+ create mode 100644 drivers/staging/media/starfive/camss/stf-capture.h
+ create mode 100644 drivers/staging/media/starfive/camss/stf-isp-hw-ops.c
+ create mode 100644 drivers/staging/media/starfive/camss/stf-isp.c
+ create mode 100644 drivers/staging/media/starfive/camss/stf-isp.h
+ create mode 100644 drivers/staging/media/starfive/camss/stf-video.c
+ create mode 100644 drivers/staging/media/starfive/camss/stf-video.h
+
+--=20
+2.34.1
+
 
