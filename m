@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-6774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108FE7BCDC6
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 12:26:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FCC7BCDD2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 12:40:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70748280DBD
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:26:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FD301C208D6
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 10:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3375BE4D;
-	Sun,  8 Oct 2023 10:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3546515C3;
+	Sun,  8 Oct 2023 10:40:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bhtS5OQx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jTHydkeq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5474F20E1
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 10:25:59 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F878BA
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:25:56 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-5068692b0d9so2449285e87.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Oct 2023 03:25:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B266917CF
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 10:40:35 +0000 (UTC)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB191B9
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 03:40:33 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3247cefa13aso3296940f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Oct 2023 03:40:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696760754; x=1697365554; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KHbvS0iPxvV8ElF+BY1ncYhQOuuRGi0yZrsHEzBEzZM=;
-        b=bhtS5OQx1Ro6eiFhKnpyC+YpqfmtdryAYty6uZRMi/9gCSJhYb/Lebld9D5VIc5Uun
-         AFHY/Em5QYLVry3xlDcU8NQljq03XVZcSiQqDwAbcUM4R76Zycz4HPMzUC+SgoNs5lGX
-         D+hqd8YNyGP9RPoE5muhWr0u63J0zHxmiGSINC0/zqrl77m7/oVL8HdG34mxR5FN6mAM
-         ajGz+38DG9trMpSS2y6qlxIDO8+Tb/WP6FWNd+pyhqJDx2xbx1r3CVIxMpJVLROGEqLt
-         cZEZNkmK5wTNJZj4zkuB3swMfV2HypihKej9LsbCwFvs2bWkrXaCthoJO/e52PhOfQUA
-         qgoA==
+        d=linaro.org; s=google; t=1696761632; x=1697366432; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0/WCGfQbdwvDDkPgXFAUGyl5z/KP3TLZf3iVTyQ6q4o=;
+        b=jTHydkeq0niscfpLtJTGgwuO1giP2X1xa4yKSAQA1KZJVI66PtFTY1RzovdlJhWI/C
+         /HnpYJSfru3lIHKf6YfFxncnjSrBWQsY/GGywawbDtdlCrA7jPZY9zQq0JdCF46uYHQB
+         XkLa453D6N/aGex9kXqTte/lFiieNgw1mrGb1eaSXWXw7GcSBoGNhzTvPDuuttae5dy4
+         mcZ6eU8b+RQGbwoQMvIfpolW+s9/mHiGakBHamqTjN3w0SRmY0O4tq1z1bsTY7s7hpgC
+         yPnuJctZeHEFRCHVJXOJM1Dv4ipugZGmdNM1hshNp2NFXNG5e0HihMz8fpIKkECAws0V
+         4Jvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696760754; x=1697365554;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KHbvS0iPxvV8ElF+BY1ncYhQOuuRGi0yZrsHEzBEzZM=;
-        b=tme/2FZ0JLgifrdgQVH9IZrwkiewPWGCqETnBg5iXWMaYxveHn6+lf2BTODWJtLDXC
-         rQa2nOrqTRoUcFmCgws5SJAObUZb11uAy5y0UCOIQRhuvXEjo6lsd39cXecR/mwB0oaD
-         RF5z/GTXLsC5m4QgXmeYgT+YTYX9JZzAs3PU8PD9fog3c4WbWmfvJ/4aiF2CUwivic3i
-         BREw6wcKwRGRyuIroWVRzvKI8OvUD2LW2Mk7UynLyi0zEceeeW2ZROl0fucNRIdNut3c
-         yzJsXyEOML0wjqdHaq5RbJNE3bsrofVveDBEKiZ51jkhYBUx3Ms5XhnAjfKDuMKFDgCs
-         yZCw==
-X-Gm-Message-State: AOJu0YylTkH/W8f2u6TRGKLeizbZjQWi840d/ane1LZg0p2wPt49wqzL
-	rajXJQIk8m/gBUBbREQLKpqGAw==
-X-Google-Smtp-Source: AGHT+IHyyZR30VhfYWCNM1lo0/NDjP0WqMRn9jzVNmUfsFvwlpYiA6j9mTgQbBDfUicHgGRjKZfy8w==
-X-Received: by 2002:ac2:4e91:0:b0:500:b828:7a04 with SMTP id o17-20020ac24e91000000b00500b8287a04mr10279092lfr.18.1696760754319;
-        Sun, 08 Oct 2023 03:25:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696761632; x=1697366432;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0/WCGfQbdwvDDkPgXFAUGyl5z/KP3TLZf3iVTyQ6q4o=;
+        b=xC2SxYit8Tati14eqxkJYIV4vNQ8DINUQIK5F65kr7IbaEbzAGG+M+aUWqRWgJ8nqZ
+         90KfF8QlROZXAmu+/NcS++i5Cm0DaxVF4LLQIMMmY+MqMlf4BGP84v3W2cjDqkmPbvYr
+         qZ9a55R/b9t2C3kWuQ2y0Dsx1ukPN15NpPb97DB21dMz6mijFsxrnRvRTUyH00eB5j+i
+         1BGIH8yaFLu0xVd1KAX/rJ60PqZcANtWB1vuW+zxt87I02ZmwvsarKuKi/c2sZixE8s9
+         vZ0zl10GqPVGRdS1rEOnqU9Vp+iR65XLv2937kguV5JRtOy/YmPzsM9g2TCLK3Op0i3W
+         vPkA==
+X-Gm-Message-State: AOJu0YwR/k3qR3bnnthZuaDyE4uJIlwEd7LJr73XQFKNlqOjr2wOHXky
+	R8EBH3/U3B2Rs6RjzcAOAKvLwQ==
+X-Google-Smtp-Source: AGHT+IGfd/nt7b1m0FxcLTfPevwGRF/g2pfmIcxzdC9YCNSMKafq05U6ooE4eV5zEFHfVaGBE6jBfQ==
+X-Received: by 2002:a5d:6b82:0:b0:319:5677:f832 with SMTP id n2-20020a5d6b82000000b003195677f832mr10269209wrx.62.1696761631934;
+        Sun, 08 Oct 2023 03:40:31 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id c19-20020a7bc853000000b004064288597bsm8205859wml.30.2023.10.08.03.25.52
+        by smtp.gmail.com with ESMTPSA id a9-20020a5d5709000000b0032320a9b010sm6525874wrv.28.2023.10.08.03.40.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Oct 2023 03:25:53 -0700 (PDT)
-Message-ID: <30a3c937-f73f-479d-ba62-4963f6ba8eaa@linaro.org>
-Date: Sun, 8 Oct 2023 12:25:52 +0200
+        Sun, 08 Oct 2023 03:40:31 -0700 (PDT)
+Message-ID: <1ce9d59e-0938-4448-8279-b8c6e522b26a@linaro.org>
+Date: Sun, 8 Oct 2023 12:40:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,19 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] input: add Adafruit Seesaw Gamepad driver
-To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20231007144052.1535417-1-anshulusr@gmail.com>
- <20231007144052.1535417-2-anshulusr@gmail.com>
- <a49deeb6-728c-4527-8399-57c52214e1d3@linaro.org>
- <2281f924-30d1-41c5-b105-d8d28aada5b2@gmail.com>
+Subject: Re: [PATCH v3 2/3] regulator: dt-bindings: Add mps,mpq2286
+ power-management IC
 Content-Language: en-US
+To: Guenter Roeck <linux@roeck-us.net>,
+ Saravanan Sekar <saravanan@linumiz.com>
+Cc: sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jdelvare@suse.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+References: <20231007165803.239718-1-saravanan@linumiz.com>
+ <20231007165803.239718-3-saravanan@linumiz.com>
+ <84f4692c-5fee-4d00-b537-570f90191d6e@roeck-us.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,7 +124,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2281f924-30d1-41c5-b105-d8d28aada5b2@gmail.com>
+In-Reply-To: <84f4692c-5fee-4d00-b537-570f90191d6e@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -135,25 +133,25 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 07/10/2023 18:13, Anshul Dalal wrote:
->>> +	err = i2c_master_send(client, register_reset, sizeof(register_reset));
->>> +	if (err < 0)
->>> +		return err;
->>> +	if (err != sizeof(register_reset))
->>> +		return -EIO;
->>> +	mdelay(10);
->>
->> Why 10? This should be explained somehow in the code.
+On 08/10/2023 03:20, Guenter Roeck wrote:
+> On Sat, Oct 07, 2023 at 10:28:02PM +0530, Saravanan Sekar wrote:
+>> Document mpq2286 power-management IC. Instead of simple 'buck', 'buck0' is
+>> used to keep the driver common which handles multiple regulators.
 > 
-> The reason for the delay is to ensure the register reset process is
-> finished before going further. The reference Arduino driver from the
-> manufacturer also had a delay for the same amount though my hardware
-> unit worked fine till 5ms delay. Is there some kernel abstraction I
-> could use to indicate a short delay or will the previous explanation in
-> a comment above the line do?
-> 
+> Sorry for the maybe dumb question, but where can I find the driver
+> depencency on buck naming ?
 
-Just explain it briefly as a comment.
+I guess it is because:
+PMBUS_REGULATOR_STEP("buck", 0, MPQ7932_N_VOLTAGES,
+creates regulator name as buck+id (so buck0).
+
+However as Rob pointed out, driver can handle buck for this variant. We
+want the bindings to be independent from Linux implementation and this
+patch here adds such dependency.
+
+Therefore I still believe this should be just "buck", unless the
+datasheet says it is "buck0". Which I doubt.
+
 
 Best regards,
 Krzysztof
