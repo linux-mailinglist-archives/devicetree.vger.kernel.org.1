@@ -1,121 +1,100 @@
-Return-Path: <devicetree+bounces-6827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC25F7BCFB3
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 21:01:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E0C7BCFC6
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 21:11:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBAB21C208A5
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 19:01:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F04CF281101
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 19:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C3616416;
-	Sun,  8 Oct 2023 19:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0490A182DC;
+	Sun,  8 Oct 2023 19:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="AJ4A3iCF"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="h2gP711h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7A4FBF5
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 19:01:15 +0000 (UTC)
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336B8AC;
-	Sun,  8 Oct 2023 12:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1696791669; bh=TpDAiO/3M2zwoN0Tlu29z9aRzpua06n2dHZEpvc3rPM=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=AJ4A3iCFuUyW1qY02BnUfDrk/+fa1f68mS8EBfsibMVxbVK5sz6Vf8fFVK9kRkn/M
-	 wYmz3CUII0SQ3B1XXbx++a9pXg3UQRdQRB4MxF3wthJEcg8fXg0ZDpbGS0XPAAnyEN
-	 Q7LsL9War87Ry/aG1ortCnHPw5G/Zx47bh1hGQy0=
-Date: Sun, 8 Oct 2023 21:01:09 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: mfd: rk806: Allow
- rockchip,system-power-controller property
-Message-ID: <gcfmcxlitopwjt2ucu73m64j6kmfuvbpdyptdq7mzltuz56zbn@6ddy6z2dilrj>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20231008142118.1174090-1-megi@xff.cz>
- <20231008185559.ros34cft2dxoewqe@mercury.elektranox.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A5711725
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 19:11:00 +0000 (UTC)
+Received: from todd.t-8ch.de (todd.t-8ch.de [IPv6:2a01:4f8:c010:41de::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC793AC;
+	Sun,  8 Oct 2023 12:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1696792257; bh=HTTJDJafn8qJ5y8ypB1X2wmPBXY2xmjffTqJQzQtOmM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h2gP711hueezP+66rwMJLWYR4gkQ+T+bNaaoU1UBRrB5ACZvmSlGFC64Y1V/FNuNy
+	 vg5SHL6shRKFt4Am7e6nAtNyg5GSrGzRuz3erfCVkufo+nUhSbZxsMrfUAE+EtDsL/
+	 DbXCjvYZXzhT80IzWgGBfSVtjFYDC/KDoBZvldhY=
+Date: Sun, 8 Oct 2023 21:10:56 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shuah Khan <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v2 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <54334f96-a1cc-439b-9de2-ec0187495f35@t-8ch.de>
+References: <20231008172435.2391009-1-anshulusr@gmail.com>
+ <20231008172435.2391009-2-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231008185559.ros34cft2dxoewqe@mercury.elektranox.org>
+In-Reply-To: <20231008172435.2391009-2-anshulusr@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Oct 08, 2023 at 08:55:59PM +0200, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Sun, Oct 08, 2023 at 04:21:17PM +0200, Ondřej Jirman wrote:
-> > From: Ondrej Jirman <megi@xff.cz>
-> > 
-> > Declare support for this property.
-> > 
-> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > ---
-> 
-> This is missing the accompanying driver change. Right now
-> this property does nothing for rk806.
+On 2023-10-08 22:54:34+0530, Anshul Dalal wrote:
+> [..]
+> +
+> +	input_report_abs(input, ABS_X, data.x);
+> +	input_report_abs(input, ABS_Y, data.y);
+> +	input_report_key(input, BTN_A, data.button_a);
+> +	input_report_key(input, BTN_B, data.button_b);
+> +	input_report_key(input, BTN_X, data.button_x);
+> +	input_report_key(input, BTN_Y, data.button_y);
 
-Ah, I assumed it does, but looks like it's just implemented in my tree:
+FYI the button layout on this device is different from common commercial
+gamepads like XBox, Playstation and Logitech.
+This seems to be common to all gamepads from Adafruit.
 
-https://megous.com/git/linux/commit/?h=ppp-drivers-6.6&id=6394918f339fda0b89f63faac4c4fe162d5ace42
+Adafruit:
 
-I'll re-send with the driver patch.
+    X
+ Y     A
+    B
 
-Thanks and regards,
-	o.
+Others:
 
-
-> -- Sebastian
-> 
-> >  Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> > index cf2500f2e9a0..e8c9f17f6ea8 100644
-> > --- a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> > @@ -29,6 +29,11 @@ properties:
-> >    '#gpio-cells':
-> >      const: 2
-> >  
-> > +  rockchip,system-power-controller:
-> > +    type: boolean
-> > +    description:
-> > +      Telling whether or not this PMIC is controlling the system power.
-> > +
-> >    vcc1-supply:
-> >      description:
-> >        The input supply for dcdc-reg1.
-> > -- 
-> > 2.42.0
-> > 
+    Y
+ X     B
+    A
 
 
+In input-event-codes.h the symbol BTN_A actually maps to BTN_SOUTH,
+matching the common layout. But as you can see this is wrong for this
+device.
+(Same for BTN_B and BTN_EAST)
+
+Weirdly enough for BTN_X/BTN_NORTH and BTN_Y/BNT_WEST the aliasing is
+correct for Adafruit and wrong for the others.
+
+Not sure how to fix this correctly. Maybe the input maintainers know.
+
+> +	input_report_key(input, BTN_START, data.button_start);
+> +	input_report_key(input, BTN_SELECT, data.button_select);
+> +	input_sync(input);
+> +}
 
