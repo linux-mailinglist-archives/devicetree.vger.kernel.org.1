@@ -1,83 +1,48 @@
-Return-Path: <devicetree+bounces-6809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46CFA7BCED2
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 16:03:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 596F27BCEE5
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 16:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00B1E281745
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 14:03:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80B8A1C20491
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 14:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE4DC8E8;
-	Sun,  8 Oct 2023 14:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B21F9FB;
+	Sun,  8 Oct 2023 14:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ODFspaIs"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="MuTpJr4C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772C7EEB4
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 14:02:57 +0000 (UTC)
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A17E4;
-	Sun,  8 Oct 2023 07:02:56 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id e9e14a558f8ab-3515aad4a87so15692245ab.3;
-        Sun, 08 Oct 2023 07:02:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696773775; x=1697378575; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xeyjdW8u16yegotDnSCZCKulMzcwtuKO9IQY/3/chxk=;
-        b=ODFspaIsFEKn0Sp3cDy0Vk4G0hGt/z0HVwMqHEwOGtDD7380V+EVmGRrOsqsgMo6hc
-         c58cPSFKC8f/WRmC33PhZmptlCwV5to9BhdMNW8jQoJj/W6TIgJovui7SDeMhgEt1o1d
-         FSw11F/ZyWZEW58PdKJGGf79VF8HNoUDDee3ZDkabPiL+nxPziA71MQEtnAzhz99eLPt
-         96V5QYfwsuFsGIQEjAckvkcDlp4HRAUvGMWDLJ+25DWYHhs8WUccBZIPk4bpWPkYrbBA
-         10XxXTNlgIzKoCZQmiN1dXQEtMbiPRGq0KHejJxicLnyhm5hOubswH57rGMYYjzV9XTj
-         oKrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696773775; x=1697378575;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xeyjdW8u16yegotDnSCZCKulMzcwtuKO9IQY/3/chxk=;
-        b=WrvzJvgd3MIfVRqGEpfdQbFAVQJ5aOaVHR004sxpgYIZPCYBvfQRjZKp8wwtI2JCER
-         jQodwFYnmpl6dsbNfKWHaik/qy6mZ7ROtv9oiYNhX1zRMcjIfP44l6sum7nYYqZ/rfH3
-         gWOVsF3cJO9F1unVQHMzis9hD3lVdVIeinFOtwxpW3QyS3DORlJFFgOE80QdA2FBL/gQ
-         RTgC/v4cp2fRkmXGctM8dMRK5KVibAbdBHk5XszhELxjE/E2TU1L7rRjyRvg1nz3RtBz
-         mS8+ve4qF4zm+pQkmnFsdlWuFeItzyJU6+Ea8Ocr+l/P313ZhzHCSQaAvTo0nlFC/dCC
-         ue7w==
-X-Gm-Message-State: AOJu0YwOzy5LRKln7GL1dQKn9Zv2xEppgsywouGslyx369xzq8Yl0+fU
-	7gqgQ5Hbvv9bBVFbNWxWS64=
-X-Google-Smtp-Source: AGHT+IGplamwSERc2ILth4+Q1zSQcJ80lOf9usqGVtmWE5J0YzDjORtyRMadvGb1VIqozKA934WDPQ==
-X-Received: by 2002:a05:6e02:c62:b0:351:e6e:7723 with SMTP id f2-20020a056e020c6200b003510e6e7723mr12047296ilj.25.1696773775435;
-        Sun, 08 Oct 2023 07:02:55 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:a2fe:632a:2360:50d3])
-        by smtp.gmail.com with ESMTPSA id 2-20020a921302000000b0035134f1a240sm2272901ilt.86.2023.10.08.07.02.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Oct 2023 07:02:55 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718F59CA49
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 14:21:19 +0000 (UTC)
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7EDAB;
+	Sun,  8 Oct 2023 07:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1696774873; bh=c7Gvjps46g8yeM0WEfoJ5nEDCww/QxvKFIcDCSrUh0U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MuTpJr4CVffYfoxQxFinVf0BLpukpKFNWmxvuIGDCachQ684ifqP0vFPwCujl1U/u
+	 oegeQpeq+KhtxhZ8FmY6/dRLlX8pjcfHnw1p2R0U4SnSeqEOCdEFOen8bayQqpwTmQ
+	 lcYEnk/irCvZ+oexaWHXEQTvhXatv3ByAktjEOW0=
+From: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
+To: linux-kernel@vger.kernel.org
+Cc: Ondrej Jirman <megi@xff.cz>,
+	Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V3 4/4] arm64: dts: imx8mp-beacon: Add DMIC support
-Date: Sun,  8 Oct 2023 09:02:38 -0500
-Message-Id: <20231008140239.6601-4-aford173@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231008140239.6601-1-aford173@gmail.com>
-References: <20231008140239.6601-1-aford173@gmail.com>
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	linux-leds@vger.kernel.org (open list:LED SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Subject: [PATCH] dt-bindings: leds: Last color id is now 14 (LED_COLOR_ID_LIME)
+Date: Sun,  8 Oct 2023 16:21:00 +0200
+Message-ID: <20231008142103.1174028-1-megi@xff.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,106 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The baseboard has a connector for a pulse density microphone.
-This is connected via the micfil interface and uses the DMIC
-audio codec with the simple-audio-card.
+From: Ondrej Jirman <megi@xff.cz>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Increase the limit to match available values in dt-bindings/leds/common.h
+
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
 ---
-V3:  No Change
-V2:  No Change
+ Documentation/devicetree/bindings/leds/common.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index acd265d8b58e..ee64c6ffb551 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -49,6 +49,12 @@ ss_ep: endpoint {
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 5fb7007f3618..8bb8a519ed28 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -43,7 +43,7 @@ properties:
+       LED_COLOR_ID available, add a new one.
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 0
+-    maximum: 9
++    maximum: 14
  
-+	dmic_codec: dmic-codec {
-+		compatible = "dmic-codec";
-+		num-channels = <1>;
-+		#sound-dai-cells = <0>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
-@@ -147,6 +153,22 @@ reg_usb1_host_vbus: regulator-usb1-vbus {
- 		enable-active-high;
- 	};
- 
-+	sound-dmic {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sound-pdm";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+
-+		dailink_master: simple-audio-card,cpu {
-+			sound-dai = <&micfil>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&dmic_codec>;
-+		};
-+	};
-+
- 	sound-wm8962 {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "wm8962";
-@@ -174,6 +196,11 @@ simple-audio-card,codec {
- 	};
- };
- 
-+&audio_blk_ctrl {
-+	assigned-clocks = <&clk IMX8MP_AUDIO_PLL1>, <&clk IMX8MP_AUDIO_PLL2>;
-+	assigned-clock-rates = <393216000>, <135475200>;
-+};
-+
- &ecspi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ecspi2>;
-@@ -364,6 +391,15 @@ hd3ss3220_out_ep: endpoint {
- 	};
- };
- 
-+&micfil {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pdm>;
-+	assigned-clocks = <&clk IMX8MP_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <49152000>;
-+	status = "okay";
-+};
-+
- &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pcie>;
-@@ -545,6 +581,13 @@ MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21 0x10	/* PCIe_nRST */
- 		>;
- 	};
- 
-+	pinctrl_pdm: pdmgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXC__AUDIOMIX_PDM_CLK		0xd6
-+			MX8MP_IOMUXC_SAI5_RXD0__AUDIOMIX_PDM_BIT_STREAM00	0xd6
-+		>;
-+	};
-+
- 	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
+   function-enumerator:
+     description:
 -- 
-2.40.1
+2.42.0
 
 
