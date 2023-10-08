@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-6754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9E57BCC21
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 06:47:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A74C7BCC22
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 06:47:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69A21281A28
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 04:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D1D71C209F2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 04:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BFD9CA6F;
-	Sun,  8 Oct 2023 04:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3349D17F3;
+	Sun,  8 Oct 2023 04:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hR72oZnM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iSwKYfiJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E698A630
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69BC15C1
 	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 04:47:23 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8086EBF;
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80799BD;
 	Sat,  7 Oct 2023 21:47:22 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3984l6Tv034223;
-	Sat, 7 Oct 2023 23:47:06 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3984lAZp053399;
+	Sat, 7 Oct 2023 23:47:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696740426;
-	bh=Z91aWPEs0JbRzPNR/R8xiBA+gKuuggRpUgxU41qSXg4=;
-	h=From:To:CC:Subject:Date;
-	b=hR72oZnMuIHM6QP7xAAO6pHnM8BMiokI033YALoIGOLjqTYxH9eo1/gdj6uB0GOTm
-	 0xcuAtLQoHD3MBxyg8VS/TVR/ymQ2DuNQhnpruwehstdG+slJSLMnwm6ajDX92Ks1i
-	 1C9VtNWgTpbnNGwqV6papWfoiExeLFd003jF7x4M=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3984l6qq050459
+	s=ti-com-17Q1; t=1696740430;
+	bh=q5QNqYEYHoAM89jkPg2NPYZtSUgs8Bzc353aiXSYNPU=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=iSwKYfiJ1f3Rbt6lfISbDrACs7op3vaFH79lrj90P+52r33WqNYfVlWRKwpqOmkbe
+	 P20DIE7eSfDWbMGP5fMyv9Pl0YYGBqARiGBRGqxwXKsbDX8/+h04jYU7yFpF6v+kTx
+	 a7xKtFwUUxgWFQuuj+Tiz61R5t0R256JOGxxVPco=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3984lAKs129632
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 7 Oct 2023 23:47:06 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Sat, 7 Oct 2023 23:47:10 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 7
- Oct 2023 23:47:05 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 23:47:09 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 7 Oct 2023 23:47:05 -0500
+ Frontend Transport; Sat, 7 Oct 2023 23:47:09 -0500
 Received: from localhost.localdomain (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3984l1Cl032705;
-	Sat, 7 Oct 2023 23:47:02 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3984l1Cm032705;
+	Sat, 7 Oct 2023 23:47:06 -0500
 From: Keerthy <j-keerthy@ti.com>
 To: <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
         <conor+dt@kernel.org>, <kristo@kernel.org>,
@@ -55,10 +55,12 @@ To: <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
 CC: <j-keerthy@ti.com>, <u-kumar1@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 0/7] arm64: ti: k3-j7: Add the ESM & main domain watchdog nodes
-Date: Sun, 8 Oct 2023 10:16:50 +0530
-Message-ID: <20231008044657.25788-1-j-keerthy@ti.com>
+Subject: [PATCH v8 1/7] arm64: dts: ti: k3-j721s2: Add ESM instances
+Date: Sun, 8 Oct 2023 10:16:51 +0530
+Message-ID: <20231008044657.25788-2-j-keerthy@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231008044657.25788-1-j-keerthy@ti.com>
+References: <20231008044657.25788-1-j-keerthy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,60 +76,54 @@ X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The series add the ESM & main domain watchdog nodes for j721s2,
-j784s4 SOCs.
+Patch adds the ESM instances for j721s2. It has 3 instances.
+One in the main domain and two in the mcu-wakeup domian.
 
-Changes in v8:
+Signed-off-by: Keerthy <j-keerthy@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       |  7 +++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 14 ++++++++++++++
+ 2 files changed, 21 insertions(+)
 
-	* Changed the status of non-MPU nodes from disabled to reserved
-	* Added inline comments to the reserved RTI nodes
-
-Changes in v7:
-	* Rebased on top of ti-next branch
-	* Reordered the watchdog nodes based on the addresses.
-	* Changed the watchdog numbering.
-
-Changes in v5/v6:
-
-        * Updated commit log and added comments for MCU & non-A72 watchdog
-          instances disabling.
-
-Changes in v4:
-
-        * Added bootph-pre-ram for all the ESM instances needed for SPL.
-
-Changes in v3:
-
-        * Added all the RTI events for MAIN_ESM for j784s4 as 8 instances
-          are enabled.
-        * Rebased on top of 6.6-rc1
-        * Tested for the watchdog reset
-
-RESEND series - corrected krzysztof.kozlowski+dt@linaro.org ID
-
-Changes in v2:
-
-        * Added all the instances of watchdog on j784s4/j721s2
-        * Fixed all 0x0 in dts to 0x00
-        * Fixed couple of ESM event numbers for j721s2
-        * Rebased to linux-next branch
-
-Keerthy (7):
-  arm64: dts: ti: k3-j721s2: Add ESM instances
-  arm64: dts: ti: k3-j784s4: Add ESM instances
-  arm64: dts: ti: k3-j7200: Add MCU domain ESM instance
-  arm64: dts: ti: k3-j784s4-main: Add the main domain watchdog instances
-  arm64: dts: ti: k3-j784s4-mcu: Add the mcu domain watchdog instances
-  arm64: dts: ti: k3-j721s2-main: Add the main domain watchdog instances
-  arm64: dts: ti: k3-j712s2-mcu: Add the mcu domain watchdog instances
-
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   7 +
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 107 +++++++++
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 ++++
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 206 ++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  40 ++++
- 5 files changed, 400 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 6d32544c8881..7ce802c6808d 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -1801,4 +1801,11 @@
+ 		firmware-name = "j721s2-c71_1-fw";
+ 		status = "disabled";
+ 	};
++
++	main_esm: esm@700000 {
++		compatible = "ti,j721e-esm";
++		reg = <0x00 0x700000 0x00 0x1000>;
++		ti,esm-pins = <688>, <689>;
++		bootph-pre-ram;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+index 56504578c464..f94aa3a34e22 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+@@ -695,4 +695,18 @@
+ 			ti,loczrama = <1>;
+ 		};
+ 	};
++
++	mcu_esm: esm@40800000 {
++		compatible = "ti,j721e-esm";
++		reg = <0x00 0x40800000 0x00 0x1000>;
++		ti,esm-pins = <95>;
++		bootph-pre-ram;
++	};
++
++	wkup_esm: esm@42080000 {
++		compatible = "ti,j721e-esm";
++		reg = <0x00 0x42080000 0x00 0x1000>;
++		ti,esm-pins = <63>;
++		bootph-pre-ram;
++	};
+ };
 -- 
 2.17.1
 
