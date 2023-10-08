@@ -1,169 +1,125 @@
-Return-Path: <devicetree+bounces-6796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCC07BCE7C
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 15:08:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F2D7BCE99
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 15:39:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224B028180D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 13:08:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DFCA1C20896
+	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 13:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3A3C155;
-	Sun,  8 Oct 2023 13:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C1FC2D0;
+	Sun,  8 Oct 2023 13:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="MtAtXbII"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="m0v2eknn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503E58820
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 13:08:35 +0000 (UTC)
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2041.outbound.protection.outlook.com [40.92.102.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9D4C5;
-	Sun,  8 Oct 2023 06:08:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GVkVzGr9d1MgUB9TF6taOfJ/Xx6tpqQG44IHpEbMWSnBF8OxQhzEHXUBQoCBseCEO/pcggJe8tmCj3zMr5o0AHQB27PJD1Pg7o29jCRCGmJCZ6iz2NHSNmr2J9OzGHAkITzPdVhwKb4/P1O7J8zTe87P97cJx/azdCEdAAxRszf2CHL7+8BwNYVZRYPqgCLrVgAiNx7vMI6oUh4wf66VOwkedmj6DX2O4RdMmWVRHkIjtN2qRiJyRaq2qtkEWZrN/SmCzGk6vARTqNc7Ocbk2Yebzc5XAgFUuA7WO5+/w/4MPZOfUVSA2rbhVfZ7HSzgEDbixvAFhlZS36pQDfqGww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZkXti9vLLgFwCJTM3ny1pcK++mrbqMhT4VmPuWb73K4=;
- b=jDm0akdEyNEWBYI7u+narlkIpM84yqlJ7L1tmQ+m4rKVtNYC5T5i2fBdBTEnBAH5qMnmiwAzLjQgWtlMHhuXd7pujJM8a2WuPRRkXtFuMzfUQIz2Jt4kPZfsKsLG5EWsXqoXNmrJc6tsTbQ0VOTm5QoENlPBBXoh+oBCJms6VxuJY06+Cgxix124l+AeV4s/rmSuyQ8f6pmzhNaJVl2nbvM3raa6+QDoMjZIA1AdlESDi8NloPn3SzAGxT6Id+65pB3z/Ot2ViQFlatYigTgRt9gXNfv/MNW6Oebom6NJebXGAOpnxpkkEDjuXQL4yofVaxSFMWIi7SInojCnWp0OA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZkXti9vLLgFwCJTM3ny1pcK++mrbqMhT4VmPuWb73K4=;
- b=MtAtXbIIhUpJ8vUJXjeh4zkDgeUPjOv7Q/+xRw9E1OUTQeZZF95Ju4xjrUUBK6s86SgR183W1Tr3aW3nbkcgoOQ322Ty4ByHKuvaBW9flA3LO2wFdjrsnOVAX9NBfA2OjyA93mQrNNobnCAqlAMISYo0F2ZGcBs75ato1fl6yqIWehv7iO17GY36UBA3pY+V8WtC7t0Z05xf1RRCac6Xsdg55FEvcpF7eFTMComNdY3sRbosRptKA24WO68LvfaAhVIJHEiDMPPREz/OPATFDO+pGCxyq8Jg5pYKt8y4g2+E4VO6bMH/x9+m7g3MWxAvlzhKfFGAxiPPcwiLRYL3XA==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- MA0P287MB1574.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:106::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.36; Sun, 8 Oct 2023 13:08:27 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6838.040; Sun, 8 Oct 2023
- 13:08:27 +0000
-Message-ID:
- <MA0P287MB033256BCF2898DC111CA52FAFECFA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Sun, 8 Oct 2023 21:08:22 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: riscv: Add SOPHGO Huashan Pi board
- compatibles
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <IA1PR20MB495337659E69ADA1A8B1596BBBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231008111627.325468-1-inochiama@outlook.com>
- <IA1PR20MB49537E0C8B54A237B3472C6CBBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49537E0C8B54A237B3472C6CBBCFA@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [YZBUxmPvF/6TwJd8IjTpxaE2odxgwE6d]
-X-ClientProxiedBy: SG2PR02CA0120.apcprd02.prod.outlook.com
- (2603:1096:4:92::36) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <193f0a99-25d0-400d-aca3-2aad034b5ca5@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507DF8820
+	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 13:39:34 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BEAD6;
+	Sun,  8 Oct 2023 06:39:30 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 66CEB60004;
+	Sun,  8 Oct 2023 13:39:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696772367;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IBXkYS6fQ5HNeBmYBLasOhlEeE8uByHUo5jMn0E96xE=;
+	b=m0v2eknngWwC18FYvgvuMt5MCXsPIUxJRHrztGTLfHwS+Z1Ev3pCEv42Z8kGipcBBTr03q
+	j9B1DeYbgnQfE5Xz0vCrqj/eDoZmzf9AutJqKT7VNL5t3b7489ikRDP36zjga6RXO3Wk3S
+	e0Yjcl34c+c0t88shUPRUgBlI1bBNvs4Xo4RrIJqXC3pTXtWwGLuZJQ+seSmb3mmR/5pz3
+	/s7Bifn5Y5EyRJHzpVw4WJ1u4dWdvkajnkdhapk7E10HqTjqCan4tlLmzvWl3629YWicbs
+	mXjGCGCTrhY4jCdknbMfbBSUR/tyr3wh/NsMAlkkWgROrTtefrVwoMaezgCUeg==
+Date: Sun, 8 Oct 2023 15:39:19 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Michael Walle <michael@walle.cc>, Rob Herring
+ <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
+ <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
+ Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH v12 2/7] nvmem: Clarify the situation when there is no
+ DT node available
+Message-ID: <20231008153919.5b8e2562@xps-13>
+In-Reply-To: <2e3ea6a4e63e0c6bebf4c18b165250e5@milecki.pl>
+References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
+	<20231005155907.2701706-3-miquel.raynal@bootlin.com>
+	<05cd4592d0cfe0fb86aeb24db01de547@milecki.pl>
+	<20231006183229.51cd8e60@xps-13>
+	<2e3ea6a4e63e0c6bebf4c18b165250e5@milecki.pl>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|MA0P287MB1574:EE_
-X-MS-Office365-Filtering-Correlation-Id: be636461-6e86-4380-62aa-08dbc7ffa8c2
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	IXmcOT6ASlXNGkrXE2ssKu+YMkYPl47dAwu4cX/7kHJfIvZ6wtgHeBN+Jgxy374QPg9fbWNblAqrfBNlFzd7bD5xXS0A+UsyDbV9SYzltI0ov9T/WVGsiIG79L1uY3J494FMSTu8yDVBv9DgxmMqNkaY3ezqKahZmtV5ocj2hWPoy1S7oG3lAEskDGSn0YIDk99IU2iGbTuoCJb9jyIxPR82Fs0fG8YkL2to6LAAvD1kEcaKNNvLNtaPCal8jyGG3vZ+/JExitl04GPxsRvTlEkFHhE74Z44xZFic0s6o0/OAajZAShJjKWsZDWnolT3VOvHR69qnmTw1rpv6MzltVC0WjuV/pa5ZjGZ5d8CDWTzbgf6Wb+FPIogJJsxXkfym7WCZMsl3M2wjI/s0ywrKgFPZteuo/hfLJmxkoJ+ZKHexrmbvmFN//2NXVky8OvcoO2gDaqCGjYZ9uCAjTn1I4+NAqgyBjwqa9ljq9P2bt975PXZudk/8hBR9yVztkvST0h0DxbdpxNr2xmmQ6lr2aV9frRlsI++Cg1AO61k2eYTUtBilEW3cc1hzJKkUxBqT5/2tAWqBasrV4uTtxTa+8BJc4umvYEmDCf/RCs5NUVnV0N0QGUp7S3hyZRI7j4gcgdIaka5D9PuNHXJkZV+bA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VFg5eWxKdDZnYW1CTEFNYnhYWUdsVm5zUk5ENktjR2doSnp4N2M1eE1KRHhH?=
- =?utf-8?B?NTdNU05WNDloOUtzMDlQYk1ubW95c3pBRElERVY3c2FzMWFDME9YTkduc09W?=
- =?utf-8?B?dUE4bTgwdjEySDRFUTB1bnhDKzczaHU2TmJsQm8xVXR2Y3V0cTFqb1RLNGJy?=
- =?utf-8?B?dWh1YUFpaEhGdDJTS0RUb1FFMms5ZUhYdUQ2b0djazdqNGkwSmYwanltMzRX?=
- =?utf-8?B?cmlmM3lvWk1XQU5GK3JMd3ZPUTdZS0hmY1B2QjNRSjRsZG8xS3JMbVJJc3Qz?=
- =?utf-8?B?VUhtaXdaZ3lESnk5QXdhOEdidG5QTS8vRWQyQVNyWTVuS2plVXZPMUk5WVVX?=
- =?utf-8?B?a3BkOUc1NnVlSkdsM1Y5WW5zeUxpc0hsdUl4MFJ6MWN6M21SeFJoYXFvT1BJ?=
- =?utf-8?B?cHcrZDVNKzFPSDZ1N3JrdHpjNjg2R21qdkE2YVZWRXFBekJSOFlKNld5Ni9U?=
- =?utf-8?B?SG43aGc0MHJBSCswSWo3LzFPT3J6NTZCMlFHNEh0SFlsOUxqRTNFSHJQckpz?=
- =?utf-8?B?NUxTWFptSWdxUHA5cGhBNXI2U3k3QUcvSnA2dHBPVG4yYm1zQVJWRGtVSHh3?=
- =?utf-8?B?d1I5aWdHcFhsQnJqTG1Sd1lleUVackQyL1Q0ZU9yZlg0M2FqbkJ3bUViVXRC?=
- =?utf-8?B?Tk93UWVGa2ZjVTVTQ1lEVjQ1cDRhQ3kya3ZlMTYrVTRvTVA5eTV6cWcra1Ur?=
- =?utf-8?B?NGY1bXJZa2t5L2M1NjRDeE5FOFdmbkNxbDlKUGJJSHZoRFh4WHZFY2RxUlhH?=
- =?utf-8?B?MUxVYnZqNVFtWFRPbWpIakpRT0NWVitjUDRZYVFNOWc1cEVOQ3NDcGkyQ1Fp?=
- =?utf-8?B?Umh3enpUV0ZRMGZKdEoyZkd4cGJJWHJZNXJEbmx6ZEdSUFVxeDVIQU5NeFNT?=
- =?utf-8?B?NGRrOGR6RXZydFBOejloVUdwQVJIUXptbG14WG5EQVVMa3FvMjM4eE9pU1NJ?=
- =?utf-8?B?bGpvZWpkM2tDUWZaQlFWaFBZRmV4TzRHWXoreE91OGFveGsxdEEzZkRaN0Np?=
- =?utf-8?B?MnBnOHN2aWtZVE41VlpxYWJwWUVHZWo5dHJ1dnFqbk5STkp3ang5ZlRaMXVj?=
- =?utf-8?B?NnRnZDZvVkg4SGRMZ1F3c0hsS3lXOUlEeEZxbDBVYUFocWYrazkxcDhpTFFV?=
- =?utf-8?B?TDZWZUptT1ZuWWZKbllUdXBqVStoQ1RFMW1Ia1d6ckcvVUcvamFrbEpsZFRY?=
- =?utf-8?B?QU9PZkpxN3hzZUN6ZlBaa3JHU2RKTnNMZXpHbGZyK2d6T3lnSzhmSC81OWpY?=
- =?utf-8?B?ZlNKM2xwdEwwNkV3UXFKaGNGcDZPa2pFclFZVFlmU1dSMzhlVHRCWk9kQzlo?=
- =?utf-8?B?VFkwbDdyOU1JenpSamdhNlJVdnZGSit3blNSMlJXR3hnaW1lczlEaEhCem0r?=
- =?utf-8?B?Rm9lNml1eWliM00yRGhXc0VwRVZ2Vzl1anZ1aEJ4THBIQVoycFdDOGF1OUF5?=
- =?utf-8?B?S1F0amNlTjd5SmpLVlhIeldEK1lsSEJqSzZ2UDVQczJ5NVlTWm5aRDFwaFJ4?=
- =?utf-8?B?UFk4dEFFTUg2NzNoNTVyK3AySjRXbUZZb1dXV0RYUk9zbldHemI5SXUzNFpm?=
- =?utf-8?B?dTZ5V2ZwbnlNVDhGeS9XdTJJZ09YQ1FGenpoSzRCb2xEaDg5VC83RkQwSExV?=
- =?utf-8?Q?RsNdhQTGtloQYgdQaOhsRvFY2DpF04WuYG5fdhPqemUI=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: be636461-6e86-4380-62aa-08dbc7ffa8c2
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2023 13:08:27.4935
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1574
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Rafa=C5=82,
 
-On 2023/10/8 19:16, Inochi Amaoto wrote:
-> Document the compatible strings for the SOPHGO Huashan Pi board which
-> uses the SOPHGO CV1812H SoC.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+rafal@milecki.pl wrote on Sat, 07 Oct 2023 18:09:06 +0200:
 
-Acked-by: Chen Wang <unicorn_wang@outlook.com>
+> One comment below
+>=20
+> On 2023-10-06 18:32, Miquel Raynal wrote:
+> > rafal@milecki.pl wrote on Fri, 06 Oct 2023 13:41:52 +0200:
+> >  =20
+> >> On 2023-10-05 17:59, Miquel Raynal wrote: =20
+> >> > At a first look it might seem that the presence of the of_node point=
+er
+> >> > in the nvmem device does not matter much, but in practice, after > l=
+ooking
+> >> > deep into the DT core, nvmem_add_cells_from_dt() will simply and alw=
+ays
+> >> > return NULL if this field is not provided. As most mtd devices don't
+> >> > populate this field (this could evolve later), it means none of their
+> >> > children cells will be populated unless no_of_node is explicitly set=
+ to
+> >> > false. In order to clarify the logic, let's add clear check at the
+> >> > beginning of this helper. =20
+> >> >> I'm somehow confused by above explanation and code too. I read it =
+=20
+> >> carefully 5 times but I can't see what exactly this change helps with.=
+ =20
+> >> >> At first look at nvmem_add_cells_from_legacy_of() I can see it uses=
+ =20
+> >> "of_node" so I don't really agree with "it might seem that the >> pres=
+ence
+> >> of the of_node pointer in the nvmem device does not matter much". =20
+> >> >> You really don't need to look deep into DT core (actually you don't=
+ >> have =20
+> >> to look into it at all) to understand that nvmem_add_cells_from_dt()
+> >> will return 0 (nitpicking: not NULL) for a NULL pointer. It's all made
+> >> of for_each_child_of_node(). Obviously it does nothing if there is
+> >> nothing to loop over. =20
+> >=20
+> > That was not obvious to me as I thought it would start from /, which I
+> > think some other function do when you don't provide a start node. =20
+>=20
+> What about documenting that function instead of adding redundant code?
 
+Yeah would work as well. But I will just get rid of this, with your
+other patch that solves the fact that of_node will be there with mtd
+devices, it's no longer relevant.
 
-> Link: https://en.sophgo.com/product/introduce/huashan.html
-> Link: https://en.sophgo.com/product/introduce/cv181xH.html
-> ---
->   Documentation/devicetree/bindings/riscv/sophgo.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> index 86748c5390be..9bc813dad098 100644
-> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> @@ -22,6 +22,10 @@ properties:
->             - enum:
->                 - milkv,duo
->             - const: sophgo,cv1800b
-> +      - items:
-> +          - enum:
-> +              - sophgo,huashan-pi
-> +          - const: sophgo,cv1812h
->         - items:
->             - enum:
->                 - milkv,pioneer
-> --
-> 2.42.0
->
+Thanks,
+Miqu=C3=A8l
 
