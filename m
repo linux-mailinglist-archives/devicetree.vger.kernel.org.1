@@ -1,329 +1,200 @@
-Return-Path: <devicetree+bounces-6979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3297BE3BA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:59:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C397BE3BE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:59:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5B5E1C2093B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:59:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920232815F4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818301A278;
-	Mon,  9 Oct 2023 14:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C2D28DD9;
+	Mon,  9 Oct 2023 14:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aKRtxqo+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jr1q8swI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC8F199B8
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:59:02 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39301AF;
-	Mon,  9 Oct 2023 07:59:00 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CAF8A20007;
-	Mon,  9 Oct 2023 14:58:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696863536;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=126zzcvk0mJisUtQ8CjtSWhBmbZb9Wnd02ClNiOICi0=;
-	b=aKRtxqo+3v2seS3ng2zOCzci13hdKDfmvBeLjtzMdoVJYs3++SUZBUKlkTu27LxIdCr9LM
-	JKCf9dQ8U5Psg22Nk3lkcVRzjti5hRLuqp41wpT5vvyFzkABsWtbQY7xd2ylGxceKbyyRN
-	EEz+eAsMxxjerDBuuJgrjKJ1h6Pz0g0IspVM+OkHkSnH9KcfJoQcoVtdxZh2+vJYfzzjCu
-	F8ALIh7n0GweKZfqDT22Yr7qYY0gTrQW7fn4NeMZmpftyFJBvqgo+oP24Al2qjVX4i1f4C
-	jVu2bXOyMPN6j+BAi9B43DeM3BdvHLFplQr2X9eEV+CRAdY2pPs0P0ISQCBhRQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Arnd Bergmann <arnd@arndb.de>, kernel test robot <lkp@intel.com>, Paul
- Burton <paulburton@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Linus Walleij
- <linus.walleij@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Vladimir Kondratiev
- <vladimir.kondratiev@intel.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Chanho Min
- <chanho.min@lge.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH 10/11] MIPS: generic: Add support for Mobileye EyeQ5
-In-Reply-To: <86db0fe5-930d-4cbb-bd7d-03367da38951@app.fastmail.com>
-References: <20231004161038.2818327-11-gregory.clement@bootlin.com>
- <202310050726.GDpZbMDO-lkp@intel.com>
- <86db0fe5-930d-4cbb-bd7d-03367da38951@app.fastmail.com>
-Date: Mon, 09 Oct 2023 16:58:53 +0200
-Message-ID: <87pm1nc05u.fsf@BL-laptop>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F73E1FD8
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:59:21 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E89A6;
+	Mon,  9 Oct 2023 07:59:19 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399Dxkcj027223;
+	Mon, 9 Oct 2023 14:59:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=T6F8pc84NjvWuaNiXzQp1WQhhqK8wFXKn+d4LMiGlCI=;
+ b=Jr1q8swIAe9KWqNICtSt3cuud/yci8XeWYy7fbhD+lrsWLv+jy3ei14SLN+UjE58RqqZ
+ xAYToYnakDV2iSVYJU2QtvayZsj4fBSq1GUWc00xd8UqEuPxPtQZvZHI6vYglv7aXorg
+ VYzfoKwyLp0Jdx3XY6BBcm11WNHFgt3bHyctTm4MuzP3DW+SqouexhgoHU7TZ+WENeyI
+ nQJz+ncxBSdSfDZvglGWidRQxLpjwfraaDANmobOypTYkYw6scpMEqnF02tDDFNrXwbz
+ MFFnF6eUzHV6rHSlUZHyWd+IcF5jqoO9IlBxJzJj8BXwxbciRP3Acv7GDSAfAPD7oCRt Pw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkhj12nak-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 14:59:10 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399Ex9LX028488
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Oct 2023 14:59:09 GMT
+Received: from [10.110.87.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
+ 2023 07:59:08 -0700
+Message-ID: <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
+Date: Mon, 9 Oct 2023 07:59:08 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
+ support
+Content-Language: en-US
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-3-quic_nkela@quicinc.com>
+ <20231009144744.yi44ljq4llaxjsb7@bogus>
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20231009144744.yi44ljq4llaxjsb7@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LDZHqVFqKlD6kKLAdFiaifzEyyfQuJct
+X-Proofpoint-GUID: LDZHqVFqKlD6kKLAdFiaifzEyyfQuJct
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_12,2023-10-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 malwarescore=0 spamscore=0 suspectscore=0
+ mlxlogscore=999 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2309180000 definitions=main-2310090124
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
 
-> On Thu, Oct 5, 2023, at 02:08, kernel test robot wrote:
->> Hi Gregory,
+On 10/9/2023 7:47 AM, Sudeep Holla wrote:
+> On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
+>> This change adds the support for SCMI message exchange on Qualcomm
+>> virtual platforms.
 >>
->> kernel test robot noticed the following build errors:
+>> The hypervisor associates an object-id also known as capability-id
+>> with each smc/hvc doorbell object. The capability-id is used to
+>> identify the doorbell from the VM's capability namespace, similar
+>> to a file-descriptor.
 >>
->> [auto build test ERROR on robh/for-next]
->> [also build test ERROR on lee-mfd/for-mfd-next linus/master v6.6-rc4 
->> next-20231004]
->> [cannot apply to lee-mfd/for-mfd-fixes]
->> [If your patch is applied to the wrong git tree, kindly drop us a note.
->> And when submitting patch, we suggest to use '--base' as documented in
->> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
->
->> If you fix the issue in a separate patch/commit (i.e. not just a new 
->> version of
->> the same patch/commit), kindly add following tags
->> | Reported-by: kernel test robot <lkp@intel.com>
->> | Closes: 
->> https://lore.kernel.org/oe-kbuild-all/202310050726.GDpZbMDO-lkp@intel.com/
+>> The hypervisor, in addition to the function-id, expects the capability-id
+>> to be passed in x1 register when SMC/HVC call is invoked.
 >>
->> All error/warnings (new ones prefixed by >>):
+>> The capability-id is allocated by the hypervisor on bootup and is stored in
+>> the shmem region by the firmware before starting Linux.
 >>
->>    drivers/tty/serial/amba-pl011.c: In function 'pl011_sgbuf_init':
->>>> drivers/tty/serial/amba-pl011.c:380:30: error: implicit declaration of function 'phys_to_page'; did you mean 'pfn_to_page'? [-Werror=implicit-function-declaration]
->>      380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
->>          |                              ^~~~~~~~~~~~
->>          |                              pfn_to_page
+> Since you are happy to move to signed value, I assume you are happy to loose
+> upper half of the range values ?
 >
-> I discussed this with Gregory on IRC, and prototyped a
-> possible fix. The issue was caused by the use of coherent memory
-> for the buffer and passing that into a scatterlist structure.
+> Anyways after Bjorn pointed out inconsistency, I am thinking of moving
+> all the values to unsigned long to work with both 32bit and 64bit.
 >
-> Since there is no guarantee that the memory returned by
-> dma_alloc_coherent() is associated with a 'struct page', using
-> the architecture specific phys_to_page() is wrong, but using
-> virt_to_page() would be as well.
->
-> An easy workaround is to stop using sg lists altogether and
-> just use the *_single() functions instead. This also simplifies
-> the code a bit since the scatterlists in this driver always have
-> only one entry anyway.
->
-> Fixes: cb06ff102e2d7 ("ARM: PL011: Add support for Rx DMA buffer polling.")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> Does the below delta on top of this patch works for you and makes sense?
 
-I tested the following patch and it didn't introduce any regression and
-when using the same defconfig than the bot there is no more any error.
+This looks good to me. Will do some testing and float v6 with the 
+changes you suggested below. Thanks
 
-So we can add, 
-
-Tested-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-
-However, we don't use DMA on our platform for UART so the tests are
-limited.
-
-Linus; I know that you have a couple of boards that used the same UART
-controller. By any chance do you have some of them with DMA support that
-you could test ?
-
-Gregory
-
-PS: we are going to send series of clean-up and improvement for the
-pl011, but there are not mandatory for using the EyeQ5 platform. We
-hope being able to send them soon.
 
 >
-> diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-> index 0667e045ccb31..a3d92a91ff17d 100644
-> --- a/drivers/tty/serial/amba-pl011.c
-> +++ b/drivers/tty/serial/amba-pl011.c
-> @@ -219,8 +219,9 @@ static struct vendor_data vendor_st = {
->  /* Deals with DMA transactions */
->  
->  struct pl011_sgbuf {
-> -	struct scatterlist sg;
-> -	char *buf;
-> +	dma_addr_t		dma;
-> +	size_t			len;
-> +	char			*buf;
->  };
->  
->  struct pl011_dmarx_data {
-> @@ -241,7 +242,8 @@ struct pl011_dmarx_data {
->  
->  struct pl011_dmatx_data {
->  	struct dma_chan		*chan;
-> -	struct scatterlist	sg;
-> +	dma_addr_t		dma;
-> +	size_t			len;
->  	char			*buf;
->  	bool			queued;
->  };
-> @@ -369,18 +371,11 @@ static int pl011_fifo_to_tty(struct uart_amba_port *uap)
->  static int pl011_sgbuf_init(struct dma_chan *chan, struct pl011_sgbuf *sg,
->  	enum dma_data_direction dir)
->  {
-> -	dma_addr_t dma_addr;
+> --
+> Regards,
+> Sudeep
+>
+> -->8
+> diff --git c/drivers/firmware/arm_scmi/smc.c i/drivers/firmware/arm_scmi/smc.c
+> index bf0b7769c7b2..e00c5e81c8d9 100644
+> --- c/drivers/firmware/arm_scmi/smc.c
+> +++ i/drivers/firmware/arm_scmi/smc.c
+> @@ -15,6 +15,7 @@
+>   #include <linux/of.h>
+>   #include <linux/of_address.h>
+>   #include <linux/of_irq.h>
+> +#include <linux/limits.h>
+>   #include <linux/processor.h>
+>   #include <linux/slab.h>
+>   
+> @@ -65,7 +66,7 @@ struct scmi_smc {
+>   	unsigned long func_id;
+>   	unsigned long param_page;
+>   	unsigned long param_offset;
+> -	s64 cap_id;
+> +	unsigned long cap_id;
+>   };
+>   
+>   static irqreturn_t smc_msg_done_isr(int irq, void *data)
+> @@ -127,11 +128,11 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>   			  bool tx)
+>   {
+>   	struct device *cdev = cinfo->dev;
+> +	unsigned long cap_id = ULONG_MAX;
+>   	struct scmi_smc *scmi_info;
+>   	resource_size_t size;
+>   	struct resource res;
+>   	struct device_node *np;
+> -	s64 cap_id = -EINVAL;
+>   	u32 func_id;
+>   	int ret;
+>   
+> @@ -167,6 +168,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>   		return ret;
+>   
+>   	if (of_device_is_compatible(dev->of_node, "qcom,scmi-smc")) {
+> +		void __iomem *ptr = (void __iomem *)scmi_info->shmem + size - 8;
+>   		/* The capability-id is kept in last 8 bytes of shmem.
+>   		 *     +-------+
+>   		 *     |       |
+> @@ -177,12 +179,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+>   		 *     | capId |
+>   		 *     +-------+ <-- size
+>   		 */
 > -
-> -	sg->buf = dma_alloc_coherent(chan->device->dev,
-> -		PL011_DMA_BUFFER_SIZE, &dma_addr, GFP_KERNEL);
-> +	sg->buf = dma_alloc_coherent(chan->device->dev, PL011_DMA_BUFFER_SIZE,
-> +				     &sg->dma, GFP_KERNEL);
->  	if (!sg->buf)
->  		return -ENOMEM;
-> -
-> -	sg_init_table(&sg->sg, 1);
-> -	sg_set_page(&sg->sg, phys_to_page(dma_addr),
-> -		PL011_DMA_BUFFER_SIZE, offset_in_page(dma_addr));
-> -	sg_dma_address(&sg->sg) = dma_addr;
-> -	sg_dma_len(&sg->sg) = PL011_DMA_BUFFER_SIZE;
-> +	sg->len = PL011_DMA_BUFFER_SIZE;
->  
->  	return 0;
->  }
-> @@ -390,8 +385,7 @@ static void pl011_sgbuf_free(struct dma_chan *chan, struct pl011_sgbuf *sg,
->  {
->  	if (sg->buf) {
->  		dma_free_coherent(chan->device->dev,
-> -			PL011_DMA_BUFFER_SIZE, sg->buf,
-> -			sg_dma_address(&sg->sg));
-> +				  PL011_DMA_BUFFER_SIZE, sg->buf, sg->dma);
->  	}
->  }
->  
-> @@ -552,8 +546,8 @@ static void pl011_dma_tx_callback(void *data)
->  
->  	uart_port_lock_irqsave(&uap->port, &flags);
->  	if (uap->dmatx.queued)
-> -		dma_unmap_sg(dmatx->chan->device->dev, &dmatx->sg, 1,
-> -			     DMA_TO_DEVICE);
-> +		dma_unmap_single(dmatx->chan->device->dev, dmatx->dma,
-> +				dmatx->len, DMA_TO_DEVICE);
->  
->  	dmacr = uap->dmacr;
->  	uap->dmacr = dmacr & ~UART011_TXDMAE;
-> @@ -639,18 +633,19 @@ static int pl011_dma_tx_refill(struct uart_amba_port *uap)
->  			memcpy(&dmatx->buf[first], &xmit->buf[0], second);
->  	}
->  
-> -	dmatx->sg.length = count;
-> -
-> -	if (dma_map_sg(dma_dev->dev, &dmatx->sg, 1, DMA_TO_DEVICE) != 1) {
-> +	dmatx->len = count;
-> +	dmatx->dma = dma_map_single(dma_dev->dev, dmatx->buf, count,
-> +				    DMA_TO_DEVICE);
-> +	if (dmatx->dma == DMA_MAPPING_ERROR) {
->  		uap->dmatx.queued = false;
->  		dev_dbg(uap->port.dev, "unable to map TX DMA\n");
->  		return -EBUSY;
->  	}
->  
-> -	desc = dmaengine_prep_slave_sg(chan, &dmatx->sg, 1, DMA_MEM_TO_DEV,
-> +	desc = dmaengine_prep_slave_single(chan, dmatx->dma, dmatx->len, DMA_MEM_TO_DEV,
->  					     DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
->  	if (!desc) {
-> -		dma_unmap_sg(dma_dev->dev, &dmatx->sg, 1, DMA_TO_DEVICE);
-> +		dma_unmap_single(dma_dev->dev, dmatx->dma, dmatx->len, DMA_TO_DEVICE);
->  		uap->dmatx.queued = false;
->  		/*
->  		 * If DMA cannot be used right now, we complete this
-> @@ -813,8 +808,8 @@ __acquires(&uap->port.lock)
->  	dmaengine_terminate_async(uap->dmatx.chan);
->  
->  	if (uap->dmatx.queued) {
-> -		dma_unmap_sg(uap->dmatx.chan->device->dev, &uap->dmatx.sg, 1,
-> -			     DMA_TO_DEVICE);
-> +		dma_unmap_single(uap->dmatx.chan->device->dev, uap->dmatx.dma,
-> +				 uap->dmatx.len, DMA_TO_DEVICE);
->  		uap->dmatx.queued = false;
->  		uap->dmacr &= ~UART011_TXDMAE;
->  		pl011_write(uap->dmacr, uap, REG_DMACR);
-> @@ -836,7 +831,7 @@ static int pl011_dma_rx_trigger_dma(struct uart_amba_port *uap)
->  	/* Start the RX DMA job */
->  	sgbuf = uap->dmarx.use_buf_b ?
->  		&uap->dmarx.sgbuf_b : &uap->dmarx.sgbuf_a;
-> -	desc = dmaengine_prep_slave_sg(rxchan, &sgbuf->sg, 1,
-> +	desc = dmaengine_prep_slave_single(rxchan, sgbuf->dma, sgbuf->len,
->  					DMA_DEV_TO_MEM,
->  					DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
->  	/*
-> @@ -886,7 +881,7 @@ static void pl011_dma_rx_chars(struct uart_amba_port *uap,
->  
->  	if (uap->dmarx.poll_rate) {
->  		/* The data can be taken by polling */
-> -		dmataken = sgbuf->sg.length - dmarx->last_residue;
-> +		dmataken = sgbuf->len - dmarx->last_residue;
->  		/* Recalculate the pending size */
->  		if (pending >= dmataken)
->  			pending -= dmataken;
-> @@ -911,7 +906,7 @@ static void pl011_dma_rx_chars(struct uart_amba_port *uap,
->  
->  	/* Reset the last_residue for Rx DMA poll */
->  	if (uap->dmarx.poll_rate)
-> -		dmarx->last_residue = sgbuf->sg.length;
-> +		dmarx->last_residue = sgbuf->len;
->  
->  	/*
->  	 * Only continue with trying to read the FIFO if all DMA chars have
-> @@ -969,7 +964,7 @@ static void pl011_dma_rx_irq(struct uart_amba_port *uap)
->  	pl011_write(uap->dmacr, uap, REG_DMACR);
->  	uap->dmarx.running = false;
->  
-> -	pending = sgbuf->sg.length - state.residue;
-> +	pending = sgbuf->len - state.residue;
->  	BUG_ON(pending > PL011_DMA_BUFFER_SIZE);
->  	/* Then we terminate the transfer - we now know our residue */
->  	dmaengine_terminate_all(rxchan);
-> @@ -1015,7 +1010,7 @@ static void pl011_dma_rx_callback(void *data)
->  	 * the DMA irq handler. So we check the residue here.
->  	 */
->  	rxchan->device->device_tx_status(rxchan, dmarx->cookie, &state);
-> -	pending = sgbuf->sg.length - state.residue;
-> +	pending = sgbuf->len - state.residue;
->  	BUG_ON(pending > PL011_DMA_BUFFER_SIZE);
->  	/* Then we terminate the transfer - we now know our residue */
->  	dmaengine_terminate_all(rxchan);
-> @@ -1074,7 +1069,7 @@ static void pl011_dma_rx_poll(struct timer_list *t)
->  	sgbuf = dmarx->use_buf_b ? &uap->dmarx.sgbuf_b : &uap->dmarx.sgbuf_a;
->  	rxchan->device->device_tx_status(rxchan, dmarx->cookie, &state);
->  	if (likely(state.residue < dmarx->last_residue)) {
-> -		dmataken = sgbuf->sg.length - dmarx->last_residue;
-> +		dmataken = sgbuf->len - dmarx->last_residue;
->  		size = dmarx->last_residue - state.residue;
->  		dma_count = tty_insert_flip_string(port, sgbuf->buf + dmataken,
->  				size);
-> @@ -1123,7 +1118,7 @@ static void pl011_dma_startup(struct uart_amba_port *uap)
->  		return;
->  	}
->  
-> -	sg_init_one(&uap->dmatx.sg, uap->dmatx.buf, PL011_DMA_BUFFER_SIZE);
-> +	uap->dmatx.len = PL011_DMA_BUFFER_SIZE;
->  
->  	/* The DMA buffer is now the FIFO the TTY subsystem can use */
->  	uap->port.fifosize = PL011_DMA_BUFFER_SIZE;
-> @@ -1200,8 +1195,9 @@ static void pl011_dma_shutdown(struct uart_amba_port *uap)
->  		/* In theory, this should already be done by pl011_dma_flush_buffer */
->  		dmaengine_terminate_all(uap->dmatx.chan);
->  		if (uap->dmatx.queued) {
-> -			dma_unmap_sg(uap->dmatx.chan->device->dev, &uap->dmatx.sg, 1,
-> -				     DMA_TO_DEVICE);
-> +			dma_unmap_single(uap->dmatx.chan->device->dev,
-> +					 uap->dmatx.dma, uap->dmatx.len,
-> +					 DMA_TO_DEVICE);
->  			uap->dmatx.queued = false;
->  		}
->  
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> -#ifdef CONFIG_64BIT
+> -		cap_id = ioread64((void *)scmi_info->shmem + size - 8);
+> -#else
+> -		cap_id = ioread32((void *)scmi_info->shmem + size - 8);
+> -#endif
+> +		memcpy_fromio(&cap_id, ptr, sizeof(cap_id));
+>   	}
+>   
+>   	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param")) {
+> @@ -247,7 +244,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
+>   
+>   	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
+>   
+> -	if (cap_id >= 0)
+> +	if (cap_id != ULONG_MAX)
+>   		arm_smccc_1_1_invoke(scmi_info->func_id, cap_id, 0, 0, 0, 0, 0,
+>   				     0, &res);
+>   	else
+>
 
