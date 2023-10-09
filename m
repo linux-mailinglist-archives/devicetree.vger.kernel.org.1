@@ -1,142 +1,304 @@
-Return-Path: <devicetree+bounces-6997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E45737BE77E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:15:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538847BE785
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:17:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 963F82818D7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:15:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1329428194D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB55358B4;
-	Mon,  9 Oct 2023 17:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A1736B08;
+	Mon,  9 Oct 2023 17:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HXdK1J6v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dILau7xp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9765934CC7
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:15:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A23BFC433C7;
-	Mon,  9 Oct 2023 17:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88FA9134BE
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:17:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A225AC433C7;
+	Mon,  9 Oct 2023 17:17:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696871745;
-	bh=kGJT1BA4ALJmBk4tk3vC3+mdd3/pcWV2fJ+nhEIfUAU=;
+	s=k20201202; t=1696871873;
+	bh=I2CqfpW+7rJT51XxTDy4/99F+BBs6j5la8HhfMmDYG0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HXdK1J6v/hJ9GVt6ExlZ55iiRmtTT0QrueHDnly79hCe480hPd7mn8qEqPoK5wNIa
-	 mrBipl1RQSwz4h+ciL9G4/T9s2kezzW4k8DS5VxFSbWlFBo6GlW75JON8RFVa/N2ac
-	 EKUlIQvA50dHLv954TlOQpUnTZ+UHDYjcFKqs8AfoEdobsuJeYAB34G1t/zF2lmmrV
-	 fxS0WCY9qm6KQumg2kw6ke+JxSDx6gIPsOI93MxzgsUrzdD8uqs27OMn1nusxS/CgK
-	 W0cP1fW5TcLDEAxSLDKBv4Yiz99SqDAoHm8yyncWtrTxVfh60UupQRXeDx5TMvSITv
-	 baexcT6NRfKAw==
-Date: Mon, 9 Oct 2023 18:15:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Peter Denison <openwrt@marshadder.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Krzysztof Halasa <khalasa@piap.pl>, Imre Kaloz <kaloz@openwrt.org>,
-	Ted Hess <thess@kitschensync.net>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: List more IXP4xx devices
-Message-ID: <20231009-broadways-ream-38ced3364874@spud>
-References: <20231007-ixp4xx-usr8200-v3-0-ec46edd1ff0e@linaro.org>
- <20231007-ixp4xx-usr8200-v3-2-ec46edd1ff0e@linaro.org>
+	b=dILau7xpGTyhEqgp1wj91xacT0IEjGgVwMlraH9WRIJa8rLhzW5iopRZwm1cerz9+
+	 u8uDxM9uEMUnK2RNu41kVIZQ4K83W9t5kk4Suj5XTJ/cGIqsEYutpLz2LMjO96itnn
+	 caVyuKiCIkSdeoG77zH7Yc2cDkpbbJM2Jcu4TGHuWG5GrsqHTVQdcgf9SwoQI6WCvb
+	 JGH7ERC4oTRX5n1b2ROfr2Y6gNELPI2cLwS/3WVdGPL2SY+Hmo7t//PUSXEcLmh2/Z
+	 dhtiIpPp8pRJNYeTUQ4yys4ydDkd3UeTSMC4SZcF4tbou52tixH+oMHvOH0RYwG9bx
+	 TBwVYeVDig70w==
+Date: Mon, 9 Oct 2023 22:47:35 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Nitheesh Sekar <quic_nsekar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	mani@kernel.org, p.zabel@pengutronix.de, quic_srichara@quicinc.com,
+	quic_varada@quicinc.com, quic_ipkumar@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: ipq5018: Add PCIe related nodes
+Message-ID: <20231009171735.GB31623@thinkpad>
+References: <20231003120846.28626-1-quic_nsekar@quicinc.com>
+ <20231003120846.28626-6-quic_nsekar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xBgkEEQF16zYyPvw"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231007-ixp4xx-usr8200-v3-2-ec46edd1ff0e@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231003120846.28626-6-quic_nsekar@quicinc.com>
 
-
---xBgkEEQF16zYyPvw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Oct 07, 2023 at 02:15:12PM +0200, Linus Walleij wrote:
-> The ixp4xx bindings are lacking some of the devices we have
-> out there in the wild, so let's add them.
->=20
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+On Tue, Oct 03, 2023 at 05:38:45PM +0530, Nitheesh Sekar wrote:
+> Add phy and controller nodes for PCIe_x2 and PCIe_x1.
+> PCIe_x2 is 2-lane Gen2 and PCIe_x1 is 1-lane Gen2.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > ---
-> ChangeLog v1->v2:
-> - Skip the crazy triplet compatible. There will have to
->   be one device tree including the other if this really
->   has to be a unique compatible for gemtek,gtwx5715.
->   Linksys will clearly be the most prevalent version.
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 186 +++++++++++++++++++++++++-
+>  1 file changed, 184 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 38ffdc3cbdcd..0818fdd1e693 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
+>  #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+> +#include <dt-bindings/gpio/gpio.h>
+>  
+>  / {
+>  	interrupt-parent = <&intc>;
+> @@ -94,6 +95,38 @@
+>  		#size-cells = <1>;
+>  		ranges = <0 0 0 0xffffffff>;
+>  
+> +		pcie_x1phy: phy@7e000{
+> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x1";
+> +			reg = <0x0007e000 0x800>;
+> +			#phy-cells = <0>;
+> +			#clock-cells = <0>;
+> +			clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+> +			clock-names = "pipe_clk";
+> +			clock-output-names = "pcie1_pipe_clk";
+> +			assigned-clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+> +			assigned-clock-rates = <125000000>;
+> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
+> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
+> +			reset-names = "phy", "phy_phy";
+> +			status = "disabled";
+> +		};
+> +
+> +		pcie_x2phy: phy@86000{
+> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x2";
+> +			reg = <0x00086000 0x800>;
+> +			#phy-cells = <0>;
+> +			#clock-cells = <0>;
+> +			clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> +			clock-names = "pipe_clk";
+> +			clock-output-names = "pcie0_pipe_clk";
+> +			assigned-clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> +			assigned-clock-rates = <125000000>;
+> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
+> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
+> +			reset-names = "phy", "phy_phy";
+> +			status = "disabled";
+> +		};
+> +
+>  		tlmm: pinctrl@1000000 {
+>  			compatible = "qcom,ipq5018-tlmm";
+>  			reg = <0x01000000 0x300000>;
+> @@ -117,8 +150,8 @@
+>  			reg = <0x01800000 0x80000>;
+>  			clocks = <&xo_board_clk>,
+>  				 <&sleep_clk>,
+> -				 <0>,
+> -				 <0>,
+> +				 <&pcie_x2phy>,
+> +				 <&pcie_x1phy>,
+>  				 <0>,
+>  				 <0>,
+>  				 <0>,
+> @@ -246,6 +279,155 @@
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		pcie_x1: pci@80000000 {
+> +			compatible = "qcom,pcie-ipq5018";
+> +			reg =  <0x80000000 0xf1d
+> +				0x80000F20 0xa8
+> +				0x80001000 0x1000
+> +				0x78000 0x3000
+> +				0x80100000 0x1000>;
+> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +			device_type = "pci";
+> +			linux,pci-domain = <0>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <1>;
+> +			max-link-speed = <2>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			phys = <&pcie_x1phy>;
+> +			phy-names ="pciephy";
+> +
+> +			ranges = <0x81000000 0 0x80200000 0x80200000
 
-Ok.
+Why do you need "relocatable" flag? Same question for other range also.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +				  0 0x00100000   /* downstream I/O */
+> +				  0x82000000 0 0x80300000 0x80300000
+> +				  0 0x10000000>; /* non-prefetchable memory */
+> +
 
-Thanks,
-Conor.
+Don't you need "dma-coherent" to specify the devices as cache coherent? I assume
+all the recent PCIe generations are cache coherent.
 
-> ---
->  Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml | 16 +++++++++++=
-+++++
->  1 file changed, 16 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml b/Do=
-cumentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> index 553dcbc70e35..d60792b1d995 100644
-> --- a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> @@ -16,12 +16,28 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> +              - adieng,coyote
-> +              - arcom,vulcan
-> +              - dlink,dsm-g600-a
-> +              - freecom,fsg-3
-> +              - gateway,7001
-> +              - gateworks,gw2348
-> +              - goramo,multilink-router
-> +              - intel,ixdp425
-> +              - intel,ixdpg425
-> +              - iom,nas-100d
->                - linksys,nslu2
-> +              - netgear,wg302v1
-> +              - netgear,wg302v2
-> +              - usr,8200
->                - welltech,epbx100
-> +              - linksys,wrv54g
-> +              - gemtek,gtwx5715
->            - const: intel,ixp42x
->        - items:
->            - enum:
->                - gateworks,gw2358
-> +              - intel,kixrp435
->            - const: intel,ixp43x
-> =20
->  additionalProperties: true
->=20
-> --=20
-> 2.41.0
->=20
+- Mani
 
---xBgkEEQF16zYyPvw
-Content-Type: application/pgp-signature; name="signature.asc"
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 142
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +					<0 0 0 2 &intc 0 143
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +					<0 0 0 3 &intc 0 144
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +					<0 0 0 4 &intc 0 145
+> +					 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "global_irq";
+> +
+> +			clocks = <&gcc GCC_SYS_NOC_PCIE1_AXI_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_M_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_S_CLK>,
+> +				 <&gcc GCC_PCIE1_AHB_CLK>,
+> +				 <&gcc GCC_PCIE1_AUX_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_S_BRIDGE_CLK>;
+> +
+> +			clock-names = "iface",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "aux",
+> +				      "axi_bridge";
+> +
+> +			resets = <&gcc GCC_PCIE1_PIPE_ARES>,
+> +				 <&gcc GCC_PCIE1_SLEEP_ARES>,
+> +				 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_MASTER_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_SLAVE_ARES>,
+> +				 <&gcc GCC_PCIE1_AHB_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_MASTER_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_SLAVE_STICKY_ARES>;
+> +
+> +			reset-names = "pipe",
+> +				      "sleep",
+> +				      "sticky",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "axi_m_sticky",
+> +				      "axi_s_sticky";
+> +
+> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pcie_x2: pci@a0000000 {
+> +			compatible = "qcom,pcie-ipq5018";
+> +			reg =  <0xa0000000 0xf1d
+> +				0xa0000F20 0xa8
+> +				0xa0001000 0x1000
+> +				0x80000 0x3000
+> +				0xa0100000 0x1000>;
+> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +			device_type = "pci";
+> +			linux,pci-domain = <1>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <2>;
+> +			max-link-speed = <2>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			phys = <&pcie_x2phy>;
+> +			phy-names ="pciephy";
+> +
+> +			ranges = <0x81000000 0 0xa0200000 0xa0200000
+> +				  0 0x00100000   /* downstream I/O */
+> +				  0x82000000 0 0xa0300000 0xa0300000
+> +				  0 0x10000000>; /* non-prefetchable memory */
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 75
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +					<0 0 0 2 &intc 0 78
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +					<0 0 0 3 &intc 0 79
+> +					 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +					<0 0 0 4 &intc 0 83
+> +					 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "global_irq";
+> +
+> +			clocks = <&gcc GCC_SYS_NOC_PCIE0_AXI_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_M_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_S_CLK>,
+> +				 <&gcc GCC_PCIE0_AHB_CLK>,
+> +				 <&gcc GCC_PCIE0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_S_BRIDGE_CLK>;
+> +
+> +			clock-names = "iface",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "aux",
+> +				      "axi_bridge";
+> +
+> +			resets = <&gcc GCC_PCIE0_PIPE_ARES>,
+> +				 <&gcc GCC_PCIE0_SLEEP_ARES>,
+> +				 <&gcc GCC_PCIE0_CORE_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_MASTER_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_SLAVE_ARES>,
+> +				 <&gcc GCC_PCIE0_AHB_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_SLAVE_STICKY_ARES>;
+> +
+> +			reset-names = "pipe",
+> +				      "sleep",
+> +				      "sticky",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "axi_m_sticky",
+> +				      "axi_s_sticky";
+> +
+> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
+> +			status = "disabled";
+> +		};
+> +
+>  	};
+>  
+>  	timer {
+> -- 
+> 2.17.1
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ1PAAKCRB4tDGHoIJi
-0nXYAP4lR0Tlm9PYUXc6KOhPEk9U4C20k9Jnv1vo7KHkAZ/LigD/bGdkrzciGL1y
-ew5uGVz6BdbQZDOuxgNLbKUd2GMAogQ=
-=qokJ
------END PGP SIGNATURE-----
-
---xBgkEEQF16zYyPvw--
+-- 
+மணிவண்ணன் சதாசிவம்
 
