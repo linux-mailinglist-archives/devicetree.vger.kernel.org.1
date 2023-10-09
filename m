@@ -1,118 +1,122 @@
-Return-Path: <devicetree+bounces-6946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931F57BDDD4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:13:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 136D57BDDF8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:14:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C32D91C20919
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:13:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFC332815C2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CDC91946D;
-	Mon,  9 Oct 2023 13:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE5B199A1;
+	Mon,  9 Oct 2023 13:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bm00HPNO"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="hu9Bqq5n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FD619464
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:13:38 +0000 (UTC)
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCC5DA
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:13:36 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5a22eaafd72so56011357b3.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 06:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696857216; x=1697462016; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kKZKnrRJ3sYtky/2h2Hus8kthq+g2qZ6Wg41eu1H8Lg=;
-        b=bm00HPNOX1W0TXsn3nZTubMYOd4U2VYtG5z5sgnF3NZ3jNgl7keFI1QaIujZxL+Ul/
-         ULXUqfU/kXpd2NTSTjDQ7WNBx9AwRAxNy/OAWm6hqyKweQY8mwNpso13k6ZMtiyjep+E
-         y7TTA/n5PoAG4gGyquc4uJqn0Y3xF2wFzB1KiHMlkaO9Z0OoGCg4ccJ2gM67EsqEXW7q
-         9ZaEdmO/KI4ElXiMgsOIUSeC0lJRqaN9Hw7Xlg+f+0KvyLOH9Bx9o/LcVXUs2vkvm5X+
-         iFy7xmDb8h2x06/yh/zaB+7rdLwYjpkSCZt6oip+uFKX2gBSGV3GeofttNg3b6teJJLZ
-         OM4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696857216; x=1697462016;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kKZKnrRJ3sYtky/2h2Hus8kthq+g2qZ6Wg41eu1H8Lg=;
-        b=gXPgpRxDz6mRTnZbk9oe+Rej0cUNufgp21KpGNtjZD3/doKM0k+IYvhXDur30RH06x
-         aGOZpNKz6vE5KNMQrwmwc/Yr0Do3U9iSgvwPgGcRe+YMCEMRWESvP6y0mHCX0+Mzyg71
-         eBb8g2oC0G221NbUPT+eNj2XD184jUo4hqJtdyW6S/m6FdBAWooA7jdyWUJzBIk9VnsH
-         uEKh5cBo1052H5S8GRJ60mSautztb604V9mAWn6g2s5sWLae9q3EwDl6rb7a/twv7zY2
-         rjqrRenoO93HFCc0yeLUF7Lk6LCsEr1TtuporFJxyzj33PpJ1V4CTLaQCkfpTlF+Xg5E
-         WTVw==
-X-Gm-Message-State: AOJu0YxHK7JMX9SPVFN2mriDaKtVMBuYu/76W0TYIdwdkpmPzZ4OdQ5W
-	j4/0ifhmEFQC/AUTIATR3aWoYGy4+4K2zPCllRM/xQ==
-X-Google-Smtp-Source: AGHT+IGt4o+K7vRBblvmGc6ypN/viBqCTAHECrQcma5UGrocmzfjWytyeGJeKtv1Oy5/0dhqamzM1xbB19zZG60qbYE=
-X-Received: by 2002:a25:768d:0:b0:d7a:e0f6:54cc with SMTP id
- r135-20020a25768d000000b00d7ae0f654ccmr14186498ybc.26.1696857216181; Mon, 09
- Oct 2023 06:13:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4005E199AA
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:14:33 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D68CA;
+	Mon,  9 Oct 2023 06:14:30 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6F0D710000B;
+	Mon,  9 Oct 2023 16:14:28 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6F0D710000B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696857268;
+	bh=z5iRO3RNusoCOixRJJnEOCG2jfwEP64vxRjriXO4eWU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=hu9Bqq5nAk+Vy0m7p+YaT7jRtggLgIbhblLIIYUfUdhK/pC4eERoAiRDaFdwgebwS
+	 y9EMhyUvxC07FULOxt480KcRhqNKqEAp1XRLcnUM9k+l5pd8ME7wnNJq5qk3siUqz2
+	 5QLXolCuJB3G/Af/DxBUb3Xbn7wJl+UlAO84n4qVyrPbB7rAnxo7tkF3L2UOFFqZUm
+	 m3OncegZE0zD5mPFOUUC10S6F3nqlQhVm7GseKiNr5bNCughUuuVviutJrhLcZUms2
+	 KaxN98vnDa3eX/qiu7KBqzE5EijQhW6WQQp5B2rHy20p2AntHE0ZAbflUkqF6NyP44
+	 Ad5bqlORmxpTQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  9 Oct 2023 16:14:28 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
+ 2023 16:14:27 +0300
+Date: Mon, 9 Oct 2023 16:14:27 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
+	<gnstark@salutedevices.com>
+Subject: Re: [PATCH v1 07/11] leds: aw200xx: add delay after software reset
+Message-ID: <20231009131427.vdhcoia2zuztpl5d@CAB-WSD-L081021>
+References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
+ <20231006160437.15627-8-ddrokosov@salutedevices.com>
+ <CAHp75VdkBR5yNd-U_v_4fv2pHHwzKBg6ajnZgjw=xb8kT+y7UA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org> <20231006132346.GA3426353-robh@kernel.org>
- <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com> <ZSPDILYZkxvTnQia@e120937-lin>
-In-Reply-To: <ZSPDILYZkxvTnQia@e120937-lin>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 9 Oct 2023 15:13:24 +0200
-Message-ID: <CACRpkdY=eza0TuBRDb_cWk9LM2qNQg76rZSgWa-RP4TYLL=Ppw@mail.gmail.com>
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Rob Herring <robh@kernel.org>, AKASHI Takahiro <takahiro.akashi@linaro.org>, sudeep.holla@arm.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VdkBR5yNd-U_v_4fv2pHHwzKBg6ajnZgjw=xb8kT+y7UA@mail.gmail.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180475 [Oct 09 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/08 23:24:00 #22096719
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 9, 2023 at 11:08=E2=80=AFAM Cristian Marussi
-<cristian.marussi@arm.com> wrote:
-
-> > > +    gpio0: gpio@0 {
-> > > +        compatible =3D "pin-control-gpio";
-> > > +        gpio-controller;
-> > > +        #gpio-cells =3D <2>;
-> > > +        gpio-ranges =3D <&scmi_pinctrl 0 10 5>,
-> > > +                      <&scmi_pinctrl 5 0 0>;
-> > > +        gpio-ranges-group-names =3D "",
-> > > +                                  "pinmux_gpio";
-> > > +    };
+On Fri, Oct 06, 2023 at 09:01:39PM +0300, Andy Shevchenko wrote:
+> On Fri, Oct 6, 2023 at 7:05 PM Dmitry Rokosov
+> <ddrokosov@salutedevices.com> wrote:
 > >
->
-> Assuming the above &scmi_pinctrl refers to the protocol node as we
-> usually do,
+> > From: George Stark <gnstark@salutedevices.com>
+> >
+> > According to datasheets of aw200xx devices software reset takes at
+> > least 1 ms so add delay after reset before issuing commands to device.
+> 
+> > +       /* according to datasheet software reset takes at least 1ms */
+> 
+> Please, be consistent in all patches in all commit messages and code
+> comments on how you supply physical units (w/ space or w/o, take also
+> into consideration traditional scientific practices).
+> 
+> > +       usleep_range(1000, 2000);
+> 
+> fsleep() ?
 
-No it does not, it is a three-layer cake.
+Good catch! Thank you for pointing!
 
-scmi <-> scmi_pinctrl <-> scmi_gpio
-
-it refers to the scmi_pinctrl node.
-
-There is no SCMI GPIO protocol, instead SCMI is using the
-operations already available in the pin controller to exercise
-GPIO. Generic pin control has operations to drive lines for
-example, and Takahiro is adding the ability for a generic pin
-controller to also read a line.
-
-Yours,
-Linus Walleij
+-- 
+Thank you,
+Dmitry
 
