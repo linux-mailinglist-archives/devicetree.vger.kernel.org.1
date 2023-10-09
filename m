@@ -1,104 +1,134 @@
-Return-Path: <devicetree+bounces-7038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DD07BEC34
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 23:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B74B7BEC39
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 23:03:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61231281AC0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:02:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A5B281ACA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1893FB2F;
-	Mon,  9 Oct 2023 21:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D733FB33;
+	Mon,  9 Oct 2023 21:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zUDlbyAE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tf09s6Zu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6502030B
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 21:02:52 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B0F9E
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:02:51 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-59e88a28b98so42825117b3.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 14:02:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE0F38DC0
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 21:03:54 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A0BED
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:03:49 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b9338e4695so63402051fa.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 14:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696885370; x=1697490170; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SJz0h0Tx8tbmQIBwQkViScvt69REAVK+f5XbSP6AYKE=;
-        b=zUDlbyAE84bS8JysuwtlFOlOCAIWHq5vzlBdmzHuLZHTu9Su55E3ZOHSlochmwe4ku
-         jUA+nBDgJjp5jJot7wg1c5nQdLExC35cCoWHvQS/AE9DqudRhIwlBxbNaDP5yy6GuK3k
-         gn6JHPIjOS8no3KV+MCnjIamgwIABXgze4vo00hH2wRYKc+gaKukjamaSsq/QjUqbEyZ
-         N98niBdGNGk90sjPdMYWvgAODLTESYfa37pxPF+38K9T83mGNoV0fAaW+jeUhbXOC4zZ
-         cNg01NNqtizcd40c26dWJt3yPK7VEl8abjTF9eOtd41mV5IdgAK+YdqSeZKYwdgT38Nm
-         Quzw==
+        d=linaro.org; s=google; t=1696885427; x=1697490227; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=43JczQhR06svhP3+MFO67a4XDgSpc7xK7wWPqbVY3mc=;
+        b=Tf09s6ZuTFQ61khnhibD7Law+sJmp194b8dKjNVEczJTXEhSz/iVrQ/og+vR7IueXD
+         iPeRaN50OUwiiJwg3v5pn9mrFTc1IBPzFhe/41h9cogtoH64juBQPq7CPoMyd1ux+nfT
+         TsvA3ttggXKCHyvvNk2XEnqpYC38TW8Jg0kOUB2zIw0sGUGwVUMnbMz/UohfBJQqT9Ua
+         XwikSQjW3z7gF5C+sh5o18UHRX0BYYQRMSaXwMZybOf7wWaYhC8ejAYBrBm/BV5Pcgft
+         15l42CY0jrN8qqG5NVelUakkdT0BdfXGJxcpjPvuaRv2qKoRXShg27SwaHAv43H2ZeXJ
+         Sw8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696885370; x=1697490170;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SJz0h0Tx8tbmQIBwQkViScvt69REAVK+f5XbSP6AYKE=;
-        b=E3ct3HsDLi/lvwN3q/iQ6DkOaA96/uQjKjdQwNbWTYXNy8qW3QngmuJQy8EVuqWCWh
-         eVxB9kjcydmUqa2Quyijpw8gEWxerprijmQMt1DBql+sDELLe7MQs7olm4V0d/i0TRbf
-         spfrwchYRNKaYQg4Dl+3AzCZz6JMQIRrt1f9ZujKAFzKml+fmtVWh7BVfIaAlhoyqEPa
-         I8LpIY+60ZRmwZ2h2wP1ZJlGWduNb7e0zoDGicLlaXk0gUpYlBPCUwIbm0pE0qyxPR81
-         VL9094N4bmeqnDb30ivyy+LatiR/LXsl+BlWdsvnyI+/aCO3dxaB1VT96Kk04pjYKnG+
-         /WHA==
-X-Gm-Message-State: AOJu0YxqFq1dpYPybWcLEorN6i+WCEAjLFGmB2vgxkqI2SHpdq/dRyvM
-	sUTW3/GP+uT1cj+y68d8/JzIjIMq1qTZt6eNqxq2Xw==
-X-Google-Smtp-Source: AGHT+IG7zTQ1sPIVq6sSufNIqZ5HokqJWtqPk7b7cMpFUs43lI/+XA7kKBK7iStn8zLZan3BdCgDzKJEQFuFjmdMKw0=
-X-Received: by 2002:a81:49d0:0:b0:56c:f0c7:7d72 with SMTP id
- w199-20020a8149d0000000b0056cf0c77d72mr10143379ywa.4.1696885370504; Mon, 09
- Oct 2023 14:02:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696885427; x=1697490227;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=43JczQhR06svhP3+MFO67a4XDgSpc7xK7wWPqbVY3mc=;
+        b=uGNW3gNNv+TtjB38vOdBcqEkiZJcn8maTsfQTwzZUlBPtzwl4CNhjZgcRMn5TSfYZz
+         xVLOmvqrHT7FK3drcU+TrYjL8w5HxljW/T+0EeoTZGTEW/h6djL1wNdmbgxqRNabkfdb
+         BaPkRloNfyp9r3/0cOVXKEbEMFk14T38zIY4NntFNb7vfWdqSAedQhxDO5m5TXqCscQd
+         9VPcOy5Gwpjjm4yH+FQHkhGGjG74lH/70U6k9Zugu35YqGq634nRn+7i9aXTLt+uvOA9
+         0yFlbKlRWdI1xu685HB0BVT+Q7jpJuqNR4hCHMUlid8zKklFdpVHuCNPQH9qaXCZq1Bt
+         SBhw==
+X-Gm-Message-State: AOJu0Yxe7jIxB1S1HEhveECN7jouEMHxvLlqiKRyYjT6U4coR0xcGSFX
+	0JFo7VOVK5J3Lenuyq1hJjIYUg==
+X-Google-Smtp-Source: AGHT+IFMY7QqUdgo8VEEaNfc3AJxOGVDc5LmcHQuYLgMIPjPJlsAadiflZalp6ZB8QmqLruGsgB5CQ==
+X-Received: by 2002:a05:651c:104:b0:2c0:240:b564 with SMTP id a4-20020a05651c010400b002c00240b564mr13779157ljb.15.1696885427576;
+        Mon, 09 Oct 2023 14:03:47 -0700 (PDT)
+Received: from [172.30.204.90] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id a19-20020a05651c011300b002bff365c7bfsm2155195ljb.35.2023.10.09.14.03.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Oct 2023 14:03:47 -0700 (PDT)
+Message-ID: <0a039a5a-46c8-4f63-a9e4-fd5b197340ab@linaro.org>
+Date: Mon, 9 Oct 2023 23:03:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231007060639.725350-1-yangcong5@huaqin.corp-partner.google.com>
- <CACRpkdbek0-Vhk4_34qY+0=EGrQxJS_CfLuF_5fRozMMyc+=Kw@mail.gmail.com> <CAD=FV=UFa_AoJQvUT3BTiRs19WCA2xLVeQOU=+nYu_HaE0_c6Q@mail.gmail.com>
-In-Reply-To: <CAD=FV=UFa_AoJQvUT3BTiRs19WCA2xLVeQOU=+nYu_HaE0_c6Q@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 9 Oct 2023 23:02:39 +0200
-Message-ID: <CACRpkdYrFhTCa9rJ4savOcqRxcnyqoojCnwaCk6cnJv=aWxo4A@mail.gmail.com>
-Subject: Re: [v1 0/2] Break out as separate driver from boe-tv101wum-nl6 panel driver
-To: Doug Anderson <dianders@google.com>
-Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org, 
-	neil.armstrong@linaro.org, daniel@ffwll.ch, hsinyi@google.com, 
-	swboyd@chromium.org, airlied@gmail.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: Add new compatible for smc/hvc
+ transport for SCMI
+Content-Language: en-US
+To: Nikunj Kela <quic_nkela@quicinc.com>, Sudeep Holla <sudeep.holla@arm.com>
+Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ andersson@kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-2-quic_nkela@quicinc.com>
+ <20231009144154.vfx5caqxtyezulxx@bogus>
+ <b1c9ad08-5aad-ccbd-247c-a5b2aaa42b5b@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <b1c9ad08-5aad-ccbd-247c-a5b2aaa42b5b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 9, 2023 at 10:53=E2=80=AFPM Doug Anderson <dianders@google.com>=
- wrote:
 
-> Also: just as a heads up, Hsin-Yi measured the impact of removing the
-> "command table" for init and replacing it with a whole pile of direct
-> function calls. She found that it added over 100K to the driver (!!!).
-> I believe it went from a 45K driver to a 152K driver. Something to
-> keep in mind. ;-)
 
-Sounds like Aarch64 code. I would love a comparison of the same
-driver compiled to ARMv7t thumb code. Just for the academic
-interest. Because I have heard about people running ARM32
-kernels on Aarch64 hardware for this exact reason: so they can
-have thumb, which is compact.
+On 10/9/23 16:52, Nikunj Kela wrote:
+> 
+> On 10/9/2023 7:41 AM, Sudeep Holla wrote:
+>> On Fri, Oct 06, 2023 at 09:42:05AM -0700, Nikunj Kela wrote:
+>>> Introduce compatible "qcom,scmi-smc" for SCMI smc/hvc transport 
+>>> channel for
+>>> Qualcomm virtual platforms.
+>>>
+>>> This compatible mandates populating an additional parameter 
+>>> 'capability-id'
+>>> from the last 8 bytes of the shmem channel.
+>>>
+>> While I am happy with the simplification here, I am also bit nervous how
+>> long before Qualcomm abandons this. I hope this is adopted as is in all
+>> internal and downstream code without any modifications and this is not
+>> just a push for upstreaming some change to minimise delta with internal/
+>> downstream code.
+>>
+>> -- 
+>> Regards,
+>> Sudeep
+> 
+> Qualcomm is using patch on all the virtual auto platforms using 
+> shmem/doorbell as scmi channel. This is already being used without any 
+> modifications in our downstream code. No delta for this patch series. 
+> Thanks!
+AFAICT Sudeep is looking for a solid guarantee that it will continue to 
+be used as-is, on more than one platform and on more than one BSP version.
 
-OK OK we definitely need command sequence tables in the core,
-what we have now is each driver rolling its own which is looking bad.
+There have been cases where such firmware interfaces had silent ABI 
+breaks (or were replaced altogether) between qc downstream branches and 
+this would be unacceptable. Understandably, having a unified means of 
+communication for *all* Qualcomm chips (i.e. not only auto) going 
+forward would likely be expected..
 
-Yours,
-Linus Walleij
+Konrad
 
