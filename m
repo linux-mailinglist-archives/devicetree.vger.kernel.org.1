@@ -1,200 +1,153 @@
-Return-Path: <devicetree+bounces-6980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C397BE3BE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBE87BE3CE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920232815F4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:59:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCBDA2815B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C2D28DD9;
-	Mon,  9 Oct 2023 14:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE8C347D2;
+	Mon,  9 Oct 2023 15:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jr1q8swI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k2PoVrly"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F73E1FD8
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:59:21 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E89A6;
-	Mon,  9 Oct 2023 07:59:19 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399Dxkcj027223;
-	Mon, 9 Oct 2023 14:59:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=T6F8pc84NjvWuaNiXzQp1WQhhqK8wFXKn+d4LMiGlCI=;
- b=Jr1q8swIAe9KWqNICtSt3cuud/yci8XeWYy7fbhD+lrsWLv+jy3ei14SLN+UjE58RqqZ
- xAYToYnakDV2iSVYJU2QtvayZsj4fBSq1GUWc00xd8UqEuPxPtQZvZHI6vYglv7aXorg
- VYzfoKwyLp0Jdx3XY6BBcm11WNHFgt3bHyctTm4MuzP3DW+SqouexhgoHU7TZ+WENeyI
- nQJz+ncxBSdSfDZvglGWidRQxLpjwfraaDANmobOypTYkYw6scpMEqnF02tDDFNrXwbz
- MFFnF6eUzHV6rHSlUZHyWd+IcF5jqoO9IlBxJzJj8BXwxbciRP3Acv7GDSAfAPD7oCRt Pw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkhj12nak-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 14:59:10 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399Ex9LX028488
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 14:59:09 GMT
-Received: from [10.110.87.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 07:59:08 -0700
-Message-ID: <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
-Date: Mon, 9 Oct 2023 07:59:08 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E127A171C0
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 15:04:04 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFB0AC
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:04:01 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32003aae100so3465189f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 08:04:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696863840; x=1697468640; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=e1irillGm1K54F1NjS0dRMUHvI6dB6odEj9ipygzAW8=;
+        b=k2PoVrlyiwW5jtBmlUeBUss2HZ90vngEHBUJ+lD6OtQURKCKr1foepArIHVFhW/Vj5
+         E5mLn+04OQAmg/wKygMYI9FEktbojZyxzoyjFH/UD6qVf5dOqufBKTnyebPzw48tDllO
+         8aWIFJ9+qt10t6lINw7/DbZ8UFIOx69lJw+op0an8Gu9NA+XzFxBbTg9uLSELWL7nHwe
+         zHOY42znyTNS5A/6A92aiWZf+/tfAgSetgZMAbV/mUI/x/wlZJ7P7iTs4drySN+N9em3
+         Cnzy6AhqnbMDf9bfQy1mQ9I5tqq7fCzgKtW7Lx6W802u954ufvWcehNt0KLxaCRXqvy1
+         vKtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696863840; x=1697468640;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e1irillGm1K54F1NjS0dRMUHvI6dB6odEj9ipygzAW8=;
+        b=KWF1mqo8hUKNlnSEhwNxMJ84NGlnwLDOThQflPWRBdRyT6B3bKjoyiJ4u0pLBOPtJb
+         gnqLkWM4gZsI8DcAAOgalIkl9ePKxpwYYLWz7QnQ6OCJR/BT1o++8PfDJNWnf9qyOyxR
+         yqZYMBs5b1mN6cH5G4OLcLiuKswsvM/2da+nfS+qLLnmGXVKQdbXnzAF3MC0OVot3mFW
+         9qlz3qAdriQcu03AuYs25vpw19TM/CqcTlBEfldwmCTarr6jncdB/gBw4s78oBo2NuXW
+         mW5swXQb6TZRxfb/oJICO1Ojad9Vw7FxQ/2ktJ8xDkLCqaWlsMydUybO8hXURzN/mGZI
+         5iZA==
+X-Gm-Message-State: AOJu0Yz5sXdswa+SYTHakEQYpEiXQ3a4NyJb4/6TrukPoqs7TrXLT5L5
+	YgWs3fLS7C+z8b80b+Eo5kkfUg==
+X-Google-Smtp-Source: AGHT+IEVW2b5IkipYK288nS2F4jTZC+gg5l9CKp0vHOt4ZaUEbQilB9NT6X78idQ/5utMua1lePtVg==
+X-Received: by 2002:a5d:55c7:0:b0:321:6339:f523 with SMTP id i7-20020a5d55c7000000b003216339f523mr10665466wrw.22.1696863839392;
+        Mon, 09 Oct 2023 08:03:59 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id n10-20020a5d4c4a000000b00323287186aasm9886528wrt.32.2023.10.09.08.03.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Oct 2023 08:03:58 -0700 (PDT)
+Message-ID: <2db05110-80e5-4d32-9483-82b7419a7a4d@linaro.org>
+Date: Mon, 9 Oct 2023 17:03:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
- support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add TouchNetix AS
 Content-Language: en-US
-To: Sudeep Holla <sudeep.holla@arm.com>
-CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20231006164206.40710-1-quic_nkela@quicinc.com>
- <20231006164206.40710-3-quic_nkela@quicinc.com>
- <20231009144744.yi44ljq4llaxjsb7@bogus>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20231009144744.yi44ljq4llaxjsb7@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, mark.satterthwaite@touchnetix.com,
+ pedro.torruella@touchnetix.com, bartp@baasheep.co.uk,
+ hannah.rossiter@touchnetix.com,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ bsp-development.geo@leica-geosystems.com
+References: <20231009134435.36311-1-kamel.bouhara@bootlin.com>
+ <20231009134435.36311-2-kamel.bouhara@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231009134435.36311-2-kamel.bouhara@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LDZHqVFqKlD6kKLAdFiaifzEyyfQuJct
-X-Proofpoint-GUID: LDZHqVFqKlD6kKLAdFiaifzEyyfQuJct
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_12,2023-10-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 adultscore=0 bulkscore=0 priorityscore=1501
- impostorscore=0 mlxscore=0 malwarescore=0 spamscore=0 suspectscore=0
- mlxlogscore=999 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310090124
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On 10/9/2023 7:47 AM, Sudeep Holla wrote:
-> On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
->> This change adds the support for SCMI message exchange on Qualcomm
->> virtual platforms.
->>
->> The hypervisor associates an object-id also known as capability-id
->> with each smc/hvc doorbell object. The capability-id is used to
->> identify the doorbell from the VM's capability namespace, similar
->> to a file-descriptor.
->>
->> The hypervisor, in addition to the function-id, expects the capability-id
->> to be passed in x1 register when SMC/HVC call is invoked.
->>
->> The capability-id is allocated by the hypervisor on bootup and is stored in
->> the shmem region by the firmware before starting Linux.
->>
-> Since you are happy to move to signed value, I assume you are happy to loose
-> upper half of the range values ?
->
-> Anyways after Bjorn pointed out inconsistency, I am thinking of moving
-> all the values to unsigned long to work with both 32bit and 64bit.
->
-> Does the below delta on top of this patch works for you and makes sense?
-
-This looks good to me. Will do some testing and float v6 with the 
-changes you suggested below. Thanks
+On 09/10/2023 15:44, Kamel Bouhara wrote:
+> Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
+> 
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> ---
 
 
->
-> --
-> Regards,
-> Sudeep
->
-> -->8
-> diff --git c/drivers/firmware/arm_scmi/smc.c i/drivers/firmware/arm_scmi/smc.c
-> index bf0b7769c7b2..e00c5e81c8d9 100644
-> --- c/drivers/firmware/arm_scmi/smc.c
-> +++ i/drivers/firmware/arm_scmi/smc.c
-> @@ -15,6 +15,7 @@
->   #include <linux/of.h>
->   #include <linux/of_address.h>
->   #include <linux/of_irq.h>
-> +#include <linux/limits.h>
->   #include <linux/processor.h>
->   #include <linux/slab.h>
->   
-> @@ -65,7 +66,7 @@ struct scmi_smc {
->   	unsigned long func_id;
->   	unsigned long param_page;
->   	unsigned long param_offset;
-> -	s64 cap_id;
-> +	unsigned long cap_id;
->   };
->   
->   static irqreturn_t smc_msg_done_isr(int irq, void *data)
-> @@ -127,11 +128,11 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->   			  bool tx)
->   {
->   	struct device *cdev = cinfo->dev;
-> +	unsigned long cap_id = ULONG_MAX;
->   	struct scmi_smc *scmi_info;
->   	resource_size_t size;
->   	struct resource res;
->   	struct device_node *np;
-> -	s64 cap_id = -EINVAL;
->   	u32 func_id;
->   	int ret;
->   
-> @@ -167,6 +168,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->   		return ret;
->   
->   	if (of_device_is_compatible(dev->of_node, "qcom,scmi-smc")) {
-> +		void __iomem *ptr = (void __iomem *)scmi_info->shmem + size - 8;
->   		/* The capability-id is kept in last 8 bytes of shmem.
->   		 *     +-------+
->   		 *     |       |
-> @@ -177,12 +179,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->   		 *     | capId |
->   		 *     +-------+ <-- size
->   		 */
-> -
-> -#ifdef CONFIG_64BIT
-> -		cap_id = ioread64((void *)scmi_info->shmem + size - 8);
-> -#else
-> -		cap_id = ioread32((void *)scmi_info->shmem + size - 8);
-> -#endif
-> +		memcpy_fromio(&cap_id, ptr, sizeof(cap_id));
->   	}
->   
->   	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param")) {
-> @@ -247,7 +244,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
->   
->   	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
->   
-> -	if (cap_id >= 0)
-> +	if (cap_id != ULONG_MAX)
->   		arm_smccc_1_1_invoke(scmi_info->func_id, cap_id, 0, 0, 0, 0, 0,
->   				     0, &res);
->   	else
->
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
