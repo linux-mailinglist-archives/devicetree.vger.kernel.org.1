@@ -1,135 +1,137 @@
-Return-Path: <devicetree+bounces-6972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56E77BE2B0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:26:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DAFE7BE2C0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D61091C20946
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:26:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E9321C208CC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B3535897;
-	Mon,  9 Oct 2023 14:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3E13589E;
+	Mon,  9 Oct 2023 14:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ptdUM/7c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vy4M/QWX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FF81774D;
-	Mon,  9 Oct 2023 14:26:44 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D3B99;
-	Mon,  9 Oct 2023 07:26:40 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2E7FF60003;
-	Mon,  9 Oct 2023 14:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696861598;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=92a8cVu3f6Pk3ndmVwnkeBH7DnuU13PZsLWlEFgkb+8=;
-	b=ptdUM/7cMSJVYbBrfF6v7pOBngBBoqD2a0R/MUuEMeanPcoDEjfHKfSoM8A8bH79+drPz+
-	rV97RU0p5QyeWtYFPXNPPjzGoSwoAmb7zdtM9zta8Rt3qazcKpntePvK1epyDuMN8Yy2hm
-	c/19/YApYNnYXqqPcSlzxHZDNltzGOFF0avCXI1W6tyEQLx7YzapC/yKZuEgCSulDYhE2G
-	tiyCi8WMCoTIVnh6t72FOyCiEhCyW0D3+DoI+D5rSdROAfpCBAIJTfQNC5r7tEla35zU7C
-	xa3pdnMAu7WiFZoTgbzZKx+vu0/qFQeygmLxg4z1lzB3Rw48ksl43ELSnmswNA==
-Date: Mon, 9 Oct 2023 16:26:32 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
- <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Qiang Zhao <qiang.zhao@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li
- <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, Nicolin Chen
- <nicoleotsuka@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
- Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, Simon
- Horman <horms@kernel.org>, Christophe JAILLET
- <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 10/30] net: wan: Add support for QMC HDLC
-Message-ID: <20231009162632.7f11a6d9@bootlin.com>
-In-Reply-To: <20231006144702.778c165e@kernel.org>
-References: <20230928070652.330429-1-herve.codina@bootlin.com>
-	<20230928070652.330429-11-herve.codina@bootlin.com>
-	<20231006144702.778c165e@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246CC15AC7
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:28:23 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906AAB6
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 07:28:21 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso43258605e9.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 07:28:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696861700; x=1697466500; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jaxTCWdqEwpHMFZ/k9l1kxgISLFvaRHznpUGV5E8oyw=;
+        b=Vy4M/QWXJiOwlz6JXkFrbc8xxY/jLo94dld8sK0D6VX/YU8Arj5cPKBqPs9kFtPZcf
+         5bcYG/MKW9fejO2wrDWWrHsKujY0wuslqRth7WT+1QlabWIsfYmYRnITdBiHU2enIw3E
+         q2FQJpBBHZbxDjvtku6kiCBqBUrbfvZpW5BdTmdk7d6PA/wA2Iz86ARurxmIqJuoIecE
+         +0kUlfuAHZqDjbxykrnUyMfxWzQobAte1lx8Y9UJhZhyk/Tb3CYiAGQKr4Rw0XHiwSDT
+         r5iVjmWl2/j0ynifwwin3+eE/YmkE4tAlliEKALtA3ZODa9UX9eix7fbpjvGR03ZiXnV
+         Lx9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696861700; x=1697466500;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jaxTCWdqEwpHMFZ/k9l1kxgISLFvaRHznpUGV5E8oyw=;
+        b=H8+ULsWLuvwdds68+L3fVpGY/yzxr9xyqyGd3jRbx/zTdH/q25kw60mHR8dDe8Lpio
+         tPwbIqI11VYehTLmnVqgvzVJxG+j8YCxfe6J24bEmXSMeyNfyuPJ+ZayQo6f9SJ7dI7Q
+         /lJjJD1cfwS4z286b9Ph1Xgws+jrM9Sc2fx6Yy2PpuQZNO8vjc/YqAf1EWfxeCecZA67
+         wvQgzXJBWH102Ef07NsxQRZxjRCCwkZGSASPX/yfqEInR/qo6KsGCFsV05kAqe++eAOc
+         L6hCkcGd839loGbjpy4H05ynd2kxOxylEp8ifMiDUypP/h2/gCg+hjsf5xe7r9be3jap
+         SIAg==
+X-Gm-Message-State: AOJu0YwOy6RakLkFFGegnlYnfGeecIRZNa3rMDTDh8lpm4Ni2+hAqmdB
+	tYjoGvuVZ7Vfhi/dAurbllPjRA==
+X-Google-Smtp-Source: AGHT+IHPx2g19dEJyQjEKpONxssLueazSgV9mC0ZnOd2rJWMa5sbVjl2Lz6+EQkU+2CdW/whY50bsw==
+X-Received: by 2002:a1c:6a18:0:b0:401:eb0:a974 with SMTP id f24-20020a1c6a18000000b004010eb0a974mr13345124wmc.3.1696861699960;
+        Mon, 09 Oct 2023 07:28:19 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:88ad:b7c0:92ba:cace? ([2a05:6e02:1041:c10:88ad:b7c0:92ba:cace])
+        by smtp.googlemail.com with ESMTPSA id i9-20020a5d4389000000b0031ad5fb5a0fsm9814573wrq.58.2023.10.09.07.28.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Oct 2023 07:28:18 -0700 (PDT)
+Message-ID: <eb5bea56-6ad8-4617-a9cf-d4226fd45c56@linaro.org>
+Date: Mon, 9 Oct 2023 16:28:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Jakub,
-
-On Fri, 6 Oct 2023 14:47:02 -0700
-Jakub Kicinski <kuba@kernel.org> wrote:
-
-> On Thu, 28 Sep 2023 09:06:28 +0200 Herve Codina wrote:
-> > +static int qmc_hdlc_close(struct net_device *netdev)
-> > +{
-> > +	struct qmc_hdlc *qmc_hdlc = netdev_to_qmc_hdlc(netdev);
-> > +	struct qmc_hdlc_desc *desc;
-> > +	int i;
-> > +
-> > +	netif_stop_queue(netdev);
-> > +
-> > +	qmc_chan_stop(qmc_hdlc->qmc_chan, QMC_CHAN_ALL);
-> > +	qmc_chan_reset(qmc_hdlc->qmc_chan, QMC_CHAN_ALL);  
+On 27/07/2023 10:18, Biju Das wrote:
+> This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
+> Also it fixes overflow/underflow interrupt names.
 > 
-> stopping the queue looks a bit racy, a completion may come in 
-> and restart the queue
-
-Indeed, qmc_hdlc_xmit_complete() completion can restart the queue.
-
-I will call netif_stop_queue() after calling qmc_chan_stop/reset().
-This is the simple way to fix that without adding an internal flag.
-
-Thanks for pointing that.
-
-Best regards,
-Hervé
-
+> v2->v3:
+>   * Dropped patch#4, as it accepted for 6.5 fixes.
+>   * Moved patch#2 to patch#1 as it is fixes patch.
+>   * Added Rb tag from Geert for patch#1 and patch#3.
+>   * Updated the link to lore for Closes tag for patch#2.
+>   * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
 > 
-> > +	for (i = 0; i < ARRAY_SIZE(qmc_hdlc->tx_descs); i++) {
-> > +		desc = &qmc_hdlc->tx_descs[i];
-> > +		if (!desc->skb)
-> > +			continue;
-> > +		dma_unmap_single(qmc_hdlc->dev, desc->dma_addr, desc->dma_size,
-> > +				 DMA_TO_DEVICE);
-> > +		kfree_skb(desc->skb);
-> > +		desc->skb = NULL;
-> > +	}
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(qmc_hdlc->rx_descs); i++) {
-> > +		desc = &qmc_hdlc->rx_descs[i];
-> > +		if (!desc->skb)
-> > +			continue;
-> > +		dma_unmap_single(qmc_hdlc->dev, desc->dma_addr, desc->dma_size,
-> > +				 DMA_FROM_DEVICE);
-> > +		kfree_skb(desc->skb);
-> > +		desc->skb = NULL;
-> > +	}
-> > +
-> > +	hdlc_close(netdev);  
+> v1->v2:
+>   * Added Ack tags from Conor Dooley for binding patches
+>   * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
+>   * Fixed build error reported by kernel test robot by replacing
+>     GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
+> 
+> Biju Das (5):
+>    dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
+>      names
+>    dt-bindings: timer: renesas,rz-mtu3: Improve documentation
+>    dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
+>    arm64: dts: renesas: r9a07g043: Add MTU3a node
+>    arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
+> 
+>   .../bindings/timer/renesas,rz-mtu3.yaml       | 67 +++++++++---------
+>   arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 70 +++++++++++++++++++
+>   .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 11 +++
+>   .../dts/renesas/rzg2ul-smarc-pinfunction.dtsi |  6 ++
+>   arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 13 ++++
+>   5 files changed, 134 insertions(+), 33 deletions(-)
+> 
+
+patches 1,2 and 3 applied
+
+Thanks
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
