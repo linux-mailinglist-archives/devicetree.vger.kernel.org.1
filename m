@@ -1,127 +1,77 @@
-Return-Path: <devicetree+bounces-6950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F407BDE99
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:21:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAA07BDEFC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:25:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 719CB1C20852
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:21:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B496281573
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F2B1A5B8;
-	Mon,  9 Oct 2023 13:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC89A1A5BB;
+	Mon,  9 Oct 2023 13:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="TuDyjCrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+eN7QGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD701A592
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:21:00 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6BA99;
-	Mon,  9 Oct 2023 06:20:58 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B578310000B;
-	Mon,  9 Oct 2023 16:20:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B578310000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1696857656;
-	bh=zNcGdC0Xpihdq0tqVDbNQ0hhf0XjHMwDMYk3I79sqXU=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=TuDyjCrRExBXVibRAt73EMcHiMjfL1dxzHzOSeR0NbEGbyNg82tMh8NScFywscXiH
-	 JZA5nkFT0TxKA27UqCNffVyiQBFeIR6z8LyjkpEG9wZ9bKeLYYVuuNeAS5byyIp9f/
-	 +bVATwX/5l2liDTiZwD8Baj5jNgHuur6JxbJpRiyEmBAzGlpgSZ+EiNWx+yLwg4ItY
-	 etbQtfDNgvUXGNt9bz72qv/7V1f9k9dOkOXKR1SIzL9ViMXDaHQTHaJELxrO9r3oD5
-	 s1/QqxJCqBhPffRFRa+FXmJYcdAOC8o4K7wk8wPezCgeQvVTIjhFaAXM29LWgzIgPg
-	 MDLVg5qKuTjeg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  9 Oct 2023 16:20:55 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 16:20:55 +0300
-Date: Mon, 9 Oct 2023 16:20:55 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
-	<gnstark@salutedevices.com>
-Subject: Re: [PATCH v1 05/11] leds: aw200xx: calculate dts property
- display_rows in driver
-Message-ID: <20231009132055.kg2gbbznr63plvm4@CAB-WSD-L081021>
-References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
- <20231006160437.15627-6-ddrokosov@salutedevices.com>
- <CAHp75VeWwzg1spSvQ1tNmC7zVN1FLOjcpRGZsoL-49Di02pn0g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891981A5BA
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:25:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF059C433CB;
+	Mon,  9 Oct 2023 13:25:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696857906;
+	bh=Z6eqqE3jHcCQCoAk0iVQ+k59tYwfIx9uCwy4N9r4o0g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b+eN7QGEqBqyeYp1jqsSW5+PiQNJQFkRelMQ/0ODCc+7mY77gT6u+Mz2+0anJDzgG
+	 d7J4l14NnH+HUgxRXt2UlPSMMsB/vPEfPmcf6okO1Z8titMoaZwmnfclvVtjVfd/js
+	 Lw4P29oED6p8HpJIzgG6/+VeLXC5XdEP+VJfjJeBeJI05bBTgPAhK5gYsq8CFCTD/C
+	 VdqtIrGdpaKKZZ4dyktzXfVB/ZrY74OO2qXWYYe5FxI7ex4eWDXlqFyJ2V972nXXLA
+	 vJ1VHq1foWWIDybuUS/adMOaGe3d6/KEnRC7ypdvFmjDOBROhlq5+HkhxnDrAsEA6e
+	 /FoMIRJ9RVlow==
+Date: Mon, 9 Oct 2023 21:24:55 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Cc: leoyang.li@nxp.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: ls208xa: use a pseudo-bus to constrain
+ usb dma size
+Message-ID: <20231009132455.GE733979@dragon>
+References: <20230925151015.4449-1-laurentiu.tudor@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VeWwzg1spSvQ1tNmC7zVN1FLOjcpRGZsoL-49Di02pn0g@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180475 [Oct 09 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/08 23:24:00 #22096719
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230925151015.4449-1-laurentiu.tudor@nxp.com>
 
-On Fri, Oct 06, 2023 at 08:59:46PM +0300, Andy Shevchenko wrote:
-> On Fri, Oct 6, 2023 at 7:05 PM Dmitry Rokosov
-> <ddrokosov@salutedevices.com> wrote:
-> >
-> > From: George Stark <gnstark@salutedevices.com>
-> >
-> > Get rid of device tree property "awinic,display-rows" and calculate it
-> > in driver using led definition nodes. display-row actually means number
-> > of current switches and depends on how leds are connected to the device.
+On Mon, Sep 25, 2023 at 06:10:15PM +0300, Laurentiu Tudor wrote:
+> Wrap the usb controllers in an intermediate simple-bus and use it to
+> constrain the dma address size of these usb controllers to the 40b
+> that they generate toward the interconnect. This is required because
+> the SoC uses 48b address sizes and this mismatch would lead to smmu
+> context faults [1] because the usb generates 40b addresses while the
+> smmu page tables are populated with 48b wide addresses.
 > 
-> So, how do we know that there will be no regressions on the systems
-> where this property is used in production?
-
-In the production boards, developers should set up the display-rows
-correctly; otherwise, the AW200XX LED controller will not function
-properly. In the new implementation, we calculate display-rows
-automatically, and I assume that the value will remain unchanged.
-
-> > +               if (max_source < source)
-> > +                       max_source = source;
+> [1]
+> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+> xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
+> xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
+> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+> xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+> arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
 > 
-> max()  (will need minmax.h)?
+> Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
 
-Correct, I will fix it in the v2.
-
--- 
-Thank you,
-Dmitry
+Applied, thanks!
 
