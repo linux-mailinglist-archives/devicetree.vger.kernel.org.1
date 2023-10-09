@@ -1,136 +1,144 @@
-Return-Path: <devicetree+bounces-7007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1A67BE84E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:37:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5E727BE8B0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBF4F1C20A3A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:37:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 518B82818F9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8497738DD1;
-	Mon,  9 Oct 2023 17:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6285538DE1;
+	Mon,  9 Oct 2023 17:50:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eoYNRHQh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fy6p6D7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6525636B06;
-	Mon,  9 Oct 2023 17:37:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C289DC433C8;
-	Mon,  9 Oct 2023 17:37:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696873022;
-	bh=h7WrtdvD0ju8NFCMVMHvu7LpOnWmQlsK4wC5k7i7cNo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eoYNRHQh44pwHrreECTkWOEwcbgWryF14RmC6nCXWKULnzeD2Qm71vk0RhhjdwFMg
-	 JCrD+7aEuCYP6xcfuHTMhafCW1lMgSbn7JooBQ1kxUTZ7535R59gGT3sJglxUde6qz
-	 mHK8bWHSfbaR1xIv2XiXrq8QPpFLKVtof7wgQBLejkwsoYlwmCdHY5hHC8m5dHiW7O
-	 sBAwUfo/u+YVtemTMrtXR9UV/sjqhYPh3J7f80YPvgn0hUBzOhPvKKXJQpPtGybzUd
-	 KO9oB/A8DmdCejC4peYDAYwH+E4A4e4AiWoqjgZ3MgQ88ZKwcMl4mPDhht9Mx9zDxj
-	 eTdAoaaBEsucA==
-Date: Mon, 9 Oct 2023 18:36:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andersson@kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, jun.li@nxp.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v3 2/2] dt-bindings: usb: gpio-sbu-mux: Make
- 'mode-switch' not required
-Message-ID: <20231009-faculty-rascal-d1d1e2106188@spud>
-References: <20230927123511.45085-1-festevam@gmail.com>
- <20230927123511.45085-2-festevam@gmail.com>
- <20230928-machine-pushcart-6e68b11afc7c@spud>
- <CAOMZO5B=MEDUE4bEnkri1npUG93KQZSp=JYaV8R8hKNY2qQtQA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1937374F5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:49:58 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAE0AF;
+	Mon,  9 Oct 2023 10:49:57 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399Hitmx010618;
+	Mon, 9 Oct 2023 17:49:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=IPuLfY1co6cd9F2y/mCmzIMjZ4Z5GLyj7fCatcrQ81c=;
+ b=fy6p6D7aWklBtBaHFs50UakU4q3uh7K5dW9U75uWpS7PboE6ia5j+WcpvVgvMYt+4p1X
+ 7nt1Dr0lC8Xw0DMWza4G0R8F4hiE0jTA6cPKXGbMohd79wCdUW22eYMKsVBJIUhI1kPg
+ j8jkxcAb5j8gK5SoLrVSf9i8BWwvtr8IoL1FnG17WOplGbTyUaBphTlT4E4kj4ZWqxca
+ nr5mtXDrssHcEKfV9Dw0O2KNixeVHuHj5VVjKhMIyI9BL843Et3X7lrgXQvuLqvjd6m9
+ WPJbW1Don7nPOIvijRiEPA8A5s/BV516cawPA0JNWrXB0M86ano/IcR85eCRdGtaqx0N Gg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkh4tb6yj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 17:49:46 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399Hnjso017405
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Oct 2023 17:49:45 GMT
+Received: from [10.110.87.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
+ 2023 10:49:44 -0700
+Message-ID: <535bbc68-74bb-21e8-0e72-8de1df9cfc99@quicinc.com>
+Date: Mon, 9 Oct 2023 10:49:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="v42yTMsuEvy/0/GJ"
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5B=MEDUE4bEnkri1npUG93KQZSp=JYaV8R8hKNY2qQtQA@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
+ support
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-3-quic_nkela@quicinc.com>
+ <20231009144744.yi44ljq4llaxjsb7@bogus>
+ <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
+ <20231009152952.dww3fgh5q7fqysps@bogus>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20231009152952.dww3fgh5q7fqysps@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: c2_Uf1AAKfw4Lwo-4eIWLZmNsYEu5aDS
+X-Proofpoint-ORIG-GUID: c2_Uf1AAKfw4Lwo-4eIWLZmNsYEu5aDS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_15,2023-10-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 bulkscore=0 malwarescore=0 adultscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310090146
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
---v42yTMsuEvy/0/GJ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 10/9/2023 8:29 AM, Sudeep Holla wrote:
+> On Mon, Oct 09, 2023 at 07:59:08AM -0700, Nikunj Kela wrote:
+>> On 10/9/2023 7:47 AM, Sudeep Holla wrote:
+>>> On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
+>>>> This change adds the support for SCMI message exchange on Qualcomm
+>>>> virtual platforms.
+>>>>
+>>>> The hypervisor associates an object-id also known as capability-id
+>>>> with each smc/hvc doorbell object. The capability-id is used to
+>>>> identify the doorbell from the VM's capability namespace, similar
+>>>> to a file-descriptor.
+>>>>
+>>>> The hypervisor, in addition to the function-id, expects the capability-id
+>>>> to be passed in x1 register when SMC/HVC call is invoked.
+>>>>
+>>>> The capability-id is allocated by the hypervisor on bootup and is stored in
+>>>> the shmem region by the firmware before starting Linux.
+>>>>
+>>> Since you are happy to move to signed value, I assume you are happy to loose
+>>> upper half of the range values ?
+>>>
+>>> Anyways after Bjorn pointed out inconsistency, I am thinking of moving
+>>> all the values to unsigned long to work with both 32bit and 64bit.
+>>>
+>>> Does the below delta on top of this patch works for you and makes sense?
+>> This looks good to me. Will do some testing and float v6 with the changes
+>> you suggested below. Thanks
+>>
+> Please refer or use the patch from [1] when reposting. I rebased on my
+> patch[2] that I posted few minutes back. I am trying to finalise the branch
+> and send PR in next couple of days, so please test and post sooner. Sorry
+> for the rush.
 
-On Fri, Sep 29, 2023 at 03:41:58PM -0300, Fabio Estevam wrote:
-> Hi Conor,
->=20
-> On Thu, Sep 28, 2023 at 2:04=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Wed, Sep 27, 2023 at 09:35:11AM -0300, Fabio Estevam wrote:
-> > > From: Fabio Estevam <festevam@denx.de>
-> > >
-> > > On a i.MX8QXP MEK board that has an NXP CBDTU02043 mux, there is
-> > > no mode-switch, only an orientation switch.
-> > >
-> > > Make the 'mode-switch' property a non-required one.
-> >
-> > There seem to be very few compatibles in this file, so I guess
-> > everything uses the generic compatible. I'm not expecting you to know
-> > why it's like this, but should we add a compatible for this particular
-> > mux & only relax the requirement for it specifically?
->=20
-> I am not sure.
->=20
-> Bjorn, do you have any suggestions, please?
+Validated the patch from [1] below on Qualcomm ARM64 virtual platform 
+using SMC64 convention. Thanks!
 
-FWIW,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-although I do think that adding more compatibles if there is gonna be
-divergence in capabilities is a good idea..
 
-Cheers,
-Conor.
-
->=20
-> > > Signed-off-by: Fabio Estevam <festevam@denx.de>
-> > > ---
-> > > Changes since v2:
-> > > - Newly introduced.
-> > >
-> > >  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 -
-> > >  1 file changed, 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml =
-b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> > > index b61dcf8b4aad..d3b2b666ec2a 100644
-> > > --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> > > @@ -51,7 +51,6 @@ required:
-> > >    - compatible
-> > >    - enable-gpios
-> > >    - select-gpios
-> > > -  - mode-switch
-> > >    - orientation-switch
-> > >    - port
-> > >
-> > > --
-> > > 2.34.1
-> > >
-
---v42yTMsuEvy/0/GJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ6OgAKCRB4tDGHoIJi
-0t20AQCIbfrg7u2vMvyARpCBKHTuC/MJaUiO8XVq97Ks1cf67QEAlrsZ2uJ4LLvo
-FTdIVicRARp1r6L+VdPmHDkQmxqUxQY=
-=HyoM
------END PGP SIGNATURE-----
-
---v42yTMsuEvy/0/GJ--
+>
+> --
+> Regards,
+> Sudeep
+> [1] https://git.kernel.org/sudeep.holla/h/for-next/scmi/updates
+> [2] https://lore.kernel.org/r/20231009152049.1428872-1-sudeep.holla@arm.com
 
