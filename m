@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71E27BD584
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:45:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A3227BD589
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:45:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62A79281519
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:45:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C10C4281510
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A189E800;
-	Mon,  9 Oct 2023 08:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF101800;
+	Mon,  9 Oct 2023 08:45:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RPARX9wj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SfjPT3Y1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AE23D67
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:45:03 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225A6F4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:45:01 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3232be274a0so3168266f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:45:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A2E1C06
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:45:14 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20924FD
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:45:12 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50305abe5f0so5631299e87.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:45:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696841099; x=1697445899; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696841109; x=1697445909; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5+ecLXZMlZfSIWugsI+Y70IO24W1NDjexzKi80B63g8=;
-        b=RPARX9wjFKyT7vR/iqAhMIxBb+WWKUs1DMCHtwHa9Gr+ak48JAy/OdgZl7CTqMOZxT
-         sdcvzFSa9iSjjarmBmTSETd5E+jfBt6bZxBjCaSIU6FW0sUKZi4sLLStTK6c7J4uG5AD
-         +gzvHzV9PsQVXBI4YHndZCOXBAUz8waIt5OmG4++tRaBYOWnJcQxyacOmuUOuWoHY+Fi
-         NaizGwYCFdSkG5TDW3wyApgMWqE1dYQxIc4ImJ8TUYBhyri9bBweE651er0yOFMn4qtP
-         Nn6ZbY7+g1va6M4G1hl4tw+RH5PAudbZN0z8cB+f/2fYggLQyYhXVsLGClI1oM1HC79p
-         uE3A==
+        bh=hio2Q7ruJtd9dJ3amfJnjZI8mttjUkWIdKdUR2giezU=;
+        b=SfjPT3Y1ixWMhbBnncpcMjnJxYXfJJFSOgN9RiMrsRwlSPaQEUl5dnzX8wEv3YGm0L
+         UQ/1SB1PdzWLnlu0wmWs2Z4agDd0/0YWrkGCEL6A5V7x9VFjjy9TZpgcLQxDh6MS8p4V
+         iepziTs/aKOb49a4fIYnwmyLVB5WRWX8Yk1Unv84ykU/GrxqQVJUwaHkMpFIeBjDo8a7
+         vkiq7ggmnpGj1MgdsUmXwUDj0ebVQMx7yBQjcWp2cJ1FTqoEoQuvHrqUnZHbi8waUSBK
+         lU++pszLgp6oZjGjR2cW+1qb3wiV+nLulzDLpRBj5PWE6GoQJgxOwjp2p8X/9BG3kd7v
+         bSqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696841099; x=1697445899;
+        d=1e100.net; s=20230601; t=1696841109; x=1697445909;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5+ecLXZMlZfSIWugsI+Y70IO24W1NDjexzKi80B63g8=;
-        b=I4JRFbBfm2HRd2W60S0vH8ZpcsLaw9F7kXZigkC1B83ve/O1nQLSY5il9VHDQeC0Dv
-         tOhBM4rXq8tucwyJqQPR9qfNzNAaCQNpGdgFo1o+muctwUhd3jmLsA7EgW7IghWMWKmi
-         y+2XUfdot0dEaYqEfNpimAcuo68iYegb8qO0GuFYoi/x1C5s8IE2LOr7XZOl3wvJj+Gk
-         v81XDtTJAwC+x83aVlkcp9yAdQoqKZjCR70y7SYJ+lo6SQ7keH4GG5tvaTRBtwRRFUh7
-         J2i2+mLhsccT4S/QPkayv7tMtnO5O9GGiOlw2w8XYdf9aCRTuOzGm9boC9HpgBxFp6fu
-         fIJA==
-X-Gm-Message-State: AOJu0Yzp2xDkdtzQChCNqIq9V3bEsYD5f6f6EEhVeWXu7bt8Jo+8M+Rb
-	JE3oXk0SpubnTRcIOHGhKq5gig==
-X-Google-Smtp-Source: AGHT+IFi4LEFHU5lkvci/9uTooe8OrW21jsVooW9duS5GG61sMkCEfUOaogyFVe7ubfZBhxCRslK1g==
-X-Received: by 2002:a5d:6904:0:b0:31f:fc9a:a03 with SMTP id t4-20020a5d6904000000b0031ffc9a0a03mr8828504wru.20.1696841099590;
-        Mon, 09 Oct 2023 01:44:59 -0700 (PDT)
+        bh=hio2Q7ruJtd9dJ3amfJnjZI8mttjUkWIdKdUR2giezU=;
+        b=MkC5SO6UkNrb2VEbkmm9sNwhoE10iSF5CemrYqQm5+iQURWf2T0ssiuG2BC31G4eY/
+         epHI/ZJw7+QpFTWy0qtNW+4sSBT1j68ppvKMspaltsS2cDG7vG8a+plgVO1rFW2M2qfP
+         dJvxZUFw/XXkrKE+RLjglzom2JBzdD7HgC2Z63rhO/bO+drhBjC6DiFWT3CA1vBHMZNU
+         tE5eZbNfgVdXKPeERBDOrdkA7yuBdiosFfMDPe1gB3zL2qWYUD4OMijQgoIYTB++is+7
+         mkhtO7mKIuPCWI5KQq/jmFAlUkp28USfLnp7+ew1H7DW7cV6ylU2qrJO4flp0lotixJp
+         m2vA==
+X-Gm-Message-State: AOJu0YyZDHCtOStlLaoapdJsKB1hAUFQHgsyI+U3CAKjK3yrFadR9D3e
+	OTsFC1e52r9wNzbYYX3KkCXC8g==
+X-Google-Smtp-Source: AGHT+IGLgimHmcENifu9G6bykshZbJeMrs+Zk+piIrvaWgi8lFY1p++C4bX64JPWZBt/0RCIjNtLHg==
+X-Received: by 2002:a05:6512:3488:b0:4fd:fd97:a77b with SMTP id v8-20020a056512348800b004fdfd97a77bmr10494729lfr.50.1696841109333;
+        Mon, 09 Oct 2023 01:45:09 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id f19-20020a1c6a13000000b00402d34ea099sm12740930wmc.29.2023.10.09.01.44.57
+        by smtp.gmail.com with ESMTPSA id f19-20020a1c6a13000000b00402d34ea099sm12740930wmc.29.2023.10.09.01.45.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 01:44:59 -0700 (PDT)
-Message-ID: <6a46dedc-933c-47c4-bd75-c061634f96a4@linaro.org>
-Date: Mon, 9 Oct 2023 10:44:57 +0200
+        Mon, 09 Oct 2023 01:45:08 -0700 (PDT)
+Message-ID: <1483d2e0-b25b-401e-86ba-6fa8094db01f@linaro.org>
+Date: Mon, 9 Oct 2023 10:45:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: phy: Add QMP UFS PHY compatible for
- SC7180
+Subject: Re: [PATCH 3/7] dt-bindings: arm: qcom: Add Xiaomi Redmi Note 9S
 Content-Language: en-US
 To: David Wronek <davidwronek@gmail.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -85,7 +84,7 @@ Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
  hexdump0815@googlemail.com, ~postmarketos/upstreaming@lists.sr.ht,
  phone-devel@vger.kernel.org
 References: <20231007140053.1731245-1-davidwronek@gmail.com>
- <20231007140053.1731245-3-davidwronek@gmail.com>
+ <20231007140053.1731245-4-davidwronek@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,7 +130,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231007140053.1731245-3-davidwronek@gmail.com>
+In-Reply-To: <20231007140053.1731245-4-davidwronek@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -142,24 +141,10 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 07/10/2023 15:58, David Wronek wrote:
-> Document the QMP UFS PHY compatible for SC7180
-> 
-> Signed-off-by: David Wronek <davidwronek@gmail.com>
-> ---
->  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> index f3a3296c811c..f2eee8b5326f 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - qcom,msm8996-qmp-ufs-phy
->        - qcom,msm8998-qmp-ufs-phy
->        - qcom,sa8775p-qmp-ufs-phy
-> +      - qcom,sc7180-qmp-ufs-phy
+> Document the Xiaomi Redmi Note 9S (curtana) smartphone, which is based
+> on the Qualcomm SM7125 SoC.
 
-You also need to update the if: for clocks.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
