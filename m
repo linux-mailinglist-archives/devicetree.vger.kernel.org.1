@@ -1,126 +1,206 @@
-Return-Path: <devicetree+bounces-6961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335337BE16B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:50:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 654247BE1A7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 649731C2093D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:50:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B76C1C2094D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A50347A8;
-	Mon,  9 Oct 2023 13:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C6E341A5;
+	Mon,  9 Oct 2023 13:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="u2qZ9iUM"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="wNGl/KR7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A63341AC
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:50:05 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2348CF;
-	Mon,  9 Oct 2023 06:50:02 -0700 (PDT)
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 399D7Qxg013177;
-	Mon, 9 Oct 2023 15:49:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=Rl6XtwYBshIFAdYkV2eozsWds6Rxm1JhSGil6DuD480=; b=u2
-	qZ9iUMCuSQohPkXzoktEV4wucBR6zC7z6pbKCvxrCE4UE1N2O5wD8pTNA1GTdk5i
-	BzWqVSGKd7RgwFXHk5CRBwZMRUYRZDN98g5rEVFJTuZw0uUwVCjli7A/Na7+RZIW
-	9QhDxTQuE4QE+jaQFgPP7wqDRJZA/roFtr8ywVHuBqPG75ly+UmlP4EeRkyz9Mlu
-	AAq9wxKEmWKpOQMdS+ncv8PsR0yY/lQz/h8w11IGePTgm5KyPcq4d3qUj5CVV/Zu
-	TONWGDQMxSGSvmQm1nZmN58BTEu6NLDsGPeKE6VU671d/CRfQJg+W627CeHyuMdV
-	QHdV36dKtBka4r+BAz0Q==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhk3de1y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 15:49:43 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F243210005E;
-	Mon,  9 Oct 2023 15:49:42 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E6F9924FF4F;
-	Mon,  9 Oct 2023 15:49:42 +0200 (CEST)
-Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
- 2023 15:49:41 +0200
-Message-ID: <0de2ae74-2ba1-0e8d-aa7b-77806ac8b252@foss.st.com>
-Date: Mon, 9 Oct 2023 15:49:41 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51EF03419D
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:52:27 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E5BA3;
+	Mon,  9 Oct 2023 06:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1696859543; x=1728395543;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=woWLvA+OZiwBOAnGAJHDSkgAYlJa502T4z/q/Xqpl9M=;
+  b=wNGl/KR7BoYCjqevRPbNLuuCiTPZsrJSWyqQoRlYrOi6I3gzxGteIF/c
+   kX88F6ZKXxXv0EKQscIxQSQ+FTsEOcta+rKsOfS6mH8e+SyrXEUyJar5H
+   JDZwdznL2VAqSj8E9xpI1ukJXnv7JBI4QyDf25pgyJyoVm4dnD30XyN+S
+   sWDQq6R9fSeOXa3UzGdKzhNOkZAkQLGg9qmsObYw5iDV3IoOWaRSn2fI9
+   FsY9l8x5EM9aezwdDVGzxSx0XzRG8QJIxvGifbsRqyUHVP63J0tuCb1Fk
+   5EzknoCYxzjA62fN5glNP0b5BDGleCmypYQgm7C6d/ntqrvzEnEOx/4Qy
+   g==;
+X-CSE-ConnectionGUID: M2UGz3wCSraKDoNm0f0NgQ==
+X-CSE-MsgGUID: kDZEEEfbRYGInoeHmZQt0Q==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; 
+   d="asc'?scan'208";a="176451529"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Oct 2023 06:52:17 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 9 Oct 2023 06:52:17 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 9 Oct 2023 06:52:13 -0700
+Date: Mon, 9 Oct 2023 14:51:52 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Minda Chen <minda.chen@starfivetech.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>, Conor Dooley
+	<conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof
+ =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v7 13/19] PCI: microchip: Add get_events() callback
+ function
+Message-ID: <20231009-ecologist-postage-f4e6d96d77cd@wendy>
+References: <20230927100802.46620-1-minda.chen@starfivetech.com>
+ <20230927100802.46620-14-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
- encoder
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ezequiel Garcia
-	<ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil
-	<hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>
-CC: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
- <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
- <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
-From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
-In-Reply-To: <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.120]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_11,2023-10-09_01,2023-05-22_02
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GRp9b0oKyCUZcQwq"
+Content-Disposition: inline
+In-Reply-To: <20230927100802.46620-14-minda.chen@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+--GRp9b0oKyCUZcQwq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/5/23 21:45, Krzysztof Kozlowski wrote:
-> On 04/10/2023 11:15, Hugues Fruchet wrote:
->> Add STM32MP25 VENC video encoder bindings.
->>
-> 
-> I don't understand why this binding is separate from video decoder.
-> Merge them.
-VDEC and VENC are two independent IPs with their own clock, reset, 
-interrupt & register set, they have their own access to APB/AXI bus.
-Moreover future chipsets may embed only VENC or VDEC.
+Hey,
 
-Hoping that this clarifies the reason of two different bindings.
+On Wed, Sep 27, 2023 at 06:07:56PM +0800, Minda Chen wrote:
+> For different interrupts to event num mapping function,
+> add get_events() function pointer.
+>=20
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  drivers/pci/controller/plda/pcie-microchip-host.c | 14 +++++++++++++-
+>  drivers/pci/controller/plda/pcie-plda.h           |  2 ++
+>  2 files changed, 15 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/=
+pci/controller/plda/pcie-microchip-host.c
+> index fb09b6c34e01..875bdb03ce22 100644
+> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> @@ -646,7 +646,7 @@ static void plda_handle_event(struct irq_desc *desc)
+> =20
+>  	chained_irq_enter(chip, desc);
+> =20
+> -	events =3D mc_get_events(port);
+> +	events =3D port->event_ops->get_events(port);
+> =20
+>  	for_each_set_bit(bit, &events, port->num_events)
+>  		generic_handle_domain_irq(port->event_domain, bit);
+> @@ -805,7 +805,12 @@ static int mc_request_event_irq(struct plda_pcie_rp =
+*plda, int event_irq,
+>  				0, event_cause[event].sym, plda);
+>  }
+> =20
+> +static const struct plda_event_ops mc_event_ops =3D {
+> +	.get_events =3D mc_get_events,
+> +};
+> +
+>  static const struct plda_event mc_event =3D {
+> +	.event_ops              =3D &mc_event_ops,
+>  	.request_event_irq      =3D mc_request_event_irq,
+>  	.intx_event             =3D EVENT_LOCAL_PM_MSI_INT_INTX,
+>  	.msi_event              =3D EVENT_LOCAL_PM_MSI_INT_MSI,
+> @@ -919,6 +924,11 @@ static int plda_init_interrupts(struct platform_devi=
+ce *pdev,
+>  	int i, intx_irq, msi_irq, event_irq;
+>  	int ret;
+> =20
+> +	if (!event->event_ops || !event->event_ops->get_events) {
+> +		dev_err(dev, "no get events ops\n");
+> +		return -EINVAL;
+> +	}
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Dumb question maybe, but is this actually possible to trigger?
+This code is in the Microchip driver, so I assume there's a future patch
+moving this code that could actually trigger the problem? If so, the
+motivation for making this generic should be mentioned in the commit
+message IMO.
 
+Thanks,
+Conor.
 
-Br,
-Hugues.
+> +
+>  	ret =3D plda_pcie_init_irq_domains(port);
+>  	if (ret) {
+>  		dev_err(dev, "failed creating IRQ domains\n");
+> @@ -929,6 +939,8 @@ static int plda_init_interrupts(struct platform_devic=
+e *pdev,
+>  	if (irq < 0)
+>  		return -ENODEV;
+> =20
+> +	port->event_ops =3D event->event_ops;
+> +
+>  	for (i =3D 0; i < port->num_events; i++) {
+>  		event_irq =3D irq_create_mapping(port->event_domain, i);
+>  		if (!event_irq) {
+> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/contro=
+ller/plda/pcie-plda.h
+> index af5e69718342..48d7bc471137 100644
+> --- a/drivers/pci/controller/plda/pcie-plda.h
+> +++ b/drivers/pci/controller/plda/pcie-plda.h
+> @@ -149,11 +149,13 @@ struct plda_pcie_rp {
+>  	struct irq_domain *event_domain;
+>  	raw_spinlock_t lock;
+>  	struct plda_msi msi;
+> +	const struct plda_event_ops *event_ops;
+>  	void __iomem *bridge_addr;
+>  	int num_events;
+>  };
+> =20
+>  struct plda_event {
+> +	const struct plda_event_ops *event_ops;
+>  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
+>  				 int event_irq, int event);
+>  	int intx_event;
+> --=20
+> 2.17.1
+>=20
+
+--GRp9b0oKyCUZcQwq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQFeAAKCRB4tDGHoIJi
+0sQDAQCmZ0rXA250TxGxywJjsr6LKhJtGnFd+6HHyhxRHgHgZgD/cXM805IrCm9N
+65OncJLg0lDUUeiQLhzDEErT/hwwjgk=
+=9ZA0
+-----END PGP SIGNATURE-----
+
+--GRp9b0oKyCUZcQwq--
 
