@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-6842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38B77BD10B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 00:51:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A237BD174
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 02:40:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 149061C20805
-	for <lists+devicetree@lfdr.de>; Sun,  8 Oct 2023 22:51:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1E43281478
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 00:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1D63419A;
-	Sun,  8 Oct 2023 22:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037E5A49;
+	Mon,  9 Oct 2023 00:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOal2hxF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaduiPvw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2428C0F
-	for <devicetree@vger.kernel.org>; Sun,  8 Oct 2023 22:51:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ACB5C433C7;
-	Sun,  8 Oct 2023 22:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D558939B
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 00:40:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A52EDC433C8;
+	Mon,  9 Oct 2023 00:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696805516;
-	bh=ghQ73fAQ0nnzq2BfEdEnDGJzGcSnGWysE1dPS7nZn6A=;
-	h=Date:Subject:To:List-Id:Cc:References:From:In-Reply-To:From;
-	b=rOal2hxFDZfBaOErGG6VAI8nja1JPKfmH+qbGXYHZLAkDihNedID8/dVbSnSB2dij
-	 WNUngH7r7zK9mw0f12dE+a6MkSDUPNUJ+DD43ol204eKa+WIcOam7xtH6CS7FHpyQB
-	 5rig33VeWA06SqRGm91Bo03OOo5h+9fR8KSKMDGHgVa+u5FCQCrfSlcDmI/JhvTqQq
-	 2nKe2nPG4kw51QM6gPXZwMVNXiyPmRo8fs36J34ltUg7VSigY5kOxH/VyQI8UdrfwX
-	 2YBl8evV3ZAiS+bUUhbC00BSxIqQCpQW0/w/8DztG21V04KidxQ1Q2oimGKocpT1gF
-	 /WAw8niUoFggg==
-Message-ID: <6986a29d-9413-4b3d-ac5e-2adc22b9d0c9@kernel.org>
-Date: Mon, 9 Oct 2023 07:51:50 +0900
+	s=k20201202; t=1696812021;
+	bh=J0GRDxm080uPCD8Am8KeUyA7JKGTDkfvRl5M8xldpxw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TaduiPvw4uewX3e7GiHqNWuI+H0eTaDAhLngRqTzr4/1KPmzqP9zCPAxH/lieIm7X
+	 v9XTWRvZwIW1I0OTQ27eYokYRysoDYMlOUDdxL+RMQGS+R9nvguwvx2BmS7jK1mJQW
+	 RG/bET3ZJgw9NmlpkLm8+TbygS7cV6sgKPGLP02/VL8jntA3bY7Vbv78MukH66EZcV
+	 wZpImZdqRyTSzXfyiGTSlbOsaYdDKU+1RKaNaFS4hXdOsVRAsUccU9mP7o78385F20
+	 w+a2DyAC9eK/egYLXpMEgdG9d0r+26DueE/IPOhGbQXl/Lj7GORjKntVkSFfn+jhhD
+	 yTeHH58wdPrWQ==
+Message-ID: <d33cadd3-4432-44c7-8570-1a28e5669939@kernel.org>
+Date: Mon, 9 Oct 2023 09:40:16 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,107 +41,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/21] clk: samsung: clk-pll: Add support for
- pll_{0516,0517,518}
+Subject: Re: [PATCH v7 20/26] dt-bindings: devfreq: event: convert Rockchip
+ DFI binding to yaml
 Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, cw00.choi@samsung.com
-List-Id: <soc.lore.kernel.org>
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-13-peter.griffin@linaro.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Rob Herring <robh@kernel.org>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-21-s.hauer@pengutronix.de>
 From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20231005155618.700312-13-peter.griffin@linaro.org>
+In-Reply-To: <20230704093242.583575-21-s.hauer@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 23. 10. 6. 00:56, Peter Griffin wrote:
-> Thesee plls are found in the Tensor gs101 SoC found in the Pixel 6.
+On 23. 7. 4. 18:32, Sascha Hauer wrote:
+> Convert the Rockchip DFI binding to yaml.
 > 
-> pll0516x: Integrer PLL with high frequency
-> pll0517x: Integrer PLL with middle frequency
-> pll0518x: Integrer PLL with low frequency
-> 
-> PLL0516x
-> FOUT = (MDIV * 2 * FIN)/PDIV * 2^SDIV)
-> 
-> PLL0517x and PLL0518x
-> FOUT = (MDIV * FIN)/PDIV*2^SDIV)
-> 
-> The PLLs are similar enough to pll_0822x that the same code can handle
-> both. The main difference is the change in the fout formula for the
-> high frequency 0516 pll.
-> 
-> Locktime for 516,517 & 518 is 150 the same as the pll_0822x lock factor.
-> MDIV, SDIV PDIV masks and bit shifts are also the same as 0822x.
-> 
-> When defining the PLL the "con" parameter should be set to CON3
-> register, like this
-> 
-> PLL(pll_0517x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
->     PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0,
->     NULL),
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-
-Thanks for the detailed description about h/w spec.
-
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > ---
->  drivers/clk/samsung/clk-pll.c | 9 ++++++++-
->  drivers/clk/samsung/clk-pll.h | 3 +++
->  2 files changed, 11 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
-> index 74934c6182ce..4ef9fea2a425 100644
-> --- a/drivers/clk/samsung/clk-pll.c
-> +++ b/drivers/clk/samsung/clk-pll.c
-> @@ -442,7 +442,11 @@ static unsigned long samsung_pll0822x_recalc_rate(struct clk_hw *hw,
->  	pdiv = (pll_con3 >> PLL0822X_PDIV_SHIFT) & PLL0822X_PDIV_MASK;
->  	sdiv = (pll_con3 >> PLL0822X_SDIV_SHIFT) & PLL0822X_SDIV_MASK;
->  
-> -	fvco *= mdiv;
-> +	if (pll->type == pll_0516x)
-> +		fvco = fvco * 2 * mdiv;
-> +	else
-> +		fvco *= mdiv;
+> Notes:
+>     Changes since v4:
+>     
+>     - Revert to state of v3 (changes were lost in v4)
+> 
+>  .../bindings/devfreq/event/rockchip,dfi.yaml  | 61 +++++++++++++++++++
+>  .../bindings/devfreq/event/rockchip-dfi.txt   | 18 ------
+>  .../rockchip,rk3399-dmc.yaml                  |  2 +-
+>  3 files changed, 62 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+> new file mode 100644
+> index 0000000000000..7a82f6ae0701e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/devfreq/event/rockchip,dfi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	do_div(fvco, (pdiv << sdiv));
+> +title: Rockchip DFI
+> +
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3399-dfi
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk_ddr_mon
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  rockchip,pmu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "PMU general register files".
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/rk3308-cru.h>
+> +
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      dfi: dfi@ff630000 {
+> +        compatible = "rockchip,rk3399-dfi";
+> +        reg = <0x00 0xff630000 0x00 0x4000>;
+> +        interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        rockchip,pmu = <&pmugrf>;
+> +        clocks = <&cru PCLK_DDR_MON>;
+> +        clock-names = "pclk_ddr_mon";
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt b/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+> deleted file mode 100644
+> index 148191b0fc158..0000000000000
+> --- a/Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -
+> -* Rockchip rk3399 DFI device
+> -
+> -Required properties:
+> -- compatible: Must be "rockchip,rk3399-dfi".
+> -- reg: physical base address of each DFI and length of memory mapped region
+> -- rockchip,pmu: phandle to the syscon managing the "pmu general register files"
+> -- clocks: phandles for clock specified in "clock-names" property
+> -- clock-names : the name of clock used by the DFI, must be "pclk_ddr_mon";
+> -
+> -Example:
+> -	dfi: dfi@ff630000 {
+> -		compatible = "rockchip,rk3399-dfi";
+> -		reg = <0x00 0xff630000 0x00 0x4000>;
+> -		rockchip,pmu = <&pmugrf>;
+> -		clocks = <&cru PCLK_DDR_MON>;
+> -		clock-names = "pclk_ddr_mon";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+> index fb4920397d08e..aba8649aaeb10 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+> @@ -18,7 +18,7 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+>        Node to get DDR loading. Refer to
+> -      Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt.
+> +      Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml.
 >  
->  	return (unsigned long)fvco;
-> @@ -1316,6 +1320,9 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
->  	case pll_1417x:
->  	case pll_0818x:
->  	case pll_0822x:
-> +	case pll_0516x:
-> +	case pll_0517x:
-> +	case pll_0518x:
->  		pll->enable_offs = PLL0822X_ENABLE_SHIFT;
->  		pll->lock_offs = PLL0822X_LOCK_STAT_SHIFT;
->  		if (!pll->rate_table)
-> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
-> index 0725d485c6ee..ffd3d52c0dec 100644
-> --- a/drivers/clk/samsung/clk-pll.h
-> +++ b/drivers/clk/samsung/clk-pll.h
-> @@ -38,6 +38,9 @@ enum samsung_pll_type {
->  	pll_0822x,
->  	pll_0831x,
->  	pll_142xx,
-> +	pll_0516x,
-> +	pll_0517x,
-> +	pll_0518x,
->  };
->  
->  #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
+>    clocks:
+>      maxItems: 1
 
 Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
