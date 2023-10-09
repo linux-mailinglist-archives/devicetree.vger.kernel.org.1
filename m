@@ -1,129 +1,171 @@
-Return-Path: <devicetree+bounces-7013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953747BEA1A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 20:51:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813047BEA3A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:01:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C46261C2098C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 18:51:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3972810B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D705B38DFC;
-	Mon,  9 Oct 2023 18:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5039A3B78A;
+	Mon,  9 Oct 2023 19:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TRF0Ttm8"
+	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="JLtChTSw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA869FBE3
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 18:51:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32660C433CA;
-	Mon,  9 Oct 2023 18:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696877465;
-	bh=EWYoHUxU9PfwIcw6RRafcY/b9jcGCDKgwtSwZ93vXkk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TRF0Ttm8MJ0ovlRSLQWoooPhqsT+UAvgs1OOYowfWsb+HQKayDzkMSozkTrJldIA+
-	 6bDX75HHnX6Tv7XDvSJxmv/d2Csx6YSHWU7b9AQV4JjRuNa+zNsIXEV2g+BhxAitg7
-	 QCtH7GXLcozgItxfOnEUwUdUCjV8yFsv6L9qjvd187YXfEixVcGKGBHx4TV0Yv/Fh2
-	 J8BdOK0pbJIfxECi9BLj9KueY8NlSYhJ6b4kecg8GzPjfA0wSGxNPlKUJ9nvFb/Xsm
-	 VSAHOAj/da4x8EvrhWD6gcWglOBtkIpel9cd2+8omHCgi/lpYLQ37JiUO104Xh6Auy
-	 Xb8DuPZBDAMKQ==
-Date: Mon, 9 Oct 2023 19:50:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, devicetree@vger.kernel.org, guoren@kernel.org,
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-	xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
-Subject: Re: [PATCH v5 00/10] Add Milk-V Pioneer RISC-V board support
-Message-ID: <20231009-pretext-snowy-1cfb49990ddb@spud>
-References: <cover.1696663037.git.unicorn_wang@outlook.com>
- <20231007-grasp-retake-0463858c13df@spud>
- <MA0P287MB0332F80102F534CBD7412ED3FEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <20231007-kennel-lustily-59b0a9867aaa@spud>
- <MA0P287MB03329460B9F3B79B1148A6FDFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <20231007-green-correct-11d08f650ddd@spud>
- <MA0P287MB0332B11A8481F491E4F0536DFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A8EC14F
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:00:54 +0000 (UTC)
+Received: from forward100b.mail.yandex.net (forward100b.mail.yandex.net [178.154.239.147])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FC99C;
+	Mon,  9 Oct 2023 12:00:51 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:6e01:0:640:627f:0])
+	by forward100b.mail.yandex.net (Yandex) with ESMTP id 513D460A9E;
+	Mon,  9 Oct 2023 22:00:49 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id Z0imEe6DeSw0-tb5Kw72p;
+	Mon, 09 Oct 2023 22:00:48 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
+	t=1696878048; bh=Q0kzR1Hkqz2cOVD+5iFO30kiqBo+q8tCC8dS7GzQR8s=;
+	h=Cc:Message-ID:References:Date:In-Reply-To:Subject:To:From;
+	b=JLtChTSwho6cSk5GB+t52/2PP2CUNKzRSTrNKHb+N57FkOR2uUdsrbIYNfZlz8kdc
+	 vBL6blQzTg9Pzjdd5BBkGTM+cWB+SYJ+S4Cy3h8rHOz8B2QzTOXmt2PARTJoUcnyjl
+	 f6I8oD/FvT/m4sRE/bwTkJthJi0cYmSIX9T7NbeM=
+Authentication-Results: mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From: Muhammed Efe Cetin <efectn@6tel.net>
+To: d-gole@ti.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	efectn@6tel.net,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	megi@xff.cz,
+	robh+dt@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: Add Orange Pi 5
+Date: Mon,  9 Oct 2023 22:00:26 +0300
+Message-ID: <20231009190027.10304-1-efectn@6tel.net>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231009054034.am2e4hcmwoworeml@dhruva>
+References: <20231009054034.am2e4hcmwoworeml@dhruva>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LPpjd4457YnzLrjL"
-Content-Disposition: inline
-In-Reply-To: <MA0P287MB0332B11A8481F491E4F0536DFEC8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,T_SPF_PERMERROR autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi,
 
---LPpjd4457YnzLrjL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9.10.2023 08:40, Dhruva Gole wrote:
+> Hello,
+> 
+> On Oct 05, 2023 at 16:54:04 +0300, Muhammed Efe Cetin wrote:
+>> Hello,
+>>
+>> On 28.09.2023 13:51, Dhruva Gole wrote:
+>>> Hi,
+>>>
+>>> On Aug 21, 2023 at 18:47:59 +0300, Muhammed Efe Cetin wrote:
+>>>> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
+>>>> Sdmmc, SPI Flash, PMIC.
+>>>>
+>>>> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
+>>>> Reviewed-by: Ondřej Jirman <megi@xff.cz>
+>>>> ---
+>>>>    arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>>>    .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 673 ++++++++++++++++++
+>>>>    2 files changed, 674 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+>>>>
+>>> ...
+>>>
+>>> Can you provide some sort of documentation on how I can build and boot
+>>> the kernel on this board? I was unable to use the upstream arm64
+>>> defconfig with this exact series applied to boot the board.
+>>
+>> What was wrong when you tried to compile & boot the board? Can you provide some logs?
+> 
+> Umm don't have logs at hand, but I remember it didn't really reach the
+> linux first line either, it went into sort of a bootloop just after
+> the uboot stage.
 
-On Sat, Oct 07, 2023 at 08:48:34PM +0800, Chen Wang wrote:
->=20
-> On 2023/10/7 20:36, Conor Dooley wrote:
-> > On Sat, Oct 07, 2023 at 08:25:55PM +0800, Chen Wang wrote:
-> > > On 2023/10/7 19:04, Conor Dooley wrote:
-> > > > On Sat, Oct 07, 2023 at 06:58:51PM +0800, Chen Wang wrote:
-> > > > > On 2023/10/7 18:17, Conor Dooley wrote:
-> > > > > > On Sat, Oct 07, 2023 at 03:52:04PM +0800, Chen Wang wrote:
-> > > > > > > From: Chen Wang <unicorn_wang@outlook.com>
-> > > > > > > Changes in v5:
-> > > > > > >      The patch series is based on v6.6-rc1. You can simply re=
-view or test
-> > > > > > >      the patches at the link [7].
-> > > > > > >      - dts: changed plic to support external interrupt
-> > > > > > >      - pickup improvements from Conor, details refer to [8].
-> > > > > > Did you? I only see them partially picked up. I'll just replace=
- patch 8
-> > > > > > with the patch 8 from this series I think.
-> > > > > Yes, only the patch 8 of this series(v5) is updated for plic node=
-=2E For other
-> > > > > patches, I just cherry-picked them from previous "sophon" branch.
-> > > > But added my signoff? I ended up seeing my signoff on the patch whe=
-re I
-> > > > disagreed with the commit message, which was confusing to me.
-> > > Oh, I used to think I can keep the exising signoff and I didn't mean =
-to add
-> > > it.
-> > I added mine when I applied the patches. It no longer makes sense when
-> > you resent another version.
-> >=20
-> > > Anyway, I agree your suggestion to create a new patch with only one
-> > > change should be better, I will follow this in later work.
-> > :)
-> >=20
-> > > Regarding your changes on sg2042 series, I have acked in another emai=
-l : https://lore.kernel.org/linux-riscv/MA0P287MB0332BA73D0135CC73CAEA16DFE=
-C8A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/.
-> > > If anything else required, please feel free let me know.
-> > An ack on Jisheng's series for the cv1800b would be nice.
->=20
-> Done, I have reviewed and acked all the files related to sophgo.
+Hmm there might be issue with your uboot compilation. It'd be better if you provide useful logs.
 
-Cool. Both your and Jisheng's series should end up in linux-next
-tomorrow, I've pushed both to the riscv-dt-for-next branch.
+> 
+>>
+>>>
+>>>> +
+>>>> +&i2c6 {
+>>>> +	pinctrl-names = "default";
+>>>> +	pinctrl-0 = <&i2c6m3_xfer>;
+>>>> +	status = "okay";
+>>>> +
+>>>> +	hym8563: rtc@51 {
+>>>> +		compatible = "haoyu,hym8563";
+>>>> +		reg = <0x51>;
+>>>> +		#clock-cells = <0>;
+>>>> +		clock-output-names = "hym8563";
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&hym8563_int>;
+>>>> +		interrupt-parent = <&gpio0>;
+>>>> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+>>>> +		wakeup-source;
+>>>
+>>> Are you able to actually use rtc as a wakeup source? I tried this
+>>> on a downstream kernel that I mention below..
+>>>
+>>> rtcwake -s 10 -m mem
+>>>
+>>> didn't actually seem to wake the device from deepsleep after 10 seconds.
+>>> Do you know what other pins I can use as wakeup sources?
+>>
+>> No, i've not tried it before.
+> 
+> ah okay
+> 
+>>
+>>>
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&mdio1 {
+>>>> +	rgmii_phy1: ethernet-phy@1 {
+>>>> +		compatible = "ethernet-phy-ieee802.3-c22";
+>>>
+>>> Just wondering, can you please give some logs of the board with eth
+>>> working? The image that I have from opi seems to fail eth? As in I am
+>>> not able to see any ip address. here are the logs:
+>>>
+>>> https://gist.github.com/DhruvaG2000/eda2762e35013c8d5ac9f37e818103a3
+>>
+>> Unfortunately the board is not near me currently. However, i was able to use GMAC ethernet in both the upstreram and downstream kernels. Did you try any images other than Orange Pi ones?
+> 
+> Nope, are there any other images that maybe more suitable? Please can you point me to them?
 
-Thanks!
+You can check the images below the Third Party Images section in OPi's download page. GMAC should work properly with most of them.
 
---LPpjd4457YnzLrjL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSRLkwAKCRB4tDGHoIJi
-0rW9AQCgH7wH465HHkJZUgXkFxDSIGwT+zdKUMYezzCSJmzTiQD/RSTBvwNO9iLX
-1JL/GhqiRgflLbNTazQ/f2/5CdoDRgA=
-=mpd6
------END PGP SIGNATURE-----
-
---LPpjd4457YnzLrjL--
+> 
+>>
+>>>
+>>> ...
+>>>
+>>
+> 
 
