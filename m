@@ -1,117 +1,86 @@
-Return-Path: <devicetree+bounces-6922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB027BDAF9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:13:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8DF7BDAFF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:13:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F128E2816A9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:13:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACEAC1C208F0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8C518C23;
-	Mon,  9 Oct 2023 12:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFF318C35;
+	Mon,  9 Oct 2023 12:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Njv3Izd4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QL/8Qzyc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC9F18C20
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:13:26 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8741D1FC8;
-	Mon,  9 Oct 2023 05:13:24 -0700 (PDT)
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3997rFWx025374;
-	Mon, 9 Oct 2023 14:13:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=Js7aNeSM/SCYmsb14dgCNvgdxI7cquNA2ZnKLbNhFyE=; b=Nj
-	v3Izd41BIlnR9vOrf1uVhFLA8s3JCkVpAi3cohJSSOAy9XJ5VJZaSMjT/nxUavT6
-	eOCCl6Q6zpoXEb3NCPaWbeF4sRyRi9tGM3siErqlqODkKyr4IximXf0E/1e90Y/o
-	KUS2D4mKzUx/E5MuQc3bUEN4mcJAjqK0pKHPPXJV9ddgVSRrFaHoVGXwug3k30hS
-	LKh6A6sHn47ofgUeW5FDvSixAMoSOdA5xtKhIOjOCM/5g9v23YC6FvcuECq3j5V0
-	nYA5Jy/41k4TTDSsVIbU4cQhPLmig7/13trQEJ8YeVKZY/4YTFMy7U88lL8wQHuX
-	mGYblL7//oPyns1L0rHQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhk3d1np-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 14:13:09 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1862710005E;
-	Mon,  9 Oct 2023 14:13:08 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0EE2F2171DF;
-	Mon,  9 Oct 2023 14:13:08 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
- 2023 14:13:07 +0200
-Message-ID: <be5521e7-5093-e8c2-9a9b-ebd09cb11386@foss.st.com>
-Date: Mon, 9 Oct 2023 14:13:06 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A8718C23
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:13:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88E38C433C9;
+	Mon,  9 Oct 2023 12:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696853619;
+	bh=ke6sTlUKSmVQ0a5qedfoFbaCYIiQvcyteCIyXEEIudM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QL/8Qzyc89GE4xV5JFy/S7VnuIJEioucHbEZclSHKfTSpRvphdMqVklZcrpLi/Rq6
+	 h1GryvHE8hSNNm85kGO8ZNGAYW7phe3nczFMmsERFxzXP7TZLnoH845U9MBbr4uuQY
+	 jqa4rrC+CdPLBEFoSlcTETBPpvDiWVf8PkooTaw6IpP2h71X/LZM8gUt1ZKcNFH/q8
+	 4mNzAQiI7lHjZ1YeU9LYx6YL84kAUGH5n8BVQmHwZPf+tEsUzuvmNQWMno3oovxjlf
+	 ipGSr+IPQ2uVvKnA8D42yPFe/QUZlSCrUi3L60UqRqOMf1/XTd2UCpwWxyYFqsORe4
+	 7Z4dgRx8xUuAw==
+Date: Mon, 9 Oct 2023 13:13:34 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	patches@opensource.cirrus.com
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: cirrus,cs42l43: Update values for
+ bias sense
+Message-ID: <fbf2fe38-eab9-4324-ad46-1bf0322841d8@sirena.org.uk>
+References: <20231005135559.3117994-1-ckeepax@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] ARM: dts: stm32: add SDIO pinctrl sleep support on
- stm32f7
-Content-Language: en-US
-To: Ben Wolsieffer <ben.wolsieffer@hefring.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-References: <20231002171339.1594470-1-ben.wolsieffer@hefring.com>
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20231002171339.1594470-1-ben.wolsieffer@hefring.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_11,2023-10-09_01,2023-05-22_02
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oNQzh54kikk3NsAM"
+Content-Disposition: inline
+In-Reply-To: <20231005135559.3117994-1-ckeepax@opensource.cirrus.com>
+X-Cookie: Avec!
 
-Hi Ben
 
-On 10/2/23 19:13, Ben Wolsieffer wrote:
-> Add support for switching the SDIO pins on the STM32F7 series to analog
-> mode when not in use to save power.
-> 
-> I don't have any of the disco/eval boards to test, but I have tested
-> this on an Emcraft STM32F746 SOM with a UCL-SOM-BSB carrier (using an
-> out-of-tree DT) and our custom carrier board.
-> 
-> Ben Wolsieffer (2):
->    ARM: dts: stm32: add stm32f7 SDIO sleep pins
->    ARM: dts: stm32: add SDIO pinctrl sleep support on stm32f7 boards
-> 
->   arch/arm/boot/dts/st/stm32746g-eval.dts   |  3 ++-
->   arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi | 22 ++++++++++++++++++++++
->   arch/arm/boot/dts/st/stm32f746-disco.dts  |  3 ++-
->   arch/arm/boot/dts/st/stm32f769-disco.dts  |  3 ++-
->   4 files changed, 28 insertions(+), 3 deletions(-)
-> 
+--oNQzh54kikk3NsAM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Series applied on stm32-next.
+On Thu, Oct 05, 2023 at 02:55:58PM +0100, Charles Keepax wrote:
+> Due to an error in the datasheet the bias sense values currently don't
+> match the hardware. Whilst this is a change to the binding no devices
+> have yet shipped so updating the binding will not cause any issues.
 
-Regards
-Alex
+This doesn't apply as a fix, please check and resend.
+
+--oNQzh54kikk3NsAM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUj7m0ACgkQJNaLcl1U
+h9CE7Qf8DPVPK+xTM+MBobASpj3R6gTPMl7qWGCu6ccjQzD7Q0q4MXJSoJqnBySU
+bKG2S0WViByP733P3BAxRILV6d9J09POOQMQwiXXuaqfmSNR7zz72Ua9AubTzSky
+ivoRaYlgnRzroFBo4zr/cQS4omsKY9Un8Zpph/3E7x2bsBZiH8rN2ssLGeVqo262
+jppb0hnSZl3wbtZIyx61R5Cscl6o8s1kpBC+yfNf9DPBs7j0D4NtK9ML+wP74UwB
+yGhzm19sHgX9F/9GMtCJm4uUat1CtNsNFUaOgjWXADRrmrSGyVwqSaI5/itjdMXe
+pkSwlXWF39WvIWdIKJzA7KG4V1G0OA==
+=ay8w
+-----END PGP SIGNATURE-----
+
+--oNQzh54kikk3NsAM--
 
