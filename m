@@ -1,171 +1,114 @@
-Return-Path: <devicetree+bounces-7014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813047BEA3A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5208D7BEA5B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3972810B4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:01:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E34A2819C2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5039A3B78A;
-	Mon,  9 Oct 2023 19:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="JLtChTSw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AFC3B794;
+	Mon,  9 Oct 2023 19:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A8EC14F
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:00:54 +0000 (UTC)
-Received: from forward100b.mail.yandex.net (forward100b.mail.yandex.net [178.154.239.147])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FC99C;
-	Mon,  9 Oct 2023 12:00:51 -0700 (PDT)
-Received: from mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:6e01:0:640:627f:0])
-	by forward100b.mail.yandex.net (Yandex) with ESMTP id 513D460A9E;
-	Mon,  9 Oct 2023 22:00:49 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id Z0imEe6DeSw0-tb5Kw72p;
-	Mon, 09 Oct 2023 22:00:48 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
-	t=1696878048; bh=Q0kzR1Hkqz2cOVD+5iFO30kiqBo+q8tCC8dS7GzQR8s=;
-	h=Cc:Message-ID:References:Date:In-Reply-To:Subject:To:From;
-	b=JLtChTSwho6cSk5GB+t52/2PP2CUNKzRSTrNKHb+N57FkOR2uUdsrbIYNfZlz8kdc
-	 vBL6blQzTg9Pzjdd5BBkGTM+cWB+SYJ+S4Cy3h8rHOz8B2QzTOXmt2PARTJoUcnyjl
-	 f6I8oD/FvT/m4sRE/bwTkJthJi0cYmSIX9T7NbeM=
-Authentication-Results: mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
-From: Muhammed Efe Cetin <efectn@6tel.net>
-To: d-gole@ti.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	efectn@6tel.net,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	megi@xff.cz,
-	robh+dt@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: Add Orange Pi 5
-Date: Mon,  9 Oct 2023 22:00:26 +0300
-Message-ID: <20231009190027.10304-1-efectn@6tel.net>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231009054034.am2e4hcmwoworeml@dhruva>
-References: <20231009054034.am2e4hcmwoworeml@dhruva>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE00FBE3
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:09:37 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5EC87A6;
+	Mon,  9 Oct 2023 12:09:36 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 95D441FB;
+	Mon,  9 Oct 2023 12:10:16 -0700 (PDT)
+Received: from bogus (unknown [10.57.93.106])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 249D33F5A1;
+	Mon,  9 Oct 2023 12:09:32 -0700 (PDT)
+Date: Mon, 9 Oct 2023 20:08:00 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
+ support
+Message-ID: <20231009190800.ydkmmt2hgieazgfl@bogus>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-1-quic_nkela@quicinc.com>
+ <20231006164206.40710-3-quic_nkela@quicinc.com>
+ <20231009144744.yi44ljq4llaxjsb7@bogus>
+ <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
+ <20231009152952.dww3fgh5q7fqysps@bogus>
+ <535bbc68-74bb-21e8-0e72-8de1df9cfc99@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,T_SPF_PERMERROR autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <535bbc68-74bb-21e8-0e72-8de1df9cfc99@quicinc.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+On Mon, Oct 09, 2023 at 10:49:44AM -0700, Nikunj Kela wrote:
+> 
+> On 10/9/2023 8:29 AM, Sudeep Holla wrote:
+> > On Mon, Oct 09, 2023 at 07:59:08AM -0700, Nikunj Kela wrote:
+> > > On 10/9/2023 7:47 AM, Sudeep Holla wrote:
+> > > > On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
+> > > > > This change adds the support for SCMI message exchange on Qualcomm
+> > > > > virtual platforms.
+> > > > > 
+> > > > > The hypervisor associates an object-id also known as capability-id
+> > > > > with each smc/hvc doorbell object. The capability-id is used to
+> > > > > identify the doorbell from the VM's capability namespace, similar
+> > > > > to a file-descriptor.
+> > > > > 
+> > > > > The hypervisor, in addition to the function-id, expects the capability-id
+> > > > > to be passed in x1 register when SMC/HVC call is invoked.
+> > > > > 
+> > > > > The capability-id is allocated by the hypervisor on bootup and is stored in
+> > > > > the shmem region by the firmware before starting Linux.
+> > > > > 
+> > > > Since you are happy to move to signed value, I assume you are happy to loose
+> > > > upper half of the range values ?
+> > > > 
+> > > > Anyways after Bjorn pointed out inconsistency, I am thinking of moving
+> > > > all the values to unsigned long to work with both 32bit and 64bit.
+> > > > 
+> > > > Does the below delta on top of this patch works for you and makes sense?
+> > > This looks good to me. Will do some testing and float v6 with the changes
+> > > you suggested below. Thanks
+> > > 
+> > Please refer or use the patch from [1] when reposting. I rebased on my
+> > patch[2] that I posted few minutes back. I am trying to finalise the branch
+> > and send PR in next couple of days, so please test and post sooner. Sorry
+> > for the rush.
+> 
+> Validated the patch from [1] below on Qualcomm ARM64 virtual platform using
+> SMC64 convention. Thanks!
+>
 
-On 9.10.2023 08:40, Dhruva Gole wrote:
-> Hello,
-> 
-> On Oct 05, 2023 at 16:54:04 +0300, Muhammed Efe Cetin wrote:
->> Hello,
->>
->> On 28.09.2023 13:51, Dhruva Gole wrote:
->>> Hi,
->>>
->>> On Aug 21, 2023 at 18:47:59 +0300, Muhammed Efe Cetin wrote:
->>>> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
->>>> Sdmmc, SPI Flash, PMIC.
->>>>
->>>> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
->>>> Reviewed-by: Ondřej Jirman <megi@xff.cz>
->>>> ---
->>>>    arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>>    .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 673 ++++++++++++++++++
->>>>    2 files changed, 674 insertions(+)
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
->>>>
->>> ...
->>>
->>> Can you provide some sort of documentation on how I can build and boot
->>> the kernel on this board? I was unable to use the upstream arm64
->>> defconfig with this exact series applied to boot the board.
->>
->> What was wrong when you tried to compile & boot the board? Can you provide some logs?
-> 
-> Umm don't have logs at hand, but I remember it didn't really reach the
-> linux first line either, it went into sort of a bootloop just after
-> the uboot stage.
+Thanks, since I have patched a bit, it is better if you post them so that
+we have a link for the exact patch on the list. Just pick up the patches
+from the branch[1] and post them as v6 with a change log so that all the
+details are captured for reference purposes.
 
-Hmm there might be issue with your uboot compilation. It'd be better if you provide useful logs.
+-- 
+Regards,
+Sudeep
 
-> 
->>
->>>
->>>> +
->>>> +&i2c6 {
->>>> +	pinctrl-names = "default";
->>>> +	pinctrl-0 = <&i2c6m3_xfer>;
->>>> +	status = "okay";
->>>> +
->>>> +	hym8563: rtc@51 {
->>>> +		compatible = "haoyu,hym8563";
->>>> +		reg = <0x51>;
->>>> +		#clock-cells = <0>;
->>>> +		clock-output-names = "hym8563";
->>>> +		pinctrl-names = "default";
->>>> +		pinctrl-0 = <&hym8563_int>;
->>>> +		interrupt-parent = <&gpio0>;
->>>> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
->>>> +		wakeup-source;
->>>
->>> Are you able to actually use rtc as a wakeup source? I tried this
->>> on a downstream kernel that I mention below..
->>>
->>> rtcwake -s 10 -m mem
->>>
->>> didn't actually seem to wake the device from deepsleep after 10 seconds.
->>> Do you know what other pins I can use as wakeup sources?
->>
->> No, i've not tried it before.
-> 
-> ah okay
-> 
->>
->>>
->>>> +	};
->>>> +};
->>>> +
->>>> +&mdio1 {
->>>> +	rgmii_phy1: ethernet-phy@1 {
->>>> +		compatible = "ethernet-phy-ieee802.3-c22";
->>>
->>> Just wondering, can you please give some logs of the board with eth
->>> working? The image that I have from opi seems to fail eth? As in I am
->>> not able to see any ip address. here are the logs:
->>>
->>> https://gist.github.com/DhruvaG2000/eda2762e35013c8d5ac9f37e818103a3
->>
->> Unfortunately the board is not near me currently. However, i was able to use GMAC ethernet in both the upstreram and downstream kernels. Did you try any images other than Orange Pi ones?
-> 
-> Nope, are there any other images that maybe more suitable? Please can you point me to them?
-
-You can check the images below the Third Party Images section in OPi's download page. GMAC should work properly with most of them.
-
-> 
->>
->>>
->>> ...
->>>
->>
-> 
+[1] https://git.kernel.org/sudeep.holla/h/for-next/scmi/updates
+[2] https://lore.kernel.org/r/20231009152049.1428872-1-sudeep.holla@arm.com
 
