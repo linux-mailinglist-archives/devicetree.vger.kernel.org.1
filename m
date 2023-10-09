@@ -1,156 +1,112 @@
-Return-Path: <devicetree+bounces-6976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDA27BE36E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:47:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A717BE389
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:51:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 369E328138B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:47:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85901280EB3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8A518056;
-	Mon,  9 Oct 2023 14:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B550A18C3F;
+	Mon,  9 Oct 2023 14:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NLU6pUeG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D3F1FD8
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:47:54 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B51DFAC;
-	Mon,  9 Oct 2023 07:47:48 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1385A1FB;
-	Mon,  9 Oct 2023 07:48:29 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D5DCE3F5A1;
-	Mon,  9 Oct 2023 07:47:46 -0700 (PDT)
-Date: Mon, 9 Oct 2023 15:47:44 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>, andersson@kernel.org,
-	konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
- support
-Message-ID: <20231009144744.yi44ljq4llaxjsb7@bogus>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20231006164206.40710-1-quic_nkela@quicinc.com>
- <20231006164206.40710-3-quic_nkela@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 221B418C04
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:51:12 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E73D8F;
+	Mon,  9 Oct 2023 07:51:10 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 23070FF809;
+	Mon,  9 Oct 2023 14:51:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696863069;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0jOgIroi+iceWUGJkzAJZdhaJt8sxoVXfGAQv9kuVdk=;
+	b=NLU6pUeGGxtOdPdzShVeqEzjjzNJSfum1NtTamhihBpEndp18MGOP6Mxen2fcjy16Xumuq
+	2oTcbY0cKKfK5SvP2qabncSayezcFI1bdb84rTeT22ANBjBcSPdDYij+5ZwlrRfGjAoRdU
+	2se371nUGJCwoYzrVSWO8aYMbRhGAe0cE1Z+Sy0XkWP0N1FBPQGN3kdWF0Ee+PwYTKNeqH
+	4zgTuNJV6gLEE1m4civlQGLZoXg79YTcgrEGPgXmE55snhQUq1X2ZE6uI9fkJ8+ko51JY/
+	d0knW2deRZdvXFSjS0grBf8qMLFOU0xS24CkJl+iSch3i57PSWFSnmyS7MPIGg==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Arnd Bergmann <arnd@arndb.de>, Paul Burton <paulburton@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 09/11] MIPS: mobileye: Add EPM5 device tree
+In-Reply-To: <37d3c19a-4106-45f9-ae2a-99bf41a8bab0@app.fastmail.com>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-10-gregory.clement@bootlin.com>
+ <37d3c19a-4106-45f9-ae2a-99bf41a8bab0@app.fastmail.com>
+Date: Mon, 09 Oct 2023 16:51:06 +0200
+Message-ID: <87sf6jc0it.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006164206.40710-3-quic_nkela@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
-> This change adds the support for SCMI message exchange on Qualcomm
-> virtual platforms.
-> 
-> The hypervisor associates an object-id also known as capability-id
-> with each smc/hvc doorbell object. The capability-id is used to
-> identify the doorbell from the VM's capability namespace, similar
-> to a file-descriptor.
-> 
-> The hypervisor, in addition to the function-id, expects the capability-id
-> to be passed in x1 register when SMC/HVC call is invoked.
-> 
-> The capability-id is allocated by the hypervisor on bootup and is stored in
-> the shmem region by the firmware before starting Linux.
+"Arnd Bergmann" <arnd@arndb.de> writes:
+
+> On Wed, Oct 4, 2023, at 18:10, Gregory CLEMENT wrote:
+>> +
+>> +	chosen {
+>> +		bootargs = "cca=5 earlycon console=ttyAMA2 ddr32_alias=0x40000000";
+>> +		stdout-path = "serial2:115200n8";
+>> +	};
+>> +
 >
+> The bootargs should not be needed here, at least most of them:
+>
+> - no need to set both console= and the stdout-path if you have
+>   earlycon support
 
-Since you are happy to move to signed value, I assume you are happy to loose
-upper half of the range values ?
+OK I keep stdout-path.
 
-Anyways after Bjorn pointed out inconsistency, I am thinking of moving
-all the values to unsigned long to work with both 32bit and 64bit.
+>
+> - ddr32_alias=0x40000000 sounds like something that should be
+>   part of the dtb elsewhere and not require a command line argument.
+>   I assume this is needed to even build?
 
-Does the below delta on top of this patch works for you and makes sense?
+I will answer on the other email but in short I agree.
+>
+> - For cca=, it looks like this is intended to be autodetected from
+>   the c0_config register. Does that not work for you for some reason?
 
---
-Regards,
-Sudeep
+Indeed I checked and it it nost needed anymore, it is already set in
+cps_smp_setup. I remove it.
 
--->8
-diff --git c/drivers/firmware/arm_scmi/smc.c i/drivers/firmware/arm_scmi/smc.c
-index bf0b7769c7b2..e00c5e81c8d9 100644
---- c/drivers/firmware/arm_scmi/smc.c
-+++ i/drivers/firmware/arm_scmi/smc.c
-@@ -15,6 +15,7 @@
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/of_irq.h>
-+#include <linux/limits.h>
- #include <linux/processor.h>
- #include <linux/slab.h>
- 
-@@ -65,7 +66,7 @@ struct scmi_smc {
- 	unsigned long func_id;
- 	unsigned long param_page;
- 	unsigned long param_offset;
--	s64 cap_id;
-+	unsigned long cap_id;
- };
- 
- static irqreturn_t smc_msg_done_isr(int irq, void *data)
-@@ -127,11 +128,11 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 			  bool tx)
- {
- 	struct device *cdev = cinfo->dev;
-+	unsigned long cap_id = ULONG_MAX;
- 	struct scmi_smc *scmi_info;
- 	resource_size_t size;
- 	struct resource res;
- 	struct device_node *np;
--	s64 cap_id = -EINVAL;
- 	u32 func_id;
- 	int ret;
- 
-@@ -167,6 +168,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 		return ret;
- 
- 	if (of_device_is_compatible(dev->of_node, "qcom,scmi-smc")) {
-+		void __iomem *ptr = (void __iomem *)scmi_info->shmem + size - 8;
- 		/* The capability-id is kept in last 8 bytes of shmem.
- 		 *     +-------+
- 		 *     |       |
-@@ -177,12 +179,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 		 *     | capId |
- 		 *     +-------+ <-- size
- 		 */
--
--#ifdef CONFIG_64BIT
--		cap_id = ioread64((void *)scmi_info->shmem + size - 8);
--#else
--		cap_id = ioread32((void *)scmi_info->shmem + size - 8);
--#endif
-+		memcpy_fromio(&cap_id, ptr, sizeof(cap_id));
- 	}
- 
- 	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param")) {
-@@ -247,7 +244,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- 
- 	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
- 
--	if (cap_id >= 0)
-+	if (cap_id != ULONG_MAX)
- 		arm_smccc_1_1_invoke(scmi_info->func_id, cap_id, 0, 0, 0, 0, 0,
- 				     0, &res);
- 	else
+Thanks,
 
+Gregory
+
+>
+>      Arnd
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
