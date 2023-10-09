@@ -1,131 +1,78 @@
-Return-Path: <devicetree+bounces-6948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A740A7BDE51
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF197BDE65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 628692815A4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:18:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98349281593
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06CB1A596;
-	Mon,  9 Oct 2023 13:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D791A5A4;
+	Mon,  9 Oct 2023 13:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="i/dMHpZX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="siAKZGFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E941A5A3
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:18:12 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA218F;
-	Mon,  9 Oct 2023 06:18:10 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 9D7E6120006;
-	Mon,  9 Oct 2023 16:18:08 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9D7E6120006
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1696857488;
-	bh=Z7Yqvbh39APR5mYXNo8r7N+vYf3l8uCj6bRMobcDPzI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=i/dMHpZXsmvN7Oh59eybkuyDIcv7X7/PU4M2aV1AIfWekitcETXLgS17tJXX9A3Hw
-	 iLGwV9wiwWFHnjHmUnqMzGBST6DpeBPuhoZS0LEK+Xk8O7G85AacUC6FYavmZss3cm
-	 IQDyOERJ3P6K2cF7GwIbPR8m4qd3zl3ZW6cjyNCMW8GCGnQaiypJym5w3JxB527Ol0
-	 VD+QOuitIprQz1wD3iv3EWpDi1gDxtvGzHxItpk0n0CG/BJ2F39IiNejGRi225gfQW
-	 ovWjOK3TB+CI6OnYJvCXe9W2wvrMfEEcqXld+kNnFCCOH3rgw/52itoeV6vNDpmvUd
-	 EFmOiRIx1QJ7Q==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  9 Oct 2023 16:18:08 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 16:18:08 +0300
-Date: Mon, 9 Oct 2023 16:18:08 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
-	<gnstark@salutedevices.com>
-Subject: Re: [PATCH v1 09/11] leds: aw200xx: improve autodim calculation
- method
-Message-ID: <20231009131808.lzri7z2nvcmkfuu3@CAB-WSD-L081021>
-References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
- <20231006160437.15627-10-ddrokosov@salutedevices.com>
- <CAHp75VcntHXe31H8C9GcGhc+HRA-gZjtD=uibMMYN-FS254RJw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156321A596
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:19:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83898C433C9;
+	Mon,  9 Oct 2023 13:19:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696857555;
+	bh=ztzncHnGPFaPWuZ166bpyDahB+29GvIXPBNg+KvQPI4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=siAKZGFd8OFJLn+c/32SwXUR4Hx8Pajh6djGm1/bF939ysjVWnK3Z64idYws56B16
+	 5upm0yFH4ohdS28CRPO9cg6yh5hvd8XCdMITblPEl5dyHpEufcXt0xWLyJTSE+omGW
+	 lM5Jg0lDgS1brK97Js84L14ovV2QoTVIRLVyXYG3a1esYYyp3J0YATYiOyZDWhco/Z
+	 YkQlR4bTHoPUTUUrW8gXrzg7XoL5bcSXLjjJu1rb5r5jFS8qmIWObUEfXbWMiBymBJ
+	 ngajVolOQOYMmbtuQJyjlvMzXTNB7UN3xDVGic0it4NOm9J4f0QWwLPnFMKni0L7Tj
+	 1UrvUTVgd3q1A==
+Date: Mon, 9 Oct 2023 21:18:56 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Yannic Moog <y.moog@phytec.de>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@lists.phytec.de, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 0/2] Add support for the phyGATE-Tauri-L IoT Gateway
+Message-ID: <20231009131856.GB733979@dragon>
+References: <20230925-tauri_upstream_support-v2-0-62a6dfc48e31@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VcntHXe31H8C9GcGhc+HRA-gZjtD=uibMMYN-FS254RJw@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180475 [Oct 09 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/08 23:24:00 #22096719
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230925-tauri_upstream_support-v2-0-62a6dfc48e31@phytec.de>
 
-On Fri, Oct 06, 2023 at 09:03:47PM +0300, Andy Shevchenko wrote:
-> On Fri, Oct 6, 2023 at 7:05 PM Dmitry Rokosov
-> <ddrokosov@salutedevices.com> wrote:
-> >
-> > From: George Stark <gnstark@salutedevices.com>
-> >
-> > use DIV_ROUND_UP instead of coarse div
+On Mon, Sep 25, 2023 at 09:25:17AM +0200, Yannic Moog wrote:
+> The phyGATE-Tauri-L is a SBC that uses the phyCORE-i.MX8MM SoM, but has
+> a different carrier board.
+> This series adds support for the board and most of its interfaces.
+> Notably, RS485 support is missing.
 > 
-> Please, respect English grammar and punctuation.
-> Refer to macros and functions as func() (note the parentheses).
+> Signed-off-by: Yannic Moog <y.moog@phytec.de>
+> ---
+> Changes in v2:
+> - change license of tauri devicetree file.
+> - fix devicetree style issues, no functional change
 > 
-> ...
-> 
-> >  #define AW200XX_REG_DIM2FADE(x) ((x) + 1)
-> > +#define AW200XX_REG_FADE2DIM(fade) \
-> > +       DIV_ROUND_UP((fade) * AW200XX_DIM_MAX, AW200XX_FADE_MAX)
-> 
-> Have you checked if the overflow is _now_ possible (compiling on
-> 32-bit platforms as well)?
+> ---
+> Yannic Moog (2):
+>       dt-bindings: arm: fsl: add phyGATE-Tauri-L board
+>       arm64: dts: freescale: add phyGATE-Tauri i.MX 8M Mini Support
 
-I suppose we shouldn't carry on about overflow here because the value of
-fade cannot exceed 255, and DIM_MAX is set at 63
-
-You can find maximum values of fade and dim in the aw200xx driver
-header:
-
-#define AW200XX_DIM_MAX                  (BIT(6) - 1)
-#define AW200XX_FADE_MAX                 (BIT(8) - 1)
-
--- 
-Thank you,
-Dmitry
+Applied both, thanks!
 
