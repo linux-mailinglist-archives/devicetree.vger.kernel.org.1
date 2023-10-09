@@ -1,167 +1,138 @@
-Return-Path: <devicetree+bounces-6970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C83A7BE257
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:18:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8AF7BE2A9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:25:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FE6B1C2094F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:18:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C7671C2094F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90CA34CCD;
-	Mon,  9 Oct 2023 14:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5084535894;
+	Mon,  9 Oct 2023 14:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w+KUHqiV"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="bc9rpABe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F035318043
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:18:21 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C93AB
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 07:18:16 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40572aeb73cso42039595e9.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 07:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696861095; x=1697465895; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=buP33NIbDErwx8CzHiVracuxo64oF8KO6esE1+yX/Y4=;
-        b=w+KUHqiV9yfdSGsJGrvtxnoe+NHvayroURvG/+nKo/Mo1u8yYbnJ3LB8Ys8/QFNLXx
-         XEogjcwMVvMB9ah7rDzaVllGPo276MIbEzLEWVeKFeklKq89xOy+jVCBny6kwW9wYlT1
-         eOeW2tdWb8dVZcH1INcraxyq2kRTSW/hm1BwRY6soGw+Aw9wk9wOUedgK4YPXqf9J1WP
-         2v1Yv1xIKd+C+kUhWUyWTkCdO2HJhIbtHQDX7UKC5kYA/mopRYux98hr9SSslMm5Nbzv
-         kFb94t248t3lyTw8fyZPq9Tbox60JO/jvq4FNqpPbJHypRURX4hAnoYdJ9lAL215p558
-         iDxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696861095; x=1697465895;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=buP33NIbDErwx8CzHiVracuxo64oF8KO6esE1+yX/Y4=;
-        b=lTjT7eFuNOr0BDPf0cy3IWq9fpcR37kC1Nnsqmv4wDIG9JXTGudPzPp6Ip5bplMy6M
-         ATl6haEdB1XH+lc+kuczuR+GQWfKa4zkEo9xDS72D8vcXiIAhyXG/3hgv/3aGEEXYspw
-         Mpa1GrNkhTuvuI/ObClbJsKPsHOL5pjwOfkIPHN/EDyD0VMV3iQ3Bw3cHmMLI7yme+CN
-         RHrdgTTDg/L6IXOABTH6DGRb6FFs1G4s4rYGeh89RiFUMt8dVQzfBXwwm9fxvfpTzSR2
-         wSxwOT1tHpCHXsCOisHsfXAWpfjMuzXmkNgPtNEfXvhTBuxscEru3ZkUgp+iSlCSoyea
-         gdWw==
-X-Gm-Message-State: AOJu0Yxk9OZIRLRXf+thcsD0v3eY0Fwppp9MPNZVqnXFvcsCRY3lSzjc
-	mGFt/AyDhiafHAH8xQndjvG0QQ==
-X-Google-Smtp-Source: AGHT+IHlLPC8hrKalFu6kj/FTfm3MoFE1i1WfPwnAhhawPgy4hd+swddiIE4JiYf9jSjbBasbLOVCw==
-X-Received: by 2002:a05:600c:22cf:b0:401:4542:5edd with SMTP id 15-20020a05600c22cf00b0040145425eddmr13766645wmg.34.1696861094962;
-        Mon, 09 Oct 2023 07:18:14 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:88ad:b7c0:92ba:cace? ([2a05:6e02:1041:c10:88ad:b7c0:92ba:cace])
-        by smtp.googlemail.com with ESMTPSA id l16-20020a7bc450000000b0040536dcec17sm13521923wmi.27.2023.10.09.07.18.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 07:18:14 -0700 (PDT)
-Message-ID: <42ed1a41-a59c-478b-8ef2-4000f0509150@linaro.org>
-Date: Mon, 9 Oct 2023 16:18:13 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD5D34CCC
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:25:31 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F8C9C;
+	Mon,  9 Oct 2023 07:25:25 -0700 (PDT)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 399D7FQb012945;
+	Mon, 9 Oct 2023 16:25:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=zayNHG01hD7SoipP4cr3YE823OncQrlcIxbIlovpurY=; b=bc
+	9rpABeH8vTnol3/l+5Ly3ssLWnLy3/e25zP66iOFn4tkBcWy96oHWyhgTUXCi2QL
+	Lub43y6ZklmSU45fIGxlqaXeoZ3g2ccL7VABlmlLboVNtRM7riHntKdxzzY6s9br
+	Y+Yr8V6xjKESRIwzrnTHJNUrVXkOQP6VK877JBqFweIqiVbzVTvkrPR45uMTm8c1
+	VLTv21bmq7J109mjPoxWExoSleWuh+BhipUYstU2z+EhLb34E9UYCgmP3KFQnUkt
+	k4v8olLJ6NZofkKhCF0CrldnlbFWrfaGvA1YFlz20sB90QwEP11d/p+onyGXZ4g/
+	kJebhUODwDWC7F0BOsBQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhk3dk2a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 16:25:02 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3FFAC100063;
+	Mon,  9 Oct 2023 16:25:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2D7F6255514;
+	Mon,  9 Oct 2023 16:25:01 +0200 (CEST)
+Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
+ 2023 16:25:00 +0200
+Message-ID: <fa0e6187-ab7d-bc23-299c-a491c8ff1d8f@foss.st.com>
+Date: Mon, 9 Oct 2023 16:24:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
+ encoder
 Content-Language: en-US
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Conor Dooley <conor@kernel.org>
-References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
- <20230831-iphone-muscular-7442cda2c39e@spud>
- <TYCPR01MB5933370B7660B8504B2D8D7386FBA@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <TYCPR01MB112697D67514D2E6FC690B9F886CEA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <576809c2-b7bc-4342-9c63-0662bfcecebf@linaro.org>
- <20231009-lure-overcome-f33ee1fd6480@wendy>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231009-lure-overcome-f33ee1fd6480@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ezequiel Garcia
+	<ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil
+	<hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+CC: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
+ <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
+ <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
+ <0de2ae74-2ba1-0e8d-aa7b-77806ac8b252@foss.st.com>
+ <1e2a4d87-5478-4655-993d-7f404d507c82@linaro.org>
+From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+In-Reply-To: <1e2a4d87-5478-4655-993d-7f404d507c82@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_12,2023-10-09_01,2023-05-22_02
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 09/10/2023 15:59, Conor Dooley wrote:
-> On Mon, Oct 09, 2023 at 11:52:13AM +0200, Daniel Lezcano wrote:
->> On 09/10/2023 08:54, Biju Das wrote:
->>> Hi all,
->>>
->>> Gentle ping. This patch is in the patch work for a while.
->>> It is acked/reviewed by Conor Dooley and Geert Uytterhoeven.
->>>
->>> Can we apply to mainline if you are happy? Or do you want me
->>> to RESEND the patches? Please let me know.
+Hi Krzysztof,
+
+On 10/9/23 15:56, Krzysztof Kozlowski wrote:
+> On 09/10/2023 15:49, Hugues FRUCHET wrote:
+>> Hi Krzysztof,
 >>
->> Krzysztof ?
+>> On 10/5/23 21:45, Krzysztof Kozlowski wrote:
+>>> On 04/10/2023 11:15, Hugues Fruchet wrote:
+>>>> Add STM32MP25 VENC video encoder bindings.
+>>>>
+>>>
+>>> I don't understand why this binding is separate from video decoder.
+>>> Merge them.
+>> VDEC and VENC are two independent IPs with their own clock, reset,
+>> interrupt & register set, they have their own access to APB/AXI bus.
+>> Moreover future chipsets may embed only VENC or VDEC.
+>>
+>> Hoping that this clarifies the reason of two different bindings.
 > 
-> Daniel ?
+> No, it does not. These are no reasons to have independent bindings,
+> except when having actual impact on the bindings. The bindings look
+> identical. What are the differences?
+I'm sorry but I really don't understand your point, these are two 
+different IPs with very different registers in it, so why should
+I share that in a single binding ?
+
 > 
-> (Or for the non-telepathic, what is "Krzysztof ?" supposed to mean?)
+> Best regards,
+> Krzysztof
+> 
 
-Sorry I missed you were in the DT bindings maintainer list. I was 
-expecting Krzysztof tag.
-
-I'll pick the patches now.
-
-Thanks
-
->>>>> On Thu, Jul 27, 2023 at 09:18:43AM +0100, Biju Das wrote:
->>>>>> This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
->>>>>> Also it fixes overflow/underflow interrupt names.
->>>>>>
->>>>>> v2->v3:
->>>>>>    * Dropped patch#4, as it accepted for 6.5 fixes.
->>>>>>    * Moved patch#2 to patch#1 as it is fixes patch.
->>>>>>    * Added Rb tag from Geert for patch#1 and patch#3.
->>>>>>    * Updated the link to lore for Closes tag for patch#2.
->>>>>>    * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
->>>>>>
->>>>>> v1->v2:
->>>>>>    * Added Ack tags from Conor Dooley for binding patches
->>>>>>    * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
->>>>>>    * Fixed build error reported by kernel test robot by replacing
->>>>>>      GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
->>>>>>
->>>>>> Biju Das (5):
->>>>>>     dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
->>>>>>       names
->>>>>>     dt-bindings: timer: renesas,rz-mtu3: Improve documentation
->>>>>>     dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
->>>>>>     arm64: dts: renesas: r9a07g043: Add MTU3a node
->>>>>>     arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
->>>
->>
->> -- 
->> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
->>
->> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
->> <http://twitter.com/#!/linaroorg> Twitter |
->> <http://www.linaro.org/linaro-blog/> Blog
->>
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+BR,
+Hugues.
 
