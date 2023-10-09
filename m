@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-6852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABDE7BD334
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:16:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C2E7BD382
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CDA01C2087C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 06:16:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE27B2811A7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 06:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6CCBA22;
-	Mon,  9 Oct 2023 06:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92C728E6;
+	Mon,  9 Oct 2023 06:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gUKlDjsI"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="NI+HcO9v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2565B66D
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:16:10 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCCA9E;
-	Sun,  8 Oct 2023 23:16:08 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399381Uf008612;
-	Mon, 9 Oct 2023 06:15:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=9xnVisqg50meGti2HSYLDC8UjxUYc57KFi5Pop78p1k=;
- b=gUKlDjsIfftvMEtMneRE2nDEYXIMWKgG5SQ078XvvAZhXpJgvkRQVA6HSoHY06SMkVxC
- lRvQHuzveCxpaJI6Yfwous5aT+Lg2zzf+rKaiT0yybgOjgD2jwOL9tKMLMGK8poze/36
- 1PPFXMdJsXq9YE04lKnCznHblswSyaax8w0yalZtz36Oithw07C243QVQKEtJUNRf5pG
- yCXNd7+X/7H4GVZaNJuE4brq8Qfx+xEl/5OO6/EvmYF6ywySoxZ4DOj3pwQ78xMTTSnM
- 7J+xuF/uLS5vBkU6IqAfxfDHstk2AynHEvRUhpv3mzBkYnve12rkvKDBiRG0LQZnDwzX 9A== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkh3s1nc3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 06:15:40 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3996FdEJ013455
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 06:15:39 GMT
-Received: from [10.201.200.63] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Sun, 8 Oct
- 2023 23:15:32 -0700
-Message-ID: <3492bff2-5d81-4bd4-a53c-b46513c40b5a@quicinc.com>
-Date: Mon, 9 Oct 2023 11:45:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212FCBE48
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:35:35 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52624A4;
+	Sun,  8 Oct 2023 23:35:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J+vgW6qg8wgTr2IO6EMzK+Igo5bcyx4OvHvkXwmlDLeiZ+O4C5jPvOMlWIo0Fft1JPpwPX+RoEvOqQyVCPjDbPsU5JqnQlU8xKUPcAQy5a81hR7Nao1S74xyD4KRGgoRm423czmFZmQ4DCzIgQEl+nt/5t8rUwjfBKd9v5fBOAcQpOYl4N4Oc5BFra9P6IMRwLu4Kmi3YLFalg49U3vicR4FrtjpK2LGF0Luo0mnOfEart9IXefuQ0b1G/Jr5ObfmZjPjd+9gnmnZiJS5G/9+fEvR0ogxpp+i63dFrCFHn8WChVzBSoUQBzjkEyoEpYHzJNO5lMxxuCWxeZHaomyTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OaGrMCCLuelAOXP4B7WTHuoDOE6vFuCrM5OMz9lJRFk=;
+ b=kVdmJ9mKevnwFBu0UoX1yIxH4/wM+mkkwb73A4eK1SH6xT8c0LhxEHMwFXyCTDkV/2v183PEBcHhuUKNbhY+LnZOWoOmmBZYXhEVCSgvmuvEDswf6OwwOjGhLKtAAMK9vcH4wIhdtqbe1Sfzw+udxJxBzwhz0mepDVoyFOuxg4TqCUr+jDocJEHDCaN2eWLk8e0cqqaYkAnAeDiQLB3ksnj4UcdV7Neas1D7407dB102B2evywzeKwzoQT2a4jtlyNOPlbwNIm2f/nA/NW3xGL6wZ2DMZre1x/cMNYP7dSjMOjmYY0UOBJ0lYiwtfmEVdQOvRlBlSZYONrRzWTl3FA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OaGrMCCLuelAOXP4B7WTHuoDOE6vFuCrM5OMz9lJRFk=;
+ b=NI+HcO9vtRrcmsGo7PIcTvQKfc6UEOQ4llTrKQQ9OBBvyfJzzhZDstk/w8H4RAcqKMM6tmsco5Xi+dY/AnIu+1HBMlNINQoFFTrjIWT+RPY2vLcQNMFZRR67bEhG/SGP2f4fD0y6cePFXRS57gXUKq19SberDs8sXDSv8QXRAuWVUPi/lgJaX8dKT2ODE1ve4R61EQ8mQh0Z9jZQ4A0XsFhXrTqDV4UrcazCVVZ9vRao27ikZSKL26fqQpIfaDJJfOe9xUQq8IKOBSKXm+Pb5D8JagGNREZGvioo1C4nuj/TWT2B+k/dB5y0XxGod2ez20Fv8TT+b2v82UyLqg/Hlw==
+Received: from DS7PR03CA0357.namprd03.prod.outlook.com (2603:10b6:8:55::10) by
+ CH2PR12MB4040.namprd12.prod.outlook.com (2603:10b6:610:ac::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.37; Mon, 9 Oct 2023 06:35:31 +0000
+Received: from CY4PEPF0000EE3C.namprd03.prod.outlook.com
+ (2603:10b6:8:55:cafe::f) by DS7PR03CA0357.outlook.office365.com
+ (2603:10b6:8:55::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.36 via Frontend
+ Transport; Mon, 9 Oct 2023 06:35:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CY4PEPF0000EE3C.mail.protection.outlook.com (10.167.242.16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.22 via Frontend Transport; Mon, 9 Oct 2023 06:35:31 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 8 Oct 2023
+ 23:35:26 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Sun, 8 Oct 2023 23:35:26 -0700
+Received: from mkumard.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.41 via Frontend
+ Transport; Sun, 8 Oct 2023 23:35:23 -0700
+From: Mohan Kumar <mkumard@nvidia.com>
+To: <vkoul@kernel.org>, <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: <dmaengine@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Mohan Kumar <mkumard@nvidia.com>
+Subject: [PATCH V1 0/2] Support dma channel mask
+Date: Mon, 9 Oct 2023 12:05:07 +0530
+Message-ID: <20231009063509.2269-1-mkumard@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: ipq5018: Enable PCIe
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
-        <p.zabel@pengutronix.de>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_ipkumar@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20231003120846.28626-1-quic_nsekar@quicinc.com>
- <20231003120846.28626-7-quic_nsekar@quicinc.com>
- <54ed2500-1d06-4f36-b2c5-418b878e9de4@linaro.org>
-From: Nitheesh Sekar <quic_nsekar@quicinc.com>
-In-Reply-To: <54ed2500-1d06-4f36-b2c5-418b878e9de4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XFJUgqDogRhEwILorPzdADmtqwqn8Fgx
-X-Proofpoint-ORIG-GUID: XFJUgqDogRhEwILorPzdADmtqwqn8Fgx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_04,2023-10-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 malwarescore=0 mlxscore=0 spamscore=0 adultscore=0
- suspectscore=0 phishscore=0 mlxlogscore=619 bulkscore=0 impostorscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310090053
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3C:EE_|CH2PR12MB4040:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0572c84d-2925-4619-2970-08dbc891ef82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	nLOTu0Xl9xxcbHEC5f3pT3V03oFqE0HFXQXgqpDqZjLEChv4D64z9tzeUvikIuDmQohzyAaY71jjw37l8qycB1czuAYsEf/U/f+BDphTcMgFvp9L/CKNhwvyvwTWDIIV3UWU2f3dms0R5wzMZ6g+6e3haXhZ3KJR7DMKrvicszkvmfJ2pWakepwLDabXsyDy3Pb75wImnFN03LAA1Loi0/yRcwNCG+r4vbaofV+fFdSTjpa6juGsjWK4d2VPN1tSTjmodY7fsGJmZZ/ezOy00FTnGppcyIOxKlzQ1Az65uxyf8Fjr18kRFkDcUrCrcHQtA6TpibAkfHBXOPy6zNKuXo+3xO4iDgKbl9tOxPni6eXdB++V5NHBSe0gfeW10CNjupGmc8fdwOPJK3QfnqNtP9GjItX/sYyL1xLS0C/ooS//HZlB1odsHg5aFSjAlS5e1SaP46M2ILWcH/EKfQFnlTpKRL1uMK+rgpJX7yGTpKQer/1ARNdSK7mCvgekwQPHraF/ouHUSODhOrFMEQl+iOIVNCnGQgwIhIQttURpg2g92KDCQN2idLloYKRojgSbY+riVY1q2LKk3VntpsOtQNYIdfp35wVRm4h7MZO/ukjDvtGInIuHPr12jk/RQxnObnHVJIJ8EbiHLyeQJ5IEmiSPGzFwyxpBKKrcVHdvb4dvXUHaB+w1D40lq/EjLFFNFdD0CRDo2EwKT60eXDvQ4zP1s//2WkLKEJrRU7CHeaXdyjrdpQSOLdOuNaWVWtw
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(136003)(39860400002)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(82310400011)(46966006)(36840700001)(40470700004)(1076003)(107886003)(2616005)(7696005)(40460700003)(36756003)(86362001)(7636003)(40480700001)(82740400003)(356005)(36860700001)(26005)(83380400001)(47076005)(426003)(336012)(4744005)(2906002)(41300700001)(6666004)(478600001)(8676002)(4326008)(8936002)(316002)(5660300002)(70586007)(110136005)(54906003)(70206006);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2023 06:35:31.6217
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0572c84d-2925-4619-2970-08dbc891ef82
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE3C.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4040
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+To reserve the dma channel using dma-channel-mask property
+for Tegra platforms.
 
-On 10/7/2023 5:57 AM, Konrad Dybcio wrote:
-> On 3.10.2023 14:08, Nitheesh Sekar wrote:
->> Enable the PCIe controller and PHY nodes for RDP 432-c2.
->>
->> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->> index e636a1cb9b77..be7d92700517 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->> @@ -28,6 +28,15 @@
->>   	status = "okay";
->>   };
->>   
->> +&pcie_x2 {
->> +	status = "ok";
-> "okay" is preferred
->
-> It's also preferred to keep status as the last property within
-> a node.
->
-> Konrad
+Mohan Kumar (2):
+  dt-bindings: dma: Add dma-channel-mask to nvidia,tegra210-adma
+  dmaengine: tegra210-adma: Support dma-channel-mask property
 
-Sure. will update.
+ .../bindings/dma/nvidia,tegra210-adma.yaml    |  3 ++
+ drivers/dma/tegra210-adma.c                   | 35 +++++++++++++++++--
+ 2 files changed, 36 insertions(+), 2 deletions(-)
 
-Thanks,
-Nitheesh
+-- 
+2.17.1
 
 
