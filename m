@@ -1,228 +1,145 @@
-Return-Path: <devicetree+bounces-6892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D45E7BD78C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 11:48:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88ADD7BD7AE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 11:52:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E2D61C2086E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 09:48:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B920C1C208D9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 09:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D713171A6;
-	Mon,  9 Oct 2023 09:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7DE171B8;
+	Mon,  9 Oct 2023 09:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xEJYZira"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cRlQLn/b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814ED168CE
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 09:48:22 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D6A8F
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 02:48:20 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40666aa674fso40810285e9.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 02:48:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C10168D6
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 09:52:19 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E31599
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 02:52:16 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-323168869daso4251928f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 02:52:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696844899; x=1697449699; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696845135; x=1697449935; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lcDBEh9tT+OAEwST3qjndiq/2rC0957sQfGVKrifBjA=;
-        b=xEJYZiraM+YlDG+RzxRN2HcaNyvRxd77tV0hMSU1Y7D8PaTLl0vUbskJCBea5n7nK4
-         gztUQx5XZX5ZAZpIgxbHvhlOpbzZiLTnf0XW3njUnIiZUvsPIQvjhO3cVdoythkXG0u1
-         8AnXqya21BUOdYFmTYLreBtgGvFOZWfJ7Vr/yTcFve0Dbj4e8IfJXLDchtA6O/wg/pKR
-         N7qyJkaoRnquzXsQLaHMUz1k9XrdUdNB509DsZ1HcMkVcqHSmhZAR8Y9rFIT+2FNXsOg
-         yO99TpZ8UNi0izOnSxKaU7t+zwNoxQL6wB5hw0n8E7z1yhu88LjyuladTvP4B3GEcaor
-         tAEg==
+        bh=KTlCqvJvWR1oqZWw+hzx3aeKDF9bM2oUn/096ZaKcwQ=;
+        b=cRlQLn/bMrK+fOgp0JS65vtETwDuMcTZ7ySMj57YxmaGhmSisSu0y5zp4yLaoSoyDH
+         klGcr2l7OxRwMdyi7k+/KThOguM4n7zRzwDzp4uFKIdVPkdsO0G68xtinxWMeItBcouy
+         k22awPaoqmFYVDTU108dAkHkWNOd2Uw5sGmjpetmHNUzK3BvH5ImegB4cD+s80RZFcav
+         sunuu8o1ORd5WpmcZaPpxSP7Mim4XuGXxf56GBCcFeHQ0ZRMXaY6nPiIN2DTVMZ0r7T9
+         zlZ12TNNGkysQpvjyJQ+Fog0H8G5Grt5uHgfm1vyH4TfolMtT0V07lyWEZGWR3lkRT+9
+         aF/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696844899; x=1697449699;
+        d=1e100.net; s=20230601; t=1696845135; x=1697449935;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lcDBEh9tT+OAEwST3qjndiq/2rC0957sQfGVKrifBjA=;
-        b=PEmMe6383BfSgf8nDTvclDMA95UyVC0o6k8pujQGabSUhWW6G0I7kMzwrAnp1HHZw2
-         GgUxkp5iGsMjMBujlLKWK7AVtf1BygnjJwWxheL3YQUkFBQiXAfs6ZleU4G8titc+CDW
-         yZv7VXIXNYUEWh2NDzRq1HX4TcUy6b5izxQz5Fb2urR7d5ONuc8gebfcXYtxkWuySmMo
-         cFuONktBF6Up22H4SWQsnKXOBoivAZ5eFt2A8Zmw+hyUbNIo8gdjfIfiDtatJuzN9uVz
-         dtaSah+oHnNu1tuUkt8Mx5YAlATVo3wouXm9tMJzd8wRuSfB335QOHVY7s2qA+TbRlmC
-         7dCQ==
-X-Gm-Message-State: AOJu0YzipEnXEMjP9TLyNrhwbBmUTQt3ioGVGg55g5mLYT9Y94Q+EtBA
-	eOlmPyoHsh8bvURbDqQfUDt4DA==
-X-Google-Smtp-Source: AGHT+IGPqsFUDbVxTxcPqC8MUtZkS0ZFnpjfkuYliWFnriB/Ftmhga+9P707XkrGvNlqN3auETyENw==
-X-Received: by 2002:a1c:7407:0:b0:401:c338:ab94 with SMTP id p7-20020a1c7407000000b00401c338ab94mr13567584wmc.29.1696844898752;
-        Mon, 09 Oct 2023 02:48:18 -0700 (PDT)
-Received: from [192.168.86.24] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id y24-20020a7bcd98000000b004064741f855sm10629557wmj.47.2023.10.09.02.48.17
+        bh=KTlCqvJvWR1oqZWw+hzx3aeKDF9bM2oUn/096ZaKcwQ=;
+        b=FtPR5tGVL+wtYL8PiQ4pLIbbjmPdDPu2dRWdJGGSB+TOGTzvijflsIQYd0j2o0COel
+         WZgNQg5lIr6FuNFZiMTY23fl+xJ62HGZ/8Ri/EdjZYFCBTu9gjYUw2eTMfGv97AS429E
+         Ty4Zbfh7bFHPzkVKbA/qH/Boh9OF9OySE5VSH1mzYL/uAQ/5f0Pr2ma0y8XPtRuK5NKP
+         hIykKdoB2uPFn0CAkjYsNz2Q+8Xw2LXwP6uFY5gNtCfHd8fm8jqxQ4nUcS9qJx00grWY
+         aR9yyi8wRZgDKD7YWi0pXYzG8kaZyOXG5HLJ+YidyTGEre09ym0NmqQE73e4rVRNXQix
+         pQ2w==
+X-Gm-Message-State: AOJu0YxKevA9G4rkt/a1nNRHGiYbUvNt1l4G90rGac4bEVZs+h4mxA0u
+	A1/VP/3/RtwqykpSaydFF2rQ9w==
+X-Google-Smtp-Source: AGHT+IHMPU/ttq6UzR4WDhz6H1sSoSmpPEbYEoiffHswXnHcX5EM8YUtNHk4AdOQOQliiw/LHSs02w==
+X-Received: by 2002:adf:ec4d:0:b0:31f:b79a:c4b7 with SMTP id w13-20020adfec4d000000b0031fb79ac4b7mr13874817wrn.24.1696845134761;
+        Mon, 09 Oct 2023 02:52:14 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:88ad:b7c0:92ba:cace? ([2a05:6e02:1041:c10:88ad:b7c0:92ba:cace])
+        by smtp.googlemail.com with ESMTPSA id b16-20020adfe650000000b003266ece0fe2sm9026653wrn.98.2023.10.09.02.52.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 02:48:18 -0700 (PDT)
-Message-ID: <318fe799-f53e-64ed-b631-d099bb5202f4@linaro.org>
-Date: Mon, 9 Oct 2023 10:48:17 +0100
+        Mon, 09 Oct 2023 02:52:14 -0700 (PDT)
+Message-ID: <576809c2-b7bc-4342-9c63-0662bfcecebf@linaro.org>
+Date: Mon, 9 Oct 2023 11:52:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v12 7/7] nvmem: core: Expose cells through sysfs
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
 Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Michael Walle <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
- <20231005155907.2701706-8-miquel.raynal@bootlin.com>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20231005155907.2701706-8-miquel.raynal@bootlin.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Conor Dooley <conor@kernel.org>
+References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+ <20230831-iphone-muscular-7442cda2c39e@spud>
+ <TYCPR01MB5933370B7660B8504B2D8D7386FBA@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <TYCPR01MB112697D67514D2E6FC690B9F886CEA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <TYCPR01MB112697D67514D2E6FC690B9F886CEA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On 09/10/2023 08:54, Biju Das wrote:
+> Hi all,
+> 
+> Gentle ping. This patch is in the patch work for a while.
+> It is acked/reviewed by Conor Dooley and Geert Uytterhoeven.
+> 
+> Can we apply to mainline if you are happy? Or do you want me
+> to RESEND the patches? Please let me know.
+
+Krzysztof ?
 
 
-On 05/10/2023 16:59, Miquel Raynal wrote:
-> , int index);
-> +
-> +static ssize_t nvmem_cell_attr_read(struct file *filp, struct kobject *kobj,
-> +				    struct bin_attribute *attr, char *buf,
-> +				    loff_t pos, size_t count)
-> +{
-> +	struct nvmem_cell_entry *entry;
-> +	struct nvmem_cell *cell = NULL;
-> +	size_t cell_sz, read_len;
-> +	void *content;
-> +
-> +	entry = attr->private;
-> +	cell = nvmem_create_cell(entry, entry->name, 0);
-> +	if (IS_ERR(cell))
-> +		return PTR_ERR(cell);
-> +
-> +	if (!cell)
-> +		return -EINVAL;
-> +
-> +	content = nvmem_cell_read(cell, &cell_sz);
-> +	if (IS_ERR(content)) {
-> +		read_len = PTR_ERR(content);
-> +		goto destroy_cell;
-> +	}
-> +
-> +	read_len = min_t(unsigned int, cell_sz - pos, count);
-> +	memcpy(buf, content + pos, read_len);
-> +	kfree(content);
-> +
-> +destroy_cell:
-> +	kfree_const(cell->id);
-> +	kfree(cell);
-> +
-> +	return read_len;
-> +}
-> +
->   /* default read/write permissions */
->   static struct bin_attribute bin_attr_rw_nvmem = {
->   	.attr	= {
-> @@ -320,11 +357,21 @@ static const struct attribute_group nvmem_bin_group = {
->   	.is_bin_visible = nvmem_bin_attr_is_visible,
->   };
->   
-> +/* Cell attributes will be dynamically allocated */
-> +static struct attribute_group nvmem_cells_group = {
-> +	.name		= "cells",
-> +};
-> +
->   static const struct attribute_group *nvmem_dev_groups[] = {
->   	&nvmem_bin_group,
->   	NULL,
->   };
->   
-> +static const struct attribute_group *nvmem_cells_groups[] = {
-> +	&nvmem_cells_group,
-> +	NULL,
-> +};
-> +
->   static struct bin_attribute bin_attr_nvmem_eeprom_compat = {
->   	.attr	= {
->   		.name	= "eeprom",
-> @@ -380,6 +427,68 @@ static void nvmem_sysfs_remove_compat(struct nvmem_device *nvmem,
->   		device_remove_bin_file(nvmem->base_dev, &nvmem->eeprom);
->   }
->   
-> +static int nvmem_populate_sysfs_cells(struct nvmem_device *nvmem)
-> +{
-> +	struct bin_attribute **cells_attrs, *attrs;
-> +	struct nvmem_cell_entry *entry;
-> +	unsigned int ncells = 0, i = 0;
-> +	int ret = 0;
-> +
-> +	mutex_lock(&nvmem_mutex);
-> +
-> +	if (list_empty(&nvmem->cells) || nvmem->sysfs_cells_populated) {
-> +		nvmem_cells_group.bin_attrs = NULL;
-> +		goto unlock_mutex;
-> +	}
-> +
-> +	/* Allocate an array of attributes with a sentinel */
-> +	ncells = list_count_nodes(&nvmem->cells);
-> +	cells_attrs = devm_kcalloc(&nvmem->dev, ncells + 1,
-> +				   sizeof(struct bin_attribute *), GFP_KERNEL);
-> +	if (!cells_attrs) {
-> +		ret = -ENOMEM;
-> +		goto unlock_mutex;
-> +	}
-> +
-> +	attrs = devm_kcalloc(&nvmem->dev, ncells, sizeof(struct bin_attribute), GFP_KERNEL);
-> +	if (!attrs) {
-> +		ret = -ENOMEM;
-> +		goto unlock_mutex;
-> +	}
-> +
-> +	/* Initialize each attribute to take the name and size of the cell */
-> +	list_for_each_entry(entry, &nvmem->cells, node) {
-> +		sysfs_bin_attr_init(&attrs[i]);
-> +		attrs[i].attr.name = devm_kasprintf(&nvmem->dev, GFP_KERNEL,
-> +						    "%s@%x", entry->name,
-> +						    entry->offset);
-> +		attrs[i].attr.mode = 0444;
-> +		attrs[i].size = entry->bytes;
-> +		attrs[i].read = &nvmem_cell_attr_read;
-> +		attrs[i].private = entry;
-> +		if (!attrs[i].attr.name) {
-> +			ret = -ENOMEM;
-> +			goto unlock_mutex;
-> +		}
-> +
-> +		cells_attrs[i] = &attrs[i];
-> +		i++;
-> +	}
-> +
-> +	nvmem_cells_group.bin_attrs = cells_attrs;
-> +
-> +	ret = devm_device_add_groups(&nvmem->dev, nvmem_cells_groups);
-> +	if (ret)
-> +		goto unlock_mutex;
+>>> On Thu, Jul 27, 2023 at 09:18:43AM +0100, Biju Das wrote:
+>>>> This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
+>>>> Also it fixes overflow/underflow interrupt names.
+>>>>
+>>>> v2->v3:
+>>>>   * Dropped patch#4, as it accepted for 6.5 fixes.
+>>>>   * Moved patch#2 to patch#1 as it is fixes patch.
+>>>>   * Added Rb tag from Geert for patch#1 and patch#3.
+>>>>   * Updated the link to lore for Closes tag for patch#2.
+>>>>   * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
+>>>>
+>>>> v1->v2:
+>>>>   * Added Ack tags from Conor Dooley for binding patches
+>>>>   * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
+>>>>   * Fixed build error reported by kernel test robot by replacing
+>>>>     GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
+>>>>
+>>>> Biju Das (5):
+>>>>    dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
+>>>>      names
+>>>>    dt-bindings: timer: renesas,rz-mtu3: Improve documentation
+>>>>    dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
+>>>>    arm64: dts: renesas: r9a07g043: Add MTU3a node
+>>>>    arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
+> 
 
-This is going to create groups after the nvmem device is added, isn't 
-this going to be problem with user space notifications?
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
---srini
-> +
-> +	nvmem->sysfs_cells_populated = true;
-> +
-> +unlock_mutex:
-> +	mutex_unlock(&nvmem_mutex);
-> +
-> +	return ret;
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
