@@ -1,170 +1,234 @@
-Return-Path: <devicetree+bounces-6990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2ABE7BE5B0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:59:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B34DE7BE5EC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 18:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9A2A281A8C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:59:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65D4028166E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD28737C9A;
-	Mon,  9 Oct 2023 15:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B9537CA0;
+	Mon,  9 Oct 2023 16:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TDEN3C7y"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="mPGo3aaS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D03374F0
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 15:59:43 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A2B92;
-	Mon,  9 Oct 2023 08:59:40 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 78ED060009;
-	Mon,  9 Oct 2023 15:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696867179;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FNWPAUWStk7EM/U4IDIbEqdIo2c3DWzVp72/sDXri9A=;
-	b=TDEN3C7yUBzWGXAGJDcmaTSbkJ7LyB2P2TOKJBj4iMdc2RiR4xBJgm1gwPuP/4+Zqr5R5b
-	99vHl2hS4hRzWufb7Voumk928DN0kRBPMkWR6u0RhYL4/5OojbzHEnI+Y4PNAA0d+4B/cK
-	RV/x/hqX7sMN7liS4x9d2T7Plv3idwYYOEnSbAESa+LXfQHyB2lNrlEU2JEYnVdiJgpoVl
-	YLFcMm7rTFD6jXST0rW0xwQhvdHBbPludTE4yaRIat2dzqgWk3Pu4f+curPvqflCm+15/D
-	F+PqZaXOb1dpjiRkZj3nF2ohK/EczwU7hedj1f2nRzEjcGqImp1xpA4AkMQ4LA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, "paulburton@kernel.org"
- <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 03/11] MIPS: support RAM beyond 32-bit
-In-Reply-To: <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-4-gregory.clement@bootlin.com>
- <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
-Date: Mon, 09 Oct 2023 17:59:38 +0200
-Message-ID: <87edi3bxcl.fsf@BL-laptop>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F5F35894
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 16:10:08 +0000 (UTC)
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319FA91
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 09:10:07 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1c6193d6bb4so307165ad.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 09:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1696867806; x=1697472606; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dGIYsu1MNfGtvrI3i3A4TgarZixnrBWwMgUCqpQdV34=;
+        b=mPGo3aaSt2Zs/4XhDbpboFd1/W5DgA+MxWc8D6CG825AnGVgybo9Hb73eX/zHIxQ9y
+         HAtgUnv3rlngt05B+RQl6NouHS0DUWWGHW3tN9qwOc9yEDPylMZ5wJD/TlHzy/2+lbeD
+         5MTW2odzn3ddG9+kqTHFz/dCR+5x32eFODjv0EEVWX6cjwxk7KB7smscVTeQcqFZRBIs
+         kS+8FayOi27YymTXZSyM8FqAGvPlr/3E/C79eEH6XQWm4iWY71fEpZWt4UM7vGfZQ+Cu
+         xC4xkYpN2AQKC7VXDFZm/23mOyNRTF4MhDol8ptOG3jdnTZ5l1W4he59GbMPqnz5kCb3
+         +0Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696867806; x=1697472606;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dGIYsu1MNfGtvrI3i3A4TgarZixnrBWwMgUCqpQdV34=;
+        b=LcDqdPvlwnnWV7Ylyir3U3kvBgcamjV9V3yIVxeYm8apESHbPpV3PNI0IXW+qfS5UL
+         L2Q5fWZl1DOcn2gGW6+Ph2YSjpw8+kk7gYi+Cw979Or6nBSTAzZ49zIREC3CUKAYL5zE
+         EO3K69S2ycsnNtURYcPRGG9AA2XzZgLxaLk5ZSlrzZWwgaVwotza+eoBeKjW2sI1a8p7
+         3EATLAniITn9P2YJh3VhsWSrG/Oxjeoor3AP8PR4wll9zHjOwzrb8dkd1Lx4mJvIuSc3
+         xmSi+59ncyN31CS7c9FhvubDhYBUF5yhXrsRJSA4YnTjUHLb3G3G4odOU/9+yQbboNKa
+         8dyw==
+X-Gm-Message-State: AOJu0YwVVRr1RH5yYxJDSp2epwbK/kBbLU8pZPyus7D2DB7AoH3XoeeT
+	V4jLYTpdtdiOYw4fQxSXRh3Ajg==
+X-Google-Smtp-Source: AGHT+IHy1UHB7+iKwEt/4HFm84LkAhlK5DfErxNNnYkX3w3H99+guWbxzofQ+qkXAw5azJ9m9sSRpw==
+X-Received: by 2002:a17:903:18c:b0:1c7:5627:2053 with SMTP id z12-20020a170903018c00b001c756272053mr721817plg.18.1696867806422;
+        Mon, 09 Oct 2023 09:10:06 -0700 (PDT)
+Received: from google.com (13.65.82.34.bc.googleusercontent.com. [34.82.65.13])
+        by smtp.gmail.com with ESMTPSA id 17-20020a17090a001100b00274262bcf8dsm11287754pja.41.2023.10.09.09.10.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Oct 2023 09:10:05 -0700 (PDT)
+Date: Mon, 9 Oct 2023 09:10:02 -0700
+From: William McVicker <willmcvicker@google.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Tomasz Figa <tomasz.figa@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>, andre.draszik@linaro.org,
+	semen.protsenko@linaro.org, soc@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+	linux-watchdog@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC
+ support
+Message-ID: <ZSQl2tAgsUhhE3_P@google.com>
+References: <ZR75cIvnQS2cqTT3@google.com>
+ <2023100520-cleaver-sinless-fbae@gregkh>
+ <99419159-cab0-4c79-a4a0-12229bfad3c0@linaro.org>
+ <2023100513-mashing-scrubber-ea59@gregkh>
+ <efc9f099-9c97-460b-b0c8-9891aa3b772a@linaro.org>
+ <ZR9EnFw3vB92vlYM@google.com>
+ <44816879-a3a7-4bd0-bb20-19a645107b4b@linaro.org>
+ <e8b23683-36ac-4547-9386-935a1b211d7d@app.fastmail.com>
+ <ZSA27y5CVs4yQC4a@google.com>
+ <c4ea7ce3-5132-484c-870b-a62d30e2ee7a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c4ea7ce3-5132-484c-870b-a62d30e2ee7a@linaro.org>
+X-Spam-Status: No, score=-15.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Jiaxun,
+On 10/07/2023, Krzysztof Kozlowski wrote:
+> On 06/10/2023 18:33, William McVicker wrote:
+> > On 10/06/2023, Arnd Bergmann wrote:
+> >> On Fri, Oct 6, 2023, at 08:06, Krzysztof Kozlowski wrote:
+> >>> On 06/10/2023 01:19, William McVicker wrote:
+> >>>> On 10/05/2023, Krzysztof Kozlowski wrote:
+> >>>>> On 05/10/2023 21:23, Greg KH wrote:
+> >>>>
+> >>>> Being able to include SERIAL_SAMSUNG and SERIAL_MSM without all the vendor> specific drivers that ARCH_EXYNOS and ARCH_QCOM select is very
+> >>> valuable for
+> >>>> debugging early boot issues.
+> >>>
+> >>> Really? How related? The drivers are independent. You describe some
+> >>> out-of-tree development process which we never needed for upstream work.
+> >>> And we did here quite a lot of upstream, specially if you look at ARCH_QCOM.
+> >>
+> >> Right: in general, all drivers are independent of the platform
+> >> besides the typical 'depends on ARCH_FOO || COMPILE_TEST' dependency,
+> >> but I think it's worth mentioning the known exceptions, so Greg and
+> >> Will can take that fight to the respective places rather than
+> >> discussing it in the platform submission:
+> >>
+> >> - Some subsystems are considered 'special' and the maintainers
+> >>   prefer the drivers to be automatically selected based on the
+> >>   ARCH_* settings instead of having user-visible options. This is
+> >>   traditionally true for large chunks of drivers/irqchip,
+> >>   drivers/clocksource and drivers/pinctrl, though it has gotten
+> >>   better over time on all of them.
+> >>
+> >> - Some older 32-bit platforms are still not as modular as we'd
+> >>   like them to be, especially the StrongARM (ARMv4) platforms that
+> >>   require a custom kernel build, and some of ARMv4T and ARMv5
+> >>   boards that are still missing DT support. These tend to require
+> >>   drivers they directly link to from board code, so disabling
+> >>   the drivers would cause a link failure until this gets
+> >>   cleaned up.
+> >>
+> >> - A couple of drivers are force-enabled based on the ARCH_*
+> >>   options because booting without these drivers would risk
+> >>   permanent damage to hardware, e.g. in overtemp or overcurrent
+> >>   scenarios.
+> >>
+> >> - ACPI based platforms require the PCI host bridge driver to
+> >>   be built-in rather than a loadable module because ACPI
+> >>   needs to probe PCI devices during early boot.
+> >>
+> >> - Some subsystems (notably drivers/gpu/, but others as well)
+> >>   have an excessive number of 'select' statements, so you
+> >>   end up surprise-enabling a number of additional drivers
+> >>   and subsystems by enabling certain less important platform
+> >>   specific drivers.
+> >>
+> >>       Arnd
+> > 
+> > So if the argument is that the existing upstream Exynos platforms are required
+> > to have these drivers built-in to the kernel to boot:
+> >     COMMON_CLK_SAMSUNG
+> >     CLKSRC_EXYNOS_MCT
+> >     EXYNOS_PM_DOMAINS if PM_GENERIC_DOMAINS
+> >     EXYNOS_PMU
+> >     PINCTRL
+> >     PINCTRL_EXYNOS
+> >     PM_GENERIC_DOMAINS if PM
+> >     SOC_SAMSUNG
+> > 
+> > ...then that is understandable and we can work to fix that.
+> > 
+> > My last question then is -- why do we need a new ARCH_GOOGLE_TENSOR config in
+> > the platform Kconfig? For example, I don't really like this:
+> > 
+> > diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+> > index 76a494e95027..4c8f173c4dec 100644
+> > --- a/drivers/clk/samsung/Kconfig
+> > +++ b/drivers/clk/samsung/Kconfig
+> > @@ -13,6 +13,7 @@ config COMMON_CLK_SAMSUNG
+> >         select EXYNOS_5420_COMMON_CLK if ARM && SOC_EXYNOS5420
+> >         select EXYNOS_ARM64_COMMON_CLK if ARM64 && ARCH_EXYNOS
+> >         select TESLA_FSD_COMMON_CLK if ARM64 && ARCH_TESLA_FSD
+> > +       select GOOGLE_GS101_COMMON_CLK if ARM64 && ARCH_GOOGLE_TENSOR
+> > 
+> > What happens when we have GOOGLE_GS101_COMMON_CLK, GOOGLE_GS201_COMMON_CLK, and
+> > so on? 
+> 
+> Nothing happens... or happens anything you wish. Did you read the
+> motivation why this was created like this?
+> 
+> 
+> > How are we going to pick the right driver when e have a generic
+> > ARCH_GOOGLE_TENSOR config?
+> 
 
-> =E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
-=E5=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
->> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
->>
->> Support platforms where RAM is mapped beyond 32-bit.
->>
->> The kernel parameter ddr32_alias allows to setup the alias to point
->> outside the first 4 GB of memory.
->
-> Are you trying to fix the problem that if kernel text is loaded in
-> XKPHYS there is no way to to set EBASE to that region?
+Okay, we can figure that out the gs201 specifics when the time comes.
 
-Yes that exactly we try to fix.
+> You do not have to pick. You select ARCH_GOOGLE_TENSOR and proper pick
+> is done by you. Nothing to do more.
+> 
+> > Ideally, we should have one Exynos clock driver that
+> > can detect what hardware is running (using the DT) to determine what it needs
+> 
+> It's already like this. We're done.
+> 
+> > to do. If you really want to compile out the other vendor's clock drivers using
+> > some configs, then we should do that with SOC_GS101, SOC_GS201, SOC_TESLA_FSD
+> 
+> Whether you call it SOC or ARCH it is the same. We organized it as ARCH.
+> 
+> > configs (not ideal though). With that approach, we could drop the platform
+> > ARCH_GOOGLE_TENSOR config and create an SOC_GS101 config that can be used for
+> > things like the COMMON_CLK_SAMSUNG driver (for now) and building the GS101 dtb.
+> 
+> There is no need for this. ARCH does exactly the same.
 
->
-> The common practice for other 64bit MIPS system is to load kernel
-> in KSEG0 and add low 4G mirror with rest of the high memory to buddy
-> system. By doing this Kernel still have access to all memory beyond
-> 32 bit, the only draw back is Kernel's text and data can't be relocted
-> beyond 32-bit.
->
-> Loading kernel into KSEG0 (i.e. with KBUILD_SYM32) have significant benef=
-it
-> on performance, so I think you shouldn't try to load kernel into XKPHYS
-> without a good reason, but it might be helpful to add a BUG_ON at
-> CPS driver to handle such situation.
+Okay, sounds good. Thanks for the responses.
 
-I guess that being in KSEG0 allows to use shorter pointer.  But in our
-case the RAM is physically connected beyond 32bits, so it is not
-accessible in KSEG0.
+Regards,
+Will
 
->
-> Btw: Is your target hardware publicly available? Folks at CIP United
-> are looking for EyeQ5 boards for a while, they are supporting MIPS R6
-> support at various projects.
-
-We use evaluation boards and I don't know if they are publicly
-available.
-
-Gregory
-
->
-> Thanks
-> Jiaxun
->
->>
->> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->>  arch/mips/kernel/smp-cps.c | 12 +++++++++++-
->>  1 file changed, 11 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
->> index 47e76722a306..fcfb19487612 100644
->> --- a/arch/mips/kernel/smp-cps.c
->> +++ b/arch/mips/kernel/smp-cps.c
->> @@ -34,6 +34,16 @@ static unsigned __init core_vpe_count(unsigned int=20
->> cluster, unsigned core)
->>  	return min(smp_max_threads, mips_cps_numvps(cluster, core));
->>  }
->>=20
->> +static int ddr32_alias;
->> +
->> +static int __init ddr32_alias_setup(char *str)
->> +{
->> +	get_option(&str, &ddr32_alias);
->> +
->> +	return 0;
->> +}
->> +early_param("ddr32_alias", ddr32_alias_setup);
->> +
->>  /**
->>   * plat_core_entry - query reset vector for NMI/reset
->>   *
->> @@ -52,7 +62,7 @@ static u32 plat_core_entry(void)
->>  {
->>  #if defined(CONFIG_USE_XKPHYS)
->>  	return (UNCAC_ADDR(mips_cps_core_entry) & 0xffffffff)
->> -			| CM_GCR_Cx_RESET_BASE_MODE;
->> +			| ddr32_alias | CM_GCR_Cx_RESET_BASE_MODE;
->>  #else
->>  	return CKSEG1ADDR((unsigned long)mips_cps_core_entry);
->>  #endif
->> --=20
->> 2.40.1
->
-> --=20
-> - Jiaxun
-
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> 
+> Best regards,
+> Krzysztof
+> 
 
