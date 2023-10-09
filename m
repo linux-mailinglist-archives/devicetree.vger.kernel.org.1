@@ -1,211 +1,196 @@
-Return-Path: <devicetree+bounces-7025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2232A7BEAB6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBB47BEAC2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC329281678
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:36:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBE6D1C20A45
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB71E3C6A8;
-	Mon,  9 Oct 2023 19:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAC43C6BD;
+	Mon,  9 Oct 2023 19:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eH314hIi"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="xkJkVuNc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41AEF3C681
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:36:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4E994;
-	Mon,  9 Oct 2023 12:36:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696880203; x=1728416203;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X9PWs4fx1Fze5txYfCsU9IVHLTnD+8E8ECbvUSHCBac=;
-  b=eH314hIidCKnLqCQ+EFG9XEFwyIzSd9PJfJgw0TIYx1g69b7maWxSHCc
-   9ICz7Hr5vi4mlnQ+EM0BdNvP2GhGRGICInNNBs5wtEWaDRVLztyfa+7VP
-   XWuSXWIhHroUdK4QHpHnQJ59XenrUBB3dcFyDdg93KZbnGmgYKxCf26FH
-   uL3GQDzwImPxGyfGEqCdo98r/05FYycy4OIY43y8PFxc5LC4KyNezLFn0
-   GtEM0eyLZd0jkC2Lun8lmKGXM9aa86IqkTo6m8XC9foNIQZRt3lXp/nvK
-   FPnKHfptA9GfH9i7qdqrbgEyqUDrY+Hy3FpPKQN2kAOoVxzFe14h/ipMN
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="374566425"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; 
-   d="scan'208";a="374566425"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2023 12:36:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="753120648"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; 
-   d="scan'208";a="753120648"
-Received: from lkp-server02.sh.intel.com (HELO 4ed589823ba4) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 09 Oct 2023 12:36:37 -0700
-Received: from kbuild by 4ed589823ba4 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qpw3Q-0000ag-1T;
-	Mon, 09 Oct 2023 19:36:36 +0000
-Date: Tue, 10 Oct 2023 03:36:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	mark.satterthwaite@touchnetix.com, pedro.torruella@touchnetix.com,
-	bartp@baasheep.co.uk, hannah.rossiter@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v2 3/3] Input: Add TouchNetix aXiom i2c touchscreen driver
-Message-ID: <202310100300.oAC2M62R-lkp@intel.com>
-References: <20231009134435.36311-4-kamel.bouhara@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D123C681;
+	Mon,  9 Oct 2023 19:41:41 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3646893;
+	Mon,  9 Oct 2023 12:41:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eGU1GsBYsMfDNKq/cnzhpMxOZwSRQ5zSmhBza22ajCxyTKAChP//oeB8xFDL7NFde7tImnJFkIQOUxTdNCFJeCH91XYZkpNq4mpKn1mRUqQft7bcHBgvWtK32+MDigPaiV71NgIMQc7+nv1JccZHxy5KHUxn26K2GOyqRajnxGVzcm92jkLwE7gD2ogWK/zHi5OdYXr5T3CsPaXz3arghd0b5vbbZj4TIJjQLFxL/9mEpW8hqQ3wxvdv9NqpYX3yKI92eKcSIK9R7d2fE0exsPrYeV+M52m/CyWcsU5oaz2OXpV1Zn3SKK1dbMJABiQ9IWlM80R5axIHkZtE+LdUhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RDMMqxH85fLmcdCIBZFXzefqCnwprD99MF/4DLVFG7o=;
+ b=TFSUys6d9bhrksxPluyC9MQWo646P+NtKKXWzYWtj/lGUWTF9Gyoy8ZWB9HeiHLEysMfyb6SEkLRxRwO7qAJjyVph4Z9/gAhHZBclQk+oy+RZl68ZPqdYyG/7QE8/2Ox+Pzfwx+PSgUgjpoASdb1ncsmIyNbZnAlLo/PxtkMnEVOPSnXjOtWN0sdIhA9xP8nm7PADoBcbC7kZm1a+Y7bdY6ntQhL66Cv8NwJJ6tATuP/KsJikD/S1Q+20Bf0nbvMkmlLyTSVGgufyg2lfViZjOFuXqcFn4aOJdTotCDC7U51hjRPmL0OQqpJ6YtKVVm4nXKlOzSqTeoubcTuFYYTBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RDMMqxH85fLmcdCIBZFXzefqCnwprD99MF/4DLVFG7o=;
+ b=xkJkVuNcWYjdfBPDrD+6qfEfSXKyN/DLQK3Sc7g0PO4abovIzDKms0ozA6fihgXu9qW5j9Ng5BalqIpZELBOtxwYDgFYaX3FtWJCL7mLK2i4yWQYbltlIqa89LBwcF+YT6FJJ2o/B/L6W6TrgBVL3oq2ER1Z4RQ2o/yGzmAaKaY=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by MW4PR12MB5643.namprd12.prod.outlook.com (2603:10b6:303:188::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Mon, 9 Oct
+ 2023 19:41:36 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5e1:64bc:e8da:e22f]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5e1:64bc:e8da:e22f%7]) with mapi id 15.20.6863.032; Mon, 9 Oct 2023
+ 19:41:36 +0000
+From: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To: Jakub Kicinski <kuba@kernel.org>
+CC: "davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Simek, Michal"
+	<michal.simek@amd.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH net-next v7 3/3] net: axienet: Introduce dmaengine support
+Thread-Topic: [PATCH net-next v7 3/3] net: axienet: Introduce dmaengine
+ support
+Thread-Index: AQHZ8XmjDysNxqIG3UGZtitzZHc+JbA6JqaAgAL7GNCAADSGAIAEbQqw
+Date: Mon, 9 Oct 2023 19:41:35 +0000
+Message-ID:
+ <MN0PR12MB5953E37D081382AF52C309E2B7CEA@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <1695843151-1919509-1-git-send-email-radhey.shyam.pandey@amd.com>
+	<1695843151-1919509-4-git-send-email-radhey.shyam.pandey@amd.com>
+	<20231004135317.2b460acf@kernel.org>
+	<MN0PR12MB5953B3DD4936EAFC7BBD944AB7C9A@MN0PR12MB5953.namprd12.prod.outlook.com>
+ <20231006143230.4230fdc2@kernel.org>
+In-Reply-To: <20231006143230.4230fdc2@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|MW4PR12MB5643:EE_
+x-ms-office365-filtering-correlation-id: b04800bc-306e-40bb-5cb2-08dbc8ffbfa5
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ O/SqrOx1U046nHE/OaxT+vheymgOQ2WDDj3kP1mpRGqaddYyAn7kCk4Fl6yV9Q1OiH+npzj2vTOHyKTbebFV1X1IhU4NyoJJy6Rk93F8Cy6u4ePtDVaGsJ4vzMig1CDSVtNpI2wqoSiAGY0/q60ewZZYagXm5/sjtwhBadtopsVhaEKrf5Gcc7MxCKE6AIVAgC5TfvA18DnoUkakYkcObDNmWXM826D1Zq86ymIHDdeKDxFoJsBGwIW8u0eGJE5iECprNRC/CBvrEUR53AXOpgTSZpyJQsZ38r+ApQ7lfDLsPw/QqqSwd26KBc9e8MaDEHAE+3sG/U4NS8I01HVnKyVTQg1DB68gwjX/XUgHUdCoSabXiq8bIUjFLHkDhdOwaAqPqG0EGOFLeQhcwR9UxEoe7iPvL20iogtOjVOxdM8h8ObDJgHSGZIdoVtH7zWiXmm2e6zssFm8mzOadObGf/XX6dAnQUF875+PWk2pdTOSG6YyyNryrn9CaOOUd6ryNDX9xQas9WY42OFHg6d84xD0GmPBmwrsK98EVxATBucPxdLR6lHInWfgeWyCl/Rv6CGEyKeQ4iVD9Pc/Y18dU06Lcrtyl1tzxWr0+PbHIGcaPWf2d1/zkeCvUqaelADk
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(376002)(346002)(39860400002)(366004)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(83380400001)(52536014)(8936002)(8676002)(4326008)(5660300002)(6916009)(9686003)(38100700002)(53546011)(41300700001)(38070700005)(316002)(7696005)(6506007)(66446008)(76116006)(122000001)(66476007)(54906003)(64756008)(66946007)(55016003)(66556008)(71200400001)(86362001)(2906002)(478600001)(7416002)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ei6rOXaAuxspWq2/6jFA3z6c1auLiP/ANqsUJ1gSLbdENR/V9qxeBzKZXI9x?=
+ =?us-ascii?Q?Rpxj2dT1vfOCi2lrH1o3iYAEUJn0hwav3y7CvaxsE2DHSKWHTV9ej4BT/hx4?=
+ =?us-ascii?Q?fXPe4f+qplf0blHAl32SIt6q5UgEGtYI858kXMliw6ocTzGNrtIRDwlZNPKg?=
+ =?us-ascii?Q?L8lYYO2gl+rGjvlMV1IB5LgYnCytJX9FjP1fUv9M4gL/vKPTw7HMa3chC0FA?=
+ =?us-ascii?Q?Jgj+j02b9PoQlVNMRuM82TfeK7iu9SYuvgcJxWoCsAPmLmnagfW7RqrJifcN?=
+ =?us-ascii?Q?8eSYrOid7JEKOJRPJ+U4a7tOnIY4g3jNC5KqoN1GnZKj1VfHMWiQZQ0I/n70?=
+ =?us-ascii?Q?vsqPZo+vM7Fh5r02+us3gNt6eoDPVtQ2mbqHu+iYCc8g0aIvrCP+EJkI1Nec?=
+ =?us-ascii?Q?cQc+6WzzJxtwhgktRwVJyB3EEBfRvrCQw71zoynSdw2JSaUF0kTKHzRvG0T5?=
+ =?us-ascii?Q?RXb8KzByYpjuXOhJ0SKc0QvnOV0Uxneuh5BODocGCLkwofEBqxjb93Yz0lUj?=
+ =?us-ascii?Q?Mb5g0mHdyi1kbEmEP1lErYURR93qhhKii5wBPoSRIkY1V6SZREa0YLdqNuwA?=
+ =?us-ascii?Q?Z9EsSiESnuto3TaM28dZ+I8jEyJDyBHpojXHN74ZSRjgqcUPJfz28KhLOja9?=
+ =?us-ascii?Q?5Ao/n7iQCYGWGVzoazuGkwrbuLW07TRD4exHMq0ifcScTG0fQMiT+hdVmBAI?=
+ =?us-ascii?Q?i9P+CF7uisJSTDKdFCaSm28TftORTCF/8W5L0Zx+hLf2yVOIdrjsgZtfE3jH?=
+ =?us-ascii?Q?Gj4HQdsALJ7M8CYRvY6/t4sovZU+jQSR8PF3eKHKPys1Vvx6nMZPlyT4QaWN?=
+ =?us-ascii?Q?Ewwls3CX8A0TanThSPLR5nE8WcczzXv+mFtNkcv8iU6wgINTShwhtuDkyyRg?=
+ =?us-ascii?Q?+QFpvAr/Lmxo+JbkDemmp6dCuToLuMik76h2q9l1ZU8HkzABRu6d+A+Fxv57?=
+ =?us-ascii?Q?VkNdu/hXJYctC7JdSUEkMvSBpdpd9a1ZjoVp3NmXD6wXNXwqOd2gipYrFu7y?=
+ =?us-ascii?Q?ReJ07UWxniO+qcFTe16U9ZxbXWXf3P3ToWnBsOIW2ZGbsUClwouIHF+dF6Ta?=
+ =?us-ascii?Q?gkrRHOJJy54tvOugCM/wZdGhBfFTfMfLDIc8d+RhRI6yiWI7z43mTZojyaO1?=
+ =?us-ascii?Q?EvHSKqfUB5bR5L2ACyKLLCgMZNszGB6EtKgHjc43Kmqc0E1rSTYAUHzEo5Dn?=
+ =?us-ascii?Q?XUZunvPte9mFZqHv2DZYK/oKnca2aL12QvIAVM9AWPyp5VYrXcQ1AnzsccAp?=
+ =?us-ascii?Q?PznhQfBBjSRBWiHoaq2HjH0rp05X7cPArr7vBMlWeLzk8/1K16nBlFW9MRd+?=
+ =?us-ascii?Q?/AGVBKtTnZ5RGakTFEPgN38CZgz61EO2ewuzHIgs+J8dzJ/Ob95R1H9PgfWY?=
+ =?us-ascii?Q?uZU4cvzYvZWUKNV4xQfdHfJRdcVRgebCYVPcWW1yzp4i6qF57WfAyoh+IT6k?=
+ =?us-ascii?Q?iqEqwQMGxaPzssojfSb9qSSZ1FlQbkT0SvZCdBm12qs7Fca7rp+gb20gCL5e?=
+ =?us-ascii?Q?ke1uw23B1PpLMI819pYCNpYQvXCvOjUj+jUyqorVS5VhDeNJI4H/IZyzPJB1?=
+ =?us-ascii?Q?lFylHuid9Eh44K+Jny1mOF4qNEC1mLVbsqfF0jUnb4Jl0L0dXyibbj4PYy28?=
+ =?us-ascii?Q?a+J1MuEtqDSsdRE901VJ03k=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231009134435.36311-4-kamel.bouhara@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b04800bc-306e-40bb-5cb2-08dbc8ffbfa5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2023 19:41:36.0251
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WfGwNBkDTxbQVUapvy7I6QyGwymOZiEjDvxW1rx7/c64ZMUyrgRwJai2Ra+0+Cdz
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5643
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Kamel,
+> -----Original Message-----
+> From: Jakub Kicinski <kuba@kernel.org>
+> Sent: Saturday, October 7, 2023 3:03 AM
+> To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
+> Cc: davem@davemloft.net; edumazet@google.com; pabeni@redhat.com;
+> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>;
+> linux@armlinux.org.uk; f.fainelli@gmail.com; netdev@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH net-next v7 3/3] net: axienet: Introduce dmaengine
+> support
+>=20
+> On Fri, 6 Oct 2023 19:04:29 +0000 Pandey, Radhey Shyam wrote:
+> > > > +		netif_stop_queue(ndev);
+> > > > +		if (net_ratelimit())
+> > > > +			netdev_warn(ndev, "TX ring unexpectedly full\n");
+> > >
+> > > I don't see you stopping the queue when the ring gets full, am I not
+> > > looking into the right place? Otherwise this is sort of expected to
+> > > occasionally hapen
+> >
+> > We are calling stop_queue if TX ring is full. Is that what you meant?
+> > netif_stop_queue(ndev);
+>=20
+> But somewhere else or just here after printing the warning?
 
-kernel test robot noticed the following build warnings:
+There is call to netif_stop_queue(ndev) just before this netdev_warn.
+I copied below for quick reference.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.6-rc5 next-20231009]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
++	sg_len =3D skb_shinfo(skb)->nr_frags + 1;
++	if (!CIRC_SPACE(lp->tx_ring_head, lp->tx_ring_tail, TX_BD_NUM_MAX)) {
++		netif_stop_queue(ndev);
++		if (net_ratelimit())
++			netdev_warn(ndev, "TX ring unexpectedly full\n");
++		return NETDEV_TX_BUSY;
++	}
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20231009-214751
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231009134435.36311-4-kamel.bouhara%40bootlin.com
-patch subject: [PATCH v2 3/3] Input: Add TouchNetix aXiom i2c touchscreen driver
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20231010/202310100300.oAC2M62R-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231010/202310100300.oAC2M62R-lkp@intel.com/reproduce)
+However, I noticed above check doesn't account for all frags - so will=20
+modify the if check to see if available space is less than sg_len. If yes, =
+then=20
+stop the queue and return busy , else continue with xmit.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/byteorder/big_endian.h:5,
-                    from arch/sparc/include/uapi/asm/byteorder.h:5,
-                    from include/asm-generic/qrwlock_types.h:6,
-                    from arch/sparc/include/asm/spinlock_types.h:17,
-                    from include/linux/spinlock_types_raw.h:7,
-                    from include/linux/ratelimit_types.h:7,
-                    from include/linux/printk.h:9,
-                    from include/asm-generic/bug.h:22,
-                    from arch/sparc/include/asm/bug.h:25,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from arch/sparc/include/asm/current.h:15,
-                    from include/linux/sched.h:12,
-                    from include/linux/delay.h:23,
-                    from drivers/input/touchscreen/touchnetix_axiom_i2c.c:16:
-   drivers/input/touchscreen/touchnetix_axiom_i2c.c: In function 'axiom_i2c_read':
->> include/uapi/linux/byteorder/big_endian.h:36:26: warning: conversion from 'short unsigned int' to 'unsigned char:1' changes value from '256' to '0' [-Woverflow]
-      36 | #define __cpu_to_le16(x) ((__force __le16)__swab16((x)))
-         |                          ^
-   include/linux/byteorder/generic.h:90:21: note: in expansion of macro '__cpu_to_le16'
-      90 | #define cpu_to_le16 __cpu_to_le16
-         |                     ^~~~~~~~~~~~~
-   drivers/input/touchscreen/touchnetix_axiom_i2c.c:214:27: note: in expansion of macro 'cpu_to_le16'
-     214 |         cmd_header.read = cpu_to_le16(1);
-         |                           ^~~~~~~~~~~
-   drivers/input/touchscreen/touchnetix_axiom_i2c.c: At top level:
->> drivers/input/touchscreen/touchnetix_axiom_i2c.c:527:6: warning: no previous prototype for 'axiom_handle_events' [-Wmissing-prototypes]
-     527 | void axiom_handle_events(struct axiom_data *ts)
-         |      ^~~~~~~~~~~~~~~~~~~
---
->> drivers/input/touchscreen/touchnetix_axiom_i2c.c:164: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Translate usage/page/offset triplet into physical address.
-
-
-vim +/axiom_handle_events +527 drivers/input/touchscreen/touchnetix_axiom_i2c.c
-
-   522	
-   523	/*
-   524	 * Validates the crc and demultiplexes the axiom reports to the appropriate
-   525	 * report handler
-   526	 */
- > 527	void axiom_handle_events(struct axiom_data *ts)
-   528	{
-   529		char *report_data = ts->rx_buf;
-   530		struct device *dev = ts->dev;
-   531		char usage = report_data[1];
-   532		u16 crc_report;
-   533		u16 crc_calc;
-   534		char len;
-   535	
-   536		axiom_i2c_read(ts->client, AXIOM_REPORT_USAGE_ID, 0, report_data, ts->max_report_len);
-   537	
-   538		if ((report_data[0] & AXIOM_COMMS_OVERFLOW_MASK) != 0)
-   539			ts->report_overflow_counter++;
-   540	
-   541		len = (report_data[0] & AXIOM_COMMS_REPORT_LEN_MASK) * 2;
-   542		if (!len) {
-   543			dev_err(dev, "Zero length report discarded.\n");
-   544			return;
-   545		}
-   546	
-   547		dev_dbg(dev, "Payload Data %*ph\n", len, report_data);
-   548	
-   549		/* Validate the report CRC */
-   550		crc_report = (report_data[len - 1] << 8) | (report_data[len - 2]);
-   551		/* Length is in 16 bit words and remove the size of the CRC16 itself */
-   552		crc_calc = crc16(0, report_data, (len - 2));
-   553	
-   554		if (crc_calc != crc_report) {
-   555			dev_err(dev,
-   556				"CRC mismatch! Expected: %#x, Calculated CRC: %#x.\n",
-   557				crc_report, crc_calc);
-   558			return;
-   559		}
-   560	
-   561		switch (usage) {
-   562		case AXIOM_USAGE_2DCTS_REPORT_ID:
-   563			axiom_process_u41_report(ts, &report_data[1]);
-   564			break;
-   565	
-   566		case AXIOM_USAGE_2AUX_REPORT_ID:
-   567			/* This is an aux report (force) */
-   568			axiom_process_u46_report(ts, &report_data[1]);
-   569			break;
-   570	
-   571		case AXIOM_USAGE_2HB_REPORT_ID:
-   572			/* This is a heartbeat report */
-   573			break;
-   574		}
-   575	
-   576		ts->report_counter++;
-   577	}
-   578	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>=20
+> The recommended flow is to stop the queue after enqueuing a packet
+> successfully, if the remaining space is not enough to hold an skb with al=
+l frags
+> populated. That avoids ever returning BUSY.
 
