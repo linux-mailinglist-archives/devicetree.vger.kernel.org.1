@@ -1,114 +1,183 @@
-Return-Path: <devicetree+bounces-6844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE907BD19A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 03:01:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C00487BD1E8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 04:18:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B73E28149B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 01:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4FC71C2086A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 02:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A822ECC;
-	Mon,  9 Oct 2023 01:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15E32F37;
+	Mon,  9 Oct 2023 02:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fHFveZ0C"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jSIdZb4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1B4A5B
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:01:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8C6FC433C8;
-	Mon,  9 Oct 2023 01:01:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696813290;
-	bh=12V8BUvOQDiMroiIaSqNg+ekaSPMnUVQbV6cs0RaO7k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fHFveZ0CQSUsuNBwIPok0GacL5mh+087UwreYFIFEyjLsPwuCEAU3Qun4X1Cxed00
-	 AQtYzylaY2DDJmz69Zs4PW3cp856jqZhbm54SA6lmNwajzKpLN7lRBHvSF6FTmQdVz
-	 eJ37ZTP8iKUdp14y6bZVrVIZsCq8LfVv9NMUZZ85G/jWiTIFfk2hJYj+9XLq08hHDO
-	 0mscV+Bo2LKs8fI9SYRhzkKMt5i70vZ0+hilfk5Gv+3CscqUmc/Qrp97qls23/adXf
-	 udnE+p3PUmXS6zPWptd7/uWz6TrAKoMmvhAYf//V5ps/eTjh9sSPHV0LVtPxtlytxF
-	 eV2twhhYyjl8w==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-536071e79deso8768949a12.1;
-        Sun, 08 Oct 2023 18:01:30 -0700 (PDT)
-X-Gm-Message-State: AOJu0Ywj2s4Urq3GWkkAhVsRL8gpQC+HO8YrmUJ483nsm/4O0u1QKkY2
-	0CqxXk6SIy1rgPh6kE/cF1L4MuG07aa0ugn5GfQ=
-X-Google-Smtp-Source: AGHT+IHIfsPYV3LL5MmuuW4fRb62rbHbzO3zKIowTx57SQthg3QHBVuMCr03hUmOCe0pZutvENlB/38cG81IZDD3OGQ=
-X-Received: by 2002:a50:fb0c:0:b0:530:8759:a3ac with SMTP id
- d12-20020a50fb0c000000b005308759a3acmr10568781edq.2.1696813289399; Sun, 08
- Oct 2023 18:01:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FAC15B7
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 02:18:36 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F9FA6;
+	Sun,  8 Oct 2023 19:18:34 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 934C67E2;
+	Mon,  9 Oct 2023 04:18:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1696817910;
+	bh=8+fT+A+W5pFEzCWpa2x917y4zdBVrVYbRFOBAvj5acc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jSIdZb4/XkhWnNS005sJ7m5fqcpg+79e3zTpi+RyPrHy7RZ0EGFE05nREElqZhnlL
+	 +7h4O9G2QtUVKBWi19ACL2bXZ1C5O/8udD6kPjPhKcEAO3s1oRYu8DgRb+SNY6xzgP
+	 YipZVFhVJnDlTGmj3ve5vzxI4msMCKO5xre6SYBM=
+Date: Mon, 9 Oct 2023 05:18:38 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v6 2/3] media: dt-bindings: media: i2c: Add bindings for
+ TW9900
+Message-ID: <20231009021838.GG5121@pendragon.ideasonboard.com>
+References: <cover.1696608809.git.mehdi.djait@bootlin.com>
+ <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230922081351.30239-2-conor@kernel.org> <20230922081351.30239-8-conor@kernel.org>
- <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com> <20230923-snowsuit-angled-f49237d27c83@spud>
-In-Reply-To: <20230923-snowsuit-angled-f49237d27c83@spud>
-From: Guo Ren <guoren@kernel.org>
-Date: Mon, 9 Oct 2023 09:01:17 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQ+PJcZguUEN8+Ls_DX4U3xpW+4O-ztrJ0NzM2ODrc_5w@mail.gmail.com>
-Message-ID: <CAJF2gTQ+PJcZguUEN8+Ls_DX4U3xpW+4O-ztrJ0NzM2ODrc_5w@mail.gmail.com>
-Subject: Re: [RFC v2 6/6] riscv: dts: thead: convert isa detection to new properties
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
-	Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <6ad44a04366e65d5baec08dd966f5c81995d626d.1696608809.git.mehdi.djait@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Sat, Sep 23, 2023 at 6:25=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Sat, Sep 23, 2023 at 03:50:36PM +0800, Guo Ren wrote:
-> > On Fri, Sep 22, 2023 at 4:16=E2=80=AFPM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > >
-> > > Convert the th1520 devicetrees to use the new properties
-> > > "riscv,isa-base" & "riscv,isa-extensions".
-> > > For compatibility with other projects, "riscv,isa" remains.
-> > >
-> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > > ---
-> > >  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
-> > >  1 file changed, 12 insertions(+)
-> > >
-> > > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/=
-dts/thead/th1520.dtsi
-> > > index ce708183b6f6..723f65487246 100644
-> > > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > > @@ -20,6 +20,9 @@ c910_0: cpu@0 {
-> > >                         compatible =3D "thead,c910", "riscv";
-> > >                         device_type =3D "cpu";
-> > >                         riscv,isa =3D "rv64imafdc";
-> > > +                       riscv,isa-base =3D "rv64i";
->
-> > Why not riscv,isa-base =3D "rv64"? I saw "i" in the riscv,isa-extension=
-s.
->
-> I did it that way as a hedge against things changing in the future. I
-> have little trust in that part of the ISA specifications.
-Okay, that's clear enough.
+Hi Mehdi,
 
-Acked-by: Guo Ren <guoren@kernel.org>
+Thank you for the patch.
 
+On Fri, Oct 06, 2023 at 06:25:29PM +0200, Mehdi Djait wrote:
+> The Techwell TW9900 is a video decoder supporting multiple input
+> standards, such as PAL and NTSC, and outputs a BT.656 video
+> signal.
+> 
+> It's designed to be low-power, posesses some features such as a
+> programmable comb-filter, and automatic input standard detection
+> 
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> ---
+> V5->V6: 
+> - This commit had a "Reviewed-by: Rob Herring <robh@kernel.org>" Tag but
+>   decided not to collect it because the last Iteration was more than 2
+>   years ago
+> - removed SECAM from the mentioned standards
+> - changed maintainer
+> 
+> V4->V5: 
+> - renamed the file to match the compatible string, and referenced
+>   the graph.yaml schema
+> 
+> V3->V4: 
+> - add the missing reset-gpios node to the binding
+> 
+> V2->V3: 
+> - fix the example not compiling due to a typo in the reset-gpios
+>   node.
+> 
+>  .../bindings/media/i2c/techwell,tw9900.yaml   | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+> new file mode 100644
+> index 000000000000..24bbbff5cc01
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/techwell,tw9900.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Techwell TW9900 NTSC/PAL video decoder
+> +
+> +maintainers:
+> +  - Mehdi Djait <mehdi.djait@bootlin.com>
+> +
+> +description:
+> +  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL standards
+> +  with auto-detection features.
+> +
+> +properties:
+> +  compatible:
+> +    const: techwell,tw9900
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: VDD power supply
+> +
+> +  reset-gpios:
+> +    description: GPIO descriptor for the RESET input pin
+> +    maxItems: 1
 
---=20
-Best Regards
- Guo Ren
+How about the power down GPIO ?
+
+The chip requires a clock, which is provided by a crystal oscillator in
+the block diagram I found. Does it also support an external clock ? If
+so the bindings should support it, although this could be added later.
+
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Video port for the decoder output.
+
+How about input ports, connected to nodes that model the connector(s) ?
+
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            tw9900: tw9900@44 {
+> +                    compatible = "techwell,tw9900";
+> +                    reg = <0x44>;
+> +
+> +                    vdd-supply = <&tw9900_supply>;
+> +                    reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+> +
+> +                    port {
+> +                            tw9900_out: endpoint {
+> +                                    remote-endpoint = <&vip_in>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
 
