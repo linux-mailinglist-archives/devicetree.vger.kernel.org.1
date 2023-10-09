@@ -1,149 +1,146 @@
-Return-Path: <devicetree+bounces-7019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55D3B7BEA6D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BC67BEA7F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:22:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867E11C20A0B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:16:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9D051C20A62
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DEE3B7A2;
-	Mon,  9 Oct 2023 19:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B3F3B7B4;
+	Mon,  9 Oct 2023 19:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OQy7RGi4"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dAcMgpiN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6914B3B296
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:16:27 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED2C9B4;
-	Mon,  9 Oct 2023 12:16:22 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399H8kdC006579;
-	Mon, 9 Oct 2023 19:16:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=XPhZWD6On+YuTJWF6V7tT4FLfVhogrwSdPXMFYDDgNU=;
- b=OQy7RGi4tcEwI5Jh2mp+rAwCu33n8CO9r/2Dzx+HaVgGmM4r+9ueEZVH/19SaShV8Ba3
- GcnsvnB8bz0tN1L5NjoSdKSDL7Zh6Rp9MihAZZFwORDeONmEvbxN96LwS834YL940dn9
- gTB1qQgszYneVPi3vMPty3LP04FcM+5k3WA9fSibNUdd74H5KVPVutBjroRenktompR7
- mYRO95gIevEZXtiIz2+A2r2JDS6naR/Hy3XMgvOqyYtajuyZ9Ub35xlIEYyqXTK4YsgK
- C4Ll/CRkulfZmsp+1hkQ4T5mr6xCzczecN0ubchAo3YBMZaF/wdVhI7eOTXa9K/KO6of VQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tmj0d8tjx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 19:16:11 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399JGBa7008944
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 19:16:11 GMT
-Received: from [10.110.87.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 12:16:10 -0700
-Message-ID: <fa9cf828-ae82-8145-c60a-4b15c340de86@quicinc.com>
-Date: Mon, 9 Oct 2023 12:16:10 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB49BA4B
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 19:22:43 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4BAA4
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:22:41 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso893409266b.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 12:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1696879359; x=1697484159; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=W213PjLTqM3JEmBmT6cQ0NV691A2RnRzmI4p6V+/cyA=;
+        b=dAcMgpiN0LWvK66wLQsELTxUO3nl3flvQzKo216b7GkR2f/vq8ZAWjvuXCG32cH2pm
+         32VkSc19Bwnn+CSlo9WnwzPVvHnL6Vjdr9bl5O7fSQLhSzK4Tog6rz7XG7T9BnzlhDad
+         gtU+UhPWdNs9X+J0Aeqgs8+T80hfRaKP/Bi0E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696879359; x=1697484159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W213PjLTqM3JEmBmT6cQ0NV691A2RnRzmI4p6V+/cyA=;
+        b=ZFoWcX+PSzKGrLFvkIvukYP8eubh7p8CR3DPLJ2ce1kRxtEyBzYmrzlMNjPdLHZsns
+         QHWvWJz0Ozf+s84/A3Xe/lmYupr0pDKWfkM+DmQWtnxR1FdNhoRCpV5xeeS5yzPOYfG9
+         +zbjNSP7qVTIfhxMMASxzx8jhIhgztdH2XZ6mYP56jgHAF/eo9BdJN0mKXYKzKceSQ9H
+         5xlBmgsRXK6PSrhGCqMiq5L3mfVQHKgq3jkYZcdQv0WGThEEqxFslLglH+IQHD0gh3Sm
+         jGLw8102TioaSOfAuMs37elgoKLebSE11pCkbnkffPSda8aq2zYrMktxhLDqDTcBFsdm
+         N/Bw==
+X-Gm-Message-State: AOJu0YzWmG9v6WLqeDOOMgTpkUZLWC1qnM7G6Vf9Mtst1gNR+gzN8YFo
+	0xrNU2C/ixVWP71+HeN6To/hUNygja7en+dBEoHF4tXpS+s3Tw+1W1Y=
+X-Google-Smtp-Source: AGHT+IHc7jcdlWh8LiRicdltTnLDX2OAGb0AbRSSrZm/5DGfpUC/nMASnv47R9hAghm2qceVMSwbZySZxRl5RqG6+zE=
+X-Received: by 2002:a17:906:3012:b0:9ae:4054:5d2a with SMTP id
+ 18-20020a170906301200b009ae40545d2amr14184483ejz.16.1696879358971; Mon, 09
+ Oct 2023 12:22:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
- support
-Content-Language: en-US
-To: Sudeep Holla <sudeep.holla@arm.com>
-CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20231006164206.40710-1-quic_nkela@quicinc.com>
- <20231006164206.40710-3-quic_nkela@quicinc.com>
- <20231009144744.yi44ljq4llaxjsb7@bogus>
- <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
- <20231009152952.dww3fgh5q7fqysps@bogus>
- <535bbc68-74bb-21e8-0e72-8de1df9cfc99@quicinc.com>
- <20231009190800.ydkmmt2hgieazgfl@bogus>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20231009190800.ydkmmt2hgieazgfl@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RLkhnCk4oWR9ySV4Z0D4DvpSY274-k_T
-X-Proofpoint-ORIG-GUID: RLkhnCk4oWR9ySV4Z0D4DvpSY274-k_T
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_17,2023-10-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 spamscore=0 mlxscore=0 mlxlogscore=999 clxscore=1015
- priorityscore=1501 malwarescore=0 impostorscore=0 bulkscore=0
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310090157
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230926194242.2732127-1-sjg@chromium.org>
+In-Reply-To: <20230926194242.2732127-1-sjg@chromium.org>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 9 Oct 2023 13:22:21 -0600
+Message-ID: <CAPnjgZ1WgOB08C32PWdhagP5CRuBou8Z0ZPfxdAmRKD5uxKQJw@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] schemas: memory: Add ECC properties
+To: devicetree@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
+	Lean Sheng Tan <sheng.tan@9elements.com>, lkml <linux-kernel@vger.kernel.org>, 
+	Dhaval Sharma <dhaval@rivosinc.com>, Maximilian Brune <maximilian.brune@9elements.com>, 
+	Yunhui Cui <cuiyunhui@bytedance.com>, Guo Dong <guo.dong@intel.com>, 
+	Tom Rini <trini@konsulko.com>, ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>, Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Rob,
 
-On 10/9/2023 12:08 PM, Sudeep Holla wrote:
-> On Mon, Oct 09, 2023 at 10:49:44AM -0700, Nikunj Kela wrote:
->> On 10/9/2023 8:29 AM, Sudeep Holla wrote:
->>> On Mon, Oct 09, 2023 at 07:59:08AM -0700, Nikunj Kela wrote:
->>>> On 10/9/2023 7:47 AM, Sudeep Holla wrote:
->>>>> On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
->>>>>> This change adds the support for SCMI message exchange on Qualcomm
->>>>>> virtual platforms.
->>>>>>
->>>>>> The hypervisor associates an object-id also known as capability-id
->>>>>> with each smc/hvc doorbell object. The capability-id is used to
->>>>>> identify the doorbell from the VM's capability namespace, similar
->>>>>> to a file-descriptor.
->>>>>>
->>>>>> The hypervisor, in addition to the function-id, expects the capability-id
->>>>>> to be passed in x1 register when SMC/HVC call is invoked.
->>>>>>
->>>>>> The capability-id is allocated by the hypervisor on bootup and is stored in
->>>>>> the shmem region by the firmware before starting Linux.
->>>>>>
->>>>> Since you are happy to move to signed value, I assume you are happy to loose
->>>>> upper half of the range values ?
->>>>>
->>>>> Anyways after Bjorn pointed out inconsistency, I am thinking of moving
->>>>> all the values to unsigned long to work with both 32bit and 64bit.
->>>>>
->>>>> Does the below delta on top of this patch works for you and makes sense?
->>>> This looks good to me. Will do some testing and float v6 with the changes
->>>> you suggested below. Thanks
->>>>
->>> Please refer or use the patch from [1] when reposting. I rebased on my
->>> patch[2] that I posted few minutes back. I am trying to finalise the branch
->>> and send PR in next couple of days, so please test and post sooner. Sorry
->>> for the rush.
->> Validated the patch from [1] below on Qualcomm ARM64 virtual platform using
->> SMC64 convention. Thanks!
->>
-> Thanks, since I have patched a bit, it is better if you post them so that
-> we have a link for the exact patch on the list. Just pick up the patches
-> from the branch[1] and post them as v6 with a change log so that all the
-> details are captured for reference purposes.
-
-v6 on its way, thanks!
-
-
+On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wrote:
 >
+> Some memories provide ECC detection and/or correction. For software which
+> wants to check memory, it is helpful to see which regions provide this
+> feature.
+>
+> Add this as a property of the /memory nodes, since it presumably follows
+> the hardware-level memory system.
+>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>
+> Changes in v7:
+> - Drop unnecessary |
+> - Add a blank line between properties
+>
+> Changes in v6:
+> - Use a number of bits instead of a string property
+> - Fix inidcates typo
+>
+> Changes in v5:
+> - Redo to make this property specific to ECC
+> - Provide properties both for detection and correction
+>
+> Changes in v3:
+> - Add new patch to update the /memory nodes
+>
+>  dtschema/schemas/memory.yaml | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yaml
+> index 1d74410..b3bf3c9 100644
+> --- a/dtschema/schemas/memory.yaml
+> +++ b/dtschema/schemas/memory.yaml
+> @@ -35,6 +35,19 @@ patternProperties:
+>            For the purpose of identification, each NUMA node is associated with
+>            a unique token known as a node id.
+>
+> +      ecc-detection-bits:
+> +        default: 0
+> +        description: |
+> +          If present, this indicates the number of bits of memory error which
+> +          can be detected and reported by the Error-Correction Code (ECC) memory
+> +          subsystem (typically 0, 1 or 2).
+> +
+> +      ecc-correction-bits:
+> +        default: 0
+> +        description: |
+> +          If present, this indicates the number of bits of memory error which
+> +          can be corrected by the Error-Correction Code (ECC) memory subsystem
+> +          (typically 0, 1 or 2).
+>
+>      required:
+>        - device_type
+> --
+> 2.42.0.515.g380fc7ccd1-goog
+>
+
+What is the status of this patch, please?
+
+Regards,
+Simon
 
