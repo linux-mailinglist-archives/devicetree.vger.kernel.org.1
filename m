@@ -1,212 +1,180 @@
-Return-Path: <devicetree+bounces-6855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5D37BD389
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:35:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C41A7BD3D3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:54:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 339A21C208C3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 06:35:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00353281313
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 06:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88359B668;
-	Mon,  9 Oct 2023 06:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7E7C148;
+	Mon,  9 Oct 2023 06:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="OorQF0Qe"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ktTZSXo8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C935F8F6F
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:35:50 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E106CCF;
-	Sun,  8 Oct 2023 23:35:48 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A31A929
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:54:21 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2097.outbound.protection.outlook.com [40.107.113.97])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE10DA4;
+	Sun,  8 Oct 2023 23:54:19 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jMUD0FGK/kP3VXHB1wBmHzwhAdjCGXMEIIxg2+6z7K/z1FiLILcbQDWEG052Ccm9uT8j5qYPgBnW/qJQA0TEjxvXw/Z40q9WeP0VLscjSCmxFEfqnW8wsDgk02qr+xrzGJKpERrIejvc5jXfS2bjoeLBBZkSMH1PSbvVGZbj2DF3TTKp3iJVcRSCR1fgERwv6UyWsXDcIf1k6vJOt1oaBr0N42Yhy3fCRQPplzOfPCojFxqBQVR5Exon/s6KiVoj+dIha1RxEOSm4aCcGPNU/e1Vbom2v+fvxweIH7WlmfOqYZ8avB9q/kMsqoR/8x/ITADCw6BzppfNvHa1R0SsyA==
+ b=BfkzCIXxEdv5+P06kzJzEec9HwiM3LO0GN5aceaQ9Q1K7FKLDtPZhkuxqDi9Rn7Eex4Vh8rGAh+T/5zZXp9drt9sqOk2n5DM+LpueqOwUoYz7bA7VmEoE5+4D2X1V/8O65TsQG2fI55bJHjBzCoxpizVVp9LN6zDYHFJrc553b4tWIPasdqRPdS1YhRwi8PMrGCxoeDqEz3/J6y48uOluVuoWr5Ytgvk5vakyvi0veTmhhYEOeV2G3Gb5ke2w5gOT2/hXPxKRMPF/odTKvwyJFqLuSP6AdAGVAHj0Hmr8xER7eZ7HzY8EFKr2vxXMHdaWdvSLRktDMpLBkttzLQzKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3MHyERw9mD0qXEWzPmo5dHnd8aRhMQNNLaOYavfkZvg=;
- b=CfI7eV3ouU0BsGp3kBZ38AgtHXWOtvSCNFDy2PFmShvbhhwCbKUtCXCinpB0RcWbnEpj7qSvE+MulJCBd7aS7meVa0pOtiNj8NKwMrVfD5L0/wm8x2H9mZ5cvvyujg+flg8kMJ8QqoNIbu4G4Eyff8Zk5Tu222ht1VLqStF7E1SH7twt/UpfwmB4ChQ4eMSavt8CBo0/dsCd3W34iOD4xB7liYsnc0/b4sWoEHzN8j6R22dt5rP6e5PpbwjE1uJtZ4Tv4vafewgj+5LDuVEcilzWuDzsq5HvUC/KfjiwN1XtlZniIP19vwAg9eninfMgOrEKTuv5fU0yT2M2NFOALw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=RVblxFsy2u2qc8GiTrkrEwyLK59HxPoB8fIIUE0n1yg=;
+ b=Tf9GA8ic+DD8dZ6PTshGJQl8nejuUrCDWsA61z3VQRCvuj3iEpMqZgyOYuHw52H70zDMRdGyzocDc9UPakYdoxeiZZ+LqnDwldcznwz1RBC8it3b43o/L2PZVjg3T0R+WWPfo4jKmPr4VYJ2FzXiqyFhaivWDHEtjtG0KEsJMzBkd4z/4Eq/fZi32Nv334R0pVrRRKvFdmF2qXPRvpPv5QZpI7ZmpNdk4Xq22/C8omYIblDmbGm108LpIXLiQYvUKHqT2LyhWq00GzoL2lJE5EMZ5LPxHk3JiF+NGHUnpYexiCqEN2RTMW7LhSkXvkZyJvC3ggcQhcrbukMZtAG4hQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3MHyERw9mD0qXEWzPmo5dHnd8aRhMQNNLaOYavfkZvg=;
- b=OorQF0QepcEvxMPsCpBjNUKbOhaqE3e1x2F6qn2ia6YiDuelaVGgfFVlKcWIF+OhG1BktouUp4VjU68oHI1+H3Xek6hcEgHfi0rjxD9u2dqfivhP8PuiE2+E7mSfNeAeOVVL271JgDXi+o9d3dRCo2Vjh5rBvwj5pmCaz1pEEBNz5WeIaKgogmF4DqMSbwSsocF+AfDQ56sdZeoU4zoW+jNh650zTGonfeGqREcdWnTm+BEtXycPho6UDqHiVNcjpIdtTWoLW7L7ktkCFOUltoDOJMbF63irAfw+ryn5rGPEXbBC4LMlvIX8wfO4jFvDXFFP/XyqUholjYn4UE7WxA==
-Received: from MN2PR17CA0010.namprd17.prod.outlook.com (2603:10b6:208:15e::23)
- by CH3PR12MB8483.namprd12.prod.outlook.com (2603:10b6:610:15c::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.35; Mon, 9 Oct
- 2023 06:35:46 +0000
-Received: from MN1PEPF0000F0E3.namprd04.prod.outlook.com
- (2603:10b6:208:15e:cafe::c) by MN2PR17CA0010.outlook.office365.com
- (2603:10b6:208:15e::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37 via Frontend
- Transport; Mon, 9 Oct 2023 06:35:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- MN1PEPF0000F0E3.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6838.22 via Frontend Transport; Mon, 9 Oct 2023 06:35:46 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 8 Oct 2023
- 23:35:35 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Sun, 8 Oct 2023 23:35:35 -0700
-Received: from mkumard.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.986.41 via Frontend
- Transport; Sun, 8 Oct 2023 23:35:32 -0700
-From: Mohan Kumar <mkumard@nvidia.com>
-To: <vkoul@kernel.org>, <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <dmaengine@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Mohan Kumar <mkumard@nvidia.com>
-Subject: [PATCH V1 2/2] dmaengine: tegra210-adma: Support dma-channel-mask property
-Date: Mon, 9 Oct 2023 12:05:09 +0530
-Message-ID: <20231009063509.2269-3-mkumard@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231009063509.2269-1-mkumard@nvidia.com>
-References: <20231009063509.2269-1-mkumard@nvidia.com>
+ bh=RVblxFsy2u2qc8GiTrkrEwyLK59HxPoB8fIIUE0n1yg=;
+ b=ktTZSXo8DAb2M48xWrqcvPXZLQe/DEmoJMkCAv/2H/UbOkyOSjM3koLH6wRhGithcaOadN2SoSSYXueXfaJz+I4NlzhjGIjke1AhI3WlFWJye3wSB13KPTIfytAERFDg4Eq8zviG3INaeujhTFPrYl4nyh6zc8kQ5y51VX4BZgc=
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c0::10) by TY1PR01MB10819.jpnprd01.prod.outlook.com
+ (2603:1096:400:327::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Mon, 9 Oct
+ 2023 06:54:15 +0000
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::db75:e192:bbfa:78a2]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::db75:e192:bbfa:78a2%3]) with mapi id 15.20.6838.040; Mon, 9 Oct 2023
+ 06:54:15 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>, "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, Fabrizio Castro
+	<fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Conor Dooley <conor@kernel.org>
+Subject: RE: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Thread-Topic: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Thread-Index: AQHZwGL9ceemCZ2jGkW1QY8DTieJS7AEyheAgBvCJQCAIOwA8A==
+Date: Mon, 9 Oct 2023 06:54:15 +0000
+Message-ID:
+ <TYCPR01MB112697D67514D2E6FC690B9F886CEA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+ <20230831-iphone-muscular-7442cda2c39e@spud>
+ <TYCPR01MB5933370B7660B8504B2D8D7386FBA@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+In-Reply-To:
+ <TYCPR01MB5933370B7660B8504B2D8D7386FBA@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TY1PR01MB10819:EE_
+x-ms-office365-filtering-correlation-id: de7a98a0-84c3-4697-f5ad-08dbc8948d50
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ gbfiatMLwzJrQT8EYdeTVXlTqIGuGw1+2jx1/mKvIh2tjPzbMhS/OlxQnqNxtvlWI5YpTOz5Bd6FfaAqfDsccZ8Gt1syjQjbjXADZOuXpgO2TnI3ExquDZ87ITcvRy6RQtKlGTXZWcCVhaIFlvQIN5FI3w60WjragfIl3KwX7/K7YjE82icPATq3RUvkNUs9fRzyxpmm2gTXw+BsPzy28sp8kClbvJtTFMU2b4RdHkLQYnxdL6pC8bK6zdn+abb98tfHIxpMfA2+XlXCrcklTvxHmqrmgkviETqDsYP3rERCwqm2eaIy6E/poYsmwYYZuHInuvfePIxn/6CUS+9bOui3dR5bqQmvFoyY4IkuAD5k3ohtCHxXvovByBqabau3HFXyO4QdwETpT/cUvTeLzUBy361v0fnlwu7kcIA7ONolitB60BjY9uORHNkXNyjDdIi8PUWEEKc94uat1FoEYH3Zq9fpxqWW+GAinW+AyYxRZOJKm8CNNV/aeSRJhKT1/YHqhCmQLpP+CttPfO1l33rTMM6fwG+zYdaRr9SMfcWUv9bO7Fy62t8G1lbE5X9prA7sArvgFHn1UfQLcQ6ZkRJXzaE0oPx7SSzBip8JLrPI5lx4qlLF13vEJifqk6PReK3AjQznns2s3dxBuBm/6A==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(376002)(366004)(396003)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(76116006)(110136005)(8676002)(8936002)(5660300002)(4326008)(66556008)(66946007)(54906003)(66476007)(66446008)(64756008)(316002)(52536014)(41300700001)(7416002)(2906002)(38100700002)(38070700005)(122000001)(83380400001)(55016003)(9686003)(86362001)(26005)(33656002)(478600001)(7696005)(71200400001)(6506007)(32563001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?OrRCJ4/2RYDWpwW+ZCaLs5dzydccwYRWcbeNHuA5JwKdDN2B8U0NlPOZrG3T?=
+ =?us-ascii?Q?mhPlKL55tjYGAISMkmLfK/1SYIOOFX6No12K3Fy2Ng3Wp4cbIwHYU8/boR2w?=
+ =?us-ascii?Q?lzAKcaMGFzWl+wsnXgucJDaDw0cyH/AHDkWaAgfaJlaq8E4TnVLmwJYB5R1u?=
+ =?us-ascii?Q?4bknFR6pqXGZ2/9ZmEed7DyxNz/wuOvG7k0QxQ8fdo0MDcTe7rDOkaYr7tn/?=
+ =?us-ascii?Q?QMB+lBxC1ncN/ARvcrHbsRQCQZU6lUN/ggBbWUJ2k/gUy47cFj/+eU7ecBkh?=
+ =?us-ascii?Q?MIj47UQWhlecPoAtNSan6SnLPZNYldjTKgMKiNcudLIju9zI2W8KMm+Z8NGo?=
+ =?us-ascii?Q?8AyfTGkpRreX3c0obPQEeoR/yO5bDG7xM8EJ91426S20aNhEJa/uEx+jqX/w?=
+ =?us-ascii?Q?vSy5bfflEae0Ttfdc6WckFHktIplmXar+FAytUug3o2JJiuvlPsSxmLW8CT8?=
+ =?us-ascii?Q?hpcPhA1QdJUSdJ6KK686Pzm0mmjW3amkipNp9F2aqKUTtmb7Oti4JRHCR6tQ?=
+ =?us-ascii?Q?aQUCgko1szVZD7wj8rbc4bvdWvXm8LmrCjlhVjCtckqmo/8V4K622xE05+y2?=
+ =?us-ascii?Q?0L560k7xbLPR5C/Tj1sttJg3KRRp9fJX1vrjjpkdbQrKvMiriNk+Kx52RqYy?=
+ =?us-ascii?Q?5nhVzrwF97VmQfmkBVtPN/GaZbpLP3MGboAgU3UBJyF7DHb5J1tneyI0+rJ5?=
+ =?us-ascii?Q?a1tqCpupcOCaEfpCLTbFSQJjcZtwtAX9ewWb7aPMsZjbMQFm5TujcAxLpSvW?=
+ =?us-ascii?Q?UBakgV7YSWx0ESMCv/DmsyMTl032AYfrJyRsfOvDBQ4aiU8uBLgSajpyv7K/?=
+ =?us-ascii?Q?V3iC3I0Ih2cW2TbCT/8JM85Vopp2mW5bBgvPG1ruL4vvAXpQk5IKFIvV310R?=
+ =?us-ascii?Q?jrjjRGAbP4AVgSdKN2MzIn+R3ChsFshbEIU2sURszCgZwJNLuqjGwpFI6AxP?=
+ =?us-ascii?Q?pNvS1CuYHDEIeQjj7OXPhlL3DErSsGR1q7hczLI6lCoi5V3mF0dyugYhka1j?=
+ =?us-ascii?Q?lGZTJdCEGD6PNGKl3h6EtoW4+I+o6RMDHU6C5ej8ZRtMAEPPZPI1RupZdFkf?=
+ =?us-ascii?Q?Y45JTfuneG7iV3TwrQ1pIetzjAqESRy//b3Q6hkd1WQW6UTYTK3shYod3Wke?=
+ =?us-ascii?Q?N/lPXAPNgTivREMEHxpbFHa+K7ymuXmfWKaW+BzQ4faq9MkKR/E/+VMpGxvE?=
+ =?us-ascii?Q?ILV4vgY8rJ+FcnygLGagzU0/rTdi1pEbHVWMiy3wOC9wdUsnG9gl/93pSJhf?=
+ =?us-ascii?Q?uX0Bkuqs40wSy5Q8q+J+CtwfuhnHsxvRUSP0HyraAbzubBsB6Uk5emvAj9dV?=
+ =?us-ascii?Q?uFuwz8XqmwY0oH7LpjU0hV7PaQxBeobFc3M0OqI+8+i3ziyBzEZ9Ull3RhUC?=
+ =?us-ascii?Q?UuVaZY0vyWLBl443MRAwOP/ICBpsTsjx/i8weEx+VYF55BUw5NeZ2+XyQNBp?=
+ =?us-ascii?Q?DDQijLhrgderfQDD+leXe0p6cnLwe55T2XQR7mf659f4bKyajlY3LpnAgM0p?=
+ =?us-ascii?Q?1VE/gHz11y5a5nU4OPABUzSSQr2TlWwWSNDzyEx4pD3XqNOcr71Ee95pcno8?=
+ =?us-ascii?Q?SEd9RcHzttQImIxLH0KVFsRoOZuob0qNpDaZTXibW6a5r38DXBVt2GmvCnls?=
+ =?us-ascii?Q?LQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E3:EE_|CH3PR12MB8483:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c013c93-ac6e-4b46-144e-08dbc891f86d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UA7xqUmvHXPa1buTfHJrI75lt0rPJegnqzJP3Q0a6ra/DT7ClpImK+swuh5C8mfBxYXjnAxDWGPgy8EazAN3CAJCOBP2BCL7dx6Clj/AjPD1SOp3b4i4TEohVQ1BFlD0e4JzJki0ShQByPeg1+f6clyAtzJOfPMm+xP5wYEf3I3qsAECDgFJy5/rPhyUAmoZVvwmxDVeacQWpEenx6pPxblYxnAdUOftf4yYNWY7owAIRox6RMRWujhAAcPiZRRPRknOiB3Cn+LHinzqd0b0e5RDbkAcQ3nE/iFdb+iQUo5Gs7wQgEtRlpzJKug7hrdPLwVMlmBYGws2ueE1PLEruD8HBG1pQIWlsr+3Mywqx8cPKNhlkzYIHvSLANbG3hSP8Q87M7SgYKg63guXP2VP7jrmLNb2//MyoI63WWkaC1YHQYphZhCyZYA+up+MvzZsc4OoenNj9ZrajZt7ekHoDrzpZv+28LTO29NDCltpoP6mBe6mDGOO0fZ1qiAkuuy5wwyx/g8IIac5yhHZUdcl7EG8MO0om0TkfI+ixmkqVSSMfbT9qzcTK+IX2CfzQCK2ztgDCZBRpIQVALYO11UHSgPmxNUhmAWkf3w6pl4TQGRJ6XXtu2EaZszAyLSHb41G1ubSEa1xSf13B+MU4GopDI2FTnxTYm26FLbQ5qaczYJ3v8L+4x3LV4dF3j336sska7kTj1l9yu7t7b/cEl6Nr81NVO+A0yTH68iFjmvZ+PGVjPSAO7JpaT8hWx4xm7uu
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(346002)(136003)(376002)(396003)(39860400002)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(82310400011)(36840700001)(46966006)(40470700004)(26005)(478600001)(7696005)(6666004)(426003)(41300700001)(36756003)(316002)(110136005)(107886003)(2616005)(83380400001)(54906003)(5660300002)(70206006)(70586007)(40480700001)(47076005)(8676002)(8936002)(4326008)(86362001)(7636003)(356005)(2906002)(82740400003)(36860700001)(1076003)(336012)(40460700003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2023 06:35:46.4737
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: de7a98a0-84c3-4697-f5ad-08dbc8948d50
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2023 06:54:15.4600
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c013c93-ac6e-4b46-144e-08dbc891f86d
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0E3.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8483
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QNVVwdEc7iOUUI3F63R57fUrJE7fXiW0kYtDxunqvCWOwVu1aSuwcA4PcNskW6kaComMmYZ2tPEM8NQJusS10/V5e04f9fw0R4ptHKRV6Jk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB10819
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-To support the flexibility to reserve the specific dma channels
-add the support of dma-channel-mask property in the tegra210-adma
-driver
+Hi all,
 
-Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
----
- drivers/dma/tegra210-adma.c | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
+Gentle ping. This patch is in the patch work for a while.
+It is acked/reviewed by Conor Dooley and Geert Uytterhoeven.
 
-diff --git a/drivers/dma/tegra210-adma.c b/drivers/dma/tegra210-adma.c
-index e557bada1510..f09930a5c09b 100644
---- a/drivers/dma/tegra210-adma.c
-+++ b/drivers/dma/tegra210-adma.c
-@@ -153,6 +153,7 @@ struct tegra_adma {
- 	void __iomem			*base_addr;
- 	struct clk			*ahub_clk;
- 	unsigned int			nr_channels;
-+	unsigned long			*dma_chan_mask;
- 	unsigned long			rx_requests_reserved;
- 	unsigned long			tx_requests_reserved;
- 
-@@ -741,6 +742,10 @@ static int __maybe_unused tegra_adma_runtime_suspend(struct device *dev)
- 
- 	for (i = 0; i < tdma->nr_channels; i++) {
- 		tdc = &tdma->channels[i];
-+		/* skip for reserved channels */
-+		if (!tdc->tdma)
-+			continue;
-+
- 		ch_reg = &tdc->ch_regs;
- 		ch_reg->cmd = tdma_ch_read(tdc, ADMA_CH_CMD);
- 		/* skip if channel is not active */
-@@ -779,6 +784,9 @@ static int __maybe_unused tegra_adma_runtime_resume(struct device *dev)
- 
- 	for (i = 0; i < tdma->nr_channels; i++) {
- 		tdc = &tdma->channels[i];
-+		/* skip for reserved channels */
-+		if (!tdc->tdma)
-+			continue;
- 		ch_reg = &tdc->ch_regs;
- 		/* skip if channel was not active earlier */
- 		if (!ch_reg->cmd)
-@@ -867,10 +875,31 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 		return PTR_ERR(tdma->ahub_clk);
- 	}
- 
-+	tdma->dma_chan_mask = devm_kzalloc(&pdev->dev,
-+					   BITS_TO_LONGS(tdma->nr_channels) * sizeof(unsigned long),
-+					   GFP_KERNEL);
-+	if (!tdma->dma_chan_mask)
-+		return -ENOMEM;
-+
-+	/* Enable all channels by default */
-+	bitmap_fill(tdma->dma_chan_mask, tdma->nr_channels);
-+
-+	ret = of_property_read_u32_array(pdev->dev.of_node, "dma-channel-mask",
-+					 (u32 *)tdma->dma_chan_mask,
-+					 BITS_TO_U32(tdma->nr_channels));
-+	if (ret < 0 && (ret != -EINVAL)) {
-+		dev_err(&pdev->dev, "dma-channel-mask is not complete.\n");
-+		return ret;
-+	}
-+
- 	INIT_LIST_HEAD(&tdma->dma_dev.channels);
- 	for (i = 0; i < tdma->nr_channels; i++) {
- 		struct tegra_adma_chan *tdc = &tdma->channels[i];
- 
-+		/* skip for reserved channels */
-+		if (!test_bit(i, tdma->dma_chan_mask))
-+			continue;
-+
- 		tdc->chan_addr = tdma->base_addr + cdata->ch_base_offset
- 				 + (cdata->ch_reg_size * i);
- 
-@@ -957,8 +986,10 @@ static int tegra_adma_remove(struct platform_device *pdev)
- 	of_dma_controller_free(pdev->dev.of_node);
- 	dma_async_device_unregister(&tdma->dma_dev);
- 
--	for (i = 0; i < tdma->nr_channels; ++i)
--		irq_dispose_mapping(tdma->channels[i].irq);
-+	for (i = 0; i < tdma->nr_channels; ++i) {
-+		if (tdma->channels[i].irq)
-+			irq_dispose_mapping(tdma->channels[i].irq);
-+	}
- 
- 	pm_runtime_disable(&pdev->dev);
- 
--- 
-2.17.1
+Can we apply to mainline if you are happy? Or do you want me
+to RESEND the patches? Please let me know.
+
+Cheers,
+Biju
+>=20
+> > On Thu, Jul 27, 2023 at 09:18:43AM +0100, Biju Das wrote:
+> > > This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
+> > > Also it fixes overflow/underflow interrupt names.
+> > >
+> > > v2->v3:
+> > >  * Dropped patch#4, as it accepted for 6.5 fixes.
+> > >  * Moved patch#2 to patch#1 as it is fixes patch.
+> > >  * Added Rb tag from Geert for patch#1 and patch#3.
+> > >  * Updated the link to lore for Closes tag for patch#2.
+> > >  * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
+> > >
+> > > v1->v2:
+> > >  * Added Ack tags from Conor Dooley for binding patches
+> > >  * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
+> > >  * Fixed build error reported by kernel test robot by replacing
+> > >    GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
+> > >
+> > > Biju Das (5):
+> > >   dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interru=
+pt
+> > >     names
+> > >   dt-bindings: timer: renesas,rz-mtu3: Improve documentation
+> > >   dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
+> > >   arm64: dts: renesas: r9a07g043: Add MTU3a node
+> > >   arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
 
 
