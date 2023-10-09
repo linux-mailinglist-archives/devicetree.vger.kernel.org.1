@@ -1,118 +1,110 @@
-Return-Path: <devicetree+bounces-6995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0ADF7BE658
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 18:26:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3787BE698
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 18:36:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DD161C20A5C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:26:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950D22817FF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1380D38BBF;
-	Mon,  9 Oct 2023 16:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34134156C8;
+	Mon,  9 Oct 2023 16:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V8ly/Rh+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukqTw6yA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EA037CA4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 16:26:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD62DC433C8;
-	Mon,  9 Oct 2023 16:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F131A733
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 16:36:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F2AFC433CC;
+	Mon,  9 Oct 2023 16:36:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696868806;
-	bh=TS7qlSQMJeaEwASV4I5bE63YJ4CtP1GPaVK0RvdE5Dc=;
+	s=k20201202; t=1696869401;
+	bh=jUtlqwEMn2KZFHhL84vsbzy62E/jQ9IHVeiIR+dgdME=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V8ly/Rh+3e8H/Pg56Qi6/j04x4vPz0nxbQPuq6aMKwy+xlQpBcHOpzXwIDTTdzc0m
-	 HzRGiKWkjV45/eclX2Z+KRlYU//K0OA93zRQk6x+xnb8nkZJcNK80Mlpi+rrhxmb+7
-	 Stkzdi2bnLvfAUb1QEPd62wWAYqj+7ZiFY6bt6Jmq2tK1XN4gixKWJiO454+czsQxH
-	 midOWd7eNHoErFnIeZp3UHADfnFa8SUZx6lyQOQaY3FPjc9Pga5hxb+SBQmYojgXhr
-	 a1BrKEJ2DUJkc8kMYsh0Ytt8j01dnGA9wLGLpHVLF8P/z8fDyP4j5dEfOAx3FB7Tma
-	 3aP/1mE9d1UWQ==
-Date: Mon, 9 Oct 2023 17:26:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Orange Pi 5 Plus
-Message-ID: <20231009-poncho-refining-5206e3875669@spud>
-References: <20231008130515.1155664-1-megi@xff.cz>
- <20231008130515.1155664-4-megi@xff.cz>
+	b=ukqTw6yAx9xZXzZu/8PsJbg/qq6AWNoyLzpX1TYC5EftTWC6ToteJaTiXhf6PzU0A
+	 5wBCFj8oWtwhs9tVStKAZr5mZup5lvq9UU+J5l/qQsK2Dji9GMKDD1iDfHUP/Uwi98
+	 vFd2kqCFIDYnbZrH0Xd3OicQR0UKp48FW3OnDlWpAwCujwIZXWRyiB5Wj8rtpAjlwc
+	 4hDYebItl9tJtJ2PVIOfJ+bsFq6JmBAJrt0ungX/IrpO3fOlCe0nufcGBkNDiupZ2H
+	 W67NEICrBvwMrkpjALwW0wf1QrN3tLRLHAFMz3Wh2TYHwUG4R4ngZBlYHgFjostCPW
+	 wEQrpOfY+Ln0w==
+Date: Mon, 9 Oct 2023 17:36:34 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Chancel Liu <chancel.liu@nxp.com>
+Cc: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
+	"Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
+	"perex@perex.cz" <perex@perex.cz>,
+	"tiwai@suse.com" <tiwai@suse.com>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: Re: [PATCH v2 1/2] ASoC: dt-bindings: fsl_rpmsg: List
+ DAPM endpoints ignoring system suspend
+Message-ID: <50ad5eed-325c-457b-976e-4ffcf7696938@sirena.org.uk>
+References: <20230925110946.3156100-1-chancel.liu@nxp.com>
+ <ZRF8KI11IVf6NzpL@finisterre.sirena.org.uk>
+ <DB9PR04MB94987AC750B4AB02DCBC44C8E3C2A@DB9PR04MB9498.eurprd04.prod.outlook.com>
+ <ZRP2A1hvuB8ZymBK@finisterre.sirena.org.uk>
+ <DB9PR04MB9498352BC1763048B8358D97E3C8A@DB9PR04MB9498.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jtxAoSr1vHYzIdfq"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="YpmdxlIGHB5pmEP7"
 Content-Disposition: inline
-In-Reply-To: <20231008130515.1155664-4-megi@xff.cz>
+In-Reply-To: <DB9PR04MB9498352BC1763048B8358D97E3C8A@DB9PR04MB9498.eurprd04.prod.outlook.com>
+X-Cookie: What is the sound of one hand clapping?
 
 
---jtxAoSr1vHYzIdfq
-Content-Type: text/plain; charset=utf-8
+--YpmdxlIGHB5pmEP7
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 08, 2023 at 03:05:01PM +0200, Ond=C5=99ej Jirman wrote:
-> From: Ondrej Jirman <megi@xff.cz>
->=20
-> Add devicetree binding documentation for Orange Pi 5 Plus SBC made by
-> Xunlong.
->=20
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+On Sat, Oct 07, 2023 at 11:13:49AM +0000, Chancel Liu wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Instead of "fsl,lpa-widgets", I would like to add a common property=20
+> "ignore-suspend-widgets" in sound-card-common.yaml file. So not only rpmsg
+> sound cards but also other sound cards which have such feature can use th=
+is
+> property to define wanted widgets ignoring suspend.
+> What do you think about that?
 
-Thanks,
-Conor.
+We can perhaps bikeshed the name a bit to be more focused on the use
+case but yes, that sounds reasonable.
 
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docume=
-ntation/devicetree/bindings/arm/rockchip.yaml
-> index ca5389862887..1a636ad540ce 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -870,6 +870,11 @@ properties:
->            - const: tronsmart,orion-r68-meta
->            - const: rockchip,rk3368
-> =20
-> +      - description: Xunlong Orange Pi 5 Plus
-> +        items:
-> +          - const: xunlong,orangepi-5-plus
-> +          - const: rockchip,rk3588
-> +
->        - description: Xunlong Orange Pi R1 Plus / LTS
->          items:
->            - enum:
-> --=20
-> 2.42.0
->=20
-
---jtxAoSr1vHYzIdfq
+--YpmdxlIGHB5pmEP7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQpwQAKCRB4tDGHoIJi
-0maaAP47E1PJIyhK8cjy+hke5lwVZTaDc5KFma7+IRK1rtnLAwD+JBc/RJpoF+Fc
-rBJfx39NBvbJPDnRQ7dDfFCZznzkSgQ=
-=+cps
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUkLBEACgkQJNaLcl1U
+h9BE7gf/e2k4KxlF2CXa8VUkiAAnGisQr0YxQGZ4hg6Qf2VNcqgvRgb12u3r5CqZ
+MlMItmfRzSiUOhCXYtyl9Iq58MtkaxNK4iWbNCVrZ0+fvUvEI8B9C2izjeYR2Lwj
+8RirJfNnircg4thI9oRxPgQEEIoK/SI5iAlI9RliJrADXD/EETYQ/iaJ778Rh1AN
+RTNseFJXS+BHwZ7rP09Va1GsROiMb2P9xtRVxAw02wiE5dUge0h43O+3fRyY1yLo
+9BmxluF+wyXuHiuaBR4hCvAyM8lvp5JWsRdgT+2z0MAWTXVwP6R2bTfs3Xnm4ej9
+UnKuK53QIGytXgaFriLzbO2ZU4gIsw==
+=r9Lx
 -----END PGP SIGNATURE-----
 
---jtxAoSr1vHYzIdfq--
+--YpmdxlIGHB5pmEP7--
 
