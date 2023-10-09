@@ -1,116 +1,104 @@
-Return-Path: <devicetree+bounces-7037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11A97BEC06
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 22:54:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6DD07BEC34
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 23:02:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B451C20A8F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 20:54:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61231281AC0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 21:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA2A3FB0D;
-	Mon,  9 Oct 2023 20:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1893FB2F;
+	Mon,  9 Oct 2023 21:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="OI6BE535"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zUDlbyAE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F77A200B2
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 20:54:11 +0000 (UTC)
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AED2A9;
-	Mon,  9 Oct 2023 13:54:10 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 4EC8B8286816;
-	Mon,  9 Oct 2023 15:54:09 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id JBIZjUBB-1bh; Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 63A2B8286866;
-	Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 63A2B8286866
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6502030B
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 21:02:52 +0000 (UTC)
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B0F9E
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:02:51 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-59e88a28b98so42825117b3.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 14:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1696884848; bh=Hq+W0pYoX/RD12Ucrxx4Xcw+gED/OOKCQdN4ucsOuWU=;
-	h=Message-ID:Date:MIME-Version:To:From;
-	b=OI6BE535nQveYjP7j4B0Efiq6aUYLcdyg9sq7gYXDWXJY4uPZq7jFurfNlejmCg6Z
-	 hIVLOSih3fiZpD2tjACVr5Thzcg/og1jK0vIbFAe4W2VqIKRpewrCV0A6ulkD5DE9O
-	 MgkPBWEh52DtJsZ6DahmAPqTK0zZB/XJO1ieNVUA=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id g2WM3TFOVVU2; Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
-Received: from [10.11.0.3] (5.edge.rptsys.com [23.155.224.38])
-	by mail.rptsys.com (Postfix) with ESMTPSA id 789AC8286816;
-	Mon,  9 Oct 2023 15:54:07 -0500 (CDT)
-Message-ID: <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
-Date: Mon, 9 Oct 2023 15:54:06 -0500
+        d=linaro.org; s=google; t=1696885370; x=1697490170; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SJz0h0Tx8tbmQIBwQkViScvt69REAVK+f5XbSP6AYKE=;
+        b=zUDlbyAE84bS8JysuwtlFOlOCAIWHq5vzlBdmzHuLZHTu9Su55E3ZOHSlochmwe4ku
+         jUA+nBDgJjp5jJot7wg1c5nQdLExC35cCoWHvQS/AE9DqudRhIwlBxbNaDP5yy6GuK3k
+         gn6JHPIjOS8no3KV+MCnjIamgwIABXgze4vo00hH2wRYKc+gaKukjamaSsq/QjUqbEyZ
+         N98niBdGNGk90sjPdMYWvgAODLTESYfa37pxPF+38K9T83mGNoV0fAaW+jeUhbXOC4zZ
+         cNg01NNqtizcd40c26dWJt3yPK7VEl8abjTF9eOtd41mV5IdgAK+YdqSeZKYwdgT38Nm
+         Quzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696885370; x=1697490170;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SJz0h0Tx8tbmQIBwQkViScvt69REAVK+f5XbSP6AYKE=;
+        b=E3ct3HsDLi/lvwN3q/iQ6DkOaA96/uQjKjdQwNbWTYXNy8qW3QngmuJQy8EVuqWCWh
+         eVxB9kjcydmUqa2Quyijpw8gEWxerprijmQMt1DBql+sDELLe7MQs7olm4V0d/i0TRbf
+         spfrwchYRNKaYQg4Dl+3AzCZz6JMQIRrt1f9ZujKAFzKml+fmtVWh7BVfIaAlhoyqEPa
+         I8LpIY+60ZRmwZ2h2wP1ZJlGWduNb7e0zoDGicLlaXk0gUpYlBPCUwIbm0pE0qyxPR81
+         VL9094N4bmeqnDb30ivyy+LatiR/LXsl+BlWdsvnyI+/aCO3dxaB1VT96Kk04pjYKnG+
+         /WHA==
+X-Gm-Message-State: AOJu0YxqFq1dpYPybWcLEorN6i+WCEAjLFGmB2vgxkqI2SHpdq/dRyvM
+	sUTW3/GP+uT1cj+y68d8/JzIjIMq1qTZt6eNqxq2Xw==
+X-Google-Smtp-Source: AGHT+IG7zTQ1sPIVq6sSufNIqZ5HokqJWtqPk7b7cMpFUs43lI/+XA7kKBK7iStn8zLZan3BdCgDzKJEQFuFjmdMKw0=
+X-Received: by 2002:a81:49d0:0:b0:56c:f0c7:7d72 with SMTP id
+ w199-20020a8149d0000000b0056cf0c77d72mr10143379ywa.4.1696885370504; Mon, 09
+ Oct 2023 14:02:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for SIE
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org, lee@kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org
-References: <cover.1696285339.git.sanastasio@raptorengineering.com>
- <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
- <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
-From: Shawn Anastasio <sanastasio@raptorengineering.com>
-In-Reply-To: <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20231007060639.725350-1-yangcong5@huaqin.corp-partner.google.com>
+ <CACRpkdbek0-Vhk4_34qY+0=EGrQxJS_CfLuF_5fRozMMyc+=Kw@mail.gmail.com> <CAD=FV=UFa_AoJQvUT3BTiRs19WCA2xLVeQOU=+nYu_HaE0_c6Q@mail.gmail.com>
+In-Reply-To: <CAD=FV=UFa_AoJQvUT3BTiRs19WCA2xLVeQOU=+nYu_HaE0_c6Q@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 9 Oct 2023 23:02:39 +0200
+Message-ID: <CACRpkdYrFhTCa9rJ4savOcqRxcnyqoojCnwaCk6cnJv=aWxo4A@mail.gmail.com>
+Subject: Re: [v1 0/2] Break out as separate driver from boe-tv101wum-nl6 panel driver
+To: Doug Anderson <dianders@google.com>
+Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org, 
+	neil.armstrong@linaro.org, daniel@ffwll.ch, hsinyi@google.com, 
+	swboyd@chromium.org, airlied@gmail.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/3/23 4:23 AM, Krzysztof Kozlowski wrote:
-> On 03/10/2023 00:32, Shawn Anastasio wrote:
->> Add a vendor prefix for Sony Interactive Entertainment LLC (SIE).
->>
->> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 573578db9509..cff35e68a34d 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -1211,6 +1211,8 @@ patternProperties:
->>      description: Si-En Technology Ltd.
->>    "^si-linux,.*":
->>      description: Silicon Linux Corporation
->> +  "^sie,.*":
->> +    description: Sony Interactive Entertainment LLC
-> 
-> Is this different company than Sony?
->
+On Mon, Oct 9, 2023 at 10:53=E2=80=AFPM Doug Anderson <dianders@google.com>=
+ wrote:
 
-Yes. As I understand it, Sony Interactive Entertainment, LLC is its own
-separate corporate entity, though it is ultimately owned by Sony Group
-Corporation.
+> Also: just as a heads up, Hsin-Yi measured the impact of removing the
+> "command table" for init and replacing it with a whole pile of direct
+> function calls. She found that it added over 100K to the driver (!!!).
+> I believe it went from a 45K driver to a 152K driver. Something to
+> keep in mind. ;-)
 
-> Best regards,
-> Krzysztof
+Sounds like Aarch64 code. I would love a comparison of the same
+driver compiled to ARMv7t thumb code. Just for the academic
+interest. Because I have heard about people running ARM32
+kernels on Aarch64 hardware for this exact reason: so they can
+have thumb, which is compact.
 
-Thanks,
-Shawn
+OK OK we definitely need command sequence tables in the core,
+what we have now is each driver rolling its own which is looking bad.
+
+Yours,
+Linus Walleij
 
