@@ -1,165 +1,168 @@
-Return-Path: <devicetree+bounces-7009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7BC7BE8B5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:52:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D687BE998
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 20:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBE722818DC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:52:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941731C20AB1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 18:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E04C38DE5;
-	Mon,  9 Oct 2023 17:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8298465;
+	Mon,  9 Oct 2023 18:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wc3N/MYO"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MOTuU/Hb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F19B374F5
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:52:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B953C433C7;
-	Mon,  9 Oct 2023 17:52:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696873951;
-	bh=yP/scKtcI6OBBotY/FATY0k1OHLk/ySM8TF7CIdRg08=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wc3N/MYOxqwOL9eWWR4ar7f+Nl52Pw+OQRfHKD88OVoSlVWv2eEbE18pawMPvGTNS
-	 PIeAMCD8CViMEDT2sMBZUiso2CP19P2E27ltwwc0EOXnXm+f5Tpgevo+uG3PeJtH+o
-	 AWjZ1SWpOKLA6J7qJQ3oAtmJq5e1eGsZvh/MazS0iOuZd7F9y9YqNrw0K1ChD0c7J5
-	 DudWnoM/+1NmBrj7AvKKk5LZIllba4PkvHiT9/LyF0nEyWhWVAr7Ysr/QBMkdwx5NT
-	 C/Zo7h60CBj66xgMQdH0F6fexAbiO1jdDfL9WHYFAWwwc38Gq3wbzFz+BFGjXzV5js
-	 5wLL+IqB+8B3g==
-Date: Mon, 9 Oct 2023 18:52:26 +0100
-From: Conor Dooley <conor@kernel.org>
-To: yang tylor <tylor_yang@himax.corp-partner.google.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jikos@kernel.org,
-	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
-	"jingyliang@chromium.org" <jingyliang@chromium.org>,
-	wuxy23@lenovo.com, luolm1@lenovo.com,
-	hung poyu <poyu_hung@himax.corp-partner.google.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20231009-pentagram-clamshell-b14ff00743fd@spud>
-References: <20230922-removable-footwork-f1d4d96d38dd@spud>
- <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
- <20230925-cod-vacancy-08dc8d88f90e@wendy>
- <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
- <20230926-action-sludge-ec8e51fdd6d4@spud>
- <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
- <20230926-reverence-unlit-d0027225cc43@spud>
- <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
- <20230928-spectacle-civic-339c0d71d8d7@spud>
- <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF91C3B295
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 18:36:12 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED93C9C
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 11:36:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1696876570;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=zsxGVSfsuhfbNcHVttLtmT7ohtovb+UILcIo39l8Suw=;
+	b=MOTuU/HbED6GjU+KGjeUaMwHvXcQn6JyHC0R1OcGJrRe1BHU4kQskDyyLbZIKAhVtHaoef
+	9BwboLXavhJ7N7kzvChXsLrRvS3zY5mQC3/BAfzcZ4YyrWq6vMfWPcVRAGfUICCxOSzFLF
+	QPUzNON+WJFlLRDKsMQO+mSPgEb3mMg=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-49-pyjeKrQ2MVOALzk60uP0Zg-1; Mon, 09 Oct 2023 14:35:59 -0400
+X-MC-Unique: pyjeKrQ2MVOALzk60uP0Zg-1
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-30e4943ca7fso3409585f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 11:35:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696876558; x=1697481358;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zsxGVSfsuhfbNcHVttLtmT7ohtovb+UILcIo39l8Suw=;
+        b=G7McUKaKNMfjDV0kzN+FEVAWE3G8ZrTM7qfzuSkZOD0u9VtyBLgUp43TskXDjYpYIm
+         xmasxAvoWg7KzObWJqu9B2DO2A3BlDYf5BxLyfQqkrf9mXlVCzwdxtLs+5+g46MyXJgQ
+         lejNuv1NOX4XgTPQLMsAzglIdPNgjyEUocUDosx0PdZ3w0WoBDHkdnozfZUE12vuNIzQ
+         2Ev7Mn3SJuJYScFKxVdLHxnxMDi9gznBZcf+nONWLOEbCOZ8Ziwu3qZNEE1p3/rbqjrP
+         oDxE7xl5x/f8CsZ3iNRBU+a4glP+3ZHhQKqOjM8Bak8e8wGF/UxerN0mT+MwBS+9Rddp
+         UpjQ==
+X-Gm-Message-State: AOJu0YyH2BAHpBlkXsgfp1hNI9RrFVrmRC98ifvRLSaplbuqQY1JXlUa
+	2An17nzpKAiLx5jTjfiTpLsbjEcjmH89xqiDA4T9aMDC3HvdVi78g2PfiiksF9H/L/Dla8SdrBD
+	4Vz+P2zfEkI/U8wdfUM6ZCA==
+X-Received: by 2002:a5d:46cf:0:b0:31f:8e7c:6ebe with SMTP id g15-20020a5d46cf000000b0031f8e7c6ebemr13528786wrs.5.1696876557927;
+        Mon, 09 Oct 2023 11:35:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG+JcBXZXNGTEmKnDAtxnhtdraUNMsB+1F+EutebIzxSPaz9pa+gYUnBEZnCiXhnydilDCYXQ==
+X-Received: by 2002:a5d:46cf:0:b0:31f:8e7c:6ebe with SMTP id g15-20020a5d46cf000000b0031f8e7c6ebemr13528764wrs.5.1696876557507;
+        Mon, 09 Oct 2023 11:35:57 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id f16-20020adfdb50000000b0031ff89af0e4sm10318981wrj.99.2023.10.09.11.35.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Oct 2023 11:35:57 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-pwm@vger.kernel.org
+Subject: [PATCH 0/8] drm/solomon: Add support for the SSD132x controller family
+Date: Mon,  9 Oct 2023 20:34:14 +0200
+Message-ID: <20231009183522.543918-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="M6raEjnX9WsFCxfg"
-Content-Disposition: inline
-In-Reply-To: <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+Hello,
+
+This patch-set adds support for the family of SSD132x Solomon controllers,
+such as the SSD1322, SSD1325 and SSD1327 chips. These are used for 16 Gray
+Scale Dot Matrix OLED panels.
+
+The patches were tested on a Waveshare SSD1327 display using glmark2-drm,
+fbcon, fbtests and the retroarch emulator.
+
+Patch #1 renames the ssd130x driver to ssd13xx since it will support both
+the SSD130x and SSD132x Solomon families and at least the SSD133x family
+in the future.
+
+Patch #2 also renames the data structures and functions prefixes with the
+ssd13xx name.
+
+Patch #3 drops the .page_height field from the device info with a constant
+because it's only needed by the SSD130x family and not the SSD132x family.
+
+Patch #4 changes the driver to use drm_format_info_min_pitch() instead of
+open coding the same calculation.
+
+Patch #5 adds a per controller family functions table to have logic that
+could be shared by both SSD130x and SSD132x callbacks.
+
+Patch #6 renames some SSD130X_* commands that are shared by both families
+and patch #7 adds the support for the SSD132x controller family.
+
+Finally patch #8 adds a DT binding schema for the SSD132x device nodes.
+
+Best regards,
+Javier
 
 
---M6raEjnX9WsFCxfg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Javier Martinez Canillas (8):
+  drm/solomon: Rename ssd130x driver to ssd13xx
+  drm/ssd13xx: Rename data structures and functions prefixes
+  drm/ssd13xx: Replace .page_height field in device info with a constant
+  drm/ssd13xx: Use drm_format_info_min_pitch() to calculate the
+    dest_pitch
+  drm/ssd13xx: Add a per controller family functions table
+  drm/ssd13xx: Rename commands that are shared across chip families
+  drm/ssd13xx: Add support for the SSD132x OLED controller family
+  dt-bindings: display: Add SSD132x OLED controllers
 
-On Mon, Oct 02, 2023 at 06:44:41PM +0800, yang tylor wrote:
-> On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel.org> =
-wrote:
-> >
-> > On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
-> > > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
-> > > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@kerne=
-l.org> wrote:
-> > > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
-> > > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor.d=
-ooley@microchip.com> wrote:
-> > > > > > > We have a default prefix firmware name(like himax_xxxx.bin) i=
-n the driver code.
-> > > > > >
-> > > > > > How do you intend generating the name of the firmware file? I a=
-ssume the
-> > > > > > same firmware doesn't work on every IC, so you'll need to pick a
-> > > > > > different one depending on the compatible?
-> > > > > >
-> > > > > If considering a firmware library line-up for all the incoming pa=
-nels
-> > > > > of this driver.
-> > > > > We would use PID as part of the file name. Because all the suppor=
-t panels would
-> > > > > have a unique PID associated. Which will make the firmware name l=
-ike
-> > > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID before =
-firmware load
-> > > > > at no flash condition. Thus PID information is required in dts wh=
-en
-> > > > > no-flash-flag
-> > > > > is specified.
-> > > >
-> > > > Firstly, where does the "xxx" come from?
-> > > > And you're making it sound more like having firmware-name is suitab=
-le
-> > > > for this use case, given you need to determine the name of the file=
- to
-> > > > use based on something that is hardware specific but is not
-> > > > dynamically detectable.
-> > > Current driver patch uses a prefix name "himax_i2chid" which comes
-> > > from the previous project
-> > >  and seems not suitable for this condition, so I use "xxx" and plan to
-> > > replace it in the next version.
-> > > For finding firmware, I think both solutions are reasonable.
-> > > - provide firmware name directly: implies no-flash and use user
-> > > specified firmware, no PID info.
-> > > - provide no-flash-flag and PID info: loading firmware from organized
-> > > names with PID info.
-> > > I prefer the 2nd solution, but it needs more properties in dts. 1st
-> > > has less properties and more
-> > > intuitive.
-> > >
-> > > I don't know which one is more acceptable by the community, as you
-> > > know I'm a newbie here.
-> >
-> > To be honest, I am not all that sure either! Does the panel id have
-> > value in its own right, or is that only used to determine the firmware
-> > filename?
-> Currently, PID stands for Panel/Project ID and is used for determining
-> the firmware filename only. We haven't come up with any new attribute that
-> may attach to it. The differences between panels are handled in firmware
-> dedicated to its PID.
->=20
-> > Also, if it does have value in its own right, rather than a "pid",
-> > should the panel be a child node of this hid device with its own
-> > compatible?
-> It may need a child node if we find it necessary to add attributes to eac=
-h PID.
-> But currently we have no idea about it.
+ .../bindings/display/solomon,ssd132x.yaml     |  116 ++
+ MAINTAINERS                                   |    6 +-
+ drivers/gpu/drm/solomon/Kconfig               |   28 +-
+ drivers/gpu/drm/solomon/Makefile              |    6 +-
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         |  112 --
+ drivers/gpu/drm/solomon/ssd130x.c             | 1260 --------------
+ drivers/gpu/drm/solomon/ssd13xx-i2c.c         |  126 ++
+ .../solomon/{ssd130x-spi.c => ssd13xx-spi.c}  |  104 +-
+ drivers/gpu/drm/solomon/ssd13xx.c             | 1508 +++++++++++++++++
+ .../gpu/drm/solomon/{ssd130x.h => ssd13xx.h}  |   63 +-
+ 10 files changed, 1876 insertions(+), 1453 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
+ delete mode 100644 drivers/gpu/drm/solomon/ssd130x-i2c.c
+ delete mode 100644 drivers/gpu/drm/solomon/ssd130x.c
+ create mode 100644 drivers/gpu/drm/solomon/ssd13xx-i2c.c
+ rename drivers/gpu/drm/solomon/{ssd130x-spi.c => ssd13xx-spi.c} (54%)
+ create mode 100644 drivers/gpu/drm/solomon/ssd13xx.c
+ rename drivers/gpu/drm/solomon/{ssd130x.h => ssd13xx.h} (51%)
 
-To be honest, it seems to me like you are using "PID" in place of a
-compatible for the panel, since it needs to be provided via DT anyway.
+-- 
+2.41.0
 
---M6raEjnX9WsFCxfg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ92gAKCRB4tDGHoIJi
-0sbAAQDvFnawcZKqA8CN5euZeU93hvrmcUykdZUeXZ3RsTGPegEAqXY+uqJz22vN
-qIYSeon1HUa/OyfQTuriEEM5vLbg6Q0=
-=mZhs
------END PGP SIGNATURE-----
-
---M6raEjnX9WsFCxfg--
 
