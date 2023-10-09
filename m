@@ -1,126 +1,116 @@
-Return-Path: <devicetree+bounces-7036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38EFA7BEBFD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 22:53:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11A97BEC06
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 22:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E70A6281AD1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 20:53:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B451C20A8F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 20:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DDB3FB03;
-	Mon,  9 Oct 2023 20:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA2A3FB0D;
+	Mon,  9 Oct 2023 20:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="4PAbeZeQ"
+	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="OI6BE535"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9120838DF0
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 20:53:30 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CE34A3
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:53:28 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-405459d9a96so143415e9.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 13:53:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F77A200B2
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 20:54:11 +0000 (UTC)
+Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AED2A9;
+	Mon,  9 Oct 2023 13:54:10 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rptsys.com (Postfix) with ESMTP id 4EC8B8286816;
+	Mon,  9 Oct 2023 15:54:09 -0500 (CDT)
+Received: from mail.rptsys.com ([127.0.0.1])
+	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id JBIZjUBB-1bh; Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rptsys.com (Postfix) with ESMTP id 63A2B8286866;
+	Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 63A2B8286866
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1696884807; x=1697489607; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=59tO/iIlQ73UqQX7Kk8ekqFEIp7s2Jv+HxK9i4t6u3Q=;
-        b=4PAbeZeQOmiEMgjmxfj2C2RZ90qgO4DgR1wDrauJS5k77bR0M9C1Ua7XcDtRTbisUB
-         u8CJndvzycWIGDaMHOdfP/rUVshbnFBETF4Vv553OCQhqrkvPdzjQwZtng/WB7UA/Nbc
-         MWyhOcXiYQoRWnHzfuVfri2hoiNzWDbB5ryCdqzsdn/loTXVa3jhcxazP9vO+LKkF1oN
-         4BTAvlRYRkEYTSTBA7oi5o9xaTeqKmqxMC2tkMrK8RH7HaBX8Tj/bM61DatMOye/jl2M
-         tC3HE0+qNDApHDR5bQDVlzb8IfdV+cFvLeq/RjOQYRJ5RE1Z5wvO9yuCGnJ/OMPjDAyt
-         PPwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696884807; x=1697489607;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=59tO/iIlQ73UqQX7Kk8ekqFEIp7s2Jv+HxK9i4t6u3Q=;
-        b=xMRZPYbtigXRs65qvKdlPUDhgGYIGL3qRJ5zcPXF7QQxNBcBbujww4K5UPaUwQbVjV
-         GTm55pDrQhnYuNU6kpIGpqup/V/Ib/r1frsfavZeizXZAWjUTO4WLygEl+Z8YBh+cT/U
-         Borxtcwnoa1IKwgtqa96xdQondl3ETz9Bn1e9/ADZEpyk19FyZyHn29Nbd6kvnjMGhPK
-         hlr5MSeEu7ZRsEF+sdKlg6N60uqYReHdgmTuDaTbnAFT4xWNrN8xHkMWzebW0bC5kFnP
-         /cWdR1eXDZsA5hoVZVNiOPlpI21f6eisc4ZoSKBC40jPnbcCSgyBncbnCpqQ0l3D5H2a
-         2D1A==
-X-Gm-Message-State: AOJu0YxsUvnBZBvYxP9vgS4xgpzkQSG8db5HhHg4bqu/YrvTSUrbhoxo
-	erzrdjEGrHeE+ysGIaZ/jXhE4qhofPeQQUopAjdkuA==
-X-Google-Smtp-Source: AGHT+IHq7N3/6OsWTZHhFPYxj2swHPTNEn7XPdgUv+UA1bljGHW5UFtKZwxam1OQNUu0b+Wrsm4hBPVG6ZOVmvI2H/o=
-X-Received: by 2002:a7b:c3d8:0:b0:400:c6de:6a20 with SMTP id
- t24-20020a7bc3d8000000b00400c6de6a20mr385036wmj.3.1696884806574; Mon, 09 Oct
- 2023 13:53:26 -0700 (PDT)
+	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
+	t=1696884848; bh=Hq+W0pYoX/RD12Ucrxx4Xcw+gED/OOKCQdN4ucsOuWU=;
+	h=Message-ID:Date:MIME-Version:To:From;
+	b=OI6BE535nQveYjP7j4B0Efiq6aUYLcdyg9sq7gYXDWXJY4uPZq7jFurfNlejmCg6Z
+	 hIVLOSih3fiZpD2tjACVr5Thzcg/og1jK0vIbFAe4W2VqIKRpewrCV0A6ulkD5DE9O
+	 MgkPBWEh52DtJsZ6DahmAPqTK0zZB/XJO1ieNVUA=
+X-Virus-Scanned: amavisd-new at rptsys.com
+Received: from mail.rptsys.com ([127.0.0.1])
+	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id g2WM3TFOVVU2; Mon,  9 Oct 2023 15:54:08 -0500 (CDT)
+Received: from [10.11.0.3] (5.edge.rptsys.com [23.155.224.38])
+	by mail.rptsys.com (Postfix) with ESMTPSA id 789AC8286816;
+	Mon,  9 Oct 2023 15:54:07 -0500 (CDT)
+Message-ID: <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
+Date: Mon, 9 Oct 2023 15:54:06 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231007060639.725350-1-yangcong5@huaqin.corp-partner.google.com> <CACRpkdbek0-Vhk4_34qY+0=EGrQxJS_CfLuF_5fRozMMyc+=Kw@mail.gmail.com>
-In-Reply-To: <CACRpkdbek0-Vhk4_34qY+0=EGrQxJS_CfLuF_5fRozMMyc+=Kw@mail.gmail.com>
-From: Doug Anderson <dianders@google.com>
-Date: Mon, 9 Oct 2023 13:53:14 -0700
-Message-ID: <CAD=FV=UFa_AoJQvUT3BTiRs19WCA2xLVeQOU=+nYu_HaE0_c6Q@mail.gmail.com>
-Subject: Re: [v1 0/2] Break out as separate driver from boe-tv101wum-nl6 panel driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, sam@ravnborg.org, 
-	neil.armstrong@linaro.org, daniel@ffwll.ch, hsinyi@google.com, 
-	swboyd@chromium.org, airlied@gmail.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for SIE
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ devicetree@vger.kernel.org, lee@kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
+ Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org
+References: <cover.1696285339.git.sanastasio@raptorengineering.com>
+ <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
+ <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
+From: Shawn Anastasio <sanastasio@raptorengineering.com>
+In-Reply-To: <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
-
-On Sun, Oct 8, 2023 at 12:33=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
+On 10/3/23 4:23 AM, Krzysztof Kozlowski wrote:
+> On 03/10/2023 00:32, Shawn Anastasio wrote:
+>> Add a vendor prefix for Sony Interactive Entertainment LLC (SIE).
+>>
+>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+>> ---
+>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> index 573578db9509..cff35e68a34d 100644
+>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> @@ -1211,6 +1211,8 @@ patternProperties:
+>>      description: Si-En Technology Ltd.
+>>    "^si-linux,.*":
+>>      description: Silicon Linux Corporation
+>> +  "^sie,.*":
+>> +    description: Sony Interactive Entertainment LLC
+> 
+> Is this different company than Sony?
 >
-> On Sat, Oct 7, 2023 at 8:06=E2=80=AFAM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> > Linus series proposed to break out ili9882t as separate driver,
-> > but he didn't have time for that extensive rework of the driver.
-> > As discussed by Linus and Doug [1], keep macro using the "struct panel_=
-init_cmd"
-> > until we get some resolution about the binary size issue.
->
-> OK works for me:
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->
-> Dough, if it looks OK to you too, can you apply the patches?
 
-Thanks for the review. I had a few small comments so I'd expect a v2.
+Yes. As I understand it, Sony Interactive Entertainment, LLC is its own
+separate corporate entity, though it is ultimately owned by Sony Group
+Corporation.
 
-I suspect it would look a little weird to add your Reviewed-by to
-patch #1 since the way Cong has it you're the direct patch author. :-P
-Cong, I suspect you may want to change the tagging on patch #1. I'd
-suggest setting yourself as the patch author (git commit --amend
---reset-author), then tag the first patch like this (I put "x-" first
-to make it obvious to any bots reading this that these are not tags to
-actually apply--remove that when you tag your patch):
+> Best regards,
+> Krzysztof
 
-x-Co-developed-by: Linus Walleij <linus.walleij@linaro.org>
-x-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-x-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-x-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-
-Also: just as a heads up, Hsin-Yi measured the impact of removing the
-"command table" for init and replacing it with a whole pile of direct
-function calls. She found that it added over 100K to the driver (!!!).
-I believe it went from a 45K driver to a 152K driver. Something to
-keep in mind. ;-)
-
--Doug
+Thanks,
+Shawn
 
