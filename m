@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A707BD54F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:36:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2825D7BD553
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:37:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6346D281558
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:36:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A921C209AB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:37:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072E7160;
-	Mon,  9 Oct 2023 08:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5100615A2;
+	Mon,  9 Oct 2023 08:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BZOTiZJZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="egAW8tQY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B37C156D4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:36:20 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9037A4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:36:17 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4064867903cso42323115e9.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:36:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9CA800
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:37:19 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1EAA3
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:37:17 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-327be5fe4beso3872000f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696840576; x=1697445376; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696840636; x=1697445436; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0EdUztj4PjCIGdsXMecz3X+x1slyI8NMeGuaMCNiLRs=;
-        b=BZOTiZJZLaYGYZLLPsKEOPIFXenGVMZ6HAoybNNe1MZ8OqQN31hwmp9QHibUo648gx
-         UDwSsksA+wg0j+yvMiAGSKcV5Cwas8Av6Am6XP2/MWVgyUowxJXEpVZKLHfEhX5igfWr
-         Lt1rF0GkI2JkiYz60ZpMnGvJvkAyQHnVBBbUEAlfXpSgaS9yZSgp6l2C9mcRuiLrI0kn
-         L2jiY+r9kLKhOMYmiA3xBugrkgGuRYoAS5gnoeSlxMv5tNjsBZ9V7w8DlsI9ikSi3fMT
-         tof4a/bsXSZHQkPYcI+p3lHHzl5uAELvHvhO9heoC9Pdl7ybcfL6+2dYETnGGBspKFRZ
-         zdFg==
+        bh=vw4Ub5eH1Ixa4YzHFtcmyZCEgbv0yUg7yO0faDSefC0=;
+        b=egAW8tQY5KFxO1nUcgpjEV3/NtiOkGSlZzwUlvLXMjry+XbpOM2p4KjtF9jZlosv8O
+         vLG6a5A/SN97So4kd7BNBYmxyqEa9uMjS73wSfEouUESbxnh7hSfQgReb5VO8XJYytPp
+         He0awCZGLui8+DsWtmEI6YuEO4ETunpJpFbmiPe6qvzeJ9KRMDUgsKSFt6xMSAfe0XiG
+         FoSQmt8MQrDNzExAJgIXDjVRBq3MDevzJRQHcUfMWQgo80//9wDUZVeWPhECpieEXwMp
+         yIk8gAeP2Zxh/VfcDhyyuoGNGlQP9UR2GdqeQjLVvQ0dDcmH4BS6q8hL8iDe37WkymEE
+         xlEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696840576; x=1697445376;
+        d=1e100.net; s=20230601; t=1696840636; x=1697445436;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0EdUztj4PjCIGdsXMecz3X+x1slyI8NMeGuaMCNiLRs=;
-        b=NfDVjwp0BDOOvioao5VuanrXscSNEZVPLxECjAKQQL8lB/4JoNTosDJOKCFYmmW2Pg
-         dA6gUTVU9YF9OZ6EtFyZz02ptNN22Ext0Bp8KgYqJUWuYVBJaeyyBuRxEdM23GTRqXMy
-         rXyXewZ8MQgUJCnuDfcJUWfzZeCFUOnHTbFlD6jCzRMpOtF7l2UPyaexh00byfOznTfB
-         +KeCmJtXFe4lBaxq0U9GZG8hkEIyBjZKdx3Tzs6h1Db3xSzJdj92cpPl82ErqyX1ekBj
-         k1MWBgQN8+yy3M8q2oShKc3l8KHYtq94IFEE93/oxMm7Z12mO4/Mo6+X2VFoEQaJhxNb
-         BUeQ==
-X-Gm-Message-State: AOJu0YyNmCU96jXW+Ld/liNoP3rd690T6yeMmKdCuVMpVxp0dbhDUYWC
-	NfufPnLWf6y4Z/g8yokk3CC/dEGrwBiWNN3d67A=
-X-Google-Smtp-Source: AGHT+IEm34kh6f3irVu+blOkX5zzu402f1S7hUSJvTs+DLvEWp1/ntfaS5rc/oWOsilEgCUwVZK+RA==
-X-Received: by 2002:a5d:60d1:0:b0:319:7656:3863 with SMTP id x17-20020a5d60d1000000b0031976563863mr12895657wrt.47.1696840576192;
-        Mon, 09 Oct 2023 01:36:16 -0700 (PDT)
+        bh=vw4Ub5eH1Ixa4YzHFtcmyZCEgbv0yUg7yO0faDSefC0=;
+        b=ZH9MlF4Jkwal206MbqG7nI9oWmXpasNvLqYpjUKrid7rbw2nBZAiXs2JJKGkj5QPdL
+         FkUhZmSrR2a9GPqSfRd8qezErgSIx+zK8qyMpzC/wLw/J6Rty8GsHEXguXUTJ2g/Ha5h
+         Zi8NNwzADJGqXWieFFm2fdroVbE+C1vsKcqJNYLdvRtevKIVh5xZi4rEzdWiXKhZMKCJ
+         ArlX1qCGaIhfzmtiwisiVA0WI2LsKgVSXF1rlKai+hNZOrLZBppLQFa88Dtvr96DHwb/
+         +Z3l/XFXpqQzF5FqQ7Oyvv0RVFTPNUUlIrxoleQem8+gwXfE13T5OS9wmqVOHehlSe7F
+         2r2Q==
+X-Gm-Message-State: AOJu0YxU7z7rDZaRJ4dUvsQeKC580vhYshVTxjnlVD166n9OPCNYXl0S
+	Bww8Y/hqUCrgeuuhc/GWQL6Hzw==
+X-Google-Smtp-Source: AGHT+IEp5g+dedCIfuVAoCu7Gl0pddi83Owd3gJXzdQyH4M3EZmdPkJJp+Lr6t1NyYhcTNWK9iI2eQ==
+X-Received: by 2002:adf:ed88:0:b0:320:28e:b638 with SMTP id c8-20020adfed88000000b00320028eb638mr13968302wro.36.1696840636025;
+        Mon, 09 Oct 2023 01:37:16 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id l2-20020a5d4802000000b0031fe0576460sm8923180wrq.11.2023.10.09.01.36.14
+        by smtp.gmail.com with ESMTPSA id l2-20020a5d4802000000b0031fe0576460sm8923180wrq.11.2023.10.09.01.37.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 01:36:15 -0700 (PDT)
-Message-ID: <4e785d2e-d310-4592-a75a-13549938dcef@linaro.org>
-Date: Mon, 9 Oct 2023 10:36:13 +0200
+        Mon, 09 Oct 2023 01:37:15 -0700 (PDT)
+Message-ID: <9f8561c5-56e1-4f8e-a737-17b02f2eee55@linaro.org>
+Date: Mon, 9 Oct 2023 10:37:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Avago APDS9306
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add Pine64 QuarzPro64
 Content-Language: en-US
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+To: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Paul Gazzillo <paul@pgazz.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
- <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Jagan Teki <jagan@edgeble.ai>, Jonas Karlman <jonas@kwiboo.se>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231008152703.1196370-1-megi@xff.cz>
+ <20231008152703.1196370-2-megi@xff.cz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,49 +126,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231008152703.1196370-2-megi@xff.cz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 08/10/2023 17:48, Subhajit Ghosh wrote:
-> Add devicetree bindings for Avago APDS9306 Ambient Light Sensor.
+On 08/10/2023 17:26, Ondřej Jirman wrote:
+> From: Ondrej Jirman <megi@xff.cz>
 > 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
->  .../bindings/iio/light/avago,apds9306.yaml    | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
+> Add devicetree binding documentation for Pine64 QuartzPro64 SBC.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
-> new file mode 100644
-> index 000000000000..e8bb897782fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/avago,apds9306.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Avago APDS9306 Ambient Light Sensor
-> +
-> +maintainers:
-> +  - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> +
-> +description:
-> +  Datasheet at https://docs.broadcom.com/doc/AV02-4755EN
 
-This is exactly the same as two other Avago devices. It should be
-squashed - first two device schemas squashed, then add new device support.
-
-Also, the supply is not vin, but vdd.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
