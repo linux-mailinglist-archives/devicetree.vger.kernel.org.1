@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAFE7BE2C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:28:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 914647BE2C8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E9321C208CC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:28:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B56A281766
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3E13589E;
-	Mon,  9 Oct 2023 14:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897023589F;
+	Mon,  9 Oct 2023 14:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vy4M/QWX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l+c3YoFw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246CC15AC7
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:28:23 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906AAB6
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 07:28:21 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso43258605e9.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 07:28:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2333A4691
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:28:49 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED03C5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 07:28:45 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40535597f01so43288285e9.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 07:28:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696861700; x=1697466500; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1696861724; x=1697466524; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jaxTCWdqEwpHMFZ/k9l1kxgISLFvaRHznpUGV5E8oyw=;
-        b=Vy4M/QWXJiOwlz6JXkFrbc8xxY/jLo94dld8sK0D6VX/YU8Arj5cPKBqPs9kFtPZcf
-         5bcYG/MKW9fejO2wrDWWrHsKujY0wuslqRth7WT+1QlabWIsfYmYRnITdBiHU2enIw3E
-         q2FQJpBBHZbxDjvtku6kiCBqBUrbfvZpW5BdTmdk7d6PA/wA2Iz86ARurxmIqJuoIecE
-         +0kUlfuAHZqDjbxykrnUyMfxWzQobAte1lx8Y9UJhZhyk/Tb3CYiAGQKr4Rw0XHiwSDT
-         r5iVjmWl2/j0ynifwwin3+eE/YmkE4tAlliEKALtA3ZODa9UX9eix7fbpjvGR03ZiXnV
-         Lx9A==
+        bh=a+7M0AHYNZH1mPLf3H5qQErik5p5SGAC1rjxcpWZH8Q=;
+        b=l+c3YoFwFcJqNqykycrqPEaSmpx43sIvPZ3zatFkxiQQr2/fCLWc1vG6ntQ/o5+VML
+         p5/gXPtM6Qb2ycs8IL9BD2eSqKos1bCE9tuPjcAIcXYIk5o7PAaz9iPJpBwt+yF0PuW5
+         ogJ5MhlFaBjXv453uzXIKWdMf+rgGE2pOdqwgNJGAJ7LeSNt+0aMKumCB+ogXY3yFxXa
+         OgGWmLdarA/KC6bqk5+4xy6D1edpbc6JKdHlsTjzdmusAy0lSNuVcs5yonMwL5NQQZ2S
+         fgDLY4dZRgAdsAT9wvXmUpjjSYnOsPnc2M6V/0t8FzrYi7dNMWtt4hmfWzSMjXAsm8Wn
+         CEfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696861700; x=1697466500;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1696861724; x=1697466524;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jaxTCWdqEwpHMFZ/k9l1kxgISLFvaRHznpUGV5E8oyw=;
-        b=H8+ULsWLuvwdds68+L3fVpGY/yzxr9xyqyGd3jRbx/zTdH/q25kw60mHR8dDe8Lpio
-         tPwbIqI11VYehTLmnVqgvzVJxG+j8YCxfe6J24bEmXSMeyNfyuPJ+ZayQo6f9SJ7dI7Q
-         /lJjJD1cfwS4z286b9Ph1Xgws+jrM9Sc2fx6Yy2PpuQZNO8vjc/YqAf1EWfxeCecZA67
-         wvQgzXJBWH102Ef07NsxQRZxjRCCwkZGSASPX/yfqEInR/qo6KsGCFsV05kAqe++eAOc
-         L6hCkcGd839loGbjpy4H05ynd2kxOxylEp8ifMiDUypP/h2/gCg+hjsf5xe7r9be3jap
-         SIAg==
-X-Gm-Message-State: AOJu0YwOy6RakLkFFGegnlYnfGeecIRZNa3rMDTDh8lpm4Ni2+hAqmdB
-	tYjoGvuVZ7Vfhi/dAurbllPjRA==
-X-Google-Smtp-Source: AGHT+IHPx2g19dEJyQjEKpONxssLueazSgV9mC0ZnOd2rJWMa5sbVjl2Lz6+EQkU+2CdW/whY50bsw==
-X-Received: by 2002:a1c:6a18:0:b0:401:eb0:a974 with SMTP id f24-20020a1c6a18000000b004010eb0a974mr13345124wmc.3.1696861699960;
-        Mon, 09 Oct 2023 07:28:19 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:88ad:b7c0:92ba:cace? ([2a05:6e02:1041:c10:88ad:b7c0:92ba:cace])
-        by smtp.googlemail.com with ESMTPSA id i9-20020a5d4389000000b0031ad5fb5a0fsm9814573wrq.58.2023.10.09.07.28.18
+        bh=a+7M0AHYNZH1mPLf3H5qQErik5p5SGAC1rjxcpWZH8Q=;
+        b=UIEHeBlZlaBifzlU08WfFm8+8VQ61WaE7Vk0PNMAPF/QUKt1KM3QZtN649UZb8AEvq
+         ZMyBAt4Brpbv7RdPQ53spQ3JUzAdTw6MqlebzPiiTvqmMfcuVPTqp+o38zDncMfPyD58
+         G3d6nTuiZ7cNsZmzt9O1TS7qwzbB8Olfa09q4+PxsE7WH5HHsZUkLRRdqbV+dM1cqolI
+         XwMs74shMAr9YLI5QTe+tm1TlBVhbVgBFXPTuYb4wyDxu2ZpkMzPCu8A0Wf0L8yHTTsm
+         RZEvhjlO7x8qESHHQujDYWvd57chZWclm9x8RI1rxKLPH1w6YIBSV6u4pAgpvqrjJraC
+         7O1Q==
+X-Gm-Message-State: AOJu0YzqEmtfT8Mz70a3TnJ/bZuDmwRJp0CUcuIfC6PUWOZG2NyIH54P
+	iZfy4JwOj1hiIZeLUcVSUjJMhA==
+X-Google-Smtp-Source: AGHT+IEmfetZGwgxK9GU3rc4AnA+Rg69W/SViB1yBfRKxaAx6EJEj2/DvVg+BfUFW3sO0I3KT16Naw==
+X-Received: by 2002:a05:600c:ad0:b0:406:7029:7cc3 with SMTP id c16-20020a05600c0ad000b0040670297cc3mr13247986wmr.28.1696861723411;
+        Mon, 09 Oct 2023 07:28:43 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id l34-20020a05600c1d2200b003fef5e76f2csm6791127wms.0.2023.10.09.07.28.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 07:28:18 -0700 (PDT)
-Message-ID: <eb5bea56-6ad8-4617-a9cf-d4226fd45c56@linaro.org>
-Date: Mon, 9 Oct 2023 16:28:17 +0200
+        Mon, 09 Oct 2023 07:28:42 -0700 (PDT)
+Message-ID: <d3f56d51-beb0-4f7a-a1f6-3ae03bbc9826@linaro.org>
+Date: Mon, 9 Oct 2023 16:28:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,71 +67,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
+ encoder
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh+dt@kernel.org>,
+To: Hugues FRUCHET <hugues.fruchet@foss.st.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+Cc: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
+ <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
+ <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
+ <0de2ae74-2ba1-0e8d-aa7b-77806ac8b252@foss.st.com>
+ <1e2a4d87-5478-4655-993d-7f404d507c82@linaro.org>
+ <fa0e6187-ab7d-bc23-299c-a491c8ff1d8f@foss.st.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <fa0e6187-ab7d-bc23-299c-a491c8ff1d8f@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/07/2023 10:18, Biju Das wrote:
-> This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
-> Also it fixes overflow/underflow interrupt names.
+On 09/10/2023 16:24, Hugues FRUCHET wrote:
+> Hi Krzysztof,
 > 
-> v2->v3:
->   * Dropped patch#4, as it accepted for 6.5 fixes.
->   * Moved patch#2 to patch#1 as it is fixes patch.
->   * Added Rb tag from Geert for patch#1 and patch#3.
->   * Updated the link to lore for Closes tag for patch#2.
->   * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
-> 
-> v1->v2:
->   * Added Ack tags from Conor Dooley for binding patches
->   * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
->   * Fixed build error reported by kernel test robot by replacing
->     GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
-> 
-> Biju Das (5):
->    dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
->      names
->    dt-bindings: timer: renesas,rz-mtu3: Improve documentation
->    dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
->    arm64: dts: renesas: r9a07g043: Add MTU3a node
->    arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
-> 
->   .../bindings/timer/renesas,rz-mtu3.yaml       | 67 +++++++++---------
->   arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 70 +++++++++++++++++++
->   .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 11 +++
->   .../dts/renesas/rzg2ul-smarc-pinfunction.dtsi |  6 ++
->   arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 13 ++++
->   5 files changed, 134 insertions(+), 33 deletions(-)
-> 
+> On 10/9/23 15:56, Krzysztof Kozlowski wrote:
+>> On 09/10/2023 15:49, Hugues FRUCHET wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 10/5/23 21:45, Krzysztof Kozlowski wrote:
+>>>> On 04/10/2023 11:15, Hugues Fruchet wrote:
+>>>>> Add STM32MP25 VENC video encoder bindings.
+>>>>>
+>>>>
+>>>> I don't understand why this binding is separate from video decoder.
+>>>> Merge them.
+>>> VDEC and VENC are two independent IPs with their own clock, reset,
+>>> interrupt & register set, they have their own access to APB/AXI bus.
+>>> Moreover future chipsets may embed only VENC or VDEC.
+>>>
+>>> Hoping that this clarifies the reason of two different bindings.
+>>
+>> No, it does not. These are no reasons to have independent bindings,
+>> except when having actual impact on the bindings. The bindings look
+>> identical. What are the differences?
+> I'm sorry but I really don't understand your point, these are two 
+> different IPs with very different registers in it, so why should
+> I share that in a single binding ?
 
-patches 1,2 and 3 applied
+Because the binding is identical. If not, maybe I missed something, so
+please point me to differences in the binding.
 
-Thanks
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
 
