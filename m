@@ -1,150 +1,199 @@
-Return-Path: <devicetree+bounces-6929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A05C7BDD18
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:07:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47527BDD55
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:09:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5685528150C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:07:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DDD3281558
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84307171AD;
-	Mon,  9 Oct 2023 13:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DF39CA7B;
+	Mon,  9 Oct 2023 13:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qjKXN6uc"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="j2PsSXaT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643328F6D
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:06:59 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6688C8F;
-	Mon,  9 Oct 2023 06:06:57 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39988KWV002751;
-	Mon, 9 Oct 2023 15:06:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=3PQ+2v2hmYuHs5jDOC8Az7oTSOTXepldPGCW+7kNOTA=; b=qj
-	KXN6ucPltGfUQkCxs5eJy7A75jo7dich1n9YVbSe4Eii8m5W4Nbhpj+Fn/qDpai5
-	Dbo9az6CTZcEyjF5vlr3tce4X4YgmKmg0OPJ9hnWqu9Z2OlOtebz6gtyJb2Z/J6t
-	xc9ps9L7MmTXwV+T0t0XHRjixFUwKPPfuOqxzONPy2uecd6OVygRbjgmxK3toVK+
-	nvZKlPFnhc10HgFuCJnCOVdHMdZCyGsQnj++QSIPoZ4XvfN80uhgRa/i7Ut6/+g+
-	mtnknabD4AxY0yNQeLZBNya+nocaQ9n4k+zR2xJwwxvDkZzK/04tESU95bPjf5a4
-	OiQr0lskndAPscCSkm3g==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhfdw9uw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 15:06:32 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5FA51100063;
-	Mon,  9 Oct 2023 15:06:30 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 52ABC23D411;
-	Mon,  9 Oct 2023 15:06:30 +0200 (CEST)
-Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
- 2023 15:06:29 +0200
-Message-ID: <fb77b886-b557-b2af-a2f5-c0057a95b589@foss.st.com>
-Date: Mon, 9 Oct 2023 15:06:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9B518B00
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 13:09:27 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90119E;
+	Mon,  9 Oct 2023 06:09:24 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 1CBC8120005;
+	Mon,  9 Oct 2023 16:09:21 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1CBC8120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696856961;
+	bh=fJueb/I454tOqgUy+mqOFFsn6IdMT0sYitu6ljAKTBs=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=j2PsSXaTU7/xQBImFRZFRkiXL3U8tXLfP5hSgTxZd0R6ipksW6SlwiwzRSuoQ8BF9
+	 qrtUdcnmkM64evnkHYhePoALkJ5OSUqf5su/rofLnQwhXs219ik+ccJ4T9abwx+FjU
+	 7Xwp+05EVFFf+X6bETJdckU5eowrz7xvLh3ffVMtSNTymvEHBfCNWPMCnVZ7XXW3fH
+	 HwsEgr4Fn53D7N5OKNXOzEidDtb626+tRyNvLS67wDKgBn76AvMVOU76BOmeRS51V6
+	 0q0HQYU3fmD7nuibkgOhakq2SmHoeatQBNDY14pPeLyaxuODq2dfKimJZ4NNWCfUN3
+	 zY0b5m8fT5dfQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  9 Oct 2023 16:09:20 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
+ 2023 16:09:19 +0300
+Date: Mon, 9 Oct 2023 16:09:19 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v1 03/11] leds: aw200xx: support HWEN hardware control
+Message-ID: <20231009130919.bezr4wvk4pwmc4p3@CAB-WSD-L081021>
+References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
+ <20231006160437.15627-4-ddrokosov@salutedevices.com>
+ <CAHp75VceobJuEnpQY2Hi1hrjTDCSa-zxi7zxaWt5-k9haGDFUg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
- encoder
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Adam Ford <aford173@gmail.com>
-CC: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans
- Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        Andrzej
- Pietrasiewicz <andrzej.p@collabora.com>
-References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
- <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
- <CAHCN7xKrriTPaRMJ-r86cSgFDUUP1At08imLBr_zEP0g3fga_g@mail.gmail.com>
- <20231006162703.GA4030032-robh@kernel.org>
-From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
-In-Reply-To: <20231006162703.GA4030032-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.20.120]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_11,2023-10-09_01,2023-05-22_02
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAHp75VceobJuEnpQY2Hi1hrjTDCSa-zxi7zxaWt5-k9haGDFUg@mail.gmail.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180473 [Oct 09 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/08 23:24:00 #22096719
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob,
+Hello Andy,
 
-On 10/6/23 18:27, Rob Herring wrote:
-> On Wed, Oct 04, 2023 at 06:41:09PM -0500, Adam Ford wrote:
->> On Wed, Oct 4, 2023 at 4:16 AM Hugues Fruchet
->> <hugues.fruchet@foss.st.com> wrote:
->>>
->>> Add STM32MP25 VENC video encoder bindings.
->>>
->>> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
->>> ---
->>>   .../bindings/media/st,stm32mp25-venc.yaml     | 56 +++++++++++++++++++
->>>   1 file changed, 56 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
->>> new file mode 100644
->>> index 000000000000..c69e0a34f675
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
->>> @@ -0,0 +1,56 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/st,stm32mp25-venc.yaml#
->>
->> Can this dt-binding be made more generic, like something like
->> hantro-h1 or VC8000NanoE?
->>
->> I think there will be more boards that may incorporate the Hantro-H1
->> or a VC8000 in the future, because I don't think this IP is unique to
->> the STM32MP25.
+Thanks a lot for such a quick review!
+
+Please find my comments below.
+
+On Fri, Oct 06, 2023 at 08:57:23PM +0300, Andy Shevchenko wrote:
+> On Fri, Oct 6, 2023 at 7:04 PM Dmitry Rokosov
+> <ddrokosov@salutedevices.com> wrote:
+> >
+> > HWEN is hardware control, which is used for enable/disable aw200xx chip.
+> > It's high active, internally pulled down to GND.
+> >
+> > After HWEN pin set high the chip begins to load the OTP information,
+> > which takes 200us to complete. About 200us wait time is needed for
+> > internal oscillator startup and display SRAM initialization. After
+> > display SRAM initialization, the registers in page1 to page5 can be
 > 
-> Unless the underlying IP is well documented (i.e. public), then it's
-> kind of pointless. Everyone will just invent their own numbers and names
-> of clocks, resets, etc. unless someone can enforce not doing that.
+> pages 1 to 5
+> 
+> 
 
-Unfortunately the IP documentation is not public, there are no documents 
-provided publicly by Verisilicon for the time being.
+Sure, you are totally right.
+
+> > configured via i2c interface.
+> 
+> ...
+> 
+> > +#include <linux/of_gpio.h>
+> 
+> Definitely not.
+> 
+> Use agnostic APIs.
+
+Sure
+
+> > @@ -116,6 +117,7 @@ struct aw200xx {
+> >         struct mutex mutex;
+> 
+> >         u32 num_leds;
+> >         u32 display_rows;
+> > +       int hwen;
+> >         struct aw200xx_led leds[];
+> 
+> Side note: add a patch to use __counted_by() here.
+
+Okay, now I see the patch with __counted_by() some days ago. I will
+rebase on it.
+
+> > +       if (!gpio_is_valid(chip->hwen))
+> 
+> Absolutely not. You may not use legacy GPIO APIs.
+
+Exactly
+
+> > +               return;
+> > +
+> > +       gpio_set_value(chip->hwen, 1);
+> 
+> Ditto.
+
+Ok
+
+> > +       usleep_range(400, 500);
+> 
+> fsleep() ?
+
+Agreed. In this situation fsleep() automatic behaviour is acceptable.
 
 > 
-> Rob
+> ...
+> 
+> > +static void aw200xx_disable(const struct aw200xx *const chip)
+> > +{
+> > +       if (gpio_is_valid(chip->hwen))
+> > +               gpio_set_value(chip->hwen, 0);
+> > +}
+> 
+> As per above.
 
-BR,
-Hugues
+Ok
+
+> > +static void aw200xx_probe_hwen(struct device *dev, struct aw200xx *chip)
+> > +{
+> > +       chip->hwen = of_get_named_gpio(dev->of_node, "awinic,hwen-gpio", 0);
+> > +       if (gpio_is_valid(chip->hwen))
+> > +               if (devm_gpio_request_one(dev, chip->hwen, GPIOF_OUT_INIT_HIGH,
+> > +                                         "AW200XX HWEN")) {
+> > +                       dev_warn(dev, "Can't request gpio %d, tag it invalid\n",
+> > +                                chip->hwen);
+> > +                       chip->hwen = -EINVAL;
+> > +               }
+> > +}
+> 
+> Please, rewrite this completely using supported APIs and not
+> deprecated or obsolete ones.
+
+Yep, I see. I will use devm_gpiod_* API.
+
+-- 
+Thank you,
+Dmitry
 
