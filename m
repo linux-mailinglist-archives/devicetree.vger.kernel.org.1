@@ -1,172 +1,131 @@
-Return-Path: <devicetree+bounces-6851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4687BD2D7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 07:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ABDE7BD334
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2D11C208C3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 05:41:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CDA01C2087C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 06:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2832AB651;
-	Mon,  9 Oct 2023 05:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6CCBA22;
+	Mon,  9 Oct 2023 06:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KHDtihLb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gUKlDjsI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4CD1FC5
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 05:41:08 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D959E;
-	Sun,  8 Oct 2023 22:41:05 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3995eZMZ056348;
-	Mon, 9 Oct 2023 00:40:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696830035;
-	bh=uH1s6pUcj06GVFmMzVsYyW292JwkPCIrAGTeZPFkZrI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=KHDtihLb5/nkre8mGz6ZsxjQbhIUSuhMoNmGdRCaSURHNnGDmJfE9XnTxjQ/fvnbh
-	 CEJhh/zcFr75PmyqL83NaZRSuXfwJr+Tq7AjJ8Rh2yeQiEPnyM/d4Zym3JYhoS7Fqi
-	 20qH3sZbn2o/eT/M1hYtTeCCtvmJdBC+PvZtWq64=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3995eZF2018233
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 9 Oct 2023 00:40:35 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
- Oct 2023 00:40:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 9 Oct 2023 00:40:35 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3995eYQV043957;
-	Mon, 9 Oct 2023 00:40:35 -0500
-Date: Mon, 9 Oct 2023 11:10:34 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Muhammed Efe Cetin <efectn@6tel.net>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <heiko@sntech.de>,
-        <jonas@kwiboo.se>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>, <megi@xff.cz>,
-        <robh+dt@kernel.org>, <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: Add Orange Pi 5
-Message-ID: <20231009054034.am2e4hcmwoworeml@dhruva>
-References: <20230928105137.5ljhuoxjc7et5thw@dhruva>
- <20231005135405.257495-1-efectn@6tel.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2565B66D
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 06:16:10 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCCA9E;
+	Sun,  8 Oct 2023 23:16:08 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399381Uf008612;
+	Mon, 9 Oct 2023 06:15:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=9xnVisqg50meGti2HSYLDC8UjxUYc57KFi5Pop78p1k=;
+ b=gUKlDjsIfftvMEtMneRE2nDEYXIMWKgG5SQ078XvvAZhXpJgvkRQVA6HSoHY06SMkVxC
+ lRvQHuzveCxpaJI6Yfwous5aT+Lg2zzf+rKaiT0yybgOjgD2jwOL9tKMLMGK8poze/36
+ 1PPFXMdJsXq9YE04lKnCznHblswSyaax8w0yalZtz36Oithw07C243QVQKEtJUNRf5pG
+ yCXNd7+X/7H4GVZaNJuE4brq8Qfx+xEl/5OO6/EvmYF6ywySoxZ4DOj3pwQ78xMTTSnM
+ 7J+xuF/uLS5vBkU6IqAfxfDHstk2AynHEvRUhpv3mzBkYnve12rkvKDBiRG0LQZnDwzX 9A== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkh3s1nc3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 06:15:40 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3996FdEJ013455
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Oct 2023 06:15:39 GMT
+Received: from [10.201.200.63] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Sun, 8 Oct
+ 2023 23:15:32 -0700
+Message-ID: <3492bff2-5d81-4bd4-a53c-b46513c40b5a@quicinc.com>
+Date: Mon, 9 Oct 2023 11:45:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231005135405.257495-1-efectn@6tel.net>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: ipq5018: Enable PCIe
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <bhelgaas@google.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
+        <p.zabel@pengutronix.de>, <quic_srichara@quicinc.com>,
+        <quic_varada@quicinc.com>, <quic_ipkumar@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20231003120846.28626-1-quic_nsekar@quicinc.com>
+ <20231003120846.28626-7-quic_nsekar@quicinc.com>
+ <54ed2500-1d06-4f36-b2c5-418b878e9de4@linaro.org>
+From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+In-Reply-To: <54ed2500-1d06-4f36-b2c5-418b878e9de4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XFJUgqDogRhEwILorPzdADmtqwqn8Fgx
+X-Proofpoint-ORIG-GUID: XFJUgqDogRhEwILorPzdADmtqwqn8Fgx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_04,2023-10-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 mlxscore=0 spamscore=0 adultscore=0
+ suspectscore=0 phishscore=0 mlxlogscore=619 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310090053
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
 
-On Oct 05, 2023 at 16:54:04 +0300, Muhammed Efe Cetin wrote:
-> Hello,
-> 
-> On 28.09.2023 13:51, Dhruva Gole wrote:
-> > Hi,
-> > 
-> > On Aug 21, 2023 at 18:47:59 +0300, Muhammed Efe Cetin wrote:
-> >> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
-> >> Sdmmc, SPI Flash, PMIC.
-> >>
-> >> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
-> >> Reviewed-by: Ondřej Jirman <megi@xff.cz>
-> >> ---
-> >>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >>   .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 673 ++++++++++++++++++
-> >>   2 files changed, 674 insertions(+)
-> >>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-> >>
-> > ...
-> > 
-> > Can you provide some sort of documentation on how I can build and boot
-> > the kernel on this board? I was unable to use the upstream arm64
-> > defconfig with this exact series applied to boot the board.
-> 
-> What was wrong when you tried to compile & boot the board? Can you provide some logs?
+On 10/7/2023 5:57 AM, Konrad Dybcio wrote:
+> On 3.10.2023 14:08, Nitheesh Sekar wrote:
+>> Enable the PCIe controller and PHY nodes for RDP 432-c2.
+>>
+>> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 9 +++++++++
+>>   1 file changed, 9 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
+>> index e636a1cb9b77..be7d92700517 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
+>> @@ -28,6 +28,15 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&pcie_x2 {
+>> +	status = "ok";
+> "okay" is preferred
+>
+> It's also preferred to keep status as the last property within
+> a node.
+>
+> Konrad
 
-Umm don't have logs at hand, but I remember it didn't really reach the
-linux first line either, it went into sort of a bootloop just after
-the uboot stage.
+Sure. will update.
 
-> 
-> > 
-> >> +
-> >> +&i2c6 {
-> >> +	pinctrl-names = "default";
-> >> +	pinctrl-0 = <&i2c6m3_xfer>;
-> >> +	status = "okay";
-> >> +
-> >> +	hym8563: rtc@51 {
-> >> +		compatible = "haoyu,hym8563";
-> >> +		reg = <0x51>;
-> >> +		#clock-cells = <0>;
-> >> +		clock-output-names = "hym8563";
-> >> +		pinctrl-names = "default";
-> >> +		pinctrl-0 = <&hym8563_int>;
-> >> +		interrupt-parent = <&gpio0>;
-> >> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-> >> +		wakeup-source;
-> > 
-> > Are you able to actually use rtc as a wakeup source? I tried this
-> > on a downstream kernel that I mention below..
-> > 
-> > rtcwake -s 10 -m mem
-> > 
-> > didn't actually seem to wake the device from deepsleep after 10 seconds.
-> > Do you know what other pins I can use as wakeup sources?
-> 
-> No, i've not tried it before.
+Thanks,
+Nitheesh
 
-ah okay
-
-> 
-> > 
-> >> +	};
-> >> +};
-> >> +
-> >> +&mdio1 {
-> >> +	rgmii_phy1: ethernet-phy@1 {
-> >> +		compatible = "ethernet-phy-ieee802.3-c22";
-> > 
-> > Just wondering, can you please give some logs of the board with eth
-> > working? The image that I have from opi seems to fail eth? As in I am
-> > not able to see any ip address. here are the logs:
-> > 
-> > https://gist.github.com/DhruvaG2000/eda2762e35013c8d5ac9f37e818103a3
-> 
-> Unfortunately the board is not near me currently. However, i was able to use GMAC ethernet in both the upstreram and downstream kernels. Did you try any images other than Orange Pi ones?
-
-Nope, are there any other images that maybe more suitable? Please can you point me to them?
-
-> 
-> > 
-> > ...
-> > 
-> 
-
--- 
-Best regards,
-Dhruva Gole <d-gole@ti.com>
 
