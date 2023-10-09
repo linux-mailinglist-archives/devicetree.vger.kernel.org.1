@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-7006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6B87BE847
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1A67BE84E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8B81C209B6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:35:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBF4F1C20A3A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B2338DCC;
-	Mon,  9 Oct 2023 17:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8497738DD1;
+	Mon,  9 Oct 2023 17:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDr93PRP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eoYNRHQh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A5C36B06
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:35:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1366C433C8;
-	Mon,  9 Oct 2023 17:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6525636B06;
+	Mon,  9 Oct 2023 17:37:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C289DC433C8;
+	Mon,  9 Oct 2023 17:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696872906;
-	bh=1ZYVBGazHy2d4Xk2g9EBASgik4ghV3l90e5mT3K1Ytc=;
+	s=k20201202; t=1696873022;
+	bh=h7WrtdvD0ju8NFCMVMHvu7LpOnWmQlsK4wC5k7i7cNo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RDr93PRPR2Q/aDAn5KZ/clRWHgfjNEsU4Sm9fe6ojAyybNu2a+vz/JFOL2gBgyem0
-	 AviVkEuKu9pfF2QwsiUVUQjWBbosIgwB8QehsabJ0WrNFrsQmHkomYR5wfARuJcWvV
-	 9lYEMe6yh0eq4kI766BIsvtm7SP1Bd8TtBNfTSXzJQx1+l+DcG7YwYGJHpHiXyhFF1
-	 C40bo6oAG24vz3K9ABTdBjX5SH2NEz18pOdnrViwbuNXJk/7KASVBejSR5KhC3Kqn3
-	 pTLkC/ruDcqrsZsVHZxUdLgzYgxlV4xDE8oECUV5qfVWyx2FFXYmjXBPTnw0N2Tuvm
-	 2ZY/ZXS2vVDiw==
-Date: Mon, 9 Oct 2023 18:35:01 +0100
+	b=eoYNRHQh44pwHrreECTkWOEwcbgWryF14RmC6nCXWKULnzeD2Qm71vk0RhhjdwFMg
+	 JCrD+7aEuCYP6xcfuHTMhafCW1lMgSbn7JooBQ1kxUTZ7535R59gGT3sJglxUde6qz
+	 mHK8bWHSfbaR1xIv2XiXrq8QPpFLKVtof7wgQBLejkwsoYlwmCdHY5hHC8m5dHiW7O
+	 sBAwUfo/u+YVtemTMrtXR9UV/sjqhYPh3J7f80YPvgn0hUBzOhPvKKXJQpPtGybzUd
+	 KO9oB/A8DmdCejC4peYDAYwH+E4A4e4AiWoqjgZ3MgQ88ZKwcMl4mPDhht9Mx9zDxj
+	 eTdAoaaBEsucA==
+Date: Mon, 9 Oct 2023 18:36:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: ltc2991: add bindings
-Message-ID: <20231009-maimed-reenact-05c6e3b36ca9@spud>
-References: <20231003080059.8041-1-antoniu.miclaus@analog.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andersson@kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, jun.li@nxp.com,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v3 2/2] dt-bindings: usb: gpio-sbu-mux: Make
+ 'mode-switch' not required
+Message-ID: <20231009-faculty-rascal-d1d1e2106188@spud>
+References: <20230927123511.45085-1-festevam@gmail.com>
+ <20230927123511.45085-2-festevam@gmail.com>
+ <20230928-machine-pushcart-6e68b11afc7c@spud>
+ <CAOMZO5B=MEDUE4bEnkri1npUG93KQZSp=JYaV8R8hKNY2qQtQA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,198 +54,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Sb32d3m8HlxF4rSL"
+	protocol="application/pgp-signature"; boundary="v42yTMsuEvy/0/GJ"
 Content-Disposition: inline
-In-Reply-To: <20231003080059.8041-1-antoniu.miclaus@analog.com>
+In-Reply-To: <CAOMZO5B=MEDUE4bEnkri1npUG93KQZSp=JYaV8R8hKNY2qQtQA@mail.gmail.com>
 
 
---Sb32d3m8HlxF4rSL
-Content-Type: text/plain; charset=us-ascii
+--v42yTMsuEvy/0/GJ
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 03, 2023 at 11:00:39AM +0300, Antoniu Miclaus wrote:
-> Add dt-bindings for ltc2991 octal i2c voltage, current and temperature
-> monitor.
+On Fri, Sep 29, 2023 at 03:41:58PM -0300, Fabio Estevam wrote:
+> Hi Conor,
 >=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v3:
->  - expand description for differential channels and temperature channels =
-by
->    mentioning the pin configuration that is set via these properties.
->  - add `additionalProperties: false` for the channel properties
->  - make `reg` required for channel properties
->  - make `adi,temperature-enable` and `shunt-resistor-micro-ohms` mutually
->    exclusive following the approach suggested in review.
+> On Thu, Sep 28, 2023 at 2:04=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Wed, Sep 27, 2023 at 09:35:11AM -0300, Fabio Estevam wrote:
+> > > From: Fabio Estevam <festevam@denx.de>
+> > >
+> > > On a i.MX8QXP MEK board that has an NXP CBDTU02043 mux, there is
+> > > no mode-switch, only an orientation switch.
+> > >
+> > > Make the 'mode-switch' property a non-required one.
+> >
+> > There seem to be very few compatibles in this file, so I guess
+> > everything uses the generic compatible. I'm not expecting you to know
+> > why it's like this, but should we add a compatible for this particular
+> > mux & only relax the requirement for it specifically?
+>=20
+> I am not sure.
+>=20
+> Bjorn, do you have any suggestions, please?
 
-Thanks for the updates.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+FWIW,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+although I do think that adding more compatibles if there is gonna be
+divergence in capabilities is a good idea..
 
 Cheers,
 Conor.
 
->  .../bindings/hwmon/adi,ltc2991.yaml           | 128 ++++++++++++++++++
->  1 file changed, 128 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2991.y=
-aml
 >=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml b/D=
-ocumentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> new file mode 100644
-> index 000000000000..011e5b65c79c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> @@ -0,0 +1,128 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/adi,ltc2991.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices LTC2991 Octal I2C Voltage, Current and Temperature=
- Monitor
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  The LTC2991 is used to monitor system temperatures, voltages and curre=
-nts.
-> +  Through the I2C serial interface, the eight monitors can individually =
-measure
-> +  supply voltages and can be paired for differential measurements of cur=
-rent
-> +  sense resistors or temperature sensing transistors.
-> +
-> +  Datasheet:
-> +    https://www.analog.com/en/products/ltc2991.html
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,ltc2991
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  vcc-supply: true
-> +
-> +patternProperties:
-> +  "^channel@[0-3]$":
-> +    type: object
-> +    description:
-> +      Represents the differential/temperature channels.
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          The channel number. LTC2991 can monitor 4 currents/temperature=
-s.
-> +        items:
-> +          minimum: 0
-> +          maximum: 3
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          The value of curent sense resistor in micro ohms. Pin configur=
-ation is
-> +          set for differential input pair.
-> +
-> +      adi,temperature-enable:
-> +        description:
-> +          Enables temperature readings. Pin configuration is set for rem=
-ote
-> +          diode temperature measurement.
-> +        type: boolean
-> +
-> +    required:
-> +      - reg
-> +
-> +    allOf:
-> +      - if:
-> +          required:
-> +            - shunt-resistor-micro-ohms
-> +        then:
-> +          properties:
-> +            adi,temperature-enable: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vcc-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        hwmon@48 {
-> +            compatible =3D "adi,ltc2991";
-> +            reg =3D <0x48>;
-> +            vcc-supply =3D <&vcc>;
-> +        };
-> +    };
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        hwmon@48 {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            compatible =3D "adi,ltc2991";
-> +            reg =3D <0x48>;
-> +            vcc-supply =3D <&vcc>;
-> +
-> +            channel@0 {
-> +                    reg =3D <0x0>;
-> +                    shunt-resistor-micro-ohms =3D <100000>;
-> +            };
-> +
-> +            channel@1 {
-> +                    reg =3D <0x1>;
-> +                    shunt-resistor-micro-ohms =3D <100000>;
-> +            };
-> +
-> +            channel@2 {
-> +                    reg =3D <0x2>;
-> +                    adi,temperature-enable;
-> +            };
-> +
-> +            channel@3 {
-> +                    reg =3D <0x3>;
-> +                    adi,temperature-enable;
-> +            };
-> +        };
-> +    };
-> +...
-> --=20
-> 2.42.0
->=20
+> > > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > > ---
+> > > Changes since v2:
+> > > - Newly introduced.
+> > >
+> > >  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 -
+> > >  1 file changed, 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml =
+b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > index b61dcf8b4aad..d3b2b666ec2a 100644
+> > > --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > @@ -51,7 +51,6 @@ required:
+> > >    - compatible
+> > >    - enable-gpios
+> > >    - select-gpios
+> > > -  - mode-switch
+> > >    - orientation-switch
+> > >    - port
+> > >
+> > > --
+> > > 2.34.1
+> > >
 
---Sb32d3m8HlxF4rSL
+--v42yTMsuEvy/0/GJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ5xQAKCRB4tDGHoIJi
-0g+SAP48zfjGLubhF083okMidLJzwi9GXWmdPgm2K/XEx2vJ4wEA0rwolj+tSDO4
-X8BeLlW4PVLEukU92W77hIo/kNPSAw0=
-=ymEK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ6OgAKCRB4tDGHoIJi
+0t20AQCIbfrg7u2vMvyARpCBKHTuC/MJaUiO8XVq97Ks1cf67QEAlrsZ2uJ4LLvo
+FTdIVicRARp1r6L+VdPmHDkQmxqUxQY=
+=HyoM
 -----END PGP SIGNATURE-----
 
---Sb32d3m8HlxF4rSL--
+--v42yTMsuEvy/0/GJ--
 
