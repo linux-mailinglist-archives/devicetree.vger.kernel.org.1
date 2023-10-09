@@ -1,107 +1,139 @@
-Return-Path: <devicetree+bounces-6920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159F47BDA92
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:01:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D28AA7BDA9A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 463521C2091D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:01:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F41F1C2094B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FA918C10;
-	Mon,  9 Oct 2023 12:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101E418C15;
+	Mon,  9 Oct 2023 12:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xRHRdrOB"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="AJ2z5BLP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DCE63DF
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:01:10 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA4E0F9
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 05:01:07 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32003aae100so3323145f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 05:01:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696852866; x=1697457666; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1dQhgAOJRNqoOh1Ien+h0xhg7sd11cwuiObrfM0AE80=;
-        b=xRHRdrOBS7i3FSEfOc0nQZDmpxypTmFqSxHK4neDlGWtXksaLgdUcZ0iXazzFx+JUg
-         VZwo/2sqGbE53guSpgOzTC/9PHsw/O9CTev4niZU6T9ja78osZMZog5zbH0nSxP/9209
-         54gtl3pmcpEyCwakaQbjf4RuES2Mvi0KR7oVrWhMjyGPNn2K79AV8kmDaWjVp8m8/4bb
-         gMtSpOoMvH/9C9Nk6U0t0lf/z0U0hLYaVT/pUXok0rWWJuR5AIkG17oQ1FjxqvwTCIkE
-         kv658P3oxVN9Mfh1NVp+U+C81bxT5/bWJDHBcp7dN9stHjrq5zEYLGgbWwJ+aSFfSTGK
-         7hIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696852866; x=1697457666;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dQhgAOJRNqoOh1Ien+h0xhg7sd11cwuiObrfM0AE80=;
-        b=GsNwBrtVRrtQzrXkQV93VQQGeLfZJLA/AJYzYHTfV4Ak7oCxQQzNiTbZNJkKl3ybEM
-         WtYMMY3oaQ3URvSCxDkYPN/k4wje7XySDekQUIrZ1bkqRiSrVxWkhtHosLO4rgL/wfBz
-         fcJTCx+6LVDc8VfBozAcuokzPnF2YW9P04Rng8sycv85OkSKgX1bUQXeJve38IkloRb9
-         7Mo0SVqrjvFi6ibJ1WKW93RGeqpRl173YDb6XDNClqiIfD04mc0gwqovLBmlUoHW9zy5
-         YiKpJ/Kss2iLZt+kRaKDB8p6JidVBufBM7W2r4vGkqhBSzNVM+2XAPAFLTl40M7Eph7D
-         TCnw==
-X-Gm-Message-State: AOJu0YyIBUScJDKA7Lu8Mi4ISVZFRaic7Wta7vAI7wa6AqXbpfgkcsDb
-	jaK675q/Mamx+97d+3zM5nNSDQ==
-X-Google-Smtp-Source: AGHT+IH7e7GhrAvk0ajA9tZ0NEiTbxzb/d1XRPhB3D/cod7tcEkZk77rF0aFAvoTRaN60f7E0kWhBw==
-X-Received: by 2002:a5d:658e:0:b0:329:6b53:2c82 with SMTP id q14-20020a5d658e000000b003296b532c82mr7129118wru.31.1696852864934;
-        Mon, 09 Oct 2023 05:01:04 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.123])
-        by smtp.gmail.com with ESMTPSA id v11-20020a5d6b0b000000b00324853fc8adsm9384768wrw.104.2023.10.09.05.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 05:01:04 -0700 (PDT)
-Message-ID: <5c2442e7-8e03-433e-9b6e-bc9aa6881cd3@linaro.org>
-Date: Mon, 9 Oct 2023 13:01:01 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CD918B1F
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:02:40 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E6F94;
+	Mon,  9 Oct 2023 05:02:38 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3997geT5019817;
+	Mon, 9 Oct 2023 14:02:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=Ooh4/yFf2JrfwSnSbYFLoguRGY36sVafq2HkIA5SYLU=; b=AJ
+	2z5BLPOcyLWbr1PZ/gTxyvfnaYiryLmKpeGdAx/avu12n162KReV1M+NCElLCssi
+	LGCMcQNb0vkumr0vnFQwbaBRpIxUrhrP52PSMKVBJC2IGXkkYKsLHsHWMprHpDoW
+	PkbtGQG4jujNBM7PvL5n+Jjb6hCo1BHr/7r0jMcZon/UK6qNDjaHecSIs7wr932H
+	kW8LfByqRARtPG4BMAqBsmFGd2rSEPyXM1a4R1i+IC4M5mRODRcFIvYkWi0YsWGP
+	IZ5KAKPW8dZUgkW0/58ywmdFlA9I3pQHBfnHHM48QwjyExmtUomOKew4UCtFbCmp
+	cliaoWKvGQICaNMfW4Sg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhfdw1n8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 14:02:14 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B85D610005E;
+	Mon,  9 Oct 2023 14:02:11 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AF5B5233C9B;
+	Mon,  9 Oct 2023 14:02:11 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
+ 2023 14:02:10 +0200
+Message-ID: <5bd1a669-9eab-717f-6f58-0ecb4587cf22@foss.st.com>
+Date: Mon, 9 Oct 2023 14:02:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC
- support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 0/9] hwrng: stm32: support STM32MP13x platforms
 Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, cw00.choi@samsung.com
-Cc: andre.draszik@linaro.org, semen.protsenko@linaro.org, soc@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-19-peter.griffin@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20231005155618.700312-19-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
+        Olivia Mackall
+	<olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>
+CC: Lionel Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_11,2023-10-09_01,2023-05-22_02
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi, Peter,
+Hi
 
-On 10/5/23 16:56, Peter Griffin wrote:
+On 9/21/23 10:02, Gatien Chevallier wrote:
+> The STM32MP13x platforms have a RNG hardware block that supports
+> customization, a conditional reset sequences that allows to
+> recover from certain situations and a configuration locking
+> mechanism.
+> 
+> This series adds support for the mentionned features. Note that
+> the hardware RNG can and should be managed in the secure world
+> for this platform, hence the rng not being default enabled on
+> the STM32MP135F-DK board.
+> 
+> Changes in V2:
+> 	- Use pm_ptr() and add __maybe_unused on PM API
+> 	- Correct bug using WARN_ON
+> 
+> Changes in V3:
+> 	- Squash of bindings patches
+> 	- st,rng-lock-conf property declaration rework
+> 	- Fix stm32_rng_pm_ops declaration in patch [5/9]
+> 
+> Gatien Chevallier (9):
+>    dt-bindings: rng: introduce new compatible for STM32MP13x
+>    hwrng: stm32 - use devm_platform_get_and_ioremap_resource() API
+>    hwrng: stm32 - implement STM32MP13x support
+>    hwrng: stm32 - implement error concealment
+>    hwrng: stm32 - rework error handling in stm32_rng_read()
+>    hwrng: stm32 - restrain RNG noise source clock
+>    hwrng: stm32 - support RNG configuration locking mechanism
+>    hwrng: stm32 - rework power management sequences
+>    ARM: dts: stm32: add RNG node for STM32MP13x platforms
+> 
+>   .../devicetree/bindings/rng/st,stm32-rng.yaml |  20 +-
+>   arch/arm/boot/dts/st/stm32mp131.dtsi          |   8 +
+>   drivers/char/hw_random/stm32-rng.c            | 511 +++++++++++++++---
+>   3 files changed, 455 insertions(+), 84 deletions(-)
+> 
 
-> +	serial_0: serial@10a00000 {
-> +		compatible = "samsung,exynos850-uart";
+Patch[9] applied on stm32-next.
 
-This deserves a SoC specific compatible so that any further quirks or
-incompatibilities can be easily addressed.
-
-Cheers,
-ta
+thanks
+alex
 
