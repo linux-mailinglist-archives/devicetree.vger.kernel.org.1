@@ -1,165 +1,111 @@
-Return-Path: <devicetree+bounces-6926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1DD7BDBA4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:23:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 787227BDC3A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F3802813DD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:23:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8BB51C208E1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BF619456;
-	Mon,  9 Oct 2023 12:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BF563DF;
+	Mon,  9 Oct 2023 12:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iknY5SyQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bsTI+DSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30523C8F8;
-	Mon,  9 Oct 2023 12:23:02 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EF0B6;
-	Mon,  9 Oct 2023 05:23:00 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399CCcB0028812;
-	Mon, 9 Oct 2023 12:22:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=suP35r1I9Tl7Cfr9eTF8H/MOSNej0t7TcjZBQBeGero=;
- b=iknY5SyQ1Ak+PDP/eh9dd1stRLx0L9lD8X9l0s0usw0t1Qfw9s88KR2S40Qjr+PIRVzT
- ma+qb2Rg1gTgUBYXlL1+bcEwjjIfAKqrki4wfaAc0Q//SZ1ubce8KMdQ0g4s3lR1Vb1g
- 6DXkBmST4ZbkKrpuS5odle3BApIPOl0PuJZL9JCQnRblx67OtnhB5Su35ddZqpj2ODDD
- ae5CMk7NVheCRyOrFtPnmum6Da1yJqU/cxYpnW9okj/hMfw34Wk2/saH93CVNIuS6rNt
- XixhNe+bw6J68ooO6tsTz/Tilp4XMqwub8nsv8Z7WI5RzHeuP8dzR5F1LYCxoul8/apF kA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkhx2jb92-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 12:22:22 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399CMKRB017690
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 12:22:20 GMT
-Received: from [10.216.45.67] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 05:22:11 -0700
-Message-ID: <55435a32-1c3f-479b-b257-a190ef3fc7cb@quicinc.com>
-Date: Mon, 9 Oct 2023 17:52:07 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F9063D5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:36:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CC18C433C8;
+	Mon,  9 Oct 2023 12:36:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696854984;
+	bh=c0y/Sd2/3poO8nSE24c5ez6G0oE8QesIU7bpvamMg3Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bsTI+DShpVW7TJ/ku9P5433DUrtqotmPJNac2HwHLailMSdlVP7Dr1En76KoHNTqG
+	 0q9bXxHjS4aUL9239PUvOxISMSKSBXW5XwfpvGgzCLxE7lvGHqgH1PawKQ3XtI2Pu/
+	 oQC8M/MKUXI56UmNkViOZotCRSDhrGYcb3jvs8qDjUt8qUS5+nRjBgNDvcAOXuDlmG
+	 /1rHi5rdvkAYFBenN8ZmfcjLslnJNrgs2iKDmQO4tVmSYFv2Rgjx766wkbSmSxKK8l
+	 0SUk5HOE3Bn1i8iwnvrdEu7LRhrz+ttmVw8SjEL5/oE9HS2LaBDCd6s08EsrLz474F
+	 wS7DZMyUDQ+pA==
+Date: Mon, 9 Oct 2023 20:36:06 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Describe VDD_ARM run and standby
+ voltage for Data Modul i.MX8M Plus eDM SBC
+Message-ID: <20231009123606.GA733979@dragon>
+References: <20230831181850.154813-1-marex@denx.de>
+ <20230924142150.GM7231@dragon>
+ <b74f092d-52d6-4a39-8a99-056800c98f62@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] phy: qcom: Introduce Super-Speed USB UNIPHY driver
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <u-kumar1@ti.com>, <peng.fan@nxp.com>,
-        <quic_wcheng@quicinc.com>, <quic_varada@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kathirav@quicinc.com>, <quic_nsekar@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
- <20230929084209.3033093-3-quic_ipkumar@quicinc.com>
- <412492d1-fcc9-481c-9d28-b208a644ba1d@linaro.org>
- <7975c638-29cf-45ce-9d76-b8a93d750eb7@quicinc.com>
- <CAA8EJprhQz_Tj0Bhv6zhGa7h37Ug-Fp6Tof9tNscTFyZzkbJvw@mail.gmail.com>
- <0007b5ff-34d4-44c0-80bd-8277d5842c01@linaro.org>
-Content-Language: en-US
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <0007b5ff-34d4-44c0-80bd-8277d5842c01@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lslQH4pSDAP-WMR6p4dijFZIEMlxgnM5
-X-Proofpoint-ORIG-GUID: lslQH4pSDAP-WMR6p4dijFZIEMlxgnM5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_11,2023-10-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
- bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0 mlxlogscore=380
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310090101
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b74f092d-52d6-4a39-8a99-056800c98f62@denx.de>
 
+On Sun, Oct 08, 2023 at 08:37:34PM +0200, Marek Vasut wrote:
+> On 9/24/23 16:21, Shawn Guo wrote:
+> > On Thu, Aug 31, 2023 at 08:18:50PM +0200, Marek Vasut wrote:
+> > > Describe VDD_ARM (BUCK2) run and standby voltage in DT.
+> > > 
+> > > Signed-off-by: Marek Vasut <marex@denx.de>
+> > > ---
+> > > Cc: Conor Dooley <conor+dt@kernel.org>
+> > > Cc: Fabio Estevam <festevam@gmail.com>
+> > > Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+> > > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > > Cc: Magnus Damm <magnus.damm@gmail.com>
+> > > Cc: Marek Vasut <marex@denx.de>
+> > > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > > Cc: Peng Fan <peng.fan@nxp.com>
+> > > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > ---
+> > >   arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts | 2 ++
+> > >   1 file changed, 2 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
+> > > index 13674dc64be9d..d98a040860a48 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
+> > > @@ -362,6 +362,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+> > >   			};
+> > >   			buck2: BUCK2 {	/* VDD_ARM */
+> > > +				nxp,dvs-run-voltage = <950000>;
+> > > +				nxp,dvs-standby-voltage = <850000>;
+> > 
+> > Buck2 is not turned off in DSM on i.MX8MP?
+> 
+> It is turned off in SUSPEND/SNVS/OFF , not in IDLE/RUN .
 
+Right.  But nxp,dvs-standby-voltage specifies the voltage when PMIC
+is in STANDBY mode.  My understanding is that the SoC will be in SUSPEND
+state while PMIC is in STANDBY mode.  Is it possible that the SoC in
+IDLE/RUN while PMIC is in STANDBY mode at all?
 
-On 10/7/2023 5:27 AM, Konrad Dybcio wrote:
-> On 3.10.2023 16:54, Dmitry Baryshkov wrote:
->> On Tue, 3 Oct 2023 at 17:22, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->>>
->>>
->>> On 9/30/2023 10:48 PM, Dmitry Baryshkov wrote:
->>>> On 29/09/2023 11:42, Praveenkumar I wrote:
->>>>> Adds Qualcomm 22ull Super-Speed USB UNIPHY driver support which
->>>>> is present in Qualcomm IPQ5332 SoC. This PHY is interfaced with
->>>>> SNPS DWC3 USB and SNPS DWC PCIe. Either one of the interface
->>>>> can use the it and selection is done via mux present in TCSR
->>>>> register. This driver selects the PHY for DWC3 USB and handles
->>>>> the reset, clocks and regulator.
->>>>>
->>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>>> ---
->>>>>    drivers/phy/qualcomm/Kconfig               |  11 +
->>>>>    drivers/phy/qualcomm/Makefile              |   1 +
->>>>>    drivers/phy/qualcomm/phy-qcom-uniphy-usb.c | 322 +++++++++++++++++++++
->>>>>    3 files changed, 334 insertions(+)
->>>>>    create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
->>>>>
->>>>> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
->>>>> index d891058b7c39..7257c8455c53 100644
->>>>> --- a/drivers/phy/qualcomm/Kconfig
->>>>> +++ b/drivers/phy/qualcomm/Kconfig
->>>>> @@ -154,6 +154,17 @@ config PHY_QCOM_M31_USB
->>>>>          management. This driver is required even for peripheral only or
->>>>>          host only mode configurations.
->>>>>    +config PHY_QCOM_UNIPHY_USB
->>>>> +    tristate "Qualcomm USB Super-Speed UNIPHY driver"
->>>> Can we please have more specific driver name? As I wrote earlier,
->>>> there are two other (different) kinds of Qualcomm UNI PHY devices:
->>>> - DSI / HDMI UNIPHY on apq8064 / msm8974 / msm8960 (?)
->>>> - USB QMP UNI PHY drivers
->>>>
->>>> Adding a driver called UNIPHY, which is not related to those two kinds
->>>> sounds pretty confusing to me.
->>> This UNIPHY is different from above mentioned ones. This a custom
->>> version for 22nm on Qualcomm IPQ5332.
->>> Can we name the driver as phy-qcom-uniphy-usb-ss-22ull.c /
->>> phy-qcom-usb-ss-22ull.c ?
->> usb-ss-22ull sounds better. Or maybe usb-ipq-ss
-> usb-ipq-ss is as safe as usb-msm-ss
->
-> We can not rely on the hardware never ever changing down the
-> product line :D
-Not all IPQ platforms having this UNIPHY. Only IPQ5332 and IPQ5018 are 
-having
-this custom version of UNIPHY. Hence thought usb-ipq-ss might confuse.
->
-> Konrad
---
-Thanks,
-Praveenkumar
+Shawn
 
