@@ -1,172 +1,111 @@
-Return-Path: <devicetree+bounces-6900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28ABA7BD99D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:25:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC747BD9B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 13:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E8021C2091D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 11:25:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 551A02815A5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 11:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AC7168A6;
-	Mon,  9 Oct 2023 11:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF1C15AE4;
+	Mon,  9 Oct 2023 11:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="nniuy8Kf"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="A1HdxuZG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7712214F72
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 11:25:27 +0000 (UTC)
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02olkn2050.outbound.protection.outlook.com [40.92.15.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6673A120;
-	Mon,  9 Oct 2023 04:25:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WmEqVb8gf+qtU+fjl0oGWBpKTPNpLb5UbsJgNSAfRt5j8WPEwCeHbneyUvrht8VrNGzP0UG2lTk9ddnEasEe0c9rtTKiYjzh9kGw2nAjHXQZR4VcTSGUP1RAD+wr+t8v6GbaZoPKcD7BGPDnsPN4S63SShZzE/rHw7QuTdxkqn8bTkx4lFY33IAQ3rWeplhIOWoU07LxrvFIzlq1LtzP5K+7gI2pDm6kASCTuj/mIGoAuhHUMS+y5+Hxd0Q9Jpy2MJdCSILGXmghpyV+FtkQ4OfB/IeXwubhwaY5v1eFcloTnSH7TM51gwluCqJ/evOCf/OJ6rosjo9eA6EtMSsw9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N2Q39ntiyZqWBW26kNVYngJRfZ7Rs+Igbg+vs760ZMg=;
- b=O3GQF3r+1ntiKYT59+aKo7kfpv08SitZfzxM9zP3AUhjHqce7b8iyEuObk/CyA0aPHAaUQgWMLXkmB2Fxz2+ZIYF36DoX0CkL5h/wC0VhWt6AEmm2klMdcGFAPbQOnGwfWsfS/f3/6YCpOEzNLSmFcfsz7wiK29G2ErfVYbGZcPPwEKM48t30W9p6GQrU7qz2nfRDkdV6nQiLtnB3gEDRHx7+DTUvYur7sAgYac13+/7HQnNyIHo61j8N3acDe+lex7whsoyaVBJlVNE3AWgJnMCYVUGU4bomWJKJSjCLBZPoswzRLcHmFPR9539QNP28DwhEDPSRyFBmWxegAmUgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N2Q39ntiyZqWBW26kNVYngJRfZ7Rs+Igbg+vs760ZMg=;
- b=nniuy8Kf97aLU3RYTkUhR2PTqkTdyyBwP+JEjXOFejTQYOEda+S5RHMubncnHolpoRmjhUU8rpUf6Q/gd6ddEAsxux0wRUfLRiglc8WLuYLrRSeAdemcyNXNGhXodrct8BgZ53FPs1+TzEp/wEJFogWIDIuGmS8v2nJORZwV7NBIj7zTj5ieHhZuVMSfej1v4YKvZxc3HY9npT5nbx51iaOGO05OLt5+01lKTu9kxFUMcd9oGsZ6kof88t51dtr/acTL7PlvDgpztpOU8JrF4eYYmKcKpJA2uqyEFSP1oEa5kmm/GWlpuiElyxteMgQ+tFnZUDzqUxh7huwmk1Da4Q==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH0PR20MB6129.namprd20.prod.outlook.com (2603:10b6:510:2a2::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.37; Mon, 9 Oct
- 2023 11:25:15 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6838.040; Mon, 9 Oct 2023
- 11:25:15 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 0/7] Add Huashan Pi board support
-Date: Mon,  9 Oct 2023 19:25:14 +0800
-Message-ID:
- <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [8OJtKQ58U+IXxkwbUg2cUqt4spXaCenyyGuySXKtNhs=]
-X-ClientProxiedBy: SJ0PR13CA0153.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::8) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231009112517.477055-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6231C2C5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 11:27:09 +0000 (UTC)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EED21BE5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 04:26:08 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6910ea9cddbso3618747b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 04:26:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1696850768; x=1697455568; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dsfe35r8ooSP3DhlzGaGZax530VOuZcCVqPc76Jz+G8=;
+        b=A1HdxuZGG7c6E2S8QwiA33bowHUeVkyNn0oTQBgLERaGNnOvsVDqpW+zFNbBT4VZEW
+         ucyTcITjHka5LNh7kD7cbPCN+3r5xp2/pwIFjmealkWCObt+wvJ3COdPYy22g+MNdwPv
+         tUaR8oD3B04mxywlr3p0Hoq/na+WCmEPbons9a27Q9e/uPKoTdevHtnwiu3DjFH9o3ci
+         vZQFDHTk8iIJyd45NNPtG0fUOMk5FzD3lZRwPOZIFmTZZ+H4tlV0b8FektnNdvCdGzGH
+         nTptmwmosvfHazWKWWu+iStyq6R8dVw4ZT74L3nnG9FMNxVszBKxKcPAnJ/0XGp/qQlR
+         sXJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696850768; x=1697455568;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dsfe35r8ooSP3DhlzGaGZax530VOuZcCVqPc76Jz+G8=;
+        b=KBA5J3qESqqBeGIENLRL0si+32zlqM3cwxvvcvFwCa+4I6XrN1r72LqHaHtoK+pmjR
+         lq1kQcDboG5/hyj9U4ZLjzmcvU3HwGEsgfCujAS3Fi/tvHFZVCOE3ls+Y1aIH7OGtc3T
+         97UP5TyNVisnHRw2O2buwGEIidPfnVd5njfVo8DuAAl6y/GMRzkkkuPjuKqeuIWPtafp
+         O6HUuln6ncBqVRZRXSqKJPN6IbWfvvi9RnjPH6GJERspjYHcpPxyC1QI1r+lc9xJC4A7
+         /gOF5zCvP4KJAcI6wJk81D4B9WdnFCA3TxAqh7wuQA00mY81SH48fedpNBOPNyM/piLm
+         IFeg==
+X-Gm-Message-State: AOJu0YyTDua77nzdaeQKcZ4BHgr3rEBQ07euDK0nfKsT8COW4qyV/3ro
+	p0/kU6R15CJQmmN3mgWoRwo4oA==
+X-Google-Smtp-Source: AGHT+IERamTChL8jto5HfuCQzBKteg7fz6+WRHZF4cZ3oSUN3CsKBzo0JRWZ1NvfP+iNGmC7XNKjSw==
+X-Received: by 2002:a05:6a20:4422:b0:16b:d137:dfb3 with SMTP id ce34-20020a056a20442200b0016bd137dfb3mr11519517pzb.59.1696850767700;
+        Mon, 09 Oct 2023 04:26:07 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:bfd1:310:d6e3:7630? (2403-580d-82f4-0-bfd1-310-d6e3-7630.ip6.aussiebb.net. [2403:580d:82f4:0:bfd1:310:d6e3:7630])
+        by smtp.gmail.com with ESMTPSA id be8-20020a170902aa0800b001b9e9edbf43sm9327575plb.171.2023.10.09.04.26.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Oct 2023 04:26:07 -0700 (PDT)
+Message-ID: <6151507f-e0a5-f862-d6bc-f54c7f88f50c@tweaklogic.com>
+Date: Mon, 9 Oct 2023 21:55:59 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH0PR20MB6129:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c499fb9-9a13-4916-28b4-08dbc8ba6865
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	kgeLRZy/27Ddtxc6OMH6cUkJ0AcxOPgT8Ec3nFcZzArHsI7NyLZ/I2Xa2+9U6G328EtNfaxwnLRa5jZ8/8kL35xO9M3NufIEE+t1rlzumGrqjcMB6+YXoZfvyBIjnKZN3x6bkengL98KWk3gG+Xi27pOmuwCGWjiEiX2Su5LQXZh3uP2+sF7tbKIU3TNXRbmL98kUPkK6ANy5sCtPOrSie8Pv/7Af1DBGz9sroXMHWLeTT/S7gm8m5OsUUSXOlHb9iqeQFQCsX+A+ePTi6VvxOcgcGs2RQgWMO1+T7tAPO2v1yqqX2GArelGnFqrwq5mrdKLOF7CrG4p86XXiih6VmDtwh/RS3UvlfSZBk8BLsVgg3GCQYX7T0mv2m/f4ZYaZ5f3ZoVdyo/oY+0V3RlkXu9JfqxxHO3c3kAYksWnfvKORnakd9rtOmofTyBzzL/6cTxhuT8mVlY5iCRIK8Y2z3xSUI+3dRxCZIvIqZ8SOsmmHw7MnwVIUo1+pWIQLOBJqbQUuGu65b4y029ChHYhq45P8P2Bg1C7pEAC6mo1coFLDDFWYhh/UDRjXQv0ipRgN7KGtx8o9h/Z3lmy+24E/P58BBDrk0E6+Vxisc2HvwtKFu8lz0IsPupVCCTZ38wRyd5egjzU/BDAuPLybDOYMFvBMMirqTa13aLN1/+G+Z4=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9yD2yaqIgwGUhmj8evI2nWrVrwrb4VNB7mpGQceLIImFdtENt/8S1/E4Y3mD?=
- =?us-ascii?Q?I1IH75m7OkIA7KkaMxOm4CnkOrPUhKIPoKdqamPgSTsb/ewOGDTMwHVSnVDt?=
- =?us-ascii?Q?o1lB5+/MKrWPT4LE/8d2BkgIhIOwaXZATM8cUpraRddmT/cvPWvgrvRY+HPK?=
- =?us-ascii?Q?1z6sRNfc94UekfXcygXphiYAcTRf7XRoEId8OusUOqJggMKGIgJsHmn1/pX/?=
- =?us-ascii?Q?0977L3yWp63CeviBKZGm6BqP9BZiEfbjNHa+LLhJXJ23hi0YCYehdzLLJJi9?=
- =?us-ascii?Q?brNRx3fw5BQki/pkWhtcuBnLWBPWw+s83PQXJoNj990n3F+U24qji6+LLFJg?=
- =?us-ascii?Q?AqdEI+K+RRRyx2/FeZMP75RgiX3uHJei+jb3lOCQJhxllLK9XXG6GoAloZN+?=
- =?us-ascii?Q?A1JTKUAtmcT88vhsSKqywaDoUvunJ4snPZ5ucbZm5VWeVsGgDCxq0iFGF9QM?=
- =?us-ascii?Q?kiuNDkG9uFt4EsGHtDB65E82NWMxUCOtfhvWkI3LvvfYEJlytujIdHGdZOx+?=
- =?us-ascii?Q?GmZvsfmhXVdOW3BTzuWyEU0rVFreY41G0b964X9cP2G2IMjZ3hl634V2FeEO?=
- =?us-ascii?Q?2OHXep+VDmIPHKTyjG+xfUI5CUGBvgcAmCiVxHxPq77fgvpvEHZBCrBPNVD4?=
- =?us-ascii?Q?dyC0x+tMpmFioebmPsu+HYSr5+g1432Xr/2yVUEbkzVAMqXicHvBpVfgt07V?=
- =?us-ascii?Q?KSsB38J5Xk1vb65cntQ1Mj4k5QPoUHeYSyabWRQMhzitmMJKJOKIVpsYwHdD?=
- =?us-ascii?Q?uTHIkOBT57CGP7a7BRgbZo6olvnh9W49f/g2TYCHqsHLESengyRelXaoqul/?=
- =?us-ascii?Q?DhLiVN43qMjJsTpWsT2PZD/zxmIUxcV7yLFfrmx4iMoBLbsfB9qGSqlwAR8N?=
- =?us-ascii?Q?czi3+ueLyc6rLh4B3nB9Akj43RLCK6+mQhxRylAvDDfRckG9mW+QI6tSOZYt?=
- =?us-ascii?Q?MN1bwX5k/g/ZXOKdt4B9P7VfLJtAdbwbE+Be3JFiCj2l6w/29YiNKx9vshrM?=
- =?us-ascii?Q?W6wBNo3oajaoNi3bfTv2CEJbip6ZiZmOLRktOQyVbNYj70iBgIXQQjCRB+/8?=
- =?us-ascii?Q?wmMX1IbZRqSYL3lj8dG27EOwRViq6HdR8pmqvRQbdl+vJJAYRmvb4siAKNdp?=
- =?us-ascii?Q?7FfpR9PK4J1YmHH3+HhKomAH2tOTIVBdaKH0Mptw8+nxknSMzSTWkJg3FKEV?=
- =?us-ascii?Q?gDAPYUVQB8IrhCLFRzlJdOfOi1AeUEk6hTKI2Do27zadRxYPjt0Iht7BcBY?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c499fb9-9a13-4916-28b4-08dbc8ba6865
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2023 11:25:15.4866
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR20MB6129
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Avago APDS9306
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Paul Gazzillo <paul@pgazz.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
+ <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
+ <4e785d2e-d310-4592-a75a-13549938dcef@linaro.org>
+Content-Language: en-US
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <4e785d2e-d310-4592-a75a-13549938dcef@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Huashan Pi board is an embedded development platform based on the
-CV1812H chip. Add minimal device tree files for this board.
-Currently, it can boot to a basic shell.
+>> +description:
+>> +  Datasheet at https://docs.broadcom.com/doc/AV02-4755EN
+> 
+> This is exactly the same as two other Avago devices. It should be
+> squashed - first two device schemas squashed, then add new device support.
+> 
+> Also, the supply is not vin, but vdd.
+>
 
-NOTE: this series is based on the Jisheng's Milk-V Duo patch.
+Yes, they look similar. I will combine them all in a single yaml file in
+the next revision. Thank you Krzysztof.
 
-Link: https://en.sophgo.com/product/introduce/huashan.html
-Link: https://en.sophgo.com/product/introduce/cv181xH.html
-
-Changed from v1:
-1. split the patch into several patch and refactor them.
-
-Inochi Amaoto (7):
-  dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
-  dt-bindings: timer: Add SOPHGO CV1812H clint
-  dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
-  riscv: dts: sophgo: Separate common devices from cv1800b soc
-  riscv: dts: sophgo: cv180x: Add gpio devices
-  riscv: dts: sophgo: add initial CV1812H SoC device tree
-  riscv: dts: sophgo: add Huashan Pi board device tree
-
- .../sifive,plic-1.0.0.yaml                    |  1 +
- .../devicetree/bindings/riscv/sophgo.yaml     |  4 +
- .../bindings/timer/sifive,clint.yaml          |  1 +
- arch/riscv/boot/dts/sophgo/Makefile           |  1 +
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
- .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 91 ++++++++++++++----
- .../boot/dts/sophgo/cv1812h-huashan-pi.dts    | 48 ++++++++++
- arch/riscv/boot/dts/sophgo/cv1812h.dtsi       | 36 +++++++
- 8 files changed, 165 insertions(+), 112 deletions(-)
- copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (58%)
- create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
- create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-
---
-2.42.0
-
+Regards,
+Subhajit Ghosh
 
