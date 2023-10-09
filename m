@@ -1,140 +1,125 @@
-Return-Path: <devicetree+bounces-6862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC707BD4A2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 09:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9617BD516
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:25:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C17F1C208E3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 07:49:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF6061C209F5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6880A13AF3;
-	Mon,  9 Oct 2023 07:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3DE156DD;
+	Mon,  9 Oct 2023 08:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zv7myjY1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="b9plz3cz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D6B28E6
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 07:49:47 +0000 (UTC)
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C14CD6
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 00:49:46 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5a507c72d3eso51530147b3.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 00:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696837785; x=1697442585; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P1ko/afzrWnMuyW/Fvu3x6fDGqrMr7gR5Lx33eCGSQM=;
-        b=Zv7myjY1qI0oki8mYuHDjtQuBLLyQSHxaUQ8dN5QWky9HX+3RZ22EDrfphjAvlgkDl
-         UqAFHQJhm15YSuvFaOcVpIa5Xt5WPPqcx1ooUMuB9yK2RtS5OxfahRBveB00fr0thRQS
-         5CnYE6uTDnS4YMJUOahBQmR/9GuMyYu45XLq8nGM/jG0vWQHHWDFSvVHv6OscLsgpvfp
-         WT4GwLc2+YP0gcQWoOuI7fcSW5lGBG4ex3h9/SjI5M+c0p7MRSwWRfP1uIcIOGKHYzcI
-         qsyQIcSwMPXRco1hUIqnmsNFrHWR5NXJQrik+Mqc2AAeFeO6MJ7HpkZpEcBqNtn4cHQd
-         sCwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696837785; x=1697442585;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P1ko/afzrWnMuyW/Fvu3x6fDGqrMr7gR5Lx33eCGSQM=;
-        b=R8/rRFGgiTXzw19bheUNPmqaXqdkXOtfAzhioM8G36EBT8YHdC7BXj8ln4p2Uo6m7A
-         GYIxuyFGXgMw699L+jq1bi75ghA9z4HpGmLHWnMJ5bWSKCiyoC0CUrJmnkjyW2FlXaYz
-         XXXEdkeuW5NHoW5sSwdVfx8kgyHR+I5sp/QF8vZqNLLlibjyVVrH2TvDfPPGgcaBPbOy
-         WdXAa4RprtPhHLe5PXlDurH9nsGr4aS45i+RG5vktRyN0FJJmg/Y+5cNLbTFpOQ983+H
-         qvbpz2wBrPbnivdCnzOC4GWucmsDuhSc+OqHvaPwcqslAnXcGl1Dcp/JLR/2pZmLh1I8
-         j57A==
-X-Gm-Message-State: AOJu0YwtFAn/BlVi1rjReJNihaL5+QJc9eYgFBrc48zzPHXBhtyVjjgb
-	pooSlAPF9ea3o6RY8raDLpFVGHMHhbyWwaf+wUoM2s5YjuXyTORTNtk=
-X-Google-Smtp-Source: AGHT+IHsupyu181Ia+vdd7fdRv7eb6zYr4ocWpBgNFI7cCk4vzRoxo6eT6JrRJMme2aG2jFn2xZP6LOfhyt1pOjFf28=
-X-Received: by 2002:a81:5404:0:b0:589:fad6:c17c with SMTP id
- i4-20020a815404000000b00589fad6c17cmr14152075ywb.45.1696837785383; Mon, 09
- Oct 2023 00:49:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A0714F8F
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:25:08 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE642AC;
+	Mon,  9 Oct 2023 01:25:06 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3998Os5B113187;
+	Mon, 9 Oct 2023 03:24:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696839894;
+	bh=Tj7Gy6Xo6sZ11WWNP0dGT0Go1/OTwecYySniex9/ka0=;
+	h=From:To:CC:Subject:Date;
+	b=b9plz3cz3WsGh9Pl1ybaIf4nCkAm1CYMqxyZAy6uGKLiyGCK5D4h8Tvr9SmJhNGfV
+	 e9ySf0SfJAdU5hZMP2M13qPvsjTMCWMz3sL9uvVjwA+KPiZhyX8uHBgwsM9VdLr/f4
+	 aNyybf3hleshU8qN5qy5lZn2+6OQMDoILB+Y912Q=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3998Ossx034359
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 9 Oct 2023 03:24:54 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Oct 2023 03:24:54 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 9 Oct 2023 03:24:54 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3998Orre106452;
+	Mon, 9 Oct 2023 03:24:53 -0500
+From: Vaishnav Achath <vaishnav.a@ti.com>
+To: <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <u-kumar1@ti.com>, <vaishnav.a@ti.com>
+Subject: [PATCH v4 0/2] arm64: dts: ti: k3-j7200: Fixes for various dtbs_checks warnings
+Date: Mon, 9 Oct 2023 13:54:50 +0530
+Message-ID: <20231009082452.30684-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org> <20231006132346.GA3426353-robh@kernel.org>
-In-Reply-To: <20231006132346.GA3426353-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 9 Oct 2023 09:49:33 +0200
-Message-ID: <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-To: Rob Herring <robh@kernel.org>
-Cc: AKASHI Takahiro <takahiro.akashi@linaro.org>, sudeep.holla@arm.com, 
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Oct 6, 2023 at 3:23=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
-> On Thu, Oct 05, 2023 at 11:58:43AM +0900, AKASHI Takahiro wrote:
+Hi,
 
-> > A dt binding for pin controller based generic gpio driver is defined in
-> > this commit. One usable device is Arm's SCMI.
->
-> You don't need a "generic" binding to have a generic driver. Keep the
-> binding specific and then decide in the OS to whether to use a generic
-> or specific driver. That decision could change over time, but the
-> binding can't. For example, see simple-panel.
+Few fixups for j7200 dtbs_check warnings.
 
-What you say is true for simple-panel (a word like "simple" should
-always cause red flags).
+This is V4 for the following series rebased and tested with 6.6-rc5,
 
-This case is more like mfd/syscon.yaml, where the singular
-compatible =3D "syscon"; is in widespread use:
+V3 : https://lore.kernel.org/all/20230513101343.785-1-vaishnav.a@ti.com
+V2 : https://lore.kernel.org/all/20230505115858.7391-1-vaishnav.a@ti.com/
+V1 : https://lore.kernel.org/all/20230424173623.477577-1-nm@ti.com/
 
-$ git grep 'compatible =3D \"syscon\";' |wc -l
-50
+Bootlog with basic hyperflash testing (6.6.0-rc5-next-20231009):
+https://gist.github.com/vaishnavachath/f7265e932725fd992dbc4e48b993e9c0
 
-I would accept adding a tuple compatible if you insist, so:
+Patch 2/2 depends on the following patch under review which enables reg-mux
+to be used when parent node is not syscon :
+https://lore.kernel.org/all/20230911151030.71100-1-afd@ti.com/
 
-compatible =3D "foo-silicon", "pin-contro-gpio";
+Changelog:
 
-One case will be something like:
+V3->V4:
+  * Rebase and tested with 6.6-rc5
 
-compatible =3D "optee-scmi-pin-control", "pin-control-gpio";
+V2->V3:
+  * Drop pinctrl fix patch as the fix [2]  is already merged to next.
+  * Keep register regions unchanged as it is correct according to memory
+  map, update commit message.
 
-In this case I happen to know that we have the problem of
-this being standardization work ahead of implementation on
-actual hardware, and that is driven by the will known firmware
-ambition to be completely abstract. It is supposed to sit on
-top of pin control, or as part of pin control. Which leads me to
-this thing (which I didn't think of before...)
+V1->V2:
+ * Address feedback as recommended in [3].
+ * Address feedback from Udit to limit the FSS register region size as
+ per TRM.
+ * Use reg-mux changes in [4] to simplify the hbmc-mux modelling   
 
-> +    gpio0: gpio@0 {
-> +        compatible =3D "pin-control-gpio";
-> +        gpio-controller;
-> +        #gpio-cells =3D <2>;
-> +        gpio-ranges =3D <&scmi_pinctrl 0 10 5>,
-> +                      <&scmi_pinctrl 5 0 0>;
-> +        gpio-ranges-group-names =3D "",
-> +                                  "pinmux_gpio";
-> +    };
+[1] https://lore.kernel.org/all/76da0b98-3274-b047-db11-ecabc117ae11@ti.com/
+[2] https://lore.kernel.org/all/20230510091850.28881-1-tony@atomide.com/
+[3] https://lore.kernel.org/all/20230503115130.c7m4a7crub7kmfjw@gluten/
+[4] https://lore.kernel.org/all/20230911151030.71100-1-afd@ti.com/
 
-Maybe we should require that the pin-control-gpio node actually
-be *inside* the pin control node, in this case whatever the label
-&scmi_pinctrl is pointing to?
+Nishanth Menon (2):
+  arm64: dts: ti: k3-j7200-mcu-wakeup: Switch mcu_syscon to
+    ti,j721e-system-controller
+  arm64: dts: ti: k3-j7200-mcu-wakeup: Update fss node and hbmc_mux
 
-We can probably mandate that this has to be inside a pin controller
-since it is a first.
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-Yours,
-Linus Walleij
+-- 
+2.17.1
+
 
