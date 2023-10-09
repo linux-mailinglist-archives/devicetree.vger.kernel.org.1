@@ -1,144 +1,165 @@
-Return-Path: <devicetree+bounces-7008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E727BE8B0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7BC7BE8B5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 19:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 518B82818F9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:50:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBE722818DC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6285538DE1;
-	Mon,  9 Oct 2023 17:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E04C38DE5;
+	Mon,  9 Oct 2023 17:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fy6p6D7a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wc3N/MYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1937374F5
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:49:58 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAE0AF;
-	Mon,  9 Oct 2023 10:49:57 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399Hitmx010618;
-	Mon, 9 Oct 2023 17:49:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=IPuLfY1co6cd9F2y/mCmzIMjZ4Z5GLyj7fCatcrQ81c=;
- b=fy6p6D7aWklBtBaHFs50UakU4q3uh7K5dW9U75uWpS7PboE6ia5j+WcpvVgvMYt+4p1X
- 7nt1Dr0lC8Xw0DMWza4G0R8F4hiE0jTA6cPKXGbMohd79wCdUW22eYMKsVBJIUhI1kPg
- j8jkxcAb5j8gK5SoLrVSf9i8BWwvtr8IoL1FnG17WOplGbTyUaBphTlT4E4kj4ZWqxca
- nr5mtXDrssHcEKfV9Dw0O2KNixeVHuHj5VVjKhMIyI9BL843Et3X7lrgXQvuLqvjd6m9
- WPJbW1Don7nPOIvijRiEPA8A5s/BV516cawPA0JNWrXB0M86ano/IcR85eCRdGtaqx0N Gg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkh4tb6yj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 17:49:46 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399Hnjso017405
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 17:49:45 GMT
-Received: from [10.110.87.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
- 2023 10:49:44 -0700
-Message-ID: <535bbc68-74bb-21e8-0e72-8de1df9cfc99@quicinc.com>
-Date: Mon, 9 Oct 2023 10:49:44 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F19B374F5
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 17:52:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B953C433C7;
+	Mon,  9 Oct 2023 17:52:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696873951;
+	bh=yP/scKtcI6OBBotY/FATY0k1OHLk/ySM8TF7CIdRg08=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Wc3N/MYOxqwOL9eWWR4ar7f+Nl52Pw+OQRfHKD88OVoSlVWv2eEbE18pawMPvGTNS
+	 PIeAMCD8CViMEDT2sMBZUiso2CP19P2E27ltwwc0EOXnXm+f5Tpgevo+uG3PeJtH+o
+	 AWjZ1SWpOKLA6J7qJQ3oAtmJq5e1eGsZvh/MazS0iOuZd7F9y9YqNrw0K1ChD0c7J5
+	 DudWnoM/+1NmBrj7AvKKk5LZIllba4PkvHiT9/LyF0nEyWhWVAr7Ysr/QBMkdwx5NT
+	 C/Zo7h60CBj66xgMQdH0F6fexAbiO1jdDfL9WHYFAWwwc38Gq3wbzFz+BFGjXzV5js
+	 5wLL+IqB+8B3g==
+Date: Mon, 9 Oct 2023 18:52:26 +0100
+From: Conor Dooley <conor@kernel.org>
+To: yang tylor <tylor_yang@himax.corp-partner.google.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jikos@kernel.org,
+	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
+	"jingyliang@chromium.org" <jingyliang@chromium.org>,
+	wuxy23@lenovo.com, luolm1@lenovo.com,
+	hung poyu <poyu_hung@himax.corp-partner.google.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
+ device
+Message-ID: <20231009-pentagram-clamshell-b14ff00743fd@spud>
+References: <20230922-removable-footwork-f1d4d96d38dd@spud>
+ <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
+ <20230925-cod-vacancy-08dc8d88f90e@wendy>
+ <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
+ <20230926-action-sludge-ec8e51fdd6d4@spud>
+ <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
+ <20230926-reverence-unlit-d0027225cc43@spud>
+ <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
+ <20230928-spectacle-civic-339c0d71d8d7@spud>
+ <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport
- support
-To: Sudeep Holla <sudeep.holla@arm.com>
-CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20231006164206.40710-1-quic_nkela@quicinc.com>
- <20231006164206.40710-3-quic_nkela@quicinc.com>
- <20231009144744.yi44ljq4llaxjsb7@bogus>
- <e6d9fbbb-eb61-0736-aa7b-a5e5d1a91db1@quicinc.com>
- <20231009152952.dww3fgh5q7fqysps@bogus>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20231009152952.dww3fgh5q7fqysps@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: c2_Uf1AAKfw4Lwo-4eIWLZmNsYEu5aDS
-X-Proofpoint-ORIG-GUID: c2_Uf1AAKfw4Lwo-4eIWLZmNsYEu5aDS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_15,2023-10-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 lowpriorityscore=0 phishscore=0 clxscore=1015
- spamscore=0 impostorscore=0 bulkscore=0 malwarescore=0 adultscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310090146
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="M6raEjnX9WsFCxfg"
+Content-Disposition: inline
+In-Reply-To: <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
 
 
-On 10/9/2023 8:29 AM, Sudeep Holla wrote:
-> On Mon, Oct 09, 2023 at 07:59:08AM -0700, Nikunj Kela wrote:
->> On 10/9/2023 7:47 AM, Sudeep Holla wrote:
->>> On Fri, Oct 06, 2023 at 09:42:06AM -0700, Nikunj Kela wrote:
->>>> This change adds the support for SCMI message exchange on Qualcomm
->>>> virtual platforms.
->>>>
->>>> The hypervisor associates an object-id also known as capability-id
->>>> with each smc/hvc doorbell object. The capability-id is used to
->>>> identify the doorbell from the VM's capability namespace, similar
->>>> to a file-descriptor.
->>>>
->>>> The hypervisor, in addition to the function-id, expects the capability-id
->>>> to be passed in x1 register when SMC/HVC call is invoked.
->>>>
->>>> The capability-id is allocated by the hypervisor on bootup and is stored in
->>>> the shmem region by the firmware before starting Linux.
->>>>
->>> Since you are happy to move to signed value, I assume you are happy to loose
->>> upper half of the range values ?
->>>
->>> Anyways after Bjorn pointed out inconsistency, I am thinking of moving
->>> all the values to unsigned long to work with both 32bit and 64bit.
->>>
->>> Does the below delta on top of this patch works for you and makes sense?
->> This looks good to me. Will do some testing and float v6 with the changes
->> you suggested below. Thanks
->>
-> Please refer or use the patch from [1] when reposting. I rebased on my
-> patch[2] that I posted few minutes back. I am trying to finalise the branch
-> and send PR in next couple of days, so please test and post sooner. Sorry
-> for the rush.
+--M6raEjnX9WsFCxfg
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Validated the patch from [1] below on Qualcomm ARM64 virtual platform 
-using SMC64 convention. Thanks!
+On Mon, Oct 02, 2023 at 06:44:41PM +0800, yang tylor wrote:
+> On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel.org> =
+wrote:
+> >
+> > On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
+> > > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+> > > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
+> > > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@kerne=
+l.org> wrote:
+> > > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
+> > > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor.d=
+ooley@microchip.com> wrote:
+> > > > > > > We have a default prefix firmware name(like himax_xxxx.bin) i=
+n the driver code.
+> > > > > >
+> > > > > > How do you intend generating the name of the firmware file? I a=
+ssume the
+> > > > > > same firmware doesn't work on every IC, so you'll need to pick a
+> > > > > > different one depending on the compatible?
+> > > > > >
+> > > > > If considering a firmware library line-up for all the incoming pa=
+nels
+> > > > > of this driver.
+> > > > > We would use PID as part of the file name. Because all the suppor=
+t panels would
+> > > > > have a unique PID associated. Which will make the firmware name l=
+ike
+> > > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID before =
+firmware load
+> > > > > at no flash condition. Thus PID information is required in dts wh=
+en
+> > > > > no-flash-flag
+> > > > > is specified.
+> > > >
+> > > > Firstly, where does the "xxx" come from?
+> > > > And you're making it sound more like having firmware-name is suitab=
+le
+> > > > for this use case, given you need to determine the name of the file=
+ to
+> > > > use based on something that is hardware specific but is not
+> > > > dynamically detectable.
+> > > Current driver patch uses a prefix name "himax_i2chid" which comes
+> > > from the previous project
+> > >  and seems not suitable for this condition, so I use "xxx" and plan to
+> > > replace it in the next version.
+> > > For finding firmware, I think both solutions are reasonable.
+> > > - provide firmware name directly: implies no-flash and use user
+> > > specified firmware, no PID info.
+> > > - provide no-flash-flag and PID info: loading firmware from organized
+> > > names with PID info.
+> > > I prefer the 2nd solution, but it needs more properties in dts. 1st
+> > > has less properties and more
+> > > intuitive.
+> > >
+> > > I don't know which one is more acceptable by the community, as you
+> > > know I'm a newbie here.
+> >
+> > To be honest, I am not all that sure either! Does the panel id have
+> > value in its own right, or is that only used to determine the firmware
+> > filename?
+> Currently, PID stands for Panel/Project ID and is used for determining
+> the firmware filename only. We haven't come up with any new attribute that
+> may attach to it. The differences between panels are handled in firmware
+> dedicated to its PID.
+>=20
+> > Also, if it does have value in its own right, rather than a "pid",
+> > should the panel be a child node of this hid device with its own
+> > compatible?
+> It may need a child node if we find it necessary to add attributes to eac=
+h PID.
+> But currently we have no idea about it.
 
+To be honest, it seems to me like you are using "PID" in place of a
+compatible for the panel, since it needs to be provided via DT anyway.
 
->
-> --
-> Regards,
-> Sudeep
-> [1] https://git.kernel.org/sudeep.holla/h/for-next/scmi/updates
-> [2] https://lore.kernel.org/r/20231009152049.1428872-1-sudeep.holla@arm.com
+--M6raEjnX9WsFCxfg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQ92gAKCRB4tDGHoIJi
+0sbAAQDvFnawcZKqA8CN5euZeU93hvrmcUykdZUeXZ3RsTGPegEAqXY+uqJz22vN
+qIYSeon1HUa/OyfQTuriEEM5vLbg6Q0=
+=mZhs
+-----END PGP SIGNATURE-----
+
+--M6raEjnX9WsFCxfg--
 
