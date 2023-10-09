@@ -1,168 +1,137 @@
-Return-Path: <devicetree+bounces-6966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9522F7BE1FC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:00:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28857BE20A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 16:02:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7FE71C208FE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:00:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CF1328165A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B9F347BC;
-	Mon,  9 Oct 2023 14:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB06A347C7;
+	Mon,  9 Oct 2023 14:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="SFsV4dzm"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="adHfmjm4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A2428DD9
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:00:01 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690B494;
-	Mon,  9 Oct 2023 06:59:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1696859999; x=1728395999;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nQJTz2/hIrRy3ZUS8kmvHLZ6fr3tWNIqWy4E00KPdKk=;
-  b=SFsV4dzmtdtfjv7bnvYX0BmKwXm7EK64Am7tmX07pdlgsB2v5W4NI5w+
-   nlLlTRh+JRfRWMjXGbI3BKjfNoabprpRPwPodbHEoCKtuJ9VWka9niOZP
-   lTun+rMW4T+C00KxuYREInmoacIn9g79YSCEZFZUS8OViOa2EgveZh+9b
-   C1LZ3GdssuCHHY/E+OoGOlxBnNvp+LMcXSm6kvUB/ie7EShB9UFNgUCVp
-   bvmaiMf0TFmvdtSa0zWOVg/6tyO/fbAMUQtqRflauGW4nSjfi99KQRrPg
-   kIv8Cg1xh6CF+UyKkE6YIgL0fgsD3KCJ5JsHtzJYAWpp9iZqjP2VzIHj3
-   A==;
-X-CSE-ConnectionGUID: b228B/oaTI2JseXaSD1k0Q==
-X-CSE-MsgGUID: YDOoeZqPRzi+CV5h9W2zOg==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; 
-   d="asc'?scan'208";a="240027128"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Oct 2023 06:59:44 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 9 Oct 2023 06:59:43 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 9 Oct 2023 06:59:40 -0700
-Date: Mon, 9 Oct 2023 14:59:20 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-CC: Biju Das <biju.das.jz@bp.renesas.com>, Thomas Gleixner
-	<tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
-	<magnus.damm@gmail.com>, "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Fabrizio Castro
-	<fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
-Message-ID: <20231009-lure-overcome-f33ee1fd6480@wendy>
-References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
- <20230831-iphone-muscular-7442cda2c39e@spud>
- <TYCPR01MB5933370B7660B8504B2D8D7386FBA@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <TYCPR01MB112697D67514D2E6FC690B9F886CEA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <576809c2-b7bc-4342-9c63-0662bfcecebf@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1C8341A1
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 14:02:34 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFAF91;
+	Mon,  9 Oct 2023 07:02:31 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 7479210000E;
+	Mon,  9 Oct 2023 17:02:26 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 7479210000E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696860146;
+	bh=VIv1fPRfeUQ2ABXQND3Xssl9fUJMSRfRjC1kDBAbOvs=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=adHfmjm4gyDN+jAMcYftcxb8ep5kfacXMJppxOqIFyibNJ+jmuH5Ce0S0DglNRaXi
+	 sWCVO45bOznJIFXQ2Q/ep6q+shNY17Fuvt7z2zeRQzZWADI5H4quDfGSMY6Ea5IaLE
+	 h9+ZMLvxV378hBDCE5T+wqhmgTubiVPelE3CBzNLOHkkZhd8U1geLpxHEHw1jABsIY
+	 GkDvAoq+3O5V3fWDuA/kAnsQLWO23T0+b42oRwaGtOCUmx8snFBXHurhNhddeUhuwU
+	 ra/E9oviTi1+Uw1uSpCLDkokncUURiRnS1RCA3UMVaqIs/4/CSX4ryRxZ2hHGkBwMW
+	 s2nbaliTjNDCA==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  9 Oct 2023 17:02:26 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 9 Oct
+ 2023 17:02:26 +0300
+Date: Mon, 9 Oct 2023 17:02:25 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>, George Stark
+	<gnstark@salutedevices.com>
+Subject: Re: [PATCH v1 09/11] leds: aw200xx: improve autodim calculation
+ method
+Message-ID: <20231009140225.gj7vkmmio5xfvtnk@CAB-WSD-L081021>
+References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
+ <20231006160437.15627-10-ddrokosov@salutedevices.com>
+ <CAHp75VcntHXe31H8C9GcGhc+HRA-gZjtD=uibMMYN-FS254RJw@mail.gmail.com>
+ <20231009131808.lzri7z2nvcmkfuu3@CAB-WSD-L081021>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="e8ALLTHbEjeomsJ5"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <576809c2-b7bc-4342-9c63-0662bfcecebf@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231009131808.lzri7z2nvcmkfuu3@CAB-WSD-L081021>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180479 [Oct 09 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/08 23:24:00 #22096719
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---e8ALLTHbEjeomsJ5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Oct 09, 2023 at 04:18:08PM +0300, Dmitry Rokosov wrote:
+> On Fri, Oct 06, 2023 at 09:03:47PM +0300, Andy Shevchenko wrote:
+> > On Fri, Oct 6, 2023 at 7:05 PM Dmitry Rokosov
+> > <ddrokosov@salutedevices.com> wrote:
+> > >
+> > > From: George Stark <gnstark@salutedevices.com>
+> > >
+> > > use DIV_ROUND_UP instead of coarse div
+> > 
+> > Please, respect English grammar and punctuation.
+> > Refer to macros and functions as func() (note the parentheses).
+> > 
+> > ...
+> > 
+> > >  #define AW200XX_REG_DIM2FADE(x) ((x) + 1)
+> > > +#define AW200XX_REG_FADE2DIM(fade) \
+> > > +       DIV_ROUND_UP((fade) * AW200XX_DIM_MAX, AW200XX_FADE_MAX)
+> > 
+> > Have you checked if the overflow is _now_ possible (compiling on
+> > 32-bit platforms as well)?
+> 
+> I suppose we shouldn't carry on about overflow here because the value of
+> fade cannot exceed 255, and DIM_MAX is set at 63
+> 
+> You can find maximum values of fade and dim in the aw200xx driver
+> header:
+> 
+> #define AW200XX_DIM_MAX                  (BIT(6) - 1)
+> #define AW200XX_FADE_MAX                 (BIT(8) - 1)
 
-On Mon, Oct 09, 2023 at 11:52:13AM +0200, Daniel Lezcano wrote:
-> On 09/10/2023 08:54, Biju Das wrote:
-> > Hi all,
-> >=20
-> > Gentle ping. This patch is in the patch work for a while.
-> > It is acked/reviewed by Conor Dooley and Geert Uytterhoeven.
-> >=20
-> > Can we apply to mainline if you are happy? Or do you want me
-> > to RESEND the patches? Please let me know.
->=20
-> Krzysztof ?
+I agree that checking if the fade is not greater than FADE_MAX will not
+be excessive. The LED subsystem is capable of sending brightness levels
+higher than 255
 
-Daniel ?
-
-(Or for the non-telepathic, what is "Krzysztof ?" supposed to mean?)
-
-Cheers,
-Conor.
-
-> > > > On Thu, Jul 27, 2023 at 09:18:43AM +0100, Biju Das wrote:
-> > > > > This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
-> > > > > Also it fixes overflow/underflow interrupt names.
-> > > > >=20
-> > > > > v2->v3:
-> > > > >   * Dropped patch#4, as it accepted for 6.5 fixes.
-> > > > >   * Moved patch#2 to patch#1 as it is fixes patch.
-> > > > >   * Added Rb tag from Geert for patch#1 and patch#3.
-> > > > >   * Updated the link to lore for Closes tag for patch#2.
-> > > > >   * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
-> > > > >=20
-> > > > > v1->v2:
-> > > > >   * Added Ack tags from Conor Dooley for binding patches
-> > > > >   * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#=
-5.
-> > > > >   * Fixed build error reported by kernel test robot by replacing
-> > > > >     GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
-> > > > >=20
-> > > > > Biju Das (5):
-> > > > >    dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow in=
-terrupt
-> > > > >      names
-> > > > >    dt-bindings: timer: renesas,rz-mtu3: Improve documentation
-> > > > >    dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} S=
-oCs
-> > > > >    arm64: dts: renesas: r9a07g043: Add MTU3a node
-> > > > >    arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MT=
-U3
-> >=20
->=20
-> --=20
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->=20
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
->=20
-
---e8ALLTHbEjeomsJ5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSQHNwAKCRB4tDGHoIJi
-0gxeAQDwG9USr3b/VULisPpvkZt8Fi1zQA3PuvWkqP7MNRsXtwEA1ksE5ZnQHr4o
-PDxaKF4h/UYVWAZYRoji/OxR/VDy1gw=
-=JZYA
------END PGP SIGNATURE-----
-
---e8ALLTHbEjeomsJ5--
+-- 
+Thank you,
+Dmitry
 
