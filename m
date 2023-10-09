@@ -1,129 +1,153 @@
-Return-Path: <devicetree+bounces-6988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8051E7BE55E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:50:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C68A7BE5A7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 17:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BD6C281841
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:50:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C76C21C209B6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 15:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96364374D7;
-	Mon,  9 Oct 2023 15:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960D637C89;
+	Mon,  9 Oct 2023 15:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Eq+uU17w"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="0UF6OFsh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74391374C8
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 15:49:56 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CA69C;
-	Mon,  9 Oct 2023 08:49:54 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 606F8E0007;
-	Mon,  9 Oct 2023 15:49:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696866592;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sAgw6JmSJvT+dqBBnIW1pDl+6OyMUlGt9saFaoElUaI=;
-	b=Eq+uU17wkxvKwqFJK280G81zvfK3zfB+2V5a9Ef0aioRCZBPEg2NqszZ72MF6RV3aicw7X
-	GwehBz+sh4yTqoE3ebsPc3wAEwJ4S+7XCzHhU8McZ4au942SdW8teCtSqZdexW28M4iwnB
-	TqVLhS9sR0Vk2U21N4kEerQ2CUdRSVJt78toroIlU9UGQDDhf7/hwnvvagcmxCTEPKih59
-	wxMjZyB62iIEwmf0czMzpHEWjHG6TO/WFAZR1WK03YHHPC38FM6REWnkXOtOgpAssmc+lN
-	/Chz6p2eHA2NAd6eNQ4IfoPoY+KPLCnSh40O3f85ckxnGswlmH+4UIopV891WQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vladimir Kondratiev
- <vladimir.kondratiev@intel.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 07/11] dt-bindings: mfd: syscon: Document EyeQ5 OLB
-In-Reply-To: <20231006165438.GA4061751-robh@kernel.org>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-8-gregory.clement@bootlin.com>
- <20231006165438.GA4061751-robh@kernel.org>
-Date: Mon, 09 Oct 2023 17:49:50 +0200
-Message-ID: <87h6mzbxsx.fsf@BL-laptop>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0AE21775A
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 15:56:27 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF1AF99;
+	Mon,  9 Oct 2023 08:56:25 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399D7P9l030790;
+	Mon, 9 Oct 2023 17:56:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=72yN/PJtKSRJXmtVA+yut3IcjcusVBV+3vh9OJ6jXMI=; b=0U
+	F6OFshRICcuO2W9xvyThnUicqt2zch1ApwS7VOhnC0+fo2Fs2nvIi9c88XwJ0MMC
+	MVd7MoC2faveq64tHhqp0uCamd0Br6OAirAngFphh6rkAyPVWzq2DKJv08JhLCNf
+	/b6+sY8NVBg8/AQOBNu4/FyisRSpyO4TGSz1ulfB0U43Gz47llPtU08vkJ4WDcQU
+	82GSjJ/bEJR8MUOpOlGc1WOys9OpnQNl5/3XTwzqTNZjULVoYO/+ANEitNZyyn5p
+	bk1HjRWc8UBig5Ie848l+czpH1eHzj6cO92Q/YYCdwQO4lU8BxhsBwbZWQ9c4ne6
+	SdT8CmVtj/+SJGH+samQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhfdx0sx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Oct 2023 17:56:03 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C4DB710005E;
+	Mon,  9 Oct 2023 17:56:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B7DED26DDAC;
+	Mon,  9 Oct 2023 17:56:01 +0200 (CEST)
+Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 9 Oct
+ 2023 17:56:00 +0200
+Message-ID: <13aa532e-5fbe-b8d4-d005-1973f589cef3@foss.st.com>
+Date: Mon, 9 Oct 2023 17:56:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
+ encoder
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ezequiel Garcia
+	<ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil
+	<hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+CC: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
+ <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
+ <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
+ <0de2ae74-2ba1-0e8d-aa7b-77806ac8b252@foss.st.com>
+ <1e2a4d87-5478-4655-993d-7f404d507c82@linaro.org>
+ <fa0e6187-ab7d-bc23-299c-a491c8ff1d8f@foss.st.com>
+ <d3f56d51-beb0-4f7a-a1f6-3ae03bbc9826@linaro.org>
+From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+In-Reply-To: <d3f56d51-beb0-4f7a-a1f6-3ae03bbc9826@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-09_14,2023-10-09_01,2023-05-22_02
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Rob Herring <robh@kernel.org> writes:
+Hi Krzysztof,
 
-> On Wed, Oct 04, 2023 at 06:10:34PM +0200, Gregory CLEMENT wrote:
->> Document Mobileye EyeQ5 compatibles for OLB registers that are
->> misceallanous SoC related registers.
->
-> typo.
->
-> Please state what OLB is and what kind of things are in this block. IOW, 
-> convince me this is not just a skeleton placeholder until you add a 
-> bunch of providers in a real binding.
+On 10/9/23 16:28, Krzysztof Kozlowski wrote:
+> On 09/10/2023 16:24, Hugues FRUCHET wrote:
+>> Hi Krzysztof,
+>>
+>> On 10/9/23 15:56, Krzysztof Kozlowski wrote:
+>>> On 09/10/2023 15:49, Hugues FRUCHET wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 10/5/23 21:45, Krzysztof Kozlowski wrote:
+>>>>> On 04/10/2023 11:15, Hugues Fruchet wrote:
+>>>>>> Add STM32MP25 VENC video encoder bindings.
+>>>>>>
+>>>>>
+>>>>> I don't understand why this binding is separate from video decoder.
+>>>>> Merge them.
+>>>> VDEC and VENC are two independent IPs with their own clock, reset,
+>>>> interrupt & register set, they have their own access to APB/AXI bus.
+>>>> Moreover future chipsets may embed only VENC or VDEC.
+>>>>
+>>>> Hoping that this clarifies the reason of two different bindings.
+>>>
+>>> No, it does not. These are no reasons to have independent bindings,
+>>> except when having actual impact on the bindings. The bindings look
+>>> identical. What are the differences?
+>> I'm sorry but I really don't understand your point, these are two
+>> different IPs with very different registers in it, so why should
+>> I share that in a single binding ?
+> 
+> Because the binding is identical. If not, maybe I missed something, so
+> please point me to differences in the binding.
 
-I understand your concern. First OLB stands for Other Logic Block which
-does not say much about it!
+OK, currently they are identical so I will merge into a single one
+even if I disagree on that.
+I hope that in future this will not change otherwise I'll need to 
+revisit that and make separate bindings as initially proposed...
+I'll so push a v2 with merged version proposal.
 
-It is used to expose SoC specific configuration such as for example
-reset, clock or pinctrl. We have a few series nearly ready to be send to
-add support for them, each of them will use this block. So declaring
-this block since the beginning avoid to have dependencies between these
-series and they will only depend of this current initial series.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Is it OK for you ?
-
-Besides fixing the typo I can add the following explanation to the
-commit log: "It is used to expose SoC specific configuration such as for
-example reset, clock or pinctrl"
-
-Gregory
-
-
->
->> 
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> index 8103154bbb52..70bc6e8d15ba 100644
->> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> @@ -53,6 +53,7 @@ properties:
->>                - mediatek,mt8135-pctl-a-syscfg
->>                - mediatek,mt8135-pctl-b-syscfg
->>                - mediatek,mt8365-syscfg
->> +              - mobileye,eyeq5-olb
->>                - microchip,lan966x-cpu-syscon
->>                - microchip,sparx5-cpu-syscon
->>                - mstar,msc313-pmsleep
->> -- 
->> 2.40.1
->> 
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+BR,
+Hugues.
 
