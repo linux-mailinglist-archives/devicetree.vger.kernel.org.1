@@ -1,134 +1,268 @@
-Return-Path: <devicetree+bounces-6925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4137BDB3F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:16:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5217BDB3E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 14:16:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E614280EDE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:16:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39B6F280D1A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 12:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089BB19444;
-	Mon,  9 Oct 2023 12:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A673318C3D;
+	Mon,  9 Oct 2023 12:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TnqHabip"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227C116416
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:16:14 +0000 (UTC)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EA13869;
-	Mon,  9 Oct 2023 05:16:00 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-579de633419so54732387b3.3;
-        Mon, 09 Oct 2023 05:16:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696853759; x=1697458559;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dl00x9F8gW/xdOyelK9eYXeUORxvhqizJLBB30N7AGk=;
-        b=cI/Nqx/k179AtYaOEvaNz1ZhgKN3sFuJuBkj50Zr8VfTpEjqi1Ve0zz+Ap42QgfsOJ
-         N2j7dRmmSRXJB/Bf7Aq1e7lsHiTc1sMX8IT0diGJjGmEjhGNn6tHr+pwXtgjGPdAxP2l
-         0/LPW+9h7dy16EPEcchFfUMhIk1O12ij7wabTCeuxwVTZQmzYiqlkguZ5SczHG/ONq3N
-         N/0zo+MOcBHdlLLrGG0bMLVyIKxTs7so4vM9Lpyj3JH1u6Qbq3FcCv7Rcb2TMUA/TskA
-         IuIZKteKw32AiWBPTk3NtttRAdOP4sVRpENtkDSs59gez9dXNbI4CBl0EUM5Jbof1tmc
-         EESA==
-X-Gm-Message-State: AOJu0Yw7LhlbDS1zn0yRCw81UZFT4dfCzWbIqRgLGucRigzLsbzUNUk2
-	PRlJPIzjZa/0JwuSqJzwR+YSBXv/1ErVoQ==
-X-Google-Smtp-Source: AGHT+IELe+3I8FWuWnnUxoIPY8fcz5mi8r2NEs5/lm7mVTLb8wseID8RAmWbGRU9e0uQJnyWrp0urA==
-X-Received: by 2002:a0d:f204:0:b0:569:479f:6d7f with SMTP id b4-20020a0df204000000b00569479f6d7fmr14459936ywf.43.1696853759588;
-        Mon, 09 Oct 2023 05:15:59 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id m131-20020a817189000000b005950e1bbf11sm3619210ywc.60.2023.10.09.05.15.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 05:15:59 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5a7af20c488so1026447b3.1;
-        Mon, 09 Oct 2023 05:15:59 -0700 (PDT)
-X-Received: by 2002:a0d:d402:0:b0:59b:c847:bce0 with SMTP id
- w2-20020a0dd402000000b0059bc847bce0mr16554853ywd.42.1696853759136; Mon, 09
- Oct 2023 05:15:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912741FD3
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 12:16:13 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9B2385F;
+	Mon,  9 Oct 2023 05:15:59 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 2D639660708F;
+	Mon,  9 Oct 2023 13:15:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1696853758;
+	bh=6IxXuw1iuy8EVSXqn5C22h2EVvDJCRVbqg5t0p+CIgQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TnqHabipIkWGqzyHZA/ulQTttjOzpGUtfN0PlDIzdUGBh6SCCUlxM7Oyu9dWlwSSf
+	 lymyQHe9X3e+vpAVk2UJjFYMTk4OG+bh/YC9I34LoF8eX3zV9K+IaOFvgjFcMVFc9h
+	 yhrOSvhbbO9aFCibkYwYO2HzKUuCvtJ6OkmgWYdcq0Wj03AGcwdBAjmbWLKyk0MgR5
+	 6W8HZWW/jjOJMoGnRLTTqgmhhRhUXikKlQbyoGedCCFXBGH010X9GTC5JoDrnYeQAr
+	 lJd5RAmJy5A5oVQsqbAA1nD23gEK/aqc/vsmn3gXTJDZ+fKrg33tQUhWJ5C1sZxpLS
+	 dDXgn5yexNlUA==
+Message-ID: <42fab116-ce4e-b4bb-c457-821a92ff85b6@collabora.com>
+Date: Mon, 9 Oct 2023 14:15:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231009-approve-verbalize-ce9324858e76@wendy> <20231009-smog-gag-3ba67e68126b@wendy>
-In-Reply-To: <20231009-smog-gag-3ba67e68126b@wendy>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Oct 2023 14:15:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVc7VOvB86A7-TShhoqut6Y1ZvY0WSC8XpOEv8Bb2bA-Q@mail.gmail.com>
-Message-ID: <CAMuHMdVc7VOvB86A7-TShhoqut6Y1ZvY0WSC8XpOEv8Bb2bA-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] riscv: dts: renesas: convert isa detection to new properties
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: linux-riscv@lists.indradead.org, conor@kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] media: mediatek: vcodec: using encoder device to
+ alloc/free encoder memory
+Content-Language: en-US
+To: Yunfei Dong <yunfei.dong@mediatek.com>,
+ =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= <nfraprado@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Nathan Hebert <nhebert@chromium.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20231008031909.32146-1-yunfei.dong@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231008031909.32146-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Conor,
+Il 08/10/23 05:19, Yunfei Dong ha scritto:
+> Need to use encoder device to allocate/free encoder memory when calling
+> mtk_vcodec_mem_alloc/mtk_vcodec_mem_free, or leading to below crash log
+> when test encoder with decoder device.
+> 
+> pc : dma_alloc_attrs+0x44/0xf4
+> lr : mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common]
+> sp : ffffffc0209f3990
+> x29: ffffffc0209f39a0 x28: ffffff8024102a18 x27: 0000000000000000
+> x26: 0000000000000000 x25: ffffffc00c06e2d8 x24: 0000000000000001
+> x23: 0000000000000cc0 x22: 0000000000000010 x21: 0000000000000800
+> x20: ffffff8024102a18 x19: 0000000000000000 x18: 0000000000000000
+> x17: 0000000000000009 x16: ffffffe389736a98 x15: 0000000000000078
+> x14: ffffffe389704434 x13: 0000000000000007 x12: ffffffe38a2b2560
+> x11: 0000000000000800 x10: 0000000000000004 x9 : ffffffe331f07484
+> x8 : 5400e9aef2395000 x7 : 0000000000000000 x6 : 000000000000003f
+> x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000cc0
+> x2 : ffffff8024102a18 x1 : 0000000000000800 x0 : 0000000000000010
+> Call trace:
+>   dma_alloc_attrs+0x44/0xf4
+>   mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common 2819d3d601f3cd06c1f2213ac1b9995134441421]
+>   h264_enc_set_param+0x27c/0x378 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+>   venc_if_set_param+0x4c/0x7c [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+>   vb2ops_venc_start_streaming+0x1bc/0x328 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+>   vb2_start_streaming+0x64/0x12c
+>   vb2_core_streamon+0x114/0x158
+>   vb2_streamon+0x38/0x60
+>   v4l2_m2m_streamon+0x48/0x88
+>   v4l2_m2m_ioctl_streamon+0x20/0x2c
+>   v4l_streamon+0x2c/0x38
+>   __video_do_ioctl+0x2c4/0x3dc
+>   video_usercopy+0x404/0x934
+>   video_ioctl2+0x20/0x2c
+>   v4l2_ioctl+0x54/0x64
+>   v4l2_compat_ioctl32+0x90/0xa34
+>   __arm64_compat_sys_ioctl+0x128/0x13c
+>   invoke_syscall+0x4c/0x108
+>   el0_svc_common+0x98/0x104
+>   do_el0_svc_compat+0x28/0x34
+>   el0_svc_compat+0x2c/0x74
+>   el0t_32_sync_handler+0xa8/0xcc
+>   el0t_32_sync+0x194/0x198
+> Code: aa0003f6 aa0203f4 aa0103f5 f900
+> 
+> 'Fixes: 01abf5fbb081c ("media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'")'
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>   .../mediatek/vcodec/common/mtk_vcodec_util.c  | 66 ++++++++++++++++++-
+>   1 file changed, 64 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+> index 908602031fd0..62bb7290c56d 100644
+> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+> @@ -45,7 +45,7 @@ int mtk_vcodec_write_vdecsys(struct mtk_vcodec_dec_ctx *ctx, unsigned int reg,
+>   }
+>   EXPORT_SYMBOL(mtk_vcodec_write_vdecsys);
+>   
+> -int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+> +static int mtk_vcodec_mem_dec_alloc(void *priv, struct mtk_vcodec_mem *mem)
+>   {
+>   	unsigned long size = mem->size;
+>   	struct mtk_vcodec_dec_ctx *ctx = priv;
+> @@ -64,9 +64,39 @@ int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+>   
+>   	return 0;
+>   }
+> +
+> +static int mtk_vcodec_mem_enc_alloc(void *priv, struct mtk_vcodec_mem *mem)
+> +{
+> +	unsigned long size = mem->size;
+> +	struct mtk_vcodec_enc_ctx *ctx = priv;
+> +	struct device *dev = &ctx->dev->plat_dev->dev;
+> +
+> +	mem->va = dma_alloc_coherent(dev, size, &mem->dma_addr, GFP_KERNEL);
+> +	if (!mem->va) {
+> +		mtk_v4l2_venc_err(ctx, "%s dma_alloc size=%ld failed!", dev_name(dev), size);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
+> +			  (unsigned long)mem->dma_addr);
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
+> +
+> +	return 0;
+> +}
+> +
+> +int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+> +{
+> +	enum mtk_instance_type inst_type = *((unsigned int *)priv);
 
-On Mon, Oct 9, 2023 at 11:44=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
-> Convert the RZ/Five devicetrees to use the new properties
-> "riscv,isa-base" & "riscv,isa-extensions".
-> For compatibility with other projects, "riscv,isa" remains.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+I agree in that the first member of both mtk_vcodec_{enc,dec}_ctx is this
+enum mtk_instance_type, but no, you're not passing that as priv: you're actually
+passing one of the two structures, and this would add up complexity in human
+readability, and would also open the road for mistakes.
 
-Thanks for your patch!
+You should at this point pass the instance type to the function.
 
-> --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-> +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-> @@ -24,6 +24,9 @@ cpu0: cpu@0 {
->                         reg =3D <0x0>;
->                         status =3D "okay";
->                         riscv,isa =3D "rv64imafdc";
-> +                       riscv,isa-base =3D "rv64i";
-> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "zicntr", "zicsr",
-> +                                              "zifencei", "zihpm";
+int mtk_vcodec_mem_alloc(void *priv, enum mtk_instance_type /* or int, but I prefer 
+enum */ inst_type, struct mtk_vcodec_mem *mem)
 
-LGMT, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+...and then, since the only difference between the two `alloc` function is just
+only about debugging logs, you could commonize the allocation part... an idea:
 
-I could not review the "zi*" parts, as the documentation that I have
-does not mention these.
+struct platform_device *pdev;
+unsigned long size;
+int id;
 
->                         mmu-type =3D "riscv,sv39";
->                         i-cache-size =3D <0x8000>;
->                         i-cache-line-size =3D <0x40>;
 
-Gr{oetje,eeting}s,
+if (inst_type == MTK_INST_DECODER) {
+	struct mtk_vcodec_enc_ctx *enc_ctx = priv;
+	pdev = enc_ctx->dev->plat_dev;
+	id = enc_ctx->id;
+} else {
+	struct mtk_vcodec_dec_ctx *dec_ctx = priv;
+	pdev = dec_ctx->dev->plat_dev;
+	id = dec_ctx->id;
+}
 
-                        Geert
+mem->va = dma_alloc_coherent(&pdev->dev, etc.....)
+if (!mem->va) {
+	mtk_v4l2_err(pdev, .....);
+}
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+mtk_v4l2_debug(&pdev->dev, 3, "[%d]  - va      = %p", id, mem->va);
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+...you wouldn't even need one function for enc_alloc and one for dec_alloc, as
+the logic would be pretty much commonized like this.
+
+> +
+> +	if (inst_type == MTK_INST_ENCODER)
+> +		return mtk_vcodec_mem_enc_alloc(priv, mem);
+> +	else
+> +		return mtk_vcodec_mem_dec_alloc(priv, mem);
+> +}
+>   EXPORT_SYMBOL(mtk_vcodec_mem_alloc);
+>   
+> -void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+> +static void mtk_vcodec_mem_dec_free(void *priv, struct mtk_vcodec_mem *mem)
+>   {
+>   	unsigned long size = mem->size;
+>   	struct mtk_vcodec_dec_ctx *ctx = priv;
+> @@ -87,6 +117,38 @@ void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+>   	mem->dma_addr = 0;
+>   	mem->size = 0;
+>   }
+> +
+> +static void mtk_vcodec_mem_enc_free(void *priv, struct mtk_vcodec_mem *mem)
+> +{
+> +	unsigned long size = mem->size;
+> +	struct mtk_vcodec_enc_ctx *ctx = priv;
+> +	struct device *dev = &ctx->dev->plat_dev->dev;
+> +
+> +	if (!mem->va) {
+> +		mtk_v4l2_venc_err(ctx, "%s dma_free size=%ld failed!", dev_name(dev), size);
+> +		return;
+> +	}
+> +
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
+> +			  (unsigned long)mem->dma_addr);
+> +	mtk_v4l2_venc_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
+> +
+> +	dma_free_coherent(dev, size, mem->va, mem->dma_addr);
+> +	mem->va = NULL;
+> +	mem->dma_addr = 0;
+> +	mem->size = 0;
+> +}
+> +
+> +void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+> +{
+> +	enum mtk_instance_type inst_type = *((unsigned int *)priv);
+> +
+> +	if (inst_type == MTK_INST_ENCODER)
+> +		mtk_vcodec_mem_enc_free(priv, mem);
+> +	else
+> +		mtk_vcodec_mem_dec_free(priv, mem);
+
+same comments apply to the xxxx_free() function as well.
+You're in the "common" scope here, so you wouldn't be forced to use the enc/dec
+specific logging functions, as you can use the more generic mtk_v4l2_{debug,err}()
+and mtk_vcodec_{debug,err}() functions here, which are *perfect* for the common
+code.
+
+Cheers,
+Angelo
+
 
