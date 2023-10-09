@@ -1,113 +1,149 @@
-Return-Path: <devicetree+bounces-6846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E16D7BD1F0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 04:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 882337BD228
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 04:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15DAE281463
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 02:21:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42092281470
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 02:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622A02F37;
-	Mon,  9 Oct 2023 02:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869A87495;
+	Mon,  9 Oct 2023 02:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GR6vFG/p"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="R7EL1nbj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54A615B7
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 02:21:20 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B43BA4;
-	Sun,  8 Oct 2023 19:21:18 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 246BA7E2;
-	Mon,  9 Oct 2023 04:21:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1696818075;
-	bh=ot+x92A9imuYrYSeW7vRsep0XLo94ZWmYnGMxer6Ljw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GR6vFG/p2D8Clyfe14u8xUOaJWw2cDwjjZfn5LdsgPKw8eCQ/cwbs6rjn5hN5Dyw1
-	 TTrE7K83jX2w762UnHNKie2jN0Rcys7kpScvV+d8cONCOnl0odULCMvY8C76OG7rwY
-	 3yjoVagkaPjdysFXMrNqWdMWD6N7+6JBStCCQYwY=
-Date: Mon, 9 Oct 2023 05:21:22 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
-Subject: Re: [PATCH v6 0/3] media: i2c: Introduce driver for the TW9900 video
- decoder
-Message-ID: <20231009022122.GH5121@pendragon.ideasonboard.com>
-References: <cover.1696608809.git.mehdi.djait@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F648816;
+	Mon,  9 Oct 2023 02:55:01 +0000 (UTC)
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927C3A4;
+	Sun,  8 Oct 2023 19:55:00 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+	id 2222520231; Mon,  9 Oct 2023 10:54:58 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1696820098;
+	bh=QxzJYY9A0zWCE2fJK6lM/URO1TayMPdW+FPIlE3Cck8=;
+	h=From:To:Cc:Subject:Date;
+	b=R7EL1nbjTRsm/43cr/HyKbDuxw5tF1Z8y9HY6pqXbFKDyap8KjZQxxxGlQY9if22N
+	 d+hLUekRKRpFe4VM8WvVoIDRqyM62UO2FqpdOyzIZf8jINrJDw+R46+bKrfziWMZtg
+	 FIBw6vlmrss3FEBN4TrtCuwBqIjPYlW0h6Pv0iAh55BnbhjjJCLoLH6ekEOydi65Sp
+	 YYvOZZmRh+6C2U3Gz4DH0lzHlzGNw/d6qtvrsUmbFAGfUeOI+eMtYNklH8uigA5L0j
+	 5/vyqeb8WPZ6wAY9+zgZEOTnvBq+nDp7VEpOpreCwXQAzsbCpIYV/wkJK6mASVGtZz
+	 7ilpymgpffUmA==
+From: Matt Johnston <matt@codeconstruct.com.au>
+To: linux-i3c@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	miquel.raynal@bootlin.com
+Subject: [PATCH net-next v5 0/3] I3C MCTP net driver
+Date: Mon,  9 Oct 2023 10:54:46 +0800
+Message-ID: <20231009025451.490374-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <cover.1696608809.git.mehdi.djait@bootlin.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Oct 06, 2023 at 06:25:27PM +0200, Mehdi Djait wrote:
-> Hello everyone,
-> 
-> This series is based on the fifth iteration of the series introducing the
-> tw9900 driver: sent 29 Dec 2020 [1]
-> 
-> This is the version 6 of the series adding support for the Techwell
-> TW9900 multi standard decoder. It's a pretty simple decoder compared to
-> the TW9910, since it doesn't have a built-in scaler/crop engine.
-> 
-> Changes v5 => v6:
-> - dropped .skip_top and .field in the supported_modes
-> - added error handling for the i2c writes/reads
-> - added the colorimetry information to fill_fmt
-> - removed pm_runtime
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-It's not very nice to keep the chip powered up all the time :-(
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
 
-> - added the g_input_status callback
-> - dropped SECAM
-> - dropped the non-standard PAL/NTSC variants
-> 
-> Any feedback is appreciated,
-> 
-> Mehdi Djait
-> 
-> media_tree, base-commit: 2c1bae27df787c9535e48cc27bbd11c3c3e0a235
-> 
-> [1] https://lore.kernel.org/linux-media/20210401070802.1685823-1-maxime.chevallier@bootlin.com/
-> 
-> Mehdi Djait (3):
->   dt-bindings: vendor-prefixes: Add techwell vendor prefix
->   media: dt-bindings: media: i2c: Add bindings for TW9900
->   media: i2c: Introduce a driver for the Techwell TW9900 decoder
-> 
->  .../bindings/media/i2c/techwell,tw9900.yaml   |  61 ++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   6 +
->  drivers/media/i2c/Kconfig                     |  12 +
->  drivers/media/i2c/Makefile                    |   1 +
->  drivers/media/i2c/tw9900.c                    | 651 ++++++++++++++++++
->  6 files changed, 733 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
->  create mode 100644 drivers/media/i2c/tw9900.c
+&i3c0 {
+        mctp-controller;
+}
+
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
+
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
+
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against QEMU, as well as using the target mode support 
+in Aspeed's vendor tree.
+
+I3C maintainers have acked merging this through net-next tree.
+
+Thanks,
+Matt
+
+---
+
+v5:
+
+- Use #define for constant initializer, fixes older gcc
+- Wrap lines at 80 characters, fix parenthesis alignment 
+
+v4:
+
+- Add asm/unaligned.h include
+
+v3:
+
+- Use get_unaligned_be48()
+- Use kthread_run()
+- Don't set net namespace
+
+v2:
+
+- Rebased to net-next
+- Removed unnecessary pr_ printing
+- Fixed reverse christmas tree ordering
+- Reworded DT property description to match I2C
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   6 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 769 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 831 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
 
 -- 
-Regards,
+2.42.0
 
-Laurent Pinchart
 
