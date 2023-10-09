@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621E27BD559
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:38:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B56107BD578
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 10:44:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE3B22814EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:38:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E68FB1C208DE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Oct 2023 08:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FCF15A2;
-	Mon,  9 Oct 2023 08:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EDC9CA68;
+	Mon,  9 Oct 2023 08:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VPUQ6Tkk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="whdLmWmC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C316800
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:38:25 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42BBAB
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:38:23 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40566f89f6eso42310045e9.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:38:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942A1800
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 08:44:28 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F1EDE
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 01:44:26 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-406618d0991so39200875e9.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 01:44:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696840702; x=1697445502; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696841065; x=1697445865; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=edae1CHzB8lTTJNc4L9E/4ctYtT55CcIfQOgs79tmYg=;
-        b=VPUQ6TkkWrwuFzv1lkz97/GjHMgtePvsHGOfb+/Rrzg4hh9WYXE1y2H87orF+bJzWP
-         uWItSQ0/7WAhcv4cxZRCsWIxkwadb0g/1wggbFRGGx+R3LJDPnkVtazdNkFmBzgN3z0U
-         eLUZo80PuOpuMA6LFeJ/xDJ8Qek3XFTcVFNnLstemIFn4+hwdXZVrw0TGt/QJM8cfskn
-         aYcll2/axfy6JPtduXOKuMo4yP0XjseEWDJnUV0rKRmXQxhC3zYqxRx2oGryXCvkNnp/
-         TXJloogMoXs23+iflKSyzabbA7lYHesb9jlQDwGeKw9ig87jpU1ng1ZSyozjTqX25wOE
-         TXeA==
+        bh=4ecCwnOiBMiJBkppZWoZ5rAsb51wZF8Saxiahv3LuEA=;
+        b=whdLmWmCYkuiK1NujPykMgK6T8aZMXEWSo7/wh6zreMKjH4UVhhZayo82VrZvrK9hS
+         mJSeKMUIwkxo7krn8h2rR4VxL9tSU0SPKjSYCtLtoq0yDnceiEh95GX6l1MLIrm1rJwn
+         2Xu7XyIQkj6jsrS038+P/GKGPYSsNseLUNFzV4TdeRAddFBdTIPm83dbwVqUf82BZpgi
+         IHzA0iQHORjbes1RkfoZEnhR1S3cv1Wnq7o5Yz3WyQxHsaz5yNFdGEoH/SVRfxJHIdCF
+         U5f8uS8UCwqqGYeJebxQjvM8IklecTicKZDPOwGnuPUn+Kq0oBXAwc+shp1GDnJ9GP71
+         8awQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696840702; x=1697445502;
+        d=1e100.net; s=20230601; t=1696841065; x=1697445865;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=edae1CHzB8lTTJNc4L9E/4ctYtT55CcIfQOgs79tmYg=;
-        b=cH8mnpcdhGPRdy2KAV1TM/T4rJFeXXDlpn06qkYV8pZGwMq0cNZj97/Tnh1IvLw/JX
-         Recdy3YQvaXb8bO6T2yuvGMY8uHRBaulRWchjmcPPPqjhNTMOeAeWJbuV9qNzLhYqFXL
-         RAk115XaKjsiL/s2bklopE5Xc7wgkuKsTbB4EAgeEZTWyTTqZmC1Fm6jJJ4cllShuMfZ
-         bja3txMUoDGyyt8wJCGce3B6kq6J4iz8fKdjrhsZx0xVZjMllKf4rbg5wCm65J/Ov9K8
-         Y/SWLdRGGBu0eHnRMKZ2DirZ49rdtEO/JIAJhOgOP8du2pwZ9UUisD33S2a+U35ItT8p
-         kWrg==
-X-Gm-Message-State: AOJu0YwdVvIJN4qrFNqEWYPsT0YOc/jiPqKCzgFgtryr3UJ52lfR5dk5
-	R25bkcUO+m9K06hq6HhwqsQQDw==
-X-Google-Smtp-Source: AGHT+IG8532heF0b4L0eF8xGaJHiZab0bc5cImh8lvMycsh56bSHqqb6Doye403NOFPRj7uCBn9p8Q==
-X-Received: by 2002:a5d:6f19:0:b0:329:6bd7:470b with SMTP id ay25-20020a5d6f19000000b003296bd7470bmr9162020wrb.58.1696840702154;
-        Mon, 09 Oct 2023 01:38:22 -0700 (PDT)
+        bh=4ecCwnOiBMiJBkppZWoZ5rAsb51wZF8Saxiahv3LuEA=;
+        b=B76EtiUy8i1Pulp4KzWOCxj751j9WN3lowe7dIhSGlV73MAOBokOjEGhZw8b3QS+7o
+         vMHMNPhnUHCwpXVcKNjiMOGNPt+Cfx+vTFAC9lZ0uCkxaD1ZBmp1vf3ypTCFeKr1dxX/
+         MKpbBoVwF2FXEaQaDFI5xeXoSw/YIuoMA90My9x4EovuS8Uf3R5sHsJWhfiKxQys0WwX
+         8npzifwLt3MpaQFIbgIS/3Jp7m6L2ukuHnr23CN1zQlGKTLXYkoaEEuP6vx8c4bifdtw
+         Z3J3nNZTpPeSeD+pTyK9kcz7spMmahu9puNUA7QXhIJUYUSTfEpVZaoC/8LnCt2z1/EB
+         PF9w==
+X-Gm-Message-State: AOJu0Yz8hQF86xlNWln///FQ5D+rxGv+etIvJwT46w0/QucPhWcuvdVS
+	lEy0l1dd3/5iz7ii1lKuV95mmA==
+X-Google-Smtp-Source: AGHT+IEli9RIjzkmj6Dd/AxlGnUOI3ab7nSEtGfbZlYfGLU6gG1jUz6l4Yx07JQxPNAqBDFcwH/qVg==
+X-Received: by 2002:a1c:7c0a:0:b0:401:be5a:989 with SMTP id x10-20020a1c7c0a000000b00401be5a0989mr13245137wmc.23.1696841065178;
+        Mon, 09 Oct 2023 01:44:25 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id l2-20020a5d4802000000b0031fe0576460sm8923180wrq.11.2023.10.09.01.38.20
+        by smtp.gmail.com with ESMTPSA id f19-20020a1c6a13000000b00402d34ea099sm12740930wmc.29.2023.10.09.01.44.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Oct 2023 01:38:21 -0700 (PDT)
-Message-ID: <cb07b48d-1bf7-49a3-a08d-d7ca38a9218e@linaro.org>
-Date: Mon, 9 Oct 2023 10:38:20 +0200
+        Mon, 09 Oct 2023 01:44:24 -0700 (PDT)
+Message-ID: <57bfc82e-5008-4724-9bce-cbd669d7c17b@linaro.org>
+Date: Mon, 9 Oct 2023 10:44:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: leds: Last color id is now 14
- (LED_COLOR_ID_LIME)
+Subject: Re: [PATCH 1/7] dt-bindings: ufs: qcom: Add SC7180 compatible string
 Content-Language: en-US
-To: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>, linux-kernel@vger.kernel.org
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: David Wronek <davidwronek@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- "open list:LED SUBSYSTEM" <linux-leds@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <20231008142103.1174028-1-megi@xff.cz>
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Joe Mason <buddyjojo06@outlook.com>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+ hexdump0815@googlemail.com, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20231007140053.1731245-1-davidwronek@gmail.com>
+ <20231007140053.1731245-2-davidwronek@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,26 +130,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231008142103.1174028-1-megi@xff.cz>
+In-Reply-To: <20231007140053.1731245-2-davidwronek@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 08/10/2023 16:21, Ondřej Jirman wrote:
-> From: Ondrej Jirman <megi@xff.cz>
+On 07/10/2023 15:58, David Wronek wrote:
+> Document the compatible for the UFS found on SC7180.
 > 
-> Increase the limit to match available values in dt-bindings/leds/common.h
-> 
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-
-Fixes: 472d7b9e8141 ("dt-bindings: leds: Expand LED_COLOR_ID definitions")
+> Signed-off-by: David Wronek <davidwronek@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
