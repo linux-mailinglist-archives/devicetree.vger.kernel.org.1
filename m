@@ -1,110 +1,106 @@
-Return-Path: <devicetree+bounces-7375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A897C0379
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:33:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14107C039D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:42:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37FA71C20BF1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:33:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E134C1C20BAB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8720D27707;
-	Tue, 10 Oct 2023 18:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC81A2744E;
+	Tue, 10 Oct 2023 18:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ulwJccVI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LqzM4D1M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2B718639
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 18:33:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1C5C433C7;
-	Tue, 10 Oct 2023 18:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A630565A;
+	Tue, 10 Oct 2023 18:42:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754C9C433CC;
+	Tue, 10 Oct 2023 18:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696962827;
-	bh=sZ/2OHJxY8bHQQM3jwEjvDUlRp1QAdM//5vOwwb3o2E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ulwJccVIH8VHg2vRllrc2ydedgCGB0pR75FnjaW3/bmybxhrLTMYSEWWjxnc5IJbf
-	 mjZnYn8Mg8Mnph8NFaPMlbNiY0Tzu6AYm+jmcPrgasGzdeHLi1ZwCuDm97cnxrfdMC
-	 IGw7zMUjXaj5MFFo1ZIRHEb5tzIB6/XbkXLjkvycVTTDcxPgu64lGGCsdgQ56pNodT
-	 ieJJmuAMXEFX4JuqInJOGZ9U17z9gc1FrZJ83gCLB0NuBhGTYhu9uQqJFGAfMhflAa
-	 9797BcTG0LuP/axkuVkwMe+GiV1lTzheQsCXNVnCU4CU8TnCJ2pEwtx4LXDU63c8e7
-	 WLSjv0A+6xcKQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, 
- Chris Paterson <Chris.Paterson2@renesas.com>, 
- Biju Das <biju.das@bp.renesas.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230927162508.328736-1-fabrizio.castro.jz@renesas.com>
-References: <20230927162508.328736-1-fabrizio.castro.jz@renesas.com>
-Subject: Re: [PATCH v2 0/2] Add RZ/V2M CSI slave support
-Message-Id: <169696282402.222014.2482702719398525940.b4-ty@kernel.org>
-Date: Tue, 10 Oct 2023 19:33:44 +0100
+	s=k20201202; t=1696963337;
+	bh=ldKKDLNL5IeRM0a07A6s6AJub50EGR8AJO6LTn0Obwg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LqzM4D1MlLdeXjle0S/VafEl40lMghLhLKm+9gJtf+ozhX1rdh7dMp9TxumYlErj6
+	 hfFl58cakIJNbknsQMdeOerVRiHoWTUZimBOIaMG2Er7wDuh+ofNCrIildBOEkgcyF
+	 iHst+Szlw1LPgbq0idM4X1NB53u3zx2lyIXz6XM9scQtjG/o0kAoQJz5cALTiLeS4h
+	 P6O/43fv9eqa2gfm+cl9uXuK8WPOBWHa+gVOYYWs0n9289SeXGnWrjjm8Uyv2M2J41
+	 MyzucIxozLIO/j0LhciFjLR46qrcTuYTics1mybYkX073932KlLSdDEBL0ov4kHqG8
+	 2tXMZTrLHMb7w==
+Received: (nullmailer pid 1358279 invoked by uid 1000);
+	Tue, 10 Oct 2023 18:42:12 -0000
+Date: Tue, 10 Oct 2023 13:42:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
+	olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
+	mchehab@kernel.org, fabrice.gasnier@foss.st.com,
+	andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com,
+	lee@kernel.org, will@kernel.org, catalin.marinas@arm.com,
+	arnd@kernel.org, richardcochran@gmail.com,
+	Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
+	linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+	netdev@vger.kernel.org, linux-p@web.codeaurora.org,
+	hy@lists.infradead.org, linux-serial@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v6 10/11] ARM: dts: stm32: add ETZPC as a system bus for
+ STM32MP15x boards
+Message-ID: <20231010184212.GA1221641-robh@kernel.org>
+References: <20231010125719.784627-1-gatien.chevallier@foss.st.com>
+ <20231010125719.784627-11-gatien.chevallier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010125719.784627-11-gatien.chevallier@foss.st.com>
 
-On Wed, 27 Sep 2023 17:25:06 +0100, Fabrizio Castro wrote:
-> the CSI IP found inside the Renesas RZ/V2M SoC supports
-> both SPI host and target.
-> This series extends the CSI dt-bindings and driver to
-> add SPI target support.
+On Tue, Oct 10, 2023 at 02:57:18PM +0200, Gatien Chevallier wrote:
+> ETZPC is a firewall controller. Put all peripherals filtered by the
+> ETZPC as ETZPC subnodes and reference ETZPC as an
+> access-control-provider.
 > 
-> v1->v2: I have dropped properties renesas,csi-ss and
->         renesas,csi-ss-high. I have added property
-> 	renesas,csi-no-ss, and to configure SS as active
-> 	high one now needs to use property spi-cs-high.
-> 	I have also purged "master" and "slave" as naming
-> 	schemes (besides for the title of the cover letter,
-> 	to make it easier to follow this discussion), I
-> 	am now using "host" and "target" and related APIs
-> 	instead.
+> For more information on which peripheral is securable or supports MCU
+> isolation, please read the STM32MP15 reference manual.
 > 
-> [...]
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+> 
+> Changes in V6:
+>     	- Renamed access-controller to access-controllers
+>     	- Removal of access-control-provider property
+> 
+> Changes in V5:
+>     	- Renamed feature-domain* to access-control*
+> 
+>  arch/arm/boot/dts/st/stm32mp151.dtsi  | 2756 +++++++++++++------------
+>  arch/arm/boot/dts/st/stm32mp153.dtsi  |   52 +-
+>  arch/arm/boot/dts/st/stm32mp15xc.dtsi |   19 +-
+>  3 files changed, 1450 insertions(+), 1377 deletions(-)
 
-Applied to
+This is not reviewable. Change the indentation and any non-functional 
+change in one patch and then actual changes in another.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+This is also an ABI break. Though I'm not sure it's avoidable. All the 
+devices below the ETZPC node won't probe on existing kernel. A 
+simple-bus fallback for ETZPC node should solve that. 
 
-Thanks!
-
-[1/2] spi: renesas,rzv2m-csi: Add CSI (SPI) target related property
-      commit: 4056d88866e5941ebd15fb2523119f0ddc5186da
-[2/2] spi: rzv2m-csi: Add target mode support
-      commit: a4f7ef6db74197898c48236ad01f8e0eccc1e52b
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
 
