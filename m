@@ -1,207 +1,223 @@
-Return-Path: <devicetree+bounces-7164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2567BF74D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AFD7BF7BB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:45:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BAD51C20CC7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CC11C20AEF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A8E171D7;
-	Tue, 10 Oct 2023 09:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46E11774F;
+	Tue, 10 Oct 2023 09:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajcUgIYO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GxS7Hhkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5F317734;
-	Tue, 10 Oct 2023 09:29:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8835CC433C7;
-	Tue, 10 Oct 2023 09:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696930146;
-	bh=eFUd/n8o3VVFHQz6wd12ub7oPEuB2ug/zCfzJKYSH9o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ajcUgIYOTXJUNpLXSOJ27Kmcw2PFHR1m12BzVFgzf5jt3qce+GYJJF1ZRnbbUwQDh
-	 Fo3unuFReI+9q5C1M2FLFOTjRYDooeKOjRrn+I22Zl4ReXzvqEGv1UBRoaJ+Cdg3UV
-	 S0vtnncZc6JxtJMohtX56hvQL53W8sbOYmRGW1r5BLYmFVVOGHw1Wi7MCNh77WpUsw
-	 7etyYuG54qu1EvQV+z/d7bNsagq0tmbBD6sbYV6n/3ufzssoMrjUnG4xV1bhgdYrXs
-	 nQZluMhd1hvANGPtY12EqCKZLDB6Yi5f0HImAV8mwdep58HaYNUp5R+5I+NDy3O8nQ
-	 cAhtNtmDSUiNg==
-Date: Tue, 10 Oct 2023 10:29:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Vincent Whitchurch <Vincent.Whitchurch@axis.com>
-Cc: "Jonathan.Cameron@Huawei.com" <Jonathan.Cameron@Huawei.com>,
- "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
- "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>, kernel
- <kernel@axis.com>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "conor+dt@kernel.org"
- <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "dlechner@baylibre.com"
- <dlechner@baylibre.com>, "nuno.sa@analog.com" <nuno.sa@analog.com>,
- "pmolloy@baylibre.com" <pmolloy@baylibre.com>, "robh+dt@kernel.org"
- <robh+dt@kernel.org>, "ahaslam@baylibre.com" <ahaslam@baylibre.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "david@lechnology.com" <david@lechnology.com>, Mark Brown
- <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jean
- Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v3 02/27] staging: iio: resolver: ad2s1210: fix use
- before initialization
-Message-ID: <20231010102912.0b70c3e0@jic23-huawei>
-In-Reply-To: <de527e3f87effe7e446b44d84e43aead26f9fdec.camel@axis.com>
-References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
-	<20230929-ad2s1210-mainline-v3-2-fa4364281745@baylibre.com>
-	<1b366292-6e05-421e-914e-6d3457886238@kadam.mountain>
-	<20231002101742.0000774b@Huawei.com>
-	<de527e3f87effe7e446b44d84e43aead26f9fdec.camel@axis.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED92D171DD
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:45:23 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7FE93;
+	Tue, 10 Oct 2023 02:45:19 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c189dabcc3so64531641fa.1;
+        Tue, 10 Oct 2023 02:45:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696931117; x=1697535917; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l/qBEDnL1u2dQTbFvw89P6kT4AtOIC2NsWDvt/lq/VU=;
+        b=GxS7HhknCZyyD9+0gOdv3e60OK2bwzwsZvXcD9dNV6PS+EFdKjtoaTWr8fUywLVLCs
+         6bkkzb+VRSKgu1QknQjB+PS3K2Ca7nF5VTKhFIH4vrlSuYK7U+K2daOE6bdejveCUBCm
+         S1xzaPrvJAeG/kJU6x6IPluUHZzeWwcW7BHbj5lpxkeSrSuWz+BdHRDBOVbavZVXWW4X
+         iIg3eFXbuC/poB51F5BRmGS9uWYiRq1jXQavn3WDqmal2v+mznFyc7YZLXGivPxx+jPM
+         eMW7o+k2S1JehL4i4BON8Xy0JBdNG6uMyBllKbMixnhNyCmhwxsu9YFdrAAP6rrZfDVL
+         qhoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696931117; x=1697535917;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l/qBEDnL1u2dQTbFvw89P6kT4AtOIC2NsWDvt/lq/VU=;
+        b=IohlslcuSt+wDAR9RccNE96VURxTL5txVivqa2sw6MfUkywTPr4vCIZZbIDP6QdBBV
+         AuvdYANybJUFrMMdMXKuP8PyGb0M9MsW9ec9QVcpdntv44eAGItVCNrk8JZ9Ioocw4bz
+         5F4foKKAM2lOmp2xyVCtvcbTbQiQhgROF8EltgO4xOcgxxtXD5nfye5kyV4/1tqiVz84
+         b2+s43gR7ZT5VxdPcLrMzAt5vuHW2phl13KCryWssidO2KKToRXHPN87N5kwhEuVoQQV
+         Uy9UHCndB3K1dN+t++Np/BkeImp3wlRcWa6GUlqd0qmBWpJhzm+5sdTEIi53/mk+UuFR
+         H/pg==
+X-Gm-Message-State: AOJu0Yy32uyVQ/vHj9lnzZrSM1IbXpnKnIZ9CChHDFD2uiSD7OGPHqPx
+	cutGIZBAU6iqqhWF/lieOAE=
+X-Google-Smtp-Source: AGHT+IGURrCq9x7WCrBfQMb8RbXjeUXmsx6TKHE9oCtovGBEdCzvj5Gy1hwvHFblJg3zgcGo8vPCxQ==
+X-Received: by 2002:ac2:4c46:0:b0:500:b56d:e11a with SMTP id o6-20020ac24c46000000b00500b56de11amr16807742lfk.43.1696931117005;
+        Tue, 10 Oct 2023 02:45:17 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::7? (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
+        by smtp.gmail.com with ESMTPSA id k15-20020a0565123d8f00b00500b561285bsm1612452lfv.292.2023.10.10.02.45.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Oct 2023 02:45:16 -0700 (PDT)
+Message-ID: <ae210957-4a72-24b3-2f11-8d5824041e85@gmail.com>
+Date: Tue, 10 Oct 2023 12:45:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US, en-GB
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Paul Gazzillo <paul@pgazz.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
+ <20231008154857.24162-3-subhajit.ghosh@tweaklogic.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH 2/2] iio: light: Add support for APDS9306 Light Sensor
+In-Reply-To: <20231008154857.24162-3-subhajit.ghosh@tweaklogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 6 Oct 2023 14:48:29 +0000
-Vincent Whitchurch <Vincent.Whitchurch@axis.com> wrote:
+On 10/8/23 18:48, Subhajit Ghosh wrote:
+> Driver support for Avago (Broadcom) APDS9306
+> Ambient Light Sensor with als and clear channels.
+> This driver exposes raw values for both the channels and
+> processed(lux) values for the als channel.
+> Support for both with or without hardware interrupt
+> configurations are provided.
+> 
+> Datasheet at https://docs.broadcom.com/doc/AV02-4755EN
+> 
+> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
 
-Hi Vincent
+Hi Subhajit,
 
-Thanks for the update,
+To my eyes this driver looks nice. Just spotted two minor things.
 
-> On Mon, 2023-10-02 at 10:17 +0100, Jonathan Cameron wrote:
-> > Hmm. What happened to roadtest?  I was hoping that would solve this sort
-> > of issue by allowing simple testing of basic functionality... =20
->=20
-> Roadtest is alive and well.  Several of my coworkers have been using it
-> for development and testing of new drivers[0][1][2][3][4] and
-> patches[5][6], and this has resulted in easier testing and refactoring
-> during development, more robust code, and of course the ability to
-> easily detect regressions after the patches are merged.
->=20
-> [0] https://lore.kernel.org/lkml/20230323-add-opt4001-driver-v2-2-0bae039=
-8669d@axis.com/
-> [1] https://lore.kernel.org/lkml/d218a1bc75402b5ebd6e12a563f7315f83fe966c=
-.1689753076.git.waqar.hameed@axis.com/
-> [2] https://lore.kernel.org/lkml/7b856b74c4c0f8c6c539d7c692051c9203b103c0=
-.1692699931.git.waqar.hameed@axis.com/
-> [3] https://lore.kernel.org/lkml/20231002-rx8111-add-timestamp0-v1-1-3537=
-27cf7f14@axis.com/
-> [4] https://lore.kernel.org/lkml/20230502-tps6287x-driver-v3-2-e25140a023=
-f5@axis.com/
-> [5] https://lore.kernel.org/lkml/20221012102347.153201-1-chenhuiz@axis.co=
-m/
-> [6] https://lore.kernel.org/lkml/20220413114014.2204623-3-camel.guo@axis.=
-com/
->=20
-> In fact, by running our roadtests on newer kernels we have found
-> numerous bugs[10][12][14] and regressions[7][8][9][11][15] in mainline,
-> including subsystem-level issues affecting other drivers too.
->=20
-> [7] https://lore.kernel.org/lkml/20230911-regulator-voltage-sel-v1-1-886e=
-b1ade8d8@axis.com/
-> [8] https://lore.kernel.org/lkml/20230918-power-uaf-v1-1-73c397178c42@axi=
-s.com/
-> [9] https://lore.kernel.org/lkml/20230829-tps-voltages-v1-1-7ba4f958a194@=
-axis.com/
-> [10] https://lore.kernel.org/lkml/20230613-genirq-nested-v3-1-ae58221143e=
-b@axis.com/
-> [11] https://lore.kernel.org/lkml/20220503114333.456476-1-camel.guo@axis.=
-com/
-> [12] https://lore.kernel.org/linux-iio/20220816080828.1218667-1-vincent.w=
-hitchurch@axis.com/
-> [13] https://lore.kernel.org/linux-iio/20220519091925.1053897-1-vincent.w=
-hitchurch@axis.com/
-> [14] https://lore.kernel.org/linux-iio/20220620144231.GA23345@axis.com/
-> [15] https://lore.kernel.org/linux-spi/YxBX4bXG02E4lSUW@axis.com/
->=20
-> (The above lists are not exhaustive.)
->=20
+> ---
+>   drivers/iio/light/Kconfig    |   12 +
+>   drivers/iio/light/Makefile   |    1 +
+>   drivers/iio/light/apds9306.c | 1381 ++++++++++++++++++++++++++++++++++
+>   3 files changed, 1394 insertions(+)
+>   create mode 100644 drivers/iio/light/apds9306.c
+> 
+...
 
-Great stuff!
+> +
+> +static int apds9306_intg_time_set(struct apds9306_data *data, int val2)
+> +{
+> +	struct device *dev = data->dev;
+> +	int ret, intg_old, gain_old, gain_new, gain_new_closest;
+> +	bool ok;
+> +
+> +	if (!iio_gts_valid_time(&data->gts, val2)) {
+> +		dev_err(dev, "Unsupported integration time %u\n", val2);
+> +		return ret;
+> +	}
+> +
+> +	intg_old = iio_gts_find_int_time_by_sel(&data->gts,
+> +						data->intg_time_idx);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (intg_old == val2)
+> +		return 0;
+> +
+> +	gain_old = iio_gts_find_gain_by_sel(&data->gts, data->gain_idx);
+> +	if (gain_old < 0)
+> +		return gain_old;
+> +
+> +	ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
+> +				intg_old, val2, &gain_new);
+> +	if (gain_new < 0) {
+> +		dev_err(dev, "Unsupported gain with time\n");
+> +		return gain_new;
+> +	}
+> +
+> +	gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
+> +	if (gain_new_closest < 0) {
+> +		gain_new_closest = iio_gts_get_min_gain(&data->gts);
+> +		if (gain_new_closest < 0)
+> +			return gain_new_closest < 0;
 
-> > Hope it is still headed for a new version / upstream! =20
->=20
-> I pushed out an update with a squash of (most parts of) our internal
-> version out to the following repo, it's based on v6.6-rc4.
->=20
->   https://github.com/vwax/linux/tree/roadtest/devel
+Returning the truth value on purpose? :)
 
-Thanks.
+> +	}
+> +	if (!ok)
+> +		dev_dbg(dev, "Unable to find optimum gain, setting minimum");
+> +
+> +	ret = iio_gts_find_sel_by_int_time(&data->gts, val2);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = apds9306_intg_time_set_hw(data, ret);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iio_gts_find_sel_by_gain(&data->gts, gain_new_closest);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return apds9306_gain_set_hw(data, ret);
+> +}
 
->=20
-> (There are currently 6 lines of --diff-filter=3DM against v6.6-rc4 on the
->  linked repo.  Two of those are from a patch which is posted and waiting
->  for review on the lists, and the rest are for enabling regmap debugfs
->  writes which are used from some of the newer tests.)
->=20
-> Since roadtest itself does not require any patches to the kernel or any
-> out-of-tree modules, the maintenance of the framework would not really
-> be simplified by putting it in the upstream tree.  However, there is of
-> course a potentially large benefit to the quality of many kinds of
-> kernel drivers if roadtest gets used by others, and having it in-tree
-> could facilitate that.  And it would potentially allow regressions like
-> the ones we're finding to be caught _before_ they go in, since anyone
-> can run the tests without special hardware.
+...
 
-Exactly  - my main interest is the dream of getting to the point where
-new drivers typically also come with roadtest tests, with the aim that
-they will be used for regression testing. For IIO I might lean on
-/ ask nicely  few of the bigger contributors to add fairly comprehensive
-tests for say one in 3 of their drivers, providing a canary for any
-subsystem level problems that might sneak in. The stability gained for
-those drivers might also prove it's own benefit to push people to add tests.
-At somepoint in the longer term I might even make it a requirement for
-upstreaming a new driver + slowly tackle the backlog of existing ones.
-=46rom my experiments with it last year, this is a trivial burden fo
+> +static int get_device_id_lux_per_count(struct apds9306_data *data)
+> +{
+> +	int ret, part_id;
+> +
+> +	ret = regmap_read(data->regmap, APDS9306_PART_ID, &part_id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (part_id == apds9306_part_id_nlux_per_count[0].part_id)
+> +		data->nlux_per_count =
+> +			apds9306_part_id_nlux_per_count[0].nlux_per_count;
+> +	else if (part_id == apds9306_part_id_nlux_per_count[1].part_id)
+> +		data->nlux_per_count =
+> +			apds9306_part_id_nlux_per_count[1].nlux_per_count;
+> +	else
+> +		return -ENXIO;
 
->=20
-> The idea of having to maintain it in-tree and doing all the work that
-> goes along with that (dealing with the expectations of maintainers,
-> wrangling patches from mailing lists, etc), is something I personally
-> have had a hard time warming up to, but I have some coworkers who may
-> potentially be interested in that kind of work, so I wouldn't rule out
-> another posting of the patch set targeting upstream sometime in the
-> future.
+I think we should be able to differentiate between the IC variants by DT 
+compatible. (Commented that on bindings patch). Not sure if we need to 
+support cases where the sensor is instantiated without device-tree. I am 
+not super happy when code requires the part-id to be known if we have 
+separate compatibles for variants. Can we in dt-case just print a 
+warning if the part-ID is not what we expect - and proceed assuming the 
+nlux_per_count based on the DT information? (Sometimes we see new 
+variants with same part-IDs - or many part-IDs with no SW changes 
+needed. Hence maintaining the part-ID lists may be tedious). This is 
+just some pondering though, no strong requirements from my side
 
-I fully appreciate your concern.  I just really like roadtest and want
-a smooth way to integrate using it with my upstream maintenance (and occasi=
-onal
-development) process...  I of course can't expect you to commit to anything
-though - I'd be delighted if someone else wants to take this forwards but
-that would be very much their decision to make!
+> +
+> +	return 0;
+> +}
+> +
 
-Having not yet waded into the latest code, how 'stable' is it from the point
-of view of modifications to tests?  I can rebase the ones I have out of tree
-and see, but I'm after an assessment that incorporates what you are
-planning to change in future.
+Yours,
+	-- Matti
 
-I guess the nasty stuff is if you have a few hundred additional drivers
-in the test set, any modification to the way they interact with the core
-of roadtest becomes very painful to push into those tests.
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-One starting point would be to separate the tests directory from the
-directories containing roadtest frameworks etc as that would help to
-limit scope of responsibility.
+~~ When things go utterly wrong vim users can always type :help! ~~
 
-If a potential upstream roadtest maintainer is primarily concerned about
-review + handling of the actual tests, other than potentially letting in
-some ugly code, I'd imagine any subsystem maintainer who opts into this
-will take that burden on - perhaps with the occasional question heading
-your way. I'd certainly not expect you to have to deal with high patch flows
-and would ensure that didn't happen for any IIO tests (any review people
-have time for is of course welcome!)
-
-+CC a few maintainers of other subsystems who may be interested (I know
-one of them is ;)
-
-Jonathan
 
