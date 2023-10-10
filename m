@@ -1,75 +1,65 @@
-Return-Path: <devicetree+bounces-7324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113F27C00C0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:50:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1217C0141
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF909281BF1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:50:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F6DC1C20B9C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D13927470;
-	Tue, 10 Oct 2023 15:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7350D2747D;
+	Tue, 10 Oct 2023 16:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ivbwuRLi"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UnK7JBPy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9316027469
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBDC427470
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 16:09:45 +0000 (UTC)
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5A410D;
-	Tue, 10 Oct 2023 08:50:31 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39AFAkgc006885;
-	Tue, 10 Oct 2023 15:50:17 GMT
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B70123;
+	Tue, 10 Oct 2023 09:09:44 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39ACQTlc011774;
+	Tue, 10 Oct 2023 16:09:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=ADrxWFWXFYuV5E4E7D+gCv6o207pa6qVWEgH48QI70o=;
- b=ivbwuRLiykI1rHl4BiG39fGJlMO0Sl86iD5LcC3OS+Cugg8j9KRq0ANbCGzwSB3VUxW0
- OxhxELzoV5CtGkouHZBHRGiFtwVASftE6ufqWdPu95XiE7mR6qzw/JhHwPoU3BUrfwLs
- mQVTHu803wmgR79Wel3J3bHtjqM1wAOocVz+QSBcetl6pc6jGcEZWlLrZtS5GP9YSWYB
- c7mHLkM2TJcjN6Xg3SEeHvCzM63WcVK2E50dlyHt1OAl0Y8zFEZdgd/oei6UvE0s0JjS
- Us/lSqlvnItXbWSgizn5kJy40EKUh2Eio98NYa+5XOv5lup53btubvZAqekNu/MUKcNT 1g== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tmxjphe2s-1
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=52qlLiHeZes94cIO745mAEYaJm9Wm90if+QtQZ7BS4E=;
+ b=UnK7JBPygeq/h+M88Swhd45Ovs7uPJSNbyoTtnGI/76DqcPixre/7ShU+4BbLTBuowhW
+ XXcwdNE7YCP4Uggkzi2awONKo6TAP0xZMWAa/VfBG8crPZY0XCHAmbkXEcMAucDbtzQY
+ HMePsAMd3yOVgsWSsC+2avEJr0tFbgF1FNOitg5F1GESFQ/IgxlHUa2VrOMOTr6Qftlx
+ 05xDHuCIK8jqUD7Aweuw9A1U6iTFestcvxYn+9bT0jcV5n5QPdgJw9PYV30PsiO/DFZX
+ 9+VreGqS1oCSZxBOfdVckqz3FA/4xicUfr3hlCV7ZH0YrOroeulbqTRL6bablM5X1MfJ DQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tmj0db0pn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Oct 2023 15:50:17 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39AFoCju025414
+	Tue, 10 Oct 2023 16:09:37 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39AG9aCB019012
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Oct 2023 15:50:12 GMT
-Received: from hu-mnaresh-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	Tue, 10 Oct 2023 16:09:36 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Tue, 10 Oct 2023 08:50:06 -0700
-From: Maramaina Naresh <quic_mnaresh@quicinc.com>
+ 15.2.1118.36; Tue, 10 Oct 2023 09:09:33 -0700
+From: Mukesh Ojha <quic_mojha@quicinc.com>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam
-	<mani@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen"
-	<martin.petersen@oracle.com>
-CC: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
-        <quic_nguyenb@quicinc.com>
-Subject: [PATCH V1 4/4] arm64: dts: qcom: sm8550: Add per-cpu PM QoS support for ufs
-Date: Tue, 10 Oct 2023 21:19:07 +0530
-Message-ID: <1696952947-18062-5-git-send-email-quic_mnaresh@quicinc.com>
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH 1/3] dt-bindings: mfd: qcom,tcsr: Add compatible for sm8{2|3|5}50
+Date: Tue, 10 Oct 2023 21:39:15 +0530
+Message-ID: <1696954157-16327-1-git-send-email-quic_mojha@quicinc.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1696952947-18062-1-git-send-email-quic_mnaresh@quicinc.com>
-References: <1696952947-18062-1-git-send-email-quic_mnaresh@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,20 +68,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fZoA8mVt0HN6Db7fUGJANehR_DRdrF3p
-X-Proofpoint-ORIG-GUID: fZoA8mVt0HN6Db7fUGJANehR_DRdrF3p
+X-Proofpoint-GUID: 5p7XBYqiuhHmkpIhXPpTc6HiHYzeq0f3
+X-Proofpoint-ORIG-GUID: 5p7XBYqiuhHmkpIhXPpTc6HiHYzeq0f3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-10_10,2023-10-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 clxscore=1015
- impostorscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=911
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310100117
+ definitions=2023-10-10_11,2023-10-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 spamscore=0 mlxscore=0 mlxlogscore=679 malwarescore=0
+ bulkscore=0 suspectscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310100120
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -99,33 +89,28 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add per-cpu PM QoS support for ufs.
+Document the compatible for sm8{2|3|5}50 SoCs.
 
-Signed-off-by: Maramaina Naresh <quic_mnaresh@quicinc.com>
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 7b9ddde..84909b0 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1956,6 +1956,15 @@
- 			qcom,ice = <&ice>;
- 
- 			status = "disabled";
-+
-+			qos0 {
-+				cpumask = <0x0f>;
-+				vote = <44>;
-+			};
-+			qos1 {
-+				cpumask = <0xf0>;
-+				vote = <44>;
-+			};
- 		};
- 
- 		ice: crypto@1d88000 {
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+index 33c3d023a106..f328ddd6c566 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+@@ -29,7 +29,10 @@ properties:
+           - qcom,sdx65-tcsr
+           - qcom,sm4450-tcsr
+           - qcom,sm8150-tcsr
++          - qcom,sm8250-tcsr
++          - qcom,sm8350-tcsr
+           - qcom,sm8450-tcsr
++          - qcom,sm8550-tcsr
+           - qcom,tcsr-apq8064
+           - qcom,tcsr-apq8084
+           - qcom,tcsr-ipq5332
 -- 
 2.7.4
 
