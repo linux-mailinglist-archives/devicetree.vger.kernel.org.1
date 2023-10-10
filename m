@@ -1,207 +1,148 @@
-Return-Path: <devicetree+bounces-7404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A777C40E9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:11:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD1E7C40B8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23DFA1C20B29
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:11:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6452B1C20B9C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA4E29D0D;
-	Tue, 10 Oct 2023 20:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520EF29CF9;
+	Tue, 10 Oct 2023 20:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=maslowski.xyz header.i=@maslowski.xyz header.b="DwpTxLW5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gyZ8sDlD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE62B32196
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 20:10:56 +0000 (UTC)
-X-Greylist: delayed 549 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 10 Oct 2023 13:10:51 PDT
-Received: from mail.maslowski.xyz (mail.maslowski.xyz [45.77.158.94])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C3E93;
-	Tue, 10 Oct 2023 13:10:51 -0700 (PDT)
-Received: from localhost (ett70.neoplus.adsl.tpnet.pl [83.20.165.70])
-	by mail.maslowski.xyz (Postfix) with ESMTPSA id 1E96B7DCB4;
-	Tue, 10 Oct 2023 20:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=maslowski.xyz;
-	s=mail; t=1696968100;
-	bh=/2gwZ739v8DpOVOtm9Lfo12Y+plihVmCwN30N+COQwc=;
-	h=Date:To:Cc:Subject:From:References:In-Reply-To:From;
-	b=DwpTxLW5btzuMHmOnoHSnjGmPnG1rwapamgU6sPVq0sFhaletv8M92XrKhlZC6lRe
-	 wQOOBCVr2QzFskXK0cUjE6YhysoUOyKKVY7PUhQ5i7wGNM9Ij6Q5XDJI+aXugEdGVb
-	 7AsLS2DUac9YGzeOhEVnkE4upPG5QR60fVievIR7QkQ6BfTQ/YG/bdYwA6rMea4g2k
-	 /fF99sINPT2WcpG4JlcAMs2ClDjqMf+OOKFItqaGB8qeGbyTpj6wmme+CqleMIfRHi
-	 t2FqqDx8K5sSxgi+hMhzMGlabvhfU/EpogNy1ZS7V2K9yhKNgDV4ou5I/37JGf6Y1z
-	 8nzdiGeCkZJYQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F5F3218A
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 20:05:54 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CC01BFC;
+	Tue, 10 Oct 2023 13:05:28 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-405417465aaso58396385e9.1;
+        Tue, 10 Oct 2023 13:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696968327; x=1697573127; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=uvdQ8oQKu8Aprzrh7sBdRyTzraBANoJZwsaVttcUpNw=;
+        b=gyZ8sDlDQKHSwo/ZZVsee8yuoaCSxVnL8LgLx1M/biU88co5WmQ2B8QGpALpUO36Jf
+         HRCFlOUwkDAl0oChhxH+Dn4HDYUcIs230GSypBuF9GiRua0Whd/n8hPjRBBJ1pWfXRQf
+         BgxmsEGnK+hYb+rbiPnKlalZRmN0dGdPFbdiPKumHJMdUSc7urKC3mr3YFrJvlXNwpbR
+         aS6Jtbd4mJFp6NFS5jKJhscRC9vdQpTOe4WFfPWNPzuenOa35XcZeEG6eaJG8HE152+R
+         X6M/8iYI3OVfgMrvxOtM/vZCVfl/phi81y/ZaRN33GCZixoMmBp8hM9UWaI1QkMAritx
+         o6ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696968327; x=1697573127;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uvdQ8oQKu8Aprzrh7sBdRyTzraBANoJZwsaVttcUpNw=;
+        b=G7HcJBaauXdAhiopzl3y7vnoQwGnpoMtzib/LRzD5o6tZrp8ByjcTXz6/MtpoitCZV
+         HSfB7mCNDutntbWzWNpW6Fo84XVyfZPD2seWSlInk5AuOQYqgR7jGY6FgLxB5hnbbmpQ
+         KG8QnExW3ev40K9x5gMJICdDyhy1fkz8OjzE+EftwXQAbjwqtCj86CtEADdYPvxxaSXt
+         VDlS724mumhH1bILZ1f/6pb917KkpsRZTiZDioNBN8ae+5iPGQImYOrkzdLUGGwtBxsW
+         3NYR/O5bMF2P9EAc9eNaAjebWbvx2iBtK39vCKf6SAwqNCBpGynSuj1bsFgwnLnTSzGI
+         CJ9Q==
+X-Gm-Message-State: AOJu0Ywh0V/w3d7qiWBbp1Uk8dSImRbIpuMCNLrDAozWV3USiubW8R7L
+	7ylue9BniJl3zc2e+7M2FWk=
+X-Google-Smtp-Source: AGHT+IHO4aDIeIdZ+DANdqp04v6I8NqSgq3Pd3g1mL4+TWHC+Dza0YQcGYv+82hNXvTyBmB6SPneDg==
+X-Received: by 2002:a05:600c:ad6:b0:3fc:7eb:1119 with SMTP id c22-20020a05600c0ad600b003fc07eb1119mr16666366wmr.15.1696968326929;
+        Tue, 10 Oct 2023 13:05:26 -0700 (PDT)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id e17-20020a05600c219100b0040646a708dasm14926114wme.15.2023.10.10.13.05.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Oct 2023 13:05:26 -0700 (PDT)
+Message-ID: <6525ae86.050a0220.827f2.c59d@mx.google.com>
+X-Google-Original-Message-ID: <ZSWuhTM/O+fUI5fk@Ansuel-xps.>
+Date: Tue, 10 Oct 2023 22:05:25 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
+	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	agross@kernel.org, andersson@kernel.org, rafael@kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
+References: <20230930102218.229613-1-robimarko@gmail.com>
+ <20230930102218.229613-4-robimarko@gmail.com>
+ <e2d6c9c7-ff59-408f-94cf-81e66d291963@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Oct 2023 22:01:33 +0200
-To: "Caleb Connolly" <caleb.connolly@linaro.org>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Sam Ravnborg" <sam@ravnborg.org>, "David
- Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thierry Reding" <thierry.reding@gmail.com>, "Laurent Pinchart"
- <laurent.pinchart+renesas@ideasonboard.com>
-Cc: "Robert Mader" <robert.mader@posteo.de>, "Guido Gunther"
- <agx@sigxcpu.org>, <dri-devel@lists.freedesktop.org>, "Hector Martin"
- <marcan@marcan.st>, <devicetree@vger.kernel.org>,
- <phone-devel@vger.kernel.org>, <asahi@lists.linux.dev>,
- <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH RFC] dt-bindings: display: document display panel
- occlusions
-From: =?utf-8?q?Piotr_Mas=C5=82owski?= <piotr@maslowski.xyz>
-Message-Id: <CW4UT45DZ5C6.3NIT2IFNSKD4O@andrad>
-X-Mailer: aerc 0.15.2
-References: <20231009-caleb-notch-example-v1-1-9e0a43ae233c@linaro.org>
-In-Reply-To: <20231009-caleb-notch-example-v1-1-9e0a43ae233c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e2d6c9c7-ff59-408f-94cf-81e66d291963@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Caleb,
-
-Thanks for posting this. I've been meaning to chime in on the discussion
-about notches and co. for months now, so this makes a perfect opportunity
-to finally do so.
-
-On Mon Oct 9, 2023 at 7:32 PM CEST, Caleb Connolly wrote:
-
-> Some folks have previously suggested that this information belongs in
-> userspace and not in devicetree. I would like to be clear that
-> devicetree is for describing hardware, and parts of a display which can
-> never actually be seen are very much properties of the underlying
-> hardware.
-
-Yes, thank you! Seeing the kernel log (or Tuxes) partially hidden behind
-the notch (or the top-left rounded corner) is just so annoying, so DT is
-definitely the way to go here.
-
-> Some discussion has been underway previously on how best to describe
-> these features [1][2], including a reference userspace implementation
-> using SVG paths [3]. Using this previous discussion as a jumping off
-> point, this RFC allows for describing the following display features:
+On Tue, Oct 10, 2023 at 09:55:26PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 9/30/23 12:21, Robert Marko wrote:
+> > From: Christian Marangi <ansuelsmth@gmail.com>
+> > 
+> > Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
+> > Use opp-supported-hw binding to correctly enable and disable the
+> > frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
+> > 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
+> > 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> > Changes v4:
+> > * Add OPP DTS patch for IPQ8064
+> > 
+> >   arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi | 30 +++++++++++
+> >   arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 67 ++++++++++++++++++++++++
+> >   arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi | 65 +++++++++++++++++++++++
+> >   3 files changed, 162 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> > index 5d3ebd3e2e51..72d9782c3d6f 100644
+> > --- a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> > +++ b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> > @@ -6,3 +6,33 @@ / {
+> >   	model = "Qualcomm Technologies, Inc. IPQ8062";
+> >   	compatible = "qcom,ipq8062", "qcom,ipq8064";
+> >   };
+> > +
+> > +&opp_table_cpu {
+> > +	opp-384000000 {
+> > +		opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
+> > +		opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
+> > +		opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
+> > +		opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
+> We can just make use of opp-supported-hw and define opp-384...-0,
+> opp-384..-1 etc. with a valid corresponding bitmask in opp-supported-hw
+> 
+> otherwise it's somewhat confusing to follow, I think..
 >
-> * Corner radius (on a per-corner basis)
-> * Circular or pill-shaped cutouts
-> * Notches with arbitrary shapes
->
-> It's easy to make a case for only using rectangles to describe these
-> missing parts of a display, however this severely limits their utility.
-> Describing display occlusions as accurately as possible allows for a lot =
-of
-> useful UX features. For example, displaying a ring around a hole-punch
-> camera when it's in use, or wrapping UI elements around a notch. These
-> behaviours are only possible to implement when the dimensions are known
-> with near pixel-perfect accuracy.
 
+Ehh should we really double the nodes for ipq8062 and ipq8065?
+The idea here was to overwrite the one since the pvs always match and at
+worst(ipq8065) have 7 pvs instead of 4. From the system it would be
+easier to read since only one table is present in the final dts and not
+2 and referring to the opp-supported-hw.
 
-There are two aspects at play here: simplicity and correctness. Fully
-sacrificing one for the other would be a grave mistake. But that does
-not mean those two are inherently opposed.
+The original idea was to declare one opp table and reuse pvs version (by
+faking it with hardcoded values) to put additional pvs for ipq8062 and
+ipq8065, but Dmitry didn't like it and asked to move the opp in
+different dtsi.
 
-I'd argue that they actually go hand in hand. Keeping the format simple
-will make gathering and submitting high-quality data easier. Conversly,
-accurately describing the hardware requires *not including* redundant
-or non-applicable information.
-
-
-So why am I writing all of this? Well, the problem I see is that any
-shape-based approach will likely suffer from both accuracy and
-complexity issues. Describing curves is hard and processing them is
-not something that should be included in e.g. whatever handles VTs.
-
-[TLDR: you can skip ahead]
-
-Morover, short of some Turing-complete arbitrary path function, it
-sacrifices a bit of expressivity and thus correctness as there will
-always be shapes you cannot describe accurately. This may be irrelevant
-because in practice you don't need those details. But that highlights
-a different problem: there will be many distinct ways to describe many
-similar things.
-
-It's also hard to tell if a given curve really has the right shape:
-
-* similar shapes exist =E2=80=93 How do you tell whether e.g. a rounded cor=
-ner
-  is circular or not? If a DT gets that wrong and the UI decides to for
-  example draw constant-width padding around such feature it will likely
-  look very off and ugly.
-* measurement precision is a thing =E2=80=93 Unless you measure everything =
-on a
-  scale significantly smaller than individual pixels, sections of your
-  curves may end up on different pixels than in reality.
-* different people have different standards =E2=80=93 And so the quality wi=
-ll
-  vary greatly between devices.
-* corners will be cut =E2=80=93 This is basically the previous point but I
-  liked the pun way too much to just delete it, lol
-* pixels vs millimeters =E2=80=93=C2=A0Converting between these two will al=
-so
-  increase the overall wobbliness and worsen the user experience.
-  But is it feasible to measure everything in pixels accurately?
-
-
-Picking a very small set of basic curve shapes might be a good option if
-that can cover all the shapes we expect to find in the wild. It does not
-resolve the possible accuracy problems but it would at least be simple.
-
-[TLDR =E2=80=93 skip to here]:
-
-However, there's a different approach that is both extremely simple and
-yet trivially correct =E2=80=93 pixel masks!
-
-Basically, instead of trying to describe what shape a cutout, notch or
-other feature has, we just say which pixels belong to it. In short, this:
-
-- can be easily processed even by 'dumb' programs =E2=80=93 for example, yo=
-u can
-  derive minimal margins to 'letterbox' the screen
-- gathering the data is very straightforward =E2=80=93 just light the relev=
-ant
-  pixels one-by-one and check if you see them
-- pixel-perfect accuracy is the default
-
-Of course this is not a perfect solution. Here are the drawback that I
-can see:
-
-- low resolution screens mean low resolution data
-- 'smart' programs may or may not need a bit more logic than otherwise
-- sub-pixel accuracy is impossible or requires extending this scheme
-  - non-binary (fractional) weights
-  - partially-occluded pixels on a separate mask (so each feature would
-    have two adjacent masks =E2=80=93 for its interior and for the border)
-
-
-As a futher improvement, besides looking at pixels we could think about
-subpixels instead. Still, this can easily be added later and likely even
-in a backwards-compatible manner.
-
-An orthogonal issue is labeling all of those regions. I think we should
-start with fully obscured areas and maybe less readable ones like the
-waterfall edges. Still, different features should live on different
-masks =E2=80=93 even if we don't attach meaningfull labels (like 'notch' or
-'camera cutout') to them right away.
-
-
-What do you all think of that? I didn't see this approach considered in
-any of the earlier discussions, yet it seems so elegant to me. Am I
-missing something?
-
---
-Cheers,
-Piotr Mas=C5=82owski
+-- 
+	Ansuel
 
