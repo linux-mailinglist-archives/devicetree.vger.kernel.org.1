@@ -1,120 +1,83 @@
-Return-Path: <devicetree+bounces-7150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E233E7BF6CC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:06:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3447BF6D1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C983281429
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:06:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54B24281429
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D288616401;
-	Tue, 10 Oct 2023 09:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE5716402;
+	Tue, 10 Oct 2023 09:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nrfdbGBF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f8nnC0ti"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE326120
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:06:43 +0000 (UTC)
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ADB115
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 02:06:30 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5a7bbcc099fso7736867b3.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 02:06:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696928790; x=1697533590; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fQlK5iZ1kMr7qlK2HcfibQa/huVAuMoMy3NGT8PTdgA=;
-        b=nrfdbGBF691pPbC65Jvl7Omxzcr4BmueAGhbLpRgAeqHhtOtl+nt0+JFWGYnUeYS/v
-         fG+lNOzUTERUMWlnzUjluSomckfL7AptYBRCASGqAHpe82//ulC/NpwrwnIoUMl0TApY
-         8PfxFp/5Fr4hr6q3JhivWPTo/7ICz65pKwYsvvaemEG1G5nHGDOeuHoBS3RVHPkbZCBF
-         bMNPQQP5RTDZs+kFCIn+DLWKimvSZjK+Qo3qqVJONQPvp48uKO3XJe7SED/KZE49s4wV
-         /kyMkfQC6aga8npPUNy3RFppSfED8TMN6B0dtX12mHXmPiUaRoCHq/wwF5yM4OkPVLDp
-         6g9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696928790; x=1697533590;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fQlK5iZ1kMr7qlK2HcfibQa/huVAuMoMy3NGT8PTdgA=;
-        b=XVmOMpu32ooRd4QK4nAa5OFBWEYqdUXXodeNaix+Tslq6Mi2Wryy1aMMXGXGrje3AG
-         ggjz3Q7mNcRgf2vCdRLtso9jk+8y5PfkPvmviP9hCTJvHJtDi3ROZcnzhMpERPNBfN2s
-         i6XzQlPI0ulDpClxiMslm331Gza2tsxFFdINL5DQeNoszQ98/91hVlB27bUfCzV7ywga
-         T7ny/KNJngHxKPqCwHSOqn8/3xBIRTBu4UUMBUonTV6aFE8RWHkrg5qV1pD7XQAnTGQ3
-         Vl1tTuP2P0ZISpVNlYSVlXx0iyC5JwBBxoYCuwJR9IfR+BK8f7iu2YqlCyLx8eD0xdIj
-         jr9A==
-X-Gm-Message-State: AOJu0YzK3DPXM2o0Mxx4iFy9qH/9khH0G4+q7nFc64dJ0WGKGCIcqTjh
-	i/UqqyttBsyYWrr6/320TcC8BzHQMY2lhNlEgtY9Zg==
-X-Google-Smtp-Source: AGHT+IFFagfhuvrfar9pmA2I63nvMiiFkHTxpgGfOkcjEoSJ8S4dR5V05Zzl29TrGIlCqSNCIsh8speF4Dt9VsRhC2U=
-X-Received: by 2002:a81:9149:0:b0:5a7:b8d4:60e1 with SMTP id
- i70-20020a819149000000b005a7b8d460e1mr2276265ywg.9.1696928789974; Tue, 10 Oct
- 2023 02:06:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F376120
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:07:03 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089A6CC;
+	Tue, 10 Oct 2023 02:06:58 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 0B84766030BF;
+	Tue, 10 Oct 2023 10:06:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1696928817;
+	bh=RpOgGZRGVhfUaO4u/weyo+Vj7fpIhUpNL+R1Rudo1sU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f8nnC0tixyeaQ39u6/zLCNXjdI3HCSnbV0aG9spQlHPTvmtsY9fuR/Eg3S4KNwWr9
+	 xwWd+6bIX27CapM/QJtvN/HV1xGU+Z9iB00208mLMM6o+Ug97skqP6ezFr2YYdQM1/
+	 7yoh8SzwIBNKh5cSpwdK87bwkQzPPhIuXI7q3gcWlQNFUSzInj6xVY4MQ1x5/62mge
+	 24qZ58CT09x5R1V/fdhbrQy6piCWQNkeBxm3eQnk2813+63IvY7YuVjTDWS7dOKNLb
+	 RhWKIhvO/W+/RbTXivZo0SZk3TCBG4f08miEAxd/0h2F+3t3iC37tZhF4c83cxMHbg
+	 XNj810FLiNykA==
+Message-ID: <673dcc99-cf42-81ff-47fe-e20079a5e17c@collabora.com>
+Date: Tue, 10 Oct 2023 11:06:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-2-jagathjog1996@gmail.com> <20230924143710.7c6edc4a@jic23-huawei>
- <CAM+2EuJ8o5X2ucph8gic2=03bbLQmUCX=j3SFLrqD4Y6rwXs9A@mail.gmail.com>
- <20230930170530.0b8f185c@jic23-huawei> <CAM+2EuKzBVbTF2SrpYEYfzap1wrONboFV-QuTU9Fz7sVjqJLeA@mail.gmail.com>
- <20231010100002.0163d681@jic23-huawei>
-In-Reply-To: <20231010100002.0163d681@jic23-huawei>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 10 Oct 2023 11:06:18 +0200
-Message-ID: <CACRpkdY+K90mN1Q1tf38FLRgEsz3q8dK9SJYSQVwGe=PL3FaUQ@mail.gmail.com>
-Subject: Re: [RFC 1/2] dt-bindings: iio: imu: Add DT binding doc for BMI323
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jagath Jog J <jagathjog1996@gmail.com>, andriy.shevchenko@linux.intel.com, 
-	lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [v5 2/2] ASoC: mediatek: mt8188-mt6359: add rt5682s support
+Content-Language: en-US
+To: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>,
+ lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+ matthias.bgg@gmail.com, perex@perex.cz, trevor.wu@mediatek.com
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20231010023738.8241-1-xiazhengqiao@huaqin.corp-partner.google.com>
+ <20231010023738.8241-3-xiazhengqiao@huaqin.corp-partner.google.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231010023738.8241-3-xiazhengqiao@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 10, 2023 at 10:59=E2=80=AFAM Jonathan Cameron <jic23@kernel.org=
-> wrote:
-> Jagath Jog J <jagathjog1996@gmail.com> wrote:
+Il 10/10/23 04:37, xiazhengqiao ha scritto:
+> To use RT5682S as the codec and MAX98390 as the amp, add a new
+> sound card named mt8188_rt5682s.
+> 
+> Signed-off-by: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
+> Reviewed-by: Trevor Wu <trevor.wu@mediatek.com>
 
-> > Regarding your earlier suggestion to have two different controls for
-> > drive-open-drain, do I need to define sensor-specific drive controls
-> > in bindings for both interrupt pins?
-> > for ex: bosch,irq{1,2}-open-drain
->
-> Hmm. We do have precedence for a single control e.g.
-> nxp,fxls8962af.yaml as drive-open-drain.  So perhaps just go with that
-> and if anyone is needs different values we can figure it out later.
-> pin control (which is where that binding item comes from) seems to have
-> examples doing much the same.  Sets of pins with a single drive-open-drai=
-n
-> entry.
->
-> Linus, any comments on this as you've dealt with far more similar cases
-> than me!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Also st,st-sensors use drive-open-drain.
 
-And that in turn is used because the pin control subsystem use that
-exact property. (See
-Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml)
-
-So use that.
-
-(I'm so happy to be able to provide a definitive answer for once!)
-
-Yours,
-Linus Walleij
 
