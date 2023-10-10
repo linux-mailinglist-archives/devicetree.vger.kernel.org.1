@@ -1,128 +1,202 @@
-Return-Path: <devicetree+bounces-7332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13CD27C0181
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:23:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC75E7C0193
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA869281C54
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:23:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1DC91C20BBF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4870724C6A;
-	Tue, 10 Oct 2023 16:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C605B47374;
+	Tue, 10 Oct 2023 16:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RjKH9wc4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rw30bMW6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A3C2746C
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 16:23:15 +0000 (UTC)
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B12E0
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:23:11 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c277f6f24eso11823681fa.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:23:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696954989; x=1697559789; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zGxdskynZq38kn996amRvHGUp58nLQDbuPG7+yxVYHk=;
-        b=RjKH9wc4DYVG5kRtgu83t8mJYXDdFoJeN//M90qvdrhZ77a/+Y0zbK2yrMvhBK5eCH
-         T3TLzjI5by3CeTqncv+coRdF2ae5XsCzRJPYnnN/gHD5xfSyM+mEWHC6HXTfNn5ncRuv
-         EZKx6Gavr3vay2hKpz5CzrlAOWi2DoAV73H4AViu4iavZ1Q5lC8BMEl/OWi6Cp6gZ+lc
-         RobhIa+J424Vy150O87Z/YWaGs2a1d4GKKreNbiMf+mtHAekos/nfYcab2Dq1MK9Wnxi
-         hyA4v6cD44RDRtOI9Y9NQtdYgh0nEBFmvbvBtho5KDKutyohQT/ouvv81TWEpZgvpxga
-         ZR8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696954989; x=1697559789;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zGxdskynZq38kn996amRvHGUp58nLQDbuPG7+yxVYHk=;
-        b=uBPoam+BUUkyM11AFnGfGJzXy0D+/QLKnbPa7xoGhCT+zPPQDIEw9ccaIuawBRQOrP
-         4XfDpnIMxQ8egLJr0xT//L/3OmH7rlhu9v3wFZUfGaG/OLpnUajvay1XD/UHgWMWd3y8
-         wMwlpsSB1uSh4BCBQtS6zPAXzwBOZhVhwBZou4nedDM9KQkuVQxeS1BK7GBqs68It5am
-         q/aSe4vq7ES4BFAjZxb9u0vEb1bY3aKYGZvrvjrQDFutkmpB1Ac+isSO035dMhXpWkTV
-         bdbNCTBZwPpTIivHKdWxP2JqzA7EdQIDQQAxQ1PUeilwICNLMFo6kue5XMrkQEELrtZ+
-         zJrw==
-X-Gm-Message-State: AOJu0YzHSYVVNEmsdKUxdTVQAm3uWrlqiDH+pLHuSk6VyvoGJxAajHV5
-	pbItmTiYv1s3FyK1U8Ex+g6GhA==
-X-Google-Smtp-Source: AGHT+IFTE6eOdZXoi8YRtnGanq+t9ep6GtcNWqfxr1sWycbErleyJS5/yW9eIoIOCZNMnyP4cC3QXA==
-X-Received: by 2002:ac2:55a9:0:b0:502:af44:21c2 with SMTP id y9-20020ac255a9000000b00502af4421c2mr15010256lfg.5.1696954989429;
-        Tue, 10 Oct 2023 09:23:09 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id t17-20020ac24c11000000b004fdde1db756sm1887519lfq.26.2023.10.10.09.23.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 09:23:09 -0700 (PDT)
-Message-ID: <8d51e471-916e-e132-3f56-75804379c6cd@linaro.org>
-Date: Tue, 10 Oct 2023 19:23:01 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65D218639;
+	Tue, 10 Oct 2023 16:27:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26365C433C7;
+	Tue, 10 Oct 2023 16:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696955245;
+	bh=t4PzobXZJtCe2x1U9eIGmA6015uE27joZNtgWmnO0IA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rw30bMW6+kCwj0bQ0XJCl02xwmXUjxDC3O97DswIyyA5f79Vz1CsAoyiwlnwI1u5D
+	 +E4uzeAwjpbuocOd1mekTSSqSmo/qW443P2zp4DFE/vurKgdny9URSly2jBIy2YwZN
+	 2FBZcAHRRhuq8sYAlSSlXMxoMfoia7kDd7qdXt1x9THtFTpMFcCUwT5IAvA25RB7Hw
+	 dzjMC9ayTvTgtRq9oYdYq5GhIYCf/b7Q2a3nXRQYFhEIhfwxQ90pwuSUMh/SxuO2Gf
+	 cNpIMmJ9ZYcwHQqWIhJ0b3ZWZYMyTAYXqmkUOmjlCeul5j8qNGFunRkAqquAKw4inC
+	 ncO72LLPNRVSQ==
+Received: (nullmailer pid 1012386 invoked by uid 1000);
+	Tue, 10 Oct 2023 16:27:22 -0000
+Date: Tue, 10 Oct 2023 11:27:22 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20231010162722.GA1006254-robh@kernel.org>
+References: <20231009172129.43568-1-sebastian.reichel@collabora.com>
+ <20231009172129.43568-2-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH] arm64: dts: qcom: qrb4210-rb2: don't force usb peripheral
- mode
-Content-Language: en-US
-To: Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231010-caleb-rb2-host-mode-v1-1-b057d443cd62@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20231010-caleb-rb2-host-mode-v1-1-b057d443cd62@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231009172129.43568-2-sebastian.reichel@collabora.com>
 
-On 10/10/23 13:46, Caleb Connolly wrote:
-> The rb2 only has a single USB controller, it can be switched between a
-> type-c port and an internal USB hub via a DIP switch. Until dynamic
-> role switching is available it's preferable to put the USB controller
-> in host mode so that the type-A ports and ethernet are available.
+On Mon, Oct 09, 2023 at 07:20:09PM +0200, Sebastian Reichel wrote:
+> RK3588 has three DWC3 controllers. Two of them are fully functional in
+> host, device and OTG mode including USB2 support. They are connected to
+> dedicated PHYs, that also support USB-C's DisplayPort alternate mode.
 > 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> The third controller is connected to one of the combphy's shared
+> with PCIe and SATA. It can only be used in host mode and does not
+> support USB2. Compared to the other controllers this one needs
+> some extra clocks.
+> 
+> While adding the extra clocks required by RK3588, I noticed grf_clk
+> is not available on RK3568, so I disallowed it for that platform.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
-> base-commit: 6465e260f48790807eef06b583b38ca9789b6072
+>  .../bindings/usb/rockchip,dwc3.yaml           | 66 +++++++++++++++++--
+>  1 file changed, 61 insertions(+), 5 deletions(-)
 > 
-> // Caleb (they/them)
-> ---
->   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index a7278a9472ed..9738c0dacd58 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -518,7 +518,6 @@ &usb {
->   
->   &usb_dwc3 {
->   	maximum-speed = "super-speed";
-> -	dr_mode = "peripheral";
->   };
->   
->   &usb_hsphy {
-> 
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> index 291844c8f3e1..517879290099 100644
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -20,9 +20,6 @@ description:
+>    Type-C PHY
+>    Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+>  
+> -allOf:
+> -  - $ref: snps,dwc3.yaml#
+> -
+>  select:
+>    properties:
+>      compatible:
+> @@ -30,6 +27,7 @@ select:
+>          enum:
+>            - rockchip,rk3328-dwc3
+>            - rockchip,rk3568-dwc3
+> +          - rockchip,rk3588-dwc3
+>    required:
+>      - compatible
+>  
+> @@ -39,6 +37,7 @@ properties:
+>        - enum:
+>            - rockchip,rk3328-dwc3
+>            - rockchip,rk3568-dwc3
+> +          - rockchip,rk3588-dwc3
+>        - const: snps,dwc3
+>  
+>    reg:
+> @@ -58,7 +57,9 @@ properties:
+>            Master/Core clock, must to be >= 62.5 MHz for SS
+>            operation and >= 30MHz for HS operation
+>        - description:
+> -          Controller grf clock
+> +          Controller grf clock OR UTMI clock
+> +      - description:
+> +          PIPE clock
+>  
+>    clock-names:
+>      minItems: 3
+> @@ -66,7 +67,10 @@ properties:
+>        - const: ref_clk
+>        - const: suspend_clk
+>        - const: bus_clk
+> -      - const: grf_clk
+> +      - enum:
+> +          - grf_clk
+> +          - utmi
+> +      - const: pipe
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -86,6 +90,58 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +allOf:
+> +  - $ref: snps,dwc3.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3328-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          maxItems: 4
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+> +            - const: grf_clk
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+No need to list everything again. Just:
 
-Thank you for the fix!
+contains:
+  const: grf_clk
 
---
-Best wishes,
-Vladimir
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3568-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+
+Just 'maxItems: 3' is sufficient here.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3588-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+
+3 is already the min.
+
+> +          maxItems: 5
+
+And 5 is already the max.
+
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+> +            - const: utmi
+> +            - const: pipe
+
+Again, can use 'contains' here. Where 'utmi' is in the list is already 
+defined by the top-level schema.
+
+Rob
 
