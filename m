@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-7433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80BA87C44D5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 00:50:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701387C44D6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 00:50:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39EA5281CE0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:50:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91C741C20DFB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D6F315B3;
-	Tue, 10 Oct 2023 22:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CD55321BA;
+	Tue, 10 Oct 2023 22:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XEcGGDWa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PLxmRHcz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B26831599
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:50:25 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73B118D
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:14 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-307d58b3efbso5521539f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D5D315AB
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:50:26 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6A3019D
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:15 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40566f89f6eso63413525e9.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696978213; x=1697583013; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696978214; x=1697583014; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8B+1n8ZspvMDAO+6CGyqMp1YUiIBa+Rr/m0wXbQpt1w=;
-        b=XEcGGDWa+ltAk6yU5x8v/VX0p1xtXMFqwqzZj5H3IaqH9s0WWzrv8BUzjE/wEdbs6f
-         9u3YEk1jdqLgZatgpQH5Y+rbS9nDJo0+z3Yi5USi/+Phqftko3zmYKY7ah6up9Gr03PG
-         nNnPxxXmqmOliHEnVxm1w73nyIxHTpqXX6/jt5rwM3/7J2B4ZYvfo90qySiNO8HYqvV9
-         KeSmhP0xDYGcRfovcGSjuNCkluVgEANXJKqe06D1d6Dg7EUdxL6C1ioQfouorSfiZcqR
-         7cE5HyZnrj9SeA+vJ4qyop2bqhA8aUxNjVZMrrs3bYTHi79qBeQGGJmYu8/N34fjXUZ6
-         Ur8w==
+        bh=8meY4ujs++mlEMDCBMyLTigrPdJt2G7ihVPbm8apfRA=;
+        b=PLxmRHczcbsNwPjUcY51WwgStUOpijp3hkmgJ9oekzZlnvdEkpKpDKz0rD0tQfifR2
+         lt1YyFmq3zFGotTvk/9RiPpESiWSCqY+twuDEbc081Ganm5ofIFePO/AcW26e+CbJkuR
+         eStSzuit3IpQYhDRmFgFY3qrfKLKDnCbTr9vfq3WIgVfXmNCLYvleBChMLgxCPYNDXqe
+         xXYhSwlsusPzSHp5S7GEPQ0GJJLWEmCx/B7RWgc1RFGOm5tQFcq4cxeTpKiPPch5vIv8
+         AZs2V9oV0CB8iViCFs+QzDKQg+/DYrwFPnc1LyVwiMTxe+v8YduMlOdnFbHLWCPYI83p
+         ixVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696978213; x=1697583013;
+        d=1e100.net; s=20230601; t=1696978214; x=1697583014;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8B+1n8ZspvMDAO+6CGyqMp1YUiIBa+Rr/m0wXbQpt1w=;
-        b=HMJ/SKoR+fCeItmsmD74VGENgq+YLv1fuJh5fuSqUyJSRC21p9eHxdhVqE/SjA9cdK
-         VcaMAvT3EHaC2bB8sZPB7aBoNGtJxvJGVV/YN53pOTS2k/oqQMjTNRev0S4FsZV4VKWg
-         fSD7988OaxsL//aQK0tXpCPc7gqUPKJJ3t8BMicbuzexcvdWgA/ldqmcpkxXfworDJLj
-         daxLQ/Ak5M0XN9Oc/erRepbZ2sQTrS8tHw92VkFl7nhQUOVUrY36JMI12IXvJQj9F73P
-         xKUdmF0DP/d49ZrPNIoeqedpCiwzEuOcAMLAf5CwPg1zUsMvPANhYWGKtIeiy4u2eKiS
-         uwaw==
-X-Gm-Message-State: AOJu0YxuHNLNl4OyKCTN6GsuAmJ53UstwkM3Q9/gya/HQEWdxN/MZ02f
-	mha0Wfh44AuGtr5ViQKk1hSWaw==
-X-Google-Smtp-Source: AGHT+IFNKYWmXPYya1Bjw42Oh7jD9oz26ynuGCLLvWuIaWGFX6zOsUeNHcNJv6bU1UptvL6ZW4qmrg==
-X-Received: by 2002:a5d:5103:0:b0:31f:b138:5a0 with SMTP id s3-20020a5d5103000000b0031fb13805a0mr16014732wrt.48.1696978212798;
-        Tue, 10 Oct 2023 15:50:12 -0700 (PDT)
+        bh=8meY4ujs++mlEMDCBMyLTigrPdJt2G7ihVPbm8apfRA=;
+        b=p66n48tSgaa9mXo2EQzNTFKLRWSimjgcWlqfUpswx6aZ9anK2Lyyys2JbldVpLFF6v
+         38U9ybs1/4aM6eXVO7k/qggzfgKv+EhCqYmhckMl3Egw0td2C0Gyiy7LOg7ZhWNAK6fU
+         olgzIr+Xv8KCTwXXuEJSOi5woVXiFneBkBTu4ndnMxRklt//UikvYSESRNdz9V2WUlf2
+         CSv/unSppsYSngtRZeYofXRWeJrKBv2So6dU+5bNycfZfwhqxZf3RHbuKPYCRAhySM73
+         +Yx2+HkaPpcbr/EtoFJimJ9n5pIMcD4UQ7gm1SdfgyLspQl7DJJgqfefmVYIk2qrGWJu
+         AdGQ==
+X-Gm-Message-State: AOJu0YzCRUiQvu/g/OsAUaNu6LMbH8B/mvzOUWJqzr5tQg6jEi/yhPvT
+	pWtg9eqNIht7heeqnXTInafTvg==
+X-Google-Smtp-Source: AGHT+IHVgNRfg9MJFj2fa8ZrT5Dql+nbZeDpWThiGHWgaXBzyVYZ59F732rF5W+8jo4YKOodKbt5oQ==
+X-Received: by 2002:a5d:680d:0:b0:319:83e4:bbbf with SMTP id w13-20020a5d680d000000b0031983e4bbbfmr18331182wru.20.1696978214311;
+        Tue, 10 Oct 2023 15:50:14 -0700 (PDT)
 Received: from gpeter-l.lan (host-92-12-225-146.as13285.net. [92.12.225.146])
-        by smtp.gmail.com with ESMTPSA id j13-20020adfe50d000000b003196b1bb528sm13689547wrm.64.2023.10.10.15.50.11
+        by smtp.gmail.com with ESMTPSA id j13-20020adfe50d000000b003196b1bb528sm13689547wrm.64.2023.10.10.15.50.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 15:50:11 -0700 (PDT)
+        Tue, 10 Oct 2023 15:50:13 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -89,9 +89,9 @@ Cc: peter.griffin@linaro.org,
 	linux-watchdog@vger.kernel.org,
 	kernel-team@android.com,
 	linux-serial@vger.kernel.org
-Subject: [PATCH v2 18/20] arm64: dts: google: Add initial Oriole/pixel 6 board support
-Date: Tue, 10 Oct 2023 23:49:26 +0100
-Message-ID: <20231010224928.2296997-19-peter.griffin@linaro.org>
+Subject: [PATCH v2 19/20] arm64: defconfig: Enable Google Tensor SoC
+Date: Tue, 10 Oct 2023 23:49:27 +0100
+Message-ID: <20231010224928.2296997-20-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.42.0.609.gbb76f46606-goog
 In-Reply-To: <20231010224928.2296997-1-peter.griffin@linaro.org>
 References: <20231010224928.2296997-1-peter.griffin@linaro.org>
@@ -109,112 +109,25 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add initial board support for the Pixel 6 phone code named Oriole. This
-has been tested with a minimal busybox initramfs and boots to a shell.
+Add the Google Tensor SoC to the arm64 defconfig
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- arch/arm64/boot/dts/google/Makefile         |  4 ++
- arch/arm64/boot/dts/google/gs101-oriole.dts | 79 +++++++++++++++++++++
- 2 files changed, 83 insertions(+)
- create mode 100644 arch/arm64/boot/dts/google/Makefile
- create mode 100644 arch/arm64/boot/dts/google/gs101-oriole.dts
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/dts/google/Makefile
-new file mode 100644
-index 000000000000..5cea8ff27141
---- /dev/null
-+++ b/arch/arm64/boot/dts/google/Makefile
-@@ -0,0 +1,4 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+dtb-$(CONFIG_ARCH_GOOGLE_TENSOR) += \
-+	gs101-oriole.dtb \
-diff --git a/arch/arm64/boot/dts/google/gs101-oriole.dts b/arch/arm64/boot/dts/google/gs101-oriole.dts
-new file mode 100644
-index 000000000000..3bebca989d34
---- /dev/null
-+++ b/arch/arm64/boot/dts/google/gs101-oriole.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Oriole Device Tree
-+ *
-+ * Copyright 2021-2023 Google,LLC
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "gs101-pinctrl.h"
-+#include "gs101.dtsi"
-+
-+/ {
-+	model = "Oriole";
-+	compatible = "google,gs101-oriole", "google,gs101";
-+
-+	chosen {
-+		bootargs = "earlycon=exynos4210,mmio32,0x10A00000 console=ttySAC0";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_voldown &key_volup &key_power>;
-+
-+		button-vol-down {
-+			label = "KEY_VOLUMEDOWN";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&gpa7 3 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-vol-up {
-+			label = "KEY_VOLUMEUP";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&gpa8 1 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-power {
-+			label = "KEY_POWER";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpa10 1 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+	};
-+};
-+
-+&pinctrl_1 {
-+	key_voldown: key-voldown-pins {
-+		samsung,pins = "gpa7-3";
-+		samsung,pin-function = <0xf>;
-+		samsung,pin-pud = <0>;
-+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-+	};
-+
-+	key_volup: key-volup-pins {
-+		samsung,pins = "gpa8-1";
-+		samsung,pin-function = <0xf>;
-+		samsung,pin-pud = <0>;
-+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-+	};
-+};
-+
-+&pinctrl_0 {
-+	key_power: key-power-pins {
-+		samsung,pins = "gpa10-1";
-+		samsung,pin-function = <0xf>;
-+		samsung,pin-pud = <0>;
-+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-+	};
-+};
-+
-+&watchdog_cl0 {
-+	timeout-sec = <30>;
-+};
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 5315789f4868..8a34603b1822 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -41,6 +41,7 @@ CONFIG_ARCH_BCMBCA=y
+ CONFIG_ARCH_BRCMSTB=y
+ CONFIG_ARCH_BERLIN=y
+ CONFIG_ARCH_EXYNOS=y
++CONFIG_ARCH_GOOGLE_TENSOR=y
+ CONFIG_ARCH_SPARX5=y
+ CONFIG_ARCH_K3=y
+ CONFIG_ARCH_LG1K=y
 -- 
 2.42.0.609.gbb76f46606-goog
 
