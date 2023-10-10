@@ -1,301 +1,213 @@
-Return-Path: <devicetree+bounces-7312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376EE7C001D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:14:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308227C0028
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:16:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65DE28142E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:14:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E7EA1C20B50
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729643715A;
-	Tue, 10 Oct 2023 15:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73D741ABE;
+	Tue, 10 Oct 2023 15:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6/I8ffb"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="CEAQ826V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C4D24C96
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:14:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E98DC433C8;
-	Tue, 10 Oct 2023 15:14:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696950842;
-	bh=iRxiY3IuELO5fr43sz9lhcyv7foq3bHa+ZIfYse9aJw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S6/I8ffbLmwNnLDRYxk+qOQVp/TqP+IB+PIWJn/hvL/VfCyTHCx3+HBDHNvdUu/l7
-	 +kAm7yXvXMirOd4rZ3Z2iQf9lOhGY2YN+CjCM3qDpKJ560i2DT+1Rx9ypnM+WxYksn
-	 4HVmZf8KzVK1iLnd0trnaIDI3770hiQec3PnzC8fF0lWo+lr/qJsSdHXHyV9FZ+wd7
-	 B+ACst8PpS7h7fYHbWGjX2aIfirXVd0Qse6fOjEdpX3T0Lc7EmwWIe1cVFGrOx+HWs
-	 ILiC6Bg0SdpE6dyvqTXkmEv/K4VsTmR9jlLuU+oxuQCkoBVjEPbcxnOS99jjvY5fcH
-	 vK0LXfmZnizGQ==
-Received: (nullmailer pid 889001 invoked by uid 1000);
-	Tue, 10 Oct 2023 15:13:55 -0000
-Date: Tue, 10 Oct 2023 10:13:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jonathan@marek.ca, quic_tdas@quicinc.com, vladimir.zapolskiy@linaro.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Message-ID: <20231010151355.GB870095-robh@kernel.org>
-References: <20231010122539.1768825-1-bryan.odonoghue@linaro.org>
- <20231010122539.1768825-3-bryan.odonoghue@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6D421364;
+	Tue, 10 Oct 2023 15:16:48 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2088.outbound.protection.outlook.com [40.107.93.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE8D97;
+	Tue, 10 Oct 2023 08:16:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dlkdAMVAHr12NmD91Z0d0TdQRvFpeV1F+IloHCHgieooKeKBpuKuMqqUjVRCOBp4eMM72cCDfkKROoZAZwftflA0Ecy+6PLWowiAsG6d4hCjSE2fY8zgtE9nQIrvLXmPgEhXEFMb/dY/rgUPIkoxftZv05TKJanNrZiHZ1RoZj6O1hwTmy5hvtD2s3wkcDepWwHEh271SUiWmOtZ99j/0AU9w+iOLUiWXkSl1S2Tacl+KSrMA+97kL1bZQ5KweE95N3b3no9+apmUkjc2BmrHOjQ3fTZME1blS3hFiseEphcCTtVRQYae2aasezC50tUFwXf2hpNQvEaK8NRF4uCuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JFbX3IkojXF3hUwgHOtQjE3MYuxR6PZQrRwcejTpuWU=;
+ b=gFW1Um21Ac7pHPzAvD1sqc2035Xjvzn3DMllYUbfOhRGUj6bb8Civ15MTlMkSQIdai+v/WQT0KorwoOIPVoLkFbG912BWinwmhWrtGLm+W51ESujcP2hQ8Bj8e+k7jb2YDvrO+sVBXkGPRy/eVSiW9GrAA50T/uOz0Qr3/0sLQ/aVPMz+WWm7I+bkVU2liZBiPClbX8yElK3EwtFlUk3YI/4V4O0rXPF+kWYWUOGmiKz+kya4llmZnj7mJVVi/XMWK/jfhzDfc9o6Z21N+a2SgsCjkxYCH3uC8Z8zCY5e23C7t8yFYAlE35QGMmOQ5cn4kzKCgBGGsZRSHFhV3+61Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JFbX3IkojXF3hUwgHOtQjE3MYuxR6PZQrRwcejTpuWU=;
+ b=CEAQ826Vlw0cUKZRKJZMFDXqF5YfPxdbqb6Gv1Ga+RkD4YHeTbwFtw6ZcrMOep8HVU5H6mWerh6udLst4WKtjmvYRrQXeyDQtQrAd59VaO8+kV4fn7MSiB7OlrQ955RDJ2fQWgurkaGJADJOC6/kzhsFrjp/gYlkfR/fTbCAUJE=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by DM4PR12MB7600.namprd12.prod.outlook.com (2603:10b6:8:108::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Tue, 10 Oct
+ 2023 15:16:40 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5e1:64bc:e8da:e22f]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5e1:64bc:e8da:e22f%7]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
+ 15:16:40 +0000
+From: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To: Florian Fainelli <f.fainelli@gmail.com>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Simek, Michal"
+	<michal.simek@amd.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>
+CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH net-next v7 3/3] net: axienet: Introduce dmaengine support
+Thread-Topic: [PATCH net-next v7 3/3] net: axienet: Introduce dmaengine
+ support
+Thread-Index: AQHZ8XmjDysNxqIG3UGZtitzZHc+JbBB+SwAgAE7GyA=
+Date: Tue, 10 Oct 2023 15:16:40 +0000
+Message-ID:
+ <MN0PR12MB5953084410FBD7AC6AA0594FB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <1695843151-1919509-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <1695843151-1919509-4-git-send-email-radhey.shyam.pandey@amd.com>
+ <995341e0-d2d7-451e-bd8b-0741cb98bcff@gmail.com>
+In-Reply-To: <995341e0-d2d7-451e-bd8b-0741cb98bcff@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|DM4PR12MB7600:EE_
+x-ms-office365-filtering-correlation-id: 9a5b3809-311b-45d0-a2a8-08dbc9a3e789
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ srSKukV8bEppnJmqa9Sa4eOobToMlCAln0slL69HaeGrAMvvmFo3miZBdjt9AwVq9HFkm2iq9poDlxtsqLfCjV85Qe93bNUl3D80u8iBnEDktsHxnI5raN71pgENejQxIA1nN7G7n4GMqrukOulh2vzKATyXi/R4i3SoFBlWB7eCA1RKQt6WnY4xGntJFjdNt4ofcwuOT2awmw/7IN2s0nbTmxIEnbYKLxPaZrsN50vmucMTxAJVxSquioEke8WbDwFciROSga7H9oLx6cE1yn1h54oIUfveKH3x8EBwOrrCDDWH+7ltqJn2HvBBsedTqxojkHx+A87w1wXxIHlrbM3634uZdGwMV+nR6JDgzkBzQONDPQ3lEez2fDgH1EdfmuM0d6osaxCy1R67/8XV96hm/FvMTX/sGXrqerTNlRPGHMzxOC9LOxmJUx3WXFLNA/q5RwzBFv3onkpImkUpkU5Fh7++LVnsnFziWbtzlXXpu8Fw81ApgHkhg/rhw1Edp5oi8QiUVnsTez5cPI/m0j+aSFbgl6US4fo19BZAp8S0JrZfJ+lM4mVXjkjp0ln7y7pnhNlFHjr3N/ZSpXb1xzotlOdd6cgHJ6a3U33gcRXClFK4w8riHNnFjcZsH8J9j2D69sq8/tpr9bpsTPhstw==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(39860400002)(346002)(396003)(366004)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(55016003)(9686003)(83380400001)(5660300002)(26005)(76116006)(66556008)(66476007)(110136005)(66946007)(66446008)(54906003)(7416002)(64756008)(53546011)(71200400001)(7696005)(52536014)(8676002)(41300700001)(2906002)(478600001)(316002)(6506007)(8936002)(4326008)(33656002)(921005)(38100700002)(86362001)(38070700005)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?dHBCdTZaaktNcUtDRG9JZXRvYjhvL1dJSTJFRGRzckJzcDQxZlowNmZiV0d5?=
+ =?utf-8?B?eFFhTXBKam5wWW80ZzJXeGE2UHNYYll5NXpaYlJQdHFhaHhDWnRqc2RRYzIz?=
+ =?utf-8?B?bkR3MTlTZ1I3QVNMa0p0S1JLV0xmaVN4Um9uQ1FKNHZDRnFieWF2M1dyRnZJ?=
+ =?utf-8?B?ZFRIVi9wOTBJTUY4cHZOemJHQUxuNjBmUUZyM3ZQV3R2ZTVQNGJDTW9qZXZW?=
+ =?utf-8?B?cC9ySHZOakl4LzhvSnd6VVBQa3psZ09mZ2phZERRbDFIV0tRSkF2MEdtYytH?=
+ =?utf-8?B?b040QzdBcEpTZEU3QXBxdDBkQlpBY2xJMEZ2cUdPMEJqQ09FYjdMVFo0UTE0?=
+ =?utf-8?B?V2s2VlVkcGFZRUJrY3Q3dUVZVGVLRzNQQmRqaTdBcURlVmwraWZSNVBjVnpE?=
+ =?utf-8?B?S2paYUJ0Y3RLNlg0cnliUldaOWtLT09taXpVeG82Y08vYnpETTVySEpmNDc1?=
+ =?utf-8?B?TTZNcDExRkc5M0oreWo3MGdIMGlXYXR3V28vemU0Q2ZxeWp3OVhwQy8wRXBs?=
+ =?utf-8?B?NG1NR016UjBjSmMzL1J5YWlwcDNQSTNxdmxyOXJhL3Y1T0RoUUZyekVTcEVP?=
+ =?utf-8?B?WWNSdDd1RjRhMmk0RGtNSkdWa2dzRUlERWEyay9Pa3U1cWJiOFExeWpGbFhW?=
+ =?utf-8?B?SVZreFRKTDZKaG1lZHZUWXhDKzZqMkczKytOTGdxNDI0TFZNREhjSGVFRlVt?=
+ =?utf-8?B?bktQN3lHcDNIQlJpUEg5VU54NDV5eUhmTlBsb3hkamxjL2F6Vzl4N3ZoYUJj?=
+ =?utf-8?B?dWVqVFVKSVlQdlhCTWRacTNuekRsbUVRQ1hMaW9NRCtqMldkb2JDUFQwWndq?=
+ =?utf-8?B?b2xKdVNINGxVUmFGVWx6VlFxd2RxdkV3RDhXOUxJT3ZWK0YrMGsyai9SWHpN?=
+ =?utf-8?B?dGJadmFHc2Z6TUk3Q0NNTGpuV1JLSmJLTmpWTEx1VGMzam1aRExsaXFkLzlp?=
+ =?utf-8?B?SmRMTUFRK3FuQUVUR1VHcTYrSEtHNmRyTWVYTGpYUGFObURlb0ZlWTZRWTVV?=
+ =?utf-8?B?Zlp3S3B1eE55V051YWNoeUFFTGF1NW1lKzZhUk9lYVdoc0pkUk9UcGlVNW5y?=
+ =?utf-8?B?QTZEWEdzeThJUXRpZEkwdUNvSGdiU0J4Q0w2dXpRUDRycGp5cS9QckV5Uk5J?=
+ =?utf-8?B?ZEg3SS96S0VMOFpJYU9aN08rbVBOcVliWXBldnFQMVFIa0FvczdmWDZoMDg3?=
+ =?utf-8?B?Qkp6SWU3cTJoTnV0WnRFbVJZUmtxLzFtL2E3anBPRCszSjYrYjNCQzdKYStC?=
+ =?utf-8?B?NGE5amZOdnVscDdxd3JxcmVvaldBT1FwZHNWMkx1dFJVb0RxbTN1MEJJK3ZP?=
+ =?utf-8?B?T2dWRyt1NG9GZzRqdFJDQ1ExNXovRGVZeTBOWFJWOFFVOXBtSDlOM2ZLSVdI?=
+ =?utf-8?B?SmY1bVIyNTZtZkRLQWNLdzg2VzZHM25WandQU2hOM2Y3LzE1RkMwZWtGa2hF?=
+ =?utf-8?B?dUJyZEV1RVUwRjI1cGs4enY1UGF2SFRTb2FibWRieTNEdkQ3R01aNmhWNW5q?=
+ =?utf-8?B?eXl0NnJSWHVON05XbHpXemttKzNUQmgxOElpOXRFUi9xVFdtMTRpSmR0c1kv?=
+ =?utf-8?B?bXRJRi8yOTlJUW4vMzJqUStLYjd4cTRBM1ZlSmlqYWMxNFhkcVIyaWhySnJS?=
+ =?utf-8?B?cmU0TWhGS1BQQjUxbXB4bUw0MzZmOFRSY0NrcDRadVc0d3lEcjZPa3lJZTlJ?=
+ =?utf-8?B?QjdsMWhiS3o0b1dTWDI4SjVaWWdycjRIMHNKc2VOaEdaVURETUtnSkdTSzhz?=
+ =?utf-8?B?QlVXdVBpcUhvZ3FwV2hDU3FQRjNSeTU0WkxIV2RoQUcrWlNTaTBPMWZ4SFNh?=
+ =?utf-8?B?dWRnUkszMXpFRDlXMEdZWWZ3RWZOTG04QjZVbUR0bzJvVm1XUnJUWCttNXZB?=
+ =?utf-8?B?MTBVVWVtcmxPY3Z6Sk1uTFY4QXk0L2xMSDNYYXMwMHFMZGVWWGs2WEtFYzE3?=
+ =?utf-8?B?RUlhRDVEQjU2Q3NLVXQyR3A0aXVQT2J0SXNlV2hRTjZJeVoxbjIwY0dQQVFK?=
+ =?utf-8?B?TTlnL1E4VGdrQzY5aDNicVpwZVJLMnBiZkp5ZFM0ZTlUb0E2NGx1RXpFZGw1?=
+ =?utf-8?B?T3l6NlU5T3VYZExPOXdlSjNVMk1aSytjTy9nLzhVUnJIUzJ0Y2JKV0l6MlFy?=
+ =?utf-8?Q?z9ck=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010122539.1768825-3-bryan.odonoghue@linaro.org>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a5b3809-311b-45d0-a2a8-08dbc9a3e789
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2023 15:16:40.3904
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8h7Ui8ZIXGPxOglIw8pEIKpevDkNfQtr5m7XW9jlxlTrvZRiFkk61FMFN9UcoD5p
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 10, 2023 at 01:25:38PM +0100, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,sc8280xp-camss.yaml   | 582 ++++++++++++++++++
->  1 file changed, 582 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> new file mode 100644
-> index 000000000000..5b0481d8bd07
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> @@ -0,0 +1,582 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,sc8280xp-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SC8280XP Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> +
-> +description: |
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sc8280xp-camss
-> +
-> +  clocks:
-> +    maxItems: 63
-> +
-> +  clock-names:
-> +    items:
-> +      - const: camnoc_axi
-> +      - const: camnoc_axi_src
-> +      - const: cpas_ahb
-> +      - const: cphy_rx_src
-> +      - const: csiphy0
-> +      - const: csiphy0_timer_src
-> +      - const: csiphy0_timer
-> +      - const: csiphy1
-> +      - const: csiphy1_timer_src
-> +      - const: csiphy1_timer
-> +      - const: csiphy2
-> +      - const: csiphy2_timer_src
-> +      - const: csiphy2_timer
-> +      - const: csiphy3
-> +      - const: csiphy3_timer_src
-> +      - const: csiphy3_timer
-> +      - const: vfe0_axi
-> +      - const: vfe0_src
-> +      - const: vfe0
-> +      - const: vfe0_cphy_rx
-> +      - const: vfe0_csid_src
-> +      - const: vfe0_csid
-> +      - const: vfe1_axi
-> +      - const: vfe1_src
-> +      - const: vfe1
-> +      - const: vfe1_cphy_rx
-> +      - const: vfe1_csid_src
-> +      - const: vfe1_csid
-> +      - const: vfe2_axi
-> +      - const: vfe2_src
-> +      - const: vfe2
-> +      - const: vfe2_cphy_rx
-> +      - const: vfe2_csid_src
-> +      - const: vfe2_csid
-> +      - const: vfe3_axi
-> +      - const: vfe3_src
-> +      - const: vfe3
-> +      - const: vfe3_cphy_rx
-> +      - const: vfe3_csid_src
-> +      - const: vfe3_csid
-> +      - const: vfe_lite0_src
-> +      - const: vfe_lite0
-> +      - const: vfe_lite0_cphy_rx
-> +      - const: vfe_lite0_csid_src
-> +      - const: vfe_lite0_csid
-> +      - const: vfe_lite1_src
-> +      - const: vfe_lite1
-> +      - const: vfe_lite1_cphy_rx
-> +      - const: vfe_lite1_csid_src
-> +      - const: vfe_lite1_csid
-> +      - const: vfe_lite2_src
-> +      - const: vfe_lite2
-> +      - const: vfe_lite2_cphy_rx
-> +      - const: vfe_lite2_csid_src
-> +      - const: vfe_lite2_csid
-> +      - const: vfe_lite3_src
-> +      - const: vfe_lite3
-> +      - const: vfe_lite3_cphy_rx
-> +      - const: vfe_lite3_csid_src
-> +      - const: vfe_lite3_csid
-> +      - const: gcc_axi_hf
-> +      - const: gcc_axi_sf
-> +      - const: slow_ahb_src
-> +
-> +  interrupts:
-> +    maxItems: 20
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csid1_lite
-> +      - const: vfe_lite1
-> +      - const: csiphy3
-> +      - const: csid0
-> +      - const: vfe0
-> +      - const: csid1
-> +      - const: vfe1
-> +      - const: csid0_lite
-> +      - const: vfe_lite0
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: csid2
-> +      - const: vfe2
-> +      - const: csid3_lite
-> +      - const: csid2_lite
-> +      - const: vfe_lite3
-> +      - const: vfe_lite2
-> +      - const: csid3
-> +      - const: vfe3
-> +
-> +  iommus:
-> +    maxItems: 16
-> +
-> +  interconnects:
-> +    maxItems: 4
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: cam_ahb
-> +      - const: cam_hf_mnoc
-> +      - const: cam_sf_mnoc
-> +      - const: cam_sf_icp_mnoc
-> +
-> +  power-domains:
-> +    items:
-> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE3 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: ife0
-> +      - const: ife1
-> +      - const: ife2
-> +      - const: ife3
-> +      - const: top
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@3:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-
-Every port has the same description. You need to define how they 
-correlate to the h/w. 0-3 is what in the hardware?
-
-Rob
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBGbG9yaWFuIEZhaW5lbGxpIDxm
+LmZhaW5lbGxpQGdtYWlsLmNvbT4NCj4gU2VudDogVHVlc2RheSwgT2N0b2JlciAxMCwgMjAyMyAx
+OjUxIEFNDQo+IFRvOiBQYW5kZXksIFJhZGhleSBTaHlhbSA8cmFkaGV5LnNoeWFtLnBhbmRleUBh
+bWQuY29tPjsNCj4gZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsgZWR1bWF6ZXRAZ29vZ2xlLmNvbTsga3Vi
+YUBrZXJuZWwub3JnOw0KPiBwYWJlbmlAcmVkaGF0LmNvbTsgcm9iaCtkdEBrZXJuZWwub3JnOw0K
+PiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmc7
+IFNpbWVrLCBNaWNoYWwNCj4gPG1pY2hhbC5zaW1la0BhbWQuY29tPjsgbGludXhAYXJtbGludXgu
+b3JnLnVrDQo+IENjOiBuZXRkZXZAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2Vy
+bmVsLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJu
+ZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgZ2l0IChBTUQtDQo+IFhpbGlueCkgPGdpdEBhbWQuY29t
+Pg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIG5ldC1uZXh0IHY3IDMvM10gbmV0OiBheGllbmV0OiBJ
+bnRyb2R1Y2UgZG1hZW5naW5lDQo+IHN1cHBvcnQNCj4gDQo+IE9uIDkvMjcvMjMgMTI6MzIsIFJh
+ZGhleSBTaHlhbSBQYW5kZXkgd3JvdGU6DQo+ID4gQWRkIGRtYWVuZ2luZSBmcmFtZXdvcmsgdG8g
+Y29tbXVuaWNhdGUgd2l0aCB0aGUgeGlsaW54IERNQWVuZ2luZQ0KPiA+IGRyaXZlcihBWElETUEp
+Lg0KPiA+DQo+ID4gQXhpIGV0aGVybmV0IGRyaXZlciB1c2VzIHNlcGFyYXRlIGNoYW5uZWxzIGZv
+ciB0cmFuc21pdCBhbmQgcmVjZWl2ZS4NCj4gPiBBZGQgc3VwcG9ydCBmb3IgdGhlc2UgY2hhbm5l
+bHMgdG8gaGFuZGxlIFRYIGFuZCBSWCB3aXRoIHNrYiBhbmQNCj4gPiBhcHByb3ByaWF0ZSBjYWxs
+YmFja3MuIEFsc28gYWRkIGF4aSBldGhlcm5ldCBjb3JlIGludGVycnVwdCBmb3INCj4gPiBkbWFl
+bmdpbmUgZnJhbWV3b3JrIHN1cHBvcnQuDQo+ID4NCj4gPiBUaGUgZG1hZW5naW5lIGZyYW1ld29y
+ayB3YXMgZXh0ZW5kZWQgZm9yIG1ldGFkYXRhIEFQSSBzdXBwb3J0Lg0KPiA+IEhvd2V2ZXIgaXQg
+c3RpbGwgbmVlZHMgZnVydGhlciBlbmhhbmNlbWVudHMgdG8gbWFrZSBpdCB3ZWxsIHN1aXRlZCBm
+b3INCj4gPiBldGhlcm5ldCB1c2VjYXNlcy4gVGhlIGV0aGVybmV0IGZlYXR1cmVzIGkuZSBldGh0
+b29sIHNldC9nZXQgb2YgRE1BIElQDQo+ID4gcHJvcGVydGllcywgbmRvX3BvbGxfY29udHJvbGxl
+ciwobWVudGlvbmVkIGluIFRPRE8pIGFyZSBub3Qgc3VwcG9ydGVkDQo+ID4gYW5kIGl0IHJlcXVp
+cmVzIGZvbGxvdy11cCBkaXNjdXNzaW9ucy4NCj4gPg0KPiA+IGRtYWVuZ2luZSBzdXBwb3J0IGhh
+cyBhIGRlcGVuZGVuY3kgb24geGlsaW54X2RtYSBhcyBpdCB1c2VzDQo+ID4geGlsaW54X3ZkbWFf
+Y2hhbm5lbF9zZXRfY29uZmlnKCkgQVBJIHRvIHJlc2V0IHRoZSBETUEgSVAgd2hpY2gNCj4gPiBp
+bnRlcm5hbGx5IHJlc2V0IE1BQyBwcmlvciB0byBhY2Nlc3NpbmcgTURJTy4NCj4gPg0KPiA+IEJl
+bmNobWFyayB3aXRoIG5ldHBlcmY6DQo+ID4NCj4gPiB4aWxpbngtemN1MTAyLTIwMjMyOn4kIG5l
+dHBlcmYgLUggMTkyLjE2OC4xMC4yMCAtdCBUQ1BfU1RSRUFNIE1JR1JBVEVEDQo+ID4gVENQIFNU
+UkVBTSBURVNUIGZyb20gMC4wLjAuMCAoMC4wLjAuMCkgcG9ydCAwIEFGX0lORVQgdG8gMTkyLjE2
+OC4xMC4yMA0KPiA+ICgpIHBvcnQgMCBBRl9JTkVUDQo+ID4gUmVjdiAgIFNlbmQgICAgU2VuZA0K
+PiA+IFNvY2tldCBTb2NrZXQgIE1lc3NhZ2UgIEVsYXBzZWQNCj4gPiBTaXplICAgU2l6ZSAgICBT
+aXplICAgICBUaW1lICAgICBUaHJvdWdocHV0DQo+ID4gYnl0ZXMgIGJ5dGVzICAgYnl0ZXMgICAg
+c2Vjcy4gICAgMTBeNmJpdHMvc2VjDQo+ID4NCj4gPiAxMzEwNzIgIDE2Mzg0ICAxNjM4NCAgICAx
+MC4wMyAgICAgOTE1LjU1DQo+ID4NCj4gPiB4aWxpbngtemN1MTAyLTIwMjMyOn4kIG5ldHBlcmYg
+LUggMTkyLjE2OC4xMC4yMCAtdCBVRFBfU1RSRUFNDQo+IE1JR1JBVEVEDQo+ID4gVURQIFNUUkVB
+TSBURVNUIGZyb20gMC4wLjAuMCAoMC4wLjAuMCkgcG9ydCAwIEFGX0lORVQgdG8gMTkyLjE2OC4x
+MC4yMA0KPiA+ICgpIHBvcnQgMCBBRl9JTkVUDQo+ID4gU29ja2V0ICBNZXNzYWdlICBFbGFwc2Vk
+ICAgICAgTWVzc2FnZXMNCj4gPiBTaXplICAgIFNpemUgICAgIFRpbWUgICAgICAgICBPa2F5IEVy
+cm9ycyAgIFRocm91Z2hwdXQNCj4gPiBieXRlcyAgIGJ5dGVzICAgIHNlY3MgICAgICAgICAgICAj
+ICAgICAgIyAgIDEwXjZiaXRzL3NlYw0KPiA+DQo+ID4gMjEyOTkyICAgNjU1MDcgICAxMC4wMCAg
+ICAgICAxODE5MiAgICAgIDAgICAgIDk1My4zNQ0KPiA+IDIxMjk5MiAgICAgICAgICAgMTAuMDAg
+ICAgICAgMTgxOTIgICAgICAgICAgICA5NTMuMzUNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFJh
+ZGhleSBTaHlhbSBQYW5kZXkgPHJhZGhleS5zaHlhbS5wYW5kZXlAYW1kLmNvbT4NCj4gPiAtLS0N
+Cj4gW3NuaXBdDQo+ID4gICAvKioNCj4gPiAgICAqIGF4aWVuZXRfdHhfcG9sbCAtIEludm9rZWQg
+b25jZSBhIHRyYW5zbWl0IGlzIGNvbXBsZXRlZCBieSB0aGUNCj4gPiAgICAqIEF4aSBETUEgVHgg
+Y2hhbm5lbC4NCj4gPiBAQCAtOTExLDcgKzEwMzYsNDMgQEAgYXhpZW5ldF9zdGFydF94bWl0KHN0
+cnVjdCBza19idWZmICpza2IsIHN0cnVjdA0KPiBuZXRfZGV2aWNlICpuZGV2KQ0KPiA+ICAgCWlm
+ICghbHAtPnVzZV9kbWFlbmdpbmUpDQo+ID4gICAJCXJldHVybiBheGllbmV0X3N0YXJ0X3htaXRf
+bGVnYWN5KHNrYiwgbmRldik7DQo+ID4gICAJZWxzZQ0KPiA+IC0JCXJldHVybiBORVRERVZfVFhf
+QlVTWTsNCj4gPiArCQlyZXR1cm4gYXhpZW5ldF9zdGFydF94bWl0X2RtYWVuZ2luZShza2IsIG5k
+ZXYpOw0KPiANCj4gRGlkIG5vdCBub3RpY2UgdGhpcyBiZWZvcmUsIGJ1dCBzaG91bGQgY29uc2lk
+ZXIgdXNpbmcgYSBzZXBhcmF0ZSBzZXQgb2YNCj4gbmV0X2RldmljZV9vcHMgd2l0aCBhIGRpZmZl
+cmVudCBuZG9fc3RhcnRfeG1pdCgpIGltcGxlbWVudGF0aW9uLCByYXRoZXINCj4gdGhhbiBhZGQg
+YW5vdGhlciBsYXllciBvZiBpbmRpcmVjdGlvbiBoZXJlLg0KDQpUaGFua3MsIHdpbGwgbWFrZSBp
+dCBhIHNlcGFyYXRlIG5ldF9kZXZpY2Vfb3BzIGZvciBkbWFlbmdpbmUgZmxvdyBhbmQNCnJldmVy
+dCBjaGFuZ2VzIGluIGF4aWVuZXRfc3RhcnRfeG1pdCgpIGZyb20gMi8zIHBhdGNoLg0KDQpUaGFu
+a3MsDQpSYWRoZXkNCg0K
 
