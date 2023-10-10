@@ -1,107 +1,293 @@
-Return-Path: <devicetree+bounces-7198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7317BFABF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0BE77BFAC8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:07:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50862281AF8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:05:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93792281AF6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDD219457;
-	Tue, 10 Oct 2023 12:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A582A1945C;
+	Tue, 10 Oct 2023 12:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B46f57eI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wsjoqcsc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4AB18C2F
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:05:24 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428E39D
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:05:22 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5046bf37ec1so7462916e87.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:05:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696939520; x=1697544320; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pokStYMDFDRvYsa5xe9xzjCMtzvcpQsjPKyHOxO1S3k=;
-        b=B46f57eI6pBV7xbhbvwKH4p+uyRgPnbdV1rMcZ6iqkp0zKc69ibfcm3QMcFdpZ5iZe
-         ywp9J7RbSiQSibwgc1d/jKUsckCfU1S2iuFTy2OIiH10sb5CX/Kxz0rjkSJHcn0OAH/4
-         rWJLtF7HtLP3Sj8/I68zePIqicxwG3eXXD4EfXSgN2emOps+ARYLx41q+rGQMCLeMYIN
-         n21HkXjF9gfKYpAhEl94e1Z2FmtN82j4s0U9OLvghnb2OWUDlVTQBCN9/18nsmJTnT8Q
-         hzwyKOLjifLFQDK6q9MLL7CyYkQiGazIdyp2GwgL00CwyiHU4Usf6p2ZTzCw7e2q2jN+
-         aifg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696939520; x=1697544320;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pokStYMDFDRvYsa5xe9xzjCMtzvcpQsjPKyHOxO1S3k=;
-        b=gtyIBdYY1APdGiz0NK1yljY7hRvldGVpoX7O3VoSHcCApA5wxRRnMqEtjxr9vk/aeG
-         tJvM/NJRJZWfEEUJUhxuDQfw4PWgP0pI2aZvIXGBHqn/g7BvPfppnLO08gAvDJRk27i9
-         Ka5tyq+JOdF/Xxkw/pry8wbQSxpKarN5olbHcA+RpF1lvRPFbR4pivFhBe3Z02vqrXgA
-         a19hp14vlohdzDogKBuCMYs8BeecaOaT5UjLgmPan53Y2yobGtk3HP5q3V4Vh0ZacN+C
-         al9YjBzBhliSs0UmGD/wx4rhnlSWKSbV12bE/k7kKXeYbH40qywukVzb43xMEoqpNn+Y
-         M1fg==
-X-Gm-Message-State: AOJu0YwO9tHTl7BZZNXGywNTeboW8L1m0cB/oW6Po+9LCxVmRybaXEap
-	/4D/AWdi5dX/XbuNLrxx/96dIQ==
-X-Google-Smtp-Source: AGHT+IFaKBupOOKe3q0dsFxnIDxmHu7fHWGOSecpE6w6RECCPhgXqhgGmvxuhdiayv2olOh1/gMu9Q==
-X-Received: by 2002:ac2:4f0f:0:b0:500:ac0b:8d58 with SMTP id k15-20020ac24f0f000000b00500ac0b8d58mr17158472lfr.18.1696939520423;
-        Tue, 10 Oct 2023 05:05:20 -0700 (PDT)
-Received: from [172.30.204.192] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id q1-20020ac25a01000000b00501c77ad909sm1785227lfn.208.2023.10.10.05.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 05:05:20 -0700 (PDT)
-Message-ID: <f3a100f7-a876-45d8-a3b9-e64b2ddc33d6@linaro.org>
-Date: Tue, 10 Oct 2023 14:05:18 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D3A524F
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:07:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86E3C433C8;
+	Tue, 10 Oct 2023 12:07:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696939631;
+	bh=za2l4w484JGV1JQq1NuVdJOjePBtNufYGNfJ71lUcBA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WsjoqcscnCtCN2Q2XpmEHBbsxWDP0OubWLQpbZvXztffL4ktgVMQpLWVeeGV//dWu
+	 1C/X9tW7sxRx2WjmvIN5zZ4IaLxAdDxnJbQrHJV5eodZFHqB26gVya2GsHvtAWwLEl
+	 OodBZF6yDKs14pkvZyy9mdrrmeJnUTIKyV8faLGiEjQnuEswcdr1Lqg81MYd284Q/Z
+	 PO8qeyBAL4iltrnzhpHjGWcXp0VHGVvRrzwvtm4QrSA/r0m533LdJjFrocFw5Nuxow
+	 CGqaTGKiBiv3J+9zYOGUWviMThKDfc7El+/6BKYmV8GFD2j3sEQPR4EpuosRtB6lE1
+	 y4dTj8L3syzwg==
+Date: Tue, 10 Oct 2023 17:36:57 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v21 14/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ Endpoint support
+Message-ID: <20231010120657.GH4884@thinkpad>
+References: <20230922065331.3806925-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230922065331.3806925-15-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qrb4210-rb2: don't force usb peripheral
- mode
-To: Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231010-caleb-rb2-host-mode-v1-1-b057d443cd62@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231010-caleb-rb2-host-mode-v1-1-b057d443cd62@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.6
-X-Spam-Level: *
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230922065331.3806925-15-yoshihiro.shimoda.uh@renesas.com>
 
-
-
-On 10/10/23 12:46, Caleb Connolly wrote:
-> The rb2 only has a single USB controller, it can be switched between a
-> type-c port and an internal USB hub via a DIP switch. Until dynamic
-> role switching is available it's preferable to put the USB controller
-> in host mode so that the type-A ports and ethernet are available.
+On Fri, Sep 22, 2023 at 03:53:29PM +0900, Yoshihiro Shimoda wrote:
+> Add R-Car Gen4 PCIe controller for endpoint mode. This controller is based
+> on Synopsys DesignWare PCIe.
 > 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
-Fixes: eaa53a85748d ("arm64: dts: qcom: qrb4210-rb2: Enable USB node")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-18-yoshihiro.shimoda.uh@renesas.com
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Konrad
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig          |  11 ++
+>  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 136 +++++++++++++++++++-
+>  2 files changed, 144 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index bc69fcab2e2a..e7fd37717998 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -429,4 +429,15 @@ config PCIE_RCAR_GEN4_HOST
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called pcie-rcar-gen4.ko. This uses the DesignWare core.
+>  
+> +config PCIE_RCAR_GEN4_EP
+> +	tristate "Renesas R-Car Gen4 PCIe controller (endpoint mode)"
+> +	depends on ARCH_RENESAS || COMPILE_TEST
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	select PCIE_RCAR_GEN4
+> +	help
+> +	  Say Y here if you want PCIe controller (endpoint mode) on R-Car Gen4
+> +	  SoCs. To compile this driver as a module, choose M here: the module
+> +	  will be called pcie-rcar-gen4.ko. This uses the DesignWare core.
+> +
+>  endmenu
+> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> index dfff6bb18932..68879b7308c5 100644
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> @@ -45,6 +45,9 @@
+>  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
+>  #define RCAR_MAX_LINK_SPEED		4
+>  
+> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
+> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
+> +
+>  struct rcar_gen4_pcie {
+>  	struct dw_pcie dw;
+>  	void __iomem *base;
+> @@ -53,6 +56,7 @@ struct rcar_gen4_pcie {
+>  };
+>  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
+>  
+> +/* Common */
+>  static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
+>  					bool enable)
+>  {
+> @@ -310,6 +314,9 @@ static int rcar_gen4_add_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
+>  {
+>  	struct dw_pcie_rp *pp = &rcar->dw.pp;
+>  
+> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_HOST))
+> +		return -ENODEV;
+> +
+>  	pp->num_vectors = MAX_MSI_IRQS;
+>  	pp->ops = &rcar_gen4_pcie_host_ops;
+>  	rcar->mode = DW_PCIE_RC_TYPE;
+> @@ -322,8 +329,114 @@ static void rcar_gen4_remove_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
+>  	dw_pcie_host_deinit(&rcar->dw.pp);
+>  }
+>  
+> +/* Endpoind mode */
+> +static void rcar_gen4_pcie_ep_pre_init(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
+> +	int ret;
+> +
+> +	ret = rcar_gen4_pcie_common_init(rcar);
+> +	if (ret)
+> +		return;
+> +
+> +	writel(PCIEDMAINTSTSEN_INIT, rcar->base + PCIEDMAINTSTSEN);
+> +}
+> +
+> +static void rcar_gen4_pcie_ep_init(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +	enum pci_barno bar;
+> +
+> +	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++)
+> +		dw_pcie_ep_reset_bar(pci, bar);
+> +}
+> +
+> +static void rcar_gen4_pcie_ep_deinit(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
+> +
+> +	writel(0, rcar->base + PCIEDMAINTSTSEN);
+> +	rcar_gen4_pcie_common_deinit(rcar);
+> +}
+> +
+> +static int rcar_gen4_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +				       unsigned int type, u16 interrupt_num)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +
+> +	switch (type) {
+> +	case PCI_IRQ_LEGACY:
+> +		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+> +	case PCI_IRQ_MSI:
+> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> +	default:
+> +		dev_err(dw->dev, "Unknown IRQ type\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pci_epc_features rcar_gen4_pcie_epc_features = {
+> +	.linkup_notifier = false,
+> +	.msi_capable = true,
+> +	.msix_capable = false,
+> +	.reserved_bar = 1 << BAR_1 | 1 << BAR_3 | 1 << BAR_5,
+> +	.align = SZ_1M,
+> +};
+> +
+> +static const struct pci_epc_features*
+> +rcar_gen4_pcie_ep_get_features(struct dw_pcie_ep *ep)
+> +{
+> +	return &rcar_gen4_pcie_epc_features;
+> +}
+> +
+> +static unsigned int rcar_gen4_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+> +						       u8 func_no)
+> +{
+> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET;
+> +}
+> +
+> +static unsigned int rcar_gen4_pcie_ep_get_dbi2_offset(struct dw_pcie_ep *ep,
+> +						      u8 func_no)
+> +{
+> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET;
+> +}
+> +
+> +static const struct dw_pcie_ep_ops pcie_ep_ops = {
+> +	.pre_init = rcar_gen4_pcie_ep_pre_init,
+> +	.ep_init = rcar_gen4_pcie_ep_init,
+> +	.deinit = rcar_gen4_pcie_ep_deinit,
+> +	.raise_irq = rcar_gen4_pcie_ep_raise_irq,
+> +	.get_features = rcar_gen4_pcie_ep_get_features,
+> +	.func_conf_select = rcar_gen4_pcie_ep_func_conf_select,
+> +	.get_dbi2_offset = rcar_gen4_pcie_ep_get_dbi2_offset,
+> +};
+> +
+> +static int rcar_gen4_add_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+> +{
+> +	struct dw_pcie_ep *ep = &rcar->dw.ep;
+> +
+> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_EP))
+> +		return -ENODEV;
+> +
+> +	rcar->mode = DW_PCIE_EP_TYPE;
+> +	ep->ops = &pcie_ep_ops;
+> +
+> +	return dw_pcie_ep_init(ep);
+> +}
+> +
+> +static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+> +{
+> +	dw_pcie_ep_exit(&rcar->dw.ep);
+> +}
+> +
+> +/* Common */
+>  static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+>  {
+> +	enum dw_pcie_device_mode mode;
+>  	struct rcar_gen4_pcie *rcar;
+>  	int err;
+>  
+> @@ -339,7 +452,13 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+>  	if (err)
+>  		return err;
+>  
+> -	err = rcar_gen4_add_dw_pcie_rp(rcar);
+> +	mode = (enum dw_pcie_device_mode)of_device_get_match_data(&pdev->dev);
+> +
+> +	if (mode == DW_PCIE_RC_TYPE)
+> +		err = rcar_gen4_add_dw_pcie_rp(rcar);
+> +	else if (mode == DW_PCIE_EP_TYPE)
+> +		err = rcar_gen4_add_dw_pcie_ep(rcar);
+> +
+>  	if (err)
+>  		goto err_unprepare;
+>  
+> @@ -355,12 +474,23 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
+>  {
+>  	struct rcar_gen4_pcie *rcar = platform_get_drvdata(pdev);
+>  
+> -	rcar_gen4_remove_dw_pcie_rp(rcar);
+> +	if (rcar->mode == DW_PCIE_RC_TYPE)
+> +		rcar_gen4_remove_dw_pcie_rp(rcar);
+> +	else if (rcar->mode == DW_PCIE_EP_TYPE)
+> +		rcar_gen4_remove_dw_pcie_ep(rcar);
+> +
+>  	rcar_gen4_pcie_unprepare(rcar);
+>  }
+>  
+>  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
+> -	{ .compatible = "renesas,rcar-gen4-pcie", },
+> +	{
+> +		.compatible = "renesas,rcar-gen4-pcie",
+> +		.data = (void *)DW_PCIE_RC_TYPE,
+> +	},
+> +	{
+> +		.compatible = "renesas,rcar-gen4-pcie-ep",
+> +		.data = (void *)DW_PCIE_EP_TYPE,
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, rcar_gen4_pcie_of_match);
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
