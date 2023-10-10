@@ -1,151 +1,221 @@
-Return-Path: <devicetree+bounces-7352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A737C0270
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D15A7C0294
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:27:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E05E1C20B5A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:20:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3F9B1C20BA4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EFAF182B5;
-	Tue, 10 Oct 2023 17:20:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VX2sjkWI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693A5208B8;
+	Tue, 10 Oct 2023 17:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F252FE35
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 17:20:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0F7B0;
-	Tue, 10 Oct 2023 10:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696958445; x=1728494445;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/+Mfrapl/++Abw7OhBV5GXIN1QFhxGHIvpLOCgh9mrk=;
-  b=VX2sjkWI9OmSh3Mbci2CDdxFl49hz3LvkL2tG92sRjsQdQ3ZOUl4rprR
-   a6fqCSKBRuoDkBQHzxyulCvrJv60/JVg1YentdSbkwbLjUlqH+XQ1qCe2
-   cyN3vlbk6R1EJ6jDXCOTMemeFP8j/Hr66f+Zf+h1QgL19MBdCvYe3xmaS
-   xgfp/SZQq+C/9/6SzXXUuNCCdQlArRIHEVZfhRtuzPX3/yasQqxs+89ab
-   Q+LOcYs7dt4BwKj5pDRvTQwVkMqtvaUP3NNcwVAe9vuBwzFEvS5ThfdOQ
-   NSX/z5ysjZa2Sy++QLyFfou1/jcA0E1zj5ckwGlMQEoeRKblRnICVtdwo
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="363810609"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; 
-   d="scan'208";a="363810609"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2023 10:20:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="823857872"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; 
-   d="scan'208";a="823857872"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 10 Oct 2023 10:20:40 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qqGPM-0000ou-2Y;
-	Tue, 10 Oct 2023 17:20:37 +0000
-Date: Wed, 11 Oct 2023 01:20:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	Lee Jones <lee@kernel.org>,
-	Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: oe-kbuild-all@lists.linux.dev, Karel Balej <balejk@matfyz.cz>,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Subject: Re: [PATCH 2/2] backlight: Add Kinetic KTD2801 driver
-Message-ID: <202310110122.Syu9oJQI-lkp@intel.com>
-References: <20231005-ktd2801-v1-2-43cd85b0629a@skole.hr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79EFC182B5;
+	Tue, 10 Oct 2023 17:27:37 +0000 (UTC)
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B83B6;
+	Tue, 10 Oct 2023 10:27:34 -0700 (PDT)
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 288B885166;
+	Tue, 10 Oct 2023 19:27:31 +0200 (CEST)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Subject: [PATCH v6 0/9] Initial Marvell PXA1908 support
+Date: Tue, 10 Oct 2023 19:27:17 +0200
+Message-Id: <20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231005-ktd2801-v1-2-43cd85b0629a@skole.hr>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-	SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHWJJWUC/4XOQW7DIBCF4atErIs1MGAgq96j6oLApKZx4ggSl
+ Cry3UsiVXW96XJG+n69OyuUExW23dxZpppKmk7t6F82LAz+9EE8xXYzCRLBAvLzzQsHlo+H48h
+ 7i0A2eqWDYY2cM+3T7Zl7e2/3kMplyl/PesXH9yek/oYqcuCWlN0Hjwacey2HaaRuyOzRqfLXG
+ mlELx24rgcUXPB4/aTumNraqaawgmIJhRQASnZSaNT/SbWca1ZzVZsbdmhNNLhTWq6sXlghV1Y
+ 363XUwqEhQrWw8zx/A+wbGIWSAQAA
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Haojian Zhuang <haojian.zhuang@linaro.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6106;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=T3rpe82zRF01j6D68dx4WclHnTLGTWjakaB4Y9bJpKo=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlJYl4Evmb1SA8NsudpzA1GlmN6aqcK+wD3iy3I
+ 28kejfxU76JAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZSWJeAAKCRCaEZ6wQi2W
+ 4d9qEACnEDJWMMgThh7WXvHb0e/yWwWmkNkF1VyRowtA4hwtTLJU6D78nHV8Ud8gP2ZeHcWwd9h
+ eYCe+Ka/H5pP8NEI8Spu/d3aLlia5pUdkKWKuJJyI45v3WIZmh6uqW+vzaKeopB/WwPmmSIo8oL
+ tq6XcdumM2vDz0ThGBzJHSQN/q5dXgvwY8zwLlMKRzgTjG0Dfal6jhlRjuQ0H2jRSdKQqUA8rbH
+ EBu7Pk1/6WmV84x3s7qSkXkgJc617uYGyrQLdSblL4MAH+eCxIFh8oz7HJ3HcqbMtwLSbEWrQfd
+ PiWEilY2QKMUy0U+XBkGeoRRj0MgPAltvPJrOo+Aa5vUPKaH8uVARtsfnclgklup7Iymi+V1KoY
+ 639Vz9jl2ufhM5wo2qTtx4z9TBx6PBS1CrEniJrArHzJpJZb+jcYbsoGFLP8Sjg5oGT/HDM0HQ4
+ m+97sTdltY+CaRZqd9lyxIGtKRlQ2SH3ZFYL1eIBRAeltc2u5rZ8G3drTmLL7sMmIMMyRkwGUTt
+ HKezowMYdCgUiCJ8VeLGAK32MJIZa4JezyFNXofGd+8PigoT4sXy88G0VslWVsdXt7KhHYukzqt
+ PUtlmw8XHNhJntR4QoDDa6YZS7yIYgAtmiavmDSIoe163htP/xzkAT27JVoVfcvtnwYCzDQrLlL
+ LqMt9bJ1BTwvdAw==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Duje,
+Hello,
 
-kernel test robot noticed the following build warnings:
+This series adds initial support for the Marvell PXA1908 SoC and
+"samsung,coreprimevelte", a smartphone using the SoC.
 
-[auto build test WARNING on 8a749fd1a8720d4619c91c8b6e7528c0a355c0aa]
+USB works and the phone can boot a rootfs from an SD card, but there are
+some warnings in the dmesg:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Duje-Mihanovi/dt-bindings-backlight-add-Kinetic-KTD2801-binding/20231006-025106
-base:   8a749fd1a8720d4619c91c8b6e7528c0a355c0aa
-patch link:    https://lore.kernel.org/r/20231005-ktd2801-v1-2-43cd85b0629a%40skole.hr
-patch subject: [PATCH 2/2] backlight: Add Kinetic KTD2801 driver
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20231011/202310110122.Syu9oJQI-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231011/202310110122.Syu9oJQI-lkp@intel.com/reproduce)
+During SMP initialization:
+[    0.006519] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU1: 0x00000000000000
+[    0.006542] CPU features: Unsupported CPU feature variation detected.
+[    0.006589] CPU1: Booted secondary processor 0x0000000001 [0x410fd032]
+[    0.010710] Detected VIPT I-cache on CPU2
+[    0.010716] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU2: 0x00000000000000
+[    0.010758] CPU2: Booted secondary processor 0x0000000002 [0x410fd032]
+[    0.014849] Detected VIPT I-cache on CPU3
+[    0.014855] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU3: 0x00000000000000
+[    0.014895] CPU3: Booted secondary processor 0x0000000003 [0x410fd032]
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310110122.Syu9oJQI-lkp@intel.com/
+SMMU probing fails:
+[    0.101798] arm-smmu c0010000.iommu: probing hardware configuration...
+[    0.101809] arm-smmu c0010000.iommu: SMMUv1 with:
+[    0.101816] arm-smmu c0010000.iommu:         no translation support!
 
-All warnings (new ones prefixed by >>):
+On Samsung's PXA1908 phones, the bootloader does not start the ARM
+system timer, and my temporary solution (which isn't present in this
+series) was to put the code for starting the timer in the clock driver.
+Would this hack be accepted upstream in the form of a platform or
+clocksource driver such as drivers/clocksource/timer-mediatek-cpux.c?
 
->> drivers/video/backlight/ktd2801-backlight.c:15: warning: "DS" redefined
-      15 | #define DS              5
-         | 
-   In file included from arch/x86/include/uapi/asm/ptrace.h:6,
-                    from arch/x86/include/asm/ptrace.h:7,
-                    from arch/x86/include/asm/math_emu.h:5,
-                    from arch/x86/include/asm/processor.h:13,
-                    from arch/x86/include/asm/cpufeature.h:5,
-                    from arch/x86/include/asm/thread_info.h:53,
-                    from include/linux/thread_info.h:60,
-                    from arch/x86/include/asm/preempt.h:9,
-                    from include/linux/preempt.h:79,
-                    from include/linux/rcupdate.h:27,
-                    from include/linux/rculist.h:11,
-                    from include/linux/pid.h:5,
-                    from include/linux/sched.h:14,
-                    from include/linux/ratelimit.h:6,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from include/linux/backlight.h:12,
-                    from drivers/video/backlight/ktd2801-backlight.c:2:
-   arch/x86/include/uapi/asm/ptrace-abi.h:14: note: this is the location of the previous definition
-      14 | #define DS 7
-         | 
+A 3.14 based Marvell tree is available on GitHub
+acorn-marvell/brillo_pxa_kernel, and a Samsung one on GitHub
+CoderCharmander/g361f-kernel.
 
+Andreas Färber attempted to upstream support for this SoC in 2017:
+https://lore.kernel.org/lkml/20170222022929.10540-1-afaerber@suse.de/
 
-vim +/DS +15 drivers/video/backlight/ktd2801-backlight.c
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 
-     8	
-     9	#define EW_DELAY	150
-    10	#define EW_DET		270
-    11	#define LOW_BIT_HIGH	5
-    12	#define LOW_BIT_LOW	(4 * HIGH_BIT_LOW)
-    13	#define HIGH_BIT_LOW	5
-    14	#define HIGH_BIT_HIGH	(4 * HIGH_BIT_LOW)
-  > 15	#define DS		5
-    16	#define EOD_L		10
-    17	#define EOD_H		350
-    18	#define PWR_DOWN_DELAY	2600
-    19	
+Changes in v6:
+- Address maintainer comments:
+  - Add "marvell,pxa1908-padconf" binding to pinctrl-single driver
+- Drop GPIO patch as it's been pulled
+- Update trailers
+- Rebase on v6.6-rc5
+- Link to v5: https://lore.kernel.org/r/20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr
 
+Changes in v5:
+- Address maintainer comments:
+  - Move *_NR_CLKS to clock driver from dt binding file
+- Allocate correct number of clocks for each block instead of blindly
+  allocating 50 for each
+- Link to v4: https://lore.kernel.org/r/20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr
+
+Changes in v4:
+- Address maintainer comments:
+  - Relicense clock binding file to BSD-2
+- Add pinctrl-names to SD card node
+- Add vgic registers to GIC node
+- Rebase on v6.5-rc5
+- Link to v3: https://lore.kernel.org/r/20230804-pxa1908-lkml-v3-0-8e48fca37099@skole.hr
+
+Changes in v3:
+- Address maintainer comments:
+  - Drop GPIO dynamic allocation patch
+  - Move clock register offsets into driver (instead of bindings file)
+  - Add missing Tested-by trailer to u32_fract patch
+  - Move SoC binding to arm/mrvl/mrvl.yaml
+- Add serial0 alias and stdout-path to board dts to enable UART
+  debugging
+- Rebase on v6.5-rc4
+- Link to v2: https://lore.kernel.org/r/20230727162909.6031-1-duje.mihanovic@skole.hr
+
+Changes in v2:
+- Remove earlycon patch as it's been merged into tty-next
+- Address maintainer comments:
+  - Clarify GPIO regressions on older PXA platforms
+  - Add Fixes tag to commit disabling GPIO pinctrl calls for this SoC
+  - Add missing includes to clock driver
+  - Clock driver uses HZ_PER_MHZ, u32_fract and GENMASK
+  - Dual license clock bindings
+  - Change clock IDs to decimal
+  - Fix underscores in dt node names
+  - Move chosen node to top of board dts
+  - Clean up documentation
+  - Reorder commits
+  - Drop pxa,rev-id
+- Rename muic-i2c to i2c-muic
+- Reword some commits
+- Move framebuffer node to chosen
+- Add aliases for mmc nodes
+- Rebase on v6.5-rc3
+- Link to v1: https://lore.kernel.org/r/20230721210042.21535-1-duje.mihanovic@skole.hr
+
+---
+Andy Shevchenko (1):
+      clk: mmp: Switch to use struct u32_fract instead of custom one
+
+Duje Mihanović (8):
+      dt-bindings: pinctrl: pinctrl-single: add marvell,pxa1908-padconf compatible
+      pinctrl: single: add marvell,pxa1908-padconf compatible
+      dt-bindings: clock: Add Marvell PXA1908 clock bindings
+      clk: mmp: Add Marvell PXA1908 clock driver
+      dt-bindings: marvell: Document PXA1908 SoC
+      arm64: Kconfig.platforms: Add config for Marvell PXA1908 platform
+      arm64: dts: Add DTS for Marvell PXA1908 and samsung,coreprimevelte
+      MAINTAINERS: add myself as Marvell PXA1908 maintainer
+
+ .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   5 +
+ .../devicetree/bindings/clock/marvell,pxa1908.yaml |  48 +++
+ .../bindings/pinctrl/pinctrl-single.yaml           |   4 +
+ MAINTAINERS                                        |   9 +
+ arch/arm64/Kconfig.platforms                       |  11 +
+ arch/arm64/boot/dts/marvell/Makefile               |   3 +
+ .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 333 +++++++++++++++++++++
+ arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 295 ++++++++++++++++++
+ drivers/clk/mmp/Makefile                           |   2 +-
+ drivers/clk/mmp/clk-frac.c                         |  57 ++--
+ drivers/clk/mmp/clk-of-mmp2.c                      |  26 +-
+ drivers/clk/mmp/clk-of-pxa168.c                    |   4 +-
+ drivers/clk/mmp/clk-of-pxa1908.c                   | 328 ++++++++++++++++++++
+ drivers/clk/mmp/clk-of-pxa1928.c                   |   6 +-
+ drivers/clk/mmp/clk-of-pxa910.c                    |   4 +-
+ drivers/clk/mmp/clk.h                              |  10 +-
+ drivers/pinctrl/pinctrl-single.c                   |   1 +
+ include/dt-bindings/clock/marvell,pxa1908.h        |  88 ++++++
+ 18 files changed, 1177 insertions(+), 57 deletions(-)
+---
+base-commit: 94f6f0550c625fab1f373bb86a6669b45e9748b3
+change-id: 20230803-pxa1908-lkml-6830e8da45c7
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Duje Mihanović <duje.mihanovic@skole.hr>
+
+
 
