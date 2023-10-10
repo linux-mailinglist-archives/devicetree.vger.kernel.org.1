@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-7392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16787C04D2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:42:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 055167C04D4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F24FD1C20B5D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:42:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2E35281E62
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0AE321A4;
-	Tue, 10 Oct 2023 19:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A45321AB;
+	Tue, 10 Oct 2023 19:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SAgt1E3p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eDz7tHc4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B41332188
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:42:17 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CB894
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:42:15 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5046bf37daeso7913299e87.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:42:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE430321A2
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:42:18 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE409E
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:42:16 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50481a0eee7so233890e87.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:42:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696966933; x=1697571733; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PB6bOhIyAV2tkdSUHTyGXIJ7SFfywyzy0c+WFbZpE2Q=;
-        b=SAgt1E3psPFF2sYLhWzrlACBk2K+sg9FOe9PfO1Urc9zNdE6xr+GqQ8fQuVYsQsqYv
-         PD/Gmd5EjBlLYKPt+CWozrNgucZ6z8WYbNa679W3+ecGvrqjcsIF1QP2xg1CqL8VqMW+
-         aqmsxANN/V9BQc/UhuLez+Euwg6A9N7F+/tDEyuBVCpA1JmUGg8Wj0BtPHAnLcmDe8zE
-         bk/w1ELpuryACHzrDUfzeQGKw9EebZYj+DHoTSSRTkcylE8H6rgzqW2WDuQK4YqmqXDz
-         ryJGQ8g26jh9Y4YMYu5VlggiN/hzz3UxlqKnwwwK2Ue5Xe0tBguUIH0DDRdXg5aRb1IL
-         OdmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696966933; x=1697571733;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1696966934; x=1697571734; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PB6bOhIyAV2tkdSUHTyGXIJ7SFfywyzy0c+WFbZpE2Q=;
-        b=IYMGzBrUGFGKHmG53AUDBGPTnmi72fm1biVh06xkP07dBPJ4dgDUZNHGzhjkJ0VUwJ
-         ioyQVHiOKiLMcWx3RP7zydJZ/84iLi6FeoV592LNv3dsjPs5H/OJwEC0B/fLrcc6toXW
-         /tGb1N8gmJry1Edv4tlPoOpfvw4xQjy0ENejI+fPtTeEe9urLJlupPfYQzAQcK/T2LnY
-         6U8XIO7TvCGshtjhZZYX7qUXQ11XsKYgG6gIHx8H2Qf5/dWtZt+ViyLSS/5CYVKEvCGp
-         gN5zIGIteLK/MXYImXjH+GVO31JZYOwG/y2snm9w7Maw/4O4UPFAIf4/erXBI6Yvbihn
-         xNMg==
-X-Gm-Message-State: AOJu0YyvhqlZYfg79VVegP5TTbh9iiQrjlO0+X5ZNbb/0YAP61G2mJCI
-	dpb1GzXfbzjQxZ4MR+n8xQRWyw==
-X-Google-Smtp-Source: AGHT+IHJ9mrfStyhDBDl+hTlRdDFlmkwSzm9OzXWy68saE5iNJcjZR4UWPyxOFmY/OoFwjU8aVWPhw==
-X-Received: by 2002:a05:6512:1189:b0:4f8:75cf:fdd7 with SMTP id g9-20020a056512118900b004f875cffdd7mr19856907lfr.22.1696966933562;
-        Tue, 10 Oct 2023 12:42:13 -0700 (PDT)
+        bh=HC7cwQ9l9ehnrfUa93LdFzsS9yDFKMfITnSyWHqNYUU=;
+        b=eDz7tHc4i7m7oUh63qS4U0CmTrutf00oAb4t8c30ihUXqNnnys0n2zx5maXlFteb/2
+         QKQY1tYNxicUADigV6Hw9JCCqSGLNUMD3gzWSG6mH+vpOTcQYZHVlZEn9lBTEA55nlp6
+         Lzvs83HsGpowF5yYlcJHCryD034icvcZ3H2ksRdEqF4IelRVtA1Ueo67ZpNRxH4GW6vh
+         sF3yUOsEFHiwG0wkgjYCYdpbMydOxmrgomKOdA/BIAqXyHLbS+4E6ISUNmxFOIP+jgb9
+         NgTqUqSYgkB4oOs1ldiAO4QGYMBe75tZcb4cSp7PyqNdod/NoOT+LA5eNgaTG6W1b8kb
+         B8Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696966934; x=1697571734;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HC7cwQ9l9ehnrfUa93LdFzsS9yDFKMfITnSyWHqNYUU=;
+        b=lYd8NAmxlxiH3mML9z1JXVy/PweP4IlRmNOPUJXnNJfkhcBiYwu4a3kGUeM207DYzv
+         gZXpVP+l55llZgQwO2gs/nv5C3xgtGsU03ecCEd96rmYfnYS77XMlRm+NhI8LckHqOxF
+         Z4rl35VIC2tuIhlRZI6iOLXc8Fh8QZOGN5stIi6dhJ65uA/3SAshmnHKlUjFMazlPOGd
+         i40U+j4BppMjV46NtDwhinUHyTZFLyjEluBTLe7YSbYDYJDLd1M0tN/SgMFTBdk4sEv+
+         C9GRIYTlChO7r+5MuxPRUjeLe51yLD2kLD0wIWRZluZTenEXKhnQTDJ94dkD7KbF/0wc
+         zjVw==
+X-Gm-Message-State: AOJu0YwwuhPKc94egI+pM7IhSbvoDchJVgvGplsZi7ur+RVPgUniEN7C
+	5FqDQgOLyShKkB+DTiVZxL/5jA==
+X-Google-Smtp-Source: AGHT+IGDZGH9/us/6kfxtvCwYemfgI5jGna/p8VuYhNmwKpNCwcIAIeTuRVpXhwXKyMBh2xkMdi/Mw==
+X-Received: by 2002:a05:6512:202d:b0:4fb:8938:48ab with SMTP id s13-20020a056512202d00b004fb893848abmr11873244lfs.16.1696966934417;
+        Tue, 10 Oct 2023 12:42:14 -0700 (PDT)
 Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
-        by smtp.gmail.com with ESMTPSA id i19-20020ac25233000000b005041cc98273sm1939927lfl.300.2023.10.10.12.42.12
+        by smtp.gmail.com with ESMTPSA id i19-20020ac25233000000b005041cc98273sm1939927lfl.300.2023.10.10.12.42.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 12:42:12 -0700 (PDT)
+        Tue, 10 Oct 2023 12:42:14 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v3 0/2] Support byte access in the RTC7301 driver
-Date: Tue, 10 Oct 2023 21:42:10 +0200
-Message-Id: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
+Date: Tue, 10 Oct 2023 21:42:11 +0200
+Subject: [PATCH v3 1/2] rtc: rtc7301: Rewrite bindings in schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,10 +69,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABOpJWUC/33NwQqDMAyA4VeRnteRtFjtTnuPsUO1UQNDRyvdh
- vjuqx4Gg7Fb/kC+LCJSYIriVCwiUOLI05hDHwrRDm7sSbLPLRQoDVahDHMrKw15oP7Bfh4k1o1
- D0h7INyLf3QN1/NzNyzX3wHGewmt/kXDb/tMSSpBoAcrSYI1Nd77x6MJ0nEIvNi6pD4EA1S9CZ
- aK1qJ2zZWeM+SLWdX0DeFUpo/YAAAA=
+Message-Id: <20231010-rtc-7301-regwidth-v3-1-ade586b62794@linaro.org>
+References: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
+In-Reply-To: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
 To: Alessandro Zummo <a.zummo@towertech.it>, 
  Alexandre Belloni <alexandre.belloni@bootlin.com>, 
  Rob Herring <robh+dt@kernel.org>, 
@@ -84,44 +83,105 @@ Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This augments the Epson RTC7301 driver so that is supports
-both 8bit byte and 32bit word access.
+This rewrites the Epson RTC7301 bindings to use YAML schema,
+and adds a property for "reg-io-width" as used in several
+other bindings to account for different register strides.
 
+The USRobotics USR8200 uses the byte IO width.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Changes in v3:
-- Use a default in the binding to encode 32bit (4 bytes) reg width
-  as default.
-- Collect Rob's ACK.
-- Link to v2: https://lore.kernel.org/r/20231007-rtc-7301-regwidth-v2-0-c913aa95f666@linaro.org
-
-Changes in v2:
-- Specify that the reg-io-width default is 4 if not specified in the
-  device tree.
-- Fix spelling in driver comment.
-- Print error and exit if an invalid width is specified.
-- Link to v1: https://lore.kernel.org/r/20230921-rtc-7301-regwidth-v1-0-1900556181bf@linaro.org
-
----
-Linus Walleij (2):
-      rtc: rtc7301: Rewrite bindings in schema
-      rtc: rtc7301: Support byte-addressed IO
-
  .../devicetree/bindings/rtc/epson,rtc7301.txt      | 16 -------
  .../devicetree/bindings/rtc/epson,rtc7301.yaml     | 51 ++++++++++++++++++++++
- drivers/rtc/rtc-r7301.c                            | 35 ++++++++++++++-
- 3 files changed, 84 insertions(+), 18 deletions(-)
----
-base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
-change-id: 20230921-rtc-7301-regwidth-18ba1e3d0edb
+ 2 files changed, 51 insertions(+), 16 deletions(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt b/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
+deleted file mode 100644
+index 5f9df3f1467c..000000000000
+--- a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-EPSON TOYOCOM RTC-7301SF/DG
+-
+-Required properties:
+-
+-- compatible: Should be "epson,rtc7301sf" or "epson,rtc7301dg"
+-- reg: Specifies base physical address and size of the registers.
+-- interrupts: A single interrupt specifier.
+-
+-Example:
+-
+-rtc: rtc@44a00000 {
+-	compatible = "epson,rtc7301dg";
+-	reg = <0x44a00000 0x10000>;
+-	interrupt-parent = <&axi_intc_0>;
+-	interrupts = <3 2>;
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
+new file mode 100644
+index 000000000000..bdb5cadb31cc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/epson,rtc7301.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Epson Toyocom RTC-7301SF/DG
++
++description:
++  The only difference between the two variants is the packaging.
++  The DG variant is a DIL package, and the SF variant is a flat
++  package.
++
++maintainers:
++  - Akinobu Mita <akinobu.mita@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - epson,rtc7301dg
++      - epson,rtc7301sf
++
++  reg:
++    maxItems: 1
++
++  reg-io-width:
++    description:
++      The size (in bytes) of the IO accesses that should be performed
++      on the device.
++    enum: [1, 4]
++    default: 4
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    rtc: rtc@44a00000 {
++        compatible = "epson,rtc7301dg";
++        reg = <0x44a00000 0x10000>;
++        reg-io-width = <4>;
++        interrupt-parent = <&axi_intc_0>;
++        interrupts = <3 2>;
++    };
+
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.41.0
 
 
