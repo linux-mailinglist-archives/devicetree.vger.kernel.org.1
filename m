@@ -1,191 +1,121 @@
-Return-Path: <devicetree+bounces-7083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787CE7BF16C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:28:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BC27BF195
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:36:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CDBE1C20A11
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 03:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FCC52819BD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 03:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B3215A4;
-	Tue, 10 Oct 2023 03:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7039715AE;
+	Tue, 10 Oct 2023 03:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="ZJfwBgqa"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Vzz8N3HY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43189390
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 03:28:41 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2131.outbound.protection.outlook.com [40.107.220.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2F36A9;
-	Mon,  9 Oct 2023 20:28:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CqKvafB9WcJtni2SuMXoOX7cBQcjnUtpX+3vPoMH/J7H6a35VIxptd1cV4fP337A+oUJGy/FdRcoIEp8UlhaV7AaZ53QOnkM2Tpc0eMp5JKP9cdDRnENQd8bW67R8EVXOrapqrPH0DJ2gkSvY5MEgsOzMw9tiig3CgifitbikfAQek/5OMJ3bJDyRqXLeTqMJgIq6x4qSjiTF5nhbl7bCVzsRFX7hk5ZHfzfGWkStxlUB6GwWDuaEEyHheqBvr6nZdn8sCsBVTU6mow72H7alWFU4Q2sK+LV6p+/cTSobBzmiLAmTQyyPAkTpcubUkguJiFMXQ1ATtxHk4+n6WVI3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nAcHgMTaJgvaKynrsdKOl++n5gguK6LFMS7UcKWM2eY=;
- b=B2hXsOXExnKcYFEnGu6TpPgATwOl92dXdfIxLJlrmOAhy48dvRFDPTtZz41UAz1T+JJ2kICdNeJo+MT/74AZ/we8J1cufbHhGaQL0h1SbgJk+4QRUMnQABVWJuUvotO5TIX6uZgM/EcfynQircBLWhSCFhTQoJQDMkeuPKT25JjX55pgL89/bF9LRtic56JsqAcv4zLGkLoI996awMvnI+3juaOr1Ry5vFNFGjahpwzGx2VDazL5omLj5Xp106yo518tqV7wEkpJFzVB0R88trgm9G9FlHGAUvHoclZUsZ1gl5rqiE5tY1MCBF43XWR0qNcRsjmYFAysaYtVnUqDiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nAcHgMTaJgvaKynrsdKOl++n5gguK6LFMS7UcKWM2eY=;
- b=ZJfwBgqaSQ8ir3+PcI7V+w8qXcVUzCZotTfCNbRJDlIQD1bH/JaBVGQ7x/3Z37ntde2sLZ0vce+E43TBu7cMPPm22fBFCdDaI0Mc6Q2A0fwgR0Noqtc79Py3v98iDDXnI3WhPwNFOjld3TUmuvhfgPSIdYp1Z/5X8uGxaI3GXt4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19) by
- LV2PR01MB7813.prod.exchangelabs.com (2603:10b6:408:171::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.37; Tue, 10 Oct 2023 03:28:31 +0000
-Received: from DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9]) by DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9%4]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
- 03:28:31 +0000
-Message-ID: <b46467de-8ddf-4ff5-a133-c18613d2a34b@amperemail.onmicrosoft.com>
-Date: Tue, 10 Oct 2023 10:28:19 +0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] ARM: dts: aspeed: mtmitchell: Add LEDs
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com>
- <20231005035525.19036-5-chanh@os.amperecomputing.com>
- <65a610df-5030-4dd0-9f04-2089dfe09a3d@linaro.org>
-Content-Language: en-US
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-In-Reply-To: <65a610df-5030-4dd0-9f04-2089dfe09a3d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0040.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::7) To DS0PR01MB8010.prod.exchangelabs.com
- (2603:10b6:8:151::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49FE15A4
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 03:36:39 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0534C92;
+	Mon,  9 Oct 2023 20:36:37 -0700 (PDT)
+Received: from [IPV6:2405:201:2033:3002:3848:5d20:59c9:c87c] (unknown [IPv6:2405:201:2033:3002:3848:5d20:59c9:c87c])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFD363D6;
+	Tue, 10 Oct 2023 05:36:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1696908994;
+	bh=HN7mDg7VsRlOfml4LOazT/vu//u9sVi/DeEg8aI9kx0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Vzz8N3HYNAaoX6t+b+qpI6/WYFDa6z5TFAP3P/En7CocheAYqcWv2FSuPF8ggTgSz
+	 h/XzBYdem7qn0KwrtcTdE9kPFGAuellAG0lhN9fNm8ej3eHzgGgFSfQE1Ws6TkqjEH
+	 HO3vEJeX1Xdi2JZcxI3EUxqQgZZdLl/yV1pTUxks=
+Message-ID: <9de11f54-6f25-6945-b42c-bc3632563a56@ideasonboard.com>
+Date: Tue, 10 Oct 2023 09:06:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR01MB8010:EE_|LV2PR01MB7813:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40876822-0bf2-49c1-48ea-08dbc940f997
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	W+xaZPcfKTXmZ8W0pXoOQgpGuzobGObiDWyXmKw/zIpS+jeYeFl6j9drIsctl0vv5e09177OHQm5ycjtDT7EleBlehOm6YEbXfYNnFIYypbB8mBEmH4fJ/BFfUGfBqupKLPk2UB+PGVvJzdPg4TJT/6Vy90XdIJfnm1Lj9QtKIUQsPSK8tNnW5JXq8w0f0C1+9/xdfsJHcWmYG2rGAldVJ2rAcf672Li4YpFCSLQf1IgPtQ/ELdV+m/xScwjVt8PbY0rcmxTzq+zKYmIhFES1sudDJ9DH1B5vu5EZLfJnL4bFdsCujBvG+Spu1Eb6o+fvrdt4OUTjmj/xtWRjldVxtxhUpG//SE+kZhPgFE81BdpTXUxySinyN/DGf2L/QFwp21NhsM7XWe+lCLvaPCuBZQH+ZbQphi/XTMr7hPrWNWht0ii9qGl18dds1MPH3sHvKV2l0g3CQurzwOmqMoz3Uy18s2tpemg1MK/GtMc1apo18hokLurOjlt6YAtxwmYcuFhNGCJP1/ckiGXTkjlR+RtPEuyZqCYBXLQVKLx7bpJ0bKy80VHoXnlQKV0lpPmcUtpfdKj9fZFtWY5otxnFXE/y6O55iPe/6zFzHdPma67TFqZ39dOAxLNjei1U63X
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB8010.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(366004)(396003)(376002)(39850400004)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(31686004)(6506007)(6512007)(53546011)(6666004)(2616005)(31696002)(38100700002)(921005)(83170400001)(83380400001)(6486002)(2906002)(42882007)(966005)(7416002)(478600001)(41300700001)(8676002)(8936002)(26005)(5660300002)(316002)(66556008)(110136005)(66476007)(66946007)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ekVXbG8rOGNqRW54c3lLWFU4Y3d3L0tIZTdsRXJGQkR3UlhObWJJNXVoZTFL?=
- =?utf-8?B?bkhtNmxWMk5YNVZtYWRoeWMxekV5R2tZNnhZSi9EU0UvcjNjYXlISDJtck9K?=
- =?utf-8?B?amxUVmRkU2g4ZkpxdGZQOCtBZmZMK3Y0Rk5vdUVyTGdLNTEvQlNYR3hYakZD?=
- =?utf-8?B?TDBSN1Y2dnpWU0FGcFYzMFI3SjBLMzRTa2RUaDdweDUxcHdmSTkwWlFhSHNv?=
- =?utf-8?B?SVRrbjNjY2JJeE9xRndwN2tOVjR6QXVSVktiYk5UeWMvN1pnSEdzR3FadjJS?=
- =?utf-8?B?VDZuSWc2aWw2MWQveFdJUFc5cUhhQmo0Sjd4NDhJMWRndnpWV3pEeElOOUFh?=
- =?utf-8?B?QkFzVTRFc3ByM2xjYTNMcHpvS1Qvb0RPSHZjNkhmKy95cGN5dVh3ZHFvUVls?=
- =?utf-8?B?b3lwYUl4bDdvbzkrU0dFMzVGdUdXRXJpQXBOS0ttMUtCOUNZMXQ1cUFkVGFS?=
- =?utf-8?B?U2EzbVBZckJIS1pzZWRHK1VGQXJYeVBDTWF1MTdzbnpuVktISHJ3bU8vdzBx?=
- =?utf-8?B?emVQOElkTnBDNFg3QTZvY1JVdDZUYzJLdjhGZVdXVXFMV2FoWTJkc2JGRzlU?=
- =?utf-8?B?TGRyNlVPL0xCZGZsUldFaStySjM4aVBOc0l6V0xyOEZwajJBSUpsaHhSSXhy?=
- =?utf-8?B?Y0FXbW5xWGJheUlKVWlWZHJUKzJFZVNycTZuNWlvNnhnMkxrYVg1TjVvN21H?=
- =?utf-8?B?UzZGTFhKQ0hNeTdBOUtIR1pxc1JiMCtvUjd1Y1VJR2ZLb2d1ZjFzQy9tZHZH?=
- =?utf-8?B?WUFwUEF6RFhzd1lhZ3FWbUhMZVAzUlhuYm52RmIrWUFPSkthNlBMR1FHRU9C?=
- =?utf-8?B?TWhjRUlpU1I0SUoya2IzUkJHK1pwMi8yNGQvckVOSnFZMFRXOFg4am54TUtM?=
- =?utf-8?B?SUcyYzQyRmc5YWc4Y0ZjSnNxOGJDSnRhcEtXS1J4WG5YNGxnY0ZMZXZLMGh1?=
- =?utf-8?B?NlNRcmdnRXlTaWoxRHBsSlROM0xYOHp5S3drWWdhdkhnTlpucFFGWGFtZSt1?=
- =?utf-8?B?bVJBNk1sUWd2RFk3bXNQN09IRmp1cDZxMjhTaVlMeDNGUHJ1UHVZOHQrRkFR?=
- =?utf-8?B?bWpEN2g5MnZlMHhoU2c0R3NZMWd3QUtaTk54WkJ3QWN5Q3V5Qm5mbDRLd05m?=
- =?utf-8?B?L0V6djBoREVEK1pJVWV1aGxBazFkdGxpZHNMSGVQTGtzZzkxRlhVN2hVWFVJ?=
- =?utf-8?B?MlNYcHg5YjlGSlhYWWxudGp5SlBoVnVHZkFTc1FqbkduS2RpRXc1cUZwQWdQ?=
- =?utf-8?B?L2syNjNlYjZyamJXK09wK2UzU2dEa014TkphbWJHb0crY290ajUxVm9vMEdZ?=
- =?utf-8?B?ZHl1d1gzcHZQTkpLbHZCK25mbXpNOEJtR1RkdmZLQXcwR1JoVmZteENaUjBp?=
- =?utf-8?B?c2hzT2VCSTNDTVRlOE5zOTE4OE9hR0g4VXNYK1d5ei9XWjJnTFRtUkpDQWZY?=
- =?utf-8?B?cVZQamlzZzZlT2NUU0FodU0rRmx6dlNZakNpd0JIWHRYRTRZdUowQzNBL05u?=
- =?utf-8?B?Zk5HM1M1ZTg1ZUVDWGtEbzBIM3F0VHgycXY3QTl6VEF6b2Zwc2ZmWFRobFRI?=
- =?utf-8?B?dW9tcXRWTHE4THIrQThxWmdiQlZCVTgrY2JpcmI5ZC9RdUtWaDFWazl6YUg5?=
- =?utf-8?B?SWFsajZkRHZFcm1iNGxTWlVtYWF0K3VZOHphZk5NM0gvNDRYTjkxMTNpUXA4?=
- =?utf-8?B?QWJxUmp4aVZKa0VvbmZHZUE1Lyt2QklqMG1HK3R2M05FRktjK2NZVWd2TmVi?=
- =?utf-8?B?QVFiUHBGOG5wc3VwR05FRFUzQmcwT1l1OFpUZlk0bkxkVk9mWG4xSGtPYUJH?=
- =?utf-8?B?UmF3c3VvWlVGaUhLUE0yWmFCZjZGTlBaWndSbFNnR2w2NDdFQlpWQXgxZzQ3?=
- =?utf-8?B?UWQwMUt6ZmNxelBlVzVFcC9na293aXpFVDR3Ty8xUkppTk5UYVl4ZURCOE9D?=
- =?utf-8?B?U09xQ3YzbXYxWjVvVVRnay9uK2FPc1ZDL1Z5NitiVXExSmJ1VkZqaWY2VGVC?=
- =?utf-8?B?SUo4MlUwREFydXVxRzcxTDdPZTVmRko3emlSRFNtM3pQR2JhNDhCTlZpRGFN?=
- =?utf-8?B?bEdYRGtKS3FZdHQyaXVYejFGS25sYlBHZGtCWktLemh4M29aL2hlOGZGN0Fm?=
- =?utf-8?B?QUJNd0s2dTc2QnZkRWR3aTRBQ3Jpa0d3T3JiRzdyWHN2Y2hVRG4zTUhUUnJK?=
- =?utf-8?Q?QSw7Y6p5UR918UsTRH0SueI=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40876822-0bf2-49c1-48ea-08dbc940f997
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB8010.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 03:28:31.0311
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1+vKVVtwpfN0lkkvS/TYXJBl9/gLqAXy9vor6Crg+JOh23w90mMuA7JxAPBu/pqFPf1b6bKm/6zs7yVbCze2k4HgCkNI52td1iCup+olkAl8sGFImMd/4nzmQXwm9r9K
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR01MB7813
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 5/5] media: i2c: imx335: Improve configuration error
+ reporting
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ "Paul J. Murphy" <paul.j.murphy@intel.com>,
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
+ <20231010005126.3425444-6-kieran.bingham@ideasonboard.com>
+Content-Language: en-US
+From: Umang Jain <umang.jain@ideasonboard.com>
+In-Reply-To: <20231010005126.3425444-6-kieran.bingham@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Kieran,
 
+Thank you for the patch.
 
-On 05/10/2023 14:31, Krzysztof Kozlowski wrote:
-> On 05/10/2023 05:55, Chanh Nguyen wrote:
->> Use gpio-leds to configure GPIOW5 to GPIO_ACTIVE_HIGH and
->> GPIO_TRANSITORY flags as a bmc ready led. The GPIOW5 pin
->> is reset when watchdog timeout occurs.
->>
->> Configure the GPIOS3 to GPIO_ACTIVE_HIGH as an identify led.
->>
->> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
->> ---
->>   .../dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts     | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
->> index b7c4f7cfad07..88693c2b2dbe 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
->> @@ -51,6 +51,19 @@
->>   		};
->>   	};
->>   
->> +	leds {
->> +		compatible = "gpio-leds";
->> +
->> +		bmc-ready {
-> 
-> Missing led name.
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> 
-> Best regards,
-> Krzysztof
-> 
+On 10/10/23 6:21 AM, Kieran Bingham wrote:
+> The existing imx335_parse_hw_config function has two paths
+> that can be taken without reporting to the user the reason
+> for failing to accept the hardware configuration.
+>
+> Extend the error reporting paths to identify failures when
+> probing the device.
+>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> ---
+>   drivers/media/i2c/imx335.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/i2c/imx335.c b/drivers/media/i2c/imx335.c
+> index 1a34b2a43718..753e5c39e0fa 100644
+> --- a/drivers/media/i2c/imx335.c
+> +++ b/drivers/media/i2c/imx335.c
+> @@ -864,8 +864,10 @@ static int imx335_parse_hw_config(struct imx335 *imx335)
+>   	}
+>   
+>   	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+> -	if (!ep)
+> +	if (!ep) {
+> +		dev_err(imx335->dev, "Failed to get next endpoint");
 
-Thank Krzysztof! I'll test the DTS against bindings and update it in 
-patch series v2.
+missing '\n' at the end.
+>   		return -ENXIO;
+> +	}
+>   
+>   	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+>   	fwnode_handle_put(ep);
+> @@ -890,6 +892,8 @@ static int imx335_parse_hw_config(struct imx335 *imx335)
+>   		if (bus_cfg.link_frequencies[i] == IMX335_LINK_FREQ)
+>   			goto done_endpoint_free;
+>   
+> +	dev_err(imx335->dev, "no compatible link frequencies found");
+
+Ditto.
+
+Other than that,
+
+Reviewed-by: Umang Jain <umang.jain@ideasonboard.com>
+
+> +
+>   	ret = -EINVAL;
+>   
+>   done_endpoint_free:
+
 
