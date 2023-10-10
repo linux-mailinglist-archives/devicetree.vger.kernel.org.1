@@ -1,143 +1,175 @@
-Return-Path: <devicetree+bounces-7137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9AF7BF682
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:52:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50577BF690
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E99A0281AF6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:52:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 029401C2092F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B7D156DB;
-	Tue, 10 Oct 2023 08:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1EE156FF;
+	Tue, 10 Oct 2023 08:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NvikLWBB"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="wJOr+LIp";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="TDCook6t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844EF1FCF
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 08:52:34 +0000 (UTC)
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CAEC6;
-	Tue, 10 Oct 2023 01:52:32 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c008042211so65470261fa.2;
-        Tue, 10 Oct 2023 01:52:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696927950; x=1697532750; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TeEaic7DEAY9zd0WyuqM/4JYbRdrtkfWh/cZqj1+uHU=;
-        b=NvikLWBBYBXGNzOZWvhhwrwfiW0JOpSCaPjmSJGCOdN3ybiGq9SmTi4b2w6DK6s/md
-         VayrGSrom8RctkAPXOC63W/VEqIGyAYlAoDlbSy350hxFvLTpMS3w3L7k/TQ4a0M1igO
-         wUorzM8pSh3PHyhZ1tLLjkJmA28jtjv+LI+9pmCmcuL4THPvkCDT4lWMu9TQtmQ8lvov
-         c7x60rtJWN4x3o+fCBnbAMb9tq1i4gZ5UJEjkR3DIPbb8Ard3+wm/fpRo/oqjRrXOOMh
-         CUOdbvvSht15Rf1UqcW/qmud7sXupjwV+V1Ck7wSUgcQnb8BF0DU9SeYNPbHPPGlb0Wm
-         9XZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696927950; x=1697532750;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TeEaic7DEAY9zd0WyuqM/4JYbRdrtkfWh/cZqj1+uHU=;
-        b=Dhq2Jz/kKfyXvUDEhKBslwbNKI50qMCn9NIeFOc5cBl7Yc40jQvR7Cp9XdFc98IGQ8
-         9QjD+6sPfM5SScr789boVqQRwWeBGLGHmc1vUM+j/YxDpNiAsB6U2RcQe6z6WQ25CqGu
-         9MVTpSyDPpcjTpYpBxloyiqVV+IOMVApHGipVNhK2P9oq1CnxNzVVImOnCgutX3nDWIh
-         05thSEBYFMNDTiqgWnmrUdHbWOWbDm5HrN2X2QMsOK/V63ef/hanjksVo7dNUbCq2WQB
-         UB9OvgaciZdcrvUMENcXOQzaBLdFFDqRuQWyLAaNQWjMuIJa5RNkrZoh48tEOa0r/OqJ
-         6wTw==
-X-Gm-Message-State: AOJu0YyXrPNOL/aGr/t2BTgmqkoRRjQS8GuHmv2WjG5ftV3zaW4CJi3T
-	Pioovtd4/5PY1+JQp/6lV8o=
-X-Google-Smtp-Source: AGHT+IFRDeEjYXjaBWFWXr0sryFJAu3lGH0OBSOOIm/FGuRn05jaZpgsOGgCZmg/jBQkRmA66inhew==
-X-Received: by 2002:a2e:870f:0:b0:2b6:da1e:d063 with SMTP id m15-20020a2e870f000000b002b6da1ed063mr14278324lji.45.1696927950311;
-        Tue, 10 Oct 2023 01:52:30 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::7? (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
-        by smtp.gmail.com with ESMTPSA id r25-20020a2e9959000000b002bfba0d26bcsm2368605ljj.8.2023.10.10.01.52.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 01:52:29 -0700 (PDT)
-Message-ID: <2c6ff28f-9031-beb2-f8d0-e7f12b0a07b4@gmail.com>
-Date: Tue, 10 Oct 2023 11:52:28 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBACB1FCF
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 08:56:07 +0000 (UTC)
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65B297;
+	Tue, 10 Oct 2023 01:56:03 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 4E3FF5C01BA;
+	Tue, 10 Oct 2023 04:56:01 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Tue, 10 Oct 2023 04:56:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+	1696928161; x=1697014561; bh=cMrT6oQLJKD/UFrbVl1BexNgkcPTW0+RFma
+	e0fqFgFw=; b=wJOr+LIp9sP2y0Dia6ik8+mzyZOHZ0K/mcrKiHd0TLp8ScwP2+V
+	Yv4m4/p9jnqHO+ARVS9HxxFuOPtW2EnDcL7PsjK+NLDrvS5BjHJD5UnTgaVcvk7R
+	uWCRyZTmD9cOQYDkfYoCrmL8kUcC2euQIrNjhP8jiP4BicvR+0q5dwPL3q/Btvv+
+	c3z7oYbVtZrxSdwuG6yhg+fr7VJGWD+2b0ZikgDvglRSbqnExqA3iNLMP1a9kAbZ
+	wHdtFA/zBXUbuAkaHeAB/e24CuH4i1qiF7OO1sYEOFOv4CRbN3AIs/mSmKdIa+aF
+	f4CATaUiqm6gCVV69gMgSVVJ1+bH6FvrxqA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1696928161; x=1697014561; bh=cMrT6oQLJKD/UFrbVl1BexNgkcPTW0+RFma
+	e0fqFgFw=; b=TDCook6trC2hcQRNuFJqX55QRqASsVi7o7Cp87CaaLEPkL7YrJQ
+	Q0Esg7yCRInxMCAM34G9Qs6BQyL7TJYZAFTzvL64FK8E+B3bxEsXcFubaGsk5J/n
+	8m5s0crr85jWgt+tipPnr5GBChtuw/3Wk9SXd+8FLkslyl1Jbos7+vpXT6n60Y2W
+	jwfGUeT41Sqi1GN5Q3OyiCw7Ap27qwv/nKcqBbONORVIOc5OE5wlM4+pEieuJZDK
+	FoM9e64A2u97PjswXHSRmMdnhuOL90iYYrMeiEhLqyhmeNS/O1BwkQdkGU2aOENi
+	ysiTJyemizRNenilvDgibQ4yDwvXPf6Zz6g==
+X-ME-Sender: <xms:oBElZcC7EYATwJVzko6W4UkDpKye9jMupkIif4P2H5SbWyASOMlCaA>
+    <xme:oBElZeiMMVP88vIFXFo5oI_woJjO95sm_DEepiarUWW5QE_6kzFuGD8KfKWxJ-AwR
+    P3XWeI-u5YYBZgGUpg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrheehgddtkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedflfhi
+    rgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+    eqnecuggftrfgrthhtvghrnhepvdduvefffeejlefhjeeugedvfefhhfehkeevveeugeeu
+    udevuddthfdtudeiieetnecuffhomhgrihhnpegvlhhinhhugidrohhrghenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihunhdrhigr
+    nhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:oBElZfnG8f0nfv5QRCqBDYNWO7CMzIz-g_mnzceAKXAvD8BrtIQX9g>
+    <xmx:oBElZSzaJPkJ8yF7f25VGSkEveKPf5Hiua6kuUJhkhbfmMvXsK3Fdw>
+    <xmx:oBElZRQxiLXTGHMxArQC_w-niIBZPerHwiuK-MkymlUFLLPKczWD4g>
+    <xmx:oRElZWIwbXWtEfB5qwtaCb5Hx3j5JkWtIeli0MetBFOwIekjdZlKxg>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 945BC36A0080; Tue, 10 Oct 2023 04:56:00 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Avago APDS9306
-Content-Language: en-US, en-GB
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Paul Gazzillo <paul@pgazz.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
- <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+Message-Id: <e5b8c68e-8a1d-45e7-92bf-db0c2fa812ad@app.fastmail.com>
+In-Reply-To: <87edi3bxcl.fsf@BL-laptop>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-4-gregory.clement@bootlin.com>
+ <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
+ <87edi3bxcl.fsf@BL-laptop>
+Date: Tue, 10 Oct 2023 09:55:40 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 03/11] MIPS: support RAM beyond 32-bit
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/8/23 18:48, Subhajit Ghosh wrote:
-> Add devicetree bindings for Avago APDS9306 Ambient Light Sensor.
-> 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
->   .../bindings/iio/light/avago,apds9306.yaml    | 49 +++++++++++++++++++
->   1 file changed, 49 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
-> new file mode 100644
-> index 000000000000..e8bb897782fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9306.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/avago,apds9306.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Avago APDS9306 Ambient Light Sensor
-> +
-> +maintainers:
-> +  - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> +
-> +description:
-> +  Datasheet at https://docs.broadcom.com/doc/AV02-4755EN
-> +
-> +properties:
-> +  compatible:
-> +    const: avago,apds9306
 
-I see the driver supports two different variants of this IC, 
-differentiated by the part-ID register. Variants are named as apds9306 
-and apds9306-065. I wonder if we could/should have different compatibles 
-for them?
 
-Yours,
-	-- Matti
+=E5=9C=A82023=E5=B9=B410=E6=9C=889=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=E5=
+=8D=884:59=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> Hello Jiaxun,
+>
+>> =E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
+=E5=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>>> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
+>>>
+>>> Support platforms where RAM is mapped beyond 32-bit.
+>>>
+>>> The kernel parameter ddr32_alias allows to setup the alias to point
+>>> outside the first 4 GB of memory.
+>>
+>> Are you trying to fix the problem that if kernel text is loaded in
+>> XKPHYS there is no way to to set EBASE to that region?
+>
+> Yes that exactly we try to fix.
+>
+>>
+>> The common practice for other 64bit MIPS system is to load kernel
+>> in KSEG0 and add low 4G mirror with rest of the high memory to buddy
+>> system. By doing this Kernel still have access to all memory beyond
+>> 32 bit, the only draw back is Kernel's text and data can't be relocted
+>> beyond 32-bit.
+>>
+>> Loading kernel into KSEG0 (i.e. with KBUILD_SYM32) have significant b=
+enefit
+>> on performance, so I think you shouldn't try to load kernel into XKPH=
+YS
+>> without a good reason, but it might be helpful to add a BUG_ON at
+>> CPS driver to handle such situation.
+>
+> I guess that being in KSEG0 allows to use shorter pointer.  But in our
+> case the RAM is physically connected beyond 32bits, so it is not
+> accessible in KSEG0.
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+For most system there should be a mirror of part of DDR which is accessi=
+ble
+at KSEG0 and kernel runs from here. As per my interpretion of your code =
+EyeQ5
+is also doing this? If not could you please briefly describe the memory =
+map?
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+For Kernel in KSEG0 the pointer is still 64bit but we can use fewer inst
+to load ABS pointer into register, see [1].
 
+>>
+>> Btw: Is your target hardware publicly available? Folks at CIP United
+>> are looking for EyeQ5 boards for a while, they are supporting MIPS R6
+>> support at various projects.
+>
+> We use evaluation boards and I don't know if they are publicly
+> available.
+>
+> Gregory
+>
+[1]: https://elinux.org/images/1/1f/New-tricks-mips-linux.pdf
+
+Thanks
+- Jiaxun
 
