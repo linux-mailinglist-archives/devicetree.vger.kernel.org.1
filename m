@@ -1,160 +1,107 @@
-Return-Path: <devicetree+bounces-7309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BE87BFFD8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:58:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9407BFFF8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DAA6281DD3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DECE9281E44
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE19828E00;
-	Tue, 10 Oct 2023 14:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A92341BC;
+	Tue, 10 Oct 2023 15:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="M9+zGAzA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oixMLmUW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A603B21364
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:58:07 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD1199;
-	Tue, 10 Oct 2023 07:58:01 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2DBAA120008;
-	Tue, 10 Oct 2023 17:57:58 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2DBAA120008
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1696949878;
-	bh=WKjfedJyvBDkzLdG/sTO4e60qiEDTGG07ZQdbl0pGik=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=M9+zGAzAs6NiaUoSUbh7JWgTVinHLEqlbdhQTvz18rUUMNKqgSCKHgU1LrDPKrciu
-	 TyEKeA2xTRifnNuKhW/ESkdlqTsB72V0/XhFLp1VSVguwdXWX1DkuB13454b8JDx1w
-	 DN2b2pa10ugsXc+lFoETFz/xbSAwaMkna+gYHLvRpd6EPav+Y50qbFFippWYhwdNYd
-	 ZFpSTOQmHYR1ozNNtrbgDHcMs/mNmvjM9q3fI8JkKh+VdjypGzfWGzvFIy66feF5/C
-	 EVoAu++ZsEqDlZXbP/TVtZfkOSju4iKlvm+FzXabb7dZNI0ytfdZ6nIeFpwCJlFI1p
-	 AFjruUWllS4ag==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 10 Oct 2023 17:57:57 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 10 Oct
- 2023 17:57:57 +0300
-Date: Tue, 10 Oct 2023 17:57:56 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Rob Herring <robh@kernel.org>
-CC: <lee@kernel.org>, <pavel@ucw.cz>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
-	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v1 04/11] dt-bindings: leds: aw200xx: introduce optional
- hwen-gpio property
-Message-ID: <20231010145756.7kvzcwjqiiq6dz4j@CAB-WSD-L081021>
-References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
- <20231006160437.15627-5-ddrokosov@salutedevices.com>
- <20231010141332.GA756597-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4493B24C6A
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:09:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36685C433C7;
+	Tue, 10 Oct 2023 15:09:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696950562;
+	bh=1uN/KLzs4PFdrgQTDRe2eEIkgMT5dQZdcIQwi5D+gc8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oixMLmUWvcoZqKAd0YyTCPl+qX0MbfO0IIYO59lqHm3TgBr/xwc6UrurG2TsU0jR9
+	 Lx57wflgKgOs3tDTdmO3iVwMwG4mX/AymBWRtuiaTbBIue7VA6Yq/R3c1YOSHFdHxQ
+	 e6oYGK9XlgiFUt2WQlFPbWhf+vkH2fcnduTfFLciqsfFODI07lVo1v5IYIVSDuEs4z
+	 aplswO1O9mhBCPV1ZsS4zg2EzwQUbqO9Toi2W06I/zePioJQgdOTA7Pk8TywXuIVUb
+	 ghzcfyw6aXqi1ofFVFkJbWNS9zGYdy7xtEbxhiTCjfn6aQfEb//pCGt/ESNECfz+Dj
+	 hHHz40TtD5ULQ==
+Received: (nullmailer pid 884024 invoked by uid 1000);
+	Tue, 10 Oct 2023 15:09:20 -0000
+Date: Tue, 10 Oct 2023 10:09:20 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <pure.logic@nexus-software.ie>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, konrad.dybcio@linaro.org, devicetree@vger.kernel.org, conor+dt@kernel.org, jonathan@marek.ca, andersson@kernel.org, quic_tdas@quicinc.com, linux-clk@vger.kernel.org, agross@kernel.org, linux-kernel@vger.kernel.org, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, vladimir.zapolskiy@linaro.org, linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org, mturquette@baylibre.com
+Subject: Re: [PATCH v2 2/3] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Message-ID: <20231010150920.GA870095-robh@kernel.org>
+References: <20231010122539.1768825-1-bryan.odonoghue@linaro.org>
+ <20231010122539.1768825-3-bryan.odonoghue@linaro.org>
+ <169694433325.625737.10533845261157845416.robh@kernel.org>
+ <04374506-023d-4680-9f0f-77d6893288c4@nexus-software.ie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231010141332.GA756597-robh@kernel.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180514 [Oct 10 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/10 12:47:00 #22143134
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <04374506-023d-4680-9f0f-77d6893288c4@nexus-software.ie>
 
-Hello Rob,
-
-Thank you for the review! Please find my comments below.
-
-On Tue, Oct 10, 2023 at 09:13:32AM -0500, Rob Herring wrote:
-> On Fri, Oct 06, 2023 at 07:04:30PM +0300, Dmitry Rokosov wrote:
-> > Property 'awinic,hwen-gpio' is optional, it can be used by the board
-> > developer to connect AW200XX LED controller with appropriate poweron
-> > GPIO pad.
+On Tue, Oct 10, 2023 at 02:56:56PM +0100, Bryan O'Donoghue wrote:
+> On 10/10/2023 14:25, Rob Herring wrote:
 > > 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
+> > On Tue, 10 Oct 2023 13:25:38 +0100, Bryan O'Donoghue wrote:
+> > > Add bindings for qcom,sc8280xp-camss in order to support the camera
+> > > subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+> > > 
+> > > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > ---
+> > >   .../bindings/media/qcom,sc8280xp-camss.yaml   | 582 ++++++++++++++++++
+> > >   1 file changed, 582 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> > > 
 > > 
-> > diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > index 73b81f7a7258..e3ad11fc7a84 100644
-> > --- a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > @@ -41,6 +41,9 @@ properties:
-> >      description:
-> >        Leds matrix size
-> >  
-> > +  awinic,hwen-gpio:
-> > +    maxItems: 1
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
+> >     26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+> >        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 > 
-> We have standard 'enable-gpios' or 'powerdown-gpios'. Those don't work 
-> here?
+> I guess I should be embedding this
 > 
-> Note that *-gpio is deprecated in favor of *-gpios.
+> 
+> This patch depends-on:
+> https://lore.kernel.org/lkml/20231004161853.86382-2-bryan.odonoghue@linaro.org/T/
+> 
+> or
+> 
+> 
+> This patch depends-on:
+> https://lore.kernel.org/lkml/20231004161853.86382-2-bryan.odonoghue@linaro.org/T/#mc33be3fef01bffe892f72bd5e567dba6a047283b
+> 
+> below the "---" in this patch directly, instead of in the series description
+> ?
 
-Yes, you are absolutely correct. Andy has already addressed this issue
-in the driver patchset. I will revise the driver to utilize the current
-GPIO API.
+I preferred in the patch itself, but now it doesn't really matter as far 
+as getting a report goes. They go out now without my review. So you get 
+them faster, but I can't handle dependencies unless there's a standard 
+way a script can. There's 'base-commit' but I don't think that's used 
+enough to rely on and it doesn't work if the dependency is not yet 
+applied and in linux-next.
 
-> > +
-> >  patternProperties:
-> >    "^led@[0-9a-f]+$":
-> >      type: object
-> > @@ -90,12 +93,15 @@ additionalProperties: false
-> >  
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> >      #include <dt-bindings/leds/common.h>
-> >  
-> >      i2c {
-> >          #address-cells = <1>;
-> >          #size-cells = <0>;
-> >  
-> > +        awinic,hwen-gpio = <&gpio 3 GPIO_ACTIVE_HIGH>;
-> > +
-> >          led-controller@3a {
-> >              compatible = "awinic,aw20036";
-> >              reg = <0x3a>;
-> > -- 
-> > 2.36.0
-> > 
+I'd still put the dependency here, so it's quoted in the report.
 
--- 
-Thank you,
-Dmitry
+Rob
 
