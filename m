@@ -1,201 +1,301 @@
-Return-Path: <devicetree+bounces-7311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610C67C000F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:12:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376EE7C001D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:14:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166A428142E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:12:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65DE28142E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2E4347B0;
-	Tue, 10 Oct 2023 15:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729643715A;
+	Tue, 10 Oct 2023 15:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jSejRz6j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6/I8ffb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629F024C96
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:12:29 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F44AF;
-	Tue, 10 Oct 2023 08:12:27 -0700 (PDT)
-Received: from uno.lan (unknown [IPv6:2001:b07:5d2e:52c9:72c3:346:a663:c82d])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91FBB512;
-	Tue, 10 Oct 2023 17:12:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1696950743;
-	bh=j7AI58mWWEpwII/C6iOxf4fih/h5Pw1XG1cO4kW3ucs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jSejRz6j7FZtd6CDSS2eT48gutjz3YhPOakyhLIy0Khp4854rQDjfoE+rl8GhhUwE
-	 lrn5iwkkEVIxytV1APop7mu9S++LMFFthTDzWnuJqhuWsy/ebWUT5SW2DgbqQ6l1sZ
-	 DqF8mc9pV6cesHig8s7C0y/SGoHSlFIC13Ncu57U=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org,
-	Lee Jackson <lee.jackson@arducam.com>
-Subject: [PATCH 1/2] media: dt-bindings: Add OmniVision OV64A40
-Date: Tue, 10 Oct 2023 17:12:07 +0200
-Message-ID: <20231010151208.29564-2-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
-References: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C4D24C96
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:14:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E98DC433C8;
+	Tue, 10 Oct 2023 15:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696950842;
+	bh=iRxiY3IuELO5fr43sz9lhcyv7foq3bHa+ZIfYse9aJw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S6/I8ffbLmwNnLDRYxk+qOQVp/TqP+IB+PIWJn/hvL/VfCyTHCx3+HBDHNvdUu/l7
+	 +kAm7yXvXMirOd4rZ3Z2iQf9lOhGY2YN+CjCM3qDpKJ560i2DT+1Rx9ypnM+WxYksn
+	 4HVmZf8KzVK1iLnd0trnaIDI3770hiQec3PnzC8fF0lWo+lr/qJsSdHXHyV9FZ+wd7
+	 B+ACst8PpS7h7fYHbWGjX2aIfirXVd0Qse6fOjEdpX3T0Lc7EmwWIe1cVFGrOx+HWs
+	 ILiC6Bg0SdpE6dyvqTXkmEv/K4VsTmR9jlLuU+oxuQCkoBVjEPbcxnOS99jjvY5fcH
+	 vK0LXfmZnizGQ==
+Received: (nullmailer pid 889001 invoked by uid 1000);
+	Tue, 10 Oct 2023 15:13:55 -0000
+Date: Tue, 10 Oct 2023 10:13:55 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jonathan@marek.ca, quic_tdas@quicinc.com, vladimir.zapolskiy@linaro.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Message-ID: <20231010151355.GB870095-robh@kernel.org>
+References: <20231010122539.1768825-1-bryan.odonoghue@linaro.org>
+ <20231010122539.1768825-3-bryan.odonoghue@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010122539.1768825-3-bryan.odonoghue@linaro.org>
 
-Add bindings for OmniVision OV64A40.
+On Tue, Oct 10, 2023 at 01:25:38PM +0100, Bryan O'Donoghue wrote:
+> Add bindings for qcom,sc8280xp-camss in order to support the camera
+> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/media/qcom,sc8280xp-camss.yaml   | 582 ++++++++++++++++++
+>  1 file changed, 582 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> new file mode 100644
+> index 000000000000..5b0481d8bd07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> @@ -0,0 +1,582 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sc8280xp-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SC8280XP Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> +
+> +description: |
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sc8280xp-camss
+> +
+> +  clocks:
+> +    maxItems: 63
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camnoc_axi
+> +      - const: camnoc_axi_src
+> +      - const: cpas_ahb
+> +      - const: cphy_rx_src
+> +      - const: csiphy0
+> +      - const: csiphy0_timer_src
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer_src
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer_src
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer_src
+> +      - const: csiphy3_timer
+> +      - const: vfe0_axi
+> +      - const: vfe0_src
+> +      - const: vfe0
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe0_csid_src
+> +      - const: vfe0_csid
+> +      - const: vfe1_axi
+> +      - const: vfe1_src
+> +      - const: vfe1
+> +      - const: vfe1_cphy_rx
+> +      - const: vfe1_csid_src
+> +      - const: vfe1_csid
+> +      - const: vfe2_axi
+> +      - const: vfe2_src
+> +      - const: vfe2
+> +      - const: vfe2_cphy_rx
+> +      - const: vfe2_csid_src
+> +      - const: vfe2_csid
+> +      - const: vfe3_axi
+> +      - const: vfe3_src
+> +      - const: vfe3
+> +      - const: vfe3_cphy_rx
+> +      - const: vfe3_csid_src
+> +      - const: vfe3_csid
+> +      - const: vfe_lite0_src
+> +      - const: vfe_lite0
+> +      - const: vfe_lite0_cphy_rx
+> +      - const: vfe_lite0_csid_src
+> +      - const: vfe_lite0_csid
+> +      - const: vfe_lite1_src
+> +      - const: vfe_lite1
+> +      - const: vfe_lite1_cphy_rx
+> +      - const: vfe_lite1_csid_src
+> +      - const: vfe_lite1_csid
+> +      - const: vfe_lite2_src
+> +      - const: vfe_lite2
+> +      - const: vfe_lite2_cphy_rx
+> +      - const: vfe_lite2_csid_src
+> +      - const: vfe_lite2_csid
+> +      - const: vfe_lite3_src
+> +      - const: vfe_lite3
+> +      - const: vfe_lite3_cphy_rx
+> +      - const: vfe_lite3_csid_src
+> +      - const: vfe_lite3_csid
+> +      - const: gcc_axi_hf
+> +      - const: gcc_axi_sf
+> +      - const: slow_ahb_src
+> +
+> +  interrupts:
+> +    maxItems: 20
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid1_lite
+> +      - const: vfe_lite1
+> +      - const: csiphy3
+> +      - const: csid0
+> +      - const: vfe0
+> +      - const: csid1
+> +      - const: vfe1
+> +      - const: csid0_lite
+> +      - const: vfe_lite0
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csid2
+> +      - const: vfe2
+> +      - const: csid3_lite
+> +      - const: csid2_lite
+> +      - const: vfe_lite3
+> +      - const: vfe_lite2
+> +      - const: csid3
+> +      - const: vfe3
+> +
+> +  iommus:
+> +    maxItems: 16
+> +
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cam_ahb
+> +      - const: cam_hf_mnoc
+> +      - const: cam_sf_mnoc
+> +      - const: cam_sf_icp_mnoc
+> +
+> +  power-domains:
+> +    items:
+> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE3 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: ife0
+> +      - const: ife1
+> +      - const: ife2
+> +      - const: ife3
+> +      - const: top
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    description:
+> +      CSI input ports.
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - clock-lanes
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - clock-lanes
+> +              - data-lanes
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - clock-lanes
+> +              - data-lanes
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
----
- .../bindings/media/i2c/ovti,ov64a40.yaml      | 97 +++++++++++++++++++
- MAINTAINERS                                   |  7 ++
- 2 files changed, 104 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+Every port has the same description. You need to define how they 
+correlate to the h/w. 0-3 is what in the hardware?
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-new file mode 100644
-index 000000000000..e6c9d540a2dd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV64A40 Image Sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: ovti,ov64a40
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog voltage supply, 2.8 volts
-+
-+  dvdd-supply:
-+    description: Digital core voltage supply, 1.1 volts
-+
-+  dovdd-supply:
-+    description: Digital I/O voltage supply, 1.8 volts
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum:
-+              - 1 # MIPI CSI-2 C-PHY
-+              - 4 # MIPI CSI-2 D-PHY
-+          data-lanes: true
-+          link-frequencies: true
-+          clock-noncontinuous: true
-+          remote-endpoint: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@36 {
-+              compatible = "ovti,ov64a40";
-+              reg = <0x36>;
-+              clocks = <&camera_clk>;
-+              dovdd-supply = <&vgen4_reg>;
-+              avdd-supply = <&vgen3_reg>;
-+              dvdd-supply = <&vgen2_reg>;
-+              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+              rotation = <180>;
-+              orientation = <2>;
-+
-+              port {
-+                  endpoint {
-+                      remote-endpoint = <&mipi_csi2_in>;
-+                      bus-type = <4>;
-+                      data-lanes = <1 2 3 4>;
-+                  };
-+              };
-+          };
-+      };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b19995690904..df089d68b58c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15821,6 +15821,13 @@ S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/i2c/ov5695.c
-
-+OMNIVISION OV64A40 SENSOR DRIVER
-+M:	Jacopo Mondi <jacopo.mondi@ideasonboard.org>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-+
- OMNIVISION OV7670 SENSOR DRIVER
- L:	linux-media@vger.kernel.org
- S:	Orphan
---
-2.42.0
-
+Rob
 
