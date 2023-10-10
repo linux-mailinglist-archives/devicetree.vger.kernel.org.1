@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-7143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79397BF69E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:59:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A87D77BF69D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 733EA281B04
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:59:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA44A1C20A3C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763A615AEB;
-	Tue, 10 Oct 2023 08:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40A815AE8;
+	Tue, 10 Oct 2023 08:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K6WXj1ng"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ahQYp+b+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F2215AD1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A41156FF
 	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 08:59:43 +0000 (UTC)
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874AAC9;
-	Tue, 10 Oct 2023 01:59:37 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-57e40f0189aso3024620eaf.1;
-        Tue, 10 Oct 2023 01:59:37 -0700 (PDT)
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7252CA4;
+	Tue, 10 Oct 2023 01:59:38 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-58916df84c8so3414075a12.3;
+        Tue, 10 Oct 2023 01:59:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696928376; x=1697533176; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pS+UJr8Jh15KatUL4iYKP+zcuvxoJTxMHrLEZJKpOkQ=;
-        b=K6WXj1ng7dqb4t7qocVL0+fTyUi5sf0+i9pYXXJW+/jCsfNmi1MruTcIMer1mITYPd
-         EZHE8bm/jr2lI0qtQwyinoZMpu8yJDbD1WHQbIHJZJlzif9iuCGAYFFor8d8Z8b4RCc0
-         hzGu6QywhKQZdqD+q7aIQ+3Y1vly3BOKYtXd/TiK8dHsivFlc8y3dJvd9kdxNL4p/fWE
-         Agyswh3pw3L0FeTCDjyYxUMaX/dfzbP2Vz/7w7dqkpzuICp7W0/fxqVHrHb63zw0VQtD
-         Rn//WSfYMdTAezupBvQgMREp4JHalJyl8naeqBPGwO4trh1IhCKRXlb6+Za/ZJwPlTzJ
-         QtTw==
+        d=gmail.com; s=20230601; t=1696928377; x=1697533177; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nJQrTaJjPi0Je/kfhPU0DQ5oya5Qf9MZSqPuDbE0Nms=;
+        b=ahQYp+b+SNyVKnOGaEF2d3hq7fuYdVWGQHAS7MjB19zTF75UCa+UYJBVb3EH2Cu2+4
+         lqAXijhW9dmZvBs8bnasx43/nqQ2oIbMb4Rnu019BvxPKLAa3uEezxRJA1fMtrtsZguf
+         aJqENAPnoTh0KkG2Z1RZ41pyNkvH5Zlc4LIXWIm4tgVbJivI7BhMoqn3tswLExWugqst
+         W0Mcy/OKtlAdLlzjB8QvB9bIobBe/0FO46qYasn7Xnw0AaIreldQLRW6GZqmPk82LqXK
+         2h8XXrPEeDxjVvDqhsiWPLSO5mIOBJCdVS9Ob/H7wZYLaVT/cMHwU/sSpEKEj5bCruyX
+         6B0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696928376; x=1697533176;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pS+UJr8Jh15KatUL4iYKP+zcuvxoJTxMHrLEZJKpOkQ=;
-        b=pHQXsoaCGDbMTdTFG4CeH738SGI7gUgiE7OhUyKHoCK5/k4W1XtDPc0Z5LxtPOdgNY
-         xDdnnsOym543ncQeuKAtklQr0uRCKNCutKdFQ1Ja6B01U4lBi/oAR/1Ggrikh7Yj3Ixc
-         63O/S+85MYiQ1kFrYWDOOP1ndrGelczA1XrCU1FjR3edDf+lu5OiyrnQuCqNK7hFnlHH
-         4WQS+1CvI1WuETRKumlNWspSbE/pNMjOJvEciRU2pr+dNTtyds+sQA4t2oMuUeXha+ph
-         21esdsoBzDOP5kVp4TFMHeHDcgrroctXgLdzByrotmiavzB95tUEGSyujbui+Qs7Og9U
-         Y7+A==
-X-Gm-Message-State: AOJu0YwrUpLkT8UduDuVZBbYvnaR6MvDJtibRaUU39bJydWB5KqkBeVX
-	NB4mLjX2mqqULlfeEJxx/JxTSrgQlmo=
-X-Google-Smtp-Source: AGHT+IF3sj3BBK+nNQSLTnJbqNTU5PhRmbwDlbOXg4G8Le+kHH5TPWVZUzX0CmM/472bq9qgPYlXoA==
-X-Received: by 2002:a05:6358:94a0:b0:141:162:b0cd with SMTP id i32-20020a05635894a000b001410162b0cdmr20061777rwb.19.1696928376389;
-        Tue, 10 Oct 2023 01:59:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696928377; x=1697533177;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nJQrTaJjPi0Je/kfhPU0DQ5oya5Qf9MZSqPuDbE0Nms=;
+        b=Jqkk7d+JfpGNfbJU3oJGes3FknhpSvahY8CG2d4JMv5THeI4bkMvus4ynwykPhencm
+         h0K/7KbX/iXSjlNc0em8OQfPBdskasRvJC99GB+sa5YmSQ+Z4DjKL+uXUZlO6UKZCbCx
+         4ht2gQEI+ih3STIPK1E6GMGj4qe5rt9zI13lr0TJltYWPPaxBc+kXKTsseOLrwsushkt
+         sf/66bfLBtAUuijDUgNICbi4IWCsOq9ygtqcG+K1qRMRSGnww0Y3v7uONEXi9WAgagVu
+         Epgmrvq4DchrQ1r9ILOw4c7XOE2q/FnwmQdn+txrg9p+5cazQpQQqlXy/Cmohlm6sns/
+         0p0Q==
+X-Gm-Message-State: AOJu0YwT0A/qArtKQNz8jUq7J7AF8fEhM3C9xWlTkXvOpqhRySFbfB6M
+	TQW3yfYNIK1sWW/pXftgnq8Rs+wnchQ=
+X-Google-Smtp-Source: AGHT+IHiDzgTslln6QB9BjU5V4YxjCpd8q1lMFq/5OF/t2L4x4RwUoLdTLB8v/D8FsZ4ezkuvTZhdQ==
+X-Received: by 2002:a17:90b:4b86:b0:279:e5e:ea1b with SMTP id lr6-20020a17090b4b8600b002790e5eea1bmr15363646pjb.5.1696928377627;
+        Tue, 10 Oct 2023 01:59:37 -0700 (PDT)
 Received: from octofox.hsd1.ca.comcast.net ([2601:646:a201:19d0:f462:7ab2:1aaa:db73])
-        by smtp.gmail.com with ESMTPSA id o12-20020a17090a3d4c00b0027782f611d1sm12542731pjf.36.2023.10.10.01.59.35
+        by smtp.gmail.com with ESMTPSA id o12-20020a17090a3d4c00b0027782f611d1sm12542731pjf.36.2023.10.10.01.59.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 01:59:36 -0700 (PDT)
+        Tue, 10 Oct 2023 01:59:37 -0700 (PDT)
 From: Max Filippov <jcmvbkbc@gmail.com>
 To: linux-kernel@vger.kernel.org,
 	linux-serial@vger.kernel.org,
@@ -68,10 +69,12 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
 	Max Filippov <jcmvbkbc@gmail.com>
-Subject: [PATCH v5 0/5] serial: add drivers for the ESP32xx serial devices
-Date: Tue, 10 Oct 2023 01:59:21 -0700
-Message-Id: <20231010085926.1021667-1-jcmvbkbc@gmail.com>
+Subject: [PATCH v5 1/5] serial: core: tidy invalid baudrate handling in uart_get_baud_rate
+Date: Tue, 10 Oct 2023 01:59:22 -0700
+Message-Id: <20231010085926.1021667-2-jcmvbkbc@gmail.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20231010085926.1021667-1-jcmvbkbc@gmail.com>
+References: <20231010085926.1021667-1-jcmvbkbc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,46 +90,49 @@ X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+uart_get_baud_rate has input parameters 'min' and 'max' limiting the
+range of acceptable baud rates from the caller's perspective. If neither
+current or old termios structures have acceptable baud rate setting and
+9600 is not in the min/max range either the function returns 0 and
+issues a warning.
+However for a UART that does not support speed of 9600 baud this is
+expected behavior.
+Clarify that 0 can be (and always could be) returned from the
+uart_get_baud_rate. Don't issue a warning in that case.
 
-this series adds drivers for the UART and ACM gadget controllers found
-in the Espressif ESP32 and ESP32S3 SoCs.
-
+Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+---
 Changes v4->v5:
-- address review comments, listed in each patch
-- rebase on top of change introducing PORT_GENERIC
+- fix commit message
 
 Changes v3->v4:
-- address review comments, listed in each patch
-- add reviewed-by tags
+- drop WARN_ON from uart_get_divisor()
 
-Changes v2->v3:
-- address review comments, listed in each patch
+ drivers/tty/serial/serial_core.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Changes v1->v2:
-- address review comments, listed in each patch
-- add cleanup for the uart_get_baud_rate function
-
-Max Filippov (5):
-  serial: core: tidy invalid baudrate handling in uart_get_baud_rate
-  dt-bindings: serial: document esp32-uart
-  drivers/tty/serial: add driver for the ESP32 UART
-  dt-bindings: serial: document esp32s3-acm
-  drivers/tty/serial: add ESP32S3 ACM gadget driver
-
- .../bindings/serial/esp,esp32-acm.yaml        |  42 +
- .../bindings/serial/esp,esp32-uart.yaml       |  51 ++
- drivers/tty/serial/Kconfig                    |  26 +
- drivers/tty/serial/Makefile                   |   2 +
- drivers/tty/serial/esp32_acm.c                | 459 +++++++++++
- drivers/tty/serial/esp32_uart.c               | 741 ++++++++++++++++++
- drivers/tty/serial/serial_core.c              |   4 +-
- 7 files changed, 1322 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
- create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-uart.yaml
- create mode 100644 drivers/tty/serial/esp32_acm.c
- create mode 100644 drivers/tty/serial/esp32_uart.c
-
+diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_core.c
+index 7bdc21d5e13b..3f130fe9f1a0 100644
+--- a/drivers/tty/serial/serial_core.c
++++ b/drivers/tty/serial/serial_core.c
+@@ -431,7 +431,7 @@ EXPORT_SYMBOL(uart_update_timeout);
+  * baud.
+  *
+  * If the new baud rate is invalid, try the @old termios setting. If it's still
+- * invalid, we try 9600 baud.
++ * invalid, we try 9600 baud. If that is also invalid 0 is returned.
+  *
+  * The @termios structure is updated to reflect the baud rate we're actually
+  * going to be using. Don't do this for the case where B0 is requested ("hang
+@@ -515,8 +515,6 @@ uart_get_baud_rate(struct uart_port *port, struct ktermios *termios,
+ 							max - 1, max - 1);
+ 		}
+ 	}
+-	/* Should never happen */
+-	WARN_ON(1);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(uart_get_baud_rate);
 -- 
 2.30.2
 
