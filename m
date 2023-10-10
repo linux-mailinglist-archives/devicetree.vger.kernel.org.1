@@ -1,47 +1,79 @@
-Return-Path: <devicetree+bounces-7285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD937BFE83
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:54:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61887BFE91
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03C031C20B3C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:54:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 720AF281485
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D7E1DFFF;
-	Tue, 10 Oct 2023 13:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7740BD515;
+	Tue, 10 Oct 2023 13:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kqie0jq2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="av6oPsFK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7DD1DFC1
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:54:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4631CC433C9;
-	Tue, 10 Oct 2023 13:54:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696946070;
-	bh=cpr5M03mDBi9QYzoamwhalraoyUpzQ9rzlWPtaN31MI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kqie0jq2vyoogMWRvJAmCpy0XZrj9Id0YaSWZ1cVu9uj2jqa9HjL5/o+RZKnFs+J+
-	 n1OrbDDi5PUiu3gzfu0qXLRxnf8Q6Zu/qRHVdLk3NEv9O+tgrJke+c8x0iCyKdoQ9i
-	 i+P13VS1iV9RAAmduOe/MrmxozQOzzchuipQvY7uJo8HjXk0qdnc4gLPMFhKLglKin
-	 +FPWB30sL+qxyBzwOs8B4qD4dGeKLRBz+QPlL67lHBO8VGroXjMEg48a+YDxyYP+T7
-	 B1NV5D5a94pZGL2142t6I0ZRLKSJBAWXgAfzTXylQizxTdKH3/L6KsE44EFYcQzrRF
-	 jHbGiZnC6rPrw==
-Received: (nullmailer pid 661704 invoked by uid 1000);
-	Tue, 10 Oct 2023 13:54:28 -0000
-Date: Tue, 10 Oct 2023 08:54:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, Nick Terrell <terrelln@fb.com>, Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: mtd: fixed-partitions: Add compression
- property
-Message-ID: <169694606700.661639.10236902968461331107.robh@kernel.org>
-References: <20230927180545.3522628-1-sjg@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065221DFF9
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:56:42 +0000 (UTC)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB42A9;
+	Tue, 10 Oct 2023 06:56:39 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6910ea9cca1so4149861b3a.1;
+        Tue, 10 Oct 2023 06:56:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696946199; x=1697550999; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=One8tdSFLa+G5R3uW9c+lPYATRm9PNZP9LLd+yohDZc=;
+        b=av6oPsFKBYOmJhfvOfm6lACOhEYhw6Nui2Jcz4dJMyiS7K5dMVHP8PwaNbkXbf0yoI
+         Eh+Z1hcLG8uZsqVielqnlJ0Q5HRuZ9YTnx88y6zjVdIFJ5njaGIWzAFCnMXoJj2GuZqu
+         tgqYXUtEAh2d1deqBv7xevbCC3bCfyNCIE1oWImJtNbRy+k0o/TOuO8vL/CpUaXPQSJS
+         EEwjCdDOKgTa/7m2y2eC9C/rD3psRwPiDhjOkyNnur2ijgpOIlIx95LEM617vx+xhVhW
+         rldTeahmEYIDgiRygneO5DxjiUdraDu0jx9EFquA2rIIYukWOcyBCNHSVn4N/HFUQHap
+         0lQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696946199; x=1697550999;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=One8tdSFLa+G5R3uW9c+lPYATRm9PNZP9LLd+yohDZc=;
+        b=takzlhK5EYaZKVZQX2POmDyHZjr5uQ+dLhXEPASq9bTuOn+mxvrnkuEXgChiXFTLz6
+         kIrAK4OII810n99rcEl8wa6ue5sLP7jhQBnqkKQohbZHW++nLxg4oX7GuoPt8y03btSp
+         A9wrGg1G8uOqrFiRp6ueVKH6dgXpEgQugf3gbng/MB0a5rXdgQSxbkSMXXcKJD6PHUI4
+         ATwryqpiC+RRF6klpLqOAgYJFNisNbXmDpTrJchtFePj0haS59XzUHp+icVGSADBsuph
+         hF5jwTrkNC1gpUIBsD74NqXJfAUy3Z7Y9xNFo+Emx+uALP/1ZS8hfMIFbQdIYrfKIRS/
+         2q5g==
+X-Gm-Message-State: AOJu0YxrOTe/fHzhue2pyjYdoFnTFFBnf+qYAHJAPiHDvXESxAr0QUOT
+	zZW7QAUXMznbu6ZhRvGOSiw=
+X-Google-Smtp-Source: AGHT+IFAJe97RQBU9IrmP6CBGTTCTSbI/CNbpn+aJ6KoJybMQXZxThC0c70sbGshwgQQuXMu2dfxuQ==
+X-Received: by 2002:a05:6a21:181:b0:15e:dca8:1224 with SMTP id le1-20020a056a21018100b0015edca81224mr18905408pzb.55.1696946199234;
+        Tue, 10 Oct 2023 06:56:39 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v5-20020aa78505000000b00696ca62d5f5sm8280638pfn.8.2023.10.10.06.56.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Oct 2023 06:56:38 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 10 Oct 2023 06:56:37 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Rob Herring <robh@kernel.org>
+Cc: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	skhan@linuxfoundation.org, claudiu.beznea@microchip.com,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert
+ txt to yaml
+Message-ID: <0ec4f647-77b9-4b3f-9cbd-6fb122f09462@roeck-us.net>
+References: <20230924181959.64264-1-n2h9z4@gmail.com>
+ <20231010132921.GA628810-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,31 +82,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230927180545.3522628-1-sjg@chromium.org>
+In-Reply-To: <20231010132921.GA628810-robh@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On Tue, Oct 10, 2023 at 08:29:21AM -0500, Rob Herring wrote:
+> On Sun, Sep 24, 2023 at 08:19:59PM +0200, Nik Bune wrote:
+> > Convert txt file to yaml.
+> > 
+> > Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > 
+> > Changes in v3:
+> > - Removed trailing whitespace in an element of the maintainers list.
+> > 
+> > v2 patch: https://lore.kernel.org/linux-devicetree/20230924172004.59208-1-n2h9z4@gmail.com/ 
+> > 
+> >  .../watchdog/atmel,at91rm9200-wdt.yaml        | 33 +++++++++++++++++++
+> >  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 -----
+> >  2 files changed, 33 insertions(+), 9 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+> 
+> Are the watchdog maintainers going to pick up this and other watchdog 
+> bindings?
+> 
 
-On Wed, 27 Sep 2023 12:05:43 -0600, Simon Glass wrote:
-> Sometimes the contents of a partition are compressed. Add a property to
-> express this and define the algorithm used.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
-> Changes in v4:
-> - Add an example
-> 
-> Changes in v3:
-> - Just add a compression property for now
-> 
-> Changes in v2:
-> - Use "binman" for compatible instead of "u-boot,binman"
-> - Significantly rework the patch
-> - Use make dt_binding_check DT_SCHEMA_FILES=Documentation/../partitions
-> 
->  .../mtd/partitions/fixed-partitions.yaml      | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
+Tricky question. I am way behind with my reviews, and historically you have
+picked up some of themm, so I really never know what to do with bindings.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Guenter
 
