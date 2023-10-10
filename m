@@ -1,149 +1,70 @@
-Return-Path: <devicetree+bounces-7369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9119C7C0308
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:53:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7117B7C0328
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B2C1C20DA1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:53:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23386281BC2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C14225BB;
-	Tue, 10 Oct 2023 17:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62168225C3;
+	Tue, 10 Oct 2023 18:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UwtTN9jm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c4tlVOXn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09BAD171C1
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 17:53:15 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7856F94
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 10:53:13 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-405361bb9f7so55248395e9.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 10:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696960392; x=1697565192; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
-         :references:cc:to:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HSrhS+Y5NUbiKTwTH1nhAVKAr59WAJLwtFf78qIT2sM=;
-        b=UwtTN9jmuLy6PPgQmomxJXiv0Z9cIYxKahHvW60N8kXi3N048mPOrhdmWvPj2xCJTu
-         ALqzx73/7w1blocD3M49+u0omYxtfz0HxZI8H0Y7diUJ7ijuyJeoLu1dvI2iayhpoue3
-         s9T3H1t45XRBDPUZC6uHBlZBx+RiSMMgyBW6GwbKP9ngoHHkyQZsjVvTmrrRD8tF3bMA
-         e7oPzdiiTU45PXDTF3euYPHCdZQF6vl10d51xEjQm8eleh1tdSJtu0C1ZqRCXaazbewP
-         nwBMAt1str7Qcu9zb1HbOjzLeZsqh3UegGwy6WBCmcodlAZNIJnhA5tt1t+iLy2uJiQH
-         d0+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696960392; x=1697565192;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
-         :references:cc:to:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HSrhS+Y5NUbiKTwTH1nhAVKAr59WAJLwtFf78qIT2sM=;
-        b=wmJ2b6LtLhQSX6xh51FT34zeDTG8lKLc6dWWSJtXea1pLbglQVMLlIaydTZSEx9cFX
-         AS8wFm/N3wABVmOL1mUqCG56EJYKwis+gpxroh1kXd+yYYzlqEx9a6u0NKOoKIlN2RZx
-         rBVSwmaoO67P4uZTXR3pfFS1CYjRGM74e124ZNZCm37l4uagI1SHeo/IbncX2vanz+ry
-         1tXqXDmH+y7O1b0ZxPQkt92KhWyDeHtXAjy+tYFxwqKhFZPGeFCJfPitXtgCl5YxsR4b
-         3z2CavvmNMiSeHhDpEsn+n++z8lBd4/w34O4q56JePiuE+GbhDURYiDganx76F+BYela
-         QnDQ==
-X-Gm-Message-State: AOJu0Yzn/NPM9vUSfYb5vIDII051+7ZL1oKnj2DwU91LGbmK36oSDrs1
-	ICL/tBD+0bg5iXSUSQLAsN6N/w==
-X-Google-Smtp-Source: AGHT+IHzVMxGmaidcZD69WfVQvYZd9PD5NW75Sycsq+x2li8H1LirkVsUZqgDcmzrQFjcBXeDNIpHw==
-X-Received: by 2002:a5d:45c2:0:b0:317:5bb2:aeca with SMTP id b2-20020a5d45c2000000b003175bb2aecamr16129536wrs.16.1696960391790;
-        Tue, 10 Oct 2023 10:53:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:dc16:42a:1d87:57c1? ([2a01:e0a:982:cbb0:dc16:42a:1d87:57c1])
-        by smtp.gmail.com with ESMTPSA id i10-20020adff30a000000b0031f8a59dbeasm13222309wro.62.2023.10.10.10.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 10:53:11 -0700 (PDT)
-Message-ID: <8ccbeb04-9671-4414-810e-70d4c3690e0c@linaro.org>
-Date: Tue, 10 Oct 2023 19:53:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436A5225BF
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 18:10:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A984CC433C8;
+	Tue, 10 Oct 2023 18:10:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696961437;
+	bh=fuUv/hXFNtI8qkkHLgstDIXDcQVXAaXWBEh1chCBBDw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c4tlVOXn6Bc38D98V4HYYQ+VE0srU+yssoa3NJW6PXFBOK6SojwInAdcTmQQdu3zj
+	 blbj8pyp57g4WlCr9PfIzlCQYLOVFh0Nhho600+AkdgCVh/3kNGP6roh/wYO1jXYcl
+	 kuFobQ43LMJ60I5IqlT8NCBwH5RWsBVQLyLScniC/zg8UtHzwHcsls59o779A83LlT
+	 +AIQau0AgLUD1NGDPcHtI6SEOb9VMZCDxg8s1jbczpLvU4IOAB+gPyxgz1s8oMTN25
+	 tihYhFsjWbYfWWYMSq9oPFcJQ1EevCgKM9dui0ptcWbJw/to1oldR//Rhl5TaqvuPZ
+	 rKn+RY3LX+x8w==
+Received: (nullmailer pid 1182797 invoked by uid 1000);
+	Tue, 10 Oct 2023 18:10:35 -0000
+Date: Tue, 10 Oct 2023 13:10:35 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jacky Bai <ping.bai@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org, wim@linux-watchdog.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de, festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com, linux@roeck-us.net, shawnguo@kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx7ulp-wdt: Add
+ 'fsl,ext-reset-output'
+Message-ID: <169696143472.1182561.15105900331518622505.robh@kernel.org>
+References: <20231010081909.2899101-1-ping.bai@nxp.com>
+ <20231010081909.2899101-2-ping.bai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,tcsr: Add compatible for
- sm8{2|3|5}50
-Content-Language: en-US, fr
-To: Mukesh Ojha <quic_mojha@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <1696954157-16327-1-git-send-email-quic_mojha@quicinc.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <1696954157-16327-1-git-send-email-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010081909.2899101-2-ping.bai@nxp.com>
 
-On 10/10/2023 18:09, Mukesh Ojha wrote:
-> Document the compatible for sm8{2|3|5}50 SoCs.
+
+On Tue, 10 Oct 2023 16:19:08 +0800, Jacky Bai wrote:
+> The wdog may generate wdog_any external reset if the int_en bit is
+> configured, so add a property for this purpose in dt-binding doc.
 > 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
 > ---
->   Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 3 +++
->   1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> index 33c3d023a106..f328ddd6c566 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> @@ -29,7 +29,10 @@ properties:
->             - qcom,sdx65-tcsr
->             - qcom,sm4450-tcsr
->             - qcom,sm8150-tcsr
-> +          - qcom,sm8250-tcsr
-> +          - qcom,sm8350-tcsr
->             - qcom,sm8450-tcsr
-> +          - qcom,sm8550-tcsr
 
-This is already documented in:
-Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-
->             - qcom,tcsr-apq8064
->             - qcom,tcsr-apq8084
->             - qcom,tcsr-ipq5332
+Acked-by: Rob Herring <robh@kernel.org>
 
 
