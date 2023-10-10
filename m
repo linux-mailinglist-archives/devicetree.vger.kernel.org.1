@@ -1,139 +1,132 @@
-Return-Path: <devicetree+bounces-7350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE0A7C025D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:14:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 101457C026C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C8001C20B56
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:14:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE6B2281982
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0AE6126;
-	Tue, 10 Oct 2023 17:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE66417726;
+	Tue, 10 Oct 2023 17:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eufR/s/S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4AoOsv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE072FE2A
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 17:14:52 +0000 (UTC)
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDEEB9D
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 10:14:50 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1c72e235debso13216845ad.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 10:14:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696958090; x=1697562890; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LaSkGGmp5BNiRx9qvUCepbxW/JPkqIjBZQoL/JF6cEM=;
-        b=eufR/s/SKcrERISeFvQcDQcOiw4hkUecL2k/fOyWsEj40aQUe/SYE/gCWrdrCjVYXG
-         RCS/iQZ0hajg7N+Bi3P7+1NEspw4UM9VkVMGO8aBJAkj30dyFw/jiHPG53ViR7wGyuID
-         OT0N7b2KHiSFDkCYCR6m0XRCOsNQwRt3UsJNi3ykMAZeQU66TDtOYpl+oHuI5QWAaF2O
-         /tTPagRjUL7SonSvMd7jf6Ehl9CYFSrmxFA+bfx4iEPsDepBWlvPlbvCnbe4M0m6Fx6j
-         VNyyqM9tmwVMTlhVu3pJx+3IkEvxRdABY+7V+Tz4OZkU9xTntNm6/zrC53y7KB/TVsVJ
-         KY1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696958090; x=1697562890;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LaSkGGmp5BNiRx9qvUCepbxW/JPkqIjBZQoL/JF6cEM=;
-        b=Cft8ADQqhwCDbaAo4jgxqDEQC56QD4U1zI9I1ijyUkvnSwpJUzkbOcEk3dXd9wkv5k
-         wzyAVlpw6EO6V4cV8JgKFaF0wWFcONbdxYzEpej/FEjbRVJ6gCxsrwgJamGGuHwSsAdQ
-         JS8KyVcJ9nYIqetv9OGRh99m2qZRagjtTFDT26YgqVw0EryIBR49qKORHYrjgnFKbASW
-         6e7LgaKoO9wIFzSsrRtye8I9i2Dy8ohaSx7yP5p6hvaNO9KqVT6Bp2c4lbp2MBA58m48
-         4UrQQIvyW9pdeCD+nXeVQhEn7HE/TnYxOuqOjLwAX5DBvVPS6MdUY4xJCIn9F3rIX7tn
-         fL4Q==
-X-Gm-Message-State: AOJu0YykhVer2Uf1dJBL+GlcDPQ9dm8NYu7ZHvhxNqlbTpIqpXPSamCK
-	pwiLkVb/xeWOq8T8tC6MeWE=
-X-Google-Smtp-Source: AGHT+IF8I6apiIZFJc6ABfxK291E4IK5yRqLxIcBPKyBdw00s4p0ZKGf8pQGXjdjMl7ujTvk/ZGCPQ==
-X-Received: by 2002:a17:902:a40e:b0:1c9:bd60:72a6 with SMTP id p14-20020a170902a40e00b001c9bd6072a6mr1727441plq.4.1696958090030;
-        Tue, 10 Oct 2023 10:14:50 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:1ce:3624:df77:60f0])
-        by smtp.gmail.com with ESMTPSA id z15-20020a170903018f00b001c7276398f1sm12053760plg.164.2023.10.10.10.14.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 10:14:49 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: srinivas.kandagatla@linaro.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] dt-bindings: nvmem: mxs-ocotp: Document fsl,ocotp
-Date: Tue, 10 Oct 2023 14:14:42 -0300
-Message-Id: <20231010171442.3693843-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD37F2FE35
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 17:20:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39426C433C7;
+	Tue, 10 Oct 2023 17:20:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696958406;
+	bh=qCJusQWtmT7cmM9tukUxP7rBW0qd61lclOqkdLABC9Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d4AoOsv5XE1vd2PTasKy09QSiUySWg/qOeHiXxYa5Hl8L6f4B268VJ4FHQf5uDN+f
+	 OuGGGEdLfwRgw/dhsgHIKHIE0ZIBtbC3iWsrnib0rEbWvT2YeP8WSr1tA75Scm7m76
+	 rHLrobj6O8lSI2Urs9u2QZifRiXuAR3H+YqMgSXNWz9IDi45GgEzIhs2tT16vwiIUM
+	 +dwZTd2PFqrHVXzQSxVTXljAbuRTOzZzCZjmFsndVhQgZ0ZbTzwgSMOmc5X9bNUVbK
+	 Qq5L8uYim+az0tUwbMzBxbIsB1Pdf6ZQAOatqmrJZ/Pzk+illVXcyf/NQ7fSnUYGkc
+	 VsFGGOpovrRiQ==
+Date: Tue, 10 Oct 2023 18:19:59 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	zev@bewilderbeest.net, Sebastian Reichel <sre@kernel.org>,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] regulator: fixed: forward under-voltage events
+Message-ID: <c2ee404d-d07f-42c6-b5ba-41659773e8eb@sirena.org.uk>
+References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
+ <20231010085906.3440452-3-o.rempel@pengutronix.de>
+ <5e51792a-cc93-4364-a51b-c2b116d89369@sirena.org.uk>
+ <20231010125531.GA3268051@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ih8Qo3EanWX6jsWc"
+Content-Disposition: inline
+In-Reply-To: <20231010125531.GA3268051@pengutronix.de>
+X-Cookie: I feel partially hydrogenated!
 
-From: Fabio Estevam <festevam@denx.de>
 
-Both imx23.dtsi and imx28.dtsi describe the OCOTP nodes in
-the format:
+--ih8Qo3EanWX6jsWc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-compatible = "fsl,imx28-ocotp", "fsl,ocotp";
+On Tue, Oct 10, 2023 at 02:55:31PM +0200, Oleksij Rempel wrote:
 
-Document the "fsl,ocotp" entry to fix the following schema
-warning:
+> The hardware I am working with has an under-voltage sensor on the 24V
+> supply regulator and some backup capacitors to run SoC for 100ms. I want
+> to forward under-voltage events across a chain of different regulators
+> to a designated consumer. For instance, to the mmc driver, enabling it
+> to initiate shutdown before power loss occurs.  Additionally, a bit can
+> be set in the volatile memory of a scratch pad in an RTC clock to record
+> sudden power loss, which can be checked on the next system start.
 
-efuse@8002c000: compatible: ['fsl,imx23-ocotp', 'fsl,ocotp'] is too long
-from schema $id: http://devicetree.org/schemas/nvmem/mxs-ocotp.yaml#
+So it sounds like the underlying need is to flag the notifications from
+one of the regulators as being system wide and then take action based on
+those notifications somewhere basically disconnected?  That does seem
+like a good use case.
 
-Fixes: 2c504460f502 ("dt-bindings: nvmem: Convert MXS OCOTP to json-schema")
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Added Fixes tag. (Conor)
+The MMC doesn't specifically care that it is handling a regulator
+notification, it more wants to know that the system is dying and doesn't
+really care how we figured that out so if we can hook it into a system
+level notificaiton it'd be happy and would also be able to handle other
+critical faults.  I would have thought that we should have some
+mechanisms for this already for RAS type stuff but I'm drawing a blank
+on what it actually is if there is an existing abstraction.  It could
+potentially go through userspace though there's latency concerns there
+which might not be ideal, there should at least be some policy for
+userspace.
 
- Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+For the regulator itself we probably want a way to identify regulators
+as being system critical so they start notifying.  It would be tempting
+to just do that by default but that would likely cause some issues for
+example with regulators for things like SD cards which are more likely
+to get hardware problems that don't comprimise the entire system.  We
+could do that with DT, either a property or some sort of runtime
+consumer, but it might be better to have a control in sysfs that
+userspace can turn on?  OTOH the ability do something about this depends
+on specific hardware design...
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
-index f43186f98607..d9287be89877 100644
---- a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
-@@ -15,9 +15,11 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx23-ocotp
--      - fsl,imx28-ocotp
-+    items:
-+      - enum:
-+          - fsl,imx23-ocotp
-+          - fsl,imx28-ocotp
-+      - const: fsl,ocotp
- 
-   reg:
-     maxItems: 1
-@@ -35,7 +37,7 @@ unevaluatedProperties: false
- examples:
-   - |
-     ocotp: efuse@8002c000 {
--        compatible = "fsl,imx28-ocotp";
-+        compatible = "fsl,imx28-ocotp", "fsl,ocotp";
-         #address-cells = <1>;
-         #size-cells = <1>;
-         reg = <0x8002c000 0x2000>;
--- 
-2.34.1
+I've copied in Sebastian since this sounds like the sort of thing that
+power supplies might have some kind of handling for, or at least if we
+need to add something we should make it so that the power supplies can
+be joined up to it.  I do see temperature and capacity alerts in the
+sysfs ABI for power supplies, but nothing for voltage.
 
+I've also coped in Naresh and Zev who've been discussing something
+vaugely similar with userspace notifications for the userspace consumer
+- it's not the same thing given that you don't specifically need
+userspace to be involved here but it feels like it might have something
+of a similar shape, or at least there might be some shared interest.
+
+--ih8Qo3EanWX6jsWc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUlh74ACgkQJNaLcl1U
+h9BF5Af/cNLrd9suEh0YQRnHMcZMOu5P6+gEvdfAYSXg0loxTuDLopt6elxYJCv2
+zmqJiVW40ro7MaAB0jXUOtx24Pmq9+Bk6fzfMLa7VXbXagJWATmiyQSnSkppCyWM
+92lTC3Q4ki1/ESroIxYQRWk7UMCPN+S4GC3qgOuRxrVhLjPJ+GcT9HFUeq8batZf
+7ublB0wmAYUM4qZiTDMhxlxC0emAgob7u4qJXaeNOPk/26mksiuJTdeiDhMTx5b3
+Ud3mzW+o8ErnRwNGAVAZ/kM+MH5idQAb6U1Kgu2XzDc6znqCie4e46XmekD0WeIT
+q7CtZrlu1/m46hXmiF9WVnGe4p4UfQ==
+=EDr0
+-----END PGP SIGNATURE-----
+
+--ih8Qo3EanWX6jsWc--
 
