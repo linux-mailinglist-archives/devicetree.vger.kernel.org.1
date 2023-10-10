@@ -1,85 +1,66 @@
-Return-Path: <devicetree+bounces-7093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B57F7BF22B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:25:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2786B7BF284
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:56:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC1961C20A6B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6766280EC8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0FE1FD2;
-	Tue, 10 Oct 2023 05:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DFD63A5;
+	Tue, 10 Oct 2023 05:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="adErcRur"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gKL3bUbb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF527F0
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:25:39 +0000 (UTC)
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9673A4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 22:25:37 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-693400e09afso1409550b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 22:25:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696915537; x=1697520337; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=snvQeStdhijDETWeVBYS3dl/07bqPJilz83FkwuW3kY=;
-        b=adErcRurMoece39OYEqov3ZG47YzW29wlA7uPHkVQ4fk8s4Ocr9gfg0jGKKLMSWhG/
-         vGnKeZ17f9irbIAEHGMbzjYbpmyy/4/hmCqHjNt+EMNBmwQQ0EBT9n3LrxK9aQiJ55Ir
-         14hvhSxGJsRxavspQ2/3Ut++jyPH7NQjvKPweYg4JrT33VpBYkWlFcPraQFI80KhW/61
-         X/EzyyeqCfJLPK4mDOnQYQfF1jessxY7fHWDFG+eNYE/v1xPoVDgNoQ418ZDVI/PGu00
-         gcuC5+v8kj7FOiwM1GDKCjnVrXFqurObb6JU2yCFVdRDYWaYsGKzlD8/opgJKwpwclIv
-         9ROg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696915537; x=1697520337;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=snvQeStdhijDETWeVBYS3dl/07bqPJilz83FkwuW3kY=;
-        b=uYGRyAgd1NJhRiyP2mAU4yeQBLUjXkqWggjUg5P3cU8Ukal39ZaOjFswh/LE7qkv1l
-         lIhIal659KkzozUYOuB1Y/NIScQ+3DZQv5QIh+xe8VIe3ElBb9GUEi9YKvmI3S+8mFLj
-         i8Gt+gFDTkVLMp/tR98rK555PhTHzHSTg6wHgV10dHz/GWXL9T45aErxEdO7xRLNpTtQ
-         y1CDlcnCJcz/QBdqWnkgkrDMbxkT8QDjFTHllGC37g5rjS6f17NFf785jr9EM+SOi5Rv
-         b/tq4Qvvi5mwyJExXK3PN/wvPbWSKTb5+rlVSiGie9ozPAD8U2ilunzkoP4FKph0+d4P
-         onQA==
-X-Gm-Message-State: AOJu0Yz3PGbPGrUYp0i9urCygbZv+joG+8j7N/fpcO1S/KiBFp0t7J+B
-	7vx7LrbIv0mF2Z4Gxz2CvY7vgg==
-X-Google-Smtp-Source: AGHT+IFI3I5vmphBv6NyErQg0zr3iIvSzwXWLQ5UEUtwuY2oSGr6Dh1hSlyHRK3PsH3Mwgh40cOI5A==
-X-Received: by 2002:a05:6a00:d46:b0:68e:369b:a123 with SMTP id n6-20020a056a000d4600b0068e369ba123mr18720831pfv.1.1696915537115;
-        Mon, 09 Oct 2023 22:25:37 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:d26f:f61a:9867:e809])
-        by smtp.gmail.com with ESMTPSA id c19-20020aa78c13000000b0069309cbc220sm7282740pfd.121.2023.10.09.22.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Oct 2023 22:25:36 -0700 (PDT)
-Date: Tue, 10 Oct 2023 14:25:32 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-Message-ID: <ZSTgTC4cFFpofYAk@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org>
- <20231006132346.GA3426353-robh@kernel.org>
- <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B182591;
+	Tue, 10 Oct 2023 05:56:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657FD9F;
+	Mon,  9 Oct 2023 22:56:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696917361; x=1728453361;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=aWq9hwV/A6/bUaNv4YsOmbsmfw4MDHlv+vchRo9plSw=;
+  b=gKL3bUbbSYkKCMEIFVXFEDYDEx7U1s6Cyq32SsJ79AXotr50zuIUBnZq
+   WO6bjSkLRL/bwExbD90vKOixtJb9qKa16C3d8E7EiZTuDlreib1QcJbEA
+   pMPUgcTfpAzC7s3SsxHdb84MV875uFZvY68a9OuU2qQWFmPmSJ6mwxIZd
+   /qavOsVL3CkddLOjTuqzyEetdNWBSJsE/zSEJ9hM/CfK1Vm8wNPT6wNXV
+   mLND76hq6SCoenruDXjg3R26/AdyktDvQceAVHd1q8B6gyd46ue+ptrBK
+   J3V1qryRP6/Vn0tnuA9a01sqt6zVSLazgvebWoVbIO9vlXZHUr8CDnJ3i
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="363665663"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; 
+   d="scan'208";a="363665663"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2023 22:56:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="869543017"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; 
+   d="scan'208";a="869543017"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga002.fm.intel.com with SMTP; 09 Oct 2023 22:55:57 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 10 Oct 2023 08:55:56 +0300
+Date: Tue, 10 Oct 2023 08:55:56 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: Re: [PATCH v10 5/9] USB: typec: tps6598x: Add device data to
+ of_device_id
+Message-ID: <ZSTnbGdYp1/yaIf2@kuha.fi.intel.com>
+References: <20231003155842.57313-1-alkuor@gmail.com>
+ <20231003155842.57313-6-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,77 +69,196 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+In-Reply-To: <20231003155842.57313-6-alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 09, 2023 at 09:49:33AM +0200, Linus Walleij wrote:
-> On Fri, Oct 6, 2023 at 3:23???PM Rob Herring <robh@kernel.org> wrote:
-> > On Thu, Oct 05, 2023 at 11:58:43AM +0900, AKASHI Takahiro wrote:
+On Tue, Oct 03, 2023 at 11:58:38AM -0400, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
 > 
-> > > A dt binding for pin controller based generic gpio driver is defined in
-> > > this commit. One usable device is Arm's SCMI.
-> >
-> > You don't need a "generic" binding to have a generic driver. Keep the
-> > binding specific and then decide in the OS to whether to use a generic
-> > or specific driver. That decision could change over time, but the
-> > binding can't. For example, see simple-panel.
+> Part of tps6598x refactoring, we need to move the following functions
+> to device data as tps25750 has different implementation than tps6598x
+> and cd321x:
+> - interrupt handler
+> - port registration
+> - power status trace
+> - status trace
 > 
-> What you say is true for simple-panel (a word like "simple" should
-> always cause red flags).
-> 
-> This case is more like mfd/syscon.yaml, where the singular
-> compatible = "syscon"; is in widespread use:
-> 
-> $ git grep 'compatible = \"syscon\";' |wc -l
-> 50
-> 
-> I would accept adding a tuple compatible if you insist, so:
-> 
-> compatible = "foo-silicon", "pin-contro-gpio";
-> 
-> One case will be something like:
-> 
-> compatible = "optee-scmi-pin-control", "pin-control-gpio";
-> 
-> In this case I happen to know that we have the problem of
-> this being standardization work ahead of implementation on
-> actual hardware, and that is driven by the will known firmware
-> ambition to be completely abstract. It is supposed to sit on
-> top of pin control, or as part of pin control. Which leads me to
-> this thing (which I didn't think of before...)
-> 
-> > +    gpio0: gpio@0 {
-> > +        compatible = "pin-control-gpio";
-> > +        gpio-controller;
-> > +        #gpio-cells = <2>;
-> > +        gpio-ranges = <&scmi_pinctrl 0 10 5>,
-> > +                      <&scmi_pinctrl 5 0 0>;
-> > +        gpio-ranges-group-names = "",
-> > +                                  "pinmux_gpio";
-> > +    };
-> 
-> Maybe we should require that the pin-control-gpio node actually
-> be *inside* the pin control node, in this case whatever the label
-> &scmi_pinctrl is pointing to?
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
 
-null (or '_' as dummy) if the dt schema allows such a value as
-a trivial case?
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-> We can probably mandate that this has to be inside a pin controller
-> since it is a first.
+> ---
+> Changes in v10:
+>   - Move 0005-USB-typec-tps6598x-Check-for-EEPROM-present.patch to patch 6
+>   - Add device data for tps6598x and cd321x
+> Changes in v9:
+>   - No changes
+> Changes in v8:
+>   - No changes
+> Changes in v7:
+>   - Add driver name to commit subject
+> Changes in v6: 
+>   - Update eeprom macro to use TPS instead
+> Changes in v5:
+>   - Incorporating tps25750 into tps6598x driver
+>  drivers/usb/typec/tipd/core.c | 57 ++++++++++++++++++++++++++---------
+>  1 file changed, 43 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 56e4997c484a..9c973ffb4c49 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -82,6 +82,15 @@ static const char *const modes[] = {
+>  /* Unrecognized commands will be replaced with "!CMD" */
+>  #define INVALID_CMD(_cmd_)		(_cmd_ == 0x444d4321)
+>  
+> +struct tps6598x;
+> +
+> +struct tipd_data {
+> +	irq_handler_t irq_handler;
+> +	int (*register_port)(struct tps6598x *tps, struct fwnode_handle *node);
+> +	void (*trace_power_status)(u16 status);
+> +	void (*trace_status)(u32 status);
+> +};
+> +
+>  struct tps6598x {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+> @@ -101,7 +110,8 @@ struct tps6598x {
+>  	int wakeup;
+>  	u16 pwr_status;
+>  	struct delayed_work	wq_poll;
+> -	irq_handler_t irq_handler;
+> +
+> +	const struct tipd_data *data;
+>  };
+>  
+>  static enum power_supply_property tps6598x_psy_props[] = {
+> @@ -432,7 +442,9 @@ static bool tps6598x_read_status(struct tps6598x *tps, u32 *status)
+>  		dev_err(tps->dev, "%s: failed to read status\n", __func__);
+>  		return false;
+>  	}
+> -	trace_tps6598x_status(*status);
+> +
+> +	if (tps->data->trace_status)
+> +		tps->data->trace_status(*status);
+>  
+>  	return true;
+>  }
+> @@ -463,7 +475,9 @@ static bool tps6598x_read_power_status(struct tps6598x *tps)
+>  		return false;
+>  	}
+>  	tps->pwr_status = pwr_status;
+> -	trace_tps6598x_power_status(pwr_status);
+> +
+> +	if (tps->data->trace_power_status)
+> +		tps->data->trace_power_status(pwr_status);
+>  
+>  	return true;
+>  }
+> @@ -581,7 +595,7 @@ static void tps6598x_poll_work(struct work_struct *work)
+>  	struct tps6598x *tps = container_of(to_delayed_work(work),
+>  					    struct tps6598x, wq_poll);
+>  
+> -	tps->irq_handler(0, tps);
+> +	tps->data->irq_handler(0, tps);
+>  	queue_delayed_work(system_power_efficient_wq,
+>  			   &tps->wq_poll, msecs_to_jiffies(POLL_INTERVAL));
+>  }
+> @@ -765,7 +779,6 @@ tps6598x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
+>  
+>  static int tps6598x_probe(struct i2c_client *client)
+>  {
+> -	irq_handler_t irq_handler = tps6598x_interrupt;
+>  	struct device_node *np = client->dev.of_node;
+>  	struct tps6598x *tps;
+>  	struct fwnode_handle *fwnode;
+> @@ -807,7 +820,6 @@ static int tps6598x_probe(struct i2c_client *client)
+>  			APPLE_CD_REG_INT_DATA_STATUS_UPDATE |
+>  			APPLE_CD_REG_INT_PLUG_EVENT;
+>  
+> -		irq_handler = cd321x_interrupt;
+>  	} else {
+>  		/* Enable power status, data status and plug event interrupts */
+>  		mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
+> @@ -815,7 +827,10 @@ static int tps6598x_probe(struct i2c_client *client)
+>  			TPS_REG_INT_PLUG_EVENT;
+>  	}
+>  
+> -	tps->irq_handler = irq_handler;
+> +	tps->data = device_get_match_data(tps->dev);
+> +	if (!tps->data)
+> +		return -EINVAL;
+> +
+>  	/* Make sure the controller has application firmware running */
+>  	ret = tps6598x_check_mode(tps);
+>  	if (ret)
+> @@ -825,10 +840,10 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = tps6598x_read32(tps, TPS_REG_STATUS, &status);
+> -	if (ret < 0)
+> +	if (!tps6598x_read_status(tps, &status)) {
+> +		ret = -ENODEV;
+>  		goto err_clear_mask;
+> -	trace_tps6598x_status(status);
+> +	}
+>  
+>  	/*
+>  	 * This fwnode has a "compatible" property, but is never populated as a
+> @@ -851,7 +866,7 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	if (ret)
+>  		goto err_role_put;
+>  
+> -	ret = tps6598x_register_port(tps, fwnode);
+> +	ret = tps->data->register_port(tps, fwnode);
+>  	if (ret)
+>  		goto err_role_put;
+>  
+> @@ -868,7 +883,7 @@ static int tps6598x_probe(struct i2c_client *client)
+>  
+>  	if (client->irq) {
+>  		ret = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+> -						irq_handler,
+> +						tps->data->irq_handler,
+>  						IRQF_SHARED | IRQF_ONESHOT,
+>  						dev_name(&client->dev), tps);
+>  	} else {
+> @@ -954,9 +969,23 @@ static const struct dev_pm_ops tps6598x_pm_ops = {
+>  	SET_SYSTEM_SLEEP_PM_OPS(tps6598x_suspend, tps6598x_resume)
+>  };
+>  
+> +static const struct tipd_data cd321x_data = {
+> +	.irq_handler = cd321x_interrupt,
+> +	.register_port = tps6598x_register_port,
+> +	.trace_power_status = trace_tps6598x_power_status,
+> +	.trace_status = trace_tps6598x_status,
+> +};
+> +
+> +static const struct tipd_data tps6598x_data = {
+> +	.irq_handler = tps6598x_interrupt,
+> +	.register_port = tps6598x_register_port,
+> +	.trace_power_status = trace_tps6598x_power_status,
+> +	.trace_status = trace_tps6598x_status,
+> +};
+> +
+>  static const struct of_device_id tps6598x_of_match[] = {
+> -	{ .compatible = "ti,tps6598x", },
+> -	{ .compatible = "apple,cd321x", },
+> +	{ .compatible = "ti,tps6598x", &tps6598x_data},
+> +	{ .compatible = "apple,cd321x", &cd321x_data},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6598x_of_match);
+> -- 
+> 2.34.1
 
-Yeah, my U-Boot implementation tentatively supports both (inside and
-outside pin controller). But it is not a user's choice, but we should
-decide which way to go.
-
-Thanks,
--Takahiro Akashi
-
-> Yours,
-> Linus Walleij
+-- 
+heikki
 
