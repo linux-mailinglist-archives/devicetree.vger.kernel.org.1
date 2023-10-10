@@ -1,106 +1,191 @@
-Return-Path: <devicetree+bounces-7376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14107C039D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:42:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891497C03B4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:50:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E134C1C20BAB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:42:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA3131C2095D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC81A2744E;
-	Tue, 10 Oct 2023 18:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F92B2FE05;
+	Tue, 10 Oct 2023 18:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LqzM4D1M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YVVvScDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A630565A;
-	Tue, 10 Oct 2023 18:42:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754C9C433CC;
-	Tue, 10 Oct 2023 18:42:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696963337;
-	bh=ldKKDLNL5IeRM0a07A6s6AJub50EGR8AJO6LTn0Obwg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LqzM4D1MlLdeXjle0S/VafEl40lMghLhLKm+9gJtf+ozhX1rdh7dMp9TxumYlErj6
-	 hfFl58cakIJNbknsQMdeOerVRiHoWTUZimBOIaMG2Er7wDuh+ofNCrIildBOEkgcyF
-	 iHst+Szlw1LPgbq0idM4X1NB53u3zx2lyIXz6XM9scQtjG/o0kAoQJz5cALTiLeS4h
-	 P6O/43fv9eqa2gfm+cl9uXuK8WPOBWHa+gVOYYWs0n9289SeXGnWrjjm8Uyv2M2J41
-	 MyzucIxozLIO/j0LhciFjLR46qrcTuYTics1mybYkX073932KlLSdDEBL0ov4kHqG8
-	 2tXMZTrLHMb7w==
-Received: (nullmailer pid 1358279 invoked by uid 1000);
-	Tue, 10 Oct 2023 18:42:12 -0000
-Date: Tue, 10 Oct 2023 13:42:12 -0500
-From: Rob Herring <robh@kernel.org>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
-	olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
-	mchehab@kernel.org, fabrice.gasnier@foss.st.com,
-	andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com,
-	lee@kernel.org, will@kernel.org, catalin.marinas@arm.com,
-	arnd@kernel.org, richardcochran@gmail.com,
-	Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
-	netdev@vger.kernel.org, linux-p@web.codeaurora.org,
-	hy@lists.infradead.org, linux-serial@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v6 10/11] ARM: dts: stm32: add ETZPC as a system bus for
- STM32MP15x boards
-Message-ID: <20231010184212.GA1221641-robh@kernel.org>
-References: <20231010125719.784627-1-gatien.chevallier@foss.st.com>
- <20231010125719.784627-11-gatien.chevallier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3059B225B6
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 18:50:02 +0000 (UTC)
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCC193;
+	Tue, 10 Oct 2023 11:49:58 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1c9b1e3a809so8336925ad.2;
+        Tue, 10 Oct 2023 11:49:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696963797; x=1697568597; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3r/GV/XLucgebya1CEWK14+Mj9aJsAwuJyhcB53lBRU=;
+        b=YVVvScDh+6mt/HY+bR7McCHcAk9xuOoEOrP0WPZArvqxjDJAGJxMttm2qypMy0PcFb
+         5dhy5C6f6mrrQ72iX4MVXKJ002Dk/BA+U1LshuO3VQYuykB42vExt7u+uPqU3/Fhx9A9
+         DhE96l2906Dks0D2BiNNmoD52afkKgOtg8FCPIKsPvzjkNndRNUWlyFAEI8OoeMXbz1/
+         JSbr0e4t/dzFBOa32FuWdjI5TWgRsW8wAKLpzvm1dWvQzK1W7aUiXe0RUECKVvKilD6+
+         ZtsQD5cXtC1UOWmGwFxtEK3BEm90MxHtexct7XvIlXagTi04ey28n2bO5dpi41LqIRju
+         LFSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696963797; x=1697568597;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3r/GV/XLucgebya1CEWK14+Mj9aJsAwuJyhcB53lBRU=;
+        b=vGJmaQfv3EyZQgENpbXgO5TOLZV8E5szaGI94OqsZkmqZzCwfvvZIoJPicwcRRBvFl
+         RBB/HZjzch4hscOPl7HkVcyhMT6lamKKQBIcB+DHT6CNgXc15/QtUiqygnU+NrST7xCv
+         jbNxss/Uz8hD8ieBA7r/kbfyzaiOQytDK7Y24KShCAfSiyn9TIJ/nXELSq8wgKHA0rJx
+         rz5A3CkkMW5BS08t2FwrR7+6rYI6lyur0MAkBWojF/DfGsipd8CVFC8kFquypaeDQ4/f
+         Ihm10mQoDl4BXUU7iisCjOguNC2ayo+MJEZRGkFfV1YCBTukiN05m+xM5VQsUUQ76AQt
+         iHEw==
+X-Gm-Message-State: AOJu0YwvIrkij8NKEE7de8k/ZuektxHkBktAPnQBq65/ICJO2zIH57fb
+	J8HXz9VALaeQ6NB3ABIUFDEfpvTRYjAaXx8nRuE=
+X-Google-Smtp-Source: AGHT+IHeml2e2h+flm0b4gyQ9W87X8pjvLvYttiBiveqrYZq/41IZBUYmoWCmUJ30hLtemH9Eam+2w==
+X-Received: by 2002:a17:902:8e87:b0:1b8:2ba0:c9c0 with SMTP id bg7-20020a1709028e8700b001b82ba0c9c0mr15123695plb.59.1696963797436;
+        Tue, 10 Oct 2023 11:49:57 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:629e:4cec:991b:26e5:7c89:9a07])
+        by smtp.gmail.com with ESMTPSA id 21-20020a170902c25500b001bc87e6e26bsm12147570plg.222.2023.10.10.11.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Oct 2023 11:49:57 -0700 (PDT)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: input: bindings for Adafruit Seesaw Gamepad
+Date: Wed, 11 Oct 2023 00:18:23 +0530
+Message-ID: <20231010184827.1213507-1-anshulusr@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010125719.784627-11-gatien.chevallier@foss.st.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 10, 2023 at 02:57:18PM +0200, Gatien Chevallier wrote:
-> ETZPC is a firewall controller. Put all peripherals filtered by the
-> ETZPC as ETZPC subnodes and reference ETZPC as an
-> access-control-provider.
-> 
-> For more information on which peripheral is securable or supports MCU
-> isolation, please read the STM32MP15 reference manual.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
-> 
-> Changes in V6:
->     	- Renamed access-controller to access-controllers
->     	- Removal of access-control-provider property
-> 
-> Changes in V5:
->     	- Renamed feature-domain* to access-control*
-> 
->  arch/arm/boot/dts/st/stm32mp151.dtsi  | 2756 +++++++++++++------------
->  arch/arm/boot/dts/st/stm32mp153.dtsi  |   52 +-
->  arch/arm/boot/dts/st/stm32mp15xc.dtsi |   19 +-
->  3 files changed, 1450 insertions(+), 1377 deletions(-)
+Adds bindings for the Adafruit Seesaw Gamepad.
 
-This is not reviewable. Change the indentation and any non-functional 
-change in one patch and then actual changes in another.
+The gamepad functions as an i2c device with the default address of 0x50
+and has an IRQ pin that can be enabled in the driver to allow for a rising
+edge trigger on each button press or joystick movement.
 
-This is also an ABI break. Though I'm not sure it's avoidable. All the 
-devices below the ETZPC node won't probe on existing kernel. A 
-simple-bus fallback for ETZPC node should solve that. 
+Product page:
+  https://www.adafruit.com/product/5743
+Arduino driver:
+  https://github.com/adafruit/Adafruit_Seesaw
 
-Rob
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+---
+
+Changes for v4:
+- Fixed the URI for the id field
+- Added `interrupts` property
+
+Changes for v3:
+- Updated id field to reflect updated file name from previous version
+- Added `reg` property
+
+Changes for v2:
+- Renamed file to `adafruit,seesaw-gamepad.yaml`
+- Removed quotes for `$id` and `$schema`
+- Removed "Bindings for" from the description
+- Changed node name to the generic name "joystick"
+- Changed compatible to 'adafruit,seesaw-gamepad' instead of
+  'adafruit,seesaw_gamepad'
+
+ .../input/adafruit,seesaw-gamepad.yaml        | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+new file mode 100644
+index 000000000000..e8e676006d2f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Adafruit Mini I2C Gamepad with seesaw
++
++maintainers:
++  - Anshul Dalal <anshulusr@gmail.com>
++
++description: |
++  Adafruit Mini I2C Gamepad
++
++    +-----------------------------+
++    |   ___                       |
++    |  /   \               (X)    |
++    | |  S  |  __   __  (Y)   (A) |
++    |  \___/  |ST| |SE|    (B)    |
++    |                             |
++    +-----------------------------+
++
++  S -> 10-bit percision bidirectional analog joystick
++  ST -> Start
++  SE -> Select
++  X, A, B, Y -> Digital action buttons
++
++  Product page: https://www.adafruit.com/product/5743
++  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
++
++properties:
++  compatible:
++    const: adafruit,seesaw-gamepad
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        joystick@50 {
++            compatible = "adafruit,seesaw-gamepad";
++            reg = <0x50>;
++        };
++    };
+-- 
+2.42.0
+
 
