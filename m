@@ -1,106 +1,228 @@
-Return-Path: <devicetree+bounces-7209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A817BFB19
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37C787BFB1F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:20:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF8AB281C40
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:19:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E543B281BFC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626251947E;
-	Tue, 10 Oct 2023 12:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629EC199A2;
+	Tue, 10 Oct 2023 12:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdPOSZBs"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="FfMMg2fx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F6119464
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:19:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D09C433C7;
-	Tue, 10 Oct 2023 12:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696940382;
-	bh=sEVlrLrAZSdHFXAv0vW7xg1SHdyTN9p2QBUnItRsFbA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BdPOSZBsPAHmivXoJZBs36ei4YrGgNB9IRansk+2wIAaxEghTX8MvO25Q58xFyO92
-	 d43t6B/xohkgGgBQWIrA9u4Tao5p2A1mauEfueMjXw9pso+WKeDgtSJRFtwbZH4TZz
-	 ouSIKuYC3pVM0jfOCqidRrClgel+isHmjicigarZeC7rIL6sPsUhhQ9+qS4McGqMBO
-	 IEwArTTsreKIt36wR5Rfbq6bITZ9EbPMSCTfWx3q1j4KYUOTBR6+17SztT6xLwETEk
-	 /fQKivkWkDRwM450ZxVn9+5OZ49i8g2UH8fK6cyugwYOhOPZT60OSftZ4i5FJvo+Oy
-	 PtktLz45TyFVw==
-Date: Tue, 10 Oct 2023 13:19:36 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] regulator: fixed: forward under-voltage events
-Message-ID: <5e51792a-cc93-4364-a51b-c2b116d89369@sirena.org.uk>
-References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
- <20231010085906.3440452-3-o.rempel@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3A519464
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:20:21 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF04A4;
+	Tue, 10 Oct 2023 05:20:18 -0700 (PDT)
+X-UUID: 5d157fe0676711eea33bb35ae8d461a2-20231010
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=bsVk3iaGaqDEazeZyZ72feBjO94GG32Z78D2UbVIMqI=;
+	b=FfMMg2fx+rPa5jOlMGHcw1/NNp454iyxwQ45fIRIlTZz64GvH13vMEyidaJb0D7KXe3DR5FwNKRuJfdfn50hsMcUh7QbPPtw52bALBj2/Y5ok+bwQtlm0RSQoXJCNdJqEog8MRZXSJDRy8kLh2blxG1t+jVqkO4GI8hjUNUPxrs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:24bf88ff-273c-400a-8ea7-ed40fcb17e50,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:cf13a0f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 5d157fe0676711eea33bb35ae8d461a2-20231010
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1209626755; Tue, 10 Oct 2023 20:20:13 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 10 Oct 2023 20:20:12 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 10 Oct 2023 20:20:11 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, Steve
+ Cho <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2] media: mediatek: vcodec: using encoder device to alloc/free encoder memory
+Date: Tue, 10 Oct 2023 20:20:10 +0800
+Message-ID: <20231010122010.25937-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sc4/D+hultAuc0Xk"
-Content-Disposition: inline
-In-Reply-To: <20231010085906.3440452-3-o.rempel@pengutronix.de>
-X-Cookie: I feel partially hydrogenated!
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Need to use encoder device to allocate/free encoder memory when calling
+mtk_vcodec_mem_alloc/mtk_vcodec_mem_free, or leading to below crash log
+when test encoder with decoder device.
 
---sc4/D+hultAuc0Xk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+pc : dma_alloc_attrs+0x44/0xf4
+lr : mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common]
+sp : ffffffc0209f3990
+x29: ffffffc0209f39a0 x28: ffffff8024102a18 x27: 0000000000000000
+x26: 0000000000000000 x25: ffffffc00c06e2d8 x24: 0000000000000001
+x23: 0000000000000cc0 x22: 0000000000000010 x21: 0000000000000800
+x20: ffffff8024102a18 x19: 0000000000000000 x18: 0000000000000000
+x17: 0000000000000009 x16: ffffffe389736a98 x15: 0000000000000078
+x14: ffffffe389704434 x13: 0000000000000007 x12: ffffffe38a2b2560
+x11: 0000000000000800 x10: 0000000000000004 x9 : ffffffe331f07484
+x8 : 5400e9aef2395000 x7 : 0000000000000000 x6 : 000000000000003f
+x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000cc0
+x2 : ffffff8024102a18 x1 : 0000000000000800 x0 : 0000000000000010
+Call trace:
+ dma_alloc_attrs+0x44/0xf4
+ mtk_vcodec_mem_alloc+0x50/0xa4 [mtk_vcodec_common 2819d3d601f3cd06c1f2213ac1b9995134441421]
+ h264_enc_set_param+0x27c/0x378 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ venc_if_set_param+0x4c/0x7c [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ vb2ops_venc_start_streaming+0x1bc/0x328 [mtk_vcodec_enc 772cc3d26c254e8cf54079451ef8d930d2eb4404]
+ vb2_start_streaming+0x64/0x12c
+ vb2_core_streamon+0x114/0x158
+ vb2_streamon+0x38/0x60
+ v4l2_m2m_streamon+0x48/0x88
+ v4l2_m2m_ioctl_streamon+0x20/0x2c
+ v4l_streamon+0x2c/0x38
+ __video_do_ioctl+0x2c4/0x3dc
+ video_usercopy+0x404/0x934
+ video_ioctl2+0x20/0x2c
+ v4l2_ioctl+0x54/0x64
+ v4l2_compat_ioctl32+0x90/0xa34
+ __arm64_compat_sys_ioctl+0x128/0x13c
+ invoke_syscall+0x4c/0x108
+ el0_svc_common+0x98/0x104
+ do_el0_svc_compat+0x28/0x34
+ el0_svc_compat+0x2c/0x74
+ el0t_32_sync_handler+0xa8/0xcc
+ el0t_32_sync+0x194/0x198
+Code: aa0003f6 aa0203f4 aa0103f5 f900
 
-On Tue, Oct 10, 2023 at 10:59:06AM +0200, Oleksij Rempel wrote:
-> Add handler to forward under-voltage events.
-> On systems for more or less complicated regulator chains we need to
-> forward under-voltage events to actual driver which need to react on
-> them.
+'Fixes: 01abf5fbb081c ("media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'")'
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+changed with v1:
+- rewrite allocate and free memory interface for encoder and decoder.
+---
+ .../mediatek/vcodec/common/mtk_vcodec_util.c  | 56 +++++++++++++------
+ 1 file changed, 40 insertions(+), 16 deletions(-)
 
-It isn't clear to me why this would be implemented in one specific
-driver, nor why this would be done unconditionally.  Could you provide
-some information on the problem you're trying to solve here?  This feels
-like something that should be a core feature.
+diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+index 908602031fd0..9ce34a3b5ee6 100644
+--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
++++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_util.c
+@@ -47,20 +47,32 @@ EXPORT_SYMBOL(mtk_vcodec_write_vdecsys);
+ 
+ int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+ {
++	enum mtk_instance_type inst_type = *((unsigned int *)priv);
++	struct platform_device *plat_dev;
+ 	unsigned long size = mem->size;
+-	struct mtk_vcodec_dec_ctx *ctx = priv;
+-	struct device *dev = &ctx->dev->plat_dev->dev;
++	int id;
+ 
+-	mem->va = dma_alloc_coherent(dev, size, &mem->dma_addr, GFP_KERNEL);
++	if (inst_type == MTK_INST_ENCODER) {
++		struct mtk_vcodec_enc_ctx *enc_ctx = priv;
++
++		plat_dev = enc_ctx->dev->plat_dev;
++		id = enc_ctx->id;
++	} else {
++		struct mtk_vcodec_dec_ctx *dec_ctx = priv;
++
++		plat_dev = dec_ctx->dev->plat_dev;
++		id = dec_ctx->id;
++	}
++
++	mem->va = dma_alloc_coherent(&plat_dev->dev, size, &mem->dma_addr, GFP_KERNEL);
+ 	if (!mem->va) {
+-		mtk_v4l2_vdec_err(ctx, "%s dma_alloc size=%ld failed!", dev_name(dev), size);
++		mtk_v4l2_err(plat_dev, "%s dma_alloc size=%ld failed!",
++			     dev_name(&plat_dev->dev), size);
+ 		return -ENOMEM;
+ 	}
+ 
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
+-			  (unsigned long)mem->dma_addr);
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
++	mtk_v4l2_debug(plat_dev, 3, "[%d] - va = %p dma = 0x%lx size = 0x%lx", id, mem->va,
++		       (unsigned long)mem->dma_addr, size);
+ 
+ 	return 0;
+ }
+@@ -68,21 +80,33 @@ EXPORT_SYMBOL(mtk_vcodec_mem_alloc);
+ 
+ void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+ {
++	enum mtk_instance_type inst_type = *((unsigned int *)priv);
++	struct platform_device *plat_dev;
+ 	unsigned long size = mem->size;
+-	struct mtk_vcodec_dec_ctx *ctx = priv;
+-	struct device *dev = &ctx->dev->plat_dev->dev;
++	int id;
++
++	if (inst_type == MTK_INST_ENCODER) {
++		struct mtk_vcodec_enc_ctx *enc_ctx = priv;
++
++		plat_dev = enc_ctx->dev->plat_dev;
++		id = enc_ctx->id;
++	} else {
++		struct mtk_vcodec_dec_ctx *dec_ctx = priv;
++
++		plat_dev = dec_ctx->dev->plat_dev;
++		id = dec_ctx->id;
++	}
+ 
+ 	if (!mem->va) {
+-		mtk_v4l2_vdec_err(ctx, "%s dma_free size=%ld failed!", dev_name(dev), size);
++		mtk_v4l2_err(plat_dev, "%s dma_free size=%ld failed!",
++			     dev_name(&plat_dev->dev), size);
+ 		return;
+ 	}
+ 
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]  - va      = %p", ctx->id, mem->va);
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]  - dma     = 0x%lx", ctx->id,
+-			  (unsigned long)mem->dma_addr);
+-	mtk_v4l2_vdec_dbg(3, ctx, "[%d]    size = 0x%lx", ctx->id, size);
++	mtk_v4l2_debug(plat_dev, 3, "[%d] - va = %p dma = 0x%lx size = 0x%lx", id, mem->va,
++		       (unsigned long)mem->dma_addr, size);
+ 
+-	dma_free_coherent(dev, size, mem->va, mem->dma_addr);
++	dma_free_coherent(&plat_dev->dev, size, mem->va, mem->dma_addr);
+ 	mem->va = NULL;
+ 	mem->dma_addr = 0;
+ 	mem->size = 0;
+-- 
+2.18.0
 
-> +static int reg_fixed_regulator_notifier(struct notifier_block *nb,
-> +					unsigned long event, void *data)
-> +{
-> +	struct fixed_voltage_data *priv =
-> +		container_of(nb, struct fixed_voltage_data, nb);
-> +	struct regulator_dev *rdev = priv->dev;
-> +
-> +	if (event != REGULATOR_EVENT_UNDER_VOLTAGE_WARN &&
-> +	    event != REGULATOR_EVENT_UNDER_VOLTAGE)
-> +		return NOTIFY_OK;
-> +
-> +	regulator_notifier_call_chain(rdev, event, NULL);
-
-This would be better written as a switch statement for extensibility,
-and it's not clear why the filtering?
-
---sc4/D+hultAuc0Xk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUlQVgACgkQJNaLcl1U
-h9BzmQf8DlvDTySkrhtUhIgfciqU+pjEPtHsKQqoDt7De9vv7WBpPjMCs9c8j27a
-Bh1J0WSWgde+2u39XUSddSwJyWnNwUdJSM0CeZKXd0bEYPfsVHpCrxVbq3RGes83
-sr+3cD6QylEJmNwtmvqiMKfrzfRWZIZIAAJb6a/o1hYY+OgrY1ddK+KAJTIP195t
-azfhhfMmHANcCAqqsdIJX3++16Wg+fI+XuntB4nb4LKQFfDtOdtuK29rh0Vd3ox6
-hODpV3nf4yF2h/QugxX/neL4Cjg8Xi/Tkgq90E557WcMH2MRzYchNfgwFjztfHzK
-JQWDqvRIw/+u3TdwWkTYuxLw2LlsQg==
-=K/BW
------END PGP SIGNATURE-----
-
---sc4/D+hultAuc0Xk--
 
