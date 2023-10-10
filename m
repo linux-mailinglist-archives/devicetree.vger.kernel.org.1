@@ -1,107 +1,183 @@
-Return-Path: <devicetree+bounces-7112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92577BF3E5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:15:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3460B7BF3E8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:15:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 060311C20AD2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:15:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65BE31C20908
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4240BE4B;
-	Tue, 10 Oct 2023 07:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8BF9467;
+	Tue, 10 Oct 2023 07:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DkbEw6pA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QVdUreOd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2318E9467
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 07:15:01 +0000 (UTC)
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3579A9
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 00:14:58 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-690ce3c55f1so3938113b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 00:14:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696922098; x=1697526898; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=REm2zqg1Yqfh1vOVaadZ+RhgYDjuMh+lGEwKArpLfM4=;
-        b=DkbEw6pAaR6GxOwIZPN5yJ9s09i2T84xdgNoDlwLkckqs2UhUmt7VhaWk+4V840HK/
-         z7eNUGMsaHFn1fFJohfXgX0Tn0la0v+R3JmTNhKt1D0C6MCM4iTU6JeUOQYcJNHEkGUq
-         NjvfVnQngrPfVfyCi1DLCFy0ktCJk48AR7kVoA1OMCbrDARsdZb7PrsMCiVP44lsLHLD
-         0JWNX/ZJiKvIUPC2sc9hLW+yWqw8+gq23C6muBx4m9zPg+RghTe5IKv50XUnXmRSbYZp
-         JpFkkeLJGKZ6WNMxDmh7ZbmIcNfBppP2D3tulH6kiGoHl8+JpDsWYplpXfzYccuv3gYz
-         2aUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696922098; x=1697526898;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=REm2zqg1Yqfh1vOVaadZ+RhgYDjuMh+lGEwKArpLfM4=;
-        b=FeCzEHgcszaSNqUJhenEDlYopZhotWfx+poL97CYIcuyqMA6lrxVMmDZGYMZh7GUTs
-         OZg7Xs7u5b/f7h4AoFNuJVZJ/TNoXgaF0o7oZnOmAMCOJCEMpe3jYbXaNqEXuetl+kxn
-         KXrqLNEI5OTWxgsOcv9LFI5MHNFYR/1ld/mTGcDMTe1suy4Q4lkBCQHuwtCdm35fiIeK
-         TJ6nakrBC2OvaEwxNXeARkOUC4OhgyiS8v/kGt8mGaZ1iP8CJP8EZjPiaJUfLRFZ6J8V
-         Eifb7nF90Kn1IPT6r8MevBhgcmSlKs8xY84Mn9Lh23X5nPO0yiT4VYgdKZifIAwODeU3
-         Mp9g==
-X-Gm-Message-State: AOJu0Yyy472f5IwpPXoSydUnh4zoEgHluqMCgr77QIQqU8t1O/cghMtv
-	MI7IgCeXbXjMhcphwErtouSb1Q==
-X-Google-Smtp-Source: AGHT+IENnvdaKTVZ5RG5IrW2a7uivx0fUemlOha+KjhdmWG1K6IFuThbxfhfA3BeEDs1er7GXht8OQ==
-X-Received: by 2002:a05:6a00:2e10:b0:68e:41e9:10be with SMTP id fc16-20020a056a002e1000b0068e41e910bemr18547606pfb.20.1696922098204;
-        Tue, 10 Oct 2023 00:14:58 -0700 (PDT)
-Received: from localhost ([122.172.81.92])
-        by smtp.gmail.com with ESMTPSA id e5-20020aa78c45000000b00692acfc4b3csm7392779pfd.136.2023.10.10.00.14.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 00:14:57 -0700 (PDT)
-Date: Tue, 10 Oct 2023 12:44:55 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	rafael@kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] dt-bindings: opp: opp-v2-kryo-cpu: Document named
- opp-microvolt property
-Message-ID: <20231010071455.2jgo3e772aw5f7fa@vireshk-i7>
-References: <20230930102218.229613-1-robimarko@gmail.com>
- <20230930102218.229613-2-robimarko@gmail.com>
- <CAA8EJpoTsHhAVT3b84BC7Brvh=AUOUYSB_Z+_R-9OQ-u9BpH8A@mail.gmail.com>
- <651b15ae.df0a0220.c5688.0c40@mx.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6102BE4B
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 07:15:15 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99EBCB6;
+	Tue, 10 Oct 2023 00:15:12 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPA id B4231E0002;
+	Tue, 10 Oct 2023 07:15:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696922111;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SWNhwB9xX+AIGst/dz41McHRtLFLngoPhPXaZJs1igY=;
+	b=QVdUreOdVIVCO7bF9WiWDvI72HiHRnyRMxT/mK7QIj5IA56Qys2e/rln3Smot1MH+EydwU
+	eZ4oQG0liGgBCUHUrKsFU3S3FDbDZYkEKz22Vz1SPgzGrlrNAQUVAyMnyIrRUSqtbTOeJP
+	xkYA4PFiVck+r+C6yTzJY2bsNLyMIMgeAnvC2T8pFu6U6ElP22nGHLrBRjXc3fzVYb88GS
+	TpRFO7Nu/NI+Os4YAhHX31fitVQTZeVCYcKkCRjkrBwNkFXXTrlOQWOkAZZ/eV4wj2HWdv
+	KSQgvQT6TtiOnwNIA4p09UBLL36ZBgJr5EQJ78enm5/ahtDqnat4P/FFXjf9MA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <651b15ae.df0a0220.c5688.0c40@mx.google.com>
+Date: Tue, 10 Oct 2023 09:15:08 +0200
+From: kamel.bouhara@bootlin.com
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ mark.satterthwaite@touchnetix.com, pedro.torruella@touchnetix.com,
+ bartp@baasheep.co.uk, hannah.rossiter@touchnetix.com, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Gregory Clement
+ <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v2 2/3] dt-bindings: input: Add bindings for TouchNetix
+ axiom touchscreen
+Message-ID: <79160a2ebe3fd35fe7f9b93e30cf89fa@bootlin.com>
+X-Sender: kamel.bouhara@bootlin.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 02-10-23, 21:10, Christian Marangi wrote:
-> On Mon, Oct 02, 2023 at 10:07:44PM +0300, Dmitry Baryshkov wrote:
-> > On Sat, 30 Sept 2023 at 13:22, Robert Marko <robimarko@gmail.com> wrote:
-> > I suppose that simple 'true' schema should be enough since this is
-> > already mostly described in opp/opp-v2-base.yaml
-> >
+Hello Krzysztof,
+
+Le 2023-10-09 17:05, Krzysztof Kozlowski a écrit :
+> On 09/10/2023 15:44, Kamel Bouhara wrote:
+>> Add the TouchNetix axiom I2C touchscreen device tree bindings
+>> documentation.
 > 
-> Mhhh an example of the following implementation?
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> 
 
-Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
+OK.
 
--- 
-viresh
+>> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+>> ---
+>>  .../touchscreen/touchnetix,axiom-ax54a.yaml   | 51 
+>> +++++++++++++++++++
+>>  MAINTAINERS                                   |  6 +++
+>>  2 files changed, 57 insertions(+)
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/input/touchscreen/touchnetix,axiom-ax54a.yaml
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/input/touchscreen/touchnetix,axiom-ax54a.yaml 
+>> b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,axiom-ax54a.yaml
+>> new file mode 100644
+>> index 000000000000..41201d7112a6
+>> --- /dev/null
+>> +++ 
+>> b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,axiom-ax54a.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: 
+>> http://devicetree.org/schemas/input/touchscreen/touchnetix,axiom-ax54a.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TouchNetix Axiom series touchscreen controller
+>> +
+>> +maintainers:
+>> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: touchnetix,axiom-ax54a
+>> +
+>> +  reg:
+>> +    const: 0x66
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  irq-gpios:
+>> +    maxItems: 1
+> 
+> Why these are GPIOs? Interrupts are usually just interrupts... You need
+> to clearly describe this.
+> 
+
+I've been using this for some specific acpi stuff hence it need to be 
+removed.
+
+> 
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +
+>> +additionalProperties: false
+> 
+> This goes after required: block.
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      axiom@66 {
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+
+Ack.
+
+> 
+> 
+>> +        compatible = "touchnetix,axiom-ax54a";
+>> +        reg = <0x66>;
+>> +        interrupt-parent = <&gpio2>;
+>> +        interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+>> +        irq-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
+> 
+> Eh? This looks really wrong.
+
+OK let's clean that as well.
+
+Thanks
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
