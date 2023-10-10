@@ -1,193 +1,187 @@
-Return-Path: <devicetree+bounces-7124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5388E7BF55A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:11:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2587BF566
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 10:14:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76AF21C20A6B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:11:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 331CB2819EF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF3A14F90;
-	Tue, 10 Oct 2023 08:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B080A14F92;
+	Tue, 10 Oct 2023 08:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dZG5mqvE"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="LLZw15ZT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54D0BA57
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 08:11:02 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F65B7
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 01:10:59 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c3c661f1a8so45272641fa.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 01:10:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696925457; x=1697530257; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1a48CmyL9ZDxqT8GaS516AQ8gzDOMjf9YgIiThoGiys=;
-        b=dZG5mqvEEyqUmZ7FZCUTfyZr8RoNXpZHQMZbKDKqIeK6NHGWJv/KOBBTVDl5k0iwPt
-         MgaqlKNZ4Kg8WFnvnPFLEv50VKg7U9IBtQSKf+9Mme6/8aOJCbB5qdLK632xpHCLfO1a
-         eDGBoHAdoF0FdKGUFpY+It1ReKl682bOQLciZMqSXnQcq7RuJmhIhuADLB9X0IgBFW7n
-         2lDUvXiOTZWVXujDSqbkqygaNB+mIoAqMfO37Y3yKOTcfbl5O5xi7XkegFsn+BGmY2Di
-         D8KwIO4qfr8KYWPuGR0enmfAxn6C3JRy1ZhoUpYv6zYsuqOZjTT0ikLHTnnksToKCPsY
-         srOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696925457; x=1697530257;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1a48CmyL9ZDxqT8GaS516AQ8gzDOMjf9YgIiThoGiys=;
-        b=OXcJgjl5fbu1TBOjHpeVW3G1/Xrn25LwzPEzeH0zKdY18W4H5Q177dA04HlbVE8jSI
-         R3ZIxubkeIYoVaWD4xWParKt4DoCsc1B32pOwlMuySuGNuKJw9pKj36hTq/zF5nymbL5
-         mEBv0SYbfnYyix6bA1Z4OYH2vVHn9OqqUui2Yazb4LxZDE2opN9JzWDrvSiCPJhYRgLi
-         n27f11uTPGROZXHWa+LT86kTl/PMBANP8a7EQhMnDK9lrQp6nxKfe5pLITRrEVIx4mqU
-         iLIXtTqVJqZzk50ywZk6FKBvJ9GqbCvbHQLqfvGtuT2KbrUnuK6C2llQg11ed5zZ0j3L
-         en/A==
-X-Gm-Message-State: AOJu0Yyx75368bEa2p0lhL1Ys6gQJPsfe4DZFKm9pPIIfKfVpv285sId
-	y6tLxgJrRke3BhNY8lJ/5I7QSA==
-X-Google-Smtp-Source: AGHT+IH2EG3+O/1Qs0XpA1QByo9hC1ybArnKOkeeU3N5GC1Yqu4n5+ax+pQS2hcoI9oYEWdqf7rZ7g==
-X-Received: by 2002:a2e:9455:0:b0:2bd:19c5:3950 with SMTP id o21-20020a2e9455000000b002bd19c53950mr14597002ljh.33.1696925457458;
-        Tue, 10 Oct 2023 01:10:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2eac:5b51:e0a4:4807? ([2a01:e0a:982:cbb0:2eac:5b51:e0a4:4807])
-        by smtp.gmail.com with ESMTPSA id v11-20020a5d6b0b000000b00324853fc8adsm11818176wrw.104.2023.10.10.01.10.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 01:10:57 -0700 (PDT)
-Message-ID: <9fe7d0d2-3582-4b62-be9b-aa9134c18023@linaro.org>
-Date: Tue, 10 Oct 2023 10:10:55 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6872BBA57
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 08:14:32 +0000 (UTC)
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2080.outbound.protection.outlook.com [40.107.104.80])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044A5D3;
+	Tue, 10 Oct 2023 01:14:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B2YuI+VjsEI5WH/h05X2tAjbQCmHAlCD/zKZ+zSZ+A48+Oj8Ow2s9+jB5+75PtZOr/WedceCbIsOvQA+H9cLHcQzBhBmMNaj2ibiHTFFK6RmwpBrT0bq9Ms20bhPHWqYkYWihw/uFqacCymubt6udjLB298zHhdna7xISDO4Ze8sVzBc9Ns6nbjdB7QMHRfNYTfWKadL17gdgqb4qfD+aXTH6Lm2uElpTI/+WgXPOEHNNOCjahOf4Bogo65n04FV3JEUgqkuD6bCrk9TAOoK88HoFkmpP27bfdrYUXqu+FhPh3BffieQFcMaWxJBWGJt0So7EKeUEUhqVexS2px3Ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=twQx8ngbXcEPROGcq0iZqcReqGPVAtwfK6wN3iDWhzw=;
+ b=LX5I8HW/MXO6604i8TuuFkfc90CSSB/Ky9ph6LECnQ9pL5v/sE2yRQMd1PyNwAxdX858QdA9SUlyCUxlXqoIjWxfbxQi33N/h7rHfrOngOHjGG1qmbNTfI/P/Orgn5yl5/UqYzdhYm3rdl6LIHgrhNHBhtC8RHJEVZr3Q+kFSsdfjk0wkUBC+wdtNDsBmE03QkNh27GyeekfF/6sIXSNwyKuKLMDQ5pUtrBXKfIBLUWwR+6VMRyS9NyM6fPl+AQxJrumCPtxk5Rg4Vc4b2hAPjBnUS16wopP23N1JcfhY1TliMvAnUXvQBeJ/i8mxIq4MUtMHklFRGBsjRXzl6M4qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=twQx8ngbXcEPROGcq0iZqcReqGPVAtwfK6wN3iDWhzw=;
+ b=LLZw15ZTIPgJZLUvuWVCmQT46Bhi2O/Hxqnfu+t3TkAONk1fL9J1Okr5dgzE5xhRU6uXXFw5dZry5Mwf2VYen6++fXaaUBmOVw+257Hwwr8VRgBh80LGNMM7kTO6g5AnEGNhtrWq5fbMDzoYS5pOpRRoQHGkgBaYJCJgnt4kMhA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by DB9PR04MB8298.eurprd04.prod.outlook.com (2603:10a6:10:248::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Tue, 10 Oct
+ 2023 08:14:26 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::258e:61b0:da64:d168]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::258e:61b0:da64:d168%5]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
+ 08:14:26 +0000
+From: Jacky Bai <ping.bai@nxp.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	shawnguo@kernel.org
+Cc: s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/3] wdog: imx7ulp: Enable wdog int_en bit for watchdog any reset
+Date: Tue, 10 Oct 2023 16:19:07 +0800
+Message-Id: <20231010081909.2899101-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0043.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::19) To AS8PR04MB8642.eurprd04.prod.outlook.com
+ (2603:10a6:20b:429::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] arm64: dts: amlogic: Used onboard usb hub reset on
- odroid n2
-To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231010032446.3194-1-linux.amoon@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231010032446.3194-1-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|DB9PR04MB8298:EE_
+X-MS-Office365-Filtering-Correlation-Id: 597eb8ea-fd60-4b02-f0d9-08dbc968eb16
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	13H5CVsaLftG+a+Ko7t0nGB+V07wQhYzfRhVA8zQ6C5jRzXEOncSvj77eGs+2weEqI1F5I+Fedzi9EPYZQ7BHViH+7E566aPqds+q0vKb9WEErEuzwotQFbRbGCPgJCtF6A7M9ECKPtz2pefA510jhYxmniIAKCpWfbqsHtpDv4UHU4Alpwui72ina4OtQTlAN0dEfbSYjQeE5YaZ6B46K0JV9EzBzwtqzeGhN3jSkaUgHytc4qzNrr4gCWuiILMkDQyk8c2G9iGjjdWgP7NOt21vHuQOKfHdaYFpLpgm/IZNi0gk5UdPHVsfyqJiNy/JKT6uwh6Vu0OLC4tpKH9+nhv7e6HxqfuOD8l6hYnrYPzuiwgggevMfn30fOJQ/fRzHJu0s07Xbs16TKrSCfrfSn2NxJ0Tundit2E3XyyV0Q4+tJj16g7pt9jaOkrdaja32El0h6yzxVVm3HY11xlBNG6HaEXzuuFIO3axNJh7Qkl1ORi3OV18wibk5fSzE3fm4ZtgVb5iFp/TlwUdcNpnboAA0PQzP17lOGjcjY4urB6GcMP22Q4b4DTFflotDxDINdsc30U+iUqWyfWb/iMLIyVn6h61BumD97wnPdDMOo0z3yXU80rLKrPyjc7GCTWSC3DGwnn7mxJrWLQgKELww==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(346002)(39860400002)(396003)(366004)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(2616005)(26005)(52116002)(1076003)(86362001)(38350700002)(36756003)(38100700002)(83380400001)(7416002)(4326008)(2906002)(6486002)(6666004)(6512007)(478600001)(8676002)(6506007)(316002)(66476007)(5660300002)(41300700001)(8936002)(66556008)(66946007)(171213001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?bA6HANRwQN/nX+utYxGWf6f5b07KHfFZ1zC/feb6ECyF2ruOIyMgVj2Ab7Jw?=
+ =?us-ascii?Q?acS5xfm883YeG1GfTEMs3Y0m7fSWRhaisu/QrVVnW6Stp9dKCV904JPmgpis?=
+ =?us-ascii?Q?+3NfikMh+gufK+q5cuCyt/LDgxZPTUCmaeXJVA4Nx5bFefXd/eE7vUolCOlK?=
+ =?us-ascii?Q?GmrJv6VhqLr6ENa2UWWEAkvTq7JN3u2OLuSwHoWr8u1BXo4sQp+neGRQF1cc?=
+ =?us-ascii?Q?7I6bk1d4lLiwOIZuomTNuhL0DiYmOkxFgRqXKynq3lFM9yUh1xKVjrVvZHCQ?=
+ =?us-ascii?Q?WvuN1O/QICwukh8YgVYU1TlQ/itDmaep6euiRayuavV3z3jse37mUG0cTs3v?=
+ =?us-ascii?Q?IJYHQUMZAUiBG+YoAUX+o+IMuNqubVOEjJm8s9VUlfqQ6/ZA6Aj5aaqQKV5y?=
+ =?us-ascii?Q?bXAhZLpzPldQHRYFLxQW7uM3lv7fdkKATOXB6di45kkdXSRgdzzQ42yP+U6M?=
+ =?us-ascii?Q?DogbIdTou+ALvF1eiWchtwGX6XsZI8fTZHuNrmbRr1ZV2opFeq2uMHouHJBp?=
+ =?us-ascii?Q?JBGtbyymoDs2EiIWgsZbmT6x1ZKsGSAavBfhvaD2CHmnj5RSDkMoeTGOILFl?=
+ =?us-ascii?Q?w3bLsoLug3lEe/KRyl7D96TZRSebH8IApOo1O0nUxNPh1EHWkCc3k1QkLl8P?=
+ =?us-ascii?Q?grHAf4uwgQQgrfwySlg4/JLAVl9Bjdt2miwigzG4deBvvQqraf9RXHIH8ony?=
+ =?us-ascii?Q?PGQ0sr6O+EFbvoVtvnEfoF6JLL9s001AKPfOEWTN4A+L17mK0Yyfl2uv2s5e?=
+ =?us-ascii?Q?6WG44iYAoeI1lN1pfGClYLGbQ7Ylzy3c2i/mqSjclQwLMxyqkKgz/+c32s1z?=
+ =?us-ascii?Q?dj1xhmdpICXdwODh6GSckX+fZiXpu4pCXRHWg0D/GIsufAuqy1iEv0iGwYa1?=
+ =?us-ascii?Q?6MFuhs5P2dvyMWANdKUEXHCMdbvPXkXwvnLZLHIGPYi5Tlnd3dEipNr9ve5s?=
+ =?us-ascii?Q?vPU6yTlG4dvoQ6t95KJkE9JDdQjP1aybDjvEtou/Xh5tLvsQcW+GJDiQf66M?=
+ =?us-ascii?Q?F/tKiZG2reX5KhZzfYmOOi7kSBi1iJaF4hyrHFyJdBOTJOpwCxcWwqsGV/v0?=
+ =?us-ascii?Q?pQYoyYif5IJhZ87EiElDatpYDk5gZUA3DJuNgZzbxzJTzf6S2bpkxjqgoBJX?=
+ =?us-ascii?Q?yFiH5Q2aEU3JNHV2Uu49G6D8+xZ4IU2+4RWXO6DCGEVMi42I5guWwkhvtCJk?=
+ =?us-ascii?Q?TZdw8hD4JsnhfPg7KhevYspCrgTL781Xg4NR0vojRQb0smnXLY9LTfwlKiF6?=
+ =?us-ascii?Q?YO3jOaXiDOi7KbqYfkCpTB/3PmNSpZ2N01FnKGuhKlRJBIQkz2m7miuzkvc+?=
+ =?us-ascii?Q?YN51L/oscvVtf9Tm6IQgYumGQH3a22IRccbyk8sAPE/HVmeIqbedL6naFwBu?=
+ =?us-ascii?Q?us38MH/uWc0/2PKtu9UV1c0w1fifI3S3bwXGS3tTPb/qER24X7URSvMONLir?=
+ =?us-ascii?Q?Jla0WeDqv+0gbIiKtyKYZk81FXQQ2EfVhWrTF1FDYaF1YxJo4GeeqkduH5rJ?=
+ =?us-ascii?Q?fm1DL/SwxptZoW71hLyvesHxJiFKMhOH0vmLtq4yA+W2LgT9X6ItWFaQ3W79?=
+ =?us-ascii?Q?l1BnIW2itrCYIYON2dHMairaUxk1/TEx3MU6zh08?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 597eb8ea-fd60-4b02-f0d9-08dbc968eb16
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 08:14:26.2996
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tioS9P8v0c/pVBeKCW6tME7EajBKqyVCU1REufDjSKns7Js42tuVyaM3GclDZxADQDS8zSGt9nwf/WmUMhqU/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8298
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+The wdog INT_EN bit in CS register should be set to '1' to trigger
+WDOG_ANY external reset on i.MX93.
 
-On 10/10/2023 05:24, Anand Moon wrote:
-> On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-> switch to used on-board usb hub reset to enable the usb hub
-> and enable power to hub.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->   .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
->   1 file changed, 24 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index 91c9769fda20..9e671444eca6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
->   		enable-active-high;
->   	};
->   
-> +	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-> +	usb-hub {
-> +		dr_mode = "host";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		/* 2.0 hub on port 1 */
-> +		hub_2_0: hub@1 {
-> +			compatible = "usb5e3,610";
-> +			reg = <1>;
-> +			peer-hub = <&hub_3_0>;
+Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
+---
+ drivers/watchdog/imx7ulp_wdt.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-It seems peer-hub is missing from Documentation/devicetree/bindings/usb/genesys,gl850g.yaml, could you add it ?
-
-Thanks,
-Neil
-
-> +			vdd-supply = <&usb_pwr_en>;
-> +		};
-> +
-> +		/* 3.0 hub on port 4 */
-> +		hub_3_0: hub@2 {
-> +			compatible = "usb5e3,620";
-> +			reg = <2>;
-> +			peer-hub = <&hub_2_0>;
-> +			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> +			vdd-supply = <&vcc_5v>;
-> +		};
-> +	};
-> +
->   	sound {
->   		compatible = "amlogic,axg-sound-card";
->   		model = "ODROID-N2";
-> @@ -234,18 +258,6 @@ &gpio {
->   		"PIN_3",  /* GPIOX_17 */
->   		"PIN_5",  /* GPIOX_18 */
->   		"PIN_36"; /* GPIOX_19 */
-> -	/*
-> -	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
-> -	 * to be turned high in order to be detected by the USB Controller
-> -	 * This signal should be handled by a USB specific power sequence
-> -	 * in order to reset the Hub when USB bus is powered down.
-> -	 */
-> -	usb-hub-hog {
-> -		gpio-hog;
-> -		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-> -		output-high;
-> -		line-name = "usb-hub-reset";
-> -	};
->   };
->   
->   &i2c3 {
+diff --git a/drivers/watchdog/imx7ulp_wdt.c b/drivers/watchdog/imx7ulp_wdt.c
+index c703586c6e5f..b21d7a74a42d 100644
+--- a/drivers/watchdog/imx7ulp_wdt.c
++++ b/drivers/watchdog/imx7ulp_wdt.c
+@@ -23,6 +23,7 @@
+ #define LPO_CLK_SHIFT		8
+ #define WDOG_CS_CLK		(LPO_CLK << LPO_CLK_SHIFT)
+ #define WDOG_CS_EN		BIT(7)
++#define WDOG_CS_INT_EN		BIT(6)
+ #define WDOG_CS_UPDATE		BIT(5)
+ #define WDOG_CS_WAIT		BIT(1)
+ #define WDOG_CS_STOP		BIT(0)
+@@ -62,6 +63,7 @@ struct imx7ulp_wdt_device {
+ 	void __iomem *base;
+ 	struct clk *clk;
+ 	bool post_rcs_wait;
++	bool ext_reset;
+ 	const struct imx_wdt_hw_feature *hw;
+ };
+ 
+@@ -285,6 +287,9 @@ static int imx7ulp_wdt_init(struct imx7ulp_wdt_device *wdt, unsigned int timeout
+ 	if (wdt->hw->prescaler_enable)
+ 		val |= WDOG_CS_PRES;
+ 
++	if (wdt->ext_reset)
++		val |= WDOG_CS_INT_EN;
++
+ 	do {
+ 		ret = _imx7ulp_wdt_init(wdt, timeout, val);
+ 		toval = readl(wdt->base + WDOG_TOVAL);
+@@ -321,6 +326,9 @@ static int imx7ulp_wdt_probe(struct platform_device *pdev)
+ 		return PTR_ERR(imx7ulp_wdt->clk);
+ 	}
+ 
++	/* The WDOG may need to do external reset through dedicated pin */
++	imx7ulp_wdt->ext_reset = of_property_read_bool(dev->of_node, "fsl,ext-reset-output");
++
+ 	imx7ulp_wdt->post_rcs_wait = true;
+ 	if (of_device_is_compatible(dev->of_node,
+ 				    "fsl,imx8ulp-wdt")) {
+-- 
+2.34.1
 
 
