@@ -1,114 +1,94 @@
-Return-Path: <devicetree+bounces-7371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3237C032C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:13:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2197C0372
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 20:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19CFD281BA8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E90D7281BD6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 18:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220F7225C4;
-	Tue, 10 Oct 2023 18:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E9465A;
+	Tue, 10 Oct 2023 18:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qEAQjv4a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZSxPeL7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01853225A3
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 18:13:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A951BC433C8;
-	Tue, 10 Oct 2023 18:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F222FE09
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 18:33:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A180C433CB;
+	Tue, 10 Oct 2023 18:33:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696961631;
-	bh=Y0jSZ418VJCO23r2Ek0he1ittaMBBbZlWHmICY7boL0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qEAQjv4aEejMBWqYn38S2+3PR80PHRXRWNK1Dx95Y5A6yom9zyOIeEF6cFo+twTeq
-	 uZ4/xPF99dXObMnNONMVZoSxJwoA39XBiL1bCmTfF7slAs4HyYifhsmeFnYGsmHpOJ
-	 z7/17TuRZorVYQyesRcajWcQHAsB6VFr7hJtS0qLbwFqHn9wKhMZTktuM92okWRKr6
-	 2Zueo5eY/OjrQhpsTfGqH+9d9G3BHTukY6l1RSWt5sUADUIiz1OZMkUEohNOrbR8eI
-	 V7zLxZIQ+SQnZhH1PfuXb3EBG9SLb0BSZpzLkQA3cz/+4wuRiIl4glNLZz2CnBS2s7
-	 Oea/EP+68pMbA==
-Received: (nullmailer pid 1210705 invoked by uid 1000);
-	Tue, 10 Oct 2023 18:13:49 -0000
-Date: Tue, 10 Oct 2023 13:13:49 -0500
-From: Rob Herring <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] regulator: dt-bindings: fixed-regulator: Add
- under-voltage interrupt support
-Message-ID: <20231010181349.GA1183365-robh@kernel.org>
-References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
+	s=k20201202; t=1696962800;
+	bh=yBzcSftJxEqCztLT9VvKOdDs1KwwRk5x/oGlnnB88nU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=uZSxPeL7jvC+twuHGkChvxvZh7kTC91tPfhPIfrA6IjU5DNN/XjslTfuGyX2sJi0a
+	 l8iIJCtPj4pY32oJmInO/tLiHqApcgZmkkwNTMVEQzPW5SQIYi9wR9WIBpKV9wRUkW
+	 alIlET2yb7mki3Y2URFSIF0ZgLRO5MrekCF5w/ZNEuZsLe6ISR5QKZ0mB8/IXI0ToU
+	 Ie2XaeQfWqk/WH1bivlqo0L96rB46Y/YzoYKlooZRFwSPVD5Wqk8DJMzWhIzTrmMhB
+	 +acy/g4hW7DJy7bV/yJTCf+dJjyLJ3KXzYlUl6D8YdW8jSdfQIQBKymCTqI2Ve5KeU
+	 uIZDw+bJSOAxQ==
+From: Mark Brown <broonie@kernel.org>
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+ patches@opensource.cirrus.com
+In-Reply-To: <20231005135559.3117994-1-ckeepax@opensource.cirrus.com>
+References: <20231005135559.3117994-1-ckeepax@opensource.cirrus.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: cirrus,cs42l43: Update values
+ for bias sense
+Message-Id: <169696279894.221758.959134819176975869.b4-ty@kernel.org>
+Date: Tue, 10 Oct 2023 19:33:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010085906.3440452-1-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On Tue, Oct 10, 2023 at 10:59:04AM +0200, Oleksij Rempel wrote:
-> Add under-voltage interrupt support. This can be used with simple
-> regulators having no other way to communicate an under-voltage event
-> except as by toggling some GPIO line.
+On Thu, 05 Oct 2023 14:55:58 +0100, Charles Keepax wrote:
+> Due to an error in the datasheet the bias sense values currently don't
+> match the hardware. Whilst this is a change to the binding no devices
+> have yet shipped so updating the binding will not cause any issues.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> index ac0281b1cceb..0f8760ed2fb1 100644
-> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> @@ -100,6 +100,14 @@ properties:
->    vin-supply:
->      description: Input supply phandle.
-> 
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Under-voltage interrupt
-> +
-> +  interrupt-names:
-> +    const: under-voltage
 
-No need for a name. If there's ever a 2nd, it should be a specific 
-binding, not fixed-regulator.
+Applied to
 
-> +
->  required:
->    - compatible
->    - regulator-name
-> ---
->  .../devicetree/bindings/regulator/fixed-regulator.yaml    | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> index ac0281b1cceb..0f8760ed2fb1 100644
-> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-I think you've got some problems with your setup...
+Thanks!
 
-> @@ -100,6 +100,14 @@ properties:
->    vin-supply:
->      description: Input supply phandle.
->  
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Under-voltage interrupt
-> +
-> +  interrupt-names:
-> +    const: under-voltage
-> +
->  required:
->    - compatible
->    - regulator-name
-> -- 
-> 2.39.2
-> 
+[1/2] ASoC: dt-bindings: cirrus,cs42l43: Update values for bias sense
+      commit: 53ba32acb5ab137ba333c20e0c987bdd6273a366
+[2/2] ASoC: cs42l43: Update values for bias sense
+      commit: 99d426c6dd2d6f9734617ec12def856ee35b9218
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
