@@ -1,106 +1,201 @@
-Return-Path: <devicetree+bounces-7238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 539297BFD3E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:22:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE847BFD33
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:21:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8443B1C20DB0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:22:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41A20281966
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E3F47376;
-	Tue, 10 Oct 2023 13:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF8C45F51;
+	Tue, 10 Oct 2023 13:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="fyVYATsK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hijm2yoz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDBA45F67
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:22:27 +0000 (UTC)
-Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6170891
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 06:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=93Dtf4ueCONiAn1Ab9gtN3cKkbSaUtJ5fvdA41bWLUc=; b=fyVYATsKeZCJapMQuZA7f8ixRH
-	j1C3GcA68mA7DDDOAdqN9Ktb+pWCkP9Ka5+zgdLAjkyQfc/nO4EKv9AwSKGFRGaaJ6NbwK7ylXFgM
-	i4LSvKkhYIrKQ8v/T+WL9H+r/2fbPvvsojQw7/9xF9DZoFxl06nGKnDGVhWkSJQZ4JOFiYOotDKSV
-	83RqSOh2dBRQTZL/8s9NI2T2dHESC5wD0AbotDUUuTeDV9b9tFiddF6XagbPvukcqN77vLjNdxTK9
-	1/66KXBYKN7znKQ1n9glmMS5UN+u48Am1Q61YdSaxF7IV/o0NOOBB+ryZlwDtg+jnxhCTD8YoJmZa
-	UCQoZ2Kg==;
-Received: from [192.168.1.4] (port=20319 helo=SH-EX2013.helmholz.local)
-	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Ante.Knezic@helmholz.de>)
-	id 1qqCdY-0001j6-16;
-	Tue, 10 Oct 2023 15:19:00 +0200
-Received: from linuxdev.helmholz.local (192.168.6.7) by
- SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Tue, 10 Oct 2023 15:18:59 +0200
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: <netdev@vger.kernel.org>
-CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<UNGLinuxDriver@microchip.com>, Ante Knezic <ante.knezic@helmholz.de>
-Subject: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document microchip,rmii-clk-internal
-Date: Tue, 10 Oct 2023 15:18:54 +0200
-Message-ID: <df8490e3a39a6daa66c5a0dd266d9f4a388dfe7b.1693482665.git.ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1693482665.git.ante.knezic@helmholz.de>
-References: <cover.1693482665.git.ante.knezic@helmholz.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD468BFA
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:21:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E8C8C433C7;
+	Tue, 10 Oct 2023 13:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696944113;
+	bh=CgSS8Lt/YFvUeBBHoPK36uAJxFiiRquBNnr5VmqVfMQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hijm2yozjMDOmRdLMLGdqw/D23+voz/gLKCJ1kdZdcELcII+FlkURluz8un56uk95
+	 WvFD362ukK7KpNIl7GWnKnNWDam6vYT9S+owWZjCqkI4RYOPdtDjhZdnAO+6LYK2oy
+	 NYJY8LQtj1L1l+w7e7bfji474lIQ9EXIn4LOaEW/eQbzQfBQVn60k32Pdcn+7qAQlX
+	 NfW0iesmLNMC0e5EMItHAbJcyr7c/zaAuGDRZNoBWRo+jYkGnqnMEyiBrTn1qx+OQY
+	 6hGROv3vYL7SFa8SWiSKiL0Q0g5XdTGYmcUyZyjZm8Py+ZkUlvxNMTGQDi7pZR93NB
+	 ls2v8+WQvhy3g==
+Received: (nullmailer pid 620779 invoked by uid 1000);
+	Tue, 10 Oct 2023 13:21:51 -0000
+Date: Tue, 10 Oct 2023 08:21:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH V2 1/4] dt-bindings: clock: add Amlogic C3 PLL clock
+ controller bindings
+Message-ID: <20231010132151.GA557938-robh@kernel.org>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
+ <20231010062917.3624223-2-xianwei.zhao@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.6.7]
-X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
- SH-EX2013.helmholz.local (192.168.1.4)
-X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010062917.3624223-2-xianwei.zhao@amlogic.com>
 
-Add documentation for selecting reference rmii clock on KSZ88X3 devices
+On Tue, Oct 10, 2023 at 02:29:14PM +0800, Xianwei Zhao wrote:
+> Add the C3 PLL clock controller dt-bindings for Amlogic C3 SoC family
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> V1 -> V2: Fix errors when check dtbinding use "make dt_binding_check"
 
-Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
----
- Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Your patches aren't bisectable. It's fine if you want to combine patch 1 
+and 2 into 1 patch. Or just use the raw numbers here instead of the 
+header.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index e51be1ac0362..3df5d2e72dba 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -49,6 +49,12 @@ properties:
-       Set if the output SYNCLKO clock should be disabled. Do not mix with
-       microchip,synclko-125.
- 
-+  microchip,rmii-clk-internal:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Set if the RMII reference clock should be provided internally. Applies only
-+      to KSZ88X3 devices.
-+
- required:
-   - compatible
-   - reg
--- 
-2.11.0
+> ---
+>  .../bindings/clock/amlogic,c3-pll-clkc.yaml   | 59 +++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,c3-pll-clkc.h   | 42 +++++++++++++
+>  2 files changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..a646992917b7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,c3-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic C3 serials PLL Clock Controller
 
+s/serials/Serials/
+
+> +
+> +maintainers:
+> +  - Chuan Liu <chuan.liu@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,c3-pll-clkc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: input pll_in
+> +      - description: input mclk_pll_in
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: pll_in
+> +      - const: mclk_pll_in
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clkc_pll: clock-controller@8000 {
+
+Drop unused labels.
+
+> +          compatible = "amlogic,c3-pll-clkc";
+
+Your indentation is not consistent.
+
+> +          reg = <0x0 0x8000 0x0 0x1a4>;
+> +          clocks = <&clkc_periphs CLKID_PLL_IN>,
+> +                   <&clkc_periphs CLKID_MCLK_PLL_IN>;
+> +          clock-names = "pll_in", "mclk_pll_in";
+> +          #clock-cells = <1>;
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/amlogic,c3-pll-clkc.h b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+> new file mode 100644
+> index 000000000000..aa731e8fae29
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+> @@ -0,0 +1,42 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
+> +#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
+> +
+> +#define CLKID_FIXED_PLL_DCO			0
+> +#define CLKID_FIXED_PLL				1
+> +#define CLKID_FCLK_DIV40_DIV			2
+> +#define CLKID_FCLK_DIV40			3
+> +#define CLKID_FCLK_DIV2_DIV			4
+> +#define CLKID_FCLK_DIV2				5
+> +#define CLKID_FCLK_DIV2P5_DIV			6
+> +#define CLKID_FCLK_DIV2P5			7
+> +#define CLKID_FCLK_DIV3_DIV			8
+> +#define CLKID_FCLK_DIV3				9
+> +#define CLKID_FCLK_DIV4_DIV			10
+> +#define CLKID_FCLK_DIV4				11
+> +#define CLKID_FCLK_DIV5_DIV			12
+> +#define CLKID_FCLK_DIV5				13
+> +#define CLKID_FCLK_DIV7_DIV			14
+> +#define CLKID_FCLK_DIV7				15
+> +#define CLKID_GP0_PLL_DCO			16
+> +#define CLKID_GP0_PLL				17
+> +#define CLKID_HIFI_PLL_DCO			18
+> +#define CLKID_HIFI_PLL				19
+> +#define CLKID_MCLK_PLL_DCO			20
+> +#define CLKID_MCLK_PLL				21
+> +#define CLKID_MCLK_PLL_CLK			22
+> +#define CLKID_MCLK0_SEL				23
+> +#define CLKID_MCLK0_SEL_OUT			24
+> +#define CLKID_MCLK0_DIV				25
+> +#define CLKID_MCLK0				26
+> +#define CLKID_MCLK1_SEL				27
+> +#define CLKID_MCLK1_SEL_OUT			28
+> +#define CLKID_MCLK1_DIV				29
+> +#define CLKID_MCLK1				30
+> +
+> +#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H */
+> 
+> base-commit: 57b55c76aaf1ba50ecc6dcee5cd6843dc4d85239
+> -- 
+> 2.37.1
+> 
 
