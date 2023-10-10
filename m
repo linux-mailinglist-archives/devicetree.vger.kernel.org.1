@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8537C4061
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:53:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1B07C406E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:55:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27CE51C208AF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6336281AF8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA7A321AF;
-	Tue, 10 Oct 2023 19:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA75321BA;
+	Tue, 10 Oct 2023 19:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lhp0VL/a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d9iRK8YR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F223932192
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:52:56 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CA4493
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:52:55 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-406618d0991so55867805e9.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:52:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F39C32186
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:55:34 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3630AF
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:55:31 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c1807f3400so2345601fa.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:55:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696967574; x=1697572374; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696967730; x=1697572530; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t5i40gxuuo/zlrus1pUVR5uLfyf6M7O5NanevceCLaM=;
-        b=lhp0VL/alWj4yDjaWLLUyl5aIEMTGKPHkZDcjQh00nY3GoMtUjjM12PAqOwSgMCz2b
-         kpgOe10BkpNQVcqpRd4hfuGn4kWMmLMHEPXqRDdisLAEVjGxo0XUefFOQ8mxD5oUFDDa
-         VOVoW/rwAzHCFvIIfsFwGyoPKhIUNq5c7nyJ3zg8YVzRbMWCy7i3SZUMX3IpmXIBoHfp
-         Z1Q7mCbiUZ50E0hPOMA8KriPsfZCv3XNtDzvdMENT36l24Qf2kYto08CehJdZweFHQw6
-         z3ZBPuEc3ll6rl4SQ11oVaoVDDrTuN8BuF7lVqXSc2627rKHsE5/F+7rxrvI2Ex66oS4
-         tN0Q==
+        bh=Rl5xfKNIMhqVf9XxJ6NHKzGj+/S+F5nmD0njh3SwUk0=;
+        b=d9iRK8YRDBwX8sUwkyzr6Sqtc+xRy+yaBm6SfkaVVqb7iGonQQR5xOuohS1ja5gcM2
+         otBxqCaTW+/xorw9gRcNhUNJL9fDWyPU9XO4Vb+YYQrgdyDbyXrz6eamdLFHXUg5l9ki
+         cUtj4VMm45e2ghSYAk+1cmFpMcmyP6FMG4ucBjyGgGMtOyZNU8e4irZS/HXt5H0upxo0
+         Fs/ZaJWQFZ/IwY/wbEz1EsVhcZOOHaNeMt6ePW9XfirXusTLhDf8OxI6wvIb9gLJaWC5
+         4NkShBeghunFD+Fsy9sx1a8hgtzyr2OwvfflAt0knDX+BihpQxSoNxGk6lbZlaWNWPaG
+         1XXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696967574; x=1697572374;
+        d=1e100.net; s=20230601; t=1696967730; x=1697572530;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t5i40gxuuo/zlrus1pUVR5uLfyf6M7O5NanevceCLaM=;
-        b=cX7j/d4BVaZKeo8QYzk93BQZ6ext6rhQD5DBJeU0uddGAYnMulVhSaok9vdaSb7B5/
-         Xp6XBgoHfMGfYeMw0cuu5fY/H0iN/sjpy6NXxHymRh2iyK3pSyTeiYxhMPTTZnZfjtoL
-         oXSKbg3yTkE0g8DgLZ/Z2Go3VoaAdUxjd4a/ZJkVRmv+IfUhHrGuTMw4bYWvZIJKwEIm
-         YW8jW4hfqvJlXXtgIYnPw8KlLvdi7owJlRafh+b5jIjnA1hd8yzYXhCRma1gFWYavJzT
-         bfs8OEMiyH/oCXid/S6PHofis9+AfHXgkkblFKEYra0d2m1jJz7x2PCze3sbywBEGbmk
-         s+dA==
-X-Gm-Message-State: AOJu0Yy7ZmbugAT4JFMf8O0l8W6lYxBbKyl0a84ngJ5BsAYNStOKLm5g
-	m0AGx+ZzZLHkc5KKNfeK5fDkUA==
-X-Google-Smtp-Source: AGHT+IGR3sltT7d1/wfUFY0JcxZUAJ8f7UgReRbR9mZOjJt43SSv1yA+6DtBSb2Qh0Y5dzSbU7hI7g==
-X-Received: by 2002:a7b:c3d2:0:b0:402:cc5c:c98 with SMTP id t18-20020a7bc3d2000000b00402cc5c0c98mr16832711wmj.13.1696967573942;
-        Tue, 10 Oct 2023 12:52:53 -0700 (PDT)
+        bh=Rl5xfKNIMhqVf9XxJ6NHKzGj+/S+F5nmD0njh3SwUk0=;
+        b=mvpYYeniseqMYPGHpQkIyEH+ijM5eI4p8ziU7+gfaihaQQcoxCeXiVohsKlb8aI8Yz
+         r6DUP8pBUn/Gcuw+0lUzBdgcZ9LYKBjnNgHEYft7X0CARIqe4zdj7EbNLYnObn3OJbmX
+         eRRJwLIznTvsvaJGMu9nbMTn6Uk/aVvvNoLVNFTNUCY1RqHeCwhvrxXv330J1c/OC4cL
+         z3K7zwMeruaNZPW2mZfDmo6S/Op5BywlzQYRCNThCkRnaBgg1Z7JLEvD89aHM6zKV/OP
+         rV7CC5DmmqI0tgbcXCJADBIe/d9ox3rDupbtLliGgAEL+eRw44jPNc8x2N94dhUzL8OY
+         Zj8w==
+X-Gm-Message-State: AOJu0Yx7FlB1/Cx+x/vAoM9PinlelJSZ9fuB906PPGYuZAaK+teh4PTR
+	XplaPMnCiXL9nMNdM0QC0jV0iA==
+X-Google-Smtp-Source: AGHT+IGUBfWjT3swZMqxVuEwraVPRHXHAFpVdg0kljzTwPMMEycuzBLnpMNaPXBAeu4IjC8BNMUkbw==
+X-Received: by 2002:a2e:8188:0:b0:2c0:1eea:d9c0 with SMTP id e8-20020a2e8188000000b002c01eead9c0mr11472447ljg.25.1696967729955;
+        Tue, 10 Oct 2023 12:55:29 -0700 (PDT)
 Received: from [172.30.204.182] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id u20-20020a05600c211400b0040642a1df1csm15081271wml.25.2023.10.10.12.52.51
+        by smtp.gmail.com with ESMTPSA id a4-20020a2eb164000000b002b9bf5b071bsm2548323ljm.20.2023.10.10.12.55.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 12:52:53 -0700 (PDT)
-Message-ID: <1aea4a86-7f7c-46ee-9cbe-655eb7663c2a@linaro.org>
-Date: Tue, 10 Oct 2023 21:52:50 +0200
+        Tue, 10 Oct 2023 12:55:29 -0700 (PDT)
+Message-ID: <e2d6c9c7-ff59-408f-94cf-81e66d291963@linaro.org>
+Date: Tue, 10 Oct 2023 21:55:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,19 +69,17 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v5 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
 Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
+To: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
  vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
  andersson@kernel.org, rafael@kernel.org, linux-pm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>
 References: <20230930102218.229613-1-robimarko@gmail.com>
  <20230930102218.229613-4-robimarko@gmail.com>
- <e255dcbd-6342-49e6-9bfe-17a47b2a3c8a@linaro.org>
- <65255c81.050a0220.141f8.7b8f@mx.google.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <65255c81.050a0220.141f8.7b8f@mx.google.com>
+In-Reply-To: <20230930102218.229613-4-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,36 +92,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 
 
-On 10/10/23 16:15, Christian Marangi wrote:
-> On Tue, Oct 10, 2023 at 03:40:32PM +0200, Konrad Dybcio wrote:
->>
->>
->> On 9/30/23 12:21, Robert Marko wrote:
->>> From: Christian Marangi <ansuelsmth@gmail.com>
->>>
->>> Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
->>> Use opp-supported-hw binding to correctly enable and disable the
->>> frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
->>> 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
->>> 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
->>>
->>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>> ---
->> Christian/Robert, can you provide a downstream source for this?
->>
+On 9/30/23 12:21, Robert Marko wrote:
+> From: Christian Marangi <ansuelsmth@gmail.com>
 > 
-> Sure, consider that everything is with +/-5%.
-Hm, so you're e.g. putting ipq8062 384MHz voltage for PVS3 equal to 
-0.95*800000 = 760000, but I'm not sure if it's a good idea?
+> Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
+> Use opp-supported-hw binding to correctly enable and disable the
+> frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
+> 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
+> 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+> Changes v4:
+> * Add OPP DTS patch for IPQ8064
+> 
+>   arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi | 30 +++++++++++
+>   arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 67 ++++++++++++++++++++++++
+>   arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi | 65 +++++++++++++++++++++++
+>   3 files changed, 162 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> index 5d3ebd3e2e51..72d9782c3d6f 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
+> @@ -6,3 +6,33 @@ / {
+>   	model = "Qualcomm Technologies, Inc. IPQ8062";
+>   	compatible = "qcom,ipq8062", "qcom,ipq8064";
+>   };
+> +
+> +&opp_table_cpu {
+> +	opp-384000000 {
+> +		opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
+> +		opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
+> +		opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
+> +		opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
+We can just make use of opp-supported-hw and define opp-384...-0, 
+opp-384..-1 etc. with a valid corresponding bitmask in opp-supported-hw
 
-The comment in downstream:
-
-"These are based on +/-5% Margin on the VDD_APCx that is advertised in 
-our Datasheet across Temperature"
-
-suggests this is already not very accurate, and betting that the lower 
-threshold works on all chips is probably not the best idea.
+otherwise it's somewhat confusing to follow, I think..
 
 Konrad
 
