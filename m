@@ -1,158 +1,95 @@
-Return-Path: <devicetree+bounces-7160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960BB7BF711
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:18:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6217BF742
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C73B21C20908
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:18:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72358281AA3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86A616429;
-	Tue, 10 Oct 2023 09:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFBD171CB;
+	Tue, 10 Oct 2023 09:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="CVByxQCX"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fQqbV2KS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E2DEAF9
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:18:16 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B0C115;
-	Tue, 10 Oct 2023 02:18:14 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39A8HZf0012479;
-	Tue, 10 Oct 2023 11:17:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=Ii42hPK/eYW7kl3VbzrLz0lIe0o9R/o9MASpAz5AavM=; b=CV
-	ByxQCXO9lG+Jhtm0Np+zCxv++l5fSc8JvMPl6apyyLq7YFu+NZo5FrXxVSqqHU3A
-	+kqa1QYws84FYrmTCaX6kS0DRHANrLxAqw6Q/WJajOMrU21dpEh4bXAbWTpxgR7s
-	ZzPWpM4e519vEGlzYznOWxN1wmczdbHW084yDHcxhRf4/+vZg5R+NzAsDQ++pwWt
-	j+i4FwhKBorHBFkqFZpia0gxFl2O/4pSvTKr0B+A/EdIP2uHiXj0eu6N9m3JuTTv
-	R9TP0HIhdwfSlaYK5VhAWV4fI51tGvAXMbifMAr8RxBJ5ZMxw4TZQisSo/ps//0p
-	BdN8bwd3viEfeOPZVfmg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhjg9361-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Oct 2023 11:17:52 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F3346100058;
-	Tue, 10 Oct 2023 11:17:50 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E89BF21BF6E;
-	Tue, 10 Oct 2023 11:17:50 +0200 (CEST)
-Received: from localhost (10.201.20.120) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 10 Oct
- 2023 11:17:50 +0200
-From: Hugues Fruchet <hugues.fruchet@foss.st.com>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart+renesas@ideasonboard.com>,
-        Daniel Almeida
-	<daniel.almeida@collabora.com>,
-        Benjamin Mugnier
-	<benjamin.mugnier@foss.st.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Mauro
- Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>
-CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Marco Felsch
-	<m.felsch@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: st: add video encoder support to stm32mp255
-Date: Tue, 10 Oct 2023 11:16:43 +0200
-Message-ID: <20231010091643.3666290-6-hugues.fruchet@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231010091643.3666290-1-hugues.fruchet@foss.st.com>
-References: <20231010091643.3666290-1-hugues.fruchet@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7652B171B3
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:27:14 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A814C93;
+	Tue, 10 Oct 2023 02:27:12 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39A9R2YF115412;
+	Tue, 10 Oct 2023 04:27:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696930022;
+	bh=M5KLQdJ/tF63sS8JG3afvpXgMKzOWWbSrtekEXa6fJA=;
+	h=From:To:CC:Subject:Date;
+	b=fQqbV2KSYhmQBGn8iLH4KN+7vBfEOHIgC8TTQTzl3vg4bG5vDikfWgNqQdFgXB+O9
+	 hfxJaABo5dRg0OQ5U43Qv0qbux0gBpyW/CPBh5pR5fKo+OhSimDZUaUBiQBSRzkVV8
+	 uEfsfgXGKvOCxUFtSz8CiTy/5BdGQCP79DBP3o6k=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39A9R26b010516
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 10 Oct 2023 04:27:02 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 10
+ Oct 2023 04:27:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 10 Oct 2023 04:27:02 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39A9R1hU117093;
+	Tue, 10 Oct 2023 04:27:01 -0500
+From: Vaishnav Achath <vaishnav.a@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vaishnav.a@ti.com>, <u-kumar1@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-j721s2/j784s4: Add CSI BCDMA nodes
+Date: Tue, 10 Oct 2023 14:56:58 +0530
+Message-ID: <20231010092700.2089-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.201.20.120]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-10_04,2023-10-09_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add VENC hardware video encoder support to STM32MP255.
+J721S2 and J784S4 have a dedicated BCDMA controller for 
+Camera Serial Interface. Add the node for the DMA controllers
+and keep it disabled by default.
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 6 ++++++
- arch/arm64/boot/dts/st/stm32mp255.dtsi | 7 +++++++
- 2 files changed, 13 insertions(+)
+The BCDMA instances were enabled/disabled and tested:
+J721S2 : https://gist.github.com/vaishnavachath/4b9d7ec2ee1aad59a57d44cf28ed7eb0
+J784S4 : https://gist.github.com/vaishnavachath/f928e4566aa80c7f47e7ac3c1491d62e
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 0ca421ede0ae..2aff746968f5 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -52,6 +52,12 @@ ck_icn_p_vdec: ck-icn-p-vdec {
- 			compatible = "fixed-clock";
- 			clock-frequency = <200000000>;
- 		};
-+
-+		ck_icn_p_venc: ck-icn-p-venc {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <200000000>;
-+		};
- 	};
- 
- 	firmware {
-diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-index aea5096dac3c..17f197c5b22b 100644
---- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-@@ -14,6 +14,13 @@ vdec: vdec@480d0000 {
- 				interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&ck_icn_p_vdec>;
- 			};
-+
-+			venc: venc@480e0000 {
-+				compatible = "st,stm32mp25-venc";
-+				reg = <0x480e0000 0x800>;
-+				interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ck_icn_ls_mcu>;
-+			};
- 		};
- 	};
- };
+Vaishnav Achath (2):
+  arm64: dts: ti: k3-j721s2-main: Add BCDMA instance for CSI2RX
+  arm64: dts: ti: k3-j784s4-main: Add BCDMA instance for CSI2RX
+
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 17 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 17 +++++++++++++++++
+ 2 files changed, 34 insertions(+)
+
 -- 
-2.25.1
+2.17.1
 
 
