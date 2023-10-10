@@ -1,125 +1,160 @@
-Return-Path: <devicetree+bounces-7308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BF87BFFAF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:52:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9BE87BFFD8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10BA2281C36
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:52:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DAA6281DD3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B05424C73;
-	Tue, 10 Oct 2023 14:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE19828E00;
+	Tue, 10 Oct 2023 14:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pvcp2L4H"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="M9+zGAzA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1801428E
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:52:52 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8664B6;
-	Tue, 10 Oct 2023 07:52:49 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50336768615so7554274e87.0;
-        Tue, 10 Oct 2023 07:52:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696949568; x=1697554368; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NUkVmCPpadfaQWhNaIF6MgMWdRIKYVJjqWjOHwXj0+M=;
-        b=Pvcp2L4H/n5MrjMlX+4ChK8D4NfrneG5m4ht+I+7Qa4NUwdnR6c32KXd78/j1Y0kch
-         HLBqOIBRuXJeLbzVaE2j5uCV1w+uVhxzGAFay5nCUHsDzk+vFIv5SPY9wOftgkEJxFuH
-         c6HA+QIYAifmlG7iTQhn4bZQpC+xAyK2Ql03E/P+0VObUPczL7oLWdusdgRvI/rkMAC1
-         fV9W2HC8mgOG7/2gkADTHxQyt9KJxHrZYB8oyEOXmsLrqT9P7LaAxkA4Vao/102aXSln
-         NuvPEqkKfas+pxFsdPkYdA9rfK3hJ8mX4Gg5JTpVTdC/NFHRkFuwRJH+a1UG1K+n/+VS
-         6ktg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696949568; x=1697554368;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NUkVmCPpadfaQWhNaIF6MgMWdRIKYVJjqWjOHwXj0+M=;
-        b=BCC3wWGAKnXYnJJ29bFVcGc/glqjWQZos/o3tu5do/TO49Wg6VJXvo+QZzxNvZchbf
-         uMqmZvmEMmyhEQLHSuOHUTwl76NDFWwrI0slClDWef57CbK5eqr/MWXi8mlYmos1R3mp
-         17T/gHV943kqgtx0mFu/ljMiw8CRkGXM6+4zRVCbBifHUS6SYIXbdzLkCx/9/+sVrb7C
-         lfWoxXGwHxNJBLcd/zuqyFDjSCFVQNg+DqvnQYI2sR652OnXPaCFfJQuJ3pCaBo3tUo4
-         PnEjSQggpXKu50IUbANNOhgBfrW5oLxlTnxdwxtuv+McO00BPiTU125HOKnvwU05eg9u
-         LEIA==
-X-Gm-Message-State: AOJu0YyjSRdeod04VuWljAXpnCh6ZtsQqgUfmSYbDdrGJkoRIG4V3+9+
-	9WCU6oXlXrwlxagWm4CWxLI=
-X-Google-Smtp-Source: AGHT+IHO5E5YV/KKLewCzVIm1cEGcf6Poaf/0tI/To+Cb4NOLcjUdSdP7uCOnzJ52UrXqYpIrAKptg==
-X-Received: by 2002:a05:6512:3608:b0:4ff:9a75:211e with SMTP id f8-20020a056512360800b004ff9a75211emr13113617lfs.42.1696949567369;
-        Tue, 10 Oct 2023 07:52:47 -0700 (PDT)
-Received: from [192.168.1.103] ([178.176.74.144])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05651238a900b00501c8959f6asm1840709lft.98.2023.10.10.07.52.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Oct 2023 07:52:46 -0700 (PDT)
-Subject: Re: [PATCH 1/6] clk: renesas: rzg2l: Use %x format specifier to print
- CLK_ON_R()
-To: Claudiu <claudiu.beznea@tuxon.dev>, geert+renesas@glider.be,
- magnus.damm@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com>
- <20231010132701.1658737-2-claudiu.beznea.uj@bp.renesas.com>
-From: Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <8226bd48-4297-0b32-c733-2e569114a934@gmail.com>
-Date: Tue, 10 Oct 2023 17:52:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A603B21364
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:58:07 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD1199;
+	Tue, 10 Oct 2023 07:58:01 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2DBAA120008;
+	Tue, 10 Oct 2023 17:57:58 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2DBAA120008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696949878;
+	bh=WKjfedJyvBDkzLdG/sTO4e60qiEDTGG07ZQdbl0pGik=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=M9+zGAzAs6NiaUoSUbh7JWgTVinHLEqlbdhQTvz18rUUMNKqgSCKHgU1LrDPKrciu
+	 TyEKeA2xTRifnNuKhW/ESkdlqTsB72V0/XhFLp1VSVguwdXWX1DkuB13454b8JDx1w
+	 DN2b2pa10ugsXc+lFoETFz/xbSAwaMkna+gYHLvRpd6EPav+Y50qbFFippWYhwdNYd
+	 ZFpSTOQmHYR1ozNNtrbgDHcMs/mNmvjM9q3fI8JkKh+VdjypGzfWGzvFIy66feF5/C
+	 EVoAu++ZsEqDlZXbP/TVtZfkOSju4iKlvm+FzXabb7dZNI0ytfdZ6nIeFpwCJlFI1p
+	 AFjruUWllS4ag==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 10 Oct 2023 17:57:57 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 10 Oct
+ 2023 17:57:57 +0300
+Date: Tue, 10 Oct 2023 17:57:56 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Rob Herring <robh@kernel.org>
+CC: <lee@kernel.org>, <pavel@ucw.cz>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
+	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v1 04/11] dt-bindings: leds: aw200xx: introduce optional
+ hwen-gpio property
+Message-ID: <20231010145756.7kvzcwjqiiq6dz4j@CAB-WSD-L081021>
+References: <20231006160437.15627-1-ddrokosov@salutedevices.com>
+ <20231006160437.15627-5-ddrokosov@salutedevices.com>
+ <20231010141332.GA756597-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20231010132701.1658737-2-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231010141332.GA756597-robh@kernel.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180514 [Oct 10 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 536 536 1ae19c7800f69da91432b5e67ed4a00b9ade0d03, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/10 12:47:00 #22143134
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello!
+Hello Rob,
 
-On 10/10/23 4:26 PM, Claudiu wrote:
+Thank you for the review! Please find my comments below.
 
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Tue, Oct 10, 2023 at 09:13:32AM -0500, Rob Herring wrote:
+> On Fri, Oct 06, 2023 at 07:04:30PM +0300, Dmitry Rokosov wrote:
+> > Property 'awinic,hwen-gpio' is optional, it can be used by the board
+> > developer to connect AW200XX LED controller with appropriate poweron
+> > GPIO pad.
+> > 
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > ---
+> >  Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > index 73b81f7a7258..e3ad11fc7a84 100644
+> > --- a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > @@ -41,6 +41,9 @@ properties:
+> >      description:
+> >        Leds matrix size
+> >  
+> > +  awinic,hwen-gpio:
+> > +    maxItems: 1
 > 
-> Use %x format specifier to print CLK_ON_R(). This is easier when
-> debugging as the value printed will be hexadecimal like in the hardware
-> manual. Along with it "0x" has been added in front of the printed value.
+> We have standard 'enable-gpios' or 'powerdown-gpios'. Those don't work 
+> here?
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  drivers/clk/renesas/rzg2l-cpg.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
-> index d62f1bc1f60e..764bd72cf059 100644
-> --- a/drivers/clk/renesas/rzg2l-cpg.c
-> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> @@ -1213,7 +1213,7 @@ static int rzg2l_mod_clock_endisable(struct clk_hw *hw, bool enable)
->  		return 0;
->  	}
->  
-> -	dev_dbg(dev, "CLK_ON %u/%pC %s\n", CLK_ON_R(reg), hw->clk,
-> +	dev_dbg(dev, "CLK_ON 0x%x/%pC %s\n", CLK_ON_R(reg), hw->clk,
+> Note that *-gpio is deprecated in favor of *-gpios.
 
-   Perhaps "%#x" instead of "0x%x"?
+Yes, you are absolutely correct. Andy has already addressed this issue
+in the driver patchset. I will revise the driver to utilize the current
+GPIO API.
 
-[...]
+> > +
+> >  patternProperties:
+> >    "^led@[0-9a-f]+$":
+> >      type: object
+> > @@ -90,12 +93,15 @@ additionalProperties: false
+> >  
+> >  examples:
+> >    - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> >      #include <dt-bindings/leds/common.h>
+> >  
+> >      i2c {
+> >          #address-cells = <1>;
+> >          #size-cells = <0>;
+> >  
+> > +        awinic,hwen-gpio = <&gpio 3 GPIO_ACTIVE_HIGH>;
+> > +
+> >          led-controller@3a {
+> >              compatible = "awinic,aw20036";
+> >              reg = <0x3a>;
+> > -- 
+> > 2.36.0
+> > 
 
-MBR, Sergey
+-- 
+Thank you,
+Dmitry
 
