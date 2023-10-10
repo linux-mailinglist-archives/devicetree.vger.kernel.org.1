@@ -1,141 +1,72 @@
-Return-Path: <devicetree+bounces-7389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258BB7C04B6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:36:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DF47C04BB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:36:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BAA8281E77
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:36:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABF221C20CCC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 19:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B89332190;
-	Tue, 10 Oct 2023 19:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9C332197;
+	Tue, 10 Oct 2023 19:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lg/9Mhl5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYGlVfKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7C632188
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:36:12 +0000 (UTC)
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033DFAF;
-	Tue, 10 Oct 2023 12:36:10 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c008042211so74146651fa.2;
-        Tue, 10 Oct 2023 12:36:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696966568; x=1697571368; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EnCyCL9CqSgjOWusL/DcIe34tmAuDeD2eNNCQWG/+So=;
-        b=lg/9Mhl57JyJXxLTkAks6IVUyv3WYJQbeVVmejFsdRRjTfLPox/mdoq6dgM0xy3R0h
-         1/7kS34bfTTqdW26sBrbDaoiOaG/FDdLbdrgAWL+VGJ+UipDegRwAvr2S/+09Lh7Zgm3
-         U+EQGUa6uevRgQsPd5PsRKOJl5DRQG85SaRxCvYGB8ATxRR6uD2DSdBwvUdZaKKYAdq9
-         u0GWBXACdc5ugWo4Bus/OAE/lfwkLqnZ55LJSNLN9y9ocnMpFIjkIqx731DvpKtsl40W
-         iERPb/c2rjy9YBN3FEL1gnL+IRdIjXLVxWQkZi+M99/HH/fhwI+ZzF21MLUoAVEIGBzM
-         uwbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696966568; x=1697571368;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EnCyCL9CqSgjOWusL/DcIe34tmAuDeD2eNNCQWG/+So=;
-        b=Urn/i3HVqciQ2ao897J8eVJCXBo2UeOgrW1ZTl+9w3MCBJ+x5dvTyZRRQnbPIdSSZh
-         rA1wDbKtX6e0wP48Rhb2ezJgQmxTj1tumFRcZT9u8zI2x0pJ+drWDBTSqJf5IveR+RyE
-         pNFHW9wIa4W6WpLCEb7AfFPxUyi9vn4sqyTIOBiJOWR95jHykQWCiAzZtvacHlYbJOlM
-         3VDx+TElsfdjK/7LG0wDw6IDsPb3JcZHDDzfwV0Nv0Kz+Pq+GQ2azxjpNT/zp+ku7nN7
-         vRhiPYh3TSIx6mU0EX0p6yUSuVRTf50n9zRvkMhi6mqYPVkxw7beqtQE69F3haXb98Rs
-         pC4g==
-X-Gm-Message-State: AOJu0Ywh0DU+zE3PIcEtfLg0WcI2CR14M51eGsd7Y9LodYB+kScKKdQe
-	VUfQ70wFJ2yA+GebKeL0q7FRsfoCiW40IwVjaQk=
-X-Google-Smtp-Source: AGHT+IFh0GPOwwi4vGUKtm0FShcUPBvpdzJkQpyfIUh9wMFu4ei5Fw3aFTsOCszk/QW3i1AUiC1n+Anw6KOmvvZ82v4=
-X-Received: by 2002:a05:651c:141:b0:2c0:2583:520e with SMTP id
- c1-20020a05651c014100b002c02583520emr14990485ljd.41.1696966567771; Tue, 10
- Oct 2023 12:36:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6B332188
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 19:36:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C8DC433C8;
+	Tue, 10 Oct 2023 19:36:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696966603;
+	bh=cZkzPPFC3wMzzRvvFIDetx465/S9zd2QKLoizRzR0gI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LYGlVfKg4sSSZjfl2XDMA6KCVaRbQF/bXgrzY8OcHIvKxtXq0Pfw73bxJUGhWtc6e
+	 17dTUdIS7RnQy0sCqfZGGQYS5Y/vC2T967KmNtzcgmCHDwe0+BY9K7y5FTWjjc4ek2
+	 yU7dtRz6CmPWaHLcyYnVu7wA6Qa9dSaWUNrnxqAMfxWdYLcZPx0ukMqx9hSI3NiGMZ
+	 5l0dwTKvv59Yt3MdWjVextK9jf4dqBfu4SSJHO5KeS/brR6ijvhs3lNscCBOd0o8cE
+	 kUB9LYxgW2yLb1r07biJ25GjEtFloOyG4qhLSR0t3B2IeVx5QXQDSH0uq0n5gFCwTu
+	 Uq1i24pvfu9Ig==
+Received: (nullmailer pid 1423129 invoked by uid 1000);
+	Tue, 10 Oct 2023 19:36:40 -0000
+Date: Tue, 10 Oct 2023 14:36:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: ezequiel@vanguardiasur.com.ar, robh+dt@kernel.org, heiko@sntech.de, linux-media@vger.kernel.org, thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com, linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, mchehab@kernel.org, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v7 1/3] media: dt-bindings: media: add bindings for
+ Rockchip VIP
+Message-ID: <169696659993.1423074.9501474541283864884.robh@kernel.org>
+References: <cover.1696943295.git.mehdi.djait@bootlin.com>
+ <a103d2e4e2c80a97a62574a782eba29f78731471.1696943295.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231002200610.129799-1-tmaimon77@gmail.com> <CAPDyKForPWPHoAuRuyXBHRpNVA9MvYa-eTXDrHx8Z94nSWpXBg@mail.gmail.com>
-In-Reply-To: <CAPDyKForPWPHoAuRuyXBHRpNVA9MvYa-eTXDrHx8Z94nSWpXBg@mail.gmail.com>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Tue, 10 Oct 2023 22:35:56 +0300
-Message-ID: <CAP6Zq1hZF=v6T+Bn8AuZNUKCaTChpyLZKLvPcSo-SbfNS1-V+g@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] add NPCM SDHCI driver support
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	adrian.hunter@intel.com, skhan@linuxfoundation.org, davidgow@google.com, 
-	pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org, 
-	arnd@arndb.de, krakoczy@antmicro.com, andy.shevchenko@gmail.com, 
-	openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a103d2e4e2c80a97a62574a782eba29f78731471.1696943295.git.mehdi.djait@bootlin.com>
 
-Thank a lot Ulf
 
-Appreciate it!
+On Tue, 10 Oct 2023 15:15:04 +0200, Mehdi Djait wrote:
+> Add a documentation for the Rockchip Video Input Processor
+> binding.
+> 
+> The PX30 SoC is the only platform supported so far.
+> 
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> ---
+>  .../bindings/media/rockchip,px30-vip.yaml     | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> 
 
-On Tue, 10 Oct 2023 at 17:28, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Mon, 2 Oct 2023 at 22:06, Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >
-> > This patch set adds SDHCI support for the Nuvoton NPCM Baseboard
-> > Management Controller (BMC).
-> >
-> > Deeply sorry it took that long until sending version three, promise to try
-> > to do better on the next versions (if needed) :-),
-> >
-> > The NPCM SDHCI driver tested on NPCM750 and NPCM845 EVB.
-> >
-> > Addressed comments from:
-> >  - Andy Shevchenko : https://www.spinics.net/lists/devicetree/msg638000.html
-> >
-> > Changes since version 4:
-> >  - Remove unnecessary clk_disable_unprepare function.
-> >
-> > Changes since version 3:
-> >  - Use devm_clk_get_optional_enabled function.
-> >  - Add mod_devicetable.h.
-> >  - Modify copyright year.
-> >
-> > Changes since version 2:
-> >  - Add data to handle architecture-specific SDHCI parameters.
-> >  - Change config place in make and kconfig files.
-> >  - Calling sdhci_pltfm_free to to avoid a memory leak on error.
-> >
-> > Changes since version 1:
-> >  - Use correct spaces in the dt-bindings.
-> >  - Drop unused labels from dt-bindings.
-> >  - Order by module name in the make a configuration.
-> >  - Remove unnecessary blank lines.
-> >  - Using devm_clk_get_optional instead of devm_clk_get.
-> >
-> > Tomer Maimon (2):
-> >   dt-bindings: mmc: npcm,sdhci: Document NPCM SDHCI controller
-> >   mmc: sdhci-npcm: Add NPCM SDHCI driver
-> >
-> >  .../devicetree/bindings/mmc/npcm,sdhci.yaml   | 45 +++++++++
-> >  drivers/mmc/host/Kconfig                      |  8 ++
-> >  drivers/mmc/host/Makefile                     |  1 +
-> >  drivers/mmc/host/sdhci-npcm.c                 | 94 +++++++++++++++++++
-> >  4 files changed, 148 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml
-> >  create mode 100644 drivers/mmc/host/sdhci-npcm.c
-> >
->
-> Applied for next (and by amending patch2 to remove some commas), thanks!
->
-> Kind regards
-> Uffe
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
