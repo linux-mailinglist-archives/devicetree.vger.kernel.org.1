@@ -1,121 +1,130 @@
-Return-Path: <devicetree+bounces-7318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAA527C00A0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598A07C00B7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:50:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFA9E1C20B50
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:46:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC421C20B56
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A5327469;
-	Tue, 10 Oct 2023 15:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2B82746E;
+	Tue, 10 Oct 2023 15:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AvUAnp5V"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mOCVW13E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0B627451
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:46:35 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93820AF;
-	Tue, 10 Oct 2023 08:46:34 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b64b98656bso988439366b.0;
-        Tue, 10 Oct 2023 08:46:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696952793; x=1697557593; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZMkYHrfhXWipN/ee6VJFogJnXBxiy/M8Hxj4mP6AF/w=;
-        b=AvUAnp5VWCtAEtkI44WBFSAV19EdVp4fkS0nhGVbyzsyupZ+LayakVhbZ49gJHGBvr
-         jFkIOQQ3TWn+A7MuDVhqggxcBdq77S88pvvahujzUOBwaswGYKw1Q7ti+1QrgCjm21vY
-         qAyn7op01UJ1iiAwxmnpJn3T5q9Xi2MkKTP6rfj2GnaRnHhsHcLraMTcgEn/t7ybbiHy
-         WJcBJ+/P78T94TCNIjlhZysydwZOFYf7DdZE2FgK55rNxNZkJaIcy2GlXrFEKADaqdl2
-         bR41HXMf2fUYWvpNC4wwEGz3oGkgpgu39RKoeq0B1B3xVJMMwKOwpD0Bc7ocSX9tatcR
-         6jcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696952793; x=1697557593;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZMkYHrfhXWipN/ee6VJFogJnXBxiy/M8Hxj4mP6AF/w=;
-        b=ohfjIo3j3427yas8EVRpUjyn7syxyDmPqqwEjXk3ITToEb7oF8frqCC1DoLQL00OBe
-         OyAesmvspMbINK1LYbYA9B6X5oyigjjMokWdoIR9VGvCwTxZZBL2NteW22lMwWL2KmOp
-         0lxiXAmZZEGvgft0J/dlhLxhTY0VMjleoDOBr/KHn5Nt75oVp6KMHi/5h9c+RIBbl7pH
-         awsdATiKHnWnEbkojN5r8ZExAv39hxCU+0F9hm1yQFiCO1oSb+EyDNF/Rb5bowsUchLd
-         99yHQlcSSweHst7hT7kJTkV0NbxxAtIvDeTNuEISze6Myx7RCTicSWJYhwKtacCfEB4D
-         4KTg==
-X-Gm-Message-State: AOJu0YwhhkyDIeCV2WaOBKInQF6FClDSxWMKyBo5PY5G839javJ/d9Nb
-	VPs5ranhPs+KrhOp7glUY/A=
-X-Google-Smtp-Source: AGHT+IG6zqiukIzWsJKn9OL4P8A2iPIED1bxFNTAhVCUbLFrwSbvu5J1IObjwfklPC/cJl6Vo5ewnQ==
-X-Received: by 2002:a17:906:3050:b0:9ad:df85:97ae with SMTP id d16-20020a170906305000b009addf8597aemr15366554ejd.66.1696952792886;
-        Tue, 10 Oct 2023 08:46:32 -0700 (PDT)
-Received: from localhost (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k18-20020a1709065fd200b009adc7733f98sm8628023ejv.97.2023.10.10.08.46.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 08:46:30 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>,
-	Dmitry Osipenko <digetx@gmail.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 0/5] Support bridge/connector by Tegra HDMI
-Date: Tue, 10 Oct 2023 17:46:25 +0200
-Message-ID: <169695268806.976123.4285803254322342270.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230807143515.7882-1-clamor95@gmail.com>
-References: <20230807143515.7882-1-clamor95@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7572745D
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:16 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75582AC;
+	Tue, 10 Oct 2023 08:50:13 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39AEKSm1009846;
+	Tue, 10 Oct 2023 15:49:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=uDzM6PKK+KnpqEZrVwvTN0RCuoyw6wDOip0JbtQYE0Q=;
+ b=mOCVW13Ec97dZGrmOL1P1UZwVUT1LU/C82uwT88NSUR1K0vd+tmwEhuSNatPOCtMWwHN
+ yP96aXMkt9ckyOBAf2JLjo445mqZRw6kMvqUDS0jAk8RDmJNDcAPVCUo+DMGTvKt1soJ
+ YVmJneqeFbyhtPnpcWkGC+dg4XE4Rf6kt0FhqN9JgUdCmJohasp95Nb9UuHI8YqB9VDP
+ OHUquDycOUd9LyV3LPodC49X4M91BPOCbFDjbTgd9NerBDwnIebvg6dz5ooc3hJfKlxE
+ Hkg5FaKMNuLafdyTZxwbVWNbCT4mMorO6i5PdN6ZwyDjyKWnrfORi4vJI+tjX11yLRpq Nw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tn3s18txq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Oct 2023 15:49:59 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39AFnn2V025400
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Oct 2023 15:49:52 GMT
+Received: from hu-mnaresh-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 10 Oct 2023 08:49:44 -0700
+From: Maramaina Naresh <quic_mnaresh@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam
+	<mani@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen"
+	<martin.petersen@oracle.com>
+CC: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>
+Subject: [PATCH V1 0/4] Add per-cpu PM QoS support for QCOM UFS
+Date: Tue, 10 Oct 2023 21:19:03 +0530
+Message-ID: <1696952947-18062-1-git-send-email-quic_mnaresh@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ez6zKbQ3c6LUNUBZfgEZI2BaXGocufw7
+X-Proofpoint-GUID: ez6zKbQ3c6LUNUBZfgEZI2BaXGocufw7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-10_11,2023-10-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ lowpriorityscore=0 clxscore=1011 mlxlogscore=831 mlxscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310100117
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Thierry Reding <treding@nvidia.com>
+Add per-cpu PM QoS support for ufs. This improves random io performance
+by 20% for ufs.
 
+tiotest benchmark tool io performance results on sm8550 platform:
 
-On Mon, 07 Aug 2023 17:35:10 +0300, Svyatoslav Ryhel wrote:
-> This patch adds support for the bridge/connector attached to the
-> HDMI output, allowing to model the hardware properly. It keeps
-> backwards compatibility with existing bindings and is required
-> by devices which have a simple or MHL bridge connected to HDMI
-> output like ASUS P1801-T or LG P880/P895 or HTC One X.
-> 
-> Tested on ASUS Transformers which have no dedicated bridge but
-> have type d HDMI connector directly available. Tests went smoothly.
-> 
-> [...]
+1. Without PM QoS support
+	Type (Speed in)    | Average of 6 iterations
+	Random Write(IPOS) | 32201
+	Random Read(IPOS)  | 32201
 
-Applied, thanks!
+2. With PM QoS support
+	Type (Speed in)    | Average of 6 iterations
+	Random Write(IPOS) | 40833.5
+	Random Read(IPOS)  | 40833.5
+(Improvement % with PM QoS = ~20%).
 
-[1/5] ARM: dts: tegra: Drop unit-address from parallel RGB output port
-      (no commit info)
+Maramaina Naresh (4):
+  dt-bindings: ufs: qcom: Add qos property
+  ufs: ufs-qcom: Add per-cpu PM QoS support for ufs
+  ufs: ufs-qcom: Add per-cpu PM QoS vote support for ufs
+  arm64: dts: qcom: sm8550: Add per-cpu PM QoS support for ufs
 
-Best regards,
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          |  16 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |   9 +
+ drivers/ufs/host/ufs-qcom.c                        | 340 ++++++++++++++++++++-
+ drivers/ufs/host/ufs-qcom.h                        |  37 +++
+ 4 files changed, 401 insertions(+), 1 deletion(-)
+
 -- 
-Thierry Reding <treding@nvidia.com>
+2.7.4
+
 
