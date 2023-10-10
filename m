@@ -1,86 +1,154 @@
-Return-Path: <devicetree+bounces-7211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B9B7BFB22
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:20:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 995A67BFB4A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:25:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 979DF1C20B29
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:20:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C88F51C20B5A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF4B199A3;
-	Tue, 10 Oct 2023 12:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8569199BB;
+	Tue, 10 Oct 2023 12:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nL/xb1cn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RB9t1Xi6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD3719464
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:20:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E0E4C433C7;
-	Tue, 10 Oct 2023 12:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9816524F
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:25:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A470C433C7;
+	Tue, 10 Oct 2023 12:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696940449;
-	bh=ZavnWzZOQAQ7EGflKYoEc/3BIUKgSkHsq0I49wQevOI=;
+	s=k20201202; t=1696940705;
+	bh=omFIqKia3wy7Xbwqgl3lEDlQS0jMr0mlUIHVa8ZY/jQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nL/xb1cnrv5quevPKrptkBenC3UNP7zpxz5EnnQXcGbSj0DgOGC87yf7vMywGRWSh
-	 RwcIJvYjHkuk+MAiMOkyCNLEhcKZ2f2fUybzfYKCXsX1DdNlOj1qih5LWmT50OvN5A
-	 nyzPwJeNKGx0TnSpWFASKgJVgBPBg3cyZ9mDMoayotCtNlRPYTweHUTR6R7l5LzGI3
-	 1GqiHMGGTVjonjDmleHMaO93eEWEdCkhTyY9VPtxbhmW7kEe3pyAY7oQbV3uGw+WCz
-	 ZS5fUTNAkGsGTrzJF5xgVK/Smr5fZcHc9fDUjcIdX5y7R7qe0b0y+wzD5marBPso/p
-	 I1fJ/TDkI+LBw==
-Date: Tue, 10 Oct 2023 13:20:45 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	b=RB9t1Xi6C6UY8MEAUWcmpc14/Xjsaa4NraUXJX6ziZ6S77LJRYcw5jPz1uuO9fARo
+	 r+70AQEjYZjsYmbjTpHHdqjp8Q80rxgQpZNdtZkrZKZcaUuCSZhzMFM0MMNJLrc6OO
+	 35nHg0XtxoELdzajsUHQF2HW6wg85SteBC9WdymQikpsZTy+65jjOvwVI54Sdk2amZ
+	 Lkqar4AL7Hfzm2z7jAXAIytZOxyGCV9QxKa26KqGzt8mWu84II+BDaG6/plyWnLrtv
+	 7QZeOUeSd0dC8DTMW1o2gSOzVWOCJq+FICgRYyiBeTUz9OvqK6CGJZ9BvKe7kn7HHm
+	 aWmLRQoVsbMDg==
+Date: Tue, 10 Oct 2023 17:54:47 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bhupesh Sharma <bhupesh.linux@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] regulator: dt-bindings: fixed-regulator: Add
- under-voltage interrupt support
-Message-ID: <0024647c-cd4e-4b9f-b2bf-02143d27a852@sirena.org.uk>
-References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation
+ Device support
+Message-ID: <20231010122447.GJ4884@thinkpad>
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20231001155701.GA53767@thinkpad>
+ <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
+ <20231002145239.GA12041@thinkpad>
+ <CAA8EJppn-f6R3ObGvagqkg1_KtXGgtNAgRn-LQiN3ORSHQY3-Q@mail.gmail.com>
+ <20231002155814.GB12041@thinkpad>
+ <CAA8EJpowGjnecOjr9h4r3=UXSrE4VdptoLADpQq3gDv_W9D3OQ@mail.gmail.com>
+ <20231002161308.GC12041@thinkpad>
+ <20231005023658.GE3553829@hu-bjorande-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2qKDuD5Uo7Ayf5Bi"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231010085906.3440452-1-o.rempel@pengutronix.de>
-X-Cookie: I feel partially hydrogenated!
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231005023658.GE3553829@hu-bjorande-lv.qualcomm.com>
 
+On Wed, Oct 04, 2023 at 07:36:58PM -0700, Bjorn Andersson wrote:
+> On Mon, Oct 02, 2023 at 09:43:08PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Oct 02, 2023 at 07:00:27PM +0300, Dmitry Baryshkov wrote:
+> > > On Mon, 2 Oct 2023 at 18:58, Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > > >
+> > > > On Mon, Oct 02, 2023 at 06:00:37PM +0300, Dmitry Baryshkov wrote:
+> > > > > On Mon, 2 Oct 2023 at 17:52, Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > > > > >
+> > > > > > On Sun, Oct 01, 2023 at 06:26:14PM +0100, Caleb Connolly wrote:
+> > > > > > >
+> > > > > > >
+> > > > > > > On 01/10/2023 16:57, Manivannan Sadhasivam wrote:
+> > > > > > > > On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
+> > > > > > > > > The Thermal Mitigation Device (TMD) Service is a QMI service that runs
+> > > > > > > > > on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
+> > > > > > > > > It exposes various mitigations including passive thermal controls and
+> > > > > > > > > rail voltage restrictions.
+> > > > > > > > >
+> > > > > > > > > This series introduces support for exposing TMDs as cooling devices
+> > > > > > > > > in the kernel through the thermal framework, using the QMI interface.
+> > > > > > > > >
+> > > > > > > > > Each TMD client is described as a child of the remoteproc node in
+> > > > > > > > > devicetree. With subnodes for each control.
+> > > > > > > > >
+> > > > > > > >
+> > > > > > > > Daniel expressed concerns in the past aganist representing TMD driver as a
+> > > > > > > > cooling device since it is not tied to thermal zones and the governors cannot
+> > > > > > > > use it. Instead he suggested to represent it as a powercap device with thermal
+> > > > > > > > constraints.
+> > > > > > >
+> > > > > > > Hi Mani,
+> > > > > > >
+> > > > > > > Forgive me as I'm not yet super familiar with the thermal subsystem.
+> > > > > > >
+> > > > > > > As I understand it, the DT layout here enables each control to be referenced
+> > > > > > > under the thermal zones, at least this is the approach taken in CAF 4.9.
+> > > > > > >
+> > > > > > > Maybe I don't quite understand what you mean, are you saying that using
+> > > > > > > thermal zones is the wrong approach?
+> > > > > >
+> > > > > > Thermal framework expects each thermal zone represented in DT to have atleast
+> > > > > > one corresponding thermal sensor defined using "thermal-sensors" property. But
+> > > > > > with TMD, there is no thermal sensor AFAIK.
+> > > > >
+> > > > > As far as I understand, no. It is perfectly fine to have 'cooling'
+> > > > > devices, which react to external thermal monitoring events. I might be
+> > > > > mistaken, but I think that is the case here, isn't it?
+> > > > >
+> > > >
+> > > > Yes it is represented as cooling device(s). But I do not see any cognizant way
+> > > > to plug it with thermal zones i.e., unless TMD itself reports temperature of the
+> > > > modem, using it as a cooling device for external temperature events doesn't
+> > > > sound good to me.
+> > > 
+> > > Why? We have compute, q6, wlan tsens sensors. So it seems natural to
+> > > tell CDSP to slow down if compute sensor reports overheating.
+> > > 
+> > 
+> > TMD is for external devices such as PCIe modems as well. Is there a temperature
+> > sensor for that?
+> > 
+> 
+> According to the schematics for the SC8280XP CRD sys_therm5 would be the
+> sensor you're looking for.
+> 
 
---2qKDuD5Uo7Ayf5Bi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hmm, then it seems fine from my end as long we have the correct sensor data to
+hook up these cooling devices.
 
-On Tue, Oct 10, 2023 at 10:59:04AM +0200, Oleksij Rempel wrote:
-> Add under-voltage interrupt support. This can be used with simple
-> regulators having no other way to communicate an under-voltage event
-> except as by toggling some GPIO line.
+- Mani
 
-This doesn't apply against current code, please check and resend.
+> Regards,
+> Bjorn
 
---2qKDuD5Uo7Ayf5Bi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUlQZwACgkQJNaLcl1U
-h9B+OAf9HVf3aL2pQBjTFArNyffVDE6INNQufQW6NAbtgLDbBJnTzqsAkKR+P49v
-81rBkDM/nopWQ/w6SSFgj239wsD1Wn8EUxjbfui4fD3zBgy/CBcl8F8FgJKmwkaR
-eFpSadEIA8oKGhNkAX5qDcw6eHNVmp28gtMB9UXhXxAzHyzVaV4/yMAR04wieOXn
-hF3cuW8xSAc0n7n41zAHBVyRAAfQhFVHizmY/QA9MVdvKGWfFtnn9XRjx+NNIZRY
-+4MCDz/KVBbvza7a+tDyox+4t0V2zDVuWNBhHGYB3usuNl6Kumn3BEZZSZfFKRwc
-2lSVNeNn9oObEYzCu6kGh1fYrYaJjw==
-=7uwH
------END PGP SIGNATURE-----
-
---2qKDuD5Uo7Ayf5Bi--
+-- 
+மணிவண்ணன் சதாசிவம்
 
