@@ -1,207 +1,145 @@
-Return-Path: <devicetree+bounces-7408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9111C7C422B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 23:15:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4517C4235
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 23:17:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD7351C20BAC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47773281ADD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 21:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BEF8225D0;
-	Tue, 10 Oct 2023 21:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C36225D3;
+	Tue, 10 Oct 2023 21:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GNJW8o7r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PRPJAzIl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625F4315B2
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 21:15:00 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60A6B91;
-	Tue, 10 Oct 2023 14:14:58 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9ba081173a3so669283266b.1;
-        Tue, 10 Oct 2023 14:14:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3449D28EC
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 21:17:44 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCC491
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:17:42 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c1854bebf5so77616361fa.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:17:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696972497; x=1697577297; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oujABCSZJNk2IyD5lN5ZvORKGcKBX/k42s5CPJt8qtE=;
-        b=GNJW8o7rwFZJFgElDaZLwlpzr0BIBOsLawbmWKEvFIBk1zKoJawF0Lkl7GlMcJwqHB
-         OGuVgW4w9n/VfAKIe3b0dIC2MCHXaAKzByykO1x124a8m+uldRlZ0praFC4hqgZ9wwQF
-         7L97tpc1Z+ZJrCTni2eXv7v1Sa6Jh190bO7/vQDTD79sLyDQaWUvdmWfFIeNblVeiYMS
-         rxtnG+BZcQqbQsR6h7mLEaJ+l9YOFuWRcu52iSuGHGaKW6Fs//H2n0prZAb9TuRMSexc
-         LUuwv9voQFAbeGfI1ZNVPCmEogkfCxhVvbiyeDTdZsoBvRCmtsXXUX3Qba5rMWXaIIyU
-         19vg==
+        d=linaro.org; s=google; t=1696972661; x=1697577461; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sfPPZRlM0sZJ4h/LKs3xYdXAHRzh/EkwJVhNrGIegO4=;
+        b=PRPJAzIl3OSfyWPD+RROliQUJclRflqJjOIGsnhKgrW8xIm2LsoQhCSjA0KFWEg3wf
+         ZdjH2SAB5vapBHo907gptGVcQfpYNGEtthxHkjr+8N4O8/QzeL02Epd9KcJM2cj28oOV
+         W1H2vW9K8X8JcVIhgpusAERTvNvLLKzOr1+FjSqldxg1tA2PPYdaJM84kE01inWthGuK
+         5jHr2hWJrQRgercPhq3XMVrr3uxVmdQlOda5RMX5uOd+7uizgUEE09nDHH9bJau0B+0X
+         GbexbUYaZsuOSVx/Vam7WaGw64e72dUO5VF+v2CCDfPTlasElzKhs0IUU6XyCC7a9KNP
+         WCqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696972497; x=1697577297;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oujABCSZJNk2IyD5lN5ZvORKGcKBX/k42s5CPJt8qtE=;
-        b=RidCRGSCuGZLGIdQqQfZ+voCdql5HVDnbLDxN2DXX11tlg17LfcQnAJUnhfWIkKULU
-         +kFXPBByF32OFcNnJkRKWbRaiy3+2nLhYMb90Ovywl87u2Y4jLbgVpnEI40x7bWmQdON
-         nPuJMsGHWfnzgjUuv2p4iUCCAfBGUHOngL+8rq1GngJdoIKC9XFNeUgTJuMYdsK0L4Kt
-         D07OSMDXyQzY77YcBAF99KMccni411d2IOgRySFAaevmzTNRyf2UZ8et/Wx0XMQaOr8L
-         JGUmgkSRcz7/tXhwYvxNB9PRHmZCstNI3ZEEajWicVgGJOOukPmFRkz1FCRjiSIByBZs
-         RWug==
-X-Gm-Message-State: AOJu0YwwNq9qRahX7NOo62qxOLMrziXNDBL0QXGr4hEEn0uz1wrtUm11
-	laDKkz2WU5L+IzDuTkELKdk=
-X-Google-Smtp-Source: AGHT+IFAQkkMmq60a6tXrYlsvOraSSOPfxHSylqM0IAALDYvo60rpktWiXaBYMY+u6BmJ9y3N7a9kg==
-X-Received: by 2002:a17:906:844a:b0:9bd:7a9f:a02 with SMTP id e10-20020a170906844a00b009bd7a9f0a02mr317217ejy.4.1696972496481;
-        Tue, 10 Oct 2023 14:14:56 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:7a05:7dcc:abce:3c83])
-        by smtp.gmail.com with ESMTPSA id o18-20020a1709061b1200b009b9977867fbsm8905883ejg.109.2023.10.10.14.14.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 14:14:55 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	stwiss.opensource@diasemi.com
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [v2 PATCH] dt-bindings: watchdog: da9062-wdt: convert txt to yaml
-Date: Tue, 10 Oct 2023 23:14:39 +0200
-Message-Id: <20231010211439.98458-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1696972661; x=1697577461;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sfPPZRlM0sZJ4h/LKs3xYdXAHRzh/EkwJVhNrGIegO4=;
+        b=r72f9HQOMM5Q/ZtJ+KTOj++DTgMaJ4ZBGv7RjAcFfHEh/sfQv5aBSfY0bnISNeGcQ+
+         NmSboMfh3gI3kfHUFfYfgmtOu3071Fkn3PdgnZKs/HQuKIiYmXwc56oHt2f9YDXl8Q+X
+         XjWE2aLxnWnLPkB2KLpI5eLpmgICdpCUC2o2zMyTwaz6SnAIfyaVnQWEF4cz1X/Wze7n
+         BMzH29DVvPsJihqBC6h6x3xYSWCr/0480JAmmKvF/+iFduKQhJ1snnmZc5LkSK5F7pAl
+         7SO/s2UbXs1hQ6P6cdR/1aSCv7sQt/XPxmxPEZBbVRwlv+SVeBGPTe9cibz5EPGjIBFO
+         UKuA==
+X-Gm-Message-State: AOJu0YysQcFlLG3SVdFrnLHnZClh03mpnk2tJ2OsOBQpKoZddLZqTRMn
+	uvzMQA3D1ecdebADyGDwgQtXPw==
+X-Google-Smtp-Source: AGHT+IE17AcOeX7TjeVmVy16OgaWTbvrISmCORBUxeyPmJNXOebBZLa36qc+DxwvzaNoWReKy2wgog==
+X-Received: by 2002:a05:6512:3ca4:b0:500:b5db:990b with SMTP id h36-20020a0565123ca400b00500b5db990bmr20891808lfv.47.1696972660557;
+        Tue, 10 Oct 2023 14:17:40 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:8004:ab80:24a8:5e5d:e0b2:5884? ([2a00:f41:8004:ab80:24a8:5e5d:e0b2:5884])
+        by smtp.gmail.com with ESMTPSA id z3-20020ac24183000000b0050335c6d091sm1959755lfh.79.2023.10.10.14.17.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Oct 2023 14:17:40 -0700 (PDT)
+Message-ID: <3c3c80da-8986-4a8b-8b53-c33b36107e95@linaro.org>
+Date: Tue, 10 Oct 2023 23:17:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
+Content-Language: en-US
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
+ vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, rafael@kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20230930102218.229613-1-robimarko@gmail.com>
+ <20230930102218.229613-4-robimarko@gmail.com>
+ <e255dcbd-6342-49e6-9bfe-17a47b2a3c8a@linaro.org>
+ <65255c81.050a0220.141f8.7b8f@mx.google.com>
+ <1aea4a86-7f7c-46ee-9cbe-655eb7663c2a@linaro.org>
+ <6525ad59.1c0a0220.e3509.8545@mx.google.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <6525ad59.1c0a0220.e3509.8545@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert txt file to yaml.
-Add a mainterner block. Took a value from dlg,da9063 PMIC.
-
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
----
-
-Changes in v2:
-- Updated filename to be equal to compatible value.
-- Removed ">" in description fields. 
-- Added optional properties to the example. 
-- Removed reg property, as it is not present in the txt version. 
 
 
- .../bindings/watchdog/da9062-wdt.txt          | 34 -------------
- .../watchdog/dlg,da9062-watchdog.yaml         | 49 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+On 10/10/23 22:00, Christian Marangi wrote:
+> On Tue, Oct 10, 2023 at 09:52:50PM +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 10/10/23 16:15, Christian Marangi wrote:
+>>> On Tue, Oct 10, 2023 at 03:40:32PM +0200, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 9/30/23 12:21, Robert Marko wrote:
+>>>>> From: Christian Marangi <ansuelsmth@gmail.com>
+>>>>>
+>>>>> Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
+>>>>> Use opp-supported-hw binding to correctly enable and disable the
+>>>>> frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
+>>>>> 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
+>>>>> 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
+>>>>>
+>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>>>> ---
+>>>> Christian/Robert, can you provide a downstream source for this?
+>>>>
+>>>
+>>> Sure, consider that everything is with +/-5%.
+>> Hm, so you're e.g. putting ipq8062 384MHz voltage for PVS3 equal to
+>> 0.95*800000 = 760000, but I'm not sure if it's a good idea?
+>>
+>> The comment in downstream:
+>>
+>> "These are based on +/-5% Margin on the VDD_APCx that is advertised in our
+>> Datasheet across Temperature"
+>>
+>> suggests this is already not very accurate, and betting that the lower
+>> threshold works on all chips is probably not the best idea.
+>>
+> 
+> Consider that everything is driven by the rpm. The original qsdk used the
+> same approach of taking the value, apply +-5% and pass it as a voltage
+> triplet to the rpm regulator. Also the driver have ranges so it
+> autodecide the best voltage in the range of the voltage triplet based on
+> the one supported by the regulator. Normally the normal voltage is
+> always used.
+Eeh? So you pass any half-random value to it and RPM edits it in flight?
 
-diff --git a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-deleted file mode 100644
-index 354314d854ef..000000000000
---- a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--* Dialog Semiconductor DA9062/61 Watchdog Timer
--
--Required properties:
--
--- compatible: should be one of the following valid compatible string lines:
--	"dlg,da9061-watchdog", "dlg,da9062-watchdog"
--	"dlg,da9062-watchdog"
--
--Optional properties:
--- dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
--	Only use this option if you can't use the watchdog automatic suspend
--	function during a suspend (see register CONTROL_B).
--- dlg,wdt-sd: Set what happens on watchdog timeout. If this bit is set the
--	watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
--	POWERDOWN. Can be 0 or 1. Only use this option if you want to change the
--	default chip's OTP setting for WATCHDOG_SD bit. If this property is NOT
--	set the WATCHDOG_SD bit and on timeout watchdog behavior will match the
--	chip's OTP settings.
--
--Example: DA9062
--
--	pmic0: da9062@58 {
--		watchdog {
--			compatible = "dlg,da9062-watchdog";
--		};
--	};
--
--Example: DA9061 using a fall-back compatible for the DA9062 watchdog driver
--
--	pmic0: da9061@58 {
--		watchdog {
--			compatible = "dlg,da9061-watchdog", "dlg,da9062-watchdog";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-new file mode 100644
-index 000000000000..9b7ffdb01da0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/dlg,da9062-watchdog.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dialog Semiconductor DA9062/61 Watchdog Timer
-+
-+maintainers:
-+  - Steve Twiss <stwiss.opensource@diasemi.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    enum: 
-+      - dlg,da9061-watchdog
-+      - dlg,da9062-watchdog
-+
-+  dlg,use-sw-pm:
-+    type: boolean
-+    description:
-+      Add this property to disable the watchdog during suspend.
-+      Only use this option if you can't use the watchdog automatic suspend
-+      function during a suspend (see register CONTROL_B).
-+  
-+  dlg,wdt-sd:
-+    type: boolean
-+    description:
-+      Set what happens on watchdog timeout. If this bit is set the
-+      watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
-+      POWERDOWN. Can be 0 or 1. Only use this option if you want to change the
-+      default chip's OTP setting for WATCHDOG_SD bit. If this property is NOT
-+      set the WATCHDOG_SD bit and on timeout watchdog behavior will match the
-+      chip's OTP settings.
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog {
-+      compatible = "dlg,da9062-watchdog";
-+      dlg,use-sw-pm;
-+      dlg,wdt-sd;
-+    };
--- 
-2.34.1
+Please be more specific, I'm not very familiar with this platform
 
+Konrad
 
