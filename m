@@ -1,62 +1,89 @@
-Return-Path: <devicetree+bounces-7091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BAEE7BF210
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:03:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA49B7BF21C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 07:14:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86B091C20A0B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:03:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCF12819B4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 05:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13426EDC;
-	Tue, 10 Oct 2023 05:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AA91FD2;
+	Tue, 10 Oct 2023 05:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ok652WnK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607917F0
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:03:18 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43D6A4
-	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 22:03:16 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qq4tm-0000T0-HR; Tue, 10 Oct 2023 07:03:14 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qq4tl-000ZpN-6X; Tue, 10 Oct 2023 07:03:13 +0200
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qq4tl-00DfcX-2k; Tue, 10 Oct 2023 07:03:13 +0200
-Date: Tue, 10 Oct 2023 07:03:13 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	open list <linux-kernel@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply
- bindings
-Message-ID: <20231010050313.52e3vtdhrizb5sgr@pengutronix.de>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
- <20231010005126.3425444-2-kieran.bingham@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0437F0
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:14:46 +0000 (UTC)
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA107A7
+	for <devicetree@vger.kernel.org>; Mon,  9 Oct 2023 22:14:42 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-692af7b641cso901822b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Oct 2023 22:14:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696914882; x=1697519682; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lQhFnAIsenhwSznaxFHDKOg/ZsGnf5ZuY98Fxq45IkU=;
+        b=ok652WnKTnG7RvB9k2L6OF1mO6beOBVFoLqB4RCpSnRNt55Q3veMZ44txBh5Exr7WE
+         +YGr/kelHSXiQtoEmUV7cvG9jnY/AEoRp7clyzRGLSFdsEZGqc6ZC6GkyNUfJhHIWMZB
+         Bs5a0XEW3/nVTrDsG4+Vgnv9NPXmO8Rvgt+qJWutIPZy1sCcnNz017v6vca1v7lLsGWR
+         Gy1wVZZq5+xNRiSxcvyxgAYpVVAousAqQL5m4sn/o2K+AEwVG741XK5jPnR79m1iEijf
+         GNT2V4f5SNfRvSwZ14EcdvBvbOu8r2eV9OWChsQaS/ZKyRnRxxETQr9LJdYEuHvIihb8
+         ikTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696914882; x=1697519682;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lQhFnAIsenhwSznaxFHDKOg/ZsGnf5ZuY98Fxq45IkU=;
+        b=p2c2LoUy2fiqRPz94AhmB7SXBhzjYuCgWZw3LYuOQ8Y+BSDZEO2DkHu8gqiLEM1vgT
+         TLt20/+ifIEl/Kyp9WHT6CAPJvkT1qwLKGrG0RYITJcMSspog5CaAWejDKmW+nDlyukD
+         ihJ15dnedh1EEG0QW/GFE3WkNKvf/508g4mfF+vR0VJcnN+JXyPSqq/WzKKwsXMWocEX
+         UBEQFQRPe47cCE6i1MLChfvZtFIeyNfcH8FOad8KIFZDP9GFAvOvmxg2H84E7hKjNq+I
+         A7Pf9+5TQ5t3ikM12NhVYYEnVDBOJNjxSCdgPZS9rrdglNiLkUSOSBzEu0wBKKEG3mXj
+         aryQ==
+X-Gm-Message-State: AOJu0Ywd0vvcKkhOHiQNMI5WPJkI5XuxpoFqTzu8pZApZ0uZEP08RRFS
+	m8mtIy4RXbDmwbIHKU+BlIiX4w==
+X-Google-Smtp-Source: AGHT+IHaDM+YNCNE4eJtZUKYwuSPOdk4MvZD+JiNAp5tSoamQIDjMvlQP3IbKsJSsbElOx6id1n8pA==
+X-Received: by 2002:a05:6a00:1d94:b0:690:d314:38d with SMTP id z20-20020a056a001d9400b00690d314038dmr19656361pfw.1.1696914881956;
+        Mon, 09 Oct 2023 22:14:41 -0700 (PDT)
+Received: from octopus ([2400:4050:c3e1:100:d26f:f61a:9867:e809])
+        by smtp.gmail.com with ESMTPSA id a21-20020a62bd15000000b00693498a846esm7249060pff.80.2023.10.09.22.14.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Oct 2023 22:14:41 -0700 (PDT)
+Date: Tue, 10 Oct 2023 14:14:37 +0900
+From: AKASHI Takahiro <takahiro.akashi@linaro.org>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	sudeep.holla@arm.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
+ generic gpio driver
+Message-ID: <ZSTdvROVzJU5FRAZ@octopus>
+Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
+ <20231005025843.508689-6-takahiro.akashi@linaro.org>
+ <20231006132346.GA3426353-robh@kernel.org>
+ <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
+ <ZSPDILYZkxvTnQia@e120937-lin>
+ <CACRpkdY=eza0TuBRDb_cWk9LM2qNQg76rZSgWa-RP4TYLL=Ppw@mail.gmail.com>
+ <ZSQXXW1NRiCpsENu@e120937-lin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,72 +92,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231010005126.3425444-2-kieran.bingham@ideasonboard.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZSQXXW1NRiCpsENu@e120937-lin>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23-10-10, Kieran Bingham wrote:
-> Add the bindings for the supply references used on the IMX335.
+On Mon, Oct 09, 2023 at 04:08:13PM +0100, Cristian Marussi wrote:
+> On Mon, Oct 09, 2023 at 03:13:24PM +0200, Linus Walleij wrote:
+> > On Mon, Oct 9, 2023 at 11:08???AM Cristian Marussi
+> > <cristian.marussi@arm.com> wrote:
+> > 
+> > > > > +    gpio0: gpio@0 {
+> > > > > +        compatible = "pin-control-gpio";
+> > > > > +        gpio-controller;
+> > > > > +        #gpio-cells = <2>;
+> > > > > +        gpio-ranges = <&scmi_pinctrl 0 10 5>,
+> > > > > +                      <&scmi_pinctrl 5 0 0>;
+> > > > > +        gpio-ranges-group-names = "",
+> > > > > +                                  "pinmux_gpio";
+> > > > > +    };
+> > > >
+> > >
+> > > Assuming the above &scmi_pinctrl refers to the protocol node as we
+> > > usually do,
+> > 
+> > No it does not, it is a three-layer cake.
+> > 
+> > scmi <-> scmi_pinctrl <-> scmi_gpio
+> > 
+> > it refers to the scmi_pinctrl node.
+> > 
 > 
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> Thanks, this explains a lot.
+> Cristian
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+Just in case, 
 
-> ---
->  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+    gpio-ranges = <&scmi_pinctrl 0 10 5>;
+
+means that SCMI *pin* range [10..(10+5-1)] are mapped to this driver's
+gpio range [0..(5-1)]. So any consumer driver can access a gpio pin
+as:
+    foo-gpios = <&gpio0 3>;
+
+will refer to gpio pin#3 that is actually SCMI's 13.
+
+    gpio-ranges = <&scmi_pinctrl 5 0 0>;
+    gpio-ranges-group-names = "pinmux_gpio";
+
+means that SCMI *group*, "pinmux_gpio", are mapped to this driver's
+gpio range which starts with 5. If "pinmux_gpio" indicates SCMI *pin*
+range [20..24],
+
+    baa-gpios = <&gpio0 7>;
+will refer to gpio pin#7 that is actually SCMI's 22 (=20 + (7-5)).
+
+This way, we (consumer drivers) don't care what is the underlying pin
+controller.
+
+-Takahiro Akashi
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> index a167dcdb3a32..1863b5608a5c 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> @@ -32,6 +32,15 @@ properties:
->      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
->      maxItems: 1
->  
-> +  avdd-supply:
-> +    description: Analog power supply (2.9V)
-> +
-> +  ovdd-supply:
-> +    description: Interface power supply (1.8V)
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply (1.2V)
-> +
->    reset-gpios:
->      description: Reference to the GPIO connected to the XCLR pin, if any.
->      maxItems: 1
-> @@ -60,6 +69,9 @@ required:
->    - compatible
->    - reg
->    - clocks
-> +  - avdd-supply
-> +  - ovdd-supply
-> +  - dvdd-supply
->    - port
->  
->  additionalProperties: false
-> @@ -79,6 +91,10 @@ examples:
->              assigned-clock-parents = <&imx335_clk_parent>;
->              assigned-clock-rates = <24000000>;
->  
-> +            avdd-supply = <&camera_vdda_2v9>;
-> +            ovdd-supply = <&camera_vddo_1v8>;
-> +            dvdd-supply = <&camera_vddd_1v2>;
-> +
->              port {
->                  imx335: endpoint {
->                      remote-endpoint = <&cam>;
-> -- 
-> 2.34.1
+> > There is no SCMI GPIO protocol, instead SCMI is using the
+> > operations already available in the pin controller to exercise
+> > GPIO. Generic pin control has operations to drive lines for
+> > example, and Takahiro is adding the ability for a generic pin
+> > controller to also read a line.
 > 
 > 
-> 
+> > 
+> > Yours,
+> > Linus Walleij
 
