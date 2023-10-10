@@ -1,102 +1,78 @@
-Return-Path: <devicetree+bounces-7257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF50D7BFDBA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:38:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC977BFDD3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:39:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 812C028202B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:38:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CCD71C20C4A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300B11DFCF;
-	Tue, 10 Oct 2023 13:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDDA1DFD2;
+	Tue, 10 Oct 2023 13:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="X3Naa6FQ";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="F6+JVBgn"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="nyyrj0hl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C561DFC3
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:38:51 +0000 (UTC)
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C69A9;
-	Tue, 10 Oct 2023 06:38:46 -0700 (PDT)
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39ACSosc008503;
-	Tue, 10 Oct 2023 14:38:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:content-transfer-encoding:content-type:mime-version; s=
-	dk201812; bh=SWulkRh5piq82U81/z0a4vAjT+FfK7VRfpgJWBpZt0Y=; b=X3N
-	aa6FQ1IozvKh7SOPozlDOVlfDYX1KbnwDkZcWZZ/18Sk56iRgu60D2F4WGbmaXs1
-	zxzrt5Tt/ryoq6yR2OabOoES84zswtqA/k2D8gyZqUO3aNp8rG9tK+NS9iplMpZl
-	iFdgvKFiw/OEM4iW8qa9ibwT6YUjx3QeqjQGUAi0XxryruS+W/3qFYbneG9vjlpG
-	V0AZYKM34qlQDBO+e0JBYBrUV0YEGEmC62AZDnP5FUeMmXt4dbtRg8EBdKYAYk5D
-	Ok89SH/FdWuZiUx0lPC50Hja7yAyZtCV07vg0cbzjHANxYbkdS2ROzH/C+3cvY8U
-	t3p5G1BDf6ozJjU4ESw==
-Received: from hhmail04.hh.imgtec.org ([217.156.249.195])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3tjwkq2a69-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 10 Oct 2023 14:38:20 +0100 (BST)
-Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
- HHMAIL04.hh.imgtec.org (10.100.10.119) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Tue, 10 Oct 2023 14:38:19 +0100
-Received: from GBR01-LO4-obe.outbound.protection.outlook.com (104.47.85.104)
- by email.imgtec.com (10.100.10.121) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31 via Frontend Transport; Tue, 10 Oct 2023 14:38:19 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC6D1DFD0
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:39:18 +0000 (UTC)
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2042.outbound.protection.outlook.com [40.107.249.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF6919B;
+	Tue, 10 Oct 2023 06:39:09 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q6FIHg7854pehFVPfCCb0b1HdR6dsgdnjs3GS6R2AmlnplkYuddCBdkQibcdwtVmmMyvpC23QlSdX4+LSmL4qfJuHf7SPCL7TgSRiXq+Ng9u2VGDZ81FmLtK+bY9Yq6NygXrqC5uw3JrvHqo15xfhVNeL7w8TXFL1WiNNiH9LHpJWDTFdKFNtwe3hx2B2Z/1+aYwGfAnv69ePOKYFj7hpDpwD71EzDyLe+fZ01w9XeufeiBv5kK43KJ46j6CZx08QoxdkYI26azsul69FU1IU+HQGae9OrwCqpKIgtno7rUaWBzqXs2+DZSIXYdZ+XYfNV5fpiRBiTBESVjK9NJnNw==
+ b=iPsrWkZATAf01yB1rR0LpvxtOtLDZWpyP8ispSfbUE+XRUpQntXTqqAgCArtmaR9MS0bsXKmPDJTdiSckJECo+kU6SIKHw0o81G+HYbHET9iZGjfGIedDe/cROvd/jox0a776hlqJ441ajj8IwAU5b/MOROGejNs4FezzzhFbY9dVHB5jZ1am07t2Fb6GddvFN5geo9bJQeBqAQPL+GMgRgPiAeI1HUOutdG23IZdvMdwLVZ0p1oWOc22BXi6kKdA5JBPjG1IUOowg1iEYxnSkoKrEXLmuZhFvmhVkA2wBpc3jmktq9qwsWqR7mhWeszzpZEZmDcLH/QOfqrIAYzYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SWulkRh5piq82U81/z0a4vAjT+FfK7VRfpgJWBpZt0Y=;
- b=ehvfWdE5v3p/8BfoSYp5XRckl6zq66a6GLpGzDs2Cq1EOCsDLoScL4d9yaDjBPkiRfV6s+3VRN5F86endv4z8ZFg79Rbax3fwroOVBkynrlp7RcHa9eGmtB3cx+hQ8eLO+tn6viSGko5MeQWbmIBYQkB4NcK5JTVyidEOnJzAd5EXTu5bCeKY+GkA8M2a5vkYqpKRt6htf/P5bSyzR2j0VZQXP2LQrG30fbNt+JA4Y+Ds4Mr7tUc9tJexsacfVSl22aIADGsQOoRtofQ9nJp0bxqtNL9vFtM4tz8r5jNC5gEDou7Gb+IuAmE/B2v0lLXqb7QQBHz3HzfDbhgSgnhgg==
+ bh=CtYEWJixbBGxA68JFPzL2mHI5WxKhOO3pJDbwNHquSM=;
+ b=UPzubsKLDrA/VXASYE4KBNqWTHyJxasALACiHSHvy7AOcsHEOY4B/f1ppjFgdYblr9a3xwSNPzOzoi80PFLH40Ixk6CSD+2gLjDhVTx0BZyoBWF6wvtLsCuzTYLkLPB7WcVFH0FCK9fIIeCVmfG+ryk/+fd4iQkeqUsv+6jCaZW5n3XjfMHfdxq6P1NbCFWxFRgkQNeiGpB4k2+PSB2pZk4Ob4bgx+PkHXBb/r0R2vP+/TMZd/9cGJWagAggnuP1NQ5Vq/mIj8/v+zJs//5n7XTvH2ScM0R4fqceESVIyoJrYr4o7dh+PHfrpFz1FHjkb56jYqA7eXVbNhweGXuzhQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SWulkRh5piq82U81/z0a4vAjT+FfK7VRfpgJWBpZt0Y=;
- b=F6+JVBgnxpwXc9OoCMtBO3jdMtDBczJu5QkMWmgEIK8D7VQ2mVyTDffmMMuKHPVSZ+qeCWHBvN/4GVsBn7cTBPTmMdE7DE+Z1RBSICMdN2hVukXXpvynU5sVk8krjJnlXCT0RQ0qFGP1JBEZdkE8nyKpmOKnS6lNBu0ZMNHJ+tI=
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:170::9)
- by CWLP265MB6168.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:182::13) with
+ bh=CtYEWJixbBGxA68JFPzL2mHI5WxKhOO3pJDbwNHquSM=;
+ b=nyyrj0hlR1X9K4tnWKq9w632sNTu+RkxjJ/G5DC4NEenDMYqcTYXWl58UbzWl7AFASwnTSWdHuMzh3QqyD26pnxISLMyesK27B2ROBlJ3SXnmAt3IiSYd2/GHSFixWGHHf+40W16GnymIBZCf34pKH28wWS1bUOongdXzUclrso=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by GVXPR04MB9831.eurprd04.prod.outlook.com (2603:10a6:150:11c::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Tue, 10 Oct
- 2023 13:38:18 +0000
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1f14:8c15:179d:7afc]) by CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1f14:8c15:179d:7afc%4]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
- 13:38:18 +0000
-From: Sarah Walker <sarah.walker@imgtec.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <frank.binns@imgtec.com>, <donald.robson@imgtec.com>,
-        <boris.brezillon@collabora.com>, <faith.ekstrand@collabora.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <afd@ti.com>, <hns@goldelico.com>,
-        <matthew.brost@intel.com>, <christian.koenig@amd.com>,
-        <luben.tuikov@amd.com>, <dakr@redhat.com>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Matt Coster <matt.coster@imgtec.com>
-Subject: [PATCH v7 20/20] drm/imagination: Add driver documentation
-Date: Tue, 10 Oct 2023 14:37:38 +0100
-Message-Id: <20231010133738.35274-21-sarah.walker@imgtec.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.36; Tue, 10 Oct
+ 2023 13:39:06 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
+ 13:39:06 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v2 0/3] Add audio device nodes for i.MX93 platform
+Date: Tue, 10 Oct 2023 21:38:35 +0800
+Message-Id: <20231010133838.799714-1-chancel.liu@nxp.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231010133738.35274-1-sarah.walker@imgtec.com>
-References: <20231010133738.35274-1-sarah.walker@imgtec.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: LO4P123CA0183.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:1a4::8) To CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:170::9)
+X-ClientProxiedBy: SI2PR02CA0019.apcprd02.prod.outlook.com
+ (2603:1096:4:195::13) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,310 +80,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CWLP265MB4817:EE_|CWLP265MB6168:EE_
-X-MS-Office365-Filtering-Correlation-Id: a2aa019f-9ddb-4128-a794-08dbc9962972
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|GVXPR04MB9831:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46907a31-9c60-43fa-228f-08dbc99645b6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s2Uk9Pb6BlzolM1daSMr1TBGXi5FyobMMcKdqypeHjORz/XMi/g9uTHHMS3uccQZx4FGUIq/QByEP9vZRDd4CNAjRiYBDPp6pFc6w/pcLWTLxKO5SP14utSy7e7i/yAMsRrWRdSztIBFWPvgvo566hsjzvBdBhhDkQ+1pN1HmVGhklrt9+9ZuBidtmoyOmco2Pu9RW61yyGvF9ALV/ZP+hGrYT0lUiNIKJqEX2ug5PAemTbkVnUYGlROMj4noFQ9lO/RpL618krrJW/C1qaZSOuJMtvaNrQVl3yB5ELM1hVt92reCTvwtwCd65FZ1eTFLpmvO9L3nXy+3/NBCvfaNLRmr6vECrMqs2BxUeuflvNhJfnWEawH5nvvede7vnd//pnsOOzsC2ccw3U97i9dLn2DZ7XA8P784/A9zgrYLeBLrr8L7bGY7b2CvofdM6V72bNv3iaj/LgM/tlCJOYQN/pJGurJjgVhsi1ya413GKphxJZNPCW3Z+DxIVdlMAQXO7sUjOP2PK8B1Y/QNFnIBXEiFwwmPi1Z5PtZMRYqF//9Dy3SDZaTDQWgEs/14nb7P3rBdIqU9u4PrbKKkUay5sinkU/z04rWo+gFe2YZqHFYqPwtMJmMDEtOun3smG86
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(136003)(39850400004)(366004)(396003)(376002)(346002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(52116002)(478600001)(6506007)(6666004)(6486002)(6512007)(107886003)(38100700002)(38350700002)(86362001)(36756003)(2906002)(2616005)(1076003)(26005)(7416002)(66946007)(8676002)(66556008)(6916009)(316002)(66476007)(5660300002)(41300700001)(8936002)(4326008)(44832011);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info:
+	+IHif5FsIJ7xUkC+rjGpp6pg0lW1M2LzZktQlj7oxOEHAfygQwLgCvVfrRHcCZwnDESufwf31qtwiNVBNJSx27XYEUM2PImhWvnUuIrDJke9qqq5ViFpT4s7YFWh7DIJzMC5r0A8Gu9ViKWXQ+jKPRl6mntMEcK5IdbTAha1X05HFWrHIIUoaRc3F6uafnyqTY5aosxsxeuSpG7m819EfwZlL3i1N/SK4ztwN7J+C/uZOcO21T0RwlsT8iha4zV5DB09+WVUIUzwGOadb7a8nDnMzag7C4Fw8PnGrQ6DHkSP4cTQHsqpwSQboY3ubcsGo5AS34ozw7SkzedlblLuciJIp/G6kYuqDnIfl6mPtxA3Bfi+z+Mz1hLunwmfxkcS/pysj0VnRu324S+BvULYqQOTVnA3HaBW5phAHlvJf3jrNqX4i4EiKKtAPakuK71jSuk9BDehIO95yBhz4bwN65UocDQqJjH3dSV+eaAVqvMG98NGidKd4KcJXRCxTxcRATcOG15krUcw0Qry9DQlJAl5w/gsRyupHtFNvgsc+2NplAKoX8jBdIrfCQ0qBk/w+lHWApEPpRH2kgyOxqMLZ0hc4eAWd345HnI18PJGeIhftNswprEYkleIJlUcAStsPxhHqt7SQ+499pjeCJXHCjuNxFzG+IIaxafI+ePOxvs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(366004)(346002)(39860400002)(136003)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(86362001)(38350700002)(38100700002)(921005)(36756003)(2013699003)(2906002)(6512007)(52116002)(4744005)(478600001)(6486002)(41300700001)(4326008)(8676002)(5660300002)(44832011)(6506007)(8936002)(6666004)(2616005)(1076003)(83380400001)(316002)(66476007)(66556008)(66946007)(7416002)(26005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ok7VZP909PAuAakUN2m99qCXUkZeZnT/UQOOwhxNrSfMdNxDMQkjmr4uQyJO?=
- =?us-ascii?Q?ptdscqjj+CPP+Ha8h2UeYeNUZSOQ/jQztVE710zWJ5JsCQpsCgcIoYxySRzq?=
- =?us-ascii?Q?iNngPe1387iSzP8sA/dea4hXevrILfWcEPhro4LflHxOSAsicL/Ru1bDrpdt?=
- =?us-ascii?Q?8h1PAm7xB4C+Y/W99q6bk+zNGpjjssI327ZejWnyIIeaWBqgZFQmnqcMvX6C?=
- =?us-ascii?Q?JPDtiDhd8o4a+KEtbM9R+Ul9TOwywanBjJHwMjapXjY728bAtWc9Om7ncDXs?=
- =?us-ascii?Q?g6hafkFDRksaLXf3qyWKg4LzL/S0n70yckOcLAs0BnLg+g768x8uFwuGVsUT?=
- =?us-ascii?Q?0khTuEEB3MIkzJA7nyTARI9vQMC0eIaVolGqcrWG1DYgNwUDJBKR41xh0MP3?=
- =?us-ascii?Q?7GBStvAiFRnEQdoBqu+zRGp7OzY+tjlJU3ec/jDuIfIiXKzTfAVApNR4hxj9?=
- =?us-ascii?Q?l7/p+ffh0c4eulwSTlNNP6CH3XIjZthVWZ3BWzjxLAcYcoJqmEklUcdBRa9I?=
- =?us-ascii?Q?Eqr31H6S+zWue7usaO/G0I6fcEUvcp9aXYOSMbwl9m/C16gnqPqhDJ9nFr6+?=
- =?us-ascii?Q?IgoTB2GPmZJdWNUOQahqT+JviyAMEo0xf484lEk+nOjPHmHnmWDHaUNK11wV?=
- =?us-ascii?Q?eFfu4Llrghut72FUmHyPhcvFILcrEjESBMmfJmFB8ZQ5xYSMnz5+5j436pLK?=
- =?us-ascii?Q?g0P85CcJHU9V13zUssDo2FCaGstvm+KdmqoNdDRRnNPMOb+GRmmAJkLyzVCu?=
- =?us-ascii?Q?s76H2cbmt28ctlN9DNIAev+a3KnXMsqrHVSNvpH+DBDmw4UM9//y3pVynPBG?=
- =?us-ascii?Q?JIr5pf4+E8UVnReqE7M/lXiMxeGFFAT0wbmp8OAd11CMA9yfDKkFGc4XKfQj?=
- =?us-ascii?Q?94ON/FyNjoGISlUce5VJNpMklI/qM4DTDXGulAspb9BJi59svsSilWFTFFAi?=
- =?us-ascii?Q?7itXJLhISJv9YkvsvwjCxTcWl75kEGZF13p/nSzniUEQA3iN3motVvuVDZxI?=
- =?us-ascii?Q?JGFDWuJDGJwEFdB3zdGoVQ7MBjkUeoZ1Tg7hk9J979oVR7qFmDZcGKoyVVI9?=
- =?us-ascii?Q?C46G6mFPSfit70SeO4lQumtRS84Gqv1Q8xa4MtFKZM4Gu5XTRb5uFigRwYYg?=
- =?us-ascii?Q?GqcGdgblNLNFbko6srRRSUa+nmU64MQVIkT57oDCcBX9F6aeeJXG0WY35h70?=
- =?us-ascii?Q?wtb/JYFCu3mE158uhQ08a7vPiQII/FuRrSV0Nk1yPA6+BEzj9GsdMAlidWsy?=
- =?us-ascii?Q?8p9Mb7hi06JZrRt8iNCmNxcjEngFz7ATqIMckOuesVeQT7YGrD2iZgmK24Lo?=
- =?us-ascii?Q?53kOC3f43p3EYjAEXIv5QMBExTxUxiOyuNM2eTWgf0H6TR7af9thtnnm1/Dg?=
- =?us-ascii?Q?zKOR4qPj6UiEuynvYENnlzMdF9nAh+JvZ3uW0gUseLp82l+TW8rzVqEbdDHW?=
- =?us-ascii?Q?iZD34OYuot/la+MhpmFFYbuMlO4MUrWJb/CvZrrPiijIiG2U2aSQaSXGunbu?=
- =?us-ascii?Q?Knnuj4/k6GJkTkK+d9qcMZ5J8sRGVTdTbXlVl3QgqAzR//cn+HRW6gEKL4Dy?=
- =?us-ascii?Q?ZBT3naoKZ7Jv0VrXFtlyi4cO5qPiu8z/qA5I/qBY?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2aa019f-9ddb-4128-a794-08dbc9962972
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?OrwXu0SUuvlnrxrTVs6usSgWFkQQIuT5LdaSCfcM8wGcdu2UWZCxhADIu8IA?=
+ =?us-ascii?Q?gy3YYmUOlq5zCJkYRDUDQpE7rOONpiCdjO7VNnn3EWcqYzEAQFnCg+vXBIy9?=
+ =?us-ascii?Q?15L4YeCqFvFWmdGpbewdcY53eLXTe/HuLf/KHovCfRIznoRYptVq02DE9DUD?=
+ =?us-ascii?Q?gndj5TcJDJYKGQMEKZFI47pfl7jwN0WR02XZziZgP35wzgjGgHFwQFHXnrf+?=
+ =?us-ascii?Q?OEBScQCVeraAUOsaqhUHPMN+Fn02pBF5yHX+hlz2xhlu2pI6onroU7sTMdeh?=
+ =?us-ascii?Q?qoSCkuiAIWVVu5jSmtQloxNsNCOswSqDK9uvunG6sihbJDyAzIqIT23/2OXk?=
+ =?us-ascii?Q?n+IiXmv/Kd5Bu8bbc/7B5s5LYefCw+LAPMSnIaoqCTC/UoIHMGR9aJSbTgnS?=
+ =?us-ascii?Q?gjUCiDvAaJt4ZTWf4M3g72HsECtAQm4uSe0Tq4Ote+l1Klk7d7hqKCfaek3Y?=
+ =?us-ascii?Q?uoGJB3xQ0+hQnpp2qQRjtvGyh2bOCOvefCzfGjnqAnUQWOvmy0iy1v8FLt0W?=
+ =?us-ascii?Q?wa9Nl+Gaqip0SKf8h9aj3OD19M/x5or28n0IvYFhFY+2C7A9IYIiO9sopOTo?=
+ =?us-ascii?Q?tUAmxoBH6xbyUgNpqjbFVa11O9+auSnX8l7Tj8PjP3x0q9+rGBprWWj9tL8T?=
+ =?us-ascii?Q?rQSFAKq6HLBFtyghzMeHYtbdIFWS/SYvRoJqmyfoZ3z64DRNRZtbcDBMdLoH?=
+ =?us-ascii?Q?NWoxrrzOCx5VIcaKccQP7T1Sr9dWdn7TzemO1szr5uK4RXQFK8f6GUQbZ/ga?=
+ =?us-ascii?Q?sVhNgSUEJ+dO1Z+3aUAren9gBmXHauFKz2FXf6fegdX5rNptkB+tUEygjJZQ?=
+ =?us-ascii?Q?JPmRUJqLDUiZcBVD7VcSrv2essS/2z2TLJq57YPLxr22sZnDIWPQDCMC/unI?=
+ =?us-ascii?Q?KWEAVowzfaxoZhMUcpqPW6oqWIbzIENx8fBJLJjeQVHsJaSNZijraUh90OkL?=
+ =?us-ascii?Q?HCK0p+mxxX0YMgY084dW1dHrF2n1uM0H/ZOYbiCyaAbvt9yhkF2/AytBaLDd?=
+ =?us-ascii?Q?WZ/v1KI1oTbYXN9sfcQFL5NoKA73suQIWxRvNrfUSY+K4vFvjY9lSeCbdRAA?=
+ =?us-ascii?Q?XUL+ZYlbg3WZ/cZtAGzVjsw5IgzvfzktBBUnlQQmFuhrHhTonEsmnF6qBWwI?=
+ =?us-ascii?Q?7+HIPR1qp5Cb7lzon4HwQ5ASWC5w1Y8i2jb8silbv60bfwMUdILpM02LJv5S?=
+ =?us-ascii?Q?l5mtbFVeyNB1tsZW4pwCHVHSGmaR7UmJqraMR5T3kYORsejHfy75FlxJNv3V?=
+ =?us-ascii?Q?Hl7bWrDuHair70+kwGGANRE5R7DWxSPPLsxLDkIrSE0MnqcAPRvPW/aEWzAl?=
+ =?us-ascii?Q?Q3yWtrKvsRmtz4gHGVEUbr4NA7s9vEqEsSs6bMktJlhkXicxQYw+VDlZGQpn?=
+ =?us-ascii?Q?WeSKM3VLGFEvtzZdsmQD+eRoDukDTrqRISs9dB0xZnQmxmVTY7gMYasRxd94?=
+ =?us-ascii?Q?s2D5bXmou1sN3OXAN3IH/mzJS0w25CHG2uu1pZ35snTso+YOOsjhU8A523Q4?=
+ =?us-ascii?Q?YEq5KLop6UyrWPz4dsUysUd2QezZVDt6YzXitwlvvyrnIwdr74iNcXpSA77v?=
+ =?us-ascii?Q?cVVsX7YhzKKp8DBVC7rLTHqw1wPjoQfi+V4N0f2+?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46907a31-9c60-43fa-228f-08dbc99645b6
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 13:38:18.2035
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 13:39:06.1550
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7jsoAwmVeV8Aa9s1oKAvnCTdvuxQWCgxgr7NvlTbhu+EFRVgt490npAL14xBcNCUU43qYV7Kaig0+CzSLj6mPQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB6168
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-GUID: KC6qOPrpzKOMyUl9_74j8mNVrGiEMW_H
-X-Proofpoint-ORIG-GUID: KC6qOPrpzKOMyUl9_74j8mNVrGiEMW_H
+X-MS-Exchange-CrossTenant-UserPrincipalName: mhyMsaNi0+gZz4YHHT5Io12h/ZnL5mPnqk6i+NTGdtrlNgA/9knr389AOf3QfcVS7LBdsidvjxDq+lIg6uv7kw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9831
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add documentation for the UAPI.
+changes in v2
+- Move MQS device node under "/" root node
+- Convert fsl,mqs.txt to yaml
 
-Changes since v5:
-- Remove obsolete VM documentation
+Chancel Liu (3):
+  arm64: dts: imx93: Add audio device nodes
+  arm64: dts: imx93: Configure clock rate for audio PLL
+  ASoC: dt-bindings: fsl,mqs: Convert format to json-schema
 
-Co-developed-by: Matt Coster <matt.coster@imgtec.com>
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-Co-developed-by: Donald Robson <donald.robson@imgtec.com>
-Signed-off-by: Donald Robson <donald.robson@imgtec.com>
-Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
----
- Documentation/gpu/drivers.rst           |   2 +
- Documentation/gpu/imagination/index.rst |  13 ++
- Documentation/gpu/imagination/uapi.rst  | 174 ++++++++++++++++++++++++
- MAINTAINERS                             |   1 +
- 4 files changed, 190 insertions(+)
- create mode 100644 Documentation/gpu/imagination/index.rst
- create mode 100644 Documentation/gpu/imagination/uapi.rst
+ .../devicetree/bindings/sound/fsl,mqs.txt     |  36 ------
+ .../devicetree/bindings/sound/fsl,mqs.yaml    | 113 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |  89 ++++++++++++++
+ 3 files changed, 202 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.yaml
 
-diff --git a/Documentation/gpu/drivers.rst b/Documentation/gpu/drivers.rst
-index 3a52f48215a3..5487deb218a3 100644
---- a/Documentation/gpu/drivers.rst
-+++ b/Documentation/gpu/drivers.rst
-@@ -3,9 +3,11 @@ GPU Driver Documentation
- ========================
- 
- .. toctree::
-+   :maxdepth: 3
- 
-    amdgpu/index
-    i915
-+   imagination/index
-    mcde
-    meson
-    pl111
-diff --git a/Documentation/gpu/imagination/index.rst b/Documentation/gpu/imagination/index.rst
-new file mode 100644
-index 000000000000..dc9579e758c3
---- /dev/null
-+++ b/Documentation/gpu/imagination/index.rst
-@@ -0,0 +1,13 @@
-+=======================================
-+drm/imagination PowerVR Graphics Driver
-+=======================================
-+
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_drv.c
-+   :doc: PowerVR Graphics Driver
-+
-+Contents
-+========
-+.. toctree::
-+   :maxdepth: 2
-+
-+   uapi
-diff --git a/Documentation/gpu/imagination/uapi.rst b/Documentation/gpu/imagination/uapi.rst
-new file mode 100644
-index 000000000000..2227ea7e6222
---- /dev/null
-+++ b/Documentation/gpu/imagination/uapi.rst
-@@ -0,0 +1,174 @@
-+====
-+UAPI
-+====
-+The sources associated with this section can be found in ``pvr_drm.h``.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR UAPI
-+
-+OBJECT ARRAYS
-+=============
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_obj_array
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: DRM_PVR_OBJ_ARRAY
-+
-+IOCTLS
-+======
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: PVR_IOCTL
-+
-+DEV_QUERY
-+---------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL DEV_QUERY interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_dev_query
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_dev_query_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_dev_query_gpu_info
-+                 drm_pvr_dev_query_runtime_info
-+                 drm_pvr_dev_query_hwrt_info
-+                 drm_pvr_dev_query_quirks
-+                 drm_pvr_dev_query_enhancements
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_heap_id
-+                 drm_pvr_heap
-+                 drm_pvr_dev_query_heap_info
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for DRM_PVR_DEV_QUERY_HEAP_INFO_GET.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_static_data_area_usage
-+                 drm_pvr_static_data_area
-+                 drm_pvr_dev_query_static_data_areas
-+
-+CREATE_BO
-+---------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_BO interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_bo_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for CREATE_BO
-+
-+GET_BO_MMAP_OFFSET
-+------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL GET_BO_MMAP_OFFSET interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_get_bo_mmap_offset_args
-+
-+CREATE_VM_CONTEXT and DESTROY_VM_CONTEXT
-+----------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_VM_CONTEXT and DESTROY_VM_CONTEXT interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_vm_context_args
-+                 drm_pvr_ioctl_destroy_vm_context_args
-+
-+VM_MAP and VM_UNMAP
-+-------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL VM_MAP and VM_UNMAP interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_vm_map_args
-+                 drm_pvr_ioctl_vm_unmap_args
-+
-+CREATE_CONTEXT and DESTROY_CONTEXT
-+----------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_CONTEXT and DESTROY_CONTEXT interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_context_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ctx_priority
-+                 drm_pvr_ctx_type
-+                 drm_pvr_static_render_context_state
-+                 drm_pvr_static_render_context_state_format
-+                 drm_pvr_reset_framework
-+                 drm_pvr_reset_framework_format
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_context_args
-+
-+CREATE_FREE_LIST and DESTROY_FREE_LIST
-+--------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_FREE_LIST and DESTROY_FREE_LIST interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_free_list_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_free_list_args
-+
-+CREATE_HWRT_DATASET and DESTROY_HWRT_DATASET
-+--------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_HWRT_DATASET and DESTROY_HWRT_DATASET interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_hwrt_dataset_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_create_hwrt_geom_data_args
-+                 drm_pvr_create_hwrt_rt_data_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_hwrt_dataset_args
-+
-+SUBMIT_JOBS
-+-----------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL SUBMIT_JOBS interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for the drm_pvr_sync_op object.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_submit_jobs_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl geometry command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl fragment command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl compute command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl transfer command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_sync_op
-+                 drm_pvr_job_type
-+                 drm_pvr_hwrt_data_ref
-+                 drm_pvr_job
-+
-+Internal notes
-+==============
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_device.h
-+   :doc: IOCTL validation helpers
-+
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_device.h
-+   :identifiers: PVR_STATIC_ASSERT_64BIT_ALIGNED PVR_IOCTL_UNION_PADDING_CHECK
-+                 pvr_ioctl_union_padding_check
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6bcd86fb44ee..f341f577f695 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10233,6 +10233,7 @@ M:	Frank Binns <frank.binns@imgtec.com>
- M:	Donald Robson <donald.robson@imgtec.com>
- S:	Supported
- F:	Documentation/devicetree/bindings/gpu/img,powervr.yaml
-+F:	Documentation/gpu/imagination/
- F:	drivers/gpu/drm/imagination/
- F:	include/uapi/drm/pvr_drm.h
- 
--- 
-2.42.0
+--
+2.25.1
 
 
