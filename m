@@ -1,136 +1,135 @@
-Return-Path: <devicetree+bounces-7299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A3A7BFF19
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:23:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD74F7BFF3F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 16:28:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68E061C20A9F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:23:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE9A31C20BAA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B9724C95;
-	Tue, 10 Oct 2023 14:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E51121F932;
+	Tue, 10 Oct 2023 14:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TKPmAKAI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UiKbVNY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D3024C84;
-	Tue, 10 Oct 2023 14:23:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0802C433C8;
-	Tue, 10 Oct 2023 14:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696947830;
-	bh=vV9MY3qCxHZdei9v7PhzyU5viqA4w/zBGC96MDe7auE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TKPmAKAIr3qzwmaeOewpGCJ/TH5dH3HmvOiayuYwA9AHvfBxmtTCpeOiC8RE9f/J8
-	 GL4NnFxK95V8SdLQprgoZMzf7sTJgQBppCqRiJltxMFrqvuCqDjPZeok3GK+fuUwx+
-	 LGsKftUFSFwVAA6um6dOyIErINfs9MZXgqkpvJBJYwRwU4vE7t+rcpOBQWKZbBnrCW
-	 0Tz8FTL4tFWET2LninODU+8E5nnXG6q5lxrwMPDz0XybI19CRLCV/i2Be2xOv8jP+0
-	 ad4lZvphNf6MMgkpe+eEl7+C2QPWqTOs2Tntzs5FYzGDOOE+lew83RmGF5WhQiNdIO
-	 2neqEhpnAE8Dw==
-Received: (nullmailer pid 836844 invoked by uid 1000);
-	Tue, 10 Oct 2023 14:23:48 -0000
-Date: Tue, 10 Oct 2023 09:23:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Akinobu Mita <akinobu.mita@gmail.com>, Howard Harte <hharte@magicandroidapps.com>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] rtc: rtc7301: Rewrite bindings in schema
-Message-ID: <20231010142348.GA833404-robh@kernel.org>
-References: <20231007-rtc-7301-regwidth-v2-0-c913aa95f666@linaro.org>
- <20231007-rtc-7301-regwidth-v2-1-c913aa95f666@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370C91DFFC
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 14:28:20 +0000 (UTC)
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E25A9
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 07:28:18 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-d862533ea85so6678396276.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 07:28:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696948097; x=1697552897; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VieWLMAOeMVC3rl3XsXfYG0X2k/MOxV7sD3CF+kS9Yc=;
+        b=UiKbVNY5kR1X7vOoXvQOd0vIPAqzOVn/Y/BfLBEvgPYCAcG/aHC4lp2z+6gF7y1u/F
+         C9tPiwLjVWTbEuAlabTUjp50RTtBMHIDAOBpLzzJmpZ8PKy9WOOy8GwrvBT/ZkHgyxNt
+         dIxRMqoZepzr0XFS5YqmHi7bC+/4CBHNOA8FhhHa/8y2vpLaTr/Tb6hXJUJ1uY3lIwDw
+         Ixy25xNZfXNEkq/aAMbRIEbuDfYoQ/b9OKOUArfJajaWofAKSNhuistgsWVRYTEwAkF8
+         t5ShV2+CIOgXH55sM2u9Kx1iiEOkjK5EKM/XW/IbHOPpEYxebLxeDvZawCTfHxsx4nxm
+         dNYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696948097; x=1697552897;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VieWLMAOeMVC3rl3XsXfYG0X2k/MOxV7sD3CF+kS9Yc=;
+        b=XTqXeFtOsLp4nhKjM+t70Fw0yN96pKJev7rpJ12QB/6dFgvNmDqrr20sAT1QAACIPP
+         ov+FMMj7d/HvqgN62sBZDk29XrJod8Llmu3h4sZaFbRYJANItdjkSb8O/7In9Z2C2hqY
+         C5mOzET4+/gwDr6FwiblvZ9ck1ZjvLkYarhmGbdVDis9ZZjnRlzhf6XkZW1VNN3ohOAE
+         VNQO+SBeWlw2vQFIorA9XLSI2E/os1/BEkHMAyfV8u53x1qFN0+dL6q69rflchrk8mpR
+         l3Sq+19o9GO+RunTCCfJftASp0m5C+OVv0VgMpHCMr1h0zqXJgSgNXVr1E8t3MiCihP+
+         0QCA==
+X-Gm-Message-State: AOJu0YyLa/eeJ17LXG5XFZrx3bz5m+m/tdxmyublQODdd0GXEGvBopbg
+	EWuYJpESNOhqp5A+nOE2xiPpcqiZfq8PW6bG1vA0JA==
+X-Google-Smtp-Source: AGHT+IEyR5gyWtdqFzf5k1RG5nTB/n8+9hlLKGCgokeEptzxamgxwENVYWcMtkuqr9JZfmwIzZbHqicq0j/xu0oox4Y=
+X-Received: by 2002:a5b:a50:0:b0:d97:213b:4775 with SMTP id
+ z16-20020a5b0a50000000b00d97213b4775mr10319439ybq.34.1696948097328; Tue, 10
+ Oct 2023 07:28:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007-rtc-7301-regwidth-v2-1-c913aa95f666@linaro.org>
+References: <20231002200610.129799-1-tmaimon77@gmail.com>
+In-Reply-To: <20231002200610.129799-1-tmaimon77@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 10 Oct 2023 16:27:41 +0200
+Message-ID: <CAPDyKForPWPHoAuRuyXBHRpNVA9MvYa-eTXDrHx8Z94nSWpXBg@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] add NPCM SDHCI driver support
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	adrian.hunter@intel.com, skhan@linuxfoundation.org, davidgow@google.com, 
+	pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org, 
+	arnd@arndb.de, krakoczy@antmicro.com, andy.shevchenko@gmail.com, 
+	openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Sat, Oct 07, 2023 at 02:30:49PM +0200, Linus Walleij wrote:
-> This rewrites the Epson RTC7301 bindings to use YAML schema,
-> and adds a property for "reg-io-width" as used in several
-> other bindings to account for different register strides.
-> 
-> The USRobotics USR8200 uses the byte IO width.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/rtc/epson,rtc7301.txt      | 16 -------
->  .../devicetree/bindings/rtc/epson,rtc7301.yaml     | 50 ++++++++++++++++++++++
->  2 files changed, 50 insertions(+), 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt b/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
-> deleted file mode 100644
-> index 5f9df3f1467c..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -EPSON TOYOCOM RTC-7301SF/DG
-> -
-> -Required properties:
-> -
-> -- compatible: Should be "epson,rtc7301sf" or "epson,rtc7301dg"
-> -- reg: Specifies base physical address and size of the registers.
-> -- interrupts: A single interrupt specifier.
-> -
-> -Example:
-> -
-> -rtc: rtc@44a00000 {
-> -	compatible = "epson,rtc7301dg";
-> -	reg = <0x44a00000 0x10000>;
-> -	interrupt-parent = <&axi_intc_0>;
-> -	interrupts = <3 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
-> new file mode 100644
-> index 000000000000..0937b094821d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/epson,rtc7301.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Epson Toyocom RTC-7301SF/DG
-> +
-> +description:
-> +  The only difference between the two variants is the packaging.
-> +  The DG variant is a DIL package, and the SF variant is a flat
-> +  package.
-> +
-> +maintainers:
-> +  - Akinobu Mita <akinobu.mita@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - epson,rtc7301dg
-> +      - epson,rtc7301sf
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-io-width:
-> +    description:
-> +      The size (in bytes) of the IO accesses that should be performed
-> +      on the device. If not specified, the default is 4.
+On Mon, 2 Oct 2023 at 22:06, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> This patch set adds SDHCI support for the Nuvoton NPCM Baseboard
+> Management Controller (BMC).
+>
+> Deeply sorry it took that long until sending version three, promise to try
+> to do better on the next versions (if needed) :-),
+>
+> The NPCM SDHCI driver tested on NPCM750 and NPCM845 EVB.
+>
+> Addressed comments from:
+>  - Andy Shevchenko : https://www.spinics.net/lists/devicetree/msg638000.html
+>
+> Changes since version 4:
+>  - Remove unnecessary clk_disable_unprepare function.
+>
+> Changes since version 3:
+>  - Use devm_clk_get_optional_enabled function.
+>  - Add mod_devicetable.h.
+>  - Modify copyright year.
+>
+> Changes since version 2:
+>  - Add data to handle architecture-specific SDHCI parameters.
+>  - Change config place in make and kconfig files.
+>  - Calling sdhci_pltfm_free to to avoid a memory leak on error.
+>
+> Changes since version 1:
+>  - Use correct spaces in the dt-bindings.
+>  - Drop unused labels from dt-bindings.
+>  - Order by module name in the make a configuration.
+>  - Remove unnecessary blank lines.
+>  - Using devm_clk_get_optional instead of devm_clk_get.
+>
+> Tomer Maimon (2):
+>   dt-bindings: mmc: npcm,sdhci: Document NPCM SDHCI controller
+>   mmc: sdhci-npcm: Add NPCM SDHCI driver
+>
+>  .../devicetree/bindings/mmc/npcm,sdhci.yaml   | 45 +++++++++
+>  drivers/mmc/host/Kconfig                      |  8 ++
+>  drivers/mmc/host/Makefile                     |  1 +
+>  drivers/mmc/host/sdhci-npcm.c                 | 94 +++++++++++++++++++
+>  4 files changed, 148 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml
+>  create mode 100644 drivers/mmc/host/sdhci-npcm.c
+>
 
-No prose for what can be a constraint:
+Applied for next (and by amending patch2 to remove some commas), thanks!
 
-       default: 4
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +    enum: [1, 4]
-
+Kind regards
+Uffe
 
