@@ -1,144 +1,184 @@
-Return-Path: <devicetree+bounces-7436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697747C44DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 00:50:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169C57C451C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 00:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0EA1C20BA4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:50:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 467301C20C8F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 22:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E3632196;
-	Tue, 10 Oct 2023 22:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65115315BE;
+	Tue, 10 Oct 2023 22:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YLflrFqB"
+	dkim=pass (2048-bit key) header.d=maslowski.xyz header.i=@maslowski.xyz header.b="bQ2jGm/O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F3E32C7B
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:50:28 +0000 (UTC)
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36591A8
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:17 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3231df054c4so5644291f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696978215; x=1697583015; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s37SUcPotioxZcjEHmhq7GzFTfw04ERbXr6RSb1B27c=;
-        b=YLflrFqBNoeyMQu4V1GkkHdtxG9kaosjv+MB38MkhKDT1STbCHbvuO1/XAHB58CVHo
-         yeHIWoHJdykr3+pxcRY0yaQ/h6a8jyDE4y0UD0vVrNVKjmurwkTe5tpgIf7VH5uNDw8j
-         eu/vfjjG7fuCIZo/KFu14RZ0Y/lMSiKDd2U/TeA4SIn0lpfLPAA+HHGILEJdokfnEIxo
-         +3s7s0dZAZg6Qpfo7Ne/wLrpwNaRzjTeFojWAZYNIkhlCmNN8+pacwCslnefZiw/7tay
-         qsPZ/XlOM+MQz9Sueam/yYbA7zRPIbB0PNWHX0Eom5ugKIgUedc0qzFen/YouEOP/Cbn
-         QdGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696978215; x=1697583015;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s37SUcPotioxZcjEHmhq7GzFTfw04ERbXr6RSb1B27c=;
-        b=W3Tm+pZXcoe4/mfKwVVu2WcJBSJ4LulPiBQ0DVpIqRW8vl7gg2JKM4nam0FnGRDL4b
-         9ptj7B0Zp3TU/J7/bNtQUMeFJWfY5mE0zByKEE6yvYgvZVrIN85p2iwNwhU7ocCdnOyo
-         jT55EINtK7dr7jsq0DL9ACiz5Chj2NWFHeOlU3Z+ZARe9lzNkz+VmPxZkldCKudqqK6+
-         WvMQzdPZiyJ6DNC1pTUteiZGUBexS+AO8QNk47i6cDBdBsyiG3xeuB2b4Xk5N32EVO+5
-         bQn1LcsCqV2z4QAgr/5bIHtygQvPm6ytRAOIuCAxjkjkA0tcA7tFldwjOTBWJrydnmUO
-         FkLQ==
-X-Gm-Message-State: AOJu0YyrjB5W9q1lU4SJP5gU6ZkbMEFgA468d4qrPXGNpOC/eqCoYyzU
-	fpzJtWCfEO+KTYgwgaL45RnjIQ==
-X-Google-Smtp-Source: AGHT+IHJw3S0mLbaumsobRC5IL/pZDMQtHIFgcBqimA/C5vlsITA5NsDBJI4cgvehYn3duSLLOm7Lg==
-X-Received: by 2002:adf:f84e:0:b0:324:8353:6e51 with SMTP id d14-20020adff84e000000b0032483536e51mr18255367wrq.45.1696978215668;
-        Tue, 10 Oct 2023 15:50:15 -0700 (PDT)
-Received: from gpeter-l.lan (host-92-12-225-146.as13285.net. [92.12.225.146])
-        by smtp.gmail.com with ESMTPSA id j13-20020adfe50d000000b003196b1bb528sm13689547wrm.64.2023.10.10.15.50.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 15:50:15 -0700 (PDT)
-From: Peter Griffin <peter.griffin@linaro.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	conor+dt@kernel.org,
-	sboyd@kernel.org,
-	tomasz.figa@gmail.com,
-	s.nawrocki@samsung.com,
-	linus.walleij@linaro.org,
-	wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	olof@lixom.net,
-	cw00.choi@samsung.com
-Cc: peter.griffin@linaro.org,
-	tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	semen.protsenko@linaro.org,
-	saravanak@google.com,
-	willmcvicker@google.com,
-	soc@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	kernel-team@android.com,
-	linux-serial@vger.kernel.org
-Subject: [PATCH v2 20/20] MAINTAINERS: add entry for Google Tensor SoC
-Date: Tue, 10 Oct 2023 23:49:28 +0100
-Message-ID: <20231010224928.2296997-21-peter.griffin@linaro.org>
-X-Mailer: git-send-email 2.42.0.609.gbb76f46606-goog
-In-Reply-To: <20231010224928.2296997-1-peter.griffin@linaro.org>
-References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E01D354E8
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:54:22 +0000 (UTC)
+Received: from mail.maslowski.xyz (mail.maslowski.xyz [45.77.158.94])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9270198;
+	Tue, 10 Oct 2023 15:54:20 -0700 (PDT)
+Received: from localhost (ett70.neoplus.adsl.tpnet.pl [83.20.165.70])
+	by mail.maslowski.xyz (Postfix) with ESMTPSA id 2EE077DC10;
+	Tue, 10 Oct 2023 22:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=maslowski.xyz;
+	s=mail; t=1696978445;
+	bh=6cDLMOXL3mLA/poB5kEyvB24vzjoALF7gR0tMFcgS9Y=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=bQ2jGm/OUyitIsIreJ+nwUemlNEtaGng3FNv+Ul8slocoDLrhArgJlFXDdrbftffG
+	 hlh30WcFC0yoVIWBBgQo+OGHzmuQ5bK16dZFMVyb3B4HZfuEtt4QdC11fD20m2E+R6
+	 86As2hLylh7m2MVJaQTTVMVmlxN3h1/27g4C+4wTd4lcLl4gkyhPozWVpyFWKOzcFn
+	 m1vIBN0egWzVCp4Ym3YVMizjMlqEgepaxH+n3mRfPxAopdXcbcQr8gMjGDlEE8kG6Z
+	 S+ahEMO4bO4LA9euNchEsU7HsCZ/fputbYgJzWG/apMQ0xryb0/SAM9nVqwYxM30zO
+	 NvMuIcekMSz4A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 11 Oct 2023 00:53:57 +0200
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>, "Sam Ravnborg"
+ <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter"
+ <daniel@ffwll.ch>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thierry Reding" <thierry.reding@gmail.com>,
+ "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>, "Robert
+ Mader" <robert.mader@posteo.de>, "Guido Gunther" <agx@sigxcpu.org>,
+ <dri-devel@lists.freedesktop.org>, "Hector Martin" <marcan@marcan.st>,
+ <devicetree@vger.kernel.org>, <phone-devel@vger.kernel.org>,
+ <asahi@lists.linux.dev>, <~postmarketos/upstreaming@lists.sr.ht>
+Subject: Re: [PATCH RFC] dt-bindings: display: document display panel
+ occlusions
+From: =?utf-8?q?Piotr_Mas=C5=82owski?= <piotr@maslowski.xyz>
+To: "Caleb Connolly" <caleb.connolly@linaro.org>
+Message-Id: <CW54GWXGYWEA.ER1Z3DVG83M0@andrad>
+X-Mailer: aerc 0.15.2
+References: <20231009-caleb-notch-example-v1-1-9e0a43ae233c@linaro.org>
+ <CW4UT45DZ5C6.3NIT2IFNSKD4O@andrad>
+ <4ce2c3a6-6f66-4fe7-8616-a787a88dd250@linaro.org>
+In-Reply-To: <4ce2c3a6-6f66-4fe7-8616-a787a88dd250@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add maintainers entry for the Google tensor SoC based
-platforms.
+On Tue Oct 10, 2023 at 10:36 PM CEST, Caleb Connolly wrote:
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+>> So why am I writing all of this? Well, the problem I see is that any
+>> shape-based approach will likely suffer from both accuracy and
+>> complexity issues. Describing curves is hard and processing them is
+>> not something that should be included in e.g. whatever handles VTs.
+>
+> My proposal here doesn't require processing curves or doing any
+> complicated calculations. If you know that the display has a 30px radius
+> on all corners, you can adjust the VT to not use the top 30px of the
+> screen and it will start exactly where the radius stops.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..149a0c364309 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8836,6 +8836,16 @@ S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux.git
- F:	drivers/firmware/google/
- 
-+GOOGLE TENSOR SoC SUPPORT
-+M:	Peter Griffin <peter.griffin@linaro.org>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
-+F:	arch/arm64/boot/dts/google/
-+F:	drivers/clk/samsung/clk-gs101.c
-+F:	include/dt-bindings/clock/google,clk-gs101.h
-+
- GPD POCKET FAN DRIVER
- M:	Hans de Goede <hdegoede@redhat.com>
- L:	platform-driver-x86@vger.kernel.org
--- 
-2.42.0.609.gbb76f46606-goog
+Just a nitpick, but on a round smartwatch this approach will give you
+a $width =C3=97 0px famebuffer ;D
 
+>
+> If you know that there is a (potentially very curvy) notch at the top of
+> the screen, you can just iterate over the arcs, add their radius to
+> their Y coordinate and take the maximum. This will always give you at
+> least the height of the notch (you'd probably want to check that their
+> angle is vaguely downward, but again this is trivial fast integer math).
+
+Yeah, I was talking about curves in general. Your proposal is on the
+low-complexity side thankfully.
+
+
+>> - gathering the data is very straightforward =E2=80=93 just light the re=
+levant
+>>   pixels one-by-one and check if you see them
+>> - pixel-perfect accuracy is the default
+>
+> I think it would be fairly straightforward to do this for curve data
+> too. You just bump the radius up/down until it looks right, or "good enou=
+gh"
+
+Well, different people will have different standards and what might be
+good enough for some will annoy others. I'm not saying that we need to
+be perfect at all cost, but if there's a relatively easy way to cut down
+on inconsistency, it might be worth taking.
+
+Additionally, having a very clear-cut quality indicator could remove a
+whole class of bikeshedding options. (speaking of the devil xD)
+
+
+The problem I have with curves is, the more 'correct' you make them, the
+more convoluted they become. Like take for example the corners. Rounded
+corners are circular right? But what if someone makes them 'squircular'?
+Well, they are usually quite small anyway so maybe it will work out.
+
+But then what about a smartwatch with big, squircle-shaped display? Bam,
+now you need to complicate how corners are handled.
+
+But also: are rounded coners typically circular? Just now I've thrown a
+OnePlus 6 (thank you so much for the great mainline support btw!) onto a
+flatbed scanner. While a circle fits decently well there it's not really
+a perfect fit, so maybe they went with a different curve after all.
+
+That being said, imperfection isn't my main issue with curves. It's all
+the non-discreteness they bring to the table. As in, you now need to care
+about approximations, rounding, imprecise measurements and so on.
+
+
+> I think the unfortunate truth is that approximating notches and rounded
+> corners exclusively with regular arcs at the cost of pixel accuracy is
+> just such a no-brainer. Pixel masks would be pixel accurate, but there
+> is no benefit compared to a slightly underfit curve.
+
+Frankly, I don't see any significant cost here. It's very easy to gather
+and rather easy to process.
+
+Let me think about it=E2=80=A6 The most common operations I see people actu=
+ally
+doing with this data would be:
+
+* letterboxing =E2=80=93 easy with both curves and masks
+* ensuring padding | margins for icons on the screen =E2=80=93 with curves =
+you
+  can use a formula, but won't it be easier to just count pixels anyway?
+* routing a spline along the border =E2=80=93 like if you want to have some
+  periodic pattern drawn there, it's probably a bit easier to do with
+  curves
+* drawing something at a constant distance from the border =E2=80=93 with c=
+urves
+  you can again use exact formulas. But isn't that an overkill really?
+  I'd think most people will go for something like a morphological
+  dilation instead
+
+>
+> Any program which wanted to make use of the curve information would have
+> to run a whole curve fitting algorithm, whereas there simply aren't any
+> programs which need to know about display occlusions to a pixel-accurate
+> level. For padding a status bar you do a single trig equation, for
+> avoiding the notch in fullscreen you would query the DRM subsystem which
+> presumably would export the dimensions of a letterboxed "usable size".
+
+What could the curve information be needed for though?
+The more I think about it, the less value I see in it really. Like, if
+you're adjusting the screen contents, pixels _are_ the smallest unit you
+need to concern yourself with. The only thing that comes up to my mind
+is if you were to animate the cutout shape somewhere else, zoomed in.
+And thats already a quite contrived scenario.
+
+Is there actually any use case that instead of ending up with pixels
+either way, would be better served by a (possibly inaccurate) curve?
+(future me here: that spline-along-the-border from earlier I guess)
+
+--
+Cheers,
+Piotr Mas=C5=82owski
 
