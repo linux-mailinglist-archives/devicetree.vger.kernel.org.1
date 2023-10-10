@@ -1,171 +1,118 @@
-Return-Path: <devicetree+bounces-7314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C507C004E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 316847C0059
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90F9F2816B1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:23:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2E35281BEF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03E727449;
-	Tue, 10 Oct 2023 15:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9BE27450;
+	Tue, 10 Oct 2023 15:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GE1izV5c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ciJ9Kh17"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E93427442
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:23:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECBE9C433C8;
-	Tue, 10 Oct 2023 15:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD7C27442;
+	Tue, 10 Oct 2023 15:26:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52AF7C433C8;
+	Tue, 10 Oct 2023 15:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696951435;
-	bh=je+X4N3HJAOHN0eF8qp5QiCbj5/agxUI5k9RToaWuNU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=GE1izV5cIGC8e+ySQqgJeMC0XsvmFDu6+rvkBe0YX1xPu8nGb+Uo6olSh6wKQxkLj
-	 SRWZvCYJo6MFeMdRKkFYNzKgjLgLCenfJOh6Vw+4OMtHEcZAViHgMzqqwbVIZfmSiX
-	 0WMpYjlkbygL4QfabUUAYY46ccqopuw06RCAivt+/B0wwcxeuhy19hik5ya5+fRwY9
-	 ZRUVULsxFo995RB4+Hj5WYHCcFpac3a8V6gZClUQzVFS5FbEE/sDKx3kiBaSjRcWfo
-	 2J4TY6SP3h4X0QN0Ru1TSqp1ZnNwBxXoXHE7or8TY1cPRimqhbJm9+Irh4al48S2VU
-	 vGAsFodvHHtLw==
-Date: Tue, 10 Oct 2023 16:24:05 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ivan Mikhaylov <fr0st61te@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: Add driver support for MAX34408/9
-Message-ID: <20231010162405.6d6f3c48@jic23-huawei>
-In-Reply-To: <20231007234838.8748-3-fr0st61te@gmail.com>
-References: <20231007234838.8748-1-fr0st61te@gmail.com>
-	<20231007234838.8748-3-fr0st61te@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1696951560;
+	bh=YodDTkaZ+bcycK00pqPePN0/QiKatfmhX9P+LMDLFh4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ciJ9Kh17CIbzsZylz9Dhiv6Ic/cVCJqmhTy+BBoVtfI8Cq2soIFi/cdmTU2nP5Ali
+	 vFevqR3JKFBHM3dPd7Yjp6Fgr78K7+ZW91WBFidPz16aEv6054jmYAfpnLUEXBqn6I
+	 biD0Ujni2GK+/Vt2ilLkU5DGIDbwREo3BpRuWCTdBG2YQLaRKepC907LBuUNUAAA/V
+	 1ni/Upg+byAdumPHsEEJMu7YgpWhFbHPkEFI72rBl5oMhGphoAKw4Xch9YrgBmUJ+d
+	 hsRwrpOO7T2Z5LOtnR2fn+cqWFPFeAU0BSDM/9BfhHweYHwoxXbypQYlqdzaw9Gniq
+	 /C+0yQquSzcKw==
+Date: Tue, 10 Oct 2023 16:25:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
+	f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document
+ microchip,rmii-clk-internal
+Message-ID: <20231010-unwired-trench-c7a467118879@spud>
+References: <cover.1693482665.git.ante.knezic@helmholz.de>
+ <df8490e3a39a6daa66c5a0dd266d9f4a388dfe7b.1693482665.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-
-On Sun,  8 Oct 2023 02:48:38 +0300
-Ivan Mikhaylov <fr0st61te@gmail.com> wrote:
-
-> The MAX34408/MAX34409 are two- and four-channel current monitors that are
-> configured and monitored with a standard I2C/SMBus serial interface. Each
-> unidirectional current sensor offers precision high-side operation with a
-> low full-scale sense voltage. The devices automatically sequence through
-> two or four channels and collect the current-sense samples and average them
-> to reduce the effect of impulse noise. The raw ADC samples are compared to
-> user-programmable digital thresholds to indicate overcurrent conditions.
-> Overcurrent conditions trigger a hardware output to provide an immediate
-> indication to shut down any necessary external circuitry.
-> 
-> Add as ADC driver which only supports current monitoring for now.
-> 
-> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
-> 
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-
-A few other comments inline.
-
-Jonathan
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ZK4vbLQNLyDEl6PG"
+Content-Disposition: inline
+In-Reply-To: <df8490e3a39a6daa66c5a0dd266d9f4a388dfe7b.1693482665.git.ante.knezic@helmholz.de>
 
 
-> diff --git a/drivers/iio/adc/max34408.c b/drivers/iio/adc/max34408.c
-> new file mode 100644
-> index 000000000000..85cd7b1ec186
-> --- /dev/null
-> +++ b/drivers/iio/adc/max34408.c
-> @@ -0,0 +1,278 @@
+--ZK4vbLQNLyDEl6PG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Oct 10, 2023 at 03:18:54PM +0200, Ante Knezic wrote:
+> Add documentation for selecting reference rmii clock on KSZ88X3 devices
+>=20
+> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml=
+ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index e51be1ac0362..3df5d2e72dba 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -49,6 +49,12 @@ properties:
+>        Set if the output SYNCLKO clock should be disabled. Do not mix with
+>        microchip,synclko-125.
+> =20
+> +  microchip,rmii-clk-internal:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Set if the RMII reference clock should be provided internally.
 
-> +static const struct of_device_id max34408_of_match[] = {
-> +	{
-> +		.compatible = "maxim,max34408",
-> +		.data = &max34408_model_data,
-> +	},
-> +	{
-> +		.compatible = "maxim,max34409",
-> +		.data = &max34409_model_data,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, max34408_of_match);
+> Applies only
+> +      to KSZ88X3 devices.
 
-Having dropped the unnecessary check in probe, move this to next to the
-other tables.
+This should be enforced by the schema, the example schema in the docs
+should show you how to do this.
+
+Thanks,
+Conor.
 
 > +
-> +static int max34408_probe(struct i2c_client *client)
-> +{
-> +	const struct max34408_adc_model_data *model_data;
-> +	struct device *dev = &client->dev;
-> +	const struct of_device_id *match;
-> +	struct max34408_data *max34408;
-> +	struct fwnode_handle *node;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int rc, i;
-> +
-> +	match = i2c_of_match_device(max34408_of_match, client);
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.11.0
+>=20
+>=20
 
-Why check this?  This prevents any other firmware binding being used for no
-obvious purpose.  Just check...
+--ZK4vbLQNLyDEl6PG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	if (!match)
-> +		return -EINVAL;
-> +	model_data = i2c_get_match_data(client);
-.. 	if (!model_data)
-		return -EINVAL;
+-----BEGIN PGP SIGNATURE-----
 
-instead.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSVtAgAKCRB4tDGHoIJi
+0izpAP4vBdiuYP3WAEbZcqrN4YsfFf6tlXSryyiZH534hE8mvAD/V8bf4jyCgfGx
+pDCsIx/r0oOw16zOeOu4EirMC52AUw8=
+=hpzs
+-----END PGP SIGNATURE-----
 
-> +
-> +	regmap = devm_regmap_init_i2c(client, &max34408_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err_probe(dev, PTR_ERR(regmap),
-> +			      "regmap_init failed\n");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*max34408));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	max34408 = iio_priv(indio_dev);
-> +	max34408->regmap = regmap;
-> +	max34408->dev = dev;
-> +	mutex_init(&max34408->lock);
-> +
-> +	device_for_each_child_node(dev, node) {
-> +		fwnode_property_read_u32(node, "maxim,rsense-val-micro-ohms",
-> +					 &max34408->input_rsense[i]);
-> +		i++;
-As 0-day pointed out, i isn't initialized.
-
-> +	}
-> +
-> +	/* disable ALERT and averaging */
-> +	rc = regmap_write(max34408->regmap, MAX34408_CONTROL_REG, 0x0);
-> +	if (rc)
-> +		return rc;
-> +
-> +	indio_dev->channels = model_data->channels;
-> +	indio_dev->num_channels = model_data->num_channels;
-> +	indio_dev->name = model_data->model_name;
-> +
-> +	indio_dev->info = &max34408_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
+--ZK4vbLQNLyDEl6PG--
 
