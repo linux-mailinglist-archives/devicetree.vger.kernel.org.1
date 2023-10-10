@@ -1,146 +1,414 @@
-Return-Path: <devicetree+bounces-7240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420E17BFD53
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D587BFD54
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E1391C20AF1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:25:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D234A1C20C94
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355AE4735C;
-	Tue, 10 Oct 2023 13:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E9B47376;
+	Tue, 10 Oct 2023 13:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Oo0EHPcR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VaKtELly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2125D208C5
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:25:18 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86FDAC;
-	Tue, 10 Oct 2023 06:25:15 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 44D2E3D6;
-	Tue, 10 Oct 2023 15:25:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1696944310;
-	bh=2durrQWd9Y7mb4cgie2hSlNbqASowx84zsX964vB7WY=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=Oo0EHPcRy554+8IW0QdbX0aOQED5uwAajQmzq9eY8HJNHT0Yem7x3zHDul3qignnK
-	 yTHSCvlzIchAohICEtCGru+ti3n0VGGwfoC8gikdCZnYzPAxu3gW6sPM1V1xKa+SEg
-	 WZ3UTpR4MMnqsL7rrjgHP4lHnxoZgUmKdmLDm398=
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EB8208C5
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:25:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8698AC433C9;
+	Tue, 10 Oct 2023 13:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696944322;
+	bh=Fv0piH4ejgIPuV+sm7UM/vkQAy1cXbruCPkevj0n4OU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VaKtELlydtrDgjgCkFjxtLq9So+QDY7ty42/9+7vrx711jItM8adgn0d8PJ5/UE3w
+	 eqlh7oEoBNZs2x/ER7o1tQ0bWvSN20IxUkwFOSw7JLF8M8QQC2o1O5Urc+lXht4nOI
+	 MVCvuNKALelMb2sw6DZCkuFrG9w9sHu1lt4VHOk2jJpkDJz/ehlJxL2+nymzI8v5z5
+	 RtG/pIjte0yJ0lZltdrg7w2HTRRChGCKZIxKkDC33KUGN3eCfC0PR63nccsBEwptz5
+	 CcXDdh6b2LFjsiosWx9lMdmCOKVJnqgeqVGGQv6X4aWCPrW4fz8OG11y1BMBa/bGpw
+	 GDJwkVcCw0IQQ==
+Received: (nullmailer pid 624835 invoked by uid 1000);
+	Tue, 10 Oct 2023 13:25:20 -0000
+Date: Tue, 10 Oct 2023 08:25:20 -0500
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH V2 2/4] dt-bindings: clock: add Amlogic C3 peripherals
+ clock controller bindings
+Message-ID: <20231010132520.GB557938-robh@kernel.org>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
+ <20231010062917.3624223-3-xianwei.zhao@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ZSTp4jXKPVrbo5oU@valkosipuli.retiisi.eu>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com> <20231010005126.3425444-2-kieran.bingham@ideasonboard.com> <ZSTp4jXKPVrbo5oU@valkosipuli.retiisi.eu>
-Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply bindings
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul J. Murphy <paul.j.murphy@intel.com>, Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Date: Tue, 10 Oct 2023 14:25:09 +0100
-Message-ID: <169694430967.3973464.6599459439831458834@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231010062917.3624223-3-xianwei.zhao@amlogic.com>
 
-Hi Sakari,
+On Tue, Oct 10, 2023 at 02:29:15PM +0800, Xianwei Zhao wrote:
+> Add the peripherals clock controller dt-bindings for Amlogic C3 SoC family
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> V1 -> V2: Fix errors when check binding use "make dt_binding_check"
+> ---
+>  .../clock/amlogic,c3-peripherals-clkc.yaml    |  92 +++++++
+>  .../clock/amlogic,c3-peripherals-clkc.h       | 230 ++++++++++++++++++
+>  2 files changed, 322 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+> new file mode 100644
+> index 000000000000..a165f447ec41
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,c3-peripherals-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic C serials Peripherals Clock Controller
 
-Quoting Sakari Ailus (2023-10-10 07:06:26)
-> Hi Kieran,
->=20
-> On Tue, Oct 10, 2023 at 01:51:22AM +0100, Kieran Bingham wrote:
-> > Add the bindings for the supply references used on the IMX335.
-> >=20
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > ---
-> >  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > index a167dcdb3a32..1863b5608a5c 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > @@ -32,6 +32,15 @@ properties:
-> >      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
-> >      maxItems: 1
-> > =20
-> > +  avdd-supply:
-> > +    description: Analog power supply (2.9V)
-> > +
-> > +  ovdd-supply:
-> > +    description: Interface power supply (1.8V)
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital power supply (1.2V)
->=20
-> I wonder what's the policy in this case --- some of the regulators are
-> often hard-wired and the bindings didn't have them previously either (I
-> wonder why, maybe they were all hard wired in the board??).
->=20
-> Could they be optional? The driver will need to be able to do without the=
-se
-> in any case.
+C3?
 
-Indeed - many devices do not need to define how they are powered up.
+Serials. Or just Serial as Peripherals is already plural?
 
-But Krzysztof stated that supplies should be required by the bindings on
-my recent posting for a VCM driver:
+> +
+> +maintainers:
+> +  - Chuan Liu <chuan.liu@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,c3-peripherals-clkc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 9
+> +    items:
+> +      - description: input oscillator (usually at 24MHz)
+> +      - description: input fixed pll
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div2p5
+> +      - description: input fixed pll div3
+> +      - description: input fixed pll div4
+> +      - description: input fixed pll div5
+> +      - description: input fixed pll div7
+> +      - description: input gp0 pll
+> +      - description: input hifi pll
+> +
+> +  clock-names:
+> +    minItems: 9
+> +    items:
+> +      - const: xtal
+> +      - const: fixed_pll
+> +      - const: fclk_div2
+> +      - const: fclk_div2p5
+> +      - const: fclk_div3
+> +      - const: fclk_div4
+> +      - const: fclk_div5
+> +      - const: fclk_div7
+> +      - const: gp0_pll
+> +      - const: hifi_pll
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,c3-pll-clkc.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clkc_periphs: clock-controller@0 {
+> +          compatible = "amlogic,c3-peripherals-clkc";
+> +          reg = <0x0 0x0 0x0 0x49c>;
+> +          #clock-cells = <1>;
+> +          clocks = <&xtal>,
+> +                   <&clkc_pll CLKID_FIXED_PLL>,
+> +                   <&clkc_pll CLKID_FCLK_DIV2>,
+> +                   <&clkc_pll CLKID_FCLK_DIV2P5>,
+> +                   <&clkc_pll CLKID_FCLK_DIV3>,
+> +                   <&clkc_pll CLKID_FCLK_DIV4>,
+> +                   <&clkc_pll CLKID_FCLK_DIV5>,
+> +                   <&clkc_pll CLKID_FCLK_DIV7>,
+> +                   <&clkc_pll CLKID_GP0_PLL>,
+> +                   <&clkc_pll CLKID_HIFI_PLL>;
+> +          clock-names = "xtal",
+> +                        "fixed_pll",
+> +                        "fclk_div2",
+> +                        "fclk_div2p5",
+> +                        "fclk_div3",
+> +                        "fclk_div4",
+> +                        "fclk_div5",
+> +                        "fclk_div7",
+> +                        "gp0_pll",
+> +                        "hifi_pll";
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+> new file mode 100644
+> index 000000000000..82f9bf683ea0
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+> @@ -0,0 +1,230 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+> + * Author: Chuan Liu <chuan.liu@amlogic.com>
 
- - https://lore.kernel.org/all/6e163f4d-061d-3c20-4c2e-44c74d529f10@linaro.=
-org/
+Should have a Co-developed-by tag if the author is different.
 
-So based on that I have made these 'required'.
-
-Even in my case here, with a camera module that is compatible with the
-Raspberry Pi camera connector - there isn't really 3 supplies. It's just
-a single gpio enable pin to bring this device up for me. Of course
-that's specific to the module not the sensor.
-
-
-> > +
-> >    reset-gpios:
-> >      description: Reference to the GPIO connected to the XCLR pin, if a=
-ny.
-> >      maxItems: 1
-> > @@ -60,6 +69,9 @@ required:
-> >    - compatible
-> >    - reg
-> >    - clocks
-> > +  - avdd-supply
-> > +  - ovdd-supply
-> > +  - dvdd-supply
-> >    - port
-> > =20
-> >  additionalProperties: false
-> > @@ -79,6 +91,10 @@ examples:
-> >              assigned-clock-parents =3D <&imx335_clk_parent>;
-> >              assigned-clock-rates =3D <24000000>;
-> > =20
-> > +            avdd-supply =3D <&camera_vdda_2v9>;
-> > +            ovdd-supply =3D <&camera_vddo_1v8>;
-> > +            dvdd-supply =3D <&camera_vddd_1v2>;
-> > +
-> >              port {
-> >                  imx335: endpoint {
-> >                      remote-endpoint =3D <&cam>;
->=20
-> --=20
-> Kind regards,
->=20
-> Sakari Ailus
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PERIPHERALS_CLKC_H
+> +#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PERIPHERALS_CLKC_H
+> +
+> +#define CLKID_PLL_IN				0
+> +#define CLKID_MCLK_PLL_IN			1
+> +#define CLKID_RTC_XTAL_CLKIN			2
+> +#define CLKID_RTC_32K_DIV			3
+> +#define CLKID_RTC_32K_MUX			4
+> +#define CLKID_RTC_32K				5
+> +#define CLKID_RTC_CLK				6
+> +#define CLKID_SYS_A_SEL				7
+> +#define CLKID_SYS_A_DIV				8
+> +#define CLKID_SYS_A				9
+> +#define CLKID_SYS_B_SEL				10
+> +#define CLKID_SYS_B_DIV				11
+> +#define CLKID_SYS_B				12
+> +#define CLKID_SYS_CLK				13
+> +#define CLKID_AXI_A_SEL				14
+> +#define CLKID_AXI_A_DIV				15
+> +#define CLKID_AXI_A				16
+> +#define CLKID_AXI_B_SEL				17
+> +#define CLKID_AXI_B_DIV				18
+> +#define CLKID_AXI_B				19
+> +#define CLKID_AXI_CLK				20
+> +#define CLKID_SYS_RESET_CTRL			21
+> +#define CLKID_SYS_PWR_CTRL			22
+> +#define CLKID_SYS_PAD_CTRL			23
+> +#define CLKID_SYS_CTRL				24
+> +#define CLKID_SYS_TS_PLL			25
+> +#define CLKID_SYS_DEV_ARB			26
+> +#define CLKID_SYS_MMC_PCLK			27
+> +#define CLKID_SYS_CAPU				28
+> +#define CLKID_SYS_CPU_CTRL			29
+> +#define CLKID_SYS_JTAG_CTRL			30
+> +#define CLKID_SYS_IR_CTRL			31
+> +#define CLKID_SYS_IRQ_CTRL			32
+> +#define CLKID_SYS_MSR_CLK			33
+> +#define CLKID_SYS_ROM				34
+> +#define CLKID_SYS_UART_F			35
+> +#define CLKID_SYS_CPU_ARB			36
+> +#define CLKID_SYS_RSA				37
+> +#define CLKID_SYS_SAR_ADC			38
+> +#define CLKID_SYS_STARTUP			39
+> +#define CLKID_SYS_SECURE			40
+> +#define CLKID_SYS_SPIFC				41
+> +#define CLKID_SYS_NNA				42
+> +#define CLKID_SYS_ETH_MAC			43
+> +#define CLKID_SYS_GIC				44
+> +#define CLKID_SYS_RAMA				45
+> +#define CLKID_SYS_BIG_NIC			46
+> +#define CLKID_SYS_RAMB				47
+> +#define CLKID_SYS_AUDIO_PCLK			48
+> +#define CLKID_SYS_PWM_KL			49
+> +#define CLKID_SYS_PWM_IJ			50
+> +#define CLKID_SYS_USB				51
+> +#define CLKID_SYS_SD_EMMC_A			52
+> +#define CLKID_SYS_SD_EMMC_C			53
+> +#define CLKID_SYS_PWM_AB			54
+> +#define CLKID_SYS_PWM_CD			55
+> +#define CLKID_SYS_PWM_EF			56
+> +#define CLKID_SYS_PWM_GH			57
+> +#define CLKID_SYS_SPICC_1			58
+> +#define CLKID_SYS_SPICC_0			59
+> +#define CLKID_SYS_UART_A			60
+> +#define CLKID_SYS_UART_B			61
+> +#define CLKID_SYS_UART_C			62
+> +#define CLKID_SYS_UART_D			63
+> +#define CLKID_SYS_UART_E			64
+> +#define CLKID_SYS_I2C_M_A			65
+> +#define CLKID_SYS_I2C_M_B			66
+> +#define CLKID_SYS_I2C_M_C			67
+> +#define CLKID_SYS_I2C_M_D			68
+> +#define CLKID_SYS_I2S_S_A			69
+> +#define CLKID_SYS_RTC				70
+> +#define CLKID_SYS_GE2D				71
+> +#define CLKID_SYS_ISP				72
+> +#define CLKID_SYS_GPV_ISP_NIC			73
+> +#define CLKID_SYS_GPV_CVE_NIC			74
+> +#define CLKID_SYS_MIPI_DSI_HOST			75
+> +#define CLKID_SYS_MIPI_DSI_PHY			76
+> +#define CLKID_SYS_ETH_PHY			77
+> +#define CLKID_SYS_ACODEC			78
+> +#define CLKID_SYS_DWAP				79
+> +#define CLKID_SYS_DOS				80
+> +#define CLKID_SYS_CVE				81
+> +#define CLKID_SYS_VOUT				82
+> +#define CLKID_SYS_VC9000E			83
+> +#define CLKID_SYS_PWM_MN			84
+> +#define CLKID_SYS_SD_EMMC_B			85
+> +#define CLKID_AXI_SYS_NIC			86
+> +#define CLKID_AXI_ISP_NIC			87
+> +#define CLKID_AXI_CVE_NIC			88
+> +#define CLKID_AXI_RAMB				89
+> +#define CLKID_AXI_RAMA				90
+> +#define CLKID_AXI_CPU_DMC			91
+> +#define CLKID_AXI_NIC				92
+> +#define CLKID_AXI_DMA				93
+> +#define CLKID_AXI_MUX_NIC			94
+> +#define CLKID_AXI_CAPU				95
+> +#define CLKID_AXI_CVE				96
+> +#define CLKID_AXI_DEV1_DMC			97
+> +#define CLKID_AXI_DEV0_DMC			98
+> +#define CLKID_AXI_DSP_DMC			99
+> +#define CLKID_12_24M_IN				100
+> +#define CLKID_12M_24M				101
+> +#define CLKID_FCLK_25M_DIV			102
+> +#define CLKID_FCLK_25M				103
+> +#define CLKID_GEN_SEL				104
+> +#define CLKID_GEN_DIV				105
+> +#define CLKID_GEN				106
+> +#define CLKID_SARADC_SEL			107
+> +#define CLKID_SARADC_DIV			108
+> +#define CLKID_SARADC				109
+> +#define CLKID_PWM_A_SEL				110
+> +#define CLKID_PWM_A_DIV				111
+> +#define CLKID_PWM_A				112
+> +#define CLKID_PWM_B_SEL				113
+> +#define CLKID_PWM_B_DIV				114
+> +#define CLKID_PWM_B				115
+> +#define CLKID_PWM_C_SEL				116
+> +#define CLKID_PWM_C_DIV				117
+> +#define CLKID_PWM_C				118
+> +#define CLKID_PWM_D_SEL				119
+> +#define CLKID_PWM_D_DIV				120
+> +#define CLKID_PWM_D				121
+> +#define CLKID_PWM_E_SEL				122
+> +#define CLKID_PWM_E_DIV				123
+> +#define CLKID_PWM_E				124
+> +#define CLKID_PWM_F_SEL				125
+> +#define CLKID_PWM_F_DIV				126
+> +#define CLKID_PWM_F				127
+> +#define CLKID_PWM_G_SEL				128
+> +#define CLKID_PWM_G_DIV				129
+> +#define CLKID_PWM_G				130
+> +#define CLKID_PWM_H_SEL				131
+> +#define CLKID_PWM_H_DIV				132
+> +#define CLKID_PWM_H				133
+> +#define CLKID_PWM_I_SEL				134
+> +#define CLKID_PWM_I_DIV				135
+> +#define CLKID_PWM_I				136
+> +#define CLKID_PWM_J_SEL				137
+> +#define CLKID_PWM_J_DIV				138
+> +#define CLKID_PWM_J				139
+> +#define CLKID_PWM_K_SEL				140
+> +#define CLKID_PWM_K_DIV				141
+> +#define CLKID_PWM_K				142
+> +#define CLKID_PWM_L_SEL				143
+> +#define CLKID_PWM_L_DIV				144
+> +#define CLKID_PWM_L				145
+> +#define CLKID_PWM_M_SEL				146
+> +#define CLKID_PWM_M_DIV				147
+> +#define CLKID_PWM_M				148
+> +#define CLKID_PWM_N_SEL				149
+> +#define CLKID_PWM_N_DIV				150
+> +#define CLKID_PWM_N				151
+> +#define CLKID_SPICC_A_SEL			152
+> +#define CLKID_SPICC_A_DIV			153
+> +#define CLKID_SPICC_A				154
+> +#define CLKID_SPICC_B_SEL			155
+> +#define CLKID_SPICC_B_DIV			156
+> +#define CLKID_SPICC_B				157
+> +#define CLKID_SPIFC_SEL				158
+> +#define CLKID_SPIFC_DIV				159
+> +#define CLKID_SPIFC				160
+> +#define CLKID_SD_EMMC_A_SEL			161
+> +#define CLKID_SD_EMMC_A_DIV			162
+> +#define CLKID_SD_EMMC_A				163
+> +#define CLKID_SD_EMMC_B_SEL			164
+> +#define CLKID_SD_EMMC_B_DIV			165
+> +#define CLKID_SD_EMMC_B				166
+> +#define CLKID_SD_EMMC_C_SEL			167
+> +#define CLKID_SD_EMMC_C_DIV			168
+> +#define CLKID_SD_EMMC_C				169
+> +#define CLKID_TS_DIV				170
+> +#define CLKID_TS				171
+> +#define CLKID_ETH_125M_DIV			172
+> +#define CLKID_ETH_125M				173
+> +#define CLKID_ETH_RMII_DIV			174
+> +#define CLKID_ETH_RMII				175
+> +#define CLKID_MIPI_DSI_MEAS_SEL			176
+> +#define CLKID_MIPI_DSI_MEAS_DIV			177
+> +#define CLKID_MIPI_DSI_MEAS			178
+> +#define CLKID_DSI_PHY_SEL			179
+> +#define CLKID_DSI_PHY_DIV			180
+> +#define CLKID_DSI_PHY				181
+> +#define CLKID_VOUT_MCLK_SEL			182
+> +#define CLKID_VOUT_MCLK_DIV			183
+> +#define CLKID_VOUT_MCLK				184
+> +#define CLKID_VOUT_ENC_SEL			185
+> +#define CLKID_VOUT_ENC_DIV			186
+> +#define CLKID_VOUT_ENC				187
+> +#define CLKID_HCODEC_0_SEL			188
+> +#define CLKID_HCODEC_0_DIV			189
+> +#define CLKID_HCODEC_0				190
+> +#define CLKID_HCODEC_1_SEL			191
+> +#define CLKID_HCODEC_1_DIV			192
+> +#define CLKID_HCODEC_1				193
+> +#define CLKID_HCODEC				194
+> +#define CLKID_VC9000E_ACLK_SEL			195
+> +#define CLKID_VC9000E_ACLK_DIV			196
+> +#define CLKID_VC9000E_ACLK			197
+> +#define CLKID_VC9000E_CORE_SEL			198
+> +#define CLKID_VC9000E_CORE_DIV			199
+> +#define CLKID_VC9000E_CORE			200
+> +#define CLKID_CSI_PHY0_SEL			201
+> +#define CLKID_CSI_PHY0_DIV			202
+> +#define CLKID_CSI_PHY0				203
+> +#define CLKID_DEWARPA_SEL			204
+> +#define CLKID_DEWARPA_DIV			205
+> +#define CLKID_DEWARPA				206
+> +#define CLKID_ISP0_SEL				207
+> +#define CLKID_ISP0_DIV				208
+> +#define CLKID_ISP0				209
+> +#define CLKID_NNA_CORE_SEL			210
+> +#define CLKID_NNA_CORE_DIV			211
+> +#define CLKID_NNA_CORE				212
+> +#define CLKID_GE2D_SEL				213
+> +#define CLKID_GE2D_DIV				214
+> +#define CLKID_GE2D				215
+> +#define CLKID_VAPB_SEL				216
+> +#define CLKID_VAPB_DIV				217
+> +#define CLKID_VAPB				218
+> +
+> +#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_C3_PERIPHERALS_CLKC_H */
+> -- 
+> 2.37.1
+> 
 
