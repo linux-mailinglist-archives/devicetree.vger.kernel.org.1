@@ -1,212 +1,105 @@
-Return-Path: <devicetree+bounces-7316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115617C0076
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:36:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFE57C00AE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 17:48:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF5042817EE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:36:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1CE281DB4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0004B2745B;
-	Tue, 10 Oct 2023 15:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8biabOl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F237E27470;
+	Tue, 10 Oct 2023 15:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B8E27453
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:35:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ED1BC433C9;
-	Tue, 10 Oct 2023 15:35:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696952159;
-	bh=GiaOPPDy4bW4X7nEWcj7MoZCeHaezgGt8naPNPK93zY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q8biabOl05FB1gUCz/EDVfI+FRtECFy1Tb+F1b2tGqzQzDwsVQcgNOV2vBw3drHnm
-	 iVtbzdxX3UZ+94nxIYjutSw3BrJmL1q52+WJL2VpijOdrse8/bQMryrqxCRNsRULF6
-	 O8Wkc9zuPeF86cCreJO9f3pwwozQDrhxPeBc4V+CG+CRK9/ru9ABQetD6/s4YhK5Yn
-	 dicqbnZ10X2FTwTZa9/FkJgQjKICMZEtAbuIHw87FXpZbzMwkvKHgvTur7/iJuZdi/
-	 1FnRClzfc8tkrePzTOxvbl4vscRu7aJKk30PG2OrbK7eYyYKiFyN893W9ZK8v2Pytt
-	 AifMIwyJxhkfA==
-Date: Tue, 10 Oct 2023 16:35:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, ezequiel@vanguardiasur.com.ar,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
-	paul.kocialkowski@bootlin.com
-Subject: Re: [PATCH v7 1/3] media: dt-bindings: media: add bindings for
- Rockchip VIP
-Message-ID: <20231010-roman-corrode-a68390d5f330@spud>
-References: <cover.1696943295.git.mehdi.djait@bootlin.com>
- <a103d2e4e2c80a97a62574a782eba29f78731471.1696943295.git.mehdi.djait@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3192746D
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 15:48:47 +0000 (UTC)
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF56797;
+	Tue, 10 Oct 2023 08:48:44 -0700 (PDT)
+Received: from Vostro-3710.lan (unknown [58.61.141.228])
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 5E3D38000AE;
+	Tue, 10 Oct 2023 23:38:20 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Samuel Holland <samuel@sholland.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/2] arm64: dts: allwinner: h616: move emac delay back to Orange Pi Zero 2 DT
+Date: Tue, 10 Oct 2023 23:38:11 +0800
+Message-Id: <20231010153812.2869633-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4l9OsQtFT88SXVQA"
-Content-Disposition: inline
-In-Reply-To: <a103d2e4e2c80a97a62574a782eba29f78731471.1696943295.git.mehdi.djait@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTBlIVkgZHUtMTUgYHR5KGlUTARMWGhIXJBQOD1
+	lXWRgSC1lBWU5DVU1KVUpPSlVJSUNZV1kWGg8SFR0UWUFZT0tIVUpKS0hKQ1VKS0tVS1kG
+X-HM-Tid: 0a8b1a3d34a8b03akuuu5e3d38000ae
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NhQ6Tio4Azw*SRAJPCJCEz0B
+	TRkKFAtVSlVKTUJNQk5JSEtKSEpDVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWU5D
+	VU1KVUpPSlVJSUNZV1kIAVlBSUNDSzcG
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+The current emac delay value is not suitable for Orange Pi
+Zero 3, move it back to Orange Pi Zero 2 DT.
 
---4l9OsQtFT88SXVQA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 322bf103204b ("arm64: dts: allwinner: h616: Split Orange Pi Zero 2 DT")
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi | 2 --
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Tue, Oct 10, 2023 at 03:15:04PM +0200, Mehdi Djait wrote:
-> Add a documentation for the Rockchip Video Input Processor
-> binding.
->=20
-> The PX30 SoC is the only platform supported so far.
->=20
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> ---
->  .../bindings/media/rockchip,px30-vip.yaml     | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30=
--vip.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.ya=
-ml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> new file mode 100644
-> index 000000000000..41f0cd58372d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,px30-vip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip VIP Camera Interface
-> +
-> +maintainers:
-> +  - Mehdi Djait <mehdi.djait@bootlin.com>
-> +
-> +description: |-
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+index 15290e6892fc..02a4776c9f2b 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+@@ -70,8 +70,6 @@ &emac0 {
+ 	pinctrl-0 = <&ext_rgmii_pins>;
+ 	phy-mode = "rgmii";
+ 	phy-handle = <&ext_rgmii_phy>;
+-	allwinner,rx-delay-ps = <3100>;
+-	allwinner,tx-delay-ps = <700>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+index d83852e72f06..84daa309893b 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+@@ -13,6 +13,8 @@ / {
+ };
+ 
+ &emac0 {
++	allwinner,rx-delay-ps = <3100>;
++	allwinner,tx-delay-ps = <700>;
+ 	phy-supply = <&reg_dcdce>;
+ };
+ 
+-- 
+2.25.1
 
-The |- is not needed here, you've got no fancy formattting to preserve.
-
-> +  Rockchip VIP is the Video Input Processor of the rockchip PX30 SoC. It
-> +  receives the data from Camera sensor or CCIR656 encoder and transfers =
-it into
-> +  system main memory by AXI bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,px30-vip
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ACLK
-> +      - description: HCLK
-> +      - description: PCLK
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: hclk
-> +      - const: pclk
-> +
-> +  resets:
-> +    items:
-> +      - description: AXI
-> +      - description: AHB
-> +      - description: PCLK IN
-> +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-> +      - const: pclkin
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: A connection to a sensor or decoder
-
-This description seems unneeded also.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/px30-cru.h>
-> +    #include <dt-bindings/power/px30-power.h>
-> +
-> +    parent {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        vip@ff490000 {
-
-This should be a generic node name.
-
-> +            compatible =3D "rockchip,px30-vip";
-> +            reg =3D <0x0 0xff490000 0x0 0x200>;
-> +            interrupts =3D <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks =3D <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
-> +            clock-names =3D "aclk", "hclk", "pclk";
-> +            resets =3D <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_=
-CIF_PCLKIN>;
-> +            reset-names =3D "axi", "ahb", "pclkin";
-> +            power-domains =3D <&power PX30_PD_VI>;
-
-Blank line before child nodes please.
-
-Otherwise, this looks mostly fine to me.
-
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint =3D <&tw9900_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> --=20
-> 2.41.0
->=20
-
---4l9OsQtFT88SXVQA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSVvWQAKCRB4tDGHoIJi
-0tc5AP98ZFcwCG4lOs0Vnu/l5rmaIRtV2bVB/xqanyAy7JRp1AD/Z4+6tERcvRTL
-dMHfwEobvX/z0gDzR4EemuU1fnenEAM=
-=YQ+D
------END PGP SIGNATURE-----
-
---4l9OsQtFT88SXVQA--
 
