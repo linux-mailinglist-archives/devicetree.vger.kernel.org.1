@@ -1,293 +1,155 @@
-Return-Path: <devicetree+bounces-7199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BE77BFAC8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:07:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1557A7BFAD7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 14:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93792281AF6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:07:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96531281BA7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 12:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A582A1945C;
-	Tue, 10 Oct 2023 12:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2230A1945E;
+	Tue, 10 Oct 2023 12:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wsjoqcsc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Df3KmV6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D3A524F
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:07:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86E3C433C8;
-	Tue, 10 Oct 2023 12:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696939631;
-	bh=za2l4w484JGV1JQq1NuVdJOjePBtNufYGNfJ71lUcBA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WsjoqcscnCtCN2Q2XpmEHBbsxWDP0OubWLQpbZvXztffL4ktgVMQpLWVeeGV//dWu
-	 1C/X9tW7sxRx2WjmvIN5zZ4IaLxAdDxnJbQrHJV5eodZFHqB26gVya2GsHvtAWwLEl
-	 OodBZF6yDKs14pkvZyy9mdrrmeJnUTIKyV8faLGiEjQnuEswcdr1Lqg81MYd284Q/Z
-	 PO8qeyBAL4iltrnzhpHjGWcXp0VHGVvRrzwvtm4QrSA/r0m533LdJjFrocFw5Nuxow
-	 CGqaTGKiBiv3J+9zYOGUWviMThKDfc7El+/6BKYmV8GFD2j3sEQPR4EpuosRtB6lE1
-	 y4dTj8L3syzwg==
-Date: Tue, 10 Oct 2023 17:36:57 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, marek.vasut+renesas@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Serge Semin <fancer.lancer@gmail.com>
-Subject: Re: [PATCH v21 14/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
- Endpoint support
-Message-ID: <20231010120657.GH4884@thinkpad>
-References: <20230922065331.3806925-1-yoshihiro.shimoda.uh@renesas.com>
- <20230922065331.3806925-15-yoshihiro.shimoda.uh@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B77E19460
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 12:09:45 +0000 (UTC)
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A0CA9
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:09:43 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-65b0c9fb673so29509546d6.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 05:09:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696939782; x=1697544582; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DgSEBJcUi7PZ5OXedvwInXaFNURNqtsaL0h7wFFXk5g=;
+        b=Df3KmV6NzyoruKmJufGdyQeVIeM94xePXheDrzzm9/krPQ0jAEIvv5Ien2F0RrmPkc
+         uKtla/0xPvuSxqAgH3p7HrD1gT5kWUMhkFfSaj2ib46V3FRNFcTfUaSMQCuPpFR8yOY3
+         ixA9gJeTCoBtX65NfpE1VpxFHHWM1IdKP+fgDyZFX/UGcvBbWstNlDicBgxoYFenAWBj
+         G+VdxULEkMAl7xmCRg6IDmZ1apVCjQz4IXjBbkj+kPs1eOuakvTCAqcIKrqoHV+PT5rb
+         dhg1fPXp3J9LipxYR2CpFtPNfBMnW3oIB2gC/ElJ0ChXIvUEDMcqENyf/3GxkwMykgQM
+         FIfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696939782; x=1697544582;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DgSEBJcUi7PZ5OXedvwInXaFNURNqtsaL0h7wFFXk5g=;
+        b=no2xRA/Xc46No730feu6qlnX/TayAsDyiinbh5WLppd0t3GkpoeULELp2Q0JUIlcRZ
+         mkmetqFhNtOJ3C+nKKRuaO2p9uaBptuhuppBr63kJYspk2HhOv4bovBZORzTgA+Cy7K7
+         uscOym+GDZ9tEqnzQmbzkRqgswp+7/GmIxQFFWljUoAAY627VO20xFU9AL3BlF46dt5X
+         yt4ChN+WgaDECWr22p/V+WWMw8z+24B0JwN0l81ceMA2LsFUdGPz0ApROrDH5Ad3+onM
+         YET23ZqPSbTWMfKOUAzIzVo1WK+j8uOixDvURxJayQgncb/GN/FaGhP9K02b6jMbFhUy
+         Rbsw==
+X-Gm-Message-State: AOJu0YxQ94OltyrRRGpxvkvdQpL3aB+6Fii1LPcmh7ODhscZzNzxRew0
+	TL3PVlPJ/dYPCsPpVA69QlLKuzqsfGfELXCTNtXmDQ==
+X-Google-Smtp-Source: AGHT+IEkobWfRAv+hk9GeXAgYbAsdwwHInRJB4q4A/k6gLUZyJCTapOQUejfM/de0SvYVTlXeCdNVMlVoHapdH1mpY8=
+X-Received: by 2002:ad4:5cc7:0:b0:65d:dcc:9754 with SMTP id
+ iu7-20020ad45cc7000000b0065d0dcc9754mr22900149qvb.30.1696939782310; Tue, 10
+ Oct 2023 05:09:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230922065331.3806925-15-yoshihiro.shimoda.uh@renesas.com>
+References: <20231005155618.700312-1-peter.griffin@linaro.org>
+ <20231005155618.700312-20-peter.griffin@linaro.org> <20231006205204.GA269353-robh@kernel.org>
+In-Reply-To: <20231006205204.GA269353-robh@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 10 Oct 2023 13:09:31 +0100
+Message-ID: <CADrjBPpEFo4gRTsWau+xGoBAr2j7srhbxYefJGDer+PRu9QxBg@mail.gmail.com>
+Subject: Re: [PATCH 19/21] google/gs101: Add dt overlay for oriole board
+To: Rob Herring <robh@kernel.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, 
+	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, 
+	s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, 
+	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	olof@lixom.net, cw00.choi@samsung.com, tudor.ambarus@linaro.org, 
+	andre.draszik@linaro.org, semen.protsenko@linaro.org, soc@kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Sep 22, 2023 at 03:53:29PM +0900, Yoshihiro Shimoda wrote:
-> Add R-Car Gen4 PCIe controller for endpoint mode. This controller is based
-> on Synopsys DesignWare PCIe.
-> 
-> Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-18-yoshihiro.shimoda.uh@renesas.com
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Hi Rob,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Thanks for your review!
 
-- Mani
+On Fri, 6 Oct 2023 at 21:52, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Oct 05, 2023 at 04:56:16PM +0100, Peter Griffin wrote:
+> > The LK bootloader on Pixel6 searches for a dt overlay in the
+> > dtbo partition with a board_id and board_rev that matches
+> > what is baked into the device. If this overlay is not present
+> > then the phone will bootloop in fastboot and you can't boot
+> > the upstream kernel.
+> >
+> > This commit adds a dtbo for the production oriole variant.
+> > The other pre-production board overlays are not included
+> > at this time.
+> >
+> > Adding the dtbo here allows for a better experience when
+> > building/booting the upstream kernel on Pixel devices
+> > as all the DT required to boot the device will be created
+> > as part of the kernel build process. Rather than having to
+> > fetch the dtbo from some other repo.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/google/Makefile          |  1 +
+> >  arch/arm64/boot/dts/google/gs101-oriole.dtso | 21 ++++++++++++++++++++
+> >  2 files changed, 22 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/google/gs101-oriole.dtso
+> >
+> > diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/dts/google/Makefile
+> > index 6d2026a767d4..3f1761f8daa9 100644
+> > --- a/arch/arm64/boot/dts/google/Makefile
+> > +++ b/arch/arm64/boot/dts/google/Makefile
+> > @@ -2,5 +2,6 @@
+> >
+> >  dtb-$(CONFIG_ARCH_GOOGLE_TENSOR) += \
+> >       gs101-oriole.dtb \
+> > +     gs101-oriole.dtbo
+>
+> Overlays in the kernel must be able to be applied to a base DT in the
+> kernel. Add a rule to apply this (hint: a '-dtbs' variable does this
+> similar to -objs variables).
 
-> Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
->  drivers/pci/controller/dwc/Kconfig          |  11 ++
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 136 +++++++++++++++++++-
->  2 files changed, 144 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index bc69fcab2e2a..e7fd37717998 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -429,4 +429,15 @@ config PCIE_RCAR_GEN4_HOST
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called pcie-rcar-gen4.ko. This uses the DesignWare core.
->  
-> +config PCIE_RCAR_GEN4_EP
-> +	tristate "Renesas R-Car Gen4 PCIe controller (endpoint mode)"
-> +	depends on ARCH_RENESAS || COMPILE_TEST
-> +	depends on PCI_ENDPOINT
-> +	select PCIE_DW_EP
-> +	select PCIE_RCAR_GEN4
-> +	help
-> +	  Say Y here if you want PCIe controller (endpoint mode) on R-Car Gen4
-> +	  SoCs. To compile this driver as a module, choose M here: the module
-> +	  will be called pcie-rcar-gen4.ko. This uses the DesignWare core.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index dfff6bb18932..68879b7308c5 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -45,6 +45,9 @@
->  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
->  #define RCAR_MAX_LINK_SPEED		4
->  
-> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
-> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
-> +
->  struct rcar_gen4_pcie {
->  	struct dw_pcie dw;
->  	void __iomem *base;
-> @@ -53,6 +56,7 @@ struct rcar_gen4_pcie {
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
-> +/* Common */
->  static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
->  					bool enable)
->  {
-> @@ -310,6 +314,9 @@ static int rcar_gen4_add_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
->  {
->  	struct dw_pcie_rp *pp = &rcar->dw.pp;
->  
-> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_HOST))
-> +		return -ENODEV;
-> +
->  	pp->num_vectors = MAX_MSI_IRQS;
->  	pp->ops = &rcar_gen4_pcie_host_ops;
->  	rcar->mode = DW_PCIE_RC_TYPE;
-> @@ -322,8 +329,114 @@ static void rcar_gen4_remove_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
->  	dw_pcie_host_deinit(&rcar->dw.pp);
->  }
->  
-> +/* Endpoind mode */
-> +static void rcar_gen4_pcie_ep_pre_init(struct dw_pcie_ep *ep)
-> +{
-> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +	int ret;
-> +
-> +	ret = rcar_gen4_pcie_common_init(rcar);
-> +	if (ret)
-> +		return;
-> +
-> +	writel(PCIEDMAINTSTSEN_INIT, rcar->base + PCIEDMAINTSTSEN);
-> +}
-> +
-> +static void rcar_gen4_pcie_ep_init(struct dw_pcie_ep *ep)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	enum pci_barno bar;
-> +
-> +	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++)
-> +		dw_pcie_ep_reset_bar(pci, bar);
-> +}
-> +
-> +static void rcar_gen4_pcie_ep_deinit(struct dw_pcie_ep *ep)
-> +{
-> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +
-> +	writel(0, rcar->base + PCIEDMAINTSTSEN);
-> +	rcar_gen4_pcie_common_deinit(rcar);
-> +}
-> +
-> +static int rcar_gen4_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-> +				       unsigned int type, u16 interrupt_num)
-> +{
-> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
-> +
-> +	switch (type) {
-> +	case PCI_IRQ_LEGACY:
-> +		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
-> +	case PCI_IRQ_MSI:
-> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-> +	default:
-> +		dev_err(dw->dev, "Unknown IRQ type\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pci_epc_features rcar_gen4_pcie_epc_features = {
-> +	.linkup_notifier = false,
-> +	.msi_capable = true,
-> +	.msix_capable = false,
-> +	.reserved_bar = 1 << BAR_1 | 1 << BAR_3 | 1 << BAR_5,
-> +	.align = SZ_1M,
-> +};
-> +
-> +static const struct pci_epc_features*
-> +rcar_gen4_pcie_ep_get_features(struct dw_pcie_ep *ep)
-> +{
-> +	return &rcar_gen4_pcie_epc_features;
-> +}
-> +
-> +static unsigned int rcar_gen4_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
-> +						       u8 func_no)
-> +{
-> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET;
-> +}
-> +
-> +static unsigned int rcar_gen4_pcie_ep_get_dbi2_offset(struct dw_pcie_ep *ep,
-> +						      u8 func_no)
-> +{
-> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET;
-> +}
-> +
-> +static const struct dw_pcie_ep_ops pcie_ep_ops = {
-> +	.pre_init = rcar_gen4_pcie_ep_pre_init,
-> +	.ep_init = rcar_gen4_pcie_ep_init,
-> +	.deinit = rcar_gen4_pcie_ep_deinit,
-> +	.raise_irq = rcar_gen4_pcie_ep_raise_irq,
-> +	.get_features = rcar_gen4_pcie_ep_get_features,
-> +	.func_conf_select = rcar_gen4_pcie_ep_func_conf_select,
-> +	.get_dbi2_offset = rcar_gen4_pcie_ep_get_dbi2_offset,
-> +};
-> +
-> +static int rcar_gen4_add_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie_ep *ep = &rcar->dw.ep;
-> +
-> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_EP))
-> +		return -ENODEV;
-> +
-> +	rcar->mode = DW_PCIE_EP_TYPE;
-> +	ep->ops = &pcie_ep_ops;
-> +
-> +	return dw_pcie_ep_init(ep);
-> +}
-> +
-> +static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
-> +{
-> +	dw_pcie_ep_exit(&rcar->dw.ep);
-> +}
-> +
-> +/* Common */
->  static int rcar_gen4_pcie_probe(struct platform_device *pdev)
->  {
-> +	enum dw_pcie_device_mode mode;
->  	struct rcar_gen4_pcie *rcar;
->  	int err;
->  
-> @@ -339,7 +452,13 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
->  	if (err)
->  		return err;
->  
-> -	err = rcar_gen4_add_dw_pcie_rp(rcar);
-> +	mode = (enum dw_pcie_device_mode)of_device_get_match_data(&pdev->dev);
-> +
-> +	if (mode == DW_PCIE_RC_TYPE)
-> +		err = rcar_gen4_add_dw_pcie_rp(rcar);
-> +	else if (mode == DW_PCIE_EP_TYPE)
-> +		err = rcar_gen4_add_dw_pcie_ep(rcar);
-> +
->  	if (err)
->  		goto err_unprepare;
->  
-> @@ -355,12 +474,23 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
->  {
->  	struct rcar_gen4_pcie *rcar = platform_get_drvdata(pdev);
->  
-> -	rcar_gen4_remove_dw_pcie_rp(rcar);
-> +	if (rcar->mode == DW_PCIE_RC_TYPE)
-> +		rcar_gen4_remove_dw_pcie_rp(rcar);
-> +	else if (rcar->mode == DW_PCIE_EP_TYPE)
-> +		rcar_gen4_remove_dw_pcie_ep(rcar);
-> +
->  	rcar_gen4_pcie_unprepare(rcar);
->  }
->  
->  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
-> -	{ .compatible = "renesas,rcar-gen4-pcie", },
-> +	{
-> +		.compatible = "renesas,rcar-gen4-pcie",
-> +		.data = (void *)DW_PCIE_RC_TYPE,
-> +	},
-> +	{
-> +		.compatible = "renesas,rcar-gen4-pcie-ep",
-> +		.data = (void *)DW_PCIE_EP_TYPE,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, rcar_gen4_pcie_of_match);
-> -- 
-> 2.25.1
-> 
+Ok will do, thanks for the hint
 
--- 
-மணிவண்ணன் சதாசிவம்
+>
+> > diff --git a/arch/arm64/boot/dts/google/gs101-oriole.dtso b/arch/arm64/boot/dts/google/gs101-oriole.dtso
+> > new file mode 100644
+> > index 000000000000..50832fd94204
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/google/gs101-oriole.dtso
+> > @@ -0,0 +1,21 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Oriole DVT Device Tree
+>
+> Doesn't DVT mean pre-production?
+
+Yes, DVT stands for Design Verification Testing. I can remove that
+DVT suffix for v2.
+I suppose that means there were no changes between DVT and production as this
+is the overlay used by the production devices.
+
+regards,
+
+Peter
 
