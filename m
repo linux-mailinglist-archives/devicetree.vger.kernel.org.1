@@ -1,129 +1,207 @@
-Return-Path: <devicetree+bounces-7163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08AEE7BF746
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:27:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C2567BF74D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 11:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A8D281BE9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:27:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BAD51C20CC7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 09:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9931D171DB;
-	Tue, 10 Oct 2023 09:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A8E171D7;
+	Tue, 10 Oct 2023 09:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CMXjPxEE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajcUgIYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E218E171CB
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 09:27:24 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF79694;
-	Tue, 10 Oct 2023 02:27:22 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39A9R5tl107121;
-	Tue, 10 Oct 2023 04:27:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696930025;
-	bh=D2IGiPDYKpC0zOzjj5FGs/m5JW+z/i2Nu5bmrKfakq8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=CMXjPxEEip6I+SASk7Cyh0ShknYBPJf0owDpZtN6H8laJgdxbiuofelL15kqpuqSa
-	 IvgklUNZKernw8e+V5EmytyaeZU9/ps7PW7RibfsnqgAszmHjKTDAjSBg31Bo4B7XC
-	 w2PM6lTVYNutWHd8H3M5gTjx3wJ6b8IxQpXHq0SQ=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39A9R5u7096963
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 10 Oct 2023 04:27:05 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 10
- Oct 2023 04:27:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 10 Oct 2023 04:27:05 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39A9R4HT079451;
-	Tue, 10 Oct 2023 04:27:05 -0500
-From: Vaishnav Achath <vaishnav.a@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vaishnav.a@ti.com>, <u-kumar1@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j784s4-main: Add BCDMA instance for CSI2RX
-Date: Tue, 10 Oct 2023 14:57:00 +0530
-Message-ID: <20231010092700.2089-3-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231010092700.2089-1-vaishnav.a@ti.com>
-References: <20231010092700.2089-1-vaishnav.a@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5F317734;
+	Tue, 10 Oct 2023 09:29:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8835CC433C7;
+	Tue, 10 Oct 2023 09:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696930146;
+	bh=eFUd/n8o3VVFHQz6wd12ub7oPEuB2ug/zCfzJKYSH9o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ajcUgIYOTXJUNpLXSOJ27Kmcw2PFHR1m12BzVFgzf5jt3qce+GYJJF1ZRnbbUwQDh
+	 Fo3unuFReI+9q5C1M2FLFOTjRYDooeKOjRrn+I22Zl4ReXzvqEGv1UBRoaJ+Cdg3UV
+	 S0vtnncZc6JxtJMohtX56hvQL53W8sbOYmRGW1r5BLYmFVVOGHw1Wi7MCNh77WpUsw
+	 7etyYuG54qu1EvQV+z/d7bNsagq0tmbBD6sbYV6n/3ufzssoMrjUnG4xV1bhgdYrXs
+	 nQZluMhd1hvANGPtY12EqCKZLDB6Yi5f0HImAV8mwdep58HaYNUp5R+5I+NDy3O8nQ
+	 cAhtNtmDSUiNg==
+Date: Tue, 10 Oct 2023 10:29:12 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vincent Whitchurch <Vincent.Whitchurch@axis.com>
+Cc: "Jonathan.Cameron@Huawei.com" <Jonathan.Cameron@Huawei.com>,
+ "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
+ "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>, kernel
+ <kernel@axis.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "dlechner@baylibre.com"
+ <dlechner@baylibre.com>, "nuno.sa@analog.com" <nuno.sa@analog.com>,
+ "pmolloy@baylibre.com" <pmolloy@baylibre.com>, "robh+dt@kernel.org"
+ <robh+dt@kernel.org>, "ahaslam@baylibre.com" <ahaslam@baylibre.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "david@lechnology.com" <david@lechnology.com>, Mark Brown
+ <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jean
+ Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 02/27] staging: iio: resolver: ad2s1210: fix use
+ before initialization
+Message-ID: <20231010102912.0b70c3e0@jic23-huawei>
+In-Reply-To: <de527e3f87effe7e446b44d84e43aead26f9fdec.camel@axis.com>
+References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+	<20230929-ad2s1210-mainline-v3-2-fa4364281745@baylibre.com>
+	<1b366292-6e05-421e-914e-6d3457886238@kadam.mountain>
+	<20231002101742.0000774b@Huawei.com>
+	<de527e3f87effe7e446b44d84e43aead26f9fdec.camel@axis.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-J784S4 has a dedicated BCDMA controller for the Camera Serial Interface.
-Events from the BCDMA controller instance are routed through the
-main UDMA interrupt aggregator as unmapped events. Add the node for
-the DMA controller and keep it disabled by default.
+On Fri, 6 Oct 2023 14:48:29 +0000
+Vincent Whitchurch <Vincent.Whitchurch@axis.com> wrote:
 
-See J784S4 Technical Reference Manual (SPRUJ52)
-for further details: http://www.ti.com/lit/zip/spruj52
+Hi Vincent
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Thanks for the update,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index efed2d683f63..a772f563c1ed 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -703,6 +703,7 @@
- 			ti,sci = <&sms>;
- 			ti,sci-dev-id = <321>;
- 			ti,interrupt-ranges = <0 0 256>;
-+			ti,unmapped-event-sources = <&main_bcdma_csi>;
- 		};
- 
- 		secure_proxy_main: mailbox@32c00000 {
-@@ -1000,6 +1001,22 @@
- 			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
- 		};
- 
-+		main_bcdma_csi: dma-controller@311a0000 {
-+			compatible = "ti,j721s2-dmss-bcdma-csi";
-+			reg = <0x00 0x311a0000 0x00 0x100>,
-+				<0x00 0x35d00000 0x00 0x20000>,
-+				<0x00 0x35c00000 0x00 0x10000>,
-+				<0x00 0x35e00000 0x00 0x80000>;
-+			reg-names = "gcfg", "rchanrt", "tchanrt", "ringrt";
-+			msi-parent = <&main_udmass_inta>;
-+			#dma-cells = <3>;
-+			ti,sci = <&sms>;
-+			ti,sci-dev-id = <281>;
-+			ti,sci-rm-range-rchan = <0x21>;
-+			ti,sci-rm-range-tchan = <0x22>;
-+			status = "disabled";
-+		};
-+
- 		cpts@310d0000 {
- 			compatible = "ti,j721e-cpts";
- 			reg = <0x00 0x310d0000 0x00 0x400>;
--- 
-2.17.1
+> On Mon, 2023-10-02 at 10:17 +0100, Jonathan Cameron wrote:
+> > Hmm. What happened to roadtest?  I was hoping that would solve this sort
+> > of issue by allowing simple testing of basic functionality... =20
+>=20
+> Roadtest is alive and well.  Several of my coworkers have been using it
+> for development and testing of new drivers[0][1][2][3][4] and
+> patches[5][6], and this has resulted in easier testing and refactoring
+> during development, more robust code, and of course the ability to
+> easily detect regressions after the patches are merged.
+>=20
+> [0] https://lore.kernel.org/lkml/20230323-add-opt4001-driver-v2-2-0bae039=
+8669d@axis.com/
+> [1] https://lore.kernel.org/lkml/d218a1bc75402b5ebd6e12a563f7315f83fe966c=
+.1689753076.git.waqar.hameed@axis.com/
+> [2] https://lore.kernel.org/lkml/7b856b74c4c0f8c6c539d7c692051c9203b103c0=
+.1692699931.git.waqar.hameed@axis.com/
+> [3] https://lore.kernel.org/lkml/20231002-rx8111-add-timestamp0-v1-1-3537=
+27cf7f14@axis.com/
+> [4] https://lore.kernel.org/lkml/20230502-tps6287x-driver-v3-2-e25140a023=
+f5@axis.com/
+> [5] https://lore.kernel.org/lkml/20221012102347.153201-1-chenhuiz@axis.co=
+m/
+> [6] https://lore.kernel.org/lkml/20220413114014.2204623-3-camel.guo@axis.=
+com/
+>=20
+> In fact, by running our roadtests on newer kernels we have found
+> numerous bugs[10][12][14] and regressions[7][8][9][11][15] in mainline,
+> including subsystem-level issues affecting other drivers too.
+>=20
+> [7] https://lore.kernel.org/lkml/20230911-regulator-voltage-sel-v1-1-886e=
+b1ade8d8@axis.com/
+> [8] https://lore.kernel.org/lkml/20230918-power-uaf-v1-1-73c397178c42@axi=
+s.com/
+> [9] https://lore.kernel.org/lkml/20230829-tps-voltages-v1-1-7ba4f958a194@=
+axis.com/
+> [10] https://lore.kernel.org/lkml/20230613-genirq-nested-v3-1-ae58221143e=
+b@axis.com/
+> [11] https://lore.kernel.org/lkml/20220503114333.456476-1-camel.guo@axis.=
+com/
+> [12] https://lore.kernel.org/linux-iio/20220816080828.1218667-1-vincent.w=
+hitchurch@axis.com/
+> [13] https://lore.kernel.org/linux-iio/20220519091925.1053897-1-vincent.w=
+hitchurch@axis.com/
+> [14] https://lore.kernel.org/linux-iio/20220620144231.GA23345@axis.com/
+> [15] https://lore.kernel.org/linux-spi/YxBX4bXG02E4lSUW@axis.com/
+>=20
+> (The above lists are not exhaustive.)
+>=20
 
+Great stuff!
+
+> > Hope it is still headed for a new version / upstream! =20
+>=20
+> I pushed out an update with a squash of (most parts of) our internal
+> version out to the following repo, it's based on v6.6-rc4.
+>=20
+>   https://github.com/vwax/linux/tree/roadtest/devel
+
+Thanks.
+
+>=20
+> (There are currently 6 lines of --diff-filter=3DM against v6.6-rc4 on the
+>  linked repo.  Two of those are from a patch which is posted and waiting
+>  for review on the lists, and the rest are for enabling regmap debugfs
+>  writes which are used from some of the newer tests.)
+>=20
+> Since roadtest itself does not require any patches to the kernel or any
+> out-of-tree modules, the maintenance of the framework would not really
+> be simplified by putting it in the upstream tree.  However, there is of
+> course a potentially large benefit to the quality of many kinds of
+> kernel drivers if roadtest gets used by others, and having it in-tree
+> could facilitate that.  And it would potentially allow regressions like
+> the ones we're finding to be caught _before_ they go in, since anyone
+> can run the tests without special hardware.
+
+Exactly  - my main interest is the dream of getting to the point where
+new drivers typically also come with roadtest tests, with the aim that
+they will be used for regression testing. For IIO I might lean on
+/ ask nicely  few of the bigger contributors to add fairly comprehensive
+tests for say one in 3 of their drivers, providing a canary for any
+subsystem level problems that might sneak in. The stability gained for
+those drivers might also prove it's own benefit to push people to add tests.
+At somepoint in the longer term I might even make it a requirement for
+upstreaming a new driver + slowly tackle the backlog of existing ones.
+=46rom my experiments with it last year, this is a trivial burden fo
+
+>=20
+> The idea of having to maintain it in-tree and doing all the work that
+> goes along with that (dealing with the expectations of maintainers,
+> wrangling patches from mailing lists, etc), is something I personally
+> have had a hard time warming up to, but I have some coworkers who may
+> potentially be interested in that kind of work, so I wouldn't rule out
+> another posting of the patch set targeting upstream sometime in the
+> future.
+
+I fully appreciate your concern.  I just really like roadtest and want
+a smooth way to integrate using it with my upstream maintenance (and occasi=
+onal
+development) process...  I of course can't expect you to commit to anything
+though - I'd be delighted if someone else wants to take this forwards but
+that would be very much their decision to make!
+
+Having not yet waded into the latest code, how 'stable' is it from the point
+of view of modifications to tests?  I can rebase the ones I have out of tree
+and see, but I'm after an assessment that incorporates what you are
+planning to change in future.
+
+I guess the nasty stuff is if you have a few hundred additional drivers
+in the test set, any modification to the way they interact with the core
+of roadtest becomes very painful to push into those tests.
+
+One starting point would be to separate the tests directory from the
+directories containing roadtest frameworks etc as that would help to
+limit scope of responsibility.
+
+If a potential upstream roadtest maintainer is primarily concerned about
+review + handling of the actual tests, other than potentially letting in
+some ugly code, I'd imagine any subsystem maintainer who opts into this
+will take that burden on - perhaps with the occasional question heading
+your way. I'd certainly not expect you to have to deal with high patch flows
+and would ensure that didn't happen for any IIO tests (any review people
+have time for is of course welcome!)
+
++CC a few maintainers of other subsystems who may be interested (I know
+one of them is ;)
+
+Jonathan
 
