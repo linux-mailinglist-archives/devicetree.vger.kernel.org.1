@@ -1,316 +1,111 @@
-Return-Path: <devicetree+bounces-7278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548687BFDF4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:40:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F160B7BFDF1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 15:40:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 860841C2092F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:40:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA32F2827AA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 13:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8831DFDF;
-	Tue, 10 Oct 2023 13:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="SRWUh6Iq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22AB11DFDC;
+	Tue, 10 Oct 2023 13:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0291DFDA
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:40:30 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2042.outbound.protection.outlook.com [40.107.249.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 070471721;
-	Tue, 10 Oct 2023 06:39:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WDd5vx5E5yxFStCfohqG77tDtvVzqXpvduhXnLkW+UlxLcoeHJVqRNQnMG+Gz4uplgw2FLs6LAspbmWIcZLUIKCuZcpHJlk63msldILB8ga+d65uoazG8WigWrl9RwJ7svTq0UM9Rki5UmtlZP7M7OZDHovd+X8nGXgLG4+dWCeGy9U3ISLY0ClKhvrxaysuRb553hLV1uLe0w8IWoyqxd4P2Rl2AAoYsm07oPkbFpxqU4lMopuJL19dn5LrGbkdyElTOOZ0QpSkmL/ZS69PrbQyrwwH8gNSJ+sn7eyesnqTdWBDey/BHYUNl64t75Cf/L9qEf3gTW/tSmiH/gt0hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CgD7xtr+AlJt7OTxlu0cjJdSBqzJFWnEsLHX7bDNbL4=;
- b=ZHty0I/Rx5LjjXnDYIRs+ropt6MA4gqaR7l2pZ0yrKhZzTe0NJjwXbRl9NQWEapvH+7KSzVrVwEKhyz8zRlFOn6/W6ZNC4jPpmbExQc6ZiocJSDki3q4x/ZppmuNdNHeA9i+LcRsd1alfkl5nG/U3TiHC02bV0GyMOZfwmdXgMTDpZT/jtfGl9vk3ClPT56G1NEJwYGewtfx3FXrjO3V1NEofWR0uIW5Xyikik7AgYTOgp6yoZeaQfqbgaYBqCXZhRnDDhHMDhCu6FmBI5454RveM0qivFGx8TSMSnxqAJoJqGTvM9X76IGkMMsQCAlrEdOfCzksnKAwMYiEVfEPhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CgD7xtr+AlJt7OTxlu0cjJdSBqzJFWnEsLHX7bDNbL4=;
- b=SRWUh6IqU4ZPuJu1wROAyUD/RS0/wiyzon9zhfNv0R+JwqwowAdXGnxECD6/tQ0KpO2wrdD4hPBFaNfxx2qmUdmGyADBcKwIDkfXGi5UEfJdK4UNsPeBjlcMe5zbjtIy8YNcPRoEV3aizeEDAyigVzixS2Gs7HOSJHSFWjuZl3w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by GVXPR04MB9831.eurprd04.prod.outlook.com (2603:10a6:150:11c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.36; Tue, 10 Oct
- 2023 13:39:20 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
- 13:39:20 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Cc: Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v2 3/3] ASoC: dt-bindings: fsl,mqs: Convert format to json-schema
-Date: Tue, 10 Oct 2023 21:38:38 +0800
-Message-Id: <20231010133838.799714-4-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231010133838.799714-1-chancel.liu@nxp.com>
-References: <20231010133838.799714-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0019.apcprd02.prod.outlook.com
- (2603:1096:4:195::13) To DB9PR04MB9498.eurprd04.prod.outlook.com
- (2603:10a6:10:360::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99291DFDA
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 13:40:15 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FF610E7
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 06:39:49 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qqCxU-0007N7-9E; Tue, 10 Oct 2023 15:39:36 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qqCxT-000g0g-CR; Tue, 10 Oct 2023 15:39:35 +0200
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qqCxT-00Dk78-9t; Tue, 10 Oct 2023 15:39:35 +0200
+Date: Tue, 10 Oct 2023 15:39:35 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] regulator: fixed: forward under-voltage events
+Message-ID: <20231010133935.GB3268051@pengutronix.de>
+References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
+ <20231010085906.3440452-3-o.rempel@pengutronix.de>
+ <5e51792a-cc93-4364-a51b-c2b116d89369@sirena.org.uk>
+ <20231010125531.GA3268051@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|GVXPR04MB9831:EE_
-X-MS-Office365-Filtering-Correlation-Id: 13b6ae65-6c5c-4f96-11cc-08dbc9964eb0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	4DLeDKsX+1TZBSSHl5hCIS+G9G4hp70zIR/waP8+jgkuSHRTXpvfUlTklK2QbJhLGniHgVNURoVtVTMuDhLgPPLBBD8C2FczHLd9kCuel8tHukXT6RkBnuvc2gTN+0n+ZeALxRqcS5AjUtOqmPRb7pYgL7foGC1JkmQBN8xcDin5/ElY2yWRNY6v/LCoIl+WlejmpZUgH/jl6P3VEX0lxq2vtl0s1eLZ4hN7Kf689pSejRxcP7LwhN05SwyReQjRH8h5qlOCzxSoEyMhIMDfiqyjQV8b2sCTkT7vcjmlANEuFllkpCu40F77ntvsu0S9JzWdV+bQxTkRD+sEJg6fxQeMk5B5UAyYj4COXzFM3atkYt/LSPvB1RM+XXAXmGGdxaz0keKgLdfbwmKENGSgeBxnsx1oiAEC41/wf8nOpMWV50b/bKviKfnRs5rLr1HWHS0tZ/GGDUWLUEkVIjup8K/o2t69YFd+22FSu8DrOfaQbttEv54TlxGC/rZA47VqAKq+JaR9DOdgkr1v6OYdVBSIddhl+Sp3hQpGeFyoUm+yKJHb5U9QWhRz9A0rrXlxAB42aeE9VvnizDFAUWsILSNn8opKsTLh6MOxkqoXUa5GG7KXemi/Eccdx4D41ndM
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(366004)(346002)(39860400002)(136003)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(86362001)(38350700002)(38100700002)(921005)(36756003)(2906002)(6512007)(52116002)(478600001)(966005)(6486002)(41300700001)(4326008)(8676002)(5660300002)(44832011)(6506007)(8936002)(6666004)(2616005)(1076003)(83380400001)(316002)(66476007)(66556008)(66946007)(7416002)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?84QAUXvUdIoWIlF6p1iJfI1GWDvxh8QrQKH9BzNkxaPNOoqskMjTNW9aF7xE?=
- =?us-ascii?Q?ccFbqFo+KMtZqkX9cjoQBBtZHdSWn6WkKkExNGydj88EryUX2etDrway8kKN?=
- =?us-ascii?Q?wUdABIhoSebq1nAzXEyFtSmB5iUVH+aeITpkOVdA14w0CF5k5fYu+Z4Y41mX?=
- =?us-ascii?Q?dnrYeiG2FqvnXtDYI+OMDtC5uh2d9lzJA3f9tes3Q1Pu6PXGbk0QbjUwXm4V?=
- =?us-ascii?Q?v4UvVn4gBA1gmm8CNBlvdTxbgj1Bo4n/OCfoCga7rTpndjL+orM4DvjA4ye3?=
- =?us-ascii?Q?wJ5VL97OQQA+cXquoaUO0po0YWVaEjpk1lIGWrmfswDzNbfz4wl15GJDacIN?=
- =?us-ascii?Q?iN5qIAegAtNhLC4tnkwOSryI50IM91k+aBNoG01WvUB87zMRhpmj4XGk2Sp3?=
- =?us-ascii?Q?WxUDDEdebbzVuJZwHGdLurEja/bUktaO5LCFDSxq7OXANnkIHt7BTfLuDnIl?=
- =?us-ascii?Q?f8i1NVfgwOr5WgqXp3Iyn+qAz5V+nrthskfBwddcj6rw1wsHrSa8+6Hz1/TP?=
- =?us-ascii?Q?dKlznBgAuWmpLAtsqGb4vooEjaslm6vfL0/4kTS/GsXydyzh0mrO04RjV7+a?=
- =?us-ascii?Q?2OKNzVosJG8z7KfRQjdyDP84BKYEQQw9EcmCKuUU1+jDpfBdW/mn3fDsFdCn?=
- =?us-ascii?Q?ruv4zenqpEVlCp5l+AxWFu0HglVwX0YCO2ZDS32fW62xMNFY/P1CyquaGd+S?=
- =?us-ascii?Q?myL8eXltut74TRUdpjO4Iye7i5N11WHiA4qAXb4LVaV+GNamNGl+Fl62Bo8U?=
- =?us-ascii?Q?iA8ARRnNNmHrBOwAhLnQ1AytQAYHCrSX/w7+ZkIRCHQhNROfGuFs0WzSjlOU?=
- =?us-ascii?Q?D2f0MGvjwxkQsNB+VCc/ujRS2KKwmi7A72+YEdh1zkKlTCoyrw+vh2HkeQHU?=
- =?us-ascii?Q?X8urN84Dbn4hQQ30OQjsZznnNaaLfUkeVwpw699trhwP4VNzotNfkKvggwvb?=
- =?us-ascii?Q?N0jgYSUFsL/0OHgahe4NHfuiuZrz/azrRYp4aPt2RL3VAz6cB8dwoIJ94FSn?=
- =?us-ascii?Q?s78PNEHoWMM00X7MaqtofF/3TMaN/FeyYx2dkLCNwxizLH822NizNX+on/PS?=
- =?us-ascii?Q?HgxOSgZUiHYTzXK9kRpFdT057Ni2LqSGCL7x5WqDft1SS8SYFWydKvkT1RHQ?=
- =?us-ascii?Q?U8pDAg/SM4lSGU5SQMJ1h44Q0sx4i5AG3yU453QBqjnrq+g1DksuxwTqp7K+?=
- =?us-ascii?Q?ktgEisomVw173kqlTyrIwMMvkqrivZ7eKsxM030eDzJrwd/gt6Dixbyiu8vU?=
- =?us-ascii?Q?po+FjKPD3jC/cikcUwS1G6QQ+Za2amol/HuHTfCTL5kjDPP1iq7mt05nmMO+?=
- =?us-ascii?Q?uHUa9ElFCZbOQ4jMSP1jb5/t/W9e8kVtysBFYh7T/h3A85ou+w/qBXqfKqiS?=
- =?us-ascii?Q?zwIQCGG+I9MpMPqPcfaZv3m6/6e/8KG8v5BwYdtbOP/n27xr3252hyG+xsTv?=
- =?us-ascii?Q?hsnlJxNL8pkiJEwQkolI337TwBOe4A9xczbFr9eEKa3WnBMgl/ZTK8yDwKCe?=
- =?us-ascii?Q?QBITk424qL9HBhtdFZVNP9x3MYhpOcxGfhk+9T9YZGslTcbx8+4jIkH6FBgK?=
- =?us-ascii?Q?SYTAfkZoD2BS+Rv/GV+CPc0CVMfmnUI2OIqw//6Q?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13b6ae65-6c5c-4f96-11cc-08dbc9964eb0
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 13:39:20.7007
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wdh87vkZqCKvKbb4/17S8M6Nz86yjOLxztbeJvxydduU4RnyzdKYXbk5Jn3jV8Ni33h24TfxTbvj5JxvBih6Eg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9831
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231010125531.GA3268051@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert NXP medium quality sound (MQS) device tree binding
-documentation to json-schema.
+On Tue, Oct 10, 2023 at 02:55:31PM +0200, Oleksij Rempel wrote:
+> Hi,
+> 
+> On Tue, Oct 10, 2023 at 01:19:36PM +0100, Mark Brown wrote:
+> > On Tue, Oct 10, 2023 at 10:59:06AM +0200, Oleksij Rempel wrote:
+> > > Add handler to forward under-voltage events.
+> > > On systems for more or less complicated regulator chains we need to
+> > > forward under-voltage events to actual driver which need to react on
+> > > them.
+> > 
+> > It isn't clear to me why this would be implemented in one specific
+> > driver, nor why this would be done unconditionally.  Could you provide
+> > some information on the problem you're trying to solve here?
+> 
+> The hardware I am working with has an under-voltage sensor on the 24V
+> supply regulator and some backup capacitors to run SoC for 100ms. I want
+> to forward under-voltage events across a chain of different regulators
+> to a designated consumer. For instance, to the mmc driver, enabling it
+> to initiate shutdown before power loss occurs.  Additionally, a bit can
+> be set in the volatile memory of a scratch pad in an RTC clock to record
+> sudden power loss, which can be checked on the next system start.
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- .../devicetree/bindings/sound/fsl,mqs.txt     |  36 ------
- .../devicetree/bindings/sound/fsl,mqs.yaml    | 113 ++++++++++++++++++
- 2 files changed, 113 insertions(+), 36 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.txt
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.yaml
+The bit picture of my HW may potentially be even more advanced:
+- some regulator chain paths are disabled by the HW. With other words
+  under-voltage event is converted to fail or disable. There is nothing
+  what software can do, but it will be good to reflect it on the SW
+  side for diagnostic.
+- some paths can be disabled by software to get some more milliseconds
+  of life and complete emergency shutdown task.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,mqs.txt b/Documentation/devicetree/bindings/sound/fsl,mqs.txt
-deleted file mode 100644
-index d66284b8bef2..000000000000
---- a/Documentation/devicetree/bindings/sound/fsl,mqs.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--fsl,mqs audio CODEC
--
--Required properties:
--  - compatible : Must contain one of "fsl,imx6sx-mqs", "fsl,codec-mqs"
--		"fsl,imx8qm-mqs", "fsl,imx8qxp-mqs", "fsl,imx93-mqs".
--  - clocks : A list of phandles + clock-specifiers, one for each entry in
--	     clock-names
--  - clock-names : "mclk" - must required.
--		  "core" - required if compatible is "fsl,imx8qm-mqs", it
--		           is for register access.
--  - gpr : A phandle of General Purpose Registers in IOMUX Controller.
--	  Required if compatible is "fsl,imx6sx-mqs".
--
--Required if compatible is "fsl,imx8qm-mqs":
--  - power-domains: A phandle of PM domain provider node.
--  - reg: Offset and length of the register set for the device.
--
--Example:
--
--mqs: mqs {
--	compatible = "fsl,imx6sx-mqs";
--	gpr = <&gpr>;
--	clocks = <&clks IMX6SX_CLK_SAI1>;
--	clock-names = "mclk";
--	status = "disabled";
--};
--
--mqs: mqs@59850000 {
--	compatible = "fsl,imx8qm-mqs";
--	reg = <0x59850000 0x10000>;
--	clocks = <&clk IMX8QM_AUD_MQS_IPG>,
--		 <&clk IMX8QM_AUD_MQS_HMCLK>;
--	clock-names = "core", "mclk";
--	power-domains = <&pd_mqs0>;
--	status = "disabled";
--};
-diff --git a/Documentation/devicetree/bindings/sound/fsl,mqs.yaml b/Documentation/devicetree/bindings/sound/fsl,mqs.yaml
-new file mode 100644
-index 000000000000..c697b97f888e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,mqs.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,mqs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP Medium Quality Sound (MQS)
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
-+  - Chancel Liu <chancel.liu@nxp.com>
-+
-+description: |
-+  Medium quality sound (MQS) is used to generate medium quality audio
-+  via a standard GPIO in the pinmux, allowing the user to connect
-+  stereo speakers or headphones to a power amplifier without an
-+  additional DAC chip.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx6sx-mqs
-+      - fsl,codec-mqs
-+      - fsl,imx8qm-mqs
-+      - fsl,imx8qxp-mqs
-+      - fsl,imx93-mqs
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+
-+  gpr:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle to the General Purpose Register (GPR) node
-+
-+  reg:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8qm-mqs
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Master clock
-+            - description: Clock for register access
-+        clock-names:
-+          items:
-+            - const: mclk
-+            - const: core
-+      required:
-+        - reg
-+        - power-domains
-+    else:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Master clock
-+        clock-names:
-+          items:
-+            - const: mclk
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6sx-mqs
-+              - fsl,imx93-mqs
-+    then:
-+      required:
-+        - gpr
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx6sx-clock.h>
-+    mqs0: mqs {
-+        compatible = "fsl,imx6sx-mqs";
-+        gpr = <&gpr>;
-+        clocks = <&clks IMX6SX_CLK_SAI1>;
-+        clock-names = "mclk";
-+    };
-+
-+  - |
-+    #include <dt-bindings/firmware/imx/rsrc.h>
-+    mqs1: mqs@59850000 {
-+        compatible = "fsl,imx8qm-mqs";
-+        reg = <0x59850000 0x10000>;
-+        clocks = <&mqs0_lpcg 0>, <&mqs0_lpcg 1>;
-+        clock-names = "mclk", "core";
-+        power-domains = <&pd IMX_SC_R_MQS_0>;
-+    };
+
 -- 
-2.25.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
