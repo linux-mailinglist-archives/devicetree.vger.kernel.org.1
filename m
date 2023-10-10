@@ -1,196 +1,97 @@
-Return-Path: <devicetree+bounces-7104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518347BF2D0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E3F7BF300
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 08:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 831151C20A6B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 06:14:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13F021C20A5C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Oct 2023 06:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1429450;
-	Tue, 10 Oct 2023 06:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="LEQEOuZ2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1159465;
+	Tue, 10 Oct 2023 06:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA23A34
-	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 06:14:19 +0000 (UTC)
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 209D89D;
-	Mon,  9 Oct 2023 23:14:18 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (185-9-11-240.cust.suomicom.net [185.9.11.240])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4S4QbC4GQQz49Q4j;
-	Tue, 10 Oct 2023 09:14:10 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1696918456;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sFJA2tqBva7PfHLrqbPQpWk8J1xI2ifThc/jSVknM30=;
-	b=LEQEOuZ22wnylwJfycQOeMFFEitnTTUtOeu+j+9HY/XkS/F6dB7FEzj1ohkHON/63X+8/G
-	0BlhYet6me0PJoIIRcVI6r2JV5M1a3yNnkIcMkLyD7ILqv2vXmb3F68EoOeme/tUGKiPSZ
-	Ilz9T64hYiY2FBk0AAgomvaFX8UUlJLYASa/S9sGXZo3lBjDkuT4cm4abkei4MDn1KOVIT
-	Vlz/tFxo1qWnFR/WnxqSlfg51uTNdpfSxrVxFqI2wh+QNp5c1CdPsYLS2jku3v2E1EaKvv
-	saH5XjKtsPDo21swY3v4cjEgblhVFT2yDekAgYIExJyEAQmiHKsTMCzTD3qhQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1696918456;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sFJA2tqBva7PfHLrqbPQpWk8J1xI2ifThc/jSVknM30=;
-	b=An4EF1s1kZt0Ec+ZUPBAc5bjnHnNAORVUTKA6uLJtM9sGBGTn1UeLd5JjBZdEQK64Ufjf9
-	2V71Q2Ix2/vINsgxwLdsj4trUUDuBDeUQWphOGOHFaTvYJLKN4Zx3gJXYYN1fHTGkw0ptt
-	Z2Y/Hl9RRvmcl5pbILtTv1GQJJPqsHN6eKk6pRcNcYPdiZfrzQciKFdvmDgWECQW6LLmb3
-	I/V+4J9QgzRpcZqXA0y/wcBE3Uo9+NwtUdkfvTxip3qXfPHaPJwEBgRkOFFJVAT0lyjfhb
-	5ae6+4HNXk2e+phPup8ZpzsxB+RQP4kyorNVfe+6K2OmxGHEGaUpOmWAdcihkQ==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1696918456; a=rsa-sha256;
-	cv=none;
-	b=fTyi4ddZZtv+5Nk8ev1t6KOkXVbGbyrxTz9STwh34enumJErbfnqIoXKA0NHNwPhnbBJ3V
-	QGmHI0EiuKTzHnbEWcyUp+NQve/vOxz3Z5tXpdA3uX20wruMYVHfGzo48IRyusNr7O0I6O
-	WeVTPmxfyW9IMi6f7mHvF1FPUS9ac8sUXoqMnqXsM9YUV+aV28CFZj+/XRZTBC1gTvQV5+
-	5Rf7J5B16bzFSswvrfDdeH4OtTa8Ql0y1+vE+mm8NJHPPNnPIO3Is7UJMWeNEEWFfQbQDR
-	n36R56PHxFwRXMyOnC2wWr5O6t6vs4f/wpmWPbTjmcrNVDL6huLj++neZ3qFsg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id EA3E4634CA9;
-	Tue, 10 Oct 2023 09:14:09 +0300 (EEST)
-Date: Tue, 10 Oct 2023 06:14:09 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH 3/5] media: i2c: imx335: Implement get selection API
-Message-ID: <ZSTrse7OeKIA+k2t@valkosipuli.retiisi.eu>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
- <20231010005126.3425444-4-kieran.bingham@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD05FA55
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 06:29:34 +0000 (UTC)
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FF5B7;
+	Mon,  9 Oct 2023 23:29:31 -0700 (PDT)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Tue, 10 Oct 2023
+ 14:29:19 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V2 0/4] Add C3 SoC PLLs and Peripheral clock
+Date: Tue, 10 Oct 2023 14:29:13 +0800
+Message-ID: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010005126.3425444-4-kieran.bingham@ideasonboard.com>
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.98.11.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Kieran,
+Add C3 SoC PLLs and Peripheral clock controller dt-bindings.
+Add PLLs and Peripheral clock controller driver for C3 SOC.
 
-On Tue, Oct 10, 2023 at 01:51:24AM +0100, Kieran Bingham wrote:
-> Support reporting of the Sensor Native and Active pixel array areas
-> through the Selection API.
-> 
-> The implementation reports a single target crop only for the mode that
-> is presently exposed by the driver.
-> 
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+V1 -> V2:
+ 1. Fix errors when check binding by using "make dt_binding_check"
+ 2. Delete macro definition
+          
+Xianwei Zhao (4):
+  dt-bindings: clock: add Amlogic C3 PLL clock controller bindings
+  dt-bindings: clock: add Amlogic C3 peripherals clock controller
+    bindings
+  clk: meson: c3: add support for the C3 SoC PLL clock
+  clk: meson: c3: add c3 clock peripherals controller driver
 
-Shouldn't you use the same callback for .set_selection? I guess this is
-somewhat grey area but doing so would be in line with how V4L2 API works in
-general.
+ .../clock/amlogic,c3-peripherals-clkc.yaml    |   92 +
+ .../bindings/clock/amlogic,c3-pll-clkc.yaml   |   59 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/c3-peripherals.c            | 3096 +++++++++++++++++
+ drivers/clk/meson/c3-peripherals.h            |   48 +
+ drivers/clk/meson/c3-pll.c                    |  808 +++++
+ drivers/clk/meson/c3-pll.h                    |   35 +
+ .../clock/amlogic,c3-peripherals-clkc.h       |  230 ++
+ .../dt-bindings/clock/amlogic,c3-pll-clkc.h   |   42 +
+ 10 files changed, 4437 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/c3-peripherals.c
+ create mode 100644 drivers/clk/meson/c3-peripherals.h
+ create mode 100644 drivers/clk/meson/c3-pll.c
+ create mode 100644 drivers/clk/meson/c3-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
 
-Cc Laurent.
 
-> ---
->  drivers/media/i2c/imx335.c | 44 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/drivers/media/i2c/imx335.c b/drivers/media/i2c/imx335.c
-> index bf12b9b69fce..026777eb362e 100644
-> --- a/drivers/media/i2c/imx335.c
-> +++ b/drivers/media/i2c/imx335.c
-> @@ -55,6 +55,14 @@
->  #define IMX335_REG_MIN		0x00
->  #define IMX335_REG_MAX		0xfffff
->  
-> +/* IMX335 native and active pixel array size. */
-> +#define IMX335_NATIVE_WIDTH		2616U
-> +#define IMX335_NATIVE_HEIGHT		1964U
-> +#define IMX335_PIXEL_ARRAY_LEFT		12U
-> +#define IMX335_PIXEL_ARRAY_TOP		12U
-> +#define IMX335_PIXEL_ARRAY_WIDTH	2592U
-> +#define IMX335_PIXEL_ARRAY_HEIGHT	1944U
-> +
->  /**
->   * struct imx335_reg - imx335 sensor register
->   * @address: Register address
-> @@ -651,6 +659,41 @@ static int imx335_init_pad_cfg(struct v4l2_subdev *sd,
->  	return imx335_set_pad_format(sd, sd_state, &fmt);
->  }
->  
-> +/**
-> + * imx335_get_selection() - Selection API
-> + * @sd: pointer to imx335 V4L2 sub-device structure
-> + * @sd_state: V4L2 sub-device configuration
-> + * @sel: V4L2 selection info
-> + *
-> + * Return: 0 if successful, error code otherwise.
-> + */
-> +static int imx335_get_selection(struct v4l2_subdev *sd,
-> +				struct v4l2_subdev_state *sd_state,
-> +				struct v4l2_subdev_selection *sel)
-> +{
-> +	switch (sel->target) {
-> +	case V4L2_SEL_TGT_NATIVE_SIZE:
-> +		sel->r.top = 0;
-> +		sel->r.left = 0;
-> +		sel->r.width = IMX335_NATIVE_WIDTH;
-> +		sel->r.height = IMX335_NATIVE_HEIGHT;
-> +
-> +		return 0;
-> +
-> +	case V4L2_SEL_TGT_CROP:
-> +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> +		sel->r.top = IMX335_PIXEL_ARRAY_TOP;
-> +		sel->r.left = IMX335_PIXEL_ARRAY_LEFT;
-> +		sel->r.width = IMX335_PIXEL_ARRAY_WIDTH;
-> +		sel->r.height = IMX335_PIXEL_ARRAY_HEIGHT;
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
->  /**
->   * imx335_start_streaming() - Start sensor stream
->   * @imx335: pointer to imx335 device
-> @@ -864,6 +907,7 @@ static const struct v4l2_subdev_pad_ops imx335_pad_ops = {
->  	.init_cfg = imx335_init_pad_cfg,
->  	.enum_mbus_code = imx335_enum_mbus_code,
->  	.enum_frame_size = imx335_enum_frame_size,
-> +	.get_selection = imx335_get_selection,
->  	.get_fmt = imx335_get_pad_format,
->  	.set_fmt = imx335_set_pad_format,
->  };
-
+base-commit: 57b55c76aaf1ba50ecc6dcee5cd6843dc4d85239
 -- 
-Regards,
+2.37.1
 
-Sakari Ailus
 
