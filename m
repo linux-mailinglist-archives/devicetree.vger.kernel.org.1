@@ -1,168 +1,135 @@
-Return-Path: <devicetree+bounces-7770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CC17C5624
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C32177C5660
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:06:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D9A11C210BD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:02:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF36A1C20CB5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F7A200CC;
-	Wed, 11 Oct 2023 14:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D35200D7;
+	Wed, 11 Oct 2023 14:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fxkhROQy"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="FphjZ5yJ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ouY87AmW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518F3200D2
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:02:50 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FE393;
-	Wed, 11 Oct 2023 07:02:47 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 01B7140004;
-	Wed, 11 Oct 2023 14:02:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697032966;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AmDid+2p5omqPQxMszlLHuNt/K12o40KfGGotdHRA4A=;
-	b=fxkhROQypXEGEU25tCB1qFGhCBWiY7ChPSURIW48jG2TDWzf1Hs2f+d5jYfOdwyALI9Ven
-	Az9tOMNZ49Sb+/fcBjwht/+vyXww0yARVBlafJsON1TIajAPJiOzWZrcgmWthQyJuyGSpy
-	DadE20n8nsGPhXWuaM0d/t9UqwA2txhlMNlPoHxWsWeGv/G5Dr95OUNhC2rzWisyrPZ+jl
-	pw3CL+XMwf6rqf5SvKn7Pf8V4Q6FudA6Fjjx8NwpdO6GCKrLMwABEaAM44NPbxytlnWvPE
-	3qrO5CQ6hUZtHPAkOJWflWy/vcwWVKxZYa9vtxc3K6svT24dz36CqWTclQbjeA==
-Date: Wed, 11 Oct 2023 16:02:43 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 7/7] nvmem: core: Expose cells through sysfs
-Message-ID: <20231011160243.4893729d@xps-13>
-In-Reply-To: <a67f5fd1-6b5c-662d-5ab3-b528c2080efc@linaro.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
-	<20231005155907.2701706-8-miquel.raynal@bootlin.com>
-	<318fe799-f53e-64ed-b631-d099bb5202f4@linaro.org>
-	<20231011091524.0c9ecc55@xps-13>
-	<548849a8-9f11-5274-778e-f291267603bb@linaro.org>
-	<20231011103306.08f1fbd4@xps-13>
-	<fe4a2688-079c-a36d-0ea4-c244c6e1a0ad@linaro.org>
-	<20231011105829.778bed58@xps-13>
-	<490c6740-06cb-9ee6-ca8c-3ab404109344@linaro.org>
-	<20231011114419.21821f4d@xps-13>
-	<8b8403ee-b610-312b-aa98-3e4fa65a3800@linaro.org>
-	<20231011130931.3b6216aa@xps-13>
-	<a67f5fd1-6b5c-662d-5ab3-b528c2080efc@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDB2200AF
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:06:15 +0000 (UTC)
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385DBA7;
+	Wed, 11 Oct 2023 07:06:11 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 780935C0418;
+	Wed, 11 Oct 2023 10:06:10 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Wed, 11 Oct 2023 10:06:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1697033170; x=1697119570; bh=Mq
+	P27hLs84B1d5SWU+1RVfvQUaw2zlqyPIX0397Jqkc=; b=FphjZ5yJDqwRLHEKOD
+	6+MstyCCd7J7CAVK/r5DkCLgzPjjHRRGBZzyQok9a3wZbpFEoE6n2ZRCC48UsnsP
+	2uphIUPeX5ZfrIr0RZRpROszIcqKFk/fP1FQfScda/6722MsfvTK5IWcWccAfdec
+	2ZWIpCRL/AGDve6LpdQIPZ0F+HW1mwss1Pn7IpPUHEy9g84nmbfoSWk0UswfcmOW
+	oosGeMr6R7t6MpffxcxnylzE/Ia/ZFIR4aUlfn8bIXoa4KSspYkuxv4MUvZiUkWy
+	Ex28EkTECM7tscSXGGK+eEzg/PPu2/aptZdc6loFMR2MLQPfJR5/SKQlqjfzXeZ7
+	OuWg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1697033170; x=1697119570; bh=MqP27hLs84B1d
+	5SWU+1RVfvQUaw2zlqyPIX0397Jqkc=; b=ouY87AmWoncBViJ0tHfeXCMQOavQe
+	d66cZxGBH0wrpt4l7EeEakaPu1WvmOwKYaekPvr04gBj6o8Q76MjnrkmmFj6t4Nd
+	z6fqGfnPF+D7M1qKwlSD0QiXJw/yZ2hPH0an0yVinbaHAomma9ufH8Upltuf6Mei
+	820kb7MP2ro6wn4xdzj96RuP3PZCCwx2LrL1XEXqpT6HlENdwwgS1TkPJ0QVHYsl
+	x3cRFaNQB2D8MbDsZBlJJ3vLdppbe/VTm/dsHiC38gErcr88U2TJg2GoZ7N8JBEK
+	GF/T4/pq3MPczeoVuI4N5fDdqNbqMQPQ6ldK4sf+yYwwHrbbp/DzJSYfQ==
+X-ME-Sender: <xms:z6smZUrG4Iq8tNJG6JPzqD3wuKJvf1i16dhAKPmNhVKjJmYNzuEjPQ>
+    <xme:z6smZaoFCVRVCtTOfRCjz3ahoMO82vjThfsnoh0_6UH3I00muyUDbramo-AnDlK0e
+    YIloM_yy13NDS830wc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrheekgdeilecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:0KsmZZN9Bn9eT7r5VNLHvY3XbCu_TZ1D39XAmJqf621VcNKdI6waMQ>
+    <xmx:0KsmZb71_GywYZWG_ZnynaNfjXgPiYbVN1phwNgVKSMh-5KTkjXN9Q>
+    <xmx:0KsmZT4a6Td4EOmOwAInAUPEvOGDh0VCDw-XZqjrFLiou5VXzKVRhw>
+    <xmx:0qsmZXgtcbHblQ7yVbBY_-dZPmPXqNGJdx-CW70EmPRUS7YPRoQMGw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id E3F84B6008D; Wed, 11 Oct 2023 10:06:07 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1019-ged83ad8595-fm-20231002.001-ged83ad85
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Message-Id: <dccc0487-f254-4429-a6ab-fed037daae50@app.fastmail.com>
+In-Reply-To: <20231011135905.hveat7viflqluccw@bogus>
+References: <20231011131431.2559029-1-arnd@kernel.org>
+ <20231011135905.hveat7viflqluccw@bogus>
+Date: Wed, 11 Oct 2023 16:05:47 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Sudeep Holla" <sudeep.holla@arm.com>, "Arnd Bergmann" <arnd@kernel.org>
+Cc: "Rob Herring" <robh+dt@kernel.org>,
+ "Frank Rowand" <frowand.list@gmail.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Yang Yang" <yang.yang29@zte.com>,
+ "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Sebastian Reichel" <sre@kernel.org>,
+ "Miquel Raynal" <miquel.raynal@bootlin.com>,
+ "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+ "Viresh Kumar" <viresh.kumar@linaro.org>,
+ "Benjamin Herrenschmidt" <benh@kernel.crashing.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: rexport of_find_next_cache_node()
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Srinivas,
+On Wed, Oct 11, 2023, at 15:59, Sudeep Holla wrote:
+> On Wed, Oct 11, 2023 at 03:14:08PM +0200, Arnd Bergmann wrote:
+>> From: Arnd Bergmann <arnd@arndb.de>
+>> 
+>> This function is now called from a cpufreq driver, but that breaks the
+>> build when the caller is in a loadable module, because of a missing
+>> export:
+>> 
+>> ERROR: modpost: "of_find_next_cache_node" [drivers/cpufreq/qcom-cpufreq-nvmem.ko] undefined!
+>> 
+>> Export this as a GPL-only symbol, like the other related functions in
+>> this file.
+>> 
+>> Fixes: 7683a63c08ff5 ("cpufreq: qcom-nvmem: create L2 cache device")
+>> Fixes: a3e31b4588443 ("of: Move definition of of_find_next_cache_node into common code.")
+>
+> I am bit confused as I see commit a3e31b4588443 didn't drop the export.
+> So how is this change fixing that commit ?
 
-srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 14:56:02 +0100:
+My mistake, I was looking for the commit that initially introduced
+the function, but didn't notice that this just moved it from powerpc.
 
-> On 11/10/2023 12:09, Miquel Raynal wrote:
-> > Hi Srinivas,
-> >=20
-> > srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 11:02:16 +0100:
-> >  =20
-> >> Hi Miquel,
-> >>
-> >> On 11/10/2023 10:44, Miquel Raynal wrote: =20
-> >>> Hi Srinivas,
-> >>>
-> >>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 10:26:43 +01=
-00: =20
-> >>>    >>>> On 11/10/2023 09:58, Miquel Raynal wrote: =20
-> >>>>> Hi Srinivas,
-> >>>>>
-> >>>>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:45:11 +=
-0100: =20
-> >>>>>     >>>> On 11/10/2023 09:33, Miquel Raynal wrote: =20
-> >>>>>>> Hi Srinivas,
-> >>>>>>>
-> >>>>>>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:27:20=
- +0100: =20
-> >>>>>>>      >>>> On 11/10/2023 08:15, Miquel Raynal wrote:
-> >>>>>>>>>>> +
-> >>>>>>>>>>> +	nvmem_cells_group.bin_attrs =3D cells_attrs;
-> >>>>>>>>>>> +
-> >>>>>>>>>>> +	ret =3D devm_device_add_groups(&nvmem->dev, nvmem_cells_gro=
-ups);
-> >>>>>>>>>>> +	if (ret)
-> >>>>>>>>>>> +		goto unlock_mutex; =20
-> >>>>>>>>>> This is going to create groups after the nvmem device is added=
-, isn't this going to be problem with user space notifications? =20
-> >>>>>>>>> Greg said it was not. I hope I understood correctly =F0=9F=98=84
-> >>>>>>>>>
-> >>>>>>>>> And anyway, cells have never been available to userspace, so th=
-ere is
-> >>>>>>>>> nothing userspace might expect yet? =20
-> >>>>>>>> I agree, but once we add sysfs uapi then this is going to change=
-. =20
-> >>>>>>>
-> >>>>>>> Can you elaborate? I'm not sure I follow you here. Is there still=
- a
-> >>>>>>> problem you fear or you think it's okay? =20
-> >>>>>>>      >> Now that we add cells to sysfs. =20
-> >>>>>> AFAIU, By the time the userspace sees the udev event from this dev=
-ice we might not have cells populated. =20
-> >>>>>
-> >>>>> Yes, but why would this be a problem? =20
-> >>>>>     >> It will be problem if the userspace is using things like lib=
-udev to act on these events. There seems to be some caching of attributes i=
-n udev during event more info http://www.kroah.com/log/blog/2013/06/26/how-=
-to-create-a-sysfs-file-correctly/ =20
-> >>>
-> >>> I am already using these attributes, right? The problem here is that =
-we
-> >>> always attach cells sysfs attributes to the nvmem device, but in some
-> >>> cases (when using layout devices/drivers) the probe of these devices
-> >>> will happen after the main nvmem device has been announced to userspa=
-ce
-> >>> and thus these attributes might not be populated yet (but Greg said it
-> >>> was "supported" and I assumed it was fine). =20
-> >>>   > So what is your idea here to overcome this? =20
-> >>
-> >> Ideally we should have all the cells definitions ready by the time nvm=
-em is registered. =20
-> >=20
-> > I no longer think what you describe can happen because even though the
-> > rootfs might be mounted, the daemons will only be 'started' once the
-> > kernel is done starting and starts the init process, which means all
-> > the devices have probed and all the cells have been registered as well.=
- =20
-> I think you forgot about modules in the above flow.
+I could have used "Fixes: e523f723d69cd ("powerpc: Add
+of_find_next_cache_node()")", but it's probably best to just
+leave that line out entirely.
 
-We request module insertion when the layout gets populated. By the time
-userspace starts the kernel is done initializing, meaning that any
-available nvmem layout module has already been loaded and the devices
-probed -> the cells are there already.
-
-Thanks,
-Miqu=C3=A8l
+    Arnd
 
