@@ -1,203 +1,137 @@
-Return-Path: <devicetree+bounces-7819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7EC7C5A4B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 19:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CAD87C5A9F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 19:58:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3548B1C20C28
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:35:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6881F1C20B50
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB153993F;
-	Wed, 11 Oct 2023 17:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29BFD39950;
+	Wed, 11 Oct 2023 17:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iOaFmDYb"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="mv+3BIHl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A799DA41
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 17:35:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B288FAF;
-	Wed, 11 Oct 2023 10:35:21 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39BGWT0i015763;
-	Wed, 11 Oct 2023 17:35:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2Xu49m1feMgExRGBOKkf21fhFESZROqSNyL0YhkcTyE=;
- b=iOaFmDYb7dFwB5mkKWhrSDS89V1OvSfbAOQ6GY5QlyvE3ivT4FJoOFwuGhix92gSLouW
- tqNLp71tSboWbWCZaoTqcK0iNpkPiDtNCV/dj29iJIjLRmASuEcaM87rYwCQ+Kp0J0/O
- Ru4Kqwe8BpJt3+71WzafOi4KINZrvP23pGTCzwtlaIXXlCIlo3FtZiJEMFXW0dAVApEZ
- BsfDZV4uRIqq7x5JLRuaOZniKApsCLG2ZPUr5UBXOSsgHjeJJzc1jj03meK+lifGq5oL
- NPrPTc31ZpMblpn+ETQWt5tbQgPBf2PhHLq3YBtHyAu9plw7wdnovDm/cMdGvvg+4u/O pQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnmds9t9n-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4742139945
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 17:58:07 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 819D68F;
+	Wed, 11 Oct 2023 10:58:05 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39BEw0GX007819;
+	Wed, 11 Oct 2023 19:57:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=TAaAF2q
+	3limPjnQvFZPK8yGWYOFgr3YyW+A1RHS94jI=; b=mv+3BIHl/k+x1WNBa6p97xv
+	T4rn9dp+uqlV3GnVyd4g2hjO9/vnYRCXv9xFgTRqfV40mke4pII0ajgM64kATqXF
+	1qsxptDi6BB17+qa4kKizwp9EgImiXx7UJfSHmW/h/1UExPZ6yLZdpvbRjFk83Sb
+	4o6ROhGf7bpYLOFJkJGHOfihdKQgTl4yyjWg/gNQSQUyYSOT6RTCIqh8MbzksGw7
+	LQvghlueItbs95yL+76YC8rGT5dhRTjrT3w6cYBhylttwr+gDej/HxZdb8SnpRmX
+	ef1cmRSpYFOMpy6K5n7GqQTvAMuGtgNcDqlRxY7PPAmU/lSTEarEZGTU6dlzOIw=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tns0cj739-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 17:35:13 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BHZCeY004085
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 17:35:12 GMT
-Received: from [10.110.79.230] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
- 2023 10:35:12 -0700
-Message-ID: <01c7a346-1e8b-1767-7594-c8adcd4823c3@quicinc.com>
-Date: Wed, 11 Oct 2023 10:35:11 -0700
+	Wed, 11 Oct 2023 19:57:51 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5775F100057;
+	Wed, 11 Oct 2023 19:57:50 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 44EAA20F55A;
+	Wed, 11 Oct 2023 19:57:50 +0200 (CEST)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 11 Oct
+ 2023 19:57:50 +0200
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Kieran Bingham
+	<kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] media: i2c: gc2145: GC2145 sensor support
+Date: Wed, 11 Oct 2023 19:57:27 +0200
+Message-ID: <20231011175735.1824782-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mukesh Ojha
-	<quic_mojha@quicinc.com>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <luca.weiss@fairphone.com>
-References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
- <20231003175456.14774-3-quic_kbajaj@quicinc.com>
- <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
- <3fd31aaa-f6bf-8440-6b08-fca2803171d9@quicinc.com>
- <dba83334-3971-46e9-9342-1344c5858be8@linaro.org>
-From: Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <dba83334-3971-46e9-9342-1344c5858be8@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5dMDsSgiRBaLVcof63q1--rQ9M1Glavh
-X-Proofpoint-GUID: 5dMDsSgiRBaLVcof63q1--rQ9M1Glavh
+Content-Type: text/plain
+X-Originating-IP: [10.129.178.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-11_12,2023-10-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0
- clxscore=1011 spamscore=0 phishscore=0 impostorscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310110155
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/11/2023 2:47 AM, Konrad Dybcio wrote:
-> 
-> 
-> On 10/11/23 07:40, Mukesh Ojha wrote:
->>
->>
->> On 10/7/2023 5:02 AM, Konrad Dybcio wrote:
->>> On 3.10.2023 19:54, Komal Bajaj wrote:
->>>> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
->>>> platform. QCM6490 is derived from SC7280 meant for various
->>>> form factor including IoT.
->>>>
->>>> Supported features are, as of now:
->>>> * Debug UART
->>>> * eMMC
->>>> * USB
->>>>
->>>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->>>> ---
->>> [...]
->>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->>>> new file mode 100644
->>>> index 000000000000..b93270cae9ae
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->>>> @@ -0,0 +1,94 @@
->>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>> +/*
->>>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#include "sc7280.dtsi"
->>>> +
->>>> +/*
->>>> + * Delete unused sc7280 memory nodes and define the memory regions
->>>> + * required by qcm6490
->>>> + */
->>>> +/delete-node/ &rmtfs_mem;
->>>> +/delete-node/ &wlan_ce_mem;
->>>> +
->>>> +/{
->>>> +    reserved-memory {
->>>> +        cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
->>>> +            reg = <0x0 0x81800000 0x0 0x1e00000>;
->>>> +            no-map;
->>>> +        };
->>>> +
->>>> +        camera_mem: camera@84300000 {
->>> Uhh.. this is totally not the same memory map that I have on a
->>> random msm-5.4 source+devicetree drop (which does in turn align
->>> with the one on QCM6490 Fairphone 5, as it should because it's
->>> a rebadged reference device for the most part)..
->>>
->>> Did you guys *really* redo it between software releases?
->>
->> QCM6490 fairphone is special case where same SOC is used for mobile
->> product and it uses sc7280 memory map.
->>
->> Current patch adds support for the same SOC marketed for IOT segment
->> [1] and very active in the development and soon going to freeze its
->> memory map, so we are deriving memory map from sc7280 and creating
->> a new memory map for all IOT product with qcm6490.dtsi .
-> Stop reinventing the wheel. I'm not going to accept patches that are supposed to define ABI for products that are still in development.
-> Not unless Qualcomm changes their attitude towards unilaterally breaking things for no good reason.
-> 
->>
->> [1]
->> https://www.qualcomm.com/products/internet-of-things/industrial/building-enterprise/qcm6490
->>
->>>
->>> This SoC family has been on the market for quite some time,
->>> breaking software expectations like that is not cool, especially
->>> on a product with a promised lifespan of 10 years or whatever!
->>
->> I agree, but we are not changing anything for product which are there
->> in the market instead defining a new memory map what is going to come
->> with qcm6490.dtsi for IOT.
-> Why would the OS care about the market segment you're targeting?
-> Why would the firmware you're building care about the market segment you're targeting? The LE vs LA vs LU vs WP vs whatever split is so unnecessary and arbitrary on the firmware/kernel side..
-> 
-> The firmware should either be fully relocatable (so that dynamic memory reservation can be used), unified so that there's no changes or better yet stored in separate memory so that q6 cores don't steal the RAM that the user paid for and you can do whatever ugly magic you please in there.
-> 
-> This arbitrary segmentation makes it impossible to have a common base, or to explain what device should go where to a newcomer.
+This serie adds support for the GalaxyCore GC2145 sensor.
+Initialization is based on scripts provided by GalaxyCore,
+allowing 3 fixed configurations supported for the time being.
 
-Konrad it is possible to use the same SOC with the multiple segments w/ the different memory maps. 
+Minimum controls have been added in order to allow it to
+be successfully used with libcamera and dcmipp driver (under
+review) on STM32MP13 platform.
 
-Memory map here is how you organize the DDR and give it to various S/W and DSP regions etc; 
+The sensor also supports Bayer formats however I removed
+them for the time being since they would require more
+controls to be exposed.  They will be added again later on.
 
-Also these SOCs are around for sometime and it is possible that new segments may use it. We can't solve
-or know all the new segments need when the SOCs come out. Memory maps does provide that flexibility
-and they don't change often. OEMs has also some flexibility to change the memory map if needed to optimize. 
+v2: - split vendor-prefixes update into a separate commit
+    - correction into dt-bindings (description, const i2c address,
+      lowcase of supplies, node naming
+    - correct KConfig (avoid VIDEO_V4L2_SUBDEV_API, V4L2_FWNODE and add
+      V4L2_CCI_I2C)
+    - usage of v4l2-cci framework for accessing to device registers
+    - correction in power-on / power-off sequences and update
+      usleep_range delay
+    - detail MIPI configuration and stop register access to stop
+      streaming
+    - removal of SYSTEM_SLEEP_PM_OPS (and streaming variable)
+    - various small fixes, typo, oneline functions
+    - removal of useless HBLANK control considereing that RAW isn't
+      supported for the time being
+    - removal of RAW parts
+    - usage of dev_err_probe
 
-This SOC is around for quite sometime new usecases are expected to emerge. I don't see it as
-way to stop us from taking these contributions into the linux-arm-msm. 
+Alain Volmat (3):
+  dt-bindings: vendor-prefixes: Add prefix for GalaxyCore Inc.
+  dt-bindings: media: i2c: add galaxycore,gc2145 dt-bindings
+  media: i2c: gc2145: Galaxy Core GC2145 sensor support
 
----Trilok Soni
-
+ .../bindings/media/i2c/galaxycore,gc2145.yaml |  104 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc2145.c                    | 1440 +++++++++++++++++
+ 6 files changed, 1565 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+ create mode 100644 drivers/media/i2c/gc2145.c
 
 -- 
----Trilok Soni
+2.25.1
 
 
