@@ -1,279 +1,131 @@
-Return-Path: <devicetree+bounces-7583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D007C4BFD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:36:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7884C7C4C08
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:37:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 980A41C20CB8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:36:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3372028216B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD34199B6;
-	Wed, 11 Oct 2023 07:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D433199C2;
+	Wed, 11 Oct 2023 07:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="rHyGfSLA"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FEIR9eJq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459026AAB
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:36:15 +0000 (UTC)
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2139.outbound.protection.outlook.com [40.107.117.139])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643C798;
-	Wed, 11 Oct 2023 00:36:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EZz78PHD9SsAwqdsLqDRe5bfGYRXVJww+Ttm9b71gdcfWvMmHQ2LmhPYFX20iKiSy+mBoGYUJxi45JPo76yOT7nZjid6hIw17DwdfhMUE+70BENRl6QStTHsdq0ThwHdk347ggAFjV6nfneJ6Elf4tEdl2mn7URu0Ob7D9YgySam9grYxxcbSwgy6atBlLo05tnxYxJZbbFYn8of9PDmwRIZapawR2ztasDKN4S3wnVvhYzajGfl0ySl5QiGc7aRwT1Xt4w4jOOeBfXhBN+6t9EN1AF3zDQ9cUCO4cOEH6K5+ggH1lQE9lZCiulx/+gd6Wwcg7f0QX5+Eu1po68FtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CBhaYrwgUiz9ruaKQ/59XZHTozybsWlhlMJA67qc1LE=;
- b=Baq7SO2OINdKUujFFsjUgIn6o5GLt64SmgHbZiKcZRSaPFAIVTkBKIKJcqKlFbw4J4CCtQbIpry6NAE48Pdve6fM8t5oMF1MrHLh+9PPKrmyUxMBBNGqwIlPzyMvPMulvsU52hahjHB6BdZzqy44zYk2Sj8P782oowAapnBfQRjWzYJvTNnJUJT/SlIEMKZJmSHOXgHVO1i4H8Wm4TvjIKhN2wkbx09dtkOHSR7bsNs6/kh+IrBoBZjY6iljMSrL3G9fyqZpoCnGupBQwtDGyOuN74uWX1iXlYyQnU2Jd2ap6OqCfVTD3q3yYy1tnDydxuQ01kFHU1o2KGuIjVw0jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CBhaYrwgUiz9ruaKQ/59XZHTozybsWlhlMJA67qc1LE=;
- b=rHyGfSLAup7Evogj9FiybzonvwvJND8EcePSetQkSaWRmupxh1csdt9kgjwE9UJ0WoXXiHs4RuIu+Vf/VXWFkS79gDshqNz33BUAWkJDrkYuoQjFGUKkI6IkhzjOuSn16hkY/dSlOVR2GXIcBcOXA6XqJtnDNSzsqlk/bVQE1KuXYOc8iwEvotm93Vmpk+f5u7HAZgsdG4NVqenH2iC2JyrFcH97avhLriKc4Os3KY2pmv9x0kvDlv5LpHzlcfC4MSDl4+KbvbzNjSudIKVnIO3+/+zXSNVlG491v76kuT68k7ALMWhu0L5AOD3vOE7BT8FbwlOvsZd3fxhqeryHJw==
-Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
- by TY0PR06MB5258.apcprd06.prod.outlook.com (2603:1096:400:205::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Wed, 11 Oct
- 2023 07:36:06 +0000
-Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
- ([fe80::bbd0:e194:c82c:c8c1]) by SEZPR06MB5269.apcprd06.prod.outlook.com
- ([fe80::bbd0:e194:c82c:c8c1%6]) with mapi id 15.20.6863.032; Wed, 11 Oct 2023
- 07:36:06 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>, Brendan Higgins
-	<brendan.higgins@linux.dev>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Joel Stanley <joel@jms.id.au>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Andrew Jeffery <andrew@aj.id.au>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Wolfram Sang <wsa@kernel.org>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, Florian Fainelli
-	<f.fainelli@gmail.com>, Jean Delvare <jdelvare@suse.de>, William Zhang
-	<william.zhang@broadcom.com>, Tyrone Ting <kfting@nuvoton.com>, Tharun Kumar
- P <tharunkumar.pasumarthi@microchip.com>, Conor Dooley
-	<conor.dooley@microchip.com>, Phil Edworthy <phil.edworthy@renesas.com>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "=linux-kernel@vger.kernel.org"
-	<=linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>
-Subject: RE: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
- mode driver
-Thread-Topic: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
- mode driver
-Thread-Index:
- AQHZtics0zDPons9tEqiPxizT4zKAq+49YuAgFMh/9CAAFvWgIAuwPEAgABlRACACSMw4A==
-Date: Wed, 11 Oct 2023 07:36:06 +0000
-Message-ID:
- <SEZPR06MB5269464A3982E550D6DB8810F2CCA@SEZPR06MB5269.apcprd06.prod.outlook.com>
-References: <20230714074522.23827-1-ryan_chen@aspeedtech.com>
- <20230714074522.23827-3-ryan_chen@aspeedtech.com>
- <ZLENe5B3gi/oNTQp@smile.fi.intel.com>
- <SEZPR06MB5269831E049E2267661F181FF2E8A@SEZPR06MB5269.apcprd06.prod.outlook.com>
- <ZPcXJ4adUNMv4LDr@smile.fi.intel.com>
- <SEZPR06MB52699EC5463397F4BFF244DBF2CAA@SEZPR06MB5269.apcprd06.prod.outlook.com>
- <ZR6kYMOB67+WJonG@smile.fi.intel.com>
-In-Reply-To: <ZR6kYMOB67+WJonG@smile.fi.intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEZPR06MB5269:EE_|TY0PR06MB5258:EE_
-x-ms-office365-filtering-correlation-id: cfeb25d8-2b7e-47e4-f466-08dbca2cbac8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 792D6wBCuT6PMspppCOpE8h4YXY+EVSLGFwjonXFbAssp19ADB805a1PreaqfGYHr3sHgH6d+wciciOe+MIcI15zsqtNgid1yy5y7rvXfWFSgPj9n0XI3puD70Qp/1iCO7Ydf6oHUAaecNoeHIgvXpDKbKVNLmc6x9oGC0LFSmrLHuQ6dGnXYV8WIdMldBM/ft+TtSKSR6stdj4TG2H8V3AU8Mfn/JYNQJ0n0YbaNgq2gsEbaD9kx06NzGLeGDnUGeHGGm+7fEdySMiPp8MPBjfPDgdiOjHYne26q62k5f+0stXcCROBSEn7uoGjnnitucldD0Etx3wbJGYGhgfTmeRBHLSmHz9dC2HMT90m4TfVh1nX1BJeX1MjO+nBv1Tfq7Nc/L4hKGOPoZFT0kPJFpMa1IRWeHc6Jr8PjL7ou1M3Sx5s+a5F34MytgZQGywF0B8Lqjm5dkfjOv3QhGKFLuoTsbF9pWzYrWZgfnUfKY3UUALs8uJxgdeG2RXkYO8mDD/jRMzixni4gNX+yB2btuyXCLguKVcYvsuvezRZY3lXWY6nDmmekb28F3zNG3qPfBPCntU7B1J8yBThVm4sOKI2kjKL+IFyCRbgbdn6ad5vGxOYDQZrz/UbOzaxLBjM
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39850400004)(366004)(346002)(376002)(136003)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(9686003)(26005)(71200400001)(6506007)(2906002)(8676002)(54906003)(478600001)(4326008)(64756008)(66476007)(7416002)(7696005)(66946007)(83380400001)(76116006)(52536014)(8936002)(66556008)(66446008)(5660300002)(6916009)(316002)(33656002)(55016003)(38070700005)(86362001)(122000001)(38100700002)(41300700001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?JAWkcc16JJlPuhzclv9isbQZ/lkFtXipbb7iDX8TT5wDGq+RhVgfxSAaQtmV?=
- =?us-ascii?Q?CMwyg0XqUqFnCXeDyJIAXSpo203/T6yAajkQwMBl/qILp8anD+OxKqKvGZxT?=
- =?us-ascii?Q?6TcvCDMxN+/pMPScymmHmVsebr/0NkMZHFmHSF7x5NJscNGF8nc1sqtzEebn?=
- =?us-ascii?Q?ucIrmtwA+PsqhnOMzI03imIiMfwQb4YC5wiN5z34Rb7JhAiokzcpFtVxui5F?=
- =?us-ascii?Q?oaZhJHjA8KfI7cv95TeldkmAFWEYYrQMET9mU8hZlJ+fG9r/s+k5wGYEpqL5?=
- =?us-ascii?Q?nGWmWUxjH2tNVxt62eyHOwc7kvkWG8w8EaDrfuY9jHQiqCdFOnUMueXEbLll?=
- =?us-ascii?Q?WkjWs1r+NMIfi2IUrTY6BLKJSqeOH5jawCHz0q+b/wOfp9FT2lpkGIqcFdCu?=
- =?us-ascii?Q?m08vvYYRq3EHMWc3nzzHq6/jNC6RyCeRDJhcqwlCDRPxVAkuMh96S5K4DKVL?=
- =?us-ascii?Q?lzIrX/RngZbmRVpukZ62vZB6ahqexRAtADVlp9vXO3HV36CbIiF+KYuJbeqF?=
- =?us-ascii?Q?JIHT5LDfeviHfAIS/tCiBN1GlKufwjpQxawXKV+aVp42rJLYEp2S00WE1UXF?=
- =?us-ascii?Q?Qu2gRDuPSzJ3pRBcx69cfxUOZeSjJxtG6Dz7dmP+O82AavgSBNNtGXbiGBrj?=
- =?us-ascii?Q?Iwa4yBA9fGrbPGuv8JriKrxg8buHRuNM0mCndILP+nw4IbFjS9WFmNLNxeAO?=
- =?us-ascii?Q?FrmPnIZG1H8BR75td0BDuVVzPhVtD2mm2n/lcrRGKMe0KYNg59y6Uqa+R32H?=
- =?us-ascii?Q?Sj2fO7WmyREWbhzBEa8bySfMTVKgDRVnrNOwm5pIefFij23+583cfdv0EA4O?=
- =?us-ascii?Q?5Y1ZrxV1j0N/Z2MTgnf+DlpfjWAgUU+PcrEtI/GsHaBBAmttz1w0rHuJpE6W?=
- =?us-ascii?Q?Q7Jgg+dkUOuh2WnjmjRTuFlqRvFna5i4j8aRG9ZUT5BT8GSlDxWskitqPRsn?=
- =?us-ascii?Q?Btl/SVYEn/FpFghXU6bbMD7IIqvo9yLuL0QIjHr/4j478xl20ZIrUCVJIzKl?=
- =?us-ascii?Q?gtBfZkbf9B6aVdaAGImdlZNwtdO3hEU6C+ep8zBiDF3nVlhausuQFpdB6X/a?=
- =?us-ascii?Q?CCD34fJ6NG5b0n19WUwX/A40jQr5NX+2aMFqAWgvOM1Na7Fyorqd1ijbC72x?=
- =?us-ascii?Q?X1YgX/sfbP5lFfO0oqrNDOa5sL4Sgv7sT/+uhwUtiGNThsl0dKzp33cFXAuc?=
- =?us-ascii?Q?oAauldtrbQlZCsA7Zk1jlL5emiZMevOwczSsQeBc5cK7+MLDkYYyt9Nby2vm?=
- =?us-ascii?Q?Of5budGB0ILt1k5vEW1anmhyWTSgGUCha9Oo66kW1uoBrFVqAeftW5/YuVCr?=
- =?us-ascii?Q?of21lw/CzwZqOo287q7EML7DILWZzuWcL9ZJt/9HIrKObGYVK1BlKLew/AO5?=
- =?us-ascii?Q?a8rMX2enMouMLYz4bSoa/DayCjIqV08dUqz5LGpwwR2xbxVSopZQlxUYkNdU?=
- =?us-ascii?Q?bR0dFMGERRVyF34Z/tco4OqHXCf3xFi1xdehDaIATvAqfgiyIruRJLDwjU7F?=
- =?us-ascii?Q?xOl7vvMGmLbvl71Km3T9WV2pzArpHwDcHc54yQsTUomfZk116jbo7h0phNt7?=
- =?us-ascii?Q?FSH6s1FMZyPwrsAwu27ur58j4j6qqtrsAuUXrK/t?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD8BCA64
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:37:04 +0000 (UTC)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6027D6
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:37:00 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-53dd3f169d8so725857a12.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:37:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1697009819; x=1697614619; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8O8oPKWtl15M441He8arxID+J3pb7XNKVUDjACOuXKI=;
+        b=FEIR9eJqFRNSHZeVsjXUJr8Pl1GWd2t/QK/4N/uBCbBPmhfPNLDwkjbm6ZlWjqNmyk
+         P1LChBqpRjEA+aSCr/glx+VG3wcNbJeIL3jLKyJEZPgLaaL5rzH0l3lQ2ORMMoQfvFon
+         Agw2/z0/CeuIrZOIjqXuKttXPV/jMQ4DQQxEmih1IE8LftvPeTA8Rl3NaFqkr8YByJbA
+         ac8y3OBzmkRPUaj3qUgf+39tkNBeuid6eXXzknzUs4Oix08rGWvC0nmkFTr32cKmAbaz
+         lEnAsnm3UJUAuLm0BWrH1zYHlKUPxDMj2l0TKi4LM/F7aB176uo9mldA3o3TaJnNPzal
+         Akew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697009819; x=1697614619;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8O8oPKWtl15M441He8arxID+J3pb7XNKVUDjACOuXKI=;
+        b=RKvr4LJWppeL6+ji8CWvfO6WZ9TQl9MuFuvZcpaTuCT+NRqdCCjLsbpXC8jw3rNBvY
+         Avu8kNgqQksG0fBjpneEhfSyf7ywOdNQ3NJcExk3IqcO1rtV+NE4Ux7KcyPxT8+jfXoV
+         1KhJLo+bCT0OiSqN0W6RnMt4XESOd+o8T2LWL3qnfeK9XJh5IPzEjzA4AxI8pc0gvIDv
+         /GJHZrIF1sdStcYPp6lwIZDGrBAbWHNOTYa6CDSxbD5lLmXSu4M/TCVCMFi0Z4qgF1f/
+         QwS9dVTj9HEk7a6kJg+LewlWxrM+84DMTZiGJ8r3ix40RIw7dQMMyz3+0HlIpWd/DYIr
+         qc1A==
+X-Gm-Message-State: AOJu0YyM9vpBlaXaUdcT6PcJJoWFeKqBjFDZxxxGR4K1NV6EYb6WOZsx
+	HSPhbi5+yl6gAWh8g/rPDHtNcA==
+X-Google-Smtp-Source: AGHT+IGPCvFjW76cfmqCtl7WbzqASU2eiF1JgyrYFLGhxTxSHTcBmV91JwIVpGFTPmPJRWNoiqYilQ==
+X-Received: by 2002:a17:906:100e:b0:9b3:47f:1c05 with SMTP id 14-20020a170906100e00b009b3047f1c05mr16022372ejm.64.1697009818718;
+        Wed, 11 Oct 2023 00:36:58 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.152])
+        by smtp.gmail.com with ESMTPSA id l7-20020a170906a40700b009ae587ce133sm9496699ejz.188.2023.10.11.00.36.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 00:36:58 -0700 (PDT)
+Message-ID: <e1c9c2ca-144c-49fe-940c-9ca8ad40e377@tuxon.dev>
+Date: Wed, 11 Oct 2023 10:36:56 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfeb25d8-2b7e-47e4-f466-08dbca2cbac8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Oct 2023 07:36:06.3585
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tDDj5MEg8PESVrjVZovoGNrA8VHbPpr+mjGzqj3dq+yN8ciuR6QfcVxx63ta6KIW73vLWeY7gsGrHrZkSA4iFvb+uWhL3+6TKDll+lQNxJg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5258
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] clk: renesas: rzg2l: Use %x format specifier to print
+ CLK_ON_R()
+Content-Language: en-US
+To: Sergei Shtylyov <sergei.shtylyov@gmail.com>, geert+renesas@glider.be,
+ magnus.damm@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com>
+ <20231010132701.1658737-2-claudiu.beznea.uj@bp.renesas.com>
+ <8226bd48-4297-0b32-c733-2e569114a934@gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <8226bd48-4297-0b32-c733-2e569114a934@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> On Thu, Oct 05, 2023 at 06:21:35AM +0000, Ryan Chen wrote:
-> > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > Sent: Tuesday, September 5, 2023 7:55 PM On Tue, Sep 05, 2023 at
-> > > 06:52:37AM +0000, Ryan Chen wrote:
-> > > > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > > > Sent: Friday, July 14, 2023 4:55 PM On Fri, Jul 14, 2023 at
-> > > > > 03:45:22PM +0800, Ryan Chen wrote:
->=20
-> ...
->=20
-> > > > 			divisor =3D DIV_ROUND_UP(base_clk[3],
-> > > i2c_bus->timing_info.bus_freq_hz);
-> > > > 			for_each_set_bit(divisor, &divisor, 32) {
-> > >
-> > > This is wrong.
-> > >
-> > > > 				if ((divisor + 1) <=3D 32)
-> > > > 					break;
-> > >
-> > > > 				divisor >>=3D 1;
-> > >
-> > > And this.
-> > >
-> > > > 				baseclk_idx++;
-> > >
-> > > > 			}
-> > >
-> > > for_each_set_bit() should use two different variables.
-> >
-> > Will update by following.
-> >
-> > for_each_set_bit(bit, &divisor, 32) {
-> >     divisor >>=3D 1;
-> >     baseclk_idx++;
-> > }
->=20
-> It's unclear what you are trying to achieve here as the code is not equiv=
-alent to
-> the above.
->=20
-> > > > 		} else {
-> > > > 			baseclk_idx =3D i + 1;
-> > > > 			divisor =3D DIV_ROUND_UP(base_clk[i],
-> > > i2c_bus->timing_info.bus_freq_hz);
-> > > > 		}
-> > > > 	}
->=20
-Hello Andy,=20
-	I modify it to be simple way by following.
-	Because baseclk_idx will be set to register [I2CD04[3:0]] that is indicate=
- the 0~15 different base clk selection.
-	So I initial the base_clk[15] array and assign initial clk value, and then=
- find which clk idx will be right SCL clk selection.
+Hi, Sergei,
 
-	000: pclk
-	001: base_clk1
-	002: base_clk2
-	003: base_clk3
-	004: base_clk4
-	005: base_clk4/2
-	006: base_clk4/4=20
-	006: base_clk4/8
-	.....
+On 10.10.2023 17:52, Sergei Shtylyov wrote:
+> Hello!
+> 
+> On 10/10/23 4:26 PM, Claudiu wrote:
+> 
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Use %x format specifier to print CLK_ON_R(). This is easier when
+>> debugging as the value printed will be hexadecimal like in the hardware
+>> manual. Along with it "0x" has been added in front of the printed value.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>  drivers/clk/renesas/rzg2l-cpg.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
+>> index d62f1bc1f60e..764bd72cf059 100644
+>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+>> @@ -1213,7 +1213,7 @@ static int rzg2l_mod_clock_endisable(struct clk_hw *hw, bool enable)
+>>  		return 0;
+>>  	}
+>>  
+>> -	dev_dbg(dev, "CLK_ON %u/%pC %s\n", CLK_ON_R(reg), hw->clk,
+>> +	dev_dbg(dev, "CLK_ON 0x%x/%pC %s\n", CLK_ON_R(reg), hw->clk,
+> 
+>    Perhaps "%#x" instead of "0x%x"?
 
-static u32 ast2600_select_i2c_clock(struct ast2600_i2c_bus *i2c_bus)
-{
-	unsigned long base_clk[15];
-	int baseclk_idx;
-	u32 clk_div_reg;
-	u32 scl_low;
-	u32 scl_high;
-	int divisor =3D 0;
-	u32 data;
-	int i;
+Yes, better, thanks!
 
-	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CLK_DIV_CTRL, &clk_div_reg)=
-;
-	base_clk[0] =3D i2c_bus->apb_clk;
-	for (i =3D 1; i < 5; i++) {
-		base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-			(((clk_div_reg >> (i * 8)) & GENMASK(7, 0)) + 2);
-	}
-	for (i =3D 5; i < 16; i++) {
-		base_clk[i] =3D base_clk[4] / (1 << (i - 5));
-	}
-
-	for (i =3D 0; i < 16; i++) {
-		if ((base_clk[i] / i2c_bus->timing_info.bus_freq_hz) <=3D 32)
-			break;
-	}
-	baseclk_idx =3D i;
-	baseclk_idx =3D min(baseclk_idx, 15);
-	divisor =3D min(divisor, 32);
-	scl_low =3D min(divisor * 9 / 16 - 1, 15);
-	scl_high =3D (divisor - scl_low - 2) & GENMASK(3, 0);
-	data =3D (scl_high - 1) << 20 | scl_high << 16 | scl_low << 12 | baseclk_i=
-dx;
-	if (i2c_bus->timeout) {
-		data |=3D AST2600_I2CC_TOUTBASECLK(AST_I2C_TIMEOUT_CLK);
-		data |=3D AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
-	}
-
-	return data;
-}
-> ...
->=20
-> > > > 	divisor =3D min_t(unsigned long, divisor, 32);
-> > >
-> > > Can't you use min()? min_t is a beast with some subtle corner cases.
-> > >
-> > Will update to
-> > divisor =3D min(divisor, (unsigned long)32);
->=20
-> No, the idea behind min() is that _both_ arguments are of the same type, =
-the
-> proposed above is wrong.
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
-
+> 
+> [...]
+> 
+> MBR, Sergey
 
