@@ -1,150 +1,279 @@
-Return-Path: <devicetree+bounces-7582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D949D7C4BF7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D007C4BFD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:36:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16C3B1C20C26
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:34:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 980A41C20CB8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C8C199B4;
-	Wed, 11 Oct 2023 07:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD34199B6;
+	Wed, 11 Oct 2023 07:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d2ZH9hOK"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="rHyGfSLA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076806AAB
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:34:40 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 579BB9C
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:34:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1697009677;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PT6Sw/x4JIJ/TiIyhjM4l1jVYrrCLNDF9k0rE6BJkQw=;
-	b=d2ZH9hOKXcfjAPF4R5UEcIXGjlCYU8x3AwEO4Z3v6ZZZtbX2hL3UREGEJp4vYntjsA8s5Z
-	AMUk+2jsBRySL+UAYCF1JiXX+AyRfrWRu22RLaCXjvOZSE42+TMJuMO+s8YCQCXZWjM9uU
-	ykj/6Y5i3ZhUHea+1fIucyd602iZdj4=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-21-5m38YPuSNoeVk3R_wqEe0A-1; Wed, 11 Oct 2023 03:34:30 -0400
-X-MC-Unique: 5m38YPuSNoeVk3R_wqEe0A-1
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-3fef5403093so2960785e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:34:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697009669; x=1697614469;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PT6Sw/x4JIJ/TiIyhjM4l1jVYrrCLNDF9k0rE6BJkQw=;
-        b=IlxE9WvrOBNHnrT4V/dSGQ2u/toGq68SM7nfVuTGHi9x9M/p+itpzPmqTaKEn8vI3E
-         ujz7z2vLPoIMu1B+rMo4wEtKo4Jfw/G245EwUpo/3n3HeyOcUvlRwOmzssGBh2gBpb/s
-         paQuxBgk7xJHb/QnrDtBIy/4CTe3Dbdx3ffg8tJfECZO99rtByq/YG0gOr5SUzzlqF0C
-         9E9wipGmQTKhDYYeDljkwgK+hhIkaFMeTso4tPF0JbqWMd9s0SnL3QI6L1a4Emlpeouk
-         evncfYHudI5xWsaJSFFhzbJpjYRVWbr9puNFKtbqBYIDBVwEzdPViZBpau9t08yNcqBI
-         mnSg==
-X-Gm-Message-State: AOJu0YyfV0JF/GB91LXNg/nk7xkMPBOL8FP0wu56ZpQlRcdAS/weOWjn
-	cmgcAPP6iamlloVORw1CbblalYPxXr2ZD6v1KkSie43FDwe+s6TYZjbXVBJQaqbGL25juGOlEgE
-	gBWHGDVEdUDuZ3yYd3x83Kw==
-X-Received: by 2002:a05:600c:827:b0:405:2d29:1648 with SMTP id k39-20020a05600c082700b004052d291648mr13461807wmp.19.1697009669620;
-        Wed, 11 Oct 2023 00:34:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGsejCRRnJRskgCxuslOB4PnR/uGl69Os7lgF/uOLkrZgLkZeJMtWHRM0lwrPP4gwBR56jZDQ==
-X-Received: by 2002:a05:600c:827:b0:405:2d29:1648 with SMTP id k39-20020a05600c082700b004052d291648mr13461784wmp.19.1697009669247;
-        Wed, 11 Oct 2023 00:34:29 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id f19-20020a7bc8d3000000b00405959469afsm16076183wml.3.2023.10.11.00.34.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 00:34:28 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Thomas
- Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, Maxime
- Ripard <mripard@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 8/8] dt-bindings: display: Add SSD132x OLED controllers
-In-Reply-To: <87v8bdslx7.fsf@minerva.mail-host-address-is-not-set>
-References: <20231009183522.543918-1-javierm@redhat.com>
- <20231009183522.543918-9-javierm@redhat.com>
- <20231010165838.GA1039918-robh@kernel.org>
- <87v8bdslx7.fsf@minerva.mail-host-address-is-not-set>
-Date: Wed, 11 Oct 2023 09:34:28 +0200
-Message-ID: <87sf6hsjcr.fsf@minerva.mail-host-address-is-not-set>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459026AAB
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:36:15 +0000 (UTC)
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2139.outbound.protection.outlook.com [40.107.117.139])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643C798;
+	Wed, 11 Oct 2023 00:36:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EZz78PHD9SsAwqdsLqDRe5bfGYRXVJww+Ttm9b71gdcfWvMmHQ2LmhPYFX20iKiSy+mBoGYUJxi45JPo76yOT7nZjid6hIw17DwdfhMUE+70BENRl6QStTHsdq0ThwHdk347ggAFjV6nfneJ6Elf4tEdl2mn7URu0Ob7D9YgySam9grYxxcbSwgy6atBlLo05tnxYxJZbbFYn8of9PDmwRIZapawR2ztasDKN4S3wnVvhYzajGfl0ySl5QiGc7aRwT1Xt4w4jOOeBfXhBN+6t9EN1AF3zDQ9cUCO4cOEH6K5+ggH1lQE9lZCiulx/+gd6Wwcg7f0QX5+Eu1po68FtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CBhaYrwgUiz9ruaKQ/59XZHTozybsWlhlMJA67qc1LE=;
+ b=Baq7SO2OINdKUujFFsjUgIn6o5GLt64SmgHbZiKcZRSaPFAIVTkBKIKJcqKlFbw4J4CCtQbIpry6NAE48Pdve6fM8t5oMF1MrHLh+9PPKrmyUxMBBNGqwIlPzyMvPMulvsU52hahjHB6BdZzqy44zYk2Sj8P782oowAapnBfQRjWzYJvTNnJUJT/SlIEMKZJmSHOXgHVO1i4H8Wm4TvjIKhN2wkbx09dtkOHSR7bsNs6/kh+IrBoBZjY6iljMSrL3G9fyqZpoCnGupBQwtDGyOuN74uWX1iXlYyQnU2Jd2ap6OqCfVTD3q3yYy1tnDydxuQ01kFHU1o2KGuIjVw0jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CBhaYrwgUiz9ruaKQ/59XZHTozybsWlhlMJA67qc1LE=;
+ b=rHyGfSLAup7Evogj9FiybzonvwvJND8EcePSetQkSaWRmupxh1csdt9kgjwE9UJ0WoXXiHs4RuIu+Vf/VXWFkS79gDshqNz33BUAWkJDrkYuoQjFGUKkI6IkhzjOuSn16hkY/dSlOVR2GXIcBcOXA6XqJtnDNSzsqlk/bVQE1KuXYOc8iwEvotm93Vmpk+f5u7HAZgsdG4NVqenH2iC2JyrFcH97avhLriKc4Os3KY2pmv9x0kvDlv5LpHzlcfC4MSDl4+KbvbzNjSudIKVnIO3+/+zXSNVlG491v76kuT68k7ALMWhu0L5AOD3vOE7BT8FbwlOvsZd3fxhqeryHJw==
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
+ by TY0PR06MB5258.apcprd06.prod.outlook.com (2603:1096:400:205::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Wed, 11 Oct
+ 2023 07:36:06 +0000
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::bbd0:e194:c82c:c8c1]) by SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::bbd0:e194:c82c:c8c1%6]) with mapi id 15.20.6863.032; Wed, 11 Oct 2023
+ 07:36:06 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>, Brendan Higgins
+	<brendan.higgins@linux.dev>, Benjamin Herrenschmidt
+	<benh@kernel.crashing.org>, Joel Stanley <joel@jms.id.au>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Andrew Jeffery <andrew@aj.id.au>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Wolfram Sang <wsa@kernel.org>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, Florian Fainelli
+	<f.fainelli@gmail.com>, Jean Delvare <jdelvare@suse.de>, William Zhang
+	<william.zhang@broadcom.com>, Tyrone Ting <kfting@nuvoton.com>, Tharun Kumar
+ P <tharunkumar.pasumarthi@microchip.com>, Conor Dooley
+	<conor.dooley@microchip.com>, Phil Edworthy <phil.edworthy@renesas.com>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "=linux-kernel@vger.kernel.org"
+	<=linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Subject: RE: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
+Thread-Topic: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
+Thread-Index:
+ AQHZtics0zDPons9tEqiPxizT4zKAq+49YuAgFMh/9CAAFvWgIAuwPEAgABlRACACSMw4A==
+Date: Wed, 11 Oct 2023 07:36:06 +0000
+Message-ID:
+ <SEZPR06MB5269464A3982E550D6DB8810F2CCA@SEZPR06MB5269.apcprd06.prod.outlook.com>
+References: <20230714074522.23827-1-ryan_chen@aspeedtech.com>
+ <20230714074522.23827-3-ryan_chen@aspeedtech.com>
+ <ZLENe5B3gi/oNTQp@smile.fi.intel.com>
+ <SEZPR06MB5269831E049E2267661F181FF2E8A@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <ZPcXJ4adUNMv4LDr@smile.fi.intel.com>
+ <SEZPR06MB52699EC5463397F4BFF244DBF2CAA@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <ZR6kYMOB67+WJonG@smile.fi.intel.com>
+In-Reply-To: <ZR6kYMOB67+WJonG@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEZPR06MB5269:EE_|TY0PR06MB5258:EE_
+x-ms-office365-filtering-correlation-id: cfeb25d8-2b7e-47e4-f466-08dbca2cbac8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 792D6wBCuT6PMspppCOpE8h4YXY+EVSLGFwjonXFbAssp19ADB805a1PreaqfGYHr3sHgH6d+wciciOe+MIcI15zsqtNgid1yy5y7rvXfWFSgPj9n0XI3puD70Qp/1iCO7Ydf6oHUAaecNoeHIgvXpDKbKVNLmc6x9oGC0LFSmrLHuQ6dGnXYV8WIdMldBM/ft+TtSKSR6stdj4TG2H8V3AU8Mfn/JYNQJ0n0YbaNgq2gsEbaD9kx06NzGLeGDnUGeHGGm+7fEdySMiPp8MPBjfPDgdiOjHYne26q62k5f+0stXcCROBSEn7uoGjnnitucldD0Etx3wbJGYGhgfTmeRBHLSmHz9dC2HMT90m4TfVh1nX1BJeX1MjO+nBv1Tfq7Nc/L4hKGOPoZFT0kPJFpMa1IRWeHc6Jr8PjL7ou1M3Sx5s+a5F34MytgZQGywF0B8Lqjm5dkfjOv3QhGKFLuoTsbF9pWzYrWZgfnUfKY3UUALs8uJxgdeG2RXkYO8mDD/jRMzixni4gNX+yB2btuyXCLguKVcYvsuvezRZY3lXWY6nDmmekb28F3zNG3qPfBPCntU7B1J8yBThVm4sOKI2kjKL+IFyCRbgbdn6ad5vGxOYDQZrz/UbOzaxLBjM
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39850400004)(366004)(346002)(376002)(136003)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(9686003)(26005)(71200400001)(6506007)(2906002)(8676002)(54906003)(478600001)(4326008)(64756008)(66476007)(7416002)(7696005)(66946007)(83380400001)(76116006)(52536014)(8936002)(66556008)(66446008)(5660300002)(6916009)(316002)(33656002)(55016003)(38070700005)(86362001)(122000001)(38100700002)(41300700001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?JAWkcc16JJlPuhzclv9isbQZ/lkFtXipbb7iDX8TT5wDGq+RhVgfxSAaQtmV?=
+ =?us-ascii?Q?CMwyg0XqUqFnCXeDyJIAXSpo203/T6yAajkQwMBl/qILp8anD+OxKqKvGZxT?=
+ =?us-ascii?Q?6TcvCDMxN+/pMPScymmHmVsebr/0NkMZHFmHSF7x5NJscNGF8nc1sqtzEebn?=
+ =?us-ascii?Q?ucIrmtwA+PsqhnOMzI03imIiMfwQb4YC5wiN5z34Rb7JhAiokzcpFtVxui5F?=
+ =?us-ascii?Q?oaZhJHjA8KfI7cv95TeldkmAFWEYYrQMET9mU8hZlJ+fG9r/s+k5wGYEpqL5?=
+ =?us-ascii?Q?nGWmWUxjH2tNVxt62eyHOwc7kvkWG8w8EaDrfuY9jHQiqCdFOnUMueXEbLll?=
+ =?us-ascii?Q?WkjWs1r+NMIfi2IUrTY6BLKJSqeOH5jawCHz0q+b/wOfp9FT2lpkGIqcFdCu?=
+ =?us-ascii?Q?m08vvYYRq3EHMWc3nzzHq6/jNC6RyCeRDJhcqwlCDRPxVAkuMh96S5K4DKVL?=
+ =?us-ascii?Q?lzIrX/RngZbmRVpukZ62vZB6ahqexRAtADVlp9vXO3HV36CbIiF+KYuJbeqF?=
+ =?us-ascii?Q?JIHT5LDfeviHfAIS/tCiBN1GlKufwjpQxawXKV+aVp42rJLYEp2S00WE1UXF?=
+ =?us-ascii?Q?Qu2gRDuPSzJ3pRBcx69cfxUOZeSjJxtG6Dz7dmP+O82AavgSBNNtGXbiGBrj?=
+ =?us-ascii?Q?Iwa4yBA9fGrbPGuv8JriKrxg8buHRuNM0mCndILP+nw4IbFjS9WFmNLNxeAO?=
+ =?us-ascii?Q?FrmPnIZG1H8BR75td0BDuVVzPhVtD2mm2n/lcrRGKMe0KYNg59y6Uqa+R32H?=
+ =?us-ascii?Q?Sj2fO7WmyREWbhzBEa8bySfMTVKgDRVnrNOwm5pIefFij23+583cfdv0EA4O?=
+ =?us-ascii?Q?5Y1ZrxV1j0N/Z2MTgnf+DlpfjWAgUU+PcrEtI/GsHaBBAmttz1w0rHuJpE6W?=
+ =?us-ascii?Q?Q7Jgg+dkUOuh2WnjmjRTuFlqRvFna5i4j8aRG9ZUT5BT8GSlDxWskitqPRsn?=
+ =?us-ascii?Q?Btl/SVYEn/FpFghXU6bbMD7IIqvo9yLuL0QIjHr/4j478xl20ZIrUCVJIzKl?=
+ =?us-ascii?Q?gtBfZkbf9B6aVdaAGImdlZNwtdO3hEU6C+ep8zBiDF3nVlhausuQFpdB6X/a?=
+ =?us-ascii?Q?CCD34fJ6NG5b0n19WUwX/A40jQr5NX+2aMFqAWgvOM1Na7Fyorqd1ijbC72x?=
+ =?us-ascii?Q?X1YgX/sfbP5lFfO0oqrNDOa5sL4Sgv7sT/+uhwUtiGNThsl0dKzp33cFXAuc?=
+ =?us-ascii?Q?oAauldtrbQlZCsA7Zk1jlL5emiZMevOwczSsQeBc5cK7+MLDkYYyt9Nby2vm?=
+ =?us-ascii?Q?Of5budGB0ILt1k5vEW1anmhyWTSgGUCha9Oo66kW1uoBrFVqAeftW5/YuVCr?=
+ =?us-ascii?Q?of21lw/CzwZqOo287q7EML7DILWZzuWcL9ZJt/9HIrKObGYVK1BlKLew/AO5?=
+ =?us-ascii?Q?a8rMX2enMouMLYz4bSoa/DayCjIqV08dUqz5LGpwwR2xbxVSopZQlxUYkNdU?=
+ =?us-ascii?Q?bR0dFMGERRVyF34Z/tco4OqHXCf3xFi1xdehDaIATvAqfgiyIruRJLDwjU7F?=
+ =?us-ascii?Q?xOl7vvMGmLbvl71Km3T9WV2pzArpHwDcHc54yQsTUomfZk116jbo7h0phNt7?=
+ =?us-ascii?Q?FSH6s1FMZyPwrsAwu27ur58j4j6qqtrsAuUXrK/t?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfeb25d8-2b7e-47e4-f466-08dbca2cbac8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Oct 2023 07:36:06.3585
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tDDj5MEg8PESVrjVZovoGNrA8VHbPpr+mjGzqj3dq+yN8ciuR6QfcVxx63ta6KIW73vLWeY7gsGrHrZkSA4iFvb+uWhL3+6TKDll+lQNxJg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5258
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Javier Martinez Canillas <javierm@redhat.com> writes:
+> On Thu, Oct 05, 2023 at 06:21:35AM +0000, Ryan Chen wrote:
+> > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Sent: Tuesday, September 5, 2023 7:55 PM On Tue, Sep 05, 2023 at
+> > > 06:52:37AM +0000, Ryan Chen wrote:
+> > > > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > > > Sent: Friday, July 14, 2023 4:55 PM On Fri, Jul 14, 2023 at
+> > > > > 03:45:22PM +0800, Ryan Chen wrote:
+>=20
+> ...
+>=20
+> > > > 			divisor =3D DIV_ROUND_UP(base_clk[3],
+> > > i2c_bus->timing_info.bus_freq_hz);
+> > > > 			for_each_set_bit(divisor, &divisor, 32) {
+> > >
+> > > This is wrong.
+> > >
+> > > > 				if ((divisor + 1) <=3D 32)
+> > > > 					break;
+> > >
+> > > > 				divisor >>=3D 1;
+> > >
+> > > And this.
+> > >
+> > > > 				baseclk_idx++;
+> > >
+> > > > 			}
+> > >
+> > > for_each_set_bit() should use two different variables.
+> >
+> > Will update by following.
+> >
+> > for_each_set_bit(bit, &divisor, 32) {
+> >     divisor >>=3D 1;
+> >     baseclk_idx++;
+> > }
+>=20
+> It's unclear what you are trying to achieve here as the code is not equiv=
+alent to
+> the above.
+>=20
+> > > > 		} else {
+> > > > 			baseclk_idx =3D i + 1;
+> > > > 			divisor =3D DIV_ROUND_UP(base_clk[i],
+> > > i2c_bus->timing_info.bus_freq_hz);
+> > > > 		}
+> > > > 	}
+>=20
+Hello Andy,=20
+	I modify it to be simple way by following.
+	Because baseclk_idx will be set to register [I2CD04[3:0]] that is indicate=
+ the 0~15 different base clk selection.
+	So I initial the base_clk[15] array and assign initial clk value, and then=
+ find which clk idx will be right SCL clk selection.
 
-> Rob Herring <robh@kernel.org> writes:
->
-> Hello Rob,
->
-> Thanks a lot for your feedback.
->
->> On Mon, Oct 09, 2023 at 08:34:22PM +0200, Javier Martinez Canillas wrote:
->>> Add a Device Tree binding schema for the OLED panels based on the Solomon
->>> SSD132x family of controllers.
->>
->> Looks like the same binding as solomon,ssd1307fb.yaml. Why a different 
->> binding? Why does that binding need a slew of custom properties and here 
->> you don't?
->>
->
-> It's a sub-set of it. Because only the minimum required properties are
-> defined. But also, is a clean slate schema because the old ssd1307fb fbdev
-> driver only supports the Solomon SSD130x family, so there is no need to
-> follow the existing solomon,ssd1307fb.yaml nor the need for backward compat.
->
+	000: pclk
+	001: base_clk1
+	002: base_clk2
+	003: base_clk3
+	004: base_clk4
+	005: base_clk4/2
+	006: base_clk4/4=20
+	006: base_clk4/8
+	.....
 
-I think this answer was a little sparse, let me elaborate a bit. The Solomon
-display controllers are quite flexible, so that could be used with different
-OLED panels.
+static u32 ast2600_select_i2c_clock(struct ast2600_i2c_bus *i2c_bus)
+{
+	unsigned long base_clk[15];
+	int baseclk_idx;
+	u32 clk_div_reg;
+	u32 scl_low;
+	u32 scl_high;
+	int divisor =3D 0;
+	u32 data;
+	int i;
 
-And the ssd1307fb binding schema defines a set of properties that are almost
-a 1:1 mapping from properties to the configuration registers. This makes the
-driver to support most SSD130x controller + panel configurations but at the
-expense of making the binding more complicated (a slew of custom propertie
-as you pointed out).
+	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CLK_DIV_CTRL, &clk_div_reg)=
+;
+	base_clk[0] =3D i2c_bus->apb_clk;
+	for (i =3D 1; i < 5; i++) {
+		base_clk[i] =3D (i2c_bus->apb_clk * 2) /
+			(((clk_div_reg >> (i * 8)) & GENMASK(7, 0)) + 2);
+	}
+	for (i =3D 5; i < 16; i++) {
+		base_clk[i] =3D base_clk[4] / (1 << (i - 5));
+	}
 
-Now, as mentioned this is support for greyscale Solomon controllers (the old
-fbdev driver only supports monochrome controllers) so we don't care about DT
-backward compatibility.
+	for (i =3D 0; i < 16; i++) {
+		if ((base_clk[i] / i2c_bus->timing_info.bus_freq_hz) <=3D 32)
+			break;
+	}
+	baseclk_idx =3D i;
+	baseclk_idx =3D min(baseclk_idx, 15);
+	divisor =3D min(divisor, 32);
+	scl_low =3D min(divisor * 9 / 16 - 1, 15);
+	scl_high =3D (divisor - scl_low - 2) & GENMASK(3, 0);
+	data =3D (scl_high - 1) << 20 | scl_high << 16 | scl_low << 12 | baseclk_i=
+dx;
+	if (i2c_bus->timeout) {
+		data |=3D AST2600_I2CC_TOUTBASECLK(AST_I2C_TIMEOUT_CLK);
+		data |=3D AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
+	}
 
-I decided for now to keep the binding at a minimum and be more opinionated in
-the driver with having what I think are sane defaults for most of the config
-registers.
-
-If there is a need to expose any of this configuration as DT properties, then
-we can later added it share some of the existing solomon,ssd1307fb.yaml custom
-properties and move them to a common schema.
-
-We can always change the driver in the future anyways, but we can't do the same
-with the DT binding schema since that is considered an ABI.
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+	return data;
+}
+> ...
+>=20
+> > > > 	divisor =3D min_t(unsigned long, divisor, 32);
+> > >
+> > > Can't you use min()? min_t is a beast with some subtle corner cases.
+> > >
+> > Will update to
+> > divisor =3D min(divisor, (unsigned long)32);
+>=20
+> No, the idea behind min() is that _both_ arguments are of the same type, =
+the
+> proposed above is wrong.
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
+>=20
 
 
