@@ -1,149 +1,161 @@
-Return-Path: <devicetree+bounces-7629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A42B7C4F66
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6B67C4F6B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:51:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAE4D1C20D28
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:51:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D4751C20D2B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD5F1D68B;
-	Wed, 11 Oct 2023 09:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B4F1D68E;
+	Wed, 11 Oct 2023 09:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HHF8UrP9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VAxof5ls"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4151A711
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:51:17 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F14E94;
-	Wed, 11 Oct 2023 02:51:16 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4623636E;
-	Wed, 11 Oct 2023 11:51:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697017869;
-	bh=diHNk/C1251cxVwV+v3oM+7Sv140rp1BEm37PJu8sNU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=HHF8UrP9H9XuRCYupOXui8Mshc4P3o+uPWnGGlR1f8A7K/BR3TCh9hFRtF+TJ/32F
-	 mxlV/K5MBy9xT9xhHRy5+d9HRd1FzVXl1z6O07TN3Z14UrcIBW7y9T4U0Sx95IMJxp
-	 GeJKOIe0iov4E1eWjOYi61T3D4fBF1bo+I2Tj+p0=
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320FE1D689
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:51:45 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BA792
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:51:42 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-405505b07dfso4393925e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697017901; x=1697622701; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Mx2O9LvJ3u9j57vC8yl+GJ60dYLRS7SdOeY49WiO/Ug=;
+        b=VAxof5lsMa6Tguwk3Kbj2SYrKSZSwdnJLKEgC6CdDUiyMSD9cSiVRbnrN36oLyHtHO
+         t1ee8XX1EAYAMND2BeE+0uCY4/AO3FLzoWF4RgVZ25BLuAnS44a8qAmBrrF2AkPwZMNb
+         yGWziOBG92wnNQ18HC2vbGalLvLsYjCqhtEv5uhPcnDM06rIUM3tfF6Sbj7E811S20Pn
+         qHf/66rCIoZrgHZ8t/wuP80W9ppeagP6+x3TLhVuDrpcmM53wroHA+KoG2HaSETH3Txv
+         xH50FQnUoHrg/AqbjmbJWITvoZ4MzHjLC9VtTl80QKE7/oLX97mzPxDCKge72bStYjtd
+         AP3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697017901; x=1697622701;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mx2O9LvJ3u9j57vC8yl+GJ60dYLRS7SdOeY49WiO/Ug=;
+        b=J2kV9cuDDn6nmaqj5Dnmpa3yVH3Wk0hiHLiEFAGcCFMMkmhY+r0wbs5beOjHaF7i7y
+         MdaB1XjaiurNMkHkwjV4N7MMXLV/YT7+C+1gQ8IJRD7t0TnEHTlmWA3XS024Jxf1WNW9
+         PY+9gArZ2TH2+Nnc+pWRaF1Ie7vSQ3UGuuC5Q6ADj1UNNCPVm+kF/jjf+3nxb6yRRNAx
+         QR9Umq6ntXf++4AMDBXASzrHxMQxJ+luUKHTH6MfcNmDbjwoGHuiU6HxZMLb6/mEerrN
+         PjLOiK98rPDy+e8fVitbB7HmWvW1UdyyNB96rtvbBnFqwHt2eauVX0j/alTr+Q+/Wn+p
+         Yu2Q==
+X-Gm-Message-State: AOJu0YxJ77DnHDZ2gHhseWFEEZzn0h6Xi8eRyGrsmAhJjVnMOSkL3sB9
+	VDbe9gioFKgbsIHKsydzqNJ38w==
+X-Google-Smtp-Source: AGHT+IGRm9S+iDcNgkRLNy2rPtHQKT7OJSqDxOIUjCChPJozR/FiDEnaBZFHqXYGtkUSzokN8dK/0w==
+X-Received: by 2002:a7b:c044:0:b0:3fb:c075:b308 with SMTP id u4-20020a7bc044000000b003fbc075b308mr16319058wmc.12.1697017900872;
+        Wed, 11 Oct 2023 02:51:40 -0700 (PDT)
+Received: from [172.30.204.44] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id y6-20020a1c4b06000000b00405588aa40asm16372580wma.24.2023.10.11.02.51.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 02:51:40 -0700 (PDT)
+Message-ID: <ac3fc5fd-b6fa-4386-aa62-f182547d1a59@linaro.org>
+Date: Wed, 11 Oct 2023 11:51:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231010170941.GA1061525-robh@kernel.org>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com> <20231010005126.3425444-2-kieran.bingham@ideasonboard.com> <20231010170941.GA1061525-robh@kernel.org>
-Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply bindings
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul J. Murphy <paul.j.murphy@intel.com>, Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
-To: Rob Herring <robh@kernel.org>
-Date: Wed, 11 Oct 2023 10:51:08 +0100
-Message-ID: <169701786887.277971.6587222312606696723@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/4] clk: qcom: branch: Add mem ops support for branch2
+ clocks
+Content-Language: en-US
+To: Imran Shaik <quic_imrashai@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
+ <20231011090028.1706653-3-quic_imrashai@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231011090028.1706653-3-quic_imrashai@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Quoting Rob Herring (2023-10-10 18:09:41)
-> On Tue, Oct 10, 2023 at 01:51:22AM +0100, Kieran Bingham wrote:
-> > Add the bindings for the supply references used on the IMX335.
-> >=20
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > ---
-> >  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > index a167dcdb3a32..1863b5608a5c 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > @@ -32,6 +32,15 @@ properties:
-> >      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
-> >      maxItems: 1
-> > =20
-> > +  avdd-supply:
-> > +    description: Analog power supply (2.9V)
-> > +
-> > +  ovdd-supply:
-> > +    description: Interface power supply (1.8V)
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital power supply (1.2V)
-> > +
-> >    reset-gpios:
-> >      description: Reference to the GPIO connected to the XCLR pin, if a=
-ny.
-> >      maxItems: 1
-> > @@ -60,6 +69,9 @@ required:
-> >    - compatible
-> >    - reg
-> >    - clocks
-> > +  - avdd-supply
-> > +  - ovdd-supply
-> > +  - dvdd-supply
->=20
-> New required properties are an ABI break. That's fine only if you can=20
-> explain no one is using this binding.
-
-I made these required due to a previous review comment on another
-driver:
-
-- https://lore.kernel.org/all/6e163f4d-061d-3c20-4c2e-44c74d529f10@linaro.o=
-rg/
-
-I hadn't thought about the ABI break though.
-
-So to clarify (for me):
- - New bindings should always add -supply's as required.
- - Adding -supply to existing bindings should be optional.
-
-I guess that leaves a mix of devices that either are required or may be
-optional - but perhaps that can't be helped if the bindings have already
-got in.
-
-The IMX335 driver was added in 45d19b5fb9ae ("media: i2c: Add imx335
-camera sensor driver"), and the bindings in 932741d451a5 ("media:
-dt-bindings: media: Add bindings for imx335") by Martina, who looks to
-be an Intel employee - so I suspect this is used through ACPI so far and
-not device tree.
-
-Danielle, get_maintainer tells me you are looking after this device -
-can you confirm this ?
-
---
-Kieran
 
 
->=20
-> >    - port
-> > =20
-> >  additionalProperties: false
-> > @@ -79,6 +91,10 @@ examples:
-> >              assigned-clock-parents =3D <&imx335_clk_parent>;
-> >              assigned-clock-rates =3D <24000000>;
-> > =20
-> > +            avdd-supply =3D <&camera_vdda_2v9>;
-> > +            ovdd-supply =3D <&camera_vddo_1v8>;
-> > +            dvdd-supply =3D <&camera_vddd_1v2>;
-> > +
-> >              port {
-> >                  imx335: endpoint {
-> >                      remote-endpoint =3D <&cam>;
-> > --=20
-> > 2.34.1
-> >
+On 10/11/23 11:00, Imran Shaik wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
+> 
+> Clock CBCRs with memories need an update for memory before enable/disable
+> of the clock, which helps retain the respective block's register contents.
+> Add support for the mem ops to handle this sequence.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> ---
+>   drivers/clk/qcom/clk-branch.c | 37 +++++++++++++++++++++++++++++++++++
+>   drivers/clk/qcom/clk-branch.h | 21 ++++++++++++++++++++
+>   2 files changed, 58 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
+> index fc4735f74f0f..9ac8d04b425a 100644
+> --- a/drivers/clk/qcom/clk-branch.c
+> +++ b/drivers/clk/qcom/clk-branch.c
+> @@ -1,6 +1,7 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+>    * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>    */
+>   
+>   #include <linux/kernel.h>
+> @@ -134,6 +135,42 @@ static void clk_branch2_disable(struct clk_hw *hw)
+>   	clk_branch_toggle(hw, false, clk_branch2_check_halt);
+>   }
+>   
+> +static int clk_branch2_mem_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
+> +	const char *name = clk_hw_get_name(&mem_br->branch.clkr.hw);
+> +	u32 val;
+> +	int timeout = 200, ret;
+Reverse-Christmas-tree, please
+
+You can drop the timeout variable and pass the int literal.
+
+> +
+> +	regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
+> +			mem_br->mem_enable_ack_bit, mem_br->mem_enable_ack_bit);
+This is a mask, not a bit.
+
+> +
+> +	ret = regmap_read_poll_timeout(mem_br->branch.clkr.regmap, mem_br->mem_ack_reg,
+> +			val, val & mem_br->mem_enable_ack_bit, 0, timeout);
+
+[...]
+
+> +/**
+> + * struct clk_mem_branch - gating clock which are associated with memories
+> + *
+> + * @mem_enable_reg: branch clock memory gating register
+> + * @mem_ack_reg: branch clock memory ack register
+> + * @mem_enable_ack_bit: ANDed with @mem_ack_reg to check memory enablement
+@dog: woofs
+
+Describe what it is instead.
+
+Konrad
 
