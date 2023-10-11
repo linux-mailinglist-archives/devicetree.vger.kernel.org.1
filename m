@@ -1,141 +1,110 @@
-Return-Path: <devicetree+bounces-7751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEFB97C54D3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:07:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF077C54E9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AA20281FCE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:07:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FA8E1C20DFB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D461B1F191;
-	Wed, 11 Oct 2023 13:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7624E1F198;
+	Wed, 11 Oct 2023 13:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YAGAYYCh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DF01EA92
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 13:07:32 +0000 (UTC)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B1293;
-	Wed, 11 Oct 2023 06:07:30 -0700 (PDT)
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1c88b467ef8so45229235ad.0;
-        Wed, 11 Oct 2023 06:07:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DFF1F195
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 13:09:16 +0000 (UTC)
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6346CAF
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:09:15 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5a7cc03dee5so18846607b3.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:09:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697029754; x=1697634554; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yiWRUyEiDpWCGNyAPRXmmc17YAfusk8TYErSchfY5T8=;
+        b=YAGAYYCh2MIsJ5rlANlBlKlOj+sXXSBdEPr7TrDIJiUk8CrVTLvjvdu3ZFSCJXFC8a
+         MZPqjVTvwz/1ZTXryqbv3iLRde0sB/XJzjT4O/Ifd96SuukmTHwoWJIL38Ut1upk7F9n
+         fUadhd0LG04oz9Yc8EHBkgud8gX8Aim9e9NlsUaxkKp+xJJvCf1w9nTJ5Z2KOp0aWvmb
+         TTeciIF3iPbHvZkiyr5DurxHYWHMlvicfGxEyRnL7XnLFC01ibyjxjSk1mzQ7c5Rv4UC
+         wihvtC2emlYUwNfKJ2pEadRcoTxSIT++oxGhN/LlIg+8e1fvRAo4Yh/wq2ZxyzxlRG/O
+         7VGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697029650; x=1697634450;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/0MrRBxfAhqGAQTUMB5VLqymynVU/TEY2Oqb3Pi6N1c=;
-        b=C+v4TVcXXziCnSmUnUEFlkw+6Xksj4qA6uG2pIFdpMfx52O9/8ytwJBPBxz34VEVLH
-         g2CXhYRafSaX+W8vYvkdrBssuNllWJQX38aqbXwL/LrguZPQuM9P/tlzgjcvU++2Dtf7
-         VA3rzjqu0B5cgzQrHmDt8SVge6zdh40yGZr/hYh/YZSvotf+Vxq/arlZyhVHJ7RUwKQ3
-         aKKI2W95KA2QrSruHY3GyMNT0rEcqOOC9axIQk90mLdS7p6v7HQPWhXaxcglysyhWypk
-         kM1I5pvmBwfYK1zFSChe2tnfWwlLhXBjLDDC02Dy3VBORs452AkJJKDXocPeZDhEvbV4
-         GTPQ==
-X-Gm-Message-State: AOJu0Yw2vakUKSekVCNHFfi9NDmtUjgTGgjtaWaHHKvEiCh26UNOML68
-	oUCXFTl0X0u9C/HezuUhAmw=
-X-Google-Smtp-Source: AGHT+IEJIy71flEHPki78IbAWF5VJM+itNO5nzN83g85UTiG4j2qUwI4ZjUwXBXjQyROiro3kpcJug==
-X-Received: by 2002:a17:902:db0d:b0:1c9:9573:69b3 with SMTP id m13-20020a170902db0d00b001c9957369b3mr9269803plx.30.1697029650150;
-        Wed, 11 Oct 2023 06:07:30 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id r4-20020a1709028bc400b001b8baa83639sm13847477plo.200.2023.10.11.06.07.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 06:07:29 -0700 (PDT)
-Date: Wed, 11 Oct 2023 22:07:27 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	mani@kernel.org, marek.vasut+renesas@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
- unnecessary memory assignment
-Message-ID: <20231011130727.GA3722793@rocinante>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
- <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
- <abf65z7xxsnd7adkg523mneccudwenvdzcw7jpblafqzvhca5n@lbpsch7ztxsn>
+        d=1e100.net; s=20230601; t=1697029754; x=1697634554;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yiWRUyEiDpWCGNyAPRXmmc17YAfusk8TYErSchfY5T8=;
+        b=UmDN4VREd9TStmHmyMo2inb+/c7/l5WeoWJdmKQsz+YtcUc3RO8FIFC/u6yXjs/oSD
+         w/sKp3ZYMyhYWDjUk4QhrGuMX7djRSp1Trt+4HJS/CkQCEiQ7lS7Z8A54Iz2nuqkX4Kv
+         6ndX5svMj2A8GerTtDdpAYirDmP/PVOyyKoFzPfNBRc4PHkghNqF223lXREd2geOg83E
+         PIXCwxIfGn2tbloMq9SdfZid8f+bcfuoKROS1dz104Eqe64e2tde63fMiORFIQvUpLoA
+         0hK456F9EyvnTVgsqICX7/ldI7peOdAFzwOk2NuwGfRG9vUvIvTmhFXl9nuCxnMAzpQh
+         7rtQ==
+X-Gm-Message-State: AOJu0YxxcaqJ7nBFk1plqigwWQHKjsGJVB/t085vpCYei+Q2czu3UCfU
+	rTMbv+QdIsl1x4a5QJTL4lZQHfl1JzYmzqsLu7Cz0g==
+X-Google-Smtp-Source: AGHT+IHPeYGW++8x+sjpixD4qx2spNUFG0w29RwTYjN1/EfQS3maABvYM9h8FieFcy0MebMY2EQIXWY+wRKbOMFmN2s=
+X-Received: by 2002:a05:690c:fc8:b0:5a7:ed69:120 with SMTP id
+ dg8-20020a05690c0fc800b005a7ed690120mr943754ywb.6.1697029749566; Wed, 11 Oct
+ 2023 06:09:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abf65z7xxsnd7adkg523mneccudwenvdzcw7jpblafqzvhca5n@lbpsch7ztxsn>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20231011122543.11922-1-manivannan.sadhasivam@linaro.org> <20231011122543.11922-6-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20231011122543.11922-6-manivannan.sadhasivam@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 11 Oct 2023 16:08:58 +0300
+Message-ID: <CAA8EJpoKPq2sVcudb84YRDGUtDtS3YMhNPejNeOtSr_7uU84qA@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, myungjoo.ham@samsung.com, 
+	kyungmin.park@samsung.com, cw00.choi@samsung.com, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, alim.akhtar@samsung.com, avri.altman@wdc.com, 
+	bvanassche@acm.org, linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_asutoshd@quicinc.com, quic_cang@quicinc.com, quic_nitirawa@quicinc.com, 
+	quic_narepall@quicinc.com, quic_bhaskarv@quicinc.com, 
+	quic_richardp@quicinc.com, quic_nguyenb@quicinc.com, 
+	quic_ziqichen@quicinc.com, bmasney@redhat.com, krzysztof.kozlowski@linaro.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+On Wed, 11 Oct 2023 at 15:27, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> UFS host controller, when scaling gears, should choose appropriate
+> performance state of RPMh power domain controller along with clock
+> frequency. So let's add the OPP table support to specify both clock
+> frequency and RPMh performance states replacing the old "freq-table-hz"
+> property.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-[...]
-> > +	/*
-> > +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> > +	 * Rev.5.20a,
-> 
-> and 3.5.6.1 "RC mode" in DWC PCIe RC databook v5.20a.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-OK.  I can fix this citation later.
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 39 +++++++++++++++++++++-------
+>  1 file changed, 30 insertions(+), 9 deletions(-)
 
-> > +      ... we should disable two BARs to avoid unnecessary memory
-> > +	 * assignment during device enumeration.
-> > +	 */
-> > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_0, 0x0);
-> > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_1, 0x0);
-> > +
-> 
-> What's the point in doing this
-> 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0x00000004);
-> 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_1, 0x00000000);
->         ...
->         dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
-> afterward?
-> 
-> I guess if the BARs are disabled there is no need in having them
-> touched. Am I wrong?
-> 
-> BTW I failed to understand why the BARs inits was originally needed:
-> first merging the BAR0 and BAR1 into a single 64-bit BAR, then
-> switching it back to two 32-bit BARs. Moreover here is what prior DW
-> PCIe RC v5.x databooks say about the BARs:
-> 
-> "3.5.6 BAR Details
-> Base Address Registers (Offset: 0x10-x14)
-> The Synopsys core does not implement the optional BARs for the RC
-> product. This is based on the assumption that the RC host probably has
-> registers on some other internal bus and has knowledge and setup
-> access to these registers already."
-> 
-> I am not sure I fully understand what it means, but it seems as DW
-> PCIe cores didn't have anything behind the RC BARs even back then. So
-> it seems to me that the BARs manipulation was the Exinos PCIe host
-> specific, from which driver they are originating - commit 340cba6092c2
-> ("pci: Add PCIe driver for Samsung Exynos").
-
-Would any of the above be something we need to address before this series
-can be successfully merged?  I am asking if this is a show stopper,
-something we can fix later, or even something I could address once I take
-this series again.
-
-Thoughts?
-
-> * BTW Yoshihiro, I am sorry to see your patchset is still under review...(
-
-Yes, we need to draw a line somewhere. :)  I am happy to take this series
-so we don't miss another merge window.  We can always fix other bits and
-pieces later and iron out any kinks that might have fallen through the
-cracks, so to speak.
-
-	Krzysztof
+-- 
+With best wishes
+Dmitry
 
