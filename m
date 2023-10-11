@@ -1,112 +1,138 @@
-Return-Path: <devicetree+bounces-7608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B271B7C4DD1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2767C4DDB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:01:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E394E1C20BA4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 08:58:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7AD61C20B3C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4CB1A594;
-	Wed, 11 Oct 2023 08:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5821A5A8;
+	Wed, 11 Oct 2023 09:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FOt/wJLM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kfcesoxD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC46819BB9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 08:58:35 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A4E94;
-	Wed, 11 Oct 2023 01:58:33 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 22CBB1BF205;
-	Wed, 11 Oct 2023 08:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697014712;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CA6rrOtZmd//pxStu/MQQ9YaVAFhDGXG/6MyKvrCXME=;
-	b=FOt/wJLMIbFD7NVrzal7GYPjlqoc6eFpCG2Dj3W9q6b+1nyAlJarLNljEUsLRasCH7tOT9
-	PA+EAkEyM+pshhwoVX7VFVTNYXXadQLSIHN/UC61hm2Zj24aJajNtE9mTqgL8LpcrdIn5V
-	5+dtoMnY/9Uq+SJS3wSKRYUA8xTKN04DjDczCgKXx84V77u+b5CC1OPuzPFXSqQQFd6sw2
-	UQ/eri3cxE1o11XcDOMcVcnc5INsSMJlrz3YVkubWly0fgF78xyaKxj2b9h0qbOkq3j5gV
-	lxdg+/jgjFd49UE9u8qVbo3tFMetnR5b7AhP9Syd0ugptmnvPQtPuHKNNHA94A==
-Date: Wed, 11 Oct 2023 10:58:29 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 7/7] nvmem: core: Expose cells through sysfs
-Message-ID: <20231011105829.778bed58@xps-13>
-In-Reply-To: <fe4a2688-079c-a36d-0ea4-c244c6e1a0ad@linaro.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
-	<20231005155907.2701706-8-miquel.raynal@bootlin.com>
-	<318fe799-f53e-64ed-b631-d099bb5202f4@linaro.org>
-	<20231011091524.0c9ecc55@xps-13>
-	<548849a8-9f11-5274-778e-f291267603bb@linaro.org>
-	<20231011103306.08f1fbd4@xps-13>
-	<fe4a2688-079c-a36d-0ea4-c244c6e1a0ad@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FE219BB9
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:00:57 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6191094;
+	Wed, 11 Oct 2023 02:00:55 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B6psCB020160;
+	Wed, 11 Oct 2023 09:00:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=/C1rFeXSlfNmwsrUVHhL8M4nqWlxSH6MFMqznyY8L5Q=;
+ b=kfcesoxD5jFEPg01PNm0xT+soYNt6GXFrUfQM/5vNsh3+7DyhJItKaw6XN27eEizQ30F
+ kZS2rbBCO7Ll6B6BrQwOc4Fvkw+zMMwpW5ZYSMsigNiN+4HYUddOrKlEf1YcgPOCVq0v
+ 2JP9yYV3Tf54GbX9JKTZW1Z2V52+uRhZM7AtAXO3Uzbgo3Qxz2nCYTX5HxMJflYIUgjT
+ CCn2YH4CfxKbzxBTUb1py+doxNeGPFjBJ+bgX0LSFTXUQ8woZLIRPWdF2JGMY9WyDRZA
+ oWiz+N0YK3eKGGCMto7aQ4xu7zASwgUX7uQpkcpxqdaQDb0L4P8ASniu4BhxFI7tf/QK Sw== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tne0q14e9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 09:00:47 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39B90kAW032767
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 09:00:46 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Wed, 11 Oct 2023 02:00:41 -0700
+From: Imran Shaik <quic_imrashai@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: [PATCH V2 0/4] Add support for Qualcomm ECPRI clock controller
+Date: Wed, 11 Oct 2023 14:30:24 +0530
+Message-ID: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 63s3dS_WJpjPyG7JffCyGrxha6spo1_4
+X-Proofpoint-ORIG-GUID: 63s3dS_WJpjPyG7JffCyGrxha6spo1_4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-11_06,2023-10-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ spamscore=0 mlxscore=0 clxscore=1011 priorityscore=1501 phishscore=0
+ adultscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=922 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310110079
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Srinivas,
+The ECPRI clock controller support for QDU1000 and QRU1000. The clock
+controller has a special branch which requires an additional memory to
+be enabled/disabled before the branch ops.
 
-srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:45:11 +0100:
+Changes since v1:
+ - Updated the dt-bindings
+ - Modified mem ops logic as per the review comments
+ - Update all the hex values to lowercase
+ - Aligned the clock entries in DT as per the review comment
 
-> On 11/10/2023 09:33, Miquel Raynal wrote:
-> > Hi Srinivas,
-> >=20
-> > srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:27:20 +0100:
-> >  =20
-> >> On 11/10/2023 08:15, Miquel Raynal wrote: =20
-> >>>>> +
-> >>>>> +	nvmem_cells_group.bin_attrs =3D cells_attrs;
-> >>>>> +
-> >>>>> +	ret =3D devm_device_add_groups(&nvmem->dev, nvmem_cells_groups);
-> >>>>> +	if (ret)
-> >>>>> +		goto unlock_mutex; =20
-> >>>> This is going to create groups after the nvmem device is added, isn'=
-t this going to be problem with user space notifications? =20
-> >>> Greg said it was not. I hope I understood correctly =F0=9F=98=84
-> >>>
-> >>> And anyway, cells have never been available to userspace, so there is
-> >>> nothing userspace might expect yet? =20
-> >> I agree, but once we add sysfs uapi then this is going to change. =20
-> >=20
-> > Can you elaborate? I'm not sure I follow you here. Is there still a
-> > problem you fear or you think it's okay?
-> >  =20
-> Now that we add cells to sysfs.
-> AFAIU, By the time the userspace sees the udev event from this device we =
-might not have cells populated.
+Previous series:
+v1 - https://patchwork.kernel.org/project/linux-arm-msm/list/?series=774092
 
-Yes, but why would this be a problem?
+Imran Shaik (3):
+  dt-bindings: clock: qcom: Add ECPRICC clocks for QDU1000 and QRU1000
+  clk: qcom: Add ECPRICC driver support for QDU1000 and QRU1000
+  arm64: dts: qcom: qdu1000: Add ECPRI clock controller
 
-Thanks,
-Miqu=C3=A8l
+Taniya Das (1):
+  clk: qcom: branch: Add mem ops support for branch2 clocks
+
+ .../bindings/clock/qcom,qdu1000-ecpricc.yaml  |   68 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi         |   14 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |   37 +
+ drivers/clk/qcom/clk-branch.h                 |   21 +
+ drivers/clk/qcom/ecpricc-qdu1000.c            | 2466 +++++++++++++++++
+ .../dt-bindings/clock/qcom,qdu1000-ecpricc.h  |  147 +
+ 8 files changed, 2762 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+ create mode 100644 drivers/clk/qcom/ecpricc-qdu1000.c
+ create mode 100644 include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
+
+-- 
+2.25.1
+
 
