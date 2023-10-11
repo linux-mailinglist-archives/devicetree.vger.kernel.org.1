@@ -1,79 +1,120 @@
-Return-Path: <devicetree+bounces-7740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5857C5454
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:52:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 081D67C5460
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CC75281ED0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:52:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38D4D1C20C75
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BFF1A72F;
-	Wed, 11 Oct 2023 12:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455241D6BE;
+	Wed, 11 Oct 2023 12:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byiSFe85"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b1Z0nuFn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71F218AEE
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:52:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ADCAC433C7;
-	Wed, 11 Oct 2023 12:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697028767;
-	bh=7nNHhTFSnvsctexULERMu++eP5boExVclBtDAh2DWK8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=byiSFe85ODvmEz8k8cS0xJ3/08MXWJB2WtfGGMACCLtPca+YyLQ1GAhI6j1huUlgS
-	 qSXhG7H7mgi+XQ+w9Kj4wNTexSEsVDczEkr5XH5PN3gvbMYRJn4Okbj9lSVWGriM0F
-	 8CRNOtHbWd4DZ7HjYZUNmo37wMRSZnlIeldFwsksj9nVxKp/ae5E+to7Y02A206M5i
-	 YwBAavrgIqIxw7KgDFVHJ0jE7Xk2uQkBEN2r86OToVJq5JsiUDpv8YRGALYAa4gv4f
-	 PGJehCdMzCclMdLyYRRvxB0Fv3i4X5npEXjowsy19UyVltjoHm60R2DAKA5+mEvyTM
-	 GBoPKfEzPEKVg==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5068dab8c00so5746503e87.0;
-        Wed, 11 Oct 2023 05:52:47 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yyy/cOf6oGXwA2UrUnIHUIQafmwO2KlpeP4MeT1gpaJ66xTNcLg
-	ZF7sMPvvhwRtAzsGCImeg7zm1Lh3Y8Dda3IZiA==
-X-Google-Smtp-Source: AGHT+IH/9CIDym2+ooxw52sokSgt93JvGLmPMXG8mQ+BYLgc6mr8q1Zja1fo33uvxZMXbJuLjTuECww1Pj/VshNPtQk=
-X-Received: by 2002:a19:6456:0:b0:503:442:5957 with SMTP id
- b22-20020a196456000000b0050304425957mr16044041lfj.41.1697028765631; Wed, 11
- Oct 2023 05:52:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB6013AC4;
+	Wed, 11 Oct 2023 12:54:08 +0000 (UTC)
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C4892;
+	Wed, 11 Oct 2023 05:54:07 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-2792d70ae25so4602928a91.0;
+        Wed, 11 Oct 2023 05:54:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697028847; x=1697633647; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ugSH8FJbysw/333UJfT2fX6aDJrXjkX7MBOTQ6zLQaY=;
+        b=b1Z0nuFnUakxVeSaHlcTOsMoEysbLsq2/IhbUql1diY530QI3J0Ta0ASll3AGmwphR
+         1FZSriAftxPE+z4ChLQoMeGkdVm+2NEmYLMiSienDffn5t7AOaJU8yv7DxAOMWKWROjK
+         sinZet94juIkl+U7IuPUWwA9O7IfMrXdWd4F7PYCw6JszW44NTRvMvcprMupIOdtPBI/
+         pNDKKhGHqPXscVJWvINILuh3DB5k72VBnAOVdjN3IURl+YczPOA9oeJ1mpZCG9RiiWkM
+         haj/NQNcG6guijirxhl7YHeoqUzTzffD9ir8UaWHXobFBWPjsVoCecW0DKC2Isl1Ia3p
+         Ydow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697028847; x=1697633647;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ugSH8FJbysw/333UJfT2fX6aDJrXjkX7MBOTQ6zLQaY=;
+        b=geRkanNfc5UCpchVO7msiSs0Y9Acfw9gkGbixn175fv2DEBhWg0bJoTw/EFyZpyFLt
+         w/vnxA2ysJ/BgHOZVYLU1hZf4oJyElmrmr83U+qHQReg2Qkga5mTCuxK/XKVioSNEFrO
+         hrcJX9Y8dVBTAzGuBDV1RbBN1/WL+ykJdw5pfd2KO/qyeLwkFXHD7JRdo5lCOGfuhV4H
+         hmOVdRGJZwOl4Tmc7l8qyR3TzS7H66Gv+kBeb4k3C65ofKBttu2mMkwOT/QPs5hI4+qv
+         hgnT/QrP4joi+VCoDjCiqElDwGuOAQ8+y/mB2w49oti84TKZEkZ8tyAvNLFO75hlv5Es
+         T+9Q==
+X-Gm-Message-State: AOJu0YzFFJnTBbfwp2+MGqXC8ZTXWWnnfR093gOOO+HDpHjk08kHf028
+	X1Ojh73jHI+xf4ptijerwXbSVQ7vHrRPmZcQ1oOW3zZd
+X-Google-Smtp-Source: AGHT+IG45+LupoZQup5ypJxF1tNZKgvqKmwjD6o0mHk2cQIch/yzH1JX9vLwdK72USEMloPr/bS46oBgevyVfPaSOx4=
+X-Received: by 2002:a17:90a:a393:b0:278:fa86:13d8 with SMTP id
+ x19-20020a17090aa39300b00278fa8613d8mr17431628pjp.41.1697028846773; Wed, 11
+ Oct 2023 05:54:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011112726.166052-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20231011112726.166052-1-dmitry.baryshkov@linaro.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Wed, 11 Oct 2023 07:52:32 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+HdceLczej4_q-wjg2870v3y-e_E+jEq0xbetDguaXAw@mail.gmail.com>
-Message-ID: <CAL_Jsq+HdceLczej4_q-wjg2870v3y-e_E+jEq0xbetDguaXAw@mail.gmail.com>
-Subject: Re: [PATCH] of: export of_find_next_cache_node() for modules
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Ilia Lin <ilia.lin@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230906095143.99806-1-aford173@gmail.com> <8cf5b8d1-5f03-438a-94bb-5691dee8cc86@lunn.ch>
+In-Reply-To: <8cf5b8d1-5f03-438a-94bb-5691dee8cc86@lunn.ch>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 11 Oct 2023 07:53:55 -0500
+Message-ID: <CAHCN7xJ_2HjQ8iCYimPG+CiMQuDy7YpG2sf6Vq30VsddaSs8CQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] net: ethernet: davinci_emac: Use MAC Address from
+ Device Tree
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-omap@vger.kernel.org, aford@beaconembedded.com, 
+	=?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+	Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Grygorii Strashko <grygorii.strashko@ti.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023 at 6:27=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+On Wed, Sep 6, 2023 at 7:39=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote:
 >
-> The qcom-cpufreq-nvmem module uses of_find_next_cache_node() function,
-> so export it to be available to the modules.
+> On Wed, Sep 06, 2023 at 04:51:42AM -0500, Adam Ford wrote:
+> > Currently there is a device tree entry called "local-mac-address"
+> > which can be filled by the bootloader or manually set.This is
+> > useful when the user does not want to use the MAC address
+> > programmed into the SoC.
+> >
+> > Currently, the davinci_emac reads the MAC from the DT, copies
+> > it from pdata->mac_addr to priv->mac_addr, then blindly overwrites
+> > it by reading from registers in the SoC, and falls back to a
+> > random MAC if it's still not valid.  This completely ignores any
+> > MAC address in the device tree.
+> >
+> > In order to use the local-mac-address, check to see if the contents
+> > of priv->mac_addr are valid before falling back to reading from the
+> > SoC when the MAC address is not valid.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> There is the potential for regressions here, since behaviour is being
+> changed. But i do think what you are doing make sense.
+>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-You really should be using the cacheinfo API which has already parsed
-the cache nodes.
+I don't know who the right person is to ask, but is there any chance
+this can be accepted?
 
-Also, why do you need a platform_device? I don't see a driver.
-cacheinfo already creates a struct device, so kind of weird to have 2
-devices.
-
-Rob
+adam
+>
+>     Andrew
 
