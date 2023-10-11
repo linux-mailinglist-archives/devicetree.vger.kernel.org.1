@@ -1,224 +1,196 @@
-Return-Path: <devicetree+bounces-7791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047CB7C57DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B09B67C5800
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0A11C20C2D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:13:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E180A1C20C6C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CFC2031C;
-	Wed, 11 Oct 2023 15:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96C6208A5;
+	Wed, 11 Oct 2023 15:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=asem.it header.i=@asem.it header.b="ATXI7ByO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TTi2Lbq0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA17913FE1
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:13:26 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2050.outbound.protection.outlook.com [40.107.249.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CAE92;
-	Wed, 11 Oct 2023 08:13:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34FB10951
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:25:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1417892;
+	Wed, 11 Oct 2023 08:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697037926; x=1728573926;
+  h=date:from:to:cc:subject:message-id:in-reply-to:
+   mime-version;
+  bh=FYNwZ04fT9LxaM3TRvwzePHkTBmq8a+Yom50kgdfabQ=;
+  b=TTi2Lbq0tOjEccWYKN4FkAldrcHKD10w7JarkDLUyTqUu+CNKCe9252o
+   Iz+ZTOFrD335Un2Hr50nPHZwsB+iooUJKvXo5y4Jcoh8qlmgGe3O7ApHw
+   1i+2krOrAdIIuwJy9zTx1kELP5056UawlKyzsLVbe21qwHtmeWnKZrSm8
+   HMERSvlsEoR/f0s1BfZBrK7BNw5MtzC0XSwJsUI2PA+pR45VDOW/4UzfY
+   IcF6X5G4M+xvhNMMwzMkdLLQS1No30k7O2uJj16llo3W0iZ5vgbxCyuj/
+   Dcdop5fPY6ITOKgbmOLVA8K1QG4rkg2agjJM0XZryj1cPyvdW4rbDWnLC
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="6255243"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
+   d="scan'208";a="6255243"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 08:25:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="1085266215"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
+   d="scan'208";a="1085266215"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+  by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 11 Oct 2023 08:25:25 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 11 Oct 2023 08:25:25 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 11 Oct 2023 08:25:24 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 11 Oct 2023 08:25:24 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 11 Oct 2023 08:25:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NAdR+PMR26oGSq/sTSGSMsqYa3FaGuKygHVSI7flg5y4XIcfrGyZbUu7uQTOmOsP1zqeLCla+S/rRlUul0Y+KMbYrX1PbweWvWE0SSElTla2qM8PGDSRw9fCnIcUsmAkox7J6oUniwKYjXVS8hVxbGUZh+r/VlG0X/eBgqHdfOMMWNpK66eeBiHfFr6H2DgcKSs8bRjRW/ghhRiI8Rtvtmtz3Rheris7x1QkoxOQ73jPHtN2LTNxLSAWVUSojFz93CmKCm4fi0eAPni5F1QzTea9pRcvMpPYaA5J+xY6MNukt0MlW6IKCbc1BGR1oUlcuVKrj803Ri7tubeknVJj+g==
+ b=GEBAlTFmmPOR1Qc8BRGHKYfnj0RD9nxh1kaoTf2Znkue8bxI2lbxzBKqiJx8e6s+pli62idUeYKhtXd6pUD5idd1UX0E89PXF6bE8DVNHJgL+SxLimTgGgPFVp3QVtqC4VEFZkfXWjSUDyMnxqYNpjRLcZ0kXhenKWWTvSzvwPfcIaNI8h9AiFiNkvZDqybSd7moDHjxWIwI0XX16rZ10B5LuH0VbgUU+UBWg1is+O41VUTzUMIxCMwb/5o1PeHnBy1eg4sdAro5ndVtI4xKmy7SizvBgdkrEmkS31ho8GH7PY/4nLzICBni0BQw3Qk4ewUKibW/B1iXmnT7ARmIsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EE16vw9VgEgpOxcE8Wss6/YnAjZxnvomVuTr7YjKjo0=;
- b=JaHsJlrn7FEohE3wVtOCvhJfSTUQjM0PITDtHsbQv3qK3yzIL/+5LjGPIUd0n/JMZaRlAHOYNuCmBm+TlXZrYrQVpVI26hePkEcVJmk2uAq7h/01OtF5o7Rmb+nOQ17Ul+A5lmhaVL25JFgcOHXRVjCbWyJ0JA0zoDXTegU6CNf5WGobvNJMW/i31Te93du/zyzSYQ6c8G1P1V+HskFN3alhySru0cJzJ27JuzPwb7blM3kVfV7Mdll9L0Xecktcs7PFKgz7slbIIA3fOqj/jIAI7ZFLF8YIsa5LrrjpVwaDSAo2hJ72pw2akN1RaiMTUxw20maRBY0UxxvPOrcLkg==
+ bh=UpWvi/cdqwG8PtU+N5Y4Dx1k25i7Uhtcv/dDdLG/lQc=;
+ b=W+Nbh/Wwo1VcLc49BEi7Q5FhUF1hD4/++mU8iS4tN/KTbuHX3UltkknrH9TT5qNz2f5cTa8lQ7TlzmDL02c7YgifKb+yttGXmRfz30IHKYFA61XmjQ+6Lutrsk6KZbw1QH6B4xvM7Q488hXZijlZtPmY+hqQNCsYpChju0Au0/4fI1f/g3W9l2LLhhVlAEvTKXY74uujC+XrdG0Qx21s6yTU2Aoij7SK9211M8FYi79TsaQZza5ZEr8cHugOjTTttlP3sZHGPB297NEYx6j/VmVIwpUacOwsY88w6NEQ6C/b0UJRyb0dYIa59onD7kQOlHTt7PLzTiyo8ns4+BAfRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=asem.it; dmarc=pass action=none header.from=asem.it; dkim=pass
- header.d=asem.it; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EE16vw9VgEgpOxcE8Wss6/YnAjZxnvomVuTr7YjKjo0=;
- b=ATXI7ByOc0dlvqE3H8wSxLfmoOBcDrk0UqVzFJtumjaE0baUHhdxhAENZOXxLpn7AUcsD0ntw0ewAfMpGJczAanDv7DJv6bVwryDG0nESTy2xWX7q0O1DYwky5tFJBYaSZ++WelJMkr+8XyPJjQpGkpWrCKE5gbwt+2cW7jjjoo=
-Received: from AM8PR01MB8045.eurprd01.prod.exchangelabs.com
- (2603:10a6:20b:320::8) by AS8PR01MB7303.eurprd01.prod.exchangelabs.com
- (2603:10a6:20b:256::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.36; Wed, 11 Oct
- 2023 15:13:20 +0000
-Received: from AM8PR01MB8045.eurprd01.prod.exchangelabs.com
- ([fe80::e0b4:579f:9463:f4cc]) by AM8PR01MB8045.eurprd01.prod.exchangelabs.com
- ([fe80::e0b4:579f:9463:f4cc%5]) with mapi id 15.20.6886.016; Wed, 11 Oct 2023
- 15:13:20 +0000
-From: Flavio Suligoi <f.suligoi@asem.it>
-To: Rob Herring <robh@kernel.org>
-CC: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, Pavel Machek
-	<pavel@ucw.cz>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "linux-leds@vger.kernel.org"
-	<linux-leds@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-fbdev@vger.kernel.org"
-	<linux-fbdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4 1/2] dt-bindings: backlight: Add MPS MP3309C
-Thread-Topic: [PATCH v4 1/2] dt-bindings: backlight: Add MPS MP3309C
-Thread-Index: AQHZ+3Oa23Umjg05nUq8U4rLHzRJ47BDMv0AgAF+mwA=
-Date: Wed, 11 Oct 2023 15:13:20 +0000
-Message-ID:
- <AM8PR01MB8045F549C8A65A853E214D37F9CCA@AM8PR01MB8045.eurprd01.prod.exchangelabs.com>
-References: <20231010121621.3009154-1-f.suligoi@asem.it>
- <20231010161512.GA944015-robh@kernel.org>
-In-Reply-To: <20231010161512.GA944015-robh@kernel.org>
-Accept-Language: it-IT, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=asem.it;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM8PR01MB8045:EE_|AS8PR01MB7303:EE_
-x-ms-office365-filtering-correlation-id: ec544215-7d60-402c-fc8a-08dbca6c9acb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- hENj7V3xKhaOKzeklH7qrXpIOl64n8rnMkyz83aTmUgNqAq3Tt/tmAkfe8eBI1RZfb6yEDxQgYv++nil4T7p/blCiI+2EaZUD4jBiWjLxHmC7K/1ORonAslcWMM52arxd3QFKIgEV0kOe3/oTzHsfXHJmxq4v3tyIMHT0I8ulHubzBpXL3sa/bv+IyQpcR5ntbxkegxo/Na+TkS43Yw5eLpnU1x28GjMp90GnJ38+7jkxj0+L/Ges4MohcvCpq56QHI+sGkHEG582+fgYfroWr/8K12x9z6/wzAXDCH1AmRvNFYy0RtrFG+AC2QhsT+RQrvoWd+BeVoEgMNV2vQnTw8n5sE9hyUfa/jTQ2FovoH1r1B96Ragb04oMRhUZwcxO5c0RVwafS1nUvB0+G2oE3HkmOxLda4YjjWbmwgmcrETdnnNkbT6iRxd/Z6U/9CnivFdCl06ZO1YbV4PpywHFZV0lyJS9p1niTzIkIC5PPN2QEzcahfK71yiAz6w/tXF5MiU4XBjFMUbpZrCKhq+aDG0bjHlk5o7IAviUj1I9BP3as8n+7Zpe46vdq1rRCg7RjENzwGNEAbzZ7BadLHP9PfaOQndYqNXzuM/ZEMMs3DB/PNmWiSTIOYAIRxkQbwt
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR01MB8045.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(136003)(346002)(39850400004)(376002)(230922051799003)(186009)(64100799003)(451199024)(1800799009)(7696005)(26005)(71200400001)(6506007)(478600001)(4326008)(76116006)(2906002)(7416002)(8936002)(66446008)(54906003)(66556008)(66476007)(52536014)(5660300002)(66946007)(41300700001)(6916009)(64756008)(316002)(55016003)(38100700002)(38070700005)(122000001)(86362001)(33656002)(8676002)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?iRiHXW67oFyMDo82nFwJfcKxp1Ua4gJCB4QM4iYMqQxb6+pZPZFUWmcvOwFB?=
- =?us-ascii?Q?FnBM8o77Ay9OjRSI1wftsS7EF0KsdU3AJTqdBLk8QTCX5+2eSGtM3ksHC9r2?=
- =?us-ascii?Q?SjCnkApjE6J0r4LvuaJ1CGjStWSHHOSA59HSjlUDgdRU7hjhFXm9fLM3q9JW?=
- =?us-ascii?Q?Xa5gU7PueeM/vES5Wx7XGKbX126azVOYZpfo7PW4BHCjj2UqRsWNuIMwa/0y?=
- =?us-ascii?Q?0I41k5kSiDYfG2XmHBIAKFo6xkerYQ2g3oXdNlZdaFp3YxfZwC3wUfJ/y+TF?=
- =?us-ascii?Q?3kyXRh+Ee9wzIUid9MvbMRVnWB2OL7PKmBi22xCH4nL6V1rTeTU0YJgxTk3c?=
- =?us-ascii?Q?01wP/FkbpbJlXAB8j1lp/85v305elPlerA9cRx8GKhXOZaSEMZ5Vuy5WEVUk?=
- =?us-ascii?Q?1yBvfrPqP9MrPhz2v30I6oHmvrDTmkkugESsHPRQRtjOwPysFjCi6HR2ESB5?=
- =?us-ascii?Q?6wrUy2VKDmxFbunJHgVAxl550HCs+9USF0/ZyJhxWPBNpDyQm/s6fy4mDYbM?=
- =?us-ascii?Q?mYh2VdjU/89AuLZ2CcVA7FDMMrdnonheclTdwjNkLvuUoAv99gU5g/3WDiwL?=
- =?us-ascii?Q?mk8T4MayvAw5o+Sj4nniQH5G/h6JSOpVrzf5DnN8asXnrkowRE0cZIaZom2Y?=
- =?us-ascii?Q?G5xYJKQWKLN3qY1fV+/CZRVWVSuu5A28RcL+e9mfsopintxEQqbgUJIzAtbA?=
- =?us-ascii?Q?LaHT/VoZcA3bjbOIr024mvW8/LKuMQM4XXDqYpABYev81uiUS86U+GxxTIbn?=
- =?us-ascii?Q?MIGpEFY+b009Wr4esnRf4HWhnmn630VOj0hy5Is54Q8RTIoI/U5wXBmYQRIx?=
- =?us-ascii?Q?+ivQKIitbSsY8mynLtdfG1gBQ/wjy8kWqZnq5sygOhYzn6hBJLsHptnCoV3v?=
- =?us-ascii?Q?E24lVMkD6NXIDiDE8tTdCdmLdQCvYDahAnwoTuCLdd026wql7FZbJQW+Mc3/?=
- =?us-ascii?Q?EG6TAJU0+piyT010IQaVN6FEPojWFSBG9J5l5iAYQiT9/Ufe4uP3C0j0DBmj?=
- =?us-ascii?Q?TgVNq2vZOI7S5Ad6mVbnqSlYo7deIF1xfWBnk5Z0xdtVQEFeAPjX7jhYOFsY?=
- =?us-ascii?Q?5pH82WKkd7cStl6xHaoaI8tcIkvCH0j7y089ZvNYwUKDdA/B5gB1zhS0yHPj?=
- =?us-ascii?Q?BV8ay0cMNny//5qiKJUVtILKKOkBaMC1J+Fm/UXlc5PcqURc10C1Sw4SDhqw?=
- =?us-ascii?Q?b/L77iarxCu/WTu0Wwf9pZ0DX7T6tOcP8aar4/vVCRAgt2VF1zt3i1tdqhXG?=
- =?us-ascii?Q?DKjTrmEy62RLFM/wEw2NvypvrKWRbT2B/cCa8gSYwZ1tisohdCF1MUun5Vx3?=
- =?us-ascii?Q?meNC4h3+d+HgSQwJ/DtuhniU+V8iPKCWBh11OpacITBwMddYj3P5NBS8zikL?=
- =?us-ascii?Q?TkguwhPF2meGs/L18IVxKxLZGoPai+LAc2I25Km+L9hiwzVUF3Rs7Kl6SCel?=
- =?us-ascii?Q?7WWYr+e0X4Oj/dWRJQiWWH1pj9ONbiIXDfZEQ6v4AWodXd6aBqWx5xtI0OdD?=
- =?us-ascii?Q?xZnMBIJY3q1nb2PNKzpkhPjDgHkToDRjKwVo+sYsDoXYL80eCx5e1cUrm33q?=
- =?us-ascii?Q?dJm4Pcpw7Ywx6tzstxo=3D?=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6392.namprd11.prod.outlook.com (2603:10b6:930:37::15)
+ by DS0PR11MB7560.namprd11.prod.outlook.com (2603:10b6:8:14b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Wed, 11 Oct
+ 2023 15:25:22 +0000
+Received: from CY5PR11MB6392.namprd11.prod.outlook.com
+ ([fe80::d35:d16b:4ee3:77e5]) by CY5PR11MB6392.namprd11.prod.outlook.com
+ ([fe80::d35:d16b:4ee3:77e5%7]) with mapi id 15.20.6863.032; Wed, 11 Oct 2023
+ 15:25:22 +0000
+Date: Wed, 11 Oct 2023 23:20:23 +0800
+From: kernel test robot <yujie.liu@intel.com>
+To: Anshul Dalal <anshulusr@gmail.com>, <linux-input@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+CC: <oe-kbuild-all@lists.linux.dev>, Anshul Dalal <anshulusr@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
+	<linux-kernel-mentees@lists.linuxfoundation.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: bindings for Adafruit Seesaw
+ Gamepad
+Message-ID: <202310090414.Iulnmfzb-lkp@intel.com>
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <20231008172435.2391009-1-anshulusr@gmail.com>
+X-ClientProxiedBy: KU1PR03CA0012.apcprd03.prod.outlook.com
+ (2603:1096:802:18::24) To CY5PR11MB6392.namprd11.prod.outlook.com
+ (2603:10b6:930:37::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: asem.it
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6392:EE_|DS0PR11MB7560:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b57fbba-b39f-4325-3229-08dbca6e4917
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ew2I++IUHUCMBdXe31tRFrSwr5Qc5HUokIKAUj7WxoVoFX87TKSlGRQMVXJEOb5FubzuNzfwvp4oqn6eBUhN2fdwsIL2yfOiU0PgRQky5PNWzC/UQjYiwU93YvBSdXQq7n5l2L7jzs6B6mVMTnwSr/yOPOVk5+e6udwLQsWOhyFdLbYdDFkCN+Fp8UkFh/LghX30vGWy5hGq+BKm/KeZQR4pYApJ77vkL/RlqpvtkPylElyuDArCkzYSCSW/VY9EhtWIVMTcauzprRYqOngdJQgDL7RCHsFSugI/dfjh75p5ta/iKi4YGuhWXBIybFSyyNr1o+uolkG4FINt3KSn9X++KLWIAmwrwAfcv9vlKmg35EaqonbnnTSKYTy84f+C7OUu/9S9fTZTuwABLfb8Uk1AtHDeAV9qAejp+4vz8Ed6rvJ0nnkfklzUb0u+PZt3rChoy3oD7GR1cVO0EqL7Y0yeo0QrapYNIenXMFFvincjuoo+xsZh6smue9zhcIRBb2a3y8HGxIdd4P5csWP2GEZ2CA8WqyQNtYBfKaxFLJv05frk2ahkp3hArVLh69ArgYZEgHoJNsHdXaoFt8+Zlw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR11MB6392.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(39860400002)(376002)(136003)(346002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(26005)(2616005)(1076003)(6512007)(83380400001)(6506007)(8676002)(2906002)(966005)(7416002)(4326008)(5660300002)(66946007)(478600001)(66556008)(54906003)(66476007)(41300700001)(6486002)(8936002)(316002)(86362001)(82960400001)(36756003)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b6LvFEuA99HcmrUyN966n3t/fKRaWAR2DNem8uhRdIHyocxSd02jbUT2Ezi7?=
+ =?us-ascii?Q?S5FlnSxuGSfQ5AJwCK+ctFfnEKf0TxXeu64ogr3aqQhCXbgNGT9XgjXxt3XT?=
+ =?us-ascii?Q?3/LSnyP6t3DGQMxLTL5oseQVTNxsxaF1c+gROXJ/HHEGAzF8DMTRmz8huX+C?=
+ =?us-ascii?Q?+sU6UsNrZ5O9OgdLQmeoFhB6qcOBe52609KMvJhZ90/MBf4xaTl2VGQt9O+1?=
+ =?us-ascii?Q?mEHNQsDlqqS7SnUa5gpkHTyKLdYXzyLhYaoC86DIhYybNGZof+5/tzrw7b+9?=
+ =?us-ascii?Q?yicsvAJsBxjMLTgyCPfujBxu5lp5Ubl6qLmZUydLs3gC2noIF8T2m70KakcY?=
+ =?us-ascii?Q?v26s5GSaQPXfD8tuI+pFLQ3/XwdVUOwv+V8c0ujFCG2CN+S19Sa4oEjtaRa5?=
+ =?us-ascii?Q?Rnr31iLkIhElVtWx/NCrqs/6aRus5CXyaTrZQNLK8waE4ZE760v+fgO9O12e?=
+ =?us-ascii?Q?vOAIKEkmuMSuvmvkupidPPUuOBpxdDJ8yhta5LFQPcEKSmqqQpfd2sjPP2e/?=
+ =?us-ascii?Q?rUFURTpO+xPVWTMpHqT8YRDs9HvpG4fe1JaT+jjl0OpJeET1JAhSaxvmPITr?=
+ =?us-ascii?Q?+oObvpNAz99v/oF4z+PPeEsdLMxwqGZce0v7c+p6POdcSmxgKnt+mfrMC52L?=
+ =?us-ascii?Q?9F2OutD/zT+r5DWfuBflNVKQVrQNbjH/3cnee/FcUpO+qeInRTu8TTm9PWWr?=
+ =?us-ascii?Q?NRBa51GPAhP+Di0sNL30IMVOa1qMgCy1PbsDTbEasUyOj4ZmNa3EOlRaIC+F?=
+ =?us-ascii?Q?kFO7oXmgT5uSR8Lxamc2aDnAh4/d58Yp1S5RTziOyE+16X5i/qos81A5cs6q?=
+ =?us-ascii?Q?x1OCo0nzpBpRhVaP+5CtNmQ3pALm/3ksf3NqfADFFM5lLzEP3gVwg6tdp0jD?=
+ =?us-ascii?Q?Cl5CVYEQeJ+1kAiMYssYd8D+SYCOqvtq0eBWzahETFEqLvxWFl/egxHyXnMU?=
+ =?us-ascii?Q?TrCgz+UBXX1uWUK1jAninN+k9DXYySGkqS3zFxvbghM0O3uuNCSMRUQ7+PJE?=
+ =?us-ascii?Q?lQFtAOMZJm2Xbff1TcELYzDMq84z0SjUbU0QEi5/kt8PPlcmhZ/wL+/toxAg?=
+ =?us-ascii?Q?2SuATcKNyEizje01T2jkltZ+k0hXf8ZtE/449xJGH7Rs6A5wEWV96eojWoY2?=
+ =?us-ascii?Q?oUKMiv0wgwljL4AhqRuROi22VVX+F3B3gXaH5IUGYBY7XqyZet5WjMQLplx6?=
+ =?us-ascii?Q?XuWSLVrpsQXAYtTVfipJ3Owzb7EhZkWIcRUiVSc/5RNnYMOUiPKGgYMCKCFa?=
+ =?us-ascii?Q?PGVgWQ5YMDZHqP+OiELBk0cZj+yqIQpEWJDaBfAqI876QbK7Lf17n0bw3h0L?=
+ =?us-ascii?Q?ZIHg0OIVZe903rhZalIaa9a70WgMmn0QvcbPBMabjxsZ7MIdarUIRjJv1Kgh?=
+ =?us-ascii?Q?tfz/v0+FPugVcTHK73clQWQUnE9u4n5BNJs8/wSOfUHtbnXfMnj+w6rTgZvy?=
+ =?us-ascii?Q?bM/4SYlUop0K0lwXwmB5SO6PdTXP7fHSCU6rcQuBwLwWr2LBjPmz07iJYcQ0?=
+ =?us-ascii?Q?uufwmXkkXaoh0UF/0CkgNsf7QedUNJOi50vs7JDaN9wyvF0b606dFmW+/eLp?=
+ =?us-ascii?Q?RlzUWCoDYFGLy97ZsOexiad+yQGzCdNl+kh9wRNL?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b57fbba-b39f-4325-3229-08dbca6e4917
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6392.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR01MB8045.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec544215-7d60-402c-fc8a-08dbca6c9acb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Oct 2023 15:13:20.5279
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 15:25:22.7555
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dZMpIb9arJe8PT9YSRVUuv4+CGg2KpEXs3f/4DdfSV7+O0KB38ejxdD3aTfzG0uVx9eajuqkECuyK/cmYz0izQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR01MB7303
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HjMF+xIcWnLAqk4sZmE+hdh/zL1IPmz4evlhvDtZWuUcHxjD5K2kikqROgi/bCFnM1uyzO7wX0Iezkqy2XVw5w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7560
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+	SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob,
+Hi Anshul,
 
-just a question about led-backlight.yaml and pwm-backlight.yaml
-common properties.
+kernel test robot noticed the following build warnings:
 
-...
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on dtor-input/for-linus hid/for-next linus/master v6.6-rc4 next-20231006]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > +
-> > +  brightness-levels:
-> > +    description:
-> > +      Array of distinct brightness levels, in PWM dimming mode.
-> > +      Typically these are in the range from 0 to 255, but any range st=
-arting
-> > +      at 0 will do.
-> > +      The 0 value means a 0% duty cycle (darkest/off), while the last =
-value in
-> > +      the array represents a 100% duty cycle (brightest).
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
->=20
-> This already has a type defined. Please add it to backlight/common.yaml a=
-nd
-> remove from led-backlight.yaml and pwm-backlight.yaml.
+url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/input-joystick-driver-for-Adafruit-Seesaw-Gamepad/20231009-012745
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20231008172435.2391009-1-anshulusr%40gmail.com
+patch subject: [PATCH v2 1/2] dt-bindings: input: bindings for Adafruit Seesaw Gamepad
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231009/202310090414.Iulnmfzb-lkp@intel.com/reproduce)
 
-As well as the brightness-levels property, also the default-brightness-leve=
-l is in common
-between led-backlight.yaml and pwm-backlight.yaml.
-What do you think about removing it from both led-backlight.yaml and pwm-ba=
-cklight.yaml, and
-moving it into backlight/common.yaml?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <yujie.liu@intel.com>
+| Closes: https://lore.kernel.org/r/202310090414.Iulnmfzb-lkp@intel.com/
 
->=20
-> You say 0-255 here, but your example is 0-10. One of those seems wrong.
-> Anyways, don't define constraints in prose, use a schema:
->=20
-> items:
->   maximum: 10 (or 255?)
->=20
-> > +
-> > +  default-brightness:
-> > +    description:
-> > +      The default brightness (index into the levels array).
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->=20
-> Already has a type. You need to reference backlight/common.yaml.
->=20
-> > +
-> > +  mps,overvoltage-protection-microvolt:
-> > +    description: Overvoltage protection (13.5V, 24V or 35.5V).
-> > +    enum: [ 13500000, 24000000, 35500000 ]
-> > +    default: 35500000
-> > +
-> > +  mps,no-sync-mode:
-> > +    description: disable synchronous rectification mode
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        /* Backlight with PWM control */
-> > +        backlight_pwm: backlight@17 {
-> > +            compatible =3D "mps,mp3309c";
-> > +            reg =3D <0x17>;
-> > +            pwms =3D <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*10^9=
- */
-> > +            brightness-levels =3D <0 1 2 3 4 5 6 7 8 9 10>;
-> > +            default-brightness =3D <8>;
-> > +            mps,overvoltage-protection-microvolt =3D <24000000>;
-> > +        };
-> > +    };
-> > --
-> > 2.34.1
-> >
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+    	 $id: http://devicetree.org/schemas/input/adafruit_seesaw.yaml
+    	file: Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
 
-Regards,
-Flavio
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
