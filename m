@@ -1,192 +1,106 @@
-Return-Path: <devicetree+bounces-7705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69907C520A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:28:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0FC7C5214
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13F281C20A06
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:28:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 100FB2821F9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119EF1E51D;
-	Wed, 11 Oct 2023 11:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02E81E521;
+	Wed, 11 Oct 2023 11:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="7OZRwC5F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qBzjgIwo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B101DA32
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:27:57 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8746B9;
-	Wed, 11 Oct 2023 04:27:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tu+TuS0MzzPbG+6MT7wbsyOycY7PSBEHzrx1By3B5xvLZ/ENyarEg2D9p4bZl/Yh2pXLIvk2KV3jAcSKTX/GP8gdaxIf+GX3ZzJ5kSGnFUb6s0WsX6fLPeMccyU/1QYiMoz5lF7fgYlolNLyQrppgqxlVWMe9PWiRy2K3Pifmr5Jxl7DG2Bvcap2s4G9qquD+UgS1uXtWeMLfau+m3HS4mEwcJAg4BXGPLf2uoyM4gR374THRmPSeXVisZqm5nNJkkuWo1hRawmeshAVPNx8s2Vl01LgydsgRnMU5omIVMNaxKSyA3eV8QH/ZLvsvyqbHWYdJXUDpX4PWUfiPrOtpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bqPbKovkNkj+ANhq6xXjgQ800hS9Ui6fd7iOSN8t2H0=;
- b=KrnhPz95ojWLP6JuC1UMuvP/Qc2GQkbT4gd/L6YBo4mLGsI2uPeuOCHZ/0DgM+aSvlxCofANqDmjbewxWOS/BDSR4oZSvSvfr5RPzkxwxeZidSqcTEoYu5FQt08APVQw/Rm3WZrKbLZvzscfNlmxlTwu914vQUwihlMnNC2R2ljzbrLoMRk3HfJrFpNoWwbGUHBfyr+UfKIrCkCfZFdNIuFZ7FQnu8q/2PbxEDHOhv6j6vbaceeYyzyd9NHkvOnCuQAS4FWVIdktVo0Xmviy62BdUhGnn4IY66Cb0yu/FiV48KtTawivq4w1ZwDHRiBhPAmRfR8+jPj+56m2eaY1Sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243061097B
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:30:27 +0000 (UTC)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B39093
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:30:25 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40537481094so62927815e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:30:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bqPbKovkNkj+ANhq6xXjgQ800hS9Ui6fd7iOSN8t2H0=;
- b=7OZRwC5F23tlKBLp4tuIQyUa6NGfx6oFfgHYwvXZEN4xMfnBTPQPWKzr88XE25M2cRGS7QfueSH3XGf+TmfX/Paso/o/AzfbbGtqA4ir11es3XQ54sBsQQk+gP/hx1g11bMkdMD+nCGjDf98C0cwfcURNn688NmMzO2TlJ6BFFo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19) by
- LV8PR01MB8525.prod.exchangelabs.com (2603:10b6:408:192::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.44; Wed, 11 Oct 2023 11:27:53 +0000
-Received: from DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9]) by DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9%4]) with mapi id 15.20.6863.043; Wed, 11 Oct 2023
- 11:27:52 +0000
-Message-ID: <92b76d7f-8eaa-48a8-bad0-714101c558d8@amperemail.onmicrosoft.com>
-Date: Wed, 11 Oct 2023 18:27:39 +0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] Update the device tree for Ampere's BMC platform
-Content-Language: en-US
-To: Joel Stanley <joel@jms.id.au>, Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com>
- <CACPK8Xeo+7hTmfYR-eR9H4teUFqs5vOcSRm_VvDoVOqP4D6+NQ@mail.gmail.com>
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-In-Reply-To: <CACPK8Xeo+7hTmfYR-eR9H4teUFqs5vOcSRm_VvDoVOqP4D6+NQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0005.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::13) To DS0PR01MB8010.prod.exchangelabs.com
- (2603:10b6:8:151::19)
+        d=linaro.org; s=google; t=1697023824; x=1697628624; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d7jf66VDbLwDGQFts5Mk3zmoqfgZj1njMNnWJVHShyQ=;
+        b=qBzjgIwoQtEpyNqxJ/rS+2TSxuOxqRm97dL0GLepZzyjCephxFRPk3vgRf1c6A9ZVo
+         Uj09gs08wiLnktVlOUHN9QxxYZ1jnHUnZo0xROSqLqQcY4DB7YqiRvvC0ZtbVmPAi6Va
+         1ACtFRHesEHtguYMJwJtWH4+Dfi0cuQ02qpo8R5C+KufmHUjrLu9tzPflJpefcyQsU06
+         LjFu4mIvvTL4jndGfV4474nGv/YaJOEjkQTU6/rhnNKYEOelxOPYGu+VA3GWGIgteSTs
+         LPCQ4QwoHcEGf7BN85S0t9EDnW71aejb9RJtdwlFk2X6jYrdGSlP9D6qCaVIiC/4P5Ha
+         UsuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697023824; x=1697628624;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d7jf66VDbLwDGQFts5Mk3zmoqfgZj1njMNnWJVHShyQ=;
+        b=iKpLRZzyJOm+gbwJIaUpaPnHXavQWEZSQrXq0pZt7PQ/f3rIDithOjbBgEvrlz9KCg
+         R59zjvSQv3zwL0sGMVgnGMpPWYauGNM4yQRU99YrxF3xLuUoBcrqI/gX2U6HuyfG6hZU
+         LKTgYibUbzeyGt9njxD/cqqe2gB0ZYh2ro1AqI0COe9N92m3JGtiQxt8EzTTXXpn9eYm
+         3tmysnA6f07HBTWo26EpYDuVUcNWAzIHeGE1BxtHO1TLbbmUJ5wEtyIByYZNFI1ZV2Ln
+         YQZauJjIDR4QcTpvvVcCY8iTelvAkdTs6b+sZfTylP8kjBavms9y6hKkSam+NTZk48Qe
+         kKqg==
+X-Gm-Message-State: AOJu0YxjOBhXSbp2rPd/jAV1dN8UL7GwjG75f9pLOGrBESXZS+LZg6NV
+	92VRdgtA2htA00C7N8nk9rg0Ng==
+X-Google-Smtp-Source: AGHT+IHuiNcQZJf+Rmj8oNoUni1H4MhMhq2pN9qd3b2XdAV7M3v2EdBQhAsQuJ+PZNTRTBZv3+imhg==
+X-Received: by 2002:adf:c089:0:b0:32d:5cc0:2f0b with SMTP id d9-20020adfc089000000b0032d5cc02f0bmr2726061wrf.57.1697023823657;
+        Wed, 11 Oct 2023 04:30:23 -0700 (PDT)
+Received: from [172.30.204.240] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id s11-20020a5d424b000000b003248a490e3asm15280520wrr.39.2023.10.11.04.30.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 04:30:23 -0700 (PDT)
+Message-ID: <90e45a4a-457d-4b89-aa05-ddf40fec6e2c@linaro.org>
+Date: Wed, 11 Oct 2023 13:30:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR01MB8010:EE_|LV8PR01MB8525:EE_
-X-MS-Office365-Filtering-Correlation-Id: 400973ed-ddb9-4336-b125-08dbca4d1b59
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	2MOTy4cDdWqu1PJu79BxJ5ejC2wv6l823x1mN7x1vTfxAwvYr+5WuvjoOJ918Y0H/Mh6PemcFMxfTRF9toHTJ3jtwWWxLbyLKwXOzbZxaBDRkGrj1Sv00xvY1iH/M7Nlol9vvKDUg/W0q9FB1v1nupylq4PbJjjA5aeUhYTOoDuxBbEWX676HI8VS4aOm4JXhlBxcqJuAgqn9DbdWh+js8kbuvf5ThkWlZfjRi0hCUivrvxhtu/xJxLP1CqefgKmzKIB7VUdbs/C/BDY9v/HhH46xpRCd4KoOCohV02uMbV2JZDs1MNSdYDsHYAUPmwSSHZmQoaomTDto/9CtxNTnoqPMYr0wSMkSirP+QJJQpmuzVqWMlN6SM/xwbEGiL8Sdud73Qe+4Gba/D1UBwVtfjfY9mC9S2oKe3rNCXyE5sCM6+sBY+/htIBvxf37mvLFImDHL8BloKbndyBPrCwerdULuWVGB/1Evx9qGHIMT4kg/wu+nFnXnRV+Qj80Zd5s/pjaIZ3h/8mNQc1TtyE8BP1Ywa9w16K2EboNmmCHT1r0cnoRgyX95Rp7ttVAWsDS3ar1zR0CKSN6aj4R/3M6rPLzY4IQtjXK1shCFEhwR6k=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB8010.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(346002)(376002)(396003)(39850400004)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(26005)(478600001)(6486002)(966005)(2616005)(53546011)(6506007)(83380400001)(31696002)(6666004)(41300700001)(8936002)(8676002)(4326008)(54906003)(316002)(31686004)(66946007)(66476007)(66556008)(110136005)(42882007)(15650500001)(7416002)(2906002)(6512007)(38100700002)(83170400001)(5660300002)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SG4wRUJReWtXMVRFZWI1cGhQM2s2R2RXU0xUOENTMzF5b2VmWTR4MC9USExl?=
- =?utf-8?B?S2x1VXU5M09KWkJXZk90bysxb2VmM0RoMWVna0N2Tlg5WGpYb0I0V29wLzlN?=
- =?utf-8?B?cVptM1NuZjBSZTN5Qmg0SmJCU0lhT1M5MUNzRC9zZG9VQU1maTJoSU5GSTdL?=
- =?utf-8?B?b3NMYXQralYwd0g5Zm1VNDVrNHYyUVliUXltV0dNaFltWVBETEtWZm5UZzR2?=
- =?utf-8?B?K2lPaEV0TUxUYVQ0ZnV1SVV0NDFpdXI4Z24vT1p2STVTUTN5K0ozUU4rY2Jo?=
- =?utf-8?B?TWltZnpNTlU5Yi9vWG10cEVkNURYWmdsNlhFTWpSZUdkWmk1TXRqZVN5TkNl?=
- =?utf-8?B?MXBiVGNBak5mN2IxMDJvWXM5TWNYb0xqeWR2UmkzSVlPS3hmbktCSmczcU80?=
- =?utf-8?B?ZnEvWmpIMnkrKzQ4enZQMHVLMHJSemtNOU1OWjZqbkhIeDE1SDY3ajRYZnRl?=
- =?utf-8?B?N0JpVC9MR21iWGh2Qk1ydnEwQk9Ca3ZaUUk1emc3S3pFUkU4WXQvRnVBUGFE?=
- =?utf-8?B?TkhLd1VUU1QybEhXSUJGWFpNeTZTcmhBMml0Tkp2NGRpa1NHM01EOVZ0T1A4?=
- =?utf-8?B?QW9idVREbkt4Qis5STRDcW5HL1NzL29ScnVQNGNVY2s5QU9vZ3phdHViYVhz?=
- =?utf-8?B?V1AramJTZTcyc3YvdVBwOVBBcXNxdmJ3d1NzRjVTZWVaem81TUFpMWVQSmFE?=
- =?utf-8?B?SkV3ajZxU2o4Ym9TSGp3UXZYeHdjMm4zRG5KSWc0emMwKzloSFlyM3dZcE5U?=
- =?utf-8?B?eXhiS1o4R09EMXBSMUJ2UDVOU202dEdtSjBCRTBmWm5rSWxmekNVVk9yOSs4?=
- =?utf-8?B?d242OGVtRGlURWVxbURtdHppVUg1NTNmQ05oY2hPNEFpd0NFMUozbTJmOEh4?=
- =?utf-8?B?UzVDQ1g5eEZHajZpNktIMTlSR1FtMGNXOXdxTDRyVDBaOG52SUtDZ1pybTVt?=
- =?utf-8?B?bHh3Nm94Tzh3KzQ0a1piMWp5MlFmQWxxWTMvVWh0bk5teVNSYno1U2NBWG40?=
- =?utf-8?B?Z3AybkdhR2U5U1J6aXB5UW9ETjRrZjFDc3ZxYXZUUHN1SFA4NmhWdy9pTFN5?=
- =?utf-8?B?NS91cDAzVlltQWhuZGJRNTg4Lys3WHVQWGJEQWs4aENpejNraUphL203UU9S?=
- =?utf-8?B?R2RmL2dkUmRmR05aTTZ1YXkzT1JSNGt4UmxpM3lJcWNva2lNWlo0d2pMSTVX?=
- =?utf-8?B?Yk9MTjk5MDEvZVc2bEd0alVGakdySmRBbWNYWFJiWmVScUxVOTdQSmpKZEc5?=
- =?utf-8?B?TkdCTDBZOUVSbHZqRnF1UmRQdlhodjVvMW5PSXBwRW5DWUdjVzRLSnU4ZXBI?=
- =?utf-8?B?NHlRenMwUDlaNjh3Sm1PK29MaFBPb3hGZERBb3JMcXAwbThaU0tjRzFmRlVP?=
- =?utf-8?B?WmU2MGc3MFRwWEpxa2Mzb0d1VzJZQlE0ajhsR2dtWjlHcjU4QzFvc0RGTUcx?=
- =?utf-8?B?SFdXTkY3ZWtqc2lQSnp0eXhoWml2YVYxME9MZjYrUURaSE9GWm5kL2ZNVTFQ?=
- =?utf-8?B?VzJRWUlFQXEzQTJQNTlJcjdpTk00eGFmMW9LUzcyOUlyeW5jTEV4cndaN3Rv?=
- =?utf-8?B?SXdtcmRrUzV0WEs2eGJudmh4MXR5YUZ2YWxLbzBDMzdyeWpVallManVnd3dO?=
- =?utf-8?B?bGlLa3NKYUVGQlR6bmJjMmpPNkNIYmF4UjZISU5sWUc3c3BlcEsya1V1bEZz?=
- =?utf-8?B?ZWpjYVRsZkVqbHUxQ2Y4MmtuczR6MVB2ck1xTmE0c3JBMzVnYW5hbFJRNlFF?=
- =?utf-8?B?VjB4OXZFSnpKK2kwSThmYXZxTkNFSkRXdVhHMmpwWWI5OVJmd1k4dloremE2?=
- =?utf-8?B?SnpUd2xTeFFUTlZObC84WGpobjhOdmc1RTQ2SXovSFAydjlLMXhFMXZYRWRU?=
- =?utf-8?B?OVpQeFVwUU5TallvS2N1YnhKTTg4Z2VZai84L0lqdXU1dDBzTjAzbEVNZlBm?=
- =?utf-8?B?ZjNJQWN4V2FndWp1VnRwZDFLY0J3SHRXYmkzeEE2NlZpSEN3bmJOMnovUlQx?=
- =?utf-8?B?NEZRQkZDNnFvU0NLeEw0NzlWWk9vWDNaeEt0aXY2WFR6UEhGSmhLeDk1SExK?=
- =?utf-8?B?Y2xJWnJRbStRSXBvaVVJTHdEaGVld3U0ZGQ4MnMxL1BIYkJqNy9wT0UwclB6?=
- =?utf-8?B?WEtCd1RHL2JqNHp1VlU0Wk1DMkpVV09Zc1RXODNPVXp0YzBvV1F6T3hLQk91?=
- =?utf-8?Q?YlWKnhQ3KMg1bDNzBwx17ag=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 400973ed-ddb9-4336-b125-08dbca4d1b59
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB8010.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 11:27:52.6514
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3/rQlAlzXT0gFzkR1tmy9odDLE6mdo/UkpTKEs8E8pf/UdsGfoekBlZBigu9m+0FdRvx0HqgemUngUcxIwmE3/foP0/I7GamrZdjcqmDmM4q+Ruk5IupCUMCphTuJOwj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR01MB8525
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of: export of_find_next_cache_node() for modules
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20231011112726.166052-1-dmitry.baryshkov@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231011112726.166052-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
-On 11/10/2023 15:31, Joel Stanley wrote:
-> On Thu, 5 Oct 2023 at 14:26, Chanh Nguyen <chanh@os.amperecomputing.com> wrote:
->>
->> Updates the device tree to support some features on Ampere's
->> Mt.Mitchell BMC and Ampere's Mt.Jade BMC.
->>
->> Chanh Nguyen (7):
->>    ARM: dts: aspeed: mtjade, mtmitchell: Update gpio-line-names
->>    ARM: dts: aspeed: mtjade, mtmitchell: Add new gpio-line-names
->>    ARM: dts: aspeed: mtjade: Add the gpio-hog
->>    ARM: dts: aspeed: mtmitchell: Add LEDs
->>    ARM: dts: aspeed: mtmitchell: Add inlet temperature sensor
->>    ARM: dts: aspeed: mtmitchell: Remove redundant ADC configurations
->>    ARM: dts: aspeed: mtmitchell: Add I2C NVMe alias port
+On 10/11/23 13:27, Dmitry Baryshkov wrote:
+> The qcom-cpufreq-nvmem module uses of_find_next_cache_node() function,
+> so export it to be available to the modules.
 > 
-> I'll merge all patches except patch 4. Please resend that on its own
-> once you've added names.
+> Fixes: 7683a63c08ff ("cpufreq: qcom-nvmem: create L2 cache device")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Thank Joel very much! Please also help me push them up at 
-https://github.com/openbmc/linux !
+Pity the testing robot didn't catch this
 
-I'll resend patch 4 later.
-
-> 
-> We should consider creating openbmc documenatiton on recommended LED
-> names. Would you be able to help with that?
-> 
-> Cheers,
-> 
-> Joel
-> 
-
-Yes Joel! I'm glad to help that.
-
-
-> 
->>
->>   .../dts/aspeed/aspeed-bmc-ampere-mtjade.dts   |  66 ++--
->>   .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   | 315 ++++++++++++++++--
->>   2 files changed, 334 insertions(+), 47 deletions(-)
->>
->> --
->> 2.17.1
->>
+Konrad
 
