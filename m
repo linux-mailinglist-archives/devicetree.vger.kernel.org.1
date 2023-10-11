@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0CCA7C5343
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:12:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BB87C5346
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:12:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C0B5282EDF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:12:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D701C20F74
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC6F1F173;
-	Wed, 11 Oct 2023 12:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A671F182;
+	Wed, 11 Oct 2023 12:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SCpf6AZq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZzZ2luOY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8631EA97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA851F16C
 	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:12:18 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1770F2103
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:10:45 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-405524e6769so5550695e9.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:10:45 -0700 (PDT)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD842D52
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:11:18 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so66749305e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:11:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697026211; x=1697631011; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697026268; x=1697631068; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0YuxREZxQvI3tZUj1y+IWBqA31a/S6I3QHsKO3D5ABk=;
-        b=SCpf6AZqF1nF3TZY2ygxJjU8tbxx3tPCJvH5u+xiNaSf/6cXokVWw8TYbAK30FpumR
-         T/h/0uHC79yqH+BX37gCd+5LTtJGZRQxqTdtIweaGafnEhbUxpgZcsOwIfVXDqwQMfwV
-         XgjlQAEHFYPtAV5IMSYTW4MDrDAFBDq8im4hYwGyCFXR92FjQW/v3C3qRq2PVvvS59Ky
-         IbrymsdKSK6W+sKSTdnRBxrEvV1f0Y+gVA83ruN33YlKNieN1VmLj6h+UpPwhFDz/IQS
-         ffQwpXmnZ+V3I9Rj2n9ud8yUsmhAty+9Xw+5eJfT/+EXUZ5Y9FMiOjWSbTIX2mjSzFOG
-         BjCQ==
+        bh=QPLserjwwsbucCfxghBr6ZgzGZTYvBNBd9opTNn+n1g=;
+        b=ZzZ2luOYO8aq+BRA3v7LWBeMv/r6vy842m679iVQxc46Xgc2oowbI4gm5twPApK1D1
+         23IEIpNk824P4N808VNNfcc2YD1dFW2e/shixR4h9ULxUDwZuT5EKU36u2HSmLVqUX4P
+         Ry2QYFV2OalOeXikgbWv3vrNmjVK5+soai0iaK1u4wT57cmtIyqUNCym32gk014cKyca
+         OPdRXBJT22unB94WooWrJ8CZhfrQAfm55jPj6F81ORAoYK1xW48Ew3wFg/Bgq8xLBVi/
+         AYVVky+r417DQbbalUi56CIfTmu+NUH9ea3PSvK2lmNWpxx+q9wrGhavsFzsIYOxgDH0
+         qALw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697026211; x=1697631011;
+        d=1e100.net; s=20230601; t=1697026268; x=1697631068;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0YuxREZxQvI3tZUj1y+IWBqA31a/S6I3QHsKO3D5ABk=;
-        b=JiIbPRm2aR9t3tqLeWcltyfMAn0GGXpvav90HVSKyQXLjv4aUuQiBdT+JJ+w/PqQ8V
-         KS2tGK+7Nhjz2tHiO7NZc0evLoorNkjQkiLLceftXCBB4hQS16E3tcgRFZeo2eNaMyh+
-         rk3ojSQYcoHOG3qG+zvc3iA9TpSvlIicWcOL58akOYyCygKkCtpmh1UQPW+hZssT3dPl
-         plYbeN93LE6ZfJSkn1IWt09U0ifKcxVYerYXu+tGoIPadVTBh77Sy3YsAkqDw2Xf/8h1
-         OndL6lP63VPXDbvKS07lbRy7NpGpZhK6Nix9vZ6mUyxsLQFwBRgyFhu1p8YUs9w7G/40
-         EDyA==
-X-Gm-Message-State: AOJu0YwjSG05SSr7vF2f6jR2Mk58IRYktLjiPlBDUyp7gRqkPytIbUcz
-	XpETfOBC2ZldQARCoKB7vRWnWg==
-X-Google-Smtp-Source: AGHT+IFej/5ayi8PI4oLjjatno7uw1mo+oOL4QBnoMGwo84AkbVNBqUIDzpbQ4PilDXJwCzZ+KTYzQ==
-X-Received: by 2002:a05:600c:5390:b0:405:29ba:9b5c with SMTP id hg16-20020a05600c539000b0040529ba9b5cmr14599821wmb.16.1697026210671;
-        Wed, 11 Oct 2023 05:10:10 -0700 (PDT)
+        bh=QPLserjwwsbucCfxghBr6ZgzGZTYvBNBd9opTNn+n1g=;
+        b=m1CEAAjQeAO75e0gqTCKt/9y7bGbj3Ml3516OLWOAn8xVNyQtoI819yUwGZvP8tGqs
+         OUg1E9etzff0oSUGBxFh9AfbKqjMQoikKp0k8RH6aiYCMKpg8/G6XJNYl7IA+JQ9Trcm
+         Pnwyq2vatj4GgvCwvW4FfH/6a1WFtznCKciTM5WsaFCY9/lVVqV0ZMnOAmwvvh8V0d3y
+         W0t+tqWgHvNxvAzOk9DN34vOkjMW8NUylv6PqqNvUIIdBr3ESvc1nwie4VAO/2zgMOcV
+         ALnfErzU4bDNVJmQYFnYuisbjfneLZwTBhutwmbWR/zHGzqJk4JxbTonDlpY83jGFb8F
+         OA7A==
+X-Gm-Message-State: AOJu0YyNx3XCqgWwTIDLNMfdhKNxfev6OvikaM54TRBnHhARtesHw8nH
+	V56y9duHfboR5262xVHzYkKYSw==
+X-Google-Smtp-Source: AGHT+IE64a5xkV0na2V2QKvpWQnIDZTy/kQyX3TYj6F0p8SjSaAETAL17LJW0hN0q6oe9Igo6VSGpw==
+X-Received: by 2002:a05:600c:c10:b0:407:536d:2e93 with SMTP id fm16-20020a05600c0c1000b00407536d2e93mr4434583wmb.8.1697026268499;
+        Wed, 11 Oct 2023 05:11:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b004013797efb6sm18902138wme.9.2023.10.11.05.10.08
+        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b004013797efb6sm18902138wme.9.2023.10.11.05.11.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 05:10:10 -0700 (PDT)
-Message-ID: <03090f30-8788-45ff-a4eb-66199f0cf3cf@linaro.org>
-Date: Wed, 11 Oct 2023 14:10:08 +0200
+        Wed, 11 Oct 2023 05:11:07 -0700 (PDT)
+Message-ID: <fa75fdbd-6058-44ff-a65f-825837d85205@linaro.org>
+Date: Wed, 11 Oct 2023 14:11:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,6 +85,8 @@ Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  linux-serial@vger.kernel.org
 References: <20231010224928.2296997-1-peter.griffin@linaro.org>
  <2023101101-mauve-underarm-1b48@gregkh>
+ <CADrjBPr2UAfpuuw6M8T5UaiTmCYz0e3jabfDCcUJtH+35mwBKw@mail.gmail.com>
+ <2023101139-skinless-lash-b777@gregkh>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,44 +132,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2023101101-mauve-underarm-1b48@gregkh>
+In-Reply-To: <2023101139-skinless-lash-b777@gregkh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 09:44, Greg KH wrote:
-> On Tue, Oct 10, 2023 at 11:49:08PM +0100, Peter Griffin wrote:
->> Hi folks,
+On 11/10/2023 11:11, Greg KH wrote:
+>>>
+>>> So you have sent a patch series that crosses multiple subsystems, who is
+>>> supposed to be taking these patches?  Or do you not want them actually
+>>> merged?
 >>
->> Firstly, thanks to everyone who reviewed the v1 series! V2 incorporates all
->> the review feedback received so far.
->>
->> This series adds initial SoC support for the GS101 SoC and also initial board
->> support for Pixel 6 phone (Oriole).
->>
->> The gs101 / Tensor SoC is also used in Pixel6a (bluejay) and Pixel 6 Pro
->> (raven) phones. Currently DT is added for the gs101 SoC and Oriole.
->> As you can see from the patches the SoC is based on a Samsung Exynos SoC,
->> and therefore lots of the low level Exynos drivers can be re-used.
->>
->> The support added in this series consists of:
->> * cpus
->> * pinctrl
->> * some CCF implementation
->> * watchdog
->> * uart
->> * gpio
+>> Krzysztof indicated here:
+>> https://lore.kernel.org/all/b1598405-b01f-426a-aaba-89f2d2dc9c2e@linaro.org/
+>> that he would like to be the one applying the entire series through the Samsung
+>> SoC tree. If that's fine with everyone (it's OK with me).
 > 
-> So you have sent a patch series that crosses multiple subsystems, who is
-> supposed to be taking these patches?  Or do you not want them actually
-> merged?
+> As the serial changes are not ok (see my comments on them), I don't
+> think they should be going through any tree at this point in time :)
 
-Me, through Samsung SoC -> ARM SoC. The cover letter could say that.
+Yes, of course, I still need (or will need) your Ack.
+
+> 
+> Also, in your 00/XX email, say what tree you expect them to go through
+> so we have a chance to know that please.
+
++1
 
 Best regards,
 Krzysztof
