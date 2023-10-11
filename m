@@ -1,113 +1,154 @@
-Return-Path: <devicetree+bounces-7517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7617C4962
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:46:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 366CD7C4966
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3634281EB2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:46:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5725B1C20C78
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F66DDA2;
-	Wed, 11 Oct 2023 05:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D086DDD4;
+	Wed, 11 Oct 2023 05:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hY3M71cZ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="bxWUnyk8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66089D30E
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:46:38 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498B88E;
-	Tue, 10 Oct 2023 22:46:35 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B4K2Yc016645;
-	Wed, 11 Oct 2023 05:46:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=SWeQep/DffQOk2u0MlJYTQgqm5T1/Izn8jXn4Psf6eQ=;
- b=hY3M71cZkqk+tBAcZWJp2kNx2+rUy6YWvBfZGyIEx7ToKzD7M5vbYBdw2kE+s//OEiMP
- //f6VKmpFy/In0JXAGeaYnEQfFAr3i0mWJDILwi5MkxcJaaFEYIxf0msTQijdMZhwWrr
- QrMU036j7/51WxJKRmigeGT1Msn1f3vr3o/lLo+VkmB+SmL6Bwh0100wMVZIXnNfxMOH
- 2AJP+WU3r33r1OkOlFkA1mPX4HuZwpXdbotyzX5gigjpXTnEXE8EV8p0vhJmTFHhbZhk
- Ui8odK/Czo6q51JhwAbHU6IzaFAtf1thH8+L6vGWpSsYXJLeumb+IbGCv1DPi5CylGhe Rg== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tn4he24ye-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 05:46:31 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39B5k3nF014284
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 05:46:03 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 10 Oct
- 2023 22:46:00 -0700
-Message-ID: <c23be999-e7fb-5a31-2b99-013626067e79@quicinc.com>
-Date: Wed, 11 Oct 2023 11:15:57 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A606D30E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:47:46 +0000 (UTC)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6020C94
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:47:45 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6910ea9cddbso5408427b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1697003265; x=1697608065; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S1z5BV/1nAQApTMZ3kIv0n5k/QlyXTmBO9Apt2IJE9I=;
+        b=bxWUnyk8zt8NarNiz+9sPvcMfTOLEnMcMnLRIzvCpE6+J9z8gt46qmbHLFIhfEdjjD
+         gROxT3A3cjcAFktGiqJInZAI+xaze4cc4ik7qGhIHzD0Ih95J+6/V+ybHTv4izhs2zbb
+         nJ6wWA0ZVzYloiqapGKwu9v4xmkWGr4TEelCeP1AkpG8Owosdr7O4wnKFR4OR5UOxg9k
+         ggoiW+9SZFymRwGUbpRG5XLaaX1AguTNCLl52jD1tul8z66BD3CsXfTYSXRbIaXnAJVY
+         uNF3lfjoy7lHne+MRGVJhGwO+UoHthbPDz1bd4E5l52nruFg7Y0ciMBAC+BXYa8e3bma
+         ey5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697003265; x=1697608065;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S1z5BV/1nAQApTMZ3kIv0n5k/QlyXTmBO9Apt2IJE9I=;
+        b=MwkVJDAaEL0IwGstdPL4jNG2J7wdlVa9ib+HjDeti9s0MWMbBpUD3BhdbEnh0yKAEV
+         bJXw/b0+Ko4D53AfOdVjaE+x+xXiDbsc1ZBeaQMoMJ+DXOr4fOczz9qUweZB42zIVRLV
+         0p9rp78upIIKxjPgoc2vvfULYvj35ExBTiJTbGKA18UgR3ZXXN5mv3DtK1AF3pqbzdjX
+         AvBPoSt9+EkVaVw1KPImKpJkxoJlKR5a4ycssLHefX5POCJtopOgH2o46xQCSLID+lHu
+         Xv8eMYz5+LubnuqciyqrQcMjVtQu3gA5E+zZpSCXDuRnu7ww7XVWL/3KCBbuT6dXR4GZ
+         Nj8w==
+X-Gm-Message-State: AOJu0YxLiDGrGGWkKp4TvhEJf6zho/cuIrPYQODEQqoH49eCkWA/COsF
+	ostzmd+Fk5V868Ndw88VzxlAwVQfz8RyKOloSQxHrA==
+X-Google-Smtp-Source: AGHT+IHtKbcxKIGkPvwbnn563Fvst0cY7hetX0wRRlTzsC9gEczzpM8H2HoRC37CEc9JQvVElxuWIK/0GajJr8wJZYI=
+X-Received: by 2002:a05:6a20:6a0c:b0:13a:59b1:c884 with SMTP id
+ p12-20020a056a206a0c00b0013a59b1c884mr22303408pzk.40.1697003264899; Tue, 10
+ Oct 2023 22:47:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,tcsr: Add compatible for
- sm8{2|3|5}50
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Lee Jones <lee@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1696954157-16327-1-git-send-email-quic_mojha@quicinc.com>
- <f189b1e9-e1cb-4bbb-a138-b10322684b09@linaro.org>
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <f189b1e9-e1cb-4bbb-a138-b10322684b09@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -WZwJl7_CQ9Q4YFc-zS9neztlA5TOXef
-X-Proofpoint-ORIG-GUID: -WZwJl7_CQ9Q4YFc-zS9neztlA5TOXef
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-11_03,2023-10-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=527
- suspectscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
- impostorscore=0 phishscore=0 clxscore=1015 bulkscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310110051
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20231007060639.725350-1-yangcong5@huaqin.corp-partner.google.com>
+ <20231007060639.725350-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=W3ef3vWrWRDPKgeUjcapEticj4=EWdC-bOb=ph0DShsA@mail.gmail.com>
+ <CAHwB_N+=h8-5H6SM8REAge19SgLvrZD=drAP83QnSuuqB5gN8A@mail.gmail.com> <CAD=FV=XtqPJ77dx8uRb0=tMvC3CvgH5X+7mUJeXgcG228kZfUg@mail.gmail.com>
+In-Reply-To: <CAD=FV=XtqPJ77dx8uRb0=tMvC3CvgH5X+7mUJeXgcG228kZfUg@mail.gmail.com>
+From: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Date: Wed, 11 Oct 2023 13:47:33 +0800
+Message-ID: <CAHwB_NLJKiQPy=Y_kRwBNqhvaR1y-O9QYvaC=Y8PbymTygdJsg@mail.gmail.com>
+Subject: Re: [v1 2/2] drm/panel: ili9882t: Avoid blurred screen from fast sleep
+To: Doug Anderson <dianders@google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
+	airlied@gmail.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi,
 
+On Wed, Oct 11, 2023 at 3:11=E2=80=AFAM Doug Anderson <dianders@google.com>=
+ wrote:
+>
+> Hi,
+>
+> On Tue, Oct 10, 2023 at 4:36=E2=80=AFAM cong yang
+> <yangcong5@huaqin.corp-partner.google.com> wrote:
+> >
+> > Hi,
+> >
+> > On Tue, Oct 10, 2023 at 4:44=E2=80=AFAM Doug Anderson <dianders@google.=
+com> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Fri, Oct 6, 2023 at 11:07=E2=80=AFPM Cong Yang
+> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> > > >
+> > > > At present, we have found that there may be a problem of blurred
+> > > > screen during fast sleep/resume. The direct cause of the blurred
+> > > > screen is that the IC does not receive 0x28/0x10. Because of the
+> > > > particularity of the IC, before the panel enters sleep hid must
+> > > > stop scanning, i2c_hid_core_suspend before ili9882t_disable.
+> > > > This doesn't look very spec-compliant.
+> > >
+> > > Presumably you could be more spec compliant if we used
+> > > "panel_follower" in this case? Would that be a better solution?
+> >
+> > In the "panel_follower" solution, the phenomenon is the same.
+> > The current order is
+> > ili9882t_disable=3D>i2c_hid_core_suspend=3D>elan_i2c_hid_power_down=3D>=
+ili9882t_unprepare,
+> > ili9882t need touchpanel stop scanning,i2c_hid_core_suspend before
+> > ili9882t_disable.
+>
+> Ugh, that's unfortunate. Though is there a reason why you couldn't
+> just move the `ili9882t_enter_sleep_mode()` to `ili9882t_unprepare()`?
+> That seems like it should be OK and even perhaps makes it more
+> symmetric with thue enable?
 
-On 10/10/2023 10:07 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 10/10/23 18:09, Mukesh Ojha wrote:
->> Document the compatible for sm8{2|3|5}50 SoCs.
-> sm8[235]0 would work as well ;)
+Thank you for your suggestion. If the timing is met and there is no problem=
+,
+I will implement it in V3.
 
-Sure, Thanks.
-
--Mukesh
-> 
-> Konrad
+>
+>
+> > > > @@ -507,7 +526,7 @@ static int ili9882t_prepare(struct drm_panel *p=
+anel)
+> > > >         gpiod_set_value(ili->enable_gpio, 1);
+> > > >         usleep_range(1000, 2000);
+> > > >         gpiod_set_value(ili->enable_gpio, 0);
+> > > > -       usleep_range(1000, 2000);
+> > > > +       usleep_range(40000, 50000);
+> > >
+> > > nit: use 40000, 41000 instead of 40000, 50000. Linux almost always
+> > > uses the longer delay, so that'll save ~9 ms. The only reason for the
+> > > range is to optimize kernel wakeups which is really not a concern
+> > > here.
+> >
+> > We need 50ms delay to meet the requirement.
+>
+> I'll respond to your v2, but if you need 50 ms then your current delay is=
+ wrong.
+>
+>
+> -Doug
 
