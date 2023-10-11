@@ -1,215 +1,199 @@
-Return-Path: <devicetree+bounces-7727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02867C52CD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:00:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651647C52EA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F362C281720
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:00:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 886A81C20C39
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD3C1EA8D;
-	Wed, 11 Oct 2023 12:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01A61EA97;
+	Wed, 11 Oct 2023 12:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="juCqbqQI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hI3U2xkG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2951EA66
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:00:48 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A65AF
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:00:44 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53dd3f169d8so1161834a12.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:00:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6C41EA71
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:08:00 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B714A4
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:07:56 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40684f53ef3so66526095e9.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:07:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697025642; x=1697630442; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aVTN0BqqtO5MKlfxI7sXoH95j77MBJ0QiNgQ07twsNg=;
-        b=juCqbqQItQ0Mvjrv5Ps0hBNTLHa6owH9cKZzz8o5R7WO8hLuj2aLKWr5zCepXUxi2h
-         eMBi47RNxYZq+FeZ38rVJHtBBJ/RDVRdZIV5qXHJU4n1CDdyUpNnYQaRhzUf5ShJ+VlR
-         tJL0G7iYlsC2dzQyA27+8FGO/4mUV+iQGgSn0GHjmYoQpkuT/Gz3ccgDwGpm6C3+bz02
-         shrR5+FuqsSc7L123q0ucyPxZ9v5m/du25OeG8PbFwsW/VkbUq6pJFbQ7Sq7ilhfgv8D
-         /ho8iV8NMQARmP/wxwOEEmFKQDO3GAV+yV+JcmP4OUwzFwwYpqmfj91wpXhKvdBYT3Qh
-         1tWw==
+        d=linaro.org; s=google; t=1697026074; x=1697630874; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zXRuIlwacuOdYyOFKIMg2z15au/UO9GrOGt9xxSfLUg=;
+        b=hI3U2xkGEEXIbnjc+tktJU8ystImHvJZI7uhCSPN5N6bvxHFZ3C/Snb2ORyKrWkV3m
+         1vfoHfOjjsf2qJJbMqW9rcBgsPbwHSez2Us69aK7AjISvn4sp/0uwX5a2FZbsLdlfwUS
+         Ln5O/+fmG5vXBrTpaNw2xmOII7EGVInwM/BhiTBBYsBBm97P5TfwPfN2DVOkpaJ1RTyA
+         nrAI9EblEurWFRxuEQmAEn/wE0DyhxulvfEFFOB10449jPVfZ4Rn5zFgl4+FNoJJ1jQQ
+         q2aEit0d+On5B3B0uuI2MvbMr58ZSzkeeDAFHbCuSazpDtMbcnlE40L8+njGJtb+YWNI
+         6+Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697025642; x=1697630442;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aVTN0BqqtO5MKlfxI7sXoH95j77MBJ0QiNgQ07twsNg=;
-        b=c3js4sQLGEyOCIuugjnpA2hxUmLMqcP6ju9ae46w5I9w1YCQSDvBEOVJ7C2rE0VcIw
-         CweZqEk/BnCHsN4CmJABx8VqatCa4W90wn6qFeNy7GXFBjOhv0QX5AWTl9jpIIGzvUx9
-         IiqBYma6cVkKPEW9/FJaYfDrZ/NQxTE7s+K4l5pIC9PHTV2yE35Jl87BB4b+LdvRpihu
-         grccJO+7v6oHykKteym75iD0ntsxvrsV4ArD/9g/Zn/zG7iScCNWNPD7eHsyVmXny1ok
-         7Ty+kZ6d2iic7hIwOWqZfl6ULgj7NytR+8Y6I7D7W8ly9wBvWa4Xkbw/JQtWMT+MSewq
-         ipHw==
-X-Gm-Message-State: AOJu0YwOCdXPzPqrfQkBYc2qgfZ4FozFDrh0MCZBEiw6ik1bbwemlsXG
-	WOs0a887LzARPnT+hiFlrnRQNK7+TcjyjeZiDY6LmQ==
-X-Google-Smtp-Source: AGHT+IFKnbdS+liyq5BOO9m8ERjMSQL8biVjydd35Z2zaMUPssKf5QQkaQtgJ+ughRnn6bk/oM/oer9yveoYwYchCJs=
-X-Received: by 2002:a17:906:19b:b0:9b6:e6ff:b20b with SMTP id
- 27-20020a170906019b00b009b6e6ffb20bmr17472854ejb.8.1697025642572; Wed, 11 Oct
- 2023 05:00:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697026074; x=1697630874;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zXRuIlwacuOdYyOFKIMg2z15au/UO9GrOGt9xxSfLUg=;
+        b=WY3v1W2gJcTtAREndafiGKexR6n7QglWoT/uU+sW39lknx0q/o/9JDgIrNWx7EC2pD
+         paUfkyT5iYFAxgEOyqIVAxG5qLNNYM2lDCga2FnBqKc1siNLx5U0f2AGaaxJ7JiLK0qy
+         wiBSml/t6Qb7MqnznbYSjB7nqxuJeZ+SINA+q3B2+L906K5hdNX6FiwQ+1aXRA9IGWLw
+         TUBwsnh7iVC6pKGnEZv+VRrG+SAChb8pcUM6IUgnzBi98Xwmp6WnTtaymLdeiTLBWDvf
+         DPht2dAN5ElwhmOAfW8S4iVmFlCMmarZE6WCaGs2m94BnYinMG56pt8kw5LmbczqWTXG
+         hd1w==
+X-Gm-Message-State: AOJu0YyvIjINBQzqtzmDJFvkC3nmRW2KeE5YJ3+d84SF502+tQqaOzSk
+	Z+GpHVbIQGTEKfvpyR4Ajd6PeQ==
+X-Google-Smtp-Source: AGHT+IGjEutPppYkL0YhjPcCtpI9vIs+tY+Thj66MkeS8HxckWZbm+0GoHU8ZWsKs4frxVPm/OnS0Q==
+X-Received: by 2002:a7b:ca57:0:b0:405:34e4:14cf with SMTP id m23-20020a7bca57000000b0040534e414cfmr18886359wml.4.1697026074383;
+        Wed, 11 Oct 2023 05:07:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b004013797efb6sm18902138wme.9.2023.10.11.05.07.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 05:07:53 -0700 (PDT)
+Message-ID: <513b1049-3cc5-43ad-9ab4-8b90d79d13e8@linaro.org>
+Date: Wed, 11 Oct 2023 14:07:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1697023109-23671-1-git-send-email-quic_msarkar@quicinc.com>
- <1697023109-23671-3-git-send-email-quic_msarkar@quicinc.com>
- <CAA8EJpoLxeSvxjcyq1BMR9XuAffrxLmO-eaBYJ+Fhnb4zYmxUQ@mail.gmail.com> <6531b333-b978-6b97-5cb4-59562d775ac3@quicinc.com>
-In-Reply-To: <6531b333-b978-6b97-5cb4-59562d775ac3@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 11 Oct 2023 15:00:29 +0300
-Message-ID: <CAA8EJpoidaW8x3CAwNLWGcq2fz+x49kQWan2GXkgODUUypzKOQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] phy: qcom-qmp-pcie: add endpoint support for sa8775p
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org, 
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com, 
-	quic_nayiluri@quicinc.com, robh@kernel.org, quic_krichai@quicinc.com, 
-	quic_vbadigan@quicinc.com, quic_parass@quicinc.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/20] dt-bindings: serial: samsung: Add
+ google-gs101-uart compatible
+To: Greg KH <gregkh@linuxfoundation.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, cw00.choi@samsung.com, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+ <20231010224928.2296997-9-peter.griffin@linaro.org>
+ <2023101111-banknote-satin-1f77@gregkh>
+ <a6c57156-d3a5-4524-8ef8-6f27cf0a2c97@linaro.org>
+ <2023101137-fester-rerun-5c39@gregkh>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <2023101137-fester-rerun-5c39@gregkh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 11 Oct 2023 at 14:56, Mrinmay Sarkar <quic_msarkar@quicinc.com> wrote:
->
->
-> On 10/11/2023 5:06 PM, Dmitry Baryshkov wrote:
-> > On Wed, 11 Oct 2023 at 14:19, Mrinmay Sarkar <quic_msarkar@quicinc.com> wrote:
-> >> Add support for dual lane end point mode PHY found on sa8755p platform.
-> >>
-> >> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> >> ---
-> >>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c   | 41 ++++++++++++++++++++++++++++++
-> >>   drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5.h |  2 ++
-> >>   2 files changed, 43 insertions(+)
-> > Two minor questions.
-> >
-> >> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> >> index a63ca74..962b4a1 100644
-> >> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> >> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> >> @@ -2147,6 +2147,38 @@ static const struct qmp_phy_init_tbl sa8775p_qmp_gen4x4_pcie_rc_serdes_alt_tbl[]
-> >>          QMP_PHY_INIT_CFG(QSERDES_V5_COM_CLK_SELECT, 0x34),
-> >>   };
-> >>
-> >> +static const struct qmp_phy_init_tbl sa8775p_qmp_gen4x2_pcie_ep_serdes_alt_tbl[] = {
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_BG_TIMER, 0x02),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_SYS_CLK_CTRL, 0x07),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_CP_CTRL_MODE0, 0x27),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_CP_CTRL_MODE1, 0x0a),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_RCTRL_MODE0, 0x17),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_RCTRL_MODE1, 0x19),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_CCTRL_MODE0, 0x00),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_CCTRL_MODE1, 0x03),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_SYSCLK_EN_SEL, 0x00),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_INTEGLOOP_GAIN0_MODE0, 0xfb),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_INTEGLOOP_GAIN1_MODE0, 0x01),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_INTEGLOOP_GAIN0_MODE1, 0xfb),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_INTEGLOOP_GAIN1_MODE1, 0x01),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_CMN_MODE, 0x14),
-> > I should check whether we miss QSERDES_V5_COM_CMN_MODE in
-> > sm8450_qmp_gen4x2_pcie_ep_serdes_tbl, which is otherwise nearly
-> > identical.
-> > Also do you need to set QSERDES_V5_COM_CORE_CLK_EN here?
-> QSERDES_V5_COM_CORE_CLK_EN is common for both RC and EP
-> so we are using it in sa8775p_qmp_gen4x2_pcie_serdes_alt_tbl
->
-> -Mrinmay
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP1_MODE0, 0xff),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP2_MODE0, 0x04),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP1_MODE1, 0xff),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP2_MODE1, 0x09),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_DEC_START_MODE0, 0x19),
-> >> +       QMP_PHY_INIT_CFG(QSERDES_V5_COM_DEC_START_MODE1, 0x28),
-> >> +};
-> >> +
-> >> +static const struct qmp_phy_init_tbl sa8775p_qmp_gen4_pcie_ep_pcs_misc_tbl[] = {
-> >> +       QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_PCIE_OSC_DTCT_MODE2_CONFIG5, 0x08),
-> >> +};
-> > This is the same as sm8450_qmp_gen4x2_pcie_ep_pcs_misc_tbl
->
-> so you want me to use sm8450_qmp_gen4x2_pcie_ep_pcs_misc_tbl
-> instead of creating new one for sa8775?
+On 11/10/2023 10:57, Greg KH wrote:
+> On Wed, Oct 11, 2023 at 09:49:07AM +0100, Tudor Ambarus wrote:
+>> Hi, Greg,
+>>
+>> On 10/11/23 08:48, Greg KH wrote:
+>>> On Tue, Oct 10, 2023 at 11:49:16PM +0100, Peter Griffin wrote:
+>>>> Add dedicated google-gs101-uart compatible to the dt-schema for
+>>>> representing uart of the Google Tensor gs101 SoC.
+>>>>
+>>>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+>>>> index 8bd88d5cbb11..72471ebe5734 100644
+>>>> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+>>>> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+>>>> @@ -19,11 +19,13 @@ properties:
+>>>>    compatible:
+>>>>      oneOf:
+>>>>        - items:
+>>>> +          - const: google,gs101-uart
+>>>>            - const: samsung,exynosautov9-uart
+>>>>            - const: samsung,exynos850-uart
+>>>>        - enum:
+>>>>            - apple,s5l-uart
+>>>>            - axis,artpec8-uart
+>>>> +          - google,gs101-uart
+>>>
+>>> These shouldn't be needed, just declare the device as the same as what
+>>
+>> We should have SoC specific compatibles so that any further quirks or
+>> incompatibilities can be easily addressed.
+> 
+> "further" work on quirks or incompatibilities can be added when they are
+> found and needed.  We don't add stuff for no good reason to the kernel.
 
-If you don't see a problem with that, yes.
+With a Devicetree bindings maintainer hat:
+We expect the device-specific compatible in all bindings, followed by
+fallback. The fallback is used by the driver, the device-specific for
+any future needs.
 
->
-> -Mrinmay
->
-> >> +
-> >> +static const struct qmp_phy_init_tbl sa8775p_qmp_gen4x2_pcie_ep_pcs_alt_tbl[] = {
-> >> +       QMP_PHY_INIT_CFG(QPHY_V5_PCS_INSIG_MX_CTRL7, 0x00),
-> >> +       QMP_PHY_INIT_CFG(QPHY_V5_PCS_INSIG_SW_CTRL7, 0x00),
-> >> +};
-> > Could you please confirm that these registers belong to the V5
-> > namespace rather than V5_20 one?
-> may I know difference between V5 and V5_20 namespace
-> can't we use V5 namespace here?
+This is the practice we follow everywhere and recommend everywhere since
+some time. It is also documented here:
 
-Register names are different, see existing v5 vs v5.20 and v4 vs v4.20
-headers. So, I'd kindly ask to use the appropriate namespace.
+https://elixir.bootlin.com/linux/v6.6-rc5/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
 
->
-> -Mrinmay
-> >> +
-> >>   struct qmp_pcie_offsets {
-> >>          u16 serdes;
-> >>          u16 pcs;
-> >> @@ -3043,6 +3075,15 @@ static const struct qmp_phy_cfg sa8775p_qmp_gen4x2_pciephy_cfg = {
-> >>                  .pcs_misc_num   = ARRAY_SIZE(sa8775p_qmp_gen4_pcie_rc_pcs_misc_tbl),
-> >>          },
-> >>
-> >> +       .tbls_ep = &(const struct qmp_phy_cfg_tbls) {
-> >> +               .serdes         = sa8775p_qmp_gen4x2_pcie_ep_serdes_alt_tbl,
-> >> +               .serdes_num     = ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_ep_serdes_alt_tbl),
-> >> +               .pcs_misc       = sa8775p_qmp_gen4_pcie_ep_pcs_misc_tbl,
-> >> +               .pcs_misc_num   = ARRAY_SIZE(sa8775p_qmp_gen4_pcie_ep_pcs_misc_tbl),
-> >> +               .pcs            = sa8775p_qmp_gen4x2_pcie_ep_pcs_alt_tbl,
-> >> +               .pcs_num        = ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_ep_pcs_alt_tbl),
-> >> +       },
-> >> +
-> >>          .reset_list             = sdm845_pciephy_reset_l,
-> >>          .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
-> >>          .vreg_list              = qmp_phy_vreg_l,
-> >> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5.h
-> >> index 36cc80b..6ee1c33 100644
-> >> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5.h
-> >> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5.h
-> >> @@ -11,6 +11,8 @@
-> >>   #define QPHY_V5_PCS_PCS_STATUS1                                0x014
-> >>   #define QPHY_V5_PCS_POWER_DOWN_CONTROL                 0x040
-> >>   #define QPHY_V5_PCS_START_CONTROL                      0x044
-> >> +#define QPHY_V5_PCS_INSIG_SW_CTRL7                     0x060
-> >> +#define QPHY_V5_PCS_INSIG_MX_CTRL7                     0x07c
-> >>   #define QPHY_V5_PCS_LOCK_DETECT_CONFIG1                        0x0c4
-> >>   #define QPHY_V5_PCS_LOCK_DETECT_CONFIG2                        0x0c8
-> >>   #define QPHY_V5_PCS_LOCK_DETECT_CONFIG3                        0x0cc
-> >> --
-> >> 2.7.4
-> >>
-> >
+Best regards,
+Krzysztof
 
-
-
--- 
-With best wishes
-Dmitry
 
