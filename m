@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-7483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D327C476B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:48:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85ADC7C4771
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F06DA2816DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:48:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2C5281A49
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D17819;
-	Wed, 11 Oct 2023 01:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0AE819;
+	Wed, 11 Oct 2023 01:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="QBUutq5V"
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="KF89DXyu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D4B80D
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:48:16 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404AC92;
-	Tue, 10 Oct 2023 18:48:14 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1143677366b.1;
-        Tue, 10 Oct 2023 18:48:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F65A80D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:48:58 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34BE492;
+	Tue, 10 Oct 2023 18:48:57 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9b29186e20aso1071930066b.2;
+        Tue, 10 Oct 2023 18:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1696988893; x=1697593693; darn=vger.kernel.org;
+        d=jms.id.au; s=google; t=1696988935; x=1697593735; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=igjlN4dO3JjcdB2G4ww8hAUFD7DZ0Fw5neZs9pJmc38=;
-        b=QBUutq5Vpvc3gbVYnxPj3J9ZtWQTiMQ4/ZPQpJLbxjF0OZfy06F1Pl3XkXZw0e6DFB
-         Ubi0YKI9VP0JLNLxqQFRFVuNSmcreJFSxGi5Ka8zdCx3W6mBkLkK1Wfg4VjGFpK6pT8i
-         1zLWKYZlrJHggYzEeX8L5hJXYgpnHvnPjeC8I=
+        bh=6blQLn2I3D+7E4kfx/VjBl3FG3wnWcWQYJiYRJd/c58=;
+        b=KF89DXyuWInnVXolw6CjAes9xQpJELJ2rhIvQ+nOf4TxbO/r7oQgW/XHSCE0KzGqot
+         FvLRLCOd/w1cvbTatFLU3tQL6iT593yGiXVzpGhsFjFaSE4nGBaUQOQSA3pMsdzjqhlG
+         w5+JRqXGgwc3bGjgjk3Aa8IU7xLp25mbBrU7I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696988893; x=1697593693;
+        d=1e100.net; s=20230601; t=1696988935; x=1697593735;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=igjlN4dO3JjcdB2G4ww8hAUFD7DZ0Fw5neZs9pJmc38=;
-        b=T2IJCRMcJyuCHovFTPIgUQRXjWuKdIx3ZXfq8FB2104P97b/TdR01Zv082s0Bb1hDE
-         qheal/xG/2LQFkcNNFdHgl0rN7EFq3k8w0J9PTip3OOIXRc9yzbjNgzHqT+JOvaALr6G
-         pC3aKxXLPA4Ba1PpBDjgvEdUQGyUhwIezZH4BjTbH61cpN+LbNDhpGmJ4acswp2K5AQt
-         Sxb1naARnspLSlxy8e7NqM1r4BWnZgq5/yImy2zhrQPkAS7MNMwCdcBgkK9TI09CYHsK
-         bMPBBDbqaFiakgYMY4N+0H/hBOgVtZr78unA3p8HSVxYuE0e/IcnJ9lpq0xjsordSddo
-         85dA==
-X-Gm-Message-State: AOJu0Yxm2AUBAEySHp8eYCvl2+n8APk8k97cIrzdzSpaUA7z8sdYLfKN
-	widU5NpSR0qYWo+EQp2IFzEQ7N4Lcyv1Zt6/Bx4=
-X-Google-Smtp-Source: AGHT+IEuuMqEy3USpJDXR0kSSSQMnE9Vm8JFze2cJqxGftCWpvdSX0K+UCUFBZu0kfb7wHhQh1dEjjpMVzNhVPs+EdA=
-X-Received: by 2002:a17:907:7890:b0:9ae:711d:7e03 with SMTP id
- ku16-20020a170907789000b009ae711d7e03mr17862404ejc.15.1696988892477; Tue, 10
- Oct 2023 18:48:12 -0700 (PDT)
+        bh=6blQLn2I3D+7E4kfx/VjBl3FG3wnWcWQYJiYRJd/c58=;
+        b=X2IWMYrLE+px9kwIwtQOE8vWHgXA5Soz5qqSpjo5cSXUW32PwfQQmtpeUn1iNZb1dH
+         vFBd49kT0ps49Al23kqNWUxcODjRb8DdYEY5NK+leWXBGCWbSlSyg45OuKpBOBUcY1Kv
+         nBHpXURC8bA3ByChWbIs/1WOgWOdIg2oV+XBZMg8cpslgT6PSUk3qmIZSACSslSlisi0
+         ihiygx/hh2owrqJR7HUpP/EVD83FRJkY1GBx5bCG8YF6Mhn4pqMDgFja1oSrVL0yhZ+n
+         WCLyGFwkA2KWVjxbkSyWAsHx/imH4c7x9NpcEdql230DvSW0QA83+fSb3L8hWyFGjcx0
+         GhMA==
+X-Gm-Message-State: AOJu0Yzm6FN2uMHwaZRLhk5ma+4qqANg/uBc7SE1r1xk1GvAOjQ4PZd2
+	rY3hgVal0ilrkYmsPe1KNX4j0q9zoszfYhefJNc=
+X-Google-Smtp-Source: AGHT+IG7b/tITQaSOSHGVjLPS11JqPX4ZYJdmpfkrJEDokNKEjsIU/5znXvrSPXzCXj1BdyVDXUgsUUTnAEqW9oJgGI=
+X-Received: by 2002:a17:906:10da:b0:9a9:e393:8bcd with SMTP id
+ v26-20020a17090610da00b009a9e3938bcdmr16813208ejv.5.1696988935659; Tue, 10
+ Oct 2023 18:48:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com> <20231005035525.19036-2-chanh@os.amperecomputing.com>
-In-Reply-To: <20231005035525.19036-2-chanh@os.amperecomputing.com>
+References: <20231005035525.19036-1-chanh@os.amperecomputing.com> <20231005035525.19036-3-chanh@os.amperecomputing.com>
+In-Reply-To: <20231005035525.19036-3-chanh@os.amperecomputing.com>
 From: Joel Stanley <joel@jms.id.au>
-Date: Wed, 11 Oct 2023 12:18:01 +1030
-Message-ID: <CACPK8XdpUpg0vDG7UwO-o=dYD-88evizSUb-yKm9qdUP2rjzdg@mail.gmail.com>
-Subject: Re: [PATCH 1/7] ARM: dts: aspeed: mtjade, mtmitchell: Update gpio-line-names
+Date: Wed, 11 Oct 2023 12:18:44 +1030
+Message-ID: <CACPK8XcPb_o+vVvZVeF0nqo+-4apS1TjY6o5sFPF7F24KR6ERw@mail.gmail.com>
+Subject: Re: [PATCH 2/7] ARM: dts: aspeed: mtjade, mtmitchell: Add new gpio-line-names
 To: Chanh Nguyen <chanh@os.amperecomputing.com>
 Cc: OpenBMC Maillist <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -80,118 +80,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 On Thu, 5 Oct 2023 at 14:26, Chanh Nguyen <chanh@os.amperecomputing.com> wrote:
 >
-> Update GPIO line-name to follow naming convention specified at
-> github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
+> Add new gpio-line-names from the Mt.Jade and Mt.Mitchell
+> HW schematic.
+>
+> Mt.Jade
+>   GPIOB5: presence-cpu0
+>   GPIOF0: ps0-pgood
+>   GPIOF1: ps1-pgood
+>   GPIOG2: host0-shd-ack-n
+>   GPIOH0: uart1-mode1
+>   GPIOH1: uart2-mode1
+>   GPIOH2: uart3-mode1
+>   GPIOH3: uart4-mode1
+>   GPIOH7: i2c6-reset-n
+>   GPIOH3: host0-reboot-ack-n
+>   GPIOM4: s0-i2c9-alert-n
+>   GPIOM5: s1-i2c9-alert-n
+>   GPIOQ6: led-identify
+>   GPIOS0: s0-vr-hot-n
+>   GPIOS1: s1-vr-hot-n
+>   GPIOS5: vr-pmbus-sel-n
+>   GPIOY3: bmc-vga-en-n
+>   GPIOZ3: s0-rtc-lock
+>   GPIOAC2: spi0-program-sel
+>   GPIOAC3: spi0-backup-sel
+>
+> Mt.Mitchell:
+>   GPIOC3: bmc-debug-mode
+>   GPIOE1: eth-phy-int-n
+>   GPIOH0: jtag-program-sel
+>   GPIOH1: fpga-program-b
+>   GPIOW3: s1-pcp-pgood
 >
 > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+
+I didn't check that you had the assignments correct, but the structure
+looks good.
 
 Reviewed-by: Joel Stanley <joel@jms.id.au>
 
 > ---
 >  .../dts/aspeed/aspeed-bmc-ampere-mtjade.dts   | 42 +++++++++----------
->  .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   |  6 +--
->  2 files changed, 24 insertions(+), 24 deletions(-)
+>  .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   |  9 ++--
+>  2 files changed, 26 insertions(+), 25 deletions(-)
 >
 > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
-> index 0a51d2e32fab..e57efcc8522a 100644
+> index e57efcc8522a..c87be433bdd0 100644
 > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
 > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
-> @@ -760,30 +760,30 @@
->
->  &gpio {
+> @@ -762,42 +762,42 @@
 >         gpio-line-names =
-> -       /*A0-A7*/       "","","","S0_BMC_SPECIAL_BOOT","","","","",
-> -       /*B0-B7*/       "BMC_SELECT_EEPROM","","","",
-> -                       "POWER_BUTTON","","","",
-> +       /*A0-A7*/       "","","","host0-special-boot","","","","",
-> +       /*B0-B7*/       "i2c-backup-sel","","","",
-> +                       "power-button","","","",
+>         /*A0-A7*/       "","","","host0-special-boot","","","","",
+>         /*B0-B7*/       "i2c-backup-sel","","","",
+> -                       "power-button","","","",
+> +                       "power-button","presence-cpu0","","",
 >         /*C0-C7*/       "","","","","","","","",
 >         /*D0-D7*/       "","","","","","","","",
 >         /*E0-E7*/       "","","","","","","","",
-> -       /*F0-F7*/       "","","BMC_SYS_PSON_L","S0_DDR_SAVE","PGOOD",
-> -                       "S1_DDR_SAVE","","",
-> -       /*G0-G7*/       "host0-ready","SHD_REQ_L","","S0_OVERTEMP_L","","",
-> +       /*F0-F7*/       "","","power-chassis-control","s0-ddr-save","power-chassis-good",
-> +                       "s1-ddr-save","","",
-> +       /*G0-G7*/       "host0-ready","host0-shd-req-n","","s0-overtemp-n","","",
->                         "","",
-> -       /*H0-H7*/       "","","","","PSU1_VIN_GOOD","PSU2_VIN_GOOD","","",
-> -       /*I0-I7*/       "PSU1_PRESENT","PSU2_PRESENT","S1_BMC_SPECIAL_BOOT",
-> -                       "","","","","",
-> -       /*J0-J7*/       "S0_HIGHTEMP_L","S0_FAULT_L","S0_SCP_AUTH_FAIL_L","",
-> +       /*H0-H7*/       "","","","","ps0-vin-good","ps1-vin-good","","",
-> +       /*I0-I7*/       "presence-ps0","presence-ps1","s1-special-boot",
-> +                               "","","","","",
-> +       /*J0-J7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n","",
->                         "","","","",
+> -       /*F0-F7*/       "","","power-chassis-control","s0-ddr-save","power-chassis-good",
+> -                       "s1-ddr-save","","",
+> -       /*G0-G7*/       "host0-ready","host0-shd-req-n","","s0-overtemp-n","","",
+> -                       "","",
+> -       /*H0-H7*/       "","","","","ps0-vin-good","ps1-vin-good","","",
+> -       /*I0-I7*/       "presence-ps0","presence-ps1","s1-special-boot",
+> -                               "","","","","",
+> -       /*J0-J7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n","",
+> -                       "","","","",
+> +       /*F0-F7*/       "ps0-pgood","ps1-pgood","power-chassis-control","s0-ddr-save",
+> +                       "power-chassis-good", "s1-ddr-save","","",
+> +       /*G0-G7*/       "host0-ready","host0-shd-req-n","host0-shd-ack-n",
+> +                       "s0-overtemp-n","","","","",
+> +       /*H0-H7*/       "uart1-mode1","uart2-mode1","uart3-mode1","uart4-mode1",
+> +                       "ps0-vin-good","ps1-vin-good","","i2c6-reset-n",
+> +       /*I0-I7*/       "presence-ps0","presence-ps1","s1-special-boot","","","","","",
+> +       /*J0-J7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
+> +                       "host0-reboot-ack-n","","","","",
 >         /*K0-K7*/       "","","","","","","","",
-> -       /*L0-L7*/       "","","","BMC_SYSRESET_L","SPI_AUTH_FAIL_L","","","",
-> +       /*L0-L7*/       "","","","host0-sysreset-n","s0-spi-auth-fail-n","","","",
->         /*M0-M7*/       "","","","","","","","",
+>         /*L0-L7*/       "","","","host0-sysreset-n","s0-spi-auth-fail-n","","","",
+> -       /*M0-M7*/       "","","","","","","","",
+> +       /*M0-M7*/       "","","","","s0-i2c9-alert-n","s1-i2c9-alert-n","","",
 >         /*N0-N7*/       "","","","","","","","",
 >         /*O0-O7*/       "","","","","","","","",
 >         /*P0-P7*/       "","","","","","","","",
-> -       /*Q0-Q7*/       "","","","","","UID_BUTTON","","",
-> -       /*R0-R7*/       "","","BMC_EXT_HIGHTEMP_L","OCP_AUX_PWREN",
-> -                       "OCP_MAIN_PWREN","RESET_BUTTON","","",
-> +       /*Q0-Q7*/       "","","","","","identify-button","","",
-> +       /*R0-R7*/       "","","ext-hightemp-n","",
-> +                       "ocp-main-pwren","reset-button","","",
->         /*S0-S7*/       "","","","","rtc-battery-voltage-read-enable","","","",
+> -       /*Q0-Q7*/       "","","","","","identify-button","","",
+> -       /*R0-R7*/       "","","ext-hightemp-n","",
+> -                       "ocp-main-pwren","reset-button","","",
+> -       /*S0-S7*/       "","","","","rtc-battery-voltage-read-enable","","","",
+> +       /*Q0-Q7*/       "","","","","","identify-button","led-identify","",
+> +       /*R0-R7*/       "","","ext-hightemp-n","","ocp-main-pwren","reset-button","","",
+> +       /*S0-S7*/       "s0-vr-hot-n","s1-vr-hot-n","","",
+> +                       "rtc-battery-voltage-read-enable","vr-pmbus-sel-n","","",
 >         /*T0-T7*/       "","","","","","","","",
 >         /*U0-U7*/       "","","","","","","","",
-> @@ -791,18 +791,18 @@
+>         /*V0-V7*/       "","","","","","","","",
 >         /*W0-W7*/       "","","","","","","","",
 >         /*X0-X7*/       "","","","","","","","",
->         /*Y0-Y7*/       "","","","","","","","",
-> -       /*Z0-Z7*/       "S0_BMC_PLIMIT","S1_FAULT_L","S1_FW_BOOT_OK","","",
-> -                       "S1_SCP_AUTH_FAIL_L","S1_OVERTEMP_L","",
-> +       /*Z0-Z7*/       "s0-plimit","s1-fault-alert","s1-fw-boot-ok","","",
-> +                       "s1-sys-auth-failure-n","s1-overtemp-n","",
+> -       /*Y0-Y7*/       "","","","","","","","",
+> -       /*Z0-Z7*/       "s0-plimit","s1-fault-alert","s1-fw-boot-ok","","",
+> +       /*Y0-Y7*/       "","","","bmc-vga-en-n","","","","",
+> +       /*Z0-Z7*/       "s0-plimit","s1-fault-alert","s1-fw-boot-ok","s0-rtc-lock","",
+>                         "s1-sys-auth-failure-n","s1-overtemp-n","",
 >         /*AA0-AA7*/     "","","","","","","","",
-> -       /*AB0-AB7*/     "S1_HIGHTEMP_L","S1_BMC_PLIMIT","S0_BMC_DDR_ADDR",
-> -                       "S1_BMC_DDR_ADR","","","","",
-> -       /*AC0-AC7*/     "SYS_PWR_GD","","","","","BMC_READY","SLAVE_PRESENT_L",
-> -                       "BMC_OCP_PG";
-> +       /*AB0-AB7*/     "s1-hightemp-n","s1-plimit","s0-ddr-addr",
-> +                       "s1-ddr-addr","","","","",
-> +       /*AC0-AC7*/     "sys-pwr-gd","","","","","","presence-cpu1",
-> +                       "ocp-pgood";
+> -       /*AB0-AB7*/     "s1-hightemp-n","s1-plimit","s0-ddr-addr",
+> -                       "s1-ddr-addr","","","","",
+> -       /*AC0-AC7*/     "sys-pwr-gd","","","","","","presence-cpu1",
+> -                       "ocp-pgood";
+> +       /*AB0-AB7*/     "s1-hightemp-n","s1-plimit","s0-ddr-addr","s1-ddr-addr","","",
+> +                       "","",
+> +       /*AC0-AC7*/     "sys-pwr-gd","","spi0-program-sel","spi0-backup-sel","bmc-ok",
+> +                       "","presence-cpu1","ocp-pgood";
 >
 >         i2c4-o-en-hog {
 >                 gpio-hog;
->                 gpios = <ASPEED_GPIO(Y, 2) GPIO_ACTIVE_HIGH>;
->                 output-high;
-> -               line-name = "BMC_I2C4_O_EN";
-> +               line-name = "i2c4-o-en";
->         };
->  };
 > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> index 0715cb9ab30c..2f571b43106d 100644
+> index 2f571b43106d..b7c4f7cfad07 100644
 > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
 > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> @@ -599,17 +599,17 @@
->         /*Q0-Q7*/       "","","","","","","","",
->         /*R0-R7*/       "","","","","","","","",
->         /*S0-S7*/       "","","identify-button","led-identify",
-> -                       "s1-ddr-save","spi-nor-access","sys-pgood","presence-cpu1",
-> +                       "s1-ddr-save","spi-nor-access","host0-ready","presence-cpu1",
->         /*T0-T7*/       "","","","","","","","",
->         /*U0-U7*/       "","","","","","","","",
+> @@ -575,16 +575,17 @@
+>         gpio-line-names =
+>         /*A0-A7*/       "","","","","","i2c2-reset-n","i2c6-reset-n","i2c4-reset-n",
+>         /*B0-B7*/       "","","","","host0-sysreset-n","host0-pmin-n","","",
+> -       /*C0-C7*/       "s0-vrd-fault-n","s1-vrd-fault-n","","",
+> +       /*C0-C7*/       "s0-vrd-fault-n","s1-vrd-fault-n","bmc-debug-mode","",
+>                         "irq-n","","vrd-sel","spd-sel",
+>         /*D0-D7*/       "presence-ps0","presence-ps1","hsc-12vmain-alt2-n","ext-high-temp-n",
+>                         "","bmc-ncsi-txen","","",
+> -       /*E0-E7*/       "","","clk50m-bmc-ncsi","","","","","",
+> +       /*E0-E7*/       "","eth-phy-int-n","clk50m-bmc-ncsi","","","","","",
+>         /*F0-F7*/       "s0-pcp-oc-warn-n","s1-pcp-oc-warn-n","power-chassis-control",
+>                         "cpu-bios-recover","s0-heartbeat","hs-csout-prochot",
+>                         "s0-vr-hot-n","s1-vr-hot-n",
+>         /*G0-G7*/       "","","hsc-12vmain-alt1-n","","","","","",
+> -       /*H0-H7*/       "","","wd-disable-n","power-chassis-good","","","","",
+> +       /*H0-H7*/       "jtag-program-sel","fpga-program-b","wd-disable-n",
+> +                       "power-chassis-good","","","","",
+>         /*I0-I7*/       "","","","","","adc-sw","power-button","rtc-battery-voltage-read-enable",
+>         /*J0-J7*/       "","","","","","","","",
+>         /*K0-K7*/       "","","","","","","","",
+> @@ -605,7 +606,7 @@
 >         /*V0-V7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
-> -                       "host0-reboot-ack-n","host0-ready","host0-shd-req-n",
-> +                       "host0-reboot-ack-n","s0-fw-boot-ok","host0-shd-req-n",
+>                         "host0-reboot-ack-n","s0-fw-boot-ok","host0-shd-req-n",
 >                         "host0-shd-ack-n","s0-overtemp-n",
->         /*W0-W7*/       "","ocp-main-pwren","ocp-pgood","",
+> -       /*W0-W7*/       "","ocp-main-pwren","ocp-pgood","",
+> +       /*W0-W7*/       "ocp-aux-pwren","ocp-main-pwren","ocp-pgood","s1-pcp-pgood",
 >                         "bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
 >         /*X0-X7*/       "i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
 >                         "s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
-> -                       "s1-overtemp-n","s1-spi-auth-fail-n",
-> +                       "s1-overtemp-n","cpld-s1-spi-auth-fail-n",
->         /*Y0-Y7*/       "","","","","","","","host0-special-boot",
->         /*Z0-Z7*/       "reset-button","ps0-pgood","ps1-pgood","","","","","";
->
 > --
 > 2.17.1
 >
