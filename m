@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-7887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F8C7C5F80
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:52:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6387C5F87
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 650DD1C209A3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:52:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A00A6282419
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736E21CF8E;
-	Wed, 11 Oct 2023 21:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4FF354F6;
+	Wed, 11 Oct 2023 21:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="fcdI+qpS"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="regXjae8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A92D328DF
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 21:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C851CF8E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 21:53:09 +0000 (UTC)
 Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC7AD3
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:52:11 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1c9c496c114so62225ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:52:11 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D4BC0
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:53:06 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1c9c145bb5bso25075ad.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:53:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1697061130; x=1697665930; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1697061186; x=1697665986; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
         bh=2PmcXQ0mdd2fjr08gUutFL5TrBrbl9n8zgazyjOunRA=;
-        b=fcdI+qpSBR6pmaQCXolsXSkAWkNvmE45RhvX1ATtKm1xP6kt37soc1o+ahIHDNB8sC
-         T9Tg41/zLQ0HhvtA829I34GaLpmA7l+kHVkpMcmN8t2BUMlPL24g1Mif1i4qgHhkCv+i
-         iV+Qlbw9ZLWjvLRiu7K3jRMFpuejYhvPIhEs/C4vVf5xzHUd8CShpG0twxDZBAGD66SO
-         OQuKHIK41pIe4x9lDPDn5/B0T6vujjQuVJHZbHqphFT2HWP/05+SqkVgLYEUYsENFfSH
-         HbJXX368l5ci7t43Xuf2gLZq5A0Tx66eyxWZt5RDxniUuiG0ZtlYlg+YhW8cmkdKkA09
-         B49g==
+        b=regXjae8T0hvJS8tuA2fPEn2N8JLb+GLKIJm7n36ZCBkkl+RE/RWMEgC7RPYqn8bhX
+         5dmOpgCFlMWoWkfG+R6728MAo/+FglpAZLcCdn6oVfUkXvHAWfpSlLery8iLDpTf9EL1
+         yRBvyMKBhOWisU6k7ldNv0ElAVbpggTY+0X5cn+/0P/SlGhoTwfWlRlGo2lZcmytAb95
+         649ErjyxcBzCrk3VepJoO60cQ0N0y1U9zNxSx4ViPN2gsfH48zPNi8XJ5DT55HgVS8Mv
+         duogtPMSyo7Q3s5qxcPxWFsCQEg6PIVb3KOr+pUEIn1NhVb1g/wB4oljvIgCoInK1qn9
+         8lWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697061130; x=1697665930;
+        d=1e100.net; s=20230601; t=1697061186; x=1697665986;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
         bh=2PmcXQ0mdd2fjr08gUutFL5TrBrbl9n8zgazyjOunRA=;
-        b=NWZ0OP5kE98yHlpt1ZPCGEge1S5Cm393OLQWv4YsNrJjaq34dZUvuEEnM/AbzbdK9T
-         Qgqh5v3DUUfIHSaqmgNTbUqZKqdcQYGnv7euWBPOfL+BeziVM5MP1Fadi6ftEvF6EHHb
-         e4Aizi43pDNpaqeIwx3wztjsBJwiJgxG1SfXm76ynry5vMNjlTxXshpViIW6aA23ov2S
-         l1wytHHynx5Tz0WlOIMuUvTD5yso2ino4b1Xg+IZ8sya5IdPZQxZ+GBN2OgcItx2Pm0S
-         4hEnhgI7+dEzc2QbK0G/P3E/rVE1e1DGU/XkO9ZvmHhkPNcRMaJH2Ylzr+41WiPV44J0
-         xxYQ==
-X-Gm-Message-State: AOJu0Yx1V/veI+l/SB2WZHMQfOQKemEkhDsOLw93U3uVd6xMdBHLsHws
-	254vmnUAb433y5zbmJ3ah+D2pQ==
-X-Google-Smtp-Source: AGHT+IGe013CnVnmhJmp+zhSawUy8VO5ZSj0A2/Kukg+lVArKQgWW9d0Gmq7bxgllBE09dqzGlmtOA==
-X-Received: by 2002:a17:902:f9d0:b0:1bd:b75a:e95f with SMTP id kz16-20020a170902f9d000b001bdb75ae95fmr362993plb.0.1697061130035;
-        Wed, 11 Oct 2023 14:52:10 -0700 (PDT)
+        b=byapdhQAbAC/Z0/1kGwcrOTniiRU7jRasreUXA13dR9vSToeS3A/bh/33nCv9mHni/
+         WpC8xvIQ7N3PeHjGs6QGPZwG8cbwJxubXw62Y2gzv8Y7tgkdo8XNsYEcOiY1KHxHq9bb
+         cx7gzZSrik9z9+qxSNh3aSRhVH3AUdT7CDBeUMH8GNWNwTpD+6abPsuqUdGNTKH6iZKd
+         wvYYTxGodNgwDuxnLB/qiQ3BAVjq6N8Kyd/O+6+V/3kLuRL6IvyMXlL96UmoIl1Epk49
+         pe43xDFmpxZKyDdCebUEVOqqZ7T9iX6SdgDD/JvUWzum5NMMM0fXHU66SjS0RlHbIuwQ
+         sHKw==
+X-Gm-Message-State: AOJu0YxCfSkCm4oGFjQnSssudAjZpZVvmcis19sTV1GiAL+RMw4TIFmU
+	HSj9NoTbtusfI1CwrT/2/37tLw==
+X-Google-Smtp-Source: AGHT+IETsYqem1IywYVaGoBv99oO2PNNSqnOYFfqteKpW8/yjwJCjGz76Y2GZW8cZaRKl9qk3jEipw==
+X-Received: by 2002:a17:903:228f:b0:1c3:976e:22e6 with SMTP id b15-20020a170903228f00b001c3976e22e6mr363213plh.12.1697061186005;
+        Wed, 11 Oct 2023 14:53:06 -0700 (PDT)
 Received: from google.com (13.65.82.34.bc.googleusercontent.com. [34.82.65.13])
-        by smtp.gmail.com with ESMTPSA id c5-20020a6566c5000000b0058988954686sm263715pgw.90.2023.10.11.14.52.08
+        by smtp.gmail.com with ESMTPSA id z21-20020a170902ee1500b001c8836a3795sm309662plb.271.2023.10.11.14.53.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 14:52:08 -0700 (PDT)
-Date: Wed, 11 Oct 2023 14:52:05 -0700
+        Wed, 11 Oct 2023 14:53:05 -0700 (PDT)
+Date: Wed, 11 Oct 2023 14:53:02 -0700
 From: William McVicker <willmcvicker@google.com>
 To: Peter Griffin <peter.griffin@linaro.org>
 Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -75,7 +75,7 @@ Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
 	kernel-team@android.com, linux-serial@vger.kernel.org
 Subject: Re: [PATCH v3 14/20] pinctrl: samsung: Add gs101 SoC pinctrl
  configuration
-Message-ID: <ZScZBbFmLUdhE1hD@google.com>
+Message-ID: <ZScZPstpJInZxwlD@google.com>
 References: <20231011184823.443959-1-peter.griffin@linaro.org>
  <20231011184823.443959-15-peter.griffin@linaro.org>
 Precedence: bulk
