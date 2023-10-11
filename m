@@ -1,175 +1,150 @@
-Return-Path: <devicetree+bounces-7623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E787C4EFA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:30:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE3507C4F15
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 683131C20C26
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:30:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3ADF28241B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9BD1D530;
-	Wed, 11 Oct 2023 09:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA2D1D54F;
+	Wed, 11 Oct 2023 09:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="mR63FrpG";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="aAdpurWh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IHSQsp+X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EF31CFA3
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:30:48 +0000 (UTC)
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EDA91;
-	Wed, 11 Oct 2023 02:30:47 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id E49215C0405;
-	Wed, 11 Oct 2023 05:30:46 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 11 Oct 2023 05:30:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm2; t=1697016646; x=1697103046; bh=My
-	dUnUPnqP4XgOECsshcETx4T1rbtS5G02GTgyxloFc=; b=mR63FrpGWOxiA39bji
-	bL87POz/TU+oMIgdhC3BK7mten8GzqVq52WEAqA+B6YcFX91pfOwTwbK37r95Hh8
-	gFB4czJU64Tzgc8/0g38dQRMffuOwGH34XF825OBlX8BJrIrpFPStsTaK2fBYBFb
-	99SEeS76pskMXyf4JUubM/76GRmy/iRG3QZlUCnK+0RslQAxfpNecw3xI8RIV+VQ
-	DmXNEja3/6CumagKfAdxTXYMWsJ1dWKxPy1/nWgv0+qitSCGb0IgGFMeJVvlM+Ov
-	+b+lRMuazAQ2JX7kQtwHdE7cPThlLQEAPmHnf14X/zTBDdhb0lIEoeL455dcJlwD
-	Bd0g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1697016646; x=1697103046; bh=MydUnUPnqP4Xg
-	OECsshcETx4T1rbtS5G02GTgyxloFc=; b=aAdpurWhi7zXAIQm4DOLBW1tUAkyE
-	BeXzteePaZRGMjQcsE+uFqK6IdI7k9WBxW4HSsoYiX4gIEd1X6TtkTHQkM0cHNwF
-	P2QRxVM5pEwKpWAojF8RCqscPqo7NaYKVJXoJ6sMae7BiXSBAnambeI839AZzLW9
-	37cBqeqnPxlgx05Y5zK5NbAYADks8ka4ckff8sXfabXitD1hTM3m56qnkBOXsl9P
-	N1q2/3mk3fu2tNyau6padx2H2Gpy6wbfeKV+pSpJQ8xRibwpuXdH6gUFcBuxa6VK
-	zbomiTpxU76dA8b2ktJ4+9p4NUQXwgJi8C+LBfscH040I1NMnHeMGF5/w==
-X-ME-Sender: <xms:RWsmZcWYRcc5bVYCJgHMljeVekRBQUXx0bK7R7LMrSKcXPYAt9RLIw>
-    <xme:RWsmZQkmdVOtIGPmYvR3UJfe2DR6drxpQwZnrSP0GCQYaXyRHd6tpAYdki44OkBsI
-    6q3VE0fQI0R3ugPadE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrheekgddugecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeufeeh
-    udenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-    enucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:RWsmZQaguZ4L-9eHOW4iZOWUHxiQf6OcjyTYrLw-RVo3RKt6kpljdQ>
-    <xmx:RWsmZbXyOVkoK7A1DQ_KlTQj0ImogMiD-a2jyCtNjKtQJdiStbVjJA>
-    <xmx:RWsmZWm52v4WVDlloYrZITw4qh6QHXlNOhlgRWIgLycm9PMjeGZI3Q>
-    <xmx:RmsmZU2gZ8ZTHa8PLabbUfn3SI5NQ-zWu8H9Jv7AGOfoo0h6zYWD8A>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id A62E6B60089; Wed, 11 Oct 2023 05:30:45 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1019-ged83ad8595-fm-20231002.001-ged83ad85
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068201D532
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:35:03 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB29AF
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:35:01 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5046bf37daeso8647162e87.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:35:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697016899; x=1697621699; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GTb+BC97Rmfw2v9f1zxZNHOqcWwQx2NwvNoBl72WQbk=;
+        b=IHSQsp+X+DVapGHCfyAPWG4945+hUcPvDiigKzOScHq1M2VRkoeSn48qS4gsdaw/ZY
+         iVBKkpyctb02u7SN5cEiLsN38PMV/H5pw/NHvnK6xpKgWABxA2bM9xpimmTHcq4TuRrx
+         52w4If3jGJ+3haYqfzOk0RhWIY6bspQszEYjXY0LlatYYCowCbCs3gdLtkeOOMkwFc7y
+         Kfn/FdLuXo2eBqJ1b6qAnrAV4zc4QOnvLhfXKPcv3jNTHX4NptQyFRq7BRC2N5A4jbX1
+         qCPHwyt9KTbWlCQT2v9PwNu5zyG19qK2wj8z7juEPDBkxrfkCTA+cZxDqPqncn45xR1O
+         o81w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697016899; x=1697621699;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GTb+BC97Rmfw2v9f1zxZNHOqcWwQx2NwvNoBl72WQbk=;
+        b=l13JVEWOIAw5o2cio3y0v7gmUhnesZAQDbTeWCh4Qm1Xnyi0IakbZ76HD8nrQRqSQd
+         z7wH6CbK3B5btGzb3S2z1KA4V98HiY8fsgzaCUCvrTphqCLtHcL7WQUWKUqTEoGwTT/w
+         OYc8gn6XjSL6HmIr4cJhHtOo+PF3EjBZ+8lDA7zRtbsfq2Xp3pfbEUdXYI9StYUrPZxn
+         VKPIgJ/TllZHztL2ut663VwRHo6JtDEEFoYxuv4XNA11dJHSbgRUsn3ChLul18t8kmuY
+         ifPY3N/RN2V23rcl6h3Sq+NTlnx+jx/KTUjhJ8tuDloYUGQYMPwHdRbJ79Rc6nE5UfX2
+         LJLQ==
+X-Gm-Message-State: AOJu0YyxbUUbvOF3PCc1/3Q11Pzftz5PQ+lt+YmPw0EkUHVHkwqRK4CJ
+	XqQrsX0tKI1XlopfdaJ0z53qqQ==
+X-Google-Smtp-Source: AGHT+IFJlLI9YnlJYD1w9CjE4Ygsx3wdxgdFBI2HqW3ROvAa5SheRB6Z7Int2nygQUmbnYk7UMB+uQ==
+X-Received: by 2002:a19:385c:0:b0:503:6e8:1008 with SMTP id d28-20020a19385c000000b0050306e81008mr16146349lfj.36.1697016899282;
+        Wed, 11 Oct 2023 02:34:59 -0700 (PDT)
+Received: from [172.30.204.44] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id v5-20020a05600c214500b003fbe791a0e8sm16376359wml.0.2023.10.11.02.34.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 02:34:58 -0700 (PDT)
+Message-ID: <a8493160-6417-4366-957b-ea4ac68f8926@linaro.org>
+Date: Wed, 11 Oct 2023 11:34:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <fe7cf585-622a-420e-8138-10de1cbca511@app.fastmail.com>
-In-Reply-To: <2023101137-fester-rerun-5c39@gregkh>
-References: <20231010224928.2296997-1-peter.griffin@linaro.org>
- <20231010224928.2296997-9-peter.griffin@linaro.org>
- <2023101111-banknote-satin-1f77@gregkh>
- <a6c57156-d3a5-4524-8ef8-6f27cf0a2c97@linaro.org>
- <2023101137-fester-rerun-5c39@gregkh>
-Date: Wed, 11 Oct 2023 11:30:25 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Tudor Ambarus" <tudor.ambarus@linaro.org>
-Cc: "Peter Griffin" <peter.griffin@linaro.org>,
- "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Conor Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
- "Tomasz Figa" <tomasz.figa@gmail.com>,
- "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Wim Van Sebroeck" <wim@linux-watchdog.org>,
- "Guenter Roeck" <linux@roeck-us.net>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>, "Olof Johansson" <olof@lixom.net>,
- "Chanwoo Choi" <cw00.choi@samsung.com>, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com,
- "William McVicker" <willmcvicker@google.com>, soc@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 08/20] dt-bindings: serial: samsung: Add google-gs101-uart
- compatible
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 00/10] Add multiport support for DWC3 controllers
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+ ahalaney@redhat.com, quic_shazhuss@quicinc.com
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <537d59b3-0e40-4d4d-80ab-b99028af6ec2@linaro.org>
+ <2c325941-0fcc-4092-9581-dd6ebb067163@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <2c325941-0fcc-4092-9581-dd6ebb067163@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023, at 10:57, Greg KH wrote:
-> On Wed, Oct 11, 2023 at 09:49:07AM +0100, Tudor Ambarus wrote:
->> On 10/11/23 08:48, Greg KH wrote:
->> > On Tue, Oct 10, 2023 at 11:49:16PM +0100, Peter Griffin wrote:
->> >> Add dedicated google-gs101-uart compatible to the dt-schema for
->> >> representing uart of the Google Tensor gs101 SoC.
->> >>
->> >> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
->> >> ---
->> >>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 ++
->> >>  1 file changed, 2 insertions(+)
->> >>
->> >>      oneOf:
->> >>        - items:
->> >> +          - const: google,gs101-uart
->> >>            - const: samsung,exynosautov9-uart
->> >>            - const: samsung,exynos850-uart
->> >>        - enum:
->> >>            - apple,s5l-uart
->> >>            - axis,artpec8-uart
->> >> +          - google,gs101-uart
->> > 
->> > These shouldn't be needed, just declare the device as the same as what
->> 
->> We should have SoC specific compatibles so that any further quirks or
->> incompatibilities can be easily addressed.
->
-> "further" work on quirks or incompatibilities can be added when they are
-> found and needed.  We don't add stuff for no good reason to the kernel.
->
->> It's not only the IP itself
->> that can differ, it's also the integration of the IP into the final
->> product that could have an influence on the behavior.
->
-> This is for the Pixel 6, a device that is no longer even shipping.  The
-> "final product" is long stable, so this should not be an issue.
 
-The driver does have soc specific settings for each compatible
-string, in this case it looks like it overrides the FIFO size
-based on driver specific data and the order in which the
-ports are probed [1]. I don't understand why the driver does
-this, but my impression is that if we wanted to change it to no
-longer rely on that data, we'd also need a new compatible
-string.
 
-Ideally, the actual compatible list in the DTB lists both the
-specific implementation (google,gs101-uart) in order to allow
-such hacks if needed, and a more generic string (e.g. 
-"samsung,exynos850-uart" for an older device that is entirely
-compatible) in order to not actually need driver changes.
+On 10/11/23 07:11, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 10/11/2023 2:21 AM, Konrad Dybcio wrote:
+>>
+>>
+>> On 10/7/23 17:47, Krishna Kurapati wrote:
+>>> Currently the DWC3 driver supports only single port controller which
+>>> requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+>>> DWC3 controller with multiple ports that can operate in host mode.
+>>> Some of the port supports both SS+HS and other port supports only HS
+>>> mode.
+>>>
+>>> This change primarily refactors the Phy logic in core driver to allow
+>>> multiport support with Generic Phy's.
+>>>
+>>> Changes have been tested on  QCOM SoC SA8295P which has 4 ports (2
+>>> are HS+SS capable and 2 are HS only capable).
+>>>
+>>> Changes in v13:
+>>> This series is a subset of patches in v11 as the first 3 patches in v11
+>>> have been mereged into usb-next.
+>>> Moved dr_mode property from platform specific files to common 
+>>> sc8280xp DT.
+>>> Fixed function call wrapping, added comments and replaced #defines with
+>>> enum in dwc3-qcom for identifying IRQ index appropriately.
+>>> Fixed nitpicks pointed out in v11 for suspend-resume handling.
+>>> Added reported-by tag for phy refactoring patch as a compile error was
+>>> found by kernel test bot [1].
+>> "If you fix the issue in a separate patch/commit (i.e. not just a new 
+>> version of
+>> the same patch/commit), kindly add following tags"
+>>
+>> the issue your patch resolves is not one that was reported by the 
+>> kernel testing robot, it just pointed out that you need to fix up the 
+>> next revision
+>>
+> 
+> I Agree. It sounds wrong to add a reproted-by tag making it seem like a 
+> bug instead of a feature we have written. But if we fix the compile 
+> error mentioned and not add the "reported-by", its like not giving 
+> credit for the reporter. So I put in the reproted by and closes tag to 
+> give a view of what was reported and the feature implemented.
+This is a normal thing in review, people spot mistakes, null ptrs, etc..
 
-      Arnd
+If I had a reported-by for each review where I pointed out e.g. device 
+tree changes that don't compile i'd be topping lwn charts
 
-[1] https://lore.kernel.org/linux-arm-kernel/20231010224928.2296997-17-peter.griffin@linaro.org/
+Konrad
 
