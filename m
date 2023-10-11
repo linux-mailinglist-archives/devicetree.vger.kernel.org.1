@@ -1,173 +1,262 @@
-Return-Path: <devicetree+bounces-7647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0ED17C50B5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:01:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317AD7C50D9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:05:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ADED2821B4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:01:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 526101C20EF5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841AA199A9;
-	Wed, 11 Oct 2023 11:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="NtAEihIK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BA91DDCB;
+	Wed, 11 Oct 2023 11:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4783C10A34
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:01:33 +0000 (UTC)
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B19B94;
-	Wed, 11 Oct 2023 04:01:32 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (185-9-11-240.cust.suomicom.net [185.9.11.240])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4S58w70C2dz49Pwn;
-	Wed, 11 Oct 2023 14:01:24 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1697022089;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=//xw1oKncXx8ruRws2n7MrScj5Aevzl+XjGbNm2925Q=;
-	b=NtAEihIKHoUL8qFZa7TrWhLIUZzrkAYMwOdCri29SqMZWQvl+X8pua6n6HyvBR8n6aHlRY
-	PvLa8KpOSfNKuGGmnc9Dlbbj2Z3UqdkcY72kWciyXBtGZWY3Jlv9xsJAjVdDyxJlCEBPTt
-	62LxgkZ176NFt+P6NzgQVY8+IzpuuU3xmpte/yBa+O/Bng0jXxfdWtqj5+orgjOSyPPL31
-	513xZzXo+qEs6wyri3I0TJPvueu1+s+2kZxC9NmO/lAGlsjCvwHxFh+ZvGjTXSJIZQihcD
-	3sCnZU3QMiWX0azHBlDI0scAZfoU4en/7wuwBFvektF2hG1p1L6XMeklUiugGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1697022089;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=//xw1oKncXx8ruRws2n7MrScj5Aevzl+XjGbNm2925Q=;
-	b=MxTG+Jjbt+pMFRlblr4TyXXbi0zleo6fmwJuwzFW/QlKbwG98fcpwdc26U5D4yP1y0FdlW
-	vZpEjuKnGjEd2ZQXlIhU/Qp8aDZeAvRFqwjHs/se4FRdk0cpfJwCOqT1aR/RFBLy5gsPkl
-	WQ2Fx1nbbKcz49yjcvXGaudHIHMrtG3ngQen2zcUB/mxfVhbllyYzEu74lttpsze87Qeiy
-	T3Fi2Yz4aTiAXS6AsRX9mH0LeSNDzyjscC+rkjueKjYS8xij94fumaTP1FGB2+V+S0sVoE
-	WT0uLqEU5yl7ZghdD7hPVfuLRUHNidN4wmt6J0HZ7s8TsQBmkYs0bKDMx/JFWg==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1697022089; a=rsa-sha256;
-	cv=none;
-	b=hDtJ3DvjeklP1GRFzEcKO0SuH35K/RuRR4iBGryQ22RjsIevgVdAXrpTLIlHCNg1My2l/d
-	r16zEGuCme1HLpL6vAWO6OLRE+JkfZ61cJkUfjmegw3xA7EdJdOfDMhZN9jWIIZZ7ehBPh
-	tDWIYe+Oxa1FImGL7ti/htYEi5C/fd7h9s746v33WkXJDitCLn3BrT5LHR9FE+s8dqVFcf
-	NhSwuL0i8YRbRw6dy/J0O2UMWlZ/Ys9fSiRNF59B12zKgnZ/PbzOrhWIEEcoyZ+rCyniWD
-	OZuyzoJ+4w/wnkH81OVRdofxO05TERiJDL16lfdiOEj23JRg2sWyAQ0OaCb/uA==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 013E3634CA9;
-	Wed, 11 Oct 2023 14:01:23 +0300 (EEST)
-Date: Wed, 11 Oct 2023 11:01:23 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, moderated list: 
-	ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>;
-Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply
- bindings
-Message-ID: <ZSaAg8aSZAfxEDpM@valkosipuli.retiisi.eu>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
- <20231010005126.3425444-2-kieran.bingham@ideasonboard.com>
- <ZSTp4jXKPVrbo5oU@valkosipuli.retiisi.eu>
- <169694430967.3973464.6599459439831458834@ping.linuxembedded.co.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7831A283
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:05:26 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC189D;
+	Wed, 11 Oct 2023 04:05:23 -0700 (PDT)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by ex01.ufhost.com (Postfix) with ESMTP id E9ADA24E2BC;
+	Wed, 11 Oct 2023 19:05:16 +0800 (CST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id A98CC24DEED;
+	Wed, 11 Oct 2023 19:05:16 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 11 Oct
+ 2023 19:05:16 +0800
+Received: from ubuntu.localdomain (183.27.96.95) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 11 Oct
+ 2023 19:05:15 +0800
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>, =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, "Daire
+ McNamara" <daire.mcnamara@microchip.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>, Minda Chen
+	<minda.chen@starfivetech.com>
+Subject: [PATCH v8 0/22] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date: Wed, 11 Oct 2023 19:04:52 +0800
+Message-ID: <20231011110514.107528-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169694430967.3973464.6599459439831458834@ping.linuxembedded.co.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [183.27.96.95]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Kieran,
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-On Tue, Oct 10, 2023 at 02:25:09PM +0100, Kieran Bingham wrote:
-> Hi Sakari,
-> 
-> Quoting Sakari Ailus (2023-10-10 07:06:26)
-> > Hi Kieran,
-> > 
-> > On Tue, Oct 10, 2023 at 01:51:22AM +0100, Kieran Bingham wrote:
-> > > Add the bindings for the supply references used on the IMX335.
-> > > 
-> > > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > > ---
-> > >  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
-> > >  1 file changed, 16 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > > index a167dcdb3a32..1863b5608a5c 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-> > > @@ -32,6 +32,15 @@ properties:
-> > >      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
-> > >      maxItems: 1
-> > >  
-> > > +  avdd-supply:
-> > > +    description: Analog power supply (2.9V)
-> > > +
-> > > +  ovdd-supply:
-> > > +    description: Interface power supply (1.8V)
-> > > +
-> > > +  dvdd-supply:
-> > > +    description: Digital power supply (1.2V)
-> > 
-> > I wonder what's the policy in this case --- some of the regulators are
-> > often hard-wired and the bindings didn't have them previously either (I
-> > wonder why, maybe they were all hard wired in the board??).
-> > 
-> > Could they be optional? The driver will need to be able to do without these
-> > in any case.
-> 
-> Indeed - many devices do not need to define how they are powered up.
-> 
-> But Krzysztof stated that supplies should be required by the bindings on
-> my recent posting for a VCM driver:
-> 
->  - https://lore.kernel.org/all/6e163f4d-061d-3c20-4c2e-44c74d529f10@linaro.org/
-> 
-> So based on that I have made these 'required'.
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-I guess it's good to align bindings regarding this, in practice the driver
-will need to work without regulators (or with dummies), too.
+----------------------------------------------------------
+The refactoring patches total number is 17,(patch 1-17)
+which do NOT contain changing logic of codes.
 
-> 
-> Even in my case here, with a camera module that is compatible with the
-> Raspberry Pi camera connector - there isn't really 3 supplies. It's just
-> a single gpio enable pin to bring this device up for me. Of course
-> that's specific to the module not the sensor.
+These patches just contain three type basic operations.
+(rename, modify codes to support starfive platform, and moving to common file)
+If these patched are all be reviewed. They can be accepted first.
 
-How do you declare that in DT? One of the regulators will be a GPIO one?
+Refactoring patches can be devided to different groups
+1. (patch 1- 3 is the prepare work of refactoring)
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is move PolarFire codes to PLDA directory.
+patch3 is move PLDA IP register macros to plda-pcie.h
 
+2. (patch4 - 6 is processing and re-use PCIe host instance)
+patch4 is add bridge_addr field to PCIe host instance.
+patch5 is rename data structure in microchip codes.
+patch6 is moving two data structures to head file
+
+3. (patch 7 - 9 are for re-use two PCIe setup function)
+patch7 is rename two setup functions in microchip codes, prepare to move
+to common file.
+patch8 is change the arguments of plda_pcie_setup_iomems()
+patch9 is move the two setup functions to common file pcie-plda-host.c
+
+4.(patch 10 - 17 are for re-use interupt processing codes)
+patch10 add a plda default event handler function.
+patch11 is rename the IRQ related functions, prepare to move to
+pcie-plda-host.c
+patch 12 - 16 is modify the interrupt event codes, preparing for support starfive
+and microchip two platforms.
+patch17 is move IRQ related functions to pcie-plda-host.c
+
+------------------------------------------------------------
+The remainder patches (patch 18 -22) are not refactoring patch.
+They are for adding StarFive codes and dont modify the microchip's
+codes.
+
+patch18 is set plda_event_handler to static.
+patch19 is Add PLDA event interrupt codes and IRQ domain ops.
+patch20 is add StarFive JH7110 PCIe dt-binding doc.
+patch21 is add StarFive JH7110 Soc PCIe codes.
+patch22 is Starfive dts config
+
+This patchset is base on v6.6-rc5
+
+previous version:
+v3:https://patchwork.kernel.org/project/linux-pci/cover/20230814082016.104181-1-minda.chen@starfivetech.com/
+v4:https://patchwork.kernel.org/project/linux-pci/cover/20230825090129.65721-1-minda.chen@starfivetech.com/
+v5:https://patchwork.kernel.org/project/linux-pci/cover/20230907091058.125630-1-minda.chen@starfivetech.com/
+v6:https://patchwork.kernel.org/project/linux-pci/cover/20230915102243.59775-1-minda.chen@starfivetech.com/
+v7:https://patchwork.kernel.org/project/linux-pci/cover/20230927100802.46620-1-minda.chen@starfivetech.com/
+
+change:
+  v8:
+    The patch description in cover-letter has been changed.
+
+    v7 patch 4 split to v8 patch 4 - 6.
+        (It is patches about re-use pcie host data structure, new patches just contain one
+	function modification. It is more reguluar and easier to review).
+
+    patch 7- 9: modify the commit messages and add reason of
+		modifcation.
+    patch10 : just new add a default event handler.
+              The PLDA event interrupt codes has been moved to patch19.
+    patch11- 17 :
+             Add review tag and add more commit messages to declear the
+	     reason of modifying the codes.
+    patch19: plda_handle_events() using bit mask macro. The function are
+	     easier to read.
+
+  v7:
+    patch19: fix the build warning.
+    patch21: Some format changes (Emil's comment)
+    patch22: change the pcie node sequences by alphabetical
+             delete the "interupt-parent" in pcie node.
+
+  v6:
+    v5 patch 4 split to patch 4 -9. New patches just contain one
+function modification. It is more reguluar.
+    patch 9: Just move the two setup functions only
+    patch 19 : draw a graph of PLDA local register, make it easier to
+review the codes.
+    v5 patch 7 split to patch 11- 17. Each patch just contain one
+function modification. It is more regular.
+    patch 11: rename IRQ related functions.
+    patch 12 - 16 : modify the events codes, total five patch.
+    patch 17: move IRQ related functions to pcie-plda-host.c
+    patch 18: Add new patch 18.
+    patch 21- 22 using "linux,pci-domain" dts setting.
+
+  v5:
+    patch 10 -17:
+    	- Some variables names changed (evt->event).
+    	- plda_handle_event() using a unify callback function to get events
+num.
+	- Add plda_event_ops data structure.
+    patch 21:
+	Add plda_event_ops instances.
+
+  v4:
+    patch 3:
+    	Copy the interrupt events macros to pcie-plda-host.c
+    patch 15:
+    	get_events() change in patch 7. Patch 8 is just move the codes.
+    other change:
+	All the functions in commit message add (). 
+  v3:
+    patch 2- 19:
+      - splite refactoring patches to multiple patch.
+      - rename plda_pcie to plda_pcie_rp. Maybe other vendor will
+        upstream PLDA ep codes.
+    patch 20:
+      - Remove the redundant reference.
+      - move the offset value to codes in starfive,stg-syscon
+      - change reset-gpio to prest-gpio.
+    patch 21:
+      - Add 100ms delay after preset for PCIe 6.0 spec.
+      - stg-syscon related modification.
+    patch 22:
+      - Add dts configure.
+
+
+Minda Chen (22):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: microchip: Move pcie-microchip-host.c to plda directory
+  PCI: microchip: Move PLDA IP register macros to pcie-plda.h
+  PCI: microchip: Add bridge_addr field to struct mc_pcie
+  PCI: microchip: Rename two PCIe data structures
+  PCI: microchip: Move PCIe host data structure to plda-pcie.h
+  PCI: microchip: Rename two setup functions
+  PCI: microchip: Change the argument of plda_pcie_setup_iomems()
+  PCI: microchip: Move the setup functions to pcie-plda-host.c
+  PCI: plda: Add PLDA default event IRQ handler
+  PCI: microchip: Rename interrupt related functions
+  PCI: microchip: Add num_events field to struct plda_pcie_rp
+  PCI: microchip: Add request_event_irq() callback function
+  PCI: microchip: Add INTx and MSI event num to struct plda_event
+  PCI: microchip: Add get_events() callback function
+  PCI: microchip: Add event IRQ domain ops to struct plda_event
+  PCI: microchip: Move IRQ functions to pcie-plda-host.c
+  PCI: plda: Set plda_event_handler() to static
+  PCI: plda: Add event interrupt codes and IRQ domain ops
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  55 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  75 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++
+ MAINTAINERS                                   |  19 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  64 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  86 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  30 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 602 ++--------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 657 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 268 +++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 448 ++++++++++++
+ 14 files changed, 1835 insertions(+), 604 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (54%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 94f6f0550c625fab1f373bb86a6669b45e9748b3
 -- 
-Regards,
+2.17.1
 
-Sakari Ailus
 
