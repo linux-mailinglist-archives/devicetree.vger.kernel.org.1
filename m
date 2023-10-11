@@ -1,196 +1,143 @@
-Return-Path: <devicetree+bounces-7644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3357C507C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A037C5083
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00506282069
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76BA7282232
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C9910964;
-	Wed, 11 Oct 2023 10:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F7810A34;
+	Wed, 11 Oct 2023 10:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="etDZPxeQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pXj8npAU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1ABDFC18
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:45:23 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B1B092;
-	Wed, 11 Oct 2023 03:45:22 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B7KwYe011938;
-	Wed, 11 Oct 2023 10:45:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=n2CAALcEigZJjpm4AR7duyPyWm3aXmvCe3nZv4pLlqQ=;
- b=etDZPxeQQ1iut9CBen6Vt9NJAGn8n9z1+sQw3v8oj4izM1RSxWR5qomkEEp/RjJgs1jb
- X+IGEOhnzd+4i3m1lNt2KXx9sKkdvqxqAZ0qrm0tOwQ6+1aeNP7S/xl3RooGVDcm9ncu
- laRXvRD/cjFkDVhL1T5oGtlfFcDvMO2o/oVPYW22+FxOyP3i0opnnvYJHd6WSzwqDHxP
- uGawiVbPj//srt9uF6ugKAf3L1UbcaDHwNIP6oavxITHzlmh6WgvEEFr8svxvUGqevt2
- +WzhCLAH2RmC5cCr9upYWlpjR5Uctn8/7s+Casbx0Lhu/BtFcOBGj5+rQ+WqYYeIgHaq cg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnkwngtjt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 10:45:02 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BAj2j9004602
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 10:45:02 GMT
-Received: from [10.216.52.55] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
- 2023 03:44:53 -0700
-Message-ID: <ca898b48-78e0-4bc7-c88c-a33338e7e47a@quicinc.com>
-Date: Wed, 11 Oct 2023 16:14:50 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC3B10957
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:47:49 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5818E94;
+	Wed, 11 Oct 2023 03:47:47 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D8692FF80A;
+	Wed, 11 Oct 2023 10:47:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1697021265;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3qt0Iwz0wApopLK8eSk42w8JbYkkMjIfQ/k9jDHK89E=;
+	b=pXj8npAUzYi/bD5fcei+eSp780xUpiuhTQBJX7eKOE0XlGzqTO3m2Yet+9PNXmE1Fx5oDL
+	6TZB7Gsa6gAUz0RmVRiQzwD0nT4+2MxIXl2+qaHhXIt+DsIP5UCcFccjsRtrTemgxJgH9d
+	5/5Yp3RUWesgxXrxnVKW7jH78N5AOBkYlr29Uhydxy74L6IpnXywOnXfdh5pASZX/tZgj5
+	n72E9KlLF6TZRd+IBK1vGDpIMkxUbbVXckIPNzSxPy+PxITBvWVuybYuKhp5TDKLvauJnH
+	qqxZOF8+s6pR6mQpqBmBnWuAIR7yxYakxi0+BNbhG5komJ+YMmt2gCxCW6j11g==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 11 Oct 2023 12:47:38 +0200
+Subject: [PATCH] dt-bindings: display: remove backlight node from panel
+ examples
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sa8775p: Add ep pcie0 controller
- node
-Content-Language: en-US
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <quic_shazhuss@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nayiluri@quicinc.com>, <quic_krichai@quicinc.com>,
-        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul
-	<vkoul@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
-        <linux-phy@lists.infradead.org>
-References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
- <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
- <20230921094823.GE2891@thinkpad>
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-In-Reply-To: <20230921094823.GE2891@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: txDmBbCPzhrIWJ1FGyxQQng_l1FT9Qe8
-X-Proofpoint-GUID: txDmBbCPzhrIWJ1FGyxQQng_l1FT9Qe8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-11_08,2023-10-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 mlxscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310110094
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+Message-Id: <20231011-dt-panel-example-no-backlight-v1-1-b81618d32752@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAEl9JmUC/x3MQQqDMBAF0KvIrDuQWGhtr1K6mCRfHZrGkIgI4
+ t0bunybd1BFUVR6dgcVbFp1SQ320pGfJU1gDc3Um/5qjRk4rJwlITJ2+eYITgs78Z+o07yyH4P
+ ADTfrHndqRy4Ydf//r/d5/gApQfZMbwAAAA==
+To: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
+ David Lechner <david@lechnology.com>, Daniel Mack <daniel@zonque.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+X-Mailer: b4 0.12.3
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+The examples for these panel drivers have a backlight node in addition to
+the actual panel node. However the exact backlight is outside the scope of
+this binding and should be dropped from the example.
 
-On 9/21/2023 3:18 PM, Manivannan Sadhasivam wrote:
-> On Wed, Sep 20, 2023 at 07:25:12PM +0530, Mrinmay Sarkar wrote:
->> Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
->>
-> It would be good to add more info in the commit message, like PCIe Gen, lane
-> info, IP revision etc...
->
->> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 45 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 9f4f58e8..5571131 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -2600,4 +2600,49 @@
->>   
->>   		status = "disabled";
->>   	};
->> +
->> +	pcie0_ep: pcie-ep@1c00000 {
->> +		compatible = "qcom,sa8775p-pcie-ep";
->> +		reg = <0x0 0x01c00000 0x0 0x3000>,
->> +		      <0x0 0x40000000 0x0 0xf20>,
->> +		      <0x0 0x40000f20 0x0 0xa8>,
->> +		      <0x0 0x40001000 0x0 0x4000>,
->> +		      <0x0 0x40200000 0x0 0x100000>,
->> +		      <0x0 0x01c03000 0x0 0x1000>,
->> +		      <0x0 0x40005000 0x0 0x2000>;
->> +		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
->> +			    "mmio", "dma";
->> +
->> +		clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->> +			<&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +			<&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
->> +			<&gcc GCC_PCIE_0_SLV_AXI_CLK>,
->> +			<&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
->> +
->> +		clock-names = "aux",
->> +			      "cfg",
->> +			      "bus_master",
->> +			      "bus_slave",
->> +			      "slave_q2a";
->> +
->> +		interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +		interrupt-names = "global", "doorbell", "dma";
->> +
->> +		interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
->> +				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
->> +		interconnect-names = "pcie-mem", "cpu-pcie";
->> +
-> Don't you need iommu property?
->
->> +		resets = <&gcc GCC_PCIE_0_BCR>;
->> +		reset-names = "core";
->> +		power-domains = <&gcc PCIE_0_GDSC>;
->> +		phys = <&pcie0_phy>;
->> +		phy-names = "pciephy";
->> +		max-link-speed = <3>;
-> Gen 3?
-there is some stability issue with gen4 so going with gen3 as of now.
-Will update once issue is resolved.
+Link: https://lore.kernel.org/linux-devicetree/20230724143152.GA3430423-robh@kernel.org/
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+ Documentation/devicetree/bindings/display/ilitek,ili9486.yaml       | 4 ----
+ Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml | 4 ----
+ Documentation/devicetree/bindings/display/sitronix,st7735r.yaml     | 5 -----
+ 3 files changed, 13 deletions(-)
 
-Thanks,
-Mrinmay
->> +		num-lanes = <2>;
-> Only 2 lanes? Or the other one has 4 lanes?
->
-> - Mani
-pcie0 has lane2 and pcie1 has lane4 configuration.
+diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9486.yaml b/Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
+index 1f8f2182e2f1..9cc1fd0751cd 100644
+--- a/Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
++++ b/Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
+@@ -50,10 +50,6 @@ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+ 
+-    backlight: backlight {
+-            compatible = "gpio-backlight";
+-            gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
+-    };
+     spi {
+             #address-cells = <1>;
+             #size-cells = <0>;
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
+index 90e323e19edb..3cabbba86581 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
+@@ -48,10 +48,6 @@ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+ 
+-    backlight: backlight {
+-            compatible = "gpio-backlight";
+-            gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
+-    };
+     spi {
+             #address-cells = <1>;
+             #size-cells = <0>;
+diff --git a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
+index 621f27148419..3b0ebc0db8e0 100644
+--- a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
++++ b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
+@@ -54,11 +54,6 @@ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+ 
+-    backlight: backlight {
+-            compatible = "gpio-backlight";
+-            gpios = <&gpio 44 GPIO_ACTIVE_HIGH>;
+-    };
+-
+     spi {
+             #address-cells = <1>;
+             #size-cells = <0>;
 
-Thanks,
-Mrinmay
->> +
->> +		status = "disabled";
->> +	};
->>   };
->> -- 
->> 2.7.4
->>
+---
+base-commit: 2430fa6470d5e76be39a3e0d6d01474234582f94
+change-id: 20231008-dt-panel-example-no-backlight-cfdaeb861b97
+
+Best regards,
+-- 
+Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 
