@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B2917C522C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B477C5231
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36C3B282201
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:33:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73593282225
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C561E527;
-	Wed, 11 Oct 2023 11:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E992C1E52C;
+	Wed, 11 Oct 2023 11:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XI0cRoLa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JIVG3Drt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402C335506
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:33:30 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D169A9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:33:28 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4066692ad35so63083965e9.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:33:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D4F1E51E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:35:09 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FDDAB6
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:35:07 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c186ea81c7so86999631fa.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697024007; x=1697628807; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697024106; x=1697628906; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NZzIfsUIMKmIPZuNBx7E7QsUZucBviLZv516iI+4Ocg=;
-        b=XI0cRoLaEk0gElbpQX2B2oKaOHoLEPNWsFPXilKB56OVnnnhxp7U8TJSTwrhAoNiSy
-         CkR7DBeSD3WPuzb0DC+fiS16GD28nmp/q8y79L3ACQ6sywwIUTaIaEldJ10LX2Z4hg6G
-         ySeiOn2MTA/0f0WRK8PMdxow0BvLdhsH6bdxspc8KDbLi+2JEoUJNTT/UwnZzvJRVCdL
-         m1yT9vjcdDqqcKgmsGgjqYfxgwOUvepF2f5+10Ga/tTv5JYyJN4xY3PMWm4x/wDgTEtC
-         zqrQ5erlbRS8cVLqeQBl0tJtP2a7GIHGx9W8qmrvS9vMXh3F4lTHSr/muM4yHWtU+j+F
-         eEgA==
+        bh=/Qapw6Vwkgw3j/x2kavvMeUiB4u4WXfkqK2WO2XBHoI=;
+        b=JIVG3Drt2z4AnTJ3x0xy7WyfBYoiidfhfy2Y+m3CDu/qK4SJFhTiJLW7ibElrsF4Yk
+         CVucgTkIS0LunzZZzb4kYO8KdcqcS4bfU9H3UkGa4N/BKepGUGPpbmsJKVg7TNr8+vB5
+         VmEos5nVcLmmjTb1uDm9XlfiQrzI8DB0eTb4qEtR9ytDIuBeCRsnDFao2AQ16TFH/mNT
+         15jRwCGmv6mYo8yUFcmr2Id/x9QNLPPRmiFbHHCMkJVkTqq//QJ5HTQf2wj24u3pnS2i
+         VIUYyahktkcCg6N7YYRZcuEiWpQWtSkOWMgWzzVRgrlrRgW6elIfYpbcH2BEUzzaxgUB
+         UtTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697024007; x=1697628807;
+        d=1e100.net; s=20230601; t=1697024106; x=1697628906;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NZzIfsUIMKmIPZuNBx7E7QsUZucBviLZv516iI+4Ocg=;
-        b=JpsQ6lD9htQEjJ3HCwjFQDFU3SAJxyk9yRmX/wbB0WCiUQGT9yIhT/Ol2xGbS1nC6j
-         gcbyDvMVqNw6p4cHRGnBUns7aRMP6BW4OQh3TMXH9s417OPEkDcwzk6H6E282bcn9uPW
-         PKEkyKMMhKdC9ONCrq/x5wXQKgMRHiGXa81GbUqetYt3lrAnsl3ChCPYFTM6Lhodm0Dz
-         zSKF5UK5purujldqC2dobQPSMeV5jOZ5EUBR0gSwALUXP+prNHSVN28X/ego1iGQaKfO
-         be3cbLuiKIO6OihIODEZ/A/6af/Z1BdaMgLCf3imFybdKWvVVH4JETzoqU75g4DKATDK
-         8VLg==
-X-Gm-Message-State: AOJu0Yy09hkigJ5Th4Q7m6Xd8/IH9yr4+1UGur/WAq7vSN5BvDptRcyo
-	tc/tfkxZBKERAdylCK1Z0xJdkg==
-X-Google-Smtp-Source: AGHT+IHlFqTVAI33hYFedRn8qsiDw/z0zk+fcz9qZApVa3GB0mCrn5UsiF2BvKhEkad1pfHh4TclxQ==
-X-Received: by 2002:a7b:ce19:0:b0:405:3e9a:f1e3 with SMTP id m25-20020a7bce19000000b004053e9af1e3mr18935659wmc.11.1697024006816;
-        Wed, 11 Oct 2023 04:33:26 -0700 (PDT)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id u6-20020a05600c00c600b00402ff8d6086sm16479381wmm.18.2023.10.11.04.33.25
+        bh=/Qapw6Vwkgw3j/x2kavvMeUiB4u4WXfkqK2WO2XBHoI=;
+        b=E3ANHHuhiQzmgSd0JGY6t57nHHurGvBKRovCGMdoMz5Tdamurckj5iZSOWkrvbbl7p
+         //ec3cPDofmHNpBHbAAZtdPt5T5+dpzArn/FOzRKZ+HnFgUqmbx/uXn3FSEOVbHU8Jt9
+         Or74+bWUUc7IqxAqOl/pm0mMbrPYCETLPjXwYZoVXwKPkRNGu/itjLvOjatoj0ZLHu8a
+         FUqijdVVMYfqOIZpd5rRMakrL4OeQ8Z1SGlQirNvcULFpJYXpuxFWYZrncarZ/iZTa9H
+         tpVQMeQQVODnOmangyGFFKEG2jll8dD6pBARbrv894cmxMU6z9MCe4//Ii/KasQRAhc5
+         bLvg==
+X-Gm-Message-State: AOJu0Yw6wt3vbcz5Z54RizV/88Z4o3zVKmKF8OwwrtoZTSiq3u9Hg/9/
+	YDBmF+TiHvC+h4+jfZyh1tQ5yA==
+X-Google-Smtp-Source: AGHT+IF5GLRI9qQunLWRzrMod3FWnDE+uoxeFzNq35YPTOaf98ygydLZmEYH1BWul8Cf/WIu46bWag==
+X-Received: by 2002:a2e:9e53:0:b0:2bf:fa62:5d0e with SMTP id g19-20020a2e9e53000000b002bffa625d0emr18110256ljk.2.1697024105878;
+        Wed, 11 Oct 2023 04:35:05 -0700 (PDT)
+Received: from [172.30.204.240] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id c5-20020a2ea1c5000000b002bcbb464a28sm2882350ljm.59.2023.10.11.04.35.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 04:33:26 -0700 (PDT)
-Message-ID: <fc35b4e4-a1ef-4200-a7d4-1f8ea3afa5c9@linaro.org>
-Date: Wed, 11 Oct 2023 12:33:25 +0100
+        Wed, 11 Oct 2023 04:35:05 -0700 (PDT)
+Message-ID: <7297b408-06e8-41f3-a732-64c3cc3194e1@linaro.org>
+Date: Wed, 11 Oct 2023 13:35:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,42 +67,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/4] clk: qcom: add clock controller driver for
- qca8386/qca8084
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sa8775p: Add ep pcie0 controller
+ node
 Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>, andersson@kernel.org, agross@kernel.org,
- konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+ Manivannan Sadhasivam <mani@kernel.org>
+Cc: agross@kernel.org, andersson@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+ quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+ quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+ quic_parass@quicinc.com, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20230923112105.18102-1-quic_luoj@quicinc.com>
- <20230923112105.18102-5-quic_luoj@quicinc.com>
- <10bcb0cc-19db-4914-bbc4-ef79c238a70d@linaro.org>
- <49c8a8ff-bdb9-a523-9587-d2a46d401e41@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <49c8a8ff-bdb9-a523-9587-d2a46d401e41@quicinc.com>
+ mhi@lists.linux.dev, linux-phy@lists.infradead.org
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
+ <20230921094823.GE2891@thinkpad>
+ <ca898b48-78e0-4bc7-c88c-a33338e7e47a@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ca898b48-78e0-4bc7-c88c-a33338e7e47a@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
 	autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 12:26, Jie Luo wrote:
->>
->> 0004-clk-qcom-add-clock-controller-driver-for-qca8386-qca.patch has 
->> style problems, please review.
+
+
+On 10/11/23 12:44, Mrinmay Sarkar wrote:
 > 
-> Thanks Bryan for the review. The code line mentioned by CHECK is more 
-> than 100 columns, so i separate the lines.
+> On 9/21/2023 3:18 PM, Manivannan Sadhasivam wrote:
+>> On Wed, Sep 20, 2023 at 07:25:12PM +0530, Mrinmay Sarkar wrote:
+>>> Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
+>>>
+>> It would be good to add more info in the commit message, like PCIe 
+>> Gen, lane
+>> info, IP revision etc...
+>>
+>>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>>> ---
+[...]
 
-Yep. Remember to align the indentation as much as possible/reasonable. 
-Use your discretion.
+>>> +        max-link-speed = <3>;
+>> Gen 3?
+> there is some stability issue with gen4 so going with gen3 as of now.
+> Will update once issue is resolved.
+That's something that should have definitely been mentioned in the 
+commit message..
 
----
-bod
+Please try resolving this first, if it ends up requiring bindings 
+changes (missing clocks or whatever), it will be a pain.
+
+Konrad
 
