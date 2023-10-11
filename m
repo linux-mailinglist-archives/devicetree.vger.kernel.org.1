@@ -1,175 +1,311 @@
-Return-Path: <devicetree+bounces-7874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5F57C5E62
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 22:28:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42DB17C5E89
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 22:40:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A8DB2823BC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:28:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64AB81C20A41
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252D3D3B9;
-	Wed, 11 Oct 2023 20:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA7F12E7C;
+	Wed, 11 Oct 2023 20:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WzoWJ/4m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QrOIIgod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8563A26E
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 20:28:25 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836B891;
-	Wed, 11 Oct 2023 13:28:24 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9ad8a822508so41229766b.0;
-        Wed, 11 Oct 2023 13:28:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697056103; x=1697660903; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ajiQCZsbPOI0YVqPS5NSWxeb5/T72xImtw2yRB9hN9k=;
-        b=WzoWJ/4m1DH6nOHkQheDn5r/b2dKJa3Ovi1inoyw0t8++90GehjF/W4ZV2QuBY2tJM
-         C85ztAaamM23j5qXEsO411iKJMUioDkzBK6iRXyI3eWQxUvV30lNHRwnbrZK+a5M1Gb3
-         lAZj0QdsbVliohR+QdQnFtlMiMQ3krneoxTL5/0oBUvXcGt7FfIn6r5+5RpKJP6+1t31
-         699x9XwT7xQ5klPVPgwBqIbVEkjkINAt0LMhrPRywUeVLvRhVppx0R3ijGZJr6dFD7Nd
-         U081D1DPi4dbpFm8Z0RbrXVUlMCuBomligPrjacF//3DM55SsvtiZDfVa1UAnLs5p4BG
-         pznQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697056103; x=1697660903;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ajiQCZsbPOI0YVqPS5NSWxeb5/T72xImtw2yRB9hN9k=;
-        b=CoPb5AThpLG3IoXsrO5LUngOtbx1oHvOya4y4XOEjVHT8lVTujUWxXUFWtnIgVCW/S
-         isO8VxB3RlHXsmmlbSRFAdjW9Fq4MOOLnwryhtzdbaChL2o4uprt/FKjhvDEDZaSmDb0
-         v86TjhAASJjs+UuUlC9YjY7ZMtCT8IXUqRfxi0B2JbXADFnjJArSyMCEGzWML3T6QCva
-         7NfCBpFFMXQ9lsYdJRR0TzuonJ/p3csAFnUPFdBHTeIzHYwQg6imFH/wOXd9Sn00YYEr
-         Jp2h9t+wPljhgamglXzpuYEfyJdKWVGIq8Bq18x9Pxt5JQ6/hknogp5sIr5XuDVBd4io
-         zNAw==
-X-Gm-Message-State: AOJu0YwkKF9Szr575F1XseW1N4y5nFqUlb653TKkIMzY/vo3fXFf1jBK
-	kr0R4vF5eEIoz00BowyBHDs=
-X-Google-Smtp-Source: AGHT+IFFQ8ncd4Z5mbljFmPQ7aeVjaaJ6rr4oIOM3eHCQt79sUIbGntX4Z20sf1OIwTbFuY8d23Zqw==
-X-Received: by 2002:a17:906:3116:b0:9a9:e4ba:2da7 with SMTP id 22-20020a170906311600b009a9e4ba2da7mr20212190ejx.49.1697056102522;
-        Wed, 11 Oct 2023 13:28:22 -0700 (PDT)
-Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kb4-20020a1709070f8400b009adc81bb544sm10192307ejc.106.2023.10.11.13.28.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 13:28:22 -0700 (PDT)
-Date: Wed, 11 Oct 2023 22:28:20 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jon Hunter <jonathanh@nvidia.com>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V5 0/4] hwmon: ina3221: Add selective summation support
-Message-ID: <ZScFZDZlTcqwjEJP@orome.fritz.box>
-References: <20230929103650.86074-1-jonathanh@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292101F5F2;
+	Wed, 11 Oct 2023 20:40:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D74C433CA;
+	Wed, 11 Oct 2023 20:40:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697056815;
+	bh=8L5mXgJHZV0x1PMI3MCpHodGYPRdonPcTU4tFSKPg/g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QrOIIgodWJOdpY6O5VZgof/a//29t0nzABmW+7z82j47UpXNZ4GLczHKF08ca2yHV
+	 cmFjzuojFU3Apr7fbL4yexD8/yTXJH7qFzBw8t6940OTYB+Gexcdm1/BJDW7Is6Jhs
+	 1AZUuxJjmQBbEQb4Iid/0eI9mRjK7c79dpmx91ZJnW3X1aBh0twEptjaIhwdNTiU+6
+	 1WjMLrDEx/iVfgiujG+M06i/7Ehi/ggxsJCSviXawcYXyye4cf3UE/BE4zKH4dZmCT
+	 /tnCUGZQNjAVcBpnFOOZJHN63AuwMVphQB5z+eT4PlTIHKLjI0KtZRTQ6AbKlMk70i
+	 QquwesXiDCvfA==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5042bfb4fe9so389803e87.1;
+        Wed, 11 Oct 2023 13:40:15 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxmI1W7GApw+lirZQYwEwZICGWlxl8uFcZDycQEGNUzEeURvAma
+	wO9TI5WASVXq5BD51fZmhYG0KQOlmE8+0+u5EKw=
+X-Google-Smtp-Source: AGHT+IHQ62Gr7p4zlUczVxkcGxszjmTDmRGC0aE+SwxQcshlalF+lD+86JdoH0aKJLHW5Rbj9z4dRv/jeaZgPWyT1PY=
+X-Received: by 2002:a05:6512:3902:b0:502:fdca:2eab with SMTP id
+ a2-20020a056512390200b00502fdca2eabmr15087253lfu.37.1697056813622; Wed, 11
+ Oct 2023 13:40:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CiujI+6zDegS36sT"
-Content-Disposition: inline
-In-Reply-To: <20230929103650.86074-1-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-
-
---CiujI+6zDegS36sT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+ <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+ <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
+ <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com> <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
+In-Reply-To: <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Wed, 11 Oct 2023 22:40:02 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXHSJLHHikB=8q-sAdYV2OsoSod+LDeyLa=YNU1d8998ZA@mail.gmail.com>
+Message-ID: <CAMj1kXHSJLHHikB=8q-sAdYV2OsoSod+LDeyLa=YNU1d8998ZA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 29, 2023 at 11:36:46AM +0100, Jon Hunter wrote:
-> The current INA3221 driver always sums the shunt voltage for all enabled
-> channels regardless of the shunt-resistor used for each channel. Summing
-> the shunt-voltage for channels is only meaningful if the shunt resistor
-> is the same for each channel. This series adds device-tree support to
-> allow which channels are summed in device-tree.
->=20
-> Changes since V4:
-> - Moved dt-binding comment added in V4 from patch #2 to patch #1.
->=20
-> Changes since V3:
-> - Added missing descriptions for new structure members that was reported
->   by the kernel-test-bot.
-> - Added comment in the ina3221 dt-binding doc example to explain why we
->   need to explicitly disable channels.
-> - Added more commentary in the commit message for the new DT property
->   to explain that this property does not change the behaviour of the
->   driver unless it is populated.
->=20
-> Changes since V2:
-> - Added note to binding-doc to indicate that input channels must be
->   explicitly disabled.
-> - Corrected ordering of properties in the binding-doc
-> - Updated license for the binding-doc to be dual licensed.
-> - Changed newly added property from 'summation-bypass' to
->   summation-disable'.
-> - Documented type for the new 'summation-disable' property.
-> - Corrected spelling and comments as per the feedback received.
-> - Used debugfs instead of sysfs for exposing the 'summation-disable'
->   status for each input channel.
-> - Populated missing instances for the ina3221 device for Tegra234
->   boards.
-> - Populated ina219 device for the NVIDIA IGX board (not strictly
->   related to this series but related to populating all
->   power-sensors for Tegra234 boards)
->=20
-> Changes since V1:
-> - Added yaml conversion patch for binding-doc
-> - Added binding-doc documentation patch for new property
-> - Added patch to populate ina3221 devices for Tegra234.
->=20
-> Jon Hunter (2):
->   dt-bindings: hwmon: ina3221: Add ti,summation-disable
->   arm64: tegra: Add power-sensors for Tegra234 boards
->=20
-> Ninad Malwade (2):
->   dt-bindings: hwmon: ina3221: Convert to json-schema
->   hwmon: ina3221: Add support for channel summation disable
+On Sat, 7 Oct 2023 at 02:03, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Ard,
+>
+> On Fri, 6 Oct 2023 at 17:00, Ard Biesheuvel <ardb@kernel.org> wrote:
+> >
+> > On Fri, 6 Oct 2023 at 20:17, Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > Hi Ard,
+> > >
+> > > On Fri, 6 Oct 2023 at 11:33, Ard Biesheuvel <ardb@kernel.org> wrote:
+> > > >
+> > > > On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.org> wrote:
+> > > > >
+> > > > > Hi Rob,
+> > > > >
+> > > > > On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wro=
+te:
+> > > > > >
+> > > > > > It is common to split firmware into 'Platform Init', which does=
+ the
+> > > > > > initial hardware setup and a "Payload" which selects the OS to =
+be booted.
+> > > > > > Thus an handover interface is required between these two pieces=
+.
+> > > > > >
+> > > > > > Where UEFI boot-time services are not available, but UEFI firmw=
+are is
+> > > > > > present on either side of this interface, information about mem=
+ory usage
+> > > > > > and attributes must be presented to the "Payload" in some form.
+> > > > > >
+> > > > > > This aims to provide an small schema addition for the memory ma=
+pping
+> > > > > > needed to keep these two pieces working together well.
+> > > > > >
+> > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > > ---
+> > > > > >
+> > > > > > Changes in v7:
+> > > > > > - Rename acpi-reclaim to acpi
+> > > > > > - Drop individual mention of when memory can be reclaimed
+> > > > > > - Rewrite the item descriptions
+> > > > > > - Add back the UEFI text (with trepidation)
+> > > > >
+> > > > > I am again checking on this series. Can it be applied, please?
+> > > > >
+> > > >
+> > > > Apologies for the delay in response. I have been away.
+> > >
+> > > OK, I hope you had a nice trip.
+> > >
+> >
+> > Thanks, it was wonderful!
+> >
+> > > >
+> > > > >
+> > > > > >
+> > > > > > Changes in v6:
+> > > > > > - Drop mention of UEFI
+> > > > > > - Use compatible strings instead of node names
+> > > > > >
+> > > > > > Changes in v5:
+> > > > > > - Drop the memory-map node (should have done that in v4)
+> > > > > > - Tidy up schema a bit
+> > > > > >
+> > > > > > Changes in v4:
+> > > > > > - Make use of the reserved-memory node instead of creating a ne=
+w one
+> > > > > >
+> > > > > > Changes in v3:
+> > > > > > - Reword commit message again
+> > > > > > - cc a lot more people, from the FFI patch
+> > > > > > - Split out the attributes into the /memory nodes
+> > > > > >
+> > > > > > Changes in v2:
+> > > > > > - Reword commit message
+> > > > > >
+> > > > > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++=
+++++++++
+> > > > > >  1 file changed, 71 insertions(+)
+> > > > > >  create mode 100644 dtschema/schemas/reserved-memory/common-res=
+erved.yaml
+> > > > > >
+> > > > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.y=
+aml b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > > > new file mode 100644
+> > > > > > index 0000000..f7fbdfd
+> > > > > > --- /dev/null
+> > > > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > > > @@ -0,0 +1,71 @@
+> > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/reserved-memory/common-rese=
+rved.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: Common memory reservations
+> > > > > > +
+> > > > > > +description: |
+> > > > > > +  Specifies that the reserved memory region can be used for th=
+e purpose
+> > > > > > +  indicated by its compatible string.
+> > > > > > +
+> > > > > > +  Clients may reuse this reserved memory if they understand wh=
+at it is for,
+> > > > > > +  subject to the notes below.
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > > +
+> > > > > > +allOf:
+> > > > > > +  - $ref: reserved-memory.yaml
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    description: |
+> > > > > > +      This describes some common memory reservations, with the=
+ compatible
+> > > > > > +      string indicating what it is used for:
+> > > > > > +
+> > > > > > +         acpi: Advanced Configuration and Power Interface (ACP=
+I) tables
+> > > > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). Th=
+is is reserved by
+> > > > > > +           the firmware for its use and is required to be save=
+d and restored
+> > > > > > +           across an NVS sleep
+> > > > > > +         boot-code: Contains code used for booting which is no=
+t needed by the OS
+> > > > > > +         boot-code: Contains data used for booting which is no=
+t needed by the OS
+> > > > > > +         runtime-code: Contains code used for interacting with=
+ the system when
+> > > > > > +           running the OS
+> > > > > > +         runtime-data: Contains data used for interacting with=
+ the system when
+> > > > > > +           running the OS
+> > > > > > +
+> > > > > > +    enum:
+> > > > > > +      - acpi
+> > > > > > +      - acpi-nvs
+> > > > > > +      - boot-code
+> > > > > > +      - boot-data
+> > > > > > +      - runtime-code
+> > > > > > +      - runtime-data
+> > > > > > +
+> > > >
+> > > > As I mentioned a few times already, I don't think these compatibles
+> > > > should be introduced here.
+> > > >
+> > > > A reserved region has a specific purpose, and the compatible should=
+ be
+> > > > more descriptive than the enum above. If the consumer does not
+> > > > understand this purpose, it should simply treat the memory as reser=
+ved
+> > > > and not touch it. Alternatively, these regions can be referenced fr=
+om
+> > > > other DT nodes using phandles if needed.
+> > >
+> > > We still need some description of what these regions are used for, so
+> > > that the payload can use the correct regions. I do not have any other
+> > > solution to this problem. We are in v7 at present. At least explain
+> > > where you want the compatible strings to be introduced.
+> > >
+> >
+> > My point is really that by themselves, these regions are not usable by
+> > either a payload or an OS that consumes this information. Unless there
+> > is some other information being provided (via DT I imagine) that
+> > describes how these things are supposed to be used, they are nothing
+> > more than memory reservations that should be honored, and providing
+> > this arbitrary set of labels is unnecessary.
+> >
+> > > What sort of extra detail are you looking for? Please be specific and
+> > > preferably add some suggestions so I can close this out ASAP.
+> > >
+> >
+> > A payload or OS can do nothing with a memory reservation called
+> > 'runtime-code' it it doesn't know what is inside. So there is another
+> > DT node somewhere that describes this, and that can simply point to
+> > this region (via a phandle) if it needs to describe the
+> > correspondence. This is more idiomatic for DT afaik (but I am not the
+> > expert).  But more importantly, it avoids overloading some vague
+> > labels with behavior (e.g., executable permissions for code regions)
+> > that should only be displayed for regions with a particular use,
+> > rather than for a ill defined class of reservations the purpose of
+> > which is not clear.
+> >
+> > What I am trying to avoid is the OS ending up being forced to consume
+> > this information in parallel to the EFI memory map, and having to
+> > reconcile them. I'd be much happier if this gets contributed to a spec
+> > that only covers firmware-to-firmware, and is prevented from leaking
+> > into the OS facing interface.
+>
+> I don't know about "another DT node". We don't have one at present.
+>
+> There is already a note in the DT spec about this:
+>
+> > 3.5.4 /reserved-memory and UEFI
+>
+> > When booting via [UEFI], static /reserved-memory regions must also be l=
+isted in the system memory map obtained
+> > via the GetMemoryMap() UEFI boot time service as defined in [UEFI] =C2=
+=A7 7.2. The reserved memory regions need to be
+> > included in the UEFI memory map to protect against allocations by UEFI =
+applications.
+> >
+> > Reserved regions with the no-map property must be listed in the memory =
+map with type EfiReservedMemoryType. All
+> > other reserved regions must be listed with type EfiBootServicesData.
+> >
+> > Dynamic reserved memory regions must not be listed in the [UEFI] memory=
+ map because they are allocated by the OS
+> > after exiting firmware boot services.
+>
+> I don't fully understand what all that means, but does it cover your conc=
+ern?
+>
 
-Jean, Guenter,
+I don't fully agree with the wording here, but apparently there is
+some awareness here of the concerns I raised.
 
-do you mind if I pick up patches 1, 2 and 4 into the Tegra tree? It's
-usually convenient to keep the DT bindings and DT additions in the same
-tree for validation.
+Interestingly, 'when booting via UEFI' becomes a bit ambiguous now,
+given that DT is passed from stage to stage, and not every handover is
+booting via UEFI. In general, I think the introduction of bindings
+that cover areas other than the handover from the final boot loader to
+the OS may create some more confusion later on, but I'll leave it up
+to the DT bindings maintainer to reason about that.
 
-Thanks,
-Thierry
+If you are dead set on introducing these items (and I note that you
+still have not provided an actual example of how a PI -> payload
+handover would make use of runtime-code or boot-code reservations), I
+won't keep standing in your way.
 
---CiujI+6zDegS36sT
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks for the discussion, and apologies for dragging this out.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUnBWQACgkQ3SOs138+
-s6H2Iw//b21u/DRkKk+i/7IngdxzNLH0SzEnEPuQED1vF2TjviBmHCOC2PWh6v3K
-JQEePa77FmCG6L46tHZ+kMpnh3mqe+Fce4GhxvsYAHIga8sBGHkM2Kzjpt1/P/a9
-OgpHYh/UJoBxRst+dBqgD3ajG8iokGbezr3kDorHX7Lcc7JBdJeai72La8oky62v
-kLrCPCOYGYBqFDYa/dMqX5tlsS/U1q5bRijNZXxD5miBb3sk2dW30r8BdfDKR0mQ
-SRXdeJYjFTaM1HmrzvoYeZjXMGJxrDXl3akZCA8tTwkPb7S8L/vcHE2ywpVb8IKH
-Wx4aB81qMwOJy8/zUs8RdrLe7vAauPn89cnPtxJmg1X4enKrj5PGmMu056eLTQCH
-MjdfCpj1tW6COX1iXU0lYLCPyGPEeMAmrxvS7FqhMKm6Az8s3EB9fOJgE5BQcBgl
-jxWPPmQWC35EHGIh1U30VP1ZrOsZyn5xJiDOtnf4Ksy0MeyU9m+9IDgJYCx7zL3U
-4rf5fXXWRZU1HdgNs9VoDSfEeMF9Iv+5jFow1A94x1M9F7mjpbkMpkLkmFQGKth7
-aMnwc/pHoTi9KnmEZRzOynA3tvjKfozQLCc1/LxqDey5NycqGn+iMnTL7qz+FXld
-fjZURu2bo7k8i38nAScMFY0aS3WBqUYqu3N2RcoMSNmYIOHJxuk=
-=WDbc
------END PGP SIGNATURE-----
-
---CiujI+6zDegS36sT--
+--=20
+Ard.
 
