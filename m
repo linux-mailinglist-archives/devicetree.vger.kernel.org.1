@@ -1,126 +1,135 @@
-Return-Path: <devicetree+bounces-7775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109D87C56DF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:32:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05C17C56F4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C058328247F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:32:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3D701C20DAC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDDE10A18;
-	Wed, 11 Oct 2023 14:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228E213FE0;
+	Wed, 11 Oct 2023 14:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kvtu2dOB"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="3zmuKZfY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F560208A8
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:32:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C39E0C433C7;
-	Wed, 11 Oct 2023 14:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697034730;
-	bh=959YLbKVdRZWX0atfQOeGwAb7Qp7+p08uS07ajzWqRI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kvtu2dOBZC4Ln4wf+bTK3uN19P4Xucp6ZKnFriqVY1l6m7ErdbvFgr62MhbBLiinQ
-	 Uax3gJLwWRnzMKvvC7szXKuSgd4P05wW3v5M3qWqEdpwBvv/wEhqUrXmkUO1OFXMjt
-	 u5Rnu89badvKaYu7+gk3VhDUc1Zn4tvQwaGCURtdXB06h2V/KtzkTQhFFH9TQl4l22
-	 U1OSCndLZdy5ghmeWGYxMGhtc/duyTP5slTDRpsUyEVaPCD7h8TLgZ+GIJ3bDm3tgd
-	 K+fTYlgdIQjgqSrwGK5iEt3/NVRCu6odxl4og8pWDRG81WC1izmv4tm+dPFliNK4DI
-	 PzagcRSoU0a9w==
-Date: Wed, 11 Oct 2023 15:32:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24C32-D Additional Write
- lockable page
-Message-ID: <20231011-buffer-safely-2d121d4ae8b8@spud>
-References: <20231010190926.57674-1-marex@denx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8AE2033B
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:36:13 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078D594
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:36:11 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e24210395so15220a12.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:36:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1697034969; x=1697639769; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fRia8k+03Oqwx1GX3n4lKL8Fmr4eu0Kd6W6Uh3EpGVs=;
+        b=3zmuKZfYaSsgs99y+wRCOImGmrggkE4MUUdz04jVhCtA2dF+Tgj0RMOhA8l2DBRYz6
+         VFSIdDo7QlXmOFGAMYacOoqx/8lF7zbGYPCO6uHaUUu43/MHFobDSkkyP0HDLKplWFIv
+         CkEimNKLwBURxJOgxNnULIt877XOS0At5Xns5sPtirxnGF3ElbdK+TZNoKkzPR4U1K5z
+         WnqPsYBXF2mJSFk8jlhIvVJlIyXyC9Bcf33u2C2t3FvlWHpd6juZ2AqmZvzBpKJ4dzDa
+         RhitowQrGZAmwDqYgTleb/xv3wvzvHz6vj/13n43OL85NHfLpQR1lISWLfQzLCyo7Uv8
+         DxqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697034969; x=1697639769;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fRia8k+03Oqwx1GX3n4lKL8Fmr4eu0Kd6W6Uh3EpGVs=;
+        b=Z9+Vsd8QYzpCKKdFE9eGEjyiu+aRlPjva5kWLhDvVGhBecHbAd8Ptr4BwGwmgUaTgj
+         Xk+moJLY19SHiaRxg4bF65YaLJ+M7vY95gdDtEIKKp9G46LxmoAZHBZ9AEgAxWXR0WI/
+         7jxtrTsNsJMoF/8+5hzPZ1I8uCNbLNU0Pr1NCLWCYpusZKzVIGddH3W0acuHvvaHo8YR
+         wL+31WnSWjXnH4g6lm1ahor+CDTqWAN+ikMRC+ffv2cCC/TE0rbwawfIqJ5iQpN4DX8X
+         mXfeoquTbyWLNUoQIe+2Jg8b//arORzvWyv/pz4Q1TfKnuuZAcUtk9UruiJerND6Wkno
+         y0fQ==
+X-Gm-Message-State: AOJu0YzBSfEYRuzjDCVjcbEMoErFsk+R7phomZ0ZkUsBXSCdLpXShkD/
+	RF6SkMb9E0ZA9BTTOCulwGsCWs3RIJZiY74jvuFGoA==
+X-Google-Smtp-Source: AGHT+IGp0aCbVch3aWSyH7cHVNbtanzJle7cJ1cAmpcUd/wMeHz4+z/v7vHIwU0O/XV3e1Y9FOEIZ+CBjOydn+x9eiA=
+X-Received: by 2002:a50:8ad1:0:b0:538:5f9e:f0fc with SMTP id
+ k17-20020a508ad1000000b005385f9ef0fcmr158758edk.0.1697034969289; Wed, 11 Oct
+ 2023 07:36:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wog0/5TbcFHH/Bj5"
-Content-Disposition: inline
-In-Reply-To: <20231010190926.57674-1-marex@denx.de>
-
-
---wog0/5TbcFHH/Bj5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231010121402.3687948-1-yangcong5@huaqin.corp-partner.google.com>
+ <20231010121402.3687948-2-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=VsjB-gsqXyAs+G8DpHJqHNTxeFXwbpgt20-Wgb757z1w@mail.gmail.com> <CAHwB_NKVSOLwBttWG9GQMvKEFGzuGeE6ukR=vNDNLpdVjjohng@mail.gmail.com>
+In-Reply-To: <CAHwB_NKVSOLwBttWG9GQMvKEFGzuGeE6ukR=vNDNLpdVjjohng@mail.gmail.com>
+From: Doug Anderson <dianders@google.com>
+Date: Wed, 11 Oct 2023 07:35:53 -0700
+Message-ID: <CAD=FV=WFkRqkp8wcGG5uxE+7RqAQ40rSU-12Zig1R--ykcO8ZA@mail.gmail.com>
+Subject: Re: [v2 1/3] drm/panel: ili9882t: Break out as separate driver
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
+	airlied@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 10, 2023 at 09:09:25PM +0200, Marek Vasut wrote:
-> The ST M24C32-D behaves as a regular M24C32, except for the -D variant
-> which uses up another I2C address for Additional Write lockable page.
-> This page is 32 Bytes long and can contain additional data. Document
-> compatible string for it, so users can describe that page in DT. Note
-> that users still have to describe the main M24C32 area separately as
-> that is on separate I2C address from this page.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Hi,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Oct 10, 2023 at 10:42=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Hi,
+>
+> On Wed, Oct 11, 2023 at 3:11=E2=80=AFAM Doug Anderson <dianders@google.co=
+m> wrote:
+> >
+> > Hi,
+> >
+> > On Tue, Oct 10, 2023 at 5:14=E2=80=AFAM Cong Yang
+> > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> > >
+> > > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c b/drivers/=
+gpu/drm/panel/panel-ilitek-ili9882t.c
+> > > new file mode 100644
+> > > index 000000000000..e095ad91c4bc
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
+> > > @@ -0,0 +1,762 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Panels based on the Ilitek ILI9882T display controller.
+> > > + */
+> > > +#include <linux/delay.h>
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> >
+> > nit: remove include of linux/of_device.h since you don't use any of
+> > the functions declared there.
+>
+> It seems that of_device_get_match_data will be used.
 
-Oh and Bartosz, this binding seems to have a baylibre email address for
-you in it. I'm sure it's mailmap'ed to the right place, but just FYI.
+Right... ...and of_device_get_match_data() is declared in...
+<linux/of.h>. :-) See commit 82174a0a9c5c ("of: Move
+of_device_get_match_data() declaration") and commit 722d4f06e560
+("drm: Explicitly include correct DT includes").
 
-Thanks,
-Conor.
+We'll probably need to handle that when picking to downstream, but for
+upstream you shouldn't be re-introducing of_device.h.
 
-> ---
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-i2c@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/eeprom/at24.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
-tation/devicetree/bindings/eeprom/at24.yaml
-> index 98139489d4b5c..7be127e9b2507 100644
-> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-> @@ -67,6 +67,8 @@ properties:
->                    pattern: cs16$
->                - items:
->                    pattern: c32$
-> +              - items:
-> +                  pattern: c32d-wl$
->                - items:
->                    pattern: cs32$
->                - items:
-> --=20
-> 2.40.1
->=20
 
---wog0/5TbcFHH/Bj5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSax5gAKCRB4tDGHoIJi
-0uDqAQDrrqm5xF6kSughP/zgQ9kHzDoc9nYqWllbxlSYkSmgygD/bRkPAKlAbY9N
-fgB9ZF7AOlPHILAUtsGHH3I/JL3mIgY=
-=Qeyv
------END PGP SIGNATURE-----
-
---wog0/5TbcFHH/Bj5--
+-Doug
 
