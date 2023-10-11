@@ -1,161 +1,108 @@
-Return-Path: <devicetree+bounces-7511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B73147C4913
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3BB7C492E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CCBA281F7C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:12:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23CCB281EFD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F06D2E3;
-	Wed, 11 Oct 2023 05:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3FDD2ED;
+	Wed, 11 Oct 2023 05:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RxIBs9jH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruevlGS3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41509D2E0
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:12:20 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E333E98;
-	Tue, 10 Oct 2023 22:12:18 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c9b95943beso10556755ad.1;
-        Tue, 10 Oct 2023 22:12:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBB3354F0
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:25:20 +0000 (UTC)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762DC9D
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:25:18 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-694ed84c981so4960539b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:25:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697001138; x=1697605938; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nigg6NOWWCn0hZudaM7Yq7CsxNtYAT49L0IXth0E2/M=;
-        b=RxIBs9jHb03YRtxahdfipYOZZQ/2Pt/w/zJtRFaeJabolmMv6Au5EjUHZ4ENARVGWC
-         MIj2GZl2dYmDzHqwN3mcG/zKtMm5zosyu9yijM3bDRGOC7p47S+OAqbkrX0i8jdBGPvu
-         X6t14d8XPKO+XG09FfPb/1fggFjwrZWXo6exX4ZB8TqC8wJkeAz1mtRSspZJOZd47not
-         0qSQNg0V86PTnwFaV1uUrNvbRDzHi06q29Gs/uUHoxX+BVv4DTn2+9Y8Wepj14fPakDS
-         TxWpltatZAbxZi3pBbIWgLf5TsQRNZuPqYXrUkDjXgwMSvMQfTMJDcQVlRELyWamckLU
-         8pZA==
+        d=linaro.org; s=google; t=1697001918; x=1697606718; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2X9IQoOZGMUd+FMDOO6oLZGueNPvW1McZHYWaIOMgqo=;
+        b=ruevlGS30ahfo4JPE/T4VeeQbLNEc3tUIcmXWmEI+r/FnyAyobKIhfzR66O0B3e73o
+         /Ne1qBFphy2hZIOnGFNk9N0QyDHfyORgJCy2kHGFNDDyjiOPVwnkpuIzOyshpqXhBhQ2
+         QHo9ahV0QdWGqAbSf60p8nqd2WFHNebTo3B1BYF23h5V4RZO2TY3nTuxeqhDgrtqSN8T
+         C4T6bdj7OYbfm1xYFva+9t5JZinECgNEq3ZHq8FCegzezzDSxgLYupx94LAnlQfsB7Me
+         rd/44bBNthKCGkLGxVQCGGmQxy1iY8ITfw2ue6YfL85QEhYw30RvF7PBIwZcimoEERwW
+         6MFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697001138; x=1697605938;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nigg6NOWWCn0hZudaM7Yq7CsxNtYAT49L0IXth0E2/M=;
-        b=pZ5XP7Ux4ZzdgbYRjcccgJqtvXQhs0SghknU9ZFC+TgTsRH/mByEjAlJR6Z4aQpmzs
-         ZTKzYSIcz0aPeo8TMOs/M7lihfJsADUyN9VecTPKAgwYF9pi6Jupj2oB2W4kIWERoG2x
-         YO1AjIx2KMBK3K9w0k4wkUhJUWLkS6k9sTYXgRlXEixiwQr27xi2aiYB//gu/cLKBD7I
-         febYx7dqLxUQsQRXPC3C1viwbeJHkk/6Z2m1nVY64L8ftaLkBz889mnm6DufaYyqeyf7
-         bb/IG0qZE8pcibzqsfwgHLSrZusHisJnqjVObA1zBugN9DjDH8JZPD3GW5FaSiWWt1Cl
-         MIGA==
-X-Gm-Message-State: AOJu0YzIqb5ASQUqcs9JwF1z+skS4KenDxEzw8IKxKH7XANO34Rli5cf
-	CwrCxGbNbAWoEK0yNk5bbzI=
-X-Google-Smtp-Source: AGHT+IF3hPtVKNWgsn+MppgNKK1gYtLzV1soJc7B8Z4A5P2rhn/x3scK7LQNx53no261s3rHWSCI0Q==
-X-Received: by 2002:a17:902:e749:b0:1b8:76ce:9d91 with SMTP id p9-20020a170902e74900b001b876ce9d91mr26018626plf.1.1697001138105;
-        Tue, 10 Oct 2023 22:12:18 -0700 (PDT)
-Received: from localhost.localdomain ([49.205.243.94])
-        by smtp.gmail.com with ESMTPSA id u13-20020a170902e5cd00b001c5dea67c26sm12777083plf.233.2023.10.10.22.12.14
+        d=1e100.net; s=20230601; t=1697001918; x=1697606718;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2X9IQoOZGMUd+FMDOO6oLZGueNPvW1McZHYWaIOMgqo=;
+        b=MAt0Yyaz21qrEzKGb2Rd/DFXr0MIOKU1AcbiPc0e3cwCBp1Bwv8ur4CpngB0E1xj2O
+         fL500XNjRKxEqqMff5K0d0UHWWEMvTVAPD5jASXWlKx8GEBsX40KIlsTWvK09QUKrmqC
+         FAyenEdmtJAaaDymRAEzaNIgF7D0LrxK8Gp6b9zPEyHpbZEccmsg0fIWClU8MlXEf7f3
+         N+2JhpRX1E4D3sYRpI38nIMK3wJ9bgoeW7FuGnOHWLTqGENloycHDKgh8SSuBKWLM3nN
+         qhLft8oYF4zdE5GaE+rf5BqgJ2ywwAvmlsdzLDHmG98o4fn8pxXdujWJa5kXjd603vau
+         qEnQ==
+X-Gm-Message-State: AOJu0YwHm+/yh4rvB/RldVpd54jmbI3DYYWlElqdlt6bhSFgBJfPDZ2R
+	R8FXhMUPLiLqQQj8UNyFLmcnZg==
+X-Google-Smtp-Source: AGHT+IETB8Eka84sqAUHw9wYrQ3ztLrc9Q9WpG0L8eY+46cGLJIN+R1z8EF4UGAzwTJfFL4jsCIhyQ==
+X-Received: by 2002:a05:6a00:1388:b0:68c:a81:4368 with SMTP id t8-20020a056a00138800b0068c0a814368mr21030998pfg.6.1697001917883;
+        Tue, 10 Oct 2023 22:25:17 -0700 (PDT)
+Received: from localhost ([122.172.81.92])
+        by smtp.gmail.com with ESMTPSA id g2-20020a62e302000000b0069370f32687sm9427861pfh.174.2023.10.10.22.25.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 22:12:17 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
-Date: Wed, 11 Oct 2023 10:41:49 +0530
-Message-ID: <20231011051152.133257-2-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231011051152.133257-1-linux.amoon@gmail.com>
-References: <20231011051152.133257-1-linux.amoon@gmail.com>
+        Tue, 10 Oct 2023 22:25:17 -0700 (PDT)
+Date: Wed, 11 Oct 2023 10:55:15 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Robert Marko <robimarko@gmail.com>
+Cc: ilia.lin@kernel.org, vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, rafael@kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] cpufreq: qcom-nvmem: add support for IPQ8074
+Message-ID: <20231011052515.htggd4jlbwyizp26@vireshk-i7>
+References: <20230930102218.229613-1-robimarko@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230930102218.229613-1-robimarko@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
+On 30-09-23, 12:21, Robert Marko wrote:
+> IPQ8074 comes in 2 families:
+> * IPQ8070A/IPQ8071A (Acorn) up to 1.4GHz
+> * IPQ8072A/IPQ8074A/IPQ8076A/IPQ8078A (Hawkeye) up to 2.2GHz
+> 
+> So, in order to be able to share one OPP table lets add support for IPQ8074
+> family based of SMEM SoC ID-s as speedbin fuse is always 0 on IPQ8074.
+> 
+> IPQ8074 compatible is blacklisted from DT platdev as the cpufreq device
+> will get created by NVMEM CPUFreq driver.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+> Changes in v4:
+> * Add support for IPQ8174 (Oak) family
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v2 no change.
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
- 1 file changed, 24 insertions(+), 12 deletions(-)
+Doesn't apply cleanly over my branch anymore, please resend. Thanks.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 91c9769fda20..9e671444eca6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
- 		enable-active-high;
- 	};
- 
-+	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 2.0 hub on port 1 */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			peer-hub = <&hub_3_0>;
-+			vdd-supply = <&usb_pwr_en>;
-+		};
-+
-+		/* 3.0 hub on port 4 */
-+		hub_3_0: hub@2 {
-+			compatible = "usb5e3,620";
-+			reg = <2>;
-+			peer-hub = <&hub_2_0>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "ODROID-N2";
-@@ -234,18 +258,6 @@ &gpio {
- 		"PIN_3",  /* GPIOX_17 */
- 		"PIN_5",  /* GPIOX_18 */
- 		"PIN_36"; /* GPIOX_19 */
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub-hog {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
- };
- 
- &i2c3 {
 -- 
-2.42.0
-
+viresh
 
