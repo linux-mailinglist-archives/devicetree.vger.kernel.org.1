@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78FCB7C5B36
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:24:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D1C7C5B3B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:24:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A6841C20AD4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:24:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 566FB1C20BAC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD6A22320;
-	Wed, 11 Oct 2023 18:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B02B22321;
+	Wed, 11 Oct 2023 18:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FWYwnqpH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VWnr80mn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A7A1B29C
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:23:59 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6725A4
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:23:56 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32d885e97e2so150715f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:23:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333A21B29C
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:24:28 +0000 (UTC)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18916B7
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:24:26 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3248ac76acbso125724f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:24:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697048635; x=1697653435; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697048664; x=1697653464; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2I3M0AseJOVwbz7qPxfXOr0/qxWVi2JNLlDWGyELfhM=;
-        b=FWYwnqpHgdnnWGL2up4W6Wi0GmrvE+islQGOzcTtZUTjL9uc0uRWCysNbgwTtkeWlj
-         aZBme8u9EuQrNDrKyQX3aLi54F127ltL58it6KeTfRhDrywqRNYViXqQ2X02QV1lVEFW
-         S2f9CBBPnwkvCcqqSCvg2e2i6asEx8fRc5BLBpa12A/ZkRB5C/IcFlyOSwIaduIFoROx
-         NOvnKmNkhQ9An2Gnz/Y5ll1v2XQZjJDOc5hOIw3w9RWoyc8HuQSY0nUojuun/w0/nDOS
-         HOVf8wyNDhtecmh8ZSxYMqyBrlUZNYoz0u+uXItqnOQPiTQ2Smp1wG/20Fwb5K14PYBO
-         gLyQ==
+        bh=UABpI1XbBntN/Z5zdiL53ku+fNjOwZZlzNPQkFQv5F4=;
+        b=VWnr80mnHP7InuHhnB5Ttjl0eeUra8SRfAenlvts0hPdT8tJYdj1xLjkYTQfSa6nIT
+         aVKTmsLHbCRTl0arvoDAmAkBn/4OXqCSwWXbpKtiGt44Atgw/nBr2cqJV43vvGrvBqx2
+         9qoCY2mR9GHueE/p80iO03iWjNU79XPqmCTxp3OjcTL4bnLFq/e5UTeaDkY7xJnucPJw
+         IkurCcPcdAVTarTq5Xu9GpSDMbk9DPq2MSaMRM71oMpcgnS0TAlh56W/Xa2HLC3+XHSr
+         f0yPDppOlHU/7n9zuSdjN4CQoX0g6T3HSOWjJ09CWNtw37963S9XCKqJHhWjGyxsRFqT
+         dITg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697048635; x=1697653435;
+        d=1e100.net; s=20230601; t=1697048664; x=1697653464;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2I3M0AseJOVwbz7qPxfXOr0/qxWVi2JNLlDWGyELfhM=;
-        b=pH1n83Lq24clTNpJGilCyRdmm/wwR71U6/lpLs8pnqsXbygMbuNdeafWQm1N6AUqhG
-         EvNf/vh6xVwnhZxpsLPToHY1mEbXISnIWwFf6x48J5MdMXYtWq1SMlAIhKOqyocrDjWB
-         slHbfU5o23F1+sNCL/epsFrdZg2sCRKxVsHxQ8Y7gUeV9wakCqoAlljtmwrzyEMw6zJo
-         4qfVNG9Ec24LOyXzwDh4WIm19hStJG1OzNkTRyprglQZraq3DOdM1ETDk5I+yEPfS52i
-         CCqSwGMD0OB03rZiny+mJ89pE47QJio3pRD5RvyqG9XL8sNI7ym4gAMYJ4B/mZkYCGU/
-         Y9/w==
-X-Gm-Message-State: AOJu0Yx5oW2T0EmQM33+0tRr2dpk7YIBykWTd+PbWt6UgalWPOLAGYJE
-	cW8u+6sTvDiYkrD4xOq8Upb4CLCLco4gUUXZ9SJAGY3E
-X-Google-Smtp-Source: AGHT+IF7mNyaD81paY1de2OPbdYHq5nZzaXaKMB4IyScfdc7eQQK1Y0lIo/NVp7J+W52JosoRnH4aQ==
-X-Received: by 2002:adf:f34f:0:b0:323:2d01:f043 with SMTP id e15-20020adff34f000000b003232d01f043mr19981762wrp.3.1697048635013;
-        Wed, 11 Oct 2023 11:23:55 -0700 (PDT)
+        bh=UABpI1XbBntN/Z5zdiL53ku+fNjOwZZlzNPQkFQv5F4=;
+        b=iNu9U1ik6jkLbYNneLUgRiwyxNscqX1CGK3A0HqHyFDrVnAiQTMcMXGPRX5XOD84z/
+         eo2GLyN+ef2tp9210F0/MZ/jixZHaPObWOdmCnUCeWscTDipmVwvUPChX7/12A/og0Eq
+         kI4QegYp8r5w9hi457rEx7PAgAycGmgFH5cwdeOR9yWM+LPcnoI6g8gEhiX+TGhGeDvq
+         boVkePL73tqIuUkSfu+P2AZp2iNaZc+PtyIGlUNNJMu7y/bJ0XAVYZZSmm7LS9+9HrPW
+         03GMOn6kEjwFTngBIgk2i/eRAFXcQODnBdhwpHpWsCVsuVb8FOv/QD9a4i8Jk9dRWILe
+         KYPA==
+X-Gm-Message-State: AOJu0Yw6hZTFq26Ynf+Xl9JVZQAxT2h2eOkcW6De2YZrNnstCA7D7LZM
+	wLhy1g3/c0h5nFaoViOvZtOU7Q==
+X-Google-Smtp-Source: AGHT+IGedoM/bYXyMWjeiuCMaa0SVawduDdNewcP41AmaZjefj93xviVI600AW/pIGiSvdKO6DztuQ==
+X-Received: by 2002:a5d:4fc1:0:b0:31a:ddf0:93b with SMTP id h1-20020a5d4fc1000000b0031addf0093bmr17980406wrw.33.1697048664411;
+        Wed, 11 Oct 2023 11:24:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id e15-20020adff34f000000b0031c6e1ea4c7sm16191985wrp.90.2023.10.11.11.23.53
+        by smtp.gmail.com with ESMTPSA id e15-20020adff34f000000b0031c6e1ea4c7sm16191985wrp.90.2023.10.11.11.24.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 11:23:54 -0700 (PDT)
-Message-ID: <db597f8d-1293-4b51-b182-bad499b7d1b4@linaro.org>
-Date: Wed, 11 Oct 2023 20:23:52 +0200
+        Wed, 11 Oct 2023 11:24:23 -0700 (PDT)
+Message-ID: <9f270d15-6705-4392-b2cf-49edf5bc2d3b@linaro.org>
+Date: Wed, 11 Oct 2023 20:24:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] regulator: dt-bindings: Add mps,mpq2286
- power-management IC
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: document HTC
+ Corporation
 Content-Language: en-US
-To: Saravanan Sekar <saravanan@linumiz.com>, sravanhome@gmail.com,
- lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net,
- jdelvare@suse.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20231011164754.449399-1-saravanan@linumiz.com>
- <20231011164754.449399-3-saravanan@linumiz.com>
+To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20231011-htc-memul-v1-0-76e57873190c@z3ntu.xyz>
+ <20231011-htc-memul-v1-1-76e57873190c@z3ntu.xyz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,7 +125,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011164754.449399-3-saravanan@linumiz.com>
+In-Reply-To: <20231011-htc-memul-v1-1-76e57873190c@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -133,13 +135,15 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 18:47, Saravanan Sekar wrote:
-> Document mpq2286 power-management IC.
+On 11/10/2023 19:02, Luca Weiss wrote:
+> Add the vendor prefix for HTC (https://www.htc.com/).
 > 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+So it is the first HTC device in upstream? That's a surprise...
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
