@@ -1,105 +1,173 @@
-Return-Path: <devicetree+bounces-7879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9427C5F09
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:21:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B87987C5F1A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E79D1282407
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:21:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B21F1C20978
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59ED11F17C;
-	Wed, 11 Oct 2023 21:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACD71F929;
+	Wed, 11 Oct 2023 21:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FeuXDh0P"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nol6CFDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F7A12E5E
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 21:21:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A91DAC433C7;
-	Wed, 11 Oct 2023 21:21:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697059300;
-	bh=AVRwgDQBx8JR4FI59OdGoNJiJ8cIUcgjj4IXSMlvioQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FeuXDh0Pe588U/HI3BCDaX6/Siicbxz/VlUUPwNzcB1plpChg61yRxaACWVX/bjSC
-	 nE+bO3Enh9zLr1XTmn8fs3TB86TrpmoJitanCKs7mKDUtfwu4NVWMpZKg4UYSjJ6PR
-	 iKOXjQH5t3NmEXPQk0drsmr9nEvgsXE0u3AOh9r0kNXveyTarxxueqkiNNLq7JU3jk
-	 3HiJONE5kHoL17J76por3LVwuqyLpztPecYx2kZCVzeOMZbpN7FQ43vmu9rHskAXu2
-	 Dxkib8VXSvqRiYme9D+JO6GhZ8TLtx/LGd0RqSFvGjXzJGVF9yMOFPGD5QH4uAweK9
-	 1VfwaI6sLQqWw==
-Date: Wed, 11 Oct 2023 22:21:33 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List DAPM
- endpoints ignoring system suspend
-Message-ID: <f639c88d-371a-4c72-a906-47d643b24ca8@sirena.org.uk>
-References: <20231011114759.1073757-1-chancel.liu@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B808512E5E;
+	Wed, 11 Oct 2023 21:28:43 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13E4A9;
+	Wed, 11 Oct 2023 14:28:39 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39BLLorF026505;
+	Wed, 11 Oct 2023 21:28:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=YV+V1QT7WH4TWPolqZP1tvIu4h5bgrG/c8p+KKr0FoQ=;
+ b=Nol6CFDoHUzR4MONkVTbjPlDGX8jVqu+DqjvbqlByQojNsd+P5PUQji3uQkMkNyEx/2S
+ 5L8blqit0HWXQxoVAeP1EZs/iVACZdp8Ta+QIe4RPdY1umbSFP4kGotR6AFmcncynZnk
+ oahwPh5qBb7S4BzteERSwdbC/8Soe6MKEqc2CmEUyU6jDd1k8Mdxoo8bWCuklBuUdBKI
+ MKvabTmCS2Bar6e2adlK6oMnL8Nu2Q5voYPAzqGKGnn1TDISOEWh4O5m1zsSzp63XONF
+ xJj0JAeOIR0GtT+EEmgyj8qGZxecN8tjDe4nkXpSULibMPnY9zLne8cR6F9A6iGBgU/y Ig== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnsmq1nmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 21:28:14 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BLSC9L011144
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 21:28:13 GMT
+Received: from [10.71.115.198] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
+ 2023 14:28:12 -0700
+Message-ID: <a9b172cd-1840-2949-2244-9a75d2bb7990@quicinc.com>
+Date: Wed, 11 Oct 2023 14:28:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BGyLCGLG2m53YbE3"
-Content-Disposition: inline
-In-Reply-To: <20231011114759.1073757-1-chancel.liu@nxp.com>
-X-Cookie: What an artist dies with me!
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v8 25/34] ASoC: dt-bindings: Update example for enabling
+ USB offload on SM8250
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: <bgoswami@quicinc.com>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <conor+dt@kernel.org>,
+        <linux-usb@vger.kernel.org>, <andersson@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <srinivas.kandagatla@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <agross@kernel.org>,
+        <mathias.nyman@intel.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-arm-msm@vger.kernel.org>
+References: <20231011002146.1821-1-quic_wcheng@quicinc.com>
+ <20231011002146.1821-26-quic_wcheng@quicinc.com>
+ <169699146438.2560961.3220166947763848754.robh@kernel.org>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <169699146438.2560961.3220166947763848754.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Mx5Ycg9ohRBABrFQFgGJzpQmgg0YzsHa
+X-Proofpoint-ORIG-GUID: Mx5Ycg9ohRBABrFQFgGJzpQmgg0YzsHa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-11_16,2023-10-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 bulkscore=0 clxscore=1015 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310110189
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Rob,
 
---BGyLCGLG2m53YbE3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 10/10/2023 7:31 PM, Rob Herring wrote:
+> 
+> On Tue, 10 Oct 2023 17:21:37 -0700, Wesley Cheng wrote:
+>> Add an example on enabling of USB offload for the Q6DSP.  The routing can
+>> be done by the mixer, which can pass the multimedia stream to the USB
+>> backend.
+>>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/sound/qcom,sm8250.yaml    | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/sound/qcom,sm8250.example.dts:97.44-45 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
+> make: *** [Makefile:234: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231011002146.1821-26-quic_wcheng@quicinc.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-On Wed, Oct 11, 2023 at 07:47:58PM +0800, Chancel Liu wrote:
+Would you happen to know what the error is in this case?  I made sure I 
+was running the latest dtschema (v2023.9) and had yamllint installed as 
+well.  When I took a look at the DTB and DTS output it looked ok...
 
-> +  lpa-widgets:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description: |
-> +      A list of DAPM endpoints which mark paths between these endpoints should
-> +      not be disabled when system enters in suspend state. LPA means low power
-> +      audio case. For example on asymmetric multiprocessor, there are Cortex-A
+             usb-dai-link {
+                 link-name = "USB Playback";
+                 cpu {
+                     sound-dai = <&q6afedai USB_RX>;//--->syntax error?
+                 };
 
-I suspect that the DT maintainers would prefer that this description be
-workshopped a bit to remove the Linux specifics.  I think the key thing
-here is that these are endpoints that can be active over suspend of the
-main application processor that the current operating system is running
-(system DT stuff is an interesting corner case here...), and the example
-is probably a bit specific.  Other bindings use "audio sound widgets"
-rather than "DAPM widgets".
+                 codec {
+                     sound-dai = <&usbdai USB_RX>;
+                 };
 
-We also shouldn't see that these endpoints "should not be disabled"
-since that implies that they should be left on even if they aren't
-active which isn't quite the case, instead it's that we can continue
-playing an audio stream through them in suspend.
+                 platform {
+                     sound-dai = <&q6routing>;
+                 };
+             };
 
---BGyLCGLG2m53YbE3
-Content-Type: application/pgp-signature; name="signature.asc"
+I didn't make any changes to this in between v7 and v8, but v7 passed:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230921214843.18450-25-quic_wcheng@quicinc.com/
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUnEdwACgkQJNaLcl1U
-h9D14gf+M9bhmpfCPDRUmqCUaPutP6E3jikRfcnDJMN9NCqZQlZqmvNPDkZwflpC
-0ANUsCcytMbUuzBoQIYoSCtfFDer2msQyvVQxVsM9P1zwX7Qfbal8vTlZGk4ysr7
-p81AT1+S+qs9386uzQSK+WFqMoEEZYzgOY8GDvdEZFl2I1JlfB6+f47nyxYwYylv
-GD1iiiRKguqj0FMRWINIxBRehf+/SSZ2dLu6lYVAl2ZlGkKZgtJAylmDGVVHWAiG
-YWYHw1UUmuTqUtdcsHd0h5Yz1fv5QWhhOSaGSLrrzg58vMBhsC/JfP+ntn7pF5eD
-Wi4I4SBZmZibAjPsU4MD29pkvvjasQ==
-=c0uT
------END PGP SIGNATURE-----
-
---BGyLCGLG2m53YbE3--
+Thanks
+Wesley Cheng
 
