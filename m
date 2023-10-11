@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-7781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE307C573F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:46:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6749E7C5757
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:50:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73F791C2026E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:46:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 989A71C20C85
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F7314A80;
-	Wed, 11 Oct 2023 14:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AC6182CA;
+	Wed, 11 Oct 2023 14:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="efH6MLyF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EX+S8t0y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4E4211A
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:46:33 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23D2CF;
-	Wed, 11 Oct 2023 07:46:29 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A47A3240006;
-	Wed, 11 Oct 2023 14:46:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697035588;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+QVKjHGSsp7llyLK7zXvNe55S5HhglD1KOhqWrzK24o=;
-	b=efH6MLyFYuKhVRsjsyQIblreJjjFhdUvrP5SIy7uZrN57o+MGaBWpe60IvUsA06T59aCRI
-	0790bKGL0Q07jyaZwaDkl/cvzo2ZPcDGSCON/4vtiPXpc4MMNbq/UVSYJ6oFYk4b7YSEwV
-	hXaqJSs2sB/02RlvLWyMuu3J76p1VzXe0E9ibdPEKkWzw4vKe9uMX04889lq+BU/g14xgl
-	0/ytgcvLysO37RAI1C7JlJ26pSJXnpSBPD3Tb3RqYwkBhTGh0BxZz5XlbkfzJPIxahdVb4
-	NZB7h7jzUmygp+rBhXjFNr8UrQ/oFHf1Grvnfi1np6EIscieXSEgBn8PPHFSvw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, "paulburton@kernel.org"
- <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 03/11] MIPS: support RAM beyond 32-bit
-In-Reply-To: <e5b8c68e-8a1d-45e7-92bf-db0c2fa812ad@app.fastmail.com>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-4-gregory.clement@bootlin.com>
- <f98d0cf9-6339-4cb1-8019-56bc71bfb822@app.fastmail.com>
- <87edi3bxcl.fsf@BL-laptop>
- <e5b8c68e-8a1d-45e7-92bf-db0c2fa812ad@app.fastmail.com>
-Date: Wed, 11 Oct 2023 16:46:26 +0200
-Message-ID: <878r89b4jh.fsf@BL-laptop>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB1F15E8C
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:50:21 +0000 (UTC)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B595F94;
+	Wed, 11 Oct 2023 07:50:18 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c296e6543fso86417941fa.3;
+        Wed, 11 Oct 2023 07:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697035817; x=1697640617; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4hEdoIV9Vrx35zLcKUifZjIytGzkt3j9YZqzs49YGsE=;
+        b=EX+S8t0ybFR+NcNM9xwez61DJb3CVTvTyv714ELSy6nVC6qCF7oiU/T0VyB+oe7I+h
+         bXtvQ8C6Cnvq3TRCfGzrbxdi935QOPfwQsUMaujUZnKP+Jm5LiahFeMwRbKgyXzE7vOT
+         LdrimdTHSwk8NWFFMtTzDCE9MoWV3/k7mFbmQKGToG0Jk+FVTk6t6XVnqNGtKkWRexK8
+         ZtnoEoPe1qO6HhWyNb2O5oAkEHhh2uRrdpCnbW8CoVY/rkejKOTCeADjTxMEHD+xaAG8
+         1jPkE0hlFBR8p2TIdkm+klb5cXHj1ZK6YIDfqMbhDA5tjGDAvx/JCGsOMDVpOplGYOkl
+         jFkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697035817; x=1697640617;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4hEdoIV9Vrx35zLcKUifZjIytGzkt3j9YZqzs49YGsE=;
+        b=BPk7FI9GOL/OXVWETNwBwnS/u10VEkWrBTdcDln1JgY5Ldtp6hTJjqLYH0G1Crf71C
+         4zckhQAV39MbFBnFGdGhJsTCfw/r6O2oWsxjt36/X3rgSV+BObuMfjmEflXs7L2X/vaP
+         x8ebqil3x/BCNBh5y/5Y4Uif9wMDzowm77hzqSVzFekfD/AEop6gJZjoFqMWjMS1fI+a
+         WhrySo/H7DuFvK0ShQMprYcdSB4ukZgckQlO2hXnYCvEtMSejrvkcl+QZ+yGeoa0kc/p
+         0tRIGvwOO2GPWYGap6fhIIwh6pWQM05rcROew56Y4kAvGQwQHJHoWTO0iY7uRzOOlG1D
+         Zawg==
+X-Gm-Message-State: AOJu0YyBpF9CgJBE+KINhic5DgOkYUaxz7GIvqadyLx59FdeAMQYIA8M
+	qpafb3F8AchrvFcXwg4nyN4=
+X-Google-Smtp-Source: AGHT+IHImYkyI7ecSdkkIRLaVm8LFs3qxGXVtxdYLnIxKCUF6zOr3h8anAZaQaCDWk26XlVucQOOqA==
+X-Received: by 2002:a2e:8895:0:b0:2c2:bdc2:af77 with SMTP id k21-20020a2e8895000000b002c2bdc2af77mr18225719lji.33.1697035816636;
+        Wed, 11 Oct 2023 07:50:16 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id w11-20020a2e998b000000b002bffbe767cbsm3012515lji.85.2023.10.11.07.50.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 07:50:16 -0700 (PDT)
+Date: Wed, 11 Oct 2023 17:50:12 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com, 
+	conor+dt@kernel.org, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, 
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
+ unnecessary memory assignment
+Message-ID: <yaogf4d672yb76lbx7e7gu2ykm7shujfwgqiztfydbsodwuymr@rkffjewg6hnp>
+References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
+ <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
+ <abf65z7xxsnd7adkg523mneccudwenvdzcw7jpblafqzvhca5n@lbpsch7ztxsn>
+ <20231011130727.GA3722793@rocinante>
+ <20231011131840.GB5952@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,80 +82,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231011131840.GB5952@thinkpad>
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Jiaxun,
+Hello Krzysztof, Mani
 
-> =E5=9C=A82023=E5=B9=B410=E6=9C=889=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
-=E5=8D=884:59=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
->> Hello Jiaxun,
->>
->>> =E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=
-=E5=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
->>>> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
->>>>
->>>> Support platforms where RAM is mapped beyond 32-bit.
->>>>
->>>> The kernel parameter ddr32_alias allows to setup the alias to point
->>>> outside the first 4 GB of memory.
->>>
->>> Are you trying to fix the problem that if kernel text is loaded in
->>> XKPHYS there is no way to to set EBASE to that region?
->>
->> Yes that exactly we try to fix.
->>
->>>
->>> The common practice for other 64bit MIPS system is to load kernel
->>> in KSEG0 and add low 4G mirror with rest of the high memory to buddy
->>> system. By doing this Kernel still have access to all memory beyond
->>> 32 bit, the only draw back is Kernel's text and data can't be relocted
->>> beyond 32-bit.
->>>
->>> Loading kernel into KSEG0 (i.e. with KBUILD_SYM32) have significant ben=
-efit
->>> on performance, so I think you shouldn't try to load kernel into XKPHYS
->>> without a good reason, but it might be helpful to add a BUG_ON at
->>> CPS driver to handle such situation.
->>
->> I guess that being in KSEG0 allows to use shorter pointer.  But in our
->> case the RAM is physically connected beyond 32bits, so it is not
->> accessible in KSEG0.
->
-> For most system there should be a mirror of part of DDR which is accessib=
-le
-> at KSEG0 and kernel runs from here. As per my interpretion of your code E=
-yeQ5
-> is also doing this? If not could you please briefly describe the memory m=
-ap?
->
-> For Kernel in KSEG0 the pointer is still 64bit but we can use fewer inst
-> to load ABS pointer into register, see [1].
->
+On Wed, Oct 11, 2023 at 06:48:40PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, Oct 11, 2023 at 10:07:27PM +0900, Krzysztof Wilczyński wrote:
+> > Hello,
+> > 
+> > [...]
+> > > > +	/*
+> > > > +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
+> > > > +	 * Rev.5.20a,
+> > > 
+> > > and 3.5.6.1 "RC mode" in DWC PCIe RC databook v5.20a.
+> > 
+> > OK.  I can fix this citation later.
+> > 
+> > > > +      ... we should disable two BARs to avoid unnecessary memory
+> > > > +	 * assignment during device enumeration.
+> > > > +	 */
+> > > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_0, 0x0);
+> > > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_1, 0x0);
+> > > > +
+> > > 
+> > > What's the point in doing this
+> > > 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0x00000004);
+> > > 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_1, 0x00000000);
+> > >         ...
+> > >         dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
+> > > afterward?
+> > > 
+> > > I guess if the BARs are disabled there is no need in having them
+> > > touched. Am I wrong?
+> > > 
+> > > BTW I failed to understand why the BARs inits was originally needed:
+> > > first merging the BAR0 and BAR1 into a single 64-bit BAR, then
+> > > switching it back to two 32-bit BARs. Moreover here is what prior DW
+> > > PCIe RC v5.x databooks say about the BARs:
+> > > 
+> > > "3.5.6 BAR Details
+> > > Base Address Registers (Offset: 0x10-x14)
+> > > The Synopsys core does not implement the optional BARs for the RC
+> > > product. This is based on the assumption that the RC host probably has
+> > > registers on some other internal bus and has knowledge and setup
+> > > access to these registers already."
+> > > 
+> > > I am not sure I fully understand what it means, but it seems as DW
+> > > PCIe cores didn't have anything behind the RC BARs even back then. So
+> > > it seems to me that the BARs manipulation was the Exinos PCIe host
+> > > specific, from which driver they are originating - commit 340cba6092c2
+> > > ("pci: Add PCIe driver for Samsung Exynos").
+> > 
 
-There is a kind of mirror but its physical address start at 0x8000000
-so beyond the first 512MBytes that are used for KSEG0.
+> > Would any of the above be something we need to address before this series
+> > can be successfully merged?  I am asking if this is a show stopper,
+> > something we can fix later, or even something I could address once I take
+> > this series again.
+> > 
+> > Thoughts?
+> >
 
-In short the 32bits mapping is the following:
+I can't confirm for sure that the BARs manipulations in this patch
+will work on the older IP-cores (prior 5.10a) or will be required for
+all new controllers (5.10a and newer). Based on the BARs description
+posted in the IP-core HW manuals, the CSRs semantic has changed
+between the major releases. Old DW PCIe RC IP-core HW-manuals
+explicitly state that the BARs are unavailable:
 
- - the controllers registers of the SoC are located  until 0x8000000,
- - then from 0x8000000 to 0x10000000 there is the alias to low addresses
-   of the DDR
- - then the SPIflash is mapped to from 0x10000000 to 0x20000000
- - after the PCIe Memory 32-bit addr space is from 0x20000000 to
-   0x40000000
+"The Synopsys core does not implement the optional BARs for the RC
+product"
 
-Gregory
+New DW PCIe RC IP-cores manual say that the BARs exist, but are
+normally unused:
 
-> [1]: https://elinux.org/images/1/1f/New-tricks-mips-linux.pdf
+"Two BARs are present but are not expected to be used. You should
+disable them to avoid unnecessary memory assignment during device
+enumeration. If you do use a BAR, then you should program it to
+capture TLPs that are targeted to your local non-application memory
+space.... The BAR range must be outside of the three Base/Limit
+regions..."
 
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+So in theory it's possible to have platforms with the BARs somehow
+utilized even in the Root Ports. Though currently AFAICS we don't
+have such devices supported in kernel.
+
+> 
+> If Yoshihiro can confirm that his controller can work without this patch, then
+> I'd vote for dropping this patch and applying the rest.
+
+AFAIR Yoshihiro insisted to have the BARs reset because without
+it something didn't work, so he added some comment to justify it:
+https://lore.kernel.org/linux-pci/TYBPR01MB534104389952D87385E8745ED8879@TYBPR01MB5341.jpnprd01.prod.outlook.com/
+Though based on the comment the BARs reset still seems optional.
+
+One more low-level driver which already does what is implemented in
+this patch is the Keystone PCI host-controller driver (see,
+pci-keystone.c also activates dbi_cs2 and zeros out the
+PCI_TYPE0_BAR0_ENABLED flag). Moreover something similar is done in
+the generic DW PCIe EP driver in the framework of the
+__dw_pcie_ep_reset_bar() method including the direct BARs zeroing out
+(which I questioned in my initial message in this thread). So seeing
+this patch would re-do what is already done for the Keystone device
+and would add a partly duplicated code it would be reasonable to drop
+the patch for now and get the BARs reset back to the Rcar host
+low-level driver as it was in v23. We can get back to the topic
+afterward and see whether the BARs reset could be done generically for
+the RPs. If we figure out that it's required at least for the new
+controllers then we'll be able to implement a generic RP/EP BARs reset
+method, have it utilized in both DW PCIe core drivers and drop the
+respective code from both Rcar and Keystone LLDDs.
+
+-Serge(y)
+
+> 
+> This can be submitted later if required.
+> 
+> - Mani
+> 
+> > > * BTW Yoshihiro, I am sorry to see your patchset is still under review...(
+> > 
+> > Yes, we need to draw a line somewhere. :)  I am happy to take this series
+> > so we don't miss another merge window.  We can always fix other bits and
+> > pieces later and iron out any kinks that might have fallen through the
+> > cracks, so to speak.
+> > 
+> > 	Krzysztof
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
