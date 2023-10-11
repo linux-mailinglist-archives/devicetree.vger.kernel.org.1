@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522E67C5B59
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B80307C5B62
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0757B282458
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:30:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71A9D281128
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C551400F;
-	Wed, 11 Oct 2023 18:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085713994E;
+	Wed, 11 Oct 2023 18:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KgTJ5MyT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJ7CHRF7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD161D549
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF81122334
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:32:51 +0000 (UTC)
 Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D894D9D
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:30:38 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9ba081173a3so19969766b.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:30:38 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4025AA9
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:32:49 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b275afb6abso277059066b.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:32:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697049037; x=1697653837; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697049166; x=1697653966; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mcH3V1IIM4gjK5mZgH1a0+WgRkjoukx8EMq1WRiQrXA=;
-        b=KgTJ5MyTvVuyqC+yVBWKaARDt6cgb++V96iLusTihBqTIqRMjQ2R2mfIMfPUPgSX1j
-         BlGZWwmBkxWQAc7zRHkdRMIV6h77AAR7qZBm3QKSQG69YaYBi7STHUoZNvVhNCNPqKHi
-         lCnCbsgXjcVji2wOATw7R9iTqh3UbKTEc4bEezWMJz/Mi6KcMgsU+8utJyatcRyGgxLJ
-         Lp5AflQNI4t/QtJVkALhXjFfvvFiLfpeWPW4jqcjy3B1JibDG83PhLvrTEld+ZEm79y3
-         DQtNeMBzq8JDJ2rZTU6zMop2Nr+/tUnljNZ+T3eMic6nIcxK1p1IOHmzs/vfpUb9v95m
-         18qw==
+        bh=pbI8FrvRKFZu6B2DbOdgldrjIGyQyHavEvB5fYDKWGc=;
+        b=oJ7CHRF7aR8YnBsR4YzaQZH/BNZTGkjHnKo6cGDo1z+9EFnXfq4tqFUbxnhk7IE9y+
+         uBBlE6pKM6TnlZuNslYJtKPhUvocRdSbHKidQ/tmkAm6AOoEblcqWOhsLox4c0FMkxVf
+         V6MlxZTYImLBuczg8tQgoBbRHR3L4XzP9yRb6rXQhKedhCFQ20qB3HJ+Sp1EoBRXH+J0
+         1GJw7MeiRZFAxuCVSr1OG6tyMnaCxUE0Ib1THUkbcfEwvm+wfDI1XXFrV3HJoj69hOVw
+         ds6PGa55YN+01ZQx1Vckrd+wiJgJweTWOynCCFbIP6DKAOetqd76sB9gHe8XKp44mIxC
+         0v5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697049037; x=1697653837;
+        d=1e100.net; s=20230601; t=1697049166; x=1697653966;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mcH3V1IIM4gjK5mZgH1a0+WgRkjoukx8EMq1WRiQrXA=;
-        b=Up1ox5WZGVNG4STRDPdu1/J3QUEv0OC4gjny8Fb60JCRky5HHHQZb8SDrbb7xHZIwI
-         KK3Db40XVamTLTKdbE6u14NtOBJUEUeLfypcnJTnwBH5vIOmVOKAfcfD+LAUlVoT+nHR
-         R0YIFIlNxA9b8N8p/ehpegNWi4gz5B2yr+xLNv0gT2ne61VFM5SiY2N0jR4VJS+ikiLq
-         GaN01hK0TpryI56qlH/Ss9nphfGL59f4dgMtgKu3GUunT/2Ptp95QMcG7Nc1Jckzx5fT
-         GPAXz9FHErzsk1FcAk3dZNQaUXBXdaVK3xMv7XyBCJM6WOGWS6MRcX68L9jPBUODAx4R
-         6NjA==
-X-Gm-Message-State: AOJu0YxgUZT94qELtPAY+2ffADNY4cN9guQQ7dd/i9RIo6FeEl/tSDH4
-	YgSDfJJqZCqVd6Qp0jJOgWqgkA==
-X-Google-Smtp-Source: AGHT+IHe7nTUHI8cvy09i0uo8fzRIdaXeqrydSlHFNQ6DWkpwNkQ5dyuK02qYJg25HZ1xNsBD9yT1w==
-X-Received: by 2002:a17:906:530b:b0:9a2:1e03:1573 with SMTP id h11-20020a170906530b00b009a21e031573mr21206782ejo.65.1697049037170;
-        Wed, 11 Oct 2023 11:30:37 -0700 (PDT)
+        bh=pbI8FrvRKFZu6B2DbOdgldrjIGyQyHavEvB5fYDKWGc=;
+        b=j98ykkSCbYzMtUMNIyrP16KenwjHtw1kTJoHyzQ4cQx0D0uKruJKa3ukTjWdrP+kti
+         r8TKh/LSbkAFcHYcuaist7Z4Rg+DAfkzUp1LNZMyWBlJNcKt+B2It3E7E/Il7UVywrdE
+         WQlKZP9y/JQgwYxQKLikIdW47mZWwOBJPHRNAhsiJtrJftc4sbytjHVoMQVO89Cuw5RP
+         47mii4MXmexOFCi0t1NzCE47LH+t2T9ztelUkZFDSD93Uh/5MoE4z/dEL9CQLqOXnD9Z
+         L4s+6GuQW1mTSDRnmlWC6UQ5xfvxxavag3NZW63X7KAunF+zxuPpWAtkBGQCHBXlo674
+         DaZw==
+X-Gm-Message-State: AOJu0YySV4RiYjJOzPeWerpSUR2BqZHrTnexrLPMkIhL1HUYBFxmyylg
+	9XWjLGrVXd6qgNj3be4TsAENEA==
+X-Google-Smtp-Source: AGHT+IEvKx/9opJD11I3yrmKNEw13sUWCZut4WzxFnQK6B1AxF0mQwdlkAO07i8hZ8p+0l/6MH4cSQ==
+X-Received: by 2002:a17:906:cc14:b0:9bb:a243:e6fb with SMTP id ml20-20020a170906cc1400b009bba243e6fbmr3947027ejb.3.1697049166581;
+        Wed, 11 Oct 2023 11:32:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id y6-20020a170906558600b009ad778a68c5sm10204490ejp.60.2023.10.11.11.30.34
+        by smtp.gmail.com with ESMTPSA id p16-20020a17090628d000b009b654ba498csm10114886ejd.90.2023.10.11.11.32.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 11:30:36 -0700 (PDT)
-Message-ID: <b5c5d0d5-2752-4725-b5d5-063725bdb3e9@linaro.org>
-Date: Wed, 11 Oct 2023 20:30:33 +0200
+        Wed, 11 Oct 2023 11:32:46 -0700 (PDT)
+Message-ID: <2a500b1a-93ad-4c65-bc61-48a019afd348@linaro.org>
+Date: Wed, 11 Oct 2023 20:32:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: qcom-ep: Add support for SA8775P
- SoC
+Subject: Re: [PATCH v5 1/5] dt-bindings: ufs: common: add OPP table
 Content-Language: en-US
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
- quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
- dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
- quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mhi@lists.linux.dev, linux-phy@lists.infradead.org
-References: <1697023109-23671-1-git-send-email-quic_msarkar@quicinc.com>
- <1697023109-23671-2-git-send-email-quic_msarkar@quicinc.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, myungjoo.ham@samsung.com,
+ kyungmin.park@samsung.com, cw00.choi@samsung.com, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jejb@linux.ibm.com,
+ martin.petersen@oracle.com
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+ linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_asutoshd@quicinc.com, quic_cang@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_narepall@quicinc.com, quic_bhaskarv@quicinc.com,
+ quic_richardp@quicinc.com, quic_nguyenb@quicinc.com,
+ quic_ziqichen@quicinc.com, bmasney@redhat.com, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20231011122543.11922-1-manivannan.sadhasivam@linaro.org>
+ <20231011122543.11922-2-manivannan.sadhasivam@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,7 +130,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1697023109-23671-2-git-send-email-quic_msarkar@quicinc.com>
+In-Reply-To: <20231011122543.11922-2-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -141,36 +140,67 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 13:18, Mrinmay Sarkar wrote:
-> Add devicetree bindings support for SA8775P SoC.
-> Define reg and interrupt per platform.
+On 11/10/2023 14:25, Manivannan Sadhasivam wrote:
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+> Except scaling UFS and bus clocks, it's necessary to scale also the
+> voltages of regulators or power domain performance state levels.  Adding
+> Operating Performance Points table allows to adjust power domain
+> performance state, depending on the UFS clock speed.
+> 
+> OPPv2 deprecates previous property limited to clock scaling:
+> freq-table-hz.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 131 +++++++++++++++++----
->  1 file changed, 109 insertions(+), 22 deletions(-)
+>  .../devicetree/bindings/ufs/ufs-common.yaml   | 35 +++++++++++++++++--
+>  1 file changed, 32 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index a223ce0..8f219a6e 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -13,36 +13,28 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - qcom,sa8775p-pcie-ep
->            - qcom,sdx55-pcie-ep
->            - qcom,sm8450-pcie-ep
->        - items:
-> +          - const: qcom,sa8775p-pcie-ep
+> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> index bbaee4f5f7b2..1cb022cdc349 100644
+> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+> @@ -6,6 +6,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Common properties for Universal Flash Storage (UFS) Host Controllers
+>  
+> +
 
-So you broke all existing users.
+Drop blank line.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+>  maintainers:
+>    - Alim Akhtar <alim.akhtar@samsung.com>
+>    - Avri Altman <avri.altman@wdc.com>
+> @@ -20,11 +21,24 @@ properties:
+>        items:
+>          - description: Minimum frequency for given clock in Hz
+>          - description: Maximum frequency for given clock in Hz
+> +    deprecated: true
+>      description: |
+> +      Preferred is operating-points-v2.
+> +
+>        Array of <min max> operating frequencies in Hz stored in the same order
+> -      as the clocks property. If this property is not defined or a value in the
+> -      array is "0" then it is assumed that the frequency is set by the parent
+> -      clock or a fixed rate clock source.
+> +      as the clocks property. If either this property or operating-points-v2 is
+> +      not defined or a value in the array is "0" then it is assumed that the
+> +      frequency is set by the parent clock or a fixed rate clock source.
+> +
+> +  operating-points-v2:
+> +    description:
+> +      Preferred over freq-table-hz.
+> +      If present, each OPP must contain array of frequencies stored in the same
+> +      order for each clock.  If clock frequency in the array is "0" then it is
+> +      assumed that the frequency is set by the parent clock or a fixed rate
+> +      clock source.
+> +
+> +  opp-table: true
+
+opp-table:
+  type: object
 
 
 
