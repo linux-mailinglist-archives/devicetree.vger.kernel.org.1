@@ -1,315 +1,137 @@
-Return-Path: <devicetree+bounces-7792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8C37C57F8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:21:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73627C584C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83D051C20C59
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:21:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 242CD1C20A1A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592BD20332;
-	Wed, 11 Oct 2023 15:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5287F208C9;
+	Wed, 11 Oct 2023 15:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="eABFgWMl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnhwP+vb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FC11F18A
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:21:12 +0000 (UTC)
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0557F98
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 08:21:11 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6bd04558784so5043970a34.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 08:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1697037670; x=1697642470; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dfNYmjm/uFgx111cfPaMERYkgdpgrFgbtQwTcUB7K4U=;
-        b=eABFgWMlppCYjF+kcXksHEOHgw90HNj76lFXVonmQF8p50JPStLLanJRTQ+QNrGwQi
-         S+GtVY+H3zo/NkfcK7armaI/fFTmKdRZ0U8+WGTm0SqYIllojKRfHvRewmyjhwxP5Bcf
-         +YQ9nj0UFf3fhbnqjhJ/6CO2NfuAPDyUGEl2f6AmUialz8x+U8XCHwLNT2uUxFX2cafS
-         XdTCuaU2HyJOYyGlUYLyD6U2VkeGok26zcfZ0rtCbXnLPeEY6eoLnr50MrAUMbj4fCgq
-         i7REsRwx91TL8ewMRAWvZOIhHe/AtBDzqnOQWmHR8h5KcbIjO5M5iW38Jhp5qWwMnedP
-         EFcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697037670; x=1697642470;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dfNYmjm/uFgx111cfPaMERYkgdpgrFgbtQwTcUB7K4U=;
-        b=wNML6OkrpBGxA3ccCRCdVUvvScxXFHj+T5ZTULiYJ2RdKYQIsPkQ4bCjbtl556wnXA
-         teBpYMqE8HwgMXqYY8OiJ+PnezH5/LEQVVT2SyA/fu5yINLadwKIwrrdo/nGVmt1n9Sx
-         tRIbpR/qOVfUhE7toDmhvDeOddQZthAesSuF+2/xAG+zwa4mVUNAf/jeqUrAKSetfq3q
-         sqV3BIP+uEWa7yDNyObEC8WwXMS5DkgB/4VjyPOGj0f70Nh1SFQ6pigUrRVBT5kMkXkF
-         NhO9KkLTtARQWUVbUI4j7jGv02Fl8z5HXArQ4zIzgKBEnHcRpGO9/KbFLd5VKzMyfdbB
-         Jsog==
-X-Gm-Message-State: AOJu0YyPoCgnqrEPzt+/nw+x+xB6OD3rL7o1XS+culPagusdB5G5AJVT
-	MUOUuV13SjoQjbzFipPNwTUTOA==
-X-Google-Smtp-Source: AGHT+IEfshJitRCRQHy6kukyaj1QhoumhCmEaw+rt3b41dzH+jEO1FCFjVWPqToDbaQ0e3gNW0uqkA==
-X-Received: by 2002:a05:6830:ca:b0:6c4:ded2:44d0 with SMTP id x10-20020a05683000ca00b006c4ded244d0mr23749841oto.27.1697037670271;
-        Wed, 11 Oct 2023 08:21:10 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:15:a4b3::580])
-        by smtp.gmail.com with ESMTPSA id fy11-20020a05622a5a0b00b004198d026be6sm5449755qtb.35.2023.10.11.08.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 08:21:09 -0700 (PDT)
-Message-ID: <5d4fd4848e8a0e9cd33c9777a99189c2c1f79333.camel@ndufresne.ca>
-Subject: Re: [PATCH 2/7] media: hantro: add support for STM32MP25 VDEC
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
- <hverkuil@xs4all.nl>,  linux-media@vger.kernel.org, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
- <alexandre.torgue@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Date: Wed, 11 Oct 2023 11:21:08 -0400
-In-Reply-To: <20231004091552.3531659-3-hugues.fruchet@foss.st.com>
-References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
-	 <20231004091552.3531659-3-hugues.fruchet@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CD62031D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:42:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF8B1C433C7;
+	Wed, 11 Oct 2023 15:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697038953;
+	bh=nvcF1xUkfhK8P491meu7s2teoOIDuS/eQSeHkHt9sj4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BnhwP+vb5Q5xuK6oW5z3OfdMbii6lmtoWvjdSYAgxdB0o+GgsCkuyhC6cIwZnT1GO
+	 XS+k3rUXBzyRo9rcavlwH8I7r3nbKUinklbFuViBOJ4ftgQ/VmFxekZKdOSds13MOp
+	 y+S5HILqX629NmkibXaBdIwR4ngnxuwo6af1XZ5NHiiXeT+SaP+CHZrAXcT2tAZSgn
+	 VZNTUbDGkDI1EevgfZbx3Rpx2FLFiUKfZsKGFfLRPVMg36MyFfsRLNCvbRdK09kogR
+	 6zLhmlQMc5lDlS3kIdpx3VOi89JPD0vjXHEEMt5ImGR6919MyAdD6cbYcVHieoSHFY
+	 gvg9cSUmLr6JA==
+Date: Wed, 11 Oct 2023 16:42:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2] dt-bindings: nvmem: mxs-ocotp: Document fsl,ocotp
+Message-ID: <20231011-skyward-possible-7936e07a5841@spud>
+References: <20231010171442.3693843-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7bnkBvM+NIQAyHKR"
+Content-Disposition: inline
+In-Reply-To: <20231010171442.3693843-1-festevam@gmail.com>
 
-Hi,
 
-Le mercredi 04 octobre 2023 =C3=A0 11:15 +0200, Hugues Fruchet a =C3=A9crit=
-=C2=A0:
-> Add support for STM32MP25 VDEC video hardware decoder.
-> H264/VP8 decoding up to 4080x4080.
-> No post-processor support.
-> VDEC has its own reset/clock/irq.
+--7bnkBvM+NIQAyHKR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Oct 10, 2023 at 02:14:42PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 >=20
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> Both imx23.dtsi and imx28.dtsi describe the OCOTP nodes in
+> the format:
+>=20
+> compatible =3D "fsl,imx28-ocotp", "fsl,ocotp";
+>=20
+> Document the "fsl,ocotp" entry to fix the following schema
+> warning:
+>=20
+> efuse@8002c000: compatible: ['fsl,imx23-ocotp', 'fsl,ocotp'] is too long
+> from schema $id: http://devicetree.org/schemas/nvmem/mxs-ocotp.yaml#
+>=20
+> Fixes: 2c504460f502 ("dt-bindings: nvmem: Convert MXS OCOTP to json-schem=
+a")
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
 > ---
->  drivers/media/platform/verisilicon/Kconfig    | 14 ++-
->  drivers/media/platform/verisilicon/Makefile   |  3 +
->  .../media/platform/verisilicon/hantro_drv.c   |  3 +
->  .../media/platform/verisilicon/hantro_hw.h    |  1 +
->  .../platform/verisilicon/stm32mp25_vdec_hw.c  | 92 +++++++++++++++++++
->  5 files changed, 110 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/media/platform/verisilicon/stm32mp25_vdec_hw.=
-c
+> Changes since v1:
+> - Added Fixes tag. (Conor)
 >=20
-> diff --git a/drivers/media/platform/verisilicon/Kconfig b/drivers/media/p=
-latform/verisilicon/Kconfig
-> index e65b836b9d78..7642ff9cf96c 100644
-> --- a/drivers/media/platform/verisilicon/Kconfig
-> +++ b/drivers/media/platform/verisilicon/Kconfig
-> @@ -4,7 +4,7 @@ comment "Verisilicon media platform drivers"
+>  Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml b/Doc=
+umentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+> index f43186f98607..d9287be89877 100644
+> --- a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+> @@ -15,9 +15,11 @@ allOf:
 > =20
->  config VIDEO_HANTRO
->  	tristate "Hantro VPU driver"
-> -	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || COMP=
-ILE_TEST
-> +	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || ARCH=
-_STM32 || COMPILE_TEST
->  	depends on V4L_MEM2MEM_DRIVERS
->  	depends on VIDEO_DEV
->  	select MEDIA_CONTROLLER
-> @@ -16,8 +16,8 @@ config VIDEO_HANTRO
->  	select V4L2_VP9
->  	help
->  	  Support for the Hantro IP based Video Processing Units present on
-> -	  Rockchip and NXP i.MX8M SoCs, which accelerate video and image
-> -	  encoding and decoding.
-> +	  Rockchip, NXP i.MX8M and STM32MP25 SoCs, which accelerate video
-> +	  and image encoding and decoding.
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called hantro-vpu.
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,imx23-ocotp
+> -      - fsl,imx28-ocotp
+> +    items:
+> +      - enum:
+> +          - fsl,imx23-ocotp
+> +          - fsl,imx28-ocotp
+> +      - const: fsl,ocotp
 > =20
-> @@ -52,3 +52,11 @@ config VIDEO_HANTRO_SUNXI
->  	default y
->  	help
->  	  Enable support for H6 SoC.
-> +
-> +config VIDEO_HANTRO_STM32MP25
-> +	bool "Hantro STM32MP25 support"
-> +	depends on VIDEO_HANTRO
-> +	depends on ARCH_STM32 || COMPILE_TEST
-> +	default y
-> +	help
-> +	  Enable support for STM32MP25 SoCs.
-> diff --git a/drivers/media/platform/verisilicon/Makefile b/drivers/media/=
-platform/verisilicon/Makefile
-> index 6ad2ef885920..5854e0f0dd32 100644
-> --- a/drivers/media/platform/verisilicon/Makefile
-> +++ b/drivers/media/platform/verisilicon/Makefile
-> @@ -39,3 +39,6 @@ hantro-vpu-$(CONFIG_VIDEO_HANTRO_ROCKCHIP) +=3D \
-> =20
->  hantro-vpu-$(CONFIG_VIDEO_HANTRO_SUNXI) +=3D \
->  		sunxi_vpu_hw.o
-> +
-> +hantro-vpu-$(CONFIG_VIDEO_HANTRO_STM32MP25) +=3D \
-> +		stm32mp25_vdec_hw.o
-> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/me=
-dia/platform/verisilicon/hantro_drv.c
-> index 423fc85d79ee..8c6e0c66f0cd 100644
-> --- a/drivers/media/platform/verisilicon/hantro_drv.c
-> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
-> @@ -732,6 +732,9 @@ static const struct of_device_id of_hantro_match[] =
-=3D {
->  #endif
->  #ifdef CONFIG_VIDEO_HANTRO_SUNXI
->  	{ .compatible =3D "allwinner,sun50i-h6-vpu-g2", .data =3D &sunxi_vpu_va=
-riant, },
-> +#endif
-> +#ifdef CONFIG_VIDEO_HANTRO_STM32MP25
-> +	{ .compatible =3D "st,stm32mp25-vdec", .data =3D &stm32mp25_vdec_varian=
-t, },
->  #endif
->  	{ /* sentinel */ }
->  };
-> diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/med=
-ia/platform/verisilicon/hantro_hw.h
-> index 7f33f7b07ce4..b7eccc1a96fc 100644
-> --- a/drivers/media/platform/verisilicon/hantro_hw.h
-> +++ b/drivers/media/platform/verisilicon/hantro_hw.h
-> @@ -406,6 +406,7 @@ extern const struct hantro_variant rk3568_vpu_variant=
-;
->  extern const struct hantro_variant rk3588_vpu981_variant;
->  extern const struct hantro_variant sama5d4_vdec_variant;
->  extern const struct hantro_variant sunxi_vpu_variant;
-> +extern const struct hantro_variant stm32mp25_vdec_variant;
-> =20
->  extern const struct hantro_postproc_ops hantro_g1_postproc_ops;
->  extern const struct hantro_postproc_ops hantro_g2_postproc_ops;
-> diff --git a/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c b/dri=
-vers/media/platform/verisilicon/stm32mp25_vdec_hw.c
-> new file mode 100644
-> index 000000000000..c9f107bc09db
-> --- /dev/null
-> +++ b/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
-> @@ -0,0 +1,92 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * STM32MP25 VDEC video decoder driver
-> + *
-> + * Copyright (C) STMicroelectronics SA 2022
-> + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
-> + *          for STMicroelectronics.
-> + *
-> + */
-> +
-> +#include "hantro.h"
-> +
-> +/*
-> + * Supported formats.
-> + */
-> +
-> +static const struct hantro_fmt stm32mp25_vdec_fmts[] =3D {
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV12,
-> +		.codec_mode =3D HANTRO_MODE_NONE,
-> +		.frmsize =3D {
-> +			.min_width =3D 96,
+>    reg:
+>      maxItems: 1
+> @@ -35,7 +37,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      ocotp: efuse@8002c000 {
+> -        compatible =3D "fsl,imx28-ocotp";
+> +        compatible =3D "fsl,imx28-ocotp", "fsl,ocotp";
+>          #address-cells =3D <1>;
+>          #size-cells =3D <1>;
+>          reg =3D <0x8002c000 0x2000>;
+> --=20
+> 2.34.1
+>=20
 
-This is suspicious, this would be the only "implementation" with that minim=
-um.
-Have you tested FMT_MIN_WIDTH/FMT_MIN_HEIGHT (48) ?
+--7bnkBvM+NIQAyHKR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +			.max_width =3D 4080,
-> +			.step_width =3D MB_DIM,
-> +			.min_height =3D 96,
-> +			.max_height =3D 4080,
-> +			.step_height =3D MB_DIM,
+-----BEGIN PGP SIGNATURE-----
 
-My own datasheet says that the 4K fuse register means max width of 4096, we=
-re
-did these numbers came from ? My first impression would be that that the co=
-rrect
-values are FMT_4K_WIDTH / FMT_4K_HEIGHT.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSbCZQAKCRB4tDGHoIJi
+0tFIAQCDDKQHcsmF2BW2LbrydczSBOkadcVQGtPUJ3uVh0WFyQEAzkBtONayWtrQ
+370dxpctYUn+LMjmmZ2GUNviy71oZQY=
+=JRsy
+-----END PGP SIGNATURE-----
 
-p.s. a lot of the max/min are simply copied from SoC white paper in this dr=
-iver,
-this is a known issue, or perhaps a non-issue considering that at maximum
-hardware capacity, the resulting performance might not be worth using the
-hardware accelerator in the first place.
-
-> +		},
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_VP8_FRAME,
-> +		.codec_mode =3D HANTRO_MODE_VP8_DEC,
-> +		.max_depth =3D 2,
-> +		.frmsize =3D {
-> +			.min_width =3D 96,
-> +			.max_width =3D 4080,
-> +			.step_width =3D MB_DIM,
-> +			.min_height =3D 96,
-> +			.max_height =3D 4080,
-> +			.step_height =3D MB_DIM,
-> +		},
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
-> +		.codec_mode =3D HANTRO_MODE_H264_DEC,
-> +		.max_depth =3D 2,
-> +		.frmsize =3D {
-> +			.min_width =3D 96,
-> +			.max_width =3D 4080,
-> +			.step_width =3D MB_DIM,
-> +			.min_height =3D 96,
-> +			.max_height =3D 4080,
-> +			.step_height =3D MB_DIM,
-> +		},
-> +	},
-> +};
-> +
-> +/*
-> + * Supported codec ops.
-> + */
-> +
-> +static const struct hantro_codec_ops stm32mp25_vdec_codec_ops[] =3D {
-> +	[HANTRO_MODE_VP8_DEC] =3D {
-> +		.run =3D hantro_g1_vp8_dec_run,
-> +		.reset =3D hantro_g1_reset,
-> +		.init =3D hantro_vp8_dec_init,
-> +		.exit =3D hantro_vp8_dec_exit,
-> +	},
-> +	[HANTRO_MODE_H264_DEC] =3D {
-> +		.run =3D hantro_g1_h264_dec_run,
-> +		.reset =3D hantro_g1_reset,
-> +		.init =3D hantro_h264_dec_init,
-> +		.exit =3D hantro_h264_dec_exit,
-> +	},
-> +};
-> +
-> +static const struct hantro_irq stm32mp25_irqs[] =3D {
-> +	{ "vdec", hantro_g1_irq },
-> +};
-> +
-> +static const char * const stm32mp25_clk_names[] =3D { "vdec-clk" };
-> +
-> +const struct hantro_variant stm32mp25_vdec_variant =3D {
-> +	.dec_fmts =3D stm32mp25_vdec_fmts,
-> +	.num_dec_fmts =3D ARRAY_SIZE(stm32mp25_vdec_fmts),
-> +	.codec =3D HANTRO_VP8_DECODER | HANTRO_H264_DECODER,
-> +	.codec_ops =3D stm32mp25_vdec_codec_ops,
-> +	.irqs =3D stm32mp25_irqs,
-> +	.num_irqs =3D ARRAY_SIZE(stm32mp25_irqs),
-> +	.clk_names =3D stm32mp25_clk_names,
-> +	.num_clocks =3D ARRAY_SIZE(stm32mp25_clk_names),
-> +};
-
+--7bnkBvM+NIQAyHKR--
 
