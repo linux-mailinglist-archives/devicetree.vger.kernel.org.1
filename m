@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80307C5B62
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAC87C5B6E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:38:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71A9D281128
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:32:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7309B28194E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085713994E;
-	Wed, 11 Oct 2023 18:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181381C68D;
+	Wed, 11 Oct 2023 18:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJ7CHRF7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pub+6tyx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF81122334
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:32:51 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4025AA9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:32:49 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b275afb6abso277059066b.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:32:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4CB2230F
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:38:22 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC75DB7
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:38:20 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9b2cee55056so20206066b.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:38:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697049166; x=1697653966; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697049499; x=1697654299; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pbI8FrvRKFZu6B2DbOdgldrjIGyQyHavEvB5fYDKWGc=;
-        b=oJ7CHRF7aR8YnBsR4YzaQZH/BNZTGkjHnKo6cGDo1z+9EFnXfq4tqFUbxnhk7IE9y+
-         uBBlE6pKM6TnlZuNslYJtKPhUvocRdSbHKidQ/tmkAm6AOoEblcqWOhsLox4c0FMkxVf
-         V6MlxZTYImLBuczg8tQgoBbRHR3L4XzP9yRb6rXQhKedhCFQ20qB3HJ+Sp1EoBRXH+J0
-         1GJw7MeiRZFAxuCVSr1OG6tyMnaCxUE0Ib1THUkbcfEwvm+wfDI1XXFrV3HJoj69hOVw
-         ds6PGa55YN+01ZQx1Vckrd+wiJgJweTWOynCCFbIP6DKAOetqd76sB9gHe8XKp44mIxC
-         0v5A==
+        bh=1dm+RcEmQBW1go0hmTOfQEKfxMwa7nahjkqvO90lhew=;
+        b=Pub+6tyxMlv3hoMJyVv1+C7lLqN0UEQNV3YeibhbrVxqi8LQaxClcHDRypKrCO+VFx
+         HB3/4CfH3Jv1hU5riGF/BMyP+CSEdBczKDGrDXM9QnYy2hU9NBlYIZAsHn0fs5ZucCd4
+         Nyp7s063SyHCnDAfGjuaoiD5EHmWbufwYm6stp9dkDc1JgiO8VSqDLidl0doGGx1mx42
+         YKkLTBc/ZVhH3tVGv+GPsuiz+95AleECFYuNSpea9dybpj8t6v8imSDYORw/JIF4Ozxh
+         OBgLjteqQ+fqECrJJIIf92bIG3/U4BHx7nw/Vrk3vzBs+3L7Pvf7bvEyexyE3O5j82jQ
+         9iOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697049166; x=1697653966;
+        d=1e100.net; s=20230601; t=1697049499; x=1697654299;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pbI8FrvRKFZu6B2DbOdgldrjIGyQyHavEvB5fYDKWGc=;
-        b=j98ykkSCbYzMtUMNIyrP16KenwjHtw1kTJoHyzQ4cQx0D0uKruJKa3ukTjWdrP+kti
-         r8TKh/LSbkAFcHYcuaist7Z4Rg+DAfkzUp1LNZMyWBlJNcKt+B2It3E7E/Il7UVywrdE
-         WQlKZP9y/JQgwYxQKLikIdW47mZWwOBJPHRNAhsiJtrJftc4sbytjHVoMQVO89Cuw5RP
-         47mii4MXmexOFCi0t1NzCE47LH+t2T9ztelUkZFDSD93Uh/5MoE4z/dEL9CQLqOXnD9Z
-         L4s+6GuQW1mTSDRnmlWC6UQ5xfvxxavag3NZW63X7KAunF+zxuPpWAtkBGQCHBXlo674
-         DaZw==
-X-Gm-Message-State: AOJu0YySV4RiYjJOzPeWerpSUR2BqZHrTnexrLPMkIhL1HUYBFxmyylg
-	9XWjLGrVXd6qgNj3be4TsAENEA==
-X-Google-Smtp-Source: AGHT+IEvKx/9opJD11I3yrmKNEw13sUWCZut4WzxFnQK6B1AxF0mQwdlkAO07i8hZ8p+0l/6MH4cSQ==
-X-Received: by 2002:a17:906:cc14:b0:9bb:a243:e6fb with SMTP id ml20-20020a170906cc1400b009bba243e6fbmr3947027ejb.3.1697049166581;
-        Wed, 11 Oct 2023 11:32:46 -0700 (PDT)
+        bh=1dm+RcEmQBW1go0hmTOfQEKfxMwa7nahjkqvO90lhew=;
+        b=RCQWDd+3YgPkPlh5OQayVear4yhIyIc8H3So1f5y3qZ6SVw2qwkL8Z4dmBwwJRZnJA
+         GWWsamMNrVVYNT1/YnpuujMIC04zamy0iEdq6BMDz4ifkhelNdroaErG/ovQvTYZOBAK
+         ZY+yKsmZyPzsmgP/q9IcOPhK6Tv/JnisGoxeoojkiujwcLFGjYy7GA7csFoSUGr6YNr7
+         BVG4XaqGgz1GxFfRNlY20QHYO2fuHaENTz9PM4CzFtPDA2xtMEBlP1dnZnBGP0rFBEJ7
+         zgHWRkIhWsZqCAmwN5pEDY+m93EQ5pgXCgdOwUzYaUBzJ7CtHRQlEGfNdl9eD3ZnOUq6
+         FQ8A==
+X-Gm-Message-State: AOJu0YwWVlPm8ULZcvN88Edv08jqsNhmP/PF6Po3NOIdl/i8xMkDPhQa
+	SWc52iUf0VST+Xw7Q6+ZPaV/CA==
+X-Google-Smtp-Source: AGHT+IH3Sxm0BCfqA98jWK4sK7tjIiAYgRiNutocfKREz/4/TfiKyeln3uelmmtjjNSsdi60SnBthw==
+X-Received: by 2002:a17:906:74c8:b0:9ba:2a6:956d with SMTP id z8-20020a17090674c800b009ba02a6956dmr13109892ejl.44.1697049499396;
+        Wed, 11 Oct 2023 11:38:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id p16-20020a17090628d000b009b654ba498csm10114886ejd.90.2023.10.11.11.32.43
+        by smtp.gmail.com with ESMTPSA id o23-20020a17090611d700b009887f4e0291sm10063418eja.27.2023.10.11.11.38.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 11:32:46 -0700 (PDT)
-Message-ID: <2a500b1a-93ad-4c65-bc61-48a019afd348@linaro.org>
-Date: Wed, 11 Oct 2023 20:32:42 +0200
+        Wed, 11 Oct 2023 11:38:18 -0700 (PDT)
+Message-ID: <833aaf36-d1bf-4805-a24e-e26ec165b8c3@linaro.org>
+Date: Wed, 11 Oct 2023 20:38:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: ufs: common: add OPP table
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for SIE
 Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, myungjoo.ham@samsung.com,
- kyungmin.park@samsung.com, cw00.choi@samsung.com, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jejb@linux.ibm.com,
- martin.petersen@oracle.com
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- quic_asutoshd@quicinc.com, quic_cang@quicinc.com, quic_nitirawa@quicinc.com,
- quic_narepall@quicinc.com, quic_bhaskarv@quicinc.com,
- quic_richardp@quicinc.com, quic_nguyenb@quicinc.com,
- quic_ziqichen@quicinc.com, bmasney@redhat.com, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>
-References: <20231011122543.11922-1-manivannan.sadhasivam@linaro.org>
- <20231011122543.11922-2-manivannan.sadhasivam@linaro.org>
+To: Shawn Anastasio <sanastasio@raptorengineering.com>,
+ devicetree@vger.kernel.org, lee@kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
+ Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org
+References: <cover.1696285339.git.sanastasio@raptorengineering.com>
+ <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
+ <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
+ <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,79 +126,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011122543.11922-2-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 14:25, Manivannan Sadhasivam wrote:
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 09/10/2023 22:54, Shawn Anastasio wrote:
+> On 10/3/23 4:23 AM, Krzysztof Kozlowski wrote:
+>> On 03/10/2023 00:32, Shawn Anastasio wrote:
+>>> Add a vendor prefix for Sony Interactive Entertainment LLC (SIE).
+>>>
+>>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index 573578db9509..cff35e68a34d 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -1211,6 +1211,8 @@ patternProperties:
+>>>      description: Si-En Technology Ltd.
+>>>    "^si-linux,.*":
+>>>      description: Silicon Linux Corporation
+>>> +  "^sie,.*":
+>>> +    description: Sony Interactive Entertainment LLC
+>>
+>> Is this different company than Sony?
+>>
 > 
-> Except scaling UFS and bus clocks, it's necessary to scale also the
-> voltages of regulators or power domain performance state levels.  Adding
-> Operating Performance Points table allows to adjust power domain
-> performance state, depending on the UFS clock speed.
-> 
-> OPPv2 deprecates previous property limited to clock scaling:
-> freq-table-hz.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../devicetree/bindings/ufs/ufs-common.yaml   | 35 +++++++++++++++++--
->  1 file changed, 32 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> index bbaee4f5f7b2..1cb022cdc349 100644
-> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> @@ -6,6 +6,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Common properties for Universal Flash Storage (UFS) Host Controllers
->  
-> +
+> Yes. As I understand it, Sony Interactive Entertainment, LLC is its own
+> separate corporate entity, though it is ultimately owned by Sony Group
+> Corporation.
 
-Drop blank line.
-
->  maintainers:
->    - Alim Akhtar <alim.akhtar@samsung.com>
->    - Avri Altman <avri.altman@wdc.com>
-> @@ -20,11 +21,24 @@ properties:
->        items:
->          - description: Minimum frequency for given clock in Hz
->          - description: Maximum frequency for given clock in Hz
-> +    deprecated: true
->      description: |
-> +      Preferred is operating-points-v2.
-> +
->        Array of <min max> operating frequencies in Hz stored in the same order
-> -      as the clocks property. If this property is not defined or a value in the
-> -      array is "0" then it is assumed that the frequency is set by the parent
-> -      clock or a fixed rate clock source.
-> +      as the clocks property. If either this property or operating-points-v2 is
-> +      not defined or a value in the array is "0" then it is assumed that the
-> +      frequency is set by the parent clock or a fixed rate clock source.
-> +
-> +  operating-points-v2:
-> +    description:
-> +      Preferred over freq-table-hz.
-> +      If present, each OPP must contain array of frequencies stored in the same
-> +      order for each clock.  If clock frequency in the array is "0" then it is
-> +      assumed that the frequency is set by the parent clock or a fixed rate
-> +      clock source.
-> +
-> +  opp-table: true
-
-opp-table:
-  type: object
-
-
+Then why different name? We do not have 10 different Samsungs (there are
+a lot of them) or LGs.
 
 Best regards,
 Krzysztof
