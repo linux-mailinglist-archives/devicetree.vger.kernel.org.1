@@ -1,186 +1,409 @@
-Return-Path: <devicetree+bounces-7918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E595D7C6107
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 01:19:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFE47C611B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 01:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9972628229A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C43A1C20F66
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 23:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1700E2375C;
-	Wed, 11 Oct 2023 23:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B5D2B74E;
+	Wed, 11 Oct 2023 23:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s4vAS0Bk"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OxODQ9ix"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A7D249E5
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:19:48 +0000 (UTC)
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B787CF1
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 16:19:38 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-27cfb8bc7eeso283313a91.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 16:19:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697066377; x=1697671177; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y7sXSYGeD1Ulz8sa7/3++MxVxhYAPIleK6QJVBE+xOo=;
-        b=s4vAS0BkWD6fVZBkkqrRVBKZO4dcxdhoNjFoe6nXjwUeFmGaxb7R3AYZqX10frU5Bb
-         oWZrev3tno7yYlUNTohI2Bb2yvCHVj6PKNVDavIGrYFeFBv3OPTu7VmuAPAAYFVUrhoz
-         8c3H4Bp8bTO7pgy+PuzjweU9Dp964oDSNKU3gjclpB6o8jU4dc0fIyt7iwgVfIfEMfsg
-         9eRMK99AKpHo1BR5XwxhoartolMst2oo8rtXBnbmL20iwcTNPEOf4MlUdtjEJXXV2Nlr
-         0SzIAsoCbqG+EWIiMxGj4XBEz2dx+mOd2wrMUFmZyUDaFYtN6LP90ynFH0FGuN61dTsO
-         bYsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697066377; x=1697671177;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y7sXSYGeD1Ulz8sa7/3++MxVxhYAPIleK6QJVBE+xOo=;
-        b=qGZ/SN/95TBBoMozrfv6x8lBrAXF++2aKf5hNqXhHL+Mr3Si4O/hhY/0s5IJgpa+jr
-         J8cXJTt/buRj1TdKrZ6YqR2UXOF9A9SVdWIEnsJjLWb9xIcPU4V/+wLzuVBx04eRFgcF
-         dIfaPL7/pseBaoByIJonpTuRoF+W9TGL6/ioTWdd7rceO6J/DcHXqR1mwiEyYbeVu213
-         Gt3b5huP+Mnh5TBH6eQqlLMUMafDu+C9GnTMIo1zA3DiaXdcqhn7b9E+vPBG1ADtn/ZZ
-         lsEQClHflNaRLPxlcwNdvIJ+P8SlM6cb6sWfWlHx4zAt0hKaVdYM9Z9Y7KfY3/KppAbp
-         dNdA==
-X-Gm-Message-State: AOJu0Yx4W8oFgZPDOsKo6huYUIPVCT8XzsoxbVeI1QOMakpry4CGbOM1
-	wYmqEFSOP71Z2h8CJAaKMXvw3SP0E7xT2VEGnujqAw==
-X-Google-Smtp-Source: AGHT+IHvL+bbhmKDuK4Xj6D62jFyDDy2/T5qTqff65dUSGMhE1YdBYUcRmNMYPOiaGYDXSzv3kq1lrobPLTj8pwu88I=
-X-Received: by 2002:a17:90a:f6d7:b0:27c:edf3:d045 with SMTP id
- er23-20020a17090af6d700b0027cedf3d045mr5447584pjb.40.1697066376694; Wed, 11
- Oct 2023 16:19:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011FE2B741
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:31:40 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66CCA9;
+	Wed, 11 Oct 2023 16:31:38 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 66363F0C;
+	Thu, 12 Oct 2023 01:31:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1697067093;
+	bh=veZu4nip6XJTOC2Cjjm0FeHRqsbH4ZSamFt2SVxn1/k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OxODQ9ixtia+33hvE04Ke239gnbxGcjPmShfBu5SLFPfDcmN1VwerZ4pNmq2ug3P1
+	 lom9oF5czzPK0t0mcWsN2Y7pkdttFgunvai8bBtiSfEFoxbmo2DwGrkQ6I22EqIY87
+	 SDhPax5Q5dg/K6OqbrN0eYtCmGJfbyQZMC3zSPG0=
+Date: Thu, 12 Oct 2023 02:31:43 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Phi-bang Nguyen <pnguyen@baylibre.com>,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Moudy Ho <moudy.ho@mediatek.com>,
+	Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 4/4] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 camsv
+Message-ID: <20231011233143.GA2257@pendragon.ideasonboard.com>
+References: <20230807094940.329165-1-jstephan@baylibre.com>
+ <20230807094940.329165-5-jstephan@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org> <20231011184823.443959-10-peter.griffin@linaro.org>
-In-Reply-To: <20231011184823.443959-10-peter.griffin@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Wed, 11 Oct 2023 18:19:25 -0500
-Message-ID: <CAPLW+4nmonxdLCWEZy15attd5ULUfL0VgZf5YQzFBA_0bvUwUw@mail.gmail.com>
-Subject: Re: [PATCH v3 09/20] clk: samsung: clk-pll: Add support for pll_{0516,0517,518}
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, soc@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel-team@android.com, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230807094940.329165-5-jstephan@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023 at 1:49=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
->
-> These plls are found in the Tensor gs101 SoC found in the Pixel 6.
->
-> pll0516x: Integer PLL with high frequency
-> pll0517x: Integer PLL with middle frequency
-> pll0518x: Integer PLL with low frequency
->
-> PLL0516x
-> FOUT =3D (MDIV * 2 * FIN)/PDIV * 2^SDIV)
->
-> PLL0517x and PLL0518x
-> FOUT =3D (MDIV * FIN)/PDIV*2^SDIV)
->
-> The PLLs are similar enough to pll_0822x that the same code can handle
-> both. The main difference is the change in the fout formula for the
-> high frequency 0516 pll.
->
-> Locktime for 516,517 & 518 is 150 the same as the pll_0822x lock factor.
-> MDIV, SDIV PDIV masks and bit shifts are also the same as 0822x.
->
-> When defining the PLL the "con" parameter should be set to CON3
-> register, like this
->
-> PLL(pll_0517x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
->     PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0,
->     NULL),
->
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+Hi Julien,
+
+Thank you for the patch.
+
+A first review comment, for an issue I've noticed while testing.
+
+On Mon, Aug 07, 2023 at 11:48:13AM +0200, Julien Stephan wrote:
+> From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> 
+> This driver provides a path to bypass the SoC ISP so that image data
+> coming from the SENINF can go directly into memory without any image
+> processing. This allows the use of an external ISP.
+> 
+> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 > ---
->  drivers/clk/samsung/clk-pll.c | 9 ++++++++-
->  drivers/clk/samsung/clk-pll.h | 3 +++
->  2 files changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.=
-c
-> index 74934c6182ce..4ef9fea2a425 100644
-> --- a/drivers/clk/samsung/clk-pll.c
-> +++ b/drivers/clk/samsung/clk-pll.c
-> @@ -442,7 +442,11 @@ static unsigned long samsung_pll0822x_recalc_rate(st=
-ruct clk_hw *hw,
->         pdiv =3D (pll_con3 >> PLL0822X_PDIV_SHIFT) & PLL0822X_PDIV_MASK;
->         sdiv =3D (pll_con3 >> PLL0822X_SDIV_SHIFT) & PLL0822X_SDIV_MASK;
->
-> -       fvco *=3D mdiv;
-> +       if (pll->type =3D=3D pll_0516x)
-> +               fvco =3D fvco * 2 * mdiv;
-> +       else
-> +               fvco *=3D mdiv;
+>  MAINTAINERS                                   |   1 +
+>  .../platform/mediatek/isp/isp_30/Kconfig      |  19 +
+>  .../platform/mediatek/isp/isp_30/Makefile     |   1 +
+>  .../mediatek/isp/isp_30/camsv/Makefile        |   7 +
+>  .../mediatek/isp/isp_30/camsv/mtk_camsv.c     | 328 ++++++++
+>  .../mediatek/isp/isp_30/camsv/mtk_camsv.h     | 196 +++++
+>  .../isp/isp_30/camsv/mtk_camsv30_hw.c         | 432 ++++++++++
+>  .../isp/isp_30/camsv/mtk_camsv30_regs.h       |  60 ++
+>  .../isp/isp_30/camsv/mtk_camsv_video.c        | 781 ++++++++++++++++++
+>  9 files changed, 1825 insertions(+)
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+>  create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+
+[snip]
+
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+> new file mode 100644
+> index 000000000000..bdf878460354
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+> @@ -0,0 +1,432 @@
+
+[snip]
+
+> +static void mtk_camsv30_setup(struct mtk_cam_dev *cam_dev, u32 w, u32 h,
+> +			      u32 bpl, u32 mbus_fmt)
+> +{
+> +	const struct mtk_cam_conf *conf = cam_dev->conf;
+> +	u32 int_en = INT_ST_MASK_CAMSV;
+> +	u32 tmp;
+> +	struct mtk_cam_sparams sparams;
 > +
+> +	fmt_to_sparams(mbus_fmt, &sparams);
+> +
+> +	spin_lock(&cam_dev->irqlock);
 
-Can be written like this I guess:
+This isn't right, for multiple reasons.
 
-       fvco *=3D mdiv;
-       if (pll->type =3D=3D pll_0516x)
-              fvco *=3D 2;
+First, the lock is taken in IRQ context, so you need to disable IRQs
+here, or you'll risk deadlocking. spin_lock_irqsave() is the safe
+wildcard solution, but if this function is guaranteed to be called with
+interrupts enabled, you can also use spin_lock_irq(). This problem is
+caught by lockdep, didn't you test the driver with lockdep enabled ? If
+not, please enable it for v4.
 
-if you think it's more neat. Other than that:
+Then, pm_runtime_get_sync() may sleep, so you should take the lock
+after.
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Next, mtk_camsv30_setup() is called by mtk_camsv30_runtime_resume()
+below, right after calling spin_lock_irqsave() on the same lock. This
+has quite clearly not been tested. Please make sure to test system
+suspend/resume while streaming for v4.
 
->         do_div(fvco, (pdiv << sdiv));
->
->         return (unsigned long)fvco;
-> @@ -1316,6 +1320,9 @@ static void __init _samsung_clk_register_pll(struct=
- samsung_clk_provider *ctx,
->         case pll_1417x:
->         case pll_0818x:
->         case pll_0822x:
-> +       case pll_0516x:
-> +       case pll_0517x:
-> +       case pll_0518x:
->                 pll->enable_offs =3D PLL0822X_ENABLE_SHIFT;
->                 pll->lock_offs =3D PLL0822X_LOCK_STAT_SHIFT;
->                 if (!pll->rate_table)
-> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.=
-h
-> index 0725d485c6ee..ffd3d52c0dec 100644
-> --- a/drivers/clk/samsung/clk-pll.h
-> +++ b/drivers/clk/samsung/clk-pll.h
-> @@ -38,6 +38,9 @@ enum samsung_pll_type {
->         pll_0822x,
->         pll_0831x,
->         pll_142xx,
-> +       pll_0516x,
-> +       pll_0517x,
-> +       pll_0518x,
->  };
->
->  #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
-> --
-> 2.42.0.655.g421f12c284-goog
->
->
+Finally, does this function really require taking the irqlock ? It looks
+like locking should be revisited in this driver.
+
+> +
+> +	if (pm_runtime_get_sync(cam_dev->dev) < 0) {
+
+When pm_runtime_get_sync() fails you need to call pm_runtime_put(). A
+better option is to use pm_runtime_resume_and_get().
+
+> +		dev_err(cam_dev->dev, "failed to get pm_runtime\n");
+> +		spin_unlock(&cam_dev->irqlock);
+> +		return;
+> +	}
+> +
+> +	writel(conf->tg_sen_mode, cam_dev->regs_tg + CAMSV_TG_SEN_MODE);
+> +
+> +	writel((w * sparams.w_factor) << 16U, cam_dev->regs_tg + CAMSV_TG_SEN_GRAB_PXL);
+> +
+> +	writel(h << 16U, cam_dev->regs_tg + CAMSV_TG_SEN_GRAB_LIN);
+> +
+> +	/* YUV_U2S_DIS: disable YUV sensor unsigned to signed */
+> +	writel(0x1000U, cam_dev->regs_tg + CAMSV_TG_PATH_CFG);
+> +
+> +	/* Reset cam */
+> +	writel(CAMSV_SW_RST, cam_dev->regs + CAMSV_SW_CTL);
+> +	writel(0x0U, cam_dev->regs + CAMSV_SW_CTL);
+> +	writel(CAMSV_IMGO_RST_TRIG, cam_dev->regs + CAMSV_SW_CTL);
+> +
+> +	readl_poll_timeout(cam_dev->regs + CAMSV_SW_CTL, tmp,
+> +			(tmp == (CAMSV_IMGO_RST_TRIG | CAMSV_IMGO_RST_ST)), 10, 200);
+> +
+> +	writel(0x0U, cam_dev->regs + CAMSV_SW_CTL);
+> +
+> +	writel(int_en, cam_dev->regs + CAMSV_INT_EN);
+> +
+> +	writel(conf->module_en | sparams.module_en_pak,
+> +	      cam_dev->regs + CAMSV_MODULE_EN);
+> +	writel(sparams.fmt_sel, cam_dev->regs + CAMSV_FMT_SEL);
+> +	writel(sparams.pak, cam_dev->regs + CAMSV_PAK);
+> +
+> +	writel(bpl - 1U, cam_dev->regs_img0 + CAMSV_IMGO_SV_XSIZE);
+> +	writel(h - 1U, cam_dev->regs_img0 + CAMSV_IMGO_SV_YSIZE);
+> +
+> +	writel(sparams.imgo_stride | bpl, cam_dev->regs_img0 + CAMSV_IMGO_SV_STRIDE);
+> +
+> +	writel(conf->imgo_con, cam_dev->regs_img0 + CAMSV_IMGO_SV_CON);
+> +	writel(conf->imgo_con2, cam_dev->regs_img0 + CAMSV_IMGO_SV_CON2);
+> +
+> +	/* CMOS_EN first */
+> +	writel(readl(cam_dev->regs_tg + CAMSV_TG_SEN_MODE) | CAMSV_TG_SEN_MODE_CMOS_EN,
+> +			cam_dev->regs_tg + CAMSV_TG_SEN_MODE);
+> +
+> +	/* finally, CAMSV_MODULE_EN : IMGO_EN */
+> +	writel(readl(cam_dev->regs + CAMSV_MODULE_EN) | CAMSV_MODULE_EN_IMGO_EN,
+> +		    cam_dev->regs + CAMSV_MODULE_EN);
+> +
+> +	pm_runtime_put_autosuspend(cam_dev->dev);
+
+This will cut the power off after a delay, possibly loosing state. If
+userspace requests buffers and then starts streaming only later, you
+risk issues.
+
+> +	spin_unlock(&cam_dev->irqlock);
+> +}
+> +
+> +static irqreturn_t isp_irq_camsv30(int irq, void *data)
+> +{
+> +	struct mtk_cam_dev *cam_dev = (struct mtk_cam_dev *)data;
+> +	struct mtk_cam_dev_buffer *buf;
+> +	unsigned long flags = 0;
+> +	unsigned int irq_status;
+> +
+> +	spin_lock_irqsave(&cam_dev->irqlock, flags);
+> +
+> +	irq_status = readl(cam_dev->regs + CAMSV_INT_STATUS);
+> +
+> +	if (irq_status & INT_ST_MASK_CAMSV_ERR) {
+> +		dev_err(cam_dev->dev, "irq error 0x%x\n",
+> +			(unsigned int)(irq_status & INT_ST_MASK_CAMSV_ERR));
+> +	}
+> +
+> +	/* De-queue frame */
+> +	if (irq_status & CAMSV_IRQ_PASS1_DON) {
+> +		cam_dev->sequence++;
+> +
+> +		if (!cam_dev->is_dummy_used) {
+> +			buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +						       struct mtk_cam_dev_buffer,
+> +						       list);
+> +			if (buf) {
+> +				buf->v4l2_buf.sequence = cam_dev->sequence;
+> +				buf->v4l2_buf.vb2_buf.timestamp = ktime_get_ns();
+> +				vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
+> +						VB2_BUF_STATE_DONE);
+> +				list_del(&buf->list);
+> +			}
+> +		}
+> +
+> +		if (list_empty(&cam_dev->buf_list)) {
+> +			mtk_camsv30_update_buffers_add(cam_dev, &cam_dev->dummy);
+> +			cam_dev->is_dummy_used = true;
+> +		} else {
+> +			buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +						       struct mtk_cam_dev_buffer,
+> +						       list);
+> +			mtk_camsv30_update_buffers_add(cam_dev, buf);
+> +			cam_dev->is_dummy_used = false;
+> +		}
+> +	}
+> +
+> +	spin_unlock_irqrestore(&cam_dev->irqlock, flags);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int mtk_camsv30_runtime_suspend(struct device *dev)
+> +{
+> +	struct mtk_cam_dev *cam_dev = dev_get_drvdata(dev);
+> +	struct vb2_queue *vbq = &cam_dev->vdev.vbq;
+> +
+> +	if (vb2_is_streaming(vbq)) {
+> +		mutex_lock(&cam_dev->op_lock);
+> +		v4l2_subdev_call(&cam_dev->subdev, video, s_stream, 0);
+> +		mutex_unlock(&cam_dev->op_lock);
+> +	}
+> +
+> +	clk_bulk_disable_unprepare(cam_dev->num_clks, cam_dev->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_camsv30_runtime_resume(struct device *dev)
+> +{
+> +	struct mtk_cam_dev *cam_dev = dev_get_drvdata(dev);
+> +	struct mtk_cam_video_device *vdev = &cam_dev->vdev;
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	struct vb2_queue *vbq = &vdev->vbq;
+> +	struct mtk_cam_dev_buffer *buf, *buf_prev;
+> +	int ret;
+> +	unsigned long flags = 0;
+> +
+> +	ret = clk_bulk_prepare_enable(cam_dev->num_clks, cam_dev->clks);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable clock:%d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (vb2_is_streaming(vbq)) {
+> +		spin_lock_irqsave(&cam_dev->irqlock, flags);
+> +
+> +		mtk_camsv30_setup(cam_dev, fmt->width, fmt->height,
+> +				  fmt->plane_fmt[0].bytesperline, vdev->fmtinfo->code);
+> +
+> +		buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +					       struct mtk_cam_dev_buffer,
+> +					       list);
+> +		if (buf) {
+> +			mtk_camsv30_update_buffers_add(cam_dev, buf);
+> +			cam_dev->is_dummy_used = false;
+> +		} else {
+> +			mtk_camsv30_update_buffers_add(cam_dev, &cam_dev->dummy);
+> +			cam_dev->is_dummy_used = true;
+> +		}
+> +
+> +		mtk_camsv30_cmos_vf_hw_enable(cam_dev, vdev->fmtinfo->packed);
+> +
+> +		spin_unlock_irqrestore(&cam_dev->irqlock, flags);
+> +
+> +		/* Stream on the sub-device */
+> +		mutex_lock(&cam_dev->op_lock);
+> +		ret = v4l2_subdev_call(&cam_dev->subdev, video, s_stream, 1);
+> +
+> +		if (ret) {
+> +			cam_dev->stream_count--;
+> +			if (cam_dev->stream_count == 0)
+> +				media_pipeline_stop(vdev->vdev.entity.pads);
+> +		}
+> +		mutex_unlock(&cam_dev->op_lock);
+> +
+> +		if (ret)
+> +			goto fail_no_stream;
+> +	}
+> +
+> +	return 0;
+> +
+> +fail_no_stream:
+> +	spin_lock_irqsave(&cam_dev->irqlock, flags);
+> +	list_for_each_entry_safe(buf, buf_prev, &cam_dev->buf_list, list) {
+> +		buf->daddr = 0ULL;
+> +		list_del(&buf->list);
+> +		vb2_buffer_done(&buf->v4l2_buf.vb2_buf, VB2_BUF_STATE_ERROR);
+> +	}
+> +	spin_unlock_irqrestore(&cam_dev->irqlock, flags);
+> +	return ret;
+> +}
+
+[snip]
+
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+> new file mode 100644
+> index 000000000000..f879726eacd8
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+> @@ -0,0 +1,781 @@
+
+[snip]
+
+> +/* -----------------------------------------------------------------------------
+> + * VB2 Queue Operations
+> + */
+> +
+> +static int mtk_cam_vb2_queue_setup(struct vb2_queue *vq,
+> +				   unsigned int *num_buffers,
+> +				   unsigned int *num_planes,
+> +				   unsigned int sizes[],
+> +				   struct device *alloc_devs[])
+> +{
+> +	struct mtk_cam_video_device *vdev =
+> +		vb2_queue_to_mtk_cam_video_device(vq);
+> +	unsigned int max_buffer_count = vdev->desc->max_buf_count;
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	struct mtk_cam_dev *cam = vb2_get_drv_priv(vq);
+> +	unsigned int size;
+> +	unsigned int np_conf;
+> +	unsigned int i;
+> +
+> +	/* Check the limitation of buffer size */
+> +	if (max_buffer_count)
+> +		*num_buffers = clamp_val(*num_buffers, 1, max_buffer_count);
+> +
+> +	size = fmt->plane_fmt[0].sizeimage;
+> +	/* Add for q.create_bufs with fmt.g_sizeimage(p) / 2 test */
+> +
+> +	np_conf = cam->conf->frm_hdr_en ? 2 : 1;
+> +
+> +	if (*num_planes == 0) {
+> +		*num_planes = np_conf;
+> +		for (i = 0; i < *num_planes; ++i)
+> +			sizes[i] = size;
+> +	} else if (*num_planes != np_conf || sizes[0] < size) {
+> +		return -EINVAL;
+> +	}
+> +
+> +	(*cam->hw_functions->mtk_cam_setup)(cam, fmt->width, fmt->height,
+> +			fmt->plane_fmt[0].bytesperline, vdev->fmtinfo->code);
+
+This isn't the right time to call this. The hardware should be
+programmed when starting streaming, not when allocating buffers.
+
+> +
+> +	return 0;
+> +}
+
+[snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
 
