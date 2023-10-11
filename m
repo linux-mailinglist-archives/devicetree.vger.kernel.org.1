@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-7486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23397C477A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFB07C477C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:52:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96D9C281A82
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:51:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A8C281AAB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DAE819;
-	Wed, 11 Oct 2023 01:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00CA819;
+	Wed, 11 Oct 2023 01:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="mNri+D2E"
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="Jft//ciI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4552E80D
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:51:23 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512D592;
-	Tue, 10 Oct 2023 18:51:22 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9b9ad5760b9so1061486666b.3;
-        Tue, 10 Oct 2023 18:51:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860B480D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:52:02 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02B659D;
+	Tue, 10 Oct 2023 18:52:00 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a9f139cd94so1051165166b.2;
+        Tue, 10 Oct 2023 18:51:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1696989081; x=1697593881; darn=vger.kernel.org;
+        d=jms.id.au; s=google; t=1696989118; x=1697593918; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dvEek/wu0ornX7TSQqFw+K8z0hBkSwQuqkpR0z0uE5k=;
-        b=mNri+D2ECy215R5kqAHAs9xWWv0MzZNwW/IVCCjVxqTpKUmtBZXGOS6cetkT14JCZh
-         YMH0BraqlB4A90nl+NSJVZcX0cJhQNpAcvTMUCYPI7RNl+MQUdp7lg8Z9r0K3jyzkRim
-         UQ2avkdcXEC8LY6iyPlhsVQ7bQ3IMveo+2Ujc=
+        bh=k8jpVbTN8e1NFVPlrUmh8i2J9AzNXH5X36L3cIHXeoE=;
+        b=Jft//ciIbIduQ5gKBjlFxeqE4Scdinro+u4RSwSOdj1DO0VZDGoaveEW4EeGGYTuFA
+         WtTWipnYR0THfLbuvMvfBC2FGCIa4G8tbYCI7HdQooGSbmAryp2q0L1aHwauKlZY25Kz
+         gscNQnnOPh0HGngH6MLI1ihyu/9qz0AuJPb+0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696989081; x=1697593881;
+        d=1e100.net; s=20230601; t=1696989118; x=1697593918;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dvEek/wu0ornX7TSQqFw+K8z0hBkSwQuqkpR0z0uE5k=;
-        b=hyarK0bX3RNLJVKgGPIrolXAwKgQEItfASpac+xeKe+pKKoYr9+5PLQYCvTuc8WOfI
-         dYx50gW+g0cbfZGVtY2aLGlKkwUDx80nN5bhftte4/kaGIAGwjKkQShd5zxLvN1vHEqK
-         iYzFxRRnTNTdR7bj3APtYsbx9yq6OqotpFQpgC8wNcQ+neQZa7gU2neFJ5Z2lVUOzK5i
-         r7wZu0uVZLdg6TFEhPTLJaanlkqIJbvZc2MHfuq1JbEGZQ4WTzjvCS5H5+ENJRqIXFU7
-         kLR5MG/0SL6xBWKbopn86IQAr+PDDDORBNdyCMR+KwX+rwoVNexWB/eJkYWBdeUyTp6J
-         X/Jw==
-X-Gm-Message-State: AOJu0YxxXgvyJ+/EzeB58ggASFiIeEWo2Sgpl6s4RPO9Fn/uuWFSZcto
-	PRZtMMN63VifZKUSz5HEUOve5CK2uqnL8qQ7XforZep5OmA=
-X-Google-Smtp-Source: AGHT+IEJHgu6jOvC4sfayzAJpsh/xcXdz7gNPlaBSSuCWsWCemoWp8C2Kriej5Qo+yGFOjuOzBt2CEssbvsu5fd04Ok=
-X-Received: by 2002:a17:907:762d:b0:9ba:4163:1807 with SMTP id
- jy13-20020a170907762d00b009ba41631807mr1896364ejc.2.1696989080445; Tue, 10
- Oct 2023 18:51:20 -0700 (PDT)
+        bh=k8jpVbTN8e1NFVPlrUmh8i2J9AzNXH5X36L3cIHXeoE=;
+        b=DZIDSWRitu5XCquyH8QbetGckz1vZS1X655mg+kH/0vx3+pLdp5tFYSfdg4eMLE0yp
+         qdsVOGQb26QllYsC5Nh1BjGkwRn7CF72jVMB8lCm07EFd+3l9deEuIvoeQrR8VjcYRKt
+         9/LdtekYxtO/JbrSqqbEBCxrByC/P10/DR6ytiXeaLlvXibTCS50GcJ+cXzMewcDRnSN
+         HkEB0DSytmJZ4BMVlhKuPsyYcmjW1wg9TQizEYXykpkRohyX4bzTGPm8NtYzGTNBY1CW
+         hE1xq0oOLR0INByrNmtcJHKHVZDFK+uG7aV0Knqwd8SyuKalK6h0e+E8AkQNqPb0tPls
+         Sa7g==
+X-Gm-Message-State: AOJu0YydL1ysuXnV4vCVpOZCCh5z247Sj+auCi+gbRz3IwjLEcY82/BY
+	FUZHqqxw37vZQ0sydOSm6OYg7oaK3LyBBcHbXpo=
+X-Google-Smtp-Source: AGHT+IFCx+g9JHWDoLnMcozkiubkyTMt0hDKy7+W4kFVGz/dfkDSi66nrCqbpAmZXiZUa1jA01VOuaFCFh5GmHP1+8M=
+X-Received: by 2002:a17:906:220f:b0:9a4:88af:b82 with SMTP id
+ s15-20020a170906220f00b009a488af0b82mr15091743ejs.77.1696989118416; Tue, 10
+ Oct 2023 18:51:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com> <20231005035525.19036-6-chanh@os.amperecomputing.com>
-In-Reply-To: <20231005035525.19036-6-chanh@os.amperecomputing.com>
+References: <20231005035525.19036-1-chanh@os.amperecomputing.com> <20231005035525.19036-7-chanh@os.amperecomputing.com>
+In-Reply-To: <20231005035525.19036-7-chanh@os.amperecomputing.com>
 From: Joel Stanley <joel@jms.id.au>
-Date: Wed, 11 Oct 2023 12:21:09 +1030
-Message-ID: <CACPK8Xcs_4G0nSeKm2+hjSrp=SBb1MJrCob+EQ1emfVOijSOjw@mail.gmail.com>
-Subject: Re: [PATCH 5/7] ARM: dts: aspeed: mtmitchell: Add inlet temperature sensor
+Date: Wed, 11 Oct 2023 12:21:47 +1030
+Message-ID: <CACPK8Xfbh=jM0QRNYTQ-rjsyugzhoPxxMg+-1C+5g+uNtir+nw@mail.gmail.com>
+Subject: Re: [PATCH 6/7] ARM: dts: aspeed: mtmitchell: Remove redundant ADC configurations
 To: Chanh Nguyen <chanh@os.amperecomputing.com>
 Cc: OpenBMC Maillist <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -79,33 +79,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 On Thu, 5 Oct 2023 at 14:26, Chanh Nguyen <chanh@os.amperecomputing.com> wrote:
 >
-> Add the inlet temperature at address 0x48, which is connected
-> via BMC I2C8.
+> Mt.Mitchell DVT and later hardware do not use adc1. It only uses
+> adc0 with channels 0, 1 and 2. This commit removes redundant ADC
+> configurations.
 >
 > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
 
 Reviewed-by: Joel Stanley <joel@jms.id.au>
 
 > ---
->  arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts   | 15 +--------------
+>  1 file changed, 1 insertion(+), 14 deletions(-)
 >
 > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> index 88693c2b2dbe..c676172f0dbf 100644
+> index c676172f0dbf..eb8d5e367276 100644
 > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
 > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> @@ -510,6 +510,11 @@
->  &i2c8 {
->         status = "okay";
+> @@ -564,20 +564,7 @@
 >
-> +       temperature-sensor@48 {
-> +               compatible = "ti,tmp112";
-> +               reg = <0x48>;
-> +       };
-> +
->         gpio@77 {
->                 compatible = "nxp,pca9539";
->                 reg = <0x77>;
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+> -               &pinctrl_adc2_default &pinctrl_adc3_default
+> -               &pinctrl_adc4_default &pinctrl_adc5_default
+> -               &pinctrl_adc6_default &pinctrl_adc7_default>;
+> -};
+> -
+> -&adc1 {
+> -       ref_voltage = <2500>;
+> -       status = "okay";
+> -
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
+> -               &pinctrl_adc10_default &pinctrl_adc11_default
+> -               &pinctrl_adc12_default &pinctrl_adc13_default
+> -               &pinctrl_adc14_default &pinctrl_adc15_default>;
+> +               &pinctrl_adc2_default>;
+>  };
+>
+>  &vhub {
 > --
 > 2.17.1
 >
