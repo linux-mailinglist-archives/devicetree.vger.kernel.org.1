@@ -1,196 +1,315 @@
-Return-Path: <devicetree+bounces-7793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B09B67C5800
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8C37C57F8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:21:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E180A1C20C6C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:25:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83D051C20C59
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96C6208A5;
-	Wed, 11 Oct 2023 15:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592BD20332;
+	Wed, 11 Oct 2023 15:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TTi2Lbq0"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="eABFgWMl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34FB10951
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:25:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1417892;
-	Wed, 11 Oct 2023 08:25:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697037926; x=1728573926;
-  h=date:from:to:cc:subject:message-id:in-reply-to:
-   mime-version;
-  bh=FYNwZ04fT9LxaM3TRvwzePHkTBmq8a+Yom50kgdfabQ=;
-  b=TTi2Lbq0tOjEccWYKN4FkAldrcHKD10w7JarkDLUyTqUu+CNKCe9252o
-   Iz+ZTOFrD335Un2Hr50nPHZwsB+iooUJKvXo5y4Jcoh8qlmgGe3O7ApHw
-   1i+2krOrAdIIuwJy9zTx1kELP5056UawlKyzsLVbe21qwHtmeWnKZrSm8
-   HMERSvlsEoR/f0s1BfZBrK7BNw5MtzC0XSwJsUI2PA+pR45VDOW/4UzfY
-   IcF6X5G4M+xvhNMMwzMkdLLQS1No30k7O2uJj16llo3W0iZ5vgbxCyuj/
-   Dcdop5fPY6ITOKgbmOLVA8K1QG4rkg2agjJM0XZryj1cPyvdW4rbDWnLC
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="6255243"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
-   d="scan'208";a="6255243"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 08:25:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="1085266215"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
-   d="scan'208";a="1085266215"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 11 Oct 2023 08:25:25 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 11 Oct 2023 08:25:25 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 11 Oct 2023 08:25:24 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 11 Oct 2023 08:25:24 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 11 Oct 2023 08:25:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GEBAlTFmmPOR1Qc8BRGHKYfnj0RD9nxh1kaoTf2Znkue8bxI2lbxzBKqiJx8e6s+pli62idUeYKhtXd6pUD5idd1UX0E89PXF6bE8DVNHJgL+SxLimTgGgPFVp3QVtqC4VEFZkfXWjSUDyMnxqYNpjRLcZ0kXhenKWWTvSzvwPfcIaNI8h9AiFiNkvZDqybSd7moDHjxWIwI0XX16rZ10B5LuH0VbgUU+UBWg1is+O41VUTzUMIxCMwb/5o1PeHnBy1eg4sdAro5ndVtI4xKmy7SizvBgdkrEmkS31ho8GH7PY/4nLzICBni0BQw3Qk4ewUKibW/B1iXmnT7ARmIsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UpWvi/cdqwG8PtU+N5Y4Dx1k25i7Uhtcv/dDdLG/lQc=;
- b=W+Nbh/Wwo1VcLc49BEi7Q5FhUF1hD4/++mU8iS4tN/KTbuHX3UltkknrH9TT5qNz2f5cTa8lQ7TlzmDL02c7YgifKb+yttGXmRfz30IHKYFA61XmjQ+6Lutrsk6KZbw1QH6B4xvM7Q488hXZijlZtPmY+hqQNCsYpChju0Au0/4fI1f/g3W9l2LLhhVlAEvTKXY74uujC+XrdG0Qx21s6yTU2Aoij7SK9211M8FYi79TsaQZza5ZEr8cHugOjTTttlP3sZHGPB297NEYx6j/VmVIwpUacOwsY88w6NEQ6C/b0UJRyb0dYIa59onD7kQOlHTt7PLzTiyo8ns4+BAfRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6392.namprd11.prod.outlook.com (2603:10b6:930:37::15)
- by DS0PR11MB7560.namprd11.prod.outlook.com (2603:10b6:8:14b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Wed, 11 Oct
- 2023 15:25:22 +0000
-Received: from CY5PR11MB6392.namprd11.prod.outlook.com
- ([fe80::d35:d16b:4ee3:77e5]) by CY5PR11MB6392.namprd11.prod.outlook.com
- ([fe80::d35:d16b:4ee3:77e5%7]) with mapi id 15.20.6863.032; Wed, 11 Oct 2023
- 15:25:22 +0000
-Date: Wed, 11 Oct 2023 23:20:23 +0800
-From: kernel test robot <yujie.liu@intel.com>
-To: Anshul Dalal <anshulusr@gmail.com>, <linux-input@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-CC: <oe-kbuild-all@lists.linux.dev>, Anshul Dalal <anshulusr@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
-	<linux-kernel-mentees@lists.linuxfoundation.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: bindings for Adafruit Seesaw
- Gamepad
-Message-ID: <202310090414.Iulnmfzb-lkp@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231008172435.2391009-1-anshulusr@gmail.com>
-X-ClientProxiedBy: KU1PR03CA0012.apcprd03.prod.outlook.com
- (2603:1096:802:18::24) To CY5PR11MB6392.namprd11.prod.outlook.com
- (2603:10b6:930:37::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FC11F18A
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:21:12 +0000 (UTC)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0557F98
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 08:21:11 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6bd04558784so5043970a34.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 08:21:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1697037670; x=1697642470; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dfNYmjm/uFgx111cfPaMERYkgdpgrFgbtQwTcUB7K4U=;
+        b=eABFgWMlppCYjF+kcXksHEOHgw90HNj76lFXVonmQF8p50JPStLLanJRTQ+QNrGwQi
+         S+GtVY+H3zo/NkfcK7armaI/fFTmKdRZ0U8+WGTm0SqYIllojKRfHvRewmyjhwxP5Bcf
+         +YQ9nj0UFf3fhbnqjhJ/6CO2NfuAPDyUGEl2f6AmUialz8x+U8XCHwLNT2uUxFX2cafS
+         XdTCuaU2HyJOYyGlUYLyD6U2VkeGok26zcfZ0rtCbXnLPeEY6eoLnr50MrAUMbj4fCgq
+         i7REsRwx91TL8ewMRAWvZOIhHe/AtBDzqnOQWmHR8h5KcbIjO5M5iW38Jhp5qWwMnedP
+         EFcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697037670; x=1697642470;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dfNYmjm/uFgx111cfPaMERYkgdpgrFgbtQwTcUB7K4U=;
+        b=wNML6OkrpBGxA3ccCRCdVUvvScxXFHj+T5ZTULiYJ2RdKYQIsPkQ4bCjbtl556wnXA
+         teBpYMqE8HwgMXqYY8OiJ+PnezH5/LEQVVT2SyA/fu5yINLadwKIwrrdo/nGVmt1n9Sx
+         tRIbpR/qOVfUhE7toDmhvDeOddQZthAesSuF+2/xAG+zwa4mVUNAf/jeqUrAKSetfq3q
+         sqV3BIP+uEWa7yDNyObEC8WwXMS5DkgB/4VjyPOGj0f70Nh1SFQ6pigUrRVBT5kMkXkF
+         NhO9KkLTtARQWUVbUI4j7jGv02Fl8z5HXArQ4zIzgKBEnHcRpGO9/KbFLd5VKzMyfdbB
+         Jsog==
+X-Gm-Message-State: AOJu0YyPoCgnqrEPzt+/nw+x+xB6OD3rL7o1XS+culPagusdB5G5AJVT
+	MUOUuV13SjoQjbzFipPNwTUTOA==
+X-Google-Smtp-Source: AGHT+IEfshJitRCRQHy6kukyaj1QhoumhCmEaw+rt3b41dzH+jEO1FCFjVWPqToDbaQ0e3gNW0uqkA==
+X-Received: by 2002:a05:6830:ca:b0:6c4:ded2:44d0 with SMTP id x10-20020a05683000ca00b006c4ded244d0mr23749841oto.27.1697037670271;
+        Wed, 11 Oct 2023 08:21:10 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:15:a4b3::580])
+        by smtp.gmail.com with ESMTPSA id fy11-20020a05622a5a0b00b004198d026be6sm5449755qtb.35.2023.10.11.08.21.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 08:21:09 -0700 (PDT)
+Message-ID: <5d4fd4848e8a0e9cd33c9777a99189c2c1f79333.camel@ndufresne.ca>
+Subject: Re: [PATCH 2/7] media: hantro: add support for STM32MP25 VDEC
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  linux-media@vger.kernel.org, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Date: Wed, 11 Oct 2023 11:21:08 -0400
+In-Reply-To: <20231004091552.3531659-3-hugues.fruchet@foss.st.com>
+References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
+	 <20231004091552.3531659-3-hugues.fruchet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6392:EE_|DS0PR11MB7560:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b57fbba-b39f-4325-3229-08dbca6e4917
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ew2I++IUHUCMBdXe31tRFrSwr5Qc5HUokIKAUj7WxoVoFX87TKSlGRQMVXJEOb5FubzuNzfwvp4oqn6eBUhN2fdwsIL2yfOiU0PgRQky5PNWzC/UQjYiwU93YvBSdXQq7n5l2L7jzs6B6mVMTnwSr/yOPOVk5+e6udwLQsWOhyFdLbYdDFkCN+Fp8UkFh/LghX30vGWy5hGq+BKm/KeZQR4pYApJ77vkL/RlqpvtkPylElyuDArCkzYSCSW/VY9EhtWIVMTcauzprRYqOngdJQgDL7RCHsFSugI/dfjh75p5ta/iKi4YGuhWXBIybFSyyNr1o+uolkG4FINt3KSn9X++KLWIAmwrwAfcv9vlKmg35EaqonbnnTSKYTy84f+C7OUu/9S9fTZTuwABLfb8Uk1AtHDeAV9qAejp+4vz8Ed6rvJ0nnkfklzUb0u+PZt3rChoy3oD7GR1cVO0EqL7Y0yeo0QrapYNIenXMFFvincjuoo+xsZh6smue9zhcIRBb2a3y8HGxIdd4P5csWP2GEZ2CA8WqyQNtYBfKaxFLJv05frk2ahkp3hArVLh69ArgYZEgHoJNsHdXaoFt8+Zlw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR11MB6392.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(39860400002)(376002)(136003)(346002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(26005)(2616005)(1076003)(6512007)(83380400001)(6506007)(8676002)(2906002)(966005)(7416002)(4326008)(5660300002)(66946007)(478600001)(66556008)(54906003)(66476007)(41300700001)(6486002)(8936002)(316002)(86362001)(82960400001)(36756003)(38100700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b6LvFEuA99HcmrUyN966n3t/fKRaWAR2DNem8uhRdIHyocxSd02jbUT2Ezi7?=
- =?us-ascii?Q?S5FlnSxuGSfQ5AJwCK+ctFfnEKf0TxXeu64ogr3aqQhCXbgNGT9XgjXxt3XT?=
- =?us-ascii?Q?3/LSnyP6t3DGQMxLTL5oseQVTNxsxaF1c+gROXJ/HHEGAzF8DMTRmz8huX+C?=
- =?us-ascii?Q?+sU6UsNrZ5O9OgdLQmeoFhB6qcOBe52609KMvJhZ90/MBf4xaTl2VGQt9O+1?=
- =?us-ascii?Q?mEHNQsDlqqS7SnUa5gpkHTyKLdYXzyLhYaoC86DIhYybNGZof+5/tzrw7b+9?=
- =?us-ascii?Q?yicsvAJsBxjMLTgyCPfujBxu5lp5Ubl6qLmZUydLs3gC2noIF8T2m70KakcY?=
- =?us-ascii?Q?v26s5GSaQPXfD8tuI+pFLQ3/XwdVUOwv+V8c0ujFCG2CN+S19Sa4oEjtaRa5?=
- =?us-ascii?Q?Rnr31iLkIhElVtWx/NCrqs/6aRus5CXyaTrZQNLK8waE4ZE760v+fgO9O12e?=
- =?us-ascii?Q?vOAIKEkmuMSuvmvkupidPPUuOBpxdDJ8yhta5LFQPcEKSmqqQpfd2sjPP2e/?=
- =?us-ascii?Q?rUFURTpO+xPVWTMpHqT8YRDs9HvpG4fe1JaT+jjl0OpJeET1JAhSaxvmPITr?=
- =?us-ascii?Q?+oObvpNAz99v/oF4z+PPeEsdLMxwqGZce0v7c+p6POdcSmxgKnt+mfrMC52L?=
- =?us-ascii?Q?9F2OutD/zT+r5DWfuBflNVKQVrQNbjH/3cnee/FcUpO+qeInRTu8TTm9PWWr?=
- =?us-ascii?Q?NRBa51GPAhP+Di0sNL30IMVOa1qMgCy1PbsDTbEasUyOj4ZmNa3EOlRaIC+F?=
- =?us-ascii?Q?kFO7oXmgT5uSR8Lxamc2aDnAh4/d58Yp1S5RTziOyE+16X5i/qos81A5cs6q?=
- =?us-ascii?Q?x1OCo0nzpBpRhVaP+5CtNmQ3pALm/3ksf3NqfADFFM5lLzEP3gVwg6tdp0jD?=
- =?us-ascii?Q?Cl5CVYEQeJ+1kAiMYssYd8D+SYCOqvtq0eBWzahETFEqLvxWFl/egxHyXnMU?=
- =?us-ascii?Q?TrCgz+UBXX1uWUK1jAninN+k9DXYySGkqS3zFxvbghM0O3uuNCSMRUQ7+PJE?=
- =?us-ascii?Q?lQFtAOMZJm2Xbff1TcELYzDMq84z0SjUbU0QEi5/kt8PPlcmhZ/wL+/toxAg?=
- =?us-ascii?Q?2SuATcKNyEizje01T2jkltZ+k0hXf8ZtE/449xJGH7Rs6A5wEWV96eojWoY2?=
- =?us-ascii?Q?oUKMiv0wgwljL4AhqRuROi22VVX+F3B3gXaH5IUGYBY7XqyZet5WjMQLplx6?=
- =?us-ascii?Q?XuWSLVrpsQXAYtTVfipJ3Owzb7EhZkWIcRUiVSc/5RNnYMOUiPKGgYMCKCFa?=
- =?us-ascii?Q?PGVgWQ5YMDZHqP+OiELBk0cZj+yqIQpEWJDaBfAqI876QbK7Lf17n0bw3h0L?=
- =?us-ascii?Q?ZIHg0OIVZe903rhZalIaa9a70WgMmn0QvcbPBMabjxsZ7MIdarUIRjJv1Kgh?=
- =?us-ascii?Q?tfz/v0+FPugVcTHK73clQWQUnE9u4n5BNJs8/wSOfUHtbnXfMnj+w6rTgZvy?=
- =?us-ascii?Q?bM/4SYlUop0K0lwXwmB5SO6PdTXP7fHSCU6rcQuBwLwWr2LBjPmz07iJYcQ0?=
- =?us-ascii?Q?uufwmXkkXaoh0UF/0CkgNsf7QedUNJOi50vs7JDaN9wyvF0b606dFmW+/eLp?=
- =?us-ascii?Q?RlzUWCoDYFGLy97ZsOexiad+yQGzCdNl+kh9wRNL?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b57fbba-b39f-4325-3229-08dbca6e4917
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6392.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 15:25:22.7555
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HjMF+xIcWnLAqk4sZmE+hdh/zL1IPmz4evlhvDtZWuUcHxjD5K2kikqROgi/bCFnM1uyzO7wX0Iezkqy2XVw5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7560
-X-OriginatorOrg: intel.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-	SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Anshul,
+Hi,
 
-kernel test robot noticed the following build warnings:
+Le mercredi 04 octobre 2023 =C3=A0 11:15 +0200, Hugues Fruchet a =C3=A9crit=
+=C2=A0:
+> Add support for STM32MP25 VDEC video hardware decoder.
+> H264/VP8 decoding up to 4080x4080.
+> No post-processor support.
+> VDEC has its own reset/clock/irq.
+>=20
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> ---
+>  drivers/media/platform/verisilicon/Kconfig    | 14 ++-
+>  drivers/media/platform/verisilicon/Makefile   |  3 +
+>  .../media/platform/verisilicon/hantro_drv.c   |  3 +
+>  .../media/platform/verisilicon/hantro_hw.h    |  1 +
+>  .../platform/verisilicon/stm32mp25_vdec_hw.c  | 92 +++++++++++++++++++
+>  5 files changed, 110 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/media/platform/verisilicon/stm32mp25_vdec_hw.=
+c
+>=20
+> diff --git a/drivers/media/platform/verisilicon/Kconfig b/drivers/media/p=
+latform/verisilicon/Kconfig
+> index e65b836b9d78..7642ff9cf96c 100644
+> --- a/drivers/media/platform/verisilicon/Kconfig
+> +++ b/drivers/media/platform/verisilicon/Kconfig
+> @@ -4,7 +4,7 @@ comment "Verisilicon media platform drivers"
+> =20
+>  config VIDEO_HANTRO
+>  	tristate "Hantro VPU driver"
+> -	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || COMP=
+ILE_TEST
+> +	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || ARCH=
+_STM32 || COMPILE_TEST
+>  	depends on V4L_MEM2MEM_DRIVERS
+>  	depends on VIDEO_DEV
+>  	select MEDIA_CONTROLLER
+> @@ -16,8 +16,8 @@ config VIDEO_HANTRO
+>  	select V4L2_VP9
+>  	help
+>  	  Support for the Hantro IP based Video Processing Units present on
+> -	  Rockchip and NXP i.MX8M SoCs, which accelerate video and image
+> -	  encoding and decoding.
+> +	  Rockchip, NXP i.MX8M and STM32MP25 SoCs, which accelerate video
+> +	  and image encoding and decoding.
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called hantro-vpu.
+> =20
+> @@ -52,3 +52,11 @@ config VIDEO_HANTRO_SUNXI
+>  	default y
+>  	help
+>  	  Enable support for H6 SoC.
+> +
+> +config VIDEO_HANTRO_STM32MP25
+> +	bool "Hantro STM32MP25 support"
+> +	depends on VIDEO_HANTRO
+> +	depends on ARCH_STM32 || COMPILE_TEST
+> +	default y
+> +	help
+> +	  Enable support for STM32MP25 SoCs.
+> diff --git a/drivers/media/platform/verisilicon/Makefile b/drivers/media/=
+platform/verisilicon/Makefile
+> index 6ad2ef885920..5854e0f0dd32 100644
+> --- a/drivers/media/platform/verisilicon/Makefile
+> +++ b/drivers/media/platform/verisilicon/Makefile
+> @@ -39,3 +39,6 @@ hantro-vpu-$(CONFIG_VIDEO_HANTRO_ROCKCHIP) +=3D \
+> =20
+>  hantro-vpu-$(CONFIG_VIDEO_HANTRO_SUNXI) +=3D \
+>  		sunxi_vpu_hw.o
+> +
+> +hantro-vpu-$(CONFIG_VIDEO_HANTRO_STM32MP25) +=3D \
+> +		stm32mp25_vdec_hw.o
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/me=
+dia/platform/verisilicon/hantro_drv.c
+> index 423fc85d79ee..8c6e0c66f0cd 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -732,6 +732,9 @@ static const struct of_device_id of_hantro_match[] =
+=3D {
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_SUNXI
+>  	{ .compatible =3D "allwinner,sun50i-h6-vpu-g2", .data =3D &sunxi_vpu_va=
+riant, },
+> +#endif
+> +#ifdef CONFIG_VIDEO_HANTRO_STM32MP25
+> +	{ .compatible =3D "st,stm32mp25-vdec", .data =3D &stm32mp25_vdec_varian=
+t, },
+>  #endif
+>  	{ /* sentinel */ }
+>  };
+> diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/med=
+ia/platform/verisilicon/hantro_hw.h
+> index 7f33f7b07ce4..b7eccc1a96fc 100644
+> --- a/drivers/media/platform/verisilicon/hantro_hw.h
+> +++ b/drivers/media/platform/verisilicon/hantro_hw.h
+> @@ -406,6 +406,7 @@ extern const struct hantro_variant rk3568_vpu_variant=
+;
+>  extern const struct hantro_variant rk3588_vpu981_variant;
+>  extern const struct hantro_variant sama5d4_vdec_variant;
+>  extern const struct hantro_variant sunxi_vpu_variant;
+> +extern const struct hantro_variant stm32mp25_vdec_variant;
+> =20
+>  extern const struct hantro_postproc_ops hantro_g1_postproc_ops;
+>  extern const struct hantro_postproc_ops hantro_g2_postproc_ops;
+> diff --git a/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c b/dri=
+vers/media/platform/verisilicon/stm32mp25_vdec_hw.c
+> new file mode 100644
+> index 000000000000..c9f107bc09db
+> --- /dev/null
+> +++ b/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * STM32MP25 VDEC video decoder driver
+> + *
+> + * Copyright (C) STMicroelectronics SA 2022
+> + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> + *          for STMicroelectronics.
+> + *
+> + */
+> +
+> +#include "hantro.h"
+> +
+> +/*
+> + * Supported formats.
+> + */
+> +
+> +static const struct hantro_fmt stm32mp25_vdec_fmts[] =3D {
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_NV12,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus hid/for-next linus/master v6.6-rc4 next-20231006]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This is suspicious, this would be the only "implementation" with that minim=
+um.
+Have you tested FMT_MIN_WIDTH/FMT_MIN_HEIGHT (48) ?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/input-joystick-driver-for-Adafruit-Seesaw-Gamepad/20231009-012745
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231008172435.2391009-1-anshulusr%40gmail.com
-patch subject: [PATCH v2 1/2] dt-bindings: input: bindings for Adafruit Seesaw Gamepad
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231009/202310090414.Iulnmfzb-lkp@intel.com/reproduce)
+> +			.max_width =3D 4080,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D 4080,
+> +			.step_height =3D MB_DIM,
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <yujie.liu@intel.com>
-| Closes: https://lore.kernel.org/r/202310090414.Iulnmfzb-lkp@intel.com/
+My own datasheet says that the 4K fuse register means max width of 4096, we=
+re
+did these numbers came from ? My first impression would be that that the co=
+rrect
+values are FMT_4K_WIDTH / FMT_4K_HEIGHT.
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
-    	 $id: http://devicetree.org/schemas/input/adafruit_seesaw.yaml
-    	file: Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+p.s. a lot of the max/min are simply copied from SoC white paper in this dr=
+iver,
+this is a known issue, or perhaps a non-issue considering that at maximum
+hardware capacity, the resulting performance might not be worth using the
+hardware accelerator in the first place.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_VP8_FRAME,
+> +		.codec_mode =3D HANTRO_MODE_VP8_DEC,
+> +		.max_depth =3D 2,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D 4080,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D 4080,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
+> +		.codec_mode =3D HANTRO_MODE_H264_DEC,
+> +		.max_depth =3D 2,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D 4080,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D 4080,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+> +/*
+> + * Supported codec ops.
+> + */
+> +
+> +static const struct hantro_codec_ops stm32mp25_vdec_codec_ops[] =3D {
+> +	[HANTRO_MODE_VP8_DEC] =3D {
+> +		.run =3D hantro_g1_vp8_dec_run,
+> +		.reset =3D hantro_g1_reset,
+> +		.init =3D hantro_vp8_dec_init,
+> +		.exit =3D hantro_vp8_dec_exit,
+> +	},
+> +	[HANTRO_MODE_H264_DEC] =3D {
+> +		.run =3D hantro_g1_h264_dec_run,
+> +		.reset =3D hantro_g1_reset,
+> +		.init =3D hantro_h264_dec_init,
+> +		.exit =3D hantro_h264_dec_exit,
+> +	},
+> +};
+> +
+> +static const struct hantro_irq stm32mp25_irqs[] =3D {
+> +	{ "vdec", hantro_g1_irq },
+> +};
+> +
+> +static const char * const stm32mp25_clk_names[] =3D { "vdec-clk" };
+> +
+> +const struct hantro_variant stm32mp25_vdec_variant =3D {
+> +	.dec_fmts =3D stm32mp25_vdec_fmts,
+> +	.num_dec_fmts =3D ARRAY_SIZE(stm32mp25_vdec_fmts),
+> +	.codec =3D HANTRO_VP8_DECODER | HANTRO_H264_DECODER,
+> +	.codec_ops =3D stm32mp25_vdec_codec_ops,
+> +	.irqs =3D stm32mp25_irqs,
+> +	.num_irqs =3D ARRAY_SIZE(stm32mp25_irqs),
+> +	.clk_names =3D stm32mp25_clk_names,
+> +	.num_clocks =3D ARRAY_SIZE(stm32mp25_clk_names),
+> +};
 
 
