@@ -1,112 +1,82 @@
-Return-Path: <devicetree+bounces-7754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459767C54FA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:10:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 525DF7C54FB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F419C2820EE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:10:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B3FD282327
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572611F19F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3021F60D;
 	Wed, 11 Oct 2023 13:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="TU2uBtXl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HDNMP1fz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0AA1F195
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 13:10:27 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8718F
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:10:26 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c888b3a25aso44974495ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1697029826; x=1697634626; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5wOM+rVlEncWtIcaSta6xu6eHLCRdmG5bClAcyA0Ctk=;
-        b=TU2uBtXlitx+CHhGMa+FWij7ZLeN35+OYF0js5BuGZ8lPVqauJZoZA7tb2mimsUfJ0
-         xUt6PlDDTDwrx11IceUDHWfe5Giceslm7D4fwItNpZyjBfHXkJmgoen0z2yYtRqUZ9Pw
-         mHiYrAN8VhTPrL0yI6a4taCGROmJkH35jYtT+MIuI6O+qe4te51UxTm0ID7Uej3Gni7N
-         C7sqgDefBY5vm2MSIDA77vQkBHGB1mucxOv7VYOXqUhSIR1fCZ1M8ZIeUgrMv/BVd3Vp
-         Z+mMEHFUiXxaxrEXCjfXfVLWmDQDuzUWK23oEAza35A2PdFv3b6Y1j4a/Uo6XGQfOVLb
-         SZWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697029826; x=1697634626;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5wOM+rVlEncWtIcaSta6xu6eHLCRdmG5bClAcyA0Ctk=;
-        b=jugxziWC8THYbfmk6hKiqQBguvApAfU0260TIILZJftJgO5ZBqG+rZlC2NSU2PgvaE
-         N6/njZ6CEQobRr80eHfgbD4KC+/ZyK43hdv6nnR+HUsX1zdG2VQociliPX6V3g0Ibs9o
-         2s0P2r2kxqWQgFRccRwrurwxOJ+KtGzjx/nt2227VMXefb+J/CgfBU4pSPi/oll3YAr+
-         MF2dIi2YEYt89ni7Is2acppWgdGVKBz8+oNFjbSpWQWED7zoOIoQFDTJ1zYOro5BGqpA
-         dfDFzmZVqzo7luzvxyNopqhCK9i/LpIytkOwRJVtAi9wy2j3NMu57HTRuwy/kwsSAqVN
-         N2xw==
-X-Gm-Message-State: AOJu0YyTpukHsaG9cjfEx4Hn2fslrhqqVL3euyuTpGwVnebveb56XN2U
-	I78IB+picAz8mmQDj9s4x7N8Sg==
-X-Google-Smtp-Source: AGHT+IGseWVdcAxiIA+AskawQ8BaACwpMMfoE1sBY3gJ6+fKWdR+1i5OXDFpqQOlX5oCL6NaPrPcEg==
-X-Received: by 2002:a17:902:bf0c:b0:1bc:3944:9391 with SMTP id bi12-20020a170902bf0c00b001bc39449391mr16639073plb.25.1697029825684;
-        Wed, 11 Oct 2023 06:10:25 -0700 (PDT)
-Received: from ?IPV6:2403:580d:82f4:0:92f1:e901:1eef:a22? (2403-580d-82f4-0-92f1-e901-1eef-a22.ip6.aussiebb.net. [2403:580d:82f4:0:92f1:e901:1eef:a22])
-        by smtp.gmail.com with ESMTPSA id a4-20020a170902ecc400b001c74df14e6esm13834862plh.51.2023.10.11.06.10.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 06:10:25 -0700 (PDT)
-Message-ID: <689dc368-b504-4863-3603-13ba43fe4697@tweaklogic.com>
-Date: Wed, 11 Oct 2023 23:40:18 +1030
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A364C1F5E2;
+	Wed, 11 Oct 2023 13:10:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D715C433CC;
+	Wed, 11 Oct 2023 13:10:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697029829;
+	bh=sIFPlEfgw5Tgf4SaAgi4BkayV92E8UWXht7jOG8M/TY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HDNMP1fzW+mkOxIiBZGym3lqDR2cgtvoaMKjRJvkI8WQ4cCGsqw33axMJVGoFr+aY
+	 OnWmpIUSZPBmCpKpdZ2RFRATbXEe+jGwoeX94J3NfGYImgePxT6Wf6qg3vBB3+mYTs
+	 eOAR8kV6FlnZBrgJzC2xIwJ3Q1FV9x2z847w8FtfM53XQkH/8R0gprgJjsftiKU4o5
+	 JYbG8quTIfH8eWOEoiJmar6Fa2Lq89UmVwk1WVex4hSbmx3IUZa2UrcVbyFWBWD4iu
+	 h/NjWizQ/dEjy42TU5iX91+E/OYXMgqyat7DV5L2v5R92CH5f7LsrHhlHVoFuMaN/1
+	 rMcJ2ck3FIZ+A==
+Received: (nullmailer pid 4114505 invoked by uid 1000);
+	Wed, 11 Oct 2023 13:10:26 -0000
+Date: Wed, 11 Oct 2023 08:10:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: konrad.dybcio@linaro.org, agross@kernel.org, devicetree@vger.kernel.org, bgoswami@quicinc.com, broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com, gregkh@linuxfoundation.org, andersson@kernel.org, conor+dt@kernel.org, linux-usb@vger.kernel.org, mathias.nyman@intel.com, perex@perex.cz, tiwai@suse.com, Thinh.Nguyen@synopsys.com, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH v8 14/34] dt-bindings: usb: dwc3: Limit
+ num-hc-interrupters definition
+Message-ID: <20231011131026.GA4103742-robh@kernel.org>
+References: <20231011002146.1821-1-quic_wcheng@quicinc.com>
+ <20231011002146.1821-15-quic_wcheng@quicinc.com>
+ <169699146356.2560906.8654324582682669209.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Avago APDS9306
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Paul Gazzillo <paul@pgazz.com>, Conor Dooley <conor+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
- <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
- <20231010145130.3d5ff9c7@jic23-huawei>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20231010145130.3d5ff9c7@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169699146356.2560906.8654324582682669209.robh@kernel.org>
 
-On 11/10/23 00:21, Jonathan Cameron wrote:
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  vin-supply:
->> +    description: Regulator supply to the sensor
+On Tue, Oct 10, 2023 at 09:31:04PM -0500, Rob Herring wrote:
 > 
-> Why vin?  It seems to be vdd on the datasheet.
-> We tend to match the datasheet naming for power supplies as that is normally
-> what is seen on circuit board schematics.
-Got it, I'll fix it. Thanks for looking into it.
+> On Tue, 10 Oct 2023 17:21:26 -0700, Wesley Cheng wrote:
+> > Ensure that the number of XHCI secondary interrupters defined for a DWC3
+> > based implementation is limited to 8.  XHCI in general can potentially
+> > support up to 1024 interrupters.
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: num-hc-interrupters: missing type definition
 
-Regards,
-Subhajit Ghosh
+Patch 15 should come first.
+
+Rob
 
