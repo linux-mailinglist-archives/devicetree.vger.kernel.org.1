@@ -1,111 +1,171 @@
-Return-Path: <devicetree+bounces-7642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33527C502F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DA77C5061
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FAD11C20DF7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:33:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 111DF1C20EBB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCC41095B;
-	Wed, 11 Oct 2023 10:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1953610957;
+	Wed, 11 Oct 2023 10:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vc516wah"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e5Z9P6OU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A0410957
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:33:43 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8109792;
-	Wed, 11 Oct 2023 03:33:41 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A99F640008;
-	Wed, 11 Oct 2023 10:33:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697020419;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NMc547evd8LnPOnBrC1MZnEbM8rxfz9r+nKmvxJ3r0A=;
-	b=Vc516wahyW3fDn24P8bi9r4qgErjJHSAlpqt9hnK7cyEcYOHkwJbpuCU1WPr6Zfwey6OxA
-	/lzTHvErIZVPhZYFwfs+pq15ZELjfFKg7Wm+D92iVgmGRPSjgewpaI8PaaJ/+IpQgXpJRy
-	L7pJffgWm+4QzHDPek5KHM+vqbXswVH5vnHU/csEVwD69kdj+GNqeUB8TODvq9lEdYNgKW
-	ttBuj6gfKJREauxhxB9BjEHtflhlzvzSg3K9WuvxXei9jIraph4GeIOfrfLka7H/Rg/Wrt
-	3hwF2pFJXjnA93xnZLPuGjJKUW8qNF5c2wySkBuaGxmjAZt8OLRTcfpDn3vpdg==
-Date: Wed, 11 Oct 2023 12:33:36 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Michael Walle
- <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 5/7] nvmem: core: Rework layouts to become regular
- devices
-Message-ID: <20231011123336.642881b8@xps-13>
-In-Reply-To: <2023100722-stallion-unquote-a3b1@gregkh>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
-	<20231005155907.2701706-6-miquel.raynal@bootlin.com>
-	<2023100722-stallion-unquote-a3b1@gregkh>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0AC1078D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:40:08 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7E494;
+	Wed, 11 Oct 2023 03:40:07 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B7kEow020666;
+	Wed, 11 Oct 2023 10:39:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=dbVR0f08zGU0LFTiDSP4fMsRyjEfLOVaROii0XQJqS4=;
+ b=e5Z9P6OUmumkDhTHscAyOOmBe01pXPv8g4vfB6WXtU3x1tp4RK5iNASb/KvlLqBuPaHx
+ KbJ5bp96Grg3vTQPiBmeifT046fmQXMFSSnkx/itrLhWvW+DnmcNdoHV42pSjFUM/41n
+ jRi5w0AZCTBoKWnhCYUWWGhiMKl0NOhhpGNzvvXWG/autjQxdh4eAROkhvcw3u4pvOHI
+ 2+DHhWf1h3Vmz94IBTzVDCeG5OcdxsMOHujChKvgmukIj2sGFlteMb5ZrnGiQS6Z3HgL
+ y6mvcJfYxEPKPYR+YCPieAWkmv/CVkKA2hQPPwtq7zoGPms/Z8nIgXrd9zMlRWeGZTaj aQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnqh1gd47-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 10:39:41 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BAdeS6001148
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 10:39:40 GMT
+Received: from [10.216.52.55] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
+ 2023 03:39:33 -0700
+Message-ID: <01230ca8-505b-74c2-7872-24b5411c6b2e@quicinc.com>
+Date: Wed, 11 Oct 2023 16:09:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 4/5] PCI: epf-mhi: Add support for SA8775P
+Content-Language: en-US
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <quic_shazhuss@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nayiluri@quicinc.com>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
+        Bjorn Helgaas
+	<bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul
+	<vkoul@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
+        <linux-phy@lists.infradead.org>
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-5-git-send-email-quic_msarkar@quicinc.com>
+ <20230921084055.GD2891@thinkpad>
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+In-Reply-To: <20230921084055.GD2891@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Z6E6trT_zM5dT-pVAFs54BsmvzUih5xn
+X-Proofpoint-ORIG-GUID: Z6E6trT_zM5dT-pVAFs54BsmvzUih5xn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-11_08,2023-10-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ spamscore=0 bulkscore=0 clxscore=1011 lowpriorityscore=0 mlxlogscore=789
+ mlxscore=0 priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310110093
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Greg,
 
-gregkh@linuxfoundation.org wrote on Sat, 7 Oct 2023 18:31:00 +0200:
-
-> On Thu, Oct 05, 2023 at 05:59:05PM +0200, Miquel Raynal wrote:
-> > --- a/drivers/nvmem/internals.h
-> > +++ b/drivers/nvmem/internals.h
-> > @@ -28,8 +28,30 @@ struct nvmem_device {
-> >  	nvmem_reg_read_t	reg_read;
-> >  	nvmem_reg_write_t	reg_write;
-> >  	struct gpio_desc	*wp_gpio;
-> > +	struct device		*layout_dev;
-> >  	struct nvmem_layout	*layout;
-> >  	void *priv;
-> >  }; =20
->=20
-> Wait, is this now 2 struct device in the same structure?  Which one is
-> the "real" owner of this structure?  Why is a pointer to layout_dev
-> needed here as a "struct device" and not a real "struct
-> nvmem_layout_device" or whatever it's called?
->=20
-> >  struct nvmem_layout {
-> > -	const char *name;
-> > -	const struct of_device_id *of_match_table;
-> > +	struct device *dev; =20
->=20
-> Shouldn't this be a "real" struct device and not just a pointer?  If
-> not, what does this point to?  Who owns the reference to it?
-
-Good point, I've initially tried to create the simplest possible bus,
-but you're right it will be nicer if the layout device structure
-carries the 'struct device'. I've added a bit of infrstracture but it
-looks better, thanks for the suggestion.
+On 9/21/2023 2:10 PM, Manivannan Sadhasivam wrote:
+> On Wed, Sep 20, 2023 at 07:25:11PM +0530, Mrinmay Sarkar wrote:
+>> Add support for Qualcomm Snapdragon SA8775P SoC to the EPF driver.
+>> SA8775P has the PID (0x0306) and supports HDMA. Currently, it has
+>> no fixed PCI class, so it is being advertised as "PCI_CLASS_OTHERS".
+>>
+>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>> ---
+>>   drivers/pci/endpoint/functions/pci-epf-mhi.c | 18 ++++++++++++++++++
+>>   1 file changed, 18 insertions(+)
+>>
+>> diff --git a/drivers/pci/endpoint/functions/pci-epf-mhi.c b/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> index b7b9d3e..4b349fd 100644
+>> --- a/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> +++ b/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> @@ -114,6 +114,23 @@ static const struct pci_epf_mhi_ep_info sm8450_info = {
+>>   	.flags = MHI_EPF_USE_DMA,
+>>   };
+>>   
+>> +static struct pci_epf_header sa8775p_header = {
+> static const struct...
+>
+>> +	.vendorid = PCI_VENDOR_ID_QCOM,
+>> +	.deviceid = 0x0306,
+> Why are you not using a distinct device id?
+>
+> - Mani
+distinct device id for EP is not created yet as of now we are reusing this.
+Will update once device id is decided.
 
 Thanks,
-Miqu=C3=A8l
+Mrinmay
+>> +	.baseclass_code = PCI_CLASS_OTHERS,
+>> +	.interrupt_pin = PCI_INTERRUPT_INTA,
+>> +};
+>> +
+>> +static const struct pci_epf_mhi_ep_info sa8775p_info = {
+>> +	.config = &mhi_v1_config,
+>> +	.epf_header = &sa8775p_header,
+>> +	.bar_num = BAR_0,
+>> +	.epf_flags = PCI_BASE_ADDRESS_MEM_TYPE_32,
+>> +	.msi_count = 32,
+>> +	.mru = 0x8000,
+>> +	.flags = MHI_EPF_USE_DMA,
+>> +};
+>> +
+>>   struct pci_epf_mhi {
+>>   	const struct pci_epc_features *epc_features;
+>>   	const struct pci_epf_mhi_ep_info *info;
+>> @@ -677,6 +694,7 @@ static int pci_epf_mhi_probe(struct pci_epf *epf,
+>>   }
+>>   
+>>   static const struct pci_epf_device_id pci_epf_mhi_ids[] = {
+>> +	{ .name = "sa8775p", .driver_data = (kernel_ulong_t)&sa8775p_info },
+>>   	{ .name = "sdx55", .driver_data = (kernel_ulong_t)&sdx55_info },
+>>   	{ .name = "sm8450", .driver_data = (kernel_ulong_t)&sm8450_info },
+>>   	{},
+>> -- 
+>> 2.7.4
+>>
 
