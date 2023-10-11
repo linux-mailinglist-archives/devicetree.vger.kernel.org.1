@@ -1,132 +1,119 @@
-Return-Path: <devicetree+bounces-7803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7FE7C5912
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:24:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB147C592E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:33:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B3902828F7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:24:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA5B01C20E92
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DAC83C691;
-	Wed, 11 Oct 2023 16:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7018182AB;
+	Wed, 11 Oct 2023 16:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LYj9wM8R"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="JJHjEFTh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE2A30F88
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 16:24:53 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72F991;
-	Wed, 11 Oct 2023 09:24:52 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5EBD3512;
-	Wed, 11 Oct 2023 18:24:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697041484;
-	bh=VvTWetfAU33D3NP4Jevd86GCQidIbkk2d2bk+mjnMe8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LYj9wM8RwWcbKBn5rk0zwDaQg5Jn324N0JGSPS2g0ZYJn1uK63bcgRpdZBDnLxLQc
-	 0Ey+84ngHilPQdrAL7Lc+LxVCqHsG2B0I80cUcdeMIsLIhRjc6bSGGgN7QYJWr8AEg
-	 RFBm+XV7sVILu2eUcg7mbVZdTZqt0SNe19Rm3xB0=
-Date: Wed, 11 Oct 2023 19:24:54 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add OmniVision OV64A40
-Message-ID: <20231011162454.GB5306@pendragon.ideasonboard.com>
-References: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
- <20231010151208.29564-2-jacopo.mondi@ideasonboard.com>
- <20231011-conflict-monument-75379ef495cc@spud>
- <ar5rf3mas33vvg47jflmhajpyx2pypdjdf3x522x3a3v5cva2a@gjmr5cjv6dyd>
- <20231011-deserve-platonic-0beb72c94661@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046F33F4B3
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 16:33:32 +0000 (UTC)
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22EBFB0;
+	Wed, 11 Oct 2023 09:33:31 -0700 (PDT)
+Received: from [192.168.178.23] (k10064.upc-k.chello.nl [62.108.10.64])
+	by mail.z3ntu.xyz (Postfix) with ESMTPSA id F38A6C88E9;
+	Wed, 11 Oct 2023 16:33:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+	t=1697042009; bh=qhKCT4xrkgikeWF4fbn1jxq8p8MIe5Q6C2l6e3PNY5U=;
+	h=From:Subject:Date:To:Cc;
+	b=JJHjEFTh/7Ebx5nZwH0dWU5pvi+UQhKvL++lM41KjvgR2JTNA7Dt9EP7fgPz8qhtO
+	 WTxeRSc/x7b2HfNRiOjR4XouAQxXcY7YMz1bspN26XAcU4whLMYgi9lxaEHYWkvzS8
+	 7bBYPqNkyZreyHfa2dk2idNQBemcQ1H282bGogSw=
+From: Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/3] Add watchdog nodes to msm8226 & msm8974
+Date: Wed, 11 Oct 2023 18:33:12 +0200
+Message-Id: <20231011-msm8226-msm8974-watchdog-v1-0-2c472818fbce@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231011-deserve-platonic-0beb72c94661@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEjOJmUC/x2MQQqAIBAAvxJ7TsjNyvpKdJDacg9WaFQg/j3pN
+ MxhJkIgzxRgKCJ4ujnwsWeRZQGzNftGgpfsgBXWspJSuOA0Yvuz75R4zDXb5diE0ZpUsypCoyD
+ np6eV3389Til9TGLaR2oAAAA=
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca@z3ntu.xyz>, 
+ =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1366; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=qhKCT4xrkgikeWF4fbn1jxq8p8MIe5Q6C2l6e3PNY5U=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlJs5TOneAtkZj1F5CsZKdsfrGSrlcZ3qmg2NP5
+ +G8AI9e782JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZSbOUwAKCRBy2EO4nU3X
+ Vpx8D/4+FIELvM73S2A7NuOX0vSGtsp1r0yatMMV1Wch3QQ7mRCmUf/QYAUXzzHRMSndwTbSZoP
+ 4IlopG7Mehr9CmJDXnb5UqvQtUS2y9mtuhTqSi46h6MkeOKahnFzaKgg+CIwgCNtLPPLS/dNn7e
+ rTYWQsHj71XNTSEiMVOZa4p7bZkwHHBno0j471u+50B5OWCcsk+rjCKHZO191L0TlMgCDX9i5MT
+ N95M5MKc+0nBXzApPjgQjpr4fBPwMeaeEOo10CqEUbkWboQhMHB9X0uDePeZDZ2h0HgqIfRpwbn
+ sglh3bU3ZV7ylQfyn0Mx1l2TEhG5c+mNZ+d5r8FCIk2Z107FwGoPJq/JnMoHUR33sfhe9NaSO7h
+ QsH4CEgRqA1KDD5ivFB/fuZiWwcSzrZGlmXRH/3+eS9tnrsFmlR1ZBEMawYu8W8pPdBjgI5Rw7U
+ FML49dcMYg6wxgNFWlSOPP/b+Gz1Bjn5ggdTU3jDs8OGKb43caFM9qzFWu9B1XFYM5rQRLQ1VD8
+ 2p4jaWaLtkMjbEfdVv5OGkuIxQsMshoak9exWbYgXAJTxDbUpkYxLFOTWNDeynfy2prxeksjtPP
+ Xao+3N2cDUm1VqZBiXCODR/XuWfy83zk7FxoCWBSfJFooi0SgyuAc8J2HRaouZJipkhOPVLj/H6
+ Uv2pB34Thbld2uA==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023 at 05:16:50PM +0100, Conor Dooley wrote:
-> On Wed, Oct 11, 2023 at 06:12:28PM +0200, Jacopo Mondi wrote:
-> > On Wed, Oct 11, 2023 at 04:53:34PM +0100, Conor Dooley wrote:
-> > > On Tue, Oct 10, 2023 at 05:12:07PM +0200, Jacopo Mondi wrote:
-> > > > Add bindings for OmniVision OV64A40.
-> > > >
-> > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > > Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
-> > >
-> > > What does Lee's SoB indicate here?
-> > 
-> > Lee has contributed to the development of the driver and validation of
-> > bindings.
-> 
-> Then you're missing a Co-developed-by: from Lee :)
-> 
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > index b19995690904..df089d68b58c 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -15821,6 +15821,13 @@ S:	Maintained
-> > > >  T:	git git://linuxtv.org/media_tree.git
-> > > >  F:	drivers/media/i2c/ov5695.c
-> > > >
-> > > > +OMNIVISION OV64A40 SENSOR DRIVER
-> > > > +M:	Jacopo Mondi <jacopo.mondi@ideasonboard.org>
-> > > > +L:	linux-media@vger.kernel.org
-> > > > +S:	Maintained
-> > > > +T:	git git://linuxtv.org/media_tree.git
-> > >
-> > > Binding looks fine to me, my question is here. Usually having a tree
-> > > here means that you apply the patches yourself. Do you?
-> > >
-> > 
-> > No, and only Mauro has commit rights on the media tree.
-> > 
-> > All i2c sensor drivers have a tree listed, regardless who commits
-> > there. What should I put there ?
-> 
-> IMO, nothing. The media tree entry should cover the parent directory,
-> no?
+Document the compatible for the watchdog found on both SoCs, and add
+them to the SoC dtsi file. And especially for the case where the
+bootloader has already enabled the watchdog we need to start petting it
+on time, otherwise the system gets rebooted.
 
-There's little documentation for the T: tag. In MAINTAINERS, we have
+It's worth noting that the watchdog behaves a bit unexpectedly.
+It appears the watchdog counts down significantly slower when there's no
+load on the system and can last far longer than 30 seconds until they
+bark. Only when putting load on the system, e.g. with stress-ng does the
+watchdog interrupt fire and kill the system within an expected amount of
+time.
 
-        T: *SCM* tree type and location.
-           Type is one of: git, hg, quilt, stgit, topgit
+This behavior has been observed on both msm8974 and msm8226 smartphones.
 
-which doesn't tell much. In Documentation/sbumitting-patches.rst,
-there's ona additional paragraph:
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Matti Lehtimäki (3):
+      dt-bindings: watchdog: qcom-wdt: Add MSM8226 and MSM8974 compatibles
+      ARM: dts: qcom: msm8226: Add watchdog node
+      ARM: dts: qcom: msm8974: Add watchdog node
 
-  Note, however, that you may not want to develop against the mainline
-  tree directly.  Most subsystem maintainers run their own trees and
-  want to see patches prepared against those trees.  See the **T:**
-  entry for the subsystem in the MAINTAINERS file to find that tree, or
-  simply ask the maintainer if the tree is not listed there.
+ Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 2 ++
+ arch/arm/boot/dts/qcom/qcom-msm8226.dtsi                 | 8 ++++++++
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi                 | 8 ++++++++
+ 3 files changed, 18 insertions(+)
+---
+base-commit: 2933a1156742d8c47550493a77af8e2d81cf3c84
+change-id: 20231011-msm8226-msm8974-watchdog-a88e45f4e2a4
 
-If the purpose of the T: tag is to tell which tree patches for this
-driver should be developed against, the above tree seems right.
-
+Best regards,
 -- 
-Regards,
+Luca Weiss <luca@z3ntu.xyz>
 
-Laurent Pinchart
 
