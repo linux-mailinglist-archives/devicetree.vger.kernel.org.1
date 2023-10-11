@@ -1,124 +1,138 @@
-Return-Path: <devicetree+bounces-7785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149197C5773
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:52:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 821627C5786
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 457721C20BD9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:52:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5B4281C9B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CBD10A2D;
-	Wed, 11 Oct 2023 14:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8141E51A;
+	Wed, 11 Oct 2023 14:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U9EVuDIv"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="itDfPbJ/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4FC182CA
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:52:22 +0000 (UTC)
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F814B0;
-	Wed, 11 Oct 2023 07:52:18 -0700 (PDT)
-Received: by mail-vk1-xa35.google.com with SMTP id 71dfb90a1353d-49d6bd360f8so2608612e0c.2;
-        Wed, 11 Oct 2023 07:52:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697035937; x=1697640737; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IYZjFi/wf0Z9GQXeuJRSvq3Y/H6dwz6J8+h/s3Mnuao=;
-        b=U9EVuDIvkXSWELDNkdbZ5G1WbO+hbX6ZwEK17DJI4h6JpCefFIMtmDvXSswupqUgAU
-         Yv+92BnGp6RJP21VFCLCs+kDsUOK8uDLlkK6CCc3jkAWIoTYSQGMYhylWu4JHnbkAs6E
-         ralIWct9bZbX/3Y5dtRZQLXSrNXYLUy7uezTvnHVDD9mmhPjDlDh3IaQnc+NU7L1LpgN
-         8jufW656/he5SnTq7UOpPg2xzxMrIpcMd+4u/fKULpcQZnZizosoq/ch7yJnVOH9MeYH
-         KC4DNOdeX/d9lOXEvdCCyqweE73QMa/bBJd+k0xviSa+POL3ku39PoVRCbUm2mq+jMAy
-         QmOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697035937; x=1697640737;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IYZjFi/wf0Z9GQXeuJRSvq3Y/H6dwz6J8+h/s3Mnuao=;
-        b=vwIibX7c50Y+7SbBNu/QaQRiwd6Bu8WkIVTLHNrYPFv+MraApqw9SsQQ18Mz5IW9CF
-         +pdYi6HaJm6kmeZlt46t5c0L8GyOc9wUBjWOFsGAsgX/8d+sJs5BlNrz+DRME3ddqmHS
-         I5sKctaGJwXsOlVBbZ1DzPsQVW4p0XHYS6MEN+sA6FMKrx6ZuT971iWFW4Yf2RDpwTVS
-         2ayyAg8HA/B8EoAXkkOKRYHD3XHl3ewcgcmMkMy4nNe8slDmoi9qbBTMJUlaABtkbxRD
-         /9vKKAbeQO9+a3pNt6/YBXdVV13OSsxUXNAGtOkfpXr1r6QbF6zb4WbkmZAO9G0TDxyk
-         OfyQ==
-X-Gm-Message-State: AOJu0YzQ8jGqV+sTsarVtE27GJIcC9z2A7WeWerldzkJD3HuNXTYmFMF
-	1vGkrnoAPa8DLLD5Z8T57vo=
-X-Google-Smtp-Source: AGHT+IGpf/kr5YHtPPDrNv+YSf+0B3zcZAnbAPzKZXFk+d8FmyMsRp/mWM/eJL/4nF4gtdoo9CjFMQ==
-X-Received: by 2002:a1f:6d84:0:b0:48f:8891:296b with SMTP id i126-20020a1f6d84000000b0048f8891296bmr17715208vkc.0.1697035937191;
-        Wed, 11 Oct 2023 07:52:17 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b13-20020ac5c74d000000b004962395e415sm2513002vkn.15.2023.10.11.07.52.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 07:52:16 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 11 Oct 2023 07:52:15 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jacky Bai <ping.bai@nxp.com>
-Cc: wim@linux-watchdog.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-imx@nxp.com, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx7ulp-wdt: Add
- 'fsl,ext-reset-output'
-Message-ID: <dfac97b4-cb3e-4c60-85e2-0e2109be879c@roeck-us.net>
-References: <20231010081909.2899101-1-ping.bai@nxp.com>
- <20231010081909.2899101-2-ping.bai@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941041D69D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:56:15 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2045.outbound.protection.outlook.com [40.107.93.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D2B94;
+	Wed, 11 Oct 2023 07:56:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EsrQrWKhzoT4V9udEn4SYergsTi/Eje5SvXB3p0buUXgo110oMji4TsTY4cMw0WhqCbT/pIiyi4MlRTcwWrE5JbvT4S/Wpdy+SWGaPwcY6YVB+f6mzpYkIESw0ibnjc9aTabH/VCxsecPYcrgYMf/WTTq2ccPcP9wMnmRcBm1BN0ePQ/kCsm9BDY04U0n4LotqLYFi8Y+nCZlkKpWRiFTtQNaRkdXSAW6VxFox6kGCbUcES5of9A6s+kS8VUdujl5apEsrjjPyyHgVqQTWQWSbuAs7WrRQRQOYAHTkaUwS8cV73uvMkh76+SOa9YyFTY+o1NHZ8ShUPoR7nCMIRhvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WTZuU97T/nd0HNvsHkCqgZJ5An5LTGnuwhiUR5qHSkg=;
+ b=OqF5/neA37K8J1OYpZKM5L2foY3DZKz+JZorGLyTRAyp1tsiJz2l4YY9ajl7Og/aozQimxm2efxSv6pCN9CtQOjtMa0r5b8lxbZXvJZDFD74NUXWSo8sFQX/H/xbWyWSqAeZ476GHVEJoSykiIiyyUrADbG8O9Cim0nqUli2lxADftd/cyQiaFDF6VSNLcTkYFZyOs2pkv7izE2v5vqqcwPhGfvw8cjIa13pAbxRnjfqLOg4o7/WAtuCMJa7Y2OF2dl+dMpIK2djfdxFelwBj/O7rirDXKPfVKQVBAyDgnV8nDH3tJ7HVBcpwhH0sMtI6z6/h4CRUHb4OS+Vov5AnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WTZuU97T/nd0HNvsHkCqgZJ5An5LTGnuwhiUR5qHSkg=;
+ b=itDfPbJ/xZ55io+DNclrlKzJUtWCZSDLGAkjLs0Y5n2JDRsyni3fq9mH7R3XbMFN7QU4kFFYXfO1+BFJRIVJux0f9hsHT+1um1oe6GarNppyo8Pw8yM7XbVH9JZtLaImNjlyxqdUIVAB053nZ1gzfktjpd1RUyucPGm3zGJJ89E=
+Received: from BL0PR03CA0011.namprd03.prod.outlook.com (2603:10b6:208:2d::24)
+ by CY8PR12MB7147.namprd12.prod.outlook.com (2603:10b6:930:5d::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.42; Wed, 11 Oct
+ 2023 14:56:10 +0000
+Received: from BL6PEPF0001AB4F.namprd04.prod.outlook.com
+ (2603:10b6:208:2d:cafe::f5) by BL0PR03CA0011.outlook.office365.com
+ (2603:10b6:208:2d::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.27 via Frontend
+ Transport; Wed, 11 Oct 2023 14:56:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4F.mail.protection.outlook.com (10.167.242.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Wed, 11 Oct 2023 14:56:10 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 11 Oct
+ 2023 09:56:09 -0500
+Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Wed, 11 Oct 2023 09:56:05 -0500
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <michal.simek@amd.com>, <gregkh@linuxfoundation.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
+	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
+	<manikanta.guntupalli@amd.com>
+Subject: [PATCH V2 0/2] Add rs485 support to uartps driver
+Date: Wed, 11 Oct 2023 20:26:00 +0530
+Message-ID: <20231011145602.3619616-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010081909.2899101-2-ping.bai@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4F:EE_|CY8PR12MB7147:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90c1400a-b71c-4a64-454c-08dbca6a34b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bONnUggd1fsNFsaQu2A2NO5cwV0HiiFuTsgujHG+S43q5D5+e752l8o2YDfSKB57U/KMcgoks0AH/2afJp4gewOZ5su/uYjlXlUsZIoA4FmUTJKXxK7czulKinSMjLTzmyUAPST8Yt46bKx2tzq5MJHrJTWNza3AKnzYi+AVtZH5MLomTaxjd28FPKnEBOYGRJFdHZRW9C8zPjpbRToAA1Br42H69eTblHFIXh2NZLpYaPHxqg6fuo6QmDhk+t8c3LJWlKSdvezRaHZYJczjJMdB3m49WrDaeF5+QxuB9Q1FD/RrjahNISNND44V5T5z50h9SztWx34jprbbdu8IjgoLZfrP6lWJKDO44UAdBxnuGEhNrrW1Dtbjn70oYDLzbzlRJHqvGenuPF8UtOv4QL2WNoyYg40BwGfsZY4fLL5Sw04P+Y6/qfRcNZsXLqmbZxvLlhG2jj38AzDKFH1WfSq2W3eE3xlK28IVm1ScSdXdNi/5phabPd1bNucQuXeHS+MykiVog3skSiA1W4BTNJ26jUc+tkw2CXcY06WLbol+WGrT4jqFMktXA5orOex3M24mPyMp31KBObh0udsPAF+/N9Qxvcr6kdN1eHImuViCCE/4qlRbocZpLkf1vIMlgJxVABgdGMlmsGIZLLU7ga8lueaJ3zgV2Cg3lAUOx2kIQlLtyAVLr+NQocu4JNfquCPbLkQnDkDH6vEmHHW7XJGJd921hVTHefOQfRUSNmBXVHQic468wujMm7Vm4KdHC+wJIXXIs8KIOmTwXmcOmVe9WodG1JVkRWxmbZm57RI=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(39860400002)(346002)(376002)(230922051799003)(451199024)(1800799009)(186009)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(40480700001)(40460700003)(2616005)(356005)(81166007)(1076003)(41300700001)(26005)(82740400003)(921005)(70586007)(36756003)(86362001)(70206006)(110136005)(316002)(54906003)(83380400001)(4744005)(44832011)(7416002)(336012)(426003)(36860700001)(2906002)(8936002)(8676002)(4326008)(47076005)(5660300002)(478600001)(6666004)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 14:56:10.2424
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90c1400a-b71c-4a64-454c-08dbca6a34b8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB4F.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7147
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 10, 2023 at 04:19:08PM +0800, Jacky Bai wrote:
-> The wdog may generate wdog_any external reset if the int_en bit is
-> configured, so add a property for this purpose in dt-binding doc.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Add optional gpio property to uartps node to support rs485.
+Add rs485 support to uartps driver.
+---
+Changes for V2:
+Modify optional gpio name to xlnx,phy-ctrl-gpios.
+Update commit description.
+Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Manikanta Guntupalli (2):
+  dt-bindings: Add optional gpio property to uartps node to support
+    rs485
+  tty: serial: uartps: Add rs485 support to uartps driver
 
-> ---
->  .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml        | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> index 4b7ed1355701..9c50766bf690 100644
-> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> @@ -30,6 +30,11 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  fsl,ext-reset-output:
-> +    description:
-> +      When set, wdog can generate external reset from the wdog_any pin.
-> +    type: boolean
-> +
->  required:
->    - compatible
->    - interrupts
-> -- 
-> 2.34.1
-> 
+ .../devicetree/bindings/serial/cdns,uart.yaml |   6 +
+ drivers/tty/serial/xilinx_uartps.c            | 116 +++++++++++++++++-
+ 2 files changed, 121 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
 
