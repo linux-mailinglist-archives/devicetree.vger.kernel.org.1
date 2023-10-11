@@ -1,145 +1,175 @@
-Return-Path: <devicetree+bounces-7622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E1D07C4E90
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45E787C4EFA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F7BE1C20991
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:26:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 683131C20C26
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905321A711;
-	Wed, 11 Oct 2023 09:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9BD1D530;
+	Wed, 11 Oct 2023 09:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vecbr0Wi"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="mR63FrpG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="aAdpurWh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E0F65E
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:26:48 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D299D91
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:26:46 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-406618d080eso63194395e9.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:26:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697016405; x=1697621205; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3BUBCHAP73g+38QvM7dHiUG8I9QRyAUU3cBnzO6ITqY=;
-        b=vecbr0WiqQjT5m1He5rozYK78PzNPPeH9wweaN/0aueVRFLQt8jQ7tYgiePtw18XT2
-         UUFDDMTXdaOooReXkklZMF7NGpIn0mPJARYvX/bdwKXi+yD+1qdHpJ30kkE7DJpTfdKi
-         qwMDXjy9yf03fbpiR7jNP89fqsqzt0nstEWhYoJPE48Y66RfqJ46Y0m4aT+rBD87Wp0n
-         ECtO182xxMRDD/O8WSjzuL/aUdrQGCggToRQSccSNiGrgOwrDMX/C+Wy8RomyWptRNnM
-         rg0ZRhhxIDkcXqcVxPQqKPLWWRsWDWYrtTcYoiVe2K1bY8a1a2ExU+TiGWKPuX9WVnR3
-         BGdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697016405; x=1697621205;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3BUBCHAP73g+38QvM7dHiUG8I9QRyAUU3cBnzO6ITqY=;
-        b=L3YEb0PknvmjePUI3QwXZbd2TVwqMsTP90xQb7r/MlTpBhkk0JTwdAfAG48/KAt96G
-         a+uUD25h9aBBtXQGvI4vBiOxQmwQiOGwacXSlVrXhrxsWCw2ODxHd+NpdVKnDTqYaPl8
-         cG/X/2/BDLU51AP8nTCNNT8Pb7tnosimH7PtRDY6WvvIwYRe0BAVh2BwCNRyv6aTjTSu
-         0D6/zL0AnGd0nLGUFKPuxKbiBYY+J6N+s0Apevknt6cvQNiQcN3V3NOOFoBaEplv5Jru
-         hn8GVTmfCnh1z4cLIVsArLsvrUbmuxZvUPouPwxJer/WQ8X/S8XRdlesf3cqfaf9p6/j
-         gArQ==
-X-Gm-Message-State: AOJu0YyRYbgHdCXKQSAf+pOGSBkDnz1OOUan/WrwvmmHEFjJpMEmQx9K
-	rQZTqcCWfbeGHN3C4Ackf1oQqw==
-X-Google-Smtp-Source: AGHT+IEmstm4YZMcFtZGfJcKYWGQ0iTcj4Ct9t9kUcPLrpuam0kNIWDwV4+jgBsuR8kgZEkR/FNqfQ==
-X-Received: by 2002:a1c:4c01:0:b0:407:5185:1923 with SMTP id z1-20020a1c4c01000000b0040751851923mr5235189wmf.4.1697016405127;
-        Wed, 11 Oct 2023 02:26:45 -0700 (PDT)
-Received: from [192.168.86.24] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id bd5-20020a05600c1f0500b004030e8ff964sm18753144wmb.34.2023.10.11.02.26.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 02:26:43 -0700 (PDT)
-Message-ID: <490c6740-06cb-9ee6-ca8c-3ab404109344@linaro.org>
-Date: Wed, 11 Oct 2023 10:26:43 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EF31CFA3
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:30:48 +0000 (UTC)
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EDA91;
+	Wed, 11 Oct 2023 02:30:47 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id E49215C0405;
+	Wed, 11 Oct 2023 05:30:46 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Wed, 11 Oct 2023 05:30:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1697016646; x=1697103046; bh=My
+	dUnUPnqP4XgOECsshcETx4T1rbtS5G02GTgyxloFc=; b=mR63FrpGWOxiA39bji
+	bL87POz/TU+oMIgdhC3BK7mten8GzqVq52WEAqA+B6YcFX91pfOwTwbK37r95Hh8
+	gFB4czJU64Tzgc8/0g38dQRMffuOwGH34XF825OBlX8BJrIrpFPStsTaK2fBYBFb
+	99SEeS76pskMXyf4JUubM/76GRmy/iRG3QZlUCnK+0RslQAxfpNecw3xI8RIV+VQ
+	DmXNEja3/6CumagKfAdxTXYMWsJ1dWKxPy1/nWgv0+qitSCGb0IgGFMeJVvlM+Ov
+	+b+lRMuazAQ2JX7kQtwHdE7cPThlLQEAPmHnf14X/zTBDdhb0lIEoeL455dcJlwD
+	Bd0g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1697016646; x=1697103046; bh=MydUnUPnqP4Xg
+	OECsshcETx4T1rbtS5G02GTgyxloFc=; b=aAdpurWhi7zXAIQm4DOLBW1tUAkyE
+	BeXzteePaZRGMjQcsE+uFqK6IdI7k9WBxW4HSsoYiX4gIEd1X6TtkTHQkM0cHNwF
+	P2QRxVM5pEwKpWAojF8RCqscPqo7NaYKVJXoJ6sMae7BiXSBAnambeI839AZzLW9
+	37cBqeqnPxlgx05Y5zK5NbAYADks8ka4ckff8sXfabXitD1hTM3m56qnkBOXsl9P
+	N1q2/3mk3fu2tNyau6padx2H2Gpy6wbfeKV+pSpJQ8xRibwpuXdH6gUFcBuxa6VK
+	zbomiTpxU76dA8b2ktJ4+9p4NUQXwgJi8C+LBfscH040I1NMnHeMGF5/w==
+X-ME-Sender: <xms:RWsmZcWYRcc5bVYCJgHMljeVekRBQUXx0bK7R7LMrSKcXPYAt9RLIw>
+    <xme:RWsmZQkmdVOtIGPmYvR3UJfe2DR6drxpQwZnrSP0GCQYaXyRHd6tpAYdki44OkBsI
+    6q3VE0fQI0R3ugPadE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrheekgddugecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeufeeh
+    udenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:RWsmZQaguZ4L-9eHOW4iZOWUHxiQf6OcjyTYrLw-RVo3RKt6kpljdQ>
+    <xmx:RWsmZbXyOVkoK7A1DQ_KlTQj0ImogMiD-a2jyCtNjKtQJdiStbVjJA>
+    <xmx:RWsmZWm52v4WVDlloYrZITw4qh6QHXlNOhlgRWIgLycm9PMjeGZI3Q>
+    <xmx:RmsmZU2gZ8ZTHa8PLabbUfn3SI5NQ-zWu8H9Jv7AGOfoo0h6zYWD8A>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id A62E6B60089; Wed, 11 Oct 2023 05:30:45 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1019-ged83ad8595-fm-20231002.001-ged83ad85
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v12 7/7] nvmem: core: Expose cells through sysfs
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Michael Walle <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
- <20231005155907.2701706-8-miquel.raynal@bootlin.com>
- <318fe799-f53e-64ed-b631-d099bb5202f4@linaro.org>
- <20231011091524.0c9ecc55@xps-13>
- <548849a8-9f11-5274-778e-f291267603bb@linaro.org>
- <20231011103306.08f1fbd4@xps-13>
- <fe4a2688-079c-a36d-0ea4-c244c6e1a0ad@linaro.org>
- <20231011105829.778bed58@xps-13>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20231011105829.778bed58@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Message-Id: <fe7cf585-622a-420e-8138-10de1cbca511@app.fastmail.com>
+In-Reply-To: <2023101137-fester-rerun-5c39@gregkh>
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+ <20231010224928.2296997-9-peter.griffin@linaro.org>
+ <2023101111-banknote-satin-1f77@gregkh>
+ <a6c57156-d3a5-4524-8ef8-6f27cf0a2c97@linaro.org>
+ <2023101137-fester-rerun-5c39@gregkh>
+Date: Wed, 11 Oct 2023 11:30:25 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Tudor Ambarus" <tudor.ambarus@linaro.org>
+Cc: "Peter Griffin" <peter.griffin@linaro.org>,
+ "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Tomasz Figa" <tomasz.figa@gmail.com>,
+ "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Wim Van Sebroeck" <wim@linux-watchdog.org>,
+ "Guenter Roeck" <linux@roeck-us.net>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Will Deacon" <will@kernel.org>, "Olof Johansson" <olof@lixom.net>,
+ "Chanwoo Choi" <cw00.choi@samsung.com>, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com,
+ "William McVicker" <willmcvicker@google.com>, soc@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2 08/20] dt-bindings: serial: samsung: Add google-gs101-uart
+ compatible
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Wed, Oct 11, 2023, at 10:57, Greg KH wrote:
+> On Wed, Oct 11, 2023 at 09:49:07AM +0100, Tudor Ambarus wrote:
+>> On 10/11/23 08:48, Greg KH wrote:
+>> > On Tue, Oct 10, 2023 at 11:49:16PM +0100, Peter Griffin wrote:
+>> >> Add dedicated google-gs101-uart compatible to the dt-schema for
+>> >> representing uart of the Google Tensor gs101 SoC.
+>> >>
+>> >> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>> >> ---
+>> >>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 ++
+>> >>  1 file changed, 2 insertions(+)
+>> >>
+>> >>      oneOf:
+>> >>        - items:
+>> >> +          - const: google,gs101-uart
+>> >>            - const: samsung,exynosautov9-uart
+>> >>            - const: samsung,exynos850-uart
+>> >>        - enum:
+>> >>            - apple,s5l-uart
+>> >>            - axis,artpec8-uart
+>> >> +          - google,gs101-uart
+>> > 
+>> > These shouldn't be needed, just declare the device as the same as what
+>> 
+>> We should have SoC specific compatibles so that any further quirks or
+>> incompatibilities can be easily addressed.
+>
+> "further" work on quirks or incompatibilities can be added when they are
+> found and needed.  We don't add stuff for no good reason to the kernel.
+>
+>> It's not only the IP itself
+>> that can differ, it's also the integration of the IP into the final
+>> product that could have an influence on the behavior.
+>
+> This is for the Pixel 6, a device that is no longer even shipping.  The
+> "final product" is long stable, so this should not be an issue.
 
+The driver does have soc specific settings for each compatible
+string, in this case it looks like it overrides the FIFO size
+based on driver specific data and the order in which the
+ports are probed [1]. I don't understand why the driver does
+this, but my impression is that if we wanted to change it to no
+longer rely on that data, we'd also need a new compatible
+string.
 
-On 11/10/2023 09:58, Miquel Raynal wrote:
-> Hi Srinivas,
-> 
-> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:45:11 +0100:
-> 
->> On 11/10/2023 09:33, Miquel Raynal wrote:
->>> Hi Srinivas,
->>>
->>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:27:20 +0100:
->>>    
->>>> On 11/10/2023 08:15, Miquel Raynal wrote:
->>>>>>> +
->>>>>>> +	nvmem_cells_group.bin_attrs = cells_attrs;
->>>>>>> +
->>>>>>> +	ret = devm_device_add_groups(&nvmem->dev, nvmem_cells_groups);
->>>>>>> +	if (ret)
->>>>>>> +		goto unlock_mutex;
->>>>>> This is going to create groups after the nvmem device is added, isn't this going to be problem with user space notifications?
->>>>> Greg said it was not. I hope I understood correctly 😄
->>>>>
->>>>> And anyway, cells have never been available to userspace, so there is
->>>>> nothing userspace might expect yet?
->>>> I agree, but once we add sysfs uapi then this is going to change.
->>>
->>> Can you elaborate? I'm not sure I follow you here. Is there still a
->>> problem you fear or you think it's okay?
->>>    
->> Now that we add cells to sysfs.
->> AFAIU, By the time the userspace sees the udev event from this device we might not have cells populated.
-> 
-> Yes, but why would this be a problem?
-> 
-It will be problem if the userspace is using things like libudev to act 
-on these events. There seems to be some caching of attributes in udev 
-during event more info 
-http://www.kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
+Ideally, the actual compatible list in the DTB lists both the
+specific implementation (google,gs101-uart) in order to allow
+such hacks if needed, and a more generic string (e.g. 
+"samsung,exynos850-uart" for an older device that is entirely
+compatible) in order to not actually need driver changes.
 
+      Arnd
 
---srini
-
-> Thanks,
-> Miquèl
+[1] https://lore.kernel.org/linux-arm-kernel/20231010224928.2296997-17-peter.griffin@linaro.org/
 
