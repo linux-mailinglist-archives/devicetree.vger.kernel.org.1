@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-7911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7017C60BA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 00:58:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCC87C60BE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 00:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B89282346
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 22:58:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D8981C20984
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 22:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5A8219EB;
-	Wed, 11 Oct 2023 22:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35832219EC;
+	Wed, 11 Oct 2023 22:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OpjjQ1eR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dOlIouQQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3C71DDCD
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:58:28 +0000 (UTC)
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECC9C4;
-	Wed, 11 Oct 2023 15:58:27 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-79fa891b645so16176439f.0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAB31EA96
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:58:29 +0000 (UTC)
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06ADAB8;
+	Wed, 11 Oct 2023 15:58:28 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-79fa5d9f3a2so17124639f.3;
         Wed, 11 Oct 2023 15:58:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697065106; x=1697669906; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1697065107; x=1697669907; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wLch9HsfoI9cTA2tQiy71eRcGUZJUOwHvkzXf3I64H4=;
-        b=OpjjQ1eRggnBJZIIzcQ5/BIzqKHpczftOC/qErvGPGOSiXODr+LceE7j0AbRBdaBBD
-         FZhpM4wsIdEOSjF5R7A4Nj+roNtOcrhdEcq9ILm5UToZDGLeIDrXkEFlKMduD9+DtuUp
-         HxnS/+yXx3+4ZiS106SV4p8Ws0IpDY6SSmTy4afOPqt9EdpSYaKWVDO6eiRANp7Jf96y
-         wqYnHTvEDeXTXiLMoWTpbsBUIStVQ8jo0M9Dalj01bOMP3sYqrZl7ZbTy9rLf0h8zKsK
-         py8k4rmSuwZ12EJRMQI93gnxGSY2MbJnBeI6QF7NHDC51UmjbARGBLtgE7FiKrKGWWs1
-         R8Zg==
+        bh=pRyXfw6oDnrYF/zDNW5wWAwbCqim2kPOLkomEzubNKA=;
+        b=dOlIouQQrNbGs7uK8ZjWsin1yHykdHOQnJHhZD5RKVDPNj+Rg6uySJZMIvlYZkHbxg
+         gWcFFWobtbgvLjz3aKveQ6uHNpT22EJitqC0tXZ2dX+ZAXJbhvKirb3nIXpXk/op8Chk
+         uAb9pa39gtYpqbJnPVFG3TbretSoHpd5y6J/Gaa0u4FN5owuwy6ZH9RQvW8eHXE/2BIl
+         5S53Pi7yUXoKzy5wEHFV2dSn/ksvKi213sUlGJ+EZVBfQqxd/id7m9hVFM49VAv7DEJ7
+         nMdAd3xe6//4WhxKuj/+xdZfmpCzUDYo9z186rs3Eq9Uu0YYJbGNwoZkPf0VgbtmnXDI
+         M3oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697065106; x=1697669906;
+        d=1e100.net; s=20230601; t=1697065107; x=1697669907;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wLch9HsfoI9cTA2tQiy71eRcGUZJUOwHvkzXf3I64H4=;
-        b=rvxxiTAOlHeRG5ZvWVop1ANIQxhLUAaAWCkJxAnBLeo1LKRFaxA5+VBeXs+YiwHSQ1
-         T3AAwcxeEfweKxevd9YlYy2d5Z1ZUrV43VyBH2DefWrmKp85ws9i71rLh1bgwV4c/BAx
-         YrCQZ5qG6HlGWyDlLUxq5EpnQqA63sVmp37QaifUw6NbRpp1IY/rO7U14uVn1BEh0H9y
-         4m52PX58x64Kr4swn9NKLFNJgdmjbEaFzfbJ27hgCkycZDmUVx5OFkyjjVx9PK5/dpe8
-         BMhLVOvO/HNYUGM67z963nSr44Q2FQB0OSCMAqPdMRgEeMQobi0cxOhfpCg/kOG/v4LL
-         FhSA==
-X-Gm-Message-State: AOJu0YwNGkvgZJwRCq/D8xt4luRxQ71SM40Ds6BaN4sZIUun9b03FE0Q
-	wSLzXl+KnsoqkOnJAM2uQWo=
-X-Google-Smtp-Source: AGHT+IHnvROW82y1Tnccr6trK2U7/loU8oQJJ9IHEHJ2pzI6iAuI2skprA9wZANbac6bLcZIhGT2Mg==
-X-Received: by 2002:a5d:9c1a:0:b0:7a1:a22:e664 with SMTP id 26-20020a5d9c1a000000b007a10a22e664mr25863002ioe.17.1697065106696;
-        Wed, 11 Oct 2023 15:58:26 -0700 (PDT)
+        bh=pRyXfw6oDnrYF/zDNW5wWAwbCqim2kPOLkomEzubNKA=;
+        b=rMho8bAbDxBVyQj28nuBsEC6p498MzKoiVLjtMmAyg0XDsJ05/5060eyCzQMmLyAIX
+         QaSxzIStIXbiH+kzgMJj5iCEn31SzUKBGwA6SVh/h4wo9IOjauxGJVxdDQ74p6zH7gyp
+         Zov3lDQTjRPItcw+xpcRjEiAF2loKOAwQnBGZI7Sc7yMmBBv5q1Wtn4P+4D3mexZzE5c
+         Csv3+2BIb+hSpNlx40VPLKeXAe6fE3grrziDIiBNusYrblY8iWYLi3LL/ZWtXSspFHs8
+         9rA/5+a151oLuL7PCyK9K19u6VvLqHpZDJa0H9MQKbuWM8vSojwYFjNJ2bX641REO8xb
+         DtPg==
+X-Gm-Message-State: AOJu0Yx2s+lIGIiKHiuZaAmJ+rWV36G/DGjeIrGbJISNUlOmQgS/2NfX
+	UjR9fE4yx3kfiddNXKmz/Ns=
+X-Google-Smtp-Source: AGHT+IGr33e6DeCq1Es2U6HxAMuQ4JLQ/vv/kv6x+u7LSh3/UX9r/b7JjU6RiJK1gSoGoaNV1TnVrA==
+X-Received: by 2002:a05:6602:29a3:b0:785:d4f5:2225 with SMTP id u3-20020a05660229a300b00785d4f52225mr26077672ios.19.1697065107372;
+        Wed, 11 Oct 2023 15:58:27 -0700 (PDT)
 Received: from celestia.nettie.lan ([2001:470:42c4:101:fcdc:5119:7b2f:72b3])
-        by smtp.gmail.com with ESMTPSA id dq15-20020a0566384d0f00b0043a1f6dc8d4sm3632691jab.4.2023.10.11.15.58.25
+        by smtp.gmail.com with ESMTPSA id dq15-20020a0566384d0f00b0043a1f6dc8d4sm3632691jab.4.2023.10.11.15.58.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 15:58:26 -0700 (PDT)
+        Wed, 11 Oct 2023 15:58:27 -0700 (PDT)
 From: Sam Edwards <cfsworks@gmail.com>
 X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
 To: Heiko Stuebner <heiko@sntech.de>,
@@ -69,11 +69,10 @@ Cc: linux-rockchip@lists.infradead.org,
 	=?UTF-8?q?Daniel=20Kukie=C5=82a?= <daniel@kukiela.pl>,
 	Sven Rademakers <sven.rademakers@gmail.com>,
 	Lokesh Poovaragan <loki@gimmeapis.com>,
-	Sam Edwards <CFSworks@gmail.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add turing
-Date: Wed, 11 Oct 2023 16:58:21 -0600
-Message-ID: <20231011225823.2542262-2-CFSworks@gmail.com>
+	Sam Edwards <CFSworks@gmail.com>
+Subject: [PATCH v2 2/3] dt-bindings: arm: rockchip: Add Turing RK1
+Date: Wed, 11 Oct 2023 16:58:22 -0600
+Message-ID: <20231011225823.2542262-3-CFSworks@gmail.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231011225823.2542262-1-CFSworks@gmail.com>
 References: <20231011225823.2542262-1-CFSworks@gmail.com>
@@ -86,33 +85,35 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add vendor prefix for Turing Machines, Inc.
-(https://turingpi.com)
+Add the Turing RK1, a Jetson-compatible system-on-module (SoM)
+powered by RK3588, from Turing Machines, Inc.
 
 Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 573578db9509..07f164e1ca2e 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1420,6 +1420,8 @@ patternProperties:
-     description: Truly Semiconductors Limited
-   "^tsd,.*":
-     description: Theobroma Systems Design und Consulting GmbH
-+  "^turing,.*":
-+    description: Turing Machines, Inc.
-   "^tyan,.*":
-     description: Tyan Computer Corporation
-   "^u-blox,.*":
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index ca5389862887..13b6cdc5ef82 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -870,6 +870,11 @@ properties:
+           - const: tronsmart,orion-r68-meta
+           - const: rockchip,rk3368
+ 
++      - description: Turing RK1
++        items:
++          - const: turing,rk1
++          - const: rockchip,rk3588
++
+       - description: Xunlong Orange Pi R1 Plus / LTS
+         items:
+           - enum:
 -- 
 2.41.0
 
