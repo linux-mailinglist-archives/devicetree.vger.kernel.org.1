@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFAC87C5B6E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:38:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3802A7C5B73
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:40:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7309B28194E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:38:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59F931C20CAA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181381C68D;
-	Wed, 11 Oct 2023 18:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5971C2BD;
+	Wed, 11 Oct 2023 18:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pub+6tyx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u1Zr39Zc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4CB2230F
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:38:22 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC75DB7
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:38:20 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9b2cee55056so20206066b.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:38:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADA12232B
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:39:57 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B885D9E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:39:55 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9ad8a822508so23308666b.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:39:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697049499; x=1697654299; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697049594; x=1697654394; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1dm+RcEmQBW1go0hmTOfQEKfxMwa7nahjkqvO90lhew=;
-        b=Pub+6tyxMlv3hoMJyVv1+C7lLqN0UEQNV3YeibhbrVxqi8LQaxClcHDRypKrCO+VFx
-         HB3/4CfH3Jv1hU5riGF/BMyP+CSEdBczKDGrDXM9QnYy2hU9NBlYIZAsHn0fs5ZucCd4
-         Nyp7s063SyHCnDAfGjuaoiD5EHmWbufwYm6stp9dkDc1JgiO8VSqDLidl0doGGx1mx42
-         YKkLTBc/ZVhH3tVGv+GPsuiz+95AleECFYuNSpea9dybpj8t6v8imSDYORw/JIF4Ozxh
-         OBgLjteqQ+fqECrJJIIf92bIG3/U4BHx7nw/Vrk3vzBs+3L7Pvf7bvEyexyE3O5j82jQ
-         9iOQ==
+        bh=s9flXNQ96Hac7krE5qI9zMPJhBWM2PiHrXkNyKP+GGU=;
+        b=u1Zr39Zcb1GVMT0oT/6GuNs+i9Qljyi12zJvkBQ+TCpTjt6LHjviwRgHLsDt7SPDEU
+         bjAOYVQcDD3g1fAvZ5Aut1WasmPmsesnJVfMwc27YGgZ2ObpiflOb1Cxc9m04y8iAapW
+         9yJxmjzUWTvfbxWJFlbJyfUSTcdTmA/VZLARm2xiIxgYCKUP36ijzamTodCxwKcgfj8i
+         zEOoMRrooac5mr00dfa8j1RBFccPUIKF0Cp4VT8XPtaUOfGuAolI1rgx8I6VIqsYiiea
+         qMYyKMwdLQYYsKAPl2sDMCdQ7Cb/52T1qRpkLr5YpxwYKzYVqlzHCI1QtR/ilf0uTzl3
+         Pxgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697049499; x=1697654299;
+        d=1e100.net; s=20230601; t=1697049594; x=1697654394;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dm+RcEmQBW1go0hmTOfQEKfxMwa7nahjkqvO90lhew=;
-        b=RCQWDd+3YgPkPlh5OQayVear4yhIyIc8H3So1f5y3qZ6SVw2qwkL8Z4dmBwwJRZnJA
-         GWWsamMNrVVYNT1/YnpuujMIC04zamy0iEdq6BMDz4ifkhelNdroaErG/ovQvTYZOBAK
-         ZY+yKsmZyPzsmgP/q9IcOPhK6Tv/JnisGoxeoojkiujwcLFGjYy7GA7csFoSUGr6YNr7
-         BVG4XaqGgz1GxFfRNlY20QHYO2fuHaENTz9PM4CzFtPDA2xtMEBlP1dnZnBGP0rFBEJ7
-         zgHWRkIhWsZqCAmwN5pEDY+m93EQ5pgXCgdOwUzYaUBzJ7CtHRQlEGfNdl9eD3ZnOUq6
-         FQ8A==
-X-Gm-Message-State: AOJu0YwWVlPm8ULZcvN88Edv08jqsNhmP/PF6Po3NOIdl/i8xMkDPhQa
-	SWc52iUf0VST+Xw7Q6+ZPaV/CA==
-X-Google-Smtp-Source: AGHT+IH3Sxm0BCfqA98jWK4sK7tjIiAYgRiNutocfKREz/4/TfiKyeln3uelmmtjjNSsdi60SnBthw==
-X-Received: by 2002:a17:906:74c8:b0:9ba:2a6:956d with SMTP id z8-20020a17090674c800b009ba02a6956dmr13109892ejl.44.1697049499396;
-        Wed, 11 Oct 2023 11:38:19 -0700 (PDT)
+        bh=s9flXNQ96Hac7krE5qI9zMPJhBWM2PiHrXkNyKP+GGU=;
+        b=Hjs4TYrWqcbdb35Nnpoxb0Lh8H/SdBdJ+JQOnkdJz6Woq4GcReT8gEJY/qc7fph4CY
+         6LWzxwRYKpzTWyA4qW4rGf0V+M/RyQqv2d7i/5z6d1TFSjhWn+n1rbIZs4+Ht/P6IOFN
+         zWDF0DrAslg8v8MJRakmG4kHDXY25A3ifsX0vWWzZWdi8rknMNkTIJYCInMjxFCtbbM+
+         gk2uQAJ9J1zTGXf3ZA8MpJEaz9oR1FtO+ppX9XN3ykVWcaeBxfa1VIBXcSv3MyxltqrT
+         NmkZZZDKfg8waDwDLwtaNXP4SgBDPY8e2Y0maxO+QQPgYWNXz2rU7ruU4HiTszp+SEzu
+         Qbcg==
+X-Gm-Message-State: AOJu0YxxLtxdXWzUblMfzb7gHfRKlD2MghuJWpx7TrwEc2JSHFlPDlK/
+	m4NYsQsBrk150l97dRsb7zEo7A==
+X-Google-Smtp-Source: AGHT+IFgC2fsNl6fMMAp9p41iNAddqFHFZaY9TyjDD4/e325FWPhNQaV8bEDJNNTOJ36q+7Tu+CaQw==
+X-Received: by 2002:a17:906:3ca1:b0:9ae:6da8:1819 with SMTP id b1-20020a1709063ca100b009ae6da81819mr17691625ejh.48.1697049594197;
+        Wed, 11 Oct 2023 11:39:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id o23-20020a17090611d700b009887f4e0291sm10063418eja.27.2023.10.11.11.38.18
+        by smtp.gmail.com with ESMTPSA id o23-20020a17090611d700b009887f4e0291sm10063418eja.27.2023.10.11.11.39.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 11:38:18 -0700 (PDT)
-Message-ID: <833aaf36-d1bf-4805-a24e-e26ec165b8c3@linaro.org>
-Date: Wed, 11 Oct 2023 20:38:17 +0200
+        Wed, 11 Oct 2023 11:39:53 -0700 (PDT)
+Message-ID: <732e0da8-0eff-41c2-bfea-b27a708cf8f6@linaro.org>
+Date: Wed, 11 Oct 2023 20:39:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for SIE
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: sie,cronos-cpld: Add initial DT
+ binding
 Content-Language: en-US
 To: Shawn Anastasio <sanastasio@raptorengineering.com>,
  devicetree@vger.kernel.org, lee@kernel.org,
  Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org
+Cc: Timothy Pearson <tpearson@raptorengineering.com>,
+ linux-kernel@vger.kernel.org
 References: <cover.1696285339.git.sanastasio@raptorengineering.com>
- <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
- <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
- <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
+ <8b014f8b302f8b41c45c4f6fb114cf18e84a76fa.1696285339.git.sanastasio@raptorengineering.com>
+ <7ed841ee-765b-47a6-8a28-3c4df6b21185@linaro.org>
+ <75446d81-449d-b8c9-3e1c-2d9ef8d61e28@raptorengineering.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,7 +126,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a834b0b9-f7d3-b9dc-90ef-51a5f7b0e0b7@raptorengineering.com>
+In-Reply-To: <75446d81-449d-b8c9-3e1c-2d9ef8d61e28@raptorengineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -136,36 +136,26 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 09/10/2023 22:54, Shawn Anastasio wrote:
-> On 10/3/23 4:23 AM, Krzysztof Kozlowski wrote:
->> On 03/10/2023 00:32, Shawn Anastasio wrote:
->>> Add a vendor prefix for Sony Interactive Entertainment LLC (SIE).
->>>
->>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
->>> ---
->>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> index 573578db9509..cff35e68a34d 100644
->>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> @@ -1211,6 +1211,8 @@ patternProperties:
->>>      description: Si-En Technology Ltd.
->>>    "^si-linux,.*":
->>>      description: Silicon Linux Corporation
->>> +  "^sie,.*":
->>> +    description: Sony Interactive Entertainment LLC
+On 09/10/2023 23:04, Shawn Anastasio wrote:
+>>> +
+>>> +  leds:
+>>> +    type: object
+>>> +    description: Cronos Platform Status LEDs
 >>
->> Is this different company than Sony?
+>> Missing additionalProperties:false... but anyway this is just empty. No
+>> resources? Drop the node.
 >>
 > 
-> Yes. As I understand it, Sony Interactive Entertainment, LLC is its own
-> separate corporate entity, though it is ultimately owned by Sony Group
-> Corporation.
+> Having nodes for the leds and the watchdog allows the two independent
+> functions to be enabled/disabled in the device tree by adding/removing
+> the relevant object. Would it be more idiomatic to instead introduce
+> properties to the parent sie,cronos-cpld object to toggle these
+> functions?
 
-Then why different name? We do not have 10 different Samsungs (there are
-a lot of them) or LGs.
+And why DT should be used to enable/disable them? Or are you suggesting
+you have different devices under the same compatible?
+
+
 
 Best regards,
 Krzysztof
