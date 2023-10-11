@@ -1,138 +1,150 @@
-Return-Path: <devicetree+bounces-7581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74D47C4B9C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D949D7C4BF7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:34:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23EDD1C20C39
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:19:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16C3B1C20C26
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E46918E10;
-	Wed, 11 Oct 2023 07:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C8C199B4;
+	Wed, 11 Oct 2023 07:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d2ZH9hOK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF06C18C08
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:19:12 +0000 (UTC)
-Received: from muru.com (muru.com [72.249.23.125])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id A54C78F;
-	Wed, 11 Oct 2023 00:19:11 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-	by muru.com (Postfix) with ESMTP id BF8B28111;
-	Wed, 11 Oct 2023 07:19:09 +0000 (UTC)
-From: Tony Lindgren <tony@atomide.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Tero Kristo <kristo@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	"H . Nikolaus Schaller" <hns@goldelico.com>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	=?UTF-8?q?P=C3=A9ter=20Ujfalusi?= <peter.ujfalusi@gmail.com>
-Subject: [PATCH 2/2] clk: ti: Fix missing omap5 mcbsp functional clock and aliases
-Date: Wed, 11 Oct 2023 10:18:56 +0300
-Message-ID: <20231011071856.11594-2-tony@atomide.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231011071856.11594-1-tony@atomide.com>
-References: <20231011071856.11594-1-tony@atomide.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076806AAB
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 07:34:40 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 579BB9C
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:34:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1697009677;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PT6Sw/x4JIJ/TiIyhjM4l1jVYrrCLNDF9k0rE6BJkQw=;
+	b=d2ZH9hOKXcfjAPF4R5UEcIXGjlCYU8x3AwEO4Z3v6ZZZtbX2hL3UREGEJp4vYntjsA8s5Z
+	AMUk+2jsBRySL+UAYCF1JiXX+AyRfrWRu22RLaCXjvOZSE42+TMJuMO+s8YCQCXZWjM9uU
+	ykj/6Y5i3ZhUHea+1fIucyd602iZdj4=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-21-5m38YPuSNoeVk3R_wqEe0A-1; Wed, 11 Oct 2023 03:34:30 -0400
+X-MC-Unique: 5m38YPuSNoeVk3R_wqEe0A-1
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-3fef5403093so2960785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 00:34:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697009669; x=1697614469;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PT6Sw/x4JIJ/TiIyhjM4l1jVYrrCLNDF9k0rE6BJkQw=;
+        b=IlxE9WvrOBNHnrT4V/dSGQ2u/toGq68SM7nfVuTGHi9x9M/p+itpzPmqTaKEn8vI3E
+         ujz7z2vLPoIMu1B+rMo4wEtKo4Jfw/G245EwUpo/3n3HeyOcUvlRwOmzssGBh2gBpb/s
+         paQuxBgk7xJHb/QnrDtBIy/4CTe3Dbdx3ffg8tJfECZO99rtByq/YG0gOr5SUzzlqF0C
+         9E9wipGmQTKhDYYeDljkwgK+hhIkaFMeTso4tPF0JbqWMd9s0SnL3QI6L1a4Emlpeouk
+         evncfYHudI5xWsaJSFFhzbJpjYRVWbr9puNFKtbqBYIDBVwEzdPViZBpau9t08yNcqBI
+         mnSg==
+X-Gm-Message-State: AOJu0YyfV0JF/GB91LXNg/nk7xkMPBOL8FP0wu56ZpQlRcdAS/weOWjn
+	cmgcAPP6iamlloVORw1CbblalYPxXr2ZD6v1KkSie43FDwe+s6TYZjbXVBJQaqbGL25juGOlEgE
+	gBWHGDVEdUDuZ3yYd3x83Kw==
+X-Received: by 2002:a05:600c:827:b0:405:2d29:1648 with SMTP id k39-20020a05600c082700b004052d291648mr13461807wmp.19.1697009669620;
+        Wed, 11 Oct 2023 00:34:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGsejCRRnJRskgCxuslOB4PnR/uGl69Os7lgF/uOLkrZgLkZeJMtWHRM0lwrPP4gwBR56jZDQ==
+X-Received: by 2002:a05:600c:827:b0:405:2d29:1648 with SMTP id k39-20020a05600c082700b004052d291648mr13461784wmp.19.1697009669247;
+        Wed, 11 Oct 2023 00:34:29 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id f19-20020a7bc8d3000000b00405959469afsm16076183wml.3.2023.10.11.00.34.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 00:34:28 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Thomas
+ Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, Maxime
+ Ripard <mripard@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 8/8] dt-bindings: display: Add SSD132x OLED controllers
+In-Reply-To: <87v8bdslx7.fsf@minerva.mail-host-address-is-not-set>
+References: <20231009183522.543918-1-javierm@redhat.com>
+ <20231009183522.543918-9-javierm@redhat.com>
+ <20231010165838.GA1039918-robh@kernel.org>
+ <87v8bdslx7.fsf@minerva.mail-host-address-is-not-set>
+Date: Wed, 11 Oct 2023 09:34:28 +0200
+Message-ID: <87sf6hsjcr.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-We are using a wrong mcbsp functional clock. The interconnect target module
-driver provided clock for mcbsp is not same as the mcbsp functional clock
-known as the gfclk main_clk. The mcbsp functional clocks for mcbsp should
-have been added before we dropped the legacy platform data.
+Javier Martinez Canillas <javierm@redhat.com> writes:
 
-Additionally we are also missing the clock aliases for the clocks used by
-the audio driver if reparenting is needed. This causes audio driver errors
-like "CLKS: could not clk_get() prcm_fck" for mcbsp as reported by Andreas.
-The mcbsp clock aliases too should have been added before we dropped the
-legacy platform data.
+> Rob Herring <robh@kernel.org> writes:
+>
+> Hello Rob,
+>
+> Thanks a lot for your feedback.
+>
+>> On Mon, Oct 09, 2023 at 08:34:22PM +0200, Javier Martinez Canillas wrote:
+>>> Add a Device Tree binding schema for the OLED panels based on the Solomon
+>>> SSD132x family of controllers.
+>>
+>> Looks like the same binding as solomon,ssd1307fb.yaml. Why a different 
+>> binding? Why does that binding need a slew of custom properties and here 
+>> you don't?
+>>
+>
+> It's a sub-set of it. Because only the minimum required properties are
+> defined. But also, is a clean slate schema because the old ssd1307fb fbdev
+> driver only supports the Solomon SSD130x family, so there is no need to
+> follow the existing solomon,ssd1307fb.yaml nor the need for backward compat.
+>
 
-Let's add the clocks and aliases with a single patch to fix the issue
-similar to omap4. On omap5, there is no mcbsp4 instance on the l4_per
-interconnect.
+I think this answer was a little sparse, let me elaborate a bit. The Solomon
+display controllers are quite flexible, so that could be used with different
+OLED panels.
 
-Fixes: b1da0fa21bd1 ("ARM: OMAP2+: Drop legacy platform data for omap5 mcbsp")
-Cc: H. Nikolaus Schaller <hns@goldelico.com>
-Reported-by: Andreas Kemnade <andreas@kemnade.info>
-Reported-by: Péter Ujfalusi <peter.ujfalusi@gmail.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/ti/omap/omap5-l4-abe.dtsi | 6 ++++++
- drivers/clk/ti/clk-54xx.c                   | 4 ++++
- 2 files changed, 10 insertions(+)
+And the ssd1307fb binding schema defines a set of properties that are almost
+a 1:1 mapping from properties to the configuration registers. This makes the
+driver to support most SSD130x controller + panel configurations but at the
+expense of making the binding more complicated (a slew of custom propertie
+as you pointed out).
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap5-l4-abe.dtsi b/arch/arm/boot/dts/ti/omap/omap5-l4-abe.dtsi
---- a/arch/arm/boot/dts/ti/omap/omap5-l4-abe.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap5-l4-abe.dtsi
-@@ -109,6 +109,8 @@ mcbsp1: mcbsp@0 {
- 				reg = <0x0 0xff>, /* MPU private access */
- 				      <0x49022000 0xff>; /* L3 Interconnect */
- 				reg-names = "mpu", "dma";
-+				clocks = <&abe_clkctrl OMAP5_MCBSP1_CLKCTRL 24>;
-+				clock-names = "fck";
- 				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "common";
- 				ti,buffer-size = <128>;
-@@ -142,6 +144,8 @@ mcbsp2: mcbsp@0 {
- 				reg = <0x0 0xff>, /* MPU private access */
- 				      <0x49024000 0xff>; /* L3 Interconnect */
- 				reg-names = "mpu", "dma";
-+				clocks = <&abe_clkctrl OMAP5_MCBSP2_CLKCTRL 24>;
-+				clock-names = "fck";
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "common";
- 				ti,buffer-size = <128>;
-@@ -175,6 +179,8 @@ mcbsp3: mcbsp@0 {
- 				reg = <0x0 0xff>, /* MPU private access */
- 				      <0x49026000 0xff>; /* L3 Interconnect */
- 				reg-names = "mpu", "dma";
-+				clocks = <&abe_clkctrl OMAP5_MCBSP3_CLKCTRL 24>;
-+				clock-names = "fck";
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "common";
- 				ti,buffer-size = <128>;
-diff --git a/drivers/clk/ti/clk-54xx.c b/drivers/clk/ti/clk-54xx.c
---- a/drivers/clk/ti/clk-54xx.c
-+++ b/drivers/clk/ti/clk-54xx.c
-@@ -565,15 +565,19 @@ static struct ti_dt_clk omap54xx_clks[] = {
- 	DT_CLK(NULL, "gpio8_dbclk", "l4per-clkctrl:00f8:8"),
- 	DT_CLK(NULL, "mcbsp1_gfclk", "abe-clkctrl:0028:24"),
- 	DT_CLK(NULL, "mcbsp1_sync_mux_ck", "abe-clkctrl:0028:26"),
-+	DT_CLK("40122000.mcbsp", "prcm_fck", "abe-clkctrl:0028:26"),
- 	DT_CLK(NULL, "mcbsp2_gfclk", "abe-clkctrl:0030:24"),
- 	DT_CLK(NULL, "mcbsp2_sync_mux_ck", "abe-clkctrl:0030:26"),
-+	DT_CLK("40124000.mcbsp", "prcm_fck", "abe-clkctrl:0030:26"),
- 	DT_CLK(NULL, "mcbsp3_gfclk", "abe-clkctrl:0038:24"),
- 	DT_CLK(NULL, "mcbsp3_sync_mux_ck", "abe-clkctrl:0038:26"),
-+	DT_CLK("40126000.mcbsp", "prcm_fck", "abe-clkctrl:0038:26"),
- 	DT_CLK(NULL, "mmc1_32khz_clk", "l3init-clkctrl:0008:8"),
- 	DT_CLK(NULL, "mmc1_fclk", "l3init-clkctrl:0008:25"),
- 	DT_CLK(NULL, "mmc1_fclk_mux", "l3init-clkctrl:0008:24"),
- 	DT_CLK(NULL, "mmc2_fclk", "l3init-clkctrl:0010:25"),
- 	DT_CLK(NULL, "mmc2_fclk_mux", "l3init-clkctrl:0010:24"),
-+	DT_CLK(NULL, "pad_fck", "pad_clks_ck"),
- 	DT_CLK(NULL, "sata_ref_clk", "l3init-clkctrl:0068:8"),
- 	DT_CLK(NULL, "timer10_gfclk_mux", "l4per-clkctrl:0008:24"),
- 	DT_CLK(NULL, "timer11_gfclk_mux", "l4per-clkctrl:0010:24"),
+Now, as mentioned this is support for greyscale Solomon controllers (the old
+fbdev driver only supports monochrome controllers) so we don't care about DT
+backward compatibility.
+
+I decided for now to keep the binding at a minimum and be more opinionated in
+the driver with having what I think are sane defaults for most of the config
+registers.
+
+If there is a need to expose any of this configuration as DT properties, then
+we can later added it share some of the existing solomon,ssd1307fb.yaml custom
+properties and move them to a common schema.
+
+We can always change the driver in the future anyways, but we can't do the same
+with the DT binding schema since that is considered an ABI.
+
 -- 
-2.42.0
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
 
