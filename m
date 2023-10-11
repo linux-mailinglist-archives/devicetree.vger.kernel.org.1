@@ -1,124 +1,175 @@
-Return-Path: <devicetree+bounces-7873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 391297C5DA4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:30:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5F57C5E62
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 22:28:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A9611C20A7D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 19:29:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A8DB2823BC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3112112E74;
-	Wed, 11 Oct 2023 19:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252D3D3B9;
+	Wed, 11 Oct 2023 20:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="b92dQYTS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WzoWJ/4m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1252812E63
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 19:29:53 +0000 (UTC)
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F648F
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:29:52 -0700 (PDT)
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com [209.85.210.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5C9423F63D
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 19:29:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1697052586;
-	bh=c9L/gsOrW6x7KgEWB0KPDKoh+ZY2YJ1yGC5weBaF9Kg=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Content-Type;
-	b=b92dQYTSZp0at8d5TL38lQtCwPoPE1EDOWTH5QGlnwfxq8MUgfZjqgnHBKfWm7Knf
-	 baXpK+lXWCf9HuYE2ohF1iak42WTUY/0Ar21MTMzMZcLs3SdSm1HoO69xxFAaNuQmN
-	 uJeGisidho2moWq9j6Ash3HyrrFQGY0lJ2+mCX6LL43Pxez8vVRDBquggFIbtGVA2W
-	 e1R4xX9mflSPLszN+85FWG0RiZzkMcWZGnY7VqYckRxZHpAalMZVfK7nrzV7mEGwH9
-	 dogLDEJwwxVM0CDf+Sp1R+nHPfztByxOv2CeGjYlKfkkFm7T+RTNOhZwIT8C/btRgM
-	 mtjqF8Klc7lvg==
-Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-6c660a0f0e8so275289a34.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:29:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8563A26E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 20:28:25 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836B891;
+	Wed, 11 Oct 2023 13:28:24 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9ad8a822508so41229766b.0;
+        Wed, 11 Oct 2023 13:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697056103; x=1697660903; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ajiQCZsbPOI0YVqPS5NSWxeb5/T72xImtw2yRB9hN9k=;
+        b=WzoWJ/4m1DH6nOHkQheDn5r/b2dKJa3Ovi1inoyw0t8++90GehjF/W4ZV2QuBY2tJM
+         C85ztAaamM23j5qXEsO411iKJMUioDkzBK6iRXyI3eWQxUvV30lNHRwnbrZK+a5M1Gb3
+         lAZj0QdsbVliohR+QdQnFtlMiMQ3krneoxTL5/0oBUvXcGt7FfIn6r5+5RpKJP6+1t31
+         699x9XwT7xQ5klPVPgwBqIbVEkjkINAt0LMhrPRywUeVLvRhVppx0R3ijGZJr6dFD7Nd
+         U081D1DPi4dbpFm8Z0RbrXVUlMCuBomligPrjacF//3DM55SsvtiZDfVa1UAnLs5p4BG
+         pznQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697052585; x=1697657385;
-        h=to:subject:message-id:date:mime-version:references:in-reply-to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9L/gsOrW6x7KgEWB0KPDKoh+ZY2YJ1yGC5weBaF9Kg=;
-        b=DMDUFQDyz5PfHmMHoQt0eRCeovCQ+jFAXzCVO23YvZgoUucHqLKa0dEmZXK21KioZd
-         wLZ4eqPPoyMbdcOEkEeYwguLlLpItuzSBKrhZbZUqs0lSyatLIJVh8i7lHFxC7nQ65wv
-         Du9uvCb/CvB+PXvrzJyQUzY8kp2SCvTRpkzpuWuFZI8252ODnJsFpRN9RAvU1Ul477SC
-         RxVgdro6C7WBfYEgtV1tCtEANge0NNWawGWWu/4xIMq1u9Autya9wRYwlypIwdNGp957
-         XNukLU1oC3FQU6ut5Uhx/vghNjC7STZ5AwAw9ZLeZbcOlULzHmr6srocFt39+IEzEaqx
-         xG0A==
-X-Gm-Message-State: AOJu0YyoXjFfzGukJuvVNjqTDv8pylipesDps2ae7PphT9NTpJ7kUOJx
-	A0N0U8tL9gMoci3G81Ars7jgiu0YOBi5/j5udi4xRkSsKxnR5m4R/pk/XvhD+pesTxFvw84qbw2
-	gMWgElDI5effzOq+yzRdTxhJcB+oLGjmuyDiQC0PFef8q8+0nUuHcgFo=
-X-Received: by 2002:a05:6830:12d0:b0:6b9:8357:6150 with SMTP id a16-20020a05683012d000b006b983576150mr22651238otq.35.1697052585229;
-        Wed, 11 Oct 2023 12:29:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGCniG85JTchLTim5ooetQCv6XtCN2Hfw918Yim3tDO0dhAQSPYJeSPxd+7rlU/R7/wacdjyqykDfsDX6EHHOA=
-X-Received: by 2002:a05:6830:12d0:b0:6b9:8357:6150 with SMTP id
- a16-20020a05683012d000b006b983576150mr22651223otq.35.1697052585025; Wed, 11
- Oct 2023 12:29:45 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 11 Oct 2023 12:29:44 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231011161414.L6wXZVDb@linutronix.de>
-References: <20231011161414.L6wXZVDb@linutronix.de>
+        d=1e100.net; s=20230601; t=1697056103; x=1697660903;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ajiQCZsbPOI0YVqPS5NSWxeb5/T72xImtw2yRB9hN9k=;
+        b=CoPb5AThpLG3IoXsrO5LUngOtbx1oHvOya4y4XOEjVHT8lVTujUWxXUFWtnIgVCW/S
+         isO8VxB3RlHXsmmlbSRFAdjW9Fq4MOOLnwryhtzdbaChL2o4uprt/FKjhvDEDZaSmDb0
+         v86TjhAASJjs+UuUlC9YjY7ZMtCT8IXUqRfxi0B2JbXADFnjJArSyMCEGzWML3T6QCva
+         7NfCBpFFMXQ9lsYdJRR0TzuonJ/p3csAFnUPFdBHTeIzHYwQg6imFH/wOXd9Sn00YYEr
+         Jp2h9t+wPljhgamglXzpuYEfyJdKWVGIq8Bq18x9Pxt5JQ6/hknogp5sIr5XuDVBd4io
+         zNAw==
+X-Gm-Message-State: AOJu0YwkKF9Szr575F1XseW1N4y5nFqUlb653TKkIMzY/vo3fXFf1jBK
+	kr0R4vF5eEIoz00BowyBHDs=
+X-Google-Smtp-Source: AGHT+IFFQ8ncd4Z5mbljFmPQ7aeVjaaJ6rr4oIOM3eHCQt79sUIbGntX4Z20sf1OIwTbFuY8d23Zqw==
+X-Received: by 2002:a17:906:3116:b0:9a9:e4ba:2da7 with SMTP id 22-20020a170906311600b009a9e4ba2da7mr20212190ejx.49.1697056102522;
+        Wed, 11 Oct 2023 13:28:22 -0700 (PDT)
+Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id kb4-20020a1709070f8400b009adc81bb544sm10192307ejc.106.2023.10.11.13.28.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 13:28:22 -0700 (PDT)
+Date: Wed, 11 Oct 2023 22:28:20 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Jon Hunter <jonathanh@nvidia.com>, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V5 0/4] hwmon: ina3221: Add selective summation support
+Message-ID: <ZScFZDZlTcqwjEJP@orome.fritz.box>
+References: <20230929103650.86074-1-jonathanh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 11 Oct 2023 12:29:44 -0700
-Message-ID: <CAJM55Z-YoJnZi4CrwD66v1TaJoYz1jbX+QOFXUDjhm5C9tST0w@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: starfive: visionfive 2: correct spi's ss pin
-To: Nam Cao <namcao@linuxtronix.de>, kernel@esmil.dk, conor@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	william.qiu@starfivetech.com, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="CiujI+6zDegS36sT"
+Content-Disposition: inline
+In-Reply-To: <20230929103650.86074-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Nam Cao wrote:
-> The ss pin of spi0 is the same as sck pin. According to the
-> visionfive 2 documentation, it should be pin 49 instead of 48.
 
-Thanks! As far as I can tell this should make the 40pin header match the
-Raspberry Pi layout, so
+--CiujI+6zDegS36sT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+On Fri, Sep 29, 2023 at 11:36:46AM +0100, Jon Hunter wrote:
+> The current INA3221 driver always sums the shunt voltage for all enabled
+> channels regardless of the shunt-resistor used for each channel. Summing
+> the shunt-voltage for channels is only meaningful if the shunt resistor
+> is the same for each channel. This series adds device-tree support to
+> allow which channels are summed in device-tree.
+>=20
+> Changes since V4:
+> - Moved dt-binding comment added in V4 from patch #2 to patch #1.
+>=20
+> Changes since V3:
+> - Added missing descriptions for new structure members that was reported
+>   by the kernel-test-bot.
+> - Added comment in the ina3221 dt-binding doc example to explain why we
+>   need to explicitly disable channels.
+> - Added more commentary in the commit message for the new DT property
+>   to explain that this property does not change the behaviour of the
+>   driver unless it is populated.
+>=20
+> Changes since V2:
+> - Added note to binding-doc to indicate that input channels must be
+>   explicitly disabled.
+> - Corrected ordering of properties in the binding-doc
+> - Updated license for the binding-doc to be dual licensed.
+> - Changed newly added property from 'summation-bypass' to
+>   summation-disable'.
+> - Documented type for the new 'summation-disable' property.
+> - Corrected spelling and comments as per the feedback received.
+> - Used debugfs instead of sysfs for exposing the 'summation-disable'
+>   status for each input channel.
+> - Populated missing instances for the ina3221 device for Tegra234
+>   boards.
+> - Populated ina219 device for the NVIDIA IGX board (not strictly
+>   related to this series but related to populating all
+>   power-sensors for Tegra234 boards)
+>=20
+> Changes since V1:
+> - Added yaml conversion patch for binding-doc
+> - Added binding-doc documentation patch for new property
+> - Added patch to populate ina3221 devices for Tegra234.
+>=20
+> Jon Hunter (2):
+>   dt-bindings: hwmon: ina3221: Add ti,summation-disable
+>   arm64: tegra: Add power-sensors for Tegra234 boards
+>=20
+> Ninad Malwade (2):
+>   dt-bindings: hwmon: ina3221: Convert to json-schema
+>   hwmon: ina3221: Add support for channel summation disable
 
->
-> Fixes: 74fb20c8f05d ("riscv: dts: starfive: Add spi node and pins configuration")
-> Signed-off-by: Nam Cao <namcao@linuxtronix.de>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 12ebe9792356..2c02358abd71 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -431,7 +431,7 @@ GPOEN_ENABLE,
->  		};
->
->  		ss-pins {
-> -			pinmux = <GPIOMUX(48, GPOUT_SYS_SPI0_FSS,
-> +			pinmux = <GPIOMUX(49, GPOUT_SYS_SPI0_FSS,
->  					      GPOEN_ENABLE,
->  					      GPI_SYS_SPI0_FSS)>;
->  			bias-disable;
-> --
-> 2.39.2
->
+Jean, Guenter,
+
+do you mind if I pick up patches 1, 2 and 4 into the Tegra tree? It's
+usually convenient to keep the DT bindings and DT additions in the same
+tree for validation.
+
+Thanks,
+Thierry
+
+--CiujI+6zDegS36sT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUnBWQACgkQ3SOs138+
+s6H2Iw//b21u/DRkKk+i/7IngdxzNLH0SzEnEPuQED1vF2TjviBmHCOC2PWh6v3K
+JQEePa77FmCG6L46tHZ+kMpnh3mqe+Fce4GhxvsYAHIga8sBGHkM2Kzjpt1/P/a9
+OgpHYh/UJoBxRst+dBqgD3ajG8iokGbezr3kDorHX7Lcc7JBdJeai72La8oky62v
+kLrCPCOYGYBqFDYa/dMqX5tlsS/U1q5bRijNZXxD5miBb3sk2dW30r8BdfDKR0mQ
+SRXdeJYjFTaM1HmrzvoYeZjXMGJxrDXl3akZCA8tTwkPb7S8L/vcHE2ywpVb8IKH
+Wx4aB81qMwOJy8/zUs8RdrLe7vAauPn89cnPtxJmg1X4enKrj5PGmMu056eLTQCH
+MjdfCpj1tW6COX1iXU0lYLCPyGPEeMAmrxvS7FqhMKm6Az8s3EB9fOJgE5BQcBgl
+jxWPPmQWC35EHGIh1U30VP1ZrOsZyn5xJiDOtnf4Ksy0MeyU9m+9IDgJYCx7zL3U
+4rf5fXXWRZU1HdgNs9VoDSfEeMF9Iv+5jFow1A94x1M9F7mjpbkMpkLkmFQGKth7
+aMnwc/pHoTi9KnmEZRzOynA3tvjKfozQLCc1/LxqDey5NycqGn+iMnTL7qz+FXld
+fjZURu2bo7k8i38nAScMFY0aS3WBqUYqu3N2RcoMSNmYIOHJxuk=
+=WDbc
+-----END PGP SIGNATURE-----
+
+--CiujI+6zDegS36sT--
 
