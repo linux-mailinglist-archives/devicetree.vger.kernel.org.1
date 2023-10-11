@@ -1,110 +1,115 @@
-Return-Path: <devicetree+bounces-7749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CCF7C54A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF7E7C54BC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:04:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D432820BD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:59:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FE45281F00
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523651F17E;
-	Wed, 11 Oct 2023 12:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E761F18F;
+	Wed, 11 Oct 2023 13:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QbLC9nt7"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="NUC94I6J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E2FF4E5
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 12:59:35 +0000 (UTC)
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043E4A4
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:59:33 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d84d883c1b6so827582276.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:59:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54941EA92
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 13:04:25 +0000 (UTC)
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2760F98
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:04:22 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-5827f6d60aaso4449888a12.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:04:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697029172; x=1697633972; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1EaY0sE2Pei5NhN4+5VkCTT2XVv3gRIOvmlCGAn/8ks=;
-        b=QbLC9nt7HqpCz8+Wga+dCd0EDL4TUoIsoDqy07go+wlutRaBW+hv31jV+3hFaOHqoc
-         KKPvhIv7XhoRGb+wFFun9F3xyLXAdMzAw/B+IP9iS6gpsjxXTG0wJhGZ+gAyFonc6O11
-         KHk2VPxOvFH0FjvOxdoWmGWnWOnBXndf+QCErgw/Ure3JyfqftMV/NYmZx8WTDYXamjB
-         6qmsnde2JhBGg2rYq0QX6E694FI5nwIottUxK/z2frw1IgLy4sHfzdKhqPXZKXfvYHM/
-         0YiubrW84bDyXy+JKt3+ZQpJMu33gYvmvCbX6/sJezTJquU1hPDHhQEBoMA1IB8C4OZl
-         d3vA==
+        d=tweaklogic.com; s=google; t=1697029461; x=1697634261; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uKGDsSgRWaVRqguRQzytVv1LFKTRkfGDmTPgMhFGmI4=;
+        b=NUC94I6JIABY3ySPzqj2qvktDwsPMfsa+rKp9EFeCRa6qj+xkG3RykpkJVLxrCAcFm
+         4G3NxHQX7ZXltrOe3p5l5NhfumYNwRzZqriAZ715UzgJs5nedWt3/408MFmRbqiXoRK5
+         b46NwkW9uUnrIAW3VVcXuQgrovTE0UmJGYmpzOXYEp33cWKgnjI1AmG+pQSioxZsjqOP
+         KlclJxkSzNr181bYhcx16SuednbjK9WZBATI0R7YVIvI7IY5OFDKMlq349Z4lMJPYhS9
+         ypqOpw9H8Og4Y/ZquWP5NCI2gLmzy1N2Qjya6ciRnlvC3rurwoyXjf0Ity0KekzjWZlM
+         zpCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697029172; x=1697633972;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1EaY0sE2Pei5NhN4+5VkCTT2XVv3gRIOvmlCGAn/8ks=;
-        b=TnXAbIr9QXv207u72gs8L+VgOBkzwD4NdvQHktS2FWP3F8WWaRy8FqrMXOirUM/Z1Y
-         CHKQO+9u8uiZE8Jwsdfwor88faGIIfDQVJ2XvyOjO5k6sn9jXyGZLbkvU5TYWH32r/aA
-         clTXQ5fDWk4Gyq2gn6qv2uuQqWxus6sZ3INQX7SIuQG/GUHzbJErFbaFYHYQ+iMrK9Aj
-         JYXu5bxfTSnVl4L9M/SkdX5KILXSMdv/OxIuWnKhzGNtGM8+Uppr4xU5EvLwQvCpwOnG
-         p8/MG6FWqg4ZC3Te0/9WKfgOHOLVWe5oMkVArx2vNef1wXbBrF3R9kgWx04EYnucmmnd
-         cYkw==
-X-Gm-Message-State: AOJu0YyraGh0bj+oPiLSmSvInKavlsvDPbMHiHlGZH7Oij+pVRbf1jdV
-	fCbl5U8eOu+qjAFKrPdkELHxbf5+QkkmaFw4Hr7utA==
-X-Google-Smtp-Source: AGHT+IHK3TsRkckFS5x9fV4NSgNoHc3y3+i7/whwE2O1SG/00B7HMp4A/4j1w/7wk6qdfTsknd318X6DKYpMZIoJHxE=
-X-Received: by 2002:a25:1e43:0:b0:d4b:a962:76a3 with SMTP id
- e64-20020a251e43000000b00d4ba96276a3mr11483916ybe.29.1697029172104; Wed, 11
- Oct 2023 05:59:32 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697029461; x=1697634261;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uKGDsSgRWaVRqguRQzytVv1LFKTRkfGDmTPgMhFGmI4=;
+        b=Pg+lLM9n17ExPalyHmsww/WeJvXKRaNSm+12s26BXJwlakPamM0gAytDRqClJuUgup
+         +9TdabGfrCw4eU8vAslduPSTrlSgawkLnjQX1cM7a63z7wsz0LqlNEhicbBPw8B9I3d8
+         Rsm2fEeSTWnSmNEBWePHpV9zP3GlwlLhR60TN/9nMw+WX69lOO05mq4Hgp8X6evk1Q3l
+         m84VI9IViqNqQwPyvVelW0UTRSyTkzXXzbCSCjmBaMwuSOXBUIEDYphKRTaQIuXakUUx
+         513S5ewi/xAPEKWJmCyJWtCjvM3Yi1980URNrTaYf1b+uVQjIdgiUCRq3lUp8BdF1J9Y
+         V1Bg==
+X-Gm-Message-State: AOJu0YxO5Ok9ZRasUIqkKQrPOTTun856laIS4zfGdT4mIMK7bmm5klB0
+	IYtPkDABLrvuts0RDSs3w2Kn/w==
+X-Google-Smtp-Source: AGHT+IHbRm3s2xZzTaph0FHcK0YjQdqB2JHxO34y+v1bOoDkYN44ErW9Cudd/NnuxxI1L7fxSi23kQ==
+X-Received: by 2002:a17:90b:4f46:b0:267:f9c4:c0a8 with SMTP id pj6-20020a17090b4f4600b00267f9c4c0a8mr17714675pjb.4.1697029461274;
+        Wed, 11 Oct 2023 06:04:21 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:92f1:e901:1eef:a22? (2403-580d-82f4-0-92f1-e901-1eef-a22.ip6.aussiebb.net. [2403:580d:82f4:0:92f1:e901:1eef:a22])
+        by smtp.gmail.com with ESMTPSA id c6-20020a17090ad90600b0027d0de51454sm734373pjv.19.2023.10.11.06.04.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 06:04:20 -0700 (PDT)
+Message-ID: <70bb5281-18f6-f5b3-9226-7a7d552671f2@tweaklogic.com>
+Date: Wed, 11 Oct 2023 23:34:12 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011112726.166052-1-dmitry.baryshkov@linaro.org> <CAL_Jsq+HdceLczej4_q-wjg2870v3y-e_E+jEq0xbetDguaXAw@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+HdceLczej4_q-wjg2870v3y-e_E+jEq0xbetDguaXAw@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 11 Oct 2023 15:59:21 +0300
-Message-ID: <CAA8EJppCO-q=swYOH+O2fOdUDbNzd1yz9ZoTEBswV7RmvFJifA@mail.gmail.com>
-Subject: Re: [PATCH] of: export of_find_next_cache_node() for modules
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Ilia Lin <ilia.lin@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Avago APDS9306
+To: Rob Herring <robh@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Paul Gazzillo <paul@pgazz.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
+ <20231008154857.24162-2-subhajit.ghosh@tweaklogic.com>
+ <2c6ff28f-9031-beb2-f8d0-e7f12b0a07b4@gmail.com>
+ <20231010161900.GA999361-robh@kernel.org>
+Content-Language: en-US
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231010161900.GA999361-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 11 Oct 2023 at 15:52, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Oct 11, 2023 at 6:27=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > The qcom-cpufreq-nvmem module uses of_find_next_cache_node() function,
-> > so export it to be available to the modules.
->
-> You really should be using the cacheinfo API which has already parsed
-> the cache nodes.
->
-> Also, why do you need a platform_device? I don't see a driver.
-> cacheinfo already creates a struct device, so kind of weird to have 2
-> devices.
+On 11/10/23 02:49, Rob Herring wrote:
 
-The driver is pending as a part of the series at [1]. We need to scale
-the L2 supplies and clock frequency following the core frequency
-changes.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: avago,apds9306
+>>
+>> I see the driver supports two different variants of this IC, differentiated
+>> by the part-ID register. Variants are named as apds9306 and apds9306-065. I
+>> wonder if we could/should have different compatibles for them?
+> 
+> If 1 compatible is sufficient to know how to power on both devices and
+> read the part-ID register, then no need for different compatibles.
+> 
+> Rob
+Understood. Thanks Rob.
 
-[1] https://lore.kernel.org/linux-arm-msm/20230827115033.935089-9-dmitry.ba=
-ryshkov@linaro.org/
-
---=20
-With best wishes
-Dmitry
+Regards,
+Subhajit Ghosh
 
