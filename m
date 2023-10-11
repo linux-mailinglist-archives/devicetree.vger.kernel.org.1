@@ -1,151 +1,136 @@
-Return-Path: <devicetree+bounces-7672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5897C5126
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:10:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2967C5140
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2171C20D6B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:10:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4C21C20C94
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F2E1DA58;
-	Wed, 11 Oct 2023 11:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4EA41DDCB;
+	Wed, 11 Oct 2023 11:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KxAXc2+y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Uz0f/eNl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8638B1DDC1
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:10:06 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F656106;
-	Wed, 11 Oct 2023 04:09:38 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 99A2020008;
-	Wed, 11 Oct 2023 11:09:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697022576;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KP05wLyKRD598HzULG2gUbJ6b/QOLew0QiiIOyL4nsU=;
-	b=KxAXc2+yFUMRaXPG/GFMXyxuaVUm2wr7o3/QPrGS4yg3Prthevv0z9dbeY1DMwgpwilD5A
-	W5IujeLG1Mi2/bMnoco2S/0dtHjy1OCJvnyikMVNPxeNJfmI5Wku3VA2Rfq9KMLMX204Bt
-	dWRYNI2U0SUOvon32s4W3uKcim3zQkEDa8QJV6PNNmITWap2KZJ6IsAffFAJ/373uQBVpA
-	gsPPBD8VUWoVHTRodg+eUFEQLZrF9RVzLPexa0RkxXDmvd5WGeyY2qmeO0DraZMy6gn6/R
-	DttSk3HcghXBtrXqWxB/nTbs06rSrD+85fXkMyp7Dth2y9c9S7QUzQaWc1Z1FA==
-Date: Wed, 11 Oct 2023 13:09:31 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 7/7] nvmem: core: Expose cells through sysfs
-Message-ID: <20231011130931.3b6216aa@xps-13>
-In-Reply-To: <8b8403ee-b610-312b-aa98-3e4fa65a3800@linaro.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
-	<20231005155907.2701706-8-miquel.raynal@bootlin.com>
-	<318fe799-f53e-64ed-b631-d099bb5202f4@linaro.org>
-	<20231011091524.0c9ecc55@xps-13>
-	<548849a8-9f11-5274-778e-f291267603bb@linaro.org>
-	<20231011103306.08f1fbd4@xps-13>
-	<fe4a2688-079c-a36d-0ea4-c244c6e1a0ad@linaro.org>
-	<20231011105829.778bed58@xps-13>
-	<490c6740-06cb-9ee6-ca8c-3ab404109344@linaro.org>
-	<20231011114419.21821f4d@xps-13>
-	<8b8403ee-b610-312b-aa98-3e4fa65a3800@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7B01DDC1
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:12:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DF0A7;
+	Wed, 11 Oct 2023 04:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697022742; x=1728558742;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6X17CQk262SF6/jtSrC9+lvmvN3o4Ya/8mawpifctfY=;
+  b=Uz0f/eNlcyqTalTISzq3YeTdlPf7GgcjiitXhbHsV2uP4/hEZAvzGLY9
+   O6Jomj50TyQUyeiTFI9Kq/1nhelw2qrCsEtECHK1LO7E8UvwDw4AFm3Px
+   lebvcKMut+C/yZVt22FkwC6xTPvD+JuR6pDbnZayM/dKKdO2nHMpQ/T/5
+   Iu76zTZfEun+2DskjZnH51wbnJMmluW/SkCI8n/DI+YAi4B2Khfp+J38h
+   2EZyywyjLs6V8SWvFtPBpUHNYmIZr3BW2dEPhHnBARVDCNpup/K2Ur4Db
+   AJeoGWswd3RnxCo2PhIOIN0bsIgg+DA9IYPzMyZs94Iyv+rmKYOCGycE2
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="3224774"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
+   d="scan'208";a="3224774"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 04:12:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="730459248"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
+   d="scan'208";a="730459248"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 04:12:18 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 07C9011F835;
+	Wed, 11 Oct 2023 14:12:15 +0300 (EEST)
+Date: Wed, 11 Oct 2023 11:12:14 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	laurent.pinchart@ideasonboard.com, hverkuil@xs4all.nl
+Subject: Re: [PATCH 3/5] media: i2c: imx335: Implement get selection API
+Message-ID: <ZSaDDqrpX4LeoLqX@kekkonen.localdomain>
+References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
+ <20231010005126.3425444-4-kieran.bingham@ideasonboard.com>
+ <ZSTrse7OeKIA+k2t@valkosipuli.retiisi.eu>
+ <169701831889.277971.6656559808677876108@ping.linuxembedded.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169701831889.277971.6656559808677876108@ping.linuxembedded.co.uk>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Srinivas,
+Hi Kieran,
 
-srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 11:02:16 +0100:
+On Wed, Oct 11, 2023 at 10:58:38AM +0100, Kieran Bingham wrote:
+> Quoting Sakari Ailus (2023-10-10 07:14:09)
+> > Hi Kieran,
+> > 
+> > On Tue, Oct 10, 2023 at 01:51:24AM +0100, Kieran Bingham wrote:
+> > > Support reporting of the Sensor Native and Active pixel array areas
+> > > through the Selection API.
+> > > 
+> > > The implementation reports a single target crop only for the mode that
+> > > is presently exposed by the driver.
+> > > 
+> > > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> > 
+> > Shouldn't you use the same callback for .set_selection? I guess this is
+> > somewhat grey area but doing so would be in line with how V4L2 API works in
+> > general.
+> 
+> Hrm ... I didn't think it was needed as it's not possible to /set/
+> anything.
 
-> Hi Miquel,
->=20
-> On 11/10/2023 10:44, Miquel Raynal wrote:
-> > Hi Srinivas,
-> >=20
-> > srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 10:26:43 +0100:
-> >  =20
-> >> On 11/10/2023 09:58, Miquel Raynal wrote: =20
-> >>> Hi Srinivas,
-> >>>
-> >>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:45:11 +01=
-00: =20
-> >>>    >>>> On 11/10/2023 09:33, Miquel Raynal wrote: =20
-> >>>>> Hi Srinivas,
-> >>>>>
-> >>>>> srinivas.kandagatla@linaro.org wrote on Wed, 11 Oct 2023 09:27:20 +=
-0100: =20
-> >>>>>     >>>> On 11/10/2023 08:15, Miquel Raynal wrote:
-> >>>>>>>>> +
-> >>>>>>>>> +	nvmem_cells_group.bin_attrs =3D cells_attrs;
-> >>>>>>>>> +
-> >>>>>>>>> +	ret =3D devm_device_add_groups(&nvmem->dev, nvmem_cells_group=
-s);
-> >>>>>>>>> +	if (ret)
-> >>>>>>>>> +		goto unlock_mutex; =20
-> >>>>>>>> This is going to create groups after the nvmem device is added, =
-isn't this going to be problem with user space notifications? =20
-> >>>>>>> Greg said it was not. I hope I understood correctly =F0=9F=98=84
-> >>>>>>>
-> >>>>>>> And anyway, cells have never been available to userspace, so ther=
-e is
-> >>>>>>> nothing userspace might expect yet? =20
-> >>>>>> I agree, but once we add sysfs uapi then this is going to change. =
-=20
-> >>>>>
-> >>>>> Can you elaborate? I'm not sure I follow you here. Is there still a
-> >>>>> problem you fear or you think it's okay? =20
-> >>>>>     >> Now that we add cells to sysfs. =20
-> >>>> AFAIU, By the time the userspace sees the udev event from this devic=
-e we might not have cells populated. =20
-> >>>
-> >>> Yes, but why would this be a problem? =20
-> >>>    >> It will be problem if the userspace is using things like libude=
-v to act on these events. There seems to be some caching of attributes in u=
-dev during event more info http://www.kroah.com/log/blog/2013/06/26/how-to-=
-create-a-sysfs-file-correctly/ =20
-> >=20
-> > I am already using these attributes, right? The problem here is that we
-> > always attach cells sysfs attributes to the nvmem device, but in some
-> > cases (when using layout devices/drivers) the probe of these devices
-> > will happen after the main nvmem device has been announced to userspace
-> > and thus these attributes might not be populated yet (but Greg said it
-> > was "supported" and I assumed it was fine). =20
-> >  > So what is your idea here to overcome this? =20
->=20
-> Ideally we should have all the cells definitions ready by the time nvmem =
-is registered.
+Similarly, VIDIOC_SUBDEV_S_FMT is available even if you can't change the
+format.
 
-I no longer think what you describe can happen because even though the
-rootfs might be mounted, the daemons will only be 'started' once the
-kernel is done starting and starts the init process, which means all
-the devices have probed and all the cells have been registered as well.
+> 
+> I expect to change this once I add support for setting crops later
+> though. It was going to be something I'd add when it is used.
+> 
+> Only the 'get_selection' call is necessary to make this camera operate
+> on both i.MX8MP and RPi5 platforms with libcamera, so that's what I've
+> done so far. My goal of this series was to bring the existing driver up
+> to a point that it can be used, before I start making new feature
+> additions.
 
-Thanks,
-Miqu=C3=A8l
+I don't have concerns with that, just that we implement the IOCTLs
+consitently. This has been discussed before but AFAIR without any firm
+conclusions.
+
+Additionally, some targets are settable while some won't be, and it may
+well depend on the driver.
+
+v4l2-compliance appears to be happy with G_SELECTION without S_SELECTION
+though.
+
+Also cc Hans.
+
+-- 
+Regards,
+
+Sakari Ailus
 
