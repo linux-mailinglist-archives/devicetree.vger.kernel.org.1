@@ -1,104 +1,105 @@
-Return-Path: <devicetree+bounces-7557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046307C4A8B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 08:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E24007C4A97
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 08:31:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F8C91C20D85
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 06:28:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4711C20DF0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 06:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E65715481;
-	Wed, 11 Oct 2023 06:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5926A79DB;
+	Wed, 11 Oct 2023 06:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOjy724L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0+TZTiZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0134B354F6
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 06:28:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DB5FC433C7;
-	Wed, 11 Oct 2023 06:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B62179BC;
+	Wed, 11 Oct 2023 06:31:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDFF4C433C7;
+	Wed, 11 Oct 2023 06:31:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697005691;
-	bh=QgnMl9B4zUXQNgtEeKROdc7SjfMgtaTbXTJLtuTkjJ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OOjy724LOL/g2rMFhztMd/U097sJw5/ITAB9dZdP+71mDWrQPUKwztmxLASmN3Ajs
-	 4g5izeRdz3ZIYwn6sfEGHUaTQ23jz8FFLOPdALZ2kUab53JVkXKj4H8ZEI8FM6JRdi
-	 rtYEBfbvlDmSzJil+MdEd93bhPzb/f768ti3Gydj9BO1vgueHx3o4VDT5haRFzPu53
-	 TRkherYFcFfrSyGKVSteNaarn1jf9+s2IBEzCrfjrEcZ1g3Lhz7gvKnNYV8llpjdYa
-	 FCityEoH4kF8qCb37hot67eDTute00tpg29JSbJAoEuXxxs3tyMUHDHfEQ9zFyo5B1
-	 0SkIxMFvMcdLg==
-Date: Wed, 11 Oct 2023 08:28:05 +0200
-From: Wolfram Sang <wsa@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	loic.poulain@linaro.org, rfoss@kernel.org, andi.shyti@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: i2c: qcom-cci: Document sc8280xp
- compatible
-Message-ID: <ZSZAdfJ8IgFE/cO9@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	loic.poulain@linaro.org, rfoss@kernel.org, andi.shyti@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-References: <20231006120159.3413789-1-bryan.odonoghue@linaro.org>
- <20231006120159.3413789-2-bryan.odonoghue@linaro.org>
- <ZSWpm/7xnoFkUn31@shikoro>
- <767bc246-a0a0-4dad-badc-81ed50573832@linaro.org>
+	s=k20201202; t=1697005894;
+	bh=zvpSv8bmJ90ROuqL9qzQWu4rBI3ZmjnN0yYWmOHl4i8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=h0+TZTiZ5yN+tsWxZmFQ7Vdu+xS8Tgcbro3PWnOTfyMxELldEukn/XHur31AHGMLX
+	 dZc7JAqHCdvlH7aPHQCGWTAbAWVQa6Di/i5RG5C7Gqs7nkTndPGSkrK/CeoZTpHxOx
+	 7JjA3Mixo3ED2YBbmCLi/V8C1UE2qaNZmuz6jEAjxUIXQ31h6ZTQZPWni0tM2sswsK
+	 FlRvua1ZSF62GIfDZUsGFR3JTJdZepcqtyIcaC/17F9LuR9WE3UiR7dTWo8eEbXPdy
+	 N8geQNXbrH+qhhgVlTjnDznm8M/Qrmow/kfxkJVUNNuYlYDn9EYYYTHgAwo7kezKge
+	 N5jEx1OZX3UHg==
+Received: (nullmailer pid 2911056 invoked by uid 1000);
+	Wed, 11 Oct 2023 06:31:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+zFGQa6cKiry5TnQ"
-Content-Disposition: inline
-In-Reply-To: <767bc246-a0a0-4dad-badc-81ed50573832@linaro.org>
+From: Rob Herring <robh@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org
+In-Reply-To: <20231011051152.133257-1-linux.amoon@gmail.com>
+References: <20231011051152.133257-1-linux.amoon@gmail.com>
+Message-Id: <169700589265.2911018.855796610271678067.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add the binding example for
+ the Genesys Logic GL3523 hub
+Date: Wed, 11 Oct 2023 01:31:32 -0500
 
 
---+zFGQa6cKiry5TnQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 11 Oct 2023 10:41:48 +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
+> 
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> New patch.
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 28 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 3 deletions(-)
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> https://lore.kernel.org/linux-arm-msm/20231010122539.1768825-1-bryan.odonoghue@linaro.org/
+yamllint warnings/errors:
 
-Sure, I'll revert it. Thanks for the heads up!
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'reset-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'vdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'peer-hub' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'reset-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'vdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'peer-hub' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
 
+doc reference errors (make refcheckdocs):
 
---+zFGQa6cKiry5TnQ
-Content-Type: application/pgp-signature; name="signature.asc"
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231011051152.133257-1-linux.amoon@gmail.com
 
------BEGIN PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmUmQHIACgkQFA3kzBSg
-KbbOHw//fgu3AlcwV0nymLzbLIhx4OwYcBZr4Fj1qVTdU6wwQjJn2ZLJTxQddxbx
-xqHN+s+5hCbBi91FYjvJ/PdZmtKHJeXIDvfY1gbFUWY1qaCgn4gQrxi3wrbT2FtM
-wYPspQ3CdWIZWzMkknW3yyt5z5ASsCi2gywjsQimIEMUn8Y6N5kWMI4NEbPDDL3Q
-TvG2ee+6LNIGesvBXQ53lTXjwF6eSeovSuFYPORovXRDAIgIMHy+Mqh8NXBr/Xhq
-m6yFG2rc9NTeyxJm/WFbqUeGh4mjowfeCOJQSsBa+kZ3Az/IXo7c9krfvUGVwOFH
-tfVNWt5mk5G3iGZZbaf19mU/XPmKwsrQutz6zRqJwFp+TRSBvlXbFAjeUo65YvyP
-cTtNjVoWPiVrz/sWPDLWX1rH5pZWh4hEdXCwXlvVl5YMQPUNf/M+YbgzWmwO4Px+
-FxukBxn9occAHRWCAniQmBXA5djUxUMJNHZYy/DJWwmKPO/+jEsfR1R1zEY4R0Wj
-KJeZcsXvDGVu9EjLeRU/YfTKVVq3Im/2N1N9NXEAErTopoc8ozzw4T3OZAiu37Eb
-vjYKgu1wqEJW6lij6CuETeKp4J7+mDsHuNws+CiDlmFGSFjVhEat2z6bfM1vpqv+
-ZIhC7j5jP4BdTOBCpSHjP0TumOjX448KqYL3jxfWFLWM/yb0vTo=
-=hqBp
------END PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---+zFGQa6cKiry5TnQ--
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
