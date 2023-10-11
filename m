@@ -1,138 +1,209 @@
-Return-Path: <devicetree+bounces-7764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D197C55BB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:42:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953B07C55DE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0AD11C20D59
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:42:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27C01282036
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1262B200A7;
-	Wed, 11 Oct 2023 13:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACC7200B0;
+	Wed, 11 Oct 2023 13:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="auYk2Z/N"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="MPhapmld"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97421F956
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 13:42:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10DF98;
-	Wed, 11 Oct 2023 06:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697031767; x=1728567767;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7YfsHhsopKCCqEyes/Zq8paien7jAELVx6130kYHaq0=;
-  b=auYk2Z/NX3U1qGvG+HR+IS68IAOAG9+3F03wBJ8sDDj0Ss4P97BLFxPG
-   bPwRgK3ke0Ruo3gmOcUIuQO4CG1/TSp2ZFltGDMSrFrnEKxJeqmNDm53b
-   xN8E0smmM/nO/8jCBnsPwLJCy0/LllMkWoQd8gzp/zJSRkOVZrfgIwHTT
-   8thl1eamT6h8FMBHs5GGQgOBRwz1vh2JrxmmWCnBqEqPbtQAaNUFZIOw3
-   tqUSF9GheXxqnsOpF/xVrRvKOQd6SSXgYp+WSVQdY9bEBUUsRN7w7cCBY
-   VKIoNZJenM9UxuBGcoZxiJrxNPMQX5jPmT3PZSFGeQX8Ytb+21p+gA7Ys
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="448864022"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
-   d="scan'208";a="448864022"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 06:42:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="753823924"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
-   d="scan'208";a="753823924"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 11 Oct 2023 06:42:39 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qqZTq-0002Fv-2r;
-	Wed, 11 Oct 2023 13:42:32 +0000
-Date: Wed, 11 Oct 2023 21:42:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, quic_shazhuss@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
-	quic_nayiluri@quicinc.com, dmitry.baryshkov@linaro.org,
-	robh@kernel.org, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
-	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] PCI: epf-mhi: Add support for SA8775P
-Message-ID: <202310112157.VcDgcECw-lkp@intel.com>
-References: <1697023109-23671-4-git-send-email-quic_msarkar@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76AB200A9;
+	Wed, 11 Oct 2023 13:49:16 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA7298;
+	Wed, 11 Oct 2023 06:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=j7/rAcr/21dThCW85EtuvPfnqYwhIU+45crbdPVz4mw=; b=MPhapmldQBxAgIvtvutf1j9YgT
+	FMOhyPS3dQP4C33upruOk8AYSRExv+vNupT/KePHPXH5Dia8KfzBsgp1TMOCXyGvBrwMGaWznBh0U
+	lB487qyt7QReMgS44Cda5Lo7yZC+NXVbh9mBhKVjHULr9tCUtzF4OsEbuZjVQ/E3eZME=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:59864 helo=pettiford)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1qqZaC-0001Tk-5J; Wed, 11 Oct 2023 09:49:05 -0400
+Date: Wed, 11 Oct 2023 09:49:03 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Conor Dooley
+ <conor@kernel.org>, a.zummo@towertech.it, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bruno.thomsen@gmail.com, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>
+Message-Id: <20231011094903.cd5b137da5d6647d59f94b28@hugovil.com>
+In-Reply-To: <20230919113423.6c8c48cb1b89275f5b4f3cc2@hugovil.com>
+References: <20230802191153.952667-1-hugo@hugovil.com>
+	<20230802191153.952667-2-hugo@hugovil.com>
+	<20230808-capsize-deodorize-5776d3dbb192@spud>
+	<20230808082533.b608c9a2a4bd922920643c4b@hugovil.com>
+	<202308081232266ec8a9b7@mail.local>
+	<20230808084426.fc7e432a9d85e5caf72d3ffe@hugovil.com>
+	<20230905113058.0fed933265fb68cd53b6d0fa@hugovil.com>
+	<20230919113423.6c8c48cb1b89275f5b4f3cc2@hugovil.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1697023109-23671-4-git-send-email-quic_msarkar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: add properties to set
+ battery-related functions
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Hi Mrinmay,
+On Tue, 19 Sep 2023 11:34:23 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-kernel test robot noticed the following build warnings:
+> On Tue, 5 Sep 2023 11:30:58 -0400
+> Hugo Villeneuve <hugo@hugovil.com> wrote:
+> 
+> > On Tue, 8 Aug 2023 08:44:26 -0400
+> > Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > 
+> > > On Tue, 8 Aug 2023 14:32:26 +0200
+> > > Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+> > > 
+> > > > On 08/08/2023 08:25:33-0400, Hugo Villeneuve wrote:
+> > > > > On Tue, 8 Aug 2023 12:21:24 +0100
+> > > > > Conor Dooley <conor@kernel.org> wrote:
+> > > > > 
+> > > > > > Hey Hugo,
+> > > > > > 
+> > > > > > On Wed, Aug 02, 2023 at 03:11:52PM -0400, Hugo Villeneuve wrote:
+> > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > > 
+> > > > > > > These properties can be defined in the board's device tree to set the
+> > > > > > > default power-on values for battery-related functions.
+> > > > > > > 
+> > > > > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > > ---
+> > > > > > >  .../devicetree/bindings/rtc/rtc.yaml          | 19 +++++++++++++++++++
+> > > > > > >  1 file changed, 19 insertions(+)
+> > > > > > > 
+> > > > > > > diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > index efb66df82782..0217d229e3fa 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > @@ -26,6 +26,25 @@ properties:
+> > > > > > >        0: not chargeable
+> > > > > > >        1: chargeable
+> > > > > > >  
+> > > > > > > +  battery-low-detect:
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > +    enum: [0, 1]
+> > > > > > > +    description: |
+> > > > > > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > > > > > +      used to configure the battery low detection reporting function:
+> > > > > > > +      0: disabled
+> > > > > > > +      1: enabled
+> > > > > > > +
+> > > > > > > +  battery-switch-over:
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > +    enum: [0, 1]
+> > > > > > > +    description: |
+> > > > > > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > > > > > +      used to configure the battery switch over when the main voltage source is
+> > > > > > > +      turned off:
+> > > > > > > +      0: disabled
+> > > > > > > +      1: enabled
+> > > > > > 
+> > > > > > Why are these implemented as enums? This seems to fall into the category
+> > > > > > of using DT to determine software policy - why's it not sufficient to
+> > > > > > have boolean properties that indicate hardware support and let the software
+> > > > > > decide what to do with them?
+> > > > > 
+> > > > > Hi Conor,
+> > > > > the reason is that I based the new properties on the existing property
+> > > > > "aux-voltage-chargeable":
+> > > > > 
+> > > > > -------------------
+> > > > >  aux-voltage-chargeable:
+> > > > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > > > >     enum: [0, 1]
+> > > > >     description: |
+> > > > >       Tells whether the battery/supercap of the RTC (if any) is
+> > > > >       chargeable or not:
+> > > > >       0: not chargeable
+> > > > >       1: chargeable
+> > > > > -------------------
+> > > > > 
+> > > > > I agree with you that a boolean would be more appropriate. Should I
+> > > > > also submit a (separate) patch to fix the "aux-voltage-chargeable"
+> > > > > property to a boolean?
+> > > > > 
+> > > > 
+> > > > No, this is an enum on purpose.
+> > > > I will not take battery switch over related properties, this is not
+> > > > hardware description but software configuration. There is an ioctl for
+> > > > this.
+> > > 
+> > > Hi Alexandre,
+> > > can you suggest then how we can set default PWRMNG values for the
+> > > PCF2131 then?
+> > > 
+> > > I looked at Documentation/ABI/testing/rtc-cdev but couldn't find an
+> > > ioctl to activate the battery switch over function, nor one to activate
+> > > the battery-low detection...
+> > 
+> > Ping...
+> 
+> Second ping...
+> 
+> Hugo.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next linus/master v6.6-rc5 next-20231011]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Third ping...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mrinmay-Sarkar/dt-bindings-PCI-qcom-ep-Add-support-for-SA8775P-SoC/20231011-192329
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/1697023109-23671-4-git-send-email-quic_msarkar%40quicinc.com
-patch subject: [PATCH v2 3/4] PCI: epf-mhi: Add support for SA8775P
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20231011/202310112157.VcDgcECw-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231011/202310112157.VcDgcECw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310112157.VcDgcECw-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/pci/endpoint/functions/pci-epf-mhi.c:126:23: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     126 |         .epf_header = &sa8775p_header,
-         |                       ^
+Hugo.
 
 
-vim +/const +126 drivers/pci/endpoint/functions/pci-epf-mhi.c
-
-   123	
-   124	static const struct pci_epf_mhi_ep_info sa8775p_info = {
-   125		.config = &mhi_v1_config,
- > 126		.epf_header = &sa8775p_header,
-   127		.bar_num = BAR_0,
-   128		.epf_flags = PCI_BASE_ADDRESS_MEM_TYPE_32,
-   129		.msi_count = 32,
-   130		.mru = 0x8000,
-   131	};
-   132	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> 
+> > > Thank you,
+> > > Hugo.
+> > > 
+> > > 
+> > > > 
+> > > > > Hugo.
+> > > > > 
+> > > > > 
+> > > > > > Thanks,
+> > > > > > Conor.
+> > > > > > 
+> > > > > > > +
+> > > > > > >    quartz-load-femtofarads:
+> > > > > > >      description:
+> > > > > > >        The capacitive load of the quartz(x-tal), expressed in femto
+> > > > > > > -- 
+> > > > > > > 2.30.2
+> > > > > > > 
+> > > > 
+> > > > -- 
+> > > > Alexandre Belloni, co-owner and COO, Bootlin
+> > > > Embedded Linux and Kernel engineering
+> > > > https://bootlin.com
+> > 
 
