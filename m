@@ -1,160 +1,190 @@
-Return-Path: <devicetree+bounces-7716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDA77C5262
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:45:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A637C526D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C92D61C20C57
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:45:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9F6F282139
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A7E1EA64;
-	Wed, 11 Oct 2023 11:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40F11EA6F;
+	Wed, 11 Oct 2023 11:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aI04VlEE"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="eTsC+k3N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A78B15481
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:45:45 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13FC8F;
-	Wed, 11 Oct 2023 04:45:42 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5046bf37daeso8819051e87.1;
-        Wed, 11 Oct 2023 04:45:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697024741; x=1697629541; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RNeBmhkMd48MHynaoqC7PRDCkcniAcL1N1Iilx40N2M=;
-        b=aI04VlEE+0B8rugPCofaKWoSc7eUevxRiKI2jzmTY/XzvGGE9YjsE/lG5CNCNSnBlF
-         YfE04gqP8ijECBmfFzE5PHcAmf1mnoHret8AnIummR8G0myJY4vEgE4vCn51HyLDLPfo
-         oWoArl0F7fTBhbD1ZAf+L3RJ/2kcLlL1wSoDLMpnRBQFpRrwQ9fWmYzZVZMHg40zB9Zm
-         hVcE1DX0+jM+HiBgIduR4NfHSREZWZ8Ibpq3Lc+FJi83hgZ2yMW/9ddAmwzSuV1L15gG
-         DR8t47WrvKn3+MANT4bj5cIgtBlu5ouQdvle1fwIs3A6pyUZFTo3+2HXYPRVgt8hqKWx
-         gJBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697024741; x=1697629541;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RNeBmhkMd48MHynaoqC7PRDCkcniAcL1N1Iilx40N2M=;
-        b=T41ZUDpfo/3fzvsw3gTIjwMEQnTleMDndVaD80Wc1EawyyIZ1bRTUgzHsJSyExajlY
-         U8szLUm/G45nuRmO3AC+xgUbE8lZBPv6lGMw+Ysy0aC6b2bLnL3J+u6L2hclokCgFyHN
-         0szyELPS/nidFDz3d79bXjUeZyDg/Yi5wKUR1Fuh0LOIU03eTmsysbkVmLtqgiO/t+uT
-         aPcexHairkJGFn3nbQ1Iy5oFjCR2cRYBOYOzjgyWPgX0NOV22SQlGPJhlGlNdEO34rvO
-         hjRLpEyxkIPjmoQJhMRpVOcMxqukqc6FWGcG4aa39s308dMAYkQO7nbQPj8vb+mjkzzN
-         dDIA==
-X-Gm-Message-State: AOJu0YzmM39aeFa7YwnKtRnkUKy2yuvi2u2jtB8MKvb/6Cb6bwESuCe/
-	LnH0aQf0noziTPaHgb5l3IM=
-X-Google-Smtp-Source: AGHT+IHcZyJQ1BwYvbpjnjX3CDDrNLGCshiQ05ZPXZPM9SIGBuOnCgCFwuVwUqqtE8OZS66an5zxpQ==
-X-Received: by 2002:ac2:4c46:0:b0:500:b56d:e11a with SMTP id o6-20020ac24c46000000b00500b56de11amr19873959lfk.43.1697024740738;
-        Wed, 11 Oct 2023 04:45:40 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id f18-20020ac24e52000000b00502d9af34aesm2245325lfr.120.2023.10.11.04.45.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 04:45:40 -0700 (PDT)
-Date: Wed, 11 Oct 2023 14:45:37 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, mani@kernel.org, 
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
- unnecessary memory assignment
-Message-ID: <abf65z7xxsnd7adkg523mneccudwenvdzcw7jpblafqzvhca5n@lbpsch7ztxsn>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
- <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAB81097B
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:48:35 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2062.outbound.protection.outlook.com [40.107.105.62])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788A093;
+	Wed, 11 Oct 2023 04:48:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uc/ZM1LZ+L0kNoWL8gt9a1IIvkuGz58re6GNqeMbajwupGe0Zuy8yseMsfl/gA1eL0yHh+Ov+5FKES0U71JyRCUpZMBo9/HmnDnZGjKuqTJ92fOUWpUbOgBhh+Nv1Jq5T1IB8G3Whzlu1fZhNN6LRlmH9mGPwHIh9Aodh5J/SIf71AiKkoGtEnENbe4yi6UC1swp+cPKw41L4qElZYO1/sKhZdD+1uvtCEUrrC2Eeyi3uJpbqiTh8sgJ1PFnXXSxo0Xv21WhV8nJuji64opaUiNrvvxakqBWW2XS4/H6+3nRXleFSIFtS1UR9U9wEIvsZiuvM3AOtKEbH+ZjNfR8vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lZ6K9XQpKYme/J4N/MNWVaFAPGeXREktm84uM0KX4yk=;
+ b=d4J++M7S9l0e/2bdqeUThuQP50cPJf/0N+3nKftBsNLdjH/9HEFfMAQ7ApoYBam2cvacqeqxokw3DouTe6P4anL9zAHnvacOnhe0AefRykMZKD8Eky2w4zlXEyD3n7IosHIlY/v3uqh8e2AIMCsZ4u0Q/mF2SHCH6UE4yAlW/n3VuGq1LC1Jb9CH0oBW5LEpGJaLOuoISIIno1D2EXUxa3A2TarrUz6FKQlOCDmVRldCxS84YG0prshyNggeBHDGFToCkkA8SCdRuwKozaLGMaExaPaLr07oaURPraEFn8v8Cak6rzmvSGrXJN5ajrHZ/RjjyLDc7NiO95OumI21ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lZ6K9XQpKYme/J4N/MNWVaFAPGeXREktm84uM0KX4yk=;
+ b=eTsC+k3NvYo5wh3edGqFWzjix+HxJKUSY7cO9lau9KRlf7ZwWsSf5CymCDLY1kN5CSTbh0pwgIBTXH9CEUg2KPReOfzzu9BAbhlIr8TLI5AfTwdxJqBN8M+Ijqm64vgsiVsOC5BTTfwgBM5gNM/cx4RVSReNyCcURAyMSZfVRO4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by DB9PR04MB8300.eurprd04.prod.outlook.com (2603:10a6:10:243::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Wed, 11 Oct
+ 2023 11:48:30 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6863.032; Wed, 11 Oct 2023
+ 11:48:29 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List DAPM endpoints ignoring system suspend
+Date: Wed, 11 Oct 2023 19:47:58 +0800
+Message-Id: <20231011114759.1073757-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0025.apcprd02.prod.outlook.com
+ (2603:1096:4:195::21) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|DB9PR04MB8300:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ffddb9b-51b6-41e3-5655-08dbca4ffcdf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	TGi6RzXPOZw9VEdzJk+SWTjRBBck2zK8PGBN1NDlkoHXEddj8/NTgdjYPGGtn65hW6CvyC94NtTOA/C5Y8IkQVfP6fdBjTwWQPu4B8o47t+ibV8vdgMoYbrhQ7zOiZ8xC4qeYuDMYqd0M1S/gAfbxkhU6zuWYdnGFAkRMj9OR57+Cory31p9EMO7pUnZH5rlF/Y/Glcz+G1sVlrbrUrYsLjKaYippzo2hBPt/6//HEHwJ8k9CKt/K6V1fjM9n2pocRE0eKjDDX390yiBsTwxLnIQVLcHlLEbWLc6lYoTrUj2VgLCnY/KTIW35LWvU9H80YLq+pH+T+iWkr9nm5aCRqd+rSbzgZoU+41rW1xsYVnDj7td9z8YpJv9tpN9Lbg0ID3yGKLmC+26ndBh3FDnKeAuGN7XMBfCk30N9OxSxYNhZsvzSXO2ROSB+K2Rc5Rd7NdEwXJS6EbUjm1rWWIg7gwllXWc4HC0SbhIVIFGMZg7qms/nkWd28EIg91jLeLTrWjr1F3xpMUoZTkpJsCHxdLL2SJJqr1n1LhHHDUvL0ND77YpCwQXo09f4qtGNfQSF01U6xvcbUyiB5haKUOCNsM7N7x+3dfsM6fS8FIiqjvqHFIQ4c8VeV5oYjlf0GUMYAmDJPHM+3b5BIPSSqIJ6w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(6506007)(6512007)(52116002)(1076003)(478600001)(921005)(44832011)(6486002)(6666004)(2616005)(26005)(15650500001)(83380400001)(7416002)(2906002)(5660300002)(66556008)(66946007)(66476007)(8936002)(8676002)(4326008)(316002)(41300700001)(36756003)(86362001)(38100700002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?DtLkls71WtuLmKETLOiFqazqYpyK97YHzAcvKFLUluTXbZsiW9lvgn9M7ItZ?=
+ =?us-ascii?Q?JqWJNjWA+aMAhjthmZwFD0j3ucpNATvkPSivjiW8v/Dw3xHAU6tsdD6ovf1q?=
+ =?us-ascii?Q?8U+qkkLRanOuHydtU2u19G++Y02ZW9Ae+qj/wnTxtpK2g5bVK0vZKqf0KJS9?=
+ =?us-ascii?Q?gh+NpFeLI76ATBO6bHEVsyX8tbu6HUkwU4I5f8haBEDRnF+JVPfWagYffhiV?=
+ =?us-ascii?Q?E3GqgDYpISgzWx6WY9f2dBzLgJsaZ0d4tKjnd8BXxgIAOeUEsm76sNtoYNSc?=
+ =?us-ascii?Q?of/2MceJIEjZV7nyo7VlT4DdT6mGVSEmk/2KeTbjISIV/NIAsmeqrI8Pbkvl?=
+ =?us-ascii?Q?8d31GYj4xSHDKCTL1EvQR+f9bBWqZTsjArgg7j2Bu5c2/9awbGlayNQvplhK?=
+ =?us-ascii?Q?zwmLPvEOGOcsiegLpUXDGhSnXLg2B/O2zZ8HTMAkQxIPrwhGk1CqHwJ70psW?=
+ =?us-ascii?Q?caC3sa/aeuBDTqHG+XJ21mTSAexEg5yvOsLicUJXmkn/iUZxBMBeZb/hxOyE?=
+ =?us-ascii?Q?9KzLibwM228D0DnqEhNU1tWggWUlncDUKlGgRrFqBguzerTswoLrGEeosgev?=
+ =?us-ascii?Q?AH96ADakltVhA5nBAUFiK0Vt5VJ4gdwugZmFYN21yPM+msJUd1bhG3Wd4jwE?=
+ =?us-ascii?Q?X015nIoAeHo+Hwvrewv5olT930WrhyPPQQNht0ozaFaaGUUMsnVpUQebJTLR?=
+ =?us-ascii?Q?v3FTavG+qdKfna/HYeWO2mFEs2YXWcoSBzXmcEIkc4l7TFpY1ArQKj8zpMvu?=
+ =?us-ascii?Q?vKBTb4F3qBHKyDg+kmZN5n1N229HvZ7nMw0mRhK07uDhN48wLzWC3tqL5OOk?=
+ =?us-ascii?Q?HYANSczy/PthtdkpWW1T32k8Z1SvRxUWlGBSzdnV5WcHZszjzJ8rLgj4weX2?=
+ =?us-ascii?Q?zzvcDtu5+7/WUY9w0ui3Fw5Lqrc8RKFF4tJ3IyrHlLWinoz4IQSK3cpoAZAT?=
+ =?us-ascii?Q?aX2eyDmj6kHFIHIUhYT0v4UID8zfwLeU4FdkhutSUcWhtrjThKT74s0FbPnF?=
+ =?us-ascii?Q?CbrutA4C71BV2HoyV17gbIZwsvNSn6QqpScAooR5ux0J4R4dX9NgZwXe9u8h?=
+ =?us-ascii?Q?qzAfULaHbOnIUVRWs05MO0cPeUEe01Hu5jwKV29O9QFE5Wkr18iGXt3ku+Jf?=
+ =?us-ascii?Q?e+uk4FS9YO7Kch2WKkIlF8yyYqZcbB9UY1JEdZP/4K5uqGN0LiV4cd0j9ta7?=
+ =?us-ascii?Q?n6xuXGyDPoofh/YusiywJWrjIFmdFEZl1G4ZjIA2ksJErc8sEInqwkx+5WoM?=
+ =?us-ascii?Q?qa++FMZZX77dNz+ARFXgPnlRwMe6JU5PQvaenpeJTyjN1GjbclwxUh6ACa4d?=
+ =?us-ascii?Q?PVl5yYppHUc4MoKUpoo2cM7pVNGt7zm92zqdy/fr+pCr3cucgpy+VwWoHLoo?=
+ =?us-ascii?Q?c8yJUqSd/w+ERQxVx+S+BBUxe/AbgqPkt1KhR61eiie7BCS+U8p5CIli8N4I?=
+ =?us-ascii?Q?lPULRDMEdYx12eh5OBbojQREJ+vW1YraxSJbNYNLz1ewl+z+KeSEI+wBALjL?=
+ =?us-ascii?Q?sEeX++TlfiNsUoyOVbJaZuuYlSCA9e4DD1/tpA1iMQHE029iCjbSRpFBbOnb?=
+ =?us-ascii?Q?T4HdiIGKGuomji1cYJbiwko/zZmSyCU0nryItOFS?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ffddb9b-51b6-41e3-5655-08dbca4ffcdf
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 11:48:29.9277
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XbDuxK2PEd1skTdJpWKOMP9VKlZfuTH7YjXDIeD0CmbI9C1eiswAWOyg8LY/Pkt/gV8eBBJ3VLuwaTUvIK/2yg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8300
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023 at 04:14:15PM +0900, Yoshihiro Shimoda wrote:
-> According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> Rev.5.20a, we should disable two BARs to avoid unnecessary memory
-> assignment during device enumeration. Otherwise, Renesas R-Car Gen4
-> PCIe controllers cannot work correctly in host mode.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index a7170fd0e847..56cc7ff6d508 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -737,6 +737,14 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  	u32 val, ctrl, num_ctrls;
->  	int ret;
->  
-> +	/*
-> +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> +	 * Rev.5.20a,
+Add a property to list DAPM endpoints which mark paths between these
+endpoints should not be disabled when system enters in suspend state.
 
-and 3.5.6.1 "RC mode" in DWC PCIe RC databook v5.20a.
+LPA means low power audio case. For example on asymmetric
+multiprocessor, there are Cortex-A core and Cortex-M core, Linux is
+running on Cortex-A core, RTOS or other OS is running on Cortex-M core.
+The audio hardware devices can be controlled by Cortex-M. LPA can be
+explained as a mechanism that Cortex-A allocates a large buffer and
+fill audio data, then Cortex-A can enter into suspend for the purpose
+of power saving. Cortex-M continues to play the sound during suspend
+phase of Cortex-A. LPA requires some audio paths still enabled when
+Cortex-A enters into suspend.
 
-> +      ... we should disable two BARs to avoid unnecessary memory
-> +	 * assignment during device enumeration.
-> +	 */
-> +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_0, 0x0);
-> +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_1, 0x0);
-> +
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ .../bindings/sound/sound-card-common.yaml          | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-What's the point in doing this
-	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0x00000004);
-	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_1, 0x00000000);
-        ...
-        dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
-afterward?
+diff --git a/Documentation/devicetree/bindings/sound/sound-card-common.yaml b/Documentation/devicetree/bindings/sound/sound-card-common.yaml
+index 3a941177f684..f43147c78651 100644
+--- a/Documentation/devicetree/bindings/sound/sound-card-common.yaml
++++ b/Documentation/devicetree/bindings/sound/sound-card-common.yaml
+@@ -17,6 +17,20 @@ properties:
+       pair of strings, the first being the connection's sink, the second
+       being the connection's source.
+ 
++  lpa-widgets:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      A list of DAPM endpoints which mark paths between these endpoints should
++      not be disabled when system enters in suspend state. LPA means low power
++      audio case. For example on asymmetric multiprocessor, there are Cortex-A
++      core and Cortex-M core, Linux is running on Cortex-A core, RTOS or other
++      OS is running on Cortex-M core. The audio hardware devices can be
++      controlled by Cortex-M. LPA can be explained as a mechanism that Cortex-A
++      allocates a large buffer and fill audio data, then Cortex-A can enter
++      into suspend for the purpose of power saving. Cortex-M continues to play
++      the sound during suspend phase of Cortex-A. LPA requires some audio paths
++      still enabled when Cortex-A enters into suspend.
++
+   model:
+     $ref: /schemas/types.yaml#/definitions/string
+     description: User specified audio sound card name
+-- 
+2.25.1
 
-I guess if the BARs are disabled there is no need in having them
-touched. Am I wrong?
-
-BTW I failed to understand why the BARs inits was originally needed:
-first merging the BAR0 and BAR1 into a single 64-bit BAR, then
-switching it back to two 32-bit BARs. Moreover here is what prior DW
-PCIe RC v5.x databooks say about the BARs:
-
-"3.5.6 BAR Details
-Base Address Registers (Offset: 0x10-x14)
-The Synopsys core does not implement the optional BARs for the RC
-product. This is based on the assumption that the RC host probably has
-registers on some other internal bus and has knowledge and setup
-access to these registers already."
-
-I am not sure I fully understand what it means, but it seems as DW
-PCIe cores didn't have anything behind the RC BARs even back then. So
-it seems to me that the BARs manipulation was the Exinos PCIe host
-specific, from which driver they are originating - commit 340cba6092c2
-("pci: Add PCIe driver for Samsung Exynos").
-
-* BTW Yoshihiro, I am sorry to see your patchset is still under review...(
-
--Serge(y)
-
->  	/*
->  	 * Enable DBI read-only registers for writing/updating configuration.
->  	 * Write permission gets disabled towards the end of this function.
-> -- 
-> 2.25.1
-> 
 
