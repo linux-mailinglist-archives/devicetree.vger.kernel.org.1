@@ -1,172 +1,125 @@
-Return-Path: <devicetree+bounces-7685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DB57C5182
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:19:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B267C51B1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 587761C20BAC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:19:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC1A282215
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EAD1DDFB;
-	Wed, 11 Oct 2023 11:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB7E1E502;
+	Wed, 11 Oct 2023 11:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jpKYDuvs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AMPXccAO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17021DDF1
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:19:16 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F33594;
-	Wed, 11 Oct 2023 04:19:15 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B8Xa0e004047;
-	Wed, 11 Oct 2023 11:18:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=nRyixbRMy/pqDX+0KMIbtD9m8Jzt5K5DBOTwDP9RhRQ=;
- b=jpKYDuvsCz/4km0qkiA/U57oZZGaVhbuqSmurDtO00lFQpDOXt0eaGPIr6ibQnQwMmAA
- mjCZUtm584qTrU17TIRrtu45kQ1AmxSpfLokL70msocnh2vJLam9p5PzCt3O9iK8XJyh
- 6sMkksAtnKLi5PNTiKnytJ78KqIBETnIBc8Jc44meJvL1EeZ3K5FXNjhkAyN1TvS/S1A
- /JnQ44NOZKb0ujtXy9tTKi3tjGm/no1oqTXFZ+mwwsrKEf0mSgKPLcFjscWsRkA7YMOd
- V7BFgz2HK+MUkBq8OAHsBmbXdcZKFGJzAufckK1+ZLJgtVk0rhluBasbCMhLDjM6xo3l 3Q== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tn3s1awjb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 11:18:49 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39BBIkZA011282;
-	Wed, 11 Oct 2023 11:18:46 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3tk0dkmaxr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 11 Oct 2023 11:18:46 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39BBIjju011276;
-	Wed, 11 Oct 2023 11:18:45 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 39BBIjJA011271;
-	Wed, 11 Oct 2023 11:18:45 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id 910A6D83; Wed, 11 Oct 2023 16:48:44 +0530 (+0530)
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
-        quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
-        Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-        linux-phy@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sa8775p: Add ep pcie0 controller node
-Date: Wed, 11 Oct 2023 16:48:29 +0530
-Message-Id: <1697023109-23671-5-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1697023109-23671-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1697023109-23671-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: XvdSTA4mbZMkZRyWxiqob6pl2llgrPQE
-X-Proofpoint-GUID: XvdSTA4mbZMkZRyWxiqob6pl2llgrPQE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-11_09,2023-10-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 bulkscore=0 spamscore=0 impostorscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310110099
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D87AF1E51E
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:19:51 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88AED136
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:19:39 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50306b2920dso1018143e87.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 04:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697023177; x=1697627977; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SEU5TbVguFH93i9AbJAYWdP6I1h/HvxxydF4GjbEquU=;
+        b=AMPXccAO18o2+1WNmqDBTjAy0ySIZzoXmny2b04eL2Fj18/A9Cqs3Po8DHuAshjPLh
+         Irf3o0nZx32FD+g/KdH4GCiYst9S+QWpy058pAya9AA2OPS2WpHYprRZJPTrmHAL2gM8
+         Po8OPC0iwrSkZLNwnBOgLvxBD6CUM/C2kb8jGRfWg6TBBlWzGMZZqxqhCRnaNOlc5DCn
+         M9r/34dEvDhArMGZlJZIE982+VsTue2TwqTloq0L43NvvuIXxaALwZMVNbuHJW/j96U2
+         81J7n+2ABdlYe9GhHDVDbOCFMyeXzeaYfGomrCzYxGvnrr2VLE8ewelwwj/FZtzKmhBS
+         eg7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697023177; x=1697627977;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SEU5TbVguFH93i9AbJAYWdP6I1h/HvxxydF4GjbEquU=;
+        b=V1/zfcqJfw7sO5kElZMCwq9OXuFzB15T7/7tF0vtc2Jy0bQUbh4jDga9jgaX3/D96K
+         zAJoZu+xTOy7tZpynCzKUkvgf/SZR2DlTNq1Ki514+o01w9OxkjXf7jkt2/l/XVGRDVz
+         WohePMYbQI8TcjPSxCEEDNi8FJIhdArizNLLyp3KPWp4HxCwkgrMkH424JRRV5F86uJc
+         00QmWDFSy0D7mE3znXDI1qTucx9X/G81VpAsg7fNsMfl8+NywFBPnCeezr+1NJ7jvbhh
+         1OWYqbYZw989X8j3vwxfEiGsInhuiKWs3lUQxtkcdBkaXN0v+5ls9aE/grIEx5hL4S83
+         3+yQ==
+X-Gm-Message-State: AOJu0YwwAgCmlDmYtEVt8jHMiP9gKvRoK44W5GHLgll6VBezxvDynYZu
+	RRun0sjoIv40VaVOfJOLehdd8w==
+X-Google-Smtp-Source: AGHT+IE3m6pdd/+/IPVcy0g8ykI0dZoyK/2b7Xi55/kspO/SFrB8ww/g1xkU8wH5zwNf/zhyHnuauA==
+X-Received: by 2002:a05:6512:745:b0:4fb:7d09:ec75 with SMTP id c5-20020a056512074500b004fb7d09ec75mr12249372lfs.4.1697023177131;
+        Wed, 11 Oct 2023 04:19:37 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id x15-20020ac25dcf000000b0050451e663f1sm2213511lfq.28.2023.10.11.04.19.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 04:19:36 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pad sa8155p-adp DTB file
+Date: Wed, 11 Oct 2023 14:19:36 +0300
+Message-Id: <20231011111936.165581-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
-it supports x2 link width.
+On sa8155p-adp platfor the bootloader (ABL) fails to reserve enough
+memory for updating the DTB:
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cmdline:  console=tty0 console=ttyMSM0,115200n8 androidboot.verifiedbootstate
+Error adding node
+Error carving out UEFI memory: FFFFFFFF
+
+Adding `--pad 1024' to DTC_FLAGS for this board fixes the issue by
+providing enough empty space for node creation.
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 48 +++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index b6a93b1..485f626 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -2608,4 +2608,52 @@
- 
- 		status = "disabled";
- 	};
+This replaces my previous attempt, which added DTC_FLAGS globally ([1]),
+which was rejected.
+
+[1] https://lore.kernel.org/linux-arm-msm/20231009172717.2695854-1-dmitry.baryshkov@linaro.org/
+
+---
+ arch/arm64/boot/dts/qcom/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index d6cb840b7050..606ca0d97cc2 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -96,6 +96,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5-vision-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qru1000-idp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
 +
-+	pcie0_ep: pcie-ep@1c00000 {
-+		compatible = "qcom,sa8775p-pcie-ep", "qcom,sdx55-pcie-ep";
-+		reg = <0x0 0x01c00000 0x0 0x3000>,
-+		      <0x0 0x40000000 0x0 0xf20>,
-+		      <0x0 0x40000f20 0x0 0xa8>,
-+		      <0x0 0x40001000 0x0 0x4000>,
-+		      <0x0 0x40200000 0x0 0x100000>,
-+		      <0x0 0x01c03000 0x0 0x1000>,
-+		      <0x0 0x40005000 0x0 0x2000>;
-+		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-+			    "mmio", "dma";
++DTC_FLAGS_sa8155p-adp := --pad 1024
 +
-+		clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-+			<&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-+			<&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-+			<&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-+			<&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
-+
-+		clock-names = "aux",
-+			      "cfg",
-+			      "bus_master",
-+			      "bus_slave",
-+			      "slave_q2a";
-+
-+		interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		interrupt-names = "global", "doorbell", "dma";
-+
-+		interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-+				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
-+		interconnect-names = "pcie-mem", "cpu-pcie";
-+
-+		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
-+			    <0x100 &pcie_smmu 0x0001 0x1>;
-+
-+		resets = <&gcc GCC_PCIE_0_BCR>;
-+		reset-names = "core";
-+		power-domains = <&gcc PCIE_0_GDSC>;
-+		phys = <&pcie0_phy>;
-+		phy-names = "pciephy";
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+
-+		status = "disabled";
-+	};
- };
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride.dtb
 -- 
-2.7.4
+2.39.2
 
 
