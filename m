@@ -1,122 +1,173 @@
-Return-Path: <devicetree+bounces-7646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E567C50AF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0ED17C50B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:01:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1C9A28223B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:59:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ADED2821B4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743E0199A9;
-	Wed, 11 Oct 2023 10:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841AA199A9;
+	Wed, 11 Oct 2023 11:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OeIQh85t"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="NtAEihIK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456531798E
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:59:05 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE3A92;
-	Wed, 11 Oct 2023 03:59:04 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 66B07FF80A;
-	Wed, 11 Oct 2023 10:59:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697021943;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4783C10A34
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:01:33 +0000 (UTC)
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B19B94;
+	Wed, 11 Oct 2023 04:01:32 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (185-9-11-240.cust.suomicom.net [185.9.11.240])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4S58w70C2dz49Pwn;
+	Wed, 11 Oct 2023 14:01:24 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1697022089;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=NgoGY8ul0lSIdXFoxr+/I0RYC9e4Hx1h3Y0uNGEGlrU=;
-	b=OeIQh85t+T0KKgIbElD8x57btZYA7ztF4sNusvphfF19MQzs9moZpFj6lNBVF29Ext5FmO
-	3No3s6AwC51TU9yeP6Svoi3KgE5qeZ/pvajCRyHUns3cHo+Erol7iGkKiCWau/pRBYPI7o
-	NpVql/WHDm3Q5UK7guhJwdghkC3k+4QisqDz+6nBO9i3k8ljYoryE2G5q/XivrNBZ3qOFF
-	+6skM/G2BtnhtOsmtngqovmp4PsdvWASrMD9SiWx0UUkHTopVneVnMq/4jqYct9mCoqOza
-	96vgxGMre3hQeMhmQcEIeuEs1abh3xAznpI0xs/Va0OeezAIkSUuXNNwAUumUA==
-Date: Wed, 11 Oct 2023 12:58:59 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 5/7] nvmem: core: Rework layouts to become regular
- devices
-Message-ID: <20231011125859.1647c08c@xps-13>
-In-Reply-To: <04112100-026c-b010-6e8c-730049d43e47@linaro.org>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
-	<20231005155907.2701706-6-miquel.raynal@bootlin.com>
-	<dc96ddb1-502c-e643-7749-d057d1fc6490@linaro.org>
-	<20231011093843.49831a75@xps-13>
-	<04112100-026c-b010-6e8c-730049d43e47@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	bh=//xw1oKncXx8ruRws2n7MrScj5Aevzl+XjGbNm2925Q=;
+	b=NtAEihIKHoUL8qFZa7TrWhLIUZzrkAYMwOdCri29SqMZWQvl+X8pua6n6HyvBR8n6aHlRY
+	PvLa8KpOSfNKuGGmnc9Dlbbj2Z3UqdkcY72kWciyXBtGZWY3Jlv9xsJAjVdDyxJlCEBPTt
+	62LxgkZ176NFt+P6NzgQVY8+IzpuuU3xmpte/yBa+O/Bng0jXxfdWtqj5+orgjOSyPPL31
+	513xZzXo+qEs6wyri3I0TJPvueu1+s+2kZxC9NmO/lAGlsjCvwHxFh+ZvGjTXSJIZQihcD
+	3sCnZU3QMiWX0azHBlDI0scAZfoU4en/7wuwBFvektF2hG1p1L6XMeklUiugGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1697022089;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=//xw1oKncXx8ruRws2n7MrScj5Aevzl+XjGbNm2925Q=;
+	b=MxTG+Jjbt+pMFRlblr4TyXXbi0zleo6fmwJuwzFW/QlKbwG98fcpwdc26U5D4yP1y0FdlW
+	vZpEjuKnGjEd2ZQXlIhU/Qp8aDZeAvRFqwjHs/se4FRdk0cpfJwCOqT1aR/RFBLy5gsPkl
+	WQ2Fx1nbbKcz49yjcvXGaudHIHMrtG3ngQen2zcUB/mxfVhbllyYzEu74lttpsze87Qeiy
+	T3Fi2Yz4aTiAXS6AsRX9mH0LeSNDzyjscC+rkjueKjYS8xij94fumaTP1FGB2+V+S0sVoE
+	WT0uLqEU5yl7ZghdD7hPVfuLRUHNidN4wmt6J0HZ7s8TsQBmkYs0bKDMx/JFWg==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1697022089; a=rsa-sha256;
+	cv=none;
+	b=hDtJ3DvjeklP1GRFzEcKO0SuH35K/RuRR4iBGryQ22RjsIevgVdAXrpTLIlHCNg1My2l/d
+	r16zEGuCme1HLpL6vAWO6OLRE+JkfZ61cJkUfjmegw3xA7EdJdOfDMhZN9jWIIZZ7ehBPh
+	tDWIYe+Oxa1FImGL7ti/htYEi5C/fd7h9s746v33WkXJDitCLn3BrT5LHR9FE+s8dqVFcf
+	NhSwuL0i8YRbRw6dy/J0O2UMWlZ/Ys9fSiRNF59B12zKgnZ/PbzOrhWIEEcoyZ+rCyniWD
+	OZuyzoJ+4w/wnkH81OVRdofxO05TERiJDL16lfdiOEj23JRg2sWyAQ0OaCb/uA==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 013E3634CA9;
+	Wed, 11 Oct 2023 14:01:23 +0300 (EEST)
+Date: Wed, 11 Oct 2023 11:01:23 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, moderated list: 
+	ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>;
+Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply
+ bindings
+Message-ID: <ZSaAg8aSZAfxEDpM@valkosipuli.retiisi.eu>
+References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
+ <20231010005126.3425444-2-kieran.bingham@ideasonboard.com>
+ <ZSTp4jXKPVrbo5oU@valkosipuli.retiisi.eu>
+ <169694430967.3973464.6599459439831458834@ping.linuxembedded.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169694430967.3973464.6599459439831458834@ping.linuxembedded.co.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Srinivas,
+Hi Kieran,
 
-> > you don't have access to your modules. And anyway it's probably a bad
-> > idea to allow endless probe deferrals on your main storage device.
-> >=20
-> > If the cells are not available at that time, it's not a huge deal? The
-> > consumers will have to wait a bit more (or take any other action, this
-> > is device dependent). =20
->=20
-> In this case the nvmem consumers will get an -ENOENT error, which is very=
- confusing TBH.
+On Tue, Oct 10, 2023 at 02:25:09PM +0100, Kieran Bingham wrote:
+> Hi Sakari,
+> 
+> Quoting Sakari Ailus (2023-10-10 07:06:26)
+> > Hi Kieran,
+> > 
+> > On Tue, Oct 10, 2023 at 01:51:22AM +0100, Kieran Bingham wrote:
+> > > Add the bindings for the supply references used on the IMX335.
+> > > 
+> > > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> > > ---
+> > >  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
+> > >  1 file changed, 16 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > > index a167dcdb3a32..1863b5608a5c 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > > @@ -32,6 +32,15 @@ properties:
+> > >      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+> > >      maxItems: 1
+> > >  
+> > > +  avdd-supply:
+> > > +    description: Analog power supply (2.9V)
+> > > +
+> > > +  ovdd-supply:
+> > > +    description: Interface power supply (1.8V)
+> > > +
+> > > +  dvdd-supply:
+> > > +    description: Digital power supply (1.2V)
+> > 
+> > I wonder what's the policy in this case --- some of the regulators are
+> > often hard-wired and the bindings didn't have them previously either (I
+> > wonder why, maybe they were all hard wired in the board??).
+> > 
+> > Could they be optional? The driver will need to be able to do without these
+> > in any case.
+> 
+> Indeed - many devices do not need to define how they are powered up.
+> 
+> But Krzysztof stated that supplies should be required by the bindings on
+> my recent posting for a VCM driver:
+> 
+>  - https://lore.kernel.org/all/6e163f4d-061d-3c20-4c2e-44c74d529f10@linaro.org/
+> 
+> So based on that I have made these 'required'.
 
-Maybe we can solve that situation like that (based on my current
-series):
+I guess it's good to align bindings regarding this, in practice the driver
+will need to work without regulators (or with dummies), too.
 
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -1448,7 +1448,10 @@ struct nvmem_cell *of_nvmem_cell_get(struct device_n=
-ode *np, const char *id)
-        of_node_put(cell_np);
-        if (!cell_entry) {
-                __nvmem_device_put(nvmem);
--               return ERR_PTR(-ENOENT);
-+               if (nvmem->layout)
-+                       return ERR_PTR(-EAGAIN);
-+               else
-+                       return ERR_PTR(-ENOENT);
-        }
-=20
-        cell =3D nvmem_create_cell(cell_entry, id, cell_index);
+> 
+> Even in my case here, with a camera module that is compatible with the
+> Raspberry Pi camera connector - there isn't really 3 supplies. It's just
+> a single gpio enable pin to bring this device up for me. Of course
+> that's specific to the module not the sensor.
 
+How do you declare that in DT? One of the regulators will be a GPIO one?
 
-So this way when a (DT) consumer requests a cell:
-- the cell is ready and it gets it
-- the cell is not ready and...
-   - the cell comes from a layout -> we return EAGAIN, which
-     means the cell is not yet ready and this must be retried later
-     (the caller may return EPROBE_DEFER in this case).
-   - the cell is simply missing/not existing/not available, this is a
-     real error.
+-- 
+Regards,
 
-What do you think?
-
-Thanks,
-Miqu=C3=A8l
+Sakari Ailus
 
