@@ -1,136 +1,183 @@
-Return-Path: <devicetree+bounces-7673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B2967C5140
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:12:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF1847C5147
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 13:14:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4C21C20C94
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:12:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77D60282251
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:13:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4EA41DDCB;
-	Wed, 11 Oct 2023 11:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106431DDCD;
+	Wed, 11 Oct 2023 11:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Uz0f/eNl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dR0j1NbG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7B01DDC1
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:12:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DF0A7;
-	Wed, 11 Oct 2023 04:12:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697022742; x=1728558742;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6X17CQk262SF6/jtSrC9+lvmvN3o4Ya/8mawpifctfY=;
-  b=Uz0f/eNlcyqTalTISzq3YeTdlPf7GgcjiitXhbHsV2uP4/hEZAvzGLY9
-   O6Jomj50TyQUyeiTFI9Kq/1nhelw2qrCsEtECHK1LO7E8UvwDw4AFm3Px
-   lebvcKMut+C/yZVt22FkwC6xTPvD+JuR6pDbnZayM/dKKdO2nHMpQ/T/5
-   Iu76zTZfEun+2DskjZnH51wbnJMmluW/SkCI8n/DI+YAi4B2Khfp+J38h
-   2EZyywyjLs6V8SWvFtPBpUHNYmIZr3BW2dEPhHnBARVDCNpup/K2Ur4Db
-   AJeoGWswd3RnxCo2PhIOIN0bsIgg+DA9IYPzMyZs94Iyv+rmKYOCGycE2
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="3224774"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
-   d="scan'208";a="3224774"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 04:12:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="730459248"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
-   d="scan'208";a="730459248"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 04:12:18 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 07C9011F835;
-	Wed, 11 Oct 2023 14:12:15 +0300 (EEST)
-Date: Wed, 11 Oct 2023 11:12:14 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	laurent.pinchart@ideasonboard.com, hverkuil@xs4all.nl
-Subject: Re: [PATCH 3/5] media: i2c: imx335: Implement get selection API
-Message-ID: <ZSaDDqrpX4LeoLqX@kekkonen.localdomain>
-References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com>
- <20231010005126.3425444-4-kieran.bingham@ideasonboard.com>
- <ZSTrse7OeKIA+k2t@valkosipuli.retiisi.eu>
- <169701831889.277971.6656559808677876108@ping.linuxembedded.co.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887171DDC1
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:13:56 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E407398;
+	Wed, 11 Oct 2023 04:13:54 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B6xaWu030377;
+	Wed, 11 Oct 2023 11:13:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=bocOC/J8T706Omr3rO0oeDwb+/U0rf0qFLdx0Lbsf/Q=;
+ b=dR0j1NbGAAnaOw0KK2/PTT1Tz3ewLMKOAorzCAW+OqfCVsB6v239oUwIWJP3SbwsWPjA
+ GtjiMqcaCxiFli+9hj19d+JJcY8690TL1tj2YD9dIBt3Bgl1bOsuHKrty+IYDRAbJYTJ
+ cqQUte+PfQT1s5/cRRP1BU1yweYaPlVwUbi3s7bWfL9RsGMKEvJldLq6E/Kk7lRRiW8e
+ jVCWAoFqzVQv0cWNgOVaV8VndxJvvABSih042f7/LeZXu5lfsXQp84y8a0wh6hjNWPO7
+ wN6YLwTIrXhKx0MqDPd8HplltotX5+pdfi+gdklXt5FtoWy8YIkULlJ0zWlAIWG6Twxi Ag== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tngtp9640-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 11:13:35 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BBDYtT009828
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 11:13:34 GMT
+Received: from [10.216.52.55] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
+ 2023 04:13:26 -0700
+Message-ID: <8effa7e5-a223-081b-75b8-7b94400d42e6@quicinc.com>
+Date: Wed, 11 Oct 2023 16:43:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169701831889.277971.6656559808677876108@ping.linuxembedded.co.uk>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: qcom-ep: Add support for SA8775P
+ SoC
+Content-Language: en-US
+To: Shazad Hussain <quic_shazhuss@quicinc.com>, Rob Herring <robh@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mani@kernel.org>,
+        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nayiluri@quicinc.com>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul
+	<vkoul@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
+        <linux-phy@lists.infradead.org>
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-2-git-send-email-quic_msarkar@quicinc.com>
+ <20230921183850.GA762694-robh@kernel.org>
+ <28bf111f-b965-4d38-884b-bc3a0b68a6cc@quicinc.com>
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+In-Reply-To: <28bf111f-b965-4d38-884b-bc3a0b68a6cc@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ee4rSoIx9q09WeCGTwZYxy1bEmgTmEkg
+X-Proofpoint-GUID: Ee4rSoIx9q09WeCGTwZYxy1bEmgTmEkg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-11_09,2023-10-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 mlxlogscore=852
+ priorityscore=1501 bulkscore=0 impostorscore=0 mlxscore=0 malwarescore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310110098
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Kieran,
 
-On Wed, Oct 11, 2023 at 10:58:38AM +0100, Kieran Bingham wrote:
-> Quoting Sakari Ailus (2023-10-10 07:14:09)
-> > Hi Kieran,
-> > 
-> > On Tue, Oct 10, 2023 at 01:51:24AM +0100, Kieran Bingham wrote:
-> > > Support reporting of the Sensor Native and Active pixel array areas
-> > > through the Selection API.
-> > > 
-> > > The implementation reports a single target crop only for the mode that
-> > > is presently exposed by the driver.
-> > > 
-> > > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > 
-> > Shouldn't you use the same callback for .set_selection? I guess this is
-> > somewhat grey area but doing so would be in line with how V4L2 API works in
-> > general.
-> 
-> Hrm ... I didn't think it was needed as it's not possible to /set/
-> anything.
+On 10/6/2023 4:24 PM, Shazad Hussain wrote:
+>
+>
+> On 9/22/2023 12:08 AM, Rob Herring wrote:
+>> On Wed, Sep 20, 2023 at 07:25:08PM +0530, Mrinmay Sarkar wrote:
+>>> Add devicetree bindings support for SA8775P SoC.
+>>> Define reg and interrupt per platform.
+>>>
+>>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>>> ---
+>>>   .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 130 
+>>> +++++++++++++++++----
+>>>   1 file changed, 108 insertions(+), 22 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml 
+>>> b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>>> index a223ce0..e860e8f 100644
+>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>>> @@ -13,6 +13,7 @@ properties:
+>>>     compatible:
+>>>       oneOf:
+>>>         - enum:
+>>> +          - qcom,sa8775p-pcie-ep
+>>>             - qcom,sdx55-pcie-ep
+>>>             - qcom,sm8450-pcie-ep
+>>>         - items:
+>>> @@ -20,29 +21,19 @@ properties:
+>>>             - const: qcom,sdx55-pcie-ep
+>>>       reg:
+>>> -    items:
+>>> -      - description: Qualcomm-specific PARF configuration registers
+>>> -      - description: DesignWare PCIe registers
+>>> -      - description: External local bus interface registers
+>>> -      - description: Address Translation Unit (ATU) registers
+>>> -      - description: Memory region used to map remote RC address space
+>>> -      - description: BAR memory region
+>>> +    minItems: 6
+>>> +    maxItems: 7
+>>>       reg-names:
+>>> -    items:
+>>> -      - const: parf
+>>> -      - const: dbi
+>>> -      - const: elbi
+>>> -      - const: atu
+>>> -      - const: addr_space
+>>> -      - const: mmio
+>>> +    minItems: 6
+>>> +    maxItems: 7
+>>
+>> Don't move these into if/then schemas. Then we are duplicating the
+>> names, and there is no reason to keep them aligned for new compatibles.
+>>
+>> Rob
+>
+> Hi Rob,
+> As we have one extra reg property (dma) required for sa8775p-pcie-ep,
+> isn't it expected to be moved in if/then as per number of regs
+> required. Anyways we would have duplication of some properties for new
+> compatibles where the member numbers differs for a property.
+>
+> Are you suggesting to add the extra reg property (dma) in the existing 
+> reg and reg-names list, and add minItems/maxItems for all compatibles 
+> present in this file ?
+>
+> -Shazad
 
-Similarly, VIDIOC_SUBDEV_S_FMT is available even if you can't change the
-format.
+Here we have defined reg and interrupt per platform as clocks is defined.
 
-> 
-> I expect to change this once I add support for setting crops later
-> though. It was going to be something I'd add when it is used.
-> 
-> Only the 'get_selection' call is necessary to make this camera operate
-> on both i.MX8MP and RPi5 platforms with libcamera, so that's what I've
-> done so far. My goal of this series was to bring the existing driver up
-> to a point that it can be used, before I start making new feature
-> additions.
+-Mrinmay
 
-I don't have concerns with that, just that we implement the IOCTLs
-consitently. This has been discussed before but AFAIR without any firm
-conclusions.
-
-Additionally, some targets are settable while some won't be, and it may
-well depend on the driver.
-
-v4l2-compliance appears to be happy with G_SELECTION without S_SELECTION
-though.
-
-Also cc Hans.
-
--- 
-Regards,
-
-Sakari Ailus
 
