@@ -1,89 +1,115 @@
-Return-Path: <devicetree+bounces-7795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A477C5879
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6647C5888
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 17:51:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5DEE28232C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:49:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93B79280F2E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 15:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D551A263;
-	Wed, 11 Oct 2023 15:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AB3208CF;
+	Wed, 11 Oct 2023 15:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="neKr/JAW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gNdfkI4l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5872510A
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50FCC433C7;
-	Wed, 11 Oct 2023 15:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C384919BDF
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 15:51:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C70CC433C9;
+	Wed, 11 Oct 2023 15:51:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697039378;
-	bh=+4vMMnbz6QM3xqt6SUWU/u/wTBq1TQ2bMWhWyVpP1ck=;
+	s=k20201202; t=1697039463;
+	bh=PLeMZ6vh0vntTHPjCPvZn2GE9xFVxH55OIhhSE0gOQo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=neKr/JAWpIGZ6cQ0odUAwAzsX3izewlUsu5qdv35VN0D0QoFSqseHZk/VhagElKQ7
-	 xO/Ep7SaCKgWM9l2v3e9586y8od72dvk7klu6xqQROrtbzceADDqAQZ9HU88O8eEo2
-	 A1tkawJa3OkYvdouGHXKnYtjiLqtobcRHjy3L+13H6maeJxrYjzpnWAWNutUG/BOFg
-	 K5vncX1Z4QhvXx3Rm9P3k7es1t7wWcZyDH3bM812FIHy1bi7WyNrx8MlmX+FYoSxF+
-	 GErynuIp6oa2BbpPsQdRkeeggaHiZHdJkCL7/U+mh/ld31fKEpSxLaOpxR/y7NvWsB
-	 YHcVjWyd/pqaQ==
-Received: (nullmailer pid 793454 invoked by uid 1000);
-	Wed, 11 Oct 2023 15:49:35 -0000
-Date: Wed, 11 Oct 2023 10:49:35 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>, Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v4 08/23] soc: qcom: Add driver for Qualcomm Krait L2
- cache scaling
-Message-ID: <20231011154935.GA785564-robh@kernel.org>
-References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
- <20230827115033.935089-9-dmitry.baryshkov@linaro.org>
+	b=gNdfkI4lqtBrXALkO59Dd7Z11c9h0pTr+6r9GJ/dG7tDVlTUtLIFaabZaBDneBzke
+	 TJhX+TYWpOW6VWMmhQKufhlGz0w00bwJxKVIeeaD7xTaZPBhFUVbsEeB9Y5OWhl/6u
+	 fCr9JCFdUpozUMvIB/ITI1YnbNYlxcIOS3+Awdk9poaHJDh2zrs3+wWsisvzfXiF8D
+	 qF9cJQfJXnzAyY/ee8Enla7pNQengb27m9cYh/eq3TTjvnUF74uVaX2H0solZBwpf6
+	 sgiNmOrplLelvbYlLeOV/ne4zc9plB5txwrirdFP4nb+dsbWodIE1QdIw5Sxlp+yMX
+	 3ZA+f/OkP8jow==
+Date: Wed, 11 Oct 2023 16:50:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 8/8] dt-bindings: display: Add SSD132x OLED controllers
+Message-ID: <20231011-dreamily-pristine-0335c0536fe2@spud>
+References: <20231009183522.543918-1-javierm@redhat.com>
+ <20231009183522.543918-9-javierm@redhat.com>
+ <20231010-headache-hazard-834a3338c473@spud>
+ <87y1g9sm4q.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+g2BciVZzlF4XWZi"
+Content-Disposition: inline
+In-Reply-To: <87y1g9sm4q.fsf@minerva.mail-host-address-is-not-set>
+
+
+--+g2BciVZzlF4XWZi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230827115033.935089-9-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 27, 2023 at 02:50:18PM +0300, Dmitry Baryshkov wrote:
-> Add a simple driver that handles scaling of L2 frequency and voltages.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+On Wed, Oct 11, 2023 at 08:34:29AM +0200, Javier Martinez Canillas wrote:
+> Conor Dooley <conor@kernel.org> writes:
+> >> +  # Only required for SPI
+> >> +  dc-gpios:
+> >> +    description:
+> >> +      GPIO connected to the controller's D/C# (Data/Command) pin,
+> >> +      that is needed for 4-wire SPI to tell the controller if the
+> >> +      data sent is for a command register or the display data RAM
+> >> +    maxItems: 1
+> >> +
+> >> +  solomon,height:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    description:
+> >> +      Height in pixel of the screen driven by the controller.
+> >> +      The default value is controller-dependent.
+> >
+> > You probably know better than me, operating in drm stuff, but are there
+> > really no generic properties for the weidth/height of a display?
+> >
+>=20
+> There are some common properties, such as the width-mm and height-mm for
+> the panel-common:
+>=20
+> Documentation/devicetree/bindings/display/panel/panel-common.yaml
+>=20
+> But those are to describe the physical area expressed in millimeters and
+> the Solomon drivers (the old ssd1307fb fbdev driver and the new ssd130x
+> DRM driver for backward compatibility with existing DTB) express the width
+> and height in pixels.
+>=20
+> That's why are Solomon controller specific properties "solomon,width" and
+> "solomon,height".
 
-[...]
+Okay. Thanks for the explanation.
 
-> +static const struct of_device_id krait_l2_match_table[] = {
-> +	{ .compatible = "qcom,krait-l2-cache" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, krait_l2_match_table);
-> +
-> +static struct platform_driver krait_l2_driver = {
-> +	.probe = krait_l2_probe,
-> +	.remove = krait_l2_remove,
-> +	.driver = {
-> +		.name = "qcom-krait-l2",
-> +		.of_match_table = krait_l2_match_table,
-> +		.sync_state = icc_sync_state,
-> +	},
-> +};
+--+g2BciVZzlF4XWZi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As I mentioned in the other thread, cache devices already have a struct 
-device. Specifically, they have a struct device (no subclass) on the 
-cpu_subsys bus type. So there should be no need for a platform device 
-and second struct device.
+-----BEGIN PGP SIGNATURE-----
 
-See drivers/acpi/processor_driver.c for an example. Or grep any use of 
-"cpu_subsys".
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSbEYgAKCRB4tDGHoIJi
+0vg+AP9qgrJ5Qf8QigHTgZvEvzxw6+z0B8m0yjL2xNjvKu/PHgEAn/HzxnfWWJOJ
+6njIlKh6cJNLTsd61CRJdjG0rB9cYgM=
+=cyVL
+-----END PGP SIGNATURE-----
 
-Rob
+--+g2BciVZzlF4XWZi--
 
