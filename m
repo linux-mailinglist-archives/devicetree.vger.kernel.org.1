@@ -1,75 +1,79 @@
-Return-Path: <devicetree+bounces-7612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E517C4DF0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:01:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D74A7C4E16
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C0191C20DB3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:01:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F3951C20B5D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214CA1A704;
-	Wed, 11 Oct 2023 09:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A7F19BA7;
+	Wed, 11 Oct 2023 09:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WBae53Su"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUSPYfck"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED2E1A706
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:01:18 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C588EFD;
-	Wed, 11 Oct 2023 02:01:15 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B7eRcw007655;
-	Wed, 11 Oct 2023 09:01:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=twDtchG+/R75fbDoRiyiuTcAio91V8MdtWGBxzqo184=;
- b=WBae53SuOVghA/+RdxEjb06Lt+n63qrj579Jezt4jB9qkW9otCSPgkzyyLSHPeBYcZN2
- J6Y8x7UixZmQStUszA7e5otFNhgRh6c1oKz6AQ7xIOfJqtuVnzyaCLRAeH4ZNPkoh+R+
- PLMGJjLCXtG4sLcC4ftaC4YQ1qfvXd7+OqZ8WxUrM5CVHyBN0HtSxww7AUVvu3rsESnk
- YAzgkI4R21AuiF8vMu0nsYYEJKJblrtF3ZCRcCA9bXN0el9hUdpAi94p85FmK0TOrgxB
- +5E5rlPiVYV5YLkJgj+LHJtQZzIDRFPIiG3rbsOhJvXK0Sc+A0nCs/r3eviZ83TXFKmw uA== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnqh1g5e4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 09:01:07 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39B916ix020759
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 09:01:06 GMT
-Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Wed, 11 Oct 2023 02:01:01 -0700
-From: Imran Shaik <quic_imrashai@quicinc.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Taniya Das <quic_tdas@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-Subject: [PATCH V2 4/4] arm64: dts: qcom: qdu1000: Add ECPRI clock controller
-Date: Wed, 11 Oct 2023 14:30:28 +0530
-Message-ID: <20231011090028.1706653-5-quic_imrashai@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E00D6106
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:05:17 +0000 (UTC)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E831F9C;
+	Wed, 11 Oct 2023 02:05:15 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c9b70b9656so11441385ad.1;
+        Wed, 11 Oct 2023 02:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697015115; x=1697619915; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bosxL+8et3E8ZP6PazhMinI/ihrJEatAni1oUF+fH1M=;
+        b=BUSPYfcknw6g+HNqoRxtLfV3bXxrgwSPpW0rDeSfMHpUM2mDAGtFEXDDYoBfylmq5I
+         Gv86MjILpst/+/FXOZP4GdgZY/NbjYApqoS8w6O1PVFzLdZScWRi437GNBzAQXLt/erz
+         8/WeUGCRlpBQovRrbZIVld/FqLFlYgRzn+R6ow3qa3Pwlhu8VW9NQX9wflwr3wvJ4Acc
+         5D6pi7gJWAGZtywB9iME5CvcX/iinmV37kOajQwQCLb0bFJbYViqwJKcFShG3luoekHE
+         2Bg+8C6jAum3upUGo54I3KaakhInjuHkZM1iL0JFKuJgRuWihRYBm0Ml/duHzFpP2BKj
+         e7vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697015115; x=1697619915;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bosxL+8et3E8ZP6PazhMinI/ihrJEatAni1oUF+fH1M=;
+        b=QPcua4p0l8yZd+kVyKj8F5lp+dfOSAipGH8Ov2h5VP/0Qs0yhfkNEKSWkcQEXesDxf
+         ppQSX6PxnFJr8RHAhBVQoaF1p8w+/zA9QONnerT+LSWokvZ1xjhz6j/p8a+ujM0pJbTt
+         Zp6MBts9YOwHBVWpcAed2zoIgMUIfFjLp+g4evNA0cERVoSincorja/hGkFXTEkJsMlX
+         gYdGlMbpwsTjtn7DV+Ams2qJvz4locl2wngcBRpDBxlHVcMplcXaQFerwbHdNuDNnS7H
+         gY3gYmhrWGdfoLAtY/TrEdQCq4W4lK2heR+98DbwaO2Mld93c3XAdPoa8mlsGoF75Gww
+         gdXA==
+X-Gm-Message-State: AOJu0YwyYpNvlxik6HDrYN3q2zHqb4FPcfYjAfi8O+2gfTqUTbA4TCpn
+	M1lQXsb7VfEY1xlL3/xDd0o=
+X-Google-Smtp-Source: AGHT+IFRUykmbXsKgpu7miP1944x4RothTBFt0RMyulPs0mCWdyP/ti6UAcufO/wIJrf40ewm3z7ZQ==
+X-Received: by 2002:a17:902:e743:b0:1c8:a132:a00f with SMTP id p3-20020a170902e74300b001c8a132a00fmr10865378plf.12.1697015115383;
+        Wed, 11 Oct 2023 02:05:15 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id z18-20020a170903019200b001c61df93afdsm13346699plg.59.2023.10.11.02.05.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 02:05:15 -0700 (PDT)
+From: Jacky Huang <ychuang570808@gmail.com>
+To: linus.walleij@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	schung@nuvoton.com,
+	Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH 0/4] Add support for nuvoton ma35d1 pin control
+Date: Wed, 11 Oct 2023 09:05:06 +0000
+Message-Id: <20231011090510.114476-1-ychuang570808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
-References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,63 +81,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pmcnEh9TIUO2K5qlXHQBhYVcAIiE_In_
-X-Proofpoint-ORIG-GUID: pmcnEh9TIUO2K5qlXHQBhYVcAIiE_In_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-11_06,2023-10-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 mlxlogscore=812
- mlxscore=0 priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310110079
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add device node for ECPRI clock controller on qcom QDU1000
-and QRU1000 SoCs.
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This patch series adds the pin control and GPIO driver for the nuvoton ma35d1
+ARMv8 SoC. It includes DT binding documentation, the ma35d1 pin control driver,
+and device tree updates.
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index 1c0e5d271e91..1552b5c119bb 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -381,6 +381,20 @@ gcc: clock-controller@80000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		ecpricc: clock-controller@280000 {
-+			compatible = "qcom,qdu1000-ecpricc";
-+			reg = <0x0 0x00280000 0x0 0x31c00>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_ECPRI_CC_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL1_EVEN_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL2_EVEN_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL3_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL4_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL5_EVEN_CLK_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		gpi_dma0: dma-controller@900000  {
- 			compatible = "qcom,qdu1000-gpi-dma", "qcom,sm6350-gpi-dma";
- 			reg = <0x0 0x900000 0x0 0x60000>;
+This pin control driver has been tested on the ma35d1 som board with Linux 6.6.
+
+Jacky Huang (4):
+  dt-bindings: reset: Add syscon to nuvoton ma35d1 system-management
+    node
+  dt-bindings: pinctrl: Document nuvoton ma35d1 pin control
+  arm64: dts: nuvoton: Add pinctrl support for ma35d1
+  pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
+
+ .../pinctrl/nuvoton,ma35d1-pinctrl.yaml       |  180 ++
+ .../bindings/reset/nuvoton,ma35d1-reset.yaml  |    3 +-
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |   83 +-
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |   86 +-
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  175 +-
+ drivers/pinctrl/nuvoton/Kconfig               |   22 +
+ drivers/pinctrl/nuvoton/Makefile              |    2 +
+ drivers/pinctrl/nuvoton/pinctrl-ma35.c        | 1239 ++++++++++++
+ drivers/pinctrl/nuvoton/pinctrl-ma35.h        |   50 +
+ drivers/pinctrl/nuvoton/pinctrl-ma35d1.c      | 1797 +++++++++++++++++
+ include/dt-bindings/pinctrl/ma35d1-pinfunc.h  |   38 +
+ 11 files changed, 3665 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,ma35d1-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.c
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35.h
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-ma35d1.c
+ create mode 100644 include/dt-bindings/pinctrl/ma35d1-pinfunc.h
+
 -- 
-2.25.1
+2.34.1
 
 
