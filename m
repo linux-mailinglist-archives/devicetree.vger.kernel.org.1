@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-7640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532167C5021
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:30:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6717C5026
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 12:32:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84E9E1C20D4D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83527282152
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 10:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB14A21;
-	Wed, 11 Oct 2023 10:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241CE101FF;
+	Wed, 11 Oct 2023 10:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pqfTt118"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pWUHLA33"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7AF10955
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:30:33 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AC894
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 03:30:31 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso82174121fa.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 03:30:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697020230; x=1697625030; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xzHKCgjb8/zw/flLxHNtdD2jh+riVKfmw0ipQhtOwLE=;
-        b=pqfTt118gv/2PLnUGZUncLjgvEzV3FvIdVs5DF6QNEp9JxMDSL16mzP44q+5XJJfji
-         DPQa8VUBr4PnWejYa40KeTLKFgJu8dMv5VWSBSFQezceQ1WUhw9d0Wzk1cwMqDHUMpKX
-         YwvOCExdX+ZChSFuhv5AuHGE0PJKpZsI+JFmP8DmMJBO++9E8799dUUljHLMWp1K6FRG
-         tcE+1mrmcCxpVVHbnXQUPkevDayDxTeIV6+BOP4qp+BZEV6GHhgJ1fhSz/8EKmdFcoTC
-         Q+m5SC/bD3mpmo/Xd4gWktc3hXZoFyymdCDI/Hv3Ki5GnZEjUV8/W70CwN6uxQN6wYZb
-         J+Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697020230; x=1697625030;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xzHKCgjb8/zw/flLxHNtdD2jh+riVKfmw0ipQhtOwLE=;
-        b=jBHxD0RnuyW7vFUaVCIq1e2FumiFLgWaYLqweWyUntzORxGgc+0aHpZ+KD+k7Se6o0
-         GrUem30IXsTGVBqUXLxiPNt3p5V5WLxy6YqkPdC/+L1qPBNaCD6KtpGrPHVSQw+xb9Xa
-         ynaqfTJcOnr/XA2XylrK9oHWNcOhTLmufy8azAYJnD5zIFMhx8427mdRirQ3XqQ+sKao
-         MDof5AnP1RQIRQ2I0YZ9oGzT+uSw1i1RnjdjWk8atu4eJdkMXTOrMjlJWTANrvKFkz4b
-         Q4/fsFpIpmHZUL5YLdtNWArx745cY1gJpof+xv7pvnPfFmaFp08WTq8Q7xTzcC3aG0sE
-         8C5g==
-X-Gm-Message-State: AOJu0YxuVE8GIW0MoZ0JUpHcfB7523pgGC7hcokXuTSsBTk/uY5fAKDz
-	3+7kQfYlUUtph/Pr0MvBCDloKg==
-X-Google-Smtp-Source: AGHT+IEaw7rwDtUJYy85sJqrAFyVJ8Sl98KLuplFuXyA7yQPW41U0XXgksBo+0yN9rEAMltSVET/gA==
-X-Received: by 2002:a05:6512:457:b0:503:35af:3058 with SMTP id y23-20020a056512045700b0050335af3058mr15408059lfk.52.1697020229684;
-        Wed, 11 Oct 2023 03:30:29 -0700 (PDT)
-Received: from [87.246.221.93] (netpanel-87-246-221-93.pol.akademiki.lublin.pl. [87.246.221.93])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056512096100b0050480e8a676sm2213434lft.268.2023.10.11.03.30.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 03:30:29 -0700 (PDT)
-Message-ID: <3c7115dc-f9b4-42ab-8923-098d96b75e86@linaro.org>
-Date: Wed, 11 Oct 2023 12:30:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DDBA10955
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 10:32:23 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB09FA7;
+	Wed, 11 Oct 2023 03:32:21 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B5K2Ie023923;
+	Wed, 11 Oct 2023 10:32:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=S7Dy4jxMaTB3uSe1nYzpJp84Z3nL4ulmDTKFBXwe5GI=;
+ b=pWUHLA33u8v3Zdq4qvsi11aku/Dtj3FfM/1ukLUxb3gZQ7JuBxEfdbgJvqacjCL8swsT
+ DoUL6BIrB2mMwnXiAWf3YPfrKBjC5LyRYH9Msqo8b09bvvc0Sd/X15hQIVUtef3dHfGv
+ ez2Em51rOcPI+tOcvon3ackCiTUmWYRkJLDEK9K2MyXjeRiPzHFGGxWq2Ec51KVLc69c
+ qgzicZHg9VsSWQynAsfjOYlHX4IoJ1i+bxL7ln6J4JYuLdgxObIsjziY2irFXcuqo5nO
+ 8NwDYMbxA+UL76Jd8r/TRjKf6BNqridlOyV4bcRHRLDrFBWIoj8i4oeLGm/+jNcoXmKd Og== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tne0q1bcs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 10:32:14 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39BAWExL023022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Oct 2023 10:32:14 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 11 Oct
+ 2023 03:32:10 -0700
+Message-ID: <785d1ea1-3a71-4257-840f-5f4dab887e15@quicinc.com>
+Date: Wed, 11 Oct 2023 16:02:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,47 +56,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/4] clk: qcom: Add ECPRICC driver support for QDU1000
- and QRU1000
+Subject: Re: [PATCH v3 0/2] Add common RDP dtsi file for IPQ9574
 Content-Language: en-US
-To: Imran Shaik <quic_imrashai@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
- <20231011090028.1706653-4-quic_imrashai@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231011090028.1706653-4-quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Anusha Rao <quic_anusha@quicinc.com>
+References: <20230927-common-rdp-v3-0-3d07b3ff6d42@quicinc.com>
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20230927-common-rdp-v3-0-3d07b3ff6d42@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Fj70R7mipycp8Shdi2ho7m9oWNgb-T7t
+X-Proofpoint-ORIG-GUID: Fj70R7mipycp8Shdi2ho7m9oWNgb-T7t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-11_07,2023-10-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ spamscore=0 mlxscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ adultscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=612 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310110092
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
+On 9/27/2023 12:13 PM, Kathiravan Thirumoorthy wrote:
+> Some interfaces are common across RDPs. Move the common nodes to
+> ipq9574-rdp-common.dtsi like how it is done for IPQ5332. Use rdp specific
+> dts file to include interfaces that vary across RDPs. For instance, IPQ9574
+> has 4 PCIE controllers. RDP417 enables PCIE0 and PCIE1 whereas RDP433
+> enables PCIE1, PCIE2 and PCIE3.
+>
+> With the introduction of the common RDP DTSI,
+> 	- RDP433 gains SPI NOR support
+> 	- All the IPQ9574 RDPs gains USB2 and USB3 support
+>
+> While at it, add support for WPS buttons.
+>
+> Since Anusha's is busy and can't take up this series right now, I'm
+> stepping up to work on this series.
 
-On 10/11/23 11:00, Imran Shaik wrote:
-> Add ECPRI Clock Controller (ECPRICC) support for QDU1000 and QRU1000 SoCs.
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+
+Gentle Reminder...
+
+
+>
+> Changes in V3:
+> 	- Reworded the cover letter to indicate the need and advantages
+> 	  of common RDP DTSI
+> 	- Change logs are in respective patches
+> 	- V2: https://lore.kernel.org/linux-arm-msm/20230713105909.14209-1-quic_anusha@quicinc.com/
+>
+> Changes in V2:
+> 	- Detailed change logs are added to the respective patches.
+> 	- V1: https://lore.kernel.org/linux-arm-msm/20230614085040.22071-1-quic_anusha@quicinc.com/
+>
 > ---
-[...]
-
-> +static int __init ecpri_cc_qdu1000_init(void)
-> +{
-> +	return platform_driver_register(&ecpri_cc_qdu1000_driver);
-> +}
-> +subsys_initcall(ecpri_cc_qdu1000_init);
-module_platform_driver?
-
-Konrad
+> Anusha Rao (2):
+>        arm64: dts: qcom: ipq9574: Add common RDP dtsi file
+>        arm64: dts: qcom: ipq9574: Enable WPS buttons
+>
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 147 +++++++++++++++++++++++
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts      |  63 +---------
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts      |  91 +-------------
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts      |  65 +---------
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts      |  65 +---------
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts      |  66 +---------
+>   6 files changed, 152 insertions(+), 345 deletions(-)
+> ---
+> base-commit: 18030226a48de1fbfabf4ae16aaa2695a484254f
+> change-id: 20230927-common-rdp-52f90fd0fd77
+>
+> Best regards,
 
