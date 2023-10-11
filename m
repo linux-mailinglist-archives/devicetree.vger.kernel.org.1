@@ -1,415 +1,236 @@
-Return-Path: <devicetree+bounces-7869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895B87C5D2D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 20:55:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2CF7C5D53
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 21:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E6BE28280D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 18:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E080C1C20C6A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 19:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16F23A299;
-	Wed, 11 Oct 2023 18:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3073A29D;
+	Wed, 11 Oct 2023 19:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k9EF5CFa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dSt4g01m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF34F3A290
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:55:54 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5F4B8
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:55:52 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-405361bb94eso2996385e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 11:55:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA3E12E4C
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 19:00:59 +0000 (UTC)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3298E5;
+	Wed, 11 Oct 2023 12:00:54 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-692c70bc440so86479b3a.3;
+        Wed, 11 Oct 2023 12:00:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697050550; x=1697655350; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nweWobJWJBf+E3jMJor/bM09luKRlFeXTfeRgH/BAFs=;
-        b=k9EF5CFaYuvgCm/9gG2zY4OXlqlMaDpCbTGRzANwxmMlWOAt4MzTW/gQC6zESQfqrb
-         cdlnW3cWf/FBJmocM1+PZ2/8UtFdOB9l9+pAH7qsAGH5oEiXAEm8pxxMslg9ZnQc/c4g
-         RFIhl8dQtIgrh27SMohFOge46UBccTjHPgjiCmVWdbOZdteUDG7wYrcpIS8HqhJuDSGP
-         MTJ4XGS95R7aC+Cpp0QcXP5EL0rnXilfzCW0ZxNEX6kPb6V3KFp8sp6OneGdtRSR2DZZ
-         P/5OYg8rxsepcj17i+OUa9DYt93C1oVzb2uZAgdRao/GG9GHbDqPhtXpLg4sxbm6EOZJ
-         UjDg==
+        d=gmail.com; s=20230601; t=1697050854; x=1697655654; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lgH80giGdocd0lWZvSZ+nxWXaTP5RcrQOuV73pIouaA=;
+        b=dSt4g01mh0p3jsMk/yR3s+tnqBqWT/HFgRqGPjOJyxyj1TrzNPVXCzFLwGu1iCMzyJ
+         q6ElQq323+Ac4tG5SI56Dbik7kgkKvQyGNE2KuC02bv802VTINXseKfYPCQsgVA+fWrC
+         JW5Kpvi1Mg9tlWKSl0MeDrwKy9lwvg76qrg6vuARMKET2XY7IpJMk1JIxzVXuVUneayt
+         MVVO5+sfjFrI7TO/O02zguo68kPm1EmkG+wMCKrR/gILR7/+V2aC/D1KiP+Q9j2Two9J
+         LOok5ixJ92+WA4xALOzM9xsR1iyy3oB36fiHe+iI2/I6xK4cTLJ+DFe4USzwkv6CXJlV
+         sp6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697050550; x=1697655350;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nweWobJWJBf+E3jMJor/bM09luKRlFeXTfeRgH/BAFs=;
-        b=Q8sJvo+zEyQ5/D0wqm+Oh31FLr1clmU5tJLBbpzLVjzrMxaW+5bmIfG4qWXQlbP9HD
-         PoISV36U2NgfUzTmg3grkPF2gbtOcBbXYx8hcNgLKDHQBZ1E7LM4idmwPhyI58unCF+c
-         hq2mHwYUj+z0S11xJDV3SBJmiLt2dSi1ZH2fWr5D33ELodQxiiwxeriVWLa9N/pQVySP
-         /oHphDwwmiMOoCGYm2vdj+UWANZpUn5LO2mYrcOhM+R7rh8h2CdRTE+Fc8NeNq5aYfgW
-         GwizaCTOzPO7jlXto7JL+Z2CXq2xSLEnmm2O6Hv+RXca41rWBaKhTHTaSjV5sQxbn0qW
-         IX6w==
-X-Gm-Message-State: AOJu0Yxfx/hK5TeKVHU186FPA/u7cCr2yWiRx6Qk9YA/8e+q7S8xqe0R
-	E0pKsmk3JfBmRFj0bB+8dE8B6w==
-X-Google-Smtp-Source: AGHT+IGfHfH/T8MhiI9Ttz/dhNl45IakVprsMIJoQxF3tsmX8wkQ9iJ+WswjOGxHMIe7xA+tb7TlGA==
-X-Received: by 2002:a7b:cd11:0:b0:405:40ec:415d with SMTP id f17-20020a7bcd11000000b0040540ec415dmr19302522wmj.39.1697050550452;
-        Wed, 11 Oct 2023 11:55:50 -0700 (PDT)
-Received: from x13s-linux.nxsw.local ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id n22-20020a7bcbd6000000b004060f0a0fdbsm19928294wmi.41.2023.10.11.11.55.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 11:55:49 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: andersson@kernel.org,
-	agross@kernel.org,
-	konrad.dybcio@linaro.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	dmitry.baryshkov@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jonathan@marek.ca,
-	quic_tdas@quicinc.com,
-	vladimir.zapolskiy@linaro.org
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	bryan.odonoghue@linaro.org
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition
-Date: Wed, 11 Oct 2023 19:55:40 +0100
-Message-Id: <20231011185540.2282975-5-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231011185540.2282975-1-bryan.odonoghue@linaro.org>
-References: <20231011185540.2282975-1-bryan.odonoghue@linaro.org>
+        d=1e100.net; s=20230601; t=1697050854; x=1697655654;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgH80giGdocd0lWZvSZ+nxWXaTP5RcrQOuV73pIouaA=;
+        b=wHHVpxH8DTAk/gn1CtKk5KlbpsHEV8SK+QYHvY9Rj5f9WBRTW7iOytOWy/FSu1JtV1
+         JmQ5lu2h00DJkx9Ajv/9mt3bWfWmI++4iJ/MZA+U3TCk+M82ilaAfZoCGcgnWqEx4c9W
+         +KB+al4TezL9Xs2leDY3YR/aIz5FpHY2xwylkG7nY+8T0T+zZmqruxqWdGHfFc80Ch8J
+         SxW5Gpdr3f67OwrMzsvpGoYwyHHUv9lu7uAjudKuzEeQFbs5GeP9Y1fMQlpvBPywqoLp
+         0GUO9SzB/tCFA0XT7wmDrxB0cEIdtSnEXw98QTaod0vSD+ACVkqezfn++EUCTbfLwh15
+         WeCQ==
+X-Gm-Message-State: AOJu0YykJrjN+2CxTRZZK/Pk5MuPeD5k5worS1Fcw89kXT0ezZSUAcBg
+	xNEIB5qQO2clB0Org5mMRGE=
+X-Google-Smtp-Source: AGHT+IHB87s15cez9sVKr6yfH1HSR+x0sakHHdwVAEYjQprXEksklIJbJPK0dnmo6MXrBEDLIsCFpQ==
+X-Received: by 2002:a05:6a00:2e20:b0:68e:42c9:74e0 with SMTP id fc32-20020a056a002e2000b0068e42c974e0mr22999550pfb.3.1697050854108;
+        Wed, 11 Oct 2023 12:00:54 -0700 (PDT)
+Received: from [10.3.171.174] ([103.4.221.252])
+        by smtp.gmail.com with ESMTPSA id n14-20020a62e50e000000b0069319bfed42sm10344972pff.79.2023.10.11.12.00.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Oct 2023 12:00:53 -0700 (PDT)
+Message-ID: <f1796d1a-bcd0-414d-b4e1-806e93eb202b@gmail.com>
+Date: Thu, 12 Oct 2023 00:29:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: bindings for Adafruit Seesaw
+ Gamepad
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
+References: <20231010184827.1213507-1-anshulusr@gmail.com>
+ <20231011-powdering-recycled-71608e794eaa@spud>
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <20231011-powdering-recycled-71608e794eaa@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add CAMSS block definition for sc8280xp.
+Hello,
 
-This drop contains definitions for the following components on sc8280xp:
+On 10/11/23 21:45, Conor Dooley wrote:
+> Hey,
+> 
+> On Wed, Oct 11, 2023 at 12:18:23AM +0530, Anshul Dalal wrote:
+>> Adds bindings for the Adafruit Seesaw Gamepad.
+>>
+>> The gamepad functions as an i2c device with the default address of 0x50
+>> and has an IRQ pin that can be enabled in the driver to allow for a rising
+>> edge trigger on each button press or joystick movement.
+>>
+>> Product page:
+>>   https://www.adafruit.com/product/5743
+>> Arduino driver:
+>>   https://github.com/adafruit/Adafruit_Seesaw
+>>
+>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+>> ---
+>>
+>> Changes for v4:
+>> - Fixed the URI for the id field
+>> - Added `interrupts` property
+>>
+>> Changes for v3:
+>> - Updated id field to reflect updated file name from previous version
+>> - Added `reg` property
+>>
+>> Changes for v2:
+>> - Renamed file to `adafruit,seesaw-gamepad.yaml`
+>> - Removed quotes for `$id` and `$schema`
+>> - Removed "Bindings for" from the description
+>> - Changed node name to the generic name "joystick"
+>> - Changed compatible to 'adafruit,seesaw-gamepad' instead of
+>>   'adafruit,seesaw_gamepad'
+>>
+>>  .../input/adafruit,seesaw-gamepad.yaml        | 59 +++++++++++++++++++
+>>  1 file changed, 59 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+>> new file mode 100644
+>> index 000000000000..e8e676006d2f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Adafruit Mini I2C Gamepad with seesaw
+> 
+> Binding mostly looks good to me. My main question is what is a seesaw?
+> 
 
-VFE * 4
-VFE Lite * 4
-CSID * 4
-CSIPHY * 4
+Seesaw is a universal framework that enables extending I/O capabilities
+of the i2c master devices with a compatible breakout board. As it
+relates to the binding, this gamepad uses an AVR ATtiny816
+microcontroller that reads the data from the buttons and the joystick
+and sends the data to the master over i2c using the Seesaw framework.
 
-This dtsi definition has been developed and validated on a Lenovo X13s
-laptop.
+>> +
+>> +maintainers:
+>> +  - Anshul Dalal <anshulusr@gmail.com>
+>> +
+>> +description: |
+>> +  Adafruit Mini I2C Gamepad
+>> +
+>> +    +-----------------------------+
+>> +    |   ___                       |
+>> +    |  /   \               (X)    |
+>> +    | |  S  |  __   __  (Y)   (A) |
+>> +    |  \___/  |ST| |SE|    (B)    |
+>> +    |                             |
+>> +    +-----------------------------+
+>> +
+>> +  S -> 10-bit percision bidirectional analog joystick
+>> +  ST -> Start
+>> +  SE -> Select
+>> +  X, A, B, Y -> Digital action buttons
+>> +
+>> +  Product page: https://www.adafruit.com/product/5743
+>> +  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
+> 
+> I'm not really sure what the arduino driver has to do with the binding.
+> Why is a link to it more relevant than the freebsd driver, or the linux
+> driver etc? Is there info about how the pad works in the arduino driver
+> 
+> Otherwise, this seems good to me.
+> 
+> Thanks,
+> Conor.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 285 +++++++++++++++++++++++++
- 1 file changed, 285 insertions(+)
+The Arduino driver I linked was the only resource that had the
+implementation of the seesaw framework as well as the example code
+specific to this device:
+https://github.com/adafruit/Adafruit_Seesaw/tree/master/examples/Mini_I2C_Gamepad_QT
+On further thought, a link to the accompanying document from the
+manufacturer (https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf)
+might be more relevant for the binding which includes the hardware
+description as well as links to the above-mentioned Arduino driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 22e9671af0e9..c1fac3e872f4 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3615,6 +3615,291 @@ cci3_i2c1: i2c-bus@1 {
- 			};
- 		};
- 
-+		camss: camss@ac5a000 {
-+			compatible = "qcom,sc8280xp-camss";
-+
-+			reg = <0 0x0ac5a000 0 0x2000>,
-+			      <0 0x0ac5c000 0 0x2000>,
-+			      <0 0x0ac65000 0 0x2000>,
-+			      <0 0x0ac67000 0 0x2000>,
-+			      <0 0x0acaf000 0 0x4000>,
-+			      <0 0x0acb3000 0 0x1000>,
-+			      <0 0x0acb6000 0 0x4000>,
-+			      <0 0x0acba000 0 0x1000>,
-+			      <0 0x0acbd000 0 0x4000>,
-+			      <0 0x0acc1000 0 0x1000>,
-+			      <0 0x0acc4000 0 0x4000>,
-+			      <0 0x0acc8000 0 0x1000>,
-+			      <0 0x0accb000 0 0x4000>,
-+			      <0 0x0accf000 0 0x1000>,
-+			      <0 0x0acd2000 0 0x4000>,
-+			      <0 0x0acd6000 0 0x1000>,
-+			      <0 0x0acd9000 0 0x4000>,
-+			      <0 0x0acdd000 0 0x1000>,
-+			      <0 0x0ace0000 0 0x4000>,
-+			      <0 0x0ace4000 0 0x1000>;
-+
-+			reg-names = "csiphy2",
-+				    "csiphy3",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "vfe0",
-+				    "csid0",
-+				    "vfe1",
-+				    "csid1",
-+				    "vfe2",
-+				    "csid2",
-+				    "vfe_lite0",
-+				    "csid0_lite",
-+				    "vfe_lite1",
-+				    "csid1_lite",
-+				    "vfe_lite2",
-+				    "csid2_lite",
-+				    "vfe_lite3",
-+				    "csid3_lite",
-+				    "vfe3",
-+				    "csid3";
-+
-+			interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 758 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 759 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 760 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 761 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 762 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interrupt-names = "csid1_lite",
-+					  "vfe_lite1",
-+					  "csiphy3",
-+					  "csid0",
-+					  "vfe0",
-+					  "csid1",
-+					  "vfe1",
-+					  "csid0_lite",
-+					  "vfe_lite0",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "csid2",
-+					  "vfe2",
-+					  "csid3_lite",
-+					  "csid2_lite",
-+					  "vfe_lite3",
-+					  "vfe_lite2",
-+					  "csid3",
-+					  "vfe3";
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc IFE_2_GDSC>,
-+					<&camcc IFE_3_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "ife2",
-+					     "ife3",
-+					     "top";
-+
-+			clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAMCC_CAMNOC_AXI_CLK_SRC>,
-+				 <&camcc CAMCC_CPAS_AHB_CLK>,
-+				 <&camcc CAMCC_CPHY_RX_CLK_SRC>,
-+				 <&camcc CAMCC_CSIPHY0_CLK>,
-+				 <&camcc CAMCC_CSI0PHYTIMER_CLK_SRC>,
-+				 <&camcc CAMCC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY1_CLK>,
-+				 <&camcc CAMCC_CSI1PHYTIMER_CLK_SRC>,
-+				 <&camcc CAMCC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY2_CLK>,
-+				 <&camcc CAMCC_CSI2PHYTIMER_CLK_SRC>,
-+				 <&camcc CAMCC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY3_CLK>,
-+				 <&camcc CAMCC_CSI3PHYTIMER_CLK_SRC>,
-+				 <&camcc CAMCC_CSI3PHYTIMER_CLK>,
-+				 <&camcc CAMCC_IFE_0_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_0_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_0_CLK>,
-+				 <&camcc CAMCC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_0_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_0_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_1_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_1_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_1_CLK>,
-+				 <&camcc CAMCC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_1_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_1_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_2_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_2_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_2_CLK>,
-+				 <&camcc CAMCC_IFE_2_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_2_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_2_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_3_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_3_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_3_CLK>,
-+				 <&camcc CAMCC_IFE_3_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_3_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_3_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_0_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_0_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_1_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_1_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_2_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_2_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_3_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CSID_CLK_SRC>,
-+				 <&camcc CAMCC_IFE_LITE_3_CSID_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+				 <&camcc CAMCC_SLOW_AHB_CLK_SRC>;
-+
-+			clock-names = "camnoc_axi",
-+				      "camnoc_axi_src",
-+				      "cpas_ahb",
-+				      "cphy_rx_src",
-+				      "csiphy0",
-+				      "csiphy0_timer_src",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer_src",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer_src",
-+				      "csiphy2_timer",
-+				      "csiphy3",
-+				      "csiphy3_timer_src",
-+				      "csiphy3_timer",
-+				      "vfe0_axi",
-+				      "vfe0_src",
-+				      "vfe0",
-+				      "vfe0_cphy_rx",
-+				      "vfe0_csid_src",
-+				      "vfe0_csid",
-+				      "vfe1_axi",
-+				      "vfe1_src",
-+				      "vfe1",
-+				      "vfe1_cphy_rx",
-+				      "vfe1_csid_src",
-+				      "vfe1_csid",
-+				      "vfe2_axi",
-+				      "vfe2_src",
-+				      "vfe2",
-+				      "vfe2_cphy_rx",
-+				      "vfe2_csid_src",
-+				      "vfe2_csid",
-+				      "vfe3_axi",
-+				      "vfe3_src",
-+				      "vfe3",
-+				      "vfe3_cphy_rx",
-+				      "vfe3_csid_src",
-+				      "vfe3_csid",
-+				      "vfe_lite0_src",
-+				      "vfe_lite0",
-+				      "vfe_lite0_cphy_rx",
-+				      "vfe_lite0_csid_src",
-+				      "vfe_lite0_csid",
-+				      "vfe_lite1_src",
-+				      "vfe_lite1",
-+				      "vfe_lite1_cphy_rx",
-+				      "vfe_lite1_csid_src",
-+				      "vfe_lite1_csid",
-+				      "vfe_lite2_src",
-+				      "vfe_lite2",
-+				      "vfe_lite2_cphy_rx",
-+				      "vfe_lite2_csid_src",
-+				      "vfe_lite2_csid",
-+				      "vfe_lite3_src",
-+				      "vfe_lite3",
-+				      "vfe_lite3_cphy_rx",
-+				      "vfe_lite3_csid_src",
-+				      "vfe_lite3_csid",
-+				      "gcc_axi_hf",
-+				      "gcc_axi_sf",
-+				      "slow_ahb_src";
-+
-+			iommus = <&apps_smmu 0x2000 0x4e0>,
-+				 <&apps_smmu 0x2020 0x4e0>,
-+				 <&apps_smmu 0x2040 0x4e0>,
-+				 <&apps_smmu 0x2060 0x4e0>,
-+				 <&apps_smmu 0x2080 0x4e0>,
-+				 <&apps_smmu 0x20e0 0x4e0>,
-+				 <&apps_smmu 0x20c0 0x4e0>,
-+				 <&apps_smmu 0x20a0 0x4e0>,
-+				 <&apps_smmu 0x2400 0x4e0>,
-+				 <&apps_smmu 0x2420 0x4e0>,
-+				 <&apps_smmu 0x2440 0x4e0>,
-+				 <&apps_smmu 0x2460 0x4e0>,
-+				 <&apps_smmu 0x2480 0x4e0>,
-+				 <&apps_smmu 0x24e0 0x4e0>,
-+				 <&apps_smmu 0x24c0 0x4e0>,
-+				 <&apps_smmu 0x24a0 0x4e0>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
-+					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "cam_ahb",
-+					     "cam_hf_mnoc",
-+					     "cam_sf_mnoc",
-+					     "cam_sf_icp_mnoc";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sc8280xp-camcc";
- 			reg = <0 0x0ad00000 0 0x20000>;
--- 
-2.40.1
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: adafruit,seesaw-gamepad
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description:
+>> +      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        joystick@50 {
+>> +            compatible = "adafruit,seesaw-gamepad";
+>> +            reg = <0x50>;
+>> +        };
+>> +    };
+>> -- 
+>> 2.42.0
+>>
 
+Thanks for the review.
+
+Best Regards,
+Anshul
 
