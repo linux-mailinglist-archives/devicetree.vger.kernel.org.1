@@ -1,188 +1,198 @@
-Return-Path: <devicetree+bounces-7482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C177C4755
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:34:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D327C476B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 03:48:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 664AE1C20C78
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:34:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F06DA2816DA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 01:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098BE80D;
-	Wed, 11 Oct 2023 01:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D17819;
+	Wed, 11 Oct 2023 01:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=maslowski.xyz header.i=@maslowski.xyz header.b="Xjbi52/v"
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="QBUutq5V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26BED20E0
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:34:37 +0000 (UTC)
-X-Greylist: delayed 19968 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 10 Oct 2023 18:34:35 PDT
-Received: from mail.maslowski.xyz (mail.maslowski.xyz [IPv6:2001:19f0:5:5b98:5400:3ff:fe59:951d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2CC93;
-	Tue, 10 Oct 2023 18:34:35 -0700 (PDT)
-Received: from localhost (ett70.neoplus.adsl.tpnet.pl [83.20.165.70])
-	by mail.maslowski.xyz (Postfix) with ESMTPSA id 12A7C7DCBC;
-	Wed, 11 Oct 2023 01:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=maslowski.xyz;
-	s=mail; t=1696988071;
-	bh=NnfFpwUX9CGJeaS2KmvWkwSGRdoXuydK9QlAfgDJ3Yk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xjbi52/vD13NDSbJSQIRBk7ZVbVGxQCaa91wwiTsnt2n7CrxtkS2ySt2OGjMp8DTQ
-	 PI+SOcNz2NCXVb89prO9tekNjSZLXYJB5v6z45sDXaqf3AVwRlog5WwQRGTYHpOWwr
-	 LmV16P/DPjUuONSKm7WupOjniA4dHVBzLpmgJvko0Abi6MfVGdoh+HU+r3NhDYTbUR
-	 fQdWOD4zySb5APuu8M/eGbLMc03Kx1dctII/mOt9GL4I+eYgXf8vvT7DiGML9swBrk
-	 Djdpw3ZQqurHfk6c+xQM7NgKvXabxS41PAEF2hZxZP/YTkmVQyW+zyBxctsF1qHqyL
-	 EcPHlotITQWZg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D4B80D
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 01:48:16 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404AC92;
+	Tue, 10 Oct 2023 18:48:14 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1143677366b.1;
+        Tue, 10 Oct 2023 18:48:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1696988893; x=1697593693; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=igjlN4dO3JjcdB2G4ww8hAUFD7DZ0Fw5neZs9pJmc38=;
+        b=QBUutq5Vpvc3gbVYnxPj3J9ZtWQTiMQ4/ZPQpJLbxjF0OZfy06F1Pl3XkXZw0e6DFB
+         Ubi0YKI9VP0JLNLxqQFRFVuNSmcreJFSxGi5Ka8zdCx3W6mBkLkK1Wfg4VjGFpK6pT8i
+         1zLWKYZlrJHggYzEeX8L5hJXYgpnHvnPjeC8I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696988893; x=1697593693;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=igjlN4dO3JjcdB2G4ww8hAUFD7DZ0Fw5neZs9pJmc38=;
+        b=T2IJCRMcJyuCHovFTPIgUQRXjWuKdIx3ZXfq8FB2104P97b/TdR01Zv082s0Bb1hDE
+         qheal/xG/2LQFkcNNFdHgl0rN7EFq3k8w0J9PTip3OOIXRc9yzbjNgzHqT+JOvaALr6G
+         pC3aKxXLPA4Ba1PpBDjgvEdUQGyUhwIezZH4BjTbH61cpN+LbNDhpGmJ4acswp2K5AQt
+         Sxb1naARnspLSlxy8e7NqM1r4BWnZgq5/yImy2zhrQPkAS7MNMwCdcBgkK9TI09CYHsK
+         bMPBBDbqaFiakgYMY4N+0H/hBOgVtZr78unA3p8HSVxYuE0e/IcnJ9lpq0xjsordSddo
+         85dA==
+X-Gm-Message-State: AOJu0Yxm2AUBAEySHp8eYCvl2+n8APk8k97cIrzdzSpaUA7z8sdYLfKN
+	widU5NpSR0qYWo+EQp2IFzEQ7N4Lcyv1Zt6/Bx4=
+X-Google-Smtp-Source: AGHT+IEuuMqEy3USpJDXR0kSSSQMnE9Vm8JFze2cJqxGftCWpvdSX0K+UCUFBZu0kfb7wHhQh1dEjjpMVzNhVPs+EdA=
+X-Received: by 2002:a17:907:7890:b0:9ae:711d:7e03 with SMTP id
+ ku16-20020a170907789000b009ae711d7e03mr17862404ejc.15.1696988892477; Tue, 10
+ Oct 2023 18:48:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Oct 2023 03:34:26 +0200
-Message-Id: <CW582BCPP7D9.323NL89SO8H7N@andrad>
-From: =?utf-8?q?Piotr_Mas=C5=82owski?= <piotr@maslowski.xyz>
-To: "Caleb Connolly" <caleb.connolly@linaro.org>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>, "Sam Ravnborg"
- <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter"
- <daniel@ffwll.ch>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Thierry Reding" <thierry.reding@gmail.com>,
- "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>, "Robert
- Mader" <robert.mader@posteo.de>, "Guido Gunther" <agx@sigxcpu.org>,
- <dri-devel@lists.freedesktop.org>, "Hector Martin" <marcan@marcan.st>,
- <devicetree@vger.kernel.org>, <phone-devel@vger.kernel.org>,
- <asahi@lists.linux.dev>, <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH RFC] dt-bindings: display: document display panel
- occlusions
-X-Mailer: aerc 0.15.2
-References: <20231009-caleb-notch-example-v1-1-9e0a43ae233c@linaro.org>
- <CW4UT45DZ5C6.3NIT2IFNSKD4O@andrad>
- <4ce2c3a6-6f66-4fe7-8616-a787a88dd250@linaro.org>
- <CW54GWXGYWEA.ER1Z3DVG83M0@andrad>
- <47bd1c5d-4bac-4772-bf05-509d516e201e@linaro.org>
-In-Reply-To: <47bd1c5d-4bac-4772-bf05-509d516e201e@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+MIME-Version: 1.0
+References: <20231005035525.19036-1-chanh@os.amperecomputing.com> <20231005035525.19036-2-chanh@os.amperecomputing.com>
+In-Reply-To: <20231005035525.19036-2-chanh@os.amperecomputing.com>
+From: Joel Stanley <joel@jms.id.au>
+Date: Wed, 11 Oct 2023 12:18:01 +1030
+Message-ID: <CACPK8XdpUpg0vDG7UwO-o=dYD-88evizSUb-yKm9qdUP2rjzdg@mail.gmail.com>
+Subject: Re: [PATCH 1/7] ARM: dts: aspeed: mtjade, mtmitchell: Update gpio-line-names
+To: Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: OpenBMC Maillist <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,WEIRD_QUOTING autolearn=no autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed Oct 11, 2023 at 1:35 AM CEST, Caleb Connolly wrote:
-> On 10/10/2023 23:53, Piotr Mas=C5=82owski wrote:
-
-> They don't need to be correct, you don't need to complicate it, you just
-> need a value that plays nice. When it comes down to it you're much more
-> likely to be constrained by UI layout limitations by not being able to
-> model the precise corner curves of your device. The difference between a
-> circular and elliptical arc is negligible in all real world use cases.
-
-Well, with a large, weirdly-shaped display the curve will have to pass
-through more-or-less the right pixels for things like a-couple-px-thick
-frame to look right. I would expect e.g. a smartwatch UI to sometimes
-want to draw a constant-width frame along the screen border. Using a
-significantly different curve there will break that, so you would need
-to let them be similarly arbitrary to notches.
-
-
->> That being said, imperfection isn't my main issue with curves. It's all
->> the non-discreteness they bring to the table. As in, you now need to car=
-e
->> about approximations, rounding, imprecise measurements and so on.
+On Thu, 5 Oct 2023 at 14:26, Chanh Nguyen <chanh@os.amperecomputing.com> wrote:
 >
-> My point is that actually you don't. Other than for animated visual
-> effects (where an undersized curve would absolutely be acceptable) I
-> can't conceive of a situation where plain triangles wouldn't be
-> suitable, again slightly undersized of course.
-
-Well, what I meant is not that you "have to care or it won't look good",
-but rather "that's an unnecessary degree of freedom" and I'm sure pepole
-will spend non-insignificant amounts of time caring about it. Both while
-gathering the data and while processing it.
-
-But you're right that it won't matter for typical corners =E2=80=93 they ar=
-e
-simply too small to make any difference here.
-
-
->> Frankly, I don't see any significant cost here. It's very easy to gather
->> and rather easy to process.
+> Update GPIO line-name to follow naming convention specified at
+> github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
 >
-> Unless I'm mistaken, it would mean that for "odd" shapes like rounded
-> corners, the number of values you need to record would be directly
-> proportional to the number of rows. You can do some optimisations, but
-> that worst case is really not great. Especially when the arc
-> approximation requires a single value and covers all the same usecases
-> as well or better.
+> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
 
-You mean the devicetrees getting bloated? The blobs are already dozens
-of KiB in size. As for the sources, I don't have any real experience
-with them so I'm not sure what would be the best way of representing
-masks. Worst-case, they can be treated as raw bitmaps. But since the
-features will consist of typically one (or just a few) contiguous blobs
-they can be efficiently represented using for example chain codes.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-
-> You'd probably want your status bar icons to be equi-distant from the
-> top and side, at least that's what my Android phone does. But hey, maybe
-> you don't, we can't bikeshed UX design all day but I'd think a simple
-> radius is gonna be easier to deal with than a pixel mask in most cases
-> (especially considering that most UI frameworks don't work in the pixel
-> space anyway because of scaling).
-
-Good point!
-(Though don't they need to still align stuff to the pixel grid to avoid
-needless antialiasing?)
-
-Hmm, but known radius only helps you with the corners. For the notch,
-you would need a complex (and shape-shifting) equation, so you might as
-well figure out the constant-distance based on a mask I guess.
-
-
-> GNOME doesn't even use real pixels, macOS doesn't use real pixels. When
-> scaling comes into play the advantage is lost either way.
-
-Fractional scaling is a worthwile cause, but I don't think my argument
-really changes much when you're working with scaled pixels instead of
-real ones.
-
->>
->> Is there actually any use case that instead of ending up with pixels
->> either way, would be better served by a (possibly inaccurate) curve?
->> (future me here: that spline-along-the-border from earlier I guess)
+> ---
+>  .../dts/aspeed/aspeed-bmc-ampere-mtjade.dts   | 42 +++++++++----------
+>  .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   |  6 +--
+>  2 files changed, 24 insertions(+), 24 deletions(-)
 >
-> I feel like the burden of proof still lies with you here. I feel much
-> more comfortable with a handful of easy to reason about and explain
-> values (that can be easily reviewed by maintainers) over a blob of data
-> that grows with the resolution of your display.
-
-How are these reviewable without testing them on a device though? True
-that with corners a maintainer can make sure the values make some sense.
-But for notches they can only try visualizing the data to see if it more
-or less looks right. And that's equally true for pixel masks. Drawing
-the shape by hand would be less tedious for a curve I guess.
-
-
-Thanks for going over these things with me. It has definitely clarified
-many points and gave me a better understanding overall. I guess we won't
-convince each other that easily, so maybe let's see what others think.
-(but if you want to discuss it further, I'm all ears)
-
-
-And now that I think about it, maybe it's chain codes that could be the
-best of both worlds? They operate on pixels and so remain exact, but
-also are basically curves =E2=80=93 just very simple ones. I'll have to thi=
-nk
-this through.
-
---
-Cheers,
-Piotr Mas=C5=82owski
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
+> index 0a51d2e32fab..e57efcc8522a 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts
+> @@ -760,30 +760,30 @@
+>
+>  &gpio {
+>         gpio-line-names =
+> -       /*A0-A7*/       "","","","S0_BMC_SPECIAL_BOOT","","","","",
+> -       /*B0-B7*/       "BMC_SELECT_EEPROM","","","",
+> -                       "POWER_BUTTON","","","",
+> +       /*A0-A7*/       "","","","host0-special-boot","","","","",
+> +       /*B0-B7*/       "i2c-backup-sel","","","",
+> +                       "power-button","","","",
+>         /*C0-C7*/       "","","","","","","","",
+>         /*D0-D7*/       "","","","","","","","",
+>         /*E0-E7*/       "","","","","","","","",
+> -       /*F0-F7*/       "","","BMC_SYS_PSON_L","S0_DDR_SAVE","PGOOD",
+> -                       "S1_DDR_SAVE","","",
+> -       /*G0-G7*/       "host0-ready","SHD_REQ_L","","S0_OVERTEMP_L","","",
+> +       /*F0-F7*/       "","","power-chassis-control","s0-ddr-save","power-chassis-good",
+> +                       "s1-ddr-save","","",
+> +       /*G0-G7*/       "host0-ready","host0-shd-req-n","","s0-overtemp-n","","",
+>                         "","",
+> -       /*H0-H7*/       "","","","","PSU1_VIN_GOOD","PSU2_VIN_GOOD","","",
+> -       /*I0-I7*/       "PSU1_PRESENT","PSU2_PRESENT","S1_BMC_SPECIAL_BOOT",
+> -                       "","","","","",
+> -       /*J0-J7*/       "S0_HIGHTEMP_L","S0_FAULT_L","S0_SCP_AUTH_FAIL_L","",
+> +       /*H0-H7*/       "","","","","ps0-vin-good","ps1-vin-good","","",
+> +       /*I0-I7*/       "presence-ps0","presence-ps1","s1-special-boot",
+> +                               "","","","","",
+> +       /*J0-J7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n","",
+>                         "","","","",
+>         /*K0-K7*/       "","","","","","","","",
+> -       /*L0-L7*/       "","","","BMC_SYSRESET_L","SPI_AUTH_FAIL_L","","","",
+> +       /*L0-L7*/       "","","","host0-sysreset-n","s0-spi-auth-fail-n","","","",
+>         /*M0-M7*/       "","","","","","","","",
+>         /*N0-N7*/       "","","","","","","","",
+>         /*O0-O7*/       "","","","","","","","",
+>         /*P0-P7*/       "","","","","","","","",
+> -       /*Q0-Q7*/       "","","","","","UID_BUTTON","","",
+> -       /*R0-R7*/       "","","BMC_EXT_HIGHTEMP_L","OCP_AUX_PWREN",
+> -                       "OCP_MAIN_PWREN","RESET_BUTTON","","",
+> +       /*Q0-Q7*/       "","","","","","identify-button","","",
+> +       /*R0-R7*/       "","","ext-hightemp-n","",
+> +                       "ocp-main-pwren","reset-button","","",
+>         /*S0-S7*/       "","","","","rtc-battery-voltage-read-enable","","","",
+>         /*T0-T7*/       "","","","","","","","",
+>         /*U0-U7*/       "","","","","","","","",
+> @@ -791,18 +791,18 @@
+>         /*W0-W7*/       "","","","","","","","",
+>         /*X0-X7*/       "","","","","","","","",
+>         /*Y0-Y7*/       "","","","","","","","",
+> -       /*Z0-Z7*/       "S0_BMC_PLIMIT","S1_FAULT_L","S1_FW_BOOT_OK","","",
+> -                       "S1_SCP_AUTH_FAIL_L","S1_OVERTEMP_L","",
+> +       /*Z0-Z7*/       "s0-plimit","s1-fault-alert","s1-fw-boot-ok","","",
+> +                       "s1-sys-auth-failure-n","s1-overtemp-n","",
+>         /*AA0-AA7*/     "","","","","","","","",
+> -       /*AB0-AB7*/     "S1_HIGHTEMP_L","S1_BMC_PLIMIT","S0_BMC_DDR_ADDR",
+> -                       "S1_BMC_DDR_ADR","","","","",
+> -       /*AC0-AC7*/     "SYS_PWR_GD","","","","","BMC_READY","SLAVE_PRESENT_L",
+> -                       "BMC_OCP_PG";
+> +       /*AB0-AB7*/     "s1-hightemp-n","s1-plimit","s0-ddr-addr",
+> +                       "s1-ddr-addr","","","","",
+> +       /*AC0-AC7*/     "sys-pwr-gd","","","","","","presence-cpu1",
+> +                       "ocp-pgood";
+>
+>         i2c4-o-en-hog {
+>                 gpio-hog;
+>                 gpios = <ASPEED_GPIO(Y, 2) GPIO_ACTIVE_HIGH>;
+>                 output-high;
+> -               line-name = "BMC_I2C4_O_EN";
+> +               line-name = "i2c4-o-en";
+>         };
+>  };
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+> index 0715cb9ab30c..2f571b43106d 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+> @@ -599,17 +599,17 @@
+>         /*Q0-Q7*/       "","","","","","","","",
+>         /*R0-R7*/       "","","","","","","","",
+>         /*S0-S7*/       "","","identify-button","led-identify",
+> -                       "s1-ddr-save","spi-nor-access","sys-pgood","presence-cpu1",
+> +                       "s1-ddr-save","spi-nor-access","host0-ready","presence-cpu1",
+>         /*T0-T7*/       "","","","","","","","",
+>         /*U0-U7*/       "","","","","","","","",
+>         /*V0-V7*/       "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
+> -                       "host0-reboot-ack-n","host0-ready","host0-shd-req-n",
+> +                       "host0-reboot-ack-n","s0-fw-boot-ok","host0-shd-req-n",
+>                         "host0-shd-ack-n","s0-overtemp-n",
+>         /*W0-W7*/       "","ocp-main-pwren","ocp-pgood","",
+>                         "bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
+>         /*X0-X7*/       "i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
+>                         "s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
+> -                       "s1-overtemp-n","s1-spi-auth-fail-n",
+> +                       "s1-overtemp-n","cpld-s1-spi-auth-fail-n",
+>         /*Y0-Y7*/       "","","","","","","","host0-special-boot",
+>         /*Z0-Z7*/       "reset-button","ps0-pgood","ps1-pgood","","","","","";
+>
+> --
+> 2.17.1
+>
 
