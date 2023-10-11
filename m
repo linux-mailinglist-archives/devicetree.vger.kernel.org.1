@@ -1,184 +1,172 @@
-Return-Path: <devicetree+bounces-7514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0DA7C494B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:40:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 736CA7C4952
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 07:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6147E1C20C03
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:40:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F6721C20C2D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 05:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D835D30E;
-	Wed, 11 Oct 2023 05:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB6AD51E;
+	Wed, 11 Oct 2023 05:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NaDDWMc3"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="JT8tv1Vx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA396847D
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:40:43 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276B698;
-	Tue, 10 Oct 2023 22:40:42 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39B3BXqj003446;
-	Wed, 11 Oct 2023 05:40:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=nss9gpufClIrS/DhhbQnnEbqgQIYyDsSOz6GGJ8lyRw=;
- b=NaDDWMc3IhzDGmr2H7/eK4I0VqXYWkdAW5wYFV0ILcodUE466tvsKrSH25InIFVBB6Fp
- /kvGNKpKnw1uKgzEqdyQrnPoTB+mZ/vmvj7YzFicjuNKBLtlDX+lRqxg/KeqRvVMXtXV
- rb5kCvwyboPJrLf9IQdlxiBkxIhd2YJEF4xxJuT0eaaukcvzsYaevJv3X8cAzDtRsAd2
- nESyFqan4iD6eG5drGq9t0bkYKf12MNck9kJECKPcBQ8e9D2YvcykurHTHvE1LXxdAb+
- AkNBuKN46vyJoS1phtwJP4K/HCwAffYMelhqaua5GFYd4HKBLrltvrx9goxjAC4ztOq8 yQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tne0q0qxp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 05:40:33 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39B5eWYG005207
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Oct 2023 05:40:32 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 10 Oct
- 2023 22:40:28 -0700
-Message-ID: <3fd31aaa-f6bf-8440-6b08-fca2803171d9@quicinc.com>
-Date: Wed, 11 Oct 2023 11:10:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65CBD519
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 05:42:50 +0000 (UTC)
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE0A98
+	for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:42:48 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-27d0251d305so339057a91.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Oct 2023 22:42:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1697002967; x=1697607767; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KkWm4pQoCblnREoJeplz4SU6UCHJ08f50cIRgUa2+DI=;
+        b=JT8tv1VxM80z0XFvI2giYJRuhB4deq+hdwrio9zVFklAyZNbBDID7BoBdq40HYbWYF
+         cR4+w0H5b00RH5kDtU12otPmGjJatXmfdoeoswT9L6P/YVHYr9GjfBB/CDYKbrPDbc4e
+         7jkzKyL7CDtV7cJLJQaQSPMYjDmtg4y//zE/bjTDVOPkM8PYWFkc4m54tMj6JtIdMEU1
+         Qq4zE0vCCJ13BCvhjwKizxBgV1rBL5JDbQDUJHyOqj/q0M3Px5U684+UQLoAiepXxzze
+         5Yry3AXh1PRC3VrmVTlS/EOwCXY5/psklZSLTqBEJxS54kdE76wAAIlCJUyT5UI7mIX1
+         BLBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697002967; x=1697607767;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KkWm4pQoCblnREoJeplz4SU6UCHJ08f50cIRgUa2+DI=;
+        b=c+JENQDmtXZrBnGmBOXth4TvAIytAzoZo1ituPjg/ruWqv/APHGWoDfEkCo/+cpZM3
+         3VpST2/pM1whG0coX3G/iv8mSMWZ/O/6diMhav41L+XQm47uUV9hfHsA7xe8tFPDXaXC
+         RZ2pRe3IPEpITfOE5Af9d5XThSUW7ImAfK1fnw+bwmEdSNHEWTOMofFegAdhbxShoM2r
+         S4MF/iY3eUCYJe/XMqSuCzg+3n16McMz7D5FWE9RyYPe/fpb3x+a5AZa/HO1mRbhNg4H
+         NbrpHNCAgzALqQVVwSje5j2ctDP0wLrV9tAZUI1dJy6J6g/5aEXMEC9M7fNm/GMjRg0P
+         1FWw==
+X-Gm-Message-State: AOJu0YyjxTXWODF8WK7xgomCkbw2F7Swg1/17XDFxxCoX9xQfBcHav1l
+	oRrOvLgOSRxrfaSxhYs3J5jl2wGOQm31NJIKE0DxnQ==
+X-Google-Smtp-Source: AGHT+IGT5GqAZC77IFPXul38sxqiw6EgBTz7daXRb/nm2FSJYxvzAnRiaHDY1r5hXlNV21xn8NjzttvF83UZcR7RM1c=
+X-Received: by 2002:a17:90b:1050:b0:27c:f4c7:57f with SMTP id
+ gq16-20020a17090b105000b0027cf4c7057fmr2734455pjb.35.1697002967599; Tue, 10
+ Oct 2023 22:42:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Komal Bajaj
-	<quic_kbajaj@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <luca.weiss@fairphone.com>
-References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
- <20231003175456.14774-3-quic_kbajaj@quicinc.com>
- <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: J-ZS4t0giwB-D8qk47t-PQ2LDwTMfN_4
-X-Proofpoint-ORIG-GUID: J-ZS4t0giwB-D8qk47t-PQ2LDwTMfN_4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-11_03,2023-10-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- spamscore=0 mlxscore=0 clxscore=1011 priorityscore=1501 phishscore=0
- adultscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310110050
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+References: <20231010121402.3687948-1-yangcong5@huaqin.corp-partner.google.com>
+ <20231010121402.3687948-2-yangcong5@huaqin.corp-partner.google.com> <CAD=FV=VsjB-gsqXyAs+G8DpHJqHNTxeFXwbpgt20-Wgb757z1w@mail.gmail.com>
+In-Reply-To: <CAD=FV=VsjB-gsqXyAs+G8DpHJqHNTxeFXwbpgt20-Wgb757z1w@mail.gmail.com>
+From: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Date: Wed, 11 Oct 2023 13:42:36 +0800
+Message-ID: <CAHwB_NKVSOLwBttWG9GQMvKEFGzuGeE6ukR=vNDNLpdVjjohng@mail.gmail.com>
+Subject: Re: [v2 1/3] drm/panel: ili9882t: Break out as separate driver
+To: Doug Anderson <dianders@google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
+	airlied@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi,
 
+On Wed, Oct 11, 2023 at 3:11=E2=80=AFAM Doug Anderson <dianders@google.com>=
+ wrote:
+>
+> Hi,
+>
+> On Tue, Oct 10, 2023 at 5:14=E2=80=AFAM Cong Yang
+> <yangcong5@huaqin.corp-partner.google.com> wrote:
+> >
+> > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c b/drivers/gp=
+u/drm/panel/panel-ilitek-ili9882t.c
+> > new file mode 100644
+> > index 000000000000..e095ad91c4bc
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
+> > @@ -0,0 +1,762 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Panels based on the Ilitek ILI9882T display controller.
+> > + */
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+>
+> nit: remove include of linux/of_device.h since you don't use any of
+> the functions declared there.
 
-On 10/7/2023 5:02 AM, Konrad Dybcio wrote:
-> On 3.10.2023 19:54, Komal Bajaj wrote:
->> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
->> platform. QCM6490 is derived from SC7280 meant for various
->> form factor including IoT.
->>
->> Supported features are, as of now:
->> * Debug UART
->> * eMMC
->> * USB
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
-> [...]
-> 
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->> new file mode 100644
->> index 000000000000..b93270cae9ae
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->> @@ -0,0 +1,94 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include "sc7280.dtsi"
->> +
->> +/*
->> + * Delete unused sc7280 memory nodes and define the memory regions
->> + * required by qcm6490
->> + */
->> +/delete-node/ &rmtfs_mem;
->> +/delete-node/ &wlan_ce_mem;
->> +
->> +/{
->> +	reserved-memory {
->> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
->> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
->> +			no-map;
->> +		};
->> +
->> +		camera_mem: camera@84300000 {
-> Uhh.. this is totally not the same memory map that I have on a
-> random msm-5.4 source+devicetree drop (which does in turn align
-> with the one on QCM6490 Fairphone 5, as it should because it's
-> a rebadged reference device for the most part)..
-> 
-> Did you guys *really* redo it between software releases?
+It seems that of_device_get_match_data will be used.
 
-QCM6490 fairphone is special case where same SOC is used for mobile
-product and it uses sc7280 memory map.
+>
+>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include <drm/drm_connector.h>
+> > +#include <drm/drm_crtc.h>
+> > +#include <drm/drm_mipi_dsi.h>
+> > +#include <drm/drm_panel.h>
+> > +
+> > +#include <video/mipi_display.h>
+> > +
+> > +/*
+> > + * Use this descriptor struct to describe different panels using the
+> > + * Ilitek ILI9882T display controller.
+> > + */
+> > +struct panel_desc {
+> > +       const struct drm_display_mode *modes;
+> > +       unsigned int bpc;
+> > +
+> > +       /**
+> > +        * @width_mm: width of the panel's active display area
+> > +        * @height_mm: height of the panel's active display area
+> > +        */
+> > +       struct {
+> > +               unsigned int width_mm;
+> > +               unsigned int height_mm;
+> > +       } size;
+> > +
+> > +       unsigned long mode_flags;
+> > +       enum mipi_dsi_pixel_format format;
+> > +       const struct panel_init_cmd *init_cmds;
+> > +       unsigned int init_cmd_length;
+>
+> Remove "init_cmd_length" since it's now unused.
 
-Current patch adds support for the same SOC marketed for IOT segment
-[1] and very active in the development and soon going to freeze its
-memory map, so we are deriving memory map from sc7280 and creating
-a new memory map for all IOT product with qcm6490.dtsi .
+Done,thanks.
+>
+>
+> > +static void ili9882t_remove(struct mipi_dsi_device *dsi)
+> > +{
+> > +       struct ili9882t *ili =3D mipi_dsi_get_drvdata(dsi);
+> > +       int ret;
+> > +
+> > +
+> > +       ret =3D mipi_dsi_detach(dsi);
+>
+> nit: remove extra blank line above.
 
-[1]
-https://www.qualcomm.com/products/internet-of-things/industrial/building-enterprise/qcm6490
+Done,thanks.
 
-> 
-> This SoC family has been on the market for quite some time,
-> breaking software expectations like that is not cool, especially
-> on a product with a promised lifespan of 10 years or whatever!
-
-I agree, but we are not changing anything for product which are there
-in the market instead defining a new memory map what is going to come
-with qcm6490.dtsi for IOT. Sorry, the other qcm6490 soc with
-fairphone(for mobile) can get confuse with qcm6490.dtsi but that
-is special case and i hope, that should be fine but, let me know if
-there is concern.
-> 
-> With that, this really seems more of a change that would belong
-> in the IDP dts than the 6490-common one..
-
-
-We wanted to keep it in qcm6490.dtsi as there are some more product
-going to share this in future.
-
--Mukesh
-
-> 
-> Konrad
+>
+>
+> Other than nits, this looks good to me now.
+>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
