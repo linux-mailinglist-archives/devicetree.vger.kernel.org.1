@@ -1,204 +1,149 @@
-Return-Path: <devicetree+bounces-7628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA487C4F5D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A42B7C4F66
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 11:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1F371C20C03
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:47:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAE4D1C20D28
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 09:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B971D689;
-	Wed, 11 Oct 2023 09:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD5F1D68B;
+	Wed, 11 Oct 2023 09:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nnomd8jw"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HHF8UrP9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29CC1A711
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:47:24 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037B1A7
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:47:23 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so65308165e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 02:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697017641; x=1697622441; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sc1bsCsMndBVEQyVE65fw2eOTk9RKkO6+cW9YeA+q3g=;
-        b=nnomd8jwv0T017O6EuD8sk89sVIdhSfjwOoZmyKZfEIW8/9g6jzgjNKbAS516r0uXd
-         U2E0YueZJAAvRnUnqO126d6fT7r4Rr1ZBcEKUbybAunFfF2Qz2t3tijwt8Ksk6NyaUT6
-         PnlvuoLLZtId4rfs+SfV8cHdZVU7nSI1i5ofij1Gt4qTYgLaSuN9Mz9CW2TIn7gcvxEL
-         mTxyEoH6vUvGnjsCb4gQopJvNX3/6uDRk663QirCX9aaWAgwOOdkwv/9V7KNRHjzof49
-         0LaDzSpbwx1fL+ci4O0QdEdcUIzefqVSH5YI/2jN9ZdAS8NXTwHNnRVRoawfxo1ogygG
-         j1GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697017641; x=1697622441;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sc1bsCsMndBVEQyVE65fw2eOTk9RKkO6+cW9YeA+q3g=;
-        b=GPFZLk+zrbs9AijYxr0pNnvSOnKWZcN6moHy5Ru6rOm9maNH417Gj6vYbEP0AhwDQ4
-         6Lujf34PQ9PF41nqku9aA0gSSENSIlxGTnXypJ8m1yGUrH+4XdDSCYFJdvf6GexeEOUM
-         miwUReDnOzoqVg3gWuVYMdAYAkMt4XTJmNPz58m1+W+RnfRLHvDnFdBsJgHQRhiSlpJB
-         SOMA7ntWIwzJOjhHnufA0QrIViiIH+G/72SMgWqiouchwMT6e5DPFT+diOduoAtWiv/F
-         9Yp8CYLR5QUQ/rOkLj19pS1JQkKJZwuVQvyA31N+ika90WwQYZlKBdWHQ5f3gw3V807e
-         8CWw==
-X-Gm-Message-State: AOJu0Yw3Z5uJSYVCIDG0HnvS9rER7E697ZAEaYoGOKSuFgSWmLqcg4jq
-	P/LaSgkZ2WqJUCz5k9ZVEmdhnQ==
-X-Google-Smtp-Source: AGHT+IFM2FraAzoU56spQghfNYaeDYO5BiRInvYc6Jk6kRkatMjtmm4CwL/V50tQK8/JUUnNzz2yJQ==
-X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr17700523wmg.0.1697017641287;
-        Wed, 11 Oct 2023 02:47:21 -0700 (PDT)
-Received: from [172.30.204.44] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id bw7-20020a0560001f8700b0032d2489a399sm4144121wrb.49.2023.10.11.02.47.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 02:47:20 -0700 (PDT)
-Message-ID: <dba83334-3971-46e9-9342-1344c5858be8@linaro.org>
-Date: Wed, 11 Oct 2023 11:47:18 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4151A711
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 09:51:17 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F14E94;
+	Wed, 11 Oct 2023 02:51:16 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4623636E;
+	Wed, 11 Oct 2023 11:51:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1697017869;
+	bh=diHNk/C1251cxVwV+v3oM+7Sv140rp1BEm37PJu8sNU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=HHF8UrP9H9XuRCYupOXui8Mshc4P3o+uPWnGGlR1f8A7K/BR3TCh9hFRtF+TJ/32F
+	 mxlV/K5MBy9xT9xhHRy5+d9HRd1FzVXl1z6O07TN3Z14UrcIBW7y9T4U0Sx95IMJxp
+	 GeJKOIe0iov4E1eWjOYi61T3D4fBF1bo+I2Tj+p0=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
-Content-Language: en-US
-To: Mukesh Ojha <quic_mojha@quicinc.com>,
- Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, luca.weiss@fairphone.com
-References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
- <20231003175456.14774-3-quic_kbajaj@quicinc.com>
- <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
- <3fd31aaa-f6bf-8440-6b08-fca2803171d9@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <3fd31aaa-f6bf-8440-6b08-fca2803171d9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231010170941.GA1061525-robh@kernel.org>
+References: <20231010005126.3425444-1-kieran.bingham@ideasonboard.com> <20231010005126.3425444-2-kieran.bingham@ideasonboard.com> <20231010170941.GA1061525-robh@kernel.org>
+Subject: Re: [PATCH 1/5] media: dt-bindings: media: imx335: Add supply bindings
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, Paul J. Murphy <paul.j.murphy@intel.com>, Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
+To: Rob Herring <robh@kernel.org>
+Date: Wed, 11 Oct 2023 10:51:08 +0100
+Message-ID: <169701786887.277971.6587222312606696723@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.6
-X-Spam-Level: *
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Quoting Rob Herring (2023-10-10 18:09:41)
+> On Tue, Oct 10, 2023 at 01:51:22AM +0100, Kieran Bingham wrote:
+> > Add the bindings for the supply references used on the IMX335.
+> >=20
+> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> > ---
+> >  .../bindings/media/i2c/sony,imx335.yaml          | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.ya=
+ml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > index a167dcdb3a32..1863b5608a5c 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> > @@ -32,6 +32,15 @@ properties:
+> >      description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+> >      maxItems: 1
+> > =20
+> > +  avdd-supply:
+> > +    description: Analog power supply (2.9V)
+> > +
+> > +  ovdd-supply:
+> > +    description: Interface power supply (1.8V)
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital power supply (1.2V)
+> > +
+> >    reset-gpios:
+> >      description: Reference to the GPIO connected to the XCLR pin, if a=
+ny.
+> >      maxItems: 1
+> > @@ -60,6 +69,9 @@ required:
+> >    - compatible
+> >    - reg
+> >    - clocks
+> > +  - avdd-supply
+> > +  - ovdd-supply
+> > +  - dvdd-supply
+>=20
+> New required properties are an ABI break. That's fine only if you can=20
+> explain no one is using this binding.
+
+I made these required due to a previous review comment on another
+driver:
+
+- https://lore.kernel.org/all/6e163f4d-061d-3c20-4c2e-44c74d529f10@linaro.o=
+rg/
+
+I hadn't thought about the ABI break though.
+
+So to clarify (for me):
+ - New bindings should always add -supply's as required.
+ - Adding -supply to existing bindings should be optional.
+
+I guess that leaves a mix of devices that either are required or may be
+optional - but perhaps that can't be helped if the bindings have already
+got in.
+
+The IMX335 driver was added in 45d19b5fb9ae ("media: i2c: Add imx335
+camera sensor driver"), and the bindings in 932741d451a5 ("media:
+dt-bindings: media: Add bindings for imx335") by Martina, who looks to
+be an Intel employee - so I suspect this is used through ACPI so far and
+not device tree.
+
+Danielle, get_maintainer tells me you are looking after this device -
+can you confirm this ?
+
+--
+Kieran
 
 
-On 10/11/23 07:40, Mukesh Ojha wrote:
-> 
-> 
-> On 10/7/2023 5:02 AM, Konrad Dybcio wrote:
->> On 3.10.2023 19:54, Komal Bajaj wrote:
->>> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
->>> platform. QCM6490 is derived from SC7280 meant for various
->>> form factor including IoT.
->>>
->>> Supported features are, as of now:
->>> * Debug UART
->>> * eMMC
->>> * USB
->>>
->>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->>> ---
->> [...]
->>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi 
->>> b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->>> new file mode 100644
->>> index 000000000000..b93270cae9ae
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->>> @@ -0,0 +1,94 @@
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights 
->>> reserved.
->>> + */
->>> +
->>> +#include "sc7280.dtsi"
->>> +
->>> +/*
->>> + * Delete unused sc7280 memory nodes and define the memory regions
->>> + * required by qcm6490
->>> + */
->>> +/delete-node/ &rmtfs_mem;
->>> +/delete-node/ &wlan_ce_mem;
->>> +
->>> +/{
->>> +    reserved-memory {
->>> +        cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
->>> +            reg = <0x0 0x81800000 0x0 0x1e00000>;
->>> +            no-map;
->>> +        };
->>> +
->>> +        camera_mem: camera@84300000 {
->> Uhh.. this is totally not the same memory map that I have on a
->> random msm-5.4 source+devicetree drop (which does in turn align
->> with the one on QCM6490 Fairphone 5, as it should because it's
->> a rebadged reference device for the most part)..
->>
->> Did you guys *really* redo it between software releases?
-> 
-> QCM6490 fairphone is special case where same SOC is used for mobile
-> product and it uses sc7280 memory map.
-> 
-> Current patch adds support for the same SOC marketed for IOT segment
-> [1] and very active in the development and soon going to freeze its
-> memory map, so we are deriving memory map from sc7280 and creating
-> a new memory map for all IOT product with qcm6490.dtsi .
-Stop reinventing the wheel. I'm not going to accept patches that are 
-supposed to define ABI for products that are still in development.
-Not unless Qualcomm changes their attitude towards unilaterally breaking 
-things for no good reason.
-
-> 
-> [1]
-> https://www.qualcomm.com/products/internet-of-things/industrial/building-enterprise/qcm6490
-> 
->>
->> This SoC family has been on the market for quite some time,
->> breaking software expectations like that is not cool, especially
->> on a product with a promised lifespan of 10 years or whatever!
-> 
-> I agree, but we are not changing anything for product which are there
-> in the market instead defining a new memory map what is going to come
-> with qcm6490.dtsi for IOT.
-Why would the OS care about the market segment you're targeting?
-Why would the firmware you're building care about the market segment 
-you're targeting? The LE vs LA vs LU vs WP vs whatever split is so 
-unnecessary and arbitrary on the firmware/kernel side..
-
-The firmware should either be fully relocatable (so that dynamic memory 
-reservation can be used), unified so that there's no changes or better 
-yet stored in separate memory so that q6 cores don't steal the RAM that 
-the user paid for and you can do whatever ugly magic you please in there.
-
-This arbitrary segmentation makes it impossible to have a common base, 
-or to explain what device should go where to a newcomer.
-
-Sorry, the other qcm6490 soc with
-> fairphone(for mobile) can get confuse with qcm6490.dtsi but that
-> is special case and i hope, that should be fine but, let me know if
-> there is concern.
->>
->> With that, this really seems more of a change that would belong
->> in the IDP dts than the 6490-common one..
-> 
-> 
-> We wanted to keep it in qcm6490.dtsi as there are some more product
-> going to share this in future.
-And then what if you decide that you need to re-release SC7280 for 
-automotive and make changes again? Do we define qcm6490au.dtsi which 
-will redefine everything again-again?
-
-Konrad
+>=20
+> >    - port
+> > =20
+> >  additionalProperties: false
+> > @@ -79,6 +91,10 @@ examples:
+> >              assigned-clock-parents =3D <&imx335_clk_parent>;
+> >              assigned-clock-rates =3D <24000000>;
+> > =20
+> > +            avdd-supply =3D <&camera_vdda_2v9>;
+> > +            ovdd-supply =3D <&camera_vddo_1v8>;
+> > +            dvdd-supply =3D <&camera_vddd_1v2>;
+> > +
+> >              port {
+> >                  imx335: endpoint {
+> >                      remote-endpoint =3D <&cam>;
+> > --=20
+> > 2.34.1
+> >
 
