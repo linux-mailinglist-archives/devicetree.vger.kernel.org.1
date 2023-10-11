@@ -1,223 +1,165 @@
-Return-Path: <devicetree+bounces-7782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6749E7C5757
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:50:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A9C7C5758
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 16:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 989A71C20C85
-	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:50:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CD7E2820FD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Oct 2023 14:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AC6182CA;
-	Wed, 11 Oct 2023 14:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E4719BDF;
+	Wed, 11 Oct 2023 14:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EX+S8t0y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izMUnSHp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB1F15E8C
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:50:21 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B595F94;
-	Wed, 11 Oct 2023 07:50:18 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c296e6543fso86417941fa.3;
-        Wed, 11 Oct 2023 07:50:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DA215EB2
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 14:50:23 +0000 (UTC)
+Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6EED92;
+	Wed, 11 Oct 2023 07:50:20 -0700 (PDT)
+Received: by mail-vk1-xa2f.google.com with SMTP id 71dfb90a1353d-49d8dd34f7bso2317584e0c.3;
+        Wed, 11 Oct 2023 07:50:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697035817; x=1697640617; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4hEdoIV9Vrx35zLcKUifZjIytGzkt3j9YZqzs49YGsE=;
-        b=EX+S8t0ybFR+NcNM9xwez61DJb3CVTvTyv714ELSy6nVC6qCF7oiU/T0VyB+oe7I+h
-         bXtvQ8C6Cnvq3TRCfGzrbxdi935QOPfwQsUMaujUZnKP+Jm5LiahFeMwRbKgyXzE7vOT
-         LdrimdTHSwk8NWFFMtTzDCE9MoWV3/k7mFbmQKGToG0Jk+FVTk6t6XVnqNGtKkWRexK8
-         ZtnoEoPe1qO6HhWyNb2O5oAkEHhh2uRrdpCnbW8CoVY/rkejKOTCeADjTxMEHD+xaAG8
-         1jPkE0hlFBR8p2TIdkm+klb5cXHj1ZK6YIDfqMbhDA5tjGDAvx/JCGsOMDVpOplGYOkl
-         jFkw==
+        d=gmail.com; s=20230601; t=1697035820; x=1697640620; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TiR+D71XrrGzsX6kzUglgHVBFJmuDb5NbT7pcSYbF5c=;
+        b=izMUnSHp4wLWCR+iNng5aTndHzbwj+dGuyWeo9JJRfq1ewRmhcAMF1em760tgoS9nq
+         0Z9Ajx6dc8NqiIz6IyriA2bpUzjqNF+irJrhca/TP/6PYSufmC3FMfVJ06q7M9rwle1T
+         6otiUbSbw6arJwwfpfwNoGMrllsyTNge8cC4dhV4bZYya6GprfoWeSI7A2HSIrChlxGX
+         Uy7Ugnqo0dxDiqMnJuoEb/F6SPD9qjl7tEsDWp8B0+TYTj8dHcrWh565bINHSvYSzWcy
+         Z+WN2WQApIXgtL41V0Jzjavj5/K37fK1Hk64xoou7MFUv6GIyc5RGGTSQnoByn3CfnMm
+         szog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697035817; x=1697640617;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4hEdoIV9Vrx35zLcKUifZjIytGzkt3j9YZqzs49YGsE=;
-        b=BPk7FI9GOL/OXVWETNwBwnS/u10VEkWrBTdcDln1JgY5Ldtp6hTJjqLYH0G1Crf71C
-         4zckhQAV39MbFBnFGdGhJsTCfw/r6O2oWsxjt36/X3rgSV+BObuMfjmEflXs7L2X/vaP
-         x8ebqil3x/BCNBh5y/5Y4Uif9wMDzowm77hzqSVzFekfD/AEop6gJZjoFqMWjMS1fI+a
-         WhrySo/H7DuFvK0ShQMprYcdSB4ukZgckQlO2hXnYCvEtMSejrvkcl+QZ+yGeoa0kc/p
-         0tRIGvwOO2GPWYGap6fhIIwh6pWQM05rcROew56Y4kAvGQwQHJHoWTO0iY7uRzOOlG1D
-         Zawg==
-X-Gm-Message-State: AOJu0YyBpF9CgJBE+KINhic5DgOkYUaxz7GIvqadyLx59FdeAMQYIA8M
-	qpafb3F8AchrvFcXwg4nyN4=
-X-Google-Smtp-Source: AGHT+IHImYkyI7ecSdkkIRLaVm8LFs3qxGXVtxdYLnIxKCUF6zOr3h8anAZaQaCDWk26XlVucQOOqA==
-X-Received: by 2002:a2e:8895:0:b0:2c2:bdc2:af77 with SMTP id k21-20020a2e8895000000b002c2bdc2af77mr18225719lji.33.1697035816636;
-        Wed, 11 Oct 2023 07:50:16 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id w11-20020a2e998b000000b002bffbe767cbsm3012515lji.85.2023.10.11.07.50.15
+        d=1e100.net; s=20230601; t=1697035820; x=1697640620;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TiR+D71XrrGzsX6kzUglgHVBFJmuDb5NbT7pcSYbF5c=;
+        b=t2ZTuzk/zM3cD9R9+tX/vSZxR/j1d8jR0w0NX8WO/MEb1s2uXTR+lf7q7bnf47ZXOd
+         AHsZnS1m+1WBr26ai0oKX9YKAfBP4Q8SqCzlS1dKi1Gls0TSx0zpvbXzx8IMFh8cVhlb
+         EEAMA6tbUkZMcwply0ccJP0n78j69PY6HYM4q4YOO8AVuV7D+V6kciNRk/ONO9VzxHpo
+         91xLPqYhhx5J+Sas5aYn4D+nHUGzyi3r5CAP84eMoqKvvemnC/D7kEtLbY79aJ1DQo0R
+         DHTd+OFqO0Tj0fSJCfiH7eOI3VF46Rn9AOtNZtu9AvhSA3eDSayDZtfdRpoJJKIeAGk+
+         wJUw==
+X-Gm-Message-State: AOJu0YxcY7Tu9PE8e6pkBtt1vXfuTZfCj0Muw/JkcUacyOzzU8RBRHGp
+	cPl28Mh7usxz3drbcXHSAUI=
+X-Google-Smtp-Source: AGHT+IG2WnxDkI8RsVb0UVxjaWgQQHnrpHbCPoFkXoZjHR8EEyn+mcDPUgmVcFuisU/yN7VCFXAUsQ==
+X-Received: by 2002:a1f:e246:0:b0:499:dec9:e1a8 with SMTP id z67-20020a1fe246000000b00499dec9e1a8mr17068444vkg.14.1697035819690;
+        Wed, 11 Oct 2023 07:50:19 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id y16-20020a05612211b000b0049696582913sm2510821vkn.10.2023.10.11.07.50.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 07:50:16 -0700 (PDT)
-Date: Wed, 11 Oct 2023 17:50:12 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com, 
-	conor+dt@kernel.org, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, 
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
- unnecessary memory assignment
-Message-ID: <yaogf4d672yb76lbx7e7gu2ykm7shujfwgqiztfydbsodwuymr@rkffjewg6hnp>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
- <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
- <abf65z7xxsnd7adkg523mneccudwenvdzcw7jpblafqzvhca5n@lbpsch7ztxsn>
- <20231011130727.GA3722793@rocinante>
- <20231011131840.GB5952@thinkpad>
+        Wed, 11 Oct 2023 07:50:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 11 Oct 2023 07:50:16 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Saravanan Sekar <saravanan@linumiz.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jdelvare@suse.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] regulator: dt-bindings: Add mps,mpq2286
+ power-management IC
+Message-ID: <aff33fb9-02d5-4ea1-bd4e-1c8853d0cc8d@roeck-us.net>
+References: <20231007165803.239718-1-saravanan@linumiz.com>
+ <20231007165803.239718-3-saravanan@linumiz.com>
+ <84f4692c-5fee-4d00-b537-570f90191d6e@roeck-us.net>
+ <1ce9d59e-0938-4448-8279-b8c6e522b26a@linaro.org>
+ <154920ff-ad72-43fe-9631-e65ed918a9bb@roeck-us.net>
+ <7a964442-80ca-f69a-f1ad-9296cc8f6839@linumiz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231011131840.GB5952@thinkpad>
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+In-Reply-To: <7a964442-80ca-f69a-f1ad-9296cc8f6839@linumiz.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Krzysztof, Mani
-
-On Wed, Oct 11, 2023 at 06:48:40PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Oct 11, 2023 at 10:07:27PM +0900, Krzysztof Wilczyński wrote:
-> > Hello,
+On Wed, Oct 11, 2023 at 12:02:44PM +0530, Saravanan Sekar wrote:
+> On 08/10/23 19:22, Guenter Roeck wrote:
+> > On Sun, Oct 08, 2023 at 12:40:29PM +0200, Krzysztof Kozlowski wrote:
+> > > On 08/10/2023 03:20, Guenter Roeck wrote:
+> > > > On Sat, Oct 07, 2023 at 10:28:02PM +0530, Saravanan Sekar wrote:
+> > > > > Document mpq2286 power-management IC. Instead of simple 'buck', 'buck0' is
+> > > > > used to keep the driver common which handles multiple regulators.
+> > > > 
+> > > > Sorry for the maybe dumb question, but where can I find the driver
+> > > > depencency on buck naming ?
+> > > 
+> > > I guess it is because:
+> > > PMBUS_REGULATOR_STEP("buck", 0, MPQ7932_N_VOLTAGES,
+> > > creates regulator name as buck+id (so buck0).
+> > > 
 > > 
-> > [...]
-> > > > +	/*
-> > > > +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> > > > +	 * Rev.5.20a,
-> > > 
-> > > and 3.5.6.1 "RC mode" in DWC PCIe RC databook v5.20a.
+> > Ah, good point. Problem here is that this is already kind of common,
+> > even though the use of "buckX" isn't. Look for "vout0", or
+> > 'PMBUS_REGULATOR("vout", 0)'. Apparently so far no one took offence
+> > if a regulator was named "vout0" even if "vout1" didn't exist.
 > > 
-> > OK.  I can fix this citation later.
+> > I don't really have a good solution right now, but I guess we'll need
+> > a second set of macros for the single-regulator case, or maybe generate
+> > struct regulator_desc arrays using a function. I'll have to explore
+> > options.
 > > 
-> > > > +      ... we should disable two BARs to avoid unnecessary memory
-> > > > +	 * assignment during device enumeration.
-> > > > +	 */
-> > > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_0, 0x0);
-> > > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_1, 0x0);
-> > > > +
-> > > 
-> > > What's the point in doing this
-> > > 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0x00000004);
-> > > 	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_1, 0x00000000);
-> > >         ...
-> > >         dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
-> > > afterward?
-> > > 
-> > > I guess if the BARs are disabled there is no need in having them
-> > > touched. Am I wrong?
-> > > 
-> > > BTW I failed to understand why the BARs inits was originally needed:
-> > > first merging the BAR0 and BAR1 into a single 64-bit BAR, then
-> > > switching it back to two 32-bit BARs. Moreover here is what prior DW
-> > > PCIe RC v5.x databooks say about the BARs:
-> > > 
-> > > "3.5.6 BAR Details
-> > > Base Address Registers (Offset: 0x10-x14)
-> > > The Synopsys core does not implement the optional BARs for the RC
-> > > product. This is based on the assumption that the RC host probably has
-> > > registers on some other internal bus and has knowledge and setup
-> > > access to these registers already."
-> > > 
-> > > I am not sure I fully understand what it means, but it seems as DW
-> > > PCIe cores didn't have anything behind the RC BARs even back then. So
-> > > it seems to me that the BARs manipulation was the Exinos PCIe host
-> > > specific, from which driver they are originating - commit 340cba6092c2
-> > > ("pci: Add PCIe driver for Samsung Exynos").
+> > Please let me know how you want the subsystem to handle existing
+> > single-channel regulators with numbered regulator name.
 > > 
-
-> > Would any of the above be something we need to address before this series
-> > can be successfully merged?  I am asking if this is a show stopper,
-> > something we can fix later, or even something I could address once I take
-> > this series again.
-> > 
-> > Thoughts?
-> >
-
-I can't confirm for sure that the BARs manipulations in this patch
-will work on the older IP-cores (prior 5.10a) or will be required for
-all new controllers (5.10a and newer). Based on the BARs description
-posted in the IP-core HW manuals, the CSRs semantic has changed
-between the major releases. Old DW PCIe RC IP-core HW-manuals
-explicitly state that the BARs are unavailable:
-
-"The Synopsys core does not implement the optional BARs for the RC
-product"
-
-New DW PCIe RC IP-cores manual say that the BARs exist, but are
-normally unused:
-
-"Two BARs are present but are not expected to be used. You should
-disable them to avoid unnecessary memory assignment during device
-enumeration. If you do use a BAR, then you should program it to
-capture TLPs that are targeted to your local non-application memory
-space.... The BAR range must be outside of the three Base/Limit
-regions..."
-
-So in theory it's possible to have platforms with the BARs somehow
-utilized even in the Root Ports. Though currently AFAICS we don't
-have such devices supported in kernel.
-
+> > Saravanan - for this driver please just declare a local driver-specific
+> > variant of the PMBUS_REGULATOR_STEP() macro which doesn't use indexing,
+> > use it to initialise a second regulators_desc array, and use that second
+> > array for mpq2286. That is a bit messy, but acceptable for now until
+> > there is a more generic solution (unless of course you have an idea for
+> > one and want to implement it, but that is not a requirement).
+> Hello Guenter,
 > 
-> If Yoshihiro can confirm that his controller can work without this patch, then
-> I'd vote for dropping this patch and applying the rest.
-
-AFAIR Yoshihiro insisted to have the BARs reset because without
-it something didn't work, so he added some comment to justify it:
-https://lore.kernel.org/linux-pci/TYBPR01MB534104389952D87385E8745ED8879@TYBPR01MB5341.jpnprd01.prod.outlook.com/
-Though based on the comment the BARs reset still seems optional.
-
-One more low-level driver which already does what is implemented in
-this patch is the Keystone PCI host-controller driver (see,
-pci-keystone.c also activates dbi_cs2 and zeros out the
-PCI_TYPE0_BAR0_ENABLED flag). Moreover something similar is done in
-the generic DW PCIe EP driver in the framework of the
-__dw_pcie_ep_reset_bar() method including the direct BARs zeroing out
-(which I questioned in my initial message in this thread). So seeing
-this patch would re-do what is already done for the Keystone device
-and would add a partly duplicated code it would be reasonable to drop
-the patch for now and get the BARs reset back to the Rcar host
-low-level driver as it was in v23. We can get back to the topic
-afterward and see whether the BARs reset could be done generically for
-the RPs. If we figure out that it's required at least for the new
-controllers then we'll be able to implement a generic RP/EP BARs reset
-method, have it utilized in both DW PCIe core drivers and drop the
-respective code from both Rcar and Keystone LLDDs.
-
--Serge(y)
-
+> Thanks for your proposal as intermediate fix local declaration of macro,
+> could you please suggest whether below changes is acceptable as workaround?
 > 
-> This can be submitted later if required.
-> 
-> - Mani
-> 
-> > > * BTW Yoshihiro, I am sorry to see your patchset is still under review...(
-> > 
-> > Yes, we need to draw a line somewhere. :)  I am happy to take this series
-> > so we don't miss another merge window.  We can always fix other bits and
-> > pieces later and iron out any kinks that might have fallen through the
-> > cracks, so to speak.
-> > 
-> > 	Krzysztof
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+
+No, because that would overwrite a data structure which might be needed
+by another mpq7932 in the system. mpq7932_regulators_desc should really
+be declared const to clarify that it is not supposed to be changed.
+
+Thinking more about it, the solution is actually quite simple. Please add
+a second patch adding PMBUS_REGULATOR_STEP_ONE() and PMBUS_REGULATOR_ONE()
+macros to drivers/hwmon/pmbus/pmbus.h and use the new macro in this patch.
+That would result in code such as
+
+static const struct regulator_desc mpq7932_regulators_desc_one[] = {
+        PMBUS_REGULATOR_STEP_ONE("buck", MPQ7932_N_VOLTAGES,
+				 MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+};
+
+...
+
+        if (info->num_regulators == 1)
+                info->reg_desc = mpq7932_regulators_desc_one;
+        else
+                info->reg_desc = mpq7932_regulators_desc;
+
+We can then use the xxx_ONE macros when adding regulator support to existing
+or new drivers, and either keep existing drivers as-is or update them based
+on DT maintainer input.
+
+Thanks,
+Guenter
 
