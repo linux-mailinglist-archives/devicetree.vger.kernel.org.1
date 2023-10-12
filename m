@@ -1,113 +1,134 @@
-Return-Path: <devicetree+bounces-8049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850307C67BB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:41:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4407C67A8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:40:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44A91282A9D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D54371C20E3F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494F62033C;
-	Thu, 12 Oct 2023 08:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3991A27E;
+	Thu, 12 Oct 2023 08:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="L8OSc4vJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9bUcRVF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88CB61F933
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:54 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1858D3;
-	Thu, 12 Oct 2023 01:40:50 -0700 (PDT)
-X-UUID: 0907d85668db11eea33bb35ae8d461a2-20231012
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wPAZy6ESnioZH+kLVb+rHtDuQKaIt/qY8aIqjrMpNI8=;
-	b=L8OSc4vJQntTruUQt16AbXKPnOVDmBzGDgZ2qhn66P5yMVNBA9y+PQUPOTHnI4LU+lqBB/pbGa6bcrU6vVUQ3nO9S3k+Rg0caPQq4hoIi2Fxu6Duuc9hfPlEYf3usv81c5j1BsPWab1TLuly7PhOJIBJRQjwO5mpdK/Wa+qL9fg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:04cde37d-f2f9-40d6-891b-5687618bd252,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:55f009c4-1e57-4345-9d31-31ad9818b39f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0907d85668db11eea33bb35ae8d461a2-20231012
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1779128172; Thu, 12 Oct 2023 16:40:45 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 12 Oct 2023 16:40:44 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 12 Oct 2023 16:40:44 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
-	<daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Moudy
- Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v7 16/16] dt-bindings: display: mediatek: padding: add compatible for MT8195
-Date: Thu, 12 Oct 2023 16:40:37 +0800
-Message-ID: <20231012084037.19376-17-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20231012084037.19376-1-moudy.ho@mediatek.com>
-References: <20231012084037.19376-1-moudy.ho@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40388DF43
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:45 +0000 (UTC)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D75090;
+	Thu, 12 Oct 2023 01:40:43 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-405497850dbso7584075e9.0;
+        Thu, 12 Oct 2023 01:40:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697100041; x=1697704841; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=d6hjwO0QYem7wB9ncQJktw2M9ObYxqHAubvFpZ1Se2I=;
+        b=l9bUcRVFBha3paASp+Zkvrv8qQp1W/idiFA1iTNBLkpvOnafVSnzW4IL3NUTlkG0ZL
+         hSaL98+uhRK07bxQmXFASZMOSPo4j5g5XKgwYcLkY5HXtBVL2pQIUZLsYzgV8IkwBw5q
+         K46EvntplAh2ZE3zv/4+F1lMJB8uIyoTmrMFlSKti0mEQioX9OzxT2n7dmcHV4gnpnM0
+         D7x0JwGsmJYBLPdJAcKOrR9+fujAZLEJsKTS8uGrdrzxYHradNUYZs5OWWpNwXE6HCsM
+         GZRAtaFMxB3O7jtKNXirGg5AXtv8gbdeJ/u4MPfp838zRZAhaLcz7uWd4gAFzNnGgwiV
+         Uk6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697100041; x=1697704841;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d6hjwO0QYem7wB9ncQJktw2M9ObYxqHAubvFpZ1Se2I=;
+        b=knqxBGRMcznCdJkyhT8Ow3YGKiIjaAY9p4YiwupWq4z/0EXI0NJ32ZbMXoDl7enwnf
+         xDo/ENxKD+XgNgs8ATyGs7rQB2CN6CQWMLBWDY3mexDrFaexBbqgTdOGfsbywCDX22NJ
+         OnW+KDZRkSvAmp48kR0mtrKIS0dohWk0S7IFy/BItglZQUUqSVYSP3y9wFa/zyHo0yLY
+         UyunpHgBD1WkD2jq4nVTCri/oLWwpQBOLd7LBrs5QhuylpACgExDaA1s/CmK0/PO1TdG
+         7NKwa9wHOVUZpIlvnY1hj/c3nt7+cd/T4XqzJ+N50q3wD+mJN+C8MjBi3qywevvYvL7G
+         qRqw==
+X-Gm-Message-State: AOJu0YxK2snFY/dwb8vlbR5c3NY46/AwR3If8eXjL81F6xzKa1cf+mtw
+	+dHmJSau2zm6Ei+r4SWXBtg=
+X-Google-Smtp-Source: AGHT+IFn0DQmOtn/DUZmU7WVv+0Qp2ojqN902C4Z3/Vk+y14x5P0E/Pq1nUVNf+Hk8fdVD3YSj/W/w==
+X-Received: by 2002:a05:600c:b41:b0:405:499a:7fc1 with SMTP id k1-20020a05600c0b4100b00405499a7fc1mr20623780wmr.40.1697100041235;
+        Thu, 12 Oct 2023 01:40:41 -0700 (PDT)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id n24-20020a1c7218000000b004065e235417sm21047460wmc.21.2023.10.12.01.40.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Oct 2023 01:40:40 -0700 (PDT)
+Message-ID: <6527b108.1c0a0220.bc8fa.7fd2@mx.google.com>
+X-Google-Original-Message-ID: <ZSexBuiBkh0z5oiB@Ansuel-xps.>
+Date: Thu, 12 Oct 2023 10:40:38 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ilia Lin <ilia.lin@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+Subject: Re: [PATCH v5 0/6] cpufreq: qcom-nvmem: support apq8064 cpufreq
+ scaling
+References: <20231002185940.1271800-1-dmitry.baryshkov@linaro.org>
+ <20231010063235.rj2ehxugtjr5x2xr@vireshk-i7>
+ <20231012034241.jwtsq22w2lwzfbvn@vireshk-i7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231012034241.jwtsq22w2lwzfbvn@vireshk-i7>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a compatible string for the PAD block in MediaTek MT8195 that
-is controlled by MDP3.
+On Thu, Oct 12, 2023 at 09:12:41AM +0530, Viresh Kumar wrote:
+> On 10-10-23, 12:02, Viresh Kumar wrote:
+> > On 02-10-23, 21:59, Dmitry Baryshkov wrote:
+> > > This is a split of APQ8064 cpufreq series, as requested by Viresh. This
+> > > series includes only opp and cpufreq parts, with the DT and soc parts
+> > > being split to a separate patchset.
+> > > 
+> > > Each core has independent power and frequency control. Additionally the
+> > > L2 cache is scaled to follow the CPU frequencies (failure to do so
+> > > results in strange semi-random crashes).
+> > > 
+> > > Core voltage is controlled through the SAW2 devices, one for each core.
+> > > The L2 has two regulators, vdd-mem and vdd-dig.
+> > > 
+> > > Changes since v4:
+> > > - Reordered variables in qcom_cpufreq_init() (Konrad)
+> > > - Fixed of_platform_device_create() error check (Konrad)
+> > > - Dropped unused ret variable in qcom_cpufreq_apq8064_name_version() (Konrad)
+> > 
+> > Applied. Thanks.
+> 
+> Since these are causing build issues, and it isn't entirely clear what's the
+> right approach for now, I have dropped the changes from my branch to avoid any
+> further issues. You don't need to resend these, lets finalize a solution and
+> then I can apply them again.
+> 
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- .../bindings/display/mediatek/mediatek,padding.yaml           | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Hi we have a qcom-cpufreq series that depends on this (or better say we
+have rebased it on top of these changes to prevent merge conflicts)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-index db24801ebc48..636b69133acc 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-@@ -20,7 +20,9 @@ description:
- 
- properties:
-   compatible:
--    const: mediatek,mt8188-padding
-+    enum:
-+      - mediatek,mt8188-padding
-+      - mediatek,mt8195-mdp3-pad
- 
-   reg:
-     maxItems: 1
+Can you link where this was applied, also can I help in fixing the
+compile error to speed things up?
+
 -- 
-2.18.0
-
+	Ansuel
 
