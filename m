@@ -1,236 +1,160 @@
-Return-Path: <devicetree+bounces-8303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB537C78BA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40A827C78D3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:51:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 764B8B207E6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:39:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04672B2051D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28DF03F4B8;
-	Thu, 12 Oct 2023 21:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5C03F4C4;
+	Thu, 12 Oct 2023 21:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Jz9Lg7Xk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HjSHOCag"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFB03F4AC
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 21:39:34 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D787FD9
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:39:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1697146772;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o3yRqYZd7hXBCjj0x6r+xRvOZ/+by8OSU47aD3csnLU=;
-	b=Jz9Lg7XkGBcIn0+t03pVv7bCkueRn4pKNusfcl3mfeHRli3r7ZT4lYlva4Q0McPKfBqIqL
-	qekmkgwWZ70F1Unyot4jAb9rPX4gcfciBkxXZVDrGc0+ks6tiN1aJzwQzCrED+m1HaGbbZ
-	+2IGE4Hd8cGoJm8AAKoow5u7cumuJqQ=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-154-6BdPC-u0PAKWnAiotu-uww-1; Thu, 12 Oct 2023 17:39:15 -0400
-X-MC-Unique: 6BdPC-u0PAKWnAiotu-uww-1
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-407558fe418so10099425e9.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:39:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697146754; x=1697751554;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o3yRqYZd7hXBCjj0x6r+xRvOZ/+by8OSU47aD3csnLU=;
-        b=U26GF9/S5WFI7HX16XRjf1GDP8RUOGIRY7gQ/H7GGR06+PJlMdnhbzrnPo7PsDtcRl
-         xHIyPmoV7Fh+Va8D3ZuCx5HVETZTuoabfoRjiTf/d3f1ryY/9dJDQ3O11ELtSgr3KA1K
-         7LKq5Prjf0hvgCvwe6Z7h6Gqd+y5ligbMAC9/bIs68QcvRgkJlntIAhRtdWB/XI+lgZ+
-         YuzuUjdiIOrvmwcXijOWC+vZsSG5GJRLvN4z7UjRfFtcUjQvTSikWEoFdi/M+Cr6bOxW
-         QXggySgaLSlU92llqbxWQnH6ZtzPjHqXSxHXWgVNFH1QrJUDLOnwMEPbE+QhBdLaT/u2
-         l1oA==
-X-Gm-Message-State: AOJu0Yx2s+ML0tqb5ZK6eFT8M9N5sPTHxtY4mkr1koe8unYe636SkJFv
-	Lbeaal+xuE3a7HA46uO6FtqQygUQp2PTg38pZd2f8RIIWSQbiljHTmBw52FQgmeBSgruoAb0ZBP
-	RMrNzzfBgtGkrhR3Vsho1LQ==
-X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr21842871wmg.0.1697146754726;
-        Thu, 12 Oct 2023 14:39:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+XVdeKgSPhHzOip6DG8FcebZmLSy2zD26qDPnYqZ7qCmWMDHxCbKD8PAFohtrJ32KHy3KEw==
-X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr21842864wmg.0.1697146754547;
-        Thu, 12 Oct 2023 14:39:14 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id y10-20020a05600c364a00b0040648217f4fsm800706wmq.39.2023.10.12.14.39.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 14:39:14 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: linux-kernel@vger.kernel.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 6/6] dt-bindings: display: Add SSD132x OLED controllers
-Date: Thu, 12 Oct 2023 23:38:36 +0200
-Message-ID: <20231012213843.1151060-7-javierm@redhat.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231012213843.1151060-1-javierm@redhat.com>
-References: <20231012213843.1151060-1-javierm@redhat.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56933E46D
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 21:51:22 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F09CBB;
+	Thu, 12 Oct 2023 14:51:20 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39CLbjch027956;
+	Thu, 12 Oct 2023 21:51:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=voUltIrLrhXdVJp9/yCwFFwFBu2KkCyxDDIWBrI4Xog=;
+ b=HjSHOCagbHCB6bOReW+vqK+Dfm07myfSFl8yPtmClixpKCcx4C5UnnqZmJp4EkkrDlGk
+ sDingmngYmPHq+uM3HBBqPVeQGzhUBBMSXXi3SA5X0kNnLJQP6XLfqhUZ1vUA3G+umcu
+ gEnsitEU8Llg9JgShMHxB3a5DvlmHMEYr5M5u84mB7GEvxhxzAQTFiqgJF+aWHmqIvr2
+ 9/U+wcedGEb8KGNxTmqgyc7htL3M+bz8iq1TCdvyJkUU1ehqhGC3hPkWpIqnJq0Xm8vL
+ 1+bDS61NU97RlA6x7NV16IlgORC6blhN3ETupnnFsJrRxkKbilBOeheB+98R4nhkHEJx pQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnsmq4h32-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 21:51:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39CLp1Wo011405
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 21:51:01 GMT
+Received: from [10.110.43.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 12 Oct
+ 2023 14:50:59 -0700
+Message-ID: <a2781978-2081-f4cb-dfe3-0489860dab8e@quicinc.com>
+Date: Thu, 12 Oct 2023 14:50:42 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 0/7] Add support for LUT PPG
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>, <pavel@ucw.cz>, <lee@kernel.org>,
+        <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>
+CC: <konrad.dybcio@linaro.org>, <u.kleine-koenig@pengutronix.de>,
+        <quic_subbaram@quicinc.com>, <quic_gurus@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <kernel@quicinc.com>
+References: <20230929003901.15086-1-quic_amelende@quicinc.com>
+ <CVX5ZUGU9BVE.2TA819U1AI6BZ@otso>
+From: Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <CVX5ZUGU9BVE.2TA819U1AI6BZ@otso>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PeOLq1QMggphqx9nLudVIdQ5iZgaUs-J
+X-Proofpoint-ORIG-GUID: PeOLq1QMggphqx9nLudVIdQ5iZgaUs-J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-12_14,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 bulkscore=0 clxscore=1011 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310120183
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a Device Tree binding schema for the OLED panels based on the Solomon
-SSD132x family of controllers.
 
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
 
-Changes in v3:
-- Add Rob Herring's Reviewed-by tag to patch #6.
+On 10/1/2023 7:15 AM, Luca Weiss wrote:
+> On Fri Sep 29, 2023 at 2:38 AM CEST, Anjelique Melendez wrote:
+>> In certain PMICs, LUT pattern and LPG configuration is stored in SDAM
+>> modules instead of LUT peripheral. This feature is called PPG.
+>>
+>> This change series adds support for PPG. Thanks!
+[..]
+>>
+>> Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3 (pmi632)
+> 
+> Hi Anjelique,
+> 
+> Actually I've retested this now on PMI632 (and also realized that my
+> previous tests weren't correct and wasn't actually using hw_pattern).
+> 
+> Using the following commands (after boot) I'm expecting to get a
+> 500ms on 500ms off blinking pattern between white (255 255 255) and off
+> (0 0 0).
+> 
+>   echo pattern > /sys/class/leds/rgb:status/trigger
+>   echo -1 > /sys/class/leds/rgb:status/repeat
+> 
+>   echo "255 255 255" > /sys/class/leds/rgb:status/multi_intensity
+>   echo "255 500 255 0 0 500 0 0" > /sys/class/leds/rgb:status/hw_pattern
+> 
+> What I actually see is it blinking between cyan (0 255 255) and red (255
+> 0 0).
+> At some point after playing with many patterns I got it to actually
+> cycle between white and off, but I couldn't reproduce this again (or I
+> didn't try hard enough).
+> 
+> 
+> But with this example it correctly blinks red on-off.
+> 
+>   echo "255 0 0" > /sys/class/leds/rgb:status/multi_intensity
+>   echo "255 500 255 0 0 500 0 0" > /sys/class/leds/rgb:status/hw_pattern
+> 
+> With "0 255 0" and "0 0 255" the other colors also work fine, it's just
+> the combinations that seem somewhat broken.
+> 
+> Regards
+> Luca
+> 
+> 
+Hi Luca,
 
-Changes in v2:
-- Remove unnecessary 'oneOf' in the SSD132x DT binding schema (Conor Dooley).
-- Remove unused DT nodes labels in the binding schema examples (Conor Dooley).
-- Split out common Solomon properties into a separate schema (Rob Herring).
+Thanks for testing again and the feedback!
+Looks like for multicolor devices there is a small concurrency issue with
+enabling pattern at the same time for all the led channels. This could be
+why you observed your device blinking between red (255 0 0) and cyan (0 255 255),
+instead of seeing all channels (255 255 255) blink.
+The fix I'm planing to include in the next series is is to disable the multicolor led
+channels first, then configure all channels, and finally re-enable channels
+so that pattern is triggered at the same time for each all of the channels.
 
- .../bindings/display/solomon,ssd132x.yaml     | 89 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 2 files changed, 90 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
+I am currently testing with pm8350c device so if you are able to test next series
+on pmi632 it would be very appreciated!
 
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd132x.yaml b/Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
-new file mode 100644
-index 000000000000..0aa41bd9ddca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/solomon,ssd132x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Solomon SSD132x OLED Display Controllers
-+
-+maintainers:
-+  - Javier Martinez Canillas <javierm@redhat.com>
-+
-+properties:
-+  compatible:
-+    - enum:
-+        - solomon,ssd1322
-+        - solomon,ssd1325
-+        - solomon,ssd1327
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: solomon,ssd-common.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1322
-+    then:
-+      properties:
-+        width:
-+          default: 480
-+        height:
-+          default: 128
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1325
-+    then:
-+      properties:
-+        width:
-+          default: 128
-+        height:
-+          default: 80
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1327
-+    then:
-+      properties:
-+        width:
-+          default: 128
-+        height:
-+          default: 128
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            oled@3c {
-+                    compatible = "solomon,ssd1327";
-+                    reg = <0x3c>;
-+                    reset-gpios = <&gpio2 7>;
-+            };
-+
-+    };
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            oled@0 {
-+                    compatible = "solomon,ssd1327";
-+                    reg = <0x0>;
-+                    reset-gpios = <&gpio2 7>;
-+                    dc-gpios = <&gpio2 8>;
-+                    spi-max-frequency = <10000000>;
-+            };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4a3baf970839..5257e0074f2b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6733,7 +6733,7 @@ M:	Javier Martinez Canillas <javierm@redhat.com>
- S:	Maintained
- T:	git git://anongit.freedesktop.org/drm/drm-misc
- F:	Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
--F:	Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+F:	Documentation/devicetree/bindings/display/solomon,ssd13*.yaml
- F:	drivers/gpu/drm/solomon/ssd130x*
- 
- DRM DRIVER FOR ST-ERICSSON MCDE
--- 
-2.41.0
-
+Thanks,
+Anjelique
 
