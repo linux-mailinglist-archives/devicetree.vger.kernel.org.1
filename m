@@ -1,145 +1,152 @@
-Return-Path: <devicetree+bounces-7980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADDE7C6624
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:15:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C137C665F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:28:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A71C41C20A59
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:15:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3FD282029
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71932DF4D;
-	Thu, 12 Oct 2023 07:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BE9DF67;
+	Thu, 12 Oct 2023 07:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hDewP4PB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b5UXYZkc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D09DDDB
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:15:53 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AC690
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:15:50 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-406aaccb41dso2338855e9.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:15:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C222DF62
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:28:31 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 501CC9D;
+	Thu, 12 Oct 2023 00:28:27 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9b2cee40de8so125154466b.1;
+        Thu, 12 Oct 2023 00:28:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697094949; x=1697699749; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KXCX0IrmSUAHDEC+IloTWKmfzlKX5kVqCGXqvzJraC0=;
-        b=hDewP4PBYrmftFZlJqTRZmmPM0wynRvkFH2AGWmNpEZHaOsLRKLPEXJk2Tluu8W4VF
-         an+V7rFmrvY87N4lgrz89l0QUTg+20sBENn+UzLtJ5pY056y31F8HWYjUwAJ/Wnl8Flz
-         sEMeIqNFs6k4HOSq0h9QQyYKRSO8Gbo60vlZesG4p0PhzwPto+FL41/kIl9jtyW0K7NS
-         ly0QLU7gL9E8XvHWblRPfpMngjlcR+I52lnnO1l2nX+J+myiTcNx8S+5bLw3YuS/iwP1
-         tzlqhZNfQ+hg+/xSOF6NhJrdnK7K0TtEvhBzeVrEjlQT/SY0AwBpLUxZpHx/pHjt6H+F
-         vb3Q==
+        d=gmail.com; s=20230601; t=1697095706; x=1697700506; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kEqKvIWeFRr8W5s0BPeSsPwNLKn93+5XPQoiJhuCABo=;
+        b=b5UXYZkc91cIBJ7igE7i2UsySuIydTQXjE55MupknR44qFIjeVJIL2eLMxwFvD7sSG
+         6h14rQqhPym0LJg/Vzb0XzLQdpSYqUhAx664sIYN12deQcb+bqTrskESdpJyaLSQKT2I
+         rIvMTcCZzZFiR5i0BeUDTYN+s2xAuoE5uDKViBFonnPCv4H3qts1V8fIOCx8zUVCE17U
+         Ve7GulhV/o0p6GLhQ/PXtE+0JvJYvdYZNiWtRU/PaQ3sk0aqoeevCGaXTb3qGe0TUNq9
+         naqOlSixCZu4HyuaUeXX0PZbun9xANgfKLsjImFXHepvL6TBt0norQ84MzrWL6Si+Ryw
+         WpZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697094949; x=1697699749;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KXCX0IrmSUAHDEC+IloTWKmfzlKX5kVqCGXqvzJraC0=;
-        b=weAi1T35+xez/DaDACH7kaeT6Qy+CzNXraTIpHpWu6wm/HWd9yVxHGP0NhMTwBUn4Y
-         AQ1Vr0ZabKuWLloaDTEX+3iKznBgn9rq+iWgW43z7UvO7gPIKLcz1pL00/2QXEwT6+nE
-         /dlHlgtWnuDDG5Pq3rK0P/yfvJMZ4m5FNyl/lnWJTcWL8kzA7ArLWmEnQQ8Z/gueNVks
-         qo+EPKrMjxlqsj7UQwju1cxAjFmUd+0zKbcrcq3/hda4XMqIcL+ij9GaxZ4hzM/T5bVH
-         uS2UKqVbu+IsmTAONDm2UB8C4V6xZZiR0rQz8O5SAxAYVf9IlCo7VBaLZwT9OSUyhCzV
-         gTvA==
-X-Gm-Message-State: AOJu0Yx3qhWERl2VX8QhBhgefFNEdZxA8QMiNK87qhmFg//hwSod1q+G
-	FVMWfO0zjNtNPeju2UJ90oPcLw==
-X-Google-Smtp-Source: AGHT+IF8ZVCCfIFHscwR+LhyeBNqMXqYxxa5f++Vy8Gg5L6iDKMU8VQSX5qkaLQ8psvTbqv+62pjxw==
-X-Received: by 2002:a05:600c:214f:b0:406:513d:738f with SMTP id v15-20020a05600c214f00b00406513d738fmr20891443wml.2.1697094948360;
-        Thu, 12 Oct 2023 00:15:48 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:3fed:c1e5:145f:8179? ([2a01:e0a:999:a3a0:3fed:c1e5:145f:8179])
-        by smtp.gmail.com with ESMTPSA id l16-20020a7bc450000000b0040536dcec17sm20897533wmi.27.2023.10.12.00.15.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 00:15:47 -0700 (PDT)
-Message-ID: <11d6a463-4e00-4407-9d93-2f9d190c4be3@rivosinc.com>
-Date: Thu, 12 Oct 2023 09:15:46 +0200
+        d=1e100.net; s=20230601; t=1697095706; x=1697700506;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kEqKvIWeFRr8W5s0BPeSsPwNLKn93+5XPQoiJhuCABo=;
+        b=IcufihXrY9gM7/bnLrIDjXMzSsTlYLJYW+0H30WIOidWyHcj1YTm1dLyAUqcxcwyTZ
+         KrJGRegIp6MmnMVSimjwyFj/mpQEVPVOyJDU/Z4eJb7RG8FdjTaM4NhRlPIXHkyxXwcW
+         ccXMI363j1mvzkj4Cj8Gql8DxlL6MXJU+u0HyL3AzDY9CK0h6keFU4ww3THpVXFAk0NY
+         enXSnk4POBEm9XIR465XVRDIhk8l+ugGht0YVoEZDvDqRCllOFTXoK3tD1y2j3wsTwvU
+         cx63jz7uiFGVlVtGCC1f57CLUmAupk4YrEt+QWVV+mgvA1PTI10wgKjbzeHqX8J4wuEk
+         cJcA==
+X-Gm-Message-State: AOJu0YxoHdRTMIBmMfrOGlHgKg60eK4WfUz23ZMQj5yu6919nY+Lf0zY
+	xopNcQhtxIs8BfpZHDS1//8=
+X-Google-Smtp-Source: AGHT+IFdcug422fZ9CQ3p/vnodtvTJxBtSb/0L4CdV5alrbUijpVrx+baQdM5YlE+adz/UU7cIal8g==
+X-Received: by 2002:a17:907:7f08:b0:9a9:9d19:b250 with SMTP id qf8-20020a1709077f0800b009a99d19b250mr16312225ejc.17.1697095705420;
+        Thu, 12 Oct 2023 00:28:25 -0700 (PDT)
+Received: from lab.hqhome163.com ([194.183.10.152])
+        by smtp.googlemail.com with ESMTPSA id a6-20020a170906468600b009a5f7fb51dcsm10616261ejr.42.2023.10.12.00.28.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Oct 2023 00:28:24 -0700 (PDT)
+From: "Alessandro Carminati (Red Hat)" <alessandro.carminati@gmail.com>
+To: manivannan.sadhasivam@linaro.org
+Cc: alim.akhtar@samsung.com,
+	andersson@kernel.org,
+	avri.altman@wdc.com,
+	bmasney@redhat.com,
+	bvanassche@acm.org,
+	conor+dt@kernel.org,
+	cw00.choi@samsung.com,
+	devicetree@vger.kernel.org,
+	jejb@linux.ibm.com,
+	konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	kyungmin.park@samsung.com,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-scsi@vger.kernel.org,
+	martin.petersen@oracle.com,
+	myungjoo.ham@samsung.com,
+	nm@ti.com,
+	quic_asutoshd@quicinc.com,
+	quic_bhaskarv@quicinc.com,
+	quic_cang@quicinc.com,
+	quic_narepall@quicinc.com,
+	quic_nguyenb@quicinc.com,
+	quic_nitirawa@quicinc.com,
+	quic_richardp@quicinc.com,
+	quic_ziqichen@quicinc.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	vireshk@kernel.org,
+	"Alessandro Carminati (Red Hat)" <alessandro.carminati@gmail.com>
+Subject: [PATCH] scsi: ufs: core: Fix build error: ufshcd_opp_config_clks
+Date: Thu, 12 Oct 2023 07:20:51 +0000
+Message-Id: <20231012072051.1517826-1-alessandro.carminati@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231011122543.11922-4-manivannan.sadhasivam@linaro.org>
+References: <20231011122543.11922-4-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 00/13] riscv: report more ISA extensions through
- hwprobe
-To: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Palmer Dabbelt <palmer@rivosinc.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
- Andrew Jones <ajones@ventanamicro.com>, Evan Green <evan@rivosinc.com>,
- Conor Dooley <conor@kernel.org>
-References: <20231011111438.909552-1-cleger@rivosinc.com>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20231011111438.909552-1-cleger@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On second thought, maybe it would make more sense to squash all logical
-commits together (dt-bindings, hwporobe, etc) with all the ISA
-extensions in each. Tell me if you think it would be better.
+Building linux-6.6-rc3 with this patchset applied and the following
+configuration:
 
-Clément
+CONFIG_SCSI_UFSHCD=m
+CONFIG_SCSI_UFS_BSG=y
 
-On 11/10/2023 13:14, Clément Léger wrote:
-> In order to be able to gather more information about the supported ISA
-> extensions from userspace using the hwprobe syscall, add more ISA extensions
-> report. This series adds the following ISA extensions support:
-> 
-> - Zfh[min]
-> - Zvfh[min]
-> - Zihintntl
-> - Zvbb
-> - Zvbc
-> - Zvkb
-> - Zvkg
-> - Zvkned
-> - Zvknh[ab]
-> - Zvksed
-> - Zvksh
-> - Zvkn
-> - Zvknc
-> - Zvkng
-> - Zvks
-> - Zvksc
-> - Zvksg
-> - Zvkt
-> 
-> Clément Léger (13):
->   riscv: fatorize hwprobe ISA extension reporting
->   riscv: add ISA extension probing for Zv* extensions
->   riscv: hwprobe: export Zv* ISA extensions
->   dt-bindings: riscv: add Zv* ratified crypto ISA extensions description
->   riscv: add ISA extension probing for Zfh/Zfhmin
->   riscv: hwprobe: export Zfh/Zfhmin ISA extensions
->   dt-bindings: riscv: add Zfh/Zfhmin ISA extensions description
->   riscv: add ISA extension probing for Zihintntl
->   riscv: hwprobe: export Zhintntl ISA extension
->   dt-bindings: riscv: add Zihintntl ISA extension description
->   riscv: add ISA extension probing for Zvfh[min]
->   riscv: hwprobe: export Zvfh[min] ISA extensions
->   dt-bindings: riscv: add Zvfh[min] ISA extension description
-> 
->  .../devicetree/bindings/riscv/extensions.yaml | 127 ++++++++++++++++++
->  Documentation/riscv/hwprobe.rst               |  65 +++++++++
->  arch/riscv/include/asm/hwcap.h                |  21 +++
->  arch/riscv/include/uapi/asm/hwprobe.h         |  21 +++
->  arch/riscv/kernel/cpufeature.c                |  21 +++
->  arch/riscv/kernel/sys_riscv.c                 |  53 ++++++--
->  6 files changed, 294 insertions(+), 14 deletions(-)
-> 
+I got:
+
+   scripts/mod/modpost -M -m -a      -o Module.symvers -T modules.order vmlinux.o
+ERROR: modpost: "ufshcd_opp_config_clks" [drivers/ufs/host/ufshcd-pltfrm.ko] undefined!
+make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
+make[1]: *** [/home/alessandro/src/linux-6.6-rc3/Makefile:1865: modpost] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+I needed to add an export symbol to have the build complete
+
+Signed-off-by: Alessandro Carminati (Red Hat) <alessandro.carminati@gmail.com>
+---
+ drivers/ufs/core/ufshcd.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+index ccd7fcd18355..c0631c37c3d1 100644
+--- a/drivers/ufs/core/ufshcd.c
++++ b/drivers/ufs/core/ufshcd.c
+@@ -1098,6 +1098,7 @@ int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL_GPL(ufshcd_opp_config_clks);
+ 
+ static int ufshcd_opp_set_rate(struct ufs_hba *hba, unsigned long freq)
+ {
+-- 
+2.34.1
+
 
