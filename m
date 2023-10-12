@@ -1,149 +1,122 @@
-Return-Path: <devicetree+bounces-8200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7F17C7191
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D04F47C7196
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2933528243D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:34:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89C09282423
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729432773F;
-	Thu, 12 Oct 2023 15:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE8D27EC0;
+	Thu, 12 Oct 2023 15:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7npSNyH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dLW1QH4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A23266B8
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:34:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93BAC433C8;
-	Thu, 12 Oct 2023 15:34:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697124843;
-	bh=Du9N4V6KWfnC15d6hQvbSe2MbqDzCzhgYPGU7vmPG0g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A7npSNyHNUta68Xb/V0V8wb+IV3OyfgVrQYSvOdRRCgyW8n94pjWXQBQX1UzMsP5C
-	 OWptebPIYynHKKfjxDpsM8gVE8DCf0+2YGd6imQg3GKlbLV8435EgCogXsiZsOhNFv
-	 dla6aEXbihUGUortH2fe0Qoy0yG+0p5JAgXTXcmtP5H9eyZBQgB9b6Q5tNdoF+k5He
-	 uRmxBHTeAta7zaCbqr8sSd9Z2ODTXxhiq9oUH7c6P4DWmdm5N+Fqd3Ha0B3DhBjXoF
-	 tojproG52XaWSCgTlu5WuJz9kKWsJX5nsqvAFdepVKCz0T131bRXhnUc0MSD00UVXX
-	 shwV50CZY1ymw==
-Date: Thu, 12 Oct 2023 16:33:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add OmniVision OV64A40
-Message-ID: <20231012-wisplike-distrust-6b49aa8eae5e@spud>
-References: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
- <20231010151208.29564-2-jacopo.mondi@ideasonboard.com>
- <20231011-conflict-monument-75379ef495cc@spud>
- <ar5rf3mas33vvg47jflmhajpyx2pypdjdf3x522x3a3v5cva2a@gjmr5cjv6dyd>
- <20231011-deserve-platonic-0beb72c94661@spud>
- <20231011162454.GB5306@pendragon.ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABED266B8
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:34:58 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD69C0
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:34:56 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40651a72807so11917875e9.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:34:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697124894; x=1697729694; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AlYbARuGOvayK2I8gPmBtlTVphiwdBhXgzXNKnIpdgQ=;
+        b=dLW1QH4GEbS/jBNDsbmYOlK/rKTpAsNIBuwxsxTRwtfus1bRVn42gzcGT/NXKTRcr7
+         his/elYT+j9sk4RTtLsIxv76EOrp6T+wJnsPVnCmhsCznjOnP+CQLCOPKBwClGvSSi7d
+         rLmUILReAbJ8dPushIZIb26vpaqX8StdpCOxquQ0r4qxim8ij5qu5sgBZ4iCYJPSbJud
+         BrBcRa5DHU575qBGqPqlooRYEa3i8BNfwaYboe71JNMGyIDmdIEt6ntF+mjJW45uupYB
+         XsKWGwWb1PAt0mSvz/STYgV7e7wj78zNMyCjUy9BSf/L1cx8v97RaKpwvWn4vmNWEYAO
+         J2mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697124894; x=1697729694;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AlYbARuGOvayK2I8gPmBtlTVphiwdBhXgzXNKnIpdgQ=;
+        b=RyU4xNBPolLFY1+If76oN2uDo5IqemwKK3u6ztBxdSXCC4zCC2muDlER9C4vKen3+I
+         Ehu5BvlTFIJDO/yAS/4LNJfM9JUszG1Ch3Ja72e5i8W1HvjUnyDyYsWCeXiHOak2tjES
+         uTXVBn49wk89XsihrjT3WDavLoloBUoLvQwj60m6gPXU0AXih7O1hJ00+rC0Nhruh+/W
+         20HCuIWwOAcYQLtocK7aVhwWo0vJk52oXqGtXYToeE7UJRAz7flwyMX3foErtOm+BpKh
+         Kx+R9dNieltc0gshZ87XYlgpGY5A3fqsvFuwmrvbHDrA85YErMiQMflyOB9mV6GnmjsN
+         XMoA==
+X-Gm-Message-State: AOJu0YyNhoDnrQgGG1BjwzqCWAK867ItuDc65vWZKLW8GzhRJ9lEN3XD
+	2kFxD0kUxQ7tbkTCRoxB1gbrxA==
+X-Google-Smtp-Source: AGHT+IGg2dDbelEwQ6AKXVaNt6xSv454CPd0Ugdfj//8oRMrxMj2ciXjjzeqOjOTyIL2fKUpCJJCrg==
+X-Received: by 2002:a1c:7917:0:b0:405:3d27:70e8 with SMTP id l23-20020a1c7917000000b004053d2770e8mr20865780wme.36.1697124894284;
+        Thu, 12 Oct 2023 08:34:54 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id x3-20020a05600c21c300b004053a6b8c41sm135419wmj.12.2023.10.12.08.34.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Oct 2023 08:34:53 -0700 (PDT)
+Message-ID: <c8cf0994-be7f-4ed0-9e9e-a2f81fd9709a@linaro.org>
+Date: Thu, 12 Oct 2023 17:34:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/uSO+fW+/nd4ynkl"
-Content-Disposition: inline
-In-Reply-To: <20231011162454.GB5306@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] imx6q related DT binding fixes
+Content-Language: en-US
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231012080033.2715241-1-alexander.stein@ew.tq-group.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20231012080033.2715241-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+On 12/10/2023 10:00, Alexander Stein wrote:
+> Hi everyone,
+> 
+> while working on i.MX6Q based board (arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dts)
+> I noticed several warnings on dtbs_check.
+> I'm also not sure whether thse patches warrent a Fixes tag, so I only added that
+> for patch 3. All of these patches are independent and can be picked up
+> individually.
+> 
+> Patches already merged:
+> * 0268e1ae25949 ("dt-bindings: trivial-devices: Remove national,lm75")
+> * 57db57ae15a97 ("dt-bindings: display: fsl,imx6-hdmi: Change to 'unevaluatedProperties: false'")
+>    which deprecates v1 patch 3
+
+Applied, thanks
 
 
---/uSO+fW+/nd4ynkl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-On Wed, Oct 11, 2023 at 07:24:54PM +0300, Laurent Pinchart wrote:
-> On Wed, Oct 11, 2023 at 05:16:50PM +0100, Conor Dooley wrote:
-> > On Wed, Oct 11, 2023 at 06:12:28PM +0200, Jacopo Mondi wrote:
-> > > On Wed, Oct 11, 2023 at 04:53:34PM +0100, Conor Dooley wrote:
-> > > > On Tue, Oct 10, 2023 at 05:12:07PM +0200, Jacopo Mondi wrote:
-> > > > > Add bindings for OmniVision OV64A40.
-> > > > >
-> > > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > > > Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
-> > > >
-> > > > What does Lee's SoB indicate here?
-> > >=20
-> > > Lee has contributed to the development of the driver and validation of
-> > > bindings.
-> >=20
-> > Then you're missing a Co-developed-by: from Lee :)
-> >=20
-> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > index b19995690904..df089d68b58c 100644
-> > > > > --- a/MAINTAINERS
-> > > > > +++ b/MAINTAINERS
-> > > > > @@ -15821,6 +15821,13 @@ S:	Maintained
-> > > > >  T:	git git://linuxtv.org/media_tree.git
-> > > > >  F:	drivers/media/i2c/ov5695.c
-> > > > >
-> > > > > +OMNIVISION OV64A40 SENSOR DRIVER
-> > > > > +M:	Jacopo Mondi <jacopo.mondi@ideasonboard.org>
-> > > > > +L:	linux-media@vger.kernel.org
-> > > > > +S:	Maintained
-> > > > > +T:	git git://linuxtv.org/media_tree.git
-> > > >
-> > > > Binding looks fine to me, my question is here. Usually having a tree
-> > > > here means that you apply the patches yourself. Do you?
-> > > >
-> > >=20
-> > > No, and only Mauro has commit rights on the media tree.
-> > >=20
-> > > All i2c sensor drivers have a tree listed, regardless who commits
-> > > there. What should I put there ?
-> >=20
-> > IMO, nothing. The media tree entry should cover the parent directory,
-> > no?
->=20
-> There's little documentation for the T: tag. In MAINTAINERS, we have
->=20
->         T: *SCM* tree type and location.
->            Type is one of: git, hg, quilt, stgit, topgit
->=20
-> which doesn't tell much. In Documentation/sbumitting-patches.rst,
-> there's ona additional paragraph:
->=20
->   Note, however, that you may not want to develop against the mainline
->   tree directly.  Most subsystem maintainers run their own trees and
->   want to see patches prepared against those trees.  See the **T:**
->   entry for the subsystem in the MAINTAINERS file to find that tree, or
->   simply ask the maintainer if the tree is not listed there.
->=20
-> If the purpose of the T: tag is to tell which tree patches for this
-> driver should be developed against, the above tree seems right.
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-I suppose media has a different interpretation than is common elsewhere.
-With the fixed attribution,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---/uSO+fW+/nd4ynkl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSgR5wAKCRB4tDGHoIJi
-0ia3AQDE54CI3/dcVe+fifBvzOy3N5W/4NbrczrDPQsThOO9rwD/UPV/H3zFqdQJ
-KTah92fyUWgHrhmX3h8tvLUBiuiiwgU=
-=Rba2
------END PGP SIGNATURE-----
-
---/uSO+fW+/nd4ynkl--
 
