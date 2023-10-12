@@ -1,121 +1,149 @@
-Return-Path: <devicetree+bounces-8199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCEA7C7179
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:30:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7F17C7191
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD53C1C20B7C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:30:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2933528243D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C40273E5;
-	Thu, 12 Oct 2023 15:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729432773F;
+	Thu, 12 Oct 2023 15:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sNlqy8im"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7npSNyH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1BB224CF;
-	Thu, 12 Oct 2023 15:30:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65F77C433C8;
-	Thu, 12 Oct 2023 15:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A23266B8
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:34:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93BAC433C8;
+	Thu, 12 Oct 2023 15:34:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697124617;
-	bh=ZtcSIbjB2WpeZfQRyCvdpc+0MAvoSIsAVFQJFGWoAZY=;
+	s=k20201202; t=1697124843;
+	bh=Du9N4V6KWfnC15d6hQvbSe2MbqDzCzhgYPGU7vmPG0g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sNlqy8imXhwlW5ogqsGatXLJh6x3ULy2dxsaSxs56ggFVkTV6XlGelwtvmknbj7Xu
-	 ShUCZ/8OXslZolbuuvyrBlxLrcJ01GSlmz7CSJEaxf3rAcgbPMbnfuFHufU09E90RW
-	 5ApYEGyJHTTls7cFvAibnKaw6QYJ/MgybICMj+V6qAR0vsGzNnF3N6loiEvhXeakbo
-	 Tc8RBxaMuLt9cw9IyN5cmf2yVbPk/7zrWOf/NIL+18Z146Hj24oQ+EZR236LNiKgxH
-	 rW8s1EpB9lyTQA3S/nGP0hy8u95XFa9UJYnNgK7IXnZV4NIWHKMv5YsKgXN/Jehq6j
-	 lkrAiKBqcY2gw==
-Received: (nullmailer pid 821925 invoked by uid 1000);
-	Thu, 12 Oct 2023 15:30:12 -0000
-Date: Thu, 12 Oct 2023 10:30:12 -0500
-From: Rob Herring <robh@kernel.org>
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-Cc: Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org, herbert@gondor.apana.org.au, davem@davemloft.net, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org, olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com, mchehab@kernel.org, fabrice.gasnier@foss.st.com, andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com, lee@kernel.org, will@kernel.org, catalin.marinas@arm.com, arnd@kernel.org, richardcochran@gmail.com, Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, alsa-devel@alsa-project.org, linux-media@vger.kernel.org, linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-p
- .hy@lists.infradead.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v6 10/11] ARM: dts: stm32: add ETZPC as a system bus for
- STM32MP15x boards
-Message-ID: <20231012153012.GA698406-robh@kernel.org>
-References: <20231010125719.784627-1-gatien.chevallier@foss.st.com>
- <20231010125719.784627-11-gatien.chevallier@foss.st.com>
- <20231010184212.GA1221641-robh@kernel.org>
- <8f1b6915-68be-a525-c5d5-37f0983c14de@foss.st.com>
+	b=A7npSNyHNUta68Xb/V0V8wb+IV3OyfgVrQYSvOdRRCgyW8n94pjWXQBQX1UzMsP5C
+	 OWptebPIYynHKKfjxDpsM8gVE8DCf0+2YGd6imQg3GKlbLV8435EgCogXsiZsOhNFv
+	 dla6aEXbihUGUortH2fe0Qoy0yG+0p5JAgXTXcmtP5H9eyZBQgB9b6Q5tNdoF+k5He
+	 uRmxBHTeAta7zaCbqr8sSd9Z2ODTXxhiq9oUH7c6P4DWmdm5N+Fqd3Ha0B3DhBjXoF
+	 tojproG52XaWSCgTlu5WuJz9kKWsJX5nsqvAFdepVKCz0T131bRXhnUc0MSD00UVXX
+	 shwV50CZY1ymw==
+Date: Thu, 12 Oct 2023 16:33:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add OmniVision OV64A40
+Message-ID: <20231012-wisplike-distrust-6b49aa8eae5e@spud>
+References: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
+ <20231010151208.29564-2-jacopo.mondi@ideasonboard.com>
+ <20231011-conflict-monument-75379ef495cc@spud>
+ <ar5rf3mas33vvg47jflmhajpyx2pypdjdf3x522x3a3v5cva2a@gjmr5cjv6dyd>
+ <20231011-deserve-platonic-0beb72c94661@spud>
+ <20231011162454.GB5306@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/uSO+fW+/nd4ynkl"
+Content-Disposition: inline
+In-Reply-To: <20231011162454.GB5306@pendragon.ideasonboard.com>
+
+
+--/uSO+fW+/nd4ynkl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8f1b6915-68be-a525-c5d5-37f0983c14de@foss.st.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 11, 2023 at 10:49:58AM +0200, Gatien CHEVALLIER wrote:
-> Hi Rob,
-> 
-> On 10/10/23 20:42, Rob Herring wrote:
-> > On Tue, Oct 10, 2023 at 02:57:18PM +0200, Gatien Chevallier wrote:
-> > > ETZPC is a firewall controller. Put all peripherals filtered by the
-> > > ETZPC as ETZPC subnodes and reference ETZPC as an
-> > > access-control-provider.
-> > > 
-> > > For more information on which peripheral is securable or supports MCU
-> > > isolation, please read the STM32MP15 reference manual.
-> > > 
-> > > Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> > > ---
-> > > 
-> > > Changes in V6:
-> > >      	- Renamed access-controller to access-controllers
-> > >      	- Removal of access-control-provider property
-> > > 
-> > > Changes in V5:
-> > >      	- Renamed feature-domain* to access-control*
-> > > 
-> > >   arch/arm/boot/dts/st/stm32mp151.dtsi  | 2756 +++++++++++++------------
-> > >   arch/arm/boot/dts/st/stm32mp153.dtsi  |   52 +-
-> > >   arch/arm/boot/dts/st/stm32mp15xc.dtsi |   19 +-
-> > >   3 files changed, 1450 insertions(+), 1377 deletions(-)
-> > 
-> > This is not reviewable. Change the indentation and any non-functional
-> > change in one patch and then actual changes in another.
-> 
-> Ok, I'll make it easier to read.
-> 
-> > 
-> > This is also an ABI break. Though I'm not sure it's avoidable. All the
-> > devices below the ETZPC node won't probe on existing kernel. A
-> > simple-bus fallback for ETZPC node should solve that.
-> > 
-> 
-> I had one issue when trying with a simple-bus fallback that was the
-> drivers were probing even though the access rights aren't correct.
-> Hence the removal of the simple-bus compatible in the STM32MP25 patch.
+On Wed, Oct 11, 2023 at 07:24:54PM +0300, Laurent Pinchart wrote:
+> On Wed, Oct 11, 2023 at 05:16:50PM +0100, Conor Dooley wrote:
+> > On Wed, Oct 11, 2023 at 06:12:28PM +0200, Jacopo Mondi wrote:
+> > > On Wed, Oct 11, 2023 at 04:53:34PM +0100, Conor Dooley wrote:
+> > > > On Tue, Oct 10, 2023 at 05:12:07PM +0200, Jacopo Mondi wrote:
+> > > > > Add bindings for OmniVision OV64A40.
+> > > > >
+> > > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > > Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
+> > > >
+> > > > What does Lee's SoB indicate here?
+> > >=20
+> > > Lee has contributed to the development of the driver and validation of
+> > > bindings.
+> >=20
+> > Then you're missing a Co-developed-by: from Lee :)
+> >=20
+> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > index b19995690904..df089d68b58c 100644
+> > > > > --- a/MAINTAINERS
+> > > > > +++ b/MAINTAINERS
+> > > > > @@ -15821,6 +15821,13 @@ S:	Maintained
+> > > > >  T:	git git://linuxtv.org/media_tree.git
+> > > > >  F:	drivers/media/i2c/ov5695.c
+> > > > >
+> > > > > +OMNIVISION OV64A40 SENSOR DRIVER
+> > > > > +M:	Jacopo Mondi <jacopo.mondi@ideasonboard.org>
+> > > > > +L:	linux-media@vger.kernel.org
+> > > > > +S:	Maintained
+> > > > > +T:	git git://linuxtv.org/media_tree.git
+> > > >
+> > > > Binding looks fine to me, my question is here. Usually having a tree
+> > > > here means that you apply the patches yourself. Do you?
+> > > >
+> > >=20
+> > > No, and only Mauro has commit rights on the media tree.
+> > >=20
+> > > All i2c sensor drivers have a tree listed, regardless who commits
+> > > there. What should I put there ?
+> >=20
+> > IMO, nothing. The media tree entry should cover the parent directory,
+> > no?
+>=20
+> There's little documentation for the T: tag. In MAINTAINERS, we have
+>=20
+>         T: *SCM* tree type and location.
+>            Type is one of: git, hg, quilt, stgit, topgit
+>=20
+> which doesn't tell much. In Documentation/sbumitting-patches.rst,
+> there's ona additional paragraph:
+>=20
+>   Note, however, that you may not want to develop against the mainline
+>   tree directly.  Most subsystem maintainers run their own trees and
+>   want to see patches prepared against those trees.  See the **T:**
+>   entry for the subsystem in the MAINTAINERS file to find that tree, or
+>   simply ask the maintainer if the tree is not listed there.
+>=20
+> If the purpose of the T: tag is to tell which tree patches for this
+> driver should be developed against, the above tree seems right.
 
-But it worked before, right? So the difference is you have either added 
-new devices which need setup or your firmware changed how devices are 
-setup (or not setup). Certainly can't fix the latter case. You just need 
-to be explicit about what you are doing to users.
+I suppose media has a different interpretation than is common elsewhere.
+With the fixed attribution,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
 
-> Even though a node is tagged with the OF_POPULATED flag when checking
-> the access rights with the firewall controller, it seems that when
-> simple-bus is probing, there's no check of this flag.
+--/uSO+fW+/nd4ynkl
+Content-Type: application/pgp-signature; name="signature.asc"
 
-It shouldn't. Those flags are for creating the devices (or not) and 
-removing only devices of_platform_populate() created.
+-----BEGIN PGP SIGNATURE-----
 
-> of_platform_populate() checks and sets the OF_POPULATED_BUS flag.
-> Maybe that is my error and the firewall bus populate should set
-> OF_POPULATED_BUS instead of OF_POPULATED. Is that correct?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSgR5wAKCRB4tDGHoIJi
+0ia3AQDE54CI3/dcVe+fifBvzOy3N5W/4NbrczrDPQsThOO9rwD/UPV/H3zFqdQJ
+KTah92fyUWgHrhmX3h8tvLUBiuiiwgU=
+=Rba2
+-----END PGP SIGNATURE-----
 
-Shrug. Off hand, I'd say probably not, but am not certain.
-
-Rob
+--/uSO+fW+/nd4ynkl--
 
