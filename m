@@ -1,100 +1,105 @@
-Return-Path: <devicetree+bounces-7987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0ED47C6655
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:24:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F777C6659
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:25:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A6D3282029
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:23:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B374C28206A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEC6DF5C;
-	Thu, 12 Oct 2023 07:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D26CDF5E;
+	Thu, 12 Oct 2023 07:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcQnC693"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A6VeEVM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D27DDDC
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:23:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 849A3C433CA;
-	Thu, 12 Oct 2023 07:23:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697095436;
-	bh=hkw3GPAiv3QqU91HXOgB/Ith+aGeVqJdKk6L8jddygI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UcQnC693fcCYJEIdqIGncIc2MkU8dRRhRl8UGYKg8UXWSmEtvl5Igbu8rz8HaKJKK
-	 SLpSqhJCWU+hynzbei9nk0NTLqDvGpeEK7Dcn3Wz5MG8iI3fFPHAsd9WWjN6tYfFJH
-	 24arMGPIsnrNZFTIqH+osU2fmL5YQkW8WhGDG+bJjRUgJQEO9MSK4CLo5eRrLnfIh7
-	 OpEwVtdwCBfxPYZXRy188se1JThva4MmUjqTQPQeAcLriymhKVeRjvraDdV6gO7Y/T
-	 k3+D6I2eT1dzLhbvQHCfOtYeC/W2/cYHg7MKjO1g+pUfAEGEYkQXDdqUlg9+jR6bw4
-	 /x7nIz+GmvVJw==
-Received: (nullmailer pid 3961449 invoked by uid 1000);
-	Thu, 12 Oct 2023 07:23:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B540ECA71
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:25:34 +0000 (UTC)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1514BA
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:25:32 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-59f6441215dso8274617b3.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:25:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697095532; x=1697700332; darn=vger.kernel.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TDAhFdVB+tI63Tlx2t2hh2M0UUe3pqSQGZTAV8ccMac=;
+        b=A6VeEVM7CMTkMAW3XQEu2P/1mFYFlEYacRE0Ls8x/hzbESmj5QyPpZJD1x5SsFhPqv
+         H557ocPI0nTRzBCMZ5L9QPjLjxw9McUxqPFsLLmasP/Yc64mNyipynfh7TIU7M2Y1s+0
+         Ig+1b1lOTnmbMVXJ1pdf+7mQOfAdH5omjlglhIyA6iuvZ80pY9AT2SnghAwrIpTVTLKI
+         Mm8Xs+03HTsNjEEO0XKEn55jLC2kwP1NbEmxPb8+ldVztl7xQZ72qnU7+JhJSBuLrvQb
+         +FtvuC1G3wqCFVyc1DtCcJ/bC741gF9izTDxwfWVtB/OEByXiGvsXf2iFiZhTtLPUEFR
+         Pozg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697095532; x=1697700332;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TDAhFdVB+tI63Tlx2t2hh2M0UUe3pqSQGZTAV8ccMac=;
+        b=OiPS1BuIWqCYK1sx96rgsOYUjbbpdbaywiXhaE9BWzxZqJZ1CALFf/uxbVIk9ZQ+VI
+         nrCR6NKfdww3V7KjEDGUXUOw4E6ZM5arTtLWVolR6p+VjSiTcgWUbDmIFbKFr1oxbqlT
+         C1yeqkrKkKXPd9QxndliS5cRhWuT2s7m3PgGJtTqytsfFTM/KLZLeEPPOSd2GfbvTPd2
+         RAUMwDTrpbogjE9ENqcdK801Q6jzvgIJSgL91o/7HzL9GIVLaj+iKS1w0cObGV4CJE2g
+         ZouaQKw8Oazf2zEDgIzURI0coQh0X322y2f+Buz1cPVTRiA+tXyJ5G9puZhgC9DP2bR5
+         BbFg==
+X-Gm-Message-State: AOJu0YwzOXkh7ARnqGAhvF4SV7qoaLxyIK+280/oyJHpconttQSsCZeA
+	w25cBJtyWUV4/Hygt3k66zKFUV9rtnhHC03ws+p+DA==
+X-Google-Smtp-Source: AGHT+IE1z8dAp3iRYvs+gdRvN9L402ugX2Jjidpf6aPy91pCQWQFCgioWCTUTu8Sw1eBuPdlEorX6wiszzJHDYzZZa4=
+X-Received: by 2002:a0d:f5c7:0:b0:59b:d872:5ca8 with SMTP id
+ e190-20020a0df5c7000000b0059bd8725ca8mr22496429ywf.22.1697095531944; Thu, 12
+ Oct 2023 00:25:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Peter Robinson <pbrobinson@gmail.com>, linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <20231012065822.1007930-6-javierm@redhat.com>
-References: <20231012065822.1007930-1-javierm@redhat.com>
- <20231012065822.1007930-6-javierm@redhat.com>
-Message-Id: <169709543435.3961410.18389221947480753316.robh@kernel.org>
-Subject: Re: [PATCH v2 5/6] dt-bindings: display: Split common Solomon
- properties in their own schema
-Date: Thu, 12 Oct 2023 02:23:54 -0500
+References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
+ <20231005025843.508689-6-takahiro.akashi@linaro.org> <20231006132346.GA3426353-robh@kernel.org>
+ <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com> <ZSTgTC4cFFpofYAk@octopus>
+In-Reply-To: <ZSTgTC4cFFpofYAk@octopus>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 12 Oct 2023 09:25:20 +0200
+Message-ID: <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
+Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
+ generic gpio driver
+To: AKASHI Takahiro <takahiro.akashi@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com, cristian.marussi@arm.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On Tue, Oct 10, 2023 at 7:25=E2=80=AFAM AKASHI Takahiro
+<takahiro.akashi@linaro.org> wrote:
 
-On Thu, 12 Oct 2023 08:58:14 +0200, Javier Martinez Canillas wrote:
-> There are DT properties that can be shared across different Solomon OLED
-> Display Controller families. Split them into a separate common schema to
-> avoid these properties to be duplicated in different DT bindings schemas.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
-> 
-> (no changes since v1)
-> 
->  .../bindings/display/solomon,ssd-common.yaml  | 42 +++++++++++++++++++
->  .../bindings/display/solomon,ssd1307fb.yaml   | 28 +------------
->  MAINTAINERS                                   |  1 +
->  3 files changed, 44 insertions(+), 27 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
-> 
+> > We can probably mandate that this has to be inside a pin controller
+> > since it is a first.
+>
+> Yeah, my U-Boot implementation tentatively supports both (inside and
+> outside pin controller). But it is not a user's choice, but we should
+> decide which way to go.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+OK I have decided we are going to put it inside the pin control node,
+as a subnode. (I don't expect anyone to object.)
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/solomon,ssd-common.yaml:42:27: [error] no new line character at the end of file (new-line-at-end-of-file)
+It makes everything easier and clearer for users I think.
 
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231012065822.1007930-6-javierm@redhat.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Yours,
+Linus Walleij
 
