@@ -1,156 +1,213 @@
-Return-Path: <devicetree+bounces-8145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C3E7C6D9E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:09:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8082A7C6DF8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF2352828B4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:09:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B67328212C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F168225114;
-	Thu, 12 Oct 2023 12:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6C526292;
+	Thu, 12 Oct 2023 12:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Fn8yx5GG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CorwcQX2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB2A24A0B
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:09:22 +0000 (UTC)
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7DFEB8
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:09:20 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-692c70bc440so717377b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:09:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F70026291
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:24:46 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112A6C6
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:24:43 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5043a01ee20so1220366e87.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1697112560; x=1697717360; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mGVuIDhtnkx9I0P2cABYe4E02j31AzUEOF4KcnzwtNo=;
-        b=Fn8yx5GGh7aL9kkK6kToM7fnRCr80ONPBUJITgEnhcYx8ZAUa/SOfxJPtMkJV71QlG
-         yZKWcfzVBZGZIdHniRwfQcWNCE8FASXBCRi1yWtCSwY+N5BgHN13UcAt+Q6DMbaQWUK3
-         6zKjJljdLXvh0j+M1LWVITX0j4nvhRfzuboishjLsR/6eFp35sfy1V2W368GKS2Rc6qp
-         MFFuw48J9Ib6sWuabFesXWz8cnt+2u9SdM51v0d0JcDtCGx/hSdcuh35ny+Iq0qCBlfb
-         s95+6VnOcrDxHSlX7Rcop73ar0rE6LfgoDY96MaKAtI+4+by9cBuBikpilVUtv81zm9i
-         EUGQ==
+        d=linaro.org; s=google; t=1697113481; x=1697718281; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJR9cDh+7ZTeuRSJ5Jio19eYIFYvTnyjLFRoPhLNrlY=;
+        b=CorwcQX2DeG6zNVvutKYaNTwut87zOAqaCb9QfmdO67gH2eHi8aGL01N5tK1CFfhi2
+         OWr0tEaRbW+FmZPz3en/Bq+1W+jPil8qMPHN8NTh01rUJNdG3TcTeeunI3QFLhy+7Gdh
+         5nqXIa+zvYhAsnCnI9L3Ug8uhNbdXDwHm48kRyUkjkiN40wKdP4e6HQEtBuInWb1n2S/
+         9iq1+hk+It73iWcH4holHIPS1Tk4qCbgq7E1PN7LUrSTCN8A4D6pD4O2n24WHuE7DMN5
+         xWls9NurssNNE5Xw/0U8zvbp47RhL599IZbhnMpyCeHo8KabuY/8sdN90UrWlk3Leb68
+         SgOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697112560; x=1697717360;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mGVuIDhtnkx9I0P2cABYe4E02j31AzUEOF4KcnzwtNo=;
-        b=AFnx5bhTDHwVvXtxKejsXXSPah+1Cv+lA9ltVbgvKlnpqyt1f/gDJy231/VQbr/HHk
-         9JSDP17t+bPyC/oKU8luJjta58zpjaHfnC16a9+UWVBmEC6XbKpkldbVbM4QWzxmMu1y
-         q/w0o88olggmRK1K/yH7H6FTYF8S/NuZhSQ5BBAKr2WUUrj7/6aYS3G+XJqQDanTSTCj
-         wMwlew7CPmNIfZKxHPBf/SoFtmmUqfFTSPh0waUYVpO+RO0Tjp6p7RaQ0v9ATpufNj1+
-         XmzCSknrwHf/tPPU3A2IrErTDnYqFglzXrCN7ntAL1uZCqsb0g8BKQDd1cNZEwSY8bsA
-         26HQ==
-X-Gm-Message-State: AOJu0YzMgtFHpLUX4BaaBT6uvvra0I+UDSiOLuFC91NRCDE5kzmtz8aB
-	Ts64G35D5pFZzYv4zefsNBTqNVsmEw73w/3lwDe6pT8xc+5z/rv3SXMtLw==
-X-Google-Smtp-Source: AGHT+IG+qwM2ufmCDLktuyF3J53mc39RePPOt1YUFtmHX/i9Y46+A0GhC2zS9COvexYKnJPUEsdEadKXO7rk+zSOK+c=
-X-Received: by 2002:a05:6a21:81a9:b0:171:c88a:8927 with SMTP id
- pd41-20020a056a2181a900b00171c88a8927mr6796724pzb.29.1697112560241; Thu, 12
- Oct 2023 05:09:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697113481; x=1697718281;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AJR9cDh+7ZTeuRSJ5Jio19eYIFYvTnyjLFRoPhLNrlY=;
+        b=KxvBS0qHS0NLHk4M1qjXz3lKttvyCTiZVG378+e9clO+eMU/nhEKH7d9kxDE++Xuz5
+         OSJKxSKyUwYuLUHHrwAFgbUdWisEMeMXDMayxpKqmqF9CYV/SZH96cpV6XNxb2LA/j1n
+         Up47VfkvFc81dbLo3rXy0ARPBkgcCwdhul9lBAqc83nMIYgA6moEidWQbiQLLg0LWIWv
+         rm3L84L2jm6Lcg1z3Vs0TuLRLhWsJET+xkQzh6mifEHW2LMlgAXJdfTdKjrrWuZ2hOZ0
+         lcyufJGWWSBRzz7P76fgNPUMvwJ+M6MfxlVoXt0qyommI5tLCtXlbLJlT+pgDJDu41jy
+         ehMQ==
+X-Gm-Message-State: AOJu0Yw0NmI/G1biJLRgDj3+rJbpMb9Vm3oBGZadjJnOkoHTEScPR7bK
+	8pM6EYwSq3H09tsA9uxS2xOGZw==
+X-Google-Smtp-Source: AGHT+IG+GYMxhr/eYhAVnr0fodfE2g5vbmrEIq8xkkc0liLatvRkwVuegQ0Og2Gv0azIxU/P9LpD7g==
+X-Received: by 2002:ac2:4ec7:0:b0:4ff:8863:be01 with SMTP id p7-20020ac24ec7000000b004ff8863be01mr17167717lfr.8.1697113481191;
+        Thu, 12 Oct 2023 05:24:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id l14-20020a5d480e000000b0031c5e9c2ed7sm18366425wrq.92.2023.10.12.05.24.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Oct 2023 05:24:40 -0700 (PDT)
+Message-ID: <28bee37b-1d6d-433e-810f-da847635fcaf@linaro.org>
+Date: Thu, 12 Oct 2023 14:24:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231007060639.725350-1-yangcong5@huaqin.corp-partner.google.com>
- <20231007060639.725350-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=W3ef3vWrWRDPKgeUjcapEticj4=EWdC-bOb=ph0DShsA@mail.gmail.com>
- <CAHwB_N+=h8-5H6SM8REAge19SgLvrZD=drAP83QnSuuqB5gN8A@mail.gmail.com> <CAD=FV=XtqPJ77dx8uRb0=tMvC3CvgH5X+7mUJeXgcG228kZfUg@mail.gmail.com>
-In-Reply-To: <CAD=FV=XtqPJ77dx8uRb0=tMvC3CvgH5X+7mUJeXgcG228kZfUg@mail.gmail.com>
-From: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date: Thu, 12 Oct 2023 20:09:09 +0800
-Message-ID: <CAHwB_NLtnW4N-ZrW8riNBRZNEB0WiSwZWncHr0EACHN5JVx8Jw@mail.gmail.com>
-Subject: Re: [v1 2/2] drm/panel: ili9882t: Avoid blurred screen from fast sleep
-To: Doug Anderson <dianders@google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
-	airlied@gmail.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 10/20] clk: samsung: clk-gs101: Add cmu_top registers,
+ plls, mux and gates
+To: Peter Griffin <peter.griffin@linaro.org>,
+ Sam Protsenko <semen.protsenko@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
+ tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org,
+ wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com,
+ will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org,
+ cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ saravanak@google.com, willmcvicker@google.com, soc@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel-team@android.com, linux-serial@vger.kernel.org
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-11-peter.griffin@linaro.org>
+ <CAPLW+4mO1dMjh1EDPbaL0QGe4EM0GnbQ1G7NsdtBaCcPzdmkPw@mail.gmail.com>
+ <CADrjBPqo8kKUr-EPay3zDQiF7XRwN+FDFN5W2tD5Aet50L2KUA@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CADrjBPqo8kKUr-EPay3zDQiF7XRwN+FDFN5W2tD5Aet50L2KUA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+On 12/10/2023 14:06, Peter Griffin wrote:
+> Hi Sam,
+> 
+> Thanks for the review.
+> 
+> On Thu, 12 Oct 2023 at 01:07, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>>
+>> On Wed, Oct 11, 2023 at 1:49 PM Peter Griffin <peter.griffin@linaro.org> wrote:
+>>>
+>>> CMU_TOP is the top level clock management unit which contains PLLs, muxes
+>>> and gates that feed the other clock management units.
+>>>
+>>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>>> ---
+>>>  drivers/clk/samsung/Kconfig     |    9 +
+>>>  drivers/clk/samsung/Makefile    |    2 +
+>>>  drivers/clk/samsung/clk-gs101.c | 1551 +++++++++++++++++++++++++++++++
+>>>  3 files changed, 1562 insertions(+)
+>>>  create mode 100644 drivers/clk/samsung/clk-gs101.c
+>>>
+>>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>>> index 76a494e95027..14362ec9c543 100644
+>>> --- a/drivers/clk/samsung/Kconfig
+>>> +++ b/drivers/clk/samsung/Kconfig
+>>> @@ -12,6 +12,7 @@ config COMMON_CLK_SAMSUNG
+>>>         select EXYNOS_5410_COMMON_CLK if ARM && SOC_EXYNOS5410
+>>>         select EXYNOS_5420_COMMON_CLK if ARM && SOC_EXYNOS5420
+>>>         select EXYNOS_ARM64_COMMON_CLK if ARM64 && ARCH_EXYNOS
+>>> +       select GOOGLE_GS101_COMMON_CLK if ARM64 && ARCH_GOOGLE_TENSOR
+>>>         select TESLA_FSD_COMMON_CLK if ARM64 && ARCH_TESLA_FSD
+>>>
+>>>  config S3C64XX_COMMON_CLK
+>>> @@ -95,6 +96,14 @@ config EXYNOS_CLKOUT
+>>>           status of the certains clocks from SoC, but it could also be tied to
+>>>           other devices as an input clock.
+>>>
+>>> +config GOOGLE_GS101_COMMON_CLK
+>>> +       bool "Google gs101 clock controller support" if COMPILE_TEST
+>>> +       depends on COMMON_CLK_SAMSUNG
+>>> +       depends on EXYNOS_ARM64_COMMON_CLK
+>>> +       help
+>>> +         Support for the clock controller present on the Google gs101 SoC.
+>>> +         Choose Y here only if you build for this SoC.
+>>> +
+>>
+>> Why is that new option needed? From the look of it, it could be just a
+>> part of EXYNOS_ARM64_COMMON_CLK. Like clk-exynos850 or
+>> clk-exynosautov9. Is there any particular feature that makes it SoC
+>> special?
+> 
+> No, it could also be added to EXYNOS_ARM64_COMMON_CLK. I was following
+> the example set by TESLA_FSD which is another custom Exynos based chipset
+> that added its own config option.
+> 
+> Krzysztof do you have any preference on this?
 
-On Wed, Oct 11, 2023 at 3:11=E2=80=AFAM Doug Anderson <dianders@google.com>=
- wrote:
->
-> Hi,
->
-> On Tue, Oct 10, 2023 at 4:36=E2=80=AFAM cong yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > Hi,
-> >
-> > On Tue, Oct 10, 2023 at 4:44=E2=80=AFAM Doug Anderson <dianders@google.=
-com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Fri, Oct 6, 2023 at 11:07=E2=80=AFPM Cong Yang
-> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > > >
-> > > > At present, we have found that there may be a problem of blurred
-> > > > screen during fast sleep/resume. The direct cause of the blurred
-> > > > screen is that the IC does not receive 0x28/0x10. Because of the
-> > > > particularity of the IC, before the panel enters sleep hid must
-> > > > stop scanning, i2c_hid_core_suspend before ili9882t_disable.
-> > > > This doesn't look very spec-compliant.
-> > >
-> > > Presumably you could be more spec compliant if we used
-> > > "panel_follower" in this case? Would that be a better solution?
-> >
-> > In the "panel_follower" solution, the phenomenon is the same.
-> > The current order is
-> > ili9882t_disable=3D>i2c_hid_core_suspend=3D>elan_i2c_hid_power_down=3D>=
-ili9882t_unprepare,
-> > ili9882t need touchpanel stop scanning,i2c_hid_core_suspend before
-> > ili9882t_disable.
->
-> Ugh, that's unfortunate. Though is there a reason why you couldn't
-> just move the `ili9882t_enter_sleep_mode()` to `ili9882t_unprepare()`?
-> That seems like it should be OK and even perhaps makes it more
-> symmetric with thue enable?
+Usually there is only one image for several boards so long time ago we
+stopped adding per-SoC Kconfig entries. This has its own ARCH_xxx, just
+like Tesla, thus having separate Kconfig for all Google Tensor clock
+drivers makes sense. Maybe it should be just called a bit differently,
+e.g. GOOGLE_TENSOR_COMMON_CLK
 
-It looks like the test will still fail, because the touchpanel reset was
-already pulled low before the panel enter sleep, which did not seem
-to meet the timing requirements. I will explain this in the V3  cover lette=
-r.
-Thanks.
 
->
->
-> > > > @@ -507,7 +526,7 @@ static int ili9882t_prepare(struct drm_panel *p=
-anel)
-> > > >         gpiod_set_value(ili->enable_gpio, 1);
-> > > >         usleep_range(1000, 2000);
-> > > >         gpiod_set_value(ili->enable_gpio, 0);
-> > > > -       usleep_range(1000, 2000);
-> > > > +       usleep_range(40000, 50000);
-> > >
-> > > nit: use 40000, 41000 instead of 40000, 50000. Linux almost always
-> > > uses the longer delay, so that'll save ~9 ms. The only reason for the
-> > > range is to optimize kernel wakeups which is really not a concern
-> > > here.
-> >
-> > We need 50ms delay to meet the requirement.
->
-> I'll respond to your v2, but if you need 50 ms then your current delay is=
- wrong.
->
->
-> -Doug
+
+Best regards,
+Krzysztof
+
 
