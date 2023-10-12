@@ -1,88 +1,233 @@
-Return-Path: <devicetree+bounces-8105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23127C6B18
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:28:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C45F57C6B29
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:31:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C3632821F8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:28:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64E50281EB0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95F022F0E;
-	Thu, 12 Oct 2023 10:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oVtSeUgO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52122D528;
+	Thu, 12 Oct 2023 10:31:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F8B22F07
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:28:02 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E42FBA;
-	Thu, 12 Oct 2023 03:28:01 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id DB5B6660730F;
-	Thu, 12 Oct 2023 11:27:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697106479;
-	bh=StSBtBFRveXYIL45dyE8XTnUqsdXxRTGDniwyzvzIfA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oVtSeUgOnNjwIhSKlvsoG4xYyhYvHT2ychbcXuS44WekMIc43Hn3rDATdeuikUMQh
-	 HVhbiGnS/Lc1rxphFfe7YcIoGC6C3XEsPWOuOpgTPNlE5l+hO5WnNXzaQMzsGLTcAg
-	 HI0HqdlOpe5VwlEk7PUYSRUGp/IBZEELktr6PrnHeW6Ybb7GOCLX5cSHI/Zk5Vl1E1
-	 MT3nlZvK5Dr3J6n8s6ADqnm9+XUPSx9vhZetzFDi7kCNGkXphMbubFhxPK5lVT7F9c
-	 o/pA9PwLCYmonX3ZoMWCEcTmRDPcrAyjeDknNWp4sozBfPj7ke9NsHNfPtVZp21yYU
-	 Bz3EJ5XxE5cQw==
-Message-ID: <b1091d91-022a-578f-ab6c-1f9f80799afc@collabora.com>
-Date: Thu, 12 Oct 2023 12:27:56 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E121C22F14;
+	Thu, 12 Oct 2023 10:31:00 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52782D3;
+	Thu, 12 Oct 2023 03:30:58 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39C8Ftdr007899;
+	Thu, 12 Oct 2023 06:30:35 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tpd4t0q93-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 06:30:34 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 39CAUXg2008975
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 12 Oct 2023 06:30:33 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 12 Oct
+ 2023 06:30:32 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 12 Oct 2023 06:30:32 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.194])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39CAUHPV007059;
+	Thu, 12 Oct 2023 06:30:19 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Jean Delvare
+	<jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 1/2] dt-bindings: hwmon: ltc2991: add bindings
+Date: Thu, 12 Oct 2023 13:29:35 +0300
+Message-ID: <20231012102954.103794-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v7 03/16] dt-bindings: media: mediatek: mdp3: add config
- for MT8195 RDMA
-Content-Language: en-US
-To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-4-moudy.ho@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231012084037.19376-4-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: pXApy2as7ILBqpRagVgqX3SmtXbJhlA_
+X-Proofpoint-ORIG-GUID: pXApy2as7ILBqpRagVgqX3SmtXbJhlA_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-12_05,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999 bulkscore=0
+ clxscore=1011 malwarescore=0 spamscore=0 phishscore=0 mlxscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2309180000 definitions=main-2310120086
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Il 12/10/23 10:40, Moudy Ho ha scritto:
-> Added the configuration for MT8195 RDMA. In comparison to MT8183, it
-> no longer shares SRAM with RSZ, and there are now preconfigured 5 mbox.
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+Add dt-bindings for ltc2991 octal i2c voltage, current and temperature
+monitor.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../bindings/hwmon/adi,ltc2991.yaml           | 128 ++++++++++++++++++
+ 1 file changed, 128 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+new file mode 100644
+index 000000000000..011e5b65c79c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/adi,ltc2991.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices LTC2991 Octal I2C Voltage, Current and Temperature Monitor
++
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description: |
++  The LTC2991 is used to monitor system temperatures, voltages and currents.
++  Through the I2C serial interface, the eight monitors can individually measure
++  supply voltages and can be paired for differential measurements of current
++  sense resistors or temperature sensing transistors.
++
++  Datasheet:
++    https://www.analog.com/en/products/ltc2991.html
++
++properties:
++  compatible:
++    const: adi,ltc2991
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  vcc-supply: true
++
++patternProperties:
++  "^channel@[0-3]$":
++    type: object
++    description:
++      Represents the differential/temperature channels.
++
++    properties:
++      reg:
++        description:
++          The channel number. LTC2991 can monitor 4 currents/temperatures.
++        items:
++          minimum: 0
++          maximum: 3
++
++      shunt-resistor-micro-ohms:
++        description:
++          The value of curent sense resistor in micro ohms. Pin configuration is
++          set for differential input pair.
++
++      adi,temperature-enable:
++        description:
++          Enables temperature readings. Pin configuration is set for remote
++          diode temperature measurement.
++        type: boolean
++
++    required:
++      - reg
++
++    allOf:
++      - if:
++          required:
++            - shunt-resistor-micro-ohms
++        then:
++          properties:
++            adi,temperature-enable: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - vcc-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hwmon@48 {
++            compatible = "adi,ltc2991";
++            reg = <0x48>;
++            vcc-supply = <&vcc>;
++        };
++    };
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hwmon@48 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            compatible = "adi,ltc2991";
++            reg = <0x48>;
++            vcc-supply = <&vcc>;
++
++            channel@0 {
++                    reg = <0x0>;
++                    shunt-resistor-micro-ohms = <100000>;
++            };
++
++            channel@1 {
++                    reg = <0x1>;
++                    shunt-resistor-micro-ohms = <100000>;
++            };
++
++            channel@2 {
++                    reg = <0x2>;
++                    adi,temperature-enable;
++            };
++
++            channel@3 {
++                    reg = <0x3>;
++                    adi,temperature-enable;
++            };
++        };
++    };
++...
+-- 
+2.42.0
 
 
