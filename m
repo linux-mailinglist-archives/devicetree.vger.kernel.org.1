@@ -1,81 +1,161 @@
-Return-Path: <devicetree+bounces-8061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177FC7C696D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2AD47C697B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:27:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47CD61C20D62
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7E5D1C20CF1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:27:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B202110D;
-	Thu, 12 Oct 2023 09:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDAB521119;
+	Thu, 12 Oct 2023 09:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DsvPuBD/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XD0Ew3h1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA74210EA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:25:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F379AC433C8;
-	Thu, 12 Oct 2023 09:25:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697102718;
-	bh=3o/uhFcS8U5My0ncKTRyBUAftV0QIu/f9pc+SI5HXpo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DsvPuBD/rrWE1AeYn7+5FE19/KcPiFkNJZziMK8YOEOxEwaE9TZmNJ1HUEUWtbT/A
-	 zGFvS0SYWa0M0++LHJXso3yGv7Cc1pjLJ2ZvErmiTPbqFmUgynkCoKwz264n+4Ekww
-	 ShAdotCHEWWArlh6+M+JWLxcQ2FGdNXYgnLsYQfMVQLbGvtMZHywDZB+UfWChtYTZX
-	 KArKuldJtUcQ9AqXq/FhmKvTWpWCxH913X0Hb/prTKdCihKYrrlvv6e/puEDKf4hTn
-	 DodPx9GlLL+VRgdL/0Apo1l+EfX+IpW8FcwueKSX432onFjnqPx3O8kJQC2jGHj3Tv
-	 4HMfdd7rF+0oA==
-From: Conor Dooley <conor@kernel.org>
-To: kernel@esmil.dk,
-	conor@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	william.qiu@starfivetech.com,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Nam Cao <namcao@linutronix.de>
-Cc: Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2] riscv: dts: starfive: visionfive 2: correct spi's ss pin
-Date: Thu, 12 Oct 2023 10:24:18 +0100
-Message-Id: <20231012-pointless-underpaid-649da93b1762@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231012091729.3fzfDD1I@linutronix.de>
-References: <20231012091729.3fzfDD1I@linutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453F320B0C
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:27:08 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4EB91;
+	Thu, 12 Oct 2023 02:27:06 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39C5jRF7009195;
+	Thu, 12 Oct 2023 09:26:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=ZTa+wbhn6wACDS+0fVjiFZkxWNcimDXIgkFOtdKITs8=;
+ b=XD0Ew3h1m1JKgTC2xwMSWpAePwT1kG33A/Ih2BRE6Fh5GQA46ciBSLItgYy5vOaO9R3U
+ 6ALRuQB+Kcyf+gItBO8KTpTnWqpv5PNAn4nd/BmQHC3wYZoIbwV1tb7avntplnXHUOmf
+ zew+9xMkHLTgtnz2zyaKmHtuAKcrD0pvqMRi8RE5BtNOxRlLf6oATXKeOjInPwGhNE/n
+ eV2W7GCIXwWMqj0nP9ftZ2+PXntsigEQd0gVTpiezUWtdHb1csbXZ6aYqs2T95YMJgl2
+ tfLAgHn3FJZKryf+6M3Rv5z1J/wjRKzi1agUePPgHwWgg6Mc+FHZulWz4XFDX5AVfVTs 0w== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tp87v8pu5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 09:26:58 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39C9Qv6f000523
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 09:26:57 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 12 Oct 2023 02:26:51 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
+        <quic_kathirav@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v2 0/8] Enable cpufreq for IPQ5332 & IPQ9574
+Date: Thu, 12 Oct 2023 14:56:16 +0530
+Message-ID: <cover.1697101543.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=363; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=DCkp2TXqDwPuDa0wCN1QofJuZaPRdyQxX+0vez7hCxE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKnqux32OYa82eP9YBbPY1XuNY/ytLbnn7zco8WgML8v6 rl+8fXXHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZiI5X1GhvmvVv0Wcrghz5eY 9k/lZMzFDyt9a9dGzfm62qhN5+tHtX6Gv1KagSFWEf7f3oXsOcb+e8q9W/u+cHrnabzkaLt3RO9 AHjMA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QJ90XocDkEfOJaAzHICN4hV-osKA8XnG
+X-Proofpoint-GUID: QJ90XocDkEfOJaAzHICN4hV-osKA8XnG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-12_05,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 adultscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ mlxlogscore=882 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310120079
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Depends On:
+https://lore.kernel.org/lkml/20230913-gpll_cleanup-v2-6-c8ceb1a37680@quicinc.com/T/
 
-On Thu, 12 Oct 2023 11:17:29 +0200, Nam Cao wrote:
-> The ss pin of spi0 is the same as sck pin. According to the
-> visionfive 2 documentation, it should be pin 49 instead of 48.
-> 
-> 
+This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
+For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
+source switch is needed before cpu freq can be enabled.
 
-Applied to riscv-dt-fixes, thanks!
+These are also included in this series. Posting this as a single
+series. Please let me know if this is not correct, will split in
+the subsequent revisions.
 
-[1/1] riscv: dts: starfive: visionfive 2: correct spi's ss pin
-      https://git.kernel.org/conor/c/cf98fe6b579e
+Passed the following DT related validations
+make W=1 ARCH=arm64 -j16 DT_CHECKER_FLAGS='-v -m' dt_binding_check DT_SCHEMA_FILES=qcom
+make W=1 ARCH=arm64 -j16 CHECK_DTBS=y DT_SCHEMA_FILES=qcom dtbs_check
 
-Thanks,
-Conor.
+For IPQ5332:
+~~~~~~~~~~~
+	* This patch series introduces stromer plus ops which
+	  builds on stromer ops and implements a different
+	  set_rate and determine_rate.
+
+	  A different set_rate is needed since stromer plus PLLs
+	  do not support dynamic frequency scaling. To switch
+	  between frequencies, we have to shut down the PLL,
+	  configure the L and ALPHA values and turn on again. So
+	  introduce the separate set of ops for Stromer Plus PLL.
+
+	* Update ipq_pll_stromer_plus to use clk_alpha_pll_stromer_plus_ops
+	  instead of clk_alpha_pll_stromer_ops.
+
+	* Set 'l' value to a value that is supported on all SKUs.
+
+	* Provide safe source switch for a53pll
+
+	* Include IPQ5332 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+For IPQ9574:
+~~~~~~~~~~~
+	* Include IPQ9574 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+Removed 2 patches from V1 as they have been merged
+	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ5332
+	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ9574
+
+Varadarajan Narayanan (8):
+  clk: qcom: clk-alpha-pll: introduce stromer plus ops
+  clk: qcom: apss-ipq-pll: Use stromer plus ops for stromer plus pll
+  clk: qcom: apss-ipq-pll: Fix 'l' value for ipq5332_pll_config
+  clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
+  cpufreq: qti: Enable cpufreq for ipq53xx
+  arm64: dts: qcom: ipq5332: populate the opp table based on the eFuse
+  cpufreq: qti: Introduce cpufreq for ipq95xx
+  arm64: dts: qcom: ipq9574: populate the opp table based on the eFuse
+
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi | 19 ++++++++++--
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi | 21 ++++++++++++-
+ drivers/clk/qcom/apss-ipq-pll.c       |  4 +--
+ drivers/clk/qcom/apss-ipq6018.c       | 53 +++++++++++++++++++++++++++++++-
+ drivers/clk/qcom/clk-alpha-pll.c      | 57 +++++++++++++++++++++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.h      |  1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c  |  2 ++
+ drivers/cpufreq/qcom-cpufreq-nvmem.c  | 16 ++++++++++
+ 8 files changed, 166 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
+
 
