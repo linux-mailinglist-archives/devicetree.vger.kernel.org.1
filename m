@@ -1,190 +1,231 @@
-Return-Path: <devicetree+bounces-8197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3167C7158
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:24:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B52257C7165
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:27:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 465EC28231F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:24:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E64521C20A68
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C2B273CC;
-	Thu, 12 Oct 2023 15:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2559273D5;
+	Thu, 12 Oct 2023 15:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UrKOgGpd"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="G3u0szbs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C80224CF
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:24:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A12DCC433C8;
-	Thu, 12 Oct 2023 15:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697124293;
-	bh=OKJBCSFkKCqs3p1kxIpfznOr5Kx+Ln+CvKc1ryKM064=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UrKOgGpdKTucaQSIszwtfLNSHpoeaQtp3JPhkD+wupEYTpBRIYUneRfPJ9v+kaMTE
-	 1u5QNNHxQtivYltZ60D27w+BsTMO0gAiOGJOgK2f86r8JinpO97Weu8Hwz3vaa/OhS
-	 Qjmqf+md6xdZvnsMtmAmPY953hqJYY0rEmSnpmMQIMUJjGW0YO/sYTdvn6dmgF3wEO
-	 C0g+GYZR1MlaF1UYjWF87e0nTl5pdOWbLPKBm01s8fLC/P0Zz0Y0Vgy+/hPD5N9jCi
-	 nXLhNlRn9hcWqTV8TgyFcYWPa9S+C56UmvQq/dNx26eOXJ4B1BoxgZ/3fmhWBAoGfc
-	 XSuuf4bZ1fK2w==
-Date: Thu, 12 Oct 2023 16:24:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: yang tylor <tylor_yang@himax.corp-partner.google.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jikos@kernel.org,
-	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
-	"jingyliang@chromium.org" <jingyliang@chromium.org>,
-	wuxy23@lenovo.com, luolm1@lenovo.com,
-	hung poyu <poyu_hung@himax.corp-partner.google.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20231012-pope-denatured-c1898bc1e44b@spud>
-References: <20230925-cod-vacancy-08dc8d88f90e@wendy>
- <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
- <20230926-action-sludge-ec8e51fdd6d4@spud>
- <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
- <20230926-reverence-unlit-d0027225cc43@spud>
- <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
- <20230928-spectacle-civic-339c0d71d8d7@spud>
- <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
- <20231009-pentagram-clamshell-b14ff00743fd@spud>
- <CAGD2q_aqr+mu4K1SkTVC+65ctL6BsqRP4Ld0HD_H0_rgzFT9MQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8947D224CF
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:26:59 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38D0E8;
+	Thu, 12 Oct 2023 08:26:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=A4tcsRYv0zAR+IykEXFJLbmWdjR/S0UrKbdwgttyzoY=; b=G3u0szbsRjEx+Mk6e0l6H4z8GZ
+	D5WQkbWCRIC/ZTViHUXZ//ez4L6jtw4nEJnxlRNk8xyC5fgBPSUvWGd2wODWo88GaNdvXFPxFLuWc
+	1zve3NUjF1HuTcdQkaXz4nU94N+ZD6+6CmQgsuh1PI+YfkUxd3Js9UYDJJpi586XmMbk=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41278 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1qqxaL-0003rP-GV; Thu, 12 Oct 2023 11:26:50 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Cc: hugo@hugovil.com,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Date: Thu, 12 Oct 2023 11:26:47 -0400
+Message-Id: <20231012152647.2607455-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="TueJpgnC2xZsHFU1"
-Content-Disposition: inline
-In-Reply-To: <CAGD2q_aqr+mu4K1SkTVC+65ctL6BsqRP4Ld0HD_H0_rgzFT9MQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v2] dt-bindings: serial: max310x: convert to YAML
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
---TueJpgnC2xZsHFU1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Convert binding from text format to YAML.
 
-On Thu, Oct 12, 2023 at 10:30:03AM +0800, yang tylor wrote:
-> On Tue, Oct 10, 2023 at 1:52=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Mon, Oct 02, 2023 at 06:44:41PM +0800, yang tylor wrote:
-> > > On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel.o=
-rg> wrote:
-> > > >
-> > > > On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
-> > > > > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@kerne=
-l.org> wrote:
-> > > > > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
-> > > > > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@k=
-ernel.org> wrote:
-> > > > > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
-> > > > > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <con=
-or.dooley@microchip.com> wrote:
-> > > > > > > > > We have a default prefix firmware name(like himax_xxxx.bi=
-n) in the driver code.
-> > > > > > > >
-> > > > > > > > How do you intend generating the name of the firmware file?=
- I assume the
-> > > > > > > > same firmware doesn't work on every IC, so you'll need to p=
-ick a
-> > > > > > > > different one depending on the compatible?
-> > > > > > > >
-> > > > > > > If considering a firmware library line-up for all the incomin=
-g panels
-> > > > > > > of this driver.
-> > > > > > > We would use PID as part of the file name. Because all the su=
-pport panels would
-> > > > > > > have a unique PID associated. Which will make the firmware na=
-me like
-> > > > > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID bef=
-ore firmware load
-> > > > > > > at no flash condition. Thus PID information is required in dt=
-s when
-> > > > > > > no-flash-flag
-> > > > > > > is specified.
-> > > > > >
-> > > > > > Firstly, where does the "xxx" come from?
-> > > > > > And you're making it sound more like having firmware-name is su=
-itable
-> > > > > > for this use case, given you need to determine the name of the =
-file to
-> > > > > > use based on something that is hardware specific but is not
-> > > > > > dynamically detectable.
-> > > > > Current driver patch uses a prefix name "himax_i2chid" which comes
-> > > > > from the previous project
-> > > > >  and seems not suitable for this condition, so I use "xxx" and pl=
-an to
-> > > > > replace it in the next version.
-> > > > > For finding firmware, I think both solutions are reasonable.
-> > > > > - provide firmware name directly: implies no-flash and use user
-> > > > > specified firmware, no PID info.
-> > > > > - provide no-flash-flag and PID info: loading firmware from organ=
-ized
-> > > > > names with PID info.
-> > > > > I prefer the 2nd solution, but it needs more properties in dts. 1=
-st
-> > > > > has less properties and more
-> > > > > intuitive.
-> > > > >
-> > > > > I don't know which one is more acceptable by the community, as you
-> > > > > know I'm a newbie here.
-> > > >
-> > > > To be honest, I am not all that sure either! Does the panel id have
-> > > > value in its own right, or is that only used to determine the firmw=
-are
-> > > > filename?
-> > > Currently, PID stands for Panel/Project ID and is used for determining
-> > > the firmware filename only. We haven't come up with any new attribute=
- that
-> > > may attach to it. The differences between panels are handled in firmw=
-are
-> > > dedicated to its PID.
-> > >
-> > > > Also, if it does have value in its own right, rather than a "pid",
-> > > > should the panel be a child node of this hid device with its own
-> > > > compatible?
-> > > It may need a child node if we find it necessary to add attributes to=
- each PID.
-> > > But currently we have no idea about it.
-> >
-> > To be honest, it seems to me like you are using "PID" in place of a
-> > compatible for the panel, since it needs to be provided via DT anyway.
->=20
-> Hmm... So the more formal way is?
-> If I add a sub-note inside this spi-device block, such as "panel" and
-> add PID inside.
-> Will it be more appropriate?
-> ...
-> spi {
-> ...
->     hx_spi@0 {
-> ...
->         panel {
->             himax,pid =3D ...
+Additions to original text binding:
+  - add rs485 reference.
 
-And this now looks exactly like compatible =3D "vendor,part" now, no?
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
---TueJpgnC2xZsHFU1
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Changes for V2:
+- Add serial prefix to log message title
+- Move clock-name property after clocks
+- Remove 'clock-frequency' property
+- Move 'allOf' block after 'required'
+- Remove examples 2 and 3
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/serial/maxim,max310x.txt         | 48 ------------
+ .../bindings/serial/maxim,max310x.yaml        | 74 +++++++++++++++++++
+ 2 files changed, 74 insertions(+), 48 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/maxim,max310x.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/maxim,max310x.yaml
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSgPwAAKCRB4tDGHoIJi
-0lVfAQC3Xdwum2IZViQ9BSMgWnqGIXLpMcp0mG/Bi4W2QnlqxAD9E1PoiPAHieT8
-HzDqyvik4FLQxj0E0m444srRUWHwKQU=
-=dlR1
------END PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/serial/maxim,max310x.txt b/Documentation/devicetree/bindings/serial/maxim,max310x.txt
+deleted file mode 100644
+index 79e10a05a96a..000000000000
+--- a/Documentation/devicetree/bindings/serial/maxim,max310x.txt
++++ /dev/null
+@@ -1,48 +0,0 @@
+-* Maxim MAX310X advanced Universal Asynchronous Receiver-Transmitter (UART)
+-
+-Required properties:
+-- compatible: Should be one of the following:
+-  - "maxim,max3107" for Maxim MAX3107,
+-  - "maxim,max3108" for Maxim MAX3108,
+-  - "maxim,max3109" for Maxim MAX3109,
+-  - "maxim,max14830" for Maxim MAX14830.
+-- reg: SPI chip select number.
+-- interrupts: Specifies the interrupt source of the parent interrupt
+-  controller. The format of the interrupt specifier depends on the
+-  parent interrupt controller.
+-- clocks: phandle to the IC source clock.
+-- clock-names: Should be "xtal" if clock is an external crystal or
+-  "osc" if an external clock source is used.
+-
+-Optional properties:
+-- gpio-controller: Marks the device node as a GPIO controller.
+-- #gpio-cells: Should be two. The first cell is the GPIO number and
+-  the second cell is used to specify the GPIO polarity:
+-    0 = active high,
+-    1 = active low.
+-
+-Example:
+-
+-/ {
+-	clocks {
+-		spi_uart_clk: osc_max14830 {
+-			compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <3686400>;
+-		};
+-
+-	};
+-};
+-
+-&spi0 {
+-	max14830: max14830@0 {
+-		compatible = "maxim,max14830";
+-		reg = <0>;
+-		clocks = <&spi_uart_clk>;
+-		clock-names = "osc";
+-		interrupt-parent = <&gpio3>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/serial/maxim,max310x.yaml b/Documentation/devicetree/bindings/serial/maxim,max310x.yaml
+new file mode 100644
+index 000000000000..889eeaca64a0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/maxim,max310x.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/maxim,max310x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX310X Advanced Universal Asynchronous Receiver-Transmitter (UART)
++
++maintainers:
++  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
++
++properties:
++  compatible:
++    enum:
++      - maxim,max3107
++      - maxim,max3108
++      - maxim,max3109
++      - maxim,max14830
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    enum:
++      - xtal # External crystal
++      - osc  # External clock source
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-line-names:
++    minItems: 1
++    maxItems: 16
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - $ref: /schemas/serial/serial.yaml#
++  - $ref: /schemas/serial/rs485.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        serial@2c {
++            compatible = "maxim,max3107";
++            reg = <0x2c>;
++            clocks = <&xtal4m>;
++            clock-names = "xtal";
++            interrupt-parent = <&gpio3>;
++            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++            gpio-controller;
++            #gpio-cells = <2>;
++        };
++    };
 
---TueJpgnC2xZsHFU1--
+base-commit: 401644852d0b2a278811de38081be23f74b5bb04
+-- 
+2.39.2
+
 
