@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D0FB7C7728
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB967C7758
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53F342818BE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:46:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F64C282BD6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799483B2AD;
-	Thu, 12 Oct 2023 19:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAFB3B7BC;
+	Thu, 12 Oct 2023 19:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S/5Rymod"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="azmY0UPb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6C328E16
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:46:34 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449A9D7
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:46:31 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-533d31a8523so2404358a12.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:46:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB4F528E16
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:52:41 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314F5E5
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:52:37 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso2553874a12.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:52:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697139989; x=1697744789; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697140356; x=1697745156; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uHp2HyFyIACh9AUMdrCHbVsPMTR5JIc6soTa/K95gFo=;
-        b=S/5RymodQMZvVQz/Q63pcalw2QT2aq3raPLfeDJTHlriAfemKZpeZpxMH/kCtPFfXk
-         dRMWcTLqd18tNi/aVOW5NL9VCkjWuHpqwhGJF+I/OHumQWn8LgXsdye5/IDZMl4kOMTQ
-         TDNEd6Smyb4bJPPBStUhFdD0QM+kqHMSExyteDSDkdDIIl5Im/Rdn0xYisi1psdfLl4T
-         njPYaKjECJRbJ5G9W78xn18RnbWNNcwOUJZDe4yp0fUS/TbLPHwEfzqLvqn6ArvFC9x2
-         kF40z3iomF9Hx69qDtGlY2Wnay8oi82fuO7Jz0Lwnwvf1VUk3muJb+nLRANK2Yexbme3
-         5rOg==
+        bh=c0rqyxOH2NPTeC80Wt0H5gz0AtHb79jtLdHZ7YmDehg=;
+        b=azmY0UPbN51UZqPMh2SEXGt3KiIK+YtIxGGiLIZNIKz6xm1rZqJVVCo1r8TmtTFoAL
+         oxrvVkPbH36MmNxfrBMiXfKCMrg7XCQ5FphyCrYOErzE+jFlBlowGJgWqjVOO9A3MaRZ
+         2WYMSQIc+l80nTY+z3ZrEtRoyy0yz4+F/qXrsUceqKg/fkH0jJ5OXGhNtxzQjavVox/H
+         Z3ivTfdAXBFzXlF1I0efzB7JS6KFZoTJpqswe+qVUgm8P2FqdP1tszVYYhb2rYb4zwqW
+         HgSApDcd5MWVsg8PLRtklCVZV0+kSVcwYVjqx1tqBvY0pBOsTHlbIKpn3R4VA1Vjekyn
+         aC+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697139989; x=1697744789;
+        d=1e100.net; s=20230601; t=1697140356; x=1697745156;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uHp2HyFyIACh9AUMdrCHbVsPMTR5JIc6soTa/K95gFo=;
-        b=sTlEQUN2UHkA8v7AE/Q5TFqJcMSWJe/9fmAyds+yTqnHSIaho26674zl9NnMHuhWdD
-         Jn8A0RFlZMaczjRdh9tGuMs/mC4UqRo9mGRdgRKVUZ6u63MKh01t4wnb/hT01V1ejbaf
-         96fkUoNZtgJ/c0iW6OVhMO8FwKWyRYn5HOwhx6zBjvOC6FJZvNodE4KTGXJMKFVs3gjV
-         uu49r6j2bB2/oRj8W1FxSdcXEhuT5F5IfHO+qzHBfK5CE0WJFQsU2qfD1Im6ef0BaEtf
-         snXFZSXN5M4VlrKhKYogHznnLj15exiZYo3OGt44z3Kn7Km1YnYFlaDFt9nBX1/pw2sA
-         6hHQ==
-X-Gm-Message-State: AOJu0Ywpkb07wUrS0vtF6BJN+OxZM6MfNGwR1I6B/XoSvTrS36BuBLrg
-	QxrBWUvo2NJ7bddr5/mC2Nhmeg==
-X-Google-Smtp-Source: AGHT+IGkrEBbAvIzP6NzEJJgG63/roPsaqq6/ep8CP9AIKGO/GgPquqUMDxQnj2j9ZSWCE3Iuh+uHA==
-X-Received: by 2002:aa7:de16:0:b0:52c:9f89:4445 with SMTP id h22-20020aa7de16000000b0052c9f894445mr20243514edv.21.1697139989463;
-        Thu, 12 Oct 2023 12:46:29 -0700 (PDT)
+        bh=c0rqyxOH2NPTeC80Wt0H5gz0AtHb79jtLdHZ7YmDehg=;
+        b=hSogNH3UpinPxlNAIbgjZ4/G/21TIQbCztev1QMfGdd/7c8gZHvcnYTU5ZWpB3aLJB
+         r/lhVDL9hm1Y5j0Ydgu9yKXRD/wopuZEurImobH8CBIq1mKzsE/FDuHFOUcVx/OEwStN
+         vQLTcanNb2wdLIyspmksT+bgQzrQpbFi/J6xEomJ5iFYNcmz74Hqb/NkTltRKwbpf/H6
+         7LrWa8cQK9D3Getzt/lpoEDnMsFC+h2pNvtDtoWyHlpdVkSnC6QG6SkRsQZ5jCFPLcpb
+         29+9hPIHvHjTIg2bgiF6HnQTJGPD6gendsxSpynfKMrb0NF9KebFPA2ten6rx4hhyrIB
+         EhxA==
+X-Gm-Message-State: AOJu0YzofU153Ylf9R4Vb7yvMFtNzDjy9qh95o/ctovqA+TNgKUHsFan
+	ajuCopzF9RkD7ZamltxHCMz1LA==
+X-Google-Smtp-Source: AGHT+IEkTqJlqrmoO8KMsa+q1Bu6sdbIPwHk/esOpoiRfX2SeiS3EaHdHd0ikcN9RXIUKHnqExFevg==
+X-Received: by 2002:a17:907:78c2:b0:9ad:ad5a:939b with SMTP id kv2-20020a17090778c200b009adad5a939bmr22324707ejc.7.1697140356323;
+        Thu, 12 Oct 2023 12:52:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n10-20020aa7c78a000000b00535204ffdb4sm10559842eds.72.2023.10.12.12.46.27
+        by smtp.gmail.com with ESMTPSA id w19-20020a170906481300b009b9720a85e5sm11420000ejq.38.2023.10.12.12.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 12:46:28 -0700 (PDT)
-Message-ID: <9a831a6e-ab5e-4911-8011-f6eb82dd3d6a@linaro.org>
-Date: Thu, 12 Oct 2023 21:46:26 +0200
+        Thu, 12 Oct 2023 12:52:35 -0700 (PDT)
+Message-ID: <0476f0dd-2ab3-45a9-902e-6254842104e6@linaro.org>
+Date: Thu, 12 Oct 2023 21:52:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: nuvoton: Add pinctrl support for ma35d1
+Subject: Re: [PATCH v6 2/9] dt-bindings: pinctrl: pinctrl-single: add
+ marvell,pxa1908-padconf compatible
 Content-Language: en-US
-To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20231011090510.114476-1-ychuang570808@gmail.com>
- <20231011090510.114476-4-ychuang570808@gmail.com>
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Haojian Zhuang <haojian.zhuang@linaro.org>, Lubomir Rintel <lkundrak@v3.sk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr>
+ <20231010-pxa1908-lkml-v6-2-b2fe09240cf8@skole.hr>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,458 +131,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011090510.114476-4-ychuang570808@gmail.com>
+In-Reply-To: <20231010-pxa1908-lkml-v6-2-b2fe09240cf8@skole.hr>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 11:05, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 10/10/2023 19:27, Duje Mihanović wrote:
+> Add the "marvell,pxa1908-padconf" compatible to allow migrating to a
+> separate pinctrl driver later.
 > 
-> Add 'pinctrl' node and 'gpioa' ~ 'gpion' nodes to the dtsi of ma35d1
-> SoC and describe default pin configurations.
-> 
-> Enable all UART nodes presented on som and iot boards, and add pinctrl
-> function settings to these nodes.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 > ---
->  .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  83 ++++++++-
->  .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  86 ++++++++-
->  arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 175 +++++++++++++++++-
->  3 files changed, 335 insertions(+), 9 deletions(-)
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-> index b89e2be6abae..ff0d2bf8f5bf 100644
-> --- a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-> @@ -14,6 +14,10 @@ / {
->  
->  	aliases {
->  		serial0 = &uart0;
-> +		serial10 = &uart10;
-> +		serial12 = &uart12;
-> +		serial13 = &uart13;
-> +		serial14 = &uart14;
->  	};
->  
->  	chosen {
-> @@ -33,10 +37,6 @@ clk_hxt: clock-hxt {
->  	};
->  };
->  
-> -&uart0 {
-> -	status = "okay";
-> -};
-> -
->  &clk {
->  	assigned-clocks = <&clk CAPLL>,
->  			  <&clk DDRPLL>,
-> @@ -54,3 +54,78 @@ &clk {
->  			   "integer",
->  			   "integer";
->  };
-> +
-> +&pinctrl {
-> +	uart0 {
-> +		pinctrl_uart0: uart0grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPE_H 24 1 &pcfg_default>,
-> +				<MA35_SYS_REG_GPE_H 28 1 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart10 {
-> +		pinctrl_uart10: uart10grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPH_L 16 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPH_L 20 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPH_L 24 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPH_L 28 2 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart12 {
-> +		pinctrl_uart12: uart12grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPC_H 20 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPC_H 24 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPC_H 28 2 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart13 {
-> +		pinctrl_uart13: uart13grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPH_H 16 3 &pcfg_default>,
-> +				<MA35_SYS_REG_GPH_H 20 3 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart14 {
-> +		pinctrl_uart14: uart14grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPH_H 24 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPH_H 28 2 &pcfg_default>;
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart0>;
-> +	status = "okay";
-> +};
-> +
-> +&uart10 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart10>;
-> +	status = "okay";
-> +};
-> +
-> +&uart12 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart12>;
-> +	status = "okay";
-> +};
-> +
-> +&uart13 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart13>;
-> +	status = "okay";
-> +};
-> +
-> +&uart14 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart14>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> index a1ebddecb7f8..c8c26f37116b 100644
-> --- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> @@ -14,6 +14,10 @@ / {
->  
->  	aliases {
->  		serial0 = &uart0;
-> +		serial11 = &uart11;
-> +		serial12 = &uart12;
-> +		serial14 = &uart14;
-> +		serial16 = &uart16;
->  	};
->  
->  	chosen {
-> @@ -33,10 +37,6 @@ clk_hxt: clock-hxt {
->  	};
->  };
->  
-> -&uart0 {
-> -	status = "okay";
-> -};
-> -
->  &clk {
->  	assigned-clocks = <&clk CAPLL>,
->  			  <&clk DDRPLL>,
-> @@ -54,3 +54,81 @@ &clk {
->  			   "integer",
->  			   "integer";
->  };
-> +
-> +&pinctrl {
-> +	uart0 {
-> +		pinctrl_uart0: uart0grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPE_H 24 1 &pcfg_default>,
-> +				<MA35_SYS_REG_GPE_H 28 1 &pcfg_default>;
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> index 45a307d3ce16..0f7e16a28990 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> @@ -32,6 +32,10 @@ properties:
+>                - ti,omap4-padconf
+>                - ti,omap5-padconf
+>            - const: pinctrl-single
+> +      - items:
+> +          - enum:
+> +              - marvell,pxa1908-padconf
 
-This does not look like generic pinctrl bindings. Looks
-over-complicated. From where did you get it? Which recent bindings and
-drivers where used as an example? Register addresses should be in the
-driver. Bit offsets as well. "multi-pin-function-value" confuses me. All
-this is not really suitable for DTS.
-
-> +		};
-> +	};
-> +
-> +	uart11 {
-> +		pinctrl_uart11: uart11grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPL_L 0 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPL_L 4 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPL_L 8 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPL_L 12 2 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart12 {
-> +		pinctrl_uart12: uart12grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPI_L 4 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPI_L 8 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPI_L 12 2 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart14 {
-> +		pinctrl_uart14: uart14grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPI_L 20 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPI_L 24 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPI_L 28 2 &pcfg_default>;
-> +		};
-> +	};
-> +
-> +	uart16 {
-> +		pinctrl_uart16: uart16grp {
-> +			nuvoton,pins =
-> +				<MA35_SYS_REG_GPK_L 0 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPK_L 4 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPK_L 8 2 &pcfg_default>,
-> +				<MA35_SYS_REG_GPK_L 12 2 &pcfg_default>;
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart0>;
-> +	status = "okay";
-> +};
-> +
-> +&uart11 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart11>;
-> +	status = "okay";
-> +};
-> +
-> +&uart12 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart12>;
-> +	status = "okay";
-> +};
-> +
-> +&uart14 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart14>;
-> +	status = "okay";
-> +};
-> +
-> +&uart16 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart16>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> index 781cdae566a0..85431a074ab2 100644
-> --- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
->  #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
-> +#include <dt-bindings/pinctrl/ma35d1-pinfunc.h>
->  
->  / {
->  	compatible = "nuvoton,ma35d1";
-> @@ -83,7 +84,7 @@ soc {
->  		ranges;
->  
->  		sys: system-management@40460000 {
-> -			compatible = "nuvoton,ma35d1-reset";
-> +			compatible = "nuvoton,ma35d1-reset", "syscon";
->  			reg = <0x0 0x40460000 0x0 0x200>;
->  			#reset-cells = <1>;
->  		};
-> @@ -95,6 +96,178 @@ clk: clock-controller@40460200 {
->  			clocks = <&clk_hxt>;
->  		};
->  
-> +		pinctrl: pinctrl@40040000 {
-> +			compatible = "nuvoton,ma35d1-pinctrl";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			nuvoton,sys = <&sys>;
-> +			ranges = <0x0 0x0 0x40040000 0xc00>;
-> +
-> +			gpioa: gpioa@40040000 {
-> +				reg = <0x0 0x40>;
-> +				interrupts = <GIC_SPI  14 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPA_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiob: gpiob@40040040 {
-> +				reg = <0x40 0x40>;
-> +				interrupts = <GIC_SPI  15 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPB_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpioc: gpioc@40040080 {
-> +				reg = <0x80 0x40>;
-> +				interrupts = <GIC_SPI  16 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPC_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiod: gpiod@400400c0 {
-> +				reg = <0xc0 0x40>;
-> +				interrupts = <GIC_SPI  17 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPD_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpioe: gpioe@40040100 {
-> +				reg = <0x100 0x40>;
-> +				interrupts = <GIC_SPI  73 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPE_GATE>;
-> +				#gpio-cells = <2>;
-> +				gpio-controller;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiof: gpiof@40040140 {
-> +				reg = <0x140 0x40>;
-> +				interrupts = <GIC_SPI  74 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPF_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiog: gpiog@40040180 {
-> +				reg = <0x180 0x40>;
-> +				interrupts = <GIC_SPI  75 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPG_GATE>;
-> +				#gpio-cells = <2>;
-> +				gpio-controller;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpioh: gpioh@400401c0 {
-> +				reg = <0x1c0 0x40>;
-> +				interrupts = <GIC_SPI  76 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPH_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpioi: gpioi@40040200 {
-> +				reg = <0x200 0x40>;
-> +				interrupts = <GIC_SPI  77 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPI_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpioj: gpioj@40040240 {
-> +				reg = <0x240 0x40>;
-> +				interrupts = <GIC_SPI  78 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPJ_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiok: gpiok@40040280 {
-> +				reg = <0x280 0x40>;
-> +				interrupts = <GIC_SPI  102 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPK_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiol: gpiol@400402c0 {
-> +				reg = <0x2c0 0x40>;
-> +				interrupts = <GIC_SPI  103 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPL_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpiom: gpiom@40040300 {
-> +				reg = <0x300 0x40>;
-> +				interrupts = <GIC_SPI  104 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPM_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			gpion: gpion@40040340 {
-> +				reg = <0x340 0x40>;
-> +				interrupts = <GIC_SPI  105 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk GPN_GATE>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +
-> +			pcfg_default: pcfg-default {
-> +				slew-rate = <0>;
-> +				input-schmitt-disable;
-> +				bias-disable;
-> +				power-source = <3300>;
-> +				drive-strength = <0>;
-> +			};
-> +
-> +			pcfg_emac_3_3v: pcfg-emac-3.3v {
-
-Drop, unused.
-
-> +				slew-rate = <0>;
-> +				input-schmitt-enable;
-> +				bias-disable;
-> +				power-source = <3300>;
-> +				drive-strength = <1>;
-> +			};
-> +
-> +			pcfg_emac_1_8v: pcfg-emac-1.8v {
-
-Drop, unused.
-
-> +				slew-rate = <0>;
-> +				input-schmitt-enable;
-> +				bias-disable;
-> +				power-source = <1800>;
-> +				drive-strength = <1>;
-> +			};
-> +		};
-> +
->  		uart0: serial@40700000 {
->  			compatible = "nuvoton,ma35d1-uart";
->  			reg = <0x0 0x40700000 0x0 0x100>;
+There is enum above, so use it. Put your entry there, in alphabetical order.
 
 Best regards,
 Krzysztof
