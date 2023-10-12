@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFAD7C6698
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:44:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A2F7C66A2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:47:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FDC61C21042
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:44:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA642820DA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDF2107B2;
-	Thu, 12 Oct 2023 07:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA7010A04;
+	Thu, 12 Oct 2023 07:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XpRk4LoW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SqQbhMNJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F59101D5
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:43:59 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484D3B7
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:43:57 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3231dff4343so355437f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:43:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70388D533
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:47:38 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BA0B8
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:47:35 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53e16f076b3so366850a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:47:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697096636; x=1697701436; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697096854; x=1697701654; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6pGb3HGceT5/2sWjhWBJAACKQ5znAHiL9SXNlGtYAVU=;
-        b=XpRk4LoW8NG/6ivu/yLDQ0Kih+zA07VKEpIaJ5kt7b7n+ezYDxmN52gXTJ9SVmNFHX
-         hdBqlF4elBpB020rVsaBt9eqFYo/UevkSUIrVCrgMVFtxTZlxTNAbxNEfNSBfZne14CL
-         gFFTFGtAZub0SRLFZ19a3JuV8pWGWC3qVk64D/GosCb2o0qk85Xpe7Bfkb/VCl+1eIg6
-         q0nsli6bVdxVAMg4oEamiLIwNvUenzGLc3P8K4AQVt6bbMTknSUvlkyrdMaNnW0j0jMO
-         e+rqp6gfNcbiDjMWxpCfwFUIhKmDYzEMShFbOWFBuzu3BNbk7lbHgVTuIdUFUnxGzUXW
-         WVWw==
+        bh=2XzW2GUZBby073H1yfG7LD0k6AHxcDQwaeAJkEqdCdo=;
+        b=SqQbhMNJWdUNx1HYQLy7uUaBl01j0Ml0T9Mx9VPu6U3Fowf3PoWaCszqltoYL39UTl
+         cZzprabFq1l0NAbTSi3Qkn6ATLKOscafHjS11ZkLI5M8Lx6IXQctsAYRovZcLY3KoBjg
+         QlCc/CD/V6N1+kr3HJ6M+MPiLQL29RDetuTlL6ZH91FZaE6K89MNQwrx0Q5aUSO52WoU
+         +zwivDvyM16if2D8TbrA672eh6kSbV2KiZkDehg4wtB/J41NuDgJq+CHH4GdJCw83Vx3
+         XXXDGWPxwocklYKy4JuDZDkOU4sGoy9v/4DrUeCxTMJ6MckUZlzO7GzgE5ThLSQ/7CUj
+         Fh6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697096636; x=1697701436;
+        d=1e100.net; s=20230601; t=1697096854; x=1697701654;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6pGb3HGceT5/2sWjhWBJAACKQ5znAHiL9SXNlGtYAVU=;
-        b=lfKa39nTAE1FiEUr+kCCVIjsRTlIuaE9qrmGYLZ5dGQEbjMIql+MuiwudsXHY8RG/O
-         uC0S+yPkNs0fV8/pB9dDTs40RSAVqfH9VWrBBPIiKPO6dw/GdHz+pMlci1PH6OSrVct/
-         VmcVK7YkgbNm/qXUQFBRV4TaQhcNE0li9TLAzpIMhaFsxk/ARiGKys4zAVeYNOQnRh7y
-         hffO79pJupgPeFwDuhSoCX3hRaiawcYQ508eSCe4Mu6woVtmakAp9yt/cWJtaqnh9eGA
-         C8cqdRB9bbbfNEYHq1Dwj+acoxq12cb+pla4dhJlX/8OwXlJXK5B6rU9omcwnzSv3Qmh
-         VzVA==
-X-Gm-Message-State: AOJu0YwuRRu0k6HbiY28miOGMZXUMp2TXLujlMCB8hZ5oDU8tZpTxNxT
-	E/sqpDl6QHUr8ZG8JQTh8vrjZw==
-X-Google-Smtp-Source: AGHT+IFaWxysZLgTN32QN8lGWXQc+RXod5GHTptPjZL4LBGic628OKN+rsGkNpFfMStt2tFVcBuAVg==
-X-Received: by 2002:adf:ff88:0:b0:319:5234:5c92 with SMTP id j8-20020adfff88000000b0031952345c92mr14497982wrr.35.1697096635651;
-        Thu, 12 Oct 2023 00:43:55 -0700 (PDT)
+        bh=2XzW2GUZBby073H1yfG7LD0k6AHxcDQwaeAJkEqdCdo=;
+        b=lLFDFJNbH1GMTqL46ttFOc4yHzGsXvbRmrAt3FmcoYE/lzoeO51Vvmv5HKuYwDLBJ0
+         xqjyFjMTbBix/hyEZmRgEJ4ZpuHZn5aB49/VCEzNp9otugYfT2oC4M5b9xVeWS3NtBiQ
+         eLUgg4ssIQGp9alD1EgBrlip+wS8h+kMvaLdpp68et+kAWzQHuCJCBaqPxXdXAB4SQu9
+         NL4oadiUVPPt3wpeLuFamFZ+Uhkuwwx21fszQP789kjd7OvRq4RzrwFiishotAgsMcqM
+         ehhobRnAVc407/ouAmIgnwJFoF3FQ89zxfw5mZ3JGJA2904IhTHRO9ycUtZvIn2oEBV7
+         +X3w==
+X-Gm-Message-State: AOJu0YxAbAXihTGUlLpbd3jPDisf/dCsMa6kjniDZg3dfUp/jmwyVp5B
+	wzlIBnSyJr6GJTni/QYBKwM7BA==
+X-Google-Smtp-Source: AGHT+IE1iKoWBWHHQ/TpCm3YxrfikbjkGB5KrfENrYNLXb7dB2SI7kcWuIYgisE+nkHSjY6KJtFPXA==
+X-Received: by 2002:a05:6402:12d8:b0:523:b37e:b83b with SMTP id k24-20020a05640212d800b00523b37eb83bmr18413371edx.13.1697096854332;
+        Thu, 12 Oct 2023 00:47:34 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v15-20020a5d43cf000000b003233b554e6esm17680843wrr.85.2023.10.12.00.43.54
+        by smtp.gmail.com with ESMTPSA id be25-20020a0564021a3900b005362c9905b2sm9822183edb.35.2023.10.12.00.47.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 00:43:55 -0700 (PDT)
-Message-ID: <abe72aae-c43c-487a-8021-2c0f54319a5b@linaro.org>
-Date: Thu, 12 Oct 2023 09:43:54 +0200
+        Thu, 12 Oct 2023 00:47:33 -0700 (PDT)
+Message-ID: <b214e763-2175-4de1-af54-43961ff94afb@linaro.org>
+Date: Thu, 12 Oct 2023 09:47:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for THine THP7312
+ ISP
 Content-Language: en-US
-To: Anand Moon <linux.amoon@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-media@vger.kernel.org
+Cc: Paul Elder <paul.elder@ideasonboard.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231011051152.133257-1-linux.amoon@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+References: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
+ <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,96 +127,123 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011051152.133257-1-linux.amoon@gmail.com>
+In-Reply-To: <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 07:11, Anand Moon wrote:
-> Add the binding example for the USB3.1 Genesys Logic GL3523
-> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> hub.
-
-That's not what the patch does.
-
+On 12/10/2023 03:20, Laurent Pinchart wrote:
+> From: Paul Elder <paul.elder@ideasonboard.com>
 > 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> New patch.
-> ---
->  .../bindings/usb/genesys,gl850g.yaml          | 28 +++++++++++++++++--
->  1 file changed, 25 insertions(+), 3 deletions(-)
+> The THP7312 is an external ISP from THine. Add DT bindings for it.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> index d0927f6768a4..2f6e0c870e1d 100644
-> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> @@ -22,29 +22,51 @@ properties:
->    reg: true
->  
->    reset-gpios:
+> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/thine,thp7312.yaml     | 225 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 232 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> new file mode 100644
+> index 000000000000..053b28fb0a89
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> @@ -0,0 +1,225 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 Ideas on Board
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: THine THP7312
+> +
+> +maintainers:
+> +  - Paul Elder <paul.elder@@ideasonboard.com>
+> +
+> +description:
+> +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
+> +  various image processing and correction functions, including 3A control. It
+> +  can be connected to CMOS image sensors from various vendors, supporting both
+> +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
+> +  or parallel. The hardware is capable of transmitting and receiving MIPI
+> +  interlaved data strams with data types or multiple virtual channel
+> +  identifiers.
+> +
+> +allOf:
+> +  - $ref: ../video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: thine,thp7312
+> +
+> +  reg:
 > +    maxItems: 1
+> +    description: I2C device address
 
-Why?
+Nothing improved here.
 
->      description: GPIO controlling the RESET# pin.
->  
->    vdd-supply:
->      description:
->        the regulator that provides 3.3V core power to the hub.
->  
-> +  peer-hub:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: CLKI clock input
+> +
+> +  thine,boot-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 > +    description:
-> +      phandle to the peer hub on the controller.
-> +
->  required:
->    - compatible
->    - reg
-> +  - reset-gpios
+> +      Boot mode of the THP7312. 0 is for standard streaming mode, for the
+> +      THP7312 to be used as an ISP. 1 is for firmware flashing mode.
 
-Why?
+Why, for a given board, would you always boot device in one specific
+mode but not the other? This does not look like property of DT.
 
-> +  - vdd-supply
-> +  - peer-hub
->  
->  additionalProperties: false
->  
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
 > +
->      usb {
->          dr_mode = "host";
->          #address-cells = <1>;
->          #size-cells = <0>;
->  
-> -        hub: hub@1 {
-> -            compatible = "usb5e3,608";
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +            compatible = "usb5e3,610";
->              reg = <1>;
-> -            reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
-> +            vdd-supply = <&vcc_5v>;
-> +            peer-hub = <&hub_3_0>;
-> +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
-> +        };
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the RESET_N pin, if any.
+> +      Must be released (set high) after all supplies are applied.
 > +
-> +        /* 3.1 hub on port 4 */
-> +        hub_3_0: hub@2 {
-> +            compatible = "usb5e3,620";
-> +            reg = <2>;
-> +            vdd-supply = <&vcc_5v>;
-> +            peer-hub = <&hub_2_0>;
-> +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
+> +  vddcore-supply:
+> +    description:
+> +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
+> +
+> +  vhtermrx-supply:
+> +    description:
+> +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> +
+> +  vddtx-supply:
+> +    description:
+> +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> +
+> +  vddhost-supply:
+> +    description:
+> +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
+> +
+> +  vddcmos-supply:
+> +    description:
+> +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
+> +
+> +  vddgpio_0-supply:
 
-Really, what is happening here?
+And more of ignored feedback. I stop now.
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
 
 Best regards,
 Krzysztof
