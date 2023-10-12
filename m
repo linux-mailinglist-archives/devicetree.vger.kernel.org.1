@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-8323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532F57C7A91
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 01:45:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14CA7C7A9D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 01:51:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE5C9B20855
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:45:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA4141C20B13
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927892B5F6;
-	Thu, 12 Oct 2023 23:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDBD2B5FD;
+	Thu, 12 Oct 2023 23:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GG2EZ8Ch"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULBz4pFZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723BF2C855
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:45:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3051C433C7;
-	Thu, 12 Oct 2023 23:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8728EA6
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:51:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFFDC433C7;
+	Thu, 12 Oct 2023 23:51:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697154346;
-	bh=tEqTqQdErxc85MNvTcwntt3VToH19q1ySiOXAqVp1bo=;
-	h=In-Reply-To:References:Subject:From:List-Id:Cc:To:Date:From;
-	b=GG2EZ8ChFoHokrcV6Aa/yS5dZwQ6qftFITMB/sAiBFdWBKu1rphruGzmWTSfihORm
-	 ug7zJ5TbSJ3viAbSO12SAVv8hCpfBfXlL5GSv+pGs3W7WaN+WInSdJsFpF32dJUSfy
-	 kBzle2OTVVao82RAf0QsU+LASfe8pvPYj2HUlnpm/NniYTezqOBCVoNGG5tdaS4TK5
-	 /awHz9XUs1EIvahj2SquYubqoe/nUXWuzwC6YzOEJh8hh85zJgtsH4moR4BvsHWB+3
-	 bBvmtIaFdEO6l6Vxa4S8nzgVx9TodDgQjo8Kgp6H5la1PXIzyfdhwSEEsGWEmR2rSK
-	 AGL6KPYmJNpog==
-Message-ID: <27e5de286fd0c209fc0540df7f77355b.sboyd@kernel.org>
+	s=k20201202; t=1697154708;
+	bh=7ci+m7+x7XXxdQsME2tkoDD8RgVXYZGHP0UltC3GUjk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=ULBz4pFZ8+loGkL1DAGx8tp/a1sgOMFS1Vd65ppgTiHyt5v6y7xrxc+ARZx4h+OX0
+	 FCMuS4Dq11+teVUo/2d30vo7lUcIlN94VGlhao2iXD/Zl7qY/6UjTDhuQ2DrGgpMp3
+	 IjHaK02zo6QQg7brR+0FakpeqdpqB24DuvEvrFR7FHhMOtebZq3tZPeRpsgiMpOEvX
+	 F53EfpzVH+ERjrG/3hf3cRXAB07vniyOzos6tZxdezzL1l+ENItPPS4/ZzEyNF1yE0
+	 ygOeJpPjJd46aGe5L1Jsg6CnE83kbTK4VFm9lXgnFrWjzeKHvtSaU2QyP9x4jcW/oW
+	 X4tFweO6hr15A==
+Message-ID: <5e0bd4bba88701dd1a7a3e89d18412f0.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -41,61 +41,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231011184823.443959-19-peter.griffin@linaro.org>
-References: <20231011184823.443959-1-peter.griffin@linaro.org> <20231011184823.443959-19-peter.griffin@linaro.org>
-Subject: Re: [PATCH v3 18/20] arm64: dts: google: Add initial Oriole/pixel 6 board support
+In-Reply-To: <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com> <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH V2 4/4] clk: meson: c3: add c3 clock peripherals controller driver
 From: Stephen Boyd <sboyd@kernel.org>
-List-Id: <soc.lore.kernel.org>
-Cc: peter.griffin@linaro.org, tudor.ambarus@linaro.org, andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, kernel-team@android.com, linux-serial@vger.kernel.org
-To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de, catalin.marinas@arm.com, conor+dt@kernel.org, cw00.choi@samsung.com, gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, linux@roeck-us.net, mturquette@baylibre.com, olof@lixom.net, robh+dt@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, will@kernel.org, wim@linux-watchdog.org
-Date: Thu, 12 Oct 2023 16:45:44 -0700
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 12 Oct 2023 16:51:44 -0700
 User-Agent: alot/0.10
 
-Quoting Peter Griffin (2023-10-11 11:48:21)
-> diff --git a/arch/arm64/boot/dts/google/gs101-oriole.dts b/arch/arm64/boo=
-t/dts/google/gs101-oriole.dts
-> new file mode 100644
-> index 000000000000..3bebca989d34
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-oriole.dts
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Oriole Device Tree
-> + *
-> + * Copyright 2021-2023 Google,LLC
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "gs101-pinctrl.h"
-> +#include "gs101.dtsi"
-> +
-> +/ {
-> +       model =3D "Oriole";
-> +       compatible =3D "google,gs101-oriole", "google,gs101";
-> +
-> +       chosen {
-> +               bootargs =3D "earlycon=3Dexynos4210,mmio32,0x10A00000 con=
-sole=3DttySAC0";
-> +       };
-> +
-> +       gpio-keys {
-> +               compatible =3D "gpio-keys";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&key_voldown &key_volup &key_power>;
+Quoting Xianwei Zhao (2023-10-09 23:29:17)
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 76be4bbd2afb..c8d59d28c8ff 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -140,6 +140,19 @@ config COMMON_CLK_C3_PLL
+>           Say Y if you want the board to work, because PLLs are the paren=
+t of most
+>           peripherals.
+> =20
+> +config COMMON_CLK_C3_PERIPHERALS
+> +       tristate "Amlogic C3 peripherals clock controller"
+> +       default y
 
-When a phandle starts an array presumably the next element after it is
-some cell or "argument" for that phandle. In this case, &key_voldown
-doesn't have any cells (there isn't a #pinctrl-cells property) so we
-typically write it like this
-
-		pinctrl-0 =3D <&key_voldown>, <&key_volup>, <&key_power>;
-
-so that the reader doesn't think the phandles are related. In the DTB
-nothing is different from how you have it in this patch. This is a super
-nitpick!
+Why are these default y? They should depend on something like ARM64 and
+even then I don't see why we want to enable them by default if we're
+building the ARM64 kernel.
 
