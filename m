@@ -1,90 +1,141 @@
-Return-Path: <devicetree+bounces-8109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340577C6B45
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:37:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F787C6B4D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:39:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D758D2828F3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:37:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 356211C20DB7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D97C208CB;
-	Thu, 12 Oct 2023 10:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4D1D52D;
+	Thu, 12 Oct 2023 10:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DY1opsTg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uEVzMo6A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25D022F14
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:37:35 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A5490;
-	Thu, 12 Oct 2023 03:37:32 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 08666660733F;
-	Thu, 12 Oct 2023 11:37:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697107050;
-	bh=lNyFtEdQTDuc65MqDEMsAQSJCURe+5Hc0l5j1I+nClk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DY1opsTgYfOqAY8qFy2hg8GrEoAO+EuqCr6eiOsIX7kahRCO9NeYsDOkRL++LM2+5
-	 pYwsdZTydV+3c+D9aiC89n2ZdVbD75x1yLpQ6gfs4JpSpJhuZrr5oaRo2oEYnOcnlS
-	 B5zdVWt/vGDtuu7KGPU7VC38/eWQ/a1g99Hv1puyinQcm8FVMs6GulWGOSRuLbQcvl
-	 oV0Kfs2A3UPoOeSFSAo8bdTOAUQ+cxCimjm/ZdUwc702CZmXGDGF6uW+hGHxYCDnEt
-	 n+8HJgbe1VFusuXZj3exjWFUxN39PDEzfOhkAnQfds2Uvf6KQmcsK0quvxCs/AJi7S
-	 lBuFyDvXYQPbQ==
-Message-ID: <6d9bdf5d-e741-038e-3c5a-589b54d15846@collabora.com>
-Date: Thu, 12 Oct 2023 12:37:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE43422EE6
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:39:16 +0000 (UTC)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AB0C4
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 03:39:14 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a7a7e9357eso10007887b3.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 03:39:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697107153; x=1697711953; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3oDNI1r5lnQu4SogBoFfe1dTr8U9qrvg3JFlPaLZjkQ=;
+        b=uEVzMo6ANZEA4+H1Wp+o8FzyCyx7DgWwzuhBiD7vv28bFN1i24xFEjoAvNZOqG8VWw
+         GUa/n844hCwQey90judRdFae+nZTpVdt5DOICJB7RONmf896qu6fvWh/FJBZj6ROUshn
+         pVFyxUiN+ht+y269nsGpyG9+Uzb4x42nGRn2siu5J6dcN0Q58gXgj1lEYAq/VbqxlQEa
+         X1cH7r3l05+LroKi4Qj6YIWWbR+PeNgkvJ5yG0zwkuLMhD5/IbGQDhBQXAtfI6wz8DO3
+         b4DF0YIdzTMgCUow0SNAdp7SyMHzv+lovaiXv0KH+fY0mSKFPRMoYDfIrM/lMhDMMe0S
+         4jdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697107153; x=1697711953;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3oDNI1r5lnQu4SogBoFfe1dTr8U9qrvg3JFlPaLZjkQ=;
+        b=oBvvYWxOtrASh8YtlD1nOsKZ4cTYaN3jfZGEaK3jSTxbaECwhoP4Jjtd7j0v9E2RWA
+         q0vxZtO8jUnmHpkxL5BsTE6es4DUdJoLSYOkk3gl3Y8AxYKFEIWvSRfqvYCBhkkjbnoS
+         soD/MC80V/KhzWjoC6OyIgkolPH1D45/ZbSEcfuYNriJIpvegZPTQP6Y4T7J/Z0D+9Yz
+         T1br6hirZAK6fmxuRCmb9tlDscbccZyf1tJ42VCPCFJyQZ/2J4LZHYqGgRuFvTztKnkd
+         mcXy1a5wU1FcnomuopC5wtLsS9zyK4H4PmLoBotdMCa2Ms3SPIOLyFJQRXXjFgGPDsQz
+         sMLg==
+X-Gm-Message-State: AOJu0Yx/CyeN7cahv4Z+FdoG9OrawzRFhZZSaksCcFN7UAdoEGUhWob2
+	QLb0inYufmfZYS1kXrmX+9umKdcXYTML+kyTFmbbeg==
+X-Google-Smtp-Source: AGHT+IFxRHuALoKeSjfKb3H4CN2bFTSSU2Bt+HgqEZX9jtOl6oxsdLqG69us8msuH/TRvisud8wxsgY5xod/E0gS4Uc=
+X-Received: by 2002:a0d:f204:0:b0:569:479f:6d7f with SMTP id
+ b4-20020a0df204000000b00569479f6d7fmr22902098ywf.43.1697107153677; Thu, 12
+ Oct 2023 03:39:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v7 01/16] dt-bindings: media: mediatek: mdp3: correct RDMA
- and WROT node with generic names
-Content-Language: en-US
-To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-2-moudy.ho@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231012084037.19376-2-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-3-peter.griffin@linaro.org> <5907e2b3-9a0b-4871-be08-6ca42200b8ec@linaro.org>
+ <CADrjBPqF67bcTnssQO8cN2n1ZbevziVNa+gA5azEDz_1wXzaNQ@mail.gmail.com> <809be13a-74b7-4934-8319-17330febc1b7@linaro.org>
+In-Reply-To: <809be13a-74b7-4934-8319-17330febc1b7@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 12 Oct 2023 11:39:02 +0100
+Message-ID: <CADrjBPpzfOmmr4sVDSXCM_RyVK1GKM+nVN6Cm=eMSBfN3sMciA@mail.gmail.com>
+Subject: Re: [PATCH v3 02/20] dt-bindings: clock: Add Google gs101 clock
+ management unit bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Il 12/10/23 10:40, Moudy Ho ha scritto:
-> The DMA-related nodes RDMA/WROT in MDP3 should be changed to generic names.
-> In addition, fix improper space indent in example.
-> 
-> Fixes: 4ad7b39623ab ("media: dt-binding: mediatek: add bindings for MediaTek MDP3 components")
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+Hi Krzysztof
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, 12 Oct 2023 at 11:20, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 12/10/2023 12:15, Peter Griffin wrote:
+>
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            const: google,gs101-cmu-top
+> >>> +
+> >>> +    then:
+> >>> +      properties:
+> >>> +        clocks:
+> >>> +          items:
+> >>> +            - description: External reference clock (24.576 MHz)
+> >>> +
+> >>> +        clock-names:
+> >>> +          items:
+> >>> +            - const: oscclk
+> >>> +
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>
+> >> enum:
+> >>   - google,gs101-cmu-apm
+> >>   - google,gs101-cmu-misc
+> >
+> > Ok just to be clear, are you saying I should have it like this?
+> >
+> >   - if:
+> >       properties:
+> >         compatible:
+> >           contains:
+> >             enum:
+> >               - google,gs101-cmu-misc
+>
+> No, my bad, I meant apm + google,gs101-cmu-top
+>
+> >               - google,gs101-cmu-apm
 
+Ah OK, yes that makes more sense. Thanks for the clarification :)
+
+Peter.
 
