@@ -1,113 +1,123 @@
-Return-Path: <devicetree+bounces-8010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EFB7C674B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF3D7C674F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53840282670
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:59:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 388A628264F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF55714A83;
-	Thu, 12 Oct 2023 07:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7F215E9C;
+	Thu, 12 Oct 2023 08:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NhMdpW4M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C82BD533
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:59:53 +0000 (UTC)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6765DA9;
-	Thu, 12 Oct 2023 00:59:49 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a7a7e9357eso8594917b3.0;
-        Thu, 12 Oct 2023 00:59:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697097588; x=1697702388;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bNdfcf5RJbVw3euD+r2W2z32tRPcDJdoEVJcQdZ60Yk=;
-        b=MYcze3xpTW5gTQj1dq/kDXSiX5FjG8qKWsz6EHzxzEa2swAA4Q4LFms0r7tZhYYgsO
-         QVbpxOMwJHlDZQyn3EL+meJz4lhmXleuVdBoFHIfU2HVQFxMSxEJHksDQnWRqMaLCFam
-         rYPaLDXLZRn4dl6/5QlMhfTuZZ9WyyyGWNtPge/p/XfnGdzjVXpt/NEd4k3xT+8ZOI1Z
-         Xx5uchJj8GsFDg6kYaMq+hNAXbu+EnJBDy1hMm41361Eh9QGC9Qw8A2LfUcas2tQx7zN
-         Vct2doIr/AgB2TERkNGWh0rOUNNZe2ly4UOA/oDEpRSMfri0p1QNTKQ8xBG37hePQ5yS
-         utPQ==
-X-Gm-Message-State: AOJu0YxkILFpTv5hwiD2bLrSDc+TL4lE9y1Isp/Yh0hLbQLHpdNzxzSu
-	2Vxwt8pTkxBcyzJkLDuuKgONKMfqpH71qg==
-X-Google-Smtp-Source: AGHT+IFQAs8e5QSaZ+RGLIac7ReKdfC4kXP91j2xzSMlXtqKYo+VDYS8QrhiuPsNZTgzBvmnd+X8hw==
-X-Received: by 2002:a81:79ca:0:b0:5a7:b930:16a8 with SMTP id u193-20020a8179ca000000b005a7b93016a8mr8342391ywc.4.1697097588468;
-        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id e12-20020a81dd0c000000b005845e6f9b50sm5667158ywn.113.2023.10.12.00.59.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-579de633419so8279187b3.3;
-        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
-X-Received: by 2002:a0d:cb49:0:b0:5a7:c97e:39e3 with SMTP id
- n70-20020a0dcb49000000b005a7c97e39e3mr6477357ywd.15.1697097587925; Thu, 12
- Oct 2023 00:59:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645AC1548A;
+	Thu, 12 Oct 2023 08:00:40 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01190B8;
+	Thu, 12 Oct 2023 01:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1697097636; x=1728633636;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8sDm0h+pCIl9iKfc4jxuflqUqRc8yd1m5/OgP1/13vY=;
+  b=NhMdpW4MZMRhxLbQed+nd3kQTgk2CPHK4+Xx9+yb9bzKd4t34lVYhU4d
+   FPRr8GPMkPwheq3iWeZAq3qWksp7aLeIeQTM85GbnoAJLzMQUcoJ4YQCf
+   /jaipljUm/whFVMRH6boA595JGzv1NakVAoW1IPn68feH5tvw+LSa9u+V
+   YktipGhROtRTPddUde0loRP2q50pjjkCsnow6ZnwX9J6JG1z52W6HyB6j
+   xAXOVykqi4IvMmNFdKicn9JQ8pvAGHzJHkfjODPV775gCdyKFO7bgy5rD
+   boN/6ycfmL3At3p1G0II3fFIA+86zxLLw5kpTYf7os8TKZ+17Ekgqs/0Y
+   A==;
+X-IronPort-AV: E=Sophos;i="6.03,218,1694728800"; 
+   d="scan'208";a="33422563"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 12 Oct 2023 10:00:33 +0200
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 781CE280082;
+	Thu, 12 Oct 2023 10:00:33 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/3] imx6q related DT binding fixes
+Date: Thu, 12 Oct 2023 10:00:30 +0200
+Message-Id: <20231012080033.2715241-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231012065822.1007930-1-javierm@redhat.com> <20231012065822.1007930-6-javierm@redhat.com>
-In-Reply-To: <20231012065822.1007930-6-javierm@redhat.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Oct 2023 09:59:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVR=aM-fr6SLfZMyA-Mdw23Tv+rX-iQQmw5u5U3vW5Ajg@mail.gmail.com>
-Message-ID: <CAMuHMdVR=aM-fr6SLfZMyA-Mdw23Tv+rX-iQQmw5u5U3vW5Ajg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/6] dt-bindings: display: Split common Solomon
- properties in their own schema
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Conor Dooley <conor@kernel.org>, Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Javier,
+Hi everyone,
 
-On Thu, Oct 12, 2023 at 8:58=E2=80=AFAM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
-> There are DT properties that can be shared across different Solomon OLED
-> Display Controller families. Split them into a separate common schema to
-> avoid these properties to be duplicated in different DT bindings schemas.
->
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
->
-> (no changes since v1)
+while working on i.MX6Q based board (arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dts)
+I noticed several warnings on dtbs_check.
+I'm also not sure whether thse patches warrent a Fixes tag, so I only added that
+for patch 3. All of these patches are independent and can be picked up
+individually.
 
-New patch in v2.
+Patches already merged:
+* 0268e1ae25949 ("dt-bindings: trivial-devices: Remove national,lm75")
+* 57db57ae15a97 ("dt-bindings: display: fsl,imx6-hdmi: Change to 'unevaluatedProperties: false'")
+  which deprecates v1 patch 3
 
-Gr{oetje,eeting}s,
+Changes in v2:
+* Fix example for imx-thermal.yaml
+* Collected R-b & A-b
+* Dropped v1 patch 6 for now as it is contoversial
 
-                        Geert
+Best regards,
+Alexander
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Alexander Stein (3):
+  dt-bindings: imx-thermal: Add #thermal-sensor-cells property
+  dt-bindings: net: microchip: Allow nvmem-cell usage
+  dt-bindings: timer: add imx7d compatible
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ .../devicetree/bindings/net/microchip,lan95xx.yaml         | 2 ++
+ Documentation/devicetree/bindings/thermal/imx-thermal.yaml | 7 +++++++
+ Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml    | 4 +++-
+ 3 files changed, 12 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
