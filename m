@@ -1,318 +1,191 @@
-Return-Path: <devicetree+bounces-8216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8117C7320
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:35:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180007C732D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED6B3282948
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:35:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5EC42828F4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CBEE1B28D;
-	Thu, 12 Oct 2023 16:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DEF262B2;
+	Thu, 12 Oct 2023 16:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FWF9XZZB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LhHD5o7b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F972D50F
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:35:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CD1DC433C9;
-	Thu, 12 Oct 2023 16:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697128518;
-	bh=NzPnqibzF2upn4jm8KZCaKXCOa5mbd6V+kdKukg1bho=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FWF9XZZBPSGaIGB9GxRD/AIU3rNbEv502xv/ptW08UTsvC4RJzsoDszsiWtnHnPeB
-	 IYnlPGBdG/Qmhd2SM5T+spot7Zx1/qQS/uuXt2MlQA0Rs/QfuPd15xpkuTaeGFFAjg
-	 ypYZPaN5w2auKfG9PV2ugkcOKGXJEZpOJB8bR/va25xh7o+m59RTcpSDSSmssFGIgt
-	 nFgU1QJ5XEHlMpofy24kYCa4qL3sNDulzL4HV82fko8QrqJJ6ZspbGlds8p7cgUlFk
-	 2bOYsfN4eGL8Egic4KKVmT/tSx18vhejN1zU/3+tnPq461nPfVK6e4UYxH/FVKSAEj
-	 /4YeEoVjpdZAg==
-Date: Thu, 12 Oct 2023 17:35:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v10 07/15] dt-bindings: interrupt-controller: Add RISC-V
- incoming MSI controller
-Message-ID: <20231012-countable-darkish-7e449edc763d@spud>
-References: <20231003044403.1974628-1-apatel@ventanamicro.com>
- <20231003044403.1974628-8-apatel@ventanamicro.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5543C20E5;
+	Thu, 12 Oct 2023 16:37:45 +0000 (UTC)
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A1CA9;
+	Thu, 12 Oct 2023 09:37:42 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-1dd5b98d9aeso577706fac.0;
+        Thu, 12 Oct 2023 09:37:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697128662; x=1697733462; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9u1kAvrEac9Qi+MHI/eb0phIPTWwLhAQGTfL68QyLNI=;
+        b=LhHD5o7bS7irbCkNgC4qxx/7hGh4y/vqTfI+a8PobWh7tYEev3dTmLV+aAGUmttFCB
+         IrQ5a6D4K6CIVxzKK0d2Bc9ryzYQqOGYXIZ0IRrrtv6SpS3xiLmzkPRDktKvyC0fGbz5
+         QBlV1CBaNYCI9pF9zUE4kWkxohcydbW33d1DYSJv5AgJ+4vdnlc3ZukHPwaBOG8A2nXN
+         vG3+PSOyXt3pVFhxLBJw6FTHl/gPE6BgZzOSsslBuoy8OF4uQ2cZSOn0sVHAIlUwgcBo
+         X8QXbELl2HlD+fl2P7VJ2XdJLYa+ARte1uwVHuW9vUsmOmmF68nX87zcmGHcAVXdtDTm
+         A6Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697128662; x=1697733462;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9u1kAvrEac9Qi+MHI/eb0phIPTWwLhAQGTfL68QyLNI=;
+        b=C8jwOF8Plgzj72Qd1s7PKATs9AQqr36Byp9RKZQ4UtLvCIqa7cRZVFOFZnA3exUPgA
+         bYGuojjocWMpfpQMVLzz+pncqBMXQxJEcHTmU5hV3odOnuqnUJzh0ChgDmPy3S4LTWCO
+         SdwoJkfQSoAZ2je3JT3iEvD3BWdSH01L/TnPAI4NagsTeyanUKnt3fgCivaBnGbYhRAl
+         wvuyFNx+3Esput2TXWtNb+SnMt7WC+N4ZG60ZKc7o41gohCW9g8u384CXp+atXUvmlJX
+         bsuyk/tJm7IUZME9oAD+HuVvePwemGriKkYlPjghgv7CSrylreW9XAIc9Pi1kUezaTyy
+         FUFQ==
+X-Gm-Message-State: AOJu0Yyz39fGwIDcmRSQfHO+a8BUPLGpHqtBpQTd5prBnA3Ku9Wfk8+I
+	QKkoCkQ4TOKPEhBq4Q7MPu5//KGlii/DmphP55I=
+X-Google-Smtp-Source: AGHT+IF3idoTvk3iQIydZOFUuTHb9X53/KuzrTwT1V/yxZI4ZBgG+GdHFpUOuv/G18GACk/bYhQbBFdOratw7VpY67I=
+X-Received: by 2002:a05:6871:d13:b0:1e9:7078:9f3b with SMTP id
+ vh19-20020a0568710d1300b001e970789f3bmr3895870oab.10.1697128662009; Thu, 12
+ Oct 2023 09:37:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="I6UQvs0M76IAl9Q0"
-Content-Disposition: inline
-In-Reply-To: <20231003044403.1974628-8-apatel@ventanamicro.com>
+References: <20231011051152.133257-1-linux.amoon@gmail.com> <abe72aae-c43c-487a-8021-2c0f54319a5b@linaro.org>
+In-Reply-To: <abe72aae-c43c-487a-8021-2c0f54319a5b@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 12 Oct 2023 22:07:26 +0530
+Message-ID: <CANAwSgQa3_ROnYyDZA958ZvFu0tb7qsVJ0Loij0saYRKEec_xw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Krzysztof,
 
---I6UQvs0M76IAl9Q0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 12 Oct 2023 at 13:13, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/10/2023 07:11, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+>
+> That's not what the patch does.
 
-Hey,
+Ok I have tried to add an example below the original changes
+but the device tree complained of duplicate entries. Hence I
+modified these changes.
 
-On Tue, Oct 03, 2023 at 10:13:55AM +0530, Anup Patel wrote:
-> We add DT bindings document for the RISC-V incoming MSI controller
-> (IMSIC) defined by the RISC-V advanced interrupt architecture (AIA)
-> specification.
->=20
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+This change was requested to update the peer-hub example below.
+[0] https://lore.kernel.org/all/9fe7d0d2-3582-4b62-be9b-aa9134c18023@linaro.org/
 
-Just FYI, since they'll reply to this themselves, but some of the
-Microchip folks have run into problems with sparse hart indexes while
-trying to use the imsic binding to describe some configurations they
-have. I think there were also so problems with how to describe to a
-linux guest which file to use, when the first hart available to the
-guest does not use the first file. They'll do a better job of describing
-their problems than I will, so I shall leave it to them!
+>
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > New patch.
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 28 +++++++++++++++++--
+> >  1 file changed, 25 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index d0927f6768a4..2f6e0c870e1d 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -22,29 +22,51 @@ properties:
+> >    reg: true
+> >
+> >    reset-gpios:
+> > +    maxItems: 1
+>
+> Why?
 
-Cheers,
-Conor.
+Following another example, I added this and will drop this.
+>
+> >      description: GPIO controlling the RESET# pin.
+> >
+> >    vdd-supply:
+> >      description:
+> >        the regulator that provides 3.3V core power to the hub.
+> >
+> > +  peer-hub:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to the peer hub on the controller.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - reset-gpios
+>
+> Why?
+see below.
+>
+> > +  - vdd-supply
+> > +  - peer-hub
+> >
+> >  additionalProperties: false
+> >
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/gpio/gpio.h>
+> > +
+> >      usb {
+> >          dr_mode = "host";
+> >          #address-cells = <1>;
+> >          #size-cells = <0>;
+> >
+> > -        hub: hub@1 {
+> > -            compatible = "usb5e3,608";
+> > +        /* 2.0 hub on port 1 */
+> > +        hub_2_0: hub@1 {
+> > +            compatible = "usb5e3,610";
+> >              reg = <1>;
+> > -            reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
+> > +            vdd-supply = <&vcc_5v>;
+> > +            peer-hub = <&hub_3_0>;
+> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
+> > +        };
+> > +
+> > +        /* 3.1 hub on port 4 */
+> > +        hub_3_0: hub@2 {
+> > +            compatible = "usb5e3,620";
+> > +            reg = <2>;
+> > +            vdd-supply = <&vcc_5v>;
+> > +            peer-hub = <&hub_2_0>;
+> > +            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
+>
+> Really, what is happening here?
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../interrupt-controller/riscv,imsics.yaml    | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controlle=
-r/riscv,imsics.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv=
-,imsics.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv=
-,imsics.yaml
-> new file mode 100644
-> index 000000000000..84976f17a4a1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics=
-=2Eyaml
-> @@ -0,0 +1,172 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsics.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V Incoming MSI Controller (IMSIC)
-> +
-> +maintainers:
-> +  - Anup Patel <anup@brainfault.org>
-> +
-> +description: |
-> +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU inc=
-oming
-> +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RIS=
-C-V
-> +  AIA specification can be found at https://github.com/riscv/riscv-aia.
-> +
-> +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt fi=
-le
-> +  for each privilege level (machine or supervisor). The configuration of
-> +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MM=
-IO
-> +  space to receive MSIs from devices. Each IMSIC interrupt file supports=
- a
-> +  fixed number of interrupt identities (to distinguish MSIs from devices)
-> +  which is same for given privilege level across CPUs (or HARTs).
-> +
-> +  The device tree of a RISC-V platform will have one IMSIC device tree n=
-ode
-> +  for each privilege level (machine or supervisor) which collectively de=
-scribe
-> +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
-> +
-> +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V pla=
-tform
-> +  follows a particular scheme defined by the RISC-V AIA specification. A=
- IMSIC
-> +  group is a set of IMSIC interrupt files co-located in MMIO space and w=
-e can
-> +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
-> +  RISC-V platform. The MSI target address of a IMSIC interrupt file at g=
-iven
-> +  privilege level (machine or supervisor) encodes group index, HART inde=
-x,
-> +  and guest index (shown below).
-> +
-> +  XLEN-1            > (HART Index MSB)                  12    0
-> +  |                  |                                  |     |
-> +  -------------------------------------------------------------
-> +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
-> +  -------------------------------------------------------------
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qemu,imsics
-> +      - const: riscv,imsics
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 16384
-> +    description:
-> +      Base address of each IMSIC group.
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 0
-> +
-> +  msi-controller: true
-> +
-> +  "#msi-cells":
-> +    const: 0
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 16384
-> +    description:
-> +      This property represents the set of CPUs (or HARTs) for which given
-> +      device tree node describes the IMSIC interrupt files. Each node po=
-inted
-> +      to should be a riscv,cpu-intc node, which has a CPU node (i.e. RIS=
-C-V
-> +      HART) as parent.
-> +
-> +  riscv,num-ids:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 63
-> +    maximum: 2047
-> +    description:
-> +      Number of interrupt identities supported by IMSIC interrupt file.
-> +
-> +  riscv,num-guest-ids:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 63
-> +    maximum: 2047
-> +    description:
-> +      Number of interrupt identities are supported by IMSIC guest interr=
-upt
-> +      file. When not specified it is assumed to be same as specified by =
-the
-> +      riscv,num-ids property.
-> +
-> +  riscv,guest-index-bits:
-> +    minimum: 0
-> +    maximum: 7
-> +    default: 0
-> +    description:
-> +      Number of guest index bits in the MSI target address.
-> +
-> +  riscv,hart-index-bits:
-> +    minimum: 0
-> +    maximum: 15
-> +    description:
-> +      Number of HART index bits in the MSI target address. When not
-> +      specified it is calculated based on the interrupts-extended proper=
-ty.
-> +
-> +  riscv,group-index-bits:
-> +    minimum: 0
-> +    maximum: 7
-> +    default: 0
-> +    description:
-> +      Number of group index bits in the MSI target address.
-> +
-> +  riscv,group-index-shift:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 55
-> +    default: 24
-> +    description:
-> +      The least significant bit position of the group index bits in the
-> +      MSI target address.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - msi-controller
-> +  - "#msi-cells"
-> +  - interrupts-extended
-> +  - riscv,num-ids
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    // Example 1 (Machine-level IMSIC files with just one group):
-> +
-> +    interrupt-controller@24000000 {
-> +      compatible =3D "qemu,imsics", "riscv,imsics";
-> +      interrupts-extended =3D <&cpu1_intc 11>,
-> +                            <&cpu2_intc 11>,
-> +                            <&cpu3_intc 11>,
-> +                            <&cpu4_intc 11>;
-> +      reg =3D <0x28000000 0x4000>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <0>;
-> +      msi-controller;
-> +      #msi-cells =3D <0>;
-> +      riscv,num-ids =3D <127>;
-> +    };
-> +
-> +  - |
-> +    // Example 2 (Supervisor-level IMSIC files with two groups):
-> +
-> +    interrupt-controller@28000000 {
-> +      compatible =3D "qemu,imsics", "riscv,imsics";
-> +      interrupts-extended =3D <&cpu1_intc 9>,
-> +                            <&cpu2_intc 9>,
-> +                            <&cpu3_intc 9>,
-> +                            <&cpu4_intc 9>;
-> +      reg =3D <0x28000000 0x2000>, /* Group0 IMSICs */
-> +            <0x29000000 0x2000>; /* Group1 IMSICs */
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <0>;
-> +      msi-controller;
-> +      #msi-cells =3D <0>;
-> +      riscv,num-ids =3D <127>;
-> +      riscv,group-index-bits =3D <1>;
-> +      riscv,group-index-shift =3D <24>;
-> +    };
-> +...
-> --=20
-> 2.34.1
->=20
+USB hub GL3523-QFN76 supports two pins CHIP_EN and RST_N pins
+so RST_N (GPIOH_4) is used to reset the USB hub,
+earlier we were using gpio-hog to reset the hub.
 
---I6UQvs0M76IAl9Q0
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> Best regards,
+> Krzysztof
+>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSggQAAKCRB4tDGHoIJi
-0jX7AQD05XfWt/zooqoq0GNcS4OA6AvVl1iuwcakZQzEOODm2gD/bITckI/qpW0Q
-tM4K+OXVgXTg/vqHtWmSbrolQSzhhwc=
-=63QK
------END PGP SIGNATURE-----
-
---I6UQvs0M76IAl9Q0--
+Thanks
+-Anand
 
