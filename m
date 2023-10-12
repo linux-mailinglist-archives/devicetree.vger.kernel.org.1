@@ -1,163 +1,113 @@
-Return-Path: <devicetree+bounces-8008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC067C66AC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:54:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EFB7C674B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:59:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6469828261C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:54:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53840282670
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB78E11CB0;
-	Thu, 12 Oct 2023 07:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ouBLpUMk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF55714A83;
+	Thu, 12 Oct 2023 07:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECE4101C1
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:54:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD161C433C7;
-	Thu, 12 Oct 2023 07:54:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697097257;
-	bh=p2v0qVTwQ8zFtxDaAzDhCwQKGwVkcbZvyeApiQQ8j/o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ouBLpUMketvQ6mCLH7X09kSCmOomHs0DOSCilC36YVntLPf5w9krayQFWbPXi9Cg4
-	 ipBtNLnFUYoqwz+14rkFcqz9E/4Ho2rhQsGFqclgH7IuYqtCeArTZEVEizJSshwoa0
-	 CyFK1aecdN7YKe34LYpTI1x7dJ/cnhMM55Cb7T4Ublq8iOJ/LAyhj7wUQt1/xgfA9b
-	 wyKBna83KbcAYtLyuMlrgCyE2lJLG9Grvxn2yU8Uzxv6o+OXgizFJP2iIEJI+5n2VC
-	 LYhuQSAfwsLJ9JAa7cmz3855ThYGftRJrHeN/qlUFUxV7exNppjYnnYkDBp7D0vAuM
-	 xpEyDIGQiKidA==
-Date: Thu, 12 Oct 2023 08:54:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matti Vaittinen
- <mazziesaccount@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Paul Gazzillo
- <paul@pgazz.com>, Conor Dooley <conor+dt@kernel.org>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
-Subject: Re: [PATCH 2/2] iio: light: Add support for APDS9306 Light Sensor
-Message-ID: <20231012085427.5f0fa4a3@jic23-huawei>
-In-Reply-To: <07761a6c-85a8-c7bd-a0af-28d0f29b3e5d@tweaklogic.com>
-References: <20231008154857.24162-1-subhajit.ghosh@tweaklogic.com>
-	<20231008154857.24162-3-subhajit.ghosh@tweaklogic.com>
-	<20231010153807.6335a043@jic23-huawei>
-	<07761a6c-85a8-c7bd-a0af-28d0f29b3e5d@tweaklogic.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C82BD533
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:59:53 +0000 (UTC)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6765DA9;
+	Thu, 12 Oct 2023 00:59:49 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a7a7e9357eso8594917b3.0;
+        Thu, 12 Oct 2023 00:59:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697097588; x=1697702388;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bNdfcf5RJbVw3euD+r2W2z32tRPcDJdoEVJcQdZ60Yk=;
+        b=MYcze3xpTW5gTQj1dq/kDXSiX5FjG8qKWsz6EHzxzEa2swAA4Q4LFms0r7tZhYYgsO
+         QVbpxOMwJHlDZQyn3EL+meJz4lhmXleuVdBoFHIfU2HVQFxMSxEJHksDQnWRqMaLCFam
+         rYPaLDXLZRn4dl6/5QlMhfTuZZ9WyyyGWNtPge/p/XfnGdzjVXpt/NEd4k3xT+8ZOI1Z
+         Xx5uchJj8GsFDg6kYaMq+hNAXbu+EnJBDy1hMm41361Eh9QGC9Qw8A2LfUcas2tQx7zN
+         Vct2doIr/AgB2TERkNGWh0rOUNNZe2ly4UOA/oDEpRSMfri0p1QNTKQ8xBG37hePQ5yS
+         utPQ==
+X-Gm-Message-State: AOJu0YxkILFpTv5hwiD2bLrSDc+TL4lE9y1Isp/Yh0hLbQLHpdNzxzSu
+	2Vxwt8pTkxBcyzJkLDuuKgONKMfqpH71qg==
+X-Google-Smtp-Source: AGHT+IFQAs8e5QSaZ+RGLIac7ReKdfC4kXP91j2xzSMlXtqKYo+VDYS8QrhiuPsNZTgzBvmnd+X8hw==
+X-Received: by 2002:a81:79ca:0:b0:5a7:b930:16a8 with SMTP id u193-20020a8179ca000000b005a7b93016a8mr8342391ywc.4.1697097588468;
+        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id e12-20020a81dd0c000000b005845e6f9b50sm5667158ywn.113.2023.10.12.00.59.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-579de633419so8279187b3.3;
+        Thu, 12 Oct 2023 00:59:48 -0700 (PDT)
+X-Received: by 2002:a0d:cb49:0:b0:5a7:c97e:39e3 with SMTP id
+ n70-20020a0dcb49000000b005a7c97e39e3mr6477357ywd.15.1697097587925; Thu, 12
+ Oct 2023 00:59:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20231012065822.1007930-1-javierm@redhat.com> <20231012065822.1007930-6-javierm@redhat.com>
+In-Reply-To: <20231012065822.1007930-6-javierm@redhat.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Oct 2023 09:59:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVR=aM-fr6SLfZMyA-Mdw23Tv+rX-iQQmw5u5U3vW5Ajg@mail.gmail.com>
+Message-ID: <CAMuHMdVR=aM-fr6SLfZMyA-Mdw23Tv+rX-iQQmw5u5U3vW5Ajg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/6] dt-bindings: display: Split common Solomon
+ properties in their own schema
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Conor Dooley <conor@kernel.org>, Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, 12 Oct 2023 01:07:10 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+Hi Javier,
 
-> On 11/10/23 01:08, Jonathan Cameron wrote:
-> > 
-> > No need to wrap the patch description quite so short. Aim
-> > for up to 75 char for a commit message (and 80 for the code)
-> > Here you are under 60.
-> >   
-> Thank you for taking time to point out these small issues.
-> 
-> >>
-> >> Datasheet at https://docs.broadcom.com/doc/AV02-4755EN
-> >>  
-> > There is a tag for datasheets in the format tags block so
-> > Datasheet: https://docs.broadcom.com/doc/AV02-4755EN  
-> >> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>  
-> > 
-> > I took a quick look at the most similar part number adps9300 and
-> > this does look substantially different but could you confirm you've
-> > taken a look at the plausible drivers to which support for this part
-> > could be added and perhaps mention why that doesn't make sense
-> > I think it will be mainly feature set being different here, but also
-> > it seems they have completely different register maps despite similar
-> > part numbers!  
-> I have taken a look at quiet a few light sensor drivers including
-> apds9960 and apds9300, as you said that they are different. There are
-> another two drivers apds990x and apds9802als in drivers/misc which are
-> also very different but I can't say that I have been through all the
-> driver files.
-> 
+On Thu, Oct 12, 2023 at 8:58=E2=80=AFAM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> There are DT properties that can be shared across different Solomon OLED
+> Display Controller families. Split them into a separate common schema to
+> avoid these properties to be duplicated in different DT bindings schemas.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>
+> (no changes since v1)
 
-Great.  Then as expected this separate driver make sense even if the
-DT bindings can be combined.  Would be nice if they standardised
-the interface, but some companies seem to feel the need to start from
-scratch for each device they produce :(
+New patch in v2.
 
+Gr{oetje,eeting}s,
 
-> 
-> > The interrupt controller for starters takes to no locks and can run concurrently
-> > with other accesses from other CPUs.  That seems unwise.
-> >  
-> Well, regarding device access, interrupt handler just reads the status registers
-> thereby clearing the interrupt status flag and releasing the physical interrupt line.
-> What can be the issue if I don't use a lock?
-Gah. I was far too sleepy that day.  Glad you interpreted my comment as intended :)
+                        Geert
 
-Hmm. You will be relying on the internal implementation of the regmap bus interface
-resulting in locks being taken in the i2c controller.  That may be fine, but
-it makes me a little nervous that it's relying on a particular implementation.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-My normal assumption is that any driver that turns off locking in regmap is doing
-so because it has various complex read modify write cycles so needs to have it's
-own locks - but that it also applies those locks everywhere regmap would have
-done (so for duration of every regmap call).
-
-You may be fine, but you aren't meeting the requirements documented.
-The flag to disable locking in regmap states:
-
- * @disable_locking: This regmap is either protected by external means or
- *                   is guaranteed not to be accessed from multiple threads.
- *                   Don't use any locking mechanisms.
-
-It doesn't say you are fine for simple accesses and there are multiple threads
-accessing 'the regmap'.
-
-Unless you really care about it, I'd just leave regmap locking enabled.
-The likely performance hit on a device on a slow bus is low and it avoids
-us having to think too hard about this.
-
-
-> >> +	ret = devm_add_action_or_reset(dev, apds9306_powerdown, data);  
-> > 
-> > Why at this point? I'd have thought it wasn't powered up until init_device()
-> > which follows?  So I'd expect to see this call after that, not before.
-> >   
-> Right. I will do a bit more reading on this before using this. I assumed this
-> functions registers the callback which gets called at driver release by the
-> subsystem similar to release().
-
-That's true, but with the addition that it is called in the reverse order of
-being add to the devm managed release list.  So ordering matters.
-
-
-> 
-> Thank you Jonathan for the review. I'll get the changes done in the next version.
-> 
-No problem.   As a side note, feel free to just crop out any responses where
-you agree with a review.  Default assumption is that if you don't comment that
-is the case and it cuts down on scrolling when reviewer next looks.
-They are also much more likely to take a look at a short reply than a long one!
-
-Jonathan
-
-> Regards,
-> Subhajit Ghosh
-> 
-> 
-> 
-> 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
