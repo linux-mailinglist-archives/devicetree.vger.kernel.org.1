@@ -1,135 +1,160 @@
-Return-Path: <devicetree+bounces-7945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107BF7C6396
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 05:58:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCBD47C64AA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:38:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF7F1C20B85
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 03:58:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F31B28251B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 05:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFB56116;
-	Thu, 12 Oct 2023 03:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897FFD264;
+	Thu, 12 Oct 2023 05:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="gjt70Jch"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hrhdeNL+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175A02112
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 03:58:44 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3D22120
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 20:58:42 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 95A6B2C0806;
-	Thu, 12 Oct 2023 16:58:39 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1697083119;
-	bh=ifZwplH9sagN0NTIjZH8ZM2CYg5lA3N8aVUArps8x2I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gjt70JchAEo3lFT+mTcjRQZEHFTWm4kkIMy90yFJcppKwahtB4dfrObAdEi2oHe/n
-	 F2HPaIv1UA6Oz+cK4FncrUrq+bvF9CzRo485BdekGScB15haVSH4ZrQYW+ZQ1P7beV
-	 EA0ueWg5hb7+qPjl0fb7tHB5qKQxvdSdAUzEWYsOeRNVhA/4WAQ72eV6YbIigELw8o
-	 l6roi+xCzPCn3H1NaJgiIaIwwa/Zp7OmJ9MYk+rR3YY9PTc1Ki1cUDdxDGKp7lBvO7
-	 9S1keH95OqPBP9Mu1MK0jUzM5L6oB9G+jaVTQ658ahSTcbc+SvSaKaBlxCYhE3eg/P
-	 Ls5CX1b5AnxSg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65276eef0002>; Thu, 12 Oct 2023 16:58:39 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 5552813EE9B;
-	Thu, 12 Oct 2023 16:58:39 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 539DF2809D8; Thu, 12 Oct 2023 16:58:39 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: gregory.clement@bootlin.com,
-	andi.shyti@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 2/2] i2c: mv64xxx: add an optional reset-gpios property
-Date: Thu, 12 Oct 2023 16:58:38 +1300
-Message-ID: <20231012035838.2804064-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231012035838.2804064-1-chris.packham@alliedtelesis.co.nz>
-References: <20231012035838.2804064-1-chris.packham@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F5328EF
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:38:20 +0000 (UTC)
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D6AC0
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:38:18 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-278f0f565e2so470372a91.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:38:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697089098; x=1697693898; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wwWnNHAbWyeAscY15FX+TU6dhJaouDy+zgSEChH3FwY=;
+        b=hrhdeNL+xrFwt5JwZw2WTndkt3uiH1J30wKia9q7VffNmYl4iEhp32agj2z88CKH2q
+         B1PZ0h0mz/aygSprMv+aUJ0etTN6MZzdmpThC7MSs/IKZIRX4d23Buf9OkWtORpbqLq2
+         NrpkE8FLNrmAnDzTH47YWGRffztAQ1/vDPm+B+Ii5jNcKPSHIqu5SpGCqFKfXrjGXm+A
+         CGxGxgReWs13EJ1d3vG8ALrwgdsKiqrcgnTf+H6qhS16qVdGuvS5jjwCOrrSIgxH+GAf
+         pGPeXjxU2riHHxXosc5fneN9e/KBDDWBx5xWxbqlGawA8Ga2N+c1P+rgIANSduNugJQm
+         mDLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697089098; x=1697693898;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wwWnNHAbWyeAscY15FX+TU6dhJaouDy+zgSEChH3FwY=;
+        b=O70j9x0VS34Iiy2JiGKDT1Y4+uKpDJaHXWg3qpMtFRmOmMYBrpgbsbc3OVsc1Wa6ds
+         l4EPOrxQ++YlqklQU3nH4xgLIm3jVm778nfXz50YvQWvzVpXUqBh4lD1/Jv/9SIJVmtB
+         PoqMxerdjrBTCzMY/OIA0NvH1QYEk+nmOLSD6rW9pco6bD7jnJ0BkwgLjkW2YW2gKkEO
+         EYAqwu4oxyw/gqtJtfXWVT08yEP6J2iZdAQOP4+d/AgYcPn2h5R7Q/D6GyCsSq1gkVZf
+         ChPO6uNKNJ4yV0mG/NykF/yAe/1aUhyGAzzIQhH+zyn+BXLP6BmHhpMpuPD8oBUeMjxZ
+         8vQg==
+X-Gm-Message-State: AOJu0YwWfOY3SBULzuVc4YWOLIc1+KjOErsg7ypXs3y+EGunNTev5wM9
+	oJ3jxgKDAZw++a0v5qdSBmhRSyHm4SJzCnwX/+HQjw==
+X-Google-Smtp-Source: AGHT+IGSsE9UdV0Qgkc/+49sBerKsPKwjip2GPaMvf0yjDHtLvarJUP6ASq6DTMnyLnKKYmGaxwKGOUUUcsGQWvpu/Q=
+X-Received: by 2002:a17:90b:1c83:b0:274:616e:3fc4 with SMTP id
+ oo3-20020a17090b1c8300b00274616e3fc4mr19950072pjb.34.1697089097916; Wed, 11
+ Oct 2023 22:38:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231011184823.443959-1-peter.griffin@linaro.org> <20231011184823.443959-17-peter.griffin@linaro.org>
+In-Reply-To: <20231011184823.443959-17-peter.griffin@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 12 Oct 2023 00:38:06 -0500
+Message-ID: <CAPLW+4m1KLXJ67uDJ83V+zdSA0qU4cDh9Q+irpcixz1btMVv7Q@mail.gmail.com>
+Subject: Re: [PATCH v3 16/20] tty: serial: samsung: Add gs101 compatible and
+ SoC data
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com, soc@kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	kernel-team@android.com, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=bhdUkHdE2iEA:10 a=qKArIWvIHuvpQEZHLy4A:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Some hardware designs have a GPIO used to control the reset of all the
-devices on and I2C bus. It's not possible for every child node to
-declare a reset-gpios property as only the first device probed would be
-able to successfully request it (the others will get -EBUSY). Represent
-this kind of hardware design by associating the reset-gpios with the
-parent I2C bus. The reset line will be released prior to the child I2C
-devices being probed.
+On Wed, Oct 11, 2023 at 1:49=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
+.org> wrote:
+>
+> Add serial driver data for Google Tensor gs101 SoC.
+>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- drivers/i2c/busses/i2c-mv64xxx.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-diff --git a/drivers/i2c/busses/i2c-mv64xxx.c b/drivers/i2c/busses/i2c-mv=
-64xxx.c
-index efd28bbecf61..b2ca31857cbd 100644
---- a/drivers/i2c/busses/i2c-mv64xxx.c
-+++ b/drivers/i2c/busses/i2c-mv64xxx.c
-@@ -160,6 +160,7 @@ struct mv64xxx_i2c_data {
- 	bool			clk_n_base_0;
- 	struct i2c_bus_recovery_info	rinfo;
- 	bool			atomic;
-+	struct gpio_desc	*reset_gpio;
- };
-=20
- static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx =3D {
-@@ -1083,6 +1084,10 @@ mv64xxx_i2c_probe(struct platform_device *pd)
- 	if (drv_data->irq < 0)
- 		return drv_data->irq;
-=20
-+	drv_data->reset_gpio =3D devm_gpiod_get_optional(&pd->dev, "reset", GPI=
-OD_OUT_HIGH);
-+	if (IS_ERR(drv_data->reset_gpio))
-+		return PTR_ERR(drv_data->reset_gpio);
-+
- 	if (pdata) {
- 		drv_data->freq_m =3D pdata->freq_m;
- 		drv_data->freq_n =3D pdata->freq_n;
-@@ -1121,6 +1126,12 @@ mv64xxx_i2c_probe(struct platform_device *pd)
- 			goto exit_disable_pm;
- 	}
-=20
-+	if (drv_data->reset_gpio) {
-+		udelay(1);
-+		gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
-+		udelay(1);
-+	}
-+
- 	rc =3D request_irq(drv_data->irq, mv64xxx_i2c_intr, 0,
- 			 MV64XXX_I2C_CTLR_NAME, drv_data);
- 	if (rc) {
---=20
-2.42.0
-
+>  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsun=
+g_tty.c
+> index 07fb8a9dac63..26bc52e681a4 100644
+> --- a/drivers/tty/serial/samsung_tty.c
+> +++ b/drivers/tty/serial/samsung_tty.c
+> @@ -2597,14 +2597,22 @@ static const struct s3c24xx_serial_drv_data exyno=
+s850_serial_drv_data =3D {
+>         .fifosize =3D { 256, 64, 64, 64 },
+>  };
+>
+> +static const struct s3c24xx_serial_drv_data gs101_serial_drv_data =3D {
+> +       EXYNOS_COMMON_SERIAL_DRV_DATA(),
+> +       /* rely on samsung,uart-fifosize DT property for fifosize */
+> +       .fifosize =3D { 0 },
+> +};
+> +
+>  #define EXYNOS4210_SERIAL_DRV_DATA (&exynos4210_serial_drv_data)
+>  #define EXYNOS5433_SERIAL_DRV_DATA (&exynos5433_serial_drv_data)
+>  #define EXYNOS850_SERIAL_DRV_DATA (&exynos850_serial_drv_data)
+> +#define GS101_SERIAL_DRV_DATA (&gs101_serial_drv_data)
+>
+>  #else
+>  #define EXYNOS4210_SERIAL_DRV_DATA NULL
+>  #define EXYNOS5433_SERIAL_DRV_DATA NULL
+>  #define EXYNOS850_SERIAL_DRV_DATA NULL
+> +#define GS101_SERIAL_DRV_DATA NULL
+>  #endif
+>
+>  #ifdef CONFIG_ARCH_APPLE
+> @@ -2688,6 +2696,9 @@ static const struct platform_device_id s3c24xx_seri=
+al_driver_ids[] =3D {
+>         }, {
+>                 .name           =3D "artpec8-uart",
+>                 .driver_data    =3D (kernel_ulong_t)ARTPEC8_SERIAL_DRV_DA=
+TA,
+> +       }, {
+> +               .name           =3D "gs101-uart",
+> +               .driver_data    =3D (kernel_ulong_t)GS101_SERIAL_DRV_DATA=
+,
+>         },
+>         { },
+>  };
+> @@ -2709,6 +2720,8 @@ static const struct of_device_id s3c24xx_uart_dt_ma=
+tch[] =3D {
+>                 .data =3D EXYNOS850_SERIAL_DRV_DATA },
+>         { .compatible =3D "axis,artpec8-uart",
+>                 .data =3D ARTPEC8_SERIAL_DRV_DATA },
+> +       { .compatible =3D "google,gs101-uart",
+> +               .data =3D  GS101_SERIAL_DRV_DATA },
+>         {},
+>  };
+>  MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
+> --
+> 2.42.0.655.g421f12c284-goog
+>
 
