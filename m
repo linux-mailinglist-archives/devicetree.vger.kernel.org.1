@@ -1,106 +1,88 @@
-Return-Path: <devicetree+bounces-8025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBD17C6772
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:16:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627267C6781
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:21:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1E381C2107C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:16:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D055282605
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFAA1C6AD;
-	Thu, 12 Oct 2023 08:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7916B1C2BB;
+	Thu, 12 Oct 2023 08:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="gW2AFibV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSTyKbjJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FDE91C2BB
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:16:03 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B050BA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 01:16:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1697098561; x=1728634561;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=tTGL5JRenY6lRIU1b+n2+XjbW0hZHtARMEnqic83P/E=;
-  b=gW2AFibVDmyjO6acDSnm0KYqChlI59WucVbuhDOdjTBbZCCACZ5I7sQw
-   LpKsgEI/oCJ9+DFiHlRa0/o7kUEz/tMALILhNxpX/RdHgZTBq6DjUZmAD
-   vHXM4WrY1raq1ANBSqZo/kz28tH33vilh9gWyIoDrOqOo1UrD2EZnsx7h
-   NxAsvPrWCXSQW7exHe4wR6f+oWmmxxrS8p7epMqWmE7O+gsNvfln5HpfV
-   foLGqAttrbd/fAsBpISw0I8kMiP1+56QKX21SnseZFBP+cczDm+XN02TO
-   B88ovmNUCxnS7C+QyzQYxkO6mWfTVomrRwNlfT+0FXNIgfrTWdD2MrFWc
-   A==;
-X-IronPort-AV: E=Sophos;i="6.03,218,1694728800"; 
-   d="scan'208";a="33423294"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 12 Oct 2023 10:15:57 +0200
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 21CD8280082;
-	Thu, 12 Oct 2023 10:15:57 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5422C1C2B4;
+	Thu, 12 Oct 2023 08:21:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25227C433C7;
+	Thu, 12 Oct 2023 08:21:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697098896;
+	bh=Gbx9yfCnmX9XPEWtA3eMET7ED2JBqtacGUNnM+M3sUw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PSTyKbjJSfkctBl/8rEzb6uSsYNnvHThaeZ65b1J2phjEEUdXBs63FfwoR4/T7ZgL
+	 nyhJ6Upa6VjXMs2ucaqDRAUUepXE5tQAqAdlkyTpVTfx4T18BXHj5sEn/zsbNRLDLH
+	 ZYbfqcntJd1n+Z4/oh5mgR0zje/yOS0K28y1LMqiX2EWMacsEZn1exsst57byvHu8u
+	 vB3nTH9XTuwVbTRMuIkd+9WLqQIODGAWcnVISTavrfVCaVf7QK2T0m90Mv/Hy7b5Y7
+	 zfokr+XUcLMDqy21mccRs902ed7naf1G7q/SJh8Rj8BKH64i6uWFQ/yYDw61ZM7aIq
+	 A+Uz8ZoPF4wvw==
+Date: Thu, 12 Oct 2023 09:21:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	Palmer Dabbelt <palmer@rivosinc.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] ARM: dts: imx7s: Add missing #thermal-sensor-cells
-Date: Thu, 12 Oct 2023 10:15:56 +0200
-Message-Id: <20231012081556.2723552-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231012081556.2723552-1-alexander.stein@ew.tq-group.com>
-References: <20231012081556.2723552-1-alexander.stein@ew.tq-group.com>
+	Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Evan Green <evan@rivosinc.com>
+Subject: Re: [PATCH v1 00/13] riscv: report more ISA extensions through
+ hwprobe
+Message-ID: <20231012-clanking-imagines-150a7c05f3f8@spud>
+References: <20231011111438.909552-1-cleger@rivosinc.com>
+ <11d6a463-4e00-4407-9d93-2f9d190c4be3@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aGJy53Fkev1PgtWs"
+Content-Disposition: inline
+In-Reply-To: <11d6a463-4e00-4407-9d93-2f9d190c4be3@rivosinc.com>
 
-imx-thermal.yaml is referencing thermal-sensor.yaml, thus this property
-is required. Fixes the dtbs_check warning:
-arch/arm/boot/dts/nxp/imx/imx7d-mba7.dtb: tempmon:
- '#thermal-sensor-cells' is a required property
-  from schema $id: http://devicetree.org/schemas/thermal/imx-thermal.yaml#
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--aGJy53Fkev1PgtWs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-index 608eeac4213b4..b563383be6951 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-@@ -609,6 +609,7 @@ tempmon: tempmon {
- 					nvmem-cells = <&tempmon_calib>,	<&fuse_grade>;
- 					nvmem-cell-names = "calib", "temp_grade";
- 					clocks = <&clks IMX7D_PLL_SYS_MAIN_CLK>;
-+					#thermal-sensor-cells = <0>;
- 				};
- 			};
- 
--- 
-2.34.1
+On Thu, Oct 12, 2023 at 09:15:46AM +0200, Cl=E9ment L=E9ger wrote:
+> On second thought, maybe it would make more sense to squash all logical
+> commits together (dt-bindings, hwporobe, etc) with all the ISA
+> extensions in each. Tell me if you think it would be better.
 
+I don't think there's anything wrong with the current approach.
+
+--aGJy53Fkev1PgtWs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSesiwAKCRB4tDGHoIJi
+0laUAPwI/1+B1oBExxGb6yOySNlV+rOwyauBbfAYtcc8BdmIfgD/SyUb8fpdpCva
+Svh9QuookDdoT6A+W0p/GzyEYZwIUAI=
+=rZ0m
+-----END PGP SIGNATURE-----
+
+--aGJy53Fkev1PgtWs--
 
