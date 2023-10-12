@@ -1,316 +1,89 @@
-Return-Path: <devicetree+bounces-8156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE157C6E75
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 672447C6E7A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:51:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CF77282865
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:50:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2061B282782
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE87A266A2;
-	Thu, 12 Oct 2023 12:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADAA250FE;
+	Thu, 12 Oct 2023 12:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ixv+ABKA"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="InpFHdPn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8418C24A09
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:50:36 +0000 (UTC)
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2101.outbound.protection.outlook.com [40.92.103.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC6EBA;
-	Thu, 12 Oct 2023 05:50:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FBhFvVb/k+XdGkzX6FXtgwXBFMB1oNmEMxIrnQpSpDjh0Ql+4mLoVEKjdoyHxDssMHQT37UP5IxZX2YWRtiClHAsjK6LevbKIbFENU8nvR/EinMFz0/hq3CJmxHQp6fxsaEjphqfrHiGrUI52wkKaGon+fwnqCmv4eOEqUbe9YOhMcUao3Tgl2Wr7jEYmxoFYP+Nfa+F1ZovGWG7mGOQvuhsaT6jJKxHH4h0bTf8cIXQl3kjfuivzzbdAMq/5v2/QrN9pxVZYh4KOGstXxQkYKZOYW2I2T5xABqpxrtAzcnLHKmmAoH87WdOXRdNo/0ou0YPh9LsYWdSkWoXyKVMsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fE1zJz2mmYdTr+VBJGXhDUQAqCLd/NL4x6PeEREpfiA=;
- b=HdhfxLeymz1lMw6j11KSlDWgB4GkWkv7PQQEQUoaAMv9kzSVOAbuNl+0YOsjEk64UDC9LHGq2gAriKYUUyWKuI4YfbptLo/WmxvJjZDkIKDeNdKNSXkqiFqkNzPrxJMv+A54EnLtesziQaOLk2REMjS7QydQUI/X0yEJVZlVDvHWR2sj2aJuX2lpCT907BaOUbmRJ8ET/w21DVlG8H87sEQeKofbbUagc3wih2d+yxSksgL4pZaN1ocz0rG4fYGkl1IDKyrvLc9geP0IFk0qWWBag0FJiCdZiXPUxW8/rf3TlYXso7EEj9hXD4zKbiUrg2JRIl66ZCj1bqnokTjueA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fE1zJz2mmYdTr+VBJGXhDUQAqCLd/NL4x6PeEREpfiA=;
- b=ixv+ABKAbe5TNrvKOGaaoYMMPygC8fGKGHGVHxOYLJj4kAgl8qU7taFeTncIG+DQAJXIaQs7mb76tVxE+WHHTAfje710QGgvor/UnvCGswfoQg54Dueqstxt2Juxg5lClmV5aTqiXo/EajUxaaopDgaVx/jVTT9vGXmnACBK5q4kUXkGbOIUQ3USmGnUCagF8Ayv4uY1/hGb73zkpzTuOvrAcrIMDn6Ya+dwZW4iYsodEyPEEC9KHrtAu8r31VEmQedXeOw3S/hjmh1ykgWwClGo7XdNk9XZ2v6wjXm/oeyZQKO9W+x+MlJ/ek/dMwdI6qFWjLT0E3eltNNHB0gFNw==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN0P287MB0411.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:122::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.45; Thu, 12 Oct 2023 12:50:24 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
- 12:50:24 +0000
-Message-ID:
- <MA0P287MB0332C3CA4A3604BA7F7C340CFED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 12 Oct 2023 20:50:18 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] riscv: dts: sophgo: Separate common devices from
- cv1800b soc
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231009112642.477337-1-inochiama@outlook.com>
- <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [USmAh0k1e4tNgW/PzfNgykK3sYiyoR/C]
-X-ClientProxiedBy: SG2PR03CA0125.apcprd03.prod.outlook.com
- (2603:1096:4:91::29) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <4430bb15-9856-4c1a-82bb-91e048771b5a@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1C722EFA
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:51:24 +0000 (UTC)
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853E1BA;
+	Thu, 12 Oct 2023 05:51:20 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 3FBE786E47;
+	Thu, 12 Oct 2023 14:51:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1697115075;
+	bh=Z0GVvRTU4DqGmzGQ3SLCsI4y7zhSR2KUN62lpuh4DCQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=InpFHdPnC/bSccQpoGQsku8QCThoCrpJqqkoIOE51AjkW89aEeAuXbVXuDwyGL7EG
+	 XYjfDORNdQJ1ePFaFAmeYXPZ3s8j9k69UaOOt59GdMJBset4fTPyqEo+Kwp3waJED1
+	 8Ue2nr1B2Wlb+2DZnEx8QfO342+e1KtHRHztbRmTX47+VHBzGuHRsBhOmIhMdLNcbB
+	 YjzmA+a8oPzxNZnwiXNeJygLqmVUzpOx8Ns4o6BYZmtzzoolsPJTbv6nF97JENlgMF
+	 yDmyAhNwKH5KISBNCU4Z71qDy2srll5hkUloz4W7fFARl0ReCAFcjbYfPBoARGmewi
+	 FzqHjOfCZKOlA==
+Message-ID: <d8eefb50-dc68-4df2-9f7b-b2a90c6d89f1@denx.de>
+Date: Thu, 12 Oct 2023 14:51:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB0411:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7a10457-5c05-4a7d-f172-08dbcb21cca3
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	bC12LEMBDVtl0jc1eY0d5o0dJiDK/3hIns/qtQ0/uMbZnnso1/uc8zye2NKf0MnfE58H63t1MLaGiZGqsc2cCVj9Ezo0mM46ZzL0m4xme7ENufzqXsfeaIm2qhmXY/rKqHRP94h/9rfXdPICTw94YRCSQoql2CAbbomLdCZc4QO61bwEkeQSa2vOSz+4SlzIp5rKGe/JBj55bWXoRO522pkVkHZMbRPpqbEdQbaIw4DU/0JLpqaVJexOEMLNS2aDFj3LnfuIBW8SC3q/rrG6WcIvK2CvJLEePmhs98NiRKjG37i85eEee+mmCLhbSNqt4+WGMiMQGESQbI4YpAmf3lt2e6ow4Y1iY5BtbCGmuYfxeNSDtbmCYkCwIDH8kRANm83AUd4darp9Q1buFygnFJkSQoqFg+hK2TuRVlzQItg192H46s2UYN7rdRr2CU36reCIW2XFkJsi+nU3yBSe74S/ZdmQmMXO5s/KZYWW+th/ygJxlT3yp8WwPtaTT1WlDLrjJx6Clq5rURL0mZ3r/NRVFyCHWwIBYlIyCk4AuYQfEc8ZGwx32MWRO38JsVhi
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bDM5K054MmhtU3d5M3FxTVhzMXg2UXdsUmQ1MmVnbWU1THVnS0ZaSGk0MUd5?=
- =?utf-8?B?aTM2R0t3WEl0NTJWTkl6TGNSZHA5S1E3aGJJeU5hc3EycUkrZmhGMm95VDNI?=
- =?utf-8?B?Tk5FRmJtb3NDaXBBU2Z3Y2ViaHhzTDhKMWdOUVlXQ2lnTnkxMnlwcTQyckQw?=
- =?utf-8?B?TldLM2VyWGVmcXJ0WlNpQkp1eURScmRDdVBnSURabXcvWm4zSUM4NWlWVWtE?=
- =?utf-8?B?RHhPZ2RKNHRLVlVqell0QlpvRUlMUGVLWFRBWDU0K292ckN5ZnQzdHhVZXFv?=
- =?utf-8?B?ZUcyWVdISWZGQ2NzaUR5djBwQnd4R01kTXBYZ05DYkF0eVJHeHlrZDZINTVE?=
- =?utf-8?B?NW1ISlVDNWMweDdLMUllY2tSVGdGaXJBSmNPeGVScUphRzRpWmQ3QWRlOTRZ?=
- =?utf-8?B?dGdrVno4bFFaWU1SdkRHSUV4aDFGYjYyc2VrSkhBWTA5MlhacllpQmNpQkVm?=
- =?utf-8?B?TjEwVXNxa3VKc2NRK3B6OHo1UGdRNFNmK2tCTTVSQ2o0YmsrQ2o5UXk1NFRV?=
- =?utf-8?B?TFNIYkdLdG1jSlYyZVNQUHNvTnlhZC80cUFiTTcxb3g0SE9keUJlaFo1RWh4?=
- =?utf-8?B?czJ1T2g4MFFlbUJyeUZQM3h4d1VOUkxJMytMV05qVjdjdGVHTTNLWEtHRk90?=
- =?utf-8?B?amMybTA0V1psQ3pYR0FDcjV5NFFoY2VjdUtQbXRocUpGelMvWTlOcjIzRUNj?=
- =?utf-8?B?c2FrejVleWVhVldDV2JUeWNQMFgxWU1oSjJ6b1p2TXlHL2xqMlcwWHEyVDdY?=
- =?utf-8?B?d1hONjJNRnZERGhWVFlFaSt1UnF5MERoQmI1ZGhPTW8xeW1laGhVdlpRb2p0?=
- =?utf-8?B?Sk52YzZnYTI4NmU1VEtPaFBsOVVVVWErb0lvVFlVUjI0L3VMZjd2QjVSZ3Uw?=
- =?utf-8?B?QXk4RmtFWEVLZEE2VG9tQi9HQTVhd01yeThrYWgrQzNsa20raVp5MTlVYzZM?=
- =?utf-8?B?MjZ5SndNejJSQnB4ZnJsTUZ1ejJsWUNrRnM1a0NUR1F6YWFlSFNLSTBwd0ZE?=
- =?utf-8?B?VW9WVUFtWitFQUY2YURNUzllNzh0bHZ3WTlacmU5dWZPRXFhWDB3ZlJwakhn?=
- =?utf-8?B?QVdGaE82bGhqQWp6NzhKUFlNOVIrT0dSS3RDSHYwMDJvbXZ2MmpWei9qbElL?=
- =?utf-8?B?L0VBa1QzM0Z5RHc2MlYvK1JiK0gvWmlSTWNneUp4RWdsUmFIOFpyOTlmaUZU?=
- =?utf-8?B?UWs1cFltODQ2VDlrWU13eGZwQ3JEd09kVnZOTDlKMUlmdjA0UGZ5Vk8vR1la?=
- =?utf-8?B?V09selEyVVd6MDRrWXMrTDJCTUticE5PYTF2U0JjKzRxSW1VQzhmZ0VHTTF4?=
- =?utf-8?B?YzNsdHJ0QWxCekM2Wjd1OWhNa3RKUU41amhaaG5ydnZzMERWRmh3UXZuellh?=
- =?utf-8?B?NnpCaDlBODFqUmdIa1pkKzVEa0NSVzEzZ1RHZkdCRUFDZU9SNnpRSXhaMVpR?=
- =?utf-8?B?c2sxd1RUQW1EUWphZHFtelpZeTh5OEZFQ2lWOVdCTTVZT3J5S0dMQW54QnhC?=
- =?utf-8?B?Z2lPNnErT1U3OXVoa05qaUNsdkFncVJ1cnFwQ0ozZyswZWowUjJnNWJvUm84?=
- =?utf-8?B?anlTQzhoa1IzTE8ycXl5WnpzMkxLaHBORGRFakpMR2dHUWZ5VUk1d3N4L2lL?=
- =?utf-8?Q?Q00BU5IMNV1rUekrTDgwx5XlHbLBNtA6FNN5dVNkh6gU=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7a10457-5c05-4a7d-f172-08dbcb21cca3
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 12:50:24.1119
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0411
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-	FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24C32-D Additional Write
+ lockable page
+To: Rob Herring <robh@kernel.org>
+Cc: linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org
+References: <20231010190926.57674-1-marex@denx.de>
+ <20231012115719.GA291445-robh@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20231012115719.GA291445-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On 10/12/23 13:57, Rob Herring wrote:
+> On Tue, Oct 10, 2023 at 09:09:25PM +0200, Marek Vasut wrote:
+>> The ST M24C32-D behaves as a regular M24C32, except for the -D variant
+>> which uses up another I2C address for Additional Write lockable page.
+>> This page is 32 Bytes long and can contain additional data. Document
+>> compatible string for it, so users can describe that page in DT. Note
+>> that users still have to describe the main M24C32 area separately as
+>> that is on separate I2C address from this page.
+> 
+> So 2 nodes for 1 device? Wouldn't it make more sense for the 1 node to
+> have 2 addresses?
 
-On 2023/10/9 19:26, Inochi Amaoto wrote:
-> Move the cpu and the common peripherals of CV181x and CV180x to new file.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> ---
->   arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
->   .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 19 +---
->   2 files changed, 2 insertions(+), 112 deletions(-)
->   copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (80%)
-
-LGTM
-
-Acked-by: Chen Wang <unicorn_wang@outlook.com>
-
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> index df40e87ee063..0904154f9829 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -3,106 +3,13 @@
->    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->    */
->
-> -#include <dt-bindings/interrupt-controller/irq.h>
-> +#include "cv180x.dtsi"
->
->   / {
->   	compatible = "sophgo,cv1800b";
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -
-> -	cpus: cpus {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -		timebase-frequency = <25000000>;
-> -
-> -		cpu0: cpu@0 {
-> -			compatible = "thead,c906", "riscv";
-> -			device_type = "cpu";
-> -			reg = <0>;
-> -			d-cache-block-size = <64>;
-> -			d-cache-sets = <512>;
-> -			d-cache-size = <65536>;
-> -			i-cache-block-size = <64>;
-> -			i-cache-sets = <128>;
-> -			i-cache-size = <32768>;
-> -			mmu-type = "riscv,sv39";
-> -			riscv,isa = "rv64imafdc";
-> -			riscv,isa-base = "rv64i";
-> -			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm";
-> -
-> -			cpu0_intc: interrupt-controller {
-> -				compatible = "riscv,cpu-intc";
-> -				interrupt-controller;
-> -				#address-cells = <0>;
-> -				#interrupt-cells = <1>;
-> -			};
-> -		};
-> -	};
-> -
-> -	osc: oscillator {
-> -		compatible = "fixed-clock";
-> -		clock-output-names = "osc_25m";
-> -		#clock-cells = <0>;
-> -	};
->
->   	soc {
-> -		compatible = "simple-bus";
->   		interrupt-parent = <&plic>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		dma-noncoherent;
-> -		ranges;
-> -
-> -		uart0: serial@4140000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04140000 0x100>;
-> -			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart1: serial@4150000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04150000 0x100>;
-> -			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart2: serial@4160000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04160000 0x100>;
-> -			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart3: serial@4170000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04170000 0x100>;
-> -			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart4: serial@41c0000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x041c0000 0x100>;
-> -			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
->
->   		plic: interrupt-controller@70000000 {
->   			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> similarity index 80%
-> copy from arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> copy to arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> index df40e87ee063..ffaf51724c98 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> @@ -1,12 +1,12 @@
->   // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->   /*
->    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->    */
->
->   #include <dt-bindings/interrupt-controller/irq.h>
->
->   / {
-> -	compatible = "sophgo,cv1800b";
->   	#address-cells = <1>;
->   	#size-cells = <1>;
->
-> @@ -48,7 +48,6 @@ osc: oscillator {
->
->   	soc {
->   		compatible = "simple-bus";
-> -		interrupt-parent = <&plic>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		dma-noncoherent;
-> @@ -103,21 +102,5 @@ uart4: serial@41c0000 {
->   			reg-io-width = <4>;
->   			status = "disabled";
->   		};
-> -
-> -		plic: interrupt-controller@70000000 {
-> -			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> -			reg = <0x70000000 0x4000000>;
-> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> -			interrupt-controller;
-> -			#address-cells = <0>;
-> -			#interrupt-cells = <2>;
-> -			riscv,ndev = <101>;
-> -		};
-> -
-> -		clint: timer@74000000 {
-> -			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
-> -			reg = <0x74000000 0x10000>;
-> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> -		};
->   	};
->   };
-> --
-> 2.42.0
->
+It would, if the 32 Byte Additional Write lockable page was somehow 
+related to the main area, but it doesn't seem to be, except that they 
+are both on single chip.
 
