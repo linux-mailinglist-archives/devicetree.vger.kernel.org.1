@@ -1,157 +1,130 @@
-Return-Path: <devicetree+bounces-8187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182AB7C7062
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DBA7C707A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD1F22828F4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:36:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE767281068
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180F8883E;
-	Thu, 12 Oct 2023 14:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CF6208D2;
+	Thu, 12 Oct 2023 14:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DwVeY7kH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D7E1B275
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:36:51 +0000 (UTC)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403B3BE;
-	Thu, 12 Oct 2023 07:36:50 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5a7e5dc8573so13030647b3.0;
-        Thu, 12 Oct 2023 07:36:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E37A37A
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:40:50 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1813EA9;
+	Thu, 12 Oct 2023 07:40:47 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c5028e5b88so1136301fa.3;
+        Thu, 12 Oct 2023 07:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697121645; x=1697726445; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3kw/R5D+s3aJanIgvu3nf4Gs9+0fYmqPraYbms7U3dY=;
+        b=DwVeY7kHZd8snQaNN6Y5NhbpQ0/BYx67rw6lzY4o5kNSGMJaFgSQ5V/IN/814EB6MV
+         VxzKLRWKbDYsAmnnc1WHj6Iesx8bYekuYLSGiUoBs+9EBVT6WaUj0DWkXWRhe1woeAcb
+         T+skGg+gArzc8hC4CSnWiCNtr0K1kF9VEvm681bZepPZHhlNHYRKh0e0naKxfldNaWAp
+         18UfTPvhAxExzwKoCPl2l0QmLm1FT6fx7ZSMN8La4YgQ/7toh+x3b9ZZdzFsVln5AzU+
+         9NeRjenVNaq3nHxPHI1m4L3Ly2uhqKA2svrFxly1FoWn0lZOcebl2CEq0zTnjKR+fZtj
+         RT9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697121409; x=1697726209;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7xNUkD+t8nN69dK1Tkr14yK7DyMQjN5EP3Sv+TV2NO4=;
-        b=wJDe08GnxvgDzS0/s2bsFX8+DMGXCq2qkkqbEI7Rxcigyg6xrluojSguNRST8aG4+f
-         JsTr86US/9w6fLBmPzb4WncSgjHRRt+Miw597MSRTF0by4TZ7XPh6pW5tNGgARqUIKnE
-         +5rC4VUwBWBK8Z74xeTN53pLzeo+GcCkYcLsIAivCysQOtwN08XHF4eb1qekKP1XJIa5
-         KwXr0Sxob1LGS4pxUxn9nVDaRFQKQOwVFOWwwJDZ19Zfr8aAtTlJJEZrSOrmsFybWrg5
-         gK4vNRo//2ePZHeEWenRa5wSz9ubHxJcq1d1q1oT3n8QRL1tc8UjTwflf6RUy3bkfwCB
-         CEnQ==
-X-Gm-Message-State: AOJu0YyGWu+iAUdhgH6RlibZHnFRMIpo6OBqyTcdd7YZKhfaaUU5mZtQ
-	ShQxQenY3qvOmnBq4dxlg+YqwN2L8IfpUA==
-X-Google-Smtp-Source: AGHT+IEX9tcaEEox552ONpzn3vErKFV+9ykd5SIaVw8mYX9EXMJzd9IainrzGm1kGv+e+XSSnlCjCQ==
-X-Received: by 2002:a81:4402:0:b0:5a7:b1d9:70cb with SMTP id r2-20020a814402000000b005a7b1d970cbmr10123357ywa.2.1697121409247;
-        Thu, 12 Oct 2023 07:36:49 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id v83-20020a814856000000b005a7d50b7edfsm1503222ywa.142.2023.10.12.07.36.47
+        d=1e100.net; s=20230601; t=1697121645; x=1697726445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3kw/R5D+s3aJanIgvu3nf4Gs9+0fYmqPraYbms7U3dY=;
+        b=PZYRjA/6Wr+98tZXo9m9C2MqFgzfmEVlHHmHVI0EdPSLZiAgeqCwiBEi2y8v/bPS8P
+         49sh7QjkHlWxQEr84PwM7h4954vR8Eb2iRuHZ06PfGdOVL9KxOiHA77bKUmxSe5TQtYQ
+         gJn71r+n2gVIzSNSYygc7dMyHBZFy1W/ZkF5bj8ZcfUupvkkDVHebfo2Qij0GqMBQi+4
+         Pk42cfibH0ckMOVP8j2TecaYsmpvXls4HR51qi9d6rR5PTjP3b6KBbAIbLoB1qKnj3lu
+         cIhRFz9pTOzTlfuKqN/ceuTtdBKe20vp95bgeRGiOGi1ZTTe0apQh0ebbp77hJCkvVdu
+         u2cg==
+X-Gm-Message-State: AOJu0YwFTJfaElhW7LGrNUfV+3X+2/nsbveZbO6zCK2mm5nDagFJsMFI
+	bf3iAcYtoOLNaeqqPXo3hwVmMSDlnJyemrvY
+X-Google-Smtp-Source: AGHT+IGH41yXs+O99grdygoszPTYW1zPKpN4EmD/LKIiUtotZlFPT/goo7+MpuARd/B4135q9i6NQg==
+X-Received: by 2002:a05:6512:4002:b0:504:369d:f11c with SMTP id br2-20020a056512400200b00504369df11cmr24729653lfb.34.1697121644971;
+        Thu, 12 Oct 2023 07:40:44 -0700 (PDT)
+Received: from ?IPV6:2001:999:704:2143:20b5:8471:77bf:6204? ([2001:999:704:2143:20b5:8471:77bf:6204])
+        by smtp.gmail.com with ESMTPSA id b17-20020a056512025100b005042ae13de4sm2854806lfo.302.2023.10.12.07.40.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 07:36:47 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59f6441215dso12712287b3.2;
-        Thu, 12 Oct 2023 07:36:47 -0700 (PDT)
-X-Received: by 2002:a0d:ce02:0:b0:59b:ec11:7734 with SMTP id
- q2-20020a0dce02000000b0059bec117734mr25998262ywd.39.1697121407643; Thu, 12
- Oct 2023 07:36:47 -0700 (PDT)
+        Thu, 12 Oct 2023 07:40:44 -0700 (PDT)
+Message-ID: <db511d14-f2fe-4b4e-bd13-223e7a33f933@gmail.com>
+Date: Thu, 12 Oct 2023 17:41:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com> <20231010132701.1658737-5-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231010132701.1658737-5-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Oct 2023 16:36:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW-m+ikzOiCqGaiofd0QG5BVuoMK+z6G7u2JboGTw3xhQ@mail.gmail.com>
-Message-ID: <CAMuHMdW-m+ikzOiCqGaiofd0QG5BVuoMK+z6G7u2JboGTw3xhQ@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: renesas: rzg3s-smarc-som: Enable SDHI2
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: magnus.damm@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
+ fck_src
+To: Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>
+Cc: bcousson@baylibre.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+ jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230705190324.355282-1-andreas@kemnade.info>
+ <20230705190324.355282-2-andreas@kemnade.info>
+ <7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
+ <20230920063353.GQ5285@atomide.com>
+ <dac768d2-2c66-4d6b-b3d3-d1ef69103c76@gmail.com>
+ <20230921121626.GT5285@atomide.com> <20231006102348.GK34982@atomide.com>
+ <20231006213003.0fbac87a@aktux> <20231007062518.GM34982@atomide.com>
+ <20231007091156.588d7ba1@aktux>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20231007091156.588d7ba1@aktux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Claudiu,
+On 07/10/2023 10:11, Andreas Kemnade wrote:
+>> OK good to hear it works, I'll send out fixes for omap4 and 5, seems
+>> the runtime PM warning is something different.
+>>
+>>> omap-mcbsp 40124000.mcbsp: Runtime PM usage count underflow!
+>>> # cat /sys/bus/platform/devices/40124000.mcbsp/power/runtime_status 
+>>> active
+>>>
+>>> even with no sound.  
+>>
+> Well, it is a regression caused by your fix. Without it (and not reverting
+> the already applied ignore patch), runtime is properly suspended. Don't know
+> why yet.
 
-Thanks for your patch!
+I guess it is because of the pm_runtime_put_sync() in the
+omap2_mcbsp_set_clks_src() around the fclk re-parenting.
+That is a bit dubious thing for sure. We need to disable the device to
+be able to re-parent the fclk but if we disable the device it is going
+to be powered down, right? I think we have appropriate context handling,
+so it might work, but it is certainly not a rock solid code... If you
+have a stream running already, you don't really want to kill the McBSP.
 
-On Tue, Oct 10, 2023 at 3:27=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add SDHI2 to RZ/G3S Smarc SoM. SDHI2 pins are multiplexed with SCIF1, SSI=
-3,
+The problem is that this mux is outside of the McBSP IP, so we need a
+system level (iow, clk API) way to change it runtime.
 
-SSI0
+What is the machine driver where this happens? If you set the sysclk in
+hw_params of the machine driver, it will be OK, but if you do that in
+probe time then it is likely going to fail as you experienced
 
-> IRQ0. The selection b/w SDHI2 and SCIF1, SSI3, IRQ0 is done with a switch
-
-and IRQ1 (twice). Or just say "The selection is done ...".
-
-> button. To be able to select b/w these a compilation flag has been added
-> (SW_SD2_EN) at the moment being instantiated to select SDHI2.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -13,14 +13,21 @@
->   * @SW_SD0_DEV_SEL:
->   *     0 - SD0 is connected to eMMC
->   *     1 - SD0 is connected to uSD0 card
-> + * @SW_SD2_EN:
-> + *     0 - SCIF1, SSI3, IRQ0, IRQ1 connected to SoC
-
-SSI0
-
-> + *     1 - SD2 is connected to SoC
->   */
->  #define SW_SD0_DEV_SEL 1
-> +#define SW_SD2_EN      1
-
-> @@ -100,6 +125,19 @@ &sdhi0 {
->  };
->  #endif
->
-> +#if SW_SD2_EN
-> +&sdhi2 {
-> +       pinctrl-0 =3D <&sdhi2_pins>;
-> +       pinctrl-1 =3D <&sdhi2_pins>;
-> +       pinctrl-names =3D "default", "state_uhs";
-
-Do you need two states if there is only a single voltage?
-AFAIK, UHS needs 1.8V.
-
-> +       vmmc-supply =3D <&vcc_sdhi2>;
-> +       vqmmc-supply =3D <&reg_3p3v>;
-> +       bus-width =3D <4>;
-> +       max-frequency =3D <50000000>;
-> +       status =3D "okay";
-> +};
-> +#endif
-> +
->  &pinctrl {
->         sdhi0_pins: sd0 {
->                 data {
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Péter
 
