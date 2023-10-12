@@ -1,115 +1,212 @@
-Return-Path: <devicetree+bounces-8007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBFF97C66AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:53:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 923047C66AF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18E3C1C209DC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:53:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3FD11C20D3B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412CC1170A;
-	Thu, 12 Oct 2023 07:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E334D125A9;
+	Thu, 12 Oct 2023 07:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S7mpTQpV"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ltHpikgs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250CE101C1
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:53:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84F5CC433C8;
-	Thu, 12 Oct 2023 07:53:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697097231;
-	bh=n3VSQiFq6Q28AHURyKUO5YxPBRJMKLHPwmkblx/NFUo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S7mpTQpV5tZexzkiL4KFqQZTLpKcgmhiU2rTNTl1Xpyh3lOFTMYLxjgjC+UtssTHx
-	 c9OZ7joHTieHBjxE6lannJFafW7W67ka+BV1w4lIAEh9zx1HGUSfUzNKginVHgTrX/
-	 njsJcCs4AAtm+v7X0W/AZJf+tj7zQcAQskT4SQYQll+3WTMEWOWwAMgFlC0FVTPZJa
-	 2fZm1axV6SOAz8EF+xVuIpSBe2FBsLYQXtjzT9D7Adb5eC0hsXa2XItzYr58bTqrxB
-	 61xxUZwuUJ+Xgqmhxo+stiQZMq6l/JVRWW8W9n77ngZ87QmJS1+kqmFDy7+TBmJvl0
-	 mRl+ho5etvyvg==
-Date: Thu, 12 Oct 2023 08:53:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
- property
-Message-ID: <20231012-storage-directory-548905001d10@spud>
-References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
- <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552B81170A
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:54:39 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E75FDE;
+	Thu, 12 Oct 2023 00:54:36 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39C7VCCd016347;
+	Thu, 12 Oct 2023 09:54:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=iE8X+9XFj8ZYJlss7mivX3vLbG+BQZYVJPofdFi6K34=; b=lt
+	HpikgsqsH7F422xIipYUFJuFCrPu73LTTYdETTkILZiTlL4RGBEktjHyL+sFm4Ou
+	UYmxaOXl6aw5q92sGvosYAwqCY7bo1viQoHT2+SvYImvVPDQh6oQTbE+X/yVBDs6
+	tdVPDBrzqy+aA9yRYddI6WuPcCCmRwJaUyui5GAl7QZHr6vrRwWWn/Vjm4ceIe3/
+	0DHekb8m3XJOlEBez6myKIk02zmKNDsCczM0KLxlIhqBcT9N45grJnJb7X5k1lfT
+	VPW1Y9jU3K2sEExhMYD3Qlte2ibIBYbCBL6axUk1kcBiChPTpNr7qS0WKuFRYD2J
+	e+YPsUCsryAxda5TmK2w==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tkhf7txhq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Oct 2023 09:54:07 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA887100056;
+	Thu, 12 Oct 2023 09:54:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AAD13215BD5;
+	Thu, 12 Oct 2023 09:54:05 +0200 (CEST)
+Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 12 Oct
+ 2023 09:54:04 +0200
+Message-ID: <97f843cb-f6fb-b282-676b-d2ecea0c3db4@foss.st.com>
+Date: Thu, 12 Oct 2023 09:54:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9egIwhgDDkTdU46k"
-Content-Disposition: inline
-In-Reply-To: <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 1/5] dt-bindings: media: Document STM32MP25 VDEC & VENC
+ video codecs
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+CC: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>,
+        Daniel Almeida
+	<daniel.almeida@collabora.com>,
+        Benjamin Mugnier
+	<benjamin.mugnier@foss.st.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        Marco Felsch <m.felsch@pengutronix.de>, Adam Ford <aford173@gmail.com>
+References: <20231010091643.3666290-1-hugues.fruchet@foss.st.com>
+ <20231010091643.3666290-2-hugues.fruchet@foss.st.com>
+ <20231011-jogger-designing-0eb6e2daacba@spud>
+From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+In-Reply-To: <20231011-jogger-designing-0eb6e2daacba@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-12_03,2023-10-11_01,2023-05-22_02
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Conor,
 
---9egIwhgDDkTdU46k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Will do all in v3, thanks !
 
-Hey,
+On 10/11/23 17:55, Conor Dooley wrote:
+> Hey,
+> 
+> On Tue, Oct 10, 2023 at 11:16:39AM +0200, Hugues Fruchet wrote:
+>> Add STM32MP25 VDEC video decoder & VENC video encoder bindings.
+>>
+>> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+>> ---
+>>   .../media/st,stm32mp25-video-codec.yaml       | 58 +++++++++++++++++++
+>>   1 file changed, 58 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+>> new file mode 100644
+>> index 000000000000..479566171568
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/st,stm32mp25-video-codec.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STMicroelectronics STM32MP25 VDEC video decoder & VENC video encoder
+>> +
+>> +maintainers:
+>> +  - Hugues Fruchet <hugues.fruchet@foss.st.com>
+>> +
+>> +description:
+>> +  The STMicroelectronics STM32MP25 SOCs embeds a VDEC video hardware
+>> +  decoder peripheral based on Verisilicon VC8000NanoD IP (former Hantro G1)
+>> +  and a VENC video hardware encoder peripheral based on Verisilicon
+>> +  VC8000NanoE IP (former Hantro H1).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+> 
+> This "items:" is not needed, the enum on its own is enough.
+> 
+>> +      - enum:
+>> +          - st,stm32mp25-vdec
+>> +          - st,stm32mp25-venc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    vdec: video-codec@580d0000 {
+> 
+> The node labels for both nodes here are not used & should be dropped.
+> 
+> Otherwise, this seems fine to me.
+> 
+> Cheers,
+> Conor.
+> 
+>> +        compatible = "st,stm32mp25-vdec";
+>> +        reg = <0x580d0000 0x3c8>;
+>> +        interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&ck_icn_p_vdec>;
+>> +    };
+>> +  - |
+>> +    venc: video-codec@580e0000 {
+>> +        compatible = "st,stm32mp25-venc";
+>> +        reg = <0x580e0000 0x800>;
+>> +        interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&ck_icn_p_venc>;
+>> +    };
+>> -- 
+>> 2.25.1
+>>
 
-On Thu, Oct 12, 2023 at 01:32:13AM +0000, Kuninori Morimoto wrote:
-> This patch adds ch-maps property to enable handling CPU:Codec =3D N:M
-> connection.
->=20
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  Documentation/devicetree/bindings/sound/audio-graph-port.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yam=
-l b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> index 60b5e3fd1115..3c4b331e8498 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> @@ -19,6 +19,8 @@ definitions:
->      properties:
->        mclk-fs:
->          $ref: simple-card.yaml#/definitions/mclk-fs
-> +      ch-maps:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-
-Most of what I said on the last version applies here too. Only the
-s/_/-/ was done. Is there a reason you ignored those comments?
-
-Thanks,
-Conor.
-
-> =20
->    endpoint-base:
->      allOf:
-> --=20
-> 2.25.1
->
-
---9egIwhgDDkTdU46k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSemCwAKCRB4tDGHoIJi
-0lemAQCcSizIzimECsychf+NhlIoiAvbXqoY2FcFd3aIDzFM9QD+PU/TLsXytIo0
-ricXxSdVEd+6plSq1c3d529uEXYLuAA=
-=W9mk
------END PGP SIGNATURE-----
-
---9egIwhgDDkTdU46k--
+BR,
+Hugues.
 
