@@ -1,137 +1,232 @@
-Return-Path: <devicetree+bounces-7926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91B9C7C621A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 03:15:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C347C6223
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 03:20:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 481C72824C6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 01:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C81A61C209A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 01:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A651652;
-	Thu, 12 Oct 2023 01:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907EC654;
+	Thu, 12 Oct 2023 01:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YkJEqLky"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TCPwOKC1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D9562F
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 01:15:08 +0000 (UTC)
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E13A9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:15:06 -0700 (PDT)
-Received: by mail-oo1-xc34.google.com with SMTP id 006d021491bc7-57c0775d4fcso54783eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 18:15:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697073306; x=1697678106; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pgOKZxofitClM+o1lLshkyVp5VF97o2K5OR3XWz9MEg=;
-        b=YkJEqLkyoOzm6YBPOnGXJ38ZL07TGjyNcaJbVzZyLfJgXmCp9+u29Ywfp2K5omsJJQ
-         NeKfgelklnAgF1mbYkIEiY/wUahN0yIvKRAswGco8zRXlgb8nw4VzmE4qzGYmbl/wINv
-         oZxUoxtEVy/IdOvA7ztSW+S6eCAGqxtlt5/ag24LWLo71yxeX8e8/UQIYh14ldOJK2Qp
-         QF+i1XWCCevezGlmWjG7b5VykUd3lav48BwmjTdG3fu/zw7bDJ47zH73kYaMFZRH7q9X
-         ucsGyxH9BZLZzDEHbvhFKqZu/H6WRI21qRTsXiVaqWEs+bStln3uqXHxSibzscdsLHBx
-         pOiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697073306; x=1697678106;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pgOKZxofitClM+o1lLshkyVp5VF97o2K5OR3XWz9MEg=;
-        b=ipSTMyN9eTT+oAPxNlVFiTsqc9CeEkyGMNSxzqpjcEfZaxrCaGJzUlBjbjhps+u8+g
-         NvUxcLf7sTI7l8AWUnEI2k+N0O/CecSbmt2hhITUT7h+Fu+RHO655qHp9mamqEP+HBNx
-         ipww0jvNq0hEva3LmChanDwvBPsDxSKo91eAkh2LafPL2Jr4OtVHhKSmbsU9Dwcd9pZ1
-         jov9TDgU2ZotttCE3Lh0sCb0TD98WSvZ92OTcB4LAzs06k2VRL1PbBAMGMghiJJWnNta
-         L2uE0d0WUyuMhU44N8ZglDnaQKvGrGbJcEBaraWJ2Abtpy14qENYmrdESzgNfptyQ8um
-         GXZw==
-X-Gm-Message-State: AOJu0YxXeIjr+gf0UsQx2VMb9iiDo9KQVGXt4opRoSa/sWhfbNsIX0Fu
-	0K5NqOig1YWTGDKw5+G9MakfKNhzTX/2EzGToolFbA==
-X-Google-Smtp-Source: AGHT+IE3yeeBoXFf4sEvkSsuyliBNq7zk3TnWf86xikV3WfID6a2o3LkesKNFo/NtOJRUJpc2tbduw==
-X-Received: by 2002:a05:6359:6418:b0:166:8ba6:d36d with SMTP id sh24-20020a056359641800b001668ba6d36dmr714395rwb.0.1697073306042;
-        Wed, 11 Oct 2023 18:15:06 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:f7a8:3d44:f8cb:28e])
-        by smtp.gmail.com with ESMTPSA id t17-20020aa79391000000b00694fee1011asm10706296pfe.208.2023.10.11.18.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Oct 2023 18:15:05 -0700 (PDT)
-Date: Thu, 12 Oct 2023 10:15:01 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-Message-ID: <ZSdIlaom+QO8IlKW@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org>
- <a8d31c42-1248-4738-b01a-3abeedfd49eb@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B30A62F
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 01:20:15 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9A498;
+	Wed, 11 Oct 2023 18:20:13 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 984E67FC;
+	Thu, 12 Oct 2023 03:20:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1697073606;
+	bh=x38t53j8Sk+I5ukmymqPUmq+7cx33nmVbO4/IqkUf28=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TCPwOKC1MKjj6yGwWkL244ziYsjygP7QZkz2UvZ0a4+CoI5Q6d4hW/0Qx8lUS52JM
+	 uGz30cWTO6hDkgNvTb/53Vv3Rj29AMmAuBFbE/RwS1lU8bkpNIrSXFQnVsO9wLjoAX
+	 jZ8i+TJaqtsjuwNFMrfZDrcW1ZLSuqNpvTjinyIU=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/3] media: i2c: Add driver for THine THP7312 ISP
+Date: Thu, 12 Oct 2023 04:20:13 +0300
+Message-ID: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a8d31c42-1248-4738-b01a-3abeedfd49eb@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 05, 2023 at 09:48:09PM +0200, Krzysztof Kozlowski wrote:
-> On 05/10/2023 04:58, AKASHI Takahiro wrote:
-> > A dt binding for pin controller based generic gpio driver is defined in
-> > this commit. One usable device is Arm's SCMI.
-> > 
-> > Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - gpio-controller
-> > +  - "#gpio-cells"
-> > +  - gpio-ranges
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    gpio0: gpio@0 {
-> 
-> No reg, so no unit address.
+Hello,
 
-My intention was to allow for multiple nodes (instances) of
-pinctrl based gpio devices. But I don't care the naming.
+This patch series adds a new driver for the THine THP7312 ISP. It has
+been tested on an OLogic Pumpkin i350, which has a Mediatek MT8365 SoC,
+with the THine THSCG101 camera module.
 
-> Drop also unused label.
+Technically the driver itself (and its bindings) have no dependencies,
+but to run/test this on the Pumpkin i350 with the mainline kernel, a
+large number of patches are needed to support the board and the MT8365
+SoC. Some of those patches are on their way to mainline, and some, like
+the Pumpkin i350 board device tree, will require more work. For
+convenience and reference, the needed patches are available in [1].
+Example overlays for DT integration of the THP7312 are available in that
+branch, in [2].
 
-Okay, I already dropped an example consumer device and have no need
-for the label any longer.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=mtk/v6.6/pumpkin/camera
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/commit/?h=mtk/v6.6/pumpkin/camera&id=e5fd74796c3e0973991bab2692a3534ed1a23d86
 
--Takahiro Akashi
+Compared to v1, this is a near complete rewrite of the driver that has
+taken (to my knowledge) all review comments into account.
 
-> 
-> > +        compatible = "pin-control-gpio";
-> > +        gpio-controller;
-> 
-> Best regards,
-> Krzysztof
-> 
+Below is the mandatory v4l2-compliance report. Careful readers may
+notice that my v4l2-utils version is three commits behind upstream, but
+that makes no practical difference as those commits are not related to
+v4l2-compliance.
+
+The mainline kernel is currently fairly unstable on the Pumpkin i350
+board. For this reason, the driver has primarily been developed against
+the Mediatek v5.15-based BSP, and successfully tested there. I managed
+to test it on mainline as well, but that requires close to hundred boots
+to get a userspace that doesn't segfault. This is why the
+v4l2-compliance report below is from a run against the BSP. The thp7312
+driver is identical to this version, except for the usage of
+.probe_new() on v5.15 that has since been dropped from mainline, and the
+return type of the .remove() function that was `int` back then.
+
+If anyone would like to help with getting mainline to run better on the
+Pumpkin i350 board, I would  be grateful :-) It would certainly help
+maintaining this driver going forward.
+
+# v4l2-compliance -u /dev/v4l-subdev2
+v4l2-compliance 1.25.0-5097, 64 bits, 64-bit time_t
+v4l2-compliance SHA: b79e00a74fde 2023-09-13 07:19:23
+
+Compliance test for device /dev/v4l-subdev2:
+
+Driver Info:
+        Driver version   : 5.15.37
+        Capabilities     : 0x00000000
+
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev2 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+[  353.331499] thp7312 2-0061: =================  START STATUS  =================
+[  353.332515] thp7312 2-0061: Focus, Automatic Continuous: true
+[  353.333460] thp7312 2-0061: Focus, Absolute: 0
+[  353.334074] thp7312 2-0061: Auto-Focus Method: 2
+[  353.334700] thp7312 2-0061: White Balance, Automatic: true
+[  353.335432] thp7312 2-0061: Red Balance: 64
+[  353.335998] thp7312 2-0061: Blue Balance: 50
+[  353.337065] thp7312 2-0061: Brightness: 0
+[  353.337627] thp7312 2-0061: Saturation: 10
+[  353.338182] thp7312 2-0061: Contrast: 10
+[  353.338712] thp7312 2-0061: Sharpness: 8
+[  353.339242] thp7312 2-0061: Rotate: 0
+[  353.339742] thp7312 2-0061: Auto Exposure, Bias: 0
+[  353.340453] thp7312 2-0061: Power Line Frequency: 50 Hz
+[  353.341160] thp7312 2-0061: Camera Orientation: Front
+[  353.341835] thp7312 2-0061: Camera Sensor Rotation: 0
+[  353.342504] thp7312 2-0061: Low Light Compensation: true
+[  353.343204] thp7312 2-0061: Noise Reduction Auto: true
+[  353.343882] thp7312 2-0061: Noise Reduction Level: 0
+[  353.344636] thp7312 2-0061: ==================  END STATUS  ==================
+        test VIDIOC_LOG_STATUS: OK
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 17 Private Controls: 4
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev2: 43, Succeeded: 43, Failed: 0, Warnings: 0
+
+Laurent Pinchart (1):
+  media: uapi: Add controls for the THP7312 ISP
+
+Paul Elder (2):
+  dt-bindings: media: Add bindings for THine THP7312 ISP
+  media: i2c: Add driver for THine THP7312
+
+ .../bindings/media/i2c/thine,thp7312.yaml     |  225 ++
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../userspace-api/media/drivers/thp7312.rst   |   32 +
+ MAINTAINERS                                   |   10 +
+ drivers/media/i2c/Kconfig                     |   16 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/thp7312.c                   | 2386 +++++++++++++++++
+ include/uapi/linux/thp7312.h                  |   19 +
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ 9 files changed, 2696 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/thp7312.rst
+ create mode 100644 drivers/media/i2c/thp7312.c
+ create mode 100644 include/uapi/linux/thp7312.h
+
+
+base-commit: a1766a4fd83befa0b34d932d532e7ebb7fab1fa7
+-- 
+Regards,
+
+Laurent Pinchart
+
 
