@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-8043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFBC7C67B3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:40:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 850307C67BB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E953A1C2109E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44A91282A9D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075261F19A;
-	Thu, 12 Oct 2023 08:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494F62033C;
+	Thu, 12 Oct 2023 08:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="U0GJ1QaY"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="L8OSc4vJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F79E1EA73
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88CB61F933
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:54 +0000 (UTC)
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47230CC;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1858D3;
 	Thu, 12 Oct 2023 01:40:50 -0700 (PDT)
-X-UUID: 094b606268db11eea33bb35ae8d461a2-20231012
+X-UUID: 0907d85668db11eea33bb35ae8d461a2-20231012
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=kjOhexuevGAYoXYeROCde90v2zna4WaKNlA9I3TFyGE=;
-	b=U0GJ1QaYcSBGWPhDFADtgyfBfBRFxeA5Jk33/evrDah2Ll/pKWIWBwkfypGvjc5tbCtXLc7K9ihc8O6y8hCiAvYrKOGxR7s8pPHPftx/HvkG1raSwrqGB7Bw21ENP89+DzFub0XuHlzMogy4YPOo9SYbjXej4cpdE1e2AeUo4to=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wPAZy6ESnioZH+kLVb+rHtDuQKaIt/qY8aIqjrMpNI8=;
+	b=L8OSc4vJQntTruUQt16AbXKPnOVDmBzGDgZ2qhn66P5yMVNBA9y+PQUPOTHnI4LU+lqBB/pbGa6bcrU6vVUQ3nO9S3k+Rg0caPQq4hoIi2Fxu6Duuc9hfPlEYf3usv81c5j1BsPWab1TLuly7PhOJIBJRQjwO5mpdK/Wa+qL9fg=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:6c1be1e1-02cb-481b-9810-f9d259e4630b,IP:0,U
+X-CID-O-INFO: VERSION:1.1.32,REQID:04cde37d-f2f9-40d6-891b-5687618bd252,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:3e45b5f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
+X-CID-META: VersionHash:5f78ec9,CLOUDID:55f009c4-1e57-4345-9d31-31ad9818b39f,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 094b606268db11eea33bb35ae8d461a2-20231012
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+X-UUID: 0907d85668db11eea33bb35ae8d461a2-20231012
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
 	(envelope-from <moudy.ho@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 729397181; Thu, 12 Oct 2023 16:40:45 +0800
+	with ESMTP id 1779128172; Thu, 12 Oct 2023 16:40:45 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1118.26; Thu, 12 Oct 2023 16:40:44 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
@@ -63,9 +63,9 @@ CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Moudy
  Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v7 15/16] dt-bindings: display: mediatek: split: add compatible for MT8195
-Date: Thu, 12 Oct 2023 16:40:36 +0800
-Message-ID: <20231012084037.19376-16-moudy.ho@mediatek.com>
+Subject: [PATCH v7 16/16] dt-bindings: display: mediatek: padding: add compatible for MT8195
+Date: Thu, 12 Oct 2023 16:40:37 +0800
+Message-ID: <20231012084037.19376-17-moudy.ho@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20231012084037.19376-1-moudy.ho@mediatek.com>
 References: <20231012084037.19376-1-moudy.ho@mediatek.com>
@@ -84,66 +84,29 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add compatible string and GCE property for MT8195 SPLIT, of
-which is operated by MDP3.
+Add a compatible string for the PAD block in MediaTek MT8195 that
+is controlled by MDP3.
 
 Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 ---
- .../display/mediatek/mediatek,split.yaml      | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ .../bindings/display/mediatek/mediatek,padding.yaml           | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-index a8a5c9608598..e4affc854f3d 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-@@ -23,6 +23,7 @@ properties:
-     oneOf:
-       - enum:
-           - mediatek,mt8173-disp-split
-+          - mediatek,mt8195-mdp3-split
-       - items:
-           - const: mediatek,mt6795-disp-split
-           - const: mediatek,mt8173-disp-split
-@@ -38,6 +39,21 @@ properties:
-       the power controller specified by phandle. See
-       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+index db24801ebc48..636b69133acc 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+@@ -20,7 +20,9 @@ description:
  
-+  mediatek,gce-client-reg:
-+    description:
-+      The register of display function block to be set by gce. There are 4 arguments,
-+      such as gce node, subsys id, offset and register size. The subsys id that is
-+      mapping to the register of display function blocks is defined in the gce header
-+      include/dt-bindings/gce/<chip>-gce.h of each chips.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle of GCE
-+        - description: GCE subsys id
-+        - description: register offset
-+        - description: register size
-+    maxItems: 1
-+
-   clocks:
-     items:
-       - description: SPLIT Clock
-@@ -48,6 +64,17 @@ required:
-   - power-domains
-   - clocks
+ properties:
+   compatible:
+-    const: mediatek,mt8188-padding
++    enum:
++      - mediatek,mt8188-padding
++      - mediatek,mt8195-mdp3-pad
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8195-mdp3-split
-+
-+    then:
-+      required:
-+        - mediatek,gce-client-reg
-+
- additionalProperties: false
- 
- examples:
+   reg:
+     maxItems: 1
 -- 
 2.18.0
 
