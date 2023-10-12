@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-7966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94417C659C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:28:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EA97C65BE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:40:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F343C1C20A83
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:28:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7188628275D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0910BD521;
-	Thu, 12 Oct 2023 06:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97F0D534;
+	Thu, 12 Oct 2023 06:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LGFaZwyz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LtR59DQa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A1DD29E
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:28:37 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55522C9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:28:35 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3296b49c546so488282f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:28:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D4828EF
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:40:10 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1CADCA
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:40:06 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-406618d080eso6859425e9.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697092114; x=1697696914; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697092805; x=1697697605; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+iCEKYS2ccHLp/GyKz5ONEdyr7nqmtVJGXxA37VFaEo=;
-        b=LGFaZwyzeUKuAy5ITVJ7BKtSHbwwT4BWCFZ4bYr+Hdtl07ljR2IGlLZVqYNZTyW7ww
-         pXfu3bDcoWgegeXfTv3BgUqzhA6uiCXP3Pv1bSPpZ6ycmfyrwl0g18haX1ABLEnjbXTM
-         HT6LmfVVCUfQL5LWNMXw2D3TwQ+JHlWr3h+iknsVGiwipILsIcZ+a8rbKf9MLc7fD8Wj
-         pjvl/KqipC4wuL3Qu0Ut2/byy3lnuxjXfuTgcUqBFgHdA7P83SUwnGbjAcBuCpW9p40y
-         4+EYGVgao7QeIAtsKrci54BLqKebDztoDN2vlFWdEWaiU3AVPvsnXlw8FK/jc/cRiOYV
-         byaA==
+        bh=NBr1hwHD25bRhBkWRPQylNtFUOku6GBNnWwm/nUebWM=;
+        b=LtR59DQaMKYasbSZ+c+7CM7XP49i/sh/xDJZj/72fD4xA8aCXFyt+4oBOoUi/ahOMm
+         DsKst2yPqkjP74zMHEar+MJuJtQkaCnt85yNpEhPufkOB0NxNQkx9YcWpDkbKjxHEodA
+         E+2aEJ/RWg+lEsr/gYY/ybSuauwuR6qljfAJJL4UdzYEWvapXmGOV7ZCBtrHCR/swW8M
+         +Zn9gX0QGBitvxkjWsfc0aUHkZLIL1FOHOKkJi4dMDvLdN9up5PKoC3/6iwr/2SCd6d4
+         IQGrEn9Q4tBV89hLxZRgvvXzQyAQCqDdVQxyb6xs4HekrRPTLrClzcRLwXXpF2zKHP+3
+         Hzlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697092114; x=1697696914;
+        d=1e100.net; s=20230601; t=1697092805; x=1697697605;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+iCEKYS2ccHLp/GyKz5ONEdyr7nqmtVJGXxA37VFaEo=;
-        b=HHLnsWBHEID7QFmDrh1fh4dMbuQoE7wJTClHlgYfkjyHWXEJHEgmMIjzBfEGj3lDPI
-         rEeHBgjL/jFScLjhczzD5T2xcD1El8HeWnKNWgd/YCLuu+/dWbwOmALuoV1Bn4JYqrxQ
-         XCGQWuGqFj0uI5ciR7Gz7+5BezTiGUV0C2ppthCOfPrunB18JJc4oCb9mqahFAv7Use7
-         iDtmbcx/GrWSQmcP2a/IyMtRsLZE0908IjG1o6X37vc1vaEEttB02UYFS8UpoRuwik6d
-         qbEmgGzSUpLtQ0n6LBHcnJQzKkasv3CdJDV0j13jnTW1+D73RlL0q7ZaW4mU/4QAGwEs
-         Mt6Q==
-X-Gm-Message-State: AOJu0YwDEXrkrTKMcnC6nrsozdUlbF/mLJ5aN7NTqtH2W63SJZaAPWn4
-	5i276/ilvLprTN9lndYjLsN6/g==
-X-Google-Smtp-Source: AGHT+IEalyiyCChTdThvP6QAuWnboL41e5CsXq/YYKfUa989J347/tY1b6JvhWOOjbmNy/bKWSly8g==
-X-Received: by 2002:adf:cc8b:0:b0:313:f463:9d40 with SMTP id p11-20020adfcc8b000000b00313f4639d40mr18287954wrj.65.1697092113761;
-        Wed, 11 Oct 2023 23:28:33 -0700 (PDT)
+        bh=NBr1hwHD25bRhBkWRPQylNtFUOku6GBNnWwm/nUebWM=;
+        b=HO/uGozsVFaaU/Hnzp1OEDDH3m+d1Ww4oSfq9zrFzXyOMnpBLEIaT4HXwMCA2L9KJT
+         6gmDcAW+bU0dCrDsq355LQtG7E+D6macMCd0WtII9JctorWt2go1vIIeb8HHboQgMryY
+         FgkOiFOzsZGow4u2LYlQbm4a1fpGi5Bn7cOlIN5U+P7uerIHTpuuyv5W0opfb0Kn8BJg
+         7wQuaVkKvGVW6MoAIFPUrL18CX9GHe2FjT7LmRzd2591l/ZuTFhIwrblUzNzWgyPFhkl
+         nzes4mgVaxT70VyV2+LK1bBQwufeeSU7s+krjgFUtqDOVU4840v5HIpMq9PKIhgBm2kd
+         rZ/g==
+X-Gm-Message-State: AOJu0YxLgC4g+d0trxHRW0hCTeVhLHutVgD5gqSq18XAJkP8sdFS2gkx
+	MiwuFbOVys78WCQ3/psym359GQ==
+X-Google-Smtp-Source: AGHT+IF37iFe5rzi/jVKKLSbSO2i7WhFnCibS5SIVqUiTGBtbLyFss5op3l5+7uXmT5b+Kdw/blj2Q==
+X-Received: by 2002:a05:600c:252:b0:402:f536:2d3e with SMTP id 18-20020a05600c025200b00402f5362d3emr19740466wmj.14.1697092805153;
+        Wed, 11 Oct 2023 23:40:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id o9-20020a5d4749000000b0032d9523de65sm49982wrs.48.2023.10.11.23.28.31
+        by smtp.gmail.com with ESMTPSA id x11-20020a05600c21cb00b00405bbfd5d16sm18843678wmj.7.2023.10.11.23.40.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 23:28:33 -0700 (PDT)
-Message-ID: <e036b487-004c-45d4-9ce6-f8e0e1e518eb@linaro.org>
-Date: Thu, 12 Oct 2023 08:28:31 +0200
+        Wed, 11 Oct 2023 23:40:04 -0700 (PDT)
+Message-ID: <33fe3e2e-9d09-42ee-9472-25d3be09baf4@linaro.org>
+Date: Thu, 12 Oct 2023 08:40:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/20] Add minimal Tensor/GS101 SoC support and
- Oriole/Pixel6 board
+Subject: Re: [PATCH v3 17/20] arm64: dts: google: Add initial Google gs101 SoC
+ support
 Content-Language: en-US
 To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
@@ -84,6 +84,7 @@ Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
  linux-watchdog@vger.kernel.org, kernel-team@android.com,
  linux-serial@vger.kernel.org
 References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-18-peter.griffin@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,25 +130,257 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011184823.443959-1-peter.griffin@linaro.org>
+In-Reply-To: <20231011184823.443959-18-peter.griffin@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 11/10/2023 20:48, Peter Griffin wrote:
-> Hi folks,
-> 
-> Firstly, thanks to everyone who reviewed the v2/V1 series! V3 incorporates
-> all the review feedback received so far.
-> 
 
-patch:47: new blank line at EOF.
-patch:1321: new blank line at EOF.
+...
+
+> diff --git a/arch/arm64/boot/dts/google/gs101.dtsi b/arch/arm64/boot/dts/google/gs101.dtsi
+> new file mode 100644
+> index 000000000000..37fb0a4dc8d3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/google/gs101.dtsi
+> @@ -0,0 +1,504 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * GS101 SoC
+> + *
+> + * Copyright 2019-2023 Google LLC
+> + *
+> + */
+> +
+> +#include <dt-bindings/clock/google,gs101.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	compatible = "google,gs101";
+> +	#address-cells = <2>;
+> +	#size-cells = <1>;
+> +
+> +	interrupt-parent = <&gic>;
+> +
+> +	aliases {
+> +		pinctrl0 = &pinctrl_0;
+> +		pinctrl1 = &pinctrl_1;
+> +		pinctrl2 = &pinctrl_2;
+> +		pinctrl3 = &pinctrl_3;
+> +		pinctrl4 = &pinctrl_4;
+> +		pinctrl5 = &pinctrl_5;
+> +		pinctrl6 = &pinctrl_6;
+> +		pinctrl7 = &pinctrl_7;
+> +		serial0 = &serial_0;
+> +	};
+> +
+> +	arm-pmu {
+
+pmu-0
+
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
+> +
+> +	dsu-pmu-0 {
+
+pmu-1
+
+
+> +		compatible = "arm,dsu-pmu";
+> +		interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>;
+> +		cpus = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
+> +		       <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
+> +	};
+> +
+> +	/* TODO replace with CCF clock */
+> +	dummy_clk: oscillator {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <12345>;
+> +		clock-output-names = "pclk";
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&cpu4>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu5>;
+> +				};
+> +			};
+> +
+> +			cluster2 {
+> +				core0 {
+> +					cpu = <&cpu6>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0000>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <250>;
+> +			dynamic-power-coefficient = <70>;
+> +		};
+> +
+> +		cpu1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0100>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <250>;
+> +			dynamic-power-coefficient = <70>;
+> +		};
+> +
+> +		cpu2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0200>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <250>;
+> +			dynamic-power-coefficient = <70>;
+> +		};
+> +
+> +		cpu3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0300>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <250>;
+> +			dynamic-power-coefficient = <70>;
+> +		};
+> +
+> +		cpu4: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0400>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ENYO_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <620>;
+> +			dynamic-power-coefficient = <284>;
+> +		};
+> +
+> +		cpu5: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0500>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&ENYO_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <620>;
+> +			dynamic-power-coefficient = <284>;
+> +		};
+> +
+> +		cpu6: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0600>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&HERA_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <650>;
+> +		};
+> +
+> +		cpu7: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0700>;
+> +			enable-method = "psci";
+> +			cpu-idle-states =  <&HERA_CPU_SLEEP>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <650>;
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			ANANKE_CPU_SLEEP: cpu-ananke-sleep {
+> +				idle-state-name = "c2";
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				entry-latency-us = <70>;
+> +				exit-latency-us = <160>;
+> +				min-residency-us = <2000>;
+> +			};
+> +
+> +			ENYO_CPU_SLEEP: cpu-enyo-sleep {
+> +				idle-state-name = "c2";
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				entry-latency-us = <150>;
+> +				exit-latency-us = <190>;
+> +				min-residency-us = <2500>;
+> +			};
+> +
+> +			HERA_CPU_SLEEP: cpu-hera-sleep {
+> +				idle-state-name = "c2";
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				entry-latency-us = <235>;
+> +				exit-latency-us = <220>;
+> +				min-residency-us = <3500>;
+> +			};
+> +		};
+> +	};
+> +
+> +	/* bootloader requires ect node */
+> +	ect {
+
+This needs bindings.
+
+> +		parameter_address = <0x90000000>;
+
+No underscores in property names. Use hyphen.
+
+> +		parameter_size = <0x53000>;
+
+No underscores.
+
+> +	};
+> +
+> +	ext_24_5m: clock-1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24576000>;
+> +		clock-output-names = "oscclk";
+> +	};
+
 
 Best regards,
 Krzysztof
