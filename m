@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-8315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1CD7C7A19
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 01:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DFF7C7A1B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 01:03:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A732C1C21052
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:03:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7018D1C20904
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA623D037;
-	Thu, 12 Oct 2023 23:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5233D03A;
+	Thu, 12 Oct 2023 23:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UIj4TMYE"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ky/YuNs1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1A01D68F
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:03:00 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E091BE3
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:02:58 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c9b7c234a7so13344215ad.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:02:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD923D038
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:03:03 +0000 (UTC)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCF1F3
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:03:01 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1c9a1762b43so12749735ad.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:03:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1697151778; x=1697756578; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1697151780; x=1697756580; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GBvy7lbYwOwBhn+AJIxwjjdhBjxul9CUNWBOFs/FosQ=;
-        b=UIj4TMYElMdp6G4kwkWFYIq0vBIjEHUBXm86+uO/we2nKAn/mA2d62eC0tFDUwDUOt
-         IrMXD0nc4zQ6vhYRnMFneu5d7a6y0cmFAjm+6bNTTe4ixkMWoGTF5bRWqI4E3PudaTSX
-         5rH0Rw75TbMzC3iMLDbZUgzCg4HM8CXWrsYTM=
+        bh=RIH+YvGCzBPNtKNlT8wLBn/0tQkDSpCAQdxybdH6cwo=;
+        b=Ky/YuNs1FNez3PueN1yU5xUOODqzPkZO4mpDCeH8r2lRRbYzUjOcJtxB/TlyW78SeD
+         ZyF/QFKYJCMsHqykS8Pdz+Bs9h5rmoBrzSa9oWwOkgKdtxMHQfGUofJu1fO0KHoAidxF
+         uq0F0Ak343S8kRBVyUS/SxTgjMx0ZM3wBeELk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697151778; x=1697756578;
+        d=1e100.net; s=20230601; t=1697151780; x=1697756580;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GBvy7lbYwOwBhn+AJIxwjjdhBjxul9CUNWBOFs/FosQ=;
-        b=fOfagIhbCV0dGyelvYTVACoZhqOO7JnyDQBR44UFomVeBl2Jx5ZPS4eH1HnLE6Ltz6
-         FSwMTix4SkXP12RrgelKYiKLStnk7tR0CUwu7Mg8h51zOi3mxB2WgsZy4f09yV2yqfG4
-         U/E0dmzFoz1EvvXWfeSwGll5bSMnXlU6acb2IACnCU2RipclWaEcgbpfXT6wrc+gavVH
-         5s4lk0zRTix+uSPEKrhPSOtRnGa4xnWm2LiaNAilA1M4Y1E5L0MZfI8J1fPafM4Y4MwW
-         HKDXMpvb/SGASoWfQab3vRm55fPuv1Ikj2oXvLoCv4umuy+ji3eSR+dMn//Afbh4Q/Y3
-         rNIA==
-X-Gm-Message-State: AOJu0Yy1Vi7CzHsClj9/PGsR6DudujC79AKJCl5lnx8qm0Wdb36Q5VTV
-	3x3ONJeUYkJpsdG2Tn4k5sWHFw==
-X-Google-Smtp-Source: AGHT+IGXznJ4hIrXPd2v4LG0qd7GDuqFPhe4DtqE9+/RvasogqCkxgRRCfWmbESl1PyoeLxvWTeJjA==
-X-Received: by 2002:a17:902:f14c:b0:1c9:e0f9:a668 with SMTP id d12-20020a170902f14c00b001c9e0f9a668mr2179774plb.18.1697151778356;
-        Thu, 12 Oct 2023 16:02:58 -0700 (PDT)
+        bh=RIH+YvGCzBPNtKNlT8wLBn/0tQkDSpCAQdxybdH6cwo=;
+        b=JmDDm6xZvSx51XvI1NkrnzjZJgskdf4queuEdC/HvF4IpcVMoM9SJjGyY95fcLN096
+         bGRxm9QvhOe0OiUM7BGo+pad+JccOaJ3lzP8Zfq9BhF9iTM3Kk58SbK35hEzCJLNpYCs
+         I3bVZp1hI4RKwvhrp2DgaSJW7MpFOYaQ0BDGJtFSfngOpI51ZJB2lOJLzzfWNiTeBB0b
+         GXm3+fJPw62f/bz75zAfEw7KUf+6LZiEt9M2AIVkmt8yxkSpeJDoK7/WNftEbofCOU9w
+         +S6QCiYBKm+XqY5QD8qeUPifPJSoE5U3IvBO5mWXtmRyOPR2l5Lfh9dsaDOWQkjr0AAa
+         0Osw==
+X-Gm-Message-State: AOJu0Yz6sdofhOBMyrPsyN+ESxqiovukOXYuQvv6dZVfaALjNneL8atc
+	GiEsdOMbqbdOL8gVRINxQopFAQ==
+X-Google-Smtp-Source: AGHT+IFBHMMkJoSakpp1N70bOiH3PMSzDjXVxC2bq1hCrP6zNIw/kZcHm0z6MEySLozadGI5ljy7GA==
+X-Received: by 2002:a17:902:f2d3:b0:1c9:ec98:217 with SMTP id h19-20020a170902f2d300b001c9ec980217mr1142980plc.41.1697151780553;
+        Thu, 12 Oct 2023 16:03:00 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:7397:2561:ed13:bac8])
-        by smtp.gmail.com with ESMTPSA id g11-20020a1709026b4b00b001c613091aeasm2494390plt.297.2023.10.12.16.02.56
+        by smtp.gmail.com with ESMTPSA id g11-20020a1709026b4b00b001c613091aeasm2494390plt.297.2023.10.12.16.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 16:02:58 -0700 (PDT)
+        Thu, 12 Oct 2023 16:03:00 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -66,9 +66,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/9] dt-bindings: arm: mediatek: Add MT8186 Rusty Chromebook
-Date: Fri, 13 Oct 2023 07:02:30 +0800
-Message-ID: <20231012230237.2676469-5-wenst@chromium.org>
+Subject: [PATCH 5/9] dt-bindings: arm: mediatek: Add MT8186 Magneton Chromebooks
+Date: Fri, 13 Oct 2023 07:02:31 +0800
+Message-ID: <20231012230237.2676469-6-wenst@chromium.org>
 X-Mailer: git-send-email 2.42.0.655.g421f12c284-goog
 In-Reply-To: <20231012230237.2676469-1-wenst@chromium.org>
 References: <20231012230237.2676469-1-wenst@chromium.org>
@@ -86,31 +86,49 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add an entry for the MT8186 based Rusty Chromebook, also known as the
-Lenovo 100e Chromebook Gen 4.
+Add entries for the MT8186 based Chromebooks, also collectively known
+as the Lenovo IdeaPad Slim 3 Chromebook (14M868). It is also based on
+the "Steelix" design. Being a laptop instead of a convertible device,
+there is no touchscreen or stylus, which is similar to Rusty. However
+Magneton does not have ports on the right side of the device.
+
+Three variants are listed separately. These use different touchscreen
+controllers, or lack a touchscreen altogether.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/arm/mediatek.yaml      | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index fafd5e18f640..5e5834d9865f 100644
+index 5e5834d9865f..a4541855a838 100644
 --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
 +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -206,6 +206,12 @@ properties:
+@@ -206,6 +206,24 @@ properties:
            - enum:
                - mediatek,mt8183-pumpkin
            - const: mediatek,mt8183
-+      - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
 +        items:
-+          - const: google,steelix-sku196608
-+          - const: google,steelix-sku196609
++          - const: google,steelix-sku393216
++          - const: google,steelix-sku393219
 +          - const: google,steelix
 +          - const: mediatek,mt8186
-       - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4)
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
++        items:
++          - const: google,steelix-sku393217
++          - const: google,steelix-sku393220
++          - const: google,steelix
++          - const: mediatek,mt8186
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
++        items:
++          - const: google,steelix-sku393218
++          - const: google,steelix-sku393221
++          - const: google,steelix
++          - const: mediatek,mt8186
+       - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
          items:
-           - enum:
+           - const: google,steelix-sku196608
 -- 
 2.42.0.655.g421f12c284-goog
 
