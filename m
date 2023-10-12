@@ -1,156 +1,194 @@
-Return-Path: <devicetree+bounces-7936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03BC7C6258
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 03:39:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B457C62C2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 04:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98C1828247F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 01:39:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 710501C209C9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 02:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B0F657;
-	Thu, 12 Oct 2023 01:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22B1182;
+	Thu, 12 Oct 2023 02:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i1uZCB1v"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="1MVD9ZzR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088E57E4;
-	Thu, 12 Oct 2023 01:39:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199BBA9;
-	Wed, 11 Oct 2023 18:39:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697074744; x=1728610744;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=daGpMUfIbIbWopl8m0PHMFSs1YcPe9sCdDhFyZyEnPU=;
-  b=i1uZCB1v4/35BoZoZNvqmJT/xXrgbcMlMhH64siA79aZHuXwI/4LoZ89
-   qHERXZkK84FdjlkhUnjI28+gXzdch6HBOgRZKJD3wajA71k4tXpdYUlue
-   bki9v3x2XWbq63RsHpImeasQlMSk6qnLKeXqRVo0HJTHtIVZ5g/zI8suK
-   UuKmfEnuSo35Red0xgLCf54Jj8zomqqTSUvVIIeLM7TqeY381MK45ztNi
-   vlxZhadsapF1niZ3VKCrmGX15j3imAO957viSUZwj/fGbrqmM7h4/jwqB
-   awkLfR9Hvoc7eAQtFa7oSlQ947mhsDAtKcsjb4gjnuNiVmfIJl38Mq3cf
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="384663184"
-X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; 
-   d="scan'208";a="384663184"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2023 18:39:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="877925198"
-X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; 
-   d="scan'208";a="877925198"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 11 Oct 2023 18:38:59 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qqkfA-0002yj-1u;
-	Thu, 12 Oct 2023 01:38:56 +0000
-Date: Thu, 12 Oct 2023 09:38:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Frank Rowand <frowand.list@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 2/2] amba: bus: Enable compile testing
-Message-ID: <202310120929.APpnCpDs-lkp@intel.com>
-References: <20231006145732.3419115-2-andriy.shevchenko@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29776A4A
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 02:30:19 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59640A4
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 19:30:17 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53dfc28a2afso863647a12.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 19:30:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1697077816; x=1697682616; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7M55ocZS76xNGmS/lTIzjnpml9AAnWYYFgmJYm8DS+U=;
+        b=1MVD9ZzRNSE5DWr0ZEnXFkzr7jURSFVbXcrRlUvY8uGXxITW/0phQY4VCGUQ97VtzJ
+         fqXs5RlVkP6INfS2YzVVMs/jsJTfdRCmdWRee6A2Y6BbqTWjVwpINo5ONSbWMuC+U7Op
+         9tQ7Q4ovESi0csaRLJ5LZYU3yPlN8muHV1GRNGJkIg2ScGCfncaAecnpmehFZHV8UT+b
+         wWu/HYVL4kXffc0hflbEjNC1VZZRZeQerbmS/Ws5LA9obYe8XxO8anS1550/tb9OruC4
+         mMhTyp3BQFMUn9AX++eAPqsgBgID/Up3+bdaK624fpSrDqfHcJRVL7B7OTBwRfJx/hwS
+         u/TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697077816; x=1697682616;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7M55ocZS76xNGmS/lTIzjnpml9AAnWYYFgmJYm8DS+U=;
+        b=SnYKENpaTu/jvJrZT0kphhZXBs88jTmcw44les9uwKH/WQAflr4kx014oTrAuucqL/
+         YYLa5dYFxXDodS8DtlruRWwWdiABPPc9XBEZ/e4ijcakYnxVu1hkJS80OCvMBDhyR3rN
+         CT7/QXrQe9CdYDZYKfK5C1GAS4XjXoJmvVtiU+4KaJ0/shZ9mzfd1LUXkZ0RBTaASY19
+         o0IFQ7H/jGEHamAijB6dhdLv2KkcRsPosNvj1yEnAvdBvef6Ul0QZvbzJUz27RXUARJU
+         K7DHx5TnZm1nxHM7T6xYBmVn3QSZpklscSFpXk0pJ5ON2mMWenYILIRYPRrAQxM6FUYk
+         hthg==
+X-Gm-Message-State: AOJu0YyDN7kUVsmtOU/nKs52aWuLvuHpqueWHr23+bsa5Bmnzqb0+Shv
+	cJEJvebZBfA8qcucgYw2wOSYVmyQBueCviFMfBgPNA==
+X-Google-Smtp-Source: AGHT+IHZIaUgj2GqE59cbKQ1dIQ/eHW4vLgOlQNGAQJsSBk8cVEPL6DgXGsmGYZ/FrXLeYdo/mL3yjF4HXCcvbTA9wA=
+X-Received: by 2002:aa7:d94e:0:b0:527:fa8d:d40b with SMTP id
+ l14-20020aa7d94e000000b00527fa8dd40bmr19306337eds.26.1697077815724; Wed, 11
+ Oct 2023 19:30:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006145732.3419115-2-andriy.shevchenko@linux.intel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230922-removable-footwork-f1d4d96d38dd@spud>
+ <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
+ <20230925-cod-vacancy-08dc8d88f90e@wendy> <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
+ <20230926-action-sludge-ec8e51fdd6d4@spud> <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
+ <20230926-reverence-unlit-d0027225cc43@spud> <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
+ <20230928-spectacle-civic-339c0d71d8d7@spud> <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
+ <20231009-pentagram-clamshell-b14ff00743fd@spud>
+In-Reply-To: <20231009-pentagram-clamshell-b14ff00743fd@spud>
+From: yang tylor <tylor_yang@himax.corp-partner.google.com>
+Date: Thu, 12 Oct 2023 10:30:03 +0800
+Message-ID: <CAGD2q_aqr+mu4K1SkTVC+65ctL6BsqRP4Ld0HD_H0_rgzFT9MQ@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI device
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	jikos@kernel.org, benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org, 
+	"jingyliang@chromium.org" <jingyliang@chromium.org>, wuxy23@lenovo.com, luolm1@lenovo.com, 
+	hung poyu <poyu_hung@himax.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Andy,
+On Tue, Oct 10, 2023 at 1:52=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Mon, Oct 02, 2023 at 06:44:41PM +0800, yang tylor wrote:
+> > On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel.org=
+> wrote:
+> > >
+> > > On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
+> > > > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> > > > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
+> > > > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@ker=
+nel.org> wrote:
+> > > > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
+> > > > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor=
+.dooley@microchip.com> wrote:
+> > > > > > > > We have a default prefix firmware name(like himax_xxxx.bin)=
+ in the driver code.
+> > > > > > >
+> > > > > > > How do you intend generating the name of the firmware file? I=
+ assume the
+> > > > > > > same firmware doesn't work on every IC, so you'll need to pic=
+k a
+> > > > > > > different one depending on the compatible?
+> > > > > > >
+> > > > > > If considering a firmware library line-up for all the incoming =
+panels
+> > > > > > of this driver.
+> > > > > > We would use PID as part of the file name. Because all the supp=
+ort panels would
+> > > > > > have a unique PID associated. Which will make the firmware name=
+ like
+> > > > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID befor=
+e firmware load
+> > > > > > at no flash condition. Thus PID information is required in dts =
+when
+> > > > > > no-flash-flag
+> > > > > > is specified.
+> > > > >
+> > > > > Firstly, where does the "xxx" come from?
+> > > > > And you're making it sound more like having firmware-name is suit=
+able
+> > > > > for this use case, given you need to determine the name of the fi=
+le to
+> > > > > use based on something that is hardware specific but is not
+> > > > > dynamically detectable.
+> > > > Current driver patch uses a prefix name "himax_i2chid" which comes
+> > > > from the previous project
+> > > >  and seems not suitable for this condition, so I use "xxx" and plan=
+ to
+> > > > replace it in the next version.
+> > > > For finding firmware, I think both solutions are reasonable.
+> > > > - provide firmware name directly: implies no-flash and use user
+> > > > specified firmware, no PID info.
+> > > > - provide no-flash-flag and PID info: loading firmware from organiz=
+ed
+> > > > names with PID info.
+> > > > I prefer the 2nd solution, but it needs more properties in dts. 1st
+> > > > has less properties and more
+> > > > intuitive.
+> > > >
+> > > > I don't know which one is more acceptable by the community, as you
+> > > > know I'm a newbie here.
+> > >
+> > > To be honest, I am not all that sure either! Does the panel id have
+> > > value in its own right, or is that only used to determine the firmwar=
+e
+> > > filename?
+> > Currently, PID stands for Panel/Project ID and is used for determining
+> > the firmware filename only. We haven't come up with any new attribute t=
+hat
+> > may attach to it. The differences between panels are handled in firmwar=
+e
+> > dedicated to its PID.
+> >
+> > > Also, if it does have value in its own right, rather than a "pid",
+> > > should the panel be a child node of this hid device with its own
+> > > compatible?
+> > It may need a child node if we find it necessary to add attributes to e=
+ach PID.
+> > But currently we have no idea about it.
+>
+> To be honest, it seems to me like you are using "PID" in place of a
+> compatible for the panel, since it needs to be provided via DT anyway.
 
-kernel test robot noticed the following build errors:
+Hmm... So the more formal way is?
+If I add a sub-note inside this spi-device block, such as "panel" and
+add PID inside.
+Will it be more appropriate?
+...
+spi {
+...
+    hx_spi@0 {
+...
+        panel {
+            himax,pid =3D ...
+        };
+    }
+}
 
-[auto build test ERROR on rafael-pm/linux-next]
-[also build test ERROR on robh/for-next soc/for-next linus/master v6.6-rc5 next-20231011]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/amba-bus-Enable-compile-testing/20231006-225814
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git linux-next
-patch link:    https://lore.kernel.org/r/20231006145732.3419115-2-andriy.shevchenko%40linux.intel.com
-patch subject: [PATCH v3 2/2] amba: bus: Enable compile testing
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20231012/202310120929.APpnCpDs-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231012/202310120929.APpnCpDs-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310120929.APpnCpDs-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/tty/serial/amba-pl011.c: In function 'pl011_sgbuf_init':
->> drivers/tty/serial/amba-pl011.c:380:30: error: implicit declaration of function 'phys_to_page'; did you mean 'pfn_to_page'? [-Werror=implicit-function-declaration]
-     380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
-         |                              ^~~~~~~~~~~~
-         |                              pfn_to_page
-   drivers/tty/serial/amba-pl011.c:380:30: warning: passing argument 2 of 'sg_set_page' makes pointer from integer without a cast [-Wint-conversion]
-     380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
-         |                              ^~~~~~~~~~~~~~~~~~~~~~
-         |                              |
-         |                              int
-   In file included from include/linux/kfifo.h:42,
-                    from include/linux/tty_port.h:5,
-                    from include/linux/tty.h:12,
-                    from drivers/tty/serial/amba-pl011.c:26:
-   include/linux/scatterlist.h:136:69: note: expected 'struct page *' but argument is of type 'int'
-     136 | static inline void sg_set_page(struct scatterlist *sg, struct page *page,
-         |                                                        ~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
-
-
-vim +380 drivers/tty/serial/amba-pl011.c
-
-68b65f7305e54b drivers/serial/amba-pl011.c     Russell King   2010-12-22  368  
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  369  static int pl011_sgbuf_init(struct dma_chan *chan, struct pl011_sgbuf *sg,
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  370  	enum dma_data_direction dir)
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  371  {
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  372  	dma_addr_t dma_addr;
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  373  
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  374  	sg->buf = dma_alloc_coherent(chan->device->dev,
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  375  		PL011_DMA_BUFFER_SIZE, &dma_addr, GFP_KERNEL);
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  376  	if (!sg->buf)
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  377  		return -ENOMEM;
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  378  
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  379  	sg_init_table(&sg->sg, 1);
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27 @380  	sg_set_page(&sg->sg, phys_to_page(dma_addr),
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  381  		PL011_DMA_BUFFER_SIZE, offset_in_page(dma_addr));
-cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  382  	sg_dma_address(&sg->sg) = dma_addr;
-c64be9231e0893 drivers/tty/serial/amba-pl011.c Andrew Jackson 2014-11-07  383  	sg_dma_len(&sg->sg) = PL011_DMA_BUFFER_SIZE;
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  384  
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  385  	return 0;
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  386  }
-ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  387  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Tylor
 
