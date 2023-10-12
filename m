@@ -1,219 +1,177 @@
-Return-Path: <devicetree+bounces-8034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F5C7C67A3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EED687C67AA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67ADD1C20DFB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:39:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D82A1C20E3F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EEE15EBF;
-	Thu, 12 Oct 2023 08:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CDB1D523;
+	Thu, 12 Oct 2023 08:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="myQ2qDU0"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PN/xcoaE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE1B1F168
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:39:18 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF00198
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 01:39:15 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32caaa1c493so574902f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 01:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697099954; x=1697704754; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5/QtzDHCW7o30oEmmjJf54X8EtkkjmaGDgX3spSSCCI=;
-        b=myQ2qDU0MKsxrAukwpVWK+Kvo2uxwPRNHqP6aRFxUaL6iHg907KoGWSxQHmoPN4Cdo
-         jYHFcYr1Pyker1iP1ZY8uqHcAjb/noNcxZB4j0d+lisFZZxR4wLGv6XZ49xKmnCWMOpJ
-         FJwjr5SvWO1rb29denIsp3mF2IIi48UCniO6fGTAmYkmdipJnyMb7INL9A+5nh7m42Jw
-         +Pqjk26CkTjNwJ7I6bXryjvfwhvuizX5/HZxkiDa/uPjlonzEj2iaL5Tc3gPc+rgJ8wQ
-         Ax9LwAGlHjplVN3J6iAvV1LNtuloiRrsw/Yim2p4bbfJjmQ/krdhT5sIYlGXAXWLXBGf
-         D9Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697099954; x=1697704754;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5/QtzDHCW7o30oEmmjJf54X8EtkkjmaGDgX3spSSCCI=;
-        b=vc/YYRzryIC76MzH4RkJlo5yqxpYvAS8HQucYdxpAkPso0ZdevcCrxboepD5N9s3Va
-         ZD/F2nI+tw5XrJsg1YegKB6GNsF/FBuEmxwgU9slr2vDvUGKjyTqZhJdXzfFMFsGYwrd
-         HfQOmReuiqui3TquntsLva0Mh92Hvwum93Sz5dGOr0WmyhBIbgZdI0hDPZf7iE3+tbhn
-         McKnssmeFuuT2d6QLCNm+9WhG0ckdHMLyk+dxuCGNT8AAoesNDJ6aZTGX75LhDN2ozzQ
-         a5GiucpEh+l5srOd7YXEk0KuK4OkMYMXbZIihk2oEE3MgwXM+QptULxDmOoC7IHKFvzs
-         jjAw==
-X-Gm-Message-State: AOJu0YyILTks4G1hQwsNvrTs5yU3VrI36Ww9Ik3P//FkgZf+hrPQr6Yl
-	VKAdfNSaMRgxP2wtsKOIg9liWg==
-X-Google-Smtp-Source: AGHT+IE1VdJ2TXFw0xpanHyqgoxlbYmOptLH4v6cqX44fQuwFRoZyw6MpAQ0mKI2tu7J6D1XAntDzA==
-X-Received: by 2002:adf:e50b:0:b0:322:5d58:99b4 with SMTP id j11-20020adfe50b000000b003225d5899b4mr19854387wrm.0.1697099954387;
-        Thu, 12 Oct 2023 01:39:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v3-20020adfa1c3000000b0032d8354fb43sm4506073wrv.76.2023.10.12.01.39.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 01:39:13 -0700 (PDT)
-Message-ID: <7c570333-7334-435c-83cd-225817afc51c@linaro.org>
-Date: Thu, 12 Oct 2023 10:39:12 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A5901A27E
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:50 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1893BA9;
+	Thu, 12 Oct 2023 01:40:43 -0700 (PDT)
+X-UUID: 062162b068db11eea33bb35ae8d461a2-20231012
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5oPuZOvqen0FMPYfEAl+dBXKiTdxJ+Ejr226OwSHeAA=;
+	b=PN/xcoaEgaPyAwmA1Ipe16F0WqDvK0zkJTkup/fLZoBRSSzDQ7P9nOEpSIK0sx5tD4lgvEVnR6GKC9gg6EeHY7tomgplfMH6u+3DJgPk3LbKM63/OhHLIdetcs/hw38slF/feMEcPku98g5G6YeUJc+C2Rzv05ULIEJ1jhNrPGw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:71ed4e3e-ae11-4f02-9c9d-24c2402cc881,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:5f78ec9,CLOUDID:0eddd8bf-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 062162b068db11eea33bb35ae8d461a2-20231012
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <moudy.ho@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 753838986; Thu, 12 Oct 2023 16:40:40 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 12 Oct 2023 16:40:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 12 Oct 2023 16:40:38 +0800
+From: Moudy Ho <moudy.ho@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>
+CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, "Moudy
+ Ho" <moudy.ho@mediatek.com>
+Subject: [PATCH v7 00/16] introduce more MDP3 components in MT8195
+Date: Thu, 12 Oct 2023 16:40:21 +0800
+Message-ID: <20231012084037.19376-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: input: bindings for Adafruit Seesaw
- Gamepad
-Content-Language: en-US
-To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>,
- linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
-References: <20231010184827.1213507-1-anshulusr@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231010184827.1213507-1-anshulusr@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--6.944500-8.000000
+X-TMASE-MatchedRID: P9jnqXW9GD/sAGjS6lxxKhlckvO1m+Jc0r/qCu/cY51GL0g1nVmkYT5R
+	eTebdoC/4ifNBjPqKM9JnSNmmtyKC1iMfoAkKtzEgZTbeFUhryFbAoaK+wS4jctau7i1GewkQzG
+	yMtNT2iodi6rnZPhS04gANQweFs1E717yJ8IcCtsmZusHWPhfCjGZtPrBBPZrY7wPREa5LOgDxm
+	wJdBHa0yykokHH0nckrDEfwE8Ux42R9GF2J2xqMxRFJJyf5BJe3QfwsVk0UbtuRXh7bFKB7syxk
+	dqOJMSC2X5HPRT4be6+grGwIemnJbaq3yu6EJozH8FerAT0dJY=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--6.944500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 93E4BCFCF75A704338DC21C9CB6EA4D573D07B2CB3EBFA5F5CD7390CD74FC1F42000:8
+X-MTK: N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/10/2023 20:48, Anshul Dalal wrote:
-> Adds bindings for the Adafruit Seesaw Gamepad.
-> 
-> The gamepad functions as an i2c device with the default address of 0x50
-> and has an IRQ pin that can be enabled in the driver to allow for a rising
-> edge trigger on each button press or joystick movement.
-> 
-> Product page:
->   https://www.adafruit.com/product/5743
-> Arduino driver:
->   https://github.com/adafruit/Adafruit_Seesaw
-> 
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-> ---
-> 
-> Changes for v4:
-> - Fixed the URI for the id field
-> - Added `interrupts` property
-> 
-> Changes for v3:
-> - Updated id field to reflect updated file name from previous version
-> - Added `reg` property
-> 
-> Changes for v2:
-> - Renamed file to `adafruit,seesaw-gamepad.yaml`
-> - Removed quotes for `$id` and `$schema`
-> - Removed "Bindings for" from the description
-> - Changed node name to the generic name "joystick"
-> - Changed compatible to 'adafruit,seesaw-gamepad' instead of
->   'adafruit,seesaw_gamepad'
-> 
->  .../input/adafruit,seesaw-gamepad.yaml        | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> new file mode 100644
-> index 000000000000..e8e676006d2f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Adafruit Mini I2C Gamepad with seesaw
-> +
-> +maintainers:
-> +  - Anshul Dalal <anshulusr@gmail.com>
-> +
-> +description: |
-> +  Adafruit Mini I2C Gamepad
-> +
-> +    +-----------------------------+
-> +    |   ___                       |
-> +    |  /   \               (X)    |
-> +    | |  S  |  __   __  (Y)   (A) |
-> +    |  \___/  |ST| |SE|    (B)    |
-> +    |                             |
-> +    +-----------------------------+
-> +
-> +  S -> 10-bit percision bidirectional analog joystick
-> +  ST -> Start
-> +  SE -> Select
-> +  X, A, B, Y -> Digital action buttons
-> +
-> +  Product page: https://www.adafruit.com/product/5743
-> +  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
-> +
-> +properties:
-> +  compatible:
-> +    const: adafruit,seesaw-gamepad
+Changes since v6:
+- Rebase on v6.6-rc5.
+- Dependent dtsi files:
+  https://patchwork.kernel.org/project/linux-mediatek/list/?series=792079
+- Depends on:
+  Message ID = 20231006073831.10402-5-shawn.sung@mediatek.com
+- Discard splitting RDMA's common properties and instead use 'allOf' to
+  isolate different platform features.
+- Revise the incorrect properties in FG, HDR, STITCH, TCC and TDAP bindings.
+- Adding SoC-specific compatible string to components, like WROT and RSZ,
+  that are inherited from MT8183.
+- Fixed typos in TCC patch and enhancing its hardware description.
 
-I thought seesaw is a name of a device, but it is not, thus it is  quite
-a generic compatible. Are you sure device does not have its name?
-Looking at product page, it indeed might not have.
+Changes since v5:
+- Rebase on v6.6-rc2.
+- Dependent dtsi files:
+  https://patchwork.kernel.org/project/linux-mediatek/list/?series=786511
+- Depends on:
+  Message ID = 20230911074233.31556-5-shawn.sung@mediatek.com
+- Split out common propertis for RDMA.
+- Split each component into independent patches.
 
+Changes since v4:
+- Rebase on v6.6-rc1
+- Organize identical hardware components into their respective files.
 
-Best regards,
-Krzysztof
+Hi,
+
+The purpose of this patch is to separate the MDP3-related bindings from
+the original mailing list mentioned below:
+https://lore.kernel.org/all/20230208092209.19472-1-moudy.ho@mediatek.com/
+Those binding files describe additional components that
+are present in the mt8195.
+
+Moudy Ho (16):
+  dt-bindings: media: mediatek: mdp3: correct RDMA and WROT node with
+    generic names
+  dt-bindings: media: mediatek: mdp3: merge the indentical RDMA under
+    display
+  dt-bindings: media: mediatek: mdp3: add config for MT8195 RDMA
+  dt-bindings: media: mediatek: mdp3: add compatible for MT8195 RSZ
+  dt-bindings: media: mediatek: mdp3: add compatible for MT8195 WROT
+  dt-bindings: media: mediatek: mdp3: add component FG for MT8195
+  dt-bindings: media: mediatek: mdp3: add component HDR for MT8195
+  dt-bindings: media: mediatek: mdp3: add component STITCH for MT8195
+  dt-bindings: media: mediatek: mdp3: add component TCC for MT8195
+  dt-bindings: media: mediatek: mdp3: add component TDSHP for MT8195
+  dt-bindings: display: mediatek: aal: add compatible for MT8195
+  dt-bindings: display: mediatek: color: add compatible for MT8195
+  dt-bindings: display: mediatek: merge: add compatible for MT8195
+  dt-bindings: display: mediatek: ovl: add compatible for MT8195
+  dt-bindings: display: mediatek: split: add compatible for MT8195
+  dt-bindings: display: mediatek: padding: add compatible for MT8195
+
+ .../display/mediatek/mediatek,aal.yaml        |   1 +
+ .../display/mediatek/mediatek,color.yaml      |   1 +
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |  88 --------------
+ .../display/mediatek/mediatek,merge.yaml      |   1 +
+ .../display/mediatek/mediatek,ovl.yaml        |   1 +
+ .../display/mediatek/mediatek,padding.yaml    |   4 +-
+ .../display/mediatek/mediatek,split.yaml      |  27 +++++
+ .../bindings/media/mediatek,mdp3-fg.yaml      |  61 ++++++++++
+ .../bindings/media/mediatek,mdp3-hdr.yaml     |  60 ++++++++++
+ .../bindings/media/mediatek,mdp3-rdma.yaml    | 108 ++++++++++++++----
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |   6 +-
+ .../bindings/media/mediatek,mdp3-stitch.yaml  |  61 ++++++++++
+ .../bindings/media/mediatek,mdp3-tcc.yaml     |  62 ++++++++++
+ .../bindings/media/mediatek,mdp3-tdshp.yaml   |  61 ++++++++++
+ .../bindings/media/mediatek,mdp3-wrot.yaml    |  29 +++--
+ 15 files changed, 449 insertions(+), 122 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+
+-- 
+2.18.0
 
 
