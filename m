@@ -1,122 +1,156 @@
-Return-Path: <devicetree+bounces-8148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA5F7C6E0E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F137C6E1E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C30941C20D2B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:26:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51FD11C20EDB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC11F2629C;
-	Thu, 12 Oct 2023 12:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A96208D5;
+	Thu, 12 Oct 2023 12:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UnnjNiYc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HUeM/pez"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E9D25114
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:26:45 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FB1BE;
-	Thu, 12 Oct 2023 05:26:43 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50435ad51bbso1227776e87.2;
-        Thu, 12 Oct 2023 05:26:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697113601; x=1697718401; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7arwf9Sbc63puBYbaOYgIueno4H8IZ31i37CuMkfbnw=;
-        b=UnnjNiYcT+9l9Pld4cadI0V0x2Fzwapz9wcQ+1bXsoHHPWAC1cdZsWQC6My5UegWh2
-         UdAu7r1eHLcx0TGOKI6prVVxJJ3cCSL3fAiwIpOAbxqiFWOvU85tYwd8s6F1Qbp1fCZb
-         keqWzMVnb9wUITNZjCUrscNvWUdQs1Ag54NCBsl1QT92hhaEPd2M4ySVdjBci90txGjo
-         PBd2trtS0WeMf8TVHgj+UFQdtghJkvU2innAaD3jj1d2BxXUDNPRSZSLKrdwHqANCtCf
-         LunOoypC1vhH9N45mfTUW6QB+yEaqfLdXmogPjszDoVwO/JWqyyf7iikYru8YT6YOCOo
-         ysPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697113601; x=1697718401;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7arwf9Sbc63puBYbaOYgIueno4H8IZ31i37CuMkfbnw=;
-        b=tEGahiwBqe7jxqyoSnUMvJSkTExBFEeluOM7tCgH1YcyYfA2vMOu/da7Zt+tAvUFUv
-         gD4VnJav22bkQ2Mdz6kUccThcvxzw0YSyzlnjVUr7jp3hPo/6+xv/0uOPE85hlCqXS3u
-         mQgoQBd50plJpmXgcxpvrfQs5GYjPtMf+rKiIqeLEQ5+KjlCZDD01mgooPNawT7YNM2u
-         X+bsi2v42KLy0q1pw7gveR+hOwfPzuD7/0ZMc+6m9gWiWfqcbDJko7G6seMb2btT0jto
-         9sxRYiQk1C39uPERSika6PGA4V9yFBfzS/6Z9JbTYw6QxGsi4TxIlu8gPvtE6iHeeyoq
-         ujtw==
-X-Gm-Message-State: AOJu0YxrCrqa5wil+CFEcRE38jS57mGfPXtxi0hJx+EEoVs2S3bjza6V
-	Nw29a1L2VnNziFoM2HL++3wCAyJMtLq5XTpUdRbfyk1T/sA=
-X-Google-Smtp-Source: AGHT+IGQvgR/UKmN6GRDSyaTVXmzOl1h+nOUHRAaAvR6F5hiNV89R5yePnyki+Zoz3z/4gmnYahvzHwm5qJk8blLM0E=
-X-Received: by 2002:a17:907:c70d:b0:9ae:47c3:35a0 with SMTP id
- ty13-20020a170907c70d00b009ae47c335a0mr22047943ejc.47.1697113581261; Thu, 12
- Oct 2023 05:26:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07322266DC
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:30:57 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A2EB8;
+	Thu, 12 Oct 2023 05:30:56 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-212-229.ewe-ip-backbone.de [91.248.212.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D0E2C660733F;
+	Thu, 12 Oct 2023 13:30:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697113854;
+	bh=SqYTiOtUppKlZvMe6nHnH40NTI0MY7sewDjs1R3rQVU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HUeM/pezKZ48kW54SVra2V2rv+4szeF5ThlojEo06WDvEBgFWirXf4T/M1jkwAXG9
+	 9xD/I4srIYRJhFx4UaPovNmSvSsp7OeEwwSRGY22v0ssyEPybt/tyWs0sGcQHqAY0A
+	 qHCMCdrhVLYhYLGknT9LQQqxINcpo/fPpzWBeYkNnYD4+j8TJ+Cw45OU+fHzDrgIyO
+	 NjwQarrxwt8vMWx0zB3l55oBGblCOZ8ziFcdVTgV2VZ+lf0i4qWmFWyCrY1nS5jKDs
+	 cutarlN17iJe27Sfr89nmfexZWeTpG3+Yvq1aLDUqEu2hKVzUsP3zX4tjimzjSXjrn
+	 jVwXKz7Dn3Pqw==
+Received: by mercury (Postfix, from userid 1000)
+	id A6A9810605A6; Thu, 12 Oct 2023 14:30:51 +0200 (CEST)
+Date: Thu, 12 Oct 2023 14:30:51 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20231012123051.jkxj4mpczerc2igl@mercury.elektranox.org>
+References: <20231009172129.43568-1-sebastian.reichel@collabora.com>
+ <20231009172129.43568-2-sebastian.reichel@collabora.com>
+ <20231010162722.GA1006254-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230917-imx95-mbox-v1-0-440245287356@nxp.com>
-In-Reply-To: <20230917-imx95-mbox-v1-0-440245287356@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Thu, 12 Oct 2023 15:26:08 +0300
-Message-ID: <CAEnQRZBWgjPoY6mZUeD+3fbqWbWrpNX3VzMsMzETt0FciwNSfA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] mailbox: imx: support new tx doorbell
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dg275xcvg6oalgtm"
+Content-Disposition: inline
+In-Reply-To: <20231010162722.GA1006254-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 7:55=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
->
-> The new added channel type is for i.MX95 SCMI mailbox usage.
->
-> i.MX95 using TX doorbell and RX doorbell for the SCMI mailbox transport.
-> For TX doorbell, we relies on software reply from the other side in
-> SCMI driver side using mbox_client_txdone to drive the tx tick.
->
-> But the current MU tx doorbell using tasklet to emulate hardware ACK
-> from mailbox driver side, so add a new doorbell type to support i.MX95
-> SCMI mailbox transport.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+--dg275xcvg6oalgtm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-> ---
-> Peng Fan (2):
->       dt-bindings: mailbox: fsl,mu: add new tx doorbell channel
->       mailbox: imx: support channel type tx doorbell v2
->
->  .../devicetree/bindings/mailbox/fsl,mu.yaml        |  5 ++--
->  drivers/mailbox/imx-mailbox.c                      | 32 ++++++++++++++++=
-++++--
->  2 files changed, 32 insertions(+), 5 deletions(-)
-> ---
-> base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
-> change-id: 20230916-imx95-mbox-88437c51ce54
->
-> Best regards,
-> --
-> Peng Fan <peng.fan@nxp.com>
->
+On Tue, Oct 10, 2023 at 11:27:22AM -0500, Rob Herring wrote:
+> [...]
+> > +allOf:
+> > +  - $ref: snps,dwc3.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3328-dwc3
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 3
+> > +          maxItems: 4
+> > +        clock-names:
+> > +          minItems: 3
+> > +          items:
+> > +            - const: ref_clk
+> > +            - const: suspend_clk
+> > +            - const: bus_clk
+> > +            - const: grf_clk
+>=20
+> No need to list everything again. Just:
+>=20
+> contains:
+>   const: grf_clk
+
+No, that does not work because 'grf_clk' is optional and by using
+'contains: grf_clk' the check will complain if the list does not
+contain 'grf_clk'.
+
+> [...] more improvements suggested by Rob [...]
+
+These look all fine to me and I fixed them up for v4.
+
+> > +        clock-names:
+> > +          minItems: 3
+> > +          items:
+> > +            - const: ref_clk
+> > +            - const: suspend_clk
+> > +            - const: bus_clk
+> > +            - const: utmi
+> > +            - const: pipe
+>=20
+> Again, can use 'contains' here. Where 'utmi' is in the list is already=20
+> defined by the top-level schema.
+
+Same issue as above. On RK3588 there is one USB3 controller, which
+needs all 5 clocks and two controllers with just the first 3 clocks.
+I initially had two different compatible strings to have fixed lists,
+but Krzysztof asked to use only a single one.
+
+-- Sebastian
+
+--dg275xcvg6oalgtm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUn5vMACgkQ2O7X88g7
++pq5iQ//SbD019jkFbISwPoG5pufL8vzlz6VbiCInwaeTLu/GuWEXfKMBsIz+1Ui
+p8mJnLWZ+WsvgHHJWDrF/OLlheQ7SJUEx2pd3hKGVI4HmuN/+cQ5Z30Dx4i8NpM9
+IW6hUHyE6HnRIGyM9ZHq51Qa6A/rE0Fas4FBcLo0LUWeE3cpJPIlofGW7rLJ8GEW
+9/dr70KmKSzo1/Lwsno+UY4VQtAdgMjo3vMqVooOwB6KnOAPYZHgK5C/A/JouzWd
+SuvHQ9Bp8iWiuhvLVgkHmVuJ2bjZEmBR0BgoZmQgE/pWcbf+/q6etR2hDafPS/8a
+Pxz4KDrnTSfw6v3ZdmsON+vEsyRdrm/qWlQldstzy22xlmt8NHT3wrbbucTaFj2W
+Sem+RN/Qj2hJeLqVQQPxGBKjCP2XXDH6SZHU0lO5z3YbUUmEh0Sco1kARE01Dg6S
+v7TvHjyDKuUB6UiuqwPrOq4+5Wh+LR3GxJrQqviJ1GzOd5h1iFOjDbKWZoH8KkMG
+OsHHN/zj+09EvatG5M3gUyNoT6upKhXHJhAx5VxNda2MuuikQmG2x6aUzlwJldvu
+dI+sfV+4opYtRakVfvKmVCZo06hHt8j1fRAOKE51x6MReMHL2R2cQWtr1MQpmeJP
+Y9u/fJ0NcKue4wu6YgGBleeH5c/BzSQTP2VfpvFQ0SP7eHHch8U=
+=LnH+
+-----END PGP SIGNATURE-----
+
+--dg275xcvg6oalgtm--
 
