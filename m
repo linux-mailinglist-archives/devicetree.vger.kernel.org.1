@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-8232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EF47C7405
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:21:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C9C7C7415
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:21:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC694282C38
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:21:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52CE6282C51
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3341A341BE;
-	Thu, 12 Oct 2023 17:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0B8347CB;
+	Thu, 12 Oct 2023 17:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Puj4pjSU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jsp8cAqZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30563418F
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 17:21:46 +0000 (UTC)
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E24DE
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:21:43 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1c8a1541232so11027885ad.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:21:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF7734199
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 17:21:53 +0000 (UTC)
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7FA9E5
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:21:51 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1c9daca2b85so9218185ad.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697131303; x=1697736103; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4o0VE3GXuM7/67ZO5GT2U/bw0PES2y181UsbC++z2Rs=;
-        b=Puj4pjSUZXL8tC4Mu1RXLH6ejEYdFmlVqbNtedtXB+xGkAc6ajBy+lfmf0lY3U8Xfn
-         Gd3/xMJFkMLIYgsJYXbhG/8pouOsYBi/kpSflyyE+qgnEn1BmhHwpx9LFH0oiSVv0p2M
-         40FTsyN0IPrpUWu4IAZK2UO8JH0zVqVT2KIHEz6i9i62+4JXiIvvMPlzjd9jU//TAP/S
-         ugpH70uc57Vbj4N521Nrt12hfIK6mPaDLMPzXBK0lJDaYdGmiF0hR5tbOuyxjAfX0LmV
-         k4GARgpqPdvTSxnBxxpyAvAD4m6inst1Dauwgp2p5ADGLjVCj1ipiRfG2o3KdbC+3//y
-         ubog==
+        d=linaro.org; s=google; t=1697131311; x=1697736111; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=emz03f3uxdP7Dq6lqeINaZBEdrIm5oTH0vEaEEX0iS4=;
+        b=Jsp8cAqZRfPoQAwyDLvOynGiSaXDUBIpdQIr9Sr23jifeiqV1AVkD9mJr/dTBRlynR
+         KzkeSfRdRsqx6ez3115boHO09wZqYQJuJ67bSH1WWI8g0srt3Vocn1BKnnYToSZ6wJ3F
+         sx6RS8jsItRWx7EXxbgz+qORos3T8PSdZrwGPdI0+A0f4YD1Jp2qe6NOpzAV5+DnlsOr
+         ikwyGtUbcTk4LEZWJb8e8bi+3rnDo3scwgSAoxRNahKhjSYpd1dBfi9POhKNSebJYJhe
+         HO+smd61N3vYZIq7uhoWf3QecIJfMwrzwVDxKMWqV7ynX3zSlVOSp+LO5zmiQaTMOYmX
+         FRYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697131303; x=1697736103;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4o0VE3GXuM7/67ZO5GT2U/bw0PES2y181UsbC++z2Rs=;
-        b=mnLvY2YkdFsf88S+xxAf0YA1P/TK46d4pSIzkrnL10NMBCUKxvQuB4qxbId5RXm52C
-         YNEt8NW4EeO+5P+lD2X9l1HuiigP3WxWqQdE02mRC/Ayrjmpz/fq6F+5wZY9i7eJsp98
-         IEG6DtqDbjx9+7L7fF8hoiujzkYofMo9GtnSobNeXQYnjIjRFg1GLASrdbeZ5AGh+2e/
-         vu+ZBGBEQX/3Rn5BHY8QDkQrwmR/RlJmZ6q/8bJ80g/g2ZEWHkpi8pvPUdleULurgAKP
-         oCgoRSlLFCeA3Mm3UYb5UGmSS/1Vl93KRzuGf5mB74kHRONom1u2oPdsnHCFIgx1pLw4
-         Rd/A==
-X-Gm-Message-State: AOJu0YzvR1ERpQ+Pu7/mFqzt1NvsWuO+VGJy8JRBjpptA/UO7kqZ9Mce
-	MOkYBC14SJpaeTFIZVeMrC7P
-X-Google-Smtp-Source: AGHT+IFucoxW73imfXYl6qZ7hJDLFsbG0EOZVauFefSh8gl9htQMON7uvSIswMx3E08U0aMzzT889w==
-X-Received: by 2002:a17:903:810:b0:1c9:e257:f88 with SMTP id kr16-20020a170903081000b001c9e2570f88mr1805665plb.10.1697131303216;
-        Thu, 12 Oct 2023 10:21:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697131311; x=1697736111;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=emz03f3uxdP7Dq6lqeINaZBEdrIm5oTH0vEaEEX0iS4=;
+        b=vle7tgnaYg4azBlSfKE2oB+LKFciDjm6o1r/9+7kCpvAkq7ZYyKqQkeGv4NMj6yoa1
+         tGoNa1P0QugsBajW2bhqVoqMjLNBilP/Cr1WVptKXzoFRnob+ife1OOxwCoGpYYE1oQV
+         y8eq1raRIGAvTP8SSPeofpC8dmEDEmJyHzBK4qlJXuqwJz5gjbPSRiu1Af/rrycbkd7r
+         HlSZz5qTvcZALKr9VAaKZ19YoDrdraHobT6oU3prn7VxZNx1ZgtFPFfAwXdRC1yDxdAm
+         52qG4n74C4sWoCr7K27j6DDkw9lYLXhMBzlToiQBCY5bzhcs5ZPuCi/IhXMWGhmcQQUZ
+         YkYw==
+X-Gm-Message-State: AOJu0YzonW8GomNX4ajMUKoAoo/RHgWFs+GVTWGUlJtxC5lH6viH1GOv
+	/LyAh+7ugQFZ6oTbcsUsGLuO
+X-Google-Smtp-Source: AGHT+IEw8ngM9ONqiOY/Lpq6bCfVEQBRoq3XO4ZLXCgxF2MnAul4Mauj/JUwnqv5RWxQLqInE84Psg==
+X-Received: by 2002:a17:902:e5d1:b0:1c6:362:3553 with SMTP id u17-20020a170902e5d100b001c603623553mr31262262plf.31.1697131311172;
+        Thu, 12 Oct 2023 10:21:51 -0700 (PDT)
 Received: from localhost.localdomain ([120.138.12.180])
-        by smtp.gmail.com with ESMTPSA id f9-20020a170902ce8900b001c75a07f62esm2242359plg.34.2023.10.12.10.21.35
+        by smtp.gmail.com with ESMTPSA id f9-20020a170902ce8900b001c75a07f62esm2242359plg.34.2023.10.12.10.21.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 10:21:42 -0700 (PDT)
+        Thu, 12 Oct 2023 10:21:50 -0700 (PDT)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: vireshk@kernel.org,
 	nm@ti.com,
@@ -90,11 +91,14 @@ Cc: alim.akhtar@samsung.com,
 	krzysztof.kozlowski@linaro.org,
 	linux-kernel@vger.kernel.org,
 	alessandro.carminati@gmail.com,
+	Rob Herring <robh@kernel.org>,
 	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v7 0/5] UFS: Add OPP support
-Date: Thu, 12 Oct 2023 22:51:24 +0530
-Message-Id: <20231012172129.65172-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v7 1/5] dt-bindings: ufs: common: add OPP table
+Date: Thu, 12 Oct 2023 22:51:25 +0530
+Message-Id: <20231012172129.65172-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231012172129.65172-1-manivannan.sadhasivam@linaro.org>
+References: <20231012172129.65172-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,109 +107,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This series adds OPP (Operating Points) support to UFSHCD driver.
+Except scaling UFS and bus clocks, it's necessary to scale also the
+voltages of regulators or power domain performance state levels.  Adding
+Operating Performance Points table allows to adjust power domain
+performance state, depending on the UFS clock speed.
 
-Motivation behind adding OPP support is to scale both clocks as well as
-regulators/performance state dynamically. Currently, UFSHCD just scales
-clock frequency during runtime with the help of "freq-table-hz" property
-defined in devicetree. With the addition of OPP tables in devicetree (as
-done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
-both clocks and performance state of power domain which helps in power
-saving.
+OPPv2 deprecates previous property limited to clock scaling:
+freq-table-hz.
 
-For the addition of OPP support to UFSHCD, there are changes required to
-the OPP framework and devfreq drivers. The OPP framework changes are already
-merged and the devfreq change is added in this series.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ .../devicetree/bindings/ufs/ufs-common.yaml   | 35 +++++++++++++++++--
+ 1 file changed, 32 insertions(+), 3 deletions(-)
 
-Credits
-=======
-
-This series is a continuation of previous work by Krzysztof Kozlowski [1].
-
-Testing
-=======
-
-This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
-development boards.
-
-Merging Strategy
-================
-
-Since the devfreq patch got an Ack from the maintainer, either it can be merged
-to scsi tree with rest of the patches or merged separately through devfreq tree.
-
-Thanks,
-Mani
-
-[1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
-
-Changes in v7:
-
-* Added missing EXPORT_SYMBOL_GPL() for ufshcd_opp_config_clks() API as reported
-  by Alessandro Carminati
-
-Changes in v6:
-
-* Collected tags from Dmitry
-* Fixed bindings issues reported by Krzysztof
-
-Changes in v5:
-
-* Dropped the devfreq patch since it got applied
-* Fixed the bindings issue reported by DT bot
-* Rebased on top of mkp/scsi/for-next
-
-Changes in v4:
-
-* Rebased on top of v6.6-rc3
-
-Changes in v3:
-
-* Rebased on top of linux-next/master tag: next-20230731
-* Dropped the already applied patches (dts, opp binding and framework)
-* Moved the interconnect patches to a separate series:
-  https://lore.kernel.org/linux-scsi/20230731145020.41262-1-manivannan.sadhasivam@linaro.org/
-* Moved ufshcd_opp_config_clks() API to ufshcd.c to fix the build failure
-  reported by Kbuild bot: https://lore.kernel.org/all/202307210542.KoLHRbU6-lkp@intel.com/
-* Collected Acks
-* v2: https://lore.kernel.org/all/20230720054100.9940-1-manivannan.sadhasivam@linaro.org/
-
-Changes in v2:
-
-* Added more description to the bindings patch 2/15
-* Fixed dev_pm_opp_put() usage in patch 10/15
-* Added a new patch for adding enums for UFS lanes 14/15
-* Changed the icc variables to mem_bw and cfg_bw and used
-  the enums for gears and lanes in bw_table
-* Collected review tags
-* Added SCSI list and folks
-* Removed duplicate patches
-
-Krzysztof Kozlowski (2):
-  dt-bindings: ufs: common: add OPP table
-  arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
-
-Manivannan Sadhasivam (3):
-  scsi: ufs: core: Add OPP support for scaling clocks and regulators
-  scsi: ufs: host: Add support for parsing OPP
-  arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
-
- .../devicetree/bindings/ufs/ufs-common.yaml   |  35 +++-
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  42 +++-
- arch/arm64/boot/dts/qcom/sm8250.dtsi          |  39 +++-
- drivers/ufs/core/ufshcd.c                     | 180 ++++++++++++++----
- drivers/ufs/host/ufshcd-pltfrm.c              |  78 ++++++++
- include/ufs/ufshcd.h                          |   7 +
- 6 files changed, 326 insertions(+), 55 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+index bbaee4f5f7b2..985ea8f64de8 100644
+--- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
++++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
+@@ -20,11 +20,25 @@ properties:
+       items:
+         - description: Minimum frequency for given clock in Hz
+         - description: Maximum frequency for given clock in Hz
++    deprecated: true
+     description: |
++      Preferred is operating-points-v2.
++
+       Array of <min max> operating frequencies in Hz stored in the same order
+-      as the clocks property. If this property is not defined or a value in the
+-      array is "0" then it is assumed that the frequency is set by the parent
+-      clock or a fixed rate clock source.
++      as the clocks property. If either this property or operating-points-v2 is
++      not defined or a value in the array is "0" then it is assumed that the
++      frequency is set by the parent clock or a fixed rate clock source.
++
++  operating-points-v2:
++    description:
++      Preferred over freq-table-hz.
++      If present, each OPP must contain array of frequencies stored in the same
++      order for each clock.  If clock frequency in the array is "0" then it is
++      assumed that the frequency is set by the parent clock or a fixed rate
++      clock source.
++
++  opp-table:
++    type: object
+ 
+   interrupts:
+     maxItems: 1
+@@ -75,8 +89,23 @@ properties:
+ 
+ dependencies:
+   freq-table-hz: [ clocks ]
++  operating-points-v2: [ clocks, clock-names ]
+ 
+ required:
+   - interrupts
+ 
++allOf:
++  - if:
++      required:
++        - freq-table-hz
++    then:
++      properties:
++        operating-points-v2: false
++  - if:
++      required:
++        - operating-points-v2
++    then:
++      properties:
++        freq-table-hz: false
++
+ additionalProperties: true
 -- 
 2.25.1
 
