@@ -1,159 +1,208 @@
-Return-Path: <devicetree+bounces-8225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79047C7360
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB787C735C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:45:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82D46282933
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:45:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C69D1282937
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3F82943D;
-	Thu, 12 Oct 2023 16:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2510A2943A;
+	Thu, 12 Oct 2023 16:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M3WGMV8H"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PQXg8gaP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EE8262B2
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:45:33 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2597C0
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:45:30 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5384975e34cso2265686a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:45:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE99262B2
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 16:45:29 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59FB3CC
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:45:27 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-53e08b60febso1554237a12.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:45:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697129129; x=1697733929; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kRh+Vupx0XypJiTrUDbDPsKcsjU0eEhEwWX6GsRTbtw=;
-        b=M3WGMV8HoyeP3/jPDaNPDSuBqQsHKWODClmLyKtJx5di7YL2ABsiR3lArZpDnoumXB
-         8bFjAN3ypyaQqT81WUikEEqAnU98o/GReLZq3ZlWj2c9Q9Q3MC2EdTsdi45HU4B+KL9A
-         5TViomjOKTzo+8cszm5QM1cIqu/U67wiXDwLuXxnajEWKY3dcO4nc+5KwEIDyvAp5847
-         uINnPS8vjP/c9O+a2Em+7OVO6mOhnafH9oC7YOY264/3xg/tBtentb1fTonuEXjR9ThP
-         l4cwoSgJB6+9CdCHbHAkgNiqdmpSxWzYLQgcNtG2YTVoowrJLrQRX6tCPlaNFGVoiRWo
-         8+9g==
+        d=chromium.org; s=google; t=1697129123; x=1697733923; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XB7Wf5LgsYf36+k+zhs9TduHabjcJcCiXT3QAGky0tQ=;
+        b=PQXg8gaPH0o714Os32OyWfzyCYiyDCtxPyzicgHC20w0Nt9ap5iiuNZ3Ts2VL1M8Y3
+         S5zQeHzgLQBqzJAdHU472H7KTWqJ0bAKiZNRDyYs4kQlOgosMsBJq6jSEQqbezrFktkn
+         rPQzoCKSCiVhZeOaN9DrynQLGfqllnb+psJe4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697129129; x=1697733929;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRh+Vupx0XypJiTrUDbDPsKcsjU0eEhEwWX6GsRTbtw=;
-        b=iJCMym5PNo8EtVmB7wD3o0Um1peyzlIiYmhMB0/++Z2ZetKg5wzpYIA9dlwYkSvyZC
-         MX+jg22G2xRYRGOe5nhd+47ZpSCe5/2hZo1syOA152Oogx6kfQRbVpZt91C4yMRRLPf1
-         zj1h2C9ixmcITZQ5TbqbElM1DOnkUiha3qDkRY2Xbxm08kDY27AV/htsiqlkiWoVOYK2
-         WkaEuBsS6HnRCMXQQql1E8AQIKnL4IT+8eMpqqwDLYnu6vf7ldV3FS3Y7nG3A/5Yffgn
-         ErAGEyBR/GyH2Cazzyz8VHrx6uPqQza2WbPGwIU6lX95F6bHkaMf/Mrdip+7bEWVO77B
-         2CTw==
-X-Gm-Message-State: AOJu0Yy+kl564/wg4uLllT1aFyTtHFupu5zQtuIIq7BIes6geSB5TXEe
-	R0C9wrKG6t9hWrZmHXTcYc4xrA==
-X-Google-Smtp-Source: AGHT+IEXqEp3kFB6IUpjF8BAzbvasyJj3DSZYDjbuCP/F0tb8JGBX/QQLV+mGV4P8Tus5qj+oyhvlg==
-X-Received: by 2002:a17:906:24e:b0:9a1:e293:9882 with SMTP id 14-20020a170906024e00b009a1e2939882mr21330362ejl.63.1697129129266;
-        Thu, 12 Oct 2023 09:45:29 -0700 (PDT)
-Received: from [172.30.204.175] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id g7-20020a1709067c4700b0099bd1a78ef5sm11250236ejp.74.2023.10.12.09.45.12
+        d=1e100.net; s=20230601; t=1697129123; x=1697733923;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XB7Wf5LgsYf36+k+zhs9TduHabjcJcCiXT3QAGky0tQ=;
+        b=N3RJIwJ1sv4UTO7nLgCKvG7uHsRkwO02g/mRUNgViPo7KwtKDr/LR4mZd027leOAd1
+         VHLlsrlwC6AHqx3RwGFMvUVeApc23bz55H90l6deJ+b5U/nbd+BOjgfNFiICC6Qzvs5o
+         eDS63bNF32vNBgyZAoO4a+p1qAKHpdWO/6CTYwWk0TZqhAt28v/TYFkFWBemAK1Iet/b
+         Mfu2fWIJWIasxOQTyHsDBdGUYn8fostwW8dvvz3okt8c+uaofyN2VAmubeU9O7L3rZEz
+         T9CGJDY5EnTQQNoY6r5UkHExH2hPod+TGlR/NulsZvPqzU8LDIXlO4yULX5BE+U18Tng
+         6sog==
+X-Gm-Message-State: AOJu0YwV7a0I8791ETCUszlaU70TRjnf9RaI7BzAAmqF2TNo/UyJ7lHv
+	yAf01j1hHuB9dxP0LW/o2Uk6MlZlLvsLQW4sWDU9VQ==
+X-Google-Smtp-Source: AGHT+IExV81stXhKzAM5TIXu8H7cg27t15AudQyB23G6qmunwv3LWn0A4PlI+7+Gz8FQRIzd/sfvWw==
+X-Received: by 2002:aa7:df81:0:b0:534:7774:19e5 with SMTP id b1-20020aa7df81000000b00534777419e5mr22897335edy.8.1697129123039;
+        Thu, 12 Oct 2023 09:45:23 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
+        by smtp.gmail.com with ESMTPSA id v26-20020aa7d81a000000b005381936efa7sm10346045edq.16.2023.10.12.09.45.22
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 09:45:28 -0700 (PDT)
-Message-ID: <fef38d0e-f24b-41ce-9d28-82cd637ce342@linaro.org>
-Date: Thu, 12 Oct 2023 18:45:08 +0200
+        Thu, 12 Oct 2023 09:45:22 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-405459d9a96so2025e9.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:45:22 -0700 (PDT)
+X-Received: by 2002:a05:600c:3c96:b0:3f6:f4b:d4a6 with SMTP id
+ bg22-20020a05600c3c9600b003f60f4bd4a6mr262956wmb.7.1697129121865; Thu, 12 Oct
+ 2023 09:45:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
-Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
- vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
- andersson@kernel.org, rafael@kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20230930102218.229613-1-robimarko@gmail.com>
- <20230930102218.229613-4-robimarko@gmail.com>
- <e2d6c9c7-ff59-408f-94cf-81e66d291963@linaro.org>
- <6525ae86.050a0220.827f2.c59d@mx.google.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <6525ae86.050a0220.827f2.c59d@mx.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.6
-X-Spam-Level: *
+References: <20230925150010.1.Iff672233861bcc4cf25a7ad0a81308adc3bda8a4@changeid>
+ <b0037c9f-588b-4eb8-6415-0fe75bed264f@collabora.com> <CAD=FV=UWQgLLfU4X+6OUR5AWOkJKwG9J7BbKGRCgze6LTY6JNw@mail.gmail.com>
+ <CAD=FV=UqG6DiAyjcLKeoUWKutepGd46Zx=8O-NWKoYC-fZEG6g@mail.gmail.com> <c3380c97-1b8c-5a68-168e-fc6150701365@postmarketos.org>
+In-Reply-To: <c3380c97-1b8c-5a68-168e-fc6150701365@postmarketos.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 12 Oct 2023 09:45:09 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WAYYv5h6oWWhEJHyZesE5cguBqVufCmK6s4gvMeNkCWg@mail.gmail.com>
+Message-ID: <CAD=FV=WAYYv5h6oWWhEJHyZesE5cguBqVufCmK6s4gvMeNkCWg@mail.gmail.com>
+Subject: Re: [PATCH] drm/panel: Move AUX B116XW03 out of panel-edp back to panel-simple
+To: Anton Bambura <jenneron@postmarketos.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	dri-devel@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, matthias.bgg@gmail.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, airlied@gmail.com, daniel@ffwll.ch, 
+	jitao.shi@mediatek.com, linus.walleij@linaro.org, 
+	linux-kernel@vger.kernel.org, neil.armstrong@linaro.org, 
+	quic_jesszhan@quicinc.com, sam@ravnborg.org, 
+	Anton Bambura <jenneron@protonmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi,
 
+On Sun, Oct 8, 2023 at 1:52=E2=80=AFPM Anton Bambura <jenneron@postmarketos=
+.org> wrote:
+>
+>
+> On 10/5/23 21:10, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Tue, Sep 26, 2023 at 7:01=E2=80=AFAM Doug Anderson <dianders@chromiu=
+m.org> wrote:
+> >> Hi,
+> >>
+> >> On Tue, Sep 26, 2023 at 1:06=E2=80=AFAM AngeloGioacchino Del Regno
+> >> <angelogioacchino.delregno@collabora.com> wrote:
+> >>> Il 26/09/23 00:00, Douglas Anderson ha scritto:
+> >>>> In commit 5f04e7ce392d ("drm/panel-edp: Split eDP panels out of
+> >>>> panel-simple") I moved a pile of panels out of panel-simple driver
+> >>>> into the newly created panel-edp driver. One of those panels, howeve=
+r,
+> >>>> shouldn't have been moved.
+> >>>>
+> >>>> As is clear from commit e35e305eff0f ("drm/panel: simple: Add AUO
+> >>>> B116XW03 panel support"), AUX B116XW03 is an LVDS panel. It's used i=
+n
+> >>>> exynos5250-snow and exynos5420-peach-pit where it's clear that the
+> >>>> panel is hooked up with LVDS. Furthermore, searching for datasheets =
+I
+> >>>> found one that makes it clear that this panel is LVDS.
+> >>>>
+> >>>> As far as I can tell, I got confused because in commit 88d3457ceb82
+> >>>> ("drm/panel: auo,b116xw03: fix flash backlight when power on") Jitao
+> >>>> Shi added "DRM_MODE_CONNECTOR_eDP". That seems wrong. Looking at the
+> >>>> downstream ChromeOS trees, it seems like some Mediatek boards are
+> >>>> using a panel that they call "auo,b116xw03" that's an eDP panel. The
+> >>>> best I can guess is that they actually have a different panel that h=
+as
+> >>>> similar timing. If so then the proper panel should be used or they
+> >>>> should switch to the generic "edp-panel" compatible.
+> >>>>
+> >>>> When moving this back to panel-edp, I wasn't sure what to use for
+> >>>> .bus_flags and .bus_format and whether to add the extra "enable" del=
+ay
+> >>>> from commit 88d3457ceb82 ("drm/panel: auo,b116xw03: fix flash
+> >>>> backlight when power on"). I've added formats/flags/delays based on =
+my
+> >>>> (inexpert) analysis of the datasheet. These are untested.
+> >>>>
+> >>>> NOTE: if/when this is backported to stable, we might run into some
+> >>>> trouble. Specifically, before 474c162878ba ("arm64: dts: mt8183:
+> >>>> jacuzzi: Move panel under aux-bus") this panel was used by
+> >>>> "mt8183-kukui-jacuzzi", which assumed it was an eDP panel. I don't
+> >>>> know what to suggest for that other than someone making up a bogus
+> >>>> panel for jacuzzi that's just for the stable channel.
+> >>>>
+> >>>> Fixes: 88d3457ceb82 ("drm/panel: auo,b116xw03: fix flash backlight w=
+hen power on")
+> >>>> Fixes: 5f04e7ce392d ("drm/panel-edp: Split eDP panels out of panel-s=
+imple")
+> >>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> >>>> ---
+> >>>> I haven't had a snow or peach-pit hooked up for debugging / testing
+> >>>> for years. I presume that they must be broken and hope that this fix=
+es
+> >>>> them.
+> >>> We could avoid backport breakages by avoiding to backport this to any=
+ kernel
+> >>> that doesn't contain commit 474c162878ba ("arm64: dts: mt8183: jacuzz=
+i: Move
+> >>> panel under aux-bus")... because creating a dummy panel to get two wr=
+ongs
+> >>> right is definitely not ok.
+> >> Sure, except that leaves us with ... a breakage. :-P
+> >>
+> >> Although I haven't tested it, I have a hard time believing that
+> >> exynos5250-snow and exynos5420-peach-pit will work properly with the
+> >> panel defined as an eDP panel. That means that they will be broken. If
+> >> someone cared to get those fixed in a stable backport then we'd be
+> >> stuck deciding who to break. If you have any brilliant ideas then I'm
+> >> all ears.
+> >>
+> >> ...then again, I presume this has been broken since commit
+> >> 88d3457ceb82 ("drm/panel: auo,b116xw03: fix flash backlight when power
+> >> on"). That was a little over 3 years ago. Maybe I'm wrong and somehow
+> >> things still limp along and sorta work even though the panel is
+> >> defined incorrectly?
+> > I dug out a exynos5250-snow out of my pile and booted postmarket OS on
+> > it, which was shockingly easy/pleasant (kudos to those involved!). I
+> > found that it was booting a kernel based on 6.1.24. Digging into
+> > sysfs, I found that indeed it appeared to be using the "panel-edp"
+> > driver, so I guess it is limping along with the wrong driver and wrong
+> > flags...
+> >
+> > It wasn't totally clear for me how to build a new kernel and deploy it
+> > for postmarket OS, so I wasn't able to confirm this change. I've CCed
+> > the person listed on the postmarket OS wiki though to see if they have
+> > any insight.
+> Tested it on peach-pit using linux-next with this patch applied. Panel
+> still works and "dmesg | grep panel" returns panel_simple instead of
+> panel_edp.
+>
+> Tested-by: Anton Bambura <jenneron@postmarketos.org>
 
-On 10/10/23 22:05, Christian Marangi wrote:
-> On Tue, Oct 10, 2023 at 09:55:26PM +0200, Konrad Dybcio wrote:
->>
->>
->> On 9/30/23 12:21, Robert Marko wrote:
->>> From: Christian Marangi <ansuelsmth@gmail.com>
->>>
->>> Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
->>> Use opp-supported-hw binding to correctly enable and disable the
->>> frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
->>> 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
->>> 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
->>>
->>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>> ---
->>> Changes v4:
->>> * Add OPP DTS patch for IPQ8064
->>>
->>>    arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi | 30 +++++++++++
->>>    arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 67 ++++++++++++++++++++++++
->>>    arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi | 65 +++++++++++++++++++++++
->>>    3 files changed, 162 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
->>> index 5d3ebd3e2e51..72d9782c3d6f 100644
->>> --- a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
->>> +++ b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
->>> @@ -6,3 +6,33 @@ / {
->>>    	model = "Qualcomm Technologies, Inc. IPQ8062";
->>>    	compatible = "qcom,ipq8062", "qcom,ipq8064";
->>>    };
->>> +
->>> +&opp_table_cpu {
->>> +	opp-384000000 {
->>> +		opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
->>> +		opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
->>> +		opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
->>> +		opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
->> We can just make use of opp-supported-hw and define opp-384...-0,
->> opp-384..-1 etc. with a valid corresponding bitmask in opp-supported-hw
->>
->> otherwise it's somewhat confusing to follow, I think..
->>
-> 
-> Ehh should we really double the nodes for ipq8062 and ipq8065?
-Hm.. I'm not 100% sure, both solutions are kinda meh, but perhaps 
-overwriting it will be less of a hassle for looking at the decompiled dt 
-indeed..
+Pushed to drm-misc-fixes:
 
-> The idea here was to overwrite the one since the pvs always match and at
-> worst(ipq8065) have 7 pvs instead of 4. From the system it would be
-> easier to read since only one table is present in the final dts and not
-> 2 and referring to the opp-supported-hw.
-> 
-> The original idea was to declare one opp table and reuse pvs version (by
-> faking it with hardcoded values) to put additional pvs for ipq8062 and
-> ipq8065, but Dmitry didn't like it and asked to move the opp in
-> different dtsi.
-Yeah this fusing thing is complex enough already
+ad3e33fe071d drm/panel: Move AUX B116XW03 out of panel-edp back to panel-si=
+mple
 
-KOnrad
+-Doug
 
