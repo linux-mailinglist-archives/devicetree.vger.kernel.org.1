@@ -1,178 +1,200 @@
-Return-Path: <devicetree+bounces-8163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B1E7C6EB2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04ECB7C6EBD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:05:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4052E282803
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:02:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A902828BA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270E127705;
-	Thu, 12 Oct 2023 13:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF722770E;
+	Thu, 12 Oct 2023 13:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lEWWWuca"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="N8prwUXb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8957F27701
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 13:02:52 +0000 (UTC)
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2035.outbound.protection.outlook.com [40.92.103.35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F5CB8;
-	Thu, 12 Oct 2023 06:02:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HtBaE8I7qvr522PNvjX4TN9bkdMb6ZoNaT8Ty76Mv2aB4FIens0rM9ycAh28Xm6gradgfS0Y6LuIIIuN4L3ctc0/kWIjrZgEkoau6ThKUpdlYV/9KHGGD0BeWj1oFcKi5hh+LBQ8tJ9VzuoMQEKXcGiw0/TRIGzzR7uOiyg+ckt7VrZxGcyGdlVasqyu8J12lUYAJa5eb1avBBSvD4yMPEXTPqsQvrNUBBTgWMdiJmb+py3f1w5XJtXfY1f+x6jspWdo93dMnbf59Z4FpZz89SQqwKrzs8dEwVxXDj1cyCSVrApLrrs6VjIJanZyzeji/rkbp5BpyH9DatdMMQD0eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zdR8OOgjfSrWKnNOIwiUyBSk+hRoDflMAKMTAG6db2U=;
- b=P9E9gMnUC3Y7ydHeBcIPkLUAEYUVbje3ujpo7PWKZB88Ewd7MwpBlXE8l7vqX91FQI5I5O+YBhIqQ5fO/7qY5xO6B0Ze5tkXPtYEV59hdI1qrlrE+xJ0jM0tds7a9OSsHfNmpl911XEBbXE4eZ89hXIWSDbqUWk8ffY7AvTMzoUqgfrc0E1VmdbOCUw/9Xpo3pSd52P0Qq8HiHV6820jbHB6tEMeZ+JGucvSBcFcOymQHy/bRsj97NN6cXUlCd/BWG73Wjun+OUv5QUzTAHLyAaj4Ti42Vd2CaxKqqI0c3YlOJkiDquY9QQdm90chw/Ax2SefvEZanG9MZ00bohKxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zdR8OOgjfSrWKnNOIwiUyBSk+hRoDflMAKMTAG6db2U=;
- b=lEWWWucabvySnpZwMZYJeVgirxDPZogDr+PUVZEibJOy4CmyoVD/bJf8DuDgA4vlReIrX7x+5CV0+h+jhls0kIPkpwvFJesu42Ou1AmkHQDlPbwpZx4En4T2C+cywCzxL7nhIU0UlmCNZmcfNedxAWI48/2okq2gS3GQDPo4NmwaALTFxvouYg6bMyCy5jY5i7CeIfBb0u6vnRgc74ScaM1CCz7p9km/3wqq3m/XP7Kql1PtBLv6xkigkmIEEDGLFojxs6/qQpAlxk1FUVcLkqlxrTyTmROVBR5lg69Rn6vu1vwyzmA1UQKcQWF7kj3SjmGlGeWdEZefh+JZMQq7xg==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN0P287MB2118.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b9::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.45; Thu, 12 Oct 2023 13:02:43 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
- 13:02:43 +0000
-Message-ID:
- <MA0P287MB03320299025354EDE2DCCA1BFED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 12 Oct 2023 21:02:39 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] riscv: dts: sophgo: add initial CV1812H SoC device
- tree
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Chao Wei <chao.wei@sophgo.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <MA0P287MB03321A9E3F3D8415DB9552B5FECDA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <IA1PR20MB4953AD81686694CEA4F5FC6ABBCDA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231012-gratuity-siesta-b9e06b11be43@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20231012-gratuity-siesta-b9e06b11be43@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [VN4WXanCWM6w4iNn6ed5vhpYZPfqbDXn]
-X-ClientProxiedBy: SI2PR01CA0003.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::16) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <53d93677-85ce-4bcd-b543-3447ecb77681@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B0726E3B
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 13:05:40 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A9D5B8;
+	Thu, 12 Oct 2023 06:05:39 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 269898C2;
+	Thu, 12 Oct 2023 15:05:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1697115934;
+	bh=QMiiVYAwxL8kYkW/Tyfug+wqp6ed2rM4FzvM7049y9k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N8prwUXbUX7iPp++5ePcNnHXz+o/OjWoz2JIRheusTLKmdwlG+TgPAIBs3akKb4oJ
+	 t2Cxng/Lt0Wnebec0eYmAo0Jp+oIEO0OfLJYPcoQAZNhwUG1NgddxqDpy7GbzMNLEq
+	 JJNw5NKhNNBYszyKeVCy5fk+L7FtQvLOB2ExIg9Q=
+Date: Thu, 12 Oct 2023 16:05:44 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for THine
+ THP7312 ISP
+Message-ID: <20231012130544.GA31878@pendragon.ideasonboard.com>
+References: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
+ <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
+ <b214e763-2175-4de1-af54-43961ff94afb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB2118:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b62fadf-feea-45fd-7f56-08dbcb23859c
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	TpyuIRQcFlXplqDrYJsdASfsLgv3DirPEmIJUwsImsP8jHWjiYzDIFqfo3VEhtup5Mx/OilmgGt2O6K9VGi6gDbeyRvg+0kolp4pbn2rWpxTBV3PcPqHHsiuRtx+7nrLKgaDDlUs3NqGxlmy8pJ6762k+V/RdIMtWDhWQ82cSHtnfJouDH+ErO8YhogwVPEuOvNXsmw7Va7IJaXKq63/XHuykVTvKZDHeimPC/yKY+I4Fm3cHuvokx2dbtfJAiAkqqIwsJtQaY9DfZydipidBUvrm9ZkcMjNbcLrkHbukGMbVBuZbtSFdzHCnJS60/0L7juzMP+CW9cYhnMIjSxjnlIDEbEYVu87KYWusKZUMn0A6FmuHyl2imva+Mt8SaLRPkDiUBH9ltdUWh0QxrHu/jgcRzGpHjNEueeGXGDb9cl081/hxWGpiZDxFYpuvvxfMb4ZfBeMpHyT09V5sh2geKO++qb+lri/rg2Uc7gYOB1/dsyQRlMbBNsSohEcbEPceR6OjixubKYil4TjL3PLql31dPumKby7gg6LcJjjv1D7WeC3bowyjz7pDfnD/lFf
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?czNwSGJYbnNvSXB0NWJwTC9nREVGcW0rVHh0MkhROUtNdk8xQ2R1RzBkeEtL?=
- =?utf-8?B?WFRKNGZaOHZVRWdtc242ekxKR082cE44dnZxUGpZdWh6bWlpblc5c1N5bUZH?=
- =?utf-8?B?S3J3QVV4QzByUS9TcldQVHhiQkkzbzB3UmdWYzFFTUwrZWJEZWt4L3hMSWhJ?=
- =?utf-8?B?b0FSZnVveWlHemtsVXVPelU0VDM3bVVRWCtBRmNMaVBxUWx3Q1Iwa0tEcHNT?=
- =?utf-8?B?UEN0Q2F5MC85ckZqY3FtcTZuWCt1N3h4V1l4ellobHRHL2R2QWNsaGxPcGx6?=
- =?utf-8?B?UGowRjkzcTllWTQvc1VMNkdad25mK0FtOHZpbk1vTi83N1hKSGZiVUxlME5U?=
- =?utf-8?B?by8zaWZJZXhDZXR0SG1xSitmR2tBYVZTUEFKT0MwaWxkd3ZDcUNGN0N2RHZV?=
- =?utf-8?B?UVBqNnJJd2o0ZG1GM3NMei92cjk1aUFCZTZtTzROdFpZeTBYQy8zWklCZlpi?=
- =?utf-8?B?R3BlYU9oOWNMeStmWGs5OTBjUlU2eGJmYjlPYkxVVzhaK210R3hsT2NoQ2dJ?=
- =?utf-8?B?UW5uU281Ulg4a21TUzBjVzNlTnNwaEpZUytFSVR4TENxSStLcEVyajZQMmN1?=
- =?utf-8?B?QTdrSndJTUVoV0NtcllwK21oOTVKcVdJSWFtU1Y2NnRPc3RGbFk4dHJCRDQ1?=
- =?utf-8?B?czBSeG5xekFmdU51eU4zd2hLTmFuQzg3ZVpzY01rTTVJeWdJcW1JcFphWXlx?=
- =?utf-8?B?Z2xpY3VxWkhONnR5MDdtNkk3RkFWVCtmOW9kVzk4NXNUM0FUaDFOK3dlSGhY?=
- =?utf-8?B?VTZFRlQySWw1bVN3ektWa2dtRmwzd2NtTGthL0RVUGhSZUt4RWYxNkdtU05h?=
- =?utf-8?B?RlNmK0RJMk40QXBnR3RGclNqUlNwSnlVN3N0MGlkajNLTUhCV2xQN2lZckI1?=
- =?utf-8?B?OTl6MThpVFBFUFY5Y2xVOEYwNVJWR2pFQkN6NWFWcHIyQ0RZdWpUNzZ2WnpR?=
- =?utf-8?B?RVVnakV6TVc2UUFLT1FoYnVaUXJnYW0rSTAvZ2FMcmVDZlVoRVRsWlRhNERM?=
- =?utf-8?B?YUhpY0w0cG0xZzlkcFlHbWRGR1N5UEdrK1pjaDNVT2d4am04NDFkZXVaWm00?=
- =?utf-8?B?ZmE1Vzc3aG1rYlRoRXF1dk5UVXFxWUZEOE4yTUdFMXd0WjdBeWo0M2tyM0xi?=
- =?utf-8?B?T054Zkl6ZExCTnMvNnJGQ2NESWorbGJvRFlzbE1rbzE2NkF2cEl0UVhCbENw?=
- =?utf-8?B?bHRocW1QVGVKWERGM3V3ejhBN05kbVZaSmQvaFdvTVdOMDNGdDFIMkFIWmI2?=
- =?utf-8?B?K0ZGcUYvNVpzcmNyeHh4aFQ1azdma2w4RlZCMm9CSElKckloVDRpZk1HSjg2?=
- =?utf-8?B?enZ6TWkzQ3FFOFdmUmZDa09QSE5vVDNFQThzQnRGaVcybkR6azVpOUNpaDNQ?=
- =?utf-8?B?QnJFUkg4ZlFmajlMcHFtNXZBQUNydyt0b0lSMGRsSm9DTUpmdXNZenZFSy80?=
- =?utf-8?B?Z2YwY2kzamtYU0ZGTWZTVldyZ2RGZW9zWVBKcmtpbUNUc0ZIVUFYcXYyaVc5?=
- =?utf-8?B?Rkg5QVpoTElqQXBRRDlXZk9yMVBvVDl5V2VWS2lPaHYzdDJ5TXh3Wk93clNK?=
- =?utf-8?B?ZEdEQWVqU0VuVjNHSWlvaWFUbzh5N3FXNXcrZzIyc1c3Uk9jMGlLUFhZWkFX?=
- =?utf-8?Q?pIWVVxzJbPGlYlz0dx5sGXi++9isriIieps5wmLSRybY=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b62fadf-feea-45fd-7f56-08dbcb23859c
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 13:02:43.8887
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB2118
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <b214e763-2175-4de1-af54-43961ff94afb@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Krzysztof,
 
-On 2023/10/12 17:41, Conor Dooley wrote:
-> On Tue, Oct 10, 2023 at 03:53:54PM +0800, Inochi Amaoto wrote:
->>> On 2023/10/9 19:26, Inochi Amaoto wrote:
->>>> Add initial device tree for the CV1812H RISC-V SoC by SOPHGO.
->>>>
->>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
->>>> ---
->>>>    arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 36 +++++++++++++++++++++++++
->>>>    1 file changed, 36 insertions(+)
->>>>    create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
->>>>
->>>> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
->>>> new file mode 100644
->>>> index 000000000000..3864d34b0100
->>>> --- /dev/null
->>>> +++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
->>>> @@ -0,0 +1,36 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>>> +/*
->>>> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->>>> + */
->>>> +
->>>> +#include <dt-bindings/interrupt-controller/irq.h>
->>> This include is not required.
->> Thx.
-> I can drop this include on application. Is the rest of the series okay
-> with you Chen Wang?
->
-> Thanks,
-> Conor.
+On Thu, Oct 12, 2023 at 09:47:31AM +0200, Krzysztof Kozlowski wrote:
+> On 12/10/2023 03:20, Laurent Pinchart wrote:
+> > From: Paul Elder <paul.elder@ideasonboard.com>
+> > 
+> > The THP7312 is an external ISP from THine. Add DT bindings for it.
+> > 
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../bindings/media/i2c/thine,thp7312.yaml     | 225 ++++++++++++++++++
+> >  MAINTAINERS                                   |   7 +
+> >  2 files changed, 232 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > new file mode 100644
+> > index 000000000000..053b28fb0a89
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > @@ -0,0 +1,225 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (c) 2023 Ideas on Board
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: THine THP7312
+> > +
+> > +maintainers:
+> > +  - Paul Elder <paul.elder@@ideasonboard.com>
+> > +
+> > +description:
+> > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
+> > +  various image processing and correction functions, including 3A control. It
+> > +  can be connected to CMOS image sensors from various vendors, supporting both
+> > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
+> > +  or parallel. The hardware is capable of transmitting and receiving MIPI
+> > +  interlaved data strams with data types or multiple virtual channel
+> > +  identifiers.
+> > +
+> > +allOf:
+> > +  - $ref: ../video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: thine,thp7312
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: I2C device address
+> 
+> Nothing improved here.
 
-Yes, just remove this include and the others are all
+I'll drop the description.
 
-Acked-by: Chen Wang <unicorn_wang@outlook.com>
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: CLKI clock input
+> > +
+> > +  thine,boot-mode:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Boot mode of the THP7312. 0 is for standard streaming mode, for the
+> > +      THP7312 to be used as an ISP. 1 is for firmware flashing mode.
+> 
+> Why, for a given board, would you always boot device in one specific
+> mode but not the other? This does not look like property of DT.
 
-I also ran dtbs check with W=1 and no warning found.
+The device has two boot mode pins, and it operates differently depending
+on its boot mode. The pins are typically hardwired, on development
+boards you commonly have DIP switches, and on production systems test
+pads that allow modifying the boot mode on the production line. The
+driver needs to know the boot mode to interact with the device
+appropriately. I haven't found a good way to interogate the device at
+runtime to figure out the boot mode, but I'm still trying. If that
+doesn't succeed, we need to convey it through the device tree.
 
-BTW, due to this patchset changes some code submitted by Jisheng, I have 
-sent email to him and hope he to have a look too.
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      Reference to the GPIO connected to the RESET_N pin, if any.
+> > +      Must be released (set high) after all supplies are applied.
+> > +
+> > +  vddcore-supply:
+> > +    description:
+> > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
+> > +
+> > +  vhtermrx-supply:
+> > +    description:
+> > +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > +
+> > +  vddtx-supply:
+> > +    description:
+> > +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > +
+> > +  vddhost-supply:
+> > +    description:
+> > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  vddcmos-supply:
+> > +    description:
+> > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  vddgpio_0-supply:
+> 
+> And more of ignored feedback. I stop now.
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
 
+I took over the patch series and may have missed some comments. I'll
+double check and make sure to address all feedback (or raise questions
+in replies) for v3. It would be helpful if you could complete the
+review, or there will then be a v4 to address the second half of the DT
+bindings review :-S Your time and efforts are appreciated, I'm sorry for
+the human error here.
 
+-- 
+Regards,
+
+Laurent Pinchart
 
