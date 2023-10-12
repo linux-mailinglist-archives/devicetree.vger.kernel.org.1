@@ -1,258 +1,127 @@
-Return-Path: <devicetree+bounces-7969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3342A7C65D2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:44:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B285F7C65D9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 653C71C20AC3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:44:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E075B1C20AE0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7A8DDA1;
-	Thu, 12 Oct 2023 06:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C102DDA7;
+	Thu, 12 Oct 2023 06:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uFHNqQTW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kDZVssYU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F108FD296
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:44:24 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B862CC9
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:44:22 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-406618d080eso6888255e9.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 23:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697093061; x=1697697861; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hl6Qh6IHf9lUW4/l7wayp2KVxwUxkH4oYjeM6p3w48o=;
-        b=uFHNqQTWFg6YpySHjwC11dikvDUwwkrMzfaCcEMWfXaRPpHPVCoOzXdLpOejOtROTb
-         qgbEGicrfV45YrjtMTNNhJeQ/Fh+6jkq/RTJWuyl4pRyyviZ+TTcw+q1N5XMa4/Jr2O4
-         4ICP/kE/WIw1yRynpGANNPgiGbtKsSSaGradfJ5n5r3szAiY9WtAsQCyXqvyPoetBTCB
-         E28kMNUgzP1Mj/2soHUSV4NEuDtLDBkM9MQ6syg5HQsYc88tJk1cmACo/34ef3bwQzk8
-         8LApBNX9fDn7rbH3/6q1CurQX/IuQpeqtKoXXkUUZcfzT09snYQYlOVWseptNaVcHI3L
-         vT0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697093061; x=1697697861;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hl6Qh6IHf9lUW4/l7wayp2KVxwUxkH4oYjeM6p3w48o=;
-        b=jvmFegC5OWElcSjCz8RsrHWVM6ETYD8ocxyKcaJ6idVGumQCnLwNk+eyLgaT78RlD4
-         yNNsGaOyd9SPUXotPsDpji4I2iO7mHaFff1lOrHdQhloL7YY99XpEU8aMueSYta+oNoC
-         hx+9MlSCG7D/o+D6XVoJI8xFxwXna2fbr5NPnAwle3iZqqqoOVKrTcjFGQUf7L3xOR70
-         ueCuHybDmPB/rQRSHwCakJDVUNyK+bch5rtINypYDBNAr7TBP8VbMtcXlBe6MnA37c7M
-         AAtLSY9E7AS3l93N5iOIME3bkkhwOVRhn6VPQXVEHIoUP2xlYj0MTnI9xqf/G6+mx837
-         I9Iw==
-X-Gm-Message-State: AOJu0YyKzges229KqYbO29wx2P1eTZxSK61v1hA0JybI0KdYES/DYGw/
-	1H9VGhV5s+JrNk+GzWA/ZW5W8w==
-X-Google-Smtp-Source: AGHT+IGTk8Oa7Z1La99a/lbDxEaVHp6/JfSrmG3d2zmkhdrDoCBbgI6obhUgzWxbjRipImmoavoC6Q==
-X-Received: by 2002:a7b:ca59:0:b0:406:5359:769f with SMTP id m25-20020a7bca59000000b004065359769fmr20019082wml.0.1697093061102;
-        Wed, 11 Oct 2023 23:44:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id az41-20020a05600c602900b004068495910csm20974749wmb.23.2023.10.11.23.44.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 23:44:20 -0700 (PDT)
-Message-ID: <54b182da-8f61-4cda-9988-15ced61c01dd@linaro.org>
-Date: Thu, 12 Oct 2023 08:44:18 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D57D296
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:47:34 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523EDB8;
+	Wed, 11 Oct 2023 23:47:32 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39C6lKPU120622;
+	Thu, 12 Oct 2023 01:47:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697093240;
+	bh=qlDt9W9SRW+VaDucq5BW/ZDa/bC/TgdxhQBR1MX0quI=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=kDZVssYURiiG9E1VoD/V3SuuzceQZ3Z81i7+2HkUATJSrXYUwSVmopJFzmQZMPkox
+	 gwhQc/8Co6YmfUEpREeuYmFSaaHNDHrWlZtrThQYCe4IX/QK99y0/7twDbTNs6a6jH
+	 KdDndxJhqfFoNw6ur3LzkjwkepGAK/NE/eIqSr+c=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39C6lKJu007866
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 12 Oct 2023 01:47:20 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 12
+ Oct 2023 01:47:19 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 12 Oct 2023 01:47:19 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39C6lFAd040003;
+	Thu, 12 Oct 2023 01:47:16 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Matthias
+ Schiffer <matthias.schiffer@ew.tq-group.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux@ew.tq-group.com>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am64-tqma64xxl: add supply regulator for I2C devices
+Date: Thu, 12 Oct 2023 12:17:09 +0530
+Message-ID: <169709313767.2957749.10885918329569967999.b4-ty@ti.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
+References: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 18/20] arm64: dts: google: Add initial Oriole/pixel 6
- board support
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
- soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-19-peter.griffin@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231011184823.443959-19-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11/10/2023 20:48, Peter Griffin wrote:
-> Add initial board support for the Pixel 6 phone code named Oriole. This
-> has been tested with a minimal busybox initramfs and boots to a shell.
+Hi Matthias Schiffer,
+
+On Thu, 28 Sep 2023 13:45:10 +0200, Matthias Schiffer wrote:
+> Describes the hardware better, and avoids a few warnings during boot:
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  arch/arm64/boot/dts/google/Makefile         |  4 ++
->  arch/arm64/boot/dts/google/gs101-oriole.dts | 79 +++++++++++++++++++++
->  2 files changed, 83 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/google/Makefile
->  create mode 100644 arch/arm64/boot/dts/google/gs101-oriole.dts
+>     lm75 0-004a: supply vs not found, using dummy regulator
+>     at24 0-0050: supply vcc not found, using dummy regulator
+>     at24 0-0054: supply vcc not found, using dummy regulator
 > 
-> diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/dts/google/Makefile
-> new file mode 100644
-> index 000000000000..5cea8ff27141
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +dtb-$(CONFIG_ARCH_GOOGLE_TENSOR) += \
-> +	gs101-oriole.dtb \
-> diff --git a/arch/arm64/boot/dts/google/gs101-oriole.dts b/arch/arm64/boot/dts/google/gs101-oriole.dts
-> new file mode 100644
-> index 000000000000..3bebca989d34
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-oriole.dts
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Oriole Device Tree
-> + *
-> + * Copyright 2021-2023 Google,LLC
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "gs101-pinctrl.h"
-> +#include "gs101.dtsi"
-> +
-> +/ {
-> +	model = "Oriole";
-> +	compatible = "google,gs101-oriole", "google,gs101";
-> +
-> +	chosen {
-> +		bootargs = "earlycon=exynos4210,mmio32,0x10A00000 console=ttySAC0";
+> 
+> [...]
 
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Nothing improved here.
+[1/4] arm64: dts: ti: k3-am64-tqma64xxl: add supply regulator for I2C devices
+      commit: 8e4e717be847913517977d9689ab88f1b86d71d8
+[2/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: add muxing for GPIOs on pin headers
+      commit: ec30a50c72bdaa6007c999846675241b44b233d0
+[3/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: add chassis-type
+      commit: 92039884c9b57d14601c6e0e913b184dd2bff75c
+[4/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: update gpio-led configuration
+      commit: 06a0d54202e0de04e62c1991d39d6c7595f0d88a
 
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&key_voldown &key_volup &key_power>;
-> +
-> +		button-vol-down {
-> +			label = "KEY_VOLUMEDOWN";
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpios = <&gpa7 3 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		button-vol-up {
-> +			label = "KEY_VOLUMEUP";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&gpa8 1 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		button-power {
-> +			label = "KEY_POWER";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpa10 1 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +};
-> +
-> +&pinctrl_1 {
-> +	key_voldown: key-voldown-pins {
-> +		samsung,pins = "gpa7-3";
-> +		samsung,pin-function = <0xf>;
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-GS101_PIN_FUNC_EINT
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +		samsung,pin-pud = <0>;
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-GS101_PIN_PULL_NONE
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-> +	};
-> +
-> +	key_volup: key-volup-pins {
-> +		samsung,pins = "gpa8-1";
-> +		samsung,pin-function = <0xf>;
-> +		samsung,pin-pud = <0>;
-> +		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-> +	};
-> +};
-> +
-> +&pinctrl_0 {
-> +	key_power: key-power-pins {
-> +		samsung,pins = "gpa10-1";
-> +		samsung,pin-function = <0xf>;
-> +		samsung,pin-pud = <0>;
-
-
-Best regards,
-Krzysztof
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
 
