@@ -1,103 +1,122 @@
-Return-Path: <devicetree+bounces-8147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C037C6DFC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:24:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA5F7C6E0E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:26:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 200A4282105
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:24:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C30941C20D2B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD6F26295;
-	Thu, 12 Oct 2023 12:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC11F2629C;
+	Thu, 12 Oct 2023 12:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXAo4H23"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UnnjNiYc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE6826291
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:24:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 703CCC433C7;
-	Thu, 12 Oct 2023 12:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697113492;
-	bh=1GyAZLXBp65moRKSORYgOCHrvhgp+SxDzz7EnfVjVUk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=aXAo4H2341hCLiNHeYtUIkEE8BIZpaaoCB0X8Xl5ewS0BVCn69f7haypyvkcPPIu4
-	 dB6E8XstAvbZpOkfhtmE0cs5tYGcQbfxg/TmwlpmB23wZaLx9vvbNVIEHgRh3ZzLrA
-	 LheqF5JlnNNk3/7I5cgbUtpdrbP39NRSk6KK+8zvmGu1h0YbRRmBzSpdGAd+RJhkGC
-	 twuAC/6CQJqWhDw2PHPz47IjC1LuELgfbCstxM9EktBRM0dWvahPGzF9wU3fJZuxK7
-	 +aM4/Nx2RV/KIhiOEhUp5fRCTzdo/dn6DsPnzUNWF7+YqDG/PbbWQRGm4WWDVCpgwp
-	 bNmqclV3cVCrQ==
-Received: (nullmailer pid 393373 invoked by uid 1000);
-	Thu, 12 Oct 2023 12:24:49 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E9D25114
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:26:45 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FB1BE;
+	Thu, 12 Oct 2023 05:26:43 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50435ad51bbso1227776e87.2;
+        Thu, 12 Oct 2023 05:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697113601; x=1697718401; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7arwf9Sbc63puBYbaOYgIueno4H8IZ31i37CuMkfbnw=;
+        b=UnnjNiYcT+9l9Pld4cadI0V0x2Fzwapz9wcQ+1bXsoHHPWAC1cdZsWQC6My5UegWh2
+         UdAu7r1eHLcx0TGOKI6prVVxJJ3cCSL3fAiwIpOAbxqiFWOvU85tYwd8s6F1Qbp1fCZb
+         keqWzMVnb9wUITNZjCUrscNvWUdQs1Ag54NCBsl1QT92hhaEPd2M4ySVdjBci90txGjo
+         PBd2trtS0WeMf8TVHgj+UFQdtghJkvU2innAaD3jj1d2BxXUDNPRSZSLKrdwHqANCtCf
+         LunOoypC1vhH9N45mfTUW6QB+yEaqfLdXmogPjszDoVwO/JWqyyf7iikYru8YT6YOCOo
+         ysPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697113601; x=1697718401;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7arwf9Sbc63puBYbaOYgIueno4H8IZ31i37CuMkfbnw=;
+        b=tEGahiwBqe7jxqyoSnUMvJSkTExBFEeluOM7tCgH1YcyYfA2vMOu/da7Zt+tAvUFUv
+         gD4VnJav22bkQ2Mdz6kUccThcvxzw0YSyzlnjVUr7jp3hPo/6+xv/0uOPE85hlCqXS3u
+         mQgoQBd50plJpmXgcxpvrfQs5GYjPtMf+rKiIqeLEQ5+KjlCZDD01mgooPNawT7YNM2u
+         X+bsi2v42KLy0q1pw7gveR+hOwfPzuD7/0ZMc+6m9gWiWfqcbDJko7G6seMb2btT0jto
+         9sxRYiQk1C39uPERSika6PGA4V9yFBfzS/6Z9JbTYw6QxGsi4TxIlu8gPvtE6iHeeyoq
+         ujtw==
+X-Gm-Message-State: AOJu0YxrCrqa5wil+CFEcRE38jS57mGfPXtxi0hJx+EEoVs2S3bjza6V
+	Nw29a1L2VnNziFoM2HL++3wCAyJMtLq5XTpUdRbfyk1T/sA=
+X-Google-Smtp-Source: AGHT+IGQvgR/UKmN6GRDSyaTVXmzOl1h+nOUHRAaAvR6F5hiNV89R5yePnyki+Zoz3z/4gmnYahvzHwm5qJk8blLM0E=
+X-Received: by 2002:a17:907:c70d:b0:9ae:47c3:35a0 with SMTP id
+ ty13-20020a170907c70d00b009ae47c335a0mr22047943ejc.47.1697113581261; Thu, 12
+ Oct 2023 05:26:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: agross@kernel.org, dmitry.baryshkov@linaro.org, quic_tdas@quicinc.com, linux-arm-msm@vger.kernel.org, andersson@kernel.org, vladimir.zapolskiy@linaro.org, devicetree@vger.kernel.org, mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org, jonathan@marek.ca, sboyd@kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, konrad.dybcio@linaro.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, conor+dt@kernel.org
-In-Reply-To: <20231012113100.3656480-4-bryan.odonoghue@linaro.org>
-References: <20231012113100.3656480-1-bryan.odonoghue@linaro.org>
- <20231012113100.3656480-4-bryan.odonoghue@linaro.org>
-Message-Id: <169711348945.393357.13855655138263608622.robh@kernel.org>
-Subject: Re: [PATCH v4 3/4] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Date: Thu, 12 Oct 2023 07:24:49 -0500
+References: <20230917-imx95-mbox-v1-0-440245287356@nxp.com>
+In-Reply-To: <20230917-imx95-mbox-v1-0-440245287356@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 12 Oct 2023 15:26:08 +0300
+Message-ID: <CAEnQRZBWgjPoY6mZUeD+3fbqWbWrpNX3VzMsMzETt0FciwNSfA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] mailbox: imx: support new tx doorbell
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dong Aisheng <aisheng.dong@nxp.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+On Sun, Sep 17, 2023 at 7:55=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.co=
+m> wrote:
+>
+> The new added channel type is for i.MX95 SCMI mailbox usage.
+>
+> i.MX95 using TX doorbell and RX doorbell for the SCMI mailbox transport.
+> For TX doorbell, we relies on software reply from the other side in
+> SCMI driver side using mbox_client_txdone to drive the tx tick.
+>
+> But the current MU tx doorbell using tasklet to emulate hardware ACK
+> from mailbox driver side, so add a new doorbell type to support i.MX95
+> SCMI mailbox transport.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
 
-On Thu, 12 Oct 2023 12:30:59 +0100, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> This patch depends-on:
-> https://lore.kernel.org/lkml/20231004161853.86382-2-bryan.odonoghue@linaro.org/T
->  .../bindings/media/qcom,sc8280xp-camss.yaml   | 581 ++++++++++++++++++
->  1 file changed, 581 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
-   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231012113100.3656480-4-bryan.odonoghue@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Peng Fan (2):
+>       dt-bindings: mailbox: fsl,mu: add new tx doorbell channel
+>       mailbox: imx: support channel type tx doorbell v2
+>
+>  .../devicetree/bindings/mailbox/fsl,mu.yaml        |  5 ++--
+>  drivers/mailbox/imx-mailbox.c                      | 32 ++++++++++++++++=
+++++--
+>  2 files changed, 32 insertions(+), 5 deletions(-)
+> ---
+> base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+> change-id: 20230916-imx95-mbox-88437c51ce54
+>
+> Best regards,
+> --
+> Peng Fan <peng.fan@nxp.com>
+>
 
