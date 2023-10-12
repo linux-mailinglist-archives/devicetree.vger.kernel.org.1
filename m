@@ -1,90 +1,177 @@
-Return-Path: <devicetree+bounces-7939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53577C631B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 04:53:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846F67C6338
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 05:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFB7D1C2097B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 02:53:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951A61C209C4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 03:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8032037B;
-	Thu, 12 Oct 2023 02:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28031806;
+	Thu, 12 Oct 2023 03:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VQAj9/3J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F81634
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 02:53:17 +0000 (UTC)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02C394;
-	Wed, 11 Oct 2023 19:53:15 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-45766b79b14so237853137.1;
-        Wed, 11 Oct 2023 19:53:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939D865B;
+	Thu, 12 Oct 2023 03:20:52 +0000 (UTC)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA339E;
+	Wed, 11 Oct 2023 20:20:50 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c4f1f0774dso356036a34.2;
+        Wed, 11 Oct 2023 20:20:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697080850; x=1697685650; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vNG7kOTp0E3II+uSMqFswlod5Ow+9hu5BlR/XYnJYVI=;
+        b=VQAj9/3JS7nnukClMdEZCbOmHZMrJG59uqVEwjVoaDvGf9+5kw0XD71QWVA9NlfCu8
+         lrvtm8MGXZq4ksChLMoju2ljyDvxsYpCWcen/fqFGfu+QDGLHanXkvRUsUR7GDUVnY4Z
+         QVxMx4IWPDbS7m8jdB7Bc6ZqIuHX/oxJtfopADyE1MiQksuKezb8w01CGi2CEaLVwazO
+         dk+vhPqhP6o901xq2pIGtMIXeTgmXkHGT6acT0s447CRVRZGuuQxUBRHGJYt4QO6CY6u
+         WA3Nm4UZFJ4ueMYBuP/EGq62BMQlCcfP8ePrqJNhT1O7/OfUHNrBxUtiZdtRFqMD8lj5
+         gbWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697079194; x=1697683994;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o63NRkqQgQp5HjyonmkoKn7I3h3Gg+fPv/gJKTSgwVQ=;
-        b=UxOZl3VgRY2S+Cn9X8YH1hvj9Dvpfgvkl4VAmUPy7r2ISQJYldXh4alAUmzV3X2oJl
-         Mc09jz7JyEIIFHb81MdfOGkYWMFJT3gLZUZtUq59oqyFDEeSV0Y3WtRtfEuUMv9W8Gx7
-         5p8sNfnqVuHYhau4U3V5xQX8LSd+IKCecl1Xj2ToG0HkzyS9G1Q2FU9aeN6WVNinfkfR
-         sp3HPvfLxCaNSAFk5WhWVuyfCrqO9JrHCvt/Ibo3jJqSgqfrRp7hQciLSiuXJ+bgVIhy
-         sAg7H6QC3X9mNB0ESGWNKSbZyB4Yew2Q5Mr+4URdSMEApVyTY5u4h1LD2zQPMcGW8qnb
-         qUfA==
-X-Gm-Message-State: AOJu0YzTztolmaTxR32ert+HWnAurCmsHbLn/NcYv+70I+ixjC5tbZmo
-	f3Cu4DUyT5KcPOZdxmXjHDx9OQ+h1BVBIg==
-X-Google-Smtp-Source: AGHT+IHv1buOjvz0r6ctqRQNT7gd9NiM+jsjWI/ZQMC6NxZvQGiRfQgNOMlghlFsjh4s0O1KF9UWWw==
-X-Received: by 2002:a05:6102:2d03:b0:457:6858:af77 with SMTP id ih3-20020a0561022d0300b004576858af77mr13540487vsb.26.1697079194582;
-        Wed, 11 Oct 2023 19:53:14 -0700 (PDT)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com. [209.85.214.182])
-        by smtp.gmail.com with ESMTPSA id g25-20020aa78759000000b006934704bf56sm10832893pfo.64.2023.10.11.19.53.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Oct 2023 19:53:14 -0700 (PDT)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1c5bf7871dcso4360215ad.1;
-        Wed, 11 Oct 2023 19:53:13 -0700 (PDT)
-X-Received: by 2002:a17:90b:ed7:b0:268:7ec:51ae with SMTP id
- gz23-20020a17090b0ed700b0026807ec51aemr19828705pjb.41.1697079193746; Wed, 11
- Oct 2023 19:53:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697080850; x=1697685650;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vNG7kOTp0E3II+uSMqFswlod5Ow+9hu5BlR/XYnJYVI=;
+        b=n3yHOXgNcxl0EavIiBDmJr6ENMB2V0LxJ/gbxx6HMfcfJh5JUBpRoom9ESiSzrug/1
+         cKXKATFMH4+bV5H5epKvbJEj87dZa3FFXmuNX6+b3YN+aogikkXwUOF0cwNI6CtS26Gi
+         f6OYEjwge8rnqUl0HDL1Yg5Y/h+dVQWWHCXTQA3GV+lH6uvAQvsy18rTxRIsYYiUVj7O
+         bsnseBvg1sMD3WMa/px5ZVI3sn60CJBpSsEdYxubd+WQU0A3XLmbciEszkzJbqk1ghAX
+         qqYPmSS0mHXvDO00k2Hi+iyYNnDdm5SmpNwJO15HQrHc0qWIE9owee4SshoKKrCPLApt
+         cBwQ==
+X-Gm-Message-State: AOJu0Yx/Rv3FpDXentfdzQ9wW6x885cxCNabfuKHE1U/wLr925pQwsR7
+	YLUqj+DZqc7CesiQXQsgp1z+vrz/CIoUQRoteM1h4sj4eyk=
+X-Google-Smtp-Source: AGHT+IEJ/Ts2npz7DwaEYA5Fetgq6XGZn7nXYSITpB9w7w3c+Qb6n8AU6Cql2mmsAsXtCsIvXXwq2JtHuU0mI/8mHxU=
+X-Received: by 2002:a9d:4e91:0:b0:6b8:f588:2c79 with SMTP id
+ v17-20020a9d4e91000000b006b8f5882c79mr25179667otk.1.1697080850001; Wed, 11
+ Oct 2023 20:20:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230911171407.1572030-1-jernej.skrabec@gmail.com>
-In-Reply-To: <20230911171407.1572030-1-jernej.skrabec@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Wed, 11 Oct 2023 19:53:04 -0700
-X-Gmail-Original-Message-ID: <CAGb2v65BnLK2PWh_vnntCtQhCMrAu6segShTFzrfnZMp+VV5+Q@mail.gmail.com>
-Message-ID: <CAGb2v65BnLK2PWh_vnntCtQhCMrAu6segShTFzrfnZMp+VV5+Q@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: sun8i-r40: Add interconnect to video-codec
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	samuel@sholland.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+References: <20231011051152.133257-1-linux.amoon@gmail.com> <169700589265.2911018.855796610271678067.robh@kernel.org>
+In-Reply-To: <169700589265.2911018.855796610271678067.robh@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 12 Oct 2023 08:50:33 +0530
+Message-ID: <CANAwSgQxG7GNFnJ8mR_ktnbpfOZLA2JwsEt3qbO0RDEemf21ig@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Rob Herring <robh@kernel.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-usb@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 11, 2023 at 10:14=E2=80=AFAM Jernej Skrabec
-<jernej.skrabec@gmail.com> wrote:
->
-> Video codec needs interconnect, so driver knows that it needs to adjust
-> DMA addresses.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Hi Rob,
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+On Wed, 11 Oct 2023 at 12:01, Rob Herring <robh@kernel.org> wrote:
+>
+>
+> On Wed, 11 Oct 2023 10:41:48 +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > New patch.
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 28 +++++++++++++++++--
+> >  1 file changed, 25 insertions(+), 3 deletions(-)
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'reset-gpios' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'vdd-supply' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb: hub@1: 'peer-hub' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'reset-gpios' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'vdd-supply' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.example.dtb: hub@1: 'peer-hub' is a required property
+>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231011051152.133257-1-linux.amoon@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
+
+Can you share an example to add two examples in this binding?
+one for usb5e3,608 and other for usb5e3,610, usb5e3,620,
+I have tried but I got an error for duplicate
+
+I have tried to modify it with the following example
+
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: usb5e3,608
++    then:
++      properties:
++        reset-gpios: true
++        vdd-supply: false
++        peer-hub: false
++    else:
++      $ref: usb-device.yaml
++      required:
++        - peer-hub
+
+but it still shows me his warning,
+
+  DTC_CHK Documentation/devicetree/bindings/usb/usb-hcd.example.dtb
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
+hub@1: 'peer-hub' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+
+I could not find any binding which supports these properties.
+  - reset-gpios
+  - vdd-supply
+  - peer-hub
+
+Please suggest to me how to resolve this warning.
+
+Thanks
+-Anand
 
