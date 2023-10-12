@@ -1,277 +1,223 @@
-Return-Path: <devicetree+bounces-8159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05D0F7C6E83
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9F17C6E8B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28FD41C20DBF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:53:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DD8D1C21024
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222BD266AD;
-	Thu, 12 Oct 2023 12:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE758266C9;
+	Thu, 12 Oct 2023 12:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JnQIH0og"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Tdp23qBa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CDF22EFA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:53:27 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8ACE91;
-	Thu, 12 Oct 2023 05:53:25 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 544B47FC;
-	Thu, 12 Oct 2023 14:53:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697115200;
-	bh=jfmNcgh7uAOZlzRx94YU82ELNUgJ5za28cq9/WfJDEs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JnQIH0og0gU+Fl0dFwNKehs8GCN39qgCkBW6BWRWYkg61xco5cYbi0UYKuVlVDoKg
-	 r6fI+oDiqF+j+1FjNEDzrppPMDWQI6ZnXjLqrDJuhVP3mbJjSB9UkK1b6WbGvX93cC
-	 EOThTVZJR1YNSqQstdPqJiurm8YqrLex00CIVTlA=
-Date: Thu, 12 Oct 2023 15:53:30 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] media: i2c: Add driver for THine THP7312 ISP
-Message-ID: <20231012125330.GB11243@pendragon.ideasonboard.com>
-References: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C372E26E3E
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:53:52 +0000 (UTC)
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2049.outbound.protection.outlook.com [40.92.102.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4AF8BB;
+	Thu, 12 Oct 2023 05:53:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QQgLVb6aR4emIbxZw1Rmdzmx3GzITOYtk385eTAkvf2nhx9EXA6Za6cuMjZnU/1S/HpXTHU/jtllUG4PaGpsM67BzAY8tYqpx9fOUyHxbMsmmzZ2U2f74r7yHW74H5QNfUL54mrxefBc1TsU5m1RlooXu5waXXcrat5kpVj+P5m/0HYwvAlIIXNu0erDy0dHkp1DgXEtF0Suff0JRl4IUl1aWOeR0ouX2wpp0Kzh8R32jAiyU0jNwSlw0G+hkKe2VD/Tik1DR/dEII3P812sJMgwqu0+w7CW7dHucvQzwpBd7hW7wwJcLkz4005oHJZg/Qhmx9DS4LwE10LHTfua+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3yeBQI7gvIukwfXkqS6YAkwbM7WgxDh/8LcW8tFee98=;
+ b=D/XWnYGydCuPArymSccOoGvBFO/w2LQ9yijTOhLYyWbbTRR1YDQMv76WTyAwd7mv4LKgZ9z7EzekupE7LSDCi+GUx2lbRR5FtIaOKXjYXRT+jQmt8ohqwxCJ34ZWrHV2sipCxZwLkeE26B7hlnlnDkfuKKiqJt+jFS4uYu0JNFpzOfkFEbPMAZuuW6DB+by/5kKMytC/FvFqs6OIVtJDXlWbyMeLR/dk5U4vK3qF492XXOHc/lElSK5cKmmi1sOOWcCTp5cUhv0DhNd5OjErn9Oigy1A+O4BFEcoyC+CHNz4YeSiHkT5ZiktNW4eJXRCXbSI2mVF3HaNbUjnzKgwpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3yeBQI7gvIukwfXkqS6YAkwbM7WgxDh/8LcW8tFee98=;
+ b=Tdp23qBaZM2wCbQp8kJ86gI+tMwzpDZo3F6h1b5JYjgHhkSzveoDwdxcIqDfWciT9+48VZEM7G7Gn2EPIvju5IUSzGiD9ltQz+RO8LGFg/ALgnoD9iMKTE0iPBEmgXZAc0yowCTKwyHI13gp9DtAzeRj++ttd4p/kdxhmpJWcsiGTnYlwXJGljOOAEpFqhoIukeZqNunMOQQtruWtw+BxKIzwV0PJYpCbn+l8z6IFGKhDNBODyOqZ49RE0Ff/ZyFnXNUXSenWzzr0k+/9c154oIyBsJCucrIdRkQnGFPx5OdTFTEfFNrvI4h6uDZCDW8YXsVLW1C86JBypZL3J4JUg==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ MA0P287MB2452.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:129::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.42; Thu, 12 Oct 2023 12:53:42 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 12:53:42 +0000
+Message-ID:
+ <MA0P287MB033258A24899AB56D2A13590FED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 12 Oct 2023 20:53:40 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/7] riscv: dts: sophgo: add Huashan Pi board device
+ tree
+To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20231009112642.477337-1-inochiama@outlook.com>
+ <IA1PR20MB4953857AA6B541C1C3218F66BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB4953857AA6B541C1C3218F66BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [KIOPBmNMXL6m+h7BUbuweKl25XvdOm9N]
+X-ClientProxiedBy: SI1PR02CA0044.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::6) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <d0a6569e-dd5f-4aa7-9299-fcf33a4fc17f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|MA0P287MB2452:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ef49d67-07b0-406f-3628-08dbcb2242f5
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	LJs007FoccCSB6n6osfZ1SOJXHFEQIGbvoygbUQSI3ZLModHrmpxtqTbVSqtiBmBb01gZQk3je9Gs9oN+3RTGk/DxJ9ZcR0YhcNq2yOxYSleyE1MBk6GB+j/wi5Odj0zxDkDujhk9f1QhM6GIWcuFu9B6FFpaKSGgJ5AE1awuM9xD01kHW7FZjTBIgLVep4z6LqCNaDZ4WQcqCY/+6i5t+lLatXjXV4s67b76o1+jtH7RbShCUSOQ07x7g3fVUI7DxJ/9Y9el+8+AiZn3yehECCBQeYZUR0Qc5h4s1W3LvUGUyHiYJgXAJVe1z1Ubq3w4yL3h8sn73qgeuGXcyBH/FD0AYYU8EQXWqLjA+eDyo0mtYlYNu3PXZaXcy1Kh0imqbzfP7Erz8FUsDpjIuYSr+8sqhwts3JBmAiWicAVe7eLdgr7P6OVzvzsL7FB0DdYngHL9GH0gxbalFE8JyrQSeT0s6w7pm0/8zroYraCd613CE7uj4uRfVdb/nQgWEUXb9pNMvb7VENPSQuaMNiRgwhiTdBK2DlbFVyulQiDlC0xlkLplAeBEh4Bg17YL21GpkqRgN5D0DhcLynq7WgWXaB1T9zrBUHSl2oLYSS9zaQ8HygoPwwZS1rJM56m3l2BO0VoOGlnb9oJI3uSrvmmWA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V3BMNFJkTlp0NXhLcHhjR2NzekRKcVl0ZHVBaDJLNk9xb2VLd0crRU8yWUYv?=
+ =?utf-8?B?WUlEUDJneHRWeU5CandraCs3NzZ2Q0xIUDNTQ1VBMmlHVEZIelNzS1YyYzRP?=
+ =?utf-8?B?WjQ1bkNsT1BDSytPY3IyRlZZSzNQa1NSNEFvS28vTlRwVmNTSHJaelB1QnRa?=
+ =?utf-8?B?bE0zejk3dXdudk01WTI5dVpDRmlacm1KMFUzYXpkaUJoMlVJSVdnV0RHb29j?=
+ =?utf-8?B?OGFXMVpMb09nR0htTkhCOXZ2bXMxRzd6T3BTQ1plTFJBNmkrQXhLaVFBbU1V?=
+ =?utf-8?B?cFRiYzZvaGJZbU1Xd3FpQ2R5cVRIYnBLUkQ4RWZTL1M4bUxGWm1YYSs0TFNw?=
+ =?utf-8?B?a1JUYXFkbmtKTkQ5ZnQvOFE4a2hYdm1ZZzhNQXJDdEZaRGJzRGoyUGtTN2ZZ?=
+ =?utf-8?B?SklpUGhSZm81SFdKUDJMeE5SSVRjVjhNblFub2s3MnNDUmtVcnlpMXM2UlJa?=
+ =?utf-8?B?WmljUE5qTit4T0JhNVBtQyszd0hWdlhRR094bVV3aEhud0JFYWlFUmRnNG5T?=
+ =?utf-8?B?aXdLK2d5ZzZyMTEwVFk1R2R0SUsrUWswa1RKVFd0VFczM3VzTEZIN0tTY1Fk?=
+ =?utf-8?B?c0huOGJZMzVTMjBpckh2ZFRHT09sWjMvYnNINGJhMjdJQWpoUHZZVFlUUW02?=
+ =?utf-8?B?Uk8rVzZMWThHdU1HSTBhMnZLQldVcWpaeGsrU0ovSE5HeXVQbkU5NFRQMU1K?=
+ =?utf-8?B?MUxURk40eEFOMElZeUt3Sll1b3pwUVVOQTlNZzlSSXNWSE5mTmRlc2pva2dn?=
+ =?utf-8?B?elVLNENzMjBjZnhaTVNkNGliV0pIQUVHU3AxTTN0bFlEbGNKOFFUQWE2ejdK?=
+ =?utf-8?B?SlJmSHpvbFhFUElCd09HUCtRRlg5RllETWNVWlhsVGNWZVhwNDZiZU16dmRp?=
+ =?utf-8?B?UUhhSktlRGhabGlvMmZ2SlQxeEJZcG1PZmNSeWQ0MHJNQUJnVnB4ZHhsMWJU?=
+ =?utf-8?B?NUxFdGwzeEl1SEFLck55MDAyNTlBdG81Sm4zQmZpZGZQUUhLeFNJMVNqbXZr?=
+ =?utf-8?B?bnlqQmRHRlB0c3RhamgvZjByc05HRmtHTVViVGdmVW1iTHFrSDFDVjBIV1NZ?=
+ =?utf-8?B?Zy9FVWoxM0JHdW5sWG1jUjFjNlhxb1B0V1ZDU1VYck1TMEdUdjkwb0ZhNG9n?=
+ =?utf-8?B?QjB0dG9YbHYyS3JmU0hoajdLbUkrMVo3cUlTd1phOTY1dEJvZmFVU1VDaVZw?=
+ =?utf-8?B?VlI4U1dXWHVoWFVjSHNsUEE1UU8wZHdWMGk3ZWNWN3A0azdUZXJYdEtBcGpu?=
+ =?utf-8?B?TkY5TEdvUUpTajlxVFJjdEhzS2g0d3cwelFrRzBDQ2xtZDN1ZEE0OU1uaFVN?=
+ =?utf-8?B?bHBqUXZ1Z1F5UkFnY21qZGRCTUd1R3hlUks5RXhZSlNMaDIzd0tOZWRzc0s5?=
+ =?utf-8?B?eGV2c05la29DWFFEQTI2ak9HMzNoYURGWTQ2OVNUS2V0MnI0SEVnMjN0bXRw?=
+ =?utf-8?B?TVdwcHFTRjB2QUNVbnZCeXdRSkVRVlB5UkdQR0NabElzMEQ2dG1Cd0RhT3BJ?=
+ =?utf-8?B?TExBVk1maWFKRGJsbWFHTlpRR2pnV1RLME9ST0hnU0lmSTlpcTk4UVcxS1JJ?=
+ =?utf-8?B?Mnc2UDU5ajFZbXBsSFJ5dkdSME1EeW41TlI1elluUlVBQmtnbWkrekRDNWdE?=
+ =?utf-8?Q?JJloKULydOMFUxlTfWWLCJZa7er29VrRO1qQ+KE2aRkc=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ef49d67-07b0-406f-3628-08dbcb2242f5
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 12:53:42.6646
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB2452
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+	FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 12, 2023 at 04:20:13AM +0300, Laurent Pinchart wrote:
-> Hello,
-> 
-> This patch series adds a new driver for the THine THP7312 ISP. It has
-> been tested on an OLogic Pumpkin i350, which has a Mediatek MT8365 SoC,
-> with the THine THSCG101 camera module.
-> 
-> Technically the driver itself (and its bindings) have no dependencies,
-> but to run/test this on the Pumpkin i350 with the mainline kernel, a
-> large number of patches are needed to support the board and the MT8365
-> SoC. Some of those patches are on their way to mainline, and some, like
-> the Pumpkin i350 board device tree, will require more work. For
-> convenience and reference, the needed patches are available in [1].
-> Example overlays for DT integration of the THP7312 are available in that
-> branch, in [2].
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=mtk/v6.6/pumpkin/camera
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/commit/?h=mtk/v6.6/pumpkin/camera&id=e5fd74796c3e0973991bab2692a3534ed1a23d86
-> 
-> Compared to v1, this is a near complete rewrite of the driver that has
-> taken (to my knowledge) all review comments into account.
-> 
-> Below is the mandatory v4l2-compliance report. Careful readers may
-> notice that my v4l2-utils version is three commits behind upstream, but
-> that makes no practical difference as those commits are not related to
-> v4l2-compliance.
-> 
-> The mainline kernel is currently fairly unstable on the Pumpkin i350
-> board. For this reason, the driver has primarily been developed against
-> the Mediatek v5.15-based BSP, and successfully tested there. I managed
-> to test it on mainline as well, but that requires close to hundred boots
-> to get a userspace that doesn't segfault. This is why the
-> v4l2-compliance report below is from a run against the BSP. The thp7312
-> driver is identical to this version, except for the usage of
-> .probe_new() on v5.15 that has since been dropped from mainline, and the
-> return type of the .remove() function that was `int` back then.
-> 
-> If anyone would like to help with getting mainline to run better on the
-> Pumpkin i350 board, I would  be grateful :-) It would certainly help
-> maintaining this driver going forward.
 
-It turned out not to be too complex after all:
+On 2023/10/9 19:26, Inochi Amaoto wrote:
+> Add initial device tree files for the Huashan Pi board.
+>
+> Note: The boot of CV1812H chip needs a rtos firmware for coprocessor to
+> function properly. To make the soc happy, reserved the last 2M memory
+> for the rtos firmware.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://en.sophgo.com/product/introduce/huashan.html
+> Link: https://en.sophgo.com/product/introduce/cv181xH.html
+> Link: https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/build/boards/cv181x/cv1812h_wevb_0007a_emmc_huashan/memmap.py#L15
+> ---
+>   arch/riscv/boot/dts/sophgo/Makefile           |  1 +
+>   .../boot/dts/sophgo/cv1812h-huashan-pi.dts    | 48 +++++++++++++++++++
+>   2 files changed, 49 insertions(+)
+>   create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
+> index 3fb65512c631..57ad82a61ea6 100644
+> --- a/arch/riscv/boot/dts/sophgo/Makefile
+> +++ b/arch/riscv/boot/dts/sophgo/Makefile
+> @@ -1,3 +1,4 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
+>   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> new file mode 100644
+> index 000000000000..aa361f3a86bb
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> @@ -0,0 +1,48 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "cv1812h.dtsi"
+> +
+> +/ {
+> +	model = "Huashan Pi";
+> +	compatible = "sophgo,huashan-pi", "sophgo,cv1812h";
+> +
+> +	aliases {
+> +		gpio0 = &gpio0;
+> +		gpio1 = &gpio1;
+> +		gpio2 = &gpio2;
+> +		gpio3 = &gpio3;
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		coprocessor_rtos: region@8fe00000 {
+> +			reg = <0x8fe00000 0x200000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> --
+LGTM
 
-commit f39c64ed01f56dbac5a3a3570cb3214f18a3ffec
-Author: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Date:   Thu Oct 12 04:21:49 2023 +0300
-
-    arm64: dts: mediatek: mt8365-pumpkin: Add reserved memory region for BL31
-
-    The Pumpkin i350 boot loader doesn't seem to populate reserved memory
-    regions in the device tree, forcing them to be described statically. The
-    mt8365-pumpkin device tree already includes a reserved memory region for
-    BL32, which seems enough for proper operation with the Mediatek
-    v5.15-based BSP kernel.
-
-    With the mainline kernel, however, userspace processes currently crash
-    very randomly. Adding a reserved memory region for BL31, copied from the
-    mt8365-evk device tree, fixes the issue.
-
-    Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-index 8924bb8dae17..465c20e174da 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-@@ -52,6 +52,12 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
-
-+		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
-+		bl31_secmon_reserved: secmon@43000000 {
-+			no-map;
-+			reg = <0 0x43000000 0 0x30000>;
-+		};
-+
- 		/* 12 MiB reserved for OP-TEE (BL32)
- 		 * +-----------------------+ 0x43e0_0000
- 		 * |      SHMEM 2MiB       |
-
-
-I've updated the mtk/v6.6/pumpkin/camera branch linked above, and can
-now run v4l2-compliance reliably on v6.6-rc5. Apart from the driver
-version now being 6.6.0, the output is the same.
-
-> # v4l2-compliance -u /dev/v4l-subdev2
-> v4l2-compliance 1.25.0-5097, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: b79e00a74fde 2023-09-13 07:19:23
-> 
-> Compliance test for device /dev/v4l-subdev2:
-> 
-> Driver Info:
->         Driver version   : 5.15.37
->         Capabilities     : 0x00000000
-> 
-> Required ioctls:
->         test VIDIOC_SUDBEV_QUERYCAP: OK
->         test invalid ioctls: OK
-> 
-> Allow for multiple opens:
->         test second /dev/v4l-subdev2 open: OK
->         test VIDIOC_SUBDEV_QUERYCAP: OK
->         test for unlimited opens: OK
-> 
-> Debug ioctls:
-> [  353.331499] thp7312 2-0061: =================  START STATUS  =================
-> [  353.332515] thp7312 2-0061: Focus, Automatic Continuous: true
-> [  353.333460] thp7312 2-0061: Focus, Absolute: 0
-> [  353.334074] thp7312 2-0061: Auto-Focus Method: 2
-> [  353.334700] thp7312 2-0061: White Balance, Automatic: true
-> [  353.335432] thp7312 2-0061: Red Balance: 64
-> [  353.335998] thp7312 2-0061: Blue Balance: 50
-> [  353.337065] thp7312 2-0061: Brightness: 0
-> [  353.337627] thp7312 2-0061: Saturation: 10
-> [  353.338182] thp7312 2-0061: Contrast: 10
-> [  353.338712] thp7312 2-0061: Sharpness: 8
-> [  353.339242] thp7312 2-0061: Rotate: 0
-> [  353.339742] thp7312 2-0061: Auto Exposure, Bias: 0
-> [  353.340453] thp7312 2-0061: Power Line Frequency: 50 Hz
-> [  353.341160] thp7312 2-0061: Camera Orientation: Front
-> [  353.341835] thp7312 2-0061: Camera Sensor Rotation: 0
-> [  353.342504] thp7312 2-0061: Low Light Compensation: true
-> [  353.343204] thp7312 2-0061: Noise Reduction Auto: true
-> [  353.343882] thp7312 2-0061: Noise Reduction Level: 0
-> [  353.344636] thp7312 2-0061: ==================  END STATUS  ==================
->         test VIDIOC_LOG_STATUS: OK
-> 
-> Input ioctls:
->         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->         test VIDIOC_ENUMAUDIO: OK (Not Supported)
->         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDIO: OK (Not Supported)
->         Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
->         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->         Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
->         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->         test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
->         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
->         test VIDIOC_QUERYCTRL: OK
->         test VIDIOC_G/S_CTRL: OK
->         test VIDIOC_G/S/TRY_EXT_CTRLS: OK
->         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
->         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->         Standard Controls: 17 Private Controls: 4
-> 
-> Format ioctls:
->         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
->         test VIDIOC_G/S_PARM: OK (Not Supported)
->         test VIDIOC_G_FBUF: OK (Not Supported)
->         test VIDIOC_G_FMT: OK (Not Supported)
->         test VIDIOC_TRY_FMT: OK (Not Supported)
->         test VIDIOC_S_FMT: OK (Not Supported)
->         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->         test Cropping: OK (Not Supported)
->         test Composing: OK (Not Supported)
->         test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
->         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls:
->         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
->         test VIDIOC_EXPBUF: OK (Not Supported)
->         test Requests: OK (Not Supported)
-> 
-> Total for device /dev/v4l-subdev2: 43, Succeeded: 43, Failed: 0, Warnings: 0
-> 
-> Laurent Pinchart (1):
->   media: uapi: Add controls for the THP7312 ISP
-> 
-> Paul Elder (2):
->   dt-bindings: media: Add bindings for THine THP7312 ISP
->   media: i2c: Add driver for THine THP7312
-> 
->  .../bindings/media/i2c/thine,thp7312.yaml     |  225 ++
->  .../userspace-api/media/drivers/index.rst     |    1 +
->  .../userspace-api/media/drivers/thp7312.rst   |   32 +
->  MAINTAINERS                                   |   10 +
->  drivers/media/i2c/Kconfig                     |   16 +
->  drivers/media/i2c/Makefile                    |    1 +
->  drivers/media/i2c/thp7312.c                   | 2386 +++++++++++++++++
->  include/uapi/linux/thp7312.h                  |   19 +
->  include/uapi/linux/v4l2-controls.h            |    6 +
->  9 files changed, 2696 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
->  create mode 100644 Documentation/userspace-api/media/drivers/thp7312.rst
->  create mode 100644 drivers/media/i2c/thp7312.c
->  create mode 100644 include/uapi/linux/thp7312.h
-> 
-> 
-> base-commit: a1766a4fd83befa0b34d932d532e7ebb7fab1fa7
-
--- 
-Regards,
-
-Laurent Pinchart
+Acked-by: Chen Wang <unicorn_wang@outlook.com>
+> 2.42.0
+>
 
