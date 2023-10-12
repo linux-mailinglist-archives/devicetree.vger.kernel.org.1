@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A2F7C66A2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:47:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6912E7C66AA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA642820DA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:47:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 989F01C20A83
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA7010A04;
-	Thu, 12 Oct 2023 07:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883EF111A6;
+	Thu, 12 Oct 2023 07:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SqQbhMNJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mLbifKKc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70388D533
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:47:38 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BA0B8
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:47:35 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53e16f076b3so366850a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:47:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9FA101C1
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:53:09 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8783190
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:53:06 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso103840466b.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 00:53:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697096854; x=1697701654; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697097185; x=1697701985; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2XzW2GUZBby073H1yfG7LD0k6AHxcDQwaeAJkEqdCdo=;
-        b=SqQbhMNJWdUNx1HYQLy7uUaBl01j0Ml0T9Mx9VPu6U3Fowf3PoWaCszqltoYL39UTl
-         cZzprabFq1l0NAbTSi3Qkn6ATLKOscafHjS11ZkLI5M8Lx6IXQctsAYRovZcLY3KoBjg
-         QlCc/CD/V6N1+kr3HJ6M+MPiLQL29RDetuTlL6ZH91FZaE6K89MNQwrx0Q5aUSO52WoU
-         +zwivDvyM16if2D8TbrA672eh6kSbV2KiZkDehg4wtB/J41NuDgJq+CHH4GdJCw83Vx3
-         XXXDGWPxwocklYKy4JuDZDkOU4sGoy9v/4DrUeCxTMJ6MckUZlzO7GzgE5ThLSQ/7CUj
-         Fh6Q==
+        bh=M5JKAw7l2R5GRN5PjCy/S1oc67fYhQaFH+TzRSuCn3Q=;
+        b=mLbifKKcdQS1kebWFCIG99/lKv2JaGeQ934qNT7Etd5Yu64HwAe5ZfICcnkAFPZ8w9
+         aUrD3XLEO9nAUzyqO5Xju5CdVyxJERJ1M6y4yqFi9HHzdypV6bUzqJeFb+SOJLzoele6
+         oFNcN990a800Jys581PhfZN5rGWWIUryKTNtFTS1wzVStYn+gOty/1x36/jvE25kOTdq
+         YvUsNmNvWruVeAiTpONUDr9AE+Td9oAGD3ufpMYB9MrEd5yDXwx+0pgL451nY1YC/bRV
+         s6pLPEpBozrItLuMrK7NwBAFb+LUtD37bLwK37CI0XQsT1x8vIsSrJPSS98LpJF7tSKt
+         tzUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697096854; x=1697701654;
+        d=1e100.net; s=20230601; t=1697097185; x=1697701985;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2XzW2GUZBby073H1yfG7LD0k6AHxcDQwaeAJkEqdCdo=;
-        b=lLFDFJNbH1GMTqL46ttFOc4yHzGsXvbRmrAt3FmcoYE/lzoeO51Vvmv5HKuYwDLBJ0
-         xqjyFjMTbBix/hyEZmRgEJ4ZpuHZn5aB49/VCEzNp9otugYfT2oC4M5b9xVeWS3NtBiQ
-         eLUgg4ssIQGp9alD1EgBrlip+wS8h+kMvaLdpp68et+kAWzQHuCJCBaqPxXdXAB4SQu9
-         NL4oadiUVPPt3wpeLuFamFZ+Uhkuwwx21fszQP789kjd7OvRq4RzrwFiishotAgsMcqM
-         ehhobRnAVc407/ouAmIgnwJFoF3FQ89zxfw5mZ3JGJA2904IhTHRO9ycUtZvIn2oEBV7
-         +X3w==
-X-Gm-Message-State: AOJu0YxAbAXihTGUlLpbd3jPDisf/dCsMa6kjniDZg3dfUp/jmwyVp5B
-	wzlIBnSyJr6GJTni/QYBKwM7BA==
-X-Google-Smtp-Source: AGHT+IE1iKoWBWHHQ/TpCm3YxrfikbjkGB5KrfENrYNLXb7dB2SI7kcWuIYgisE+nkHSjY6KJtFPXA==
-X-Received: by 2002:a05:6402:12d8:b0:523:b37e:b83b with SMTP id k24-20020a05640212d800b00523b37eb83bmr18413371edx.13.1697096854332;
-        Thu, 12 Oct 2023 00:47:34 -0700 (PDT)
+        bh=M5JKAw7l2R5GRN5PjCy/S1oc67fYhQaFH+TzRSuCn3Q=;
+        b=RGiI5RDslo8T0H8HUDemlJSjZZQjyJqjnYTvGPFk6dvS1fFSrzt/lJJLGIrmCNlEwG
+         BChGdqD73IWEG8dLGCM+PsA3kDbHZNfBkrZ+WYe2UmjsUaedrV7Qu930MCoCXhA+3Tbd
+         HwFZiHWG9sP8vCGsdZFX1CkHEws8KcbomsLsSCFtzoNiUR+t9MNBmlRt+flC0BX6cIgT
+         6KJRWrhX/Q8N+uGbLXjmBjtvGJFzqJkNfTFq2Owd+VVM7FlgQGscWERjz8KnYY+lmJQt
+         Xtx/KjtZMpof5CAJxuYq2E380N2KM0/7SPhZo28oympNpmAjMed8Fbqzw9nkHcO+oBLx
+         KJfg==
+X-Gm-Message-State: AOJu0Yy0FB5/iTg0HxDq6HHp/Xoe82LsyqU+niqtBdnrKxtJ0ekNJFwE
+	B6b8uFUEtW/KRD5ZKhwjOFZp4g==
+X-Google-Smtp-Source: AGHT+IEL+HNBfTbENZmEPS3kjdy/2Cew+5AGmGYVGduLtVFjOe0wNBD/6dbw3SnpFaRkALpKhcofkw==
+X-Received: by 2002:a17:906:1011:b0:9ae:69b3:3e18 with SMTP id 17-20020a170906101100b009ae69b33e18mr22462387ejm.25.1697097184954;
+        Thu, 12 Oct 2023 00:53:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id be25-20020a0564021a3900b005362c9905b2sm9822183edb.35.2023.10.12.00.47.32
+        by smtp.gmail.com with ESMTPSA id x20-20020a170906299400b00997c1d125fasm10895258eje.170.2023.10.12.00.53.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 00:47:33 -0700 (PDT)
-Message-ID: <b214e763-2175-4de1-af54-43961ff94afb@linaro.org>
-Date: Thu, 12 Oct 2023 09:47:31 +0200
+        Thu, 12 Oct 2023 00:53:04 -0700 (PDT)
+Message-ID: <f24bab3b-4a45-4843-a834-e3a57c7d8aed@linaro.org>
+Date: Thu, 12 Oct 2023 09:53:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for THine THP7312
- ISP
+Subject: Re: [PATCH] dt-bindings: max310x: convert to YAML
 Content-Language: en-US
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media@vger.kernel.org
-Cc: Paul Elder <paul.elder@ideasonboard.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
+To: Hugo Villeneuve <hugo@hugovil.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
- <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231011222105.2587175-1-hugo@hugovil.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,7 +123,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20231011222105.2587175-1-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -137,113 +133,132 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12/10/2023 03:20, Laurent Pinchart wrote:
-> From: Paul Elder <paul.elder@ideasonboard.com>
+On 12/10/2023 00:21, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> The THP7312 is an external ISP from THine. Add DT bindings for it.
+> Convert binding from text format to YAML.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. Missing prefix: serial:
+
+
 > 
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Additions to original text binding:
+>   - add rs485 reference.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
->  .../bindings/media/i2c/thine,thp7312.yaml     | 225 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 232 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+
+
+> diff --git a/Documentation/devicetree/bindings/serial/maxim,max310x.yaml b/Documentation/devicetree/bindings/serial/maxim,max310x.yaml
 > new file mode 100644
-> index 000000000000..053b28fb0a89
+> index 000000000000..05fd00d95260
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> @@ -0,0 +1,225 @@
+> +++ b/Documentation/devicetree/bindings/serial/maxim,max310x.yaml
+> @@ -0,0 +1,107 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2023 Ideas on Board
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
+> +$id: http://devicetree.org/schemas/serial/maxim,max310x.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: THine THP7312
+> +title: Maxim MAX310X Advanced Universal Asynchronous Receiver-Transmitter (UART)
 > +
 > +maintainers:
-> +  - Paul Elder <paul.elder@@ideasonboard.com>
-> +
-> +description:
-> +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
-> +  various image processing and correction functions, including 3A control. It
-> +  can be connected to CMOS image sensors from various vendors, supporting both
-> +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
-> +  or parallel. The hardware is capable of transmitting and receiving MIPI
-> +  interlaved data strams with data types or multiple virtual channel
-> +  identifiers.
-> +
-> +allOf:
-> +  - $ref: ../video-interface-devices.yaml#
+> +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > +
 > +properties:
 > +  compatible:
-> +    const: thine,thp7312
+> +    enum:
+> +      - maxim,max3107
+> +      - maxim,max3108
+> +      - maxim,max3109
+> +      - maxim,max14830
 > +
 > +  reg:
 > +    maxItems: 1
-> +    description: I2C device address
-
-Nothing improved here.
-
+> +
+> +  interrupts:
+> +    maxItems: 1
 > +
 > +  clocks:
 > +    maxItems: 1
-> +    description: CLKI clock input
 > +
-> +  thine,boot-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  clock-frequency:
 > +    description:
-> +      Boot mode of the THP7312. 0 is for standard streaming mode, for the
-> +      THP7312 to be used as an ISP. 1 is for firmware flashing mode.
+> +      When there is no clock provider visible to the platform, this
+> +      is the source crystal frequency for the IC in Hz.
+> +    minimum: 1000000
+> +    maximum: 4000000
 
-Why, for a given board, would you always boot device in one specific
-mode but not the other? This does not look like property of DT.
+This wasn't in original binding. Explain this in the commit msg.
 
 > +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the RESET_N pin, if any.
-> +      Must be released (set high) after all supplies are applied.
-> +
-> +  vddcore-supply:
-> +    description:
-> +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
-> +
-> +  vhtermrx-supply:
-> +    description:
-> +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> +
-> +  vddtx-supply:
-> +    description:
-> +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> +
-> +  vddhost-supply:
-> +    description:
-> +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
-> +
-> +  vddcmos-supply:
-> +    description:
-> +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
-> +
-> +  vddgpio_0-supply:
+> +  clock-names:
+> +    enum:
+> +      - xtal # External crystal
+> +      - osc  # External clock source
 
-And more of ignored feedback. I stop now.
+clock-names follow immediately clocks.
 
-This is a friendly reminder during the review process.
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +allOf:
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+allOf: block goes after required: block.
 
-Thank you.
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - $ref: /schemas/serial/serial.yaml#
+> +  - $ref: /schemas/serial/rs485.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +oneOf:
+> +  - required:
+> +      - clocks
+> +      - clock-names
+> +  - required:
+> +      - clock-frequency
+
+That's also something new as well. The original binding required clocks.
+Why are you changing this?
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        serial@2c {
+> +            compatible = "maxim,max3107";
+> +            reg = <0x2c>;
+> +            clocks = <&xtal4m>;
+> +            clock-names = "xtal";
+> +            interrupt-parent = <&gpio3>;
+> +            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +        };
+> +
+
+One example is enuogh. All other are the same.
+
 
 Best regards,
 Krzysztof
