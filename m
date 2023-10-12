@@ -1,133 +1,318 @@
-Return-Path: <devicetree+bounces-8111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D727C6B62
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:45:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74267C6B66
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:47:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C84281C20CA5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:45:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AC9928257E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F04A12E42;
-	Thu, 12 Oct 2023 10:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F37C12E44;
+	Thu, 12 Oct 2023 10:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MkBV1PGU"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Vi1oWOYO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2135ADF71
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:45:49 +0000 (UTC)
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDA190
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 03:45:47 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-579de633419so9760517b3.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 03:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697107546; x=1697712346; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Y1HcKX9gLg/2u91PTGxysXLbI09E4OA7x2vijjT4oo=;
-        b=MkBV1PGU6ITEclP07GUvtvRscL427hCkMvhgCt/0j+IEpjJ8okKZ9Z0Psd4m0/7UMK
-         VnBPmJwdZfONRlhmwsj5EsKqvVkWk1nTX2l1cQ1lzrpovlMRuQnDxyLsZYKty7fRlfqF
-         ICXH1QklmNoCj4ebcFO4ja2U4vBPcgGlql2aBb/tO0vx5JFXfDspcKGb33Hs8NMEj4hr
-         nTF0jRiSAmfBzHo1zTAXU8Iu9W3+eDekcj6r2quOWkFebN051DwbYtoODU+LdoISxwl0
-         ZDt1WBgAhSch0/UJgFXGAws2k4Dbzs3JRwodxskWcEpkqJ82V/nLY3PyI9t3aYCnwdfY
-         49Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697107546; x=1697712346;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Y1HcKX9gLg/2u91PTGxysXLbI09E4OA7x2vijjT4oo=;
-        b=UC+6f+I724hTzxCB8GRNxcdBzGub17vF+oubfy4JmDTEAeCS/+tzmGjZy8DzC8ieXh
-         GTPh5/HMGnoaR2K1wCktobyySzTFPGYyVJsc/foxWQ3/Ndq7n6HlsypyAAb1cK5420BE
-         5m+Tve6fpKudZJ9cqSgVYorRS9NcJD59EY51AqX2KFlXsjQoPX2/+k9aZHYXcoqHjETc
-         HLNxIcQqBq4+e5rjJ2I/oRAshoiku1HozwcCXs7VQCaqp2f0Pha/KzqVuijk2dYHgTZ5
-         d5cD4uIqDOp7Yj7N9A+RPyaOOqtsA//h7zL/DIFcuL5hjhh7F6Phk4ao+/yeo2r5wInf
-         KeGw==
-X-Gm-Message-State: AOJu0Yyi7L4a5V86QWhZqQgL1ChtnLWaaNw6uM/wFJmhnSSqfgiRT7r3
-	7UP0ymA8nBm9u8aIG5vFtlVfrZaIygQrkvnuuUh2MQ==
-X-Google-Smtp-Source: AGHT+IGB+FxE7ccc2MEU8WMKyKb6JfbaLjOX2/doWAHH3NmtLFyPGOAqUKNJex39lRrnodJof8jLL2wunY4kkN6We6s=
-X-Received: by 2002:a0d:ee01:0:b0:59b:c6a4:15c7 with SMTP id
- x1-20020a0dee01000000b0059bc6a415c7mr21411976ywe.46.1697107546553; Thu, 12
- Oct 2023 03:45:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F478C10
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:46:59 +0000 (UTC)
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2058.outbound.protection.outlook.com [40.92.102.58])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8109C90;
+	Thu, 12 Oct 2023 03:46:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JZXvHqoAb/IwM+m8dnPSwkbq+sgrD2utMX5sFSO6HCPHyTJZAQWgPW/pP2FQ/EK18Sl3f9uCapKvWObMUeP2mClgGBgZtEiuItdFPpQsbTVZJeMoZdI1G9rXgJXssLOK9G49idBijAQ7vR1jx5M1nDg30S7mYGw8TGo9uyQ2Zf0QA/F4z3NgN5BwbnVFjCaFUyClN8GLKUnZ2DkquTKIr4S3+4GrqIp3rhEaYcrmJVjAZnmx+mFoG4qFmS24MlKDdhanf/iFoxxUgBDsWxjRnOlDdMcTZgDdkfOkHA8ry8Uo1X5tzRjsg4T0/4Oq8BFDeDj7362JopFZUZ5nVSq2cQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tpJoUGUd6x+Ych9wRM/uPeZlbQX5FHuBXZEtLbZhPyk=;
+ b=aQ0SVPeLsKEIbLRUxjFXmRF8ICgN1XS4qFmqwBLFj8xV0K8wxpHvjCfFJkKOk6kPNKn2r/02ayImDpvslAcmnbAb9vLsIWVi9saKOhIAvP/JZvsmKZdQKAvUUz2FBXMojpnzTFTQ/Kei+BglbGhA7XCDABwrILtB3mswvRZyhTfoi9AqvYESQrv2bSx9MZPZbs6hOz8a5sXQPShQEUYjzPRG9Y11xiJYaWgjGqqwfAi6URVjjzxjw1UFN+1P7KTKYlHpKqqqrmEhuPIsz1Nu3YpsDzJwIF710XLlb5S78wXAyrZlkRBLovqSjPJh91CrIFhb5lR980hG+qHlY/QZug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tpJoUGUd6x+Ych9wRM/uPeZlbQX5FHuBXZEtLbZhPyk=;
+ b=Vi1oWOYORwCrDUl/yBkb0Cmp3qnrViyzG9/KJ0AlmT4d5215Yn8H8pKm8MA/+FWqTvJUdPlwtZXIfwg1zRwbYBxiAFuHvu9XN4z8GDxn5yr6pFqppVzCqYdRVgHfHbZ+jiul1zwluKQWEkMibfKrZ8O6FlcUd0NJhCRArzvWZpANZ77c03u0WV1kKGZDyuc1H21NN8cEBFSPZTRTwq4y93CVw0u7Qvo9vYolQ9I+bstjsuinZWkaIgTEUk76SqvJLcHN9hQEqH7A9fqT/yW9Csw/qd+udilyurApApI3xKyz4vIpvZchFDRiZJ/opKNIjNRXoxRKALKOgHh+TxRzWA==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ PN3P287MB1071.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:178::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.45; Thu, 12 Oct 2023 10:46:51 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 10:46:51 +0000
+Message-ID:
+ <MA0P287MB0332A5A99911CC90948CDF44FED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 12 Oct 2023 18:46:45 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] riscv: dts: sophgo: Separate common devices from
+ cv1800b soc
+To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jisheng Zhang <jszhang@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20231009112642.477337-1-inochiama@outlook.com>
+ <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [5B6K+2bwd/fpWzi7UBnG1bSZT7iFNQ41]
+X-ClientProxiedBy: SI1PR02CA0057.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::10) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <d2d5d921-8392-4e9c-aef6-3d73fc45f092@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-3-peter.griffin@linaro.org> <ZScYOUi7qhvGmMIF@google.com>
- <e4523fc3-e1dd-4791-b950-98dfc6dce1f5@linaro.org> <CADrjBPpntJMsxb6oGQ7zuX3f0dgE3oYFepL4OdxamBz=_or7kw@mail.gmail.com>
- <21742fbf-8484-42ab-aba1-379305091946@linaro.org>
-In-Reply-To: <21742fbf-8484-42ab-aba1-379305091946@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 12 Oct 2023 11:45:35 +0100
-Message-ID: <CADrjBPpF3Ta67QzUqyXD1YSFV_kFWqujCxPAjKbvRNhgXeMmOg@mail.gmail.com>
-Subject: Re: [PATCH v3 02/20] dt-bindings: clock: Add Google gs101 clock
- management unit bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: William McVicker <willmcvicker@google.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, 
-	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, 
-	s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, 
-	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, soc@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel-team@android.com, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB1071:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4dfee05e-c9a1-4838-3a07-08dbcb1089fb
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8RfgYfIY3AZ3lQ8qU14rUrEonhEFoIJDaueIY3Gk9XHgRSIkXOlJdUu6ZvWMc8k3oynX8iRQIVYcj6Su4EsDemmnC0WSXXFOXwA9pgDmLDdBFisA6iypUj7O5a1204v8E583+MpEd6nfSKMLQcUtQwX8YXMnca3e6nuVP6YahMGdwAHNoW5Eyi0mRSLCt6HfchXmZNIxOUCUlW3qDNGSb5fBuIZtHuHKOywvlXQhzL2NPxgQwHtWvgsGTeffL+YRuM/NIi7Tw0mSe8lnJVELQrzL0+ZarIge5UKbL6gwA5HPTIvJEaVSNyZxaK3C792fCT9YdoESgRvtixARhnIygFNDr1a1uHy+CCGdiMywApwzbbIUEB4En1NFxSCdmdOO04/bf+RzE8rawl58rw6GJGF+1y7QTAm2j2f9tSQCUD070lRidxHbsg3cd8s4RqYAUdourNEf8HsK2TbYoYk+hSSkxq5P/dppU5DpwCtX91LkwNV/Bb9RywJN++DbMNB8m5PJi2/ZJX6GElAj1CmsiJWkYRrO2E/BpFmkI+nkG9+ap3EzRZU9H0JxeW7VJbma
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WVlRbXZaa1NFT2FxRWtIcERqeWtLR2V3OUVSOGZUZmhiZW5zNm1RR3J1TWxQ?=
+ =?utf-8?B?T1d3Q1ZsU1Y2UkNpc3VvclFCLzRYQXlRekN2L3NGZ0ZnZHlVZTdRODNueU1k?=
+ =?utf-8?B?OUhWQXEvYThyTnRMS2ZzQXFVWXRSUHJaeXR5cEdPN1dPWDVSSnZ6bnYxUWpN?=
+ =?utf-8?B?TGErYmM2MWtSTXQyZHB3VzNSTWpnTThMV3FHSVM3OEpUVllHRWdqdmFMSlRV?=
+ =?utf-8?B?c1ArV0FrM3ZSZ3pTK1FXU2RXcW5DckFFZ3dreEVFNStnNmEwWDNmc3NOM0Z2?=
+ =?utf-8?B?U3U3VVF3bzVNbXJNUnRmS0RCVUticDY5L2V6SmlvUW1McXhQbmZIVGNINWlP?=
+ =?utf-8?B?c3QrNTh6bnZqNVRGajMvaDhMTm9yNnNDK3dCK25LOUx3UGVvTUZyQnU4YkF1?=
+ =?utf-8?B?dWRUZUdQdGJBRDFJb3llbGNiNkwwanJLM1g3Y2Q3dkJ1UFkxaFYzWDc3UDFK?=
+ =?utf-8?B?dzRVNnRrdSsvaWcyTXZjVWVMdFJyS1BtK1lCTkhNV0c5NWJtQzJ4Mit3c3Vo?=
+ =?utf-8?B?cys5cU1YK3VlM2F2cVdEY2o2MXQxOXhVOG8yRy90WCtub3RFcllaUG5FZlQ0?=
+ =?utf-8?B?YkRsTHo0R1QyTlBydmJueU5DODJ3cHZuWEppNmRZUUlSQXZNNHpuQ2NlRFVv?=
+ =?utf-8?B?QW9tOC9pY1BObHRYdW94RjdkaEhhWnRtREVKY0J5am1JeTRsV2lmT0tkYXly?=
+ =?utf-8?B?WXJ1U3NVdG9xK25VYXFJQjRyR3hxTFQ2ckJ3R01RQUo3aTUyWllHclIzOGNC?=
+ =?utf-8?B?bGhKc21sZ3NKbHVEdjBSejBMNDQ3MnBuRk1PY1lNcUR4S1N0OHltTUxSQUNO?=
+ =?utf-8?B?bzJ0N015MmFUTHU3ZTBLMStKV3psOUJEaEx4ZW0vMHFRVTVsbzQyemdjTW1O?=
+ =?utf-8?B?RDYxdlM2dEFXbUVUL0xQVWw2SG9ueC80UzRhcFk1UHpDMzEzTTl2ek1jdG02?=
+ =?utf-8?B?NFFaZURNOFdFZmoraGFmMUJvTlZBNndxQUpaTjBaUllPQUpwNjg3cS80bG51?=
+ =?utf-8?B?YzJlOVpUVjZ6VjBEUGQzNFRzZ1JVSFNTTXZnRFZ0RTl1bU1JVmhucklGWnZx?=
+ =?utf-8?B?L2Q1bXhLWmVpbWNxZkpIRzhIZy9vTEhFL0tMNUZYeWh3R2t0Vm81cUxuV0hB?=
+ =?utf-8?B?Y2t0V3F6K0JXYXZBNXNkR3hOaU1xc2JiZWgrLzVYOVVYd2VEUkdSVHFja1J6?=
+ =?utf-8?B?VzJBRnM1aUhwbGZ4QVRRK3Z5WGk4Z2hXd2xlY0tNMCtySkd5TnJTRmQyVHpF?=
+ =?utf-8?B?ZzhOMllkeUM4QUo5alZiTkJJZi9yZm13d1lRMU9SekhSN05TeDN4QVlOVnZz?=
+ =?utf-8?B?cnRaZ2w1NVV2bXRXWTJlZXFrWUxSbTdzSGhPWGR6bWxzNUV1cUdhNlRwRXgx?=
+ =?utf-8?B?T2dFY3BvWjhyQkVpK1hyQzJTelZwZ3Y5THUzODdyd2xWeEcvVUdBN2lzeUw1?=
+ =?utf-8?B?LzFWSngrUU1PTHMvcFhQSEtaM0ZoYnd4KzV4N0dLWTRUazM2clZjNHVRMjNu?=
+ =?utf-8?B?QzYwRHFheWp5MGJFNHkzNnpEZXNWNlhKcDhTUytZZWVvakVnSXJscGp5Ylpj?=
+ =?utf-8?B?TzRRd0JTeG1FSjh5aytVNlpWVW5oSTV1bmV6Mko1Kzd4Z29DMVVhUzZZR2Rs?=
+ =?utf-8?Q?8se68AJsAuslJdWlh4u+TIJAsWEa783H3m3INH/rAmMw=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4dfee05e-c9a1-4838-3a07-08dbcb1089fb
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 10:46:51.1100
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1071
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
 
-On Thu, 12 Oct 2023 at 10:36, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On 2023/10/9 19:26, Inochi Amaoto wrote:
+> Move the cpu and the common peripherals of CV181x and CV180x to new file.
 >
-> On 12/10/2023 10:56, Peter Griffin wrote:
-> > Hi Krzysztof,
-> >
-> > On Thu, 12 Oct 2023 at 07:07, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/10/2023 23:48, William McVicker wrote:
-> >>> On 10/11/2023, Peter Griffin wrote:
-> >>>> Provide dt-schema documentation for Google gs101 SoC clock controller.
-> >>>> Currently this adds support for cmu_top, cmu_misc and cmu_apm.
-> >>>>
-> >>>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> >>>
-> >>> Tested-by: Will McVicker <willmcvicker@google.com>
-> >>
-> >> And how do you perform testing of a binding?
-> >
-> > I guess if William is using my script to build and flash the kernel it actually
-> > runs the DTC checks as part of the build process.
-> >
-> > See https://git.codelinaro.org/linaro/googlelt/pixelscripts/-/blob/clo/main/buildp21upstream.sh#L44
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>   arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
+>   .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 19 +---
+>   2 files changed, 2 insertions(+), 112 deletions(-)
+>   copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (80%)
 >
-> So it is a build test? We do not consider building as a test procedure,
-> otherwise I should add my and robots tested-by to many other patches.
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> index df40e87ee063..0904154f9829 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
 
-Ok so I should only add the Tested-by on the .c patches?
+Hi，Jisheng
 
-> Shall I consider other Tested-by tags here also as build-tested only?
+Do you have any more comment on this change related to cv1800b?
 
-No. William indicated here
-https://lore.kernel.org/linux-arm-kernel/ZScZu-QB2LmB4CSM@google.com/T/#mbd96a26b725d6c85eb4193de8cd70ff277bc728e
-that he booted it on his Oriole device.
-
-Peter.
+> @@ -3,106 +3,13 @@
+>    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+>    */
+>
+> -#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "cv180x.dtsi"
+>
+>   / {
+>   	compatible = "sophgo,cv1800b";
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+> -
+> -	cpus: cpus {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		timebase-frequency = <25000000>;
+> -
+> -		cpu0: cpu@0 {
+> -			compatible = "thead,c906", "riscv";
+> -			device_type = "cpu";
+> -			reg = <0>;
+> -			d-cache-block-size = <64>;
+> -			d-cache-sets = <512>;
+> -			d-cache-size = <65536>;
+> -			i-cache-block-size = <64>;
+> -			i-cache-sets = <128>;
+> -			i-cache-size = <32768>;
+> -			mmu-type = "riscv,sv39";
+> -			riscv,isa = "rv64imafdc";
+> -			riscv,isa-base = "rv64i";
+> -			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> -					       "zifencei", "zihpm";
+> -
+> -			cpu0_intc: interrupt-controller {
+> -				compatible = "riscv,cpu-intc";
+> -				interrupt-controller;
+> -				#address-cells = <0>;
+> -				#interrupt-cells = <1>;
+> -			};
+> -		};
+> -	};
+> -
+> -	osc: oscillator {
+> -		compatible = "fixed-clock";
+> -		clock-output-names = "osc_25m";
+> -		#clock-cells = <0>;
+> -	};
+>
+>   	soc {
+> -		compatible = "simple-bus";
+>   		interrupt-parent = <&plic>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		dma-noncoherent;
+> -		ranges;
+> -
+> -		uart0: serial@4140000 {
+> -			compatible = "snps,dw-apb-uart";
+> -			reg = <0x04140000 0x100>;
+> -			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&osc>;
+> -			reg-shift = <2>;
+> -			reg-io-width = <4>;
+> -			status = "disabled";
+> -		};
+> -
+> -		uart1: serial@4150000 {
+> -			compatible = "snps,dw-apb-uart";
+> -			reg = <0x04150000 0x100>;
+> -			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&osc>;
+> -			reg-shift = <2>;
+> -			reg-io-width = <4>;
+> -			status = "disabled";
+> -		};
+> -
+> -		uart2: serial@4160000 {
+> -			compatible = "snps,dw-apb-uart";
+> -			reg = <0x04160000 0x100>;
+> -			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&osc>;
+> -			reg-shift = <2>;
+> -			reg-io-width = <4>;
+> -			status = "disabled";
+> -		};
+> -
+> -		uart3: serial@4170000 {
+> -			compatible = "snps,dw-apb-uart";
+> -			reg = <0x04170000 0x100>;
+> -			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&osc>;
+> -			reg-shift = <2>;
+> -			reg-io-width = <4>;
+> -			status = "disabled";
+> -		};
+> -
+> -		uart4: serial@41c0000 {
+> -			compatible = "snps,dw-apb-uart";
+> -			reg = <0x041c0000 0x100>;
+> -			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&osc>;
+> -			reg-shift = <2>;
+> -			reg-io-width = <4>;
+> -			status = "disabled";
+> -		};
+>
+>   		plic: interrupt-controller@70000000 {
+>   			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> similarity index 80%
+> copy from arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> copy to arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> index df40e87ee063..ffaf51724c98 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -1,12 +1,12 @@
+>   // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>   /*
+>    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+>    */
+>
+>   #include <dt-bindings/interrupt-controller/irq.h>
+>
+>   / {
+> -	compatible = "sophgo,cv1800b";
+>   	#address-cells = <1>;
+>   	#size-cells = <1>;
+>
+> @@ -48,7 +48,6 @@ osc: oscillator {
+>
+>   	soc {
+>   		compatible = "simple-bus";
+> -		interrupt-parent = <&plic>;
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		dma-noncoherent;
+> @@ -103,21 +102,5 @@ uart4: serial@41c0000 {
+>   			reg-io-width = <4>;
+>   			status = "disabled";
+>   		};
+> -
+> -		plic: interrupt-controller@70000000 {
+> -			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
+> -			reg = <0x70000000 0x4000000>;
+> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
+> -			interrupt-controller;
+> -			#address-cells = <0>;
+> -			#interrupt-cells = <2>;
+> -			riscv,ndev = <101>;
+> -		};
+> -
+> -		clint: timer@74000000 {
+> -			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
+> -			reg = <0x74000000 0x10000>;
+> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
+> -		};
+>   	};
+>   };
+> --
+> 2.42.0
+>
 
