@@ -1,472 +1,454 @@
-Return-Path: <devicetree+bounces-8138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2FB7C6C73
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1F47C6D64
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6E93281FFA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:34:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 532492827DB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE2E2420A;
-	Thu, 12 Oct 2023 11:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88FF24A0B;
+	Thu, 12 Oct 2023 11:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="amCiMRIO"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EWEe3xPo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF6423776
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:34:16 +0000 (UTC)
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2055C0
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:34:11 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-d9a64ca9cedso820496276.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:34:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697110451; x=1697715251; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jg7ohXGf2m9CZBYLiH8d1kv3ke8LQq+3azZ/owa4P9I=;
-        b=amCiMRIOEmxhIRBGx2uQHArwDSE+mGfFV5LitqIvANduvsl81hK/2IvC+ECDOUUmyK
-         XhoCPL2F4U1S3ASfP4VSesfhBIECrBj18P2TJZWppvt0JW7ht6MdaeaGTgvby80PqxAX
-         1d1jhTZdA7paHtZIcHjlADlK5s8FygE/Z7UZraHVHse9RCial608PpGyUUhjDfqWZnlF
-         5n/BkSkZkYQoGHaYtS3b157MLMGf1pgpONAfrui8RgWgkvuQVPsmcOT/gj9OxMxnrXos
-         /48vZedSwBsxAYfQlIrJKN4Frt+xZgka0vE/ebFscbyrzyr/jehUfA90G1MphADH1RWk
-         hH+g==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A9424218
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:53:38 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6306A3C0D
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:52:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1697111454;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bDXs32bIFljFLB3BizuC8Qgv2eOciC1P7puQyz2ihO4=;
+	b=EWEe3xPoExcm19cfs2Sa9Achztf8MBVJaDPPtkvOYSe8noMAAGW5XPliw4lzxT4hokv5tL
+	iAZuTEuqSOkyqk8m5pWtoelo98z707QcTUhP5DUi/QKZTw30mRlq0WzIDc5q2B/w3CnN4m
+	uKeLy7jrE03QHsjg++o20hsYZW33a60=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-610-oKv4yRCgPUyL4u7EifXPYg-1; Thu, 12 Oct 2023 07:50:43 -0400
+X-MC-Unique: oKv4yRCgPUyL4u7EifXPYg-1
+Received: by mail-ed1-f72.google.com with SMTP id 4fb4d7f45d1cf-51e3bb0aeedso83108a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:50:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697110451; x=1697715251;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jg7ohXGf2m9CZBYLiH8d1kv3ke8LQq+3azZ/owa4P9I=;
-        b=DR7BSPlitXcgdkUFtpdUBVGEU2E8HpNPEPWdahldy2KTUhh42KUfpHShCIZKO9rlGz
-         qAtqRQ7OSK3lJ6jfmkSsGN5P9XMNDcYbk1b/liDLuZSqygr1PyUsFuiVeVfJHk5oNTAR
-         NBRor7j2ql+RqeYDlSD5sFc0N5/piWI3xxYXzhUAsrTkFln6VPMXrPfZ27JQ4jz5DChm
-         Qa1zIHBmGn1MQxb5QPKYx8Jbnv9+2YZQNdAusLplZhVbRaUtpMrVHqzkHKxIleSa2Zd9
-         P/WCoFnptI3G4Wk+LtA3MpnAKuz380yP+zBDaVASB+bw6KRygIOu1OS3gEfk2w0To/OI
-         iszA==
-X-Gm-Message-State: AOJu0YybmsIyIj8YtuaRNZSmvc+TYZGNt5SGMsecSnVigdHs9NM8aQ1T
-	4zqqDrVO/J14p7A/X8G+YKqhntXJyF1puu4Osm3D0A==
-X-Google-Smtp-Source: AGHT+IGOR0rbcSPDHNc+ghtdeoYDWijddINyHcVhuulPD7f2U4DBElM6685wDGiRiSWSdcLL2NsLnfFCV2nDsuNiXo0=
-X-Received: by 2002:a25:d1cf:0:b0:d9a:d1ab:783f with SMTP id
- i198-20020a25d1cf000000b00d9ad1ab783fmr919167ybg.63.1697110450881; Thu, 12
- Oct 2023 04:34:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697111442; x=1697716242;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bDXs32bIFljFLB3BizuC8Qgv2eOciC1P7puQyz2ihO4=;
+        b=RWYne16C/dP4zurCBQtqFDBX+tmdJK1C3mHW3XStOpq77yBpw15Hrk7XDfbuJTdRMW
+         Yy7Dy64fMzZ0i2+BGmTitArCqAvdUgV+feM4/UqHzWr69Op98fv5AVJ2wwJS55gqW/Ul
+         eJNWJJfE/Keh2J7uJVGKpbPDc0EmiSmY2wQV/2+wSXvVzZv8Skr6Dxgslem+kT/L/w+Y
+         P83W+A7TcU9wU2ME0r554EVzYMVixSiYjqj1h3DSGhyLOgXflY4E40ZcT7U3dt/HpN2+
+         01b/vR7hVbXKgGWR7GHqCiTDKBT+JwWxTqnkN2/Xrcw/qWFsLcfVydAnNT2aD2/1EH2J
+         DRMQ==
+X-Gm-Message-State: AOJu0YwUPLjXw8auXSf9upeiXuQ5pHKq1sAEBHHDKgVOIe5u+bm231Ar
+	o1PSXM8NwQ7+Tiii+qzotGIEwMr8DQQC3ZoqizCvbonHgz2Jw00ID+3aR+SC4s+ohfJiFErIQ0X
+	w71ZElGkqJ9d9VbF3f2WMYQ==
+X-Received: by 2002:a50:cd81:0:b0:53e:1f8d:84ff with SMTP id p1-20020a50cd81000000b0053e1f8d84ffmr900944edi.4.1697111441954;
+        Thu, 12 Oct 2023 04:50:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGILmsF//spivhREAdLAZ2FzBOeke68a6oyeQ/jW1i/MVexUg0ZO3nc/Cy71sg5eFpFdclJ4w==
+X-Received: by 2002:a50:cd81:0:b0:53e:1f8d:84ff with SMTP id p1-20020a50cd81000000b0053e1f8d84ffmr900924edi.4.1697111441580;
+        Thu, 12 Oct 2023 04:50:41 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-228-181.dyn.eolo.it. [146.241.228.181])
+        by smtp.gmail.com with ESMTPSA id ee48-20020a056402293000b0053120f313cbsm3282462edb.39.2023.10.12.04.50.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Oct 2023 04:50:41 -0700 (PDT)
+Message-ID: <e704c45bc3c81d45541b82bded0618380d81634f.camel@redhat.com>
+Subject: Re: [PATCH net-next v5 3/3] mctp i3c: MCTP I3C driver
+From: Paolo Abeni <pabeni@redhat.com>
+To: Matt Johnston <matt@codeconstruct.com.au>,
+ linux-i3c@lists.infradead.org,  netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski
+ <kuba@kernel.org>,  Eric Dumazet <edumazet@google.com>, Jeremy Kerr
+ <jk@codeconstruct.com.au>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  miquel.raynal@bootlin.com
+Date: Thu, 12 Oct 2023 13:50:39 +0200
+In-Reply-To: <20231009025451.490374-4-matt@codeconstruct.com.au>
+References: <20231009025451.490374-1-matt@codeconstruct.com.au>
+	 <20231009025451.490374-4-matt@codeconstruct.com.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com>
- <20230912-msm8909-cpufreq-v1-1-767ce66b544b@kernkonzept.com>
- <CAPDyKFq6U-MR4Bd+GmixYseRECDh142RhydtKbiPd3NHV2g6aw@mail.gmail.com>
- <ZQGqfMigCFZP_HLA@gerhold.net> <CAPDyKFppdXe1AZo1jm2Bc_ZR18hw5Bmh1x+2P7Obhb_rJ2gc4Q@mail.gmail.com>
- <ZRcC2IRRv6dtKY65@gerhold.net>
-In-Reply-To: <ZRcC2IRRv6dtKY65@gerhold.net>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 12 Oct 2023 13:33:34 +0200
-Message-ID: <CAPDyKFoiup8KNv=1LFGKDdDLA1pHsdJUgTTWMdgxnikEmReXzg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] cpufreq: qcom-nvmem: Enable virtual power domain devices
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, 29 Sept 2023 at 19:01, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Fri, Sep 29, 2023 at 03:14:07PM +0200, Ulf Hansson wrote:
-> > On Wed, 13 Sept 2023 at 14:26, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > On Wed, Sep 13, 2023 at 12:56:16PM +0200, Ulf Hansson wrote:
-> > > > On Tue, 12 Sept 2023 at 11:40, Stephan Gerhold
-> > > > <stephan.gerhold@kernkonzept.com> wrote:
-> > > > > [...]
-> > > > > However, at the
-> > > > > moment nothing ever enables the virtual devices created in
-> > > > > qcom-cpufreq-nvmem for the cpufreq power domain scaling, so they are
-> > > > > permanently runtime-suspended.
-> > > > >
-> > > > > Fix this by enabling the devices after attaching them and use
-> > > > > dev_pm_syscore_device() to ensure the power domain also stays on when
-> > > > > going to suspend. Since it supplies the CPU we can never turn it off
-> > > > > from Linux. There are other mechanisms to turn it off when needed,
-> > > > > usually in the RPM firmware or the cpuidle path.
-> > > > >
-> > > > > Without this fix performance states votes are silently ignored, and the
-> > > > > CPU/CPR voltage is never adjusted. This has been broken since 5.14 but
-> > > > > for some reason no one noticed this on QCS404 so far.
-> > > > >
-> > > > > Cc: stable@vger.kernel.org
-> > > > > Fixes: 1cb8339ca225 ("cpufreq: qcom: Add support for qcs404 on nvmem driver")
-> > > > > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> > > > > ---
-> > > > >  drivers/cpufreq/qcom-cpufreq-nvmem.c | 21 ++++++++++++++++++++-
-> > > > >  1 file changed, 20 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> > > > > index 84d7033e5efe..17d6ab14c909 100644
-> > > > > --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> > > > > +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> > > > > @@ -25,6 +25,7 @@
-> > > > >  #include <linux/platform_device.h>
-> > > > >  #include <linux/pm_domain.h>
-> > > > >  #include <linux/pm_opp.h>
-> > > > > +#include <linux/pm_runtime.h>
-> > > > >  #include <linux/slab.h>
-> > > > >  #include <linux/soc/qcom/smem.h>
-> > > > >
-> > > > > @@ -280,6 +281,7 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
-> > > > >         }
-> > > > >
-> > > > >         for_each_possible_cpu(cpu) {
-> > > > > +               struct device **virt_devs = NULL;
-> > > > >                 struct dev_pm_opp_config config = {
-> > > > >                         .supported_hw = NULL,
-> > > > >                 };
-> > > > > @@ -300,7 +302,7 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
-> > > > >
-> > > > >                 if (drv->data->genpd_names) {
-> > > > >                         config.genpd_names = drv->data->genpd_names;
-> > > > > -                       config.virt_devs = NULL;
-> > > > > +                       config.virt_devs = &virt_devs;
-> > > > >                 }
-> > > > >
-> > > > >                 if (config.supported_hw || config.genpd_names) {
-> > > > > @@ -311,6 +313,23 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
-> > > > >                                 goto free_opp;
-> > > > >                         }
-> > > > >                 }
-> > > > > +
-> > > > > +               if (virt_devs) {
-> > > > > +                       const char * const *name = config.genpd_names;
-> > > > > +                       int i;
-> > > > > +
-> > > > > +                       for (i = 0; *name; i++, name++) {
-> > > > > +                               ret = pm_runtime_resume_and_get(virt_devs[i]);
-> > > > > +                               if (ret) {
-> > > > > +                                       dev_err(cpu_dev, "failed to resume %s: %d\n",
-> > > > > +                                               *name, ret);
-> > > > > +                                       goto free_opp;
-> > > > > +                               }
-> > > >
-> > > > Shouldn't we restore the usage count at ->remove() too?
-> > > >
-> > > > > +
-> > > > > +                               /* Keep CPU power domain always-on */
-> > > > > +                               dev_pm_syscore_device(virt_devs[i], true);
-> > > >
-> > > > Is this really correct? cpufreq is suspended/resumed by the PM core
-> > > > during system wide suspend/resume. See dpm_suspend|resume(). Isn't
-> > > > that sufficient?
-> > > >
-> > > > Moreover, it looks like the cpr genpd provider supports genpd's
-> > > > ->power_on|off() callbacks. Is there something wrong with this, that I
-> > > > am missing?
-> > > >
-> > >
-> > > I think this question is a quite fundamental one. To explain this
-> > > properly I will need to delve a bit into the implementation details of
-> > > the two different GENPD providers that are applicable here:
-> > >
-> > > Fundamentally, we are describing the main power supply for the CPU here.
-> > > Consider a simple regulator with adjustable voltage. From the Linux
-> > > point of view this regulator should be marked as "regulator-always-on".
-> > > If we would turn off this regulator, the CPU would be immediately dead
-> > > without proper shutdown done by firmware or hardware.
-> > >
-> > > Representing the regulator as power domain does not change much, except
-> > > that we now have abstract "performance states" instead of actual voltages.
-> > > However, for power domains there is currently no generic mechanism like
-> > > "regulator-always-on" in the DT, only drivers can specify
-> > > GENPD_FLAG_ALWAYS_ON.
-> >
-> > We have relied on genpd providers to act on their compatible strings
-> > to make the correct configuration. If that isn't sufficient, I don't
-> > see why we couldn't add a new DT property corresponding to
-> > GENPD_FLAG_ALWAYS_ON.
-> >
->
-> Right. It's not completely trivial though, since a DT node may provide
-> many different power domains with #power-domain-cells = <N>. A regulator
-> on the other hand has a dedicated DT node where you can just add
-> "regulator-always-on". :')
+On Mon, 2023-10-09 at 10:54 +0800, Matt Johnston wrote:
 
-Sure, it can get a bit messy, but we will work it out if we have too.
+> +static int mctp_i3c_setup(struct mctp_i3c_device *mi)
+> +{
+> +	bool ibi_set =3D false, ibi_enabled =3D false;
+> +	const struct i3c_ibi_setup ibi =3D {
+> +		.max_payload_len =3D 1,
+> +		.num_slots =3D MCTP_I3C_IBI_SLOTS,
+> +		.handler =3D mctp_i3c_ibi_handler,
+> +	};
+> +	struct i3c_device_info info;
+> +	int rc;
+> +
+> +	i3c_device_get_info(mi->i3c, &info);
+> +	mi->have_mdb =3D info.bcr & BIT(2);
+> +	mi->addr =3D info.dyn_addr;
+> +	mi->mwl =3D info.max_write_len;
+> +	mi->mrl =3D info.max_read_len;
+> +	mi->pid =3D info.pid;
+> +
+> +	rc =3D i3c_device_request_ibi(mi->i3c, &ibi);
+> +	if (rc =3D=3D 0) {
+> +		ibi_set =3D true;
+> +	} else if (rc =3D=3D -ENOTSUPP) {
+> +		/* This driver only supports In-Band Interrupt mode
+> +		 * (ENOTSUPP is from the i3c layer, not EOPNOTSUPP).
+> +		 * Support for Polling Mode could be added if required.
+> +		 */
+> +		dev_warn(i3cdev_to_dev(mi->i3c), "Failed, bus driver doesn't support I=
+n-Band Interrupts");
+> +		goto err;
+> +	} else {
+> +		dev_err(i3cdev_to_dev(mi->i3c),
+> +			"Failed requesting IBI (%d)\n", rc);
+> +		goto err;
+> +	}
+> +
+> +	if (ibi_set) {
+> +		/* Device setup must be complete when IBI is enabled */
+> +		rc =3D i3c_device_enable_ibi(mi->i3c);
+> +		if (rc < 0) {
+> +			/* Assume a driver supporting request_ibi also
+> +			 * supports enable_ibi.
+> +			 */
+> +			dev_err(i3cdev_to_dev(mi->i3c),
+> +				"Failed enabling IBI (%d)\n", rc);
+> +			goto err;
+> +		}
+> +		ibi_enabled =3D true;
+> +	}
+> +
+> +	return 0;
+> +err:
+> +	if (ibi_enabled)
+> +		i3c_device_disable_ibi(mi->i3c);
 
-Perhaps looking for a specific compitbile string for the cpr can work
-instead? No?
+Apparently no error code path can reach here with 'ibi_enabled =3D=3D
+true', if so please drop the above lines.
 
->
-> > >
-> > > The special situation on MSM8909 is that there are two possible setups
-> > > for the CPU power supply depending on the PMIC that is used (see
-> > > "[PATCH 4/4] cpufreq: qcom-nvmem: Add MSM8909"): CPR or RPMPD. Both are
-> > > GENPD providers so in theory we can just have either
-> > >
-> > >   cpu@0 { power-domains = <&cpr>; }; // or
-> > >   cpu@0 { power-domains = <&rpmpd MSM8909_VDDCX_AO>; };
-> > >
-> > > in the DT, without handling this specifically on the cpufreq side.
-> >
-> > Looks like it would be nice to get a patch for the MSM8909 DTS too, as
-> > part of the series, to get a better picture of how this is going to be
-> > used. Would that be possible for you to provide?
-> >
->
-> Sure! Right now I cannot include it as working patch in this series
-> since I don't have the base SoC DT (msm8909.dtsi) upstream yet. It's
-> mostly a copy-paste of msm8916.dtsi so I was trying to finish up the
-> SoC-specific parts before sending it.
->
-> I'm happy to provide links to the full DT and my changes though. Does
-> that help? If you would like to comment inline I could copy paste the
-> diffs in a mail or include some kind of RFC patch. It just wouldn't be
-> possible to apply it successfully. :')
->
-> Here are the two commits with the my current DT changes (WIP):
->   - MSM8909+PM8909 (RPMPD only):
->     https://github.com/msm8916-mainline/linux/commit/791e0c5a3162372a0738bc7b0f4a5e87247923db
+> +	if (ibi_set)
+> +		i3c_device_free_ibi(mi->i3c);
+> +	return rc;
+> +}
+> +
+> +/* Adds a new MCTP i3c_device to a bus */
+> +static int mctp_i3c_add_device(struct mctp_i3c_bus *mbus,
+> +			       struct i3c_device *i3c)
+> +__must_hold(&busdevs_lock)
+> +{
+> +	struct mctp_i3c_device *mi =3D NULL;
+> +	int rc;
+> +
+> +	mi =3D kzalloc(sizeof(*mi), GFP_KERNEL);
+> +	if (!mi) {
+> +		rc =3D -ENOMEM;
+> +		goto err;
+> +	}
+> +	mi->mbus =3D mbus;
+> +	mi->i3c =3D i3c;
+> +	mutex_init(&mi->lock);
+> +	list_add(&mi->list, &mbus->devs);
+> +
+> +	i3cdev_set_drvdata(i3c, mi);
+> +	rc =3D mctp_i3c_setup(mi);
+> +	if (rc < 0)
+> +		goto err;
 
-Okay, so this looks pretty straight forward. One thing though, it
-looks like we need to update the DT bindings for cpus.
+You can make the code simpler with:
 
-I recently updated Documentation/devicetree/bindings/arm/cpus.yaml
-[1], to let "perf" be the common "power-domain-name" for a CPU's SCMI
-performance-domain. I look like we should extend the description to
-allow "perf" to be used for all types of performance domains.
+		goto free;
+> +
+> +	return 0;
 
->   - MSM8916 (CPR+RPMPD):
->     https://github.com/msm8916-mainline/linux/commit/8880f39108206d7a60a0a8351c0373bddf58657c
+and here:
 
-This looks a bit odd to me. Does a CPU really have four different
-power-domains, where three of them are performance-domains?
+free:
+	list_del(&mi->list);
+	kfree(mi);
 
-In a way it sounds like an option could be to hook up the cpr to the
-rpmpd:s instead (possibly even set it as a child-domains to the
-rpmpd:s), assuming that is a better description of the HW, which it
-may not be, of course.
+err:
+	dev_warn(i3cdev_to_dev(i3c), "Error adding mctp-i3c device, %d\n", rc);
+	return rc;
 
-When it comes to the regulator, vdd-apc-supply, it seems fine to me to
-set it as an always-on regulator. Maybe another option could simply be
-to leave it enabled when the cpr driver has probed.
+> +err:
+> +	dev_warn(i3cdev_to_dev(i3c), "Error adding mctp-i3c device, %d\n", rc);
+> +	if (mi) {
+> +		list_del(&mi->list);
+> +		kfree(mi);
+> +	}
+> +	return rc;
+> +}
+> +
+> +static int mctp_i3c_probe(struct i3c_device *i3c)
+> +{
+> +	struct mctp_i3c_bus *b =3D NULL, *mbus =3D NULL;
+> +	int rc;
+> +
+> +	/* Look for a known bus */
+> +	mutex_lock(&busdevs_lock);
+> +	list_for_each_entry(b, &busdevs, list)
+> +		if (b->bus =3D=3D i3c->bus) {
+> +			mbus =3D b;
+> +			break;
+> +		}
+> +	mutex_unlock(&busdevs_lock);
+> +
+> +	if (!mbus) {
+> +		/* probably no "mctp-controller" property on the i3c bus */
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc =3D mctp_i3c_add_device(mbus, i3c);
+> +	if (!rc)
+> +		goto err;
 
->   (- QCS404 (CPR only): already in mainline (see qcs404.dtsi))
->
+This is confusing: if 'rc' is zero (!rc) the function will return 0
+('return rc' later), and otherwise it will return zero again.
 
-Okay, so in this case it's solely the cpr that manages the performance
-scaling for the CPU.
+Either ignore the return code, or more likely the error path need some
+change.
 
-In regards to the vdd-apc-supply, it seems to be used in the similar
-way in the case above.
+> +static void mctp_i3c_xmit(struct mctp_i3c_bus *mbus, struct sk_buff *skb=
+)
+> +{
+> +	struct net_device_stats *stats =3D &mbus->ndev->stats;
+> +	struct i3c_priv_xfer xfer =3D { .rnw =3D false };
+> +	struct mctp_i3c_internal_hdr *ihdr =3D NULL;
+> +	struct mctp_i3c_device *mi =3D NULL;
+> +	unsigned int data_len;
+> +	u8 *data =3D NULL;
+> +	u8 addr, pec;
+> +	int rc =3D 0;
+> +	u64 pid;
+> +
+> +	skb_pull(skb, sizeof(struct mctp_i3c_internal_hdr));
+> +	data_len =3D skb->len;
+> +
+> +	ihdr =3D (void *)skb_mac_header(skb);
+> +
+> +	pid =3D get_unaligned_be48(ihdr->dest);
+> +	mi =3D mctp_i3c_lookup(mbus, pid);
+> +	if (!mi) {
+> +		/* I3C endpoint went away after the packet was enqueued? */
+> +		stats->tx_dropped++;
+> +		goto out;
+> +	}
+> +
+> +	if (WARN_ON_ONCE(data_len + 1 > MCTP_I3C_MAXBUF))
+> +		goto out;
+> +
+> +	if (data_len + 1 > (unsigned int)mi->mwl) {
+> +		/* Route MTU was larger than supported by the endpoint */
+> +		stats->tx_dropped++;
+> +		goto out;
+> +	}
+> +
+> +	/* Need a linear buffer with space for the PEC */
+> +	xfer.len =3D data_len + 1;
+> +	if (skb_tailroom(skb) >=3D 1) {
+> +		skb_put(skb, 1);
+> +		data =3D skb->data;
+> +	} else {
+> +		// TODO: test this
 
-> > >
-> > > The two GENPD providers behave quite differently though:
-> > >
-> > >  - CPR: CPR is not really a power domain itself. It's more like a monitor
-> > >    on a power supply line coming from some other regulator. CPR provides
-> > >    suggestions how to adjust the voltage for best power/stability.
-> > >
-> > >    The GENPD .power_off() disables the CPR state machine and forwards
-> > >    this to the regulator with regulator_disable(). On QCS404 the
-> > >    regulator is marked regulator-always-on, so it will never be disabled
-> > >    from Linux. The SAW/SPM hardware component on Qualcomm SoCs will
-> > >    usually disable the regulator during deep cpuidle states.
-> >
-> > Parts of this sound a bit odd to me. The CPR/CPUfreq shouldn't really
-> > need to vote for the CPU's power-rail(s) from a powered-on/off (CPU
-> > idle states) point of view, but only from a performance (voltage
-> > level) point of view.
-> >
-> > If the enable/disable voting on the regulator really has an impact on
-> > some platforms, it sounds like it could prevent deeper CPU idle states
-> > too. That's probably not what we want, right?
-> >
->
-> I think this heavily depends on what exactly this "regulator"
-> represents. Are we talking about a physical regulator with a binary
-> enable/disable signal or actually some hardware/firmware magic that
-> combines multiple independent "votes"?
->
-> If we are talking about a physical regulator then we can never disable
-> it from Linux. Not even during CPU idle states. It would just cut off
-> all power immediately and kill the CPU without proper shutdown. Instead,
-> the platform might have special hardware/firmware functionality that
-> will control the actual physical enable/disable signal of the regulator.
->
-> > I also had a look at the existing CPR genpd provider's probe
-> > function/path (cpr_probe()) - and it turns out there is no call to
-> > regulator_enable(). Whatever that means to us.
->
-> In most (all?) setups the CPR genpd provider will manage the actual
-> physical regulator. It could be part of the PMIC or even some
-> off-the-shelf regulator with I2C control. It doesn't matter. There is
-> nothing special about that regulator. You have the standard Linux
-> regulator driver, set up the DT node for it and hook it up to CPR.
->
-> Now, to prevent the regulator driver in Linux from touching the physical
-> enable signal (see above) we add "regulator-always-on". When Linux
-> requests deep CPU idle states via PSCI the hardware will toggle the
-> physical enable/disable signal of the regulator for us (after the CPU
-> has been shut down).
->
-> On some platforms CPR is also used for the GPU or other power rails that
-> are not critical for the CPU to run. In that case it's fine to disable
-> the regulator directly from Linux. Just not for the CPU.
+I hope this comment is a left over? In any case please avoid c++ style
+comments.
 
-Right. I get the point, thanks for clarifying!
+> +		/* Otherwise need to copy the buffer */
+> +		skb_copy_bits(skb, 0, mbus->tx_scratch, skb->len);
+> +		data =3D mbus->tx_scratch;
+> +	}
+> +
+> +	/* PEC calculation */
+> +	addr =3D mi->addr << 1;
+> +	pec =3D i2c_smbus_pec(0, &addr, 1);
+> +	pec =3D i2c_smbus_pec(pec, data, data_len);
+> +	data[data_len] =3D pec;
+> +
+> +	xfer.data.out =3D data;
+> +	rc =3D i3c_device_do_priv_xfers(mi->i3c, &xfer, 1);
+> +	if (rc =3D=3D 0) {
+> +		stats->tx_bytes +=3D data_len;
+> +		stats->tx_packets++;
+> +	} else {
+> +		stats->tx_errors++;
+> +	}
+> +
+> +out:
+> +	if (mi)
+> +		mutex_unlock(&mi->lock);
+> +}
+> +
+> +static int mctp_i3c_tx_thread(void *data)
+> +{
+> +	struct mctp_i3c_bus *mbus =3D data;
+> +	struct sk_buff *skb;
+> +	unsigned long flags;
+> +
+> +	for (;;) {
+> +		if (kthread_should_stop())
+> +			break;
+> +
+> +		spin_lock_irqsave(&mbus->tx_lock, flags);
+> +		skb =3D mbus->tx_skb;
+> +		mbus->tx_skb =3D NULL;
+> +		spin_unlock_irqrestore(&mbus->tx_lock, flags);
+> +
+> +		if (netif_queue_stopped(mbus->ndev))
+> +			netif_wake_queue(mbus->ndev);
+> +
+> +		if (skb) {
+> +			mctp_i3c_xmit(mbus, skb);
+> +			kfree_skb(skb);
+> +		} else {
+> +			wait_event_idle(mbus->tx_wq,
+> +					mbus->tx_skb || kthread_should_stop());
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static netdev_tx_t mctp_i3c_start_xmit(struct sk_buff *skb,
+> +				       struct net_device *ndev)
+> +{
+> +	struct mctp_i3c_bus *mbus =3D netdev_priv(ndev);
+> +	unsigned long flags;
+> +	netdev_tx_t ret;
+> +
+> +	spin_lock_irqsave(&mbus->tx_lock, flags);
 
-Still, the CPR can't just disable the regulator for a GPU without
-using some kind of synchronization point for when to do it. The GPU
-may be running some use cases, etc. Although, let's leave that out of
-this discussion. :-)
+Why are you using the _irqsave variant? The only other path acquiring
+this lock is mctp_i3c_tx_thread(), in process context, while here we
+have BH disabled. Plain spin_lock should suffice here, paired with _BH
+variant in mctp_i3c_tx_thread.
 
->
-> >
-> > >
-> > >  - RPMPD: This is the generic driver for all the SoC power domains
-> > >    managed by the RPM firmware. It's not CPU-specific. However, as
-> > >    special feature each power domain is exposed twice in Linux, e.g.
-> > >    "MSM8909_VDDCX" and "MSM8909_VDDCX_AO". The _AO ("active-only")
-> > >    variant tells the RPM firmware that the performance/enable vote only
-> > >    applies when the CPU is active (not in deep cpuidle state).
-> > >
-> > >    The GENPD .power_off() drops all performance state votes and also
-> > >    releases the "enable" vote for the power domain.
-> > >
-> > > Now, imagine what happens during system wide suspend/resume:
-> > >
-> > >  - CPR: The CPR state machine gets disabled. The voltage stays as-is.
-> > >      - With "regulator-always-on": The CPU keeps running until WFI.
-> > >      - Without: I would expect the CPU is dead immediately(?)
-> >
-> > As I indicated above, I am starting to feel that this is a bit upside
-> > down. CPR/CPUfreq should vote on voltages to scale performance, but
-> > not for cpu idle states.
-> >
-> > Perhaps what is missing is a synchronization point or a notification,
-> > to inform the CPR driver that its state machine (registers) needs to
-> > be saved/restored, when the power-rails get turned on/off. In fact, we
-> > have a couple mechanisms at hand to support this.
-> >
->
-> I think we can ignore this part of CPR for now. AFAICT Qualcomm's vendor
-> driver does not explicitly disable the CPR state machine during CPU idle
-> when the power rails are potentially turned off. They only do it during
-> system wide suspend, for whatever reason. For that we don't need such a
-> notification mechanism.
+> +	netif_stop_queue(ndev);
+> +	if (mbus->tx_skb) {
+> +		dev_warn_ratelimited(&ndev->dev, "TX with queue stopped");
+> +		ret =3D NETDEV_TX_BUSY;
+> +	} else {
+> +		mbus->tx_skb =3D skb;
+> +		ret =3D NETDEV_TX_OK;
+> +	}
+> +	spin_unlock_irqrestore(&mbus->tx_lock, flags);
+> +
+> +	if (ret =3D=3D NETDEV_TX_OK)
+> +		wake_up(&mbus->tx_wq);
+> +
+> +	return ret;
+> +}
 
-I see.
+[...]
 
-So, if I understand correctly, we could potentially use the regular
-system suspend/resume callbacks for the CPR genpd provider driver,
-rather than its genpd->power_on|off() callbacks?
+> +/* Returns an ERR_PTR on failure */
+> +static struct mctp_i3c_bus *mctp_i3c_bus_add(struct i3c_bus *bus)
+> +__must_hold(&busdevs_lock)
+> +{
+> +	struct mctp_i3c_bus *mbus =3D NULL;
+> +	struct net_device *ndev =3D NULL;
+> +	char namebuf[IFNAMSIZ];
+> +	u8 addr[PID_SIZE];
+> +	int rc;
+> +
+> +	if (!mctp_i3c_is_mctp_controller(bus))
+> +		return ERR_PTR(-ENOENT);
+> +
+> +	snprintf(namebuf, sizeof(namebuf), "mctpi3c%d", bus->id);
+> +	ndev =3D alloc_netdev(sizeof(*mbus), namebuf, NET_NAME_ENUM,
+> +			    mctp_i3c_net_setup);
+> +	if (!ndev) {
+> +		rc =3D -ENOMEM;
+> +		goto err;
+> +	}
+> +
+> +	mbus =3D netdev_priv(ndev);
+> +	mbus->ndev =3D ndev;
+> +	mbus->bus =3D bus;
+> +	INIT_LIST_HEAD(&mbus->devs);
+> +	list_add(&mbus->list, &busdevs);
+> +
+> +	rc =3D mctp_i3c_bus_local_pid(bus, &mbus->pid);
+> +	if (rc < 0) {
+> +		dev_err(&ndev->dev, "No I3C PID available\n");
+> +		goto err;
+> +	}
+> +	put_unaligned_be48(mbus->pid, addr);
+> +	dev_addr_set(ndev, addr);
+> +
+> +	init_waitqueue_head(&mbus->tx_wq);
+> +	spin_lock_init(&mbus->tx_lock);
+> +	mbus->tx_thread =3D kthread_run(mctp_i3c_tx_thread, mbus,
+> +				      "%s/tx", ndev->name);
+> +	if (IS_ERR(mbus->tx_thread)) {
+> +		dev_warn(&ndev->dev, "Error creating thread: %pe\n",
+> +			 mbus->tx_thread);
+> +		rc =3D PTR_ERR(mbus->tx_thread);
+> +		mbus->tx_thread =3D NULL;
+> +		goto err;
+> +	}
+> +
+> +	rc =3D mctp_register_netdev(ndev, NULL);
+> +	if (rc < 0) {
+> +		dev_warn(&ndev->dev, "netdev register failed: %d\n", rc);
+> +		goto err;
+> +	}
+> +	return mbus;
+> +err:
+> +	/* uninit will not get called if a netdev has not been registered,
+> +	 * so we perform the same mbus cleanup manually.
+> +	 */
+> +	if (mbus)
+> +		mctp_i3c_bus_free(mbus);
+> +	if (ndev)
+> +		free_netdev(ndev);
 
->
-> > >
-> > >  - RPMPD: The performance/enable vote is dropped. The power domain might
-> > >    go to minimal voltage or even turn off completely. However, the CPU
-> > >    actually needs to keep running at the same frequency until WFI!
-> > >    Worst case, the CPU is dead immediately when the power domain votes
-> > >    get dropped.
-> >
-> > Since RPMPD is managing the voting for both performance and low power
-> > states for different kinds of devices, this certainly gets a bit more
-> > complicated.
-> >
-> > On the other hand, the CPUfreq driver should really only vote for
-> > performance states for the CPUs and not for low power states. The
-> > latter is a job for cpuidle and other consumers of the RPMPD to
-> > manage, I think.
-> >
-> > So, while thinking of this, I just realized that it may not always be
-> > a good idea for genpd to cache a performance state request, for an
-> > attached device and for which pm_runtime_suspended() returns true for
-> > it. As this is the default behaviour in genpd, I am thinking that we
-> > need a way to make that behaviour configurable for an attached device.
-> > What do you think about that?
-> >
->
-> Hm. This would be a bit of a special case of course. But I think this
-> would be fine to solve the regression for CPR on QCS404.
+A more conventional way of handling the error paths would be using
+multiple labels, e.g.:
 
-Okay, I will try to propose and submit something for this shortly. I
-will keep you cc:ed.
+err_free_bus:
+	mctp_i3c_bus_free(mbus);
 
->
-> Then we "just" need to solve the fundamental question from a few years
-> ago: Who *will* actually vote for enabling the power domains/regulators
-> required by the CPU? :D
->
-> I agree that enabling/disabling power supplies feels closer to cpuidle.
-> But it's not a perfect fit either, given that we don't actually want to
-> change our vote while entering CPU idle states. I think on all platforms
-> I'm looking at here we need a permanent enable vote (effectively making
-> the regulator/power domains always-on from the Linux point of view).
->
-> We could solve this by adding a "regulator-always-on" mechanism in the
-> DT for power domains. This feels more like a workaround to me than an
-> actual solution.
+err_free_ndev:
+	free_netdev(ndev);
 
-From the discussions above, it sounded like it would be sufficient to
-use the regulator-always-on for the actual regulator supply.
+err:
 
-In the case where there is no cpr being used on the platform, there
-also is no regulator that needs to stay enabled, right?
+> +	return ERR_PTR(rc);
+> +}
 
-> With this the CPU won't appear as always-on consumer of
-> the power domains in debugfs. There will just be a "suspended" consumer
-> attributed to the CPU (from CPUfreq, since we don't have a dedicated
-> device for CPUfreq).
+Cheers,
 
-I didn't quite get this part.
+Paolo
 
-The devices that we hook up to the genpd from cpufreq are used for
-performance scaling, not for power-on/off things. It shouldn't matter
-if these devices are "suspended" from debugfs/sysfs point of view,
-right?
-
-Or did I fail to understand your point?
-
->
-> While this patch is a bit strange from a conceptual perspective, on the
-> implementation side it effectively makes that CPU consumer appear as
-> active. So the end result is actually kind of the one we need. :'D
-
-Right. It looks like we are concluding on the way forward. :-)
-
-*) The approach you have taken in the $subject patch with the call to
-pm_runtime_resume_and_get() works as a fix for QCS404, as there is
-only the CPR to attach to. The problem with it, is that it doesn't
-work for cases where the RPMPD is used for performance scaling, either
-separate or in combination with the CPR. It would keep the rpmpd:s
-powered-on, which would be wrong. In regards to the
-dev_pm_syscore_device() thingy, this should not be needed, as long as
-we keep the vdd-apc-supply enabled, right?
-
-**) A more generic solution, that would work for all cases (even
-when/if hooking up the CPR to the rpmpd:s), consists of tweaking genpd
-to avoid "caching" performance states for these kinds of devices. And
-again, I don't see that we need dev_pm_syscore_device(), assuming we
-manage the vdd-apc-supply correctly.
-
-Did I miss anything?
-
-Kind regards
-Uffe
-
-[1] https://lore.kernel.org/all/20230825112633.236607-9-ulf.hansson@linaro.org/
 
