@@ -1,160 +1,205 @@
-Return-Path: <devicetree+bounces-7947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCBD47C64AA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:38:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0E747C64BB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F31B28251B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 05:38:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA1E11C20A4B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 05:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897FFD264;
-	Thu, 12 Oct 2023 05:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12B6D265;
+	Thu, 12 Oct 2023 05:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hrhdeNL+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K0xbE6Fe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F5328EF
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:38:20 +0000 (UTC)
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D6AC0
-	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:38:18 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-278f0f565e2so470372a91.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:38:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1D628EF
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 05:45:28 +0000 (UTC)
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD710B7
+	for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:45:26 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3af65455e7fso380185b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Oct 2023 22:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697089098; x=1697693898; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wwWnNHAbWyeAscY15FX+TU6dhJaouDy+zgSEChH3FwY=;
-        b=hrhdeNL+xrFwt5JwZw2WTndkt3uiH1J30wKia9q7VffNmYl4iEhp32agj2z88CKH2q
-         B1PZ0h0mz/aygSprMv+aUJ0etTN6MZzdmpThC7MSs/IKZIRX4d23Buf9OkWtORpbqLq2
-         NrpkE8FLNrmAnDzTH47YWGRffztAQ1/vDPm+B+Ii5jNcKPSHIqu5SpGCqFKfXrjGXm+A
-         CGxGxgReWs13EJ1d3vG8ALrwgdsKiqrcgnTf+H6qhS16qVdGuvS5jjwCOrrSIgxH+GAf
-         pGPeXjxU2riHHxXosc5fneN9e/KBDDWBx5xWxbqlGawA8Ga2N+c1P+rgIANSduNugJQm
-         mDLg==
+        d=linaro.org; s=google; t=1697089526; x=1697694326; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=raoSzlBu377kKldWUANth43g0MsA6j2B790E+ofOJ/U=;
+        b=K0xbE6FefcE+vu+l8RaU2MEnrpvjE5hCqFluoCSO3N5IZV+qGpZ1rUm/0cy7Zefx6g
+         T7L0vxm5kIf24iteZECcy0T2/s0gN5+1eV5ylwrmScVWYmrQZ4NQ0FhJhkNsbVTt0omI
+         KEsFlYRA82BUG1aB4R2GKWCo7SrahAsRr9KuwD1qdfSFk3JXU0GWZfdaEVW0dC+Nims4
+         tMeOhHzqnd54BNOyWWOuI1i7G/oHdLbzON84gk0wCysvR/X3mGLmUijai3+c6I6Cc9h7
+         eCbBsctqITEVbJxUT/Fb2k01iMj8kcXTDSVwNjVwpxBxha6EhSBSdP4wYpJ/KtC+9gf0
+         ap2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697089098; x=1697693898;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wwWnNHAbWyeAscY15FX+TU6dhJaouDy+zgSEChH3FwY=;
-        b=O70j9x0VS34Iiy2JiGKDT1Y4+uKpDJaHXWg3qpMtFRmOmMYBrpgbsbc3OVsc1Wa6ds
-         l4EPOrxQ++YlqklQU3nH4xgLIm3jVm778nfXz50YvQWvzVpXUqBh4lD1/Jv/9SIJVmtB
-         PoqMxerdjrBTCzMY/OIA0NvH1QYEk+nmOLSD6rW9pco6bD7jnJ0BkwgLjkW2YW2gKkEO
-         EYAqwu4oxyw/gqtJtfXWVT08yEP6J2iZdAQOP4+d/AgYcPn2h5R7Q/D6GyCsSq1gkVZf
-         ChPO6uNKNJ4yV0mG/NykF/yAe/1aUhyGAzzIQhH+zyn+BXLP6BmHhpMpuPD8oBUeMjxZ
-         8vQg==
-X-Gm-Message-State: AOJu0YwWfOY3SBULzuVc4YWOLIc1+KjOErsg7ypXs3y+EGunNTev5wM9
-	oJ3jxgKDAZw++a0v5qdSBmhRSyHm4SJzCnwX/+HQjw==
-X-Google-Smtp-Source: AGHT+IGSsE9UdV0Qgkc/+49sBerKsPKwjip2GPaMvf0yjDHtLvarJUP6ASq6DTMnyLnKKYmGaxwKGOUUUcsGQWvpu/Q=
-X-Received: by 2002:a17:90b:1c83:b0:274:616e:3fc4 with SMTP id
- oo3-20020a17090b1c8300b00274616e3fc4mr19950072pjb.34.1697089097916; Wed, 11
- Oct 2023 22:38:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697089526; x=1697694326;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=raoSzlBu377kKldWUANth43g0MsA6j2B790E+ofOJ/U=;
+        b=m3dZQffYW3QzFVlKHJhho/Snq70rl+yABaKZR/04gVs6kS0B1t2Hr1+Sn/D3vb5nQu
+         6UHa8FSdqaYMmDoJHPn6BxDqhJmenl5apDtFEZCgB3AaECXVTY8v+RUusMk08RsPpqdS
+         EMC52r+RFMW4bY1JUOkm0Sbav5Hg2cpgbOkDtU7CzKr8sxNbzB0Zxdcn5dY2CZe0iFrM
+         /jXzQ32DzyxzSzWwM/Xcl1hF4V0T0GM5N9FckL+hwz5Uolz5K+qiz7v++bCqeBVtETB6
+         6SQdx1u0ZvczEZxjgBOdUvVaOL+EQKXpM3xEz7+kaNLdiYJ/Yx/xM1es3Zu6H120Mq06
+         pOlQ==
+X-Gm-Message-State: AOJu0Yy1sEiE/ohusIUJfHQ7MKTQkvRRjpdRVsxhTOEhmDSznPyn4Yf/
+	PUUBWjFCrt3nEyDAo727BkzD
+X-Google-Smtp-Source: AGHT+IFVaISV/7UIfSrZc652ewcqW0S6kGKAv2RdH2i9tzTOlDpdz1KHLLqPcCZcgW0AF89218QNxg==
+X-Received: by 2002:aca:2808:0:b0:3a8:472b:febf with SMTP id 8-20020aca2808000000b003a8472bfebfmr23277086oix.21.1697089526137;
+        Wed, 11 Oct 2023 22:45:26 -0700 (PDT)
+Received: from localhost.localdomain ([120.138.12.180])
+        by smtp.gmail.com with ESMTPSA id c5-20020a633505000000b0057cb5a780ebsm812396pga.76.2023.10.11.22.45.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Oct 2023 22:45:25 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: vireshk@kernel.org,
+	nm@ti.com,
+	sboyd@kernel.org,
+	myungjoo.ham@samsung.com,
+	kyungmin.park@samsung.com,
+	cw00.choi@samsung.com,
+	andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jejb@linux.ibm.com,
+	martin.petersen@oracle.com
+Cc: alim.akhtar@samsung.com,
+	avri.altman@wdc.com,
+	bvanassche@acm.org,
+	linux-scsi@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	quic_asutoshd@quicinc.com,
+	quic_cang@quicinc.com,
+	quic_nitirawa@quicinc.com,
+	quic_narepall@quicinc.com,
+	quic_bhaskarv@quicinc.com,
+	quic_richardp@quicinc.com,
+	quic_nguyenb@quicinc.com,
+	quic_ziqichen@quicinc.com,
+	bmasney@redhat.com,
+	krzysztof.kozlowski@linaro.org,
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v6 0/5] UFS: Add OPP support
+Date: Thu, 12 Oct 2023 11:15:07 +0530
+Message-Id: <20231012054512.10963-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org> <20231011184823.443959-17-peter.griffin@linaro.org>
-In-Reply-To: <20231011184823.443959-17-peter.griffin@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 12 Oct 2023 00:38:06 -0500
-Message-ID: <CAPLW+4m1KLXJ67uDJ83V+zdSA0qU4cDh9Q+irpcixz1btMVv7Q@mail.gmail.com>
-Subject: Re: [PATCH v3 16/20] tty: serial: samsung: Add gs101 compatible and
- SoC data
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, soc@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel-team@android.com, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 11, 2023 at 1:49=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
->
-> Add serial driver data for Google Tensor gs101 SoC.
->
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
+Hi,
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+This series adds OPP (Operating Points) support to UFSHCD driver.
 
->  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsun=
-g_tty.c
-> index 07fb8a9dac63..26bc52e681a4 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2597,14 +2597,22 @@ static const struct s3c24xx_serial_drv_data exyno=
-s850_serial_drv_data =3D {
->         .fifosize =3D { 256, 64, 64, 64 },
->  };
->
-> +static const struct s3c24xx_serial_drv_data gs101_serial_drv_data =3D {
-> +       EXYNOS_COMMON_SERIAL_DRV_DATA(),
-> +       /* rely on samsung,uart-fifosize DT property for fifosize */
-> +       .fifosize =3D { 0 },
-> +};
-> +
->  #define EXYNOS4210_SERIAL_DRV_DATA (&exynos4210_serial_drv_data)
->  #define EXYNOS5433_SERIAL_DRV_DATA (&exynos5433_serial_drv_data)
->  #define EXYNOS850_SERIAL_DRV_DATA (&exynos850_serial_drv_data)
-> +#define GS101_SERIAL_DRV_DATA (&gs101_serial_drv_data)
->
->  #else
->  #define EXYNOS4210_SERIAL_DRV_DATA NULL
->  #define EXYNOS5433_SERIAL_DRV_DATA NULL
->  #define EXYNOS850_SERIAL_DRV_DATA NULL
-> +#define GS101_SERIAL_DRV_DATA NULL
->  #endif
->
->  #ifdef CONFIG_ARCH_APPLE
-> @@ -2688,6 +2696,9 @@ static const struct platform_device_id s3c24xx_seri=
-al_driver_ids[] =3D {
->         }, {
->                 .name           =3D "artpec8-uart",
->                 .driver_data    =3D (kernel_ulong_t)ARTPEC8_SERIAL_DRV_DA=
-TA,
-> +       }, {
-> +               .name           =3D "gs101-uart",
-> +               .driver_data    =3D (kernel_ulong_t)GS101_SERIAL_DRV_DATA=
-,
->         },
->         { },
->  };
-> @@ -2709,6 +2720,8 @@ static const struct of_device_id s3c24xx_uart_dt_ma=
-tch[] =3D {
->                 .data =3D EXYNOS850_SERIAL_DRV_DATA },
->         { .compatible =3D "axis,artpec8-uart",
->                 .data =3D ARTPEC8_SERIAL_DRV_DATA },
-> +       { .compatible =3D "google,gs101-uart",
-> +               .data =3D  GS101_SERIAL_DRV_DATA },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
-> --
-> 2.42.0.655.g421f12c284-goog
->
+Motivation behind adding OPP support is to scale both clocks as well as
+regulators/performance state dynamically. Currently, UFSHCD just scales
+clock frequency during runtime with the help of "freq-table-hz" property
+defined in devicetree. With the addition of OPP tables in devicetree (as
+done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
+both clocks and performance state of power domain which helps in power
+saving.
+
+For the addition of OPP support to UFSHCD, there are changes required to
+the OPP framework and devfreq drivers. The OPP framework changes are already
+merged and the devfreq change is added in this series.
+
+Credits
+=======
+
+This series is a continuation of previous work by Krzysztof Kozlowski [1].
+
+Testing
+=======
+
+This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
+development boards.
+
+Merging Strategy
+================
+
+Since the devfreq patch got an Ack from the maintainer, either it can be merged
+to scsi tree with rest of the patches or merged separately through devfreq tree.
+
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
+
+Changes in v6:
+
+* Collected tags from Dmitry
+* Fixed bindings issues reported by Krzysztof
+
+Changes in v5:
+
+* Dropped the devfreq patch since it got applied
+* Fixed the bindings issue reported by DT bot
+* Rebased on top of mkp/scsi/for-next
+
+Changes in v4:
+
+* Rebased on top of v6.6-rc3
+
+Changes in v3:
+
+* Rebased on top of linux-next/master tag: next-20230731
+* Dropped the already applied patches (dts, opp binding and framework)
+* Moved the interconnect patches to a separate series:
+  https://lore.kernel.org/linux-scsi/20230731145020.41262-1-manivannan.sadhasivam@linaro.org/
+* Moved ufshcd_opp_config_clks() API to ufshcd.c to fix the build failure
+  reported by Kbuild bot: https://lore.kernel.org/all/202307210542.KoLHRbU6-lkp@intel.com/
+* Collected Acks
+* v2: https://lore.kernel.org/all/20230720054100.9940-1-manivannan.sadhasivam@linaro.org/
+
+Changes in v2:
+
+* Added more description to the bindings patch 2/15
+* Fixed dev_pm_opp_put() usage in patch 10/15
+* Added a new patch for adding enums for UFS lanes 14/15
+* Changed the icc variables to mem_bw and cfg_bw and used
+  the enums for gears and lanes in bw_table
+* Collected review tags
+* Added SCSI list and folks
+* Removed duplicate patches
+
+Krzysztof Kozlowski (2):
+  dt-bindings: ufs: common: add OPP table
+  arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
+
+Manivannan Sadhasivam (3):
+  scsi: ufs: core: Add OPP support for scaling clocks and regulators
+  scsi: ufs: host: Add support for parsing OPP
+  arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
+
+ .../devicetree/bindings/ufs/ufs-common.yaml   |  35 +++-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  42 +++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  39 +++-
+ drivers/ufs/core/ufshcd.c                     | 179 ++++++++++++++----
+ drivers/ufs/host/ufshcd-pltfrm.c              |  78 ++++++++
+ include/ufs/ufshcd.h                          |   7 +
+ 6 files changed, 325 insertions(+), 55 deletions(-)
+
+-- 
+2.25.1
+
 
