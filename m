@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-8256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFA27C758C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 20:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE8D7C759B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 20:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDBC11C20F2E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:00:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D6FE1C20D85
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 18:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C478738DE7;
-	Thu, 12 Oct 2023 18:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092CA38DC6;
+	Thu, 12 Oct 2023 18:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CUNENcn1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SuyP9x5f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5A138DD8
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 18:00:44 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317D8CA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:00:43 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-406609df1a6so13617275e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:00:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2869F36B13
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 18:02:53 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225B6CC
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:02:48 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4064867903cso15254745e9.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:02:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697133641; x=1697738441; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=A24uoWvendeyEEgw/wjo1s69CHq0sSwuaAAca9vS3eo=;
-        b=CUNENcn15J+azdE4SVQ7Nuvq8LQH9TIXWTYg9SX1xDEjTEV+KwXP1HrbLDFporuJ7X
-         X+14FNp2Jb6xM4W97la4kUAzqjpRswlY5dHlQ+ue24QnCuPA/9iF67iNpK1QoySAa4BA
-         PqnPlk62jD9ZjEWX26B2B3oRpIT2/2x03uT9ks5d+WHLrEzIuZxex6hZcEt4YQ3Bg0Ie
-         j4OM+9Xri/7qizvELsZs5lt2XfcWzLTsQHgLgOAxgvPeT2I66zvPqPnJn+tHhVc2jE5j
-         OfQspFBwJALTvJb+++wPyW+Le0TJIeeZitgxaoeStWIDplQ4OpAOzZDv78M3IyoySGin
-         6S7A==
+        d=linaro.org; s=google; t=1697133766; x=1697738566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+0KO0S9Itb4GRpzCnjWOP0fOw9fM5kuT8tU3Kcgbz6I=;
+        b=SuyP9x5fD2NpbL9mb5rEPWY6/J+qnQoXxdA7YjHDNpmtkDrjcwVTNIRm33KH0oGd6S
+         ykMWgqH0gRi71R/QkMu5S3BF+L1RvkaRZ9tyx4sdU92hStjsoRGqREIIyTyqSKN2OE1P
+         H9WsjnAHD+W1M2Wx4A39H+mgSeaz8nWokM0IqhT1nzSYP8mjoWGzX8h1Sgi4bx5MuzVS
+         bwp/fgqfHwylz1rBmGfbPpxLy/ujBXdGA5wl0PawlspWxEezKJ3Q7sXIEhI9EhNuUH6+
+         cBDR2Fq67H/CxnNoOMDOhcr+nTNFQe8Vs57TtPeMP6ZYcgW9d35oWZtbqfcMDdRhlEO1
+         2udQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697133641; x=1697738441;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A24uoWvendeyEEgw/wjo1s69CHq0sSwuaAAca9vS3eo=;
-        b=cjaGNuTXmfL5wFTPqV55fcPHdQKCfYwQMuyt1nwTp8AhyyHZ0/c4OwLt3e3LMdN9Kx
-         RseLYa2esnfRT7RriZii+evekiK1QQMuQpQ+mPgVxcn6kQw1zTSdo042PCDrk3xLDe92
-         HqEjXWd3GD/2EYRYSHn4I0I5UxV2ourGn/+GryLPuai+hXx5+8/fy7FrvYNSlUULe+0L
-         meg+fJpQXa0QZN/9eLvMEPHdLEWmIrpednGp7/B4Bzt9txlyyMGUQ9Bjqkoc9OCA9Xaa
-         8GK05qpzkJIDAb+p1h3xW7U+YNMfFk8hvrAUqlp3GCNRgok220cxG43YcRn+0wrcRQB1
-         E4FA==
-X-Gm-Message-State: AOJu0Yx1xAoHMVPAoqiaFd7PVg2A/NBTfHd8CN1Yf91gFvsigQE3nElR
-	YeZ9S8KcfvKWD4q3ruRneBLvng==
-X-Google-Smtp-Source: AGHT+IEOzlkN+xrAhJLYkse/z4JaAkxO2YgmIrlmmVolkVuAVFW05ccLHpzRsg7S0uqB9dF3vaa0ZQ==
-X-Received: by 2002:a1c:721a:0:b0:405:1baf:cedf with SMTP id n26-20020a1c721a000000b004051bafcedfmr22123977wmc.24.1697133641486;
-        Thu, 12 Oct 2023 11:00:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697133766; x=1697738566;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+0KO0S9Itb4GRpzCnjWOP0fOw9fM5kuT8tU3Kcgbz6I=;
+        b=w7i5HjAXyrE4E2boiLJvlpUIUV/tH+ipziTJrmLPgdxrOtKlKx3/q0s/zYzvFB7H9L
+         i9vOIf8NILKz6TJHsQlVU/ruvytRE9FIBpxRvQaqKyKsevnZ19AzRuae8BWKd2sEHfvP
+         1gTDrMqWezMA2v+KFU+af+PV1CvcdWBmVMievbzPwYW3+s6qnKxELQYQkGDo5L/Vk7fE
+         ILl3MzE1EjsImIjmJmwZr6KyoSmzUCCAAjAcLQzOOOn/6exAXWh6Z/q71X/DZZ/qewLC
+         r+RCSZlzpb/iSiSoin7nZq4RQ7JWQOmwsFBUbcACGYurwlMCjnE4wHBNsT+UfHhvy+ZW
+         OX3Q==
+X-Gm-Message-State: AOJu0YyTLFLaBVHOOY8+q+zpGBeWalBxFTgo9zqCKPOdEHy646SJAFC5
+	C7vpm3hkBP7iMYg3t2LCbLDm0A==
+X-Google-Smtp-Source: AGHT+IEbgYgoY/lEnyREDVN/dKQWvPgE2od6NdoqK0dpWjNKL6IP3knDe15nH1XHrLtWFjF7rTf9DQ==
+X-Received: by 2002:a5d:460e:0:b0:31f:f1f4:ca85 with SMTP id t14-20020a5d460e000000b0031ff1f4ca85mr23745863wrq.37.1697133766540;
+        Thu, 12 Oct 2023 11:02:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v24-20020a05600c215800b00406443c8b4fsm440948wml.19.2023.10.12.11.00.39
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600001c900b0032179c4a46dsm18940895wrx.100.2023.10.12.11.02.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 11:00:40 -0700 (PDT)
-Message-ID: <0acc7647-7b9a-463c-aaed-10100cac94a2@linaro.org>
-Date: Thu, 12 Oct 2023 20:00:38 +0200
+        Thu, 12 Oct 2023 11:02:46 -0700 (PDT)
+Message-ID: <7b8b782c-2131-4837-9be5-cca012004274@linaro.org>
+Date: Thu, 12 Oct 2023 20:02:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,19 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231011051152.133257-1-linux.amoon@gmail.com>
- <abe72aae-c43c-487a-8021-2c0f54319a5b@linaro.org>
- <CANAwSgQa3_ROnYyDZA958ZvFu0tb7qsVJ0Loij0saYRKEec_xw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add prefix for
+ GalaxyCore Inc.
 Content-Language: en-US
+To: Alain Volmat <alain.volmat@foss.st.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231011175735.1824782-1-alain.volmat@foss.st.com>
+ <20231011175735.1824782-2-alain.volmat@foss.st.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,38 +125,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CANAwSgQa3_ROnYyDZA958ZvFu0tb7qsVJ0Loij0saYRKEec_xw@mail.gmail.com>
+In-Reply-To: <20231011175735.1824782-2-alain.volmat@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12/10/2023 18:37, Anand Moon wrote:
-> Hi Krzysztof,
+On 11/10/2023 19:57, Alain Volmat wrote:
+> Add a vendor prefix entry for galaxycore (https://www.gcoreinc.com)
 > 
-> On Thu, 12 Oct 2023 at 13:13, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 11/10/2023 07:11, Anand Moon wrote:
->>> Add the binding example for the USB3.1 Genesys Logic GL3523
->>> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
->>> hub.
->>
->> That's not what the patch does.
-> 
-> Ok I have tried to add an example below the original changes
-> but the device tree complained of duplicate entries. Hence I
-> modified these changes.
-> 
-> This change was requested to update the peer-hub example below.
-> [0] https://lore.kernel.org/all/9fe7d0d2-3582-4b62-be9b-aa9134c18023@linaro.org/
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> ---
 
-Neil did not ask you to add it to the example but to the binding.
-Existing example should be extended, but that's byproduct of main change.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
