@@ -1,108 +1,104 @@
-Return-Path: <devicetree+bounces-8298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C137C7839
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 22:55:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4AC97C7840
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 22:55:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F54C1C20E75
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 20:55:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9EAA282C41
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 20:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8987C3D981;
-	Thu, 12 Oct 2023 20:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8483D989;
+	Thu, 12 Oct 2023 20:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RgO5/hLd"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="RNrYXny9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C30636AF1
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 20:55:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C26BCC433C8;
-	Thu, 12 Oct 2023 20:55:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697144138;
-	bh=m9flpVKMwQXZtGkfSUe6b4uSPp366RZ2/kvGUm5Xl70=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=RgO5/hLdpTJ/2+u7XCaw07k/yQ4nie8zNnB3ds5lPdxB0F0rRVHujCHPXWaGYqfLX
-	 VNfK2wBVrTXj7nDkqd5rH9lDK839cU5OmSx40grKHAmx4PoiWGIXq1Gy5GMdadSm9a
-	 Kko1WtC5kknew5+aE/AW1uAEGmqZh1Dt6199nqAqGrRx9P9kKEIV514wht6zLN0xHT
-	 p0b30PrqnXDAhJQHDMzfNMwrhmPDkzonaF3VrAicc8MwLLVRQITeDc5M3E41rh14AM
-	 rArYHbQ/bpzaSPW9OM7B3wPSWMOtD5zVKfKhxbyHt1e4XkOizljX4e2t0f9ljytR+U
-	 IWKOaNhpX3qRw==
-Message-ID: <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797A336AF1
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 20:55:50 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABECDC
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 13:55:48 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 18B572C0276;
+	Fri, 13 Oct 2023 09:55:47 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1697144147;
+	bh=afGf/ekp/+BiFhRA6dIQoU+1zIdLF/hdLKv9nMLUZP8=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=RNrYXny9qfH9AkwWpZHUp5+bKbQLwm5+nucH3TgmVH52EB5yVntX11jVLxvbDvt1q
+	 YAt5vjw3G4jcOu7Iq23ZXzkMNwso6g+7VQtpWP8SBOoaawX5xhD6iQTF4pZKRCIuma
+	 XyTO4HX3nAbqKl5yu1RjMPV+yaBhkkeNbdibFXk1UZA/4jW/Eft5eqxP1GdMduf6t9
+	 abclx89rY2FmtS1omtpOMqyIMl/8NTYZFbI/iM4XCKpbBYG8yx9ZElA+0Pu9N2dG7s
+	 bPDujPdf1smN5xi8zgpBt4VD5yG7mbqe1kYWBcvCVuY72e4aLAuHu7/+fXsm7uy+yH
+	 aZw+LTlNNqKnA==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65285d530000>; Fri, 13 Oct 2023 09:55:47 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.37; Fri, 13 Oct 2023 09:55:46 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.48; Fri, 13 Oct 2023 09:55:46 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.037; Fri, 13 Oct 2023 09:55:46 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: mv64xxx: add reset-gpios property
+Thread-Topic: [PATCH 1/2] dt-bindings: i2c: mv64xxx: add reset-gpios property
+Thread-Index: AQHZ/MBi6XZX9Kqut0uImsVd7sO7BrBE69CAgADdsgA=
+Date: Thu, 12 Oct 2023 20:55:46 +0000
+Message-ID: <993b78a0-81b6-4822-ac55-4ae9612e3f55@alliedtelesis.co.nz>
+References: <20231012035838.2804064-1-chris.packham@alliedtelesis.co.nz>
+ <20231012035838.2804064-2-chris.packham@alliedtelesis.co.nz>
+ <cfc9b2cc-e0a8-4115-a7c5-a75654adb84a@linaro.org>
+In-Reply-To: <cfc9b2cc-e0a8-4115-a7c5-a75654adb84a@linaro.org>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [10.33.22.30]
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <85692065B7E2834BBD1D64626840E5CE@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
-References: <cover.1697101543.git.quic_varada@quicinc.com> <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
-Subject: Re: [PATCH v2 1/8] clk: qcom: clk-alpha-pll: introduce stromer plus ops
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, ilia.lin@kernel.org, konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, mturquette@baylibre.com, quic_kathirav@quicinc.com, rafael@kernel.org, robh+dt@kernel.org, viresh.kumar@linaro.org
-Date: Thu, 12 Oct 2023 13:55:36 -0700
-User-Agent: alot/0.10
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=Ulsmse5NmTHuyaPRj18A:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Quoting Varadarajan Narayanan (2023-10-12 02:26:17)
-> Stromer plus APSS PLL does not support dynamic frequency scaling.
-> To switch between frequencies, we have to shut down the PLL,
-> configure the L and ALPHA values and turn on again. So introduce the
-> separate set of ops for Stromer Plus PLL.
-
-Does this assume the PLL is always on?
-
->=20
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
->         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
->         is same for both
->=20
->         Fix review comments
->                 udelay(50) -> usleep_range(50, 60)
->                 Remove SoC-specific from print message
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 57 ++++++++++++++++++++++++++++++++++=
-++++++
->  drivers/clk/qcom/clk-alpha-pll.h |  1 +
->  2 files changed, 58 insertions(+)
->=20
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alph=
-a-pll.c
-> index 4edbf77..5221b6c 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -2508,3 +2508,60 @@ const struct clk_ops clk_alpha_pll_stromer_ops =3D=
- {
->         .set_rate =3D clk_alpha_pll_stromer_set_rate,
->  };
->  EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_ops);
-> +
-> +static int clk_alpha_pll_stromer_plus_set_rate(struct clk_hw *hw,
-> +                                              unsigned long rate,
-> +                                              unsigned long prate)
-> +{
-> +       struct clk_alpha_pll *pll =3D to_clk_alpha_pll(hw);
-> +       u32 l, alpha_width =3D pll_alpha_width(pll);
-> +       int ret;
-> +       u64 a;
-> +
-> +       rate =3D alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
-> +
-> +       regmap_write(pll->clkr.regmap, PLL_MODE(pll), 0);
-
-There's a theoretical problem here if I understand correctly. A call to
-clk_enable() can happen while clk_set_rate() is in progress or vice
-versa. Probably we need some sort of spinlock for this PLL that
-synchronizes any enable/disable with the rate change so that when we
-restore the enable bit the clk isn't enabled when it was supposed to be
-off.
+SGkgS3J5c3p0b2YsDQoNCihyZXNlbmQgYXMgcGxhaW4gdGV4dCkNCg0KT24gMTIvMTAvMjMgMjA6
+NDIsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDEyLzEwLzIwMjMgMDU6NTgsIENo
+cmlzIFBhY2toYW0gd3JvdGU6DQo+PiBBZGQgYSByZXNldC1ncGlvcyBwcm9wZXJ0eSB0byB0aGUg
+bWFydmVsbCxtdjY0eHh4LWkyYyBiaW5kaW5nLg0KPiBXaHk/DQoNClNvcnJ5IGFib3V0IHRoYXQu
+IEkgcHV0IGEgYmV0dGVyIGV4cGxhbmF0aW9uIGluIHRoZSBjb3JyZXNwb25kaW5nIGRyaXZlciAN
+CmNoYW5nZSBidXQgdGhlbiBvdmVyLWVkaXRlZCB3aGVuIGRvaW5nIHRoZSBkZXZpY2UtdHJlZSBj
+aGFuZ2UuIEknbGwgdHJ5IA0KYW5kIGV4cGxhaW4gdGhpbmdzIGEgYml0IGJldHRlciBpbiB2Mi4N
+Cg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgUGFja2hhbTxjaHJpcy5wYWNraGFtQGFsbGllZHRl
+bGVzaXMuY28ubno+DQo+PiAtLS0NCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4=
 
