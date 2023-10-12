@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-8167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0557C6F00
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:17:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E46547C6F48
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF2C31C20C94
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:17:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 123561C20D62
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF21428DC1;
-	Thu, 12 Oct 2023 13:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E592A29410;
+	Thu, 12 Oct 2023 13:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LJYeT28l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GGOqHIgl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0130A29402
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 13:17:23 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A91D94;
-	Thu, 12 Oct 2023 06:17:22 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2B50A8C2;
-	Thu, 12 Oct 2023 15:17:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697116634;
-	bh=SHqSTjMJAKJCUyMA7YjRflobJpz3Ueijw67vwsmyHKc=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C375727705
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 13:32:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C02BC433C9;
+	Thu, 12 Oct 2023 13:32:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697117572;
+	bh=ZZYhdnpgiENRM1+gW/Pd8plnr1hpMAWBo2o0iSfliZ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LJYeT28laRlwHOq2Gl0MeegcFMAPno6rI+8MlWZT98H97AhxQd18e+f/GE+bl8mev
-	 Fy3aqlTmHVlf4SoVjen3WqcTxNhqAiomYnH9eeYzZ9QkgE1ZQMf12Q44TKWL1NQqyF
-	 j2ue6dUzYNULtwINE54DXkIksYXJZTd7xUWWhcSc=
-Date: Thu, 12 Oct 2023 16:17:24 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	b=GGOqHIgl+91RccrdW0Y93H+f5sYZ8tcCRAPCTsHHW9bgTNrGYg3T1er9zlL2i8IfF
+	 6/NARE2th7RDtUnbbhG1ZR2UvXeLiQDg4uN2arw79A5nGZIIiDz2r/3OrQRft2W1oC
+	 nU31cfkA0uqF4i1fYi91JPpE/5MA0DfT+nsS2JJf2d6LneifjHdFajva647tg50uyQ
+	 csFDl7evGenFjdYh+JlPxXMtxmOgRiiMhPywHi2AGj8RyN5jzz9u493MjkqrjXhJWO
+	 Y9iIUCYKF3+DL5hqoBWekq6jFNMiohkPyt2JpzHOwFjxGrLXI8L6e+H8ksuMpUSOk3
+	 gqO6IXUjH1NHw==
+Date: Thu, 12 Oct 2023 21:20:41 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for THine
- THP7312 ISP
-Message-ID: <20231012131724.GA23177@pendragon.ideasonboard.com>
-References: <20231012012016.11535-1-laurent.pinchart@ideasonboard.com>
- <20231012012016.11535-2-laurent.pinchart@ideasonboard.com>
- <b214e763-2175-4de1-af54-43961ff94afb@linaro.org>
- <20231012130544.GA31878@pendragon.ideasonboard.com>
- <0aeaa158-d56a-4d3b-a0c4-25b25f031a51@linaro.org>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/7] Add Huashan Pi board support
+Message-ID: <ZSfyqaWsNh3mR26I@xhacker>
+References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,47 +58,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <0aeaa158-d56a-4d3b-a0c4-25b25f031a51@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-On Thu, Oct 12, 2023 at 03:16:02PM +0200, Krzysztof Kozlowski wrote:
-> On 12/10/2023 15:05, Laurent Pinchart wrote:
+On Mon, Oct 09, 2023 at 07:25:14PM +0800, Inochi Amaoto wrote:
+> Huashan Pi board is an embedded development platform based on the
+> CV1812H chip. Add minimal device tree files for this board.
+> Currently, it can boot to a basic shell.
 > 
-> >>> +
-> >>> +  clocks:
-> >>> +    maxItems: 1
-> >>> +    description: CLKI clock input
-> >>> +
-> >>> +  thine,boot-mode:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description:
-> >>> +      Boot mode of the THP7312. 0 is for standard streaming mode, for the
-> >>> +      THP7312 to be used as an ISP. 1 is for firmware flashing mode.
-> >>
-> >> Why, for a given board, would you always boot device in one specific
-> >> mode but not the other? This does not look like property of DT.
-> > 
-> > The device has two boot mode pins, and it operates differently depending
-> > on its boot mode. The pins are typically hardwired, on development
-> > boards you commonly have DIP switches, and on production systems test
-> > pads that allow modifying the boot mode on the production line. The
-> > driver needs to know the boot mode to interact with the device
-> > appropriately. I haven't found a good way to interogate the device at
-> > runtime to figure out the boot mode, but I'm still trying. If that
-> > doesn't succeed, we need to convey it through the device tree.
+> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
 > 
-> Hm, that's okay then, but please describe that it is expected
-> bootstrapped boot mode of a device, because now it sounds like
-> configuring some boot mode in the device.
+> Link: https://en.sophgo.com/product/introduce/huashan.html
+> Link: https://en.sophgo.com/product/introduce/cv181xH.html
+> 
+> Changed from v1:
+> 1. split the patch into several patch and refactor them.
+> 
+> Inochi Amaoto (7):
+>   dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
+>   dt-bindings: timer: Add SOPHGO CV1812H clint
+>   dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
+>   riscv: dts: sophgo: Separate common devices from cv1800b soc
+>   riscv: dts: sophgo: cv180x: Add gpio devices
+>   riscv: dts: sophgo: add initial CV1812H SoC device tree
+>   riscv: dts: sophgo: add Huashan Pi board device tree
 
-OK, I'll improve the description.
-
--- 
-Regards,
-
-Laurent Pinchart
+For the patch series:
+Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
+> 
+>  .../sifive,plic-1.0.0.yaml                    |  1 +
+>  .../devicetree/bindings/riscv/sophgo.yaml     |  4 +
+>  .../bindings/timer/sifive,clint.yaml          |  1 +
+>  arch/riscv/boot/dts/sophgo/Makefile           |  1 +
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
+>  .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 91 ++++++++++++++----
+>  .../boot/dts/sophgo/cv1812h-huashan-pi.dts    | 48 ++++++++++
+>  arch/riscv/boot/dts/sophgo/cv1812h.dtsi       | 36 +++++++
+>  8 files changed, 165 insertions(+), 112 deletions(-)
+>  copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (58%)
+>  create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+>  create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+> 
+> --
+> 2.42.0
+> 
 
