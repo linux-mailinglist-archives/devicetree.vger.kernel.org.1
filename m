@@ -1,49 +1,52 @@
-Return-Path: <devicetree+bounces-8103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4279B7C6B01
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECF97C6B05
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 739761C20B85
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:24:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F5CA1C20A31
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD6322F04;
-	Thu, 12 Oct 2023 10:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D05C22F05;
+	Thu, 12 Oct 2023 10:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ezl8LIgv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dZf0271o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5944A22336;
-	Thu, 12 Oct 2023 10:24:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33593C433C8;
-	Thu, 12 Oct 2023 10:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B46A21373;
+	Thu, 12 Oct 2023 10:25:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23DCAC433C8;
+	Thu, 12 Oct 2023 10:25:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697106276;
-	bh=0Ljt2/e3et0ja/EIacPM8+PVdZSTtxr6HVLa0adWuRc=;
+	s=k20201202; t=1697106350;
+	bh=wzBgNttTkwq+ey3nh0EClZ1bDYJi51qfQW72cGgJJR8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ezl8LIgv/hwXINeaG2HyDxNbNKzV7PAKOAn13rz6rHGAMMb1vn+AjsCpUHB6kULoc
-	 JQKqKBBQBsnFQOOKmJQuSBWSuJHJSrLVwoJ+oNxd493jMdxkFw4Umt4oumm+F+MI4G
-	 I1MguCsBXItmVTZYQQnHIRYZgWY9fWdVLPd3tRNU1OZxaBk1sMo6RTG6wSAFmsmg63
-	 t2PBMVvRzi3GYyhaKznQFmFt91OveyfoqGwXxOHvM1seGwg01MwWcNxIYTgSEfp31r
-	 RPVvBI7ldeMmFTnakAe9KIp2B84aFmjRIHhrqlnkHwezMa46d/GSX8m9VsgnEKcHHY
-	 mcAMfSRnpc8aQ==
-Date: Thu, 12 Oct 2023 11:24:32 +0100
+	b=dZf0271oiB81Qb9DHNDeeIaaCtG5Bs/F5DwukXxhL2PBdOlmTBlKedMCJtrkMu5WG
+	 /MpuSpxGv5cBUVI9yjaCQR8MJvpvcQ1XagFHTi8smebHKMSMKTky0HjHKh9/Wq31J+
+	 d2oQMniPYfOxxjlAWAFh1RboinpW7Fq7xcoghwfXYF1QI20PhpChhq9d3tbI6r8z91
+	 Q/9hROpL7jKiO0MvqRA/t2c4CGrm3lFjpYh9Y6SU/GatLa4TJxvLouY7WuQIlGjCHS
+	 QB/qk3l9pX33FdunNm2oFIzKzzgppj4l99CLUUptW/7pL/dQ4LyrYGCSK+Cb1VAvSO
+	 Niynl0PqXZNKg==
+Date: Thu, 12 Oct 2023 11:25:44 +0100
 From: Lee Jones <lee@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Shawn Anastasio <sanastasio@raptorengineering.com>,
-	devicetree@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
-	Timothy Pearson <tpearson@raptorengineering.com>,
-	linux-kernel@vger.kernel.org,
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-Subject: Re: [PATCH 3/3] mfd: sie-cronos-cpld: Add driver for SIE cronos CPLD
-Message-ID: <20231012102432.GG8314@google.com>
-References: <2e9763cb4fa258fe11769a4ff1544d96c536a4a2.1696285339.git.sanastasio@raptorengineering.com>
- <202310050807.eDZkgFy5-lkp@intel.com>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, thierry.reding@gmail.com,
+	ndesaulniers@google.com, trix@redhat.com, baruch@tkos.co.il,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	Devi Priya <quic_devipriy@quicinc.com>
+Cc: linux-pwm@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+	nathan@kernel.org
+Subject: Re: [PATCH V15 0/4] Add PWM support for IPQ chipsets
+Message-ID: <20231012102544.GH8314@google.com>
+References: <20231005160550.2423075-1-quic_devipriy@quicinc.com>
+ <169710516837.1166696.14907666532929973777.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,56 +56,34 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <202310050807.eDZkgFy5-lkp@intel.com>
+In-Reply-To: <169710516837.1166696.14907666532929973777.b4-ty@kernel.org>
 
-On Thu, 05 Oct 2023, kernel test robot wrote:
+On Thu, 12 Oct 2023, Lee Jones wrote:
 
-> Hi Shawn,
+> On Thu, 05 Oct 2023 21:35:46 +0530, Devi Priya wrote:
+> > Add PWM driver and binding support for IPQ chipsets.
+> > Also, add support for pwm node in ipq6018.
+> > 
+> > V15:
+> > Detailed Change logs are added to the respective patches.
+> > 
+> > V14 can be found at:
+> > https://lore.kernel.org/linux-arm-msm/20231005043127.2690639-1-quic_devipriy@quicinc.com/
+> > 
+> > [...]
 > 
-> kernel test robot noticed the following build warnings:
+> Applied, thanks!
 > 
-> [auto build test WARNING on lee-mfd/for-mfd-next]
-> [also build test WARNING on robh/for-next linus/master v6.6-rc4 next-20231004]
-> [cannot apply to lee-leds/for-leds-next lee-mfd/for-mfd-fixes]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Anastasio/dt-bindings-mfd-sie-cronos-cpld-Add-initial-DT-binding/20231003-073243
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-> patch link:    https://lore.kernel.org/r/2e9763cb4fa258fe11769a4ff1544d96c536a4a2.1696285339.git.sanastasio%40raptorengineering.com
-> patch subject: [PATCH 3/3] mfd: sie-cronos-cpld: Add driver for SIE cronos CPLD
-> config: i386-randconfig-063-20231005 (https://download.01.org/0day-ci/archive/20231005/202310050807.eDZkgFy5-lkp@intel.com/config)
-> compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050807.eDZkgFy5-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202310050807.eDZkgFy5-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> drivers/mfd/sie-cronos-cpld.c:509:34: warning: 'cronos_cpld_dt_ids' defined but not used [-Wunused-const-variable=]
->      509 | static const struct of_device_id cronos_cpld_dt_ids[] = {
->          |                                  ^~~~~~~~~~~~~~~~~~
-> 
-> 
-> vim +/cronos_cpld_dt_ids +509 drivers/mfd/sie-cronos-cpld.c
-> 
->    508	
->  > 509	static const struct of_device_id cronos_cpld_dt_ids[] = {
->    510		{ .compatible = "sie,cronos-cpld", },
->    511		{ }
->    512	};
->    513	MODULE_DEVICE_TABLE(of, cronos_cpld_dt_ids);
->    514	
-> 
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+> [1/4] pwm: driver for qualcomm ipq6018 pwm block
+>       (no commit info)
+> [2/4] dt-bindings: pwm: add IPQ6018 binding
+>       (no commit info)
+> [3/4] dt-bindings: mfd: qcom,tcsr: Add simple-mfd support for IPQ6018
+>       commit: b4a32d218d424b81a58fbd419e1114b1c1f76168
+> [4/4] arm64: dts: qcom: ipq6018: add pwm node
+>       (no commit info)
 
-Removing from my queue until this is fixed.
+Disregard - tooling error!
 
 -- 
 Lee Jones [李琼斯]
