@@ -1,197 +1,128 @@
-Return-Path: <devicetree+bounces-8069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FEE7C6998
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:27:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A897C69A3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:28:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A0651C20C94
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:27:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C43931C20C2D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02B421340;
-	Thu, 12 Oct 2023 09:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82A82134E;
+	Thu, 12 Oct 2023 09:28:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gHaw73KJ"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="11HgZ/vS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D6021119
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:27:55 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F85F4;
-	Thu, 12 Oct 2023 02:27:53 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39C3Ohaf016143;
-	Thu, 12 Oct 2023 09:27:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=Q39nesa3iokJWBjY0DCM/z0AaNrX5/NIO6hWDZsdE/o=;
- b=gHaw73KJG/ZHr/OdawqiHxsZoG5medg0tp/r9snA0gdsA46USRc3pvEMaZyP+q+FJ81g
- BOczt7t9xIJtFEqN6M+x8Ciu+JY5O/kdsQ7h0Z0hsdP964I9nVdEjOodTAOHDzJsPE9w
- +iRl0gR+3NK/7+UvXaL4mDsyuzJN0KByFb39fj9wX1PajtpEXXEZF77UouZj8h07//tQ
- xZOvHy9z43MPfOQwR4YHG5EDal4/9eqs032B0gruwDGnjsr8t2BrXAQQcyPU/xYiCkyw
- CiBzUnNoYcQZrhXpgs90VqonuQhnxet6RpMVTRcpGLObqutT7jeaK7DjK9eW/8Z57Jwu kQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnqh1k7t0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Oct 2023 09:27:45 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39C9Ri1S026380
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Oct 2023 09:27:44 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 12 Oct 2023 02:27:39 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
-        <quic_kathirav@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: ipq9574: populate the opp table based on the eFuse
-Date: Thu, 12 Oct 2023 14:56:24 +0530
-Message-ID: <8a4448509b559c623f6af50956ac89b149332260.1697101543.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1697101543.git.quic_varada@quicinc.com>
-References: <cover.1697101543.git.quic_varada@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D610E21340
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 09:28:38 +0000 (UTC)
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55991D6
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 02:28:36 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-4547428694dso337437137.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 02:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1697102915; x=1697707715; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mPoEb3ZWhKptqBufHgqJF6DwlTaRME6oIYkV5Ei+Oto=;
+        b=11HgZ/vSn3OFJ+gB0kFG+q9zH1gtVj4mqZxP/BB0Hwqv2c8ldZDUnakj6Sqy5IyyKn
+         txGukZc3qi9yBx15OEZ0w4aGbAJAtJiNtoa3oKu7xYR1Dnwck8tbMOEeJLWV7BBnGnur
+         yAzsoa/RRx7TRhhfbp5uYeACLuy7g4QqdRVyQcWsCKxc2B7SO2oh0w2yhoSb0SaqzWiJ
+         TKDdxC6aCg6SYIBcCxl1cbXrqVOLfSifLHd+u10+9bHNOWeCeqgrnINjFeLJeVeCv9WT
+         gmU6/tq/ocwzPADvdPJbgyXcVcQ34bHtDYtC9c/X18+w5a24h1ILBLQJxEcEHSk4G/WP
+         KYjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697102915; x=1697707715;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mPoEb3ZWhKptqBufHgqJF6DwlTaRME6oIYkV5Ei+Oto=;
+        b=Mmlcf/ysf2ZcwTzW600jsJM2o/EmbADo1+xnSTZDHf3dLJA/CcQxC0MR9FMa+kZvuE
+         ACvxC7+OboWtYgYxC5P4DhEWmF4M+yif564UQL3Y0dkpg4LWr0VBxViRrnIwvHy3vm0D
+         nJLTVA5QTJy5aeqdeBxl0OeTOOAhTmKlbHadHGdHiJHZQ0ePTZKqe9Vrrd0YJ3S/5LNn
+         TqyZuj8av/Orubw7nDYcBxRzSA6QD8o9C6tTEPk8bsTqSI6bangaeACTOdF1Evz2LOat
+         FURitcMox9mKjYOWtS2CwyEcCaSwU1PNqM3/aZUK/jHMo0wNghbg0A/GxrnWn/uQwi7a
+         pGLQ==
+X-Gm-Message-State: AOJu0YyWcQSPMg4n43ceX8QTyLGL+NnWm5e1nRujMN2ajrAwJWxwDoxz
+	d5V0isRD545E70pcUafFYPzUktZOWXtUMi4zH/9c3hyJL7dQ3mHD
+X-Google-Smtp-Source: AGHT+IFcfMbHsu+GNN/6kKQ3OpoIaoqld103wObO/o8fbf0/XgqpcvtczhpKxTYGlq9F5Amvzn2zKUPhUZNSBgzGq5Q=
+X-Received: by 2002:a67:f64e:0:b0:44d:4a41:893f with SMTP id
+ u14-20020a67f64e000000b0044d4a41893fmr24222343vso.9.1697102915394; Thu, 12
+ Oct 2023 02:28:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: v7wvpuz6SLn-6zCTEyrPX-C-7O2kQmCI
-X-Proofpoint-ORIG-GUID: v7wvpuz6SLn-6zCTEyrPX-C-7O2kQmCI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-12_05,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 mlxlogscore=933
- mlxscore=0 priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310120079
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20231010190926.57674-1-marex@denx.de>
+In-Reply-To: <20231010190926.57674-1-marex@denx.de>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 12 Oct 2023 11:28:24 +0200
+Message-ID: <CAMRc=Mc3q4bc60UTru2h5+Mz7qPSs4=wTvu7=sjphL6ArFg11w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24C32-D Additional Write
+ lockable page
+To: Marek Vasut <marex@denx.de>
+Cc: linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-IPQ95xx SoCs have different OPPs available for the CPU based on
-SoC variant. This can be determined from an eFuse register
-present in the silicon.
+On Tue, Oct 10, 2023 at 9:09=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> The ST M24C32-D behaves as a regular M24C32, except for the -D variant
+> which uses up another I2C address for Additional Write lockable page.
+> This page is 32 Bytes long and can contain additional data. Document
+> compatible string for it, so users can describe that page in DT. Note
+> that users still have to describe the main M24C32 area separately as
+> that is on separate I2C address from this page.
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
+tation/devicetree/bindings/eeprom/at24.yaml
+> index 98139489d4b5c..7be127e9b2507 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -67,6 +67,8 @@ properties:
+>                    pattern: cs16$
+>                - items:
+>                    pattern: c32$
+> +              - items:
+> +                  pattern: c32d-wl$
+>                - items:
+>                    pattern: cs32$
+>                - items:
+> --
+> 2.40.1
+>
 
-Add support to read the eFuse and populate the OPPs based on it.
+Applied, thanks!
 
-Frequency	1.2GHz	1.8GHz	1.5GHz	No	opp-supported-hw
-					Limit
-------------------------------------------------------------
-936000000	1	1	1	1	0xf
-1104000000	1	1	1	1	0xf
-1200000000	1	1	1	1	0xf
-1416000000	0	1	1	1	0x7
-1488000000	0	1	1	1	0x7
-1800000000	0	1	0	1	0x5
-2208000000	0	0	0	1	0x1
------------------------------------------------------------
-
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-v2:	cpu_speed_bin -> cpu-speed-bin in node name
-	Move comment to commit log
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index cc84f25..5f83ee4 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -106,42 +106,56 @@
- 	};
- 
- 	cpu_opp_table: opp-table-cpu {
--		compatible = "operating-points-v2";
-+		compatible = "operating-points-v2-kryo-cpu";
- 		opp-shared;
-+		nvmem-cells = <&cpu_speed_bin>;
- 
- 		opp-936000000 {
- 			opp-hz = /bits/ 64 <936000000>;
- 			opp-microvolt = <725000>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1104000000 {
- 			opp-hz = /bits/ 64 <1104000000>;
- 			opp-microvolt = <787500>;
-+			opp-supported-hw = <0xf>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <862500>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1416000000 {
- 			opp-hz = /bits/ 64 <1416000000>;
- 			opp-microvolt = <862500>;
-+			opp-supported-hw = <0x7>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1488000000 {
- 			opp-hz = /bits/ 64 <1488000000>;
- 			opp-microvolt = <925000>;
-+			opp-supported-hw = <0x7>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1800000000 {
- 			opp-hz = /bits/ 64 <1800000000>;
- 			opp-microvolt = <987500>;
-+			opp-supported-hw = <0x5>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-2208000000 {
- 			opp-hz = /bits/ 64 <2208000000>;
- 			opp-microvolt = <1062500>;
-+			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
- 		};
- 	};
-@@ -223,6 +237,11 @@
- 			reg = <0x000a4000 0x5a1>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			cpu_speed_bin: cpu-speed-bin@15 {
-+				reg = <0x15 0x2>;
-+				bits = <7 2>;
-+			};
- 		};
- 
- 		cryptobam: dma-controller@704000 {
--- 
-2.7.4
-
+Bart
 
