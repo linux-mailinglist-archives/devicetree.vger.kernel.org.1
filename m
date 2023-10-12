@@ -1,194 +1,206 @@
-Return-Path: <devicetree+bounces-7979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25DD47C661E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:09:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14E37C664C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 09:21:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 473491C20B08
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:09:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBE8E28231A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 07:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356B7DDDF;
-	Thu, 12 Oct 2023 07:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B0BDF5D;
+	Thu, 12 Oct 2023 07:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35760DDBA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:09:01 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB4A9D;
-	Thu, 12 Oct 2023 00:09:00 -0700 (PDT)
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5045cb9c091so934615e87.3;
-        Thu, 12 Oct 2023 00:09:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697094539; x=1697699339;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TpSfoJwDtnAsoTPya6J4WKkXULjEB6HnzhqPzwoz4os=;
-        b=KhYpNwrSN9qG88SjqCplJa9WOav8/ZsRBEQ6s13uEWxWB5usom/87pBHRImc6YjXFf
-         yqhjt8HEd+xROBKBYmS/ddE8ndhKMuTYCPD274N+C6aLcpKcA0trbzHB0y0d9Gqx93Br
-         7BYbYrYZXJF9HnEi4VUZbz9HYUqnPArNT5bydSxcMt9qRRpff0OaoQjpnK3D8Rmu2z8L
-         IFiTpsylo/Xq76H05LM70iMQGSCvhHjaAIq/C2xS8UE1aONB00RCDKTrXUo9tCBFm4Ur
-         2MeYg/ROv1egJSNr/iJxV4TtYYbd9/4rzVv6xne1B91af3Z3uySk8PSIFQXzmN1AvEa9
-         dgSw==
-X-Gm-Message-State: AOJu0Ywuf27eVTara/etf+Ttf9L8PC+6qhRidLgIlf7LSGVM5Xdr93pW
-	TZk9R35cccFbRS27tjtL26o=
-X-Google-Smtp-Source: AGHT+IGkWgEz1bua7UOe8c93Xd+zUIbbCX+AXuqOrArTKHM5MbSYMr2Oc+70mEn2xzFeFATL4gjEIw==
-X-Received: by 2002:a05:6512:280d:b0:503:a9c:af83 with SMTP id cf13-20020a056512280d00b005030a9caf83mr23404209lfb.41.1697094538523;
-        Thu, 12 Oct 2023 00:08:58 -0700 (PDT)
-Received: from dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
-        by smtp.gmail.com with ESMTPSA id v23-20020ac25597000000b0050306259d8asm2646893lfg.215.2023.10.12.00.08.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 00:08:57 -0700 (PDT)
-Date: Thu, 12 Oct 2023 10:08:40 +0300
-From: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	zev@bewilderbeest.net, Sebastian Reichel <sre@kernel.org>,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] regulator: fixed: forward under-voltage events
-Message-ID: <ZSebeJKa0sEzNzP4@dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi>
-References: <20231010085906.3440452-1-o.rempel@pengutronix.de>
- <20231010085906.3440452-3-o.rempel@pengutronix.de>
- <5e51792a-cc93-4364-a51b-c2b116d89369@sirena.org.uk>
- <20231010125531.GA3268051@pengutronix.de>
- <c2ee404d-d07f-42c6-b5ba-41659773e8eb@sirena.org.uk>
- <20231011075931.GA3305420@pengutronix.de>
- <2d14fd22-c37b-4c15-a2ea-a2fd2c201adb@sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C5ADDDB
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 07:21:07 +0000 (UTC)
+Received: from mo-csw.securemx.jp (mo-csw1121.securemx.jp [210.130.202.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A42C4;
+	Thu, 12 Oct 2023 00:21:04 -0700 (PDT)
+Received: by mo-csw.securemx.jp (mx-mo-csw1121) id 39C7KMSS655471; Thu, 12 Oct 2023 16:20:22 +0900
+X-Iguazu-Qid: 2rWh1lnDMTa2StM0kT
+X-Iguazu-QSIG: v=2; s=0; t=1697095222; q=2rWh1lnDMTa2StM0kT; m=bpp4+Py4TjUMLn+o5S+m53ZHfuhpmcZg+4O1Jtk54ds=
+Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
+	by relay.securemx.jp (mx-mr1122) id 39C7KKX71767654
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 12 Oct 2023 16:20:20 +0900
+X-SA-MID: 8623574
+From: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+To: Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/5] Add Toshiba Visconti Video Input Interface driver
+Date: Thu, 12 Oct 2023 16:13:24 +0900
+X-TSB-HOP2: ON
+Message-Id: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zTBIn7qXME7IwVru"
-Content-Disposition: inline
-In-Reply-To: <2d14fd22-c37b-4c15-a2ea-a2fd2c201adb@sirena.org.uk>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+This series is the Video Input Interface driver
+for Toshiba's ARM SoC, Visconti.
+This provides DT binding documentation,
+device driver, documentation and MAINTAINER files.
 
---zTBIn7qXME7IwVru
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A visconti VIIF driver instance exposes
+1 media control device file and 3 video device files
+for a VIIF hardware.
+Detailed HW/SW are described in documentation directory.
+The VIIF hardware has CSI2 receiver,
+image signal processor and DMAC inside.
+The subdevice for image signal processor provides
+vendor specific V4L2 controls.
 
-On Wed, Oct 11, 2023 at 12:38:19PM +0100, Mark Brown wrote:
-> On Wed, Oct 11, 2023 at 09:59:31AM +0200, Oleksij Rempel wrote:
->=20
-> > Configuration through the device tree and kernel defaults is preferable.
-> > For instance, having a default kernel governor that doesn=E2=80=99t req=
-uire user
-> > space configuration aligns with the project=E2=80=99s objectives.
->=20
-> That's policy though...
->=20
-> >=20
-> > > For the regulator itself we probably want a way to identify regulators
-> > > as being system critical so they start notifying.  It would be tempti=
-ng
+The device driver depends on two other drivers under development;
+clock framework driver and IOMMU driver.
+Corresponding features will be added later.
 
-Can the "criticality" could be determined by the severity (ERROR vs WARNING=
-)?
+Best regards,
+Yuji
 
-> > > to just do that by default but that would likely cause some issues for
-> > > example with regulators for things like SD cards which are more likely
-> > > to get hardware problems that don't comprimise the entire system.  We
+Changelog v2:
+- Resend v1 because a patch exceeds size limit.
 
-"comprimise the entire system" sounds (to my ears) exactly the
-difference between WARNING and ERROR notifications.
+Changelog v3:
+- Add documentation to describe SW and HW
+- Adapted to media control framework
+- Introduced ISP subdevice, capture device
+- Remove private IOCTLs and add vendor specific V4L2 controls
+- Change function name avoiding camelcase and uppercase letters
 
-> > > could do that with DT, either a property or some sort of runtime
-> > > consumer, but it might be better to have a control in sysfs that
-> > > userspace can turn on?  OTOH the ability do something about this depe=
-nds
-> > > on specific hardware design...
-> > >=20
-> > > I've copied in Sebastian since this sounds like the sort of thing that
-> > > power supplies might have some kind of handling for, or at least if we
-> > > need to add something we should make it so that the power supplies can
-> > > be joined up to it.  I do see temperature and capacity alerts in the
-> > > sysfs ABI for power supplies, but nothing for voltage.
-> >=20
-> > Thank you for pointing towards the power supply framework. Given the ha=
-rdware
-> > design of my project, I can envision mapping the following states and
-> > properties within this framework:
->=20
-> There's also hw_failure_emergency_poweroff() which looks like exactly
-> what you're trying to trigger here.
+Changelog v4:
+- Split patches because a patch exceeds size limit
+- fix dt-bindings document
+- stop specifying ID numbers for driver instance explicitly at device tree
+- use pm_runtime to trigger initialization of HW
+  along with open/close of device files.
+- add a entry for a header file at MAINTAINERS file
 
-There is already a path from regulator notification handling to the
-hw_failure_emergency_poweroff() - although only when handling the IRQs
-fail and this failure is marked as fatal.
+Changelog v5:
+- Fix coding style problem in viif.c (patch 2/6)
 
-> > Considering the above mapping, my initial step would be to create a sim=
-ple
-> > regulator coupled (if regulator is still needed in this casr) with a De=
-vice
-> > Tree (DT) based power supply driver.  This setup would align with the e=
-xisting
-> > power supply framework, with a notable extension being the system-wide
-> > notification for emergency shutdown upon under-voltage detection.
->=20
-> It sounds like this is actually a regulator regardless of if it also
-> appears via some other API.
+Changelog v6:
+- add register definition of BUS-IF and MPU in dt-bindings
+- add CSI2RX subdevice (separeted from ISP subdevice)
+- change directory layout (moved to media/platform/toshiba/visconti)
+- change source file layout (removed hwd_xxxx.c)
+- pointer to userland memory is removed from uAPI parameters
+- change register access (from struct style to macro style)
+- remove unused macros
 
-I wonder if it would make sense to add a 'protector' in regulator core.
-The 'protector' could register to listen the notifications from those
-regulators which have some
-'regulator-fatal-notifications =3D <list of notifications>;' -property
-defined in device-tree.
+Changelog v7:
+- remove redundant "bindings" from header and description text
+- fix multiline text of "description"
+- change "compatible" to "visconti5-viif"
+- explicitly define allowed properties for port::endpoint
+- remove unused variables
+- update kerneldoc comments
+- update references to headers
 
-In my eyes the device-tree is correct place for this information
-because whether an "anomaly" in regulator output compromises the system
-is a property of hardware.
+Changelog v8:
+- rename bindings description file
+- remove/simplify items in bindings
+- update operations around v4l2_async_notifier
+- use v4l2_async_connection instead of v4l2_async_subdev
+- use dev_err_probe()
+- better error handling at probe
+- remove redundant mutex
+- add V4L2_CTRL_TYPE_VISCONTI_ISP constant
 
-Yours,
-	-- Matti
+Changelog v9:
+- dictionary ordering of dt-bindings properties
+- applied sparce checker
+- call div64_u64 for 64bit division
+- rebase to media_staging tree
+- fix warning for cast between ptr and dma_addr_t
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+Yuji Ishikawa (5):
+  dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+    Input Interface
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver
+  media: platform: visconti: add V4L2 vendor specific control handlers
+  documentation: media: add documentation for Toshiba Visconti Video
+    Input Interface driver
+  MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
+ .../media/toshiba,visconti5-viif.yaml         |  105 +
+ .../driver-api/media/drivers/index.rst        |    1 +
+ .../media/drivers/visconti-viif.rst           |  462 +++
+ .../media/v4l/vidioc-g-ext-ctrls.rst          |    4 +
+ .../media/v4l/vidioc-queryctrl.rst            |    5 +
+ .../media/videodev2.h.rst.exceptions          |    1 +
+ MAINTAINERS                                   |    4 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/toshiba/Kconfig        |    6 +
+ drivers/media/platform/toshiba/Makefile       |    2 +
+ .../media/platform/toshiba/visconti/Kconfig   |   18 +
+ .../media/platform/toshiba/visconti/Makefile  |    8 +
+ .../media/platform/toshiba/visconti/viif.c    |  650 ++++
+ .../media/platform/toshiba/visconti/viif.h    |  374 ++
+ .../platform/toshiba/visconti/viif_capture.c  | 1483 +++++++
+ .../platform/toshiba/visconti/viif_capture.h  |   22 +
+ .../platform/toshiba/visconti/viif_common.c   |  199 +
+ .../platform/toshiba/visconti/viif_common.h   |   38 +
+ .../platform/toshiba/visconti/viif_controls.c | 3395 +++++++++++++++++
+ .../platform/toshiba/visconti/viif_controls.h |   18 +
+ .../platform/toshiba/visconti/viif_csi2rx.c   |  695 ++++
+ .../platform/toshiba/visconti/viif_csi2rx.h   |   24 +
+ .../toshiba/visconti/viif_csi2rx_regs.h       |  102 +
+ .../platform/toshiba/visconti/viif_isp.c      | 1259 ++++++
+ .../platform/toshiba/visconti/viif_isp.h      |   24 +
+ .../platform/toshiba/visconti/viif_regs.h     |  716 ++++
+ drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/videodev2.h                |    2 +
+ include/uapi/linux/visconti_viif.h            | 1800 +++++++++
+ 31 files changed, 11431 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+ create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+ create mode 100644 drivers/media/platform/toshiba/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/visconti/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx_regs.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_regs.h
+ create mode 100644 include/uapi/linux/visconti_viif.h
 
---zTBIn7qXME7IwVru
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmUnm20ACgkQeFA3/03a
-ocWoBAgAvt694sDu7d/r9CyhNbd/uDFnCTQ6LVK2CakUfO4JsjW/x+Pe1YrvRlQc
-EZkpcaH0TKhQEc1jS+E8pYuX9YVjmAmmRJKQVe3PhK3lRc8WwqX2iWgALbHI0A/b
-GudY8ngHDk1ShNLZfwMFLRghRSc+kBIEs/ZnsWG0dJDr2l/Tr6n6uAtgkWZC3i6X
-vuAoq7g9NQRXBD0kBctmmWJfWcUSc0tFPN+fAqvQuUERms8opu95YFpIpBuFx8Hi
-yw2JiMPrwVOrHeIb5ZhJuVho41BcmnFcU2bCKYXdrXfS1QX5b3mbUHdC3nrBfI0V
-HtUJ12Ohl3YkW1euY/4rfDrL7lYHTw==
-=JFJH
------END PGP SIGNATURE-----
-
---zTBIn7qXME7IwVru--
 
