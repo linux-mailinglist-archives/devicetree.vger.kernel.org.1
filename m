@@ -1,130 +1,128 @@
-Return-Path: <devicetree+bounces-8188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56DBA7C707A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:40:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2BC7C708E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 16:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE767281068
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:40:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93D9E282964
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CF6208D2;
-	Thu, 12 Oct 2023 14:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DwVeY7kH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014D621358;
+	Thu, 12 Oct 2023 14:44:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E37A37A
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:40:50 +0000 (UTC)
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1813EA9;
-	Thu, 12 Oct 2023 07:40:47 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c5028e5b88so1136301fa.3;
-        Thu, 12 Oct 2023 07:40:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697121645; x=1697726445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3kw/R5D+s3aJanIgvu3nf4Gs9+0fYmqPraYbms7U3dY=;
-        b=DwVeY7kHZd8snQaNN6Y5NhbpQ0/BYx67rw6lzY4o5kNSGMJaFgSQ5V/IN/814EB6MV
-         VxzKLRWKbDYsAmnnc1WHj6Iesx8bYekuYLSGiUoBs+9EBVT6WaUj0DWkXWRhe1woeAcb
-         T+skGg+gArzc8hC4CSnWiCNtr0K1kF9VEvm681bZepPZHhlNHYRKh0e0naKxfldNaWAp
-         18UfTPvhAxExzwKoCPl2l0QmLm1FT6fx7ZSMN8La4YgQ/7toh+x3b9ZZdzFsVln5AzU+
-         9NeRjenVNaq3nHxPHI1m4L3Ly2uhqKA2svrFxly1FoWn0lZOcebl2CEq0zTnjKR+fZtj
-         RT9A==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B072421C
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 14:44:24 +0000 (UTC)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652A4BB;
+	Thu, 12 Oct 2023 07:44:22 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-d9a398f411fso1132377276.3;
+        Thu, 12 Oct 2023 07:44:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697121645; x=1697726445;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3kw/R5D+s3aJanIgvu3nf4Gs9+0fYmqPraYbms7U3dY=;
-        b=PZYRjA/6Wr+98tZXo9m9C2MqFgzfmEVlHHmHVI0EdPSLZiAgeqCwiBEi2y8v/bPS8P
-         49sh7QjkHlWxQEr84PwM7h4954vR8Eb2iRuHZ06PfGdOVL9KxOiHA77bKUmxSe5TQtYQ
-         gJn71r+n2gVIzSNSYygc7dMyHBZFy1W/ZkF5bj8ZcfUupvkkDVHebfo2Qij0GqMBQi+4
-         Pk42cfibH0ckMOVP8j2TecaYsmpvXls4HR51qi9d6rR5PTjP3b6KBbAIbLoB1qKnj3lu
-         cIhRFz9pTOzTlfuKqN/ceuTtdBKe20vp95bgeRGiOGi1ZTTe0apQh0ebbp77hJCkvVdu
-         u2cg==
-X-Gm-Message-State: AOJu0YwFTJfaElhW7LGrNUfV+3X+2/nsbveZbO6zCK2mm5nDagFJsMFI
-	bf3iAcYtoOLNaeqqPXo3hwVmMSDlnJyemrvY
-X-Google-Smtp-Source: AGHT+IGH41yXs+O99grdygoszPTYW1zPKpN4EmD/LKIiUtotZlFPT/goo7+MpuARd/B4135q9i6NQg==
-X-Received: by 2002:a05:6512:4002:b0:504:369d:f11c with SMTP id br2-20020a056512400200b00504369df11cmr24729653lfb.34.1697121644971;
-        Thu, 12 Oct 2023 07:40:44 -0700 (PDT)
-Received: from ?IPV6:2001:999:704:2143:20b5:8471:77bf:6204? ([2001:999:704:2143:20b5:8471:77bf:6204])
-        by smtp.gmail.com with ESMTPSA id b17-20020a056512025100b005042ae13de4sm2854806lfo.302.2023.10.12.07.40.43
+        d=1e100.net; s=20230601; t=1697121860; x=1697726660;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vlohsKaxaDfJsNn0JXsIdvrAgoGkujT/EvyViDc7jh0=;
+        b=iVaApVkpKZ0pZLEK/pwPLTGauu7UeCClkUXAvxljBqIBU1NUZs6cKGofDWJThZovdD
+         R+PdLalbZM71D7ARoXO/MV4ug5UKaBN7EYKhisGUarhoFIB+u2aDKmjvKNryIMT2aIqO
+         7/rZpngyCi+cRcrWj+Ljwabg37SERfQgi8WtaeQYVTNWOPdTwmY3Eiqo5b1d91OgEU+X
+         OwM7HO8hcBH96SMHCWMZBR/flQmynraseXWZKASSLNXhZLvq6nY7oVyQoeYKpb3MecBD
+         rLfQkWBHPsC4Fb2NSAEY87llPNTUsHsTAyzbENvMh2nqQoc9g1o8gON/b/XWCkwsTVFk
+         wCvA==
+X-Gm-Message-State: AOJu0YzhgL2UMdRD2jcmbJXTtWBs89z1oEWz3+mXltBwiC9qNGDczA/L
+	056Ay9qlISdQmNim66B0mJc/KD8J7n4cnQ==
+X-Google-Smtp-Source: AGHT+IHL1VVdNNqwHnZcPkiD9AZddyC3g7gvOS4O13vQR8K7sd/ecIhw/doKpo16fiV6v+feVkzXxQ==
+X-Received: by 2002:a25:ac46:0:b0:d9a:53cc:aaad with SMTP id r6-20020a25ac46000000b00d9a53ccaaadmr8935045ybd.24.1697121860167;
+        Thu, 12 Oct 2023 07:44:20 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id z96-20020a25a169000000b00d8128f9a46bsm2632ybh.37.2023.10.12.07.44.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 07:40:44 -0700 (PDT)
-Message-ID: <db511d14-f2fe-4b4e-bd13-223e7a33f933@gmail.com>
-Date: Thu, 12 Oct 2023 17:41:34 +0300
+        Thu, 12 Oct 2023 07:44:19 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5a7ba0828efso13058287b3.3;
+        Thu, 12 Oct 2023 07:44:19 -0700 (PDT)
+X-Received: by 2002:a0d:e2c4:0:b0:5a7:bc38:fff2 with SMTP id
+ l187-20020a0de2c4000000b005a7bc38fff2mr8513742ywe.15.1697121859775; Thu, 12
+ Oct 2023 07:44:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
- fck_src
-To: Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>
-Cc: bcousson@baylibre.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lgirdwood@gmail.com,
- broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20230705190324.355282-1-andreas@kemnade.info>
- <20230705190324.355282-2-andreas@kemnade.info>
- <7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
- <20230920063353.GQ5285@atomide.com>
- <dac768d2-2c66-4d6b-b3d3-d1ef69103c76@gmail.com>
- <20230921121626.GT5285@atomide.com> <20231006102348.GK34982@atomide.com>
- <20231006213003.0fbac87a@aktux> <20231007062518.GM34982@atomide.com>
- <20231007091156.588d7ba1@aktux>
-Content-Language: en-US
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20231007091156.588d7ba1@aktux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com> <20231010132701.1658737-6-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231010132701.1658737-6-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Oct 2023 16:44:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW+5MZXRbDtZtmrMkrCtwqqKUcW_W1_5U_2yO6w6aCa_w@mail.gmail.com>
+Message-ID: <CAMuHMdW+5MZXRbDtZtmrMkrCtwqqKUcW_W1_5U_2yO6w6aCa_w@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: rzg3s-smarc: Enable SDHI1
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: magnus.damm@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 07/10/2023 10:11, Andreas Kemnade wrote:
->> OK good to hear it works, I'll send out fixes for omap4 and 5, seems
->> the runtime PM warning is something different.
->>
->>> omap-mcbsp 40124000.mcbsp: Runtime PM usage count underflow!
->>> # cat /sys/bus/platform/devices/40124000.mcbsp/power/runtime_status 
->>> active
->>>
->>> even with no sound.  
->>
-> Well, it is a regression caused by your fix. Without it (and not reverting
-> the already applied ignore patch), runtime is properly suspended. Don't know
-> why yet.
+Hi Claudiu,
 
-I guess it is because of the pm_runtime_put_sync() in the
-omap2_mcbsp_set_clks_src() around the fclk re-parenting.
-That is a bit dubious thing for sure. We need to disable the device to
-be able to re-parent the fclk but if we disable the device it is going
-to be powered down, right? I think we have appropriate context handling,
-so it might work, but it is certainly not a rock solid code... If you
-have a stream running already, you don't really want to kill the McBSP.
+On Tue, Oct 10, 2023 at 3:27=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add SDHI1 to RZ/G3S Smarc Carrier-II board. This is connected to a uSD
+> interface. Although Vccq doesn't cross the boundary of SoM it has
+> been added to RZ/G3S Smarc Carrier-II dtsi to have all the bits related t=
+o
+> SDHI1 in a single place. At the moment SoM is used only with RZ/G3S Smarc
+> Carrier-II board.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-The problem is that this mux is outside of the McBSP IP, so we need a
-system level (iow, clk API) way to change it runtime.
+Thanks for your patch!
 
-What is the machine driver where this happens? If you set the sysclk in
-hw_params of the machine driver, it will be OK, but if you do that in
-probe time then it is likely going to fail as you experienced
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> @@ -11,6 +11,27 @@
+>  / {
+>         aliases {
+>                 serial0 =3D &scif0;
+> +               mmc1 =3D &sdhi1;
+> +       };
+> +
+> +       /* Reserved regulators 0-9 for SoM. */
+> +       vcc_sdhi1: regulator10 {
 
--- 
-Péter
+You can use sensible names for the regulators to avoid conflicts.
+E.g. "regulator-vcc-sdhi1".
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
