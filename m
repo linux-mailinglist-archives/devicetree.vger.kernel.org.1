@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-8047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF287C67B7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:41:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC947C67BC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEB211C21219
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:40:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E165282B2D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E7B20335;
-	Thu, 12 Oct 2023 08:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EF21F19B;
+	Thu, 12 Oct 2023 08:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="tslIi6kw"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YVX/G3c5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB83D1F93C
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222A71DA21
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 08:40:55 +0000 (UTC)
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D45D7;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18609D9;
 	Thu, 12 Oct 2023 01:40:51 -0700 (PDT)
-X-UUID: 0940c7d868db11ee8051498923ad61e6-20231012
+X-UUID: 08e6bf9a68db11ee8051498923ad61e6-20231012
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=JrscK/Pmn31vq3QueZS+3DmRlbk4U+Q1tcQcWf83jFU=;
-	b=tslIi6kwBPFtP/IYpbffouF/UNHWMCqiH4bOVvtovdU0sWNQJqvbrmp3Cvg0A+P5e8gZjgjP8WSaAJqwsBB5HQNQ0QJa9qAKE40nM5S81vSEPK3DLH8H+ycJEvOnYQ8P849xg9O8v/cbaksVDQ4Wg7JX6dnLJnpmJ3EnsxPspTk=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=IEOOL5V8ZdT35j5g9/2kzpw1taXhNgFEW5b8B3182QQ=;
+	b=YVX/G3c5oBnrqctdh6pocRkA9K1ukFYE7KjhdW5UqONB62pxg2WA5iXmarQhbKrKfzzGPE+tvctFggW9C03KDoYPpVaRxv4pxb4CW2cpx7cqoUeOVb2Kyym6jFQn6iEL/UCDIySO4cdfv3zFFXaD0WjZUFhU/GebJZlnRB4qmnM=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:97337a28-f410-4980-90fc-4ee999f3b4be,IP:0,U
+X-CID-O-INFO: VERSION:1.1.32,REQID:6e55b915-d78b-4c7e-8813-71c939a41ff9,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:40f009c4-1e57-4345-9d31-31ad9818b39f,B
+X-CID-META: VersionHash:5f78ec9,CLOUDID:2045b5f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
 X-CID-BVR: 0,NGT
 X-CID-BAS: 0,NGT,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0940c7d868db11ee8051498923ad61e6-20231012
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+X-UUID: 08e6bf9a68db11ee8051498923ad61e6-20231012
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
 	(envelope-from <moudy.ho@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 852607845; Thu, 12 Oct 2023 16:40:45 +0800
+	with ESMTP id 373142644; Thu, 12 Oct 2023 16:40:45 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1118.26; Thu, 12 Oct 2023 16:40:44 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
@@ -61,11 +61,11 @@ To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
 	<hverkuil-cisco@xs4all.nl>
 CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, "Moudy
- Ho" <moudy.ho@mediatek.com>
-Subject: [PATCH v7 12/16] dt-bindings: display: mediatek: color: add compatible for MT8195
-Date: Thu, 12 Oct 2023 16:40:33 +0800
-Message-ID: <20231012084037.19376-13-moudy.ho@mediatek.com>
+	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Moudy
+ Ho <moudy.ho@mediatek.com>
+Subject: [PATCH v7 13/16] dt-bindings: display: mediatek: merge: add compatible for MT8195
+Date: Thu, 12 Oct 2023 16:40:34 +0800
+Message-ID: <20231012084037.19376-14-moudy.ho@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20231012084037.19376-1-moudy.ho@mediatek.com>
 References: <20231012084037.19376-1-moudy.ho@mediatek.com>
@@ -76,18 +76,6 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--2.776600-8.000000
-X-TMASE-MatchedRID: jhJi18RLqAImeoNhEXvE7LqQyAveNtg6TJDl9FKHbrm+pmoxzV3exqPF
-	jJEFr+olAmPpbGBYlhvkwjHXXC/4I8ZW5ai5WKlyO7EiQV62vAQPGJgJtdCNyHsEKMkX4qvJMIu
-	h4qFLx/jrkeCfTt92eLcSS/2NmWKtcAaKliqjjq3gg1Qp8IpedvNAAZJS1dVkjofsMjQaxVwyYj
-	biqIQ3CsykhtyXcigD6rVdgBjDT2oh1j2M6LiVMg==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--2.776600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	A973E6E84E6811191C2C875CC4B4B1E916821F440F66671886A612FD6A9316A92000:8
 X-MTK: N
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
@@ -96,26 +84,26 @@ X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a compatible string for the COLOR block in MediaTek MT8195 that
+Add a compatible string for the MERGE block in MediaTek MT8195 that
 is controlled by MDP3.
 
 Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 ---
- .../devicetree/bindings/display/mediatek/mediatek,color.yaml     | 1 +
+ .../devicetree/bindings/display/mediatek/mediatek,merge.yaml     | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
-index f21e44092043..b886ca0d89ea 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
-@@ -26,6 +26,7 @@ properties:
-           - mediatek,mt2701-disp-color
-           - mediatek,mt8167-disp-color
-           - mediatek,mt8173-disp-color
-+          - mediatek,mt8195-mdp3-color
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+index eead5cb8636e..401498523404 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+@@ -24,6 +24,7 @@ properties:
+       - enum:
+           - mediatek,mt8173-disp-merge
+           - mediatek,mt8195-disp-merge
++          - mediatek,mt8195-mdp3-merge
        - items:
-           - enum:
-               - mediatek,mt7623-disp-color
+           - const: mediatek,mt6795-disp-merge
+           - const: mediatek,mt8173-disp-merge
 -- 
 2.18.0
 
