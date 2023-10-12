@@ -1,156 +1,112 @@
-Return-Path: <devicetree+bounces-8149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F137C6E1E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D66827C6E32
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51FD11C20EDB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:31:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 130EE1C20FB1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A96208D5;
-	Thu, 12 Oct 2023 12:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A10E20335;
+	Thu, 12 Oct 2023 12:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HUeM/pez"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DD0jWufz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07322266DC
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A4F20B2E
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:35:36 +0000 (UTC)
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A2EB8;
-	Thu, 12 Oct 2023 05:30:56 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-212-229.ewe-ip-backbone.de [91.248.212.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE970C0;
+	Thu, 12 Oct 2023 05:35:34 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D0E2C660733F;
-	Thu, 12 Oct 2023 13:30:54 +0100 (BST)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C5776660733F;
+	Thu, 12 Oct 2023 13:35:32 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697113854;
-	bh=SqYTiOtUppKlZvMe6nHnH40NTI0MY7sewDjs1R3rQVU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HUeM/pezKZ48kW54SVra2V2rv+4szeF5ThlojEo06WDvEBgFWirXf4T/M1jkwAXG9
-	 9xD/I4srIYRJhFx4UaPovNmSvSsp7OeEwwSRGY22v0ssyEPybt/tyWs0sGcQHqAY0A
-	 qHCMCdrhVLYhYLGknT9LQQqxINcpo/fPpzWBeYkNnYD4+j8TJ+Cw45OU+fHzDrgIyO
-	 NjwQarrxwt8vMWx0zB3l55oBGblCOZ8ziFcdVTgV2VZ+lf0i4qWmFWyCrY1nS5jKDs
-	 cutarlN17iJe27Sfr89nmfexZWeTpG3+Yvq1aLDUqEu2hKVzUsP3zX4tjimzjSXjrn
-	 jVwXKz7Dn3Pqw==
-Received: by mercury (Postfix, from userid 1000)
-	id A6A9810605A6; Thu, 12 Oct 2023 14:30:51 +0200 (CEST)
-Date: Thu, 12 Oct 2023 14:30:51 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: add rk3588 compatible to
- rockchip,dwc3
-Message-ID: <20231012123051.jkxj4mpczerc2igl@mercury.elektranox.org>
-References: <20231009172129.43568-1-sebastian.reichel@collabora.com>
- <20231009172129.43568-2-sebastian.reichel@collabora.com>
- <20231010162722.GA1006254-robh@kernel.org>
+	s=mail; t=1697114133;
+	bh=9YwrfxspUnb7imS3HOKEtNqbSdskF65SOc98nxt5Q60=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DD0jWufzf2Jb+8PBpFQg3JL3LMJXE/jZPx+1hghxyJ/1FWsByQccKV50tHxcZtolj
+	 2U+eaP0yAJDigMDweHV/VLIQi/304DfbEn99rDuYWwsYtWhNLKBPfCOjlsLlfDXg3j
+	 rMVnDRUH/1u8RraORenVNeWvKBZatHTIp20A9YupE/tmyCUpJn3EY4ZWHN7Ue9rXyj
+	 4koTJWKPEKpmBDVYd6j33LB8bFYwtTPpdBGes0SbfhSX3Gq+KpSZOrP+m1QS6BrZ87
+	 UIy8fJb11mjYb1iBuZUrcEyrWb/z7HBcBcPc9HiFrl7wWz+rFAg0eOZwAUPg8Fztc5
+	 DKBVX71CZZWTQ==
+Message-ID: <49a4be76-e389-c6aa-6176-41b351c6446a@collabora.com>
+Date: Thu, 12 Oct 2023 14:35:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dg275xcvg6oalgtm"
-Content-Disposition: inline
-In-Reply-To: <20231010162722.GA1006254-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v7 16/16] dt-bindings: display: mediatek: padding: add
+ compatible for MT8195
+Content-Language: en-US
+To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231012084037.19376-1-moudy.ho@mediatek.com>
+ <20231012084037.19376-17-moudy.ho@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231012084037.19376-17-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Il 12/10/23 10:40, Moudy Ho ha scritto:
+> Add a compatible string for the PAD block in MediaTek MT8195 that
+> is controlled by MDP3.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>   .../bindings/display/mediatek/mediatek,padding.yaml           | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+> index db24801ebc48..636b69133acc 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+> @@ -20,7 +20,9 @@ description:
+>   
+>   properties:
+>     compatible:
+> -    const: mediatek,mt8188-padding
+> +    enum:
+> +      - mediatek,mt8188-padding
+> +      - mediatek,mt8195-mdp3-pad
 
---dg275xcvg6oalgtm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+mediatek,mt8195-mdp3-padding please!
 
-Hi,
+Thanks,
+Angelo
 
-On Tue, Oct 10, 2023 at 11:27:22AM -0500, Rob Herring wrote:
-> [...]
-> > +allOf:
-> > +  - $ref: snps,dwc3.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3328-dwc3
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 3
-> > +          maxItems: 4
-> > +        clock-names:
-> > +          minItems: 3
-> > +          items:
-> > +            - const: ref_clk
-> > +            - const: suspend_clk
-> > +            - const: bus_clk
-> > +            - const: grf_clk
->=20
-> No need to list everything again. Just:
->=20
-> contains:
->   const: grf_clk
+>   
+>     reg:
+>       maxItems: 1
 
-No, that does not work because 'grf_clk' is optional and by using
-'contains: grf_clk' the check will complain if the list does not
-contain 'grf_clk'.
 
-> [...] more improvements suggested by Rob [...]
-
-These look all fine to me and I fixed them up for v4.
-
-> > +        clock-names:
-> > +          minItems: 3
-> > +          items:
-> > +            - const: ref_clk
-> > +            - const: suspend_clk
-> > +            - const: bus_clk
-> > +            - const: utmi
-> > +            - const: pipe
->=20
-> Again, can use 'contains' here. Where 'utmi' is in the list is already=20
-> defined by the top-level schema.
-
-Same issue as above. On RK3588 there is one USB3 controller, which
-needs all 5 clocks and two controllers with just the first 3 clocks.
-I initially had two different compatible strings to have fixed lists,
-but Krzysztof asked to use only a single one.
-
--- Sebastian
-
---dg275xcvg6oalgtm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUn5vMACgkQ2O7X88g7
-+pq5iQ//SbD019jkFbISwPoG5pufL8vzlz6VbiCInwaeTLu/GuWEXfKMBsIz+1Ui
-p8mJnLWZ+WsvgHHJWDrF/OLlheQ7SJUEx2pd3hKGVI4HmuN/+cQ5Z30Dx4i8NpM9
-IW6hUHyE6HnRIGyM9ZHq51Qa6A/rE0Fas4FBcLo0LUWeE3cpJPIlofGW7rLJ8GEW
-9/dr70KmKSzo1/Lwsno+UY4VQtAdgMjo3vMqVooOwB6KnOAPYZHgK5C/A/JouzWd
-SuvHQ9Bp8iWiuhvLVgkHmVuJ2bjZEmBR0BgoZmQgE/pWcbf+/q6etR2hDafPS/8a
-Pxz4KDrnTSfw6v3ZdmsON+vEsyRdrm/qWlQldstzy22xlmt8NHT3wrbbucTaFj2W
-Sem+RN/Qj2hJeLqVQQPxGBKjCP2XXDH6SZHU0lO5z3YbUUmEh0Sco1kARE01Dg6S
-v7TvHjyDKuUB6UiuqwPrOq4+5Wh+LR3GxJrQqviJ1GzOd5h1iFOjDbKWZoH8KkMG
-OsHHN/zj+09EvatG5M3gUyNoT6upKhXHJhAx5VxNda2MuuikQmG2x6aUzlwJldvu
-dI+sfV+4opYtRakVfvKmVCZo06hHt8j1fRAOKE51x6MReMHL2R2cQWtr1MQpmeJP
-Y9u/fJ0NcKue4wu6YgGBleeH5c/BzSQTP2VfpvFQ0SP7eHHch8U=
-=LnH+
------END PGP SIGNATURE-----
-
---dg275xcvg6oalgtm--
 
