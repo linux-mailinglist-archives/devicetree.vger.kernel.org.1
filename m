@@ -1,69 +1,131 @@
-Return-Path: <devicetree+bounces-8194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1FD7C7134
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 581847C7142
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:18:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 672AC282170
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:16:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 045CF2821C1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05B8266D0;
-	Thu, 12 Oct 2023 15:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CDE26E37;
+	Thu, 12 Oct 2023 15:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWh4zJpk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OGuD6B3Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13EA266C7
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:16:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5718FC433BB;
-	Thu, 12 Oct 2023 15:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16042421C;
+	Thu, 12 Oct 2023 15:18:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62640C433C7;
+	Thu, 12 Oct 2023 15:18:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697123760;
-	bh=CS9VF07gkeV9AwiwyzlAL6GHT7P51hY0vpXVw5KAhCY=;
+	s=k20201202; t=1697123894;
+	bh=ib4tVcVonMixI1OaRSfJ8k6/MBGpORgj2wRciIN3hFU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lWh4zJpklxplOSn9C02a/hjA8K3FDeTWEEw+casdd7ipQTCi0UVGYh85MS5IP0tam
-	 S/UXs3WpP/Vq6Aj98gLmi9nQaQi00C3lP5rcfF3NAu60D8MwVKJFmSLP35cHYLwHQG
-	 43420c66qhUI3q9fWAPBk56uyBBzPO3TWpPTPPwHhVQhdQfQmeQ77NXunlKEk4RhFc
-	 Wt2+Sk7vZYdW2FEGUTZc3Pr1HUAg2+Q03i6VjjcK/wu7N3TvNgqvBa+V78OOHYRAVc
-	 aN1fcHO1ZI8KSg8srd1f7mMK8X8YN3E9boMUT0DMVQ/v/MUhTfl01Ehq3ZguMP58Om
-	 4Zhfg+3Nk6gAA==
-Received: (nullmailer pid 689622 invoked by uid 1000);
-	Thu, 12 Oct 2023 15:15:57 -0000
-Date: Thu, 12 Oct 2023 10:15:57 -0500
-From: Rob Herring <robh@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Ryan McCann <quic_rmccann@quicinc.com>, David Airlie <airlied@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Sean Paul <sean@poorly.run>, Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>, Bjorn Andersson <andersson@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Liu Shixin <liushixin2@huawei.com>, Vinod Polimera <quic_vpolimer@quicinc.com>, Daniel Vetter <daniel@ffwll.ch>, Robert Foss <rfoss@kernel.org>
-Subject: Re: [PATCH v3 3/6] dt-bindings: display: msm: Add SDM670 MDSS
-Message-ID: <169712375677.689486.15371215600805365343.robh@kernel.org>
-References: <20231009233337.485054-8-mailingradian@gmail.com>
- <20231009233337.485054-11-mailingradian@gmail.com>
+	b=OGuD6B3Y4kGRzFfF+OHdIZKGMC3mk5oZ7/NsxSP/KgOEk2l4v7U3giA5yC4V2yoUI
+	 ALFjgu3Iter3SXK53rgH0MNqNidH1ui7rLKpfSxT/oToFP6YZj0iYshbGOvF4mYZCP
+	 BDrOKwCcTR5dZP+ix92yTYkvey50s+565Ay9NLsRzwwZZcC+09+/g/MykdNPAXAYmA
+	 b1RapCYfkBnWXxUhpVL7MpiIuTpYCO+zzTW8fSQMv00VU7D+1rLjEx78TpmkbWuAEl
+	 9Wq0yzECozGGuH09Egfq6KPAJkpLSFvIp1JHsBokmStGczuntXTd13vcMFUNOTdJNM
+	 dGffdeMES2n7w==
+Date: Thu, 12 Oct 2023 16:18:09 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
+	f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <20231012-unicorn-rambling-55dc66b78f2f@spud>
+References: <cover.1697107915.git.ante.knezic@helmholz.de>
+ <1b8db5331638f1380ec2ba6e00235c8d5d7a882c.1697107915.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="M6DiZrwt0r0ByUbo"
+Content-Disposition: inline
+In-Reply-To: <1b8db5331638f1380ec2ba6e00235c8d5d7a882c.1697107915.git.ante.knezic@helmholz.de>
+
+
+--M6DiZrwt0r0ByUbo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231009233337.485054-11-mailingradian@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-
-On Mon, 09 Oct 2023 19:33:41 -0400, Richard Acayan wrote:
-> Add documentation for the SDM670 display subsystem, adapted from the
-> SDM845 and SM6125 documentation.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+On Thu, Oct 12, 2023 at 12:55:56PM +0200, Ante Knezic wrote:
+> Add documentation for selecting reference rmii clock on KSZ88X3 devices
+>=20
+> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
 > ---
->  .../display/msm/qcom,sdm670-mdss.yaml         | 292 ++++++++++++++++++
->  1 file changed, 292 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm670-mdss.yaml
-> 
+>  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    | 19 +++++++++++++=
+++++++
+>  1 file changed, 19 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml=
+ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index 41014f5c01c4..eaa347b04db1 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -72,6 +72,25 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  microchip,rmii-clk-internal:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Set if the RMII reference clock is provided internally. Otherwise
+> +      reference clock should be provided externally.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I regret not asking this on the previous iteration - how come you need a
+custom property? In the externally provided case would there not be a
+clocks property pointing to the RMII reference clock, that would be
+absent when provided by the itnernal reference?
 
+Cheers,
+Conor.
+
+> +
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - microchip,ksz8863
+> +          - microchip,ksz8873
+> +then:
+> +  not:
+> +    required:
+> +      - microchip,rmii-clk-internal
+> +
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.11.0
+>=20
+
+--M6DiZrwt0r0ByUbo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSgOMQAKCRB4tDGHoIJi
+0neJAP9d2qGGl2LH+I7VWMfbPU56oSDwdRC6pm1sFFw7lC9EOQEA+esT0L2AHZjZ
+D4EAcuZ5Z8L6DtFVkVh8TbCerUm5eAo=
+=LPuI
+-----END PGP SIGNATURE-----
+
+--M6DiZrwt0r0ByUbo--
 
