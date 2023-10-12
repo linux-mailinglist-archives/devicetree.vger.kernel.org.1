@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-8132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839A97C6C51
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:31:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DA037C6C57
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 13:31:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BAD81C20A68
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:31:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 175A4282A3F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 11:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D6424209;
-	Thu, 12 Oct 2023 11:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E325249F1;
+	Thu, 12 Oct 2023 11:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pPD4LXAp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bpG3HF7w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C72241FB
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0591E24202
 	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 11:31:10 +0000 (UTC)
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A42C4
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:31:05 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso8504345e9.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:31:05 -0700 (PDT)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AAAAA9
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:31:07 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-32d885e97e2so832558f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 04:31:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697110264; x=1697715064; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CnuoW+FQCD/OpcgflvSx0Oe2LZM8hD2I1654SS3PYOc=;
-        b=pPD4LXApcviScq+lACrJ/cbam//ID6+iVyoZoX4FtxOhp3C7nJT4HCP3UnKwCotz0I
-         dzdYR+4pyFKwBJzv/NsyetIGGGrxP3dAaB84Ufkp8bxYsbaoulAb7tQDLj5ws4q+d3WH
-         yKw6sK/R7IkKy19lKVmWqHdHqFuOyP52SP+bTZ+hb5uSNyB6aNqkTsookAvvSU51dT4y
-         RdU0g6ls9hO2aucYbyfgthNx4TMfXQkv73SrML8wjqtaLlSHanSbWcBe/FmHKaIAzgu4
-         7uCPoeVG3/3BN7nOvmTCQAXu2VNU72aTfwtGCFhMy9nDZpEgUWKp5+F8rkV7Ytwbgx7Y
-         zlVQ==
+        d=linaro.org; s=google; t=1697110265; x=1697715065; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=82Kqf0UBYM8c+UzHOY9T7/SD0aaAr6GxwSoS4++hAHg=;
+        b=bpG3HF7wO2yeeA3xaVNNGjILmaeujbC4hpkjd/YPdboa4RnIF4zaMqDxb5nnZU0EKn
+         BskR6tqCCizR2MWaPo6WUcohFLA3pPpdn8vxIvSDsiyiDn50iuZRyE9xMxSWPiEuGjVU
+         /RMsK6geCnOGCE4z2jTENthhXtVirDCf28lx+HvwcZHBp67ylZMsprnQHTvatClOjiPC
+         gCUqBooxX7XpJTfO0gj7T0CMFuHCYPgm3rqm2T6AI9yBr2PhiedB3PBD+gJcvlVzfWDL
+         sJIkgtkzRDANvSupkxxo5egPQdv/Y+86ZZ1/06FUYcrdgKrIKKecciyMwADiiXJx0Vfj
+         yeBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697110264; x=1697715064;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CnuoW+FQCD/OpcgflvSx0Oe2LZM8hD2I1654SS3PYOc=;
-        b=YTRVmx8eamoVx8ro0cRt78g2fMwRRzLZ//Y+dcNa2K0ivM3XicHupfY0ru/8NqWKtO
-         K4V/85zmauw24fyKVpFDqLTIgHZpSTDm8rd749yS2BcNMz0L2xt7Z6HEIBo0w7l97+kB
-         AZUGaX1aKkUfk40TOxzyW0s10+PIzkd980eXi3rDOtKWF29Jmav5DZbPEisAxe3kM7z/
-         AWe8pnKWxEkvUN7ck+d/BKk0WIIUeYC3iuQhzBamJH+7JCLeAUsuFBWFBnH7Ad70ey5t
-         4Xf4u+OEaVfnE2PbXIv73RejjJ2efM+NW0gmAZS7mfnOgad7E1NvRdu+dTwMrCFHkG/q
-         8GPw==
-X-Gm-Message-State: AOJu0YxdyzfPI9h2iQEzdxpOUuAkBPSM2dO9hRigzstaAgQfKQ7YkvhK
-	okElZd7RVAMT9dggjtWmI6FUgw==
-X-Google-Smtp-Source: AGHT+IGBdXRT0UtMVp+RpimAXsw2HQh3MU7GuKMfnrtGP6iY7VsQcYh19478v3IKMkocVBje2WrYow==
-X-Received: by 2002:a05:6000:250:b0:32d:825b:e7da with SMTP id m16-20020a056000025000b0032d825be7damr3858653wrz.41.1697110264167;
-        Thu, 12 Oct 2023 04:31:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697110265; x=1697715065;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=82Kqf0UBYM8c+UzHOY9T7/SD0aaAr6GxwSoS4++hAHg=;
+        b=JIhH16WWhL+oQ1mtLnSZy/yZDoXCZqxbwp7USnDIc/CKdM2RZBDjvfWnBet4gLyvC/
+         DoJD/YWG4FsL+sOLlE/Wber65z2gjMLbcZEJDUwgfrK1XvckkXHPtIh4tkv3SQxa0INy
+         w/fL2YIWbH7S7ps7z694ai7allklVskcrIDR0zBytvAomWF96CuKF4X3vjwxnkjJJhYS
+         Ae/gFT1/0EMxPfiCWNThxqCUUmS9DUApWNPfBXYz3n8RUdIDzyLdBbLe5YBZ4g5zNS0L
+         u9+gvLH+Yqrf9AAzh6xsYPaLkeDmqm4qQowzGOxGbncQ9Dv94+xNk749nl8lsVrbZ93V
+         /L5g==
+X-Gm-Message-State: AOJu0Yy/Yv9u93yIC8rdP8mEB9/MJLNtaeM6XI/UnCtjdCmSyKbVKvRZ
+	aMoMPlNjKNO1jI3WytJefJO0dA==
+X-Google-Smtp-Source: AGHT+IHdiO2gaVfOKAtP8BKlYveVx8f24wMW+fnbvPbvHY8RXPkNA0QnfaBmFCNBIfn+BybDkHvcKA==
+X-Received: by 2002:adf:f1c6:0:b0:324:1521:3a6e with SMTP id z6-20020adff1c6000000b0032415213a6emr20587033wro.24.1697110265731;
+        Thu, 12 Oct 2023 04:31:05 -0700 (PDT)
 Received: from x13s-linux.nxsw.local ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id l14-20020a5d480e000000b0031c5e9c2ed7sm18244891wrq.92.2023.10.12.04.31.02
+        by smtp.gmail.com with ESMTPSA id l14-20020a5d480e000000b0031c5e9c2ed7sm18244891wrq.92.2023.10.12.04.31.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 04:31:03 -0700 (PDT)
+        Thu, 12 Oct 2023 04:31:04 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To: andersson@kernel.org,
 	agross@kernel.org,
@@ -75,10 +76,12 @@ Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	bryan.odonoghue@linaro.org
-Subject: [PATCH v4 0/4] Add sc8280xp CCI and CAMSS core dtsi
-Date: Thu, 12 Oct 2023 12:30:56 +0100
-Message-Id: <20231012113100.3656480-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 1/4] arm64: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp
+Date: Thu, 12 Oct 2023 12:30:57 +0100
+Message-Id: <20231012113100.3656480-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231012113100.3656480-1-bryan.odonoghue@linaro.org>
+References: <20231012113100.3656480-1-bryan.odonoghue@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,69 +95,48 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-V4:
-- Adds RB - Krzysztof
-- Drops indicated newline - Krzysztof
-- Moves "This patch depends-on" below the "---" - Krsysztof
+Add in CAMCC for sc8280xp. The sc8280xp Camera Clock Controller looks
+similar to most of the sdmX, smX and now scX controllers.
 
-Link next:
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-10-10-sc8280xp-camss-v4
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-V3:
-- Expands description of ports to clarify mapping of port to CSIPHY
-  Rob
-
-- Adds the dependency link into the commit log of patch #3 - bod
-
-Link next:
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-10-10-sc8280xp-camss-v3
-
-V2:
-- Drops specific sc8280xp-cci compat - Konrad
-- Drops minItems where maxItems are equal - Krzysztof
-- Uses suggested description for CAMSS - Krzysztof
-- Leaves indentation of ports/properties - Rob
-- NoISP. Supports bayer encoded upstream currently only - Krzysztof
-- Endpoint. Adds an example endpoint - Krzysztof
-
-Link next:
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-10-10-sc8280xp-camss-v2
-
-V1:
-The sc8280xp provides a standard Camera Control Interface and Camera
-SubSystem hardware interface similar to antecedent parts sdm845 and
-sm8250.
-
-Per the target segments for this part, sc8280xp has more of everything.
-More CCI, VFE, CSIPHY and therefore more interrupt lines and clocks to
-declare.
-
-CCI x 4
-CSIPHY x 4
-VFE x 4
-VFE Lite x 4
-CSID x 4
-
-Bootable 6.5.y x13s:
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/lenovo-x13s-linux-6.5.y
-
-Linux next:
-https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-10-06-sc8280xp-camss
-
-This patch depends-on:
-https://lore.kernel.org/lkml/20231004161853.86382-2-bryan.odonoghue@linaro.org/T/
-
-Bryan O'Donoghue (4):
-  arm64: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp
-  arm64: dts: qcom: sc8280xp: camss: Add CCI definitions
-  media: dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
-  arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition
-
- .../bindings/media/qcom,sc8280xp-camss.yaml   | 581 ++++++++++++++++
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 624 ++++++++++++++++++
- 2 files changed, 1205 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index cad59af7ccef..fafea0f34fd9 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+ #include <dt-bindings/clock/qcom,gpucc-sc8280xp.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
++#include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+ #include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
+ #include <dt-bindings/interconnect/qcom,osm-l3.h>
+ #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+@@ -3450,6 +3451,20 @@ usb_1_role_switch: endpoint {
+ 			};
+ 		};
+ 
++		camcc: clock-controller@ad00000 {
++			compatible = "qcom,sc8280xp-camcc";
++			reg = <0 0x0ad00000 0 0x20000>;
++			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK_A>,
++				 <&sleep_clk>;
++			power-domains = <&rpmhpd SC8280XP_MMCX>;
++			required-opps = <&rpmhpd_opp_low_svs>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
+ 		mdss0: display-subsystem@ae00000 {
+ 			compatible = "qcom,sc8280xp-mdss";
+ 			reg = <0 0x0ae00000 0 0x1000>;
 -- 
 2.40.1
 
