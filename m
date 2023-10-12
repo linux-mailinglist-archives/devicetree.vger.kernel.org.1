@@ -1,160 +1,138 @@
-Return-Path: <devicetree+bounces-8304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A827C78D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 23:51:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7D87C79D4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 00:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04672B2051D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:51:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2D9C282C9F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 22:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5C03F4C4;
-	Thu, 12 Oct 2023 21:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C577E3D021;
+	Thu, 12 Oct 2023 22:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HjSHOCag"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KV3CnEMx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56933E46D
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 21:51:22 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F09CBB;
-	Thu, 12 Oct 2023 14:51:20 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39CLbjch027956;
-	Thu, 12 Oct 2023 21:51:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=voUltIrLrhXdVJp9/yCwFFwFBu2KkCyxDDIWBrI4Xog=;
- b=HjSHOCagbHCB6bOReW+vqK+Dfm07myfSFl8yPtmClixpKCcx4C5UnnqZmJp4EkkrDlGk
- sDingmngYmPHq+uM3HBBqPVeQGzhUBBMSXXi3SA5X0kNnLJQP6XLfqhUZ1vUA3G+umcu
- gEnsitEU8Llg9JgShMHxB3a5DvlmHMEYr5M5u84mB7GEvxhxzAQTFiqgJF+aWHmqIvr2
- 9/U+wcedGEb8KGNxTmqgyc7htL3M+bz8iq1TCdvyJkUU1ehqhGC3hPkWpIqnJq0Xm8vL
- 1+bDS61NU97RlA6x7NV16IlgORC6blhN3ETupnnFsJrRxkKbilBOeheB+98R4nhkHEJx pQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tnsmq4h32-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Oct 2023 21:51:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39CLp1Wo011405
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Oct 2023 21:51:01 GMT
-Received: from [10.110.43.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 12 Oct
- 2023 14:50:59 -0700
-Message-ID: <a2781978-2081-f4cb-dfe3-0489860dab8e@quicinc.com>
-Date: Thu, 12 Oct 2023 14:50:42 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 052223D00B
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:35:26 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1709CA
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:35:22 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so58991fa.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697150121; x=1697754921; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XXO4MwbGSox8rKRwzbnM2zZwOBZ2z8Fw/s+ke6QnvYQ=;
+        b=KV3CnEMxFJtvM3QTZMX6sbsVGR9yMUU3IaNqfwXPLsWzqHb9fji2VHY22O7/IVrWX/
+         qGuR4AMRwkJ0OByoVaoUbadLfPBLGIiTWprDSH1N3vBAXXzws3ICJRzCET2B6tWH/lCs
+         h1ArxcVwhGgXRmOFax8Kxupgi6my5yVaui2iT9E5x2Gr4a0vfIBOH6vTltN0liQcIHE0
+         lyZsaSRm/gyosCEpdgpkFIFIE7iGjnJ4Fdi9gjpbZ5h9CFKi0Ign3NqerVqegg22YwoC
+         im33GTdpW6hw7tH2CYJMgf2NBWkJg014ufolh+D8ABVXFty+4DgPW2v/+vOaf1jF+zT6
+         0Nyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697150121; x=1697754921;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XXO4MwbGSox8rKRwzbnM2zZwOBZ2z8Fw/s+ke6QnvYQ=;
+        b=p/6htx8WIaOsUob2uuQfR57dbj1gATQiOepDaHFjMyCWyfwi/CftW/YMZQ4JNQ03uh
+         4MN5Kc0AzcB17teUebwEe4KNBPMIt+YYWv2cLC44BJgx4OxnOwp8rYVtbNrDNo97AaHf
+         KviUFuy2+z2xSDVRMxmSxWOobyD+ruI3CVdhvQO0BXgRXl6QJ6S7n2y9IzC82Na49MgS
+         2DrxtqREpijfPLG9GuecJnMhW930U+P4UXZfdRT9y7O2mHkrjRO+WOGijccaoEqNGZ1l
+         NWcSMGjdcFJZkBCh0n2eLaB8dbgdvYj1oC2flLmTY0TwgHELb9pQUG3TxNeeeOflIG/J
+         HlMQ==
+X-Gm-Message-State: AOJu0Yw2mZgW0NluT3TqB77Nz8MbASVC7LSvOji3mruLaECoEa6TpUyj
+	a1mblVlwClV6EH5KX6AHIqDX4A==
+X-Google-Smtp-Source: AGHT+IG2cIx6DdV3B+I16sZS0ktRHmF97um53+8sbh/NgQJX+5tMKhRcw84Ma5j9WlNR4GfU6ctdDw==
+X-Received: by 2002:a2e:8488:0:b0:2bc:d6a8:1efd with SMTP id b8-20020a2e8488000000b002bcd6a81efdmr21034673ljh.39.1697150121181;
+        Thu, 12 Oct 2023 15:35:21 -0700 (PDT)
+Received: from [192.168.1.2] (c-21d3225c.014-348-6c756e10.bbcust.telenor.se. [92.34.211.33])
+        by smtp.gmail.com with ESMTPSA id x21-20020a05651c105500b002bcb89e92dcsm3811671ljm.6.2023.10.12.15.35.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Oct 2023 15:35:20 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/3] Create a binding for the Marvell MV88E6xxx DSA
+ switches
+Date: Fri, 13 Oct 2023 00:35:13 +0200
+Message-Id: <20231013-marvell-88e6152-wan-led-v1-0-0712ba99857c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 0/7] Add support for LUT PPG
-Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>, <pavel@ucw.cz>, <lee@kernel.org>,
-        <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>
-CC: <konrad.dybcio@linaro.org>, <u.kleine-koenig@pengutronix.de>,
-        <quic_subbaram@quicinc.com>, <quic_gurus@quicinc.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <kernel@quicinc.com>
-References: <20230929003901.15086-1-quic_amelende@quicinc.com>
- <CVX5ZUGU9BVE.2TA819U1AI6BZ@otso>
-From: Anjelique Melendez <quic_amelende@quicinc.com>
-In-Reply-To: <CVX5ZUGU9BVE.2TA819U1AI6BZ@otso>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PeOLq1QMggphqx9nLudVIdQ5iZgaUs-J
-X-Proofpoint-ORIG-GUID: PeOLq1QMggphqx9nLudVIdQ5iZgaUs-J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-12_14,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- mlxlogscore=999 lowpriorityscore=0 adultscore=0 priorityscore=1501
- impostorscore=0 spamscore=0 bulkscore=0 clxscore=1011 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310120183
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAKJ0KGUC/x3MTQqAIBBA4avErBtQ+5OuEi0sxxowC4UKorsnL
+ b/Few8kikwJ+uKBSCcn3kOGLAuYVxMWQrbZoISqpBAaNxNP8h61plY2Ci8T0JPNnutq6pxVzkK
+ uj0iO7/88jO/7AQR7dUFpAAAA
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Florian Fainelli <f.fainelli@gmail.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+This shows the path we could take with this, deprecating the
+weird external bus thing.
 
+I don't know what to do about the irq lines with a pointless
+type flag that should be onecell:ed.
 
-On 10/1/2023 7:15 AM, Luca Weiss wrote:
-> On Fri Sep 29, 2023 at 2:38 AM CEST, Anjelique Melendez wrote:
->> In certain PMICs, LUT pattern and LPG configuration is stored in SDAM
->> modules instead of LUT peripheral. This feature is called PPG.
->>
->> This change series adds support for PPG. Thanks!
-[..]
->>
->> Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3 (pmi632)
-> 
-> Hi Anjelique,
-> 
-> Actually I've retested this now on PMI632 (and also realized that my
-> previous tests weren't correct and wasn't actually using hw_pattern).
-> 
-> Using the following commands (after boot) I'm expecting to get a
-> 500ms on 500ms off blinking pattern between white (255 255 255) and off
-> (0 0 0).
-> 
->   echo pattern > /sys/class/leds/rgb:status/trigger
->   echo -1 > /sys/class/leds/rgb:status/repeat
-> 
->   echo "255 255 255" > /sys/class/leds/rgb:status/multi_intensity
->   echo "255 500 255 0 0 500 0 0" > /sys/class/leds/rgb:status/hw_pattern
-> 
-> What I actually see is it blinking between cyan (0 255 255) and red (255
-> 0 0).
-> At some point after playing with many patterns I got it to actually
-> cycle between white and off, but I couldn't reproduce this again (or I
-> didn't try hard enough).
-> 
-> 
-> But with this example it correctly blinks red on-off.
-> 
->   echo "255 0 0" > /sys/class/leds/rgb:status/multi_intensity
->   echo "255 500 255 0 0 500 0 0" > /sys/class/leds/rgb:status/hw_pattern
-> 
-> With "0 255 0" and "0 0 255" the other colors also work fine, it's just
-> the combinations that seem somewhat broken.
-> 
-> Regards
-> Luca
-> 
-> 
-Hi Luca,
+I need proper schema checking to add LED support to the
+Marvell switch. Just how it is, it can't go on like this.
 
-Thanks for testing again and the feedback!
-Looks like for multicolor devices there is a small concurrency issue with
-enabling pattern at the same time for all the led channels. This could be
-why you observed your device blinking between red (255 0 0) and cyan (0 255 255),
-instead of seeing all channels (255 255 255) blink.
-The fix I'm planing to include in the next series is is to disable the multicolor led
-channels first, then configure all channels, and finally re-enable channels
-so that pattern is triggered at the same time for each all of the channels.
+Andrew: if you have lots of ideas and want to do lots of
+changes, feel free to just take over the patch set and do
+what you like, this is an RFC after all.
 
-I am currently testing with pm8350c device so if you are able to test next series
-on pmi632 it would be very appreciated!
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (3):
+      ARM: dts: marvell: Fix some common switch mistakes
+      RFC: dt-bindings: marvell: Rewrite in schema
+      RFC: net: dsa: mv88e6xxx: Register mdio-external
 
-Thanks,
-Anjelique
+ .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 249 +++++++++++++++++++++
+ .../devicetree/bindings/net/dsa/marvell.txt        | 109 ---------
+ MAINTAINERS                                        |   2 +-
+ arch/arm/boot/dts/marvell/armada-370-rd.dts        |   2 -
+ .../dts/marvell/armada-381-netgear-gs110emx.dts    |   2 -
+ .../dts/marvell/armada-385-clearfog-gtr-l8.dts     |   2 +-
+ .../dts/marvell/armada-385-clearfog-gtr-s4.dts     |   2 +-
+ arch/arm/boot/dts/marvell/armada-385-linksys.dtsi  |   2 -
+ arch/arm/boot/dts/marvell/armada-388-clearfog.dts  |   2 -
+ .../boot/dts/marvell/armada-xp-linksys-mamba.dts   |   2 -
+ drivers/net/dsa/mv88e6xxx/chip.c                   |  16 +-
+ 11 files changed, 267 insertions(+), 123 deletions(-)
+---
+base-commit: 69d714c69583c4387147d0b7f2f436d42baddadd
+change-id: 20231008-marvell-88e6152-wan-led-88c43b7fd2fd
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
