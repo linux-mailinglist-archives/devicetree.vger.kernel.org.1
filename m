@@ -1,47 +1,51 @@
-Return-Path: <devicetree+bounces-8203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E8F7C71AF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:38:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8257C71AB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 17:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 666D71C20A56
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:38:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF221C20A56
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 15:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC8327ECA;
-	Thu, 12 Oct 2023 15:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230DA27EC7;
+	Thu, 12 Oct 2023 15:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUa9IbTg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7602773F
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:38:07 +0000 (UTC)
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 802BEC0;
-	Thu, 12 Oct 2023 08:38:05 -0700 (PDT)
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1qqxlA-0001sp-00; Thu, 12 Oct 2023 17:38:00 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 61D6EC0148; Thu, 12 Oct 2023 17:34:56 +0200 (CEST)
-Date: Thu, 12 Oct 2023 17:34:56 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@intel.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 02/11] MIPS: use virtual addresses from xkphys for MIPS64
-Message-ID: <ZSgSIPxrnx2FmHsk@alpha.franken.de>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-3-gregory.clement@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013912773F
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 15:37:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69F5C433C8;
+	Thu, 12 Oct 2023 15:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697125056;
+	bh=ML/ItAhL36ApIhxTi+3W4IYUm7EIERSRXtCwbBcLfCc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KUa9IbTgCoqpTvU++heQIdq4I240gcIfvieNWQpfdGD+PIR77+dxnOrwjQD+/eKVA
+	 1Sv6NOvaDsKwzy8jY0RtidZaieb0+H5DmsS5VioUWmAkStXuxFmVeO7Q5+pAu77JpM
+	 kcE/0Zs73AbnQMRTpp1F5faMlpmhcnJHqzSo3dRts+66VzU0ayHF9NKHbRYaixDlH2
+	 NaE1yjZFPQoN07qCBoNB3gDedgUXBRGxhJCv42sKFsrKlb6cwmS21fPmiv/+ozLxzd
+	 ri1h+7x2j6k7Ld7q5rps95jyMp9QXRjgVeQCNJkglh2u2RZuq2fw7a9Mm8D7gSV8u6
+	 +OnouuvXbcLOA==
+Received: (nullmailer pid 891148 invoked by uid 1000);
+	Thu, 12 Oct 2023 15:37:34 -0000
+Date: Thu, 12 Oct 2023 10:37:34 -0500
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Conor Dooley <conor@kernel.org>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, Kieran Bingham <kieran.bingham@ideasonboard.com>, devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add OmniVision OV64A40
+Message-ID: <20231012153734.GA826122-robh@kernel.org>
+References: <20231010151208.29564-1-jacopo.mondi@ideasonboard.com>
+ <20231010151208.29564-2-jacopo.mondi@ideasonboard.com>
+ <20231011-conflict-monument-75379ef495cc@spud>
+ <ar5rf3mas33vvg47jflmhajpyx2pypdjdf3x522x3a3v5cva2a@gjmr5cjv6dyd>
+ <20231011-deserve-platonic-0beb72c94661@spud>
+ <20231011162454.GB5306@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,36 +54,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231004161038.2818327-3-gregory.clement@bootlin.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20231011162454.GB5306@pendragon.ideasonboard.com>
 
-On Wed, Oct 04, 2023 at 06:10:29PM +0200, Gregory CLEMENT wrote:
-> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
+On Wed, Oct 11, 2023 at 07:24:54PM +0300, Laurent Pinchart wrote:
+> On Wed, Oct 11, 2023 at 05:16:50PM +0100, Conor Dooley wrote:
+> > On Wed, Oct 11, 2023 at 06:12:28PM +0200, Jacopo Mondi wrote:
+> > > On Wed, Oct 11, 2023 at 04:53:34PM +0100, Conor Dooley wrote:
+> > > > On Tue, Oct 10, 2023 at 05:12:07PM +0200, Jacopo Mondi wrote:
+> > > > > Add bindings for OmniVision OV64A40.
+> > > > >
+> > > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > > Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
+> > > >
+> > > > What does Lee's SoB indicate here?
+> > > 
+> > > Lee has contributed to the development of the driver and validation of
+> > > bindings.
+> > 
+> > Then you're missing a Co-developed-by: from Lee :)
+> > 
+> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > index b19995690904..df089d68b58c 100644
+> > > > > --- a/MAINTAINERS
+> > > > > +++ b/MAINTAINERS
+> > > > > @@ -15821,6 +15821,13 @@ S:	Maintained
+> > > > >  T:	git git://linuxtv.org/media_tree.git
+> > > > >  F:	drivers/media/i2c/ov5695.c
+> > > > >
+> > > > > +OMNIVISION OV64A40 SENSOR DRIVER
+> > > > > +M:	Jacopo Mondi <jacopo.mondi@ideasonboard.org>
+> > > > > +L:	linux-media@vger.kernel.org
+> > > > > +S:	Maintained
+> > > > > +T:	git git://linuxtv.org/media_tree.git
+> > > >
+> > > > Binding looks fine to me, my question is here. Usually having a tree
+> > > > here means that you apply the patches yourself. Do you?
+> > > >
+> > > 
+> > > No, and only Mauro has commit rights on the media tree.
+> > > 
+> > > All i2c sensor drivers have a tree listed, regardless who commits
+> > > there. What should I put there ?
+> > 
+> > IMO, nothing. The media tree entry should cover the parent directory,
+> > no?
 > 
-> Now 64-bit MIPS uses 32-bit compatible segments KSEG0 and KSEG1
-> to trivially map first 1/2 GByte of physical memory. This memory
-> used to run kernel. This mean, one should have memory installed
-> in this area in order for Linux to work.
+> There's little documentation for the T: tag. In MAINTAINERS, we have
 > 
-> Kconfig CONFIG_USE_XKPHYS introduced; it adds support for kernel
-> to use virtual addresses from the XKPHYS segment for both cached
-> and uncached access. XKPHYS allows to access 2^48 bytes of
-> memory, thus allowing kernel to work with any memory
-> configuration.
+>         T: *SCM* tree type and location.
+>            Type is one of: git, hg, quilt, stgit, topgit
+> 
+> which doesn't tell much. In Documentation/sbumitting-patches.rst,
+> there's ona additional paragraph:
+> 
+>   Note, however, that you may not want to develop against the mainline
+>   tree directly.  Most subsystem maintainers run their own trees and
+>   want to see patches prepared against those trees.  See the **T:**
+>   entry for the subsystem in the MAINTAINERS file to find that tree, or
+>   simply ask the maintainer if the tree is not listed there.
+> 
+> If the purpose of the T: tag is to tell which tree patches for this
+> driver should be developed against, the above tree seems right.
 
-IMHO it doesn't make sense to introduce an option for a generic
-kernel, which then renders the generic kernel useless on all
-platforms other then yours.
+No, it says 'T' would be in the subsystem entry, not the driver entry.
 
-Please don't use generic, but setup a new platform for it. Hopefully
-we can get rid all of the weirdness in this patch.
+It is somewhat frequently suggested to use 'T' entries as the way to 
+find maintainers who apply patches vs. maintainers for a file. I would 
+like something more explicit, but that's what we have ATM.
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Rob
 
