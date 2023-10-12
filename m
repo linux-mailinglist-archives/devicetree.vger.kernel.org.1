@@ -1,89 +1,239 @@
-Return-Path: <devicetree+bounces-8157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672447C6E7A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:51:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FA47C6E7F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 14:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2061B282782
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:51:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1B50282793
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADAA250FE;
-	Thu, 12 Oct 2023 12:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50429266A4;
+	Thu, 12 Oct 2023 12:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="InpFHdPn"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lkFMtvc8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1C722EFA
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:51:24 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853E1BA;
-	Thu, 12 Oct 2023 05:51:20 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3FBE786E47;
-	Thu, 12 Oct 2023 14:51:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1697115075;
-	bh=Z0GVvRTU4DqGmzGQ3SLCsI4y7zhSR2KUN62lpuh4DCQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=InpFHdPnC/bSccQpoGQsku8QCThoCrpJqqkoIOE51AjkW89aEeAuXbVXuDwyGL7EG
-	 XYjfDORNdQJ1ePFaFAmeYXPZ3s8j9k69UaOOt59GdMJBset4fTPyqEo+Kwp3waJED1
-	 8Ue2nr1B2Wlb+2DZnEx8QfO342+e1KtHRHztbRmTX47+VHBzGuHRsBhOmIhMdLNcbB
-	 YjzmA+a8oPzxNZnwiXNeJygLqmVUzpOx8Ns4o6BYZmtzzoolsPJTbv6nF97JENlgMF
-	 yDmyAhNwKH5KISBNCU4Z71qDy2srll5hkUloz4W7fFARl0ReCAFcjbYfPBoARGmewi
-	 FzqHjOfCZKOlA==
-Message-ID: <d8eefb50-dc68-4df2-9f7b-b2a90c6d89f1@denx.de>
-Date: Thu, 12 Oct 2023 14:51:13 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8664E22EFA
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:52:56 +0000 (UTC)
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2032.outbound.protection.outlook.com [40.92.103.32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A884BA;
+	Thu, 12 Oct 2023 05:52:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LGKlTsCoW9KqqBQ1yw/omFpEaY0dR6ETz+czfy8x/w8AxwApGUTc8n7XHAZ0vz4PR5yY1KQKqJi9c/aQbV2WO0h/Fbigi+OArL2f//GO1dLnaCY/CV9aauKq4DW0mtdKkRJi+66045hsyX9ktSxRBvexFqqZfG2s4QfdyEhA1I2L/2r5xT5oZ1Mwcv2GwFp2WJtPjD9ZA8svFrfCtRq49ioh9zTqMeYQsGdVrmGXI0LC9VHhxEIl241GCBkLZYiguare0PZJ52bfUNdE6hw215yooJV35nRw6ifw/raOHTcVNYJItjtOdR/S/3cl0C5S1QQJ5eVwWWqdmu5CwIg2LA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+w5xCFJIaajxy6UwdviwE6atHVEyUROskUy6K9WxX5s=;
+ b=G0xqA/ddrxq5+v3OW0QIalg7I5OXROgQiZs8lRthQqmGmAKQ5YlMEhG9fXsEfTtmIvvJxjjfiLZNQ/+aoXffh1m8+g6ORI1TQvRViy2nxJwEl9v3ThBdC8CjHAP1+KAtwAZdt68A/OBxw1hsPMuuw3zS88abE6PO4zr3T/PNWud2LspUT8BArJXx44VSVL6iwCt9sbjU2ifjTB0Fka9eOPO5xR0+2P3EXEUc/eBkuLUqjSW/N9SvrBcrz61wzhqegCS0lo+7+4NPHNEHHwdqVqreYVk7f6DD3ZfbdvqjrmC348i2h9PwT8oKgXO18ZIN5c5AfO+PSxG8KUbDqMn1bA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+w5xCFJIaajxy6UwdviwE6atHVEyUROskUy6K9WxX5s=;
+ b=lkFMtvc8IJqWjOZyjQN7Mf2YOlhUV4i6qcm3grDprVmLMx1R1+ogLm1WdCLaqlCfa/Sr3FkDIDWb9P/UK1do3jDfzvWazR9sC3RT1YwE0CoXboZm8Y3/kKd/rLn/gZSzNiO3KGXfYY3fv3TfRSJSADrmBOZX4kbfICVhkCQ+M85PJV9Es+UjF3cvBGVaH6Tj45yhfHC82TfzbAKecnsj3F9nI7dEC073/zn/Qzv0I4aWYIiJBABRk7lWskFHvuu09B73SRfh/PBYWzHizP9BoYX+HED2xfMFH6pujy/TnEqHUmr2DhOQ4ZV1o5rwf35zAxJJdM8ZHX5HZ+lSoTCUlw==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ PN2P287MB1646.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:126::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.44; Thu, 12 Oct 2023 12:52:48 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 12:52:48 +0000
+Message-ID:
+ <MA0P287MB033295D78BAE57B7E77C79E7FED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 12 Oct 2023 20:52:43 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] riscv: dts: sophgo: cv180x: Add gpio devices
+To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20231009112642.477337-1-inochiama@outlook.com>
+ <IA1PR20MB4953F4BA74C7E9F011C88166BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB4953F4BA74C7E9F011C88166BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [Fhik9GxzG5XapULgzlrNSyWkJKwteEQb]
+X-ClientProxiedBy: SI1PR02CA0044.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::6) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <f67980b4-017f-4cba-b5dc-1bc10fee1e81@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24C32-D Additional Write
- lockable page
-To: Rob Herring <robh@kernel.org>
-Cc: linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org
-References: <20231010190926.57674-1-marex@denx.de>
- <20231012115719.GA291445-robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20231012115719.GA291445-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN2P287MB1646:EE_
+X-MS-Office365-Filtering-Correlation-Id: c993cafc-8649-407a-da46-08dbcb2222af
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	i3ypDBZTpipS7Dz3XuZc9TL3gZbZ5GGiRZtPD5HPKd5HKCkPpO3KDFPuyzhGFDPXBXWD1ZOAZ7HmWDsBQ+5v5sYVDgwsD6Qpfi98D0ybNrp+FBCj2Hg4WmYkwGKIzgnIQ7NviMUrRHm/nM/IbBSPe76621q/BQpFcHoN6QzlZimckZxW2WI+sMvmpoFDi8DaQiIrlEqKKIdUGXvRVyEGBDqwSZQTXAykfCYkvyMmenZugmDf53RDx2bSgfCK5Dcq1VZQQ6UEy4pnnfzsQ/rbEDEokVbrmBjBx8aZT+8vONYGb3AuE5PMo7YRcEFzu+5W39fCLIVgHMVeBVzBCy5kdAKO21ZUJpwQ/dkpia/KmdhGRzRLg1adcamk5FVySHVdXNCPdvWXVdW8wIilYQWIX66GuKIIS5YGHIRAI9psimzS1jCiXSocBwA2cIlWQENiT9MshmZM1M9kY834SaWLxfC1IeqmJOqWsvvJJQ+i0GPr635qcEoCPmYxIBD1LRbwvH4teOdowGDrp7gqgpZMQML6zOi/p3eAg96REZrvq+3styqXuWjZh4jPFpsEOGEe
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Uy9HV05iOHZiSVhlOEJLT09BSTVUTEFxT0owZ3BJSEc5U0VYVkNRWTJLMDBt?=
+ =?utf-8?B?RnlDa3lER2NSQWpIbCtoVlJHREFUbnBMbm5WV2lJL0thWWgveEN5N3oyQkNM?=
+ =?utf-8?B?SXA4bHBRdGFvK2N0ai9sWTFUMTdrWkR1c1dlcTJudXJlcHE5a3M5RmtlVUNT?=
+ =?utf-8?B?SnBnNm5Za09iMVVKbkx5REgrc3Bwb1BYb2tEWUp4eUZVbWNVVjZiMzdIWm1E?=
+ =?utf-8?B?ZklwYld1VWlOalBubTZ1eHJnYmFqcXYyTUV5STVIS0psU0dQRkRxb2FocEFp?=
+ =?utf-8?B?NXZZOXFtNmUrZmZ1TGl4ZVpnWDBWUk9TTENMOWlHRjFuL0VPbkdxSlNvbDJ4?=
+ =?utf-8?B?TzFvV0NhQklOTWNyVUNWUjcrUVl3cWpLMkMvQWhoSlc5Y1JNQytjYTJBYUFz?=
+ =?utf-8?B?Z2VwTHNLclUrOG9ZcnJrSnlUdEJSMUlleWpQamhKQzBFdTNFbkpiOGptMW9j?=
+ =?utf-8?B?cDVSZ3JOK2I1Qk5OUm4yOGIzSVhIVy84N1VZKzdrbGJIMlVtM1B2RXBKMUZa?=
+ =?utf-8?B?aXB5WGRNTnJuZEZGaDdOMmlPRWlBSjZTWDROUjE2eGJmWkM0RTc5Q1pLcW41?=
+ =?utf-8?B?TzkvZlhwQkFTb1lrdmplZm52eVp2dUVsWUEyeHg2Q2Y3UHFaR3BYK1dWVmwz?=
+ =?utf-8?B?NHNYdU9STXE0QVZIWW1oYlJUbXM4N0c3TStWb3pyblBXUlA3TGQzamVrQm5D?=
+ =?utf-8?B?RlRWVUtuRXB0aVlCK1FWdTFZSmIzRkpuL0Z1U0ZQNjlFbHh1eHVqbFdxb1d6?=
+ =?utf-8?B?eWVlTEVmSWY4UFlQVkY1aEdDZEdlcWFrR0szeXhHQmE2ODh5TzJHYWk3R1A2?=
+ =?utf-8?B?UlpWODFjNk91YUs1ME9GKzc2VG5HUXgwYXQ3Y1BFSWFOWktSTng0MnVmaTN3?=
+ =?utf-8?B?QnAzUmQ3bjZ5akJnWEUrZ0VEaDh5dGNaUVdSMjJsSGRqWjB2enZTU2VmbitP?=
+ =?utf-8?B?aFRqcWUydkhzTnNuT0Z0dkpxS29IZ2JPdVg0UGxzYlJZenphaGZvbDN6ZjZo?=
+ =?utf-8?B?SThKMVcyVVBpL1N0SU5FVDMwcFh2VlVleHNSMnJnbHZjNHhSTy9rOGY0Y3VY?=
+ =?utf-8?B?YytzRHpqaDF1ZXZKbmpYMW5ONXZhYTh2dFhZOXp6YlB6U21tTUtNOGY2eXdv?=
+ =?utf-8?B?bWhvVHlnd0t1V1BwTkVJNEFQOVUxNXQrQUFGQmdPdXp3UHpWZHJhZitSZFdF?=
+ =?utf-8?B?WFlvMytVZjcwOWw5cG5WRkd2Ry9mVTl1RklrdWJSQnN5R1NwWUFzVERGS0xj?=
+ =?utf-8?B?dms4MzB1cEoyTHlwS1dVK0dUeEpzUWQzSkh1ZldxYUxvakVCb0I4WG5Ib05U?=
+ =?utf-8?B?dDl5QjFZdmIzUnZFK1hVSXNyblJVRU1QUjRZTnZ0QllRdjNNQUV3OUVPcWNR?=
+ =?utf-8?B?L3p2U1paaUg3LzlEMjROcUhYRFFHdDRlREdJek5CVUNBcGsrbmc0REhUMnRB?=
+ =?utf-8?B?QkZGcUFjRXVGYk5QdWhLUFdKMUlER2dyMzhDOC9LdjhlQjQxQUdsODRVUlNK?=
+ =?utf-8?B?SEVvQkpmSmVVMVR0UmNicmR2NUxjUmFXV0ZzMFJjZ0hJUGJORTZkcCszQk0y?=
+ =?utf-8?B?czZLSEV1NmxYc2ZERDVMdyt4bzJ4aFY5bzRPWkt1WTJXSXYxemYxc2lpOHc3?=
+ =?utf-8?Q?6esDPJT/eHyFbftYHKENi/TZKJZOpqFj06IRbWzPsB7U=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c993cafc-8649-407a-da46-08dbcb2222af
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 12:52:48.7052
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1646
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+	FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/12/23 13:57, Rob Herring wrote:
-> On Tue, Oct 10, 2023 at 09:09:25PM +0200, Marek Vasut wrote:
->> The ST M24C32-D behaves as a regular M24C32, except for the -D variant
->> which uses up another I2C address for Additional Write lockable page.
->> This page is 32 Bytes long and can contain additional data. Document
->> compatible string for it, so users can describe that page in DT. Note
->> that users still have to describe the main M24C32 area separately as
->> that is on separate I2C address from this page.
-> 
-> So 2 nodes for 1 device? Wouldn't it make more sense for the 1 node to
-> have 2 addresses?
 
-It would, if the 32 Byte Additional Write lockable page was somehow 
-related to the main area, but it doesn't seem to be, except that they 
-are both on single chip.
+On 2023/10/9 19:26, Inochi Amaoto wrote:
+> Add common GPIO devices for the CV180x and CV181x soc.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>   arch/riscv/boot/dts/sophgo/cv180x.dtsi | 72 ++++++++++++++++++++++++++
+>   1 file changed, 72 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> index ffaf51724c98..64ffb23d3626 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -53,6 +53,78 @@ soc {
+>   		dma-noncoherent;
+>   		ranges;
+>
+> +		gpio0: gpio@3020000 {
+> +			compatible = "snps,dw-apb-gpio";
+> +			reg = <0x3020000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			porta: gpio-controller@0 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <32>;
+> +				reg = <0>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				interrupts = <60 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+> +		gpio1: gpio@3021000 {
+> +			compatible = "snps,dw-apb-gpio";
+> +			reg = <0x3021000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			portb: gpio-controller@0 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <32>;
+> +				reg = <0>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				interrupts = <61 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+> +		gpio2: gpio@3022000 {
+> +			compatible = "snps,dw-apb-gpio";
+> +			reg = <0x3022000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			portc: gpio-controller@0 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <32>;
+> +				reg = <0>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+> +		gpio3: gpio@3023000 {
+> +			compatible = "snps,dw-apb-gpio";
+> +			reg = <0x3023000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			portd: gpio-controller@0 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <32>;
+> +				reg = <0>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				interrupts = <63 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+>   		uart0: serial@4140000 {
+>   			compatible = "snps,dw-apb-uart";
+>   			reg = <0x04140000 0x100>;
+LGTM
+
+Acked-by: Chen Wang <unicorn_wang@outlook.com>
+
+Thanks,
+
+Chen
+
+
+> --
+> 2.42.0
+>
 
