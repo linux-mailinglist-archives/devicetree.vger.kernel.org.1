@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5697C76AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E75E7C76D8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 21:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2821C20AC3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:24:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 611221C20BB4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 19:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD863AC0C;
-	Thu, 12 Oct 2023 19:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746FF3B28F;
+	Thu, 12 Oct 2023 19:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZxLXupU1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JTyv62DZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B7F38BC9
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:24:12 +0000 (UTC)
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6D7E0
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:24:10 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-53e04b17132so1925713a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:24:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C475C63B4
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:31:10 +0000 (UTC)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3178B100
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:30:54 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so1256914f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 12:30:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697138649; x=1697743449; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697139052; x=1697743852; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kTk/R71Vt3AQuH5i1ACSv7R5cbcEeRSQsZ1wa963EHI=;
-        b=ZxLXupU1daSSFhZ0W4RvoDNTm6l8SgQeuTH98cZasuKwpfnCE9NoXT85k2D5N92LvY
-         hek+34pTfZ4ExpYeJiTotjOzKnLgBkWfi43F+IGnCdgMw2BaixXoaP0NdTKIKsiBvZMy
-         GvheaW2ljD2bRxW2VQgmN50pa4DoaRKy0XqIqsqT3rPX8gjw9L6EnFErzzsbpO3CzPHK
-         R1+3cgseUFYnrNLxgwj2ldC76Y3JyRSvGeoLd2XAeWzpnZXEqrApXeZU0msEMrnMmeku
-         erLdABiosNohXUCI7KPIYIkXRF4nplXIwN1ItwhCrkBTboxxzsXkOYJf0ennY1uioTuP
-         h6/A==
+        bh=iHGcfVbLoHBkfK3peYREN5CZXLJY4VJTh4Mu7aY4Yp0=;
+        b=JTyv62DZ9Tafu9gQpuXGBGC7rVbLLP0vOGOqaxUmL8gQfpX5ZPDjaOMzXep3kvyLsU
+         zJmG16FmjGDkqrlFzJT1efg3ZkPy8w4O3Sxq7J0N+UGWE0EkHi1NxK5O0DzBfBZW6pJD
+         ue5mTvZnDTiB7ymCMn8uG2rkOp5LyB1thfIj3e0g/71LleiCfEdETWmlUk/awWAJdP6z
+         9uChDcoU/m3BoMGPgJW0fcscqH+XxdEvMX2bL77LInAUjUZVT0nASvjW0bsIqTx8CGxd
+         hgyBTs3StnVYfyDR1UJcREqzWNHIMRVgJvH72nZKm6YoAfzJ0wUBiJxbPIegfK3AzgFI
+         XqYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697138649; x=1697743449;
+        d=1e100.net; s=20230601; t=1697139052; x=1697743852;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kTk/R71Vt3AQuH5i1ACSv7R5cbcEeRSQsZ1wa963EHI=;
-        b=c0BPpHo/bByDQ6XMbPeHWN8qDRma+CeZz24/P0dsLYwd4y6w+KchKwAGR6+ltNhWOU
-         IKHB7lk8bhbrqt5L4qMhOpOQvpcHRT8+s2MytSjdI1wQZifZKNPe9ytnFviLV8/IhgzN
-         gzWAsf0/3HjRbsDp1y1Fy+A1+Cmdp1ir3W/El9yes0T7uFI8KF5rIxKg0MJu5b1ithd1
-         ZH2d7yCIi5dO0jE2O4asXzFVep/1SauI1/OgMxbDPMDIAqbQw4tNr2nRuS6otIaN9rCy
-         a887k1dgohZ0IaisE0H1yRqQXgFmDNUJZaXyp0xMmKEtULgHhhH5naKvzHQRVwhMkXgF
-         yfXQ==
-X-Gm-Message-State: AOJu0Yzdcie7+U9hBmI8MOJnvxiw4jpfUpUCFIMpnFeWJ6X+TeV3gCd+
-	myj8jmS4VqL0jdwqApMV94q1Xw==
-X-Google-Smtp-Source: AGHT+IHHp0azqZLK3hxQtXH+yZsGeEAsawMidpyM1aewZMA7OEoFqq2jA48u6BX3b4p7O+BZ7gobBg==
-X-Received: by 2002:a05:6402:3213:b0:53d:eb53:4d0c with SMTP id g19-20020a056402321300b0053deb534d0cmr5275717eda.37.1697138649089;
-        Thu, 12 Oct 2023 12:24:09 -0700 (PDT)
+        bh=iHGcfVbLoHBkfK3peYREN5CZXLJY4VJTh4Mu7aY4Yp0=;
+        b=X2o0xMtsD6pVBilxOCcc0YgAZ9UMQ9TtPbllgezSUd78dILZZQxcGDjRivHUz0dn87
+         g4MqOk8RIMkeSWtj1FmpbqVWY2Dspoa635ZNOMfkGlVcyWR98tVgBCmJmX4kv0ekJ2Qe
+         uJTmI/KhqkU69fb/bitk32v69tliQiP1O91sz5B8jiF73JQG5BuBitAh2k5KXaOMOABU
+         cRzoUf2F50/iPdWAhm/uSU8D/EVCMho3ZGAhnSyUqAuBtw3ORfvdj1q4LnvUJHVbkozN
+         QbGeTfA/otnCQA8qebfH0VPtkm9pmRUrzO50VFdtdRToFX3LoPVhEuMH0AR0Mf1P7EyU
+         wU/Q==
+X-Gm-Message-State: AOJu0YzE2PJFsqfLzkVstydchk/og6dUs2VMblgXvdEg4h7uJqnr/U4p
+	lnTO7zdtRre5kDmD35k8v2qV6A==
+X-Google-Smtp-Source: AGHT+IEI5YVtwV8ogHc8A2i1IZ+9Jox2eJVvmpNSDRekRyFlBK83bH25h/RaMeEfHsjaHV5HXbZmmQ==
+X-Received: by 2002:adf:f1cb:0:b0:31a:d6cb:7f9e with SMTP id z11-20020adff1cb000000b0031ad6cb7f9emr18773805wro.21.1697139052198;
+        Thu, 12 Oct 2023 12:30:52 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n17-20020a05640204d100b00533dd4d2947sm10492686edw.74.2023.10.12.12.24.07
+        by smtp.gmail.com with ESMTPSA id d14-20020a5d644e000000b003231ca246b6sm3271775wrw.95.2023.10.12.12.30.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 12:24:08 -0700 (PDT)
-Message-ID: <73ee0d43-9317-4e0e-949c-8fb302e21e68@linaro.org>
-Date: Thu, 12 Oct 2023 21:24:06 +0200
+        Thu, 12 Oct 2023 12:30:51 -0700 (PDT)
+Message-ID: <54cbeebb-ba15-423d-8b5a-755571913031@linaro.org>
+Date: Thu, 12 Oct 2023 21:30:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/5] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface
+Subject: Re: [PATCH 1/4] dt-bindings: reset: Add syscon to nuvoton ma35d1
+ system-management node
 Content-Language: en-US
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-2-yuji2.ishikawa@toshiba.co.jp>
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20231011090510.114476-1-ychuang570808@gmail.com>
+ <20231011090510.114476-2-ychuang570808@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,24 +123,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231012071329.2542003-2-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <20231011090510.114476-2-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12/10/2023 09:13, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the Video Input Interface found in Toshiba Visconti SoCs.
+On 11/10/2023 11:05, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Add compatible 'syscon' to the system-management node.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why? Commit msg should answer to this.
 
 Best regards,
 Krzysztof
