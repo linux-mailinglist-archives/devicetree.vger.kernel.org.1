@@ -1,111 +1,69 @@
-Return-Path: <devicetree+bounces-8094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507547C6ACD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:17:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1F57C6ACE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:18:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B7D32827F4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:17:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0291C20C26
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C17A22EEC;
-	Thu, 12 Oct 2023 10:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA5C22EF0;
+	Thu, 12 Oct 2023 10:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fC555cNG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4M5w/5o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95E222336
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:17:43 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434B9B8;
-	Thu, 12 Oct 2023 03:17:42 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 5F39E660730F;
-	Thu, 12 Oct 2023 11:17:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697105861;
-	bh=g3ns2c4RoQU8nzXEQ8VUyBiWwm9Ooa52x4tpLHq9B+0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fC555cNGl+Ly1HW1tK2ksVyK0MG/FjTo1j7THokikv5Pi+FlMYaEBcFRQIq/sOJPq
-	 gG8CzEadDaVkkrjxrtNyi12WdRGBXqVWmTcsB0emaDAOaTXsv4J1cbYFWlurVuC8Tr
-	 6CgODM0m3/HeVgY6dTl+qoBlhstBeHXlbkLdQqX0CxnDpSJzWb/V6VQ0ZTupzKmH7c
-	 LVaIRests9W7dMrsDPtZmcD4iplXgD0o2NbQrBB2sDIOxYVMqFd/6Yl9eIQHcTx6OY
-	 mwSwZBOOJSCir8hJTx0yTTvX2jIWRnD8CiwjAJTPDpoG5txZRgj+VsbFf36wXe0beU
-	 66/Mjz8eo1p+w==
-Message-ID: <bf2cf999-7a1a-df14-7ba9-ac5047c998c0@collabora.com>
-Date: Thu, 12 Oct 2023 12:17:37 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B90522336
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:18:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCFA6C433C8;
+	Thu, 12 Oct 2023 10:18:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697105885;
+	bh=IwTIP/3gd16uC8T85KpSgb5YpNx00U+8LlHwbdgTCUM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T4M5w/5okNjhZvykVq+TjM1iMhxJJrTxne7iZJ2+sC4tw52s4fm7O47FL3CGXquaA
+	 1HgAWeoBZ2Kom9bHdADPz3EGyy7G8wKefrr9luWnx3ckL7C9PieVpzF9jXBnAvsr6i
+	 jPITT6xtOaQvb4n7ZNB31z3LOBzT12bCKt4UxTBCuP4nqypjmwqJfDzF916wWAGasi
+	 zcA0y8F+FofPv3+mP/NZt5XjACwXd2iI4qYZzgVgxkw0avIq12bLko/AiL13Am4sXl
+	 j1WIQ8jZrUrfOXsHJ45ls+OuQkNSZyli0tt2mdRVPr2mqURcuVvU64uYLFSM9d9tvr
+	 cTKcM5aS58BlA==
+Date: Thu, 12 Oct 2023 18:17:54 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby
+ voltage for DH i.MX8M Plus DHCOM SoM
+Message-ID: <20231012101754.GU819755@dragon>
+References: <20230831182020.154863-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v7 09/16] dt-bindings: media: mediatek: mdp3: add
- component TCC for MT8195
-Content-Language: en-US
-To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-10-moudy.ho@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231012084037.19376-10-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230831182020.154863-1-marex@denx.de>
 
-Il 12/10/23 10:40, Moudy Ho ha scritto:
-> Add the fundamental hardware configuration of component TCC,
-> which is controlled by MDP3 on MT8195.
+On Thu, Aug 31, 2023 at 08:20:17PM +0200, Marek Vasut wrote:
+> Describe VDD_ARM (BUCK2) run and standby voltage in DT.
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->   .../bindings/media/mediatek,mdp3-tcc.yaml     | 62 +++++++++++++++++++
->   1 file changed, 62 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
-> new file mode 100644
-> index 000000000000..f134160f85b9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-tcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Media Data Path 3 TCC
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-MediaTek Media Data Path 3 Tone Curve Conversion
-
-
-after which:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Applied all, thanks!
 
