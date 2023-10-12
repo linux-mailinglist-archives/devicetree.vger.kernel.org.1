@@ -1,318 +1,194 @@
-Return-Path: <devicetree+bounces-8112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74267C6B66
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:47:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C617C6B76
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AC9928257E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:47:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E29BE1C20CB5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F37C12E44;
-	Thu, 12 Oct 2023 10:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59A812E47;
+	Thu, 12 Oct 2023 10:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Vi1oWOYO"
+	dkim=pass (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="VzOt+lAr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F478C10
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:46:59 +0000 (UTC)
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2058.outbound.protection.outlook.com [40.92.102.58])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8109C90;
-	Thu, 12 Oct 2023 03:46:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BA921353
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:49:14 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2103.outbound.protection.outlook.com [40.107.22.103])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7389090;
+	Thu, 12 Oct 2023 03:49:12 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JZXvHqoAb/IwM+m8dnPSwkbq+sgrD2utMX5sFSO6HCPHyTJZAQWgPW/pP2FQ/EK18Sl3f9uCapKvWObMUeP2mClgGBgZtEiuItdFPpQsbTVZJeMoZdI1G9rXgJXssLOK9G49idBijAQ7vR1jx5M1nDg30S7mYGw8TGo9uyQ2Zf0QA/F4z3NgN5BwbnVFjCaFUyClN8GLKUnZ2DkquTKIr4S3+4GrqIp3rhEaYcrmJVjAZnmx+mFoG4qFmS24MlKDdhanf/iFoxxUgBDsWxjRnOlDdMcTZgDdkfOkHA8ry8Uo1X5tzRjsg4T0/4Oq8BFDeDj7362JopFZUZ5nVSq2cQ==
+ b=HkFaDHFdriwVkims9WrI9xKUC2KI+uUSM2KECVpsDTNqjbMhbr384hZjasSavnfNCP6KmdJIKO59Y+VVLk/UcQAJ3h9+SXhSXuie9jU7ZrfQ69UjeY9Xq14tXpcztExI0JSOQpAnT/yLKFlv09OUSUAN7PqQjW/vayuY48+rtgxm1jb5XbIxPvUYaDqlCEGcmhYCzwzsDhvGLvElAeUmWX8DRItpA+cqhjTPpcE8unohpkSl6/vIpox0c9rXwGxV0vBN1grsPvxjTxdBAArq9wjei7mlZauaBzen/crovqCRaMr3DUOH3z+ji71HAdql3B3ehc59DUoObCT0/OYEVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tpJoUGUd6x+Ych9wRM/uPeZlbQX5FHuBXZEtLbZhPyk=;
- b=aQ0SVPeLsKEIbLRUxjFXmRF8ICgN1XS4qFmqwBLFj8xV0K8wxpHvjCfFJkKOk6kPNKn2r/02ayImDpvslAcmnbAb9vLsIWVi9saKOhIAvP/JZvsmKZdQKAvUUz2FBXMojpnzTFTQ/Kei+BglbGhA7XCDABwrILtB3mswvRZyhTfoi9AqvYESQrv2bSx9MZPZbs6hOz8a5sXQPShQEUYjzPRG9Y11xiJYaWgjGqqwfAi6URVjjzxjw1UFN+1P7KTKYlHpKqqqrmEhuPIsz1Nu3YpsDzJwIF710XLlb5S78wXAyrZlkRBLovqSjPJh91CrIFhb5lR980hG+qHlY/QZug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=a/wyIA0JenScA1RTENeYZs9coz7r4tAvVJ7RmRTMG4w=;
+ b=ALXJJCB0J895iSUYiXI2iDQpMqI1p4qdoJWSBsCgTCNiKciMzQj1Gw0gJayAUZnbFwYSTrW1hj5RBueKzY5vSXsE3qRaVSfPDRO2nCvlwgA2rUtEWFLBWn5U1qH62mrVu4wgPcvduFX5oG/22GwAUDGnj+ENxpDkTQPyBoJpjTDjusLW0lJUtrS0OA26kgI7k/6aFy8kggevOAUXlNI06ep1njFS0HrQ5o92UwN9pAIkKEqp9x/30FoUAmjEGIjmDLWj4aQoXdNTNrbPTW6Jy9ZTXBLnQ5IG7y5Ul8Bi3orY/h5z7xoVna5oEFxBYA1KprPsdgtvhi1DoFFcutsDJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tpJoUGUd6x+Ych9wRM/uPeZlbQX5FHuBXZEtLbZhPyk=;
- b=Vi1oWOYORwCrDUl/yBkb0Cmp3qnrViyzG9/KJ0AlmT4d5215Yn8H8pKm8MA/+FWqTvJUdPlwtZXIfwg1zRwbYBxiAFuHvu9XN4z8GDxn5yr6pFqppVzCqYdRVgHfHbZ+jiul1zwluKQWEkMibfKrZ8O6FlcUd0NJhCRArzvWZpANZ77c03u0WV1kKGZDyuc1H21NN8cEBFSPZTRTwq4y93CVw0u7Qvo9vYolQ9I+bstjsuinZWkaIgTEUk76SqvJLcHN9hQEqH7A9fqT/yW9Csw/qd+udilyurApApI3xKyz4vIpvZchFDRiZJ/opKNIjNRXoxRKALKOgHh+TxRzWA==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB1071.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:178::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.45; Thu, 12 Oct 2023 10:46:51 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
- 10:46:51 +0000
-Message-ID:
- <MA0P287MB0332A5A99911CC90948CDF44FED3A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 12 Oct 2023 18:46:45 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] riscv: dts: sophgo: Separate common devices from
- cv1800b soc
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jisheng Zhang <jszhang@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231009112642.477337-1-inochiama@outlook.com>
- <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [5B6K+2bwd/fpWzi7UBnG1bSZT7iFNQ41]
-X-ClientProxiedBy: SI1PR02CA0057.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::10) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <d2d5d921-8392-4e9c-aef6-3d73fc45f092@outlook.com>
+ bh=a/wyIA0JenScA1RTENeYZs9coz7r4tAvVJ7RmRTMG4w=;
+ b=VzOt+lArYTnw4PLZ2AatIG3DvrLdcbuOmenYqVsQL88VLoJ7MxUMdOxaI5WK3dWDODbE5K13uYMkD5lbCvoTR4aJ20lPIgT1KUP2nbjOiWvOrmfUdeSiFvbUwQkTc+Od0GEVu4NfqJCgoBS/yvDcySymiAEZikk+b6A/kzM2CY4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by PRAPR02MB7906.eurprd02.prod.outlook.com (2603:10a6:102:29e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Thu, 12 Oct
+ 2023 10:49:09 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::4ba4:83a5:e60c:3a5d]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::4ba4:83a5:e60c:3a5d%7]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 10:49:09 +0000
+Message-ID: <63403365-2d23-b4a0-d869-070686d62ab5@axentia.se>
+Date: Thu, 12 Oct 2023 12:49:07 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/2] i2c: mv64xxx: add an optional reset-gpios property
+Content-Language: sv-SE, en-US
+To: Andi Shyti <andi.shyti@kernel.org>,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: gregory.clement@bootlin.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231012035838.2804064-1-chris.packham@alliedtelesis.co.nz>
+ <20231012035838.2804064-3-chris.packham@alliedtelesis.co.nz>
+ <20231012102140.kydfi2tppvhd7bdn@zenone.zhora.eu>
+From: Peter Rosin <peda@axentia.se>
+In-Reply-To: <20231012102140.kydfi2tppvhd7bdn@zenone.zhora.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MM0P280CA0118.SWEP280.PROD.OUTLOOK.COM (2603:10a6:190:9::8)
+ To AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB1071:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4dfee05e-c9a1-4838-3a07-08dbcb1089fb
+X-MS-TrafficTypeDiagnostic: AM0PR02MB4436:EE_|PRAPR02MB7906:EE_
+X-MS-Office365-Filtering-Correlation-Id: 76c6d968-fce1-4e74-b3ba-08dbcb10dd39
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	8RfgYfIY3AZ3lQ8qU14rUrEonhEFoIJDaueIY3Gk9XHgRSIkXOlJdUu6ZvWMc8k3oynX8iRQIVYcj6Su4EsDemmnC0WSXXFOXwA9pgDmLDdBFisA6iypUj7O5a1204v8E583+MpEd6nfSKMLQcUtQwX8YXMnca3e6nuVP6YahMGdwAHNoW5Eyi0mRSLCt6HfchXmZNIxOUCUlW3qDNGSb5fBuIZtHuHKOywvlXQhzL2NPxgQwHtWvgsGTeffL+YRuM/NIi7Tw0mSe8lnJVELQrzL0+ZarIge5UKbL6gwA5HPTIvJEaVSNyZxaK3C792fCT9YdoESgRvtixARhnIygFNDr1a1uHy+CCGdiMywApwzbbIUEB4En1NFxSCdmdOO04/bf+RzE8rawl58rw6GJGF+1y7QTAm2j2f9tSQCUD070lRidxHbsg3cd8s4RqYAUdourNEf8HsK2TbYoYk+hSSkxq5P/dppU5DpwCtX91LkwNV/Bb9RywJN++DbMNB8m5PJi2/ZJX6GElAj1CmsiJWkYRrO2E/BpFmkI+nkG9+ap3EzRZU9H0JxeW7VJbma
+	1yk/eRedcR7TTELGAj+zWJ/OuR4ecGi2IjrF206GXIEYrV2XJyE7czShv41Bf7xgna3qNaXs5Ez1Kqjr8F/l90RglgASSOv9uoAvnqVvUVWzk2F6Om0BGCASCsePwwOQkSNWcTFb2/3TcqxQNYL2x60Z8AHe0eEFeOte2V5UYbYjLMee3FFg62hPvhkJIG113QHRw7mdKG8rZKdhfkRZJrg5gwNhQaMwvWDONOZYVNFbI43Oq5wi3GYGkx468dxcmdyWi+TxBLMCNNIsixOPfwrGXmUmDGqvKqPJx8kPJjDpTBhIodiucEhycelqDa7o9c4B1fWVva4RyTZZLqVtxEuM/A/U/ZQyoURuQECLwjaUTMGAd8oJ1Jf6tu+qs58IxR6ar4UPi1jv/MyWsTyOOXy61tg/nYH0KgDpPutnn/XQV+zCgtOrOEUfjNIHf6CCd1nxqI572KRr7sQPaWTpyl5SxjGiTdqh5ilIQcOYYLnVsiAfBikkDtgBb0YUCsfSCwyr5hgpJBHqjKKm2I9AotNEzAT/dtX95wlVPrV9cMZmcJ49E8k5p/6PeRU79bCTIe8iJamu9iO6S4j5P9/Pt4qjycaoaKdLq0qu8R88kx+xjTjfd063A9STeUnXQ1tav3VXFlvpeAv77BF1cABRvw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(366004)(39840400004)(346002)(396003)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(6506007)(31686004)(26005)(2616005)(6512007)(38100700002)(6486002)(31696002)(2906002)(8936002)(5660300002)(8676002)(86362001)(4001150100001)(316002)(66476007)(66946007)(41300700001)(110136005)(36756003)(66556008)(4326008)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WVlRbXZaa1NFT2FxRWtIcERqeWtLR2V3OUVSOGZUZmhiZW5zNm1RR3J1TWxQ?=
- =?utf-8?B?T1d3Q1ZsU1Y2UkNpc3VvclFCLzRYQXlRekN2L3NGZ0ZnZHlVZTdRODNueU1k?=
- =?utf-8?B?OUhWQXEvYThyTnRMS2ZzQXFVWXRSUHJaeXR5cEdPN1dPWDVSSnZ6bnYxUWpN?=
- =?utf-8?B?TGErYmM2MWtSTXQyZHB3VzNSTWpnTThMV3FHSVM3OEpUVllHRWdqdmFMSlRV?=
- =?utf-8?B?c1ArV0FrM3ZSZ3pTK1FXU2RXcW5DckFFZ3dreEVFNStnNmEwWDNmc3NOM0Z2?=
- =?utf-8?B?U3U3VVF3bzVNbXJNUnRmS0RCVUticDY5L2V6SmlvUW1McXhQbmZIVGNINWlP?=
- =?utf-8?B?c3QrNTh6bnZqNVRGajMvaDhMTm9yNnNDK3dCK25LOUx3UGVvTUZyQnU4YkF1?=
- =?utf-8?B?dWRUZUdQdGJBRDFJb3llbGNiNkwwanJLM1g3Y2Q3dkJ1UFkxaFYzWDc3UDFK?=
- =?utf-8?B?dzRVNnRrdSsvaWcyTXZjVWVMdFJyS1BtK1lCTkhNV0c5NWJtQzJ4Mit3c3Vo?=
- =?utf-8?B?cys5cU1YK3VlM2F2cVdEY2o2MXQxOXhVOG8yRy90WCtub3RFcllaUG5FZlQ0?=
- =?utf-8?B?YkRsTHo0R1QyTlBydmJueU5DODJ3cHZuWEppNmRZUUlSQXZNNHpuQ2NlRFVv?=
- =?utf-8?B?QW9tOC9pY1BObHRYdW94RjdkaEhhWnRtREVKY0J5am1JeTRsV2lmT0tkYXly?=
- =?utf-8?B?WXJ1U3NVdG9xK25VYXFJQjRyR3hxTFQ2ckJ3R01RQUo3aTUyWllHclIzOGNC?=
- =?utf-8?B?bGhKc21sZ3NKbHVEdjBSejBMNDQ3MnBuRk1PY1lNcUR4S1N0OHltTUxSQUNO?=
- =?utf-8?B?bzJ0N015MmFUTHU3ZTBLMStKV3psOUJEaEx4ZW0vMHFRVTVsbzQyemdjTW1O?=
- =?utf-8?B?RDYxdlM2dEFXbUVUL0xQVWw2SG9ueC80UzRhcFk1UHpDMzEzTTl2ek1jdG02?=
- =?utf-8?B?NFFaZURNOFdFZmoraGFmMUJvTlZBNndxQUpaTjBaUllPQUpwNjg3cS80bG51?=
- =?utf-8?B?YzJlOVpUVjZ6VjBEUGQzNFRzZ1JVSFNTTXZnRFZ0RTl1bU1JVmhucklGWnZx?=
- =?utf-8?B?L2Q1bXhLWmVpbWNxZkpIRzhIZy9vTEhFL0tMNUZYeWh3R2t0Vm81cUxuV0hB?=
- =?utf-8?B?Y2t0V3F6K0JXYXZBNXNkR3hOaU1xc2JiZWgrLzVYOVVYd2VEUkdSVHFja1J6?=
- =?utf-8?B?VzJBRnM1aUhwbGZ4QVRRK3Z5WGk4Z2hXd2xlY0tNMCtySkd5TnJTRmQyVHpF?=
- =?utf-8?B?ZzhOMllkeUM4QUo5alZiTkJJZi9yZm13d1lRMU9SekhSN05TeDN4QVlOVnZz?=
- =?utf-8?B?cnRaZ2w1NVV2bXRXWTJlZXFrWUxSbTdzSGhPWGR6bWxzNUV1cUdhNlRwRXgx?=
- =?utf-8?B?T2dFY3BvWjhyQkVpK1hyQzJTelZwZ3Y5THUzODdyd2xWeEcvVUdBN2lzeUw1?=
- =?utf-8?B?LzFWSngrUU1PTHMvcFhQSEtaM0ZoYnd4KzV4N0dLWTRUazM2clZjNHVRMjNu?=
- =?utf-8?B?QzYwRHFheWp5MGJFNHkzNnpEZXNWNlhKcDhTUytZZWVvakVnSXJscGp5Ylpj?=
- =?utf-8?B?TzRRd0JTeG1FSjh5aytVNlpWVW5oSTV1bmV6Mko1Kzd4Z29DMVVhUzZZR2Rs?=
- =?utf-8?Q?8se68AJsAuslJdWlh4u+TIJAsWEa783H3m3INH/rAmMw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4dfee05e-c9a1-4838-3a07-08dbcb1089fb
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+	=?utf-8?B?WE9HL0d5NnFhR3hyYSt4MHpXWThsYU0yMkdSV1dtS3haWXIzeW9xV3JlZHpZ?=
+ =?utf-8?B?R3VqbkJDWXNVRzVTWlVINTA0SHVrR1AxZmN1ZndieXlIUDJMOWsxNHJDd2tJ?=
+ =?utf-8?B?dElhUWN4RWJxR2RYekJVMHlFMVE4bEJoVXNZQTI3aHhyRWtFOXFueEw4bmJj?=
+ =?utf-8?B?TllYOGhFUysyNTBuOUlOTExiK1NmQmp3angzZEI4ekRQNitYd1FqSDNHZUxa?=
+ =?utf-8?B?MjNWWVowcnFCWXJQUFh2THNseUNFYUxzdWlGNE1qWWU5MDl6UVk2N2ZtdG15?=
+ =?utf-8?B?RVNQM3N0YkVxRGw1ZVBLSUhEZTE0d3Z1b1Q5VXcxQ1h4TGRJRkFpRk1GS3p0?=
+ =?utf-8?B?QkQ1dDVkNWZqNmFKeWZEamRWKzZoeGtBK0xwcElpd2dPVzg0d25lL21iS29q?=
+ =?utf-8?B?RFp1cUVSOWp0M0NPRUVuNGd3NjYrbWhtMWRSMHZYdmhFSVdmczdBcmVOS1VO?=
+ =?utf-8?B?NVFWVm9HMEtaMkM2UXREMEwrTUFVTm1FWEhITGpPdjhRV0NtZVJ1QlJCUHMx?=
+ =?utf-8?B?UkhWWjJVOEtOY01PRUJidXYxL0VnSVpEeDFva1U5cGd1ZEZ0Zk90dDROakxv?=
+ =?utf-8?B?MTF6bjhSSVdvckZDKzR0WGRLWUZ1RHJZRkdKcUxBMFB3eitLSDVLOHJJaGoz?=
+ =?utf-8?B?M1lhNjFLdUtsSWw3NkRCbzFJNUNxR2xWb2RQZEpMVHQrSWFzaExKS21HYVF0?=
+ =?utf-8?B?dXFUMmZNVWJobnFtam1CVStMY1JuNUh0VDY3UVFzb0lOTXcwOEpuWjl5SElO?=
+ =?utf-8?B?azFsUmpGcitWM3JITHRydHBBbWVYeTRyY0wrQ0orUHUySVRvM2NJem1wOUN2?=
+ =?utf-8?B?ZlVTY1ViM0xEdGZLYU9jd2hpdkRvWHBEeis0cHFtcUhsa29RTHdkemlYY3M1?=
+ =?utf-8?B?VFRlcFNpZmY5RHZ4Q2hkMmFvS0ZWc0ZNendLN0RtazU4MkRzcUM4emlQRmEz?=
+ =?utf-8?B?OW56ek9nQVhySS9WZ21WSlhTVDdqWmIyV3JRVUZBU3RwRm1FY3FIZWtmc3li?=
+ =?utf-8?B?TmQ0WU5aT0M1NUVNU29TMC9ac2JMVkY3LytWdUo2KzhCSExFNUVrbHV3T211?=
+ =?utf-8?B?WXhIN1I5ZlExb1IxV2kyWlhRM3ZnUUZFSW1Ja25ZMFRBNHpWQXA4dnNxWHlq?=
+ =?utf-8?B?WmExdW1HQnR2aFdCL0VDR2hxODZwcHAzS0o4U1kzSXI3dDlFa2p6VG1BWWlF?=
+ =?utf-8?B?NllJVERuUFh0UWZPZ2w0SDNlOFpvcWRseit6dG0rbkQzUEdPd3JCbmpUNXBz?=
+ =?utf-8?B?YnI5ZTlaTFNNTGdxMmZwYTlDSzZ0ZXY2NWlhOStCWklELzVHZzYrckthYVF1?=
+ =?utf-8?B?YS9TQ0Y2R09udXREcld5RHIxZTZvNm9qRVlvQTdaU2VIaFZGUmltcHc5M2JN?=
+ =?utf-8?B?YzRMQkR2M1BDTlJ5bjRpQ1k5NG9KSDlCTXpqMmM5K1BON3ovVERqQmFqVjRX?=
+ =?utf-8?B?TnVLMzd1UHFiZ21ZbU1qLytjOEdHYTBkaVhYbTdRNGtseGo4clBSdmdlVThn?=
+ =?utf-8?B?dmlNb3hod2oybXp5NDBSMml5Qnk3UnhHVno1eUNpSm9LWUw0ZWwzMFZHNmN1?=
+ =?utf-8?B?dmNyNTk4MmR3Vk1nZEJza0VHMXI5Q2NpQU55UVVheW9ZTkV4bDBmWE1TWVVO?=
+ =?utf-8?B?bFNYN1FFSmJVZmhtTEJXVFQzM1VBUm1wUTh6QWR1RFo1MG5kS3dCNzBZSThl?=
+ =?utf-8?B?clNtb1IrS0c2dXRzaXBBdURqYllpZURCKytwYmRHUWxWeGlNMU9mUFJxQXN6?=
+ =?utf-8?B?bnZCeWxvd0VaUFU5NzJLanNHVUhHNU1ldGJ5TDVKV3U2WTB6ay9PaWNZdmZp?=
+ =?utf-8?B?NU5Eb0VVay9tUE9hS3d6b0pJOTF1Snk0WVVMTnNmTTU2MWlwS1ZIM2Foekpx?=
+ =?utf-8?B?NkJTck9RbVFMT0JjUVlCR3ZrZ2IzUHBBVzZOUzB0d1d4MDdSTjRzZEhJcmhu?=
+ =?utf-8?B?aWwxRVZHOE5EUGJOM3hZbjhmUys2b0hZeFRPc2hVTXl1aFBqOW5PU2xIS3BE?=
+ =?utf-8?B?YVRzYVhOenFvZ1JLcjVQRjdrVkpKTEh0c05nSG1SNVczYVBYTHFSR25OK3pi?=
+ =?utf-8?B?aUZicG90Q29mZnNiZHBOSFFRbFdCbHNqQW04UzBkaWZsS2tPcTJCMFR3ZWF2?=
+ =?utf-8?Q?oN0kTkfNVTdGCLrlt5nf4aPeK?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76c6d968-fce1-4e74-b3ba-08dbcb10dd39
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 10:46:51.1100
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 10:49:09.6156
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1071
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HU4/Hx6Y1sdEj4ULhA1+tyyeT2OZTiIaJqZdrkDP7DAZNwV4y7Nghi+/ZB/fe/sG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR02MB7906
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi!
 
-On 2023/10/9 19:26, Inochi Amaoto wrote:
-> Move the cpu and the common peripherals of CV181x and CV180x to new file.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> ---
->   arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
->   .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 19 +---
->   2 files changed, 2 insertions(+), 112 deletions(-)
->   copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (80%)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> index df40e87ee063..0904154f9829 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+2023-10-12 at 12:21, Andi Shyti wrote:
+> Hi Chris,
+> 
+> ...
+> 
+>>  static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx = {
+>> @@ -1083,6 +1084,10 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+>>  	if (drv_data->irq < 0)
+>>  		return drv_data->irq;
+>>  
+>> +	drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(drv_data->reset_gpio))
+>> +		return PTR_ERR(drv_data->reset_gpio);
+> 
+> if this optional why are we returning in case of error?
+> 
+>> +
+>>  	if (pdata) {
+>>  		drv_data->freq_m = pdata->freq_m;
+>>  		drv_data->freq_n = pdata->freq_n;
+>> @@ -1121,6 +1126,12 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+>>  			goto exit_disable_pm;
+>>  	}
+>>  
+>> +	if (drv_data->reset_gpio) {
+>> +		udelay(1);
+>> +		gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
+>> +		udelay(1);
+> 
+> you like busy waiting :-)
+> 
+> What is the reason behind these waits? Is there anything
+> specified by the datasheet?
+> 
+> If not I would do a more relaxed sleeping like an usleep_range...
+> what do you think?
 
-Hi，Jisheng
+Since this is apparently not intended to reset the bus driver itself,
+but instead various clients connected to the bus, there is not telling
+which datasheet to examine. It is simply impossible to hard-code a
+correct reset pulse here, when the targets of the pulse are unspecified
+and unknown.
 
-Do you have any more comment on this change related to cv1800b?
+I find the reset-gpios naming extremely misleading.
 
-> @@ -3,106 +3,13 @@
->    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->    */
->
-> -#include <dt-bindings/interrupt-controller/irq.h>
-> +#include "cv180x.dtsi"
->
->   / {
->   	compatible = "sophgo,cv1800b";
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -
-> -	cpus: cpus {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -		timebase-frequency = <25000000>;
-> -
-> -		cpu0: cpu@0 {
-> -			compatible = "thead,c906", "riscv";
-> -			device_type = "cpu";
-> -			reg = <0>;
-> -			d-cache-block-size = <64>;
-> -			d-cache-sets = <512>;
-> -			d-cache-size = <65536>;
-> -			i-cache-block-size = <64>;
-> -			i-cache-sets = <128>;
-> -			i-cache-size = <32768>;
-> -			mmu-type = "riscv,sv39";
-> -			riscv,isa = "rv64imafdc";
-> -			riscv,isa-base = "rv64i";
-> -			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm";
-> -
-> -			cpu0_intc: interrupt-controller {
-> -				compatible = "riscv,cpu-intc";
-> -				interrupt-controller;
-> -				#address-cells = <0>;
-> -				#interrupt-cells = <1>;
-> -			};
-> -		};
-> -	};
-> -
-> -	osc: oscillator {
-> -		compatible = "fixed-clock";
-> -		clock-output-names = "osc_25m";
-> -		#clock-cells = <0>;
-> -	};
->
->   	soc {
-> -		compatible = "simple-bus";
->   		interrupt-parent = <&plic>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		dma-noncoherent;
-> -		ranges;
-> -
-> -		uart0: serial@4140000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04140000 0x100>;
-> -			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart1: serial@4150000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04150000 0x100>;
-> -			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart2: serial@4160000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04160000 0x100>;
-> -			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart3: serial@4170000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x04170000 0x100>;
-> -			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
-> -
-> -		uart4: serial@41c0000 {
-> -			compatible = "snps,dw-apb-uart";
-> -			reg = <0x041c0000 0x100>;
-> -			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> -			reg-shift = <2>;
-> -			reg-io-width = <4>;
-> -			status = "disabled";
-> -		};
->
->   		plic: interrupt-controller@70000000 {
->   			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> similarity index 80%
-> copy from arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> copy to arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> index df40e87ee063..ffaf51724c98 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> @@ -1,12 +1,12 @@
->   // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->   /*
->    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->    */
->
->   #include <dt-bindings/interrupt-controller/irq.h>
->
->   / {
-> -	compatible = "sophgo,cv1800b";
->   	#address-cells = <1>;
->   	#size-cells = <1>;
->
-> @@ -48,7 +48,6 @@ osc: oscillator {
->
->   	soc {
->   		compatible = "simple-bus";
-> -		interrupt-parent = <&plic>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		dma-noncoherent;
-> @@ -103,21 +102,5 @@ uart4: serial@41c0000 {
->   			reg-io-width = <4>;
->   			status = "disabled";
->   		};
-> -
-> -		plic: interrupt-controller@70000000 {
-> -			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> -			reg = <0x70000000 0x4000000>;
-> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> -			interrupt-controller;
-> -			#address-cells = <0>;
-> -			#interrupt-cells = <2>;
-> -			riscv,ndev = <101>;
-> -		};
-> -
-> -		clint: timer@74000000 {
-> -			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
-> -			reg = <0x74000000 0x10000>;
-> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> -		};
->   	};
->   };
-> --
-> 2.42.0
->
+Cheers,
+Peter
 
