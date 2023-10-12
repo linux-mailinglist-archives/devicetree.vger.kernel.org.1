@@ -1,69 +1,74 @@
-Return-Path: <devicetree+bounces-7970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-7971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B285F7C65D9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:47:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CD47C65DC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 08:48:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E075B1C20AE0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:47:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BA382826FD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 06:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C102DDA7;
-	Thu, 12 Oct 2023 06:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55C7DDA9;
+	Thu, 12 Oct 2023 06:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kDZVssYU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mMttUBWM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D57D296
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:47:34 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523EDB8;
-	Wed, 11 Oct 2023 23:47:32 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39C6lKPU120622;
-	Thu, 12 Oct 2023 01:47:20 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F20ADDA8
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 06:48:22 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC2290;
+	Wed, 11 Oct 2023 23:48:21 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39C6mEL0080383;
+	Thu, 12 Oct 2023 01:48:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697093240;
-	bh=qlDt9W9SRW+VaDucq5BW/ZDa/bC/TgdxhQBR1MX0quI=;
+	s=ti-com-17Q1; t=1697093294;
+	bh=f/GKLbNYiwbaBZ6v2j+Uv0UUXj1gBI43Yx2GQqQ4JpU=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=kDZVssYURiiG9E1VoD/V3SuuzceQZ3Z81i7+2HkUATJSrXYUwSVmopJFzmQZMPkox
-	 gwhQc/8Co6YmfUEpREeuYmFSaaHNDHrWlZtrThQYCe4IX/QK99y0/7twDbTNs6a6jH
-	 KdDndxJhqfFoNw6ur3LzkjwkepGAK/NE/eIqSr+c=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39C6lKJu007866
+	b=mMttUBWMv297n5kOYagVfreuqZ+EaDbyBsO4lzZAs+DByaSmU4AzkO3EAsoXOIXop
+	 UIPcFzsQaPzviL5KGrbAlu6iQi4EpgsUJ8m4qkHkKk5X4n0bkkpjn176Sgoo+q4FbB
+	 +0hyEXkxowJG1Hc3zT2k9/Ux1EIKvxAnkQwBqldA=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39C6mEcn124887
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Oct 2023 01:47:20 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 12 Oct 2023 01:48:14 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 12
- Oct 2023 01:47:19 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 01:48:14 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 12 Oct 2023 01:47:19 -0500
+ Frontend Transport; Thu, 12 Oct 2023 01:48:14 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39C6lFAd040003;
-	Thu, 12 Oct 2023 01:47:16 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39C6mAX5018007;
+	Thu, 12 Oct 2023 01:48:10 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
 To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Matthias
- Schiffer <matthias.schiffer@ew.tq-group.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@ew.tq-group.com>
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am64-tqma64xxl: add supply regulator for I2C devices
-Date: Thu, 12 Oct 2023 12:17:09 +0530
-Message-ID: <169709313767.2957749.10885918329569967999.b4-ty@ti.com>
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Devicetree List
+	<devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List
+	<linux-arm-kernel@lists.infradead.org>,
+        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: Fix HDMI Audio overlay in Makefile
+Date: Thu, 12 Oct 2023 12:18:06 +0530
+Message-ID: <169709313769.2957749.15010210583101957923.b4-ty@ti.com>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
-References: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
+In-Reply-To: <20231003092259.28103-1-a-bhatia1@ti.com>
+References: <20231003092259.28103-1-a-bhatia1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,36 +78,26 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Matthias Schiffer,
+Hi Aradhya Bhatia,
 
-On Thu, 28 Sep 2023 13:45:10 +0200, Matthias Schiffer wrote:
-> Describes the hardware better, and avoids a few warnings during boot:
-> 
->     lm75 0-004a: supply vs not found, using dummy regulator
->     at24 0-0050: supply vcc not found, using dummy regulator
->     at24 0-0054: supply vcc not found, using dummy regulator
+On Tue, 03 Oct 2023 14:52:59 +0530, Aradhya Bhatia wrote:
+> Apply HDMI audio overlay to AM625 and AM62-LP SK-EVMs DT binaries,
+> instead of leaving it in a floating state.
 > 
 > 
-> [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/4] arm64: dts: ti: k3-am64-tqma64xxl: add supply regulator for I2C devices
-      commit: 8e4e717be847913517977d9689ab88f1b86d71d8
-[2/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: add muxing for GPIOs on pin headers
-      commit: ec30a50c72bdaa6007c999846675241b44b233d0
-[3/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: add chassis-type
-      commit: 92039884c9b57d14601c6e0e913b184dd2bff75c
-[4/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: update gpio-led configuration
-      commit: 06a0d54202e0de04e62c1991d39d6c7595f0d88a
+[1/1] arm64: dts: ti: Fix HDMI Audio overlay in Makefile
+      commit: 69c570ebc3964534c19dc4438d3b96f55d489fc3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
