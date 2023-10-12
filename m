@@ -1,72 +1,89 @@
-Return-Path: <devicetree+bounces-8085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F237C6A74
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2EB7C6A91
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 12:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2925D282764
-	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:07:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8D662827E4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Oct 2023 10:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8913F21A09;
-	Thu, 12 Oct 2023 10:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C9A222337;
+	Thu, 12 Oct 2023 10:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hsd4x/JV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iZDDYOmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC34DDB6
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:07:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E00C433C8;
-	Thu, 12 Oct 2023 10:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697105269;
-	bh=gVg8UtHvBvE9+HDyXHQmUlBBjz6PEyk4GmrjWTk7gr0=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=hsd4x/JVT99DmsoB74tYqpbwpnDF8rRlK5umPGx7M9ndz4t68IAiK+HBaV95e8ikz
-	 H6EniSCqf+vmv09fSNRc9s2J05jamDQnnLXmn+4o8pCKu2/ZAFWn6Y2F+iHw5Eslba
-	 V3qHpo9S5GVy7tiDYs5FJjm7GGC1G1E5Clh325RHvX44JXRqHv+SMhBS1og010lzZR
-	 uaoyO2w3iPpI3WT6182TPmV8+94P6PQ0wuJbzCebVO92NYhf8NzxIzp5f0n+2ZucJQ
-	 TqD1bajiQ1qGQAHLAUCzb+wRrsIRFoyfhT+yhFLMHNIeIih//oX/Q0WlLI+qxZ9DQa
-	 U7zNxQKdWIfQg==
-From: Lee Jones <lee@kernel.org>
-To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
- lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, thierry.reding@gmail.com, baruch@tkos.co.il, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de, 
- linux-pwm@vger.kernel.org, Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <20231006045317.1056625-3-quic_devipriy@quicinc.com>
-References: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
- <20231006045317.1056625-3-quic_devipriy@quicinc.com>
-Subject: Re: (subset) [PATCH 2/4] dt-bindings: mfd: qcom,tcsr: Extend
- simple-mfd & pwm support for IPQ targets
-Message-Id: <169710526675.1167576.9872640040047520620.b4-ty@kernel.org>
-Date: Thu, 12 Oct 2023 11:07:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B371ADDB6
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 10:10:34 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0530A9;
+	Thu, 12 Oct 2023 03:10:32 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id AD494660730F;
+	Thu, 12 Oct 2023 11:10:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697105431;
+	bh=/4qyp+ZcXDun69Qg8E4dWdqrT/k8BkYeCwogVKPquDA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iZDDYOmoZRfv0wxvK4FVlCrZ1wqKt42XNaMyROYuUKWwZh1RWQJ8ZfHELh07U5H4u
+	 REIgR6swA3WmfG87LS3j4jqJY6HPcJtxo7ksziwQgvQy3mdods8HO7uUj2rQ3uhIHh
+	 IShBYcw4dplmjHURnPrL660J1Zl/d93LBd0jdqMwa0qj6ZpDgJQvU3R0Gtj318FPbS
+	 p6B1FjdxKG1Yvafa6s0LQ0Qns0XjCnIGwJi/NAMxEbf5loAD41CbS8zlnMlo1dvmvd
+	 fJeafioX0FD41UPTRMas3vZMZAE0Fst9U/2IcJw3RJEzxgxAmt4CBm6Y/AA203/s3Q
+	 AZUnFRLb4cg/Q==
+Message-ID: <c85994e6-eee4-7d85-4592-da2f62fc75ff@collabora.com>
+Date: Thu, 12 Oct 2023 12:10:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v7 14/16] dt-bindings: display: mediatek: ovl: add
+ compatible for MT8195
+Content-Language: en-US
+To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231012084037.19376-1-moudy.ho@mediatek.com>
+ <20231012084037.19376-15-moudy.ho@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231012084037.19376-15-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 06 Oct 2023 10:23:15 +0530, Devi Priya wrote:
-> Extend simple-mfd and pwm support for IPQ5332 & IPQ9574 SoCs.
+Il 12/10/23 10:40, Moudy Ho ha scritto:
+> Add a compatible string for the OVL block in MediaTek MT8195 that
+> is controlled by MDP3.
 > 
-> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-Applied, thanks!
-
-[2/4] dt-bindings: mfd: qcom,tcsr: Extend simple-mfd & pwm support for IPQ targets
-      commit: abbb729360a50ce949de94a983cb56b15b82018e
-
---
-Lee Jones [李琼斯]
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
