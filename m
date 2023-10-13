@@ -1,364 +1,144 @@
-Return-Path: <devicetree+bounces-8428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29597C8291
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E0B7C82CA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66C7C282BCD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:54:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D255A282B06
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B48F111AF;
-	Fri, 13 Oct 2023 09:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7943411CA0;
+	Fri, 13 Oct 2023 10:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="vxE6Nr1J"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="MmFDaJsf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4848478
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:54:45 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2057.outbound.protection.outlook.com [40.107.7.57])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6A9DC;
-	Fri, 13 Oct 2023 02:54:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6AF1095A
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 10:15:20 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2088.outbound.protection.outlook.com [40.107.243.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF2EAD;
+	Fri, 13 Oct 2023 03:15:17 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kXemllKhyHykeMibhBG5hLOlY3Qa1/5XGF/Ef3oSJt+L9+s0SjKabwdHsIObKAqAKaGfmAeVqPrIzuL37C83Oiv72XPW+GbpcOK7Db4MkzhGc0aShjfCfazY4bZVXb7MHBVuXcn1eTyptbxOZpJtAnC/94fPsW/CSmLLYyD0ScT9o4dHmNIswtwY5TfanTt07eGdnjFRrzj3sG7HmRRkDyISqdXdA/cL2LRlpNRRGlSdlYRi75YqRVkn6YZ8xGvUEIkxwVX1L4BhKa+5kN6RaccfRnFksoHcDCW68U5OuQSbtS7RoFS7vsoWuyV0hMwWSUt0UV5DqVMegWyl64S0qw==
+ b=Zb1RQfQ30N9vRhvdmXHj4iWPnjGSlmwEnhV0Ihao/4PACHDoMgxaG7pqsQG7ucyDQlr7BcNdbLXDcm9ktScH+1Ur2bu1sQQB9y8bV6EAaewpcoTRF6OpxVTG4VPf5+RUHglD0q3H+bDJchOtNBet8PkZcnsTyJHEWWxFEtsgABOHEG+qvNcu+BnmaWIafSsGGQMjDR+F/aSQEpPw1l7CCWmcnupuoBvpmfqfm5zO7xCL7lIwXNX6I3dS8lkxtecXoA8C7lTmoNpPESbl1h5dEeBsemHYIqm27n1cYAX+Gw4j/lxc6dNW0BKASzNOK2wEG9PR6qWOJ8w0pWNVir0opw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h6HAf8yRJTkZvaFcG1Jl/uiCXVE+YKygxWASEC1Rspo=;
- b=VzJvk8YSeC8lKmgciCvcSFSINwSz+Zil1mP8utwGKUtIwafVfUyM29NPHn3bKywtbjMmi1V5fY3PaHT9/yQOVPj29BnFS8OiXXmy27cf9orBWmMdnulQQmbyvCDxqqJ5A3cX+2kp984zHLxejGmeyey1HiR24OX8HEKdxwiCGQ3kKFSYuEPXakwydKPzUdoM/mX48URf8HTfC1B1mYDehnSPHKnQov5amxAAcV74oJhfxe1IZnf6szal4bHBhcG0fBFNrR1kGpiHuJTGc6EmbhXANeo/pM/8snvPTKifUwQYOjUHGxzVDDwCksS5CwgTEDZ2DJgcSCXmc/KyQwLCLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
+ bh=4pnqJWGqcHKd1ItX8vgK47VvtPzK3wzzGVR7FFyTKpw=;
+ b=Zp/qT0HqJiVA0lOyztUejjlJHhpd2KT3TKixXTCFLr14kjJcpQigv5wJvq3jBEO3fpD4GdAUd7Bk/bY3gIZTKDm6+WoBZMIjGAhH/zDi1FqMOC6fG0xuoyDk9fLakHITn7ASU/qGZVkgBdbtYEyO8Z8RTqkGAzep9m/LfXIlPj+9TllakzKGbZ2J49TP/kcBnTZQEENf+anfVUTMt951gH7zJay3kWTbcn894gHoWzAcGXUdYHA0lh/m/Bx02pbHW6mOwJK108p1ISkXkPD7RFj2eyUlmXHeHUn0lv7Rrw/QJ26vLorI/fQjDVc5B2TNVquTZzG4cmsLpTbCkvhZIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h6HAf8yRJTkZvaFcG1Jl/uiCXVE+YKygxWASEC1Rspo=;
- b=vxE6Nr1JydbWJ00aAqYKT/fB23SM+fHClPi8Fe+S/yo0D8FimGX3tuTyX9RY/MKYKx4Y5ABLdyOVRUetjkh8jld8pMe4UjRnBGMj+ZIe0XMbqjqS59PE4A9QvlTpwTrI2L7D8cqxTsLLSu04ttWP39EfBVEx4kgXlep8Way8Wx0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12) with
+ bh=4pnqJWGqcHKd1ItX8vgK47VvtPzK3wzzGVR7FFyTKpw=;
+ b=MmFDaJsfGg11AkQMe7nFOt75fiTj+ZGsq1mfKDfnfO2IozfVK+I/Lm7gV4iMv5fQzNXs6xixUw19ZxkJIERUzXHnheRoxo/UJOvmJRDbnF/fbRL5lvvaL3ort2vInzQkk05A+anvIvHkeMBx+Zz7olWMk7I9bbo+KFThfXaA05I=
+Received: from BL1PR13CA0290.namprd13.prod.outlook.com (2603:10b6:208:2bc::25)
+ by SA1PR12MB7319.namprd12.prod.outlook.com (2603:10b6:806:2b5::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.42; Fri, 13 Oct
- 2023 09:54:39 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bc92:216b:11ed:db63]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bc92:216b:11ed:db63%6]) with mapi id 15.20.6863.043; Fri, 13 Oct 2023
- 09:54:38 +0000
-Message-ID: <811dfdb3-d5e0-443d-b7ac-6f7ef7ce22ea@wolfvision.net>
-Date: Fri, 13 Oct 2023 11:54:35 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: touchscreen: add overlay-touchscreen
- and overlay-buttons properties
-To: Rob Herring <robh@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- Bastian Hecht <hechtb@gmail.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20230510-feature-ts_virtobj_patch-v4-0-5c6c0fc1eed6@wolfvision.net>
- <20230510-feature-ts_virtobj_patch-v4-2-5c6c0fc1eed6@wolfvision.net>
- <20230831114827.GA1941458-robh@kernel.org>
-Content-Language: en-US
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <20230831114827.GA1941458-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR0202CA0031.eurprd02.prod.outlook.com
- (2603:10a6:803:14::44) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Fri, 13 Oct
+ 2023 10:15:14 +0000
+Received: from BL02EPF0001A108.namprd05.prod.outlook.com
+ (2603:10b6:208:2bc:cafe::ac) by BL1PR13CA0290.outlook.office365.com
+ (2603:10b6:208:2bc::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.16 via Frontend
+ Transport; Fri, 13 Oct 2023 10:15:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A108.mail.protection.outlook.com (10.167.241.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Fri, 13 Oct 2023 10:15:14 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 13 Oct
+ 2023 05:15:13 -0500
+Received: from xhdharshah40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Fri, 13 Oct 2023 05:15:05 -0500
+From: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+To: <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] Add ZynqMP efuse access support
+Date: Fri, 13 Oct 2023 15:44:45 +0530
+Message-ID: <20231013101450.573-1-praveen.teja.kundanala@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|PA4PR08MB7411:EE_
-X-MS-Office365-Filtering-Correlation-Id: b20a4727-593c-4a84-c6e1-08dbcbd269bf
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A108:EE_|SA1PR12MB7319:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0050dcd7-7aa7-4a5e-07f7-08dbcbd54ac4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	bsfYlSkIjVapsn+pwduFYkNXHvzclQ9RjMXZOE7y6jmbiTYm75E4mAsgcVq0EspQgiTcIllmK8gW6Ezs6YFwE7eO3DatcGQKP+WAXIJjqSSNWbYpgFubS0rNeGNJZ9EbE1gVL0BWp+Y7+gyD+B7/xK0cpnWqOJ+XnmVv5jLBNVwU+H39jwmHzzt1nMdYNE+RtPtXeIiXqAO1+oH9r8ARk9O9EgVIquL1Ehn1qQs8aYgu3w/enKEYf6GFsoEI3EjYjFp37WNbv6rG9zD50OQieUZukUcjJz/C2+NchSvCXQQlD4hTjNyDJ3L+ENVFHhDHgYFN4eSxhPmC6ZPrryPb/AovzVYCKfELBxtX2HGdI2eHsBjtmWiGi32mvcjzsgguramH4XZ+pPsR9LfBDrD5Uw3ujjMrG3I/8+41kiWZXbkQnSSuE7T8RcXd8VNOfPljCMHKLd7R2nIZP1PRSJrb+7V7H5ZXpLnq0zwlM7gBMDItH9xPa4m8Mg2r1utjfC8mvGZXTY0Yw43Z6nCtCb/5jwZxIO5uZjhFX5GQRNpdx5JmCIufZmnzw+noc0ROEjS/xttXO7RJTo6Au7Fldo8TWlyNg7z3FgS7Y9Oj1NIoM6XTTHYx/bH6mYSPdM3OD5rDn8ZBKnlr1vjS6SurLKlDJw==
+	tX+VNDAwbUWJiN5Oiz/kDS8KV0KEPSyVN7mfyX9I6RIGsbYR3KJqJs7khI15vUKwWPqgr/bTHm/6QbuR2JzVH4MAPPRLZ/jncYzOLAar/y2+29rGZb/Pq+mQQUi6MEtaaPHsblzW9/3xANsg9ERz7xeLuF7vgW3gjdjoL2rMTKkEcrvxV+VnxvV+Hp/kUM7kTIWPaM0fw8EOvtYeeNFeSXOmt8td4mDgk68b01h1GcCxUJ/fwPYeIYBxG7qoMs+9HtYS9taMG2SdHhGn2GwcHCcq6O58jWI6cw/HU2QVBYyPpEt1+iqaEBtpeviNCmXjYkwUUoNE5wnWWNjd89afp/l8oJQ8doVzSXOHrIZhTHsr7KdyvglQWVipeeFmfViqgp7HEKtAm6oiJliNRUPfCzyoVjpiMnbCaD+5aWej00CqkhlGBeLS+n8UxJ2dJN3X39hQVY54KxIogd/8ULvh1WJ1w0g7NFZeqq4jXypcD/Kc/wyZd0V7IBUbM5cVYL+S+Sg8Z6WQUaa4/i5MiVH6X0725exl80wRabtDXB6ouJnqk5NeqAC/ucWqK6CT3uioLWNJElnDEBvWBAf4i5ilfnyOVLyw9i3KtPCvp+7dPonjnGTq2uWpnMlUSNsZCd9KzoMC/UtI7BP8GvG3E3sCKEJzAhSenQsJU4Tn0FVSYFLIR27gF57k/NnpKmsOQ7WVuoX9TfX8xcrPM6MlffdVCKejdRXvB4PBr262o0lqUoueNMObnSvJWxX3OtRpLa5KZ0l/t0uvTKhm+HwGvtGmNw==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39850400004)(346002)(136003)(396003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(6512007)(86362001)(44832011)(6916009)(53546011)(66556008)(6506007)(54906003)(41300700001)(66946007)(36756003)(26005)(2616005)(5660300002)(31686004)(66476007)(38100700002)(316002)(6666004)(4326008)(8936002)(8676002)(478600001)(31696002)(6486002)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TXk4a0QrdHlrOXRXM0RWdG5YWFFpdkFmaXA0dXI1R3VONVdWSG5uUWFBdVJ2?=
- =?utf-8?B?N001Ri9GVnltNFVnUzVXZXZQa24rZEhIUUhFam04S01NS0pqbGNzVWhrc28w?=
- =?utf-8?B?V2pvUTkzWjdFam9zVzFWV1dwdnFsdkNVZncwakx6YzZkbGZuQ0Vid3Y2b2xT?=
- =?utf-8?B?V0VBRUZaNFdGZHd5aGtaaHMzdkpFaDIwNURRa2w0dHdLelhSUE0yaEZKQXNU?=
- =?utf-8?B?aFQxRnRRZHdlRGlSQUdxcjVGMUN5MDBtbzJkRHNoMGFKTmlOTjYwRUQvazdQ?=
- =?utf-8?B?K0Zsc2NhZFhZNEdlR0xrd3d1REc5b084WWswa0laZUpidmpUWkZGOFRGL1cv?=
- =?utf-8?B?Qjh1NjhYdEVOQjFkMUdJTWc2T3Uzb0VRZ09xRWh6RlZET2xoS1AwU0dsczFn?=
- =?utf-8?B?Vk50ajV4cXlTK3VQQ3c3b0J0RWw4VVVCS1pMSzlTMlZ5bFlCV0Rmc1g1Vklr?=
- =?utf-8?B?dFd4QXMrZVBDbXFVeDAyZ1V4RXRXaFlLNXFpL00weEFmMnpKKytGWGZtRGE0?=
- =?utf-8?B?eEdYY0F5b3JQQmJlb29WZ2JyUHJVVFUzUGl2R2I4Y3FuTWx2d0JtTy9vSXFM?=
- =?utf-8?B?ZjljcU56dGlnZDJjVTFqb04yUmFTcFZTald0WUxnMDk5cXpQUkYrcVJEOFhB?=
- =?utf-8?B?bzZlNVloYjVQeG5CcjVDTWpBRXg2bVJ3SVp4OE1jbUFZT3UrWm40ZUh1bTJz?=
- =?utf-8?B?bEN3VVVLUjllNjVmWW42Z0xZenl1WkViOTVTcTk5UDdxbVhwRUw5a2ZQWXBk?=
- =?utf-8?B?T0RTaUhMUURqNU1DWGxkeHVMdmJTWjRUVFBlMUpuQkdicm5rOSt3Y3NjOHlI?=
- =?utf-8?B?VkZuTzgrd3lTMnFyMEtXb3Y1eEdEZjFZSkwxSTVaYkU0QXh3em1sb2RkaURz?=
- =?utf-8?B?ZG5Zb2NWVHdHcWpUV0ZvdHVKbUE3Sk1PNEVMeEZKbkxjSzhLb2lPeFhEY2tI?=
- =?utf-8?B?OWU2QUZsaFNGc2JrUlFFbEM5ZkNjaENJZ2hCOTZHR0twaXVXWkhGcjlIVVdu?=
- =?utf-8?B?WFB2SUhNRDc1Yy9CUEJ0WFgxcW1XeEdXVFlrNHcyQ1BMNWd0WkNmeTkvMmRG?=
- =?utf-8?B?dS9tejMxWHBDSWtHTGViTXN6MVFFVHpqOTA2c2J1RWQxWVZ6cHRGMGVUUWVX?=
- =?utf-8?B?OGRVa2lTNm8yMzR4WGNzT0RrWSsyL2N0anBuQkpNTkNLWmw3K0didE1NLzJU?=
- =?utf-8?B?ejhVbnVrSTJDOUdOQnRBYTFYNXlybUpGU0o1bkFsRXpUa0xDMTFjcTlHOFB1?=
- =?utf-8?B?TjZSRGw3TU5NYUVldnNKU2s2NjYvdnFSSGtFUzZLbG1wSWNCOE5pSlUyL3NL?=
- =?utf-8?B?dXJ1ZTFXanE2V0NEMlRVWnAwZnJTMGxIU21QcElwZ09FaXFWUCtaUlZKcGpt?=
- =?utf-8?B?R3poOFpwQkxQMWVLZmFlZDRscE1xaTRBUGlSaVVxVWZVODNxdXl1T2JkNXFQ?=
- =?utf-8?B?M2pYQ3d6WUFDWW9aSWo5VE1DazlGd2tnNlJqVDBMQi9vMHRiMjgxOWlsd2hX?=
- =?utf-8?B?SVp5T0ttVXVhM3JBYWhuZzBDb3c1Rzdpc2w1blEwcUZnRHZpenY5TG1laG5z?=
- =?utf-8?B?VzYwQTRhRFdmd2FHVnFqMVdmRUpBUnlRWmJYSU9EWmxPSXA5M0t3SXQvT1M5?=
- =?utf-8?B?RGJtYlJDL2orSnh5MytMN2lYOGJjbHVrQ1hNb0RybkErM0s3eTFuT0I5YlRz?=
- =?utf-8?B?SUdBSWwvaE80bmNqQld2US96Z1dhajNuQnpxUXFJUyszc0kwRUNRS3BQS2pu?=
- =?utf-8?B?NHB4Y1JmOXlWNWxFOVNrSlMxVjl6N040ZDJUd1hSaTdUaGNiUUlxbXk3QUla?=
- =?utf-8?B?d0NBVmdKVXZXSGRXY2lMZDZrTHJHYllSSlFBbXdiSzVSSXJ1N0dlSkNSV1J5?=
- =?utf-8?B?UlJqbTV1cDY5NHpUbUpReW9TWmFIQjhZNm9xMVROeHNmVEVia0VBYXFvOWpD?=
- =?utf-8?B?T3J6MTZHRTAvK1g2K242bENnREovSXNrYmorM3JGMGc4a2ZVMFhSQURvM2hu?=
- =?utf-8?B?enR5V0VTNk9VWk9QZVRIRUhnbE8zK0ljUW1YeURPM0RlKzcxRjMzZTNiUHpJ?=
- =?utf-8?B?WTVyVkFmWE0xMWx2L21Ja1BPUWw2QllkZEZPckJvUnkveWdaaU1nVFlBRjRu?=
- =?utf-8?B?bjE5anhWQ2p3cVd4SGVONzZzWjNVc3NLNE51dWdqVnRpVGY4alY0UXg2TStp?=
- =?utf-8?B?Mmc9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: b20a4727-593c-4a84-c6e1-08dbcbd269bf
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 09:54:38.5094
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(64100799003)(82310400011)(1800799009)(451199024)(186009)(36840700001)(40470700004)(46966006)(83380400001)(426003)(26005)(336012)(40480700001)(8676002)(316002)(356005)(70206006)(82740400003)(2906002)(70586007)(40460700003)(1076003)(5660300002)(103116003)(110136005)(8936002)(2616005)(81166007)(41300700001)(4326008)(36860700001)(36756003)(478600001)(86362001)(47076005)(6666004)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 10:15:14.5578
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xMN5GlxleFZpg7eLTB4M8TUi/2oTYipjRrvV5zq7QalwPfegSHr3JhrQo0p/MM0CC/hnyTPfuNrfsJuytl76RM6F5a2XF0OppmmOvEwzrp8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB7411
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0050dcd7-7aa7-4a5e-07f7-08dbcbd54ac4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A108.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7319
+X-Spam-Status: No, score=1.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FORGED_SPF_HELO,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob,
+Add following support
+ - ZynqMP efuse firmware API for efuse access
+ - Convert txt to yaml file
+ - Add nodes for ZynqMP efuses in yaml file
+ - Add device tree(DT) nodes for nvmem access
+ - Update driver to provide support to
+    read/write ZynqMP efuse memory
 
-On 31.08.23 13:48, Rob Herring wrote:
-> On Thu, Aug 24, 2023 at 03:17:10PM +0200, Javier Carrasco wrote:
->> The overlay-touchscreen object defines an area within the touchscreen
->> where touch events are reported and their coordinates get converted to
->> the overlay origin. This object avoids getting events from areas that
->> are physically hidden by overlay frames.
->>
->> For touchscreens where overlay buttons on the touchscreen surface are
->> provided, the overlay-buttons object contains a node for every button
->> and the key event that should be reported when pressed.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
->> ---
->>  .../bindings/input/touchscreen/touchscreen.yaml    | 152 +++++++++++++++++++++
->>  1 file changed, 152 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
->> index 895592da9626..d90cbb4932b5 100644
->> --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
->> +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
->> @@ -80,6 +80,158 @@ properties:
->>    touchscreen-y-plate-ohms:
->>      description: Resistance of the Y-plate in Ohms
->>  
->> +  overlay-touchscreen:
->> +    description: Clipped touchscreen area
->> +
->> +      This object can be used to describe a frame that restricts the area
->> +      within touch events are reported, ignoring the events that occur outside
->> +      this area. This is of special interest if the touchscreen is shipped
->> +      with a physical overlay on top of it with a frame that hides some part
->> +      of the original touchscreen area.
->> +
->> +      The x-origin and y-origin properties of this object define the offset of
->> +      a new origin from where the touchscreen events are referenced.
->> +      This offset is applied to the events accordingly. The x-size and y-size
->> +      properties define the size of the overlay-touchscreen (effective area).
->> +
->> +      The following example shows the new touchscreen area and the new origin
->> +      (0',0') for the touch events generated by the device.
->> +
->> +                   Touchscreen (full area)
->> +         ┌────────────────────────────────────────┐
->> +         │    ┌───────────────────────────────┐   │
->> +         │    │                               │   │
->> +         │    ├ y-size                        │   │
->> +         │    │                               │   │
->> +         │    │      overlay-touchscreen      │   │
->> +         │    │                               │   │
->> +         │    │                               │   │
->> +         │    │            x-size             │   │
->> +         │   ┌└──────────────┴────────────────┘   │
->> +         │(0',0')                                 │
->> +        ┌└────────────────────────────────────────┘
->> +      (0,0)
->> +
->> +     where (0',0') = (0+x-origin,0+y-origin)
-> 
-> What happens if touchscreen-inverted-x/y are set?
-> 
-> Though the existing binding never defines what the non-inverted 
-> orientation is.
-> 
-This feature acts on the raw input values and the inversion is carried
-out afterwards.The events will be inverted within the defined frame,
-which is probably the expected behavior.
+Praveen Teja Kundanala (5):
+  firmware: xilinx: Add ZynqMP efuse access API
+  dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to yaml
+  dt-bindings: nvmem: Add nodes for ZynqMP efuses
+  arm64: zynqmp: Add ZynqnMP nvmem nodes
+  nvmem: zynqmp_nvmem: Add support to access efuse
 
->> +
->> +    type: object
->> +
->> +    properties:
->> +      x-origin:
->> +        description: horizontal origin of the clipped area
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +      y-origin:
->> +        description: vertical origin of the clipped area
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +      x-size:
->> +        description: horizontal resolution of the clipped area
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +      y-size:
->> +        description: vertical resolution of the clipped area
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +        required:
->> +          - x-origin
->> +          - y-origin
->> +          - x-size
->> +          - y-size
->> +
->> +  overlay-buttons:
->> +    description: list of nodes defining the buttons on the touchscreen
->> +
->> +      This object can be used to describe buttons on the touchscreen area,
->> +      reporting the touch events on their surface as key events instead of
->> +      the original touch events.
->> +
->> +      This is of special interest if the touchscreen is shipped with a
->> +      physical overlay on top of it where a number of buttons with some
->> +      predefined functionality are printed. In that case a specific behavior
->> +      is expected from those buttons instead of raw touch events.
->> +
->> +      The overlay-buttons properties define a per-button area as well as an
->> +      origin relative to the real touchscreen origin. Touch events within the
->> +      button area are reported as the key event defined in the linux,code
->> +      property. Given that the key events do not provide coordinates, the
->> +      button origin is only used to place the button area on the touchscreen
->> +      surface. Any event outside the overlay-buttons object is reported as a
->> +      touch event with no coordinate transformation.
->> +
->> +      The following example shows a touchscreen with a single button on it
->> +
->> +              Touchscreen (full area)
->> +        ┌───────────────────────────────────┐
->> +        │                                   │
->> +        │                                   │
->> +        │   ┌─────────┐                     │
->> +        │   │button 0 │                     │
->> +        │   │KEY_POWER│                     │
->> +        │   └─────────┘                     │
->> +        │                                   │
->> +        │                                   │
->> +       ┌└───────────────────────────────────┘
->> +     (0,0)
->> +
->> +      The overlay-buttons object can  be combined with the overlay-touchscreen
->> +      object as shown in the following example. In that case only the events
->> +      within the overlay-touchscreen object are reported as touch events.
->> +
->> +                  Touchscreen (full area)
->> +        ┌─────────┬──────────────────────────────┐
->> +        │         │                              │
->> +        │         │    ┌───────────────────────┐ │
->> +        │ button 0│    │                       │ │
->> +        │KEY_POWER│    │                       │ │
->> +        │         │    │                       │ │
->> +        ├─────────┤    │  overlay-touchscreen  │ │
->> +        │         │    │                       │ │
->> +        │         │    │                       │ │
->> +        │ button 1│    │                       │ │
->> +        │ KEY_INFO│   ┌└───────────────────────┘ │
->> +        │         │(0',0')                       │
->> +       ┌└─────────┴──────────────────────────────┘
->> +     (0,0)
->> +
->> +    type: object
->> +
->> +    patternProperties:
->> +      '^button-':
->> +        type: object
->> +        description:
->> +          Each button (key) is represented as a sub-node.
->> +
->> +        properties:
->> +          label:
->> +            $ref: /schemas/types.yaml#/definitions/string
->> +            description: descriptive name of the button
->> +
->> +          linux,code: true
->> +
->> +          x-origin:
->> +            description: horizontal origin of the button area
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +          y-origin:
->> +            description: vertical origin of the button area
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +          x-size:
->> +            description: horizontal resolution of the button area
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +          y-size:
->> +            description: vertical resolution of the button area
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +        required:
->> +          - linux,code
->> +          - x-origin
->> +          - y-origin
->> +          - x-size
->> +          - y-size
-> 
-> We have the same properties defined twice. Move all the common ones to a 
-> $def entry and then reference it here and in overlay-touchscreen.
-> 
-> $defs:
->   overlay-node:
->     type: object
->     properties:
->       x-origin:
->       ...
-> 
-> And then here:
-> 
-> '^button-':
->   $ref: '#/$defs/overlay-node
->   unevaluatedProperties: false
-> 
->   properties:
->     label:
->       ...
-> 
-> 
-> Rob
-Thank your for your feedback, I will send a next version with this
-modification in it.
+ .../bindings/nvmem/xlnx,zynqmp-nvmem.txt      |  46 ---
+ .../bindings/nvmem/xlnx,zynqmp-nvmem.yaml     | 270 ++++++++++++++++++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  55 ++++
+ drivers/firmware/xilinx/zynqmp.c              |  25 ++
+ drivers/nvmem/zynqmp_nvmem.c                  | 216 ++++++++++++--
+ include/linux/firmware/xlnx-zynqmp.h          |   8 +
+ 6 files changed, 543 insertions(+), 77 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+ create mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
 
-Best regards,
-Javier Carrasco
+-- 
+2.36.1
+
 
