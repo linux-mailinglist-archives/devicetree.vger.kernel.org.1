@@ -1,242 +1,264 @@
-Return-Path: <devicetree+bounces-8507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C7B7C866B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F2A7C8671
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD4B8B208F6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:12:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 030C5B208E7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC1C154B9;
-	Fri, 13 Oct 2023 13:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF71B154B9;
+	Fri, 13 Oct 2023 13:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ruQ/j2xE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ChUiRRCO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B18E14F6A
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:12:27 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2068.outbound.protection.outlook.com [40.107.220.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0411C0;
-	Fri, 13 Oct 2023 06:12:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RSTC/qMflVc7+hISNm0rp2/evuVj5EMTYSXHQjywIkq9JhBH+lpJfKrkcn3pUl331lurisxPJYrr6dD8anfRST5qa+CN6iGic+kxiCHsvesAqALAGOZ5usxBILoB68FOMmFA7p7d6u8DNc+aG+qivgx4WlyDA/ZK4oOQBwHKXLxI4b0II+N9QBDs9nYf1gjdQt9F/6kGs5x6FyEKo2EggZHcfBdVwjWtTl19EEaBZUpqVPgHOjCvctZ6aDSuSTIADmX0IVzXYyzAzUnaWI648ndupdB7Im5Qn9y9/mr184OUCvsSZTOYKruX3QUKSxn8V7f4/fyTAhvFfFUAorkV8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/jw/TrC+2Ranv6Qum6RRoKm3C9oo9vf5WOifrjT9LCA=;
- b=CealTR/YzzGjBJ88zFz93dxlVY1yxunvTEokZUd/Q1JlPLc9MDpV1hRBGfU5BHAiHKvENmHJwpN0XfuuznxZ9lT8d2Ef1i1zg8eaoR5jOz5n1CWrhiL+TGCbeLx0LyoW2Oa8r8ZqiE9riHezxVdTxhuzdfEq5iUVVAO+lhSwABCkVvK0i2ue174OQzkvmcxhrFx70+tMVMXogrQfjT3k2TbTdbB8FrwPp/qRE2q5yyDl1RS2zxOCmIFPKCKJLyspwLpbH32wqHFTuj2XudWhhexMoRt8qdE3Ot0AH70qM/dK+OY2q6nRo9UirDnqF5AUXcLdIjKQdRK6/L3OdQa6Hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/jw/TrC+2Ranv6Qum6RRoKm3C9oo9vf5WOifrjT9LCA=;
- b=ruQ/j2xErjArTRCEqjTmjue5f8HIaix2nnTlmvo8o6bI2GqPIGPVXYQw5yA06pNFrP+vTeOjsrND7DkVtqCdEI8u/TFFVwVup94PjnhAD6iOU7WBUqiAdMl3tdz3oVByYLFuq7Gn11MeR5/ltY29CEveNd9HoBDwxredwYi6A4Q=
-Received: from DM6PR13CA0009.namprd13.prod.outlook.com (2603:10b6:5:bc::22) by
- PH7PR12MB6444.namprd12.prod.outlook.com (2603:10b6:510:1f8::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.43; Fri, 13 Oct 2023 13:12:22 +0000
-Received: from CY4PEPF0000FCC2.namprd03.prod.outlook.com
- (2603:10b6:5:bc:cafe::5a) by DM6PR13CA0009.outlook.office365.com
- (2603:10b6:5:bc::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.16 via Frontend
- Transport; Fri, 13 Oct 2023 13:12:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000FCC2.mail.protection.outlook.com (10.167.242.104) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Fri, 13 Oct 2023 13:12:22 +0000
-Received: from [192.168.137.2] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 13 Oct
- 2023 08:12:19 -0500
-Message-ID: <a032e313-d548-4bd3-a126-1b8c71095172@amd.com>
-Date: Fri, 13 Oct 2023 15:12:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF17E554
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:13:55 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C44491;
+	Fri, 13 Oct 2023 06:13:54 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso683915966b.0;
+        Fri, 13 Oct 2023 06:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697202832; x=1697807632; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yHMW2Zdy80665hOAEp5WBmOVvAp02hjPBGC5B0scs4w=;
+        b=ChUiRRCOgLUa63qwW72ijS3jXSzeSOmIFCBcgiZdr/0r6eufSrCq31WSjGwYCXD5Vf
+         DRYQShUIOva2qN4N6GJ0NN4v3nZ4Ib/K1IlRgJKxSH1WVUCpY95SmAXrb9dXTaL3Q6q+
+         AIvNodM4hjZtRE6tfaqp29VZUZ6lHrjEoMuKtUTVEvF3oEbqTpFnt6yAKv3F3wXa8OCA
+         quXqJWh0ZV0qqPi1+TCJ/kX9wgjmm2mPia5GIC156T4/2WWsT7n2LRAL74P79+fSv4hN
+         cAlQjnyKVBmCqFF1YZIPIDufpPwcyhoIZszIiqXy+upSChRyeXg40M0pl7fwPQMx5+eE
+         pbQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697202832; x=1697807632;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yHMW2Zdy80665hOAEp5WBmOVvAp02hjPBGC5B0scs4w=;
+        b=Zvav0UPw4V/WB9+iGtwj42t5k17xwI/7D+L/fOYWo103Vz6DaOqoYKSNwRQ4ohK3rL
+         taiQe6e0VqC16TV/f9JUAWsCm74LsJv8WKavNFWWP/AE2zgH3Atbnbw03zKe5Q3ue5b8
+         KW9+RFF5v54kQJFHFSqag3NnYPvdgrErflb2OuTuGCHBoETcvA0ieLR+1ork3hLSKD4y
+         NPJdjhEk5RBfKEz2cLL5ytajiEjwxSbJ+LvgKKM8xn626z3KQd71QxEA1Hysi0KWUfTe
+         o/94Z3RpZC+Hf3BojJG+7oEyQbyjqju72YuBbKesLVeZAB7qvMMzUu88Em5FMQm1VArO
+         1UGw==
+X-Gm-Message-State: AOJu0YyTekOTfaaM4SU/uyMfX61HDchi6b/HvoZNqsVONQXsrB3Q5T6o
+	P6zPmt3LVp2qf6vgU7y2s0o=
+X-Google-Smtp-Source: AGHT+IEYKYqnqzBZHl9dMzd2tqRuWj4Z7eEqw5fEQhRR1J5ANEE8GCvpNcbtMA0Y7yNtADgDh0Soqg==
+X-Received: by 2002:a17:907:9802:b0:9a5:794f:f3c5 with SMTP id ji2-20020a170907980200b009a5794ff3c5mr79578ejc.6.1697202832228;
+        Fri, 13 Oct 2023 06:13:52 -0700 (PDT)
+Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a18-20020a1709064a5200b0099bcdfff7cbsm12319856ejv.160.2023.10.13.06.13.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Oct 2023 06:13:51 -0700 (PDT)
+Date: Fri, 13 Oct 2023 15:13:50 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Nicolas Chauvet <kwizart@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 00/13] thermal: tegra: Do not register cooling device
+Message-ID: <ZSlCjptcuIvVHuuM@orome.fritz.box>
+References: <20231012175836.3408077-1-thierry.reding@gmail.com>
+ <CABr+WTkT4LSYrMPVpxYO4VT87xoFA98qA9wFQMwoO4b4J8gF3g@mail.gmail.com>
+ <ZSktVaje_h2Hiyy6@orome.fritz.box>
+ <CABr+WTk9EGqVQ3_5579RmLVvOZj_NzNN3U8JMbyrQze5-9Wx8A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to
- yaml
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Praveen Teja
- Kundanala" <praveen.teja.kundanala@amd.com>,
-	<srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <linux-kernel@vger.kernel.org>
-References: <20231013101450.573-1-praveen.teja.kundanala@amd.com>
- <20231013101450.573-3-praveen.teja.kundanala@amd.com>
- <02d3fa42-75a3-4f4f-ade6-204c8146d694@linaro.org>
- <91d61e1a-abb0-4b31-aa22-aff72d582ebe@amd.com>
- <b72e6fe0-2ba4-47ac-80a5-94ee4101ad2b@linaro.org>
- <013e44c6-45f5-44c1-94b3-536955fae78f@amd.com>
- <b5a2d37b-168c-4cc9-9dc0-68f131cdf3ad@linaro.org>
- <5a3b6efe-5884-4727-a1e1-e9b8b0658523@amd.com>
- <209334cd-c922-4bd6-b116-83297c7e8b79@linaro.org>
- <edbd1434-c05b-461f-96e5-f57775dcf915@amd.com>
- <a990fead-b7af-48e6-ab28-3a69ce07d248@linaro.org>
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- 3i3l5DA=
-In-Reply-To: <a990fead-b7af-48e6-ab28-3a69ce07d248@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC2:EE_|PH7PR12MB6444:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06c01c70-a8a6-43c9-5f73-08dbcbee0996
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	EePs+iVn+2741dVKWkmk7Zwp2UodtlgfKbghZ+sxLZGNd3U8P0/U7itICZS+bf8YZJzGpqCX3VSzzMfZDqZwMYlpYC33WAh2mWrEDeFeKB0uab6OGAZobtgQmS6OJoLIXS2xCTVUcsNmnwn4AWBvPxRWERh2gQPE4ylxGlQxILn18OkBzSGNb7u9LTaYqscUyqiRpKkSjJSgVk6zfBT1hh4LP+bMYv3ZRJyC/PqGg9j+J8fw/72E3OxtUgLfUNt5dIw4LE5oXbApXT/o+IYSf/e7FZhtCWwvr+Lh+Tjytnbywj53KdIM6jyqeKuUF/5eRVKtpMDFume1yrS3RxxGvqU8Pxn4gzKsno/aFT9yW6hKQfrlyD70uAYfh17NklD/aQVcetz9h7D5W8dWnhG8JT7XBrEzzMIZ/JEn8NkLENfLm93ygjGXpWHP8Pi7C+NIUfF/6sAGnbjEFdyiTYaR2mMQ1bk7P9srSW2pAP9hV+HST6ltcJiG8jEuB07fx+McFDWDjG9Zq3Y0vXobCsjWRG8Q+nU38sE0mUDrhNI5UHjE6qJuE3TtmvAEuPi1oXdEoDDV9oZPuXmnN5qBfpD4cgzgbo4F9v3XZGgsGcb9IGfRivwOQeJx5iaMGV8qaYiAadvT2SD1s2MHaj3eWbMndYeU6N4vlrA7HERhz+w4cCS6lvZgJFxAza03aV/B/tCpdEhhXzCL6tF2b+1egYps2lYIt+Y3Rd3HTcDlQt/eS7JRSEqkjdy5suluOzTxIQMYPSrvq0tq7ZVjnQo+hHOy7KvgsXBwRlJmXG/IEBC+d/E=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(376002)(346002)(39860400002)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(82310400011)(46966006)(40470700004)(36840700001)(316002)(70586007)(70206006)(31686004)(16576012)(4326008)(8936002)(8676002)(41300700001)(36756003)(336012)(426003)(110136005)(81166007)(36860700001)(356005)(5660300002)(82740400003)(44832011)(2906002)(966005)(16526019)(47076005)(26005)(2616005)(478600001)(40460700003)(31696002)(53546011)(86362001)(40480700001)(83380400001)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 13:12:22.5468
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06c01c70-a8a6-43c9-5f73-08dbcbee0996
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000FCC2.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6444
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NUNZ+HaQfG+5H671"
+Content-Disposition: inline
+In-Reply-To: <CABr+WTk9EGqVQ3_5579RmLVvOZj_NzNN3U8JMbyrQze5-9Wx8A@mail.gmail.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
+--NUNZ+HaQfG+5H671
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/13/23 15:10, Krzysztof Kozlowski wrote:
-> On 13/10/2023 15:06, Michal Simek wrote:
->>
->>
->> On 10/13/23 14:54, Krzysztof Kozlowski wrote:
->>> On 13/10/2023 14:08, Michal Simek wrote:
->>>>
->>>>
->>>> On 10/13/23 13:58, Krzysztof Kozlowski wrote:
->>>>> On 13/10/2023 13:51, Michal Simek wrote:
->>>>>>
->>>>>>
->>>>>> On 10/13/23 13:46, Krzysztof Kozlowski wrote:
->>>>>>> On 13/10/2023 13:22, Michal Simek wrote:
->>>>>>>>>
->>>>>>>>>> +
->>>>>>>>>> +required:
->>>>>>>>>> +  - compatible
->>>>>>>>>
->>>>>>>>> required: block goes after patternProperties: block
->>>>>>>>>
->>>>>>>>>> +
->>>>>>>>>> +patternProperties:
->>>>>>>>>> +  "^soc_revision@0$":
->>>>>>>>>
->>>>>>>>> Why do you define individual memory cells? Is this part of a binding?
->>>>>>>>> IOW, OS/Linux requires this?
->>>>>>>>
->>>>>>>> nvmem has in kernel interface where you can reference to nodes. nvmem_cell_get()
->>>>>>>> calls. It means you should be able to describe internal layout that's why names
->>>>>>>> are used. And address in name is there because of reg property is used to
->>>>>>>> describe base offset and size.
->>>>>>>
->>>>>>> That's not really what I am asking. Why internal layout of memory must
->>>>>>> be part of the bindings?
->>>>>>
->>>>>> It doesn't need to be but offsets are hardcoded inside the driver itself and
->>>>>> they can't be different.
->>>>>
->>>>> Hm, where? I opened drivers/nvmem/zynqmp_nvmem.c and I do not see any
->>>>> hard-coded offsets.
->>>>
->>>> Current driver supports only soc revision from offset 0.
->>>> But if you look at 5/5 you need to define offsets where information is present.
->>>> +#define SOC_VERSION_OFFSET	0x0
->>>> +#define EFUSE_START_OFFSET	0xC
->>>> +#define EFUSE_END_OFFSET	0xFC
->>>> +#define EFUSE_PUF_START_OFFSET	0x100
->>>> +#define EFUSE_PUF_MID_OFFSET	0x140
->>>> +#define EFUSE_PUF_END_OFFSET	0x17F
->>>
->>> There is nothing like this in existing driver, so the argument that "I
->>> am adding this to the binding during conversion because driver needs it"
->>> is not true. Conversion is only a conversion.
->>
->> Conversion in 2/5 is adding only soc revision which is already there. It is
->> starting from 0 and world size is 1. And 0 is not listed because that's start
->> all the time.
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/nvmem/zynqmp_nvmem.c?h=v6.6-rc5#n39
-> 
-> This defines the nvmem config, not what should be where.
+On Fri, Oct 13, 2023 at 02:45:57PM +0200, Nicolas Chauvet wrote:
+> Le ven. 13 oct. 2023 =C3=A0 13:43, Thierry Reding
+> <thierry.reding@gmail.com> a =C3=A9crit :
+> >
+> > On Fri, Oct 13, 2023 at 11:14:25AM +0200, Nicolas Chauvet wrote:
+> > > Le jeu. 12 oct. 2023 =C3=A0 19:58, Thierry Reding
+> > > <thierry.reding@gmail.com> a =C3=A9crit :
+> > > >
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >
+> > > > Hi,
+> > > >
+> > > > this set of patches removes the registration of the SOCTHERM intern=
+al
+> > > > throttling mechanism as cooling device. Since this throttling starts
+> > > > automatically once a certain temperature threshold is crossed, it
+> > > > doesn't make sense to represent it as a cooling device, which are
+> > > > typically "manually" activated by the thermal framework when thermal
+> > > > sensors report temperature thresholds being crossed.
+> > > >
+> > > > Instead of using the cooling device mechanism, this statically prog=
+rams
+> > > > the throttling mechanism when it is configured in device tree. In o=
+rder
+> > > > to do this, an additional device tree property is needed to replace=
+ the
+> > > > information that was previously contained in trip points.
+> > > >
+> > > > There's a few preparatory patches to make the removal a bit simpler=
+ and
+> > > > also some follow up cleanups included as well.
+> > > >
+> > > > Changes in v2:
+> > > > - rework the device tree bindings:
+> > > >   - add nvidia,thermal-zones property to attach throttling to zones
+> > > >   - use -millicelsius suffix and add hysteresis
+> > > > - add patch to store thermal zone device tree node for later use
+> > > > - add patch to enforce self-encapsulation of the thermal core now t=
+hat
+> > > >   no drivers need to reach into it anymore
+> > > >
+> > > > This applies on top of Daniel's self-encapsulation hardening series:
+> > > >
+> > > >         https://lore.kernel.org/all/20231012102700.2858952-1-daniel=
+=2Elezcano@linaro.org/
+> > > >
+> > > > Thierry
+> > > >
+> > > > Thierry Reding (13):
+> > > >   thermal: Store device tree node for thermal zone devices
+> > > >   dt-bindings: thermal: tegra: Document throttle temperature
+> > > >   dt-bindings: thermal: tegra: Add nvidia,thermal-zones property
+> > > >   thermal: tegra: Use driver-private data consistently
+> > > >   thermal: tegra: Constify SoC-specific data
+> > > >   thermal: tegra: Do not register cooling device
+> > > >   thermal: tegra: Use unsigned int where appropriate
+> > > >   thermal: tegra: Avoid over-allocation of temporary array
+> > > >   thermal: tegra: Remove gratuitous error assignment
+> > > >   thermal: tegra: Minor stylistic cleanups
+> > > >   ARM: tegra: Rework SOCTHERM on Tegra124
+> > > >   arm64: tegra: Rework SOCTHERM on Tegra132 and Tegra210
+> > > >   thermal: Enforce self-encapsulation
+> > > >
+> > > >  .../thermal/nvidia,tegra124-soctherm.yaml     |  19 +
+> > > >  arch/arm/boot/dts/nvidia/tegra124.dtsi        |  68 +--
+> > > >  arch/arm64/boot/dts/nvidia/tegra132.dtsi      |  66 +--
+> > > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  86 +--
+> > > >  drivers/thermal/tegra/soctherm.c              | 525 ++++++++------=
+----
+> > > >  drivers/thermal/tegra/soctherm.h              |   1 +
+> > > >  drivers/thermal/tegra/tegra124-soctherm.c     |   4 +
+> > > >  drivers/thermal/tegra/tegra132-soctherm.c     |   4 +
+> > > >  drivers/thermal/tegra/tegra210-soctherm.c     |   4 +
+> > > >  drivers/thermal/thermal_core.h                |   2 +-
+> > > >  drivers/thermal/thermal_of.c                  |   3 +
+> > > >  11 files changed, 329 insertions(+), 453 deletions(-)
+> > > >
+> > > > --
+> > > > 2.42.0
+> > > >
+> > >
+> > > I'm still experiencing the following message on jetson-tx1 with this
+> > > serie applied on top of 6.6-rc5 (with iommu-next and tegra-next
+> > > applied).
+> > > oct. 13 10:53:16 jetson-tx1 kernel: max77620-thermal max77620-thermal:
+> > > Failed to register thermal zone: -19
+> >
+> > Not sure about this one. I don't think I've seen it. Do you know if
+> > that's somehow caused by this series, or is it preexisting?
+>=20
+> It's pre-existing from this serie.
+>=20
+> > > oct. 13 10:53:16 jetson-tx1 kernel: tegra_soctherm
+> > > 700e2000.thermal-sensor: throttle-cfg: heavy: no throt prop or invalid
+> > > prop
+> > >
+> > > Is this expected ?
+> >
+> > This one is definitely not expected. I have seen this before, and it
+> > happens when the device tree doesn't contain all the properties that are
+> > expected. Patch 12 in this series should take care of that. Have you
+> > made sure that that's been applied and is what the kernel uses to boot
+> > with?
+>=20
+> Yes, this dtb change in patch12 is propagated to the device (as seen
+> in /boot/dtbs)
+> But comparing with what's available at runtime in /proc/device-tree, I
+> see some changes
+>=20
+>                         heavy {
+> -                               hysteresis-millicelsius =3D <0xfa0>;
+> +                               #cooling-cells =3D <0x02>;
+>                                 nvidia,cpu-throt-percent =3D <0x55>;
+>                                 nvidia,gpu-throt-level =3D <0x03>;
+>                                 nvidia,priority =3D <0x64>;
+> -                               nvidia,thermal-zones =3D <0x49 0x4a>;
+> -                               temperature-millicelsius =3D <0x180c4>;
+> +                               phandle =3D <0x130>;
+>                         };
 
-If you have only one entry you are also saying where it is.
+Okay, that explains the error message.
 
-Thanks,
-Michal
+>=20
+> I'm using u-boot 2023.07 with EFI boot (L4T 32.7.4).
+> Could it be that the bootloader has changed these entries ? Can this
+> be prevented ?
+
+I'm not aware of anything in the bootloader that would do this. Some
+versions of U-Boot that ships with L4T can copy certain nodes in DTB but
+I have never seen anything that would've touched thermal.
+
+Is it possible that you're not loading the DTB and end up receiving one
+=66rom UEFI or cboot?
+
+> (MAC ethernet address is set as appropropriate).
+
+That's a completely separate mechanism and shouldn't touch thermal at
+all.
+
+Thierry
+
+--NUNZ+HaQfG+5H671
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUpQosACgkQ3SOs138+
+s6Ho2Q/9HrWknZuitsNbWjLu8gPV3z2Y2GykNCInZYzKb+IPt04CXNOZq5bQlE8J
+usRLbZD5DsNg7pmvKWwBCebqVErrvHHxXspNgR/w36dVdglbznhm3niu9NspE3mV
+aMiWiHOoTbELftzuzfgg2bYjbzmpD5unCVRHwHxNXnk2LWuc0j3ChfqlCi4MpfBD
+vkIMTk6r8BkN+csSUSqZA11DyKVFr9G9bpbURCm3FWtQbv9wFXJXz/7+bQ2IJvd0
+pCWbw0mnOcS3T2+ejm8TOqm7qfO4bJyJi5Gb7UWbSB62gsHuh21zAmwOH5RM98l4
+CCjdWwdkyodp9CozvNHasmE1v4NNWRisDhM2R6yjAx1ggAMczlYOPzzLhXJi1afD
+S+voKG5Jc7899mHaBASgW2WfpsCe8eHzGdfyUykxwTuIByGrwiIaKWz5NEhbh8Tm
+YxEbuRJir5S+t8VsB9CWSFEqZXuOTgy39HdcbhkPEH8gz/4otLPQyIa8bG6SHxtP
+pvQPQELel7Uz7d6mGoPcvNYQRoOaFnB1TUjO8+9fxC0ErX+/wg6/5N8G6XTFKeMP
+EvLfRkbG7TZXIxL0oRsKDBtIhfFOPxV7TS59rBT59yWU63uUWXFqxw687lwtRrfl
+LRVQknIUu48LqxGN9jhlXkUfNq3Sli7uHtH99HiKdF02erVDcH0=
+=ChBh
+-----END PGP SIGNATURE-----
+
+--NUNZ+HaQfG+5H671--
 
