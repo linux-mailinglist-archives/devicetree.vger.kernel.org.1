@@ -1,236 +1,151 @@
-Return-Path: <devicetree+bounces-8573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D077C8CB3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:03:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6B67C8CD5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:12:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7B881C2109C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:02:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D8122827D5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5776722EEA;
-	Fri, 13 Oct 2023 18:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3419922F1E;
+	Fri, 13 Oct 2023 18:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="VWVBjoSg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bpe0KFYD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13FC224D5
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:02:53 +0000 (UTC)
-Received: from smtp.smtpout.orange.fr (smtp-24.smtpout.orange.fr [80.12.242.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394E6BE
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:02:51 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-	by smtp.orange.fr with ESMTPA
-	id rMUhqaaBzkfHLrMUhqcUIu; Fri, 13 Oct 2023 20:02:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1697220168;
-	bh=NVMlKi0Ro6tacSy1oqTleeHU5gL+W4vRlQ2xPUmqato=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=VWVBjoSg+j9tX7rfu1EGummEofoSRP3jveJzFsExGbpmufaeDT2jPJA6GpY2hiB5o
-	 j0lcFAYA0YMk1he1pZIT2JvwcbFoxf/fyBLexbLJ4nTsVQVDBimbRYsX20rOTvYk0A
-	 cpmfSzhJUpgk8C8NHw/M6W1u2u3t8W49bhbfIfU3yoNjMK3FIbKwQsRo76416XEbtO
-	 e9M+7iiQQSJbVIb+3leHCf1JFuIacb4l51oHKY0Dk4NXUqTWW/lVlgKPzQLniL23BL
-	 m18HkmVxt/piiqnPyXnAWx+3RO6rLRVd9c+F5xO35z7i9H3yn9zwsK83Xyg/Q/u1LO
-	 w7xS1oKfiAqAA==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Fri, 13 Oct 2023 20:02:48 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <276ed249-9ee8-4dc9-871f-9c449eb00bcf@wanadoo.fr>
-Date: Fri, 13 Oct 2023 20:02:39 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AD222F16
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:12:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8423FC433C7;
+	Fri, 13 Oct 2023 18:12:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697220724;
+	bh=GEg5YuIE8UF4NZRdoKQgB/R137hqA2LKlhnXmjOkreI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bpe0KFYD/DtoQg62xNTpUaMVBbmI9Mayf6s+q6MsC9a9V94yYmRGN1QCeYkxtQLid
+	 gNCIrFGjMnlaKnosvA8QmBmrPjzft3qEyCRefCksLkMFqVw7aZQbCOz+X0Gnb5wfjE
+	 Ejc4q+8iBdLA281w/cxT4b1G9izV1vQDQXnUefjvrLx8MT062EcVsXxYDrZEtDe6ED
+	 zekBpXCt8pV64AyVgPjuKbIU4ZnJtJjuZDgeo4uBEvK/7fIIq3qFre9lKRuQ41i4eX
+	 amEgkzk+4nKklKstVQidFKkkdBEdJ0GpPJdHfRFh3ZsylaQ/p7zbSkxqXqhFlb0ukO
+	 JaMLSOFc/+zFQ==
+Date: Fri, 13 Oct 2023 19:12:18 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Ivan Mikhaylov
+ <fr0st61te@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: adc: provide max34408/9 device tree
+ binding document
+Message-ID: <20231013191218.26cbe06a@jic23-huawei>
+In-Reply-To: <9996a912-7b4e-4247-bb8a-716782fbcc2a@linaro.org>
+References: <20231007234838.8748-1-fr0st61te@gmail.com>
+	<20231007234838.8748-2-fr0st61te@gmail.com>
+	<20231010154042.2ef667b2@jic23-huawei>
+	<383064a5b0863a4a616cd60cff8d4bc18e397fd7.camel@gmail.com>
+	<20231012084052.504ac930@jic23-huawei>
+	<e7b74daa9d0131246fd10f47aa4128bc8f8f3177.camel@gmail.com>
+	<20231013091952.00002573@Huawei.com>
+	<2eafa89c-7c95-4bc1-85cb-a6d7417dcea8@linaro.org>
+	<20231013100930.000043b2@Huawei.com>
+	<9996a912-7b4e-4247-bb8a-716782fbcc2a@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] clocksource: Add JH7110 timer driver
-To: xingyu.wu@starfivetech.com
-Cc: aou@eecs.berkeley.edu, conor@kernel.org, daniel.lezcano@linaro.org,
- devicetree@vger.kernel.org, emil.renner.berthing@canonical.com,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, p.zabel@pengutronix.de, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh+dt@kernel.org, samin.guo@starfivetech.com,
- tglx@linutronix.de, walker.chen@starfivetech.com
-References: <20231012081015.33121-1-xingyu.wu@starfivetech.com>
- <20231012081015.33121-3-xingyu.wu@starfivetech.com>
- <338544e7-0be8-47c1-a7d7-89990da305d3@wanadoo.fr>
- <926ee8c7-fab9-49d5-831e-48c886c4bc44@starfivetech.com>
-Content-Language: fr, en-US
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <926ee8c7-fab9-49d5-831e-48c886c4bc44@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Le 13/10/2023 à 11:34, Xingyu Wu a écrit :
-> On 2023/10/13 1:53, Christophe JAILLET wrote:
->> Le 12/10/2023 à 10:10, Xingyu Wu a écrit :
->>> Add timer driver for the StarFive JH7110 SoC.
->>>
->>> Signed-off-by: Xingyu Wu <xingyu.wu-bONrM45KWFOXmMXjJBpWqg-XMD5yJDbdMStu3cLTcvVIw@public.gmane.orge.org>
->>
->> ...
-> 
-> It looks normal in my email and the web. Is this due to some settings?
+On Fri, 13 Oct 2023 11:53:33 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Hi,
+> On 13/10/2023 11:09, Jonathan Cameron wrote:
+> >>>>>>>> +=C2=A0 shtdn-enable-gpios:=C2=A0      =20
+> >>>>>>>
+> >>>>>>> I guess the review crossed with you sending v5.=C2=A0 There is so=
+me
+> >>>>>>> feedback on v4 you need
+> >>>>>>> to address here.=C2=A0      =20
+> >>>>>>
+> >>>>>> Jonathan, I thought I did, I've changed ena to powerdown-gpios from
+> >>>>>> Krzysztof's comments but about this one pin I'm still not sure, it
+> >>>>>> looks like *-enable-gpios (like in *-enable-gpios pins in
+> >>>>>> iio/frequency/adi,adf4377.yaml) pin or is it not? Or maybe any
+> >>>>>> other
+> >>>>>> suggestions about naming of this one?
+> >>>>>>
+> >>>>>> Thanks.     =20
+> >>>>>
+> >>>>> shutdown-gpios and make the sense (active high / low) such that
+> >>>>> setting
+> >>>>> it results in teh device being shut down.
+> >>>>> Or treat it as an enable and enable-gpios
+> >>>>>
+> >>>>> Something that indicates both shutdown and enable is confusing ;)
+> >>>>>
+> >>>>> Jonathan     =20
+> >>>>
+> >>>>
+> >>>> Jonathan, then I make these changes:
+> >>>>
+> >>>> powerdown-gpios: -> output-enable:   =20
+> >>> Needs to retain the gpios bit as we want the standard gpio stuff to p=
+ick
+> >>> them up. I'm not that keen on output-enable-gpios though.  The activi=
+ty
+> >>> here is very much 'shutdown because of error or not enabled' I think.
+> >>> So perhaps we flip the sense and document that it needs to be active =
+low?
+> >>>    =20
+> >>>> shtdn-enable-gpios: -> enable-gpios:
+> >>>>
+> >>>> Is it ok?   =20
+> >>>
+> >>> Conor, Rob, Krzysztof - you probably have a better insight into this =
+than
+> >>> I do.
+> >>>    =20
+> >>
+> >> "enable-gpios" are for turning on a specific feature, not powering
+> >> on/off entire device. For example to enable regulator output.
+> >>
+> >> "powerdown-gpios" are for turning device on/off.
+> >>
+> >> I don't know what do you have in your device. =20
+> > Ok. Sounds like that what is enable-gpios above should be shutdown-gpio=
+s. =20
+>=20
+> shutdown-gpios sounds exactly the same as powerdown-gpios and it is
+> already used in exactly same context.
+Oops. Yup. powerdown-gpios seems appropriate.
+>=20
+> > The other case is a device output indicating whether the device is
+> > shutdown.  That can happen because it was told to do so (via the other =
+gpio),
+> > or because it is in an error state. What's a good naming convention for=
+ that? =20
+>=20
+> There is no convention and I did not see such case so far.
+> powerdown-status-gpios? powerdown-state-gpios?
+Either seems reasonable.
 
-I use gmane.org and a news reader (Thunderbird).
-Gmane sometimes (not always!) obfuscate e-mail addresses.
+Thanks,
 
-Do not pay attantion to these strange rewritten addresses.
-
-> 
->>
->>> +static int jh7110_timer_probe(struct platform_device *pdev)
->>> +{
->>> +    struct jh7110_clkevt *clkevt[JH7110_TIMER_CH_MAX];
->>> +    char name[4];
->>> +    struct clk *pclk;
->>> +    struct reset_control *rst;
->>> +    int ch;
->>> +    int ret;
->>> +    void __iomem *base;
->>> +
->>> +    base = devm_platform_ioremap_resource(pdev, 0);
->>> +    if (IS_ERR(base))
->>> +        return dev_err_probe(&pdev->dev, PTR_ERR(base),
->>> +                     "failed to map registers\n");
->>> +
->>> +    rst = devm_reset_control_get_exclusive(&pdev->dev, "apb");
->>> +    if (IS_ERR(rst))
->>> +        return dev_err_probe(&pdev->dev, PTR_ERR(rst), "failed to get apb reset\n");
->>> +
->>> +    pclk = devm_clk_get_enabled(&pdev->dev, "apb");
->>> +    if (IS_ERR(pclk))
->>> +        return dev_err_probe(&pdev->dev, PTR_ERR(pclk),
->>> +                     "failed to get & enable apb clock\n");
->>> +
->>> +    ret = reset_control_deassert(rst);
->>> +    if (ret)
->>> +        return dev_err_probe(&pdev->dev, ret, "failed to deassert apb reset\n");
->>
->> Hi,
->>
->> I'm not very familiar with the reset_control_[de]assert() functions, but shouldn't this be undone by a reset_control_assert() call if an error occurs later?
-> 
-> In this case, the reset controller is set from 'assert' state to 'deassert' state. If it is failed and still 'assert' state, I don't think it need to call reset_control_assert().
-
-Emil already explained what I meaned (sorry for not being clear enough).
-I do agree with his proposed approach.
-
-> 
->>
->>> +
->>> +    for (ch = 0; ch < JH7110_TIMER_CH_MAX; ch++) {
->>> +        clkevt[ch] = devm_kzalloc(&pdev->dev, sizeof(*clkevt[ch]), GFP_KERNEL);
->>> +        if (!clkevt[ch])
->>> +            return -ENOMEM;
->>> +
->>> +        snprintf(name, sizeof(name), "ch%d", ch);
->>> +
->>> +        clkevt[ch]->base = base + JH7110_TIMER_CH_BASE(ch);
->>> +        /* Ensure timer is disabled */
->>> +        jh7110_timer_disable(clkevt[ch]);
->>> +
->>> +        rst = devm_reset_control_get_exclusive(&pdev->dev, name);
->>> +        if (IS_ERR(rst))
->>> +            return PTR_ERR(rst);
->>> +
->>> +        clkevt[ch]->clk = devm_clk_get_enabled(&pdev->dev, name);
->>> +        if (IS_ERR(clkevt[ch]->clk))
->>> +            return PTR_ERR(clkevt[ch]->clk);
->>> +
->>> +        ret = reset_control_deassert(rst);
->>> +        if (ret)
->>> +            return ret;
->>
->> Same here.
->>
->>> +
->>> +        clkevt[ch]->evt.irq = platform_get_irq(pdev, ch);
->>> +        if (clkevt[ch]->evt.irq < 0)
->>> +            return clkevt[ch]->evt.irq;
->>> +
->>> +        snprintf(clkevt[ch]->name, sizeof(clkevt[ch]->name), "%s.ch%d", pdev->name, ch);
->>> +        jh7110_clockevents_register(clkevt[ch]);
->>> +
->>> +        ret = devm_request_irq(&pdev->dev, clkevt[ch]->evt.irq, jh7110_timer_interrupt,
->>> +                       IRQF_TIMER | IRQF_IRQPOLL,
->>> +                       clkevt[ch]->name, &clkevt[ch]->evt);
->>> +        if (ret)
->>> +            return ret;
->>> +
->>> +        ret = jh7110_clocksource_init(clkevt[ch]);
->>
->> Does something should be done if this fails?
->>
->> CJ
-> 
-> Yes, it should be call reset_control_assert() here and I will add it in next version.
-
-My point was for the above reset_control_assert() but also for the 
-resources allocated within this for loop.
-
-I have not checked all paths, but in case of error in the probe:
-   - There is another reset_control_deassert()
-
-   - jh7110_clocksource_init() --> jh7110_timer_int_init_enable() --> 
-jh7110_timer_enable()
-     Should jh7110_timer_disable() be called?
-
-   - jh7110_clocksource_init() --> clocksource_register_hz().
-     Should clocksource_unregister() be called?
-
-If I'm correct and depending on how you update the code, a .remove 
-function may be needed as well.
-
-CJ
-
-> 
->>
->>> +        if (ret)
->>> +            return ret;
->>> +    }
->>> +
->>> +    return 0;
->>> +}
->>> +
->>> +static const struct of_device_id jh7110_timer_match[] = {
->>> +    { .compatible = "starfive,jh7110-timer", },
->>> +    { /* sentinel */ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, jh7110_timer_match);
->>> +
->>> +static struct platform_driver jh7110_timer_driver = {
->>> +    .probe = jh7110_timer_probe,
->>> +    .driver = {
->>> +        .name = "jh7110-timer",
->>> +        .of_match_table = jh7110_timer_match,
->>> +    },
->>> +};
->>> +module_platform_driver(jh7110_timer_driver);
->>> +
->>> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu-bONrM45KWFOXmMXjJBpWqg-XMD5yJDbdMRS5n6/RkiaJA@public.gmane.orgne.org>");
->>> +MODULE_DESCRIPTION("StarFive JH7110 timer driver");
->>> +MODULE_LICENSE("GPL");
->>
-> 
-> Thanks,
-> Xingyu Wu
-> 
-> 
-> 
+J
+>=20
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
 
