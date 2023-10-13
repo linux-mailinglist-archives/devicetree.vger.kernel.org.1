@@ -1,276 +1,134 @@
-Return-Path: <devicetree+bounces-8586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026377C8DB3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 21:21:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44857C8DB7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 21:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF2EA282F12
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:21:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDB36B20A5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5B4224C7;
-	Fri, 13 Oct 2023 19:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC52D224C7;
+	Fri, 13 Oct 2023 19:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Co01GOYG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e1T8v0LC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17C721A19
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 19:21:48 +0000 (UTC)
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F3495;
-	Fri, 13 Oct 2023 12:21:45 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313e742a787so1553732f8f.1;
-        Fri, 13 Oct 2023 12:21:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3F721A0A
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 19:22:34 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26476C9;
+	Fri, 13 Oct 2023 12:22:33 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-405497850dbso25118175e9.0;
+        Fri, 13 Oct 2023 12:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697224904; x=1697829704; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1697224950; x=1697829750; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RxJuvqrlrMiNG1ulmdPZtrlk8o7WsHfPxtKGTiZjzss=;
-        b=Co01GOYGKAW0tQQfAmpsibGFUdT3tWMB9LGgrEHqjrWdnn/cictPGKaT+buXMDDxo8
-         9mTSPOyQbM3yktvph8Uhm/RwJLa0Mn4cU+kZThLUoJWrYiJ9/xtPPGqc+uZjvX3KAN62
-         6hBHeHM2CxjrCAHFF9Oz/WjWhOInzArEYZTez7GrG3NX2AwKV75PmJreeufy9LfAIOZX
-         bWdVkbBACxDIcSI+Jc99LgAyqwEIIvuJCZDnmyKZIaSMrv8/TJdZy/rQxjr1wtaSJCbY
-         0NXkL2E4UnP0PcJwK0w2zHIafoqQ8XQXF8mPIAXUn/kvvmrwF8Kmmflk9CqIWjhR9MWu
-         YrNA==
+        bh=Kye3A1Yvs5J4Iww0la3AMmDBB+iCND6AhkOM5t1F0VI=;
+        b=e1T8v0LCmnb1q9BkjSbXHsudOVsm1t3cXrYbsN+lIH/YeX6qrE8qwOprrSCS6e3F/b
+         IiO3D64B/va3eajoiEzFFNRQLSerAo2GPs7HdAhQBnAqmqYG/zb65CiFtoU9PbJw3PTE
+         P7ZE9zZBB5acl92KR+rXmKzKjvoRoCRELivSdmg3Yw9w1MwPN1pliCM4ri31z016DLKH
+         IK6TzCGV+Wd1ev7TC4LDJTDvGJBzvJ926uLX8QO8w1nPayJvh7NObfG1FqZcmHo2SUeQ
+         sct85+k6hiowR1acw63DIr+lFFyR3TiBev1onhm3la4Utqv/ZbqhzNMS0rPaq5F08Dh5
+         0EBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697224904; x=1697829704;
+        d=1e100.net; s=20230601; t=1697224950; x=1697829750;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RxJuvqrlrMiNG1ulmdPZtrlk8o7WsHfPxtKGTiZjzss=;
-        b=H2KUddwtoOqGJArF+kzDzhh8WF+mnFxXnJYUK/f2MsHmJ7X9bERJvDuHvuJqIkysqu
-         pxAtvjbTJvEIskwnGzi7MdtoqVfjIJ+5PU4gNBZ7H33gev02Mj6Upn4h9N3h6WxZB/Hi
-         psMqiNG2aMxjgmKmbdGkMi3jpD+vKReyyVWOBzd5OhHOpoP3WjKMHC52Vte0owa9MbYq
-         edpxKLA9ijejU70TZ/RxJ4rvreDX/eDkJYqWtOGNsbIGbmUqwjSujxOJ1s1IhQu08q6k
-         nm+YeG5A+NSkJWf9J5gUf/KciFoIcb/kpSp4UNh9SmQWKVjZHnkcizsOGURoQryPKUFf
-         JoTg==
-X-Gm-Message-State: AOJu0YyOrnJSqDkJmBTNME15si8d48czKCRofb4hRfrgqgW44wqyPcyF
-	AnqcM/zdENmbxVocMjsbiiU=
-X-Google-Smtp-Source: AGHT+IELDlyPz7gN5vyh6szAavsAMEHQMOCMaIDGJwmShMWPYZa5uXJZDWsPkLOjZ0lf9lhi98Ixag==
-X-Received: by 2002:adf:b353:0:b0:317:6734:c2ae with SMTP id k19-20020adfb353000000b003176734c2aemr905155wrd.11.1697224903581;
-        Fri, 13 Oct 2023 12:21:43 -0700 (PDT)
+        bh=Kye3A1Yvs5J4Iww0la3AMmDBB+iCND6AhkOM5t1F0VI=;
+        b=N18TNBUPoDKJt4V+LzQoYuXZee/Ggfnft6DlGzpy3rmGO776IpiFmIkH9WR8RjnTKV
+         UwQ0lBlmMxBLf6OuIiVUIhxeESDuLS4gRJefyyYrEIlEsr2z9OffNsF1d8tZ8bgmnuGR
+         AHPmFeHaqjEBK2GgQ/4tuaC+xewKsEkiOWcryYcoIpkPg/VEaO7h5PwLW/whoZ1UdYC9
+         f+U3Nl9CjkkUDbG8O7CQuxIPXXNZUUstZSRzEuJwJfFV8Wm5S42qz7vJ2Ty42Y5KwVD6
+         B9HEaACzZpYPo9cwCylNTNZbWYYqxFPk/OancLxzgzIlUAXViHjVU0fU/7YvM0X8+PHq
+         1VcQ==
+X-Gm-Message-State: AOJu0Yye3Q18D/m/Zwrz7CLcrUqQonuwUeK8+uwRcl6K94karjqF2fDR
+	mHcz33gxcGzmMEmD8Zxy/Z0=
+X-Google-Smtp-Source: AGHT+IGajdHE3PweJdvXSQ0yret8uEjGOtFP2vrw3G3CEj2ABtyBTVw14FyU6Qk14fADJaWQKUMP0A==
+X-Received: by 2002:a5d:5391:0:b0:32d:9d3d:3025 with SMTP id d17-20020a5d5391000000b0032d9d3d3025mr1851163wrv.26.1697224950584;
+        Fri, 13 Oct 2023 12:22:30 -0700 (PDT)
 Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id o9-20020a5d4749000000b0032d9523de65sm4071755wrs.48.2023.10.13.12.21.42
+        by smtp.gmail.com with ESMTPSA id i2-20020a5d5582000000b00323293bd023sm842831wrv.6.2023.10.13.12.22.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 12:21:43 -0700 (PDT)
+        Fri, 13 Oct 2023 12:22:29 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: conor@kernel.org, Julian Ribbeck <julian.ribbeck@gmx.de>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, julian.ribbeck@gmx.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-sunxi@lists.linux.dev, robh+dt@kernel.org, samuel@sholland.org,
- wens@csie.org
-Subject: Re: [PATCH v4 1/2] ARM: dts: sun7i: Add Iteaduino Plus A20
-Date: Fri, 13 Oct 2023 21:21:42 +0200
-Message-ID: <22045443.EfDdHjke4D@jernej-laptop>
-In-Reply-To: <2242644.iZASKD2KPV@jernej-laptop>
+To: linux-riscv@lists.indradead.org, Conor Dooley <conor.dooley@microchip.com>
+Cc: conor@kernel.org, conor.dooley@microchip.com,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
+ Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Chen Wang <unicorn_wang@outlook.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-renesas-soc@vger.kernel.org
+Subject:
+ Re: [PATCH v3 5/6] riscv: dts: allwinner: convert isa detection to new
+ properties
+Date: Fri, 13 Oct 2023 21:22:28 +0200
+Message-ID: <3766810.kQq0lBPeGt@jernej-laptop>
+In-Reply-To: <20231009-moonlight-gray-92debdc89f30@wendy>
 References:
- <20230929-given-making-f3fac6afb176@spud>
- <20231006090154.9289-1-julian.ribbeck@gmx.de>
- <2242644.iZASKD2KPV@jernej-laptop>
+ <20231009-approve-verbalize-ce9324858e76@wendy>
+ <20231009-moonlight-gray-92debdc89f30@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Dne petek, 13. oktober 2023 ob 21:18:00 CEST je Jernej =C5=A0krabec napisal=
-(a):
-> Dne petek, 06. oktober 2023 ob 11:01:30 CEST je Julian Ribbeck napisal(a):
-> > Iteaduino Plus A20 is very similar to Iteaduino Plus A10. In fact it
-> > shares the same breakout board and the Itead Core A20 on top of it, is
-> > only adapted to support the dual-core A20.
-> >=20
-> > This commits enables the following hardware:
-> >=20
-> > * HDMI Video output
-> > * USB
-> > * SATA (untested due to lack of hardware I could attach)
-> > * Ethernet
-> > * MMC storage
-> > * UART
-> > * USB OTG (untested, because I don't own an USB OTG cable/device)
-> >=20
-> > Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-> > ---
-> >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
-> >  .../sun7i-a20-itead-iteaduino-plus.dts        | 104 ++++++++++++++++++
-> >  2 files changed, 105 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/allwinner/sun7i-a20-itead-iteadui=
-no-plus.dts
-> >=20
-> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/a=
-llwinner/Makefile
-> > index eebb5a0c873a..39af5ad94590 100644
-> > --- a/arch/arm/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm/boot/dts/allwinner/Makefile
-> > @@ -124,6 +124,7 @@ dtb-$(CONFIG_MACH_SUN7I) +=3D \
-> >  	sun7i-a20-haoyu-marsboard.dtb \
-> >  	sun7i-a20-hummingbird.dtb \
-> >  	sun7i-a20-itead-ibox.dtb \
-> > +	sun7i-a20-itead-iteaduino-plus.dts \
->=20
-> This should be .dtb.
->=20
-> Other than that:
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
->=20
-> I'll fix it while applying.
->=20
-> For future reference, please follow proper patch submission procedure:
-> - each revision should be sent in separate thread
-> - each new revision should contain changelog, either in cover letter (when
-> there is more than one patch) or below --- line in each patch
-> - compatible description patch comes before first usage (I'll invert order
-> when applying)
+Dne ponedeljek, 09. oktober 2023 ob 11:37:49 CEST je Conor Dooley napisal(a):
+> Convert the D1 devicetrees to use the new properties
+> "riscv,isa-base" & "riscv,isa-extensions".
+> For compatibility with other projects, "riscv,isa" remains.
+> 
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Sorry, I won't apply it as yet. How was this tested if it didn't even built=
- due
-to mistake in Makefile?
+Applied, thanks!
 
 Best regards,
 Jernej
 
->=20
-> Best regards,
-> Jernej
->=20
-> >  	sun7i-a20-i12-tvbox.dtb \
-> >  	sun7i-a20-icnova-a20-adb4006.dtb \
-> >  	sun7i-a20-icnova-swac.dtb \
-> > diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-itead-iteaduino-plus=
-=2Edts b/arch/arm/boot/dts/allwinner/sun7i-a20-itead-iteaduino-plus.dts
-> > new file mode 100644
-> > index 000000000000..c9f9b0275381
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/allwinner/sun7i-a20-itead-iteaduino-plus.dts
-> > @@ -0,0 +1,104 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > +
-> > +/dts-v1/;
-> > +#include "sun7i-a20.dtsi"
-> > +#include "sunxi-itead-core-common.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Itead Iteaduino Plus A20";
-> > +	compatible =3D "itead,iteaduino-plus-a20", "allwinner,sun7i-a20";
-> > +
-> > +	hdmi-connector {
-> > +		compatible =3D "hdmi-connector";
-> > +		type =3D "a";
-> > +
-> > +		port {
-> > +			hdmi_con_in: endpoint {
-> > +				remote-endpoint =3D <&hdmi_out_con>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&ac_power_supply {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ahci {
-> > +	target-supply =3D <&reg_ahci_5v>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&axp209 {
-> > +	interrupt-parent =3D <&nmi_intc>;
-> > +	interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
-> > +};
-> > +
-> > +&battery_power_supply {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&codec {
-> > +	stauts =3D "okay";
-> > +};
-> > +
-> > +&de {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&emac {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&emac_pa_pins>;
-> > +	phy-handle =3D <&phy1>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&emac_sram {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&hdmi {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&hdmi_out {
-> > +	hdmi_out_con: endpoint {
-> > +		remote-endpoint =3D <&hdmi_con_in>;
-> > +	};
-> > +};
-> > +
-> > +&mdio {
-> > +	status =3D "okay";
-> > +
-> > +	phy1: ethernet-phy@1 {
-> > +		reg =3D <1>;
-> > +	};
-> > +};
-> > +
-> > +&mmc0 {
-> > +	vmmc-supply =3D <&reg_vcc3v3>;
-> > +	bus-width =3D <4>;
-> > +	cd-gpios =3D <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH1 */
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&otg_sram {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&reg_ahci_5v {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&reg_usb0_vbus {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usb_otg {
-> > +	status =3D "okay";
-> > +	dr_mode =3D "host";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb0_vbus-supply =3D <&reg_usb0_vbus>;
-> > +};
-> > --
-> > 2.42.0
-> >=20
-> >=20
->=20
->=20
->=20
->=20
->=20
+> ---
+>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> index 0856f18dc3cf..64c3c2e6cbe0 100644
+> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> @@ -25,6 +25,9 @@ cpu0: cpu@0 {
+>  			mmu-type = "riscv,sv39";
+>  			operating-points-v2 = <&opp_table_cpu>;
+>  			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> +					       "zifencei", "zihpm";
+>  			#cooling-cells = <2>;
+>  
+>  			cpu0_intc: interrupt-controller {
+> 
 
 
 
