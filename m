@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-8394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 919C57C7F5E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:04:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2C47C7F9D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7ED88B208A2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:04:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9042B1C2097A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E3A10791;
-	Fri, 13 Oct 2023 08:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A37107A7;
+	Fri, 13 Oct 2023 08:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K31duJoe"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="kJ9Ekaoo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3F01078C
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:04:38 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC63EDD
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:04:35 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4066241289bso19149255e9.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:04:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE4510797
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:10:19 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F65D9
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:10:15 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9ba081173a3so298934266b.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:10:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697184274; x=1697789074; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6oVhznh5ySaCITk6uUsd0gVfsZrYmqi620mDBOnSkgE=;
-        b=K31duJoe56u0w54NAeMc6te01AIC3N17mKrTKGY6mvukNSDU5evPg4dl1Ufa4Yytr+
-         H0S6dU9GLdecBRcxKteJX826vo01wtOVzTZi98VWePbsbIK92gLObdZVp0TH9lt10oV7
-         EsB0GNtCOmWbhZq2gQ+9o3F3TVHEE1+I5UUYgZ2Retntp9E3ShK4EOnpqHM/7B9VgqXJ
-         JfRM4WYU27IWniVehHegrw7KmOgWJe/ji1AmUpTketZMLDQZmtVXhpStMQHcdBGVooiR
-         +TPa4G3L67mdHBXo+B3ZHGjjhearB0aDTC/+jNIQ6bSLcXMuzkWm5x4XxZMWRwHEEiQG
-         7B5w==
+        d=fairphone.com; s=fair; t=1697184614; x=1697789414; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tpzwZ+RNeBqt/RBUQJuOWXGZTsvoBXF446IDuijvCXI=;
+        b=kJ9EkaoogYB8jyX6l1iFyAJ3s7hSB02WpYBbOOVQodugp1bR8SG1UF51YbKsnJvX7b
+         DxcGX0qjJBxYr1s5M2tB50SFxwAso4qUntOoQ4/27Qs8Gjqq6346K/VhrPTR9SB3jzsB
+         qFASt53uqQZJPw4GUjVDwYUU5U0OIkUeMHZz3OSj/C02vDesb/TDcJ7Z7wJaaCinTOAe
+         DfX8tf2ff/GTDiTMrAdO2eBazQ0D1ovW2LBZds9d+fTV0Z9zm7AQc6CuRFJDQbmtwxFv
+         IBtYDfNCzZfEsICROYZ2YW9Mg+8psjR5hn7I8UUgZShJImyA1OS4wehql9Te77ttTBGL
+         kAAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697184274; x=1697789074;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6oVhznh5ySaCITk6uUsd0gVfsZrYmqi620mDBOnSkgE=;
-        b=htUq85iiHeYHBUnDLf5Tzqj2sSfl1vgq8yl+4zMpzMx/IDj8QTDMPlcMaKtLzLKkGn
-         GpQIgJ6cJGuD9b2xIPQpuH/jaX7A/I49wUNNjrMz6UIDrBtzmooFJ6RH/1d7VLC24gd2
-         q+uX2vwGRBHkMMPaBrvhLBw5NT6WErVqTt3Mq4hTugOaMRmuyJQ3z3mvEf+APx53T8vI
-         M9kX+LF196+XIFnpplneSz1MLSXyxQ9iMTOnisLhNT2esKwdzgH/TKkjXwI1VEDP8yP3
-         sB7EmkkAXdzqhLbyMsW7ngVHNk2Ra4CjbRhVpvXP75q7wbJlwwgjO+iOcgNOKUov0br5
-         vTqg==
-X-Gm-Message-State: AOJu0YwtazQSmNzDhbSfKudVIuoV7Nt1aHilxA0tuI5JXX2fB5LmtjHw
-	vhP/5qn5lebaZekLTtJLwd0wGA==
-X-Google-Smtp-Source: AGHT+IEY+YdginKOKbt7XjrFQw/JmsnmIDsYLonWOqHU1C0wPurRswbnevHMG+OjuJH3csgNEH7xww==
-X-Received: by 2002:a7b:c7d7:0:b0:3fd:2e89:31bd with SMTP id z23-20020a7bc7d7000000b003fd2e8931bdmr22943447wmk.14.1697184274113;
-        Fri, 13 Oct 2023 01:04:34 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id t14-20020a1c770e000000b0040303a9965asm1850318wmi.40.2023.10.13.01.04.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Oct 2023 01:04:33 -0700 (PDT)
-Message-ID: <24073646-373e-452d-94b6-3d91101ac5e2@linaro.org>
-Date: Fri, 13 Oct 2023 10:04:33 +0200
+        d=1e100.net; s=20230601; t=1697184614; x=1697789414;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tpzwZ+RNeBqt/RBUQJuOWXGZTsvoBXF446IDuijvCXI=;
+        b=InLd9q7FSn6cYCUQPzZfsZFwpMxUQgLE3H6RJ2xJeTGtJtwoKIrSuzWML5sXpS06Jn
+         S+UjCAig18ExCrS1WpT2fuxSSwNbl3evoLp7wxIO4GoSx51IEzqgzM3sXgJDZOSjOYee
+         gRiCI5w8QxivY5K594E1rMFTjpYCcYIAJahP+A35uHRzTlqBgU+X6gOSD4sb6GVEFFIX
+         ECrZwNkFH2Vpu1quKZguX8rDyeoA5vdRpFHVEIFXPqoqkWs5PiKaxVMAb8qYoF8Qm19R
+         UjENPHCIcZ1dXyKYVtBWmQVdWiyw0z0tsPhODde+uVBvCYcCCIkxjFui4EwczTpTuzKM
+         45Ig==
+X-Gm-Message-State: AOJu0YwHVT0kaBtORDRFEyHCuYFoO6jLahl4v6zaGCxSOV0mTAdTgu+W
+	lJoesAzm80PZX2TMmHm1yTnJ3w==
+X-Google-Smtp-Source: AGHT+IElyBa/M08l1OcsNaeLT3o4FcMgzP19oxx4R3SJSqBBmUcsZEoHvdxs+bocsEUyU4kW0WXBxA==
+X-Received: by 2002:a17:906:311b:b0:9b0:169b:eedf with SMTP id 27-20020a170906311b00b009b0169beedfmr24945565ejx.7.1697184613862;
+        Fri, 13 Oct 2023 01:10:13 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id q14-20020a170906360e00b009a5f1d1564dsm11910761ejb.126.2023.10.13.01.10.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Oct 2023 01:10:13 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/4] Add Fairphone 5 thermals (PMK7325, PM7250B, PM7325)
+Date: Fri, 13 Oct 2023 10:09:52 +0200
+Message-Id: <20231013-fp5-thermals-v1-0-f14df01922e6@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/13] thermal: tegra: Use driver-private data
- consistently
-Content-Language: en-US
-To: Thierry Reding <thierry.reding@gmail.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFD7KGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDA0Nj3bQCU92SjNSi3MScYl2jJGNDi2QLU8uUFBMloJaCotS0zAqwcdG
+ xtbUA2B40Pl4AAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>
-Cc: Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20231012175836.3408077-1-thierry.reding@gmail.com>
- <20231012175836.3408077-5-thierry.reding@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231012175836.3408077-5-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -90,48 +90,29 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12/10/2023 19:58, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Instead of passing around platform and plain devices and figuring out
-> the driver-private data within each helper, directly pass around the
-> driver-private data when it's available.
-> 
-> Also store a pointer to the parent device in the main driver-private
-> data structure for easier access.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
+Configure the necessary components to register some thermal zones in
+Linux for the different thermistors found on the Fairphone 5.
 
-[ ... ]
+The names for the thermal zones and ADCs were taken from the downstream
+kernel but double checked against hardware schematics.
 
-> -static void soctherm_debug_init(struct platform_device *pdev)
-> +static void soctherm_debug_init(struct tegra_soctherm *tegra)
->   {
-> -	struct tegra_soctherm *tegra = platform_get_drvdata(pdev);
->   	struct dentry *root;
->   
->   	root = debugfs_create_dir("soctherm", NULL);
->   
->   	tegra->debugfs_dir = root;
->   
-> -	debugfs_create_file("reg_contents", 0644, root, pdev, &regs_fops);
-> +	debugfs_create_file("reg_contents", 0644, root, tegra, &regs_fops);
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (4):
+      iio: adc: Add PM7325 PMIC7 ADC bindings
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add PM7250B thermals
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add PMK7325 thermals
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add PM7325 thermals
 
-(Orthogonal to this series) : in case you are not aware of it there is 
-the debugfs_create_regset32() function. That may make go away a bunch of 
-code related to the debugfs code here.
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 221 +++++++++++++++++++++
+ include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h    |  69 +++++++
+ 2 files changed, 290 insertions(+)
+---
+base-commit: 7c0d0c1272e82888aa01017818d00245d452b895
+change-id: 20231013-fp5-thermals-2b318c859dd4
 
-cf. 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/drivers/thermal/mediatek/lvts_thermal.c?h=thermal/bleeding-edge#n159
-
-[ ... ]
-
+Best regards,
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Luca Weiss <luca.weiss@fairphone.com>
 
 
