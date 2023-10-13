@@ -1,206 +1,186 @@
-Return-Path: <devicetree+bounces-8571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F9A7C8C9D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:55:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE287C8CAB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C251AB20A7F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:55:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22B6D28129B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 283C6224F0;
-	Fri, 13 Oct 2023 17:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2C722EE4;
+	Fri, 13 Oct 2023 17:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rjET7qMd"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="kmq35+M2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079A41BDE2
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 17:55:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661EBC433C7;
-	Fri, 13 Oct 2023 17:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697219705;
-	bh=7IamPXTmz8rMuid6Tr9dVZoV3lmTXmDMvdIcBzXdT7A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rjET7qMd2cdxkddUY8YlBjojhX6lMYkx7Y805KW6478kUEPfy0tZ/vzU1kh+HH2wB
-	 hKXl/GuHRBBYoeENwBoPanwRT9cha7kYXprM82kqBQOg/kP0nzja9Yj+DaXy8yiEkb
-	 uEzQ9Q/tqJbXdS1Nnqzrdx0SBnyIrDAwhP9z5Fx/Z7S+jOGnqBGTC4klhWb0V/A6Le
-	 6bQR+y3cgLTZToI3cIE0bg8uIs1wSdWpvRANW1l2QCyNlL8JXc6ai5fYC+32N6yubA
-	 8cvYEdy/LZTx9J2cHHZ7ZKEbD8sB//rXEQmMS4sKrlqzZfPTKBXw6Qeems1Xk859pd
-	 003wY0EBdRxRA==
-Date: Fri, 13 Oct 2023 18:55:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: arm: mediatek: Add MT8186 Tentacruel /
- Tentacool Chromebooks
-Message-ID: <20231013-panic-vaseline-350c10e7d585@spud>
-References: <20231012230237.2676469-1-wenst@chromium.org>
- <20231012230237.2676469-3-wenst@chromium.org>
- <20231013-washer-mortally-b27c196ac50f@spud>
- <CAGXv+5GF7HfQSOg9c=G+c4DPUW24Ax7LX4raTynDbE3xc8iCdg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA776224D5
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 17:59:03 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2049.outbound.protection.outlook.com [40.107.100.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07931BB;
+	Fri, 13 Oct 2023 10:59:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VOHIW2/KGF0VjBgcukYGHgUFoznketeeDPngvzdfHIl1pE9+33vl715qp5O6zauSsmHBSZuELf9Eg8knCL2OaOTl2aRMYHXVeegor+qhmFKaQcFnTPUDBriCc0h8CpsCEbe7Eq6XeGm//yb2MoZ6/oQiE9PVUOjBcJ4Xq3vFTEvxveUIBt6AebL30btQhjLNYaJVGes+Sqt7HHY8nnS3FVr3M/ssbmTiZ9/rZW8ZgqDaHMMA50IuoAV1gvBr1Ftd3KfEBHkST9q1kUdlAnbY4yV8/tua7rSuC79sX+49pZ6hyNESgre30sg/kNzeD/F6qiNFhyx+9rwS1ONi0K6mtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TyNHbWVsJOblhNzHHZBWyGZMxqb3kTkI+AFgLTDTs5Y=;
+ b=eC69HrlvRZKCxhg9RrKumALcYTskCNJ1oBXezUS+HY/h5q6kq2lNV/DoA6CtwYtQuZTtRuekzTthrWRnpwe5TcOdsvXuWjd/O+aYAcvsS7OZWM7QJOmoIeMtM0jYxlJxdN88OPn16MFyDe1ItQ3DI7mtOtB3WgcG1J1TEjtU8M5ThbQg1SnQE1rCDmzYwzwf+DeeQ68MtVp8VHMoLbyhTixx6r02R2HBUFePQIW9WR+VbguSesQl2FZ+As/RerAu1vuK12e3cdA2/XT/xXt4KXT98fZdfDebs8FiaZr+xKq66JRT2egW9kIIM3umoTAnrNJfJKfxhHvQIwXA+2MTIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TyNHbWVsJOblhNzHHZBWyGZMxqb3kTkI+AFgLTDTs5Y=;
+ b=kmq35+M2QwkZ5sPkVFRvhd1Y5So59hASufemlHLKkgsFB6MBx06G4RC2sCPiWcL+IFIVf4/7j5ZqKEJ2eZ6bEgjTEPAjtTMMoiZdavwvU4rZM9dXb65OZGStF0OGd23j+aMO9PMy/3+OJCddcZENkkHpAR15nLpbpGSfmnsF3sQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com (2603:10b6:208:c5::18)
+ by CY5PR12MB6249.namprd12.prod.outlook.com (2603:10b6:930:23::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Fri, 13 Oct
+ 2023 17:58:56 +0000
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98]) by MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98%7]) with mapi id 15.20.6863.043; Fri, 13 Oct 2023
+ 17:58:55 +0000
+Message-ID: <2e0dd79b-ab76-8632-5e61-d682e1311ceb@amd.com>
+Date: Fri, 13 Oct 2023 18:58:51 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] dt-bindings: w1: Add YAML DT Schema for AMD w1 master
+ and MAINTAINERS entry
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, thomas.delev@amd.com,
+ michal.simek@amd.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <20231013093109.37165-1-kris.chaplin@amd.com>
+ <20231013093109.37165-2-kris.chaplin@amd.com>
+ <f864dd17-7848-4a83-bd8b-2093d11a153a@linaro.org>
+ <20231013-january-caliber-2e7acbee15ec@spud>
+ <c58fbddb-cda1-e0de-8ad9-e4701c2c73cb@amd.com>
+ <20231013171822.GA4177785-robh@kernel.org>
+From: Kris Chaplin <kris.chaplin@amd.com>
+In-Reply-To: <20231013171822.GA4177785-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PA7P264CA0236.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:372::7) To MN2PR12MB3407.namprd12.prod.outlook.com
+ (2603:10b6:208:c5::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9NYY4vQdb9ornYDu"
-Content-Disposition: inline
-In-Reply-To: <CAGXv+5GF7HfQSOg9c=G+c4DPUW24Ax7LX4raTynDbE3xc8iCdg@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3407:EE_|CY5PR12MB6249:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70e118c9-6fb0-4e01-c0ec-08dbcc16116b
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	sl4lxmL999lENkqBscLP8yYLFYyvPPbYPQmDs/5F5Intc74WHCtic//FbO0zZMqnxmYY7j3bemiaIgZMT3wa5QtB5APc9esauVUx/fDL2Wn3eub7WYlO4oVAo9NX/mKzNsMnO9IX1y17gRVOMvAeg4Yr9KYx7eOnmaCJc7lXoRTnqdL0CVaGBVP+Heap1evwJYkCCI5BL+4k4rOxi2jEN+C360OtRUQFFhJLs1bIDE9C5kcLcppPLdMxBum+zPdgGvHa9gfxLQJHpYahsMv86/49MjDwmaVcp7ih78SBBZ6gieR0SFM93Sg9xbau/vHULkKb+ilZJ5r3fxIO8eqaOqB6OCXimiNGrzRzUEKps6yZIu9WYUO4T82dYYH3mMIN9Z4Fqb7dzW8wpacpCXbFzuFsZ7fjgs+4gHojbD5hZFNN+lUq0xyWe6e/CNhdg2Ilx0XycujYrLoQ54ElMm25xLuhXN6su8O2b9M74HLw4f7/IMFo04RZlvCsK9awzHgrHXluc0rdvPMLM7FVDC/K/ATZAoPrmdJs7vpARMUpMXaoNcI6MHzd9ftfy6zs9v2ZGVIdcNt1vyPUCyYiU9vB8RmXUFO4LEA4x70EzS80nZ98dNrjPR414OwAlJFO8Qb2SkbrR1xkXZoiMe7rlC3vyg==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3407.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(396003)(39860400002)(136003)(376002)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(4326008)(8936002)(8676002)(2906002)(6486002)(31686004)(5660300002)(44832011)(6666004)(478600001)(6506007)(86362001)(31696002)(53546011)(6512007)(41300700001)(36756003)(38100700002)(83380400001)(316002)(66476007)(66946007)(6916009)(26005)(54906003)(66556008)(2616005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZmtBdWtYZnJxR1B2am5wbVN0Zi9rbExlS2xSTUFCcC9JK05Ld0NDMUFrd0wr?=
+ =?utf-8?B?WGdMcXVGZDE3TVVQRHZlUnJnV2hBdnZ5TUZmbnR5U0QzdnJqQkdzZjRlbkZN?=
+ =?utf-8?B?Y0U1T1ZjVGY1RTZSWldSTFMydDlKUkZUbFcxSFB1YmxlUzFJRnBjUDNKK2py?=
+ =?utf-8?B?eWErWW5hUzBrcUtkTVBGUzc5SnlERFF4QmhoSGRnZG5vU0FYN1BMRHlkZzRQ?=
+ =?utf-8?B?SVFzTW5leDd6eTJUVENJRWJNZDBRa0x3S05RQlFUNFd5cU50SlFEc2RzeFRJ?=
+ =?utf-8?B?clVXQnQ2WFQzRlZ0QmJQNWhCNFVDcnk3QXlFemFmUEZydG1KN0dpdFhXMm5j?=
+ =?utf-8?B?VmpaZ0pwNHBHcUlaR3o1WElXYWprKys3UnFqQUEzcHNFNDcrVjhGeHBFbTd1?=
+ =?utf-8?B?b1kyYk1WUnNGbXBaeWliWjZ3aHN0RDhUNytDbERHYUZ2ekx5L29vRlJZNmJ0?=
+ =?utf-8?B?VWs5Skhrd3pNNU1XaDEyQmw3VzBhK1E1RnNtUXY0ZkxiR0pQN3NGem5JT2dM?=
+ =?utf-8?B?K1VYNXIxakZSbFhOa0xiMjZIQmlCME5Nd1JCVnNnS2VaS3lYR2VTaUg4OS9Q?=
+ =?utf-8?B?c1VubU8rVVlTc2tWaWJsTmRHeGpCZDE1dHJHQ20wR0JQMklFam5WalRFcHc3?=
+ =?utf-8?B?SHg1MDJERHlDaHo5T05rRDBIS2VjbVdJZlJYTzdtc2xkM2YxTC91MHFDWmNx?=
+ =?utf-8?B?SDl6dDVuWjcvMDNKWDF2VHlVR2o0bEx6WTFLRlREQ29WNGJIWlZMckJ1cGl4?=
+ =?utf-8?B?WlBpNUdrVjNnaWtiUEp6ZyswUXJZL09jWWdrbzNTR1lvK0ZmUUFVRml4VlFL?=
+ =?utf-8?B?S1dWeTVsVkhxdWdlblkzZncxajR3RkN4dENtb0hGRUxwcTEzTVJHR1VXT3Fk?=
+ =?utf-8?B?MjJsdnErQ3pHYzY4ZEIvcW56L2lDUXpwNWZMNUNaVG5raVpOY0dzNGRwS3JT?=
+ =?utf-8?B?eWY4S3BYdmpxbzZsMWtIMDUzWFl5d0MzZFBPdFBoNWxPblFnTDNLeHJmZ1F2?=
+ =?utf-8?B?ai9Pd0hXcXI1VHZ6SnZkVFlldFFiNzJSNXFVenBKWDA0MEhVRHVYTktpeTd2?=
+ =?utf-8?B?eWg1MHNPQ2x4ejJ5dzVkSkwwczJaTFlYcGZxaStEVWkrbVoybTlNYVVGT2F1?=
+ =?utf-8?B?ZktmNEtnZmxDZ3hEeTFHM1RxT0srKzRUQ1VuemJZNHNWM1pjZXZXV0tXWjhK?=
+ =?utf-8?B?UUVmUzBDVWhBdWxaQjNNeFlxeGo5STlwZzFUeUhCb1FHTFJ5VHUrSmlnMERl?=
+ =?utf-8?B?THBLNnN2MzQwVG5WeUZRNU5BU0pjZ2tQczRxRzYvWHNiRDNNQjdUK010YWJy?=
+ =?utf-8?B?WFdXK0JucDV0M2NlelRyeE54TEFDcmVTM0ZXWkRQU2JIUXFqZFkvV0lFandT?=
+ =?utf-8?B?WTVOWXVQVE1wM2NvdjFxc0grL1hETDgySExMYVZVZEpaZDc1VWhlazl4R28z?=
+ =?utf-8?B?SzdXWitkN29KUU11bDRaRXB0ZW9RWDdMYVh0di9XbVhzKzNoNTFhY1lJTjBX?=
+ =?utf-8?B?Q2RjWEI1TUFKTndzN094N1lBaThwZ2lKQWJOR1h5VW1oSE5EYzR3NGg3TnU0?=
+ =?utf-8?B?eFlDOWw0VzQ2VFEyak9EdWZWRFRWRTZhMjFzdElNZHg5VWtCcjV6YjNxLzBW?=
+ =?utf-8?B?UGd0UHBXaDdBa1BBTUJzeU9DcUtyaVB0OXpVdEN3aDErMnQ2WnAyTzhMOXpG?=
+ =?utf-8?B?cm5iUlk4cnNFT1BDSmtsL250aGE4cVZPdjNzYXVJdUQzRUhiYVUrSTFBMkpM?=
+ =?utf-8?B?eHVTbG1UbnFqYTRSMlRYUk45RXhPVlJ0cGtwSzRYSC83aDUxaXA3NUFCSnYr?=
+ =?utf-8?B?M1d5eHFHZ3NiOWpuUzVjMXYyN1hoMlNPNWdyVFJDa0RVWFphRHBlZzJZK2E1?=
+ =?utf-8?B?SXNrSlZWOU52L01rVTVPSHFhNjZCWlo5akg3dWlMd0JwZWpxQWNxbXMyajFy?=
+ =?utf-8?B?aDRxOGtJajNaWFR4OUJTcTNvZ0NQbmtyS0RmY0dkMmxVdXdKbXJxYXRMVTBS?=
+ =?utf-8?B?YjZJTnBOREFraXBHLzErcituY0JyaWxPandkcUFXVzJMSEpVc2N2MGhZTkVX?=
+ =?utf-8?B?a2N1dG1EWldOc1VpMkdJQWNaTm1NYlMxSWdDMnV1L2xiRmNTSnVlelRpNHBT?=
+ =?utf-8?Q?lcwvHaWZAcIUJuFSaimEaa4rH?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70e118c9-6fb0-4e01-c0ec-08dbcc16116b
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3407.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 17:58:55.8585
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AqhvsZy0DkgcxvOWUfmde+QFCrC7QfemHwy+M5Ya2nqRlROg0x19ODdjdF+Wn4oc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6249
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
---9NYY4vQdb9ornYDu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 13/10/2023 18:18, Rob Herring wrote:
+> i_1wire_master. It is a soft HDL core.
+> Only 1 version of it (ever)? Like other PL IP, it needs a version number
+> (and not v1, v2, etc. made up by you). Really, your versioning scheme
+> should be documented (like
+> bindings/sifive/sifive-blocks-ip-versioning.txt), but Xilinx started
+> versioning stuff some time back.
 
-On Fri, Oct 13, 2023 at 10:29:25AM -0700, Chen-Yu Tsai wrote:
-> On Fri, Oct 13, 2023 at 8:11=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Fri, Oct 13, 2023 at 07:02:28AM +0800, Chen-Yu Tsai wrote:
-> > > Add entries for MT8186 based Tentacruel / Tentacool Chromebooks. The =
-two
-> > > are based on the same board design: the former is a convertible device
-> > > with a touchscreen, stylus, and some extra buttons; the latter is a
-> > > clamshell device and lacks these additional features.
-> > >
-> > > The two devices both have two variants. The difference is a second
-> > > source touchpad controller that shares the same address as the origin=
-al,
-> > > but is incompatible.
-> >
-> > > The extra SKU IDs for the Tentacruel devices map to different sensor
-> > > components attached to the Embedded Controller. These are not visible
-> > > to the main processor.
-> >
-> > Wha? Given your ordering, is a "google,tentacruel-sku262144" a super-set
-> > of "google,tentacruel-sku262145"? If not, this compatible ordering
-> > doesn't make sense. I can't tell from your description, and the
-> > absence of a
-> > items:
-> >           - const: google,tentacruel-sku262145
-> >           - const: google,tentacruel-sku262146
-> >           - const: google,tentacruel-sku262147
-> >           - const: google,tentacruel
-> >           - const: mediatek,mt8186
-> > suggests that there is no google,tentacruel-sku262145
-> > device?
->=20
-> AFAIK all four SKUs exist. And as far as the main processor is concerned,
-> they look completely identical, so they should share the same device tree.
-> As mentioned in the commit message, the differences are only visible to
-> the embedded controller, which fuses the sensor inputs.
+I've specified the PL IP to have both an ID and version number register 
+in it, which is queried by the driver on probe.  As such we can version 
+autodiscover.  Should there be incompatibilty in the driver due to new 
+features in future PL IP, the major version number in the register will 
+increment and the same driver can be extended to support the modified 
+behaviour.  The default code in this first version will check to ensure 
+major is at 1. I'm working with our IP group to encourage that all new 
+IP have this mechanism moving forwards, as registers are a lot cheaper 
+in logic than they used to be.
 
-Then it makes very little sense to write a binding like this.
-If this was just for the 252144 SKU, this would be fine.
-For the other SKUs, there is no way to uniquely identify them, as
-all four of google,tentacruel-sku262144, google,tentacruel-sku262145,
-google,tentacruel-sku262146 and google,tentacruel-sku262147 must be
-present.
-Given that, why even bother including the SKUs in the first place,
-since no information can be derived from them that cannot be derived
-=66rom google,tentacruel?
-There's something that I am clearly missing here...
++  if (ver_major != 1) {
++     dev_err(dev, "AMD AXI W1 Master version %u.%u is not supported by 
+this driver",
++        ver_major, ver_minor);
++     return -ENODEV;
++  }
 
-Also, why is the order inverted, with the lower SKUs being super-sets of
-the higher ones? The Hana one you show below makes a little more sense
-in that regard.
+> Also, 'master' is not considered great terminology nowadays. Perhaps the
+> catalog name should be updated.
 
-> Writing it this way avoids having four identical device tree files.
->=20
-> We also do this for many other device families, though those cover
-> different revisions, such as:
->=20
->       - description: Google Hana (Lenovo Chromebook N23 Yoga, C330, 300e,=
-=2E..)
->         items:
->           - const: google,hana-rev6
->           - const: google,hana-rev5
->           - const: google,hana-rev4
->           - const: google,hana-rev3
->           - const: google,hana
->           - const: mediatek,mt8173
->=20
->=20
-> ChenYu
->=20
-> > Cheers,
-> > Conor.
-> >
-> > >
-> > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > > ---
-> > >  .../devicetree/bindings/arm/mediatek.yaml     | 26 +++++++++++++++++=
-++
-> > >  1 file changed, 26 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Do=
-cumentation/devicetree/bindings/arm/mediatek.yaml
-> > > index 60337b439744..aa7e6734b336 100644
-> > > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > @@ -206,6 +206,32 @@ properties:
-> > >            - enum:
-> > >                - mediatek,mt8183-pumpkin
-> > >            - const: mediatek,mt8183
-> > > +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM=
-1402F)
-> > > +        items:
-> > > +          - const: google,tentacruel-sku262144
-> > > +          - const: google,tentacruel-sku262145
-> > > +          - const: google,tentacruel-sku262146
-> > > +          - const: google,tentacruel-sku262147
-> > > +          - const: google,tentacruel
-> > > +          - const: mediatek,mt8186
-> > > +      - description: Google Tentacruel (ASUS Chromebook CM14 Flip CM=
-1402F)
-> > > +        items:
-> > > +          - const: google,tentacruel-sku262148
-> > > +          - const: google,tentacruel-sku262149
-> > > +          - const: google,tentacruel-sku262150
-> > > +          - const: google,tentacruel-sku262151
-> > > +          - const: google,tentacruel
-> > > +          - const: mediatek,mt8186
-> > > +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
-> > > +        items:
-> > > +          - const: google,tentacruel-sku327681
-> > > +          - const: google,tentacruel
-> > > +          - const: mediatek,mt8186
-> > > +      - description: Google Tentacool (ASUS Chromebook CM14 CM1402C)
-> > > +        items:
-> > > +          - const: google,tentacruel-sku327683
-> > > +          - const: google,tentacruel
-> > > +          - const: mediatek,mt8186
-> > >        - items:
-> > >            - enum:
-> > >                - mediatek,mt8186-evb
-> > > --
-> > > 2.42.0.655.g421f12c284-goog
-> > >
+Agreed -  I've used the term to fit with others in the subsystem.  Would 
+this be something that is changed and aligned across W1?  If so I'm 
+happy to get the HDL IP renamed and binding / driver documentation to 
+match if an alternative designator to replace master has already been 
+chosen and standardised across 1Wire.
 
---9NYY4vQdb9ornYDu
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards
+Kris
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSmEdQAKCRB4tDGHoIJi
-0vjhAP9fKNGUBz2HMnG2ILJzOr0cgfze+4tqoryOMOIyWAjHDAEAwCbqZBVwT61j
-WfBudZ6XiijDWDUaS2LAIEvxmyMGzAs=
-=TciW
------END PGP SIGNATURE-----
-
---9NYY4vQdb9ornYDu--
 
