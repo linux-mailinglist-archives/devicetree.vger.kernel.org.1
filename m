@@ -1,139 +1,137 @@
-Return-Path: <devicetree+bounces-8390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD257C7EBF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:41:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFB87C7EC9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2BDDB208D5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:41:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DEBF282C15
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013A9101E3;
-	Fri, 13 Oct 2023 07:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9A3101EB;
+	Fri, 13 Oct 2023 07:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jCfzTnfS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qn5oCKsm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDC0D272
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:41:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA431C433C7;
-	Fri, 13 Oct 2023 07:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697182876;
-	bh=HCwC6BY1bb24e17Bl+yq4xWJAW4Po3ldTzp38IgTEq4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jCfzTnfSPNpr8oHgUrMAWWnGod72/w0SFUhRryo5wbDOeG76rzR9TMuDoQ2Sad0hP
-	 /j71x4Nhiuaz6uiC8BwRiTh5/TE6HuK+cT6suCUjlZ3JHWFA0Ma7vnSANFyuFDANaw
-	 feIEzFicz9B/+sM24DE+X12K8tAMgUpenuZINmyQkg46K2qmdUAft2WB84uHs/3hfE
-	 mLAITV3d5wU9XT33C2qGpePlAaR81pj4iInfmIBp+VHm4UYM1wdGKmpVaYeAqbtwk5
-	 LUPUm9uYj2HD/MlLl9A4Dr8alOYiy8u/HbxvCWmFnn+saMX4Vz4APGkZt1ZnMA+t6f
-	 kWz7+6MPDP24A==
-Date: Fri, 13 Oct 2023 08:41:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v10 07/15] dt-bindings: interrupt-controller: Add RISC-V
- incoming MSI controller
-Message-ID: <20231013-pluck-skies-1b4ee57e770c@spud>
-References: <20231003044403.1974628-1-apatel@ventanamicro.com>
- <20231003044403.1974628-8-apatel@ventanamicro.com>
- <20231012-countable-darkish-7e449edc763d@spud>
- <CAK9=C2ViQj5iNBvQcMpYii2p+CrOiQ3hY8t5_U8mrJTcMVZCYw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4777C5692
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:44:49 +0000 (UTC)
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64A8BF;
+	Fri, 13 Oct 2023 00:44:47 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6b1d1099a84so490218b3a.1;
+        Fri, 13 Oct 2023 00:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697183087; x=1697787887; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EqBTcnUOXt5OHFJjY+Q7SG+N2WHaqyyhi4YSnip+8v0=;
+        b=Qn5oCKsmnr6SHYEFlZVy2naSYslWXccXiq1+0zLs0ppcEo/g6dSTuucH0S+m+OjaNz
+         HBCr74uviX3Zmkq/igIPTD946LeIQB5a0qyS5GXZm2M1Dvpene/YnN5/+sgVDRrYYI4G
+         mYa9tW9YWXsd6YHXzyLpOx85vZjOfIop4bjtVXSUuGxabZ20HJDIr7PVZnIGCY5rhOcv
+         neYGkiKkB7grhYJTcw6OuIAdWsRtNR0kNu3N+yY9dWN1Lwnyb9sPGkGA10DqF2cywOf0
+         8HYWIgGA7rw8VO6LJUXuglkfHX2kqvb8QTU1Dm/pIm2GPjgUsMG43LJytPwpkcJWNSEL
+         38Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697183087; x=1697787887;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EqBTcnUOXt5OHFJjY+Q7SG+N2WHaqyyhi4YSnip+8v0=;
+        b=lbVbpaRYFTGwmhI/XwTu8zmki283YzuoEPhWqeL5XKYWzt0FAIZM/rYkUhIr76XI5/
+         dYNCcncnltDDgrgQrUR58rZVCxjAVuJq/d2u6ao0+y9BRny/51Jh2irpBy/GPL+Ly2zz
+         EzfzGzNbTb/1P+SvGeySjbgRYJA++C3alyae0KT3W1MtQOvKMJeegJIm0v7EY3qEFwHN
+         MAQMqeeJE9bqh0+QDL7dFFwX+B258BZilKX2cJyRYFzYQW1hG/5bKo+Pg2NiEiri/9JK
+         u/onj4Qm14fhpSvrUN1S+cOKHeSnm6U/9REG2fUwqObPqGPDok0an91XbWyjfY/qFLPE
+         3QLA==
+X-Gm-Message-State: AOJu0Yz7D9Vi5sbePORWRTDmyvnFZIjuAjXcP/dJRKnaES0BO+BjC1m8
+	1uJDKctbsNrXN4Es9/embmnjD6QYHPk=
+X-Google-Smtp-Source: AGHT+IHWWgk1zmQhykDCekt0aGL7OS4rB/SGDK7iEV5xnq7IIWvi8IxXalAeKUjv5J2lc05leLCvKA==
+X-Received: by 2002:a05:6a00:9a2:b0:68a:3ba3:e249 with SMTP id u34-20020a056a0009a200b0068a3ba3e249mr31611101pfg.16.1697183087186;
+        Fri, 13 Oct 2023 00:44:47 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id z125-20020a633383000000b0058a381de499sm2839266pgz.77.2023.10.13.00.44.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Oct 2023 00:44:46 -0700 (PDT)
+Message-ID: <c7419e6e-d53e-4820-83da-3ddf188e8fd7@gmail.com>
+Date: Fri, 13 Oct 2023 15:44:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SpvMUTlv7MvkLw0D"
-Content-Disposition: inline
-In-Reply-To: <CAK9=C2ViQj5iNBvQcMpYii2p+CrOiQ3hY8t5_U8mrJTcMVZCYw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: nuvoton: Add pinctrl support for ma35d1
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20231011090510.114476-1-ychuang570808@gmail.com>
+ <20231011090510.114476-4-ychuang570808@gmail.com>
+ <9a831a6e-ab5e-4911-8011-f6eb82dd3d6a@linaro.org>
+ <507e491a-e40f-47e2-8e11-5a7886a8c2ab@gmail.com>
+ <420f9132-b277-4476-bd74-9cc4cd87456f@linaro.org>
+From: Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <420f9132-b277-4476-bd74-9cc4cd87456f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
---SpvMUTlv7MvkLw0D
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey Anup,
+On 2023/10/13 下午 03:06, Krzysztof Kozlowski wrote:
+> On 13/10/2023 08:52, Jacky Huang wrote:
+>>>> +
+>>>> +&pinctrl {
+>>>> +	uart0 {
+>>>> +		pinctrl_uart0: uart0grp {
+>>>> +			nuvoton,pins =
+>>>> +				<MA35_SYS_REG_GPE_H 24 1 &pcfg_default>,
+>>>> +				<MA35_SYS_REG_GPE_H 28 1 &pcfg_default>;
+>>> This does not look like generic pinctrl bindings. Looks
+>>> over-complicated. From where did you get it? Which recent bindings and
+>>> drivers where used as an example? Register addresses should be in the
+>>> driver. Bit offsets as well. "multi-pin-function-value" confuses me. All
+>>> this is not really suitable for DTS.
+>> Okay, I will update the first and second items to 'pin bank' and 'pin
+>> bank index,
+>> just as others have done, and leave the driver to handle the conversion into
+>> registers and offsets.
+> Instead use existing common properties, like "pins" and "groups" (or
+> pinmux).
 
-On Fri, Oct 13, 2023 at 12:16:45PM +0530, Anup Patel wrote:
-> On Thu, Oct 12, 2023 at 10:05=E2=80=AFPM Conor Dooley <conor@kernel.org> =
-wrote:
-> > On Tue, Oct 03, 2023 at 10:13:55AM +0530, Anup Patel wrote:
-> > > We add DT bindings document for the RISC-V incoming MSI controller
-> > > (IMSIC) defined by the RISC-V advanced interrupt architecture (AIA)
-> > > specification.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Just FYI, since they'll reply to this themselves, but some of the
-> > Microchip folks have run into problems with sparse hart indexes while
-> > trying to use the imsic binding to describe some configurations they
-> > have. I think there were also so problems with how to describe to a
-> > linux guest which file to use, when the first hart available to the
-> > guest does not use the first file. They'll do a better job of describing
-> > their problems than I will, so I shall leave it to them!
->=20
-> Quoting AIA spec:
-> "For the purpose of locating the memory pages of interrupt files in the
-> address space, assume each hart (or each hart within a group) has a
-> unique hart number that may or may not be related to the unique hart
-> identifiers (=E2=80=9Chart IDs=E2=80=9D) that the RISC-V Privileged Archi=
-tecture assigns
-> to harts."
->=20
-> It is very easy to get confused between the AIA "hart index" and
-> "hart IDs" defined by the RISC-V Privileged specification but these
-> are two very different things. The AIA "hart index" over here is the
-> bits in the address of an IMSIC file.
->=20
-> This DT binding follows the IMSIC file arrangement in the address
-> space as defined by the section "3.6 Arrangement of the memory
-> regions of multiple interrupt files" of the AIA specification. This
-> arrangement is MANDATORY for platforms having both APLIC
-> and IMSIC because in MSI-mode the APLIC generates target
-> MSI address based the IMSIC file arrangement described in the
-> section "3.6 Arrangement of the memory regions of multiple
-> interrupt files". In fact, this also applies to virtual platforms
-> created by hypervisors (KVM, Xen, ...)
+I will reference how others have done it to make the changes.
 
-Thanks for pointing this out - I'll pass it on and hopefully it is
-helpful to them. If not, I expect that you'll hear :)
+>> The term "multi-pin-function-value" is used to specify the device function.
+>> I will use the name "device function" instead of "multi-pin-function-value.
+> Use existing common properties, like "function". Do not reinvent the
+> bindings.
+>
 
-Cheers,
-Conor.
+Okay, I got it. Thank you.
 
---SpvMUTlv7MvkLw0D
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> Best regards,
+> Krzysztof
+>
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSj0lgAKCRB4tDGHoIJi
-0npGAQC6rGsNEsyvptpG1+5wrE9ET1h1yjmigGMA1ot+EgTHewD/eQHPUyx/z1tG
-Jx0CDrTp0SXbanOo3/If7opBTzOB5Qc=
-=owzU
------END PGP SIGNATURE-----
+Best Regards,
+Jacky Huang
 
---SpvMUTlv7MvkLw0D--
 
