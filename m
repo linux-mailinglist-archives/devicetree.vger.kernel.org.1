@@ -1,107 +1,112 @@
-Return-Path: <devicetree+bounces-8563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6CD7C8C31
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:18:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A3B7C8C3F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE80D1C20C85
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:18:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0140B20A67
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F22D21A10;
-	Fri, 13 Oct 2023 17:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB26321A1C;
+	Fri, 13 Oct 2023 17:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwulx8Fp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255A11B280
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 17:18:29 +0000 (UTC)
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D86695;
-	Fri, 13 Oct 2023 10:18:27 -0700 (PDT)
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-57b8a0f320dso1235750eaf.1;
-        Fri, 13 Oct 2023 10:18:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697217507; x=1697822307;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wgAKqPHYQN2+v/UdYgMUVpm2fAWRPSdaV+0AqLJ7UuA=;
-        b=K7mHn75WkVl2JyO3Yo2Tuj2KXNmw6wBh3kkmACUaFr5vtOc7hkFKm6YKG6VQwrAs+6
-         GZ5+SStoOPnRMz+r13I9r+R5oS7RSadOcXpaewuCSZGAX3tkONc6HbiyLoLbNQ2op8Mo
-         m9QeoHG+tgQVPnBtCMSv8+aECVpxfZh/2irrIZc6Ly+ITLZoh2fBPdevAimRy8P9I3EJ
-         ECIjgPcXmBUU2egnw+gtpR2CL+P58/w7ToP+ycgabJNoJgYNNSqGUajh5MA5wZQTtbs3
-         4sY4XwhBDDsajQ2kz8DUjjEVz6K4evzEXhoOBPBVDj9zq9xeJ0uGGY6zcPC+NyExKlAf
-         urLA==
-X-Gm-Message-State: AOJu0YxaIcN2WztLG+tVPWTPD0LMiWK3xZw7lmYLipXnrMs3oZ0x1Jqa
-	LndQhKYwUkqEWYPvq1W9ow==
-X-Google-Smtp-Source: AGHT+IGgt77eqQ08RYINJdoQGQ5E2EeTIExfXtozEo1oCbj5TOG4WrjCU1pNmGTmUpyOFD8bEent+w==
-X-Received: by 2002:a4a:e3cc:0:b0:581:4148:d4e2 with SMTP id m12-20020a4ae3cc000000b005814148d4e2mr12077717oov.1.1697217506825;
-        Fri, 13 Oct 2023 10:18:26 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q9-20020a4aac49000000b0057e7c1118b9sm3024483oon.31.2023.10.13.10.18.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 10:18:23 -0700 (PDT)
-Received: (nullmailer pid 38315 invoked by uid 1000);
-	Fri, 13 Oct 2023 17:18:22 -0000
-Date: Fri, 13 Oct 2023 12:18:22 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kris Chaplin <kris.chaplin@amd.com>
-Cc: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, thomas.delev@amd.com, michal.simek@amd.com, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH 1/2] dt-bindings: w1: Add YAML DT Schema for AMD w1
- master and MAINTAINERS entry
-Message-ID: <20231013171822.GA4177785-robh@kernel.org>
-References: <20231013093109.37165-1-kris.chaplin@amd.com>
- <20231013093109.37165-2-kris.chaplin@amd.com>
- <f864dd17-7848-4a83-bd8b-2093d11a153a@linaro.org>
- <20231013-january-caliber-2e7acbee15ec@spud>
- <c58fbddb-cda1-e0de-8ad9-e4701c2c73cb@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2101B280
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 17:27:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B61DC433CD;
+	Fri, 13 Oct 2023 17:27:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697218041;
+	bh=XPp/N2DrY886TmYtke+2pdg6aNdeRFGp8q1vWyV87IU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gwulx8FpUwUeCCL9aE/iQo6qD4lq6Acm1Rnba0amXnQz5YQNDA1BUzqbcmBUmjMwy
+	 dDW99F5Na8QJ2YHzvB9EaRdGACIXaN2rbRP4DM4fqCsr5W3SIrCddjDDm/KytLtBWD
+	 N3Eh6NC7OqOPQJaXXfoiSOFpeNAlyv8udyXGbTXOI2vbLlY+hx9lW3/HBULOimfT5R
+	 +xnB+yqQlCGTFJPVwsCQjs0vXVQ5+dNae/vzPI1n2K5dFBJmHwuF074o/QBXaiI8YP
+	 6TT3GbujconqjfShBNYF/JS8h010bj/cQWmJSDKW6/xFzJdtwPJkPaya+A9+AmVhX2
+	 Ttk52yWUI9HIA==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50305abe5f0so3089925e87.2;
+        Fri, 13 Oct 2023 10:27:20 -0700 (PDT)
+X-Gm-Message-State: AOJu0YzLtTd9ANjdQPi7+AEJD7IJ9Zk3D2ZkV84cLl/LuGW8Wy259X9W
+	/v407RTXI/4iOOAwTDQgyAhEzSgW481mb8fALQ==
+X-Google-Smtp-Source: AGHT+IEizvXO2mNiDj59lp5atM3o+Uro0LVK63GgCo+PNfwGLPyinV3lNsPocGD4O5YiMYdfS//6qiiSo5V+aBS7Lfo=
+X-Received: by 2002:a05:6512:250c:b0:503:55c:7999 with SMTP id
+ be12-20020a056512250c00b00503055c7999mr28450678lfb.34.1697218039162; Fri, 13
+ Oct 2023 10:27:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c58fbddb-cda1-e0de-8ad9-e4701c2c73cb@amd.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20230924181959.64264-1-n2h9z4@gmail.com> <20231010132921.GA628810-robh@kernel.org>
+ <0ec4f647-77b9-4b3f-9cbd-6fb122f09462@roeck-us.net>
+In-Reply-To: <0ec4f647-77b9-4b3f-9cbd-6fb122f09462@roeck-us.net>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 13 Oct 2023 12:27:07 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKhF8apt7==97yHAUo=B8M1oFQFc=ZCYTYAavNqOVAKCQ@mail.gmail.com>
+Message-ID: <CAL_JsqKhF8apt7==97yHAUo=B8M1oFQFc=ZCYTYAavNqOVAKCQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert
+ txt to yaml
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	skhan@linuxfoundation.org, claudiu.beznea@microchip.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 13, 2023 at 04:23:15PM +0100, Kris Chaplin wrote:
-> 
-> On 13/10/2023 16:07, Conor Dooley wrote:
-> > On Fri, Oct 13, 2023 at 05:04:32PM +0200, Krzysztof Kozlowski wrote:
-> > > 
-> > > That's a quite generic compatible. axi is ARM term, 1-wire is the name
-> > > of the bus and master is the role. Concatenating three common words does
-> > > not create unique device name. Compatibles are supposed to be specific
-> > > and this is really relaxed. Anything can be over AXI, everything in
-> > > 1wire is 1wire and every master device is a master.
-> > Given the vendor (and the title of the binding) this is almost certainly
-> > an FPGA IP core, so the generic name is understandable. Using the exact
-> > name of the IP in the AMD/Xilinx catalog probably is the best choice?
-> 
-> Indeed this is an Programmable Logic IP core - the official name of the core
-> in our catalog is axi_1wire_master.  It is a soft HDL core.
+On Tue, Oct 10, 2023 at 8:56=E2=80=AFAM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On Tue, Oct 10, 2023 at 08:29:21AM -0500, Rob Herring wrote:
+> > On Sun, Sep 24, 2023 at 08:19:59PM +0200, Nik Bune wrote:
+> > > Convert txt file to yaml.
+> > >
+> > > Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > ---
+> > >
+> > > Changes in v3:
+> > > - Removed trailing whitespace in an element of the maintainers list.
+> > >
+> > > v2 patch: https://lore.kernel.org/linux-devicetree/20230924172004.592=
+08-1-n2h9z4@gmail.com/
+> > >
+> > >  .../watchdog/atmel,at91rm9200-wdt.yaml        | 33 +++++++++++++++++=
+++
+> > >  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 -----
+> > >  2 files changed, 33 insertions(+), 9 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,=
+at91rm9200-wdt.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-=
+at91rm9200-wdt.txt
+> >
+> > Are the watchdog maintainers going to pick up this and other watchdog
+> > bindings?
+> >
+>
+> Tricky question. I am way behind with my reviews, and historically you ha=
+ve
+> picked up some of themm, so I really never know what to do with bindings.
 
-Only 1 version of it (ever)? Like other PL IP, it needs a version number 
-(and not v1, v2, etc. made up by you). Really, your versioning scheme 
-should be documented (like 
-bindings/sifive/sifive-blocks-ip-versioning.txt), but Xilinx started 
-versioning stuff some time back.
-
-Also, 'master' is not considered great terminology nowadays. Perhaps the 
-catalog name should be updated. 
+The default is the subsystem maintainers take them, but yes I do pick
+up stuff from time to time for $reasons. Largely that was early on in
+schema conversions and there wasn't much checking, but now that's much
+better and I only tend to pick up stuff if it's been weeks without
+getting applied. Last cycle I found a few wdog bindings that hadn't
+been applied (from Apr or May), so I've been keeping more of an eye on
+them.
 
 Rob
 
