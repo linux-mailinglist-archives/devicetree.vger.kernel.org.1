@@ -1,91 +1,240 @@
-Return-Path: <devicetree+bounces-8422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC517C821F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:34:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32CB67C8257
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90BBCB20974
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:34:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24BE31C20BA4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E592210A3B;
-	Fri, 13 Oct 2023 09:34:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWMAeeBq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33F011192;
+	Fri, 13 Oct 2023 09:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C918511181
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:34:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6354C433C7;
-	Fri, 13 Oct 2023 09:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697189652;
-	bh=aqNTWk/jLrgnCA59noQX1Z0OD+kaSq0f7Cj2KJ+dY7M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sWMAeeBqIkpI34Z+ITknz6l3Bw/5EvKniAa2W9YT6hM+MssyAs6Z+4VuyQ1LHE9m4
-	 7K2yz6zc8HBODFAsnlPAViSy5OmwWBWu5JFoTB5i3KtXXu71zbSllc85RQrHQVssCL
-	 ca0g9xRjkWR7D/3s1fj3nIklhqs24WWQoUpPI+RVfL51wdxZp+XhGkt79fgpaEj1/T
-	 UVjPymfCA6ZhNSOPZ0SdNBy1MaGznZKwnhs9EtvZIHGU9IftrK6HeeY+dP5URXehs1
-	 bg2qA3QdcObOy3NQifFNmWh5ItRopcwdJQqrLjRXZ9rB2awpZYD6WTbHgDSOsnRYt9
-	 BNmevFk8cgr+A==
-Date: Fri, 13 Oct 2023 11:34:07 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Peter Rosin <peda@axentia.se>,
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] i2c: mv64xxx: add an optional reset-gpios property
-Message-ID: <20231013093407.p2oqsagk62vrqacc@zenone.zhora.eu>
-References: <20231012035838.2804064-1-chris.packham@alliedtelesis.co.nz>
- <20231012035838.2804064-3-chris.packham@alliedtelesis.co.nz>
- <20231012102140.kydfi2tppvhd7bdn@zenone.zhora.eu>
- <63403365-2d23-b4a0-d869-070686d62ab5@axentia.se>
- <812dd506-c61b-4967-9b0b-ea35a111bc7f@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C83101DD
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:41:30 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099561724;
+	Fri, 13 Oct 2023 02:41:00 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id BB46224E373;
+	Fri, 13 Oct 2023 17:40:53 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Oct
+ 2023 17:40:53 +0800
+Received: from [192.168.125.131] (183.27.96.95) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Oct
+ 2023 17:40:52 +0800
+Message-ID: <926ee8c7-fab9-49d5-831e-48c886c4bc44@starfivetech.com>
+Date: Fri, 13 Oct 2023 17:34:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <812dd506-c61b-4967-9b0b-ea35a111bc7f@alliedtelesis.co.nz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] clocksource: Add JH7110 timer driver
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+CC: <aou@eecs.berkeley.edu>, <conor@kernel.org>, <daniel.lezcano@linaro.org>,
+	<devicetree@vger.kernel.org>, <emil.renner.berthing@canonical.com>,
+	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <p.zabel@pengutronix.de>,
+	<palmer@dabbelt.com>, <paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
+	<samin.guo@starfivetech.com>, <tglx@linutronix.de>,
+	<walker.chen@starfivetech.com>
+References: <20231012081015.33121-1-xingyu.wu@starfivetech.com>
+ <20231012081015.33121-3-xingyu.wu@starfivetech.com>
+ <338544e7-0be8-47c1-a7d7-89990da305d3@wanadoo.fr>
+Content-Language: en-US
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <338544e7-0be8-47c1-a7d7-89990da305d3@wanadoo.fr>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.96.95]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hi Chris,
+On 2023/10/13 1:53, Christophe JAILLET wrote:
+> Le 12/10/2023 =C3=A0 10:10, Xingyu Wu a =C3=A9crit=C2=A0:
+>> Add timer driver for the StarFive JH7110 SoC.
+>>
+>> Signed-off-by: Xingyu Wu <xingyu.wu-bONrM45KWFOXmMXjJBpWqg@public.gman=
+e.org>
+>=20
+> ...
 
-...
+It looks normal in my email and the web. Is this due to some settings?
 
->              static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx = {
->             @@ -1083,6 +1084,10 @@ mv64xxx_i2c_probe(struct platform_device *pd)
->                     if (drv_data->irq < 0)
->                             return drv_data->irq;
-> 
->             +       drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
->             +       if (IS_ERR(drv_data->reset_gpio))
->             +               return PTR_ERR(drv_data->reset_gpio);
-> 
->         if this optional why are we returning in case of error?
-> 
-> gpiod_get_optional() will return NULL if the property is not present. The main
-> error I care about here is -EPROBE_DEFER but I figure other errors are also
-> relevant. This same kind of pattern is used in other drivers.
+>=20
+>> +static int jh7110_timer_probe(struct platform_device *pdev)
+>> +{
+>> +=C2=A0=C2=A0=C2=A0 struct jh7110_clkevt *clkevt[JH7110_TIMER_CH_MAX];
+>> +=C2=A0=C2=A0=C2=A0 char name[4];
+>> +=C2=A0=C2=A0=C2=A0 struct clk *pclk;
+>> +=C2=A0=C2=A0=C2=A0 struct reset_control *rst;
+>> +=C2=A0=C2=A0=C2=A0 int ch;
+>> +=C2=A0=C2=A0=C2=A0 int ret;
+>> +=C2=A0=C2=A0=C2=A0 void __iomem *base;
+>> +
+>> +=C2=A0=C2=A0=C2=A0 base =3D devm_platform_ioremap_resource(pdev, 0);
+>> +=C2=A0=C2=A0=C2=A0 if (IS_ERR(base))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&pdev=
+->dev, PTR_ERR(base),
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "failed to map regist=
+ers\n");
+>> +
+>> +=C2=A0=C2=A0=C2=A0 rst =3D devm_reset_control_get_exclusive(&pdev->de=
+v, "apb");
+>> +=C2=A0=C2=A0=C2=A0 if (IS_ERR(rst))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&pdev=
+->dev, PTR_ERR(rst), "failed to get apb reset\n");
+>> +
+>> +=C2=A0=C2=A0=C2=A0 pclk =3D devm_clk_get_enabled(&pdev->dev, "apb");
+>> +=C2=A0=C2=A0=C2=A0 if (IS_ERR(pclk))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&pdev=
+->dev, PTR_ERR(pclk),
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get & enab=
+le apb clock\n");
+>> +
+>> +=C2=A0=C2=A0=C2=A0 ret =3D reset_control_deassert(rst);
+>> +=C2=A0=C2=A0=C2=A0 if (ret)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&pdev=
+->dev, ret, "failed to deassert apb reset\n");
+>=20
+> Hi,
+>=20
+> I'm not very familiar with the reset_control_[de]assert() functions, bu=
+t shouldn't this be undone by a reset_control_assert() call if an error o=
+ccurs later?
 
-we already discussed about this, I don't have a strong opinion,
-you can leave it as it is... I recon this is a matter of pure
-taste.
+In this case, the reset controller is set from 'assert' state to 'deasser=
+t' state. If it is failed and still 'assert' state, I don't think it need=
+ to call reset_control_assert().=20
 
-Would you just mind adding an error message using
-dev_err_probe()?
+>=20
+>> +
+>> +=C2=A0=C2=A0=C2=A0 for (ch =3D 0; ch < JH7110_TIMER_CH_MAX; ch++) {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clkevt[ch] =3D devm_kzallo=
+c(&pdev->dev, sizeof(*clkevt[ch]), GFP_KERNEL);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!clkevt[ch])
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn -ENOMEM;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snprintf(name, sizeof(name=
+), "ch%d", ch);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clkevt[ch]->base =3D base =
++ JH7110_TIMER_CH_BASE(ch);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Ensure timer is disable=
+d */
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 jh7110_timer_disable(clkev=
+t[ch]);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rst =3D devm_reset_control=
+_get_exclusive(&pdev->dev, name);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(rst))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn PTR_ERR(rst);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clkevt[ch]->clk =3D devm_c=
+lk_get_enabled(&pdev->dev, name);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(clkevt[ch]->clk=
+))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn PTR_ERR(clkevt[ch]->clk);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D reset_control_deas=
+sert(rst);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn ret;
+>=20
+> Same here.
+>=20
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clkevt[ch]->evt.irq =3D pl=
+atform_get_irq(pdev, ch);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (clkevt[ch]->evt.irq < =
+0)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn clkevt[ch]->evt.irq;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snprintf(clkevt[ch]->name,=
+ sizeof(clkevt[ch]->name), "%s.ch%d", pdev->name, ch);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 jh7110_clockevents_registe=
+r(clkevt[ch]);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D devm_request_irq(&=
+pdev->dev, clkevt[ch]->evt.irq, jh7110_timer_interrupt,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IRQF_TIME=
+R | IRQF_IRQPOLL,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clkevt[ch=
+]->name, &clkevt[ch]->evt);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn ret;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D jh7110_clocksource=
+_init(clkevt[ch]);
+>=20
+> Does something should be done if this fails?
+>=20
+> CJ
+
+Yes, it should be call reset_control_assert() here and I will add it in n=
+ext version.
+
+>=20
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn ret;
+>> +=C2=A0=C2=A0=C2=A0 }
+>> +
+>> +=C2=A0=C2=A0=C2=A0 return 0;
+>> +}
+>> +
+>> +static const struct of_device_id jh7110_timer_match[] =3D {
+>> +=C2=A0=C2=A0=C2=A0 { .compatible =3D "starfive,jh7110-timer", },
+>> +=C2=A0=C2=A0=C2=A0 { /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, jh7110_timer_match);
+>> +
+>> +static struct platform_driver jh7110_timer_driver =3D {
+>> +=C2=A0=C2=A0=C2=A0 .probe =3D jh7110_timer_probe,
+>> +=C2=A0=C2=A0=C2=A0 .driver =3D {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .name =3D "jh7110-timer",
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .of_match_table =3D jh7110=
+_timer_match,
+>> +=C2=A0=C2=A0=C2=A0 },
+>> +};
+>> +module_platform_driver(jh7110_timer_driver);
+>> +
+>> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu-bONrM45KWFOXmMXjJBpWqg@public.gma=
+ne.org>");
+>> +MODULE_DESCRIPTION("StarFive JH7110 timer driver");
+>> +MODULE_LICENSE("GPL");
+>=20
 
 Thanks,
-Andi
+Xingyu Wu
+
 
