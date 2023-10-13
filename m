@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-8477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E717C84D5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:47:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B319E7C84D4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:47:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17563B20954
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECE6E1C20A61
 	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E0813FF6;
-	Fri, 13 Oct 2023 11:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9CF13FFA;
+	Fri, 13 Oct 2023 11:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JiQL9f4A"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="auERhDk/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD6313AC9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E819313FF0
 	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:47:50 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFC9FBD;
-	Fri, 13 Oct 2023 04:47:48 -0700 (PDT)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EFBBE;
+	Fri, 13 Oct 2023 04:47:49 -0700 (PDT)
 Received: from obbardc-t14.home (unknown [IPv6:2a00:23c8:b70a:ae01:c2e1:3bb7:ed5c:6a0d])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: obbardc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 2144A6607357;
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id A2AC1660735A;
 	Fri, 13 Oct 2023 12:47:47 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1697197667;
-	bh=qnEq8Sp9V5HwTo+4/aFGw2RoRPviwf6K6ml/tXqx2No=;
-	h=From:To:Cc:Subject:Date:From;
-	b=JiQL9f4Ayn30azENa7+igcoAIQ8NfZVhzBwjA7B8zBOpHkw9R8ycMAMRXIWUYryBg
-	 VRBJ0ZOJtlCJ6kUaCmoVLgZaQiSPluFz7xJ35xZRN2t75JRsHHxLl3s+mj0eIDhxfn
-	 emLlFw+8Jc08eZnnb4vLxWhAj7aPYPNrzL2m5ZPgTBgCcnWUgyco0iszgf5QKUCHOp
-	 6+7l+LDfaaOlOZd5U5ZW3yI63AS2dTrvUi/BklPTjSL9QA/Jbx4NyawVidQlJs3GdG
-	 akgQJL1VjiHa35R+2KxAaeUUXUWRkht6v0K6M6GXzStP/+6gIwgpu+wbletEp4Pp8C
-	 TWiFjyZcNFl/w==
+	bh=7wBhq8J/K/1bY+rvYJYJn0dZJWPNRTfsi3k23DiS4JQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=auERhDk/wHm2olVXfZGaBS+q8f0ICzVsMWGOl9LcOlyjS57+Jb/4c2IDhiOxPygoW
+	 CWvBv3s7DV+bskN7fNyogAYvIn3RYndPReHhslD84IAO7P5A3aH22BgZB0ZQIhZoOc
+	 TD+nfHK/evLVd7o3yflCbfuUALEFcMPTI+9y6oBk2zKicEmiNJ6ISYTE/E0rK78k+S
+	 1jOT+e29BeOLL5zqBoquBPwyzDOWVfO2OCTpRDO3Ru0kqDvxe+pX4u9mBr+dxTdVts
+	 erM4OfVptiTR+Y2Y3rnLGYnoSQcaeAV2/Qm174hNNXTDtVFeUezgliteiAo4JM88UZ
+	 1yMSKDJABKlvw==
 From: Christopher Obbard <chris.obbard@collabora.com>
 To: linux-rockchip@lists.infradead.org
 Cc: kernel@collabora.com,
@@ -49,22 +49,21 @@ Cc: kernel@collabora.com,
 	Caleb Connolly <kc@postmarketos.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Corentin Labbe <clabbe@baylibre.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
 	Heiko Stuebner <heiko@sntech.de>,
-	Jagan Teki <jagan@amarulasolutions.com>,
 	Johan Jonker <jbx6244@gmail.com>,
 	Judy Hsiao <judyhsiao@chromium.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Yogesh Hegde <yogi.kernel@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/2] Fix i2s0 pin conflict on ROCK Pi 4 RK3399 boards
-Date: Fri, 13 Oct 2023 12:47:25 +0100
-Message-ID: <20231013114737.494410-1-chris.obbard@collabora.com>
+Subject: [PATCH v1 1/2] arm64: dts: rockchip: Add i2s0-2ch-bus-bclk-off pins to RK3399
+Date: Fri, 13 Oct 2023 12:47:26 +0100
+Message-ID: <20231013114737.494410-2-chris.obbard@collabora.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231013114737.494410-1-chris.obbard@collabora.com>
+References: <20231013114737.494410-1-chris.obbard@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,32 +77,43 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-i2s0 fails to probe on my Radxa ROCK 4SE and ROCK Pi 4B boards with:
+Commit 0efaf8078393 ("arm64: dts: rockchip: add i2s0-2ch-bus pins on
+rk3399") introduced a pinctl for i2s0 in two-channel mode. Commit
+91419ae0420f ("arm64: dts: rockchip: use BCLK to GPIO switch on rk3399")
+modified i2s0 to switch the corresponding pins off when idle.
 
-    rockchip-pinctrl pinctrl: pin gpio3-29 already requested by leds; cannot claim for ff880000.i2s
-    rockchip-pinctrl pinctrl: pin-125 (ff880000.i2s) status -22
-    rockchip-pinctrl pinctrl: could not request pin 125 (gpio3-29) from group i2s0-8ch-bus-bclk-off  on device rockchip-pinctrl
-    rockchip-i2s ff880000.i2s: Error applying setting, reverse things back
-    rockchip-i2s ff880000.i2s: bclk disable failed -22
+Although an idle pinctrl node was added for i2s0 in 8-channel mode, a
+similar idle pinctrl node for i2s0 in 2-channel mode was not added. Add
+it.
 
-This is due to the pinctl attempting to request a GPIO which the boards
-use for a different function.
+Fixes: 91419ae0420f ("arm64: dts: rockchip: use BCLK to GPIO switch on rk3399")
+Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+---
 
-The first patch adds a missing pinctl node i2s0_2ch_bus_bclk_off to the
-RK3399 devicetree.
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-The second patch sets the i2s0 pinctrl to use the new node when idle and
-fixes the issue.
-
-
-Christopher Obbard (2):
-  arm64: dts: rockchip: Add i2s0-2ch-bus-bclk-off pins to RK3399
-  arm64: dts: rockchip: Fix i2s0 pin conflict on ROCK Pi 4 boards
-
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi |  1 +
- arch/arm64/boot/dts/rockchip/rk3399.dtsi           | 10 ++++++++++
- 2 files changed, 11 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 9da0b6d77c8d2..5bc2d4faeea6d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -2457,6 +2457,16 @@ i2s0_2ch_bus: i2s0-2ch-bus {
+ 					<4 RK_PA0 1 &pcfg_pull_none>;
+ 			};
+ 
++			i2s0_2ch_bus_bclk_off: i2s0-2ch-bus-bclk-off {
++				rockchip,pins =
++					<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>,
++					<3 RK_PD1 1 &pcfg_pull_none>,
++					<3 RK_PD2 1 &pcfg_pull_none>,
++					<3 RK_PD3 1 &pcfg_pull_none>,
++					<3 RK_PD7 1 &pcfg_pull_none>,
++					<4 RK_PA0 1 &pcfg_pull_none>;
++			};
++
+ 			i2s0_8ch_bus: i2s0-8ch-bus {
+ 				rockchip,pins =
+ 					<3 RK_PD0 1 &pcfg_pull_none>,
 -- 
 2.42.0
 
