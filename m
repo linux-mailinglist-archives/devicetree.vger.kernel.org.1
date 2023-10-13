@@ -1,152 +1,164 @@
-Return-Path: <devicetree+bounces-8472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58A77C849B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:38:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518A67C84AF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65841B20C07
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:38:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5D0EB20977
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42EB71400A;
-	Fri, 13 Oct 2023 11:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E27A13AEA;
+	Fri, 13 Oct 2023 11:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="p7vYmdxC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J4PGRdrK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75A913FFF
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:38:16 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794C0FA
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 04:38:12 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-53e3b8f906fso1123602a12.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 04:38:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C833C13FED
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:40:48 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD107B7;
+	Fri, 13 Oct 2023 04:40:46 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so6505692a12.1;
+        Fri, 13 Oct 2023 04:40:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1697197090; x=1697801890; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wBM6ErArjaeuBbIlwBAlMfcfi+6e43gtVVtakkQbEgY=;
-        b=p7vYmdxCDJGkllT9nIQpuTbdSATNpXhRuP+D0NJRF2lA8r9fgZ6sgKSEhTKCXgcDHb
-         q8eFjPLVdi902nGBPF/+eO8Gmj7fyc+n4fiTfLOm9oXrPCimFdCbKnqu8WrTgPUDRKZ8
-         CjDP6gvStlblsBRAxzBXRmjzoJQ4n6paZGAq42p9d35DcDBEEkTy0vcM8zRsF3m9K8Z0
-         Zg15AeKOZYaWV4qAoXw+OLEHRuvdoUQr17iRArCTI+y5MmnDJIWGOnnMn8XatkbR20BP
-         g2XFtQCImTK/fMqWEP7fXfIq4CUHbKhadvmF7zmOI/kkCS/yQnsE/fLpmk6uaMQgVb1k
-         pGUw==
+        d=gmail.com; s=20230601; t=1697197245; x=1697802045; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mH4tRv4+dZr4M5iR8AWhdg07jhklJyUHM7PsxthvZxU=;
+        b=J4PGRdrKCKcqudNRCfRPHTrecxSEEGoMaPAy/mIf7Qxi+oCrkGkJ+Tcll0S6cY2h4z
+         eSj4XmlNsY/WGUvs7DfA/3NykWwljbsZCdUgseHiIazTfcNAbNG/BTyMH/5UxMR5KX5o
+         gcUmhZlWhQwHmTtKjriUurWLFKR4IubJkqwHUUcJXIw8olxZGRgPOxKJFi7iCoIDc1Y/
+         VfyXhfhyimaM/360TRMablwAVZsIJdB4w79Oyw4aW++/8ZZT4ylrjC5XMB9qjB2EjgSC
+         cp+VU/Z5upumAMbGX6IQ7vvApZdOQhSnh7Mr6cVRzj/Ox4iFGTtCm/gzoM/VNoe9bQ1v
+         xFiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697197090; x=1697801890;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1697197245; x=1697802045;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wBM6ErArjaeuBbIlwBAlMfcfi+6e43gtVVtakkQbEgY=;
-        b=UA+uuD97K60V9SwtH9ajUFas66ML/4zm4Qhgm+X7/NIAjzPpg1J9aDqu7QHP6J37bv
-         3YfkhoDZqs+K2mKo59dcpSp8CEfEvhMpH7Hgq2ghJGqeajlFVR4fckaUnLkg2Xs2ETuk
-         OfWUCxY9vpGFjWkI6TadiYeAec8COk2lA4b06VYvqpWcApVlBf2HLmnpsbY0RpZkWaOX
-         JaojEMjzKLkYwPgaQ7uCVdXG/OMmTqNW6F7J23dowtBtx8EM1AP8jMLX1df5r72mLRD6
-         at+oyNoRvZAWBaFvJ930NGAHNrQ02CUH4WIN8D2K5JERvUEA8KjIU9TmolbKeCLoDmYa
-         xoKw==
-X-Gm-Message-State: AOJu0Yytqi9II6YtXdog1/FYVOOzKzG8agPxwZlQJ/jt4xsoL5GWxYri
-	YchCLyh5lkFW6CofFm11qaWMqw0gGP/l8BjyL1NiBw==
-X-Google-Smtp-Source: AGHT+IFIQuOTBqkA/VtH+UNyX6Cij89eBw9xBU+Q+5BAlaKmA2QqSgfIirC7HlPFaFtT4FrqCHvdDg==
-X-Received: by 2002:a05:6402:524b:b0:53e:2409:d6f3 with SMTP id t11-20020a056402524b00b0053e2409d6f3mr693039edd.6.1697197090667;
-        Fri, 13 Oct 2023 04:38:10 -0700 (PDT)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id v18-20020aa7d652000000b00533dad8a9c5sm11360772edr.38.2023.10.13.04.38.09
+        bh=mH4tRv4+dZr4M5iR8AWhdg07jhklJyUHM7PsxthvZxU=;
+        b=k4u9ycTfRogK+jxbZTZjU9VnToUgnOXqVtAY4ko9tiHQ6m2wSOmsKDTQ/KVr9PGhRF
+         uPRzqaT/m/+fm3Mevxqp0pEO3QKvf9qOrSTLP0eVb0GrzN5RxbNiBtMgvIZZVpd4q+3N
+         TkjkIRh2iwmTmb9kuerQQpAz3tdxHphMCs6m0BXBY6+bezfeMaYN7Bbdd2x5xMBVqzJE
+         Wv+mgmur0fF64OAhqYDKc9TUxpsTbG+sbFWRFC6Jgkof525o0gRoXyMD2XDokTUfnyub
+         UUUuPhrY4xuLjfVz/TM4UeMr/MUe6MJUL2xT4b5tfRdS5vGUQKPtKkCF0CYBV639HWfk
+         9FVA==
+X-Gm-Message-State: AOJu0YxS5hL/fkiDXEgDbaplheH/hE6WaxqA/znLtn/hYwK/B/XY3gj9
+	Ouz/EsJx1dBI35j5YBnuj7c=
+X-Google-Smtp-Source: AGHT+IEUKKrj+yWWt0k1ic4SMvRZQ3sKRrfjY9N2UXsvbFceieqAee1KOZsE/sjmr/6DlTtZcPEKDg==
+X-Received: by 2002:a05:6402:40c1:b0:527:1855:be59 with SMTP id z1-20020a05640240c100b005271855be59mr20152782edb.3.1697197245072;
+        Fri, 13 Oct 2023 04:40:45 -0700 (PDT)
+Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id v3-20020a056402174300b0053e3839fc79sm916698edx.96.2023.10.13.04.40.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 04:38:10 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 13 Oct 2023 13:38:07 +0200
-Subject: [PATCH 3/3] dt-bindings: usb: fsa4480: Add compatible for OCP96011
+        Fri, 13 Oct 2023 04:40:44 -0700 (PDT)
+Date: Fri, 13 Oct 2023 13:40:42 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 04/13] thermal: tegra: Use driver-private data
+ consistently
+Message-ID: <ZSksuix4Imy2zonN@orome.fritz.box>
+References: <20231012175836.3408077-1-thierry.reding@gmail.com>
+ <20231012175836.3408077-5-thierry.reding@gmail.com>
+ <24073646-373e-452d-94b6-3d91101ac5e2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231013-fsa4480-swap-v1-3-b877f62046cc@fairphone.com>
-References: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
-In-Reply-To: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.12.3
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="esywz0M3I1a4TjD0"
+Content-Disposition: inline
+In-Reply-To: <24073646-373e-452d-94b6-3d91101ac5e2@linaro.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Orient-Chip OCP96011 is generally compatible with the FSA4480, add a
-compatible for it with the fallback on fsa4480.
 
-However the AUX/SBU connections are expected to be swapped compared to
-FSA4480, so document this in the data-lanes description.
+--esywz0M3I1a4TjD0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+On Fri, Oct 13, 2023 at 10:04:33AM +0200, Daniel Lezcano wrote:
+> On 12/10/2023 19:58, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Instead of passing around platform and plain devices and figuring out
+> > the driver-private data within each helper, directly pass around the
+> > driver-private data when it's available.
+> >=20
+> > Also store a pointer to the parent device in the main driver-private
+> > data structure for easier access.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+>=20
+> [ ... ]
+>=20
+> > -static void soctherm_debug_init(struct platform_device *pdev)
+> > +static void soctherm_debug_init(struct tegra_soctherm *tegra)
+> >   {
+> > -	struct tegra_soctherm *tegra =3D platform_get_drvdata(pdev);
+> >   	struct dentry *root;
+> >   	root =3D debugfs_create_dir("soctherm", NULL);
+> >   	tegra->debugfs_dir =3D root;
+> > -	debugfs_create_file("reg_contents", 0644, root, pdev, &regs_fops);
+> > +	debugfs_create_file("reg_contents", 0644, root, tegra, &regs_fops);
+>=20
+> (Orthogonal to this series) : in case you are not aware of it there is the
+> debugfs_create_regset32() function. That may make go away a bunch of code
+> related to the debugfs code here.
+>=20
+> cf. https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tre=
+e/drivers/thermal/mediatek/lvts_thermal.c?h=3Dthermal/bleeding-edge#n159
 
-diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-index 86f6d633c2fb..f9410eb76a62 100644
---- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-+++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-@@ -11,8 +11,12 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - fcs,fsa4480
-+    oneOf:
-+      - const: fcs,fsa4480
-+      - items:
-+          - enum:
-+              - ocs,ocp96011
-+          - const: fcs,fsa4480
- 
-   reg:
-     maxItems: 1
-@@ -53,16 +57,22 @@ properties:
-                   - const: 0
-                   - const: 1
-                 description: |
--                  Default AUX/SBU layout
-+                  Default AUX/SBU layout (FSA4480)
-                   - AUX+ connected to SBU2
-                   - AUX- connected to SBU1
-+                  Default AUX/SBU layout (OCP96011)
-+                  - AUX+ connected to SBU1
-+                  - AUX- connected to SBU2
-               - items:
-                   - const: 1
-                   - const: 0
-                 description: |
--                  Swapped AUX/SBU layout
-+                  Swapped AUX/SBU layout (FSA4480)
-                   - AUX+ connected to SBU1
-                   - AUX- connected to SBU2
-+                  Swapped AUX/SBU layout (OCP96011)
-+                  - AUX+ connected to SBU2
-+                  - AUX- connected to SBU1
- 
- required:
-   - compatible
+Doesn't look like we could 1:1 transition to that because a bunch of the
+output is parameterized on some per-SoC variables, but it might be
+possible to rework the whole debugfs interfaces and split it up into
+multiple directories and files, much like LVTS does this. That's going
+to be quite a bit of work, but I can add it to my TODO list to look at
+when I get some spare time.
 
--- 
-2.42.0
+Thierry
 
+--esywz0M3I1a4TjD0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUpLLoACgkQ3SOs138+
+s6GY3RAAwVtMi2CkaD1HK7reJ2BEu/fUIm+/GXGamvccsDnDcoWUa+qiaHz1TnU+
+bt2tPh1qqcF+d28iThxflAFDWsEPzYa4E0YSp+OnFjDeyuXS3jEvq+9fem8VwL0c
+sPx6haZ4aun6NVW0XrJwSjfBlDIkrHCY7mbNG2pWY0GznWR2bNnWcfc5VCbvQa8U
+OyBAeF8UOHZ8Vj2GCpDRhiK25NLaXtLmTO38fDMHO2TMI8QHVw+wSYmc5vzGjJrs
+NKtKEDfpNpfS+hrlSq6Nv5WqrY3xdaJJL1jmuwM406xZ2guQfaafZjhwDRViJQBJ
+EhYASoE7giyw6v5ZM4dfk5NeQC9OlWDWcAVgB66jlZpE28NrE7XV6obwqpK2U5LE
+HAKWkSoJYYFD0t9/EAaKWRyaPlzOW9eYSxNuCnO5DRhz7iesqIVlZXHtCMWdLm7n
+WpyTk7WJWtUzyTKB5UIt7yR6InXNm83Xfqa6aqjSWCD1V5rEyozAxN8po7JgpP+k
+Y2IWGCXjfKhSeR6tPPFB9d8uEazePKPuBhHqwNgk5XjmGmlSEDV1wCKF7bKtwRGH
+0B7eF7hfPzDlmwb1RdWcejh0xAEjx0cp0Lglic+dCCfWZAmbGFRSNxpsfz1/P0dl
+Rcwco02sHxqs8XFR/QH52J8YEu0djT5JnLwpLbbL4lhEehMEFEc=
+=Uxnh
+-----END PGP SIGNATURE-----
+
+--esywz0M3I1a4TjD0--
 
