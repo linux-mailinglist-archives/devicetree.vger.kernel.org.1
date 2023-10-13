@@ -1,241 +1,592 @@
-Return-Path: <devicetree+bounces-8512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106BD7C873F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:56:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59387C8761
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:05:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 835C0B208CC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:56:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8BA51C20E52
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7532918025;
-	Fri, 13 Oct 2023 13:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F19B18E17;
+	Fri, 13 Oct 2023 14:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K7n320w6"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X9v4W59l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95879168AF
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:55:57 +0000 (UTC)
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D813095;
-	Fri, 13 Oct 2023 06:55:55 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c4e7951dddso1370027a34.1;
-        Fri, 13 Oct 2023 06:55:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697205355; x=1697810155; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q/LdPWVeMaQ2t1D7LtdC/Cr9HnftA6vjOPV9Z68q6dU=;
-        b=K7n320w6Nw6aP28wALnjKoI+vPS9E+hM+qs3Uh7jiITfw1vO3GVvks3COldKHMcLNT
-         9J0yeiT5JQtrFilo19vR+BMGDt3CRy4SeK0esiajRnjkBFOqPz24QJ/VCSzJRCcFGk1s
-         Qp3C2gcMbiQpJHnXKXjH895YB3QvE+HM1BrlbDoXVfvcttn6F8p19uJWAfrIt1RGWmH2
-         erV0qmokezn5/TIF+pcbMYb7EN5WnOK3GL6TwYQ+nw1GQTHJu4TG/+Kj87m1rL3CrjKK
-         V2dVEpLnU9MpDXRj4/b4wpBGfOnC9hnmO2HaS9mY1JQ8qm3eNwpwZ5RJ6VrVm+4httI/
-         dk7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697205355; x=1697810155;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q/LdPWVeMaQ2t1D7LtdC/Cr9HnftA6vjOPV9Z68q6dU=;
-        b=P2Cp0G8lVFfwDHBXJbqEcS1ySKyK9ktEUYgyZzePRPrOwZS7UXpilvTP1PQ0ZdamsK
-         IF5jSHLfB7xBUCU0VUKDKt35Vpuf8d1jkjabnFrYSXK4TSZATrbVqJEUliWS7oW/tc7W
-         sc48LfAJQnsn2EnoHtqqkaIdLo+XmmkB7lnLzzfmAI4aIijQCuO4dFq+sg92mb6gh+7q
-         l5Q/3I42Rb2kMIdse6727Yb+7+TmAgJcKvcCAbNyNo7KzHNg2r7pYWWZ0jp1kfganXQQ
-         Zgyk7y6JhOB+OEH3eMP82zrzrSqc82BnaqvT4JxJ2yIbLtZyhH5bVMVzjqQGUfYqgJXf
-         ZsJA==
-X-Gm-Message-State: AOJu0YxGGHKMDXpn0EmGlb7FPPxA69Xx5978/oBbObafd/8ZMm8UIB25
-	r3Qrng/Z/iy9FuNKfqQAEs3d60pOF7jVCSa/4qM=
-X-Google-Smtp-Source: AGHT+IFRlclhywjPn0HvY1oqtDeoehgE37SdItvITL8PpwFIhF29C/xufA9c+JlchpxpFusATF0LXWkj9SRwUPB4Hn8=
-X-Received: by 2002:a9d:6396:0:b0:6c4:897a:31c4 with SMTP id
- w22-20020a9d6396000000b006c4897a31c4mr28350960otk.29.1697205355090; Fri, 13
- Oct 2023 06:55:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5F8EAEB
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 14:05:18 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8214DBD;
+	Fri, 13 Oct 2023 07:05:14 -0700 (PDT)
+Received: from eugen-station.. (unknown [82.76.24.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 54BC5660735A;
+	Fri, 13 Oct 2023 15:05:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697205912;
+	bh=DEcH45o9zrSL2UumAizSs/lmKGnHAYdWLoYl4CEo2JE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=X9v4W59lH62TAHiHmSSlgOhd4chuB8spqpaC10ra2iqv+F9IqtHvfA6CoCq0gFPnL
+	 a4Y2NxiEUdgw+yl8GSjWFluBh/kF+NdHCEbxaocKTI8Cc2WkFqfbDDNNomQ/xigsVl
+	 zMq0m6GAej085YO6S47SyEPwMsORHV+Y+Ip7ayBsuWd6lLu5BpAgU9B4PeP+mEv2mM
+	 ExxbxtDAHs0+0KJak84pUi8EHmOfobfAuM14kEsNszuFnA5fqCSvETDM7RTDXruaxQ
+	 WILNNEQ3oRzks87mrC/FBbspZEUOIDNPh56VLufAPzIHSJKDfZiXOX71kZRH/4qHT1
+	 IS4kCL2kEpUIw==
+From: Eugen Hristev <eugen.hristev@collabora.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Cc: conor+dt@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	Eugen Hristev <eugen.hristev@collabora.com>
+Subject: [PATCH v5] dt-bindings: arm: mediatek: convert audsys and mt2701-afe-pcm to yaml
+Date: Fri, 13 Oct 2023 17:05:05 +0300
+Message-Id: <20231013140505.483766-1-eugen.hristev@collabora.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231012175836.3408077-1-thierry.reding@gmail.com>
- <CABr+WTkT4LSYrMPVpxYO4VT87xoFA98qA9wFQMwoO4b4J8gF3g@mail.gmail.com>
- <ZSktVaje_h2Hiyy6@orome.fritz.box> <CABr+WTk9EGqVQ3_5579RmLVvOZj_NzNN3U8JMbyrQze5-9Wx8A@mail.gmail.com>
- <ZSlCjptcuIvVHuuM@orome.fritz.box>
-In-Reply-To: <ZSlCjptcuIvVHuuM@orome.fritz.box>
-From: Nicolas Chauvet <kwizart@gmail.com>
-Date: Fri, 13 Oct 2023 15:55:43 +0200
-Message-ID: <CABr+WTnP-JencnDt-u9emuc7knm1LSNDS5VRf-X9sZzQ0jrs1w@mail.gmail.com>
-Subject: Re: [PATCH v2 00/13] thermal: tegra: Do not register cooling device
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Le ven. 13 oct. 2023 =C3=A0 15:13, Thierry Reding
-<thierry.reding@gmail.com> a =C3=A9crit :
->
-> On Fri, Oct 13, 2023 at 02:45:57PM +0200, Nicolas Chauvet wrote:
-> > Le ven. 13 oct. 2023 =C3=A0 13:43, Thierry Reding
-> > <thierry.reding@gmail.com> a =C3=A9crit :
-> > >
-> > > On Fri, Oct 13, 2023 at 11:14:25AM +0200, Nicolas Chauvet wrote:
-> > > > Le jeu. 12 oct. 2023 =C3=A0 19:58, Thierry Reding
-> > > > <thierry.reding@gmail.com> a =C3=A9crit :
-> > > > >
-> > > > > From: Thierry Reding <treding@nvidia.com>
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > this set of patches removes the registration of the SOCTHERM inte=
-rnal
-> > > > > throttling mechanism as cooling device. Since this throttling sta=
-rts
-> > > > > automatically once a certain temperature threshold is crossed, it
-> > > > > doesn't make sense to represent it as a cooling device, which are
-> > > > > typically "manually" activated by the thermal framework when ther=
-mal
-> > > > > sensors report temperature thresholds being crossed.
-> > > > >
-> > > > > Instead of using the cooling device mechanism, this statically pr=
-ograms
-> > > > > the throttling mechanism when it is configured in device tree. In=
- order
-> > > > > to do this, an additional device tree property is needed to repla=
-ce the
-> > > > > information that was previously contained in trip points.
-> > > > >
-> > > > > There's a few preparatory patches to make the removal a bit simpl=
-er and
-> > > > > also some follow up cleanups included as well.
-> > > > >
-> > > > > Changes in v2:
-> > > > > - rework the device tree bindings:
-> > > > >   - add nvidia,thermal-zones property to attach throttling to zon=
-es
-> > > > >   - use -millicelsius suffix and add hysteresis
-> > > > > - add patch to store thermal zone device tree node for later use
-> > > > > - add patch to enforce self-encapsulation of the thermal core now=
- that
-> > > > >   no drivers need to reach into it anymore
-> > > > >
-> > > > > This applies on top of Daniel's self-encapsulation hardening seri=
-es:
-> > > > >
-> > > > >         https://lore.kernel.org/all/20231012102700.2858952-1-dani=
-el.lezcano@linaro.org/
-> > > > >
-> > > > > Thierry
-> > > > >
-> > > > > Thierry Reding (13):
-> > > > >   thermal: Store device tree node for thermal zone devices
-> > > > >   dt-bindings: thermal: tegra: Document throttle temperature
-> > > > >   dt-bindings: thermal: tegra: Add nvidia,thermal-zones property
-> > > > >   thermal: tegra: Use driver-private data consistently
-> > > > >   thermal: tegra: Constify SoC-specific data
-> > > > >   thermal: tegra: Do not register cooling device
-> > > > >   thermal: tegra: Use unsigned int where appropriate
-> > > > >   thermal: tegra: Avoid over-allocation of temporary array
-> > > > >   thermal: tegra: Remove gratuitous error assignment
-> > > > >   thermal: tegra: Minor stylistic cleanups
-> > > > >   ARM: tegra: Rework SOCTHERM on Tegra124
-> > > > >   arm64: tegra: Rework SOCTHERM on Tegra132 and Tegra210
-> > > > >   thermal: Enforce self-encapsulation
-> > > > >
-> > > > >  .../thermal/nvidia,tegra124-soctherm.yaml     |  19 +
-> > > > >  arch/arm/boot/dts/nvidia/tegra124.dtsi        |  68 +--
-> > > > >  arch/arm64/boot/dts/nvidia/tegra132.dtsi      |  66 +--
-> > > > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  86 +--
-> > > > >  drivers/thermal/tegra/soctherm.c              | 525 ++++++++----=
-------
-> > > > >  drivers/thermal/tegra/soctherm.h              |   1 +
-> > > > >  drivers/thermal/tegra/tegra124-soctherm.c     |   4 +
-> > > > >  drivers/thermal/tegra/tegra132-soctherm.c     |   4 +
-> > > > >  drivers/thermal/tegra/tegra210-soctherm.c     |   4 +
-> > > > >  drivers/thermal/thermal_core.h                |   2 +-
-> > > > >  drivers/thermal/thermal_of.c                  |   3 +
-> > > > >  11 files changed, 329 insertions(+), 453 deletions(-)
-> > > > >
-> > > > > --
-> > > > > 2.42.0
-> > > > >
-> > > >
-> > > > I'm still experiencing the following message on jetson-tx1 with thi=
-s
-> > > > serie applied on top of 6.6-rc5 (with iommu-next and tegra-next
-> > > > applied).
-> > > > oct. 13 10:53:16 jetson-tx1 kernel: max77620-thermal max77620-therm=
-al:
-> > > > Failed to register thermal zone: -19
-> > >
-> > > Not sure about this one. I don't think I've seen it. Do you know if
-> > > that's somehow caused by this series, or is it preexisting?
-> >
-> > It's pre-existing from this serie.
-> >
-> > > > oct. 13 10:53:16 jetson-tx1 kernel: tegra_soctherm
-> > > > 700e2000.thermal-sensor: throttle-cfg: heavy: no throt prop or inva=
-lid
-> > > > prop
-> > > >
-> > > > Is this expected ?
-> > >
-> > > This one is definitely not expected. I have seen this before, and it
-> > > happens when the device tree doesn't contain all the properties that =
-are
-> > > expected. Patch 12 in this series should take care of that. Have you
-> > > made sure that that's been applied and is what the kernel uses to boo=
-t
-> > > with?
-> >
-> > Yes, this dtb change in patch12 is propagated to the device (as seen
-> > in /boot/dtbs)
-> > But comparing with what's available at runtime in /proc/device-tree, I
-> > see some changes
-> >
-> >                         heavy {
-> > -                               hysteresis-millicelsius =3D <0xfa0>;
-> > +                               #cooling-cells =3D <0x02>;
-> >                                 nvidia,cpu-throt-percent =3D <0x55>;
-> >                                 nvidia,gpu-throt-level =3D <0x03>;
-> >                                 nvidia,priority =3D <0x64>;
-> > -                               nvidia,thermal-zones =3D <0x49 0x4a>;
-> > -                               temperature-millicelsius =3D <0x180c4>;
-> > +                               phandle =3D <0x130>;
-> >                         };
->
-> Okay, that explains the error message.
->
-> >
-> > I'm using u-boot 2023.07 with EFI boot (L4T 32.7.4).
-> > Could it be that the bootloader has changed these entries ? Can this
-> > be prevented ?
->
-> I'm not aware of anything in the bootloader that would do this. Some
-> versions of U-Boot that ships with L4T can copy certain nodes in DTB but
-> I have never seen anything that would've touched thermal.
->
-> Is it possible that you're not loading the DTB and end up receiving one
-> from UEFI or cboot?
-Seems like it: a previous copy was in /boot/dts that took over /boot/dtbs.
-With updated dtb, the warning disappeared.
+Convert the mediatek,audsys binding to YAML, together with the associated
+binding bindings/sound/mt2701-afe-pcm.yaml .
 
-Only remaining error is: kernel: max77620-thermal max77620-thermal:
-Failed to register thermal zone: -19
+Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+---
+Changes in v5:
+- removed example for mt2701-audio
+- renamed mt2701-afe-pcm to mt2701-audio
+- added clock cells as required, removed reg from required, in audsys binding
+- removed reference comment in mt2701-audio
+- removed assigned clocks from mt2701-audio
 
-Thanks
+Changes in v4:
+- fix error reported by Rob's bot : 
+./Documentation/devicetree/bindings/sound/mt2701-afe-pcm.yaml:11:4: [error] missing starting space in comment (comments)
+
+Changes in v3:
+- not added Rb Conor Dooley since the patch was changed in a big essence
+- As per review by Krzysztof, also convert the mt2701-afe-pcm and reference
+the correct schema in the audsys binding.
+
+Changes in v2:
+- remove comment reference to inexistent binding
+
+
+ .../bindings/arm/mediatek/mediatek,audsys.txt |  39 -----
+ .../arm/mediatek/mediatek,audsys.yaml         | 153 ++++++++++++++++++
+ .../bindings/sound/mt2701-afe-pcm.txt         | 146 -----------------
+ .../bindings/sound/mt2701-audio.yaml          | 117 ++++++++++++++
+ 4 files changed, 270 insertions(+), 185 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/mt2701-audio.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+deleted file mode 100644
+index 699776be1dd3..000000000000
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-MediaTek AUDSYS controller
+-============================
+-
+-The MediaTek AUDSYS controller provides various clocks to the system.
+-
+-Required Properties:
+-
+-- compatible: Should be one of:
+-	- "mediatek,mt2701-audsys", "syscon"
+-	- "mediatek,mt6765-audsys", "syscon"
+-	- "mediatek,mt6779-audio", "syscon"
+-	- "mediatek,mt7622-audsys", "syscon"
+-	- "mediatek,mt7623-audsys", "mediatek,mt2701-audsys", "syscon"
+-	- "mediatek,mt8167-audiosys", "syscon"
+-	- "mediatek,mt8183-audiosys", "syscon"
+-	- "mediatek,mt8192-audsys", "syscon"
+-	- "mediatek,mt8516-audsys", "syscon"
+-- #clock-cells: Must be 1
+-
+-The AUDSYS controller uses the common clk binding from
+-Documentation/devicetree/bindings/clock/clock-bindings.txt
+-The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+-
+-Required sub-nodes:
+--------
+-For common binding part and usage, refer to
+-../sonud/mt2701-afe-pcm.txt.
+-
+-Example:
+-
+-	audsys: clock-controller@11220000 {
+-		compatible = "mediatek,mt7622-audsys", "syscon";
+-		reg = <0 0x11220000 0 0x2000>;
+-		#clock-cells = <1>;
+-
+-		afe: audio-controller {
+-			...
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
+new file mode 100644
+index 000000000000..eb0266c4b0bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
+@@ -0,0 +1,153 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek AUDSYS controller
++
++maintainers:
++  - Eugen Hristev <eugen.hristev@collabora.com>
++
++description:
++  The MediaTek AUDSYS controller provides various clocks to the system.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt2701-audsys
++              - mediatek,mt6765-audsys
++              - mediatek,mt6779-audsys
++              - mediatek,mt7622-audsys
++              - mediatek,mt8167-audsys
++              - mediatek,mt8173-audsys
++              - mediatek,mt8183-audsys
++              - mediatek,mt8186-audsys
++              - mediatek,mt8192-audsys
++              - mediatek,mt8516-audsys
++          - const: syscon
++      - items:
++          # Special case for mt7623 for backward compatibility
++          - const: mediatek,mt7623-audsys
++          - const: mediatek,mt2701-audsys
++          - const: syscon
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  audio-controller:
++    $ref: /schemas/sound/mt2701-audio.yaml#
++    type: object
++
++required:
++  - compatible
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/power/mt2701-power.h>
++    #include <dt-bindings/clock/mt2701-clk.h>
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        audsys: clock-controller@11220000 {
++            compatible = "mediatek,mt7622-audsys", "syscon";
++            reg = <0 0x11220000 0 0x2000>;
++            #clock-cells = <1>;
++
++            afe: audio-controller {
++                compatible = "mediatek,mt2701-audio";
++                interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
++                             <GIC_SPI 132 IRQ_TYPE_LEVEL_LOW>;
++                interrupt-names = "afe", "asys";
++                power-domains = <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
++
++                clocks = <&infracfg CLK_INFRA_AUDIO>,
++                         <&topckgen CLK_TOP_AUD_MUX1_SEL>,
++                         <&topckgen CLK_TOP_AUD_MUX2_SEL>,
++                         <&topckgen CLK_TOP_AUD_48K_TIMING>,
++                         <&topckgen CLK_TOP_AUD_44K_TIMING>,
++                         <&topckgen CLK_TOP_AUD_K1_SRC_SEL>,
++                         <&topckgen CLK_TOP_AUD_K2_SRC_SEL>,
++                         <&topckgen CLK_TOP_AUD_K3_SRC_SEL>,
++                         <&topckgen CLK_TOP_AUD_K4_SRC_SEL>,
++                         <&topckgen CLK_TOP_AUD_K1_SRC_DIV>,
++                         <&topckgen CLK_TOP_AUD_K2_SRC_DIV>,
++                         <&topckgen CLK_TOP_AUD_K3_SRC_DIV>,
++                         <&topckgen CLK_TOP_AUD_K4_SRC_DIV>,
++                         <&topckgen CLK_TOP_AUD_I2S1_MCLK>,
++                         <&topckgen CLK_TOP_AUD_I2S2_MCLK>,
++                         <&topckgen CLK_TOP_AUD_I2S3_MCLK>,
++                         <&topckgen CLK_TOP_AUD_I2S4_MCLK>,
++                         <&audsys CLK_AUD_I2SO1>,
++                         <&audsys CLK_AUD_I2SO2>,
++                         <&audsys CLK_AUD_I2SO3>,
++                         <&audsys CLK_AUD_I2SO4>,
++                         <&audsys CLK_AUD_I2SIN1>,
++                         <&audsys CLK_AUD_I2SIN2>,
++                         <&audsys CLK_AUD_I2SIN3>,
++                         <&audsys CLK_AUD_I2SIN4>,
++                         <&audsys CLK_AUD_ASRCO1>,
++                         <&audsys CLK_AUD_ASRCO2>,
++                         <&audsys CLK_AUD_ASRCO3>,
++                         <&audsys CLK_AUD_ASRCO4>,
++                         <&audsys CLK_AUD_AFE>,
++                         <&audsys CLK_AUD_AFE_CONN>,
++                         <&audsys CLK_AUD_A1SYS>,
++                         <&audsys CLK_AUD_A2SYS>,
++                         <&audsys CLK_AUD_AFE_MRGIF>;
++
++                clock-names = "infra_sys_audio_clk",
++                              "top_audio_mux1_sel",
++                              "top_audio_mux2_sel",
++                              "top_audio_a1sys_hp",
++                              "top_audio_a2sys_hp",
++                              "i2s0_src_sel",
++                              "i2s1_src_sel",
++                              "i2s2_src_sel",
++                              "i2s3_src_sel",
++                              "i2s0_src_div",
++                              "i2s1_src_div",
++                              "i2s2_src_div",
++                              "i2s3_src_div",
++                              "i2s0_mclk_en",
++                              "i2s1_mclk_en",
++                              "i2s2_mclk_en",
++                              "i2s3_mclk_en",
++                              "i2so0_hop_ck",
++                              "i2so1_hop_ck",
++                              "i2so2_hop_ck",
++                              "i2so3_hop_ck",
++                              "i2si0_hop_ck",
++                              "i2si1_hop_ck",
++                              "i2si2_hop_ck",
++                              "i2si3_hop_ck",
++                              "asrc0_out_ck",
++                              "asrc1_out_ck",
++                              "asrc2_out_ck",
++                              "asrc3_out_ck",
++                              "audio_afe_pd",
++                              "audio_afe_conn_pd",
++                              "audio_a1sys_pd",
++                              "audio_a2sys_pd",
++                              "audio_mrgif_pd";
++
++                assigned-clocks = <&topckgen CLK_TOP_AUD_MUX1_SEL>,
++                                  <&topckgen CLK_TOP_AUD_MUX2_SEL>,
++                                  <&topckgen CLK_TOP_AUD_MUX1_DIV>,
++                                  <&topckgen CLK_TOP_AUD_MUX2_DIV>;
++                assigned-clock-parents = <&topckgen CLK_TOP_AUD1PLL_98M>,
++                                         <&topckgen CLK_TOP_AUD2PLL_90M>;
++                assigned-clock-rates = <0>, <0>, <49152000>, <45158400>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt b/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
+deleted file mode 100644
+index f548e6a58240..000000000000
+--- a/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
++++ /dev/null
+@@ -1,146 +0,0 @@
+-Mediatek AFE PCM controller for mt2701
+-
+-Required properties:
+-- compatible: should be one of the following.
+-	      - "mediatek,mt2701-audio"
+-	      - "mediatek,mt7622-audio"
+-- interrupts: should contain AFE and ASYS interrupts
+-- interrupt-names: should be "afe" and "asys"
+-- power-domains: should define the power domain
+-- clocks: Must contain an entry for each entry in clock-names
+-  See ../clocks/clock-bindings.txt for details
+-- clock-names: should have these clock names:
+-		"infra_sys_audio_clk",
+-		"top_audio_mux1_sel",
+-		"top_audio_mux2_sel",
+-		"top_audio_a1sys_hp",
+-		"top_audio_a2sys_hp",
+-		"i2s0_src_sel",
+-		"i2s1_src_sel",
+-		"i2s2_src_sel",
+-		"i2s3_src_sel",
+-		"i2s0_src_div",
+-		"i2s1_src_div",
+-		"i2s2_src_div",
+-		"i2s3_src_div",
+-		"i2s0_mclk_en",
+-		"i2s1_mclk_en",
+-		"i2s2_mclk_en",
+-		"i2s3_mclk_en",
+-		"i2so0_hop_ck",
+-		"i2so1_hop_ck",
+-		"i2so2_hop_ck",
+-		"i2so3_hop_ck",
+-		"i2si0_hop_ck",
+-		"i2si1_hop_ck",
+-		"i2si2_hop_ck",
+-		"i2si3_hop_ck",
+-		"asrc0_out_ck",
+-		"asrc1_out_ck",
+-		"asrc2_out_ck",
+-		"asrc3_out_ck",
+-		"audio_afe_pd",
+-		"audio_afe_conn_pd",
+-		"audio_a1sys_pd",
+-		"audio_a2sys_pd",
+-		"audio_mrgif_pd";
+-- assigned-clocks: list of input clocks and dividers for the audio system.
+-		   See ../clocks/clock-bindings.txt for details.
+-- assigned-clocks-parents: parent of input clocks of assigned clocks.
+-- assigned-clock-rates: list of clock frequencies of assigned clocks.
+-
+-Must be a subnode of MediaTek audsys device tree node.
+-See ../arm/mediatek/mediatek,audsys.txt for details about the parent node.
+-
+-Example:
+-
+-	audsys: audio-subsystem@11220000 {
+-		compatible = "mediatek,mt2701-audsys", "syscon";
+-		...
+-
+-		afe: audio-controller {
+-			compatible = "mediatek,mt2701-audio";
+-			interrupts =  <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
+-				      <GIC_SPI 132 IRQ_TYPE_LEVEL_LOW>;
+-			interrupt-names	= "afe", "asys";
+-			power-domains = <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
+-
+-			clocks = <&infracfg CLK_INFRA_AUDIO>,
+-				 <&topckgen CLK_TOP_AUD_MUX1_SEL>,
+-				 <&topckgen CLK_TOP_AUD_MUX2_SEL>,
+-				 <&topckgen CLK_TOP_AUD_48K_TIMING>,
+-				 <&topckgen CLK_TOP_AUD_44K_TIMING>,
+-				 <&topckgen CLK_TOP_AUD_K1_SRC_SEL>,
+-				 <&topckgen CLK_TOP_AUD_K2_SRC_SEL>,
+-				 <&topckgen CLK_TOP_AUD_K3_SRC_SEL>,
+-				 <&topckgen CLK_TOP_AUD_K4_SRC_SEL>,
+-				 <&topckgen CLK_TOP_AUD_K1_SRC_DIV>,
+-				 <&topckgen CLK_TOP_AUD_K2_SRC_DIV>,
+-				 <&topckgen CLK_TOP_AUD_K3_SRC_DIV>,
+-				 <&topckgen CLK_TOP_AUD_K4_SRC_DIV>,
+-				 <&topckgen CLK_TOP_AUD_I2S1_MCLK>,
+-				 <&topckgen CLK_TOP_AUD_I2S2_MCLK>,
+-				 <&topckgen CLK_TOP_AUD_I2S3_MCLK>,
+-				 <&topckgen CLK_TOP_AUD_I2S4_MCLK>,
+-				 <&audsys CLK_AUD_I2SO1>,
+-				 <&audsys CLK_AUD_I2SO2>,
+-				 <&audsys CLK_AUD_I2SO3>,
+-				 <&audsys CLK_AUD_I2SO4>,
+-				 <&audsys CLK_AUD_I2SIN1>,
+-				 <&audsys CLK_AUD_I2SIN2>,
+-				 <&audsys CLK_AUD_I2SIN3>,
+-				 <&audsys CLK_AUD_I2SIN4>,
+-				 <&audsys CLK_AUD_ASRCO1>,
+-				 <&audsys CLK_AUD_ASRCO2>,
+-				 <&audsys CLK_AUD_ASRCO3>,
+-				 <&audsys CLK_AUD_ASRCO4>,
+-				 <&audsys CLK_AUD_AFE>,
+-				 <&audsys CLK_AUD_AFE_CONN>,
+-				 <&audsys CLK_AUD_A1SYS>,
+-				 <&audsys CLK_AUD_A2SYS>,
+-				 <&audsys CLK_AUD_AFE_MRGIF>;
+-
+-			clock-names = "infra_sys_audio_clk",
+-				      "top_audio_mux1_sel",
+-				      "top_audio_mux2_sel",
+-				      "top_audio_a1sys_hp",
+-				      "top_audio_a2sys_hp",
+-				      "i2s0_src_sel",
+-				      "i2s1_src_sel",
+-				      "i2s2_src_sel",
+-				      "i2s3_src_sel",
+-				      "i2s0_src_div",
+-				      "i2s1_src_div",
+-				      "i2s2_src_div",
+-				      "i2s3_src_div",
+-				      "i2s0_mclk_en",
+-				      "i2s1_mclk_en",
+-				      "i2s2_mclk_en",
+-				      "i2s3_mclk_en",
+-				      "i2so0_hop_ck",
+-				      "i2so1_hop_ck",
+-				      "i2so2_hop_ck",
+-				      "i2so3_hop_ck",
+-				      "i2si0_hop_ck",
+-				      "i2si1_hop_ck",
+-				      "i2si2_hop_ck",
+-				      "i2si3_hop_ck",
+-				      "asrc0_out_ck",
+-				      "asrc1_out_ck",
+-				      "asrc2_out_ck",
+-				      "asrc3_out_ck",
+-				      "audio_afe_pd",
+-				      "audio_afe_conn_pd",
+-				      "audio_a1sys_pd",
+-				      "audio_a2sys_pd",
+-				      "audio_mrgif_pd";
+-
+-			assigned-clocks = <&topckgen CLK_TOP_AUD_MUX1_SEL>,
+-					  <&topckgen CLK_TOP_AUD_MUX2_SEL>,
+-					  <&topckgen CLK_TOP_AUD_MUX1_DIV>,
+-					  <&topckgen CLK_TOP_AUD_MUX2_DIV>;
+-			assigned-clock-parents = <&topckgen CLK_TOP_AUD1PLL_98M>,
+-						 <&topckgen CLK_TOP_AUD2PLL_90M>;
+-			assigned-clock-rates = <0>, <0>, <49152000>, <45158400>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/mt2701-audio.yaml b/Documentation/devicetree/bindings/sound/mt2701-audio.yaml
+new file mode 100644
+index 000000000000..5d6263be4ce8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/mt2701-audio.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/mt2701-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek Audio Front End (AFE) PCM controller for mt2701
++
++description:
++  The AFE PCM node must be a subnode of the MediaTek audsys device tree node.
++
++maintainers:
++  - Eugen Hristev <eugen.hristev@collabora.com>
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt2701-audio
++      - mediatek,mt7622-audio
++
++  interrupts:
++    items:
++      - description: AFE interrupt
++      - description: ASYS interrupt
++
++  interrupt-names:
++    items:
++      - const: afe
++      - const: asys
++
++  power-domains:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: audio infra sys clock
++      - description: top audio mux 1
++      - description: top audio mux 2
++      - description: top audio sys a1 clock
++      - description: top audio sys a2 clock
++      - description: i2s0 source selection
++      - description: i2s1 source selection
++      - description: i2s2 source selection
++      - description: i2s3 source selection
++      - description: i2s0 source divider
++      - description: i2s1 source divider
++      - description: i2s2 source divider
++      - description: i2s3 source divider
++      - description: i2s0 master clock
++      - description: i2s1 master clock
++      - description: i2s2 master clock
++      - description: i2s3 master clock
++      - description: i2so0 hopping clock
++      - description: i2so1 hopping clock
++      - description: i2so2 hopping clock
++      - description: i2so3 hopping clock
++      - description: i2si0 hopping clock
++      - description: i2si1 hopping clock
++      - description: i2si2 hopping clock
++      - description: i2si3 hopping clock
++      - description: asrc0 output clock
++      - description: asrc1 output clock
++      - description: asrc2 output clock
++      - description: asrc3 output clock
++      - description: audio front end pd clock
++      - description: audio front end conn pd clock
++      - description: top audio a1 sys pd
++      - description: top audio a2 sys pd
++      - description: audio merge interface pd
++
++  clock-names:
++    items:
++      - const: infra_sys_audio_clk
++      - const: top_audio_mux1_sel
++      - const: top_audio_mux2_sel
++      - const: top_audio_a1sys_hp
++      - const: top_audio_a2sys_hp
++      - const: i2s0_src_sel
++      - const: i2s1_src_sel
++      - const: i2s2_src_sel
++      - const: i2s3_src_sel
++      - const: i2s0_src_div
++      - const: i2s1_src_div
++      - const: i2s2_src_div
++      - const: i2s3_src_div
++      - const: i2s0_mclk_en
++      - const: i2s1_mclk_en
++      - const: i2s2_mclk_en
++      - const: i2s3_mclk_en
++      - const: i2so0_hop_ck
++      - const: i2so1_hop_ck
++      - const: i2so2_hop_ck
++      - const: i2so3_hop_ck
++      - const: i2si0_hop_ck
++      - const: i2si1_hop_ck
++      - const: i2si2_hop_ck
++      - const: i2si3_hop_ck
++      - const: asrc0_out_ck
++      - const: asrc1_out_ck
++      - const: asrc2_out_ck
++      - const: asrc3_out_ck
++      - const: audio_afe_pd
++      - const: audio_afe_conn_pd
++      - const: audio_a1sys_pd
++      - const: audio_a2sys_pd
++      - const: audio_mrgif_pd
++
++required:
++  - compatible
++  - interrupts
++  - interrupt-names
++  - power-domains
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
+-- 
+2.34.1
+
 
