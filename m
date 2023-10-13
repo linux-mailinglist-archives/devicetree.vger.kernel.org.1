@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DAF7C7DDB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:47:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE437C7DE2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 525F51C20A3D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:47:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 187241F2064D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AFB46AC;
-	Fri, 13 Oct 2023 06:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC3946AC;
+	Fri, 13 Oct 2023 06:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iQX6uc5i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t4Isnceh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6976F23CB
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:47:18 +0000 (UTC)
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4470D9
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:16 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-32d9b507b00so344583f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E30110C
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:47:56 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24635BD
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:54 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-405361bba99so17717765e9.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697179635; x=1697784435; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697179672; x=1697784472; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9zUq+Fpo8hofAyxUMN6IML8iePFOZ34qIGUiNuN117s=;
-        b=iQX6uc5i+XpoCjq+UcHJnsHzVBnB+h29hf7DagOXfGURaeqVPjv9YZFmqPochake6r
-         goSy9sNcl8rm+Z/TVcf5W5yERyELbHDvgCZCZj/xvnOBmfS5SYekL9Vl4mmewoYzcEEZ
-         o02Ej16y0dAKOzFZblhDvcXeVdMrYzzwVvvSydVkRtM72u2j7eze61lO+mRJvpsa07Nx
-         xHlKHi1lrBtZeq+AjreZab6ydVJBPb8VsdW+a6U+3oT5SJimMUPl50KBJd/JvXDRERkH
-         ktnALF8gAw9ZDgn4aEa4IDPmDZqJjqB5Y15GSvtyvbrfCYiYpqheukxELSmKB3ZBPRdn
-         c3iQ==
+        bh=xUk88pXA4HbgocOi/3GyNd+MEZIumOgfSFsnVzW7HfY=;
+        b=t4IsncehTjjw3Du/v4IhlUWehV+UpUfzKuSEnWaZVaXsR7VaqUKXlEDpDr9lIndVIS
+         E63y5LiPvtKpkZCOwNlTLSiFeV3vSrE8CTIq7oMYIQDKxq8QGOv6Y3jFsCDTNcZ+BOFf
+         Co/k0hq5t7rO3Kyxl8d+/PeJNFg4SuW3zUqP0Y+Iusbyw4m6F2xbI9bs9op3TFZoV6V4
+         GOM2lBbA0ZEAPpPBoxtkQZnfAF09Gj/tk8+Y8kphnI6LOFYOzhrf7Dht0a8FA1jCEjYJ
+         8BQLFerv2MKrPbbSORA1nlFD4y/0GN69fnQ1Ja3vsGSKmTi25gAT5k4N9LXPIDu3QqCv
+         +BbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697179635; x=1697784435;
+        d=1e100.net; s=20230601; t=1697179672; x=1697784472;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9zUq+Fpo8hofAyxUMN6IML8iePFOZ34qIGUiNuN117s=;
-        b=hX4jfN8fvNhxOpc/SJikj2Kv020i1bxSAc8FFSN8QdgW9vU4TW6fMWijzNCiIkvdWk
-         Tj35cRnEGc6tUatA64VKVO1xkLiiExhAY8Wut1DiZ0wEL0jmGLVrToV9GcCV96HuOcof
-         aceHxSDNfyoPtHDiKzhfhFMV1HLaMEmsjoMjY6cNVyylTRkVY+emdEOejncyenmWyBOz
-         qLRnc9o/Qtt90Ui4RiWWOtzX2UgRhCQR07GbR9051WwrXb8CtoBd0imshuDbQSAlGZKQ
-         Zhbv9AvXuFIE/jdenktcb6RQCzV6DgI85StgmlIFWxFiY6s+qwlcIqWacC92l6zQz0C/
-         /FMA==
-X-Gm-Message-State: AOJu0YyKOZfo6R/+TMK6gYhNYXGU4onQgvHZNiCTQ+7eQT6wQAenw8fn
-	nm04h7+5R7InN1HsNUCfcCudpg==
-X-Google-Smtp-Source: AGHT+IGoFR/Z0YhXX5G6tR6vbzZHoBDPmPhYB6SQX+8E/WKMlTYQTswVuNMMHz1iiB/jUUewH+N/Ug==
-X-Received: by 2002:a05:6000:49:b0:32d:5cc0:2f0c with SMTP id k9-20020a056000004900b0032d5cc02f0cmr8531095wrx.40.1697179635147;
-        Thu, 12 Oct 2023 23:47:15 -0700 (PDT)
+        bh=xUk88pXA4HbgocOi/3GyNd+MEZIumOgfSFsnVzW7HfY=;
+        b=qHVwiFXa7KhaiJ55Reyy8JeLb+E5Zq2Msf+IFW5mT35pmB3QMCp0MgcymO3DtXqrMF
+         wlB9SmEQyO+hUc22ORmEKnsRpjivVRtOR/J2AsCCw4jtqRVyG0gfWvUY7+PLdaVkOOsU
+         0jlI+XTTiOhbjB3CZQcEcuHBLn9iRPywWSbEHmZCMhplLdkbm4x+6DbB0pkf7ZRg/IE8
+         EPkqlj0XaXNKST362eW64qrXn3GARhuAKBerdx0TaOQuQmYVSkG5Wx1dVg5NlwoJnZGO
+         iIhpB+wWUR7y6Gftd6FSy13Qr21KwXwFzQVnCSC6wMv+nN8rNfh4suZHapch+mm57LSW
+         g4ZA==
+X-Gm-Message-State: AOJu0YyJ3mD5Wi2ZVFZmHINsmnJiGXmAOJeBHtpJkAYKmjUOetZ9/HtU
+	FXw4SEbCSJdRh2pHcqLGkSk6nw==
+X-Google-Smtp-Source: AGHT+IFeYGhP+sg7PVhbgM3EK7/9AfDwnxbXSEaNenfXCyTHtqUSExhxPJOqPg+/T2XC+KjSGQYFaQ==
+X-Received: by 2002:adf:ea4f:0:b0:32d:8958:c570 with SMTP id j15-20020adfea4f000000b0032d8958c570mr4870366wrn.29.1697179672591;
+        Thu, 12 Oct 2023 23:47:52 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n9-20020adff089000000b0031ad2f9269dsm19962518wro.40.2023.10.12.23.47.13
+        by smtp.gmail.com with ESMTPSA id n9-20020adff089000000b0031ad2f9269dsm19962518wro.40.2023.10.12.23.47.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 23:47:14 -0700 (PDT)
-Message-ID: <f13be1b0-f78c-4684-9af1-16b176587182@linaro.org>
-Date: Fri, 13 Oct 2023 08:47:13 +0200
+        Thu, 12 Oct 2023 23:47:52 -0700 (PDT)
+Message-ID: <4d43cabf-c350-48c8-b1ef-cd6842d86ce6@linaro.org>
+Date: Fri, 13 Oct 2023 08:47:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 03/16] dt-bindings: media: mediatek: mdp3: add config
- for MT8195 RDMA
+Subject: Re: [PATCH v7 04/16] dt-bindings: media: mediatek: mdp3: add
+ compatible for MT8195 RSZ
 Content-Language: en-US
 To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
  <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
@@ -84,7 +84,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-4-moudy.ho@mediatek.com>
+ <20231012084037.19376-5-moudy.ho@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,7 +130,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231012084037.19376-4-moudy.ho@mediatek.com>
+In-Reply-To: <20231012084037.19376-5-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -141,60 +141,12 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 12/10/2023 10:40, Moudy Ho wrote:
-> Added the configuration for MT8195 RDMA. In comparison to MT8183, it
-> no longer shares SRAM with RSZ, and there are now preconfigured 5 mbox.
+> MT8195 RSZ inherited from MT8183, add the corresponding
+> compatible name to it.
 > 
 > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->  .../bindings/media/mediatek,mdp3-rdma.yaml    | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> index c043204cf210..504334a76fb3 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -22,6 +22,7 @@ properties:
->    compatible:
->      enum:
->        - mediatek,mt8183-mdp3-rdma
-> +      - mediatek,mt8195-mdp3-rdma
->        - mediatek,mt8195-vdo1-rdma
->  
->    reg:
-> @@ -58,7 +59,7 @@ properties:
->  
->    mboxes:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 5
->  
->    interrupts:
->      maxItems: 1
-> @@ -98,6 +99,29 @@ allOf:
->          - mboxes
->          - mediatek,gce-events
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt8195-mdp3-rdma
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: RDMA clock
-> +
-> +        mboxes:
-> +          items:
-> +            - description: used for 1st data pipe from RDMA
-> +            - description: used for 2nd data pipe from RDMA
-> +            - description: used for 3rd data pipe from RDMA
-> +            - description: used for 4th data pipe from RDMA
-> +            - description: used for the data pipe from SPLIT
 
-Missing interrupts
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
