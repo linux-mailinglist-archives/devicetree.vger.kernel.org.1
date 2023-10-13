@@ -1,166 +1,115 @@
-Return-Path: <devicetree+bounces-8486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479B67C85A8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF83A7C85D3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:33:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC1FEB20B15
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:24:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7E50B208FE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EEA168AF;
-	Fri, 13 Oct 2023 12:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554F915C2;
+	Fri, 13 Oct 2023 12:32:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MarvLHah"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD3714A99
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 12:24:31 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E4BCF
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:24:29 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD6-00016J-4U; Fri, 13 Oct 2023 14:24:08 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD5-001OKr-3q; Fri, 13 Oct 2023 14:24:07 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD5-00FiOb-03;
-	Fri, 13 Oct 2023 14:24:07 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: "David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA35515E94;
+	Fri, 13 Oct 2023 12:32:55 +0000 (UTC)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012FEBD;
+	Fri, 13 Oct 2023 05:32:53 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-53de8fc1ad8so3563884a12.0;
+        Fri, 13 Oct 2023 05:32:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697200372; x=1697805172; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vyT3QmhAn6GJqY6054QmJlw/CJpCAFNbS1sbCVTYiog=;
+        b=MarvLHahQ9YWJ+u28/n8ycyPyxiHM/qMIh95s5VomL6QE6vPybGfU+ifE/ARDMK32p
+         aFK19qsbCz+9IYyArpD/wXjbCOLZGGIs1HgARFxouVhgE+immpoPCKrdkpWFahUPsG51
+         ysi7zbD4OpjWto3fESpHX0ydYAr3Mnnxg6e7DAvCYN2EW3rM04yVwnIavHsNVKNiU0q8
+         2fi9ISAuJohPQaNh6gqSm6Cn52wLWjXzEMQa4PgYKOKFyC3KEZEu2j/oL/kWPZrbu1v5
+         O8D+XoVYwINmtTJcd/sZnhlS+4w6lu7t2XJXwjKXqQA71OmJY7aaq4qMg90rTJ5+axK2
+         i/fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697200372; x=1697805172;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vyT3QmhAn6GJqY6054QmJlw/CJpCAFNbS1sbCVTYiog=;
+        b=U41J0biBaKZ/Rjxs6Cmaq37F+6mzwOq+vAJ4/tshiO7fuzDKjp2a8f+fq27OE0PR4J
+         2q9GP+VoC3KmTYIRlNjiMiyA5spMOxw7fS3/fmtPDcUY0PuqihAtb3kyG9KdI3km+8El
+         Oq01wnlDHOaHe8pEzLZl4/j3R4WnMajvdGh4GFY1N7SFDgVfjm5PR9SZQekMIj1ljexN
+         nO0BaijJH90QMb699V/GNP2jZeq5+yNwQP/HxlhVsbHOvxwV7q+ZcClTCqDqXEv9UvxL
+         sZfD/JeJ2YmOJzODAnzKioSktHT/KHheBrEQLyc3wHItJsViFcA2e+RWWInIlh2Fh3Xh
+         +7ZA==
+X-Gm-Message-State: AOJu0YzPXRskactDMLkrHPwB4lW4kiDi3g5T0YAkMD/3Cjm7W6eZgq+2
+	ZjdXTVo/jqtZAYzU8tmZnzo=
+X-Google-Smtp-Source: AGHT+IGFkKZRQGK0puL+I4DnaFn3Vbu9t+Fk0zHGGFiTgn7HLoYZ0PsuTdt4+GPp7G/hK+RrGBQfIA==
+X-Received: by 2002:a05:6402:4023:b0:53d:b2a5:465d with SMTP id d35-20020a056402402300b0053db2a5465dmr8584164eda.9.1697200372305;
+        Fri, 13 Oct 2023 05:32:52 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id b6-20020a056402138600b00536031525e5sm11380109edv.91.2023.10.13.05.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Oct 2023 05:32:52 -0700 (PDT)
+Date: Fri, 13 Oct 2023 15:32:49 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
 	Eric Dumazet <edumazet@google.com>,
 	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Woojung Huh <woojung.huh@microchip.com>,
 	Arun Ramadoss <arun.ramadoss@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
 	UNGLinuxDriver@microchip.com,
 	"Russell King (Oracle)" <linux@armlinux.org.uk>,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next v3 7/7] net: dsa: microchip: do not shut down the switch if WoL is active
-Date: Fri, 13 Oct 2023 14:24:05 +0200
-Message-Id: <20231013122405.3745475-8-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231013122405.3745475-1-o.rempel@pengutronix.de>
+Subject: Re: [PATCH net-next v3 2/7] net: dsa: microchip: Set unique MAC at
+ startup for WoL support
+Message-ID: <20231013123249.bhigwsezy6afb5qt@skbuf>
 References: <20231013122405.3745475-1-o.rempel@pengutronix.de>
+ <20231013122405.3745475-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231013122405.3745475-3-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-For Wake on Lan we should not reconfigure, reset or power down the
-switch on shut down sequence.
+On Fri, Oct 13, 2023 at 02:24:00PM +0200, Oleksij Rempel wrote:
+> Set a unique global MAC address for each switch on the network at system
+> startup by syncing the switch's global MAC address with the Ethernet
+> address of the DSA master interface. This is crucial for supporting
+> Wake-on-LAN (WoL) functionality, as it requires a unique address for
+> each switch.
+> 
+> Although the operation is performed only at system start and won't sync
+> if the master Ethernet address changes dynamically, it lays the
+> groundwork for WoL support by ensuring a unique MAC address for each
+> switch.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- drivers/net/dsa/microchip/ksz9477_i2c.c |  3 +++
- drivers/net/dsa/microchip/ksz_common.c  | 18 ++++++++++++++++++
- drivers/net/dsa/microchip/ksz_common.h  |  2 ++
- drivers/net/dsa/microchip/ksz_spi.c     |  3 +++
- 4 files changed, 26 insertions(+)
-
-diff --git a/drivers/net/dsa/microchip/ksz9477_i2c.c b/drivers/net/dsa/microchip/ksz9477_i2c.c
-index 2710afad4f3a..fe818742051c 100644
---- a/drivers/net/dsa/microchip/ksz9477_i2c.c
-+++ b/drivers/net/dsa/microchip/ksz9477_i2c.c
-@@ -66,6 +66,9 @@ static void ksz9477_i2c_shutdown(struct i2c_client *i2c)
- 	if (!dev)
- 		return;
- 
-+	if (ksz_wol_is_active(dev))
-+		return;
-+
- 	if (dev->dev_ops->reset)
- 		dev->dev_ops->reset(dev);
- 
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 820edda82cea..c3669b9cc6ce 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -2959,6 +2959,24 @@ static int ksz_set_wol(struct dsa_switch *ds, int port,
- 	return -EOPNOTSUPP;
- }
- 
-+bool ksz_wol_is_active(struct ksz_device *dev)
-+{
-+	struct dsa_port *dp;
-+
-+	if (!dev->wakeup_source)
-+		return false;
-+
-+	dsa_switch_for_each_user_port(dp, dev->ds) {
-+		struct ethtool_wolinfo wol;
-+
-+		ksz_get_wol(dev->ds, dp->index, &wol);
-+		if (wol.wolopts)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- static void ksz_set_xmii(struct ksz_device *dev, int port,
- 			 phy_interface_t interface)
- {
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 80679f38ee12..84b1eed8cd2a 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -397,6 +397,8 @@ bool ksz_get_gbit(struct ksz_device *dev, int port);
- phy_interface_t ksz_get_xmii(struct ksz_device *dev, int port, bool gbit);
- extern const struct ksz_chip_data ksz_switch_chips[];
- 
-+bool ksz_wol_is_active(struct ksz_device *dev);
-+
- /* Common register access functions */
- static inline struct regmap *ksz_regmap_8(struct ksz_device *dev)
- {
-diff --git a/drivers/net/dsa/microchip/ksz_spi.c b/drivers/net/dsa/microchip/ksz_spi.c
-index 279338451621..c5d9c3d86ddb 100644
---- a/drivers/net/dsa/microchip/ksz_spi.c
-+++ b/drivers/net/dsa/microchip/ksz_spi.c
-@@ -114,6 +114,9 @@ static void ksz_spi_shutdown(struct spi_device *spi)
- 	if (!dev)
- 		return;
- 
-+	if (ksz_wol_is_active(dev))
-+		return;
-+
- 	if (dev->dev_ops->reset)
- 		dev->dev_ops->reset(dev);
- 
--- 
-2.39.2
-
+Why not take the MAC address of the user port at ksz9477_set_wol() time,
+and use the existing ksz_switch_macaddr_get() API that was just added so
+that this use case could work?
 
