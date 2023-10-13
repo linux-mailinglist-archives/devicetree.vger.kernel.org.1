@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666D47C7D39
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:51:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2B17C7D47
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F25282186
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:51:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F2CAB20950
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:55:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBA76130;
-	Fri, 13 Oct 2023 05:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212B8613A;
+	Fri, 13 Oct 2023 05:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fDJq079Q"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NqjM2d63"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C36328EB
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:51:33 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2898DBE
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:51:30 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9a645e54806so265248466b.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:51:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E876133
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:55:18 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62DDBC
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:55:15 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so2964519a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:55:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1697176288; x=1697781088; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1697176514; x=1697781314; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UAXPkFEVO9NEy1CgnJcKxdErF48Wzyp1pIE8KdvUE5o=;
-        b=fDJq079Qcm6+VouFFteEdR81wVhKmMYv+DwLQVlUh/PIuuQ+5lsG68xiay0vQ9yGxC
-         hu3eYKfrEgy+FafaqyS3II5Kql0PhwBcoJF2YWXAekviRo9C0qHckPA7aTLMIbzeIHlE
-         1fsg/TwYjYDWLFq4wMvkhBy/P0C3oDA3azTYHSryWnpd4RACUUWVMAqiaSP5lkTl8nNJ
-         sa0QgOsjrGy0TfFOInvBeLiJ6+tyoQ071WuzoFd2BpTVPoo6ZUZeFvs59WFl908XLlDt
-         8aqPqfSwrFYtp7hJEsec9m1N7rNyw4aaPYdu/jMxMo3RsAYf6Unic8ppYu/HuYRM0Nc+
-         t+Ug==
+        bh=oYHZdMFA6OQbagkrLvPrbN3TwwM9BrhoqWPjC6tbAtk=;
+        b=NqjM2d63W9cMlsFqB+kwBGI6Zdb5Et0SdPJnSI74XlYSl7xneWpEc4G6feGNJB7cMJ
+         gKD4EhWJkN7wKmiElaKZ7tBxCNiOGLLlOuYK+B976HEEkHDzVr9jK836VarI+NzaZtek
+         TWDEHpVrXcfzczy67VqAzvlkc48jR6zicuRARqjJJ6rSFyQtPZ5FpiEBlMtIT577MD2J
+         sXZVAicVnmFVsUtsYCX/+HTbEx8No4p1GAJMhq/YbqHdzEjmDP/Kmp4mKO8d+yjcCRXo
+         TkY2PCM1efcj/XQ4PDvQxhichr7TEGaLtsHMWfyBaA68MN/ZGeZbkH9jwLdhSQG0i9fO
+         Hdlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697176288; x=1697781088;
+        d=1e100.net; s=20230601; t=1697176514; x=1697781314;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UAXPkFEVO9NEy1CgnJcKxdErF48Wzyp1pIE8KdvUE5o=;
-        b=U+RTB4mR2lDgNQB5UPmCbR76DwvUblW1ufWLB+ocrOJDXl2mC7j9PMVJyfzOYKu86z
-         qSNzmalpf3Hz7AsjbQXu9NCIkwSSODPOoFXVBvKY6EufrRiBiFvoFMdV6agt9aIloOnT
-         UnsUTrnb/o9DLUGrTf/fPS+hYW2QMaK/+uGAqG87Zijn7Yqwl1triyPn24oFrK8Ovwhs
-         MUzEYpkGy5nYXEHB5ENwyaARve7TZ4kyR69CRfrdKDcXTbkCHx9BAdaZBsrbH5u9FYnJ
-         4WhotBblwMThoadOc/PbKSPS11aZ2q8Vz3we4TvbTxsM555vmF53C1LOAN9OMaUd7lQF
-         G5WQ==
-X-Gm-Message-State: AOJu0Yz9reErcbb+z7OmyXSJ2A5leS5pEpyb4sueCKNuquoJz8VRUddT
-	5D9ZFfEVhkcKBTzQpoQvIE9glQ==
-X-Google-Smtp-Source: AGHT+IHmc9LtDuylGDF0Uig4QbannJCtiHcJ/b42Sf8kD1VjI0wEyeEWOKYrTIT/FTWC9eedWAgM5A==
-X-Received: by 2002:a17:906:3156:b0:9b2:b71f:83be with SMTP id e22-20020a170906315600b009b2b71f83bemr22216827eje.1.1697176288653;
-        Thu, 12 Oct 2023 22:51:28 -0700 (PDT)
+        bh=oYHZdMFA6OQbagkrLvPrbN3TwwM9BrhoqWPjC6tbAtk=;
+        b=IjSTp3sHbY5KbHrz1Ma7Xp1MmD7sKcAwd9QpYU6eSkrBpRFQfqDMT5zMRqp8b3vft2
+         KTg3FpjdbAzU+ODt/ILjchZu0GUo9s1QwheyBeDWgUFpnOIt7Tf5Jk7uZRkZGwc630mH
+         z0jf/0KWcsou3g2UDcalWCMIW0FzEEj1Ar6ZlLN5wFDtZELo1K1hfBii4vvXwsT5avDl
+         RHBJCjiW/zYzU8bBg7T26XZAeRELTgRpdeAcQx5JjRoZ77hBvO9pIcraEKhND2jebU//
+         LG49FSkuWqm7fwF2QP7l1f5Uh8UNJ+h+gVw7eQmhnKKDYC7jTfW73aIIu5lNIIrsetR1
+         5SzQ==
+X-Gm-Message-State: AOJu0Yw9nNeqeihLyP4RDL542lok5nIToBv8SQcxXiZKJaTwnOExvrjE
+	bxqOm1SDMPeC1Qn3zK63XFPNTQ==
+X-Google-Smtp-Source: AGHT+IFFh3iNNCKrv7qa7ps1KepqR4A5yjCxBztpy/J6r0rr1ZsGCqYF7OpwdshOCE+3/c95sGEksA==
+X-Received: by 2002:aa7:d947:0:b0:531:9c1:8271 with SMTP id l7-20020aa7d947000000b0053109c18271mr23383511eds.14.1697176514187;
+        Thu, 12 Oct 2023 22:55:14 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.133])
-        by smtp.gmail.com with ESMTPSA id w13-20020a170906480d00b0098d2d219649sm12086328ejq.174.2023.10.12.22.51.27
+        by smtp.gmail.com with ESMTPSA id f26-20020a50ee9a000000b0052e1783ab25sm11073824edr.70.2023.10.12.22.55.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 22:51:28 -0700 (PDT)
-Message-ID: <e678ef3a-0f84-4ea2-9116-a661b91b2e32@tuxon.dev>
-Date: Fri, 13 Oct 2023 08:51:25 +0300
+        Thu, 12 Oct 2023 22:55:13 -0700 (PDT)
+Message-ID: <acc14d48-7b9c-4d7e-a642-077c3841b937@tuxon.dev>
+Date: Fri, 13 Oct 2023 08:55:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: renesas: rzg3s-smarc: Enable SDHI1
+Subject: Re: [PATCH 6/6] arm64: dts: renesas: rzg3s: Fix dtbs_check
 Content-Language: en-US
 To: Geert Uytterhoeven <geert@linux-m68k.org>
 Cc: magnus.damm@gmail.com, robh+dt@kernel.org,
@@ -77,10 +77,10 @@ Cc: magnus.damm@gmail.com, robh+dt@kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com>
- <20231010132701.1658737-6-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdW+5MZXRbDtZtmrMkrCtwqqKUcW_W1_5U_2yO6w6aCa_w@mail.gmail.com>
+ <20231010132701.1658737-7-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVwO--GrdDP8pUHq-k5cVR31dGdvEM73z2E+NLEbD8GRw@mail.gmail.com>
 From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdW+5MZXRbDtZtmrMkrCtwqqKUcW_W1_5U_2yO6w6aCa_w@mail.gmail.com>
+In-Reply-To: <CAMuHMdVwO--GrdDP8pUHq-k5cVR31dGdvEM73z2E+NLEbD8GRw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,46 +90,43 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi, Geert,
 
-
-On 12.10.2023 17:44, Geert Uytterhoeven wrote:
+On 12.10.2023 17:49, Geert Uytterhoeven wrote:
 > Hi Claudiu,
 > 
 > On Tue, Oct 10, 2023 at 3:27 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
 >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >>
->> Add SDHI1 to RZ/G3S Smarc Carrier-II board. This is connected to a uSD
->> interface. Although Vccq doesn't cross the boundary of SoM it has
->> been added to RZ/G3S Smarc Carrier-II dtsi to have all the bits related to
->> SDHI1 in a single place. At the moment SoM is used only with RZ/G3S Smarc
->> Carrier-II board.
+>> Fix the following DTBS check warnings:
+>>
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dt: /: memory@48000000: 'device-type' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>         from schema $id: http://devicetree.org/schemas/memory.yaml#
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: /: memory@48000000: 'device_type' is a required property
+>>         from schema $id: http://devicetree.org/schemas/memory.yaml#
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: cache-controller-0: 'cache-level' is a required property
+>>         from schema $id: http://devicetree.org/schemas/cache.yaml#
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: cache-controller-0: 'cache-level' is a required property
+>>         from schema $id: http://devicetree.org/schemas/cache.yaml#
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: cache-controller-0: Unevaluated properties are not allowed ('cache-size', 'cache-unified' were unexpected)
+>>         from schema $id: http://devicetree.org/schemas/cache.yaml#
 >>
 >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
 > Thanks for your patch!
 > 
->> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
->> @@ -11,6 +11,27 @@
->>  / {
->>         aliases {
->>                 serial0 = &scif0;
->> +               mmc1 = &sdhi1;
->> +       };
->> +
->> +       /* Reserved regulators 0-9 for SoM. */
->> +       vcc_sdhi1: regulator10 {
+>>  arch/arm64/boot/dts/renesas/r9a08g045.dtsi       | 1 +
+>>  arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi | 2 +-
 > 
-> You can use sensible names for the regulators to avoid conflicts.
-> E.g. "regulator-vcc-sdhi1".
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.7, split in two parts.
 
-OK, I'm aware of that, I'll use it like this in the next version.
+I see you already did the split and applied, thank you for that. I was in
+between choosing to split it or to have it like a bulk patch.
 
 Thank you,
 Claudiu Beznea
 
-> 
-> The rest LGTM.
 > 
 > Gr{oetje,eeting}s,
 > 
