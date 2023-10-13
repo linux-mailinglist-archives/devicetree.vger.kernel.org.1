@@ -1,107 +1,241 @@
-Return-Path: <devicetree+bounces-8511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8A57C8708
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:40:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 106BD7C873F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC4F8282CB5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:40:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 835C0B208CC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D752515E9F;
-	Fri, 13 Oct 2023 13:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7532918025;
+	Fri, 13 Oct 2023 13:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="T9lGIFFp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K7n320w6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53A315EA0
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:40:09 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560A0C9
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:40:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95879168AF
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:55:57 +0000 (UTC)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D813095;
+	Fri, 13 Oct 2023 06:55:55 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c4e7951dddso1370027a34.1;
+        Fri, 13 Oct 2023 06:55:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1697204407; x=1728740407;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Js73wDV9QTeVptS6F7mqvFPeZ+0MGemagOsseykAqW0=;
-  b=T9lGIFFpIdny3p1lZjgZAFRmitw/ktmEAcqdRjAYZkSX4QdDfD7el+LL
-   MPcmyeWEUFURPUXr5gDkDhOAdXEKtQ7oh7lm2jr4bk5tVMtWJNhptvi0R
-   lJzspqs/g7bdz1g83meHVLYCIPFmiQSn+uQWlQnkzqilq2GhQrbLbW+Ya
-   O8jxCiXHb385YSD1/d2PMG2UJMb9JmhRDjf/0XJWQaBZvzruqvWtbIoK2
-   a7HRAa+RKYn55rw606AlhtkNVWuXW9mrTVr85nNT7NkG0Pl2LVpbzRlZ9
-   2s1JYUvC6jqpGNUnXV8uB1WHFfQaERbb0H6f4u0E2DdHP2VH30I99DAzv
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.03,222,1694728800"; 
-   d="scan'208";a="33455410"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Oct 2023 15:40:03 +0200
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7EB51280084;
-	Fri, 13 Oct 2023 15:40:03 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH 2/2] ARM: dts: imx6ul: mba6ulx: fix typo in comments
-Date: Fri, 13 Oct 2023 15:40:00 +0200
-Message-Id: <20231013134000.744168-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231013134000.744168-1-alexander.stein@ew.tq-group.com>
-References: <20231013134000.744168-1-alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20230601; t=1697205355; x=1697810155; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q/LdPWVeMaQ2t1D7LtdC/Cr9HnftA6vjOPV9Z68q6dU=;
+        b=K7n320w6Nw6aP28wALnjKoI+vPS9E+hM+qs3Uh7jiITfw1vO3GVvks3COldKHMcLNT
+         9J0yeiT5JQtrFilo19vR+BMGDt3CRy4SeK0esiajRnjkBFOqPz24QJ/VCSzJRCcFGk1s
+         Qp3C2gcMbiQpJHnXKXjH895YB3QvE+HM1BrlbDoXVfvcttn6F8p19uJWAfrIt1RGWmH2
+         erV0qmokezn5/TIF+pcbMYb7EN5WnOK3GL6TwYQ+nw1GQTHJu4TG/+Kj87m1rL3CrjKK
+         V2dVEpLnU9MpDXRj4/b4wpBGfOnC9hnmO2HaS9mY1JQ8qm3eNwpwZ5RJ6VrVm+4httI/
+         dk7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697205355; x=1697810155;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q/LdPWVeMaQ2t1D7LtdC/Cr9HnftA6vjOPV9Z68q6dU=;
+        b=P2Cp0G8lVFfwDHBXJbqEcS1ySKyK9ktEUYgyZzePRPrOwZS7UXpilvTP1PQ0ZdamsK
+         IF5jSHLfB7xBUCU0VUKDKt35Vpuf8d1jkjabnFrYSXK4TSZATrbVqJEUliWS7oW/tc7W
+         sc48LfAJQnsn2EnoHtqqkaIdLo+XmmkB7lnLzzfmAI4aIijQCuO4dFq+sg92mb6gh+7q
+         l5Q/3I42Rb2kMIdse6727Yb+7+TmAgJcKvcCAbNyNo7KzHNg2r7pYWWZ0jp1kfganXQQ
+         Zgyk7y6JhOB+OEH3eMP82zrzrSqc82BnaqvT4JxJ2yIbLtZyhH5bVMVzjqQGUfYqgJXf
+         ZsJA==
+X-Gm-Message-State: AOJu0YxGGHKMDXpn0EmGlb7FPPxA69Xx5978/oBbObafd/8ZMm8UIB25
+	r3Qrng/Z/iy9FuNKfqQAEs3d60pOF7jVCSa/4qM=
+X-Google-Smtp-Source: AGHT+IFRlclhywjPn0HvY1oqtDeoehgE37SdItvITL8PpwFIhF29C/xufA9c+JlchpxpFusATF0LXWkj9SRwUPB4Hn8=
+X-Received: by 2002:a9d:6396:0:b0:6c4:897a:31c4 with SMTP id
+ w22-20020a9d6396000000b006c4897a31c4mr28350960otk.29.1697205355090; Fri, 13
+ Oct 2023 06:55:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20231012175836.3408077-1-thierry.reding@gmail.com>
+ <CABr+WTkT4LSYrMPVpxYO4VT87xoFA98qA9wFQMwoO4b4J8gF3g@mail.gmail.com>
+ <ZSktVaje_h2Hiyy6@orome.fritz.box> <CABr+WTk9EGqVQ3_5579RmLVvOZj_NzNN3U8JMbyrQze5-9Wx8A@mail.gmail.com>
+ <ZSlCjptcuIvVHuuM@orome.fritz.box>
+In-Reply-To: <ZSlCjptcuIvVHuuM@orome.fritz.box>
+From: Nicolas Chauvet <kwizart@gmail.com>
+Date: Fri, 13 Oct 2023 15:55:43 +0200
+Message-ID: <CABr+WTnP-JencnDt-u9emuc7knm1LSNDS5VRf-X9sZzQ0jrs1w@mail.gmail.com>
+Subject: Re: [PATCH v2 00/13] thermal: tegra: Do not register cooling device
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Le ven. 13 oct. 2023 =C3=A0 15:13, Thierry Reding
+<thierry.reding@gmail.com> a =C3=A9crit :
+>
+> On Fri, Oct 13, 2023 at 02:45:57PM +0200, Nicolas Chauvet wrote:
+> > Le ven. 13 oct. 2023 =C3=A0 13:43, Thierry Reding
+> > <thierry.reding@gmail.com> a =C3=A9crit :
+> > >
+> > > On Fri, Oct 13, 2023 at 11:14:25AM +0200, Nicolas Chauvet wrote:
+> > > > Le jeu. 12 oct. 2023 =C3=A0 19:58, Thierry Reding
+> > > > <thierry.reding@gmail.com> a =C3=A9crit :
+> > > > >
+> > > > > From: Thierry Reding <treding@nvidia.com>
+> > > > >
+> > > > > Hi,
+> > > > >
+> > > > > this set of patches removes the registration of the SOCTHERM inte=
+rnal
+> > > > > throttling mechanism as cooling device. Since this throttling sta=
+rts
+> > > > > automatically once a certain temperature threshold is crossed, it
+> > > > > doesn't make sense to represent it as a cooling device, which are
+> > > > > typically "manually" activated by the thermal framework when ther=
+mal
+> > > > > sensors report temperature thresholds being crossed.
+> > > > >
+> > > > > Instead of using the cooling device mechanism, this statically pr=
+ograms
+> > > > > the throttling mechanism when it is configured in device tree. In=
+ order
+> > > > > to do this, an additional device tree property is needed to repla=
+ce the
+> > > > > information that was previously contained in trip points.
+> > > > >
+> > > > > There's a few preparatory patches to make the removal a bit simpl=
+er and
+> > > > > also some follow up cleanups included as well.
+> > > > >
+> > > > > Changes in v2:
+> > > > > - rework the device tree bindings:
+> > > > >   - add nvidia,thermal-zones property to attach throttling to zon=
+es
+> > > > >   - use -millicelsius suffix and add hysteresis
+> > > > > - add patch to store thermal zone device tree node for later use
+> > > > > - add patch to enforce self-encapsulation of the thermal core now=
+ that
+> > > > >   no drivers need to reach into it anymore
+> > > > >
+> > > > > This applies on top of Daniel's self-encapsulation hardening seri=
+es:
+> > > > >
+> > > > >         https://lore.kernel.org/all/20231012102700.2858952-1-dani=
+el.lezcano@linaro.org/
+> > > > >
+> > > > > Thierry
+> > > > >
+> > > > > Thierry Reding (13):
+> > > > >   thermal: Store device tree node for thermal zone devices
+> > > > >   dt-bindings: thermal: tegra: Document throttle temperature
+> > > > >   dt-bindings: thermal: tegra: Add nvidia,thermal-zones property
+> > > > >   thermal: tegra: Use driver-private data consistently
+> > > > >   thermal: tegra: Constify SoC-specific data
+> > > > >   thermal: tegra: Do not register cooling device
+> > > > >   thermal: tegra: Use unsigned int where appropriate
+> > > > >   thermal: tegra: Avoid over-allocation of temporary array
+> > > > >   thermal: tegra: Remove gratuitous error assignment
+> > > > >   thermal: tegra: Minor stylistic cleanups
+> > > > >   ARM: tegra: Rework SOCTHERM on Tegra124
+> > > > >   arm64: tegra: Rework SOCTHERM on Tegra132 and Tegra210
+> > > > >   thermal: Enforce self-encapsulation
+> > > > >
+> > > > >  .../thermal/nvidia,tegra124-soctherm.yaml     |  19 +
+> > > > >  arch/arm/boot/dts/nvidia/tegra124.dtsi        |  68 +--
+> > > > >  arch/arm64/boot/dts/nvidia/tegra132.dtsi      |  66 +--
+> > > > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  86 +--
+> > > > >  drivers/thermal/tegra/soctherm.c              | 525 ++++++++----=
+------
+> > > > >  drivers/thermal/tegra/soctherm.h              |   1 +
+> > > > >  drivers/thermal/tegra/tegra124-soctherm.c     |   4 +
+> > > > >  drivers/thermal/tegra/tegra132-soctherm.c     |   4 +
+> > > > >  drivers/thermal/tegra/tegra210-soctherm.c     |   4 +
+> > > > >  drivers/thermal/thermal_core.h                |   2 +-
+> > > > >  drivers/thermal/thermal_of.c                  |   3 +
+> > > > >  11 files changed, 329 insertions(+), 453 deletions(-)
+> > > > >
+> > > > > --
+> > > > > 2.42.0
+> > > > >
+> > > >
+> > > > I'm still experiencing the following message on jetson-tx1 with thi=
+s
+> > > > serie applied on top of 6.6-rc5 (with iommu-next and tegra-next
+> > > > applied).
+> > > > oct. 13 10:53:16 jetson-tx1 kernel: max77620-thermal max77620-therm=
+al:
+> > > > Failed to register thermal zone: -19
+> > >
+> > > Not sure about this one. I don't think I've seen it. Do you know if
+> > > that's somehow caused by this series, or is it preexisting?
+> >
+> > It's pre-existing from this serie.
+> >
+> > > > oct. 13 10:53:16 jetson-tx1 kernel: tegra_soctherm
+> > > > 700e2000.thermal-sensor: throttle-cfg: heavy: no throt prop or inva=
+lid
+> > > > prop
+> > > >
+> > > > Is this expected ?
+> > >
+> > > This one is definitely not expected. I have seen this before, and it
+> > > happens when the device tree doesn't contain all the properties that =
+are
+> > > expected. Patch 12 in this series should take care of that. Have you
+> > > made sure that that's been applied and is what the kernel uses to boo=
+t
+> > > with?
+> >
+> > Yes, this dtb change in patch12 is propagated to the device (as seen
+> > in /boot/dtbs)
+> > But comparing with what's available at runtime in /proc/device-tree, I
+> > see some changes
+> >
+> >                         heavy {
+> > -                               hysteresis-millicelsius =3D <0xfa0>;
+> > +                               #cooling-cells =3D <0x02>;
+> >                                 nvidia,cpu-throt-percent =3D <0x55>;
+> >                                 nvidia,gpu-throt-level =3D <0x03>;
+> >                                 nvidia,priority =3D <0x64>;
+> > -                               nvidia,thermal-zones =3D <0x49 0x4a>;
+> > -                               temperature-millicelsius =3D <0x180c4>;
+> > +                               phandle =3D <0x130>;
+> >                         };
+>
+> Okay, that explains the error message.
+>
+> >
+> > I'm using u-boot 2023.07 with EFI boot (L4T 32.7.4).
+> > Could it be that the bootloader has changed these entries ? Can this
+> > be prevented ?
+>
+> I'm not aware of anything in the bootloader that would do this. Some
+> versions of U-Boot that ships with L4T can copy certain nodes in DTB but
+> I have never seen anything that would've touched thermal.
+>
+> Is it possible that you're not loading the DTB and end up receiving one
+> from UEFI or cboot?
+Seems like it: a previous copy was in /boot/dts that took over /boot/dtbs.
+With updated dtb, the warning disappeared.
 
-Replace 'SPPEED' with 'SPEED'
+Only remaining error is: kernel: max77620-thermal max77620-thermal:
+Failed to register thermal zone: -19
 
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
-index 5a8b867d7d793..e78d0a7d8cd28 100644
---- a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
-@@ -467,7 +467,7 @@ MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX	0x1b020
- 
- 	pinctrl_pwm2: pwm2grp {
- 		fsl,pins = <
--			/* 100 k PD, DSE 120 OHM, SPPEED LO */
-+			/* 100 k PD, DSE 120 OHM, SPEED LO */
- 			MX6UL_PAD_GPIO1_IO09__PWM2_OUT		0x00003050
- 		>;
- 	};
--- 
-2.34.1
-
+Thanks
 
