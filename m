@@ -1,356 +1,208 @@
-Return-Path: <devicetree+bounces-8426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B317C827E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:52:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165037C8285
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 599BA282A64
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:52:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50C2C1C20A56
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78541119B;
-	Fri, 13 Oct 2023 09:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D1B111AA;
+	Fri, 13 Oct 2023 09:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="S1bWmX35"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PGKX9A/a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFCF1118E
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:51:55 +0000 (UTC)
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04olkn2060.outbound.protection.outlook.com [40.92.45.60])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14BB195;
-	Fri, 13 Oct 2023 02:51:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j+fUkkF8mPAaToH5yvZNsYlV+t4NaGCsun9wsvmKtxSe4YiUreBZt4SP+5QdHmGeSXvwBLTtiVUAbRARJn3FVlnU7AcvPryI8P/zi6nrQMuxVofoFrR54c3gnb5xOrnLv7q11FHGIEzvTYmetpwYmI+RtOBRy8GHMdfhcvJ7zwsqsCjtkBZWcurrSSFAn9oKK7oIBmfa7OnkuXbibCihHKOcXkfTqjWvJqxAvYm4BZmV5lzBRi43Z5R9RBmh4zwu0+tvkWw3Wh5MMpBYU9+qF/1RlDYMgFom4/zCgjlptp2Dr0gCgP9nT+FHc5du3WirNXMhyC8J9jzsikfVEmsgvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sdUhtnFwQ5SAjimxKkgV4+fKDHq15nSkE2BizISvknI=;
- b=lkn1FLhX7eqZ7oqyKgG6UJbroNyhg/UfvWxRonKFUJNfht4QiQdyACjT/kgii4F0+CvwyuiinIprciDdwNpu1JLeKN6haLzx//lf8Ut3HJ4kX8R3I5v0JHZpXAljL4FaKiJJG15HWNH3+ovIu+DbhgFc219NElCmDASiCTZhznXrzroaGtrtFTYLcB+kUwRqvjG5gYjvYNAwcuId8qgkSC1BYjR+3ujWUiEmHApCndgSTd+c/6IG0pSvzLONetU3dr8pcvkyGL7jPoDITpRkb6NbZmoxZi5qWTwso/2xMAFL1zZxPZ41I5bRx1ylzRMzi7rbAADAtqMWl+tIPWopyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sdUhtnFwQ5SAjimxKkgV4+fKDHq15nSkE2BizISvknI=;
- b=S1bWmX35F5LUjMFGfzyAVJqE5cybJdMNY/FDQLOcHUYT36mDsXffRgKIyADr9TxxII2Hj1yEMb0aROw2a0n79QR+//GAgZ5op2vV81c8tPy6XkyVcL1GMdrL/Zu9vE92pK8SOZpuFglpzvq31n8mUlCgh64tyXPwPwkcHIoJt5UxtuSkZGSZTTwF5YoWygjqsdOeyT9EuxDgW3hn1fNiGL+hF1v0XTsHJ239XnHZsdmv41ZWUjl1IOtzTxAnCdyKujggIlsIxn1PMYpQPv7lbQjb+hszzacLAvqiKQ4HneyJ2oIpAah5V/mfkX/RbZGqnKc07Jp6A0YJ7sg/1jtj/g==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by CO6PR20MB3681.namprd20.prod.outlook.com (2603:10b6:5:344::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Fri, 13 Oct
- 2023 09:51:49 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6863.046; Fri, 13 Oct 2023
- 09:51:49 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 6/7] riscv: dts: sophgo: Separate common devices from cv1800b soc
-Date: Fri, 13 Oct 2023 17:52:03 +0800
-Message-ID:
- <IA1PR20MB4953434E04427C0940C8DCF5BBD2A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231013-catchable-wince-f24060feb639@spud>
-References: <20231013-catchable-wince-f24060feb639@spud>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [jmbAMZ5P/utnlsLSxNUi/rQ+zQ8EjqALq4ef7AcCN8o=]
-X-ClientProxiedBy: TYCP286CA0145.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:31b::9) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231013095204.153065-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9300F1118E
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:53:39 +0000 (UTC)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DF6B7
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:53:37 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53e16f076b3so2875121a12.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697190815; x=1697795615; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WkuVxbIEDiPcXFcI1G0VHHSKRSTqjnTTd0Ixg+X9Clo=;
+        b=PGKX9A/a2KHJrWae4tJb/ZNjmA4lilvJgk6ZUAkEdGr7pYJfSqikTwpelQLkXYdTgZ
+         TYo2LegV9UNaFSqdZ41HMvcCuZOHO9IQqaVHo3re1MhQDAKYgtHKeQBN12j5J21g9xMy
+         dqM7PMLxFj9Zek633UWn3VzP64V46GphkN2r4KSx75bgOj5hT0NzQO09j4LlZ54t1wev
+         5H5Jcgu0vs64X1cJLdsog0S5nbiYlt7Od8DFVyS7TOUYD6UFMjqNbWXBSU47Nks52zZc
+         JNHDWA850WH4wZcZcW/pIbBN4gLtkAN1SxRARptXL6IvFI9bb+Dv6lRRANU0pFArzSuw
+         EC+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697190815; x=1697795615;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WkuVxbIEDiPcXFcI1G0VHHSKRSTqjnTTd0Ixg+X9Clo=;
+        b=tEft6bKd+W/ZLBEGhdYyurltkdf4grot78Pj9eDCO1I3i/5otDOiFUFRxbTK8HVVqk
+         raVhj2v1zPoK5QWiclfekz4wGJyuV3ZaE8pQUlCfLXABhP9mRKC1vAzLXEpknIYfDJjA
+         aCZazGxzshrelEN0ZtC7xUiUoHJAO459mo4Wi22LqYs8c46Hyn+pEqfcENoc0wyQwL9t
+         FGf5Orh2DiJn8ICGobBbcTKrOnAlyZQ6oK83D9DmxwvhAZ/hGBe7kcjiDNEPQWJNr4jl
+         ZamkKS+u3XCsutNXSa0sHLkGRXMxy0cUAQAG2L6cZWAz0BpGTAdUZWBVndC6z/vf1bdN
+         9Uyw==
+X-Gm-Message-State: AOJu0YwF3/kq+lpu7vV99NF4wX6Gxgyco1p4JQGLVaSkch2gbvi416lt
+	aIJAOZeHBVd+ndA2o01zIrb/Qg==
+X-Google-Smtp-Source: AGHT+IGjNeXVilC+CrFYPS0vWgxr62tccKu1v1YBauL0P3QvzaLroanfvTZ4YXInxShyHL84Pi653A==
+X-Received: by 2002:a17:907:61a8:b0:9bd:81c3:2a85 with SMTP id mt40-20020a17090761a800b009bd81c32a85mr5133624ejc.32.1697190815507;
+        Fri, 13 Oct 2023 02:53:35 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id n12-20020a170906378c00b0099d45ed589csm12172789ejc.125.2023.10.13.02.53.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Oct 2023 02:53:35 -0700 (PDT)
+Message-ID: <9996a912-7b4e-4247-bb8a-716782fbcc2a@linaro.org>
+Date: Fri, 13 Oct 2023 11:53:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CO6PR20MB3681:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7fd5791-c06d-4df0-1301-08dbcbd204bb
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	n0FNKMnyB22jP+iY8IZleiIaGmi2SP4ROGFB1rY222YkbxVn8kvETCgjBziEUJUI8wfGRdld0vTCO1gZeQwIWKqOHHLuqo/PWbkt7+GtyQmREC4JFxHCcduj8hFrOdoCjgU7FJGi7zNQsYUqSM0G4/mhVHyKtPLjiKoTO9R+ysuoLhBHryl5q9c/R9HSUJb1q6nhWDd9kXnmQWMkc6ubj/f13o0dsnKfIQvnxMNOBI/lLEeT0GSETRtSuJRIP5bAibvixOTcTJWCdLDS9/gzEpXq2BWl2BdIYkjzp7YLEIZX+xjIpg/etXfICK7xbcNsT5ChP7vP2jf97Kn76SRlrXR9rCd23FeI65Vng8RB26krpAWD25n6ix/pRuUadaAODKlQAaf2FwBLN4rZFEH4LNkgjSg2WWSI28upYnoHFYhEHFg9ga59sh9R4zRTzM1c9EoKbzaQjHCgPULCbiSDQcYES9lL9pEzO1q5Wbo1Iy6YvhT3FAuG2jPlVATLY4+AeCfeLM9REP/ZCJWjEeJa3ZI7wonsI/DmyJxwpzjF8RKNFDacRWzYDMHXZc7Kfi47/nKHdswGJ6432XuuKVN3M7piQ4la8Py5h4D0NpekrQlO9ygb0habUmIIlsYIS7O3
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8pZfrdqRm1v43ZFew9xoEZoZanVV0n4ASnHDTPIKjQi+z6u+6WAZDEEoys9M?=
- =?us-ascii?Q?XgAXt3o6TKmIn1rFqWYgJWt8Y3cqP48/ZBHGX2ZwHRjZy9BeAESbrDxtdMoc?=
- =?us-ascii?Q?lenO7hCZa5ueZl9ghElhIg4qzBc+3qesZX58W0x32YNMEm017Y7MgpBkyYbE?=
- =?us-ascii?Q?xiXIiGpBWH/gg900KSFVBiMSu4dMAC+JeY8ZQ7UbSpxsH3v/dEqtesqOjROe?=
- =?us-ascii?Q?keap4xRTS+pQL8DQexnlR66MZdHHPraRFEBpDZjwmIHIs0TtZ8rR6LLL74Nr?=
- =?us-ascii?Q?EGHNo+5ssEPx0kGPj5HzezwTKGHb6FqQOJVcoZMJw3VSClh/hgXP6EjP4Xg+?=
- =?us-ascii?Q?gDAtEwce0W0H6YnC0JBbJISm63pxr4pn1kcOEOF+jlSeZ0lRd12rZYfuWG2y?=
- =?us-ascii?Q?Etk8Gyzvb66sEkVFPqnKYSycEY+u1ScfuVH/e9C69ErZxVaa2Hsg/oI6EZFp?=
- =?us-ascii?Q?PI31H9TzpgVDzhMyb6k1K8owukKdtF8afCy5W4mtnhVsPNqxKov3mKkgCi6C?=
- =?us-ascii?Q?7yUDo2HovnrUnPQnHrxr45yypgXAsQc6dgEQHgPa9G63F27ue3Pj5e22xoGO?=
- =?us-ascii?Q?V3lXFYk/25UR3WcFQaRQDCLTJgMzfhmJ7G6o3S4tcmPGrOraW/LyNcT6R/Wc?=
- =?us-ascii?Q?ra75XE0JwpQOOWT5U5jBaNprSpl+Mwb45PAABVT6nY7qLGO9jeQHkzsN7jNe?=
- =?us-ascii?Q?ll39EiGbL63eZ3ST8uIR2ifIEX2sAM74CQqSciCJsnL8fDWevgAHGcHT6fp0?=
- =?us-ascii?Q?zn38HJq/wQsUHsEhzLXweibOwIDoYyXLyGm5pOOrr3W1o4nPitjQXMI6/NIh?=
- =?us-ascii?Q?GKk913yGL9J0P+1TuEI5i5sjRVKT1UyL1QHwkSvFb2KRnbTHiFJ5PUMocxNL?=
- =?us-ascii?Q?RijMHa2abN2JgNNaynxRZo4dPO7vXRuWHM5e8L4kZjDPoOiHWBhVeMw/YpNU?=
- =?us-ascii?Q?4R9/NbabSWA/q/3R637Yekj5y2+hyp/9N2Fm29wipIaEFEV9W2PIP8kcn9yI?=
- =?us-ascii?Q?k/SehXSWk7jHrqk7qQUCLajL3ZmH166ItAD1A/D3qb9mA2zzkcNGERRyFjbv?=
- =?us-ascii?Q?4tiXixLhAFzhFpqXALvLZMUXo428OhTRyQd0cL7bvsSRJWC7mHHkyYe3XgFp?=
- =?us-ascii?Q?LCnKMTX6bOH2UuUDyIYntYpu3dx9PcEtYNgPx2NY/0vyvXt3Lbv9i23wKj4R?=
- =?us-ascii?Q?sCoIah2NnLcizpkRrRdBZFdinYgNRW+0qz1XjZvwQw1x3XixD4S1F+V2dTk?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7fd5791-c06d-4df0-1301-08dbcbd204bb
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 09:51:49.6664
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR20MB3681
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: adc: provide max34408/9 device tree
+ binding document
+Content-Language: en-US
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Ivan Mikhaylov <fr0st61te@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231007234838.8748-1-fr0st61te@gmail.com>
+ <20231007234838.8748-2-fr0st61te@gmail.com>
+ <20231010154042.2ef667b2@jic23-huawei>
+ <383064a5b0863a4a616cd60cff8d4bc18e397fd7.camel@gmail.com>
+ <20231012084052.504ac930@jic23-huawei>
+ <e7b74daa9d0131246fd10f47aa4128bc8f8f3177.camel@gmail.com>
+ <20231013091952.00002573@Huawei.com>
+ <2eafa89c-7c95-4bc1-85cb-a6d7417dcea8@linaro.org>
+ <20231013100930.000043b2@Huawei.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231013100930.000043b2@Huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Sorry for the wrong title.
+On 13/10/2023 11:09, Jonathan Cameron wrote:
+>>>>>>>> +  shtdn-enable-gpios:      
+>>>>>>>
+>>>>>>> I guess the review crossed with you sending v5.  There is some
+>>>>>>> feedback on v4 you need
+>>>>>>> to address here.      
+>>>>>>
+>>>>>> Jonathan, I thought I did, I've changed ena to powerdown-gpios from
+>>>>>> Krzysztof's comments but about this one pin I'm still not sure, it
+>>>>>> looks like *-enable-gpios (like in *-enable-gpios pins in
+>>>>>> iio/frequency/adi,adf4377.yaml) pin or is it not? Or maybe any
+>>>>>> other
+>>>>>> suggestions about naming of this one?
+>>>>>>
+>>>>>> Thanks.    
+>>>>>
+>>>>> shutdown-gpios and make the sense (active high / low) such that
+>>>>> setting
+>>>>> it results in teh device being shut down.
+>>>>> Or treat it as an enable and enable-gpios
+>>>>>
+>>>>> Something that indicates both shutdown and enable is confusing ;)
+>>>>>
+>>>>> Jonathan    
+>>>>
+>>>>
+>>>> Jonathan, then I make these changes:
+>>>>
+>>>> powerdown-gpios: -> output-enable:  
+>>> Needs to retain the gpios bit as we want the standard gpio stuff to pick
+>>> them up. I'm not that keen on output-enable-gpios though.  The activity
+>>> here is very much 'shutdown because of error or not enabled' I think.
+>>> So perhaps we flip the sense and document that it needs to be active low?
+>>>   
+>>>> shtdn-enable-gpios: -> enable-gpios:
+>>>>
+>>>> Is it ok?  
+>>>
+>>> Conor, Rob, Krzysztof - you probably have a better insight into this than
+>>> I do.
+>>>   
+>>
+>> "enable-gpios" are for turning on a specific feature, not powering
+>> on/off entire device. For example to enable regulator output.
+>>
+>> "powerdown-gpios" are for turning device on/off.
+>>
+>> I don't know what do you have in your device.
+> Ok. Sounds like that what is enable-gpios above should be shutdown-gpios.
 
->Yo,
->
->On Mon, Oct 09, 2023 at 07:26:35PM +0800, Inochi Amaoto wrote:
->> Move the cpu and the common peripherals of CV181x and CV180x to new file.
->>
->> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
->> ---
->>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 95 +------------------
->>  .../dts/sophgo/{cv1800b.dtsi => cv180x.dtsi}  | 19 +---
->>  2 files changed, 2 insertions(+), 112 deletions(-)
->>  copy arch/riscv/boot/dts/sophgo/{cv1800b.dtsi => cv180x.dtsi} (80%)
->>
->> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->> index df40e87ee063..0904154f9829 100644
->> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->> @@ -3,106 +3,13 @@
->>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->>   */
->>
->> -#include <dt-bindings/interrupt-controller/irq.h>
->> +#include "cv180x.dtsi"
->>
->>  / {
->>  	compatible = "sophgo,cv1800b";
->> -	#address-cells = <1>;
->> -	#size-cells = <1>;
->> -
->> -	cpus: cpus {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> -		timebase-frequency = <25000000>;
->> -
->> -		cpu0: cpu@0 {
->> -			compatible = "thead,c906", "riscv";
->> -			device_type = "cpu";
->> -			reg = <0>;
->> -			d-cache-block-size = <64>;
->> -			d-cache-sets = <512>;
->> -			d-cache-size = <65536>;
->> -			i-cache-block-size = <64>;
->> -			i-cache-sets = <128>;
->> -			i-cache-size = <32768>;
->> -			mmu-type = "riscv,sv39";
->> -			riscv,isa = "rv64imafdc";
->> -			riscv,isa-base = "rv64i";
->> -			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
->> -					       "zifencei", "zihpm";
->> -
->> -			cpu0_intc: interrupt-controller {
->> -				compatible = "riscv,cpu-intc";
->> -				interrupt-controller;
->> -				#address-cells = <0>;
->> -				#interrupt-cells = <1>;
->> -			};
->> -		};
->> -	};
->> -
->> -	osc: oscillator {
->> -		compatible = "fixed-clock";
->> -		clock-output-names = "osc_25m";
->> -		#clock-cells = <0>;
->> -	};
->>
->>  	soc {
->> -		compatible = "simple-bus";
->>  		interrupt-parent = <&plic>;
->> -		#address-cells = <1>;
->> -		#size-cells = <1>;
->> -		dma-noncoherent;
->> -		ranges;
->> -
->> -		uart0: serial@4140000 {
->> -			compatible = "snps,dw-apb-uart";
->> -			reg = <0x04140000 0x100>;
->> -			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
->> -			clocks = <&osc>;
->> -			reg-shift = <2>;
->> -			reg-io-width = <4>;
->> -			status = "disabled";
->> -		};
->> -
->> -		uart1: serial@4150000 {
->> -			compatible = "snps,dw-apb-uart";
->> -			reg = <0x04150000 0x100>;
->> -			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
->> -			clocks = <&osc>;
->> -			reg-shift = <2>;
->> -			reg-io-width = <4>;
->> -			status = "disabled";
->> -		};
->> -
->> -		uart2: serial@4160000 {
->> -			compatible = "snps,dw-apb-uart";
->> -			reg = <0x04160000 0x100>;
->> -			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
->> -			clocks = <&osc>;
->> -			reg-shift = <2>;
->> -			reg-io-width = <4>;
->> -			status = "disabled";
->> -		};
->> -
->> -		uart3: serial@4170000 {
->> -			compatible = "snps,dw-apb-uart";
->> -			reg = <0x04170000 0x100>;
->> -			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
->> -			clocks = <&osc>;
->> -			reg-shift = <2>;
->> -			reg-io-width = <4>;
->> -			status = "disabled";
->> -		};
->> -
->> -		uart4: serial@41c0000 {
->> -			compatible = "snps,dw-apb-uart";
->> -			reg = <0x041c0000 0x100>;
->> -			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
->> -			clocks = <&osc>;
->> -			reg-shift = <2>;
->> -			reg-io-width = <4>;
->> -			status = "disabled";
->> -		};
->>
->>  		plic: interrupt-controller@70000000 {
->>  			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
->> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
->> similarity index 80%
->> copy from arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->> copy to arch/riscv/boot/dts/sophgo/cv180x.dtsi
->> index df40e87ee063..ffaf51724c98 100644
->
->Firstly, this form of diff really threw me, I was quite confused for a
->few minutes. A copy plus a pair of diffs doesn't really make much sense,
->when the operation being carried is an extraction of some nodes to a
->different file.
->
+shutdown-gpios sounds exactly the same as powerdown-gpios and it is
+already used in exactly same context.
 
-I was told to use -C/-M/-B to generate patch, and the git format-patch
-give me this wired output if I use -C, using -M seems no change from v1.
-The -B output is also disappointing. Maybe I need to generate agaion?
+> The other case is a device output indicating whether the device is
+> shutdown.  That can happen because it was told to do so (via the other gpio),
+> or because it is in an error state. What's a good naming convention for that?
 
-The v1 version:
-https://lore.kernel.org/linux-riscv/IA1PR20MB495360B632D106BBB833D82ABBCFA@IA1PR20MB4953.namprd20.prod.outlook.com/
+There is no convention and I did not see such case so far.
+powerdown-status-gpios? powerdown-state-gpios?
 
->> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
->> @@ -1,12 +1,12 @@
->>  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>  /*
->>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
->> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->
->Also, is moving around some bits of hw description really a
->copyrightable change?
->
 
-It seems to be a mistake when I splitting the patch from v1.
-This copyright should in the next patch.
 
->>   */
->>
->>  #include <dt-bindings/interrupt-controller/irq.h>
->>
->>  / {
->> -	compatible = "sophgo,cv1800b";
->>  	#address-cells = <1>;
->>  	#size-cells = <1>;
->>
->> @@ -48,7 +48,6 @@ osc: oscillator {
->>
->>  	soc {
->>  		compatible = "simple-bus";
->> -		interrupt-parent = <&plic>;
->>  		#address-cells = <1>;
->>  		#size-cells = <1>;
->>  		dma-noncoherent;
->> @@ -103,21 +102,5 @@ uart4: serial@41c0000 {
->>  			reg-io-width = <4>;
->>  			status = "disabled";
->>  		};
->> -
->> -		plic: interrupt-controller@70000000 {
->> -			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
->> -			reg = <0x70000000 0x4000000>;
->> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
->> -			interrupt-controller;
->> -			#address-cells = <0>;
->> -			#interrupt-cells = <2>;
->> -			riscv,ndev = <101>;
->> -		};
->> -
->> -		clint: timer@74000000 {
->> -			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
->> -			reg = <0x74000000 0x10000>;
->> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
->> -		};
->>  	};
->>  };
->
->What I wanted to comment on was this though - it seems that both the
->cv1800b and the cv1812h have identical plic and clint nodes, other than
->their compatibles? If that is the case, why create a cv1800b and a
->cv1812h specific file containing entirely new nodes, when overriding the
->compatible would be sufficient? Doubly so if the other SoCs in the
->cv18xx series are going to have identical layouts.
->
->I gave it a quick test locally with the below diff applied on top of
->this series - although I didn't make sure that I didn't re-order the
->plic & clint nodes, I just wanted to demonstrate what I had done.
->
+Best regards,
+Krzysztof
 
-Thanks for demonstration. AFAIK, what you said is true. the most devices
-of CV180x and CV181x are the same, including plic and clint. The reason I
-used a new one is to identify these two devices without making the
-compatible string confusing.
-Should I change the binding name of plic and clint to "sophgo,cv1800-xxx"
-to mark there are the same series? I think this can avoid this confusing
-dt nodes.
-
->Cheers,
->Conor.
->
 
