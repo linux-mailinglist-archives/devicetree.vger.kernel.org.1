@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-8463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E25EB7C8442
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:19:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93A87C844E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96EFF282846
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:19:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18C1B1C209E0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D854813AC6;
-	Fri, 13 Oct 2023 11:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3814313AC7;
+	Fri, 13 Oct 2023 11:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hU/wcUVi"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="VP1XpiqG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A2513AC3
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:18:58 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C14010B;
-	Fri, 13 Oct 2023 04:18:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175A113AC2
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:22:55 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2071.outbound.protection.outlook.com [40.107.100.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA6191;
+	Fri, 13 Oct 2023 04:22:54 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ktle9V0XE8f5oLcInn3dej4q+CaHxll9EX8ylrx1IHrPh/DZdizUILKKYdx2hRrAusgqy+tcbTVwrxszWy5rH6Vxos587eycscaBgzi1uVa2GM8tB5aJ9kllBPwU1GIv6CpmqEB6qahhZZd2sO/T/Xp9MR6BFSG2dcOWfJaw7wKXmjExXLABYOVzJYyVjWENv1urrOqXqJMMvOVxkBbZm7FDPzYfZaSXOn5/Aq+Ce8MQDIgLp/0nuDF0kwYTrgDGeDmJOFktFOUJstCv25K2kTVpRrJG6AnUYB+9J6dvizXL4QnSa3CSOzFyPIhdrVunKfdawXhLvnXqyy2nJmDG9g==
+ b=JoGXVwJEJtfDUMSGiHx4JVG+97Yy57eTvIoYL620aNs6Sy3oLTcO/8udNUUvrBCw/v4AAjMCy9AeMbJkJt66J+K9544XdRV3sWVoPQXWkAE4J23L8bpQp/lH6q2NJWI4qs5u1Z22ON4t2Vdmki26S9jy6LuKxIJ7vq3n3fDNbDtMIkqK2hmDCf9tnKXifs1cfhQYGclGlu7GhKRfMlpjCIzC3Vf1qi0l2I1uvPMjeZgU2X7mkoYeAk0hoIIDdbSYtfotiN8Cc0lc8MUiAOB1Q8Fp0cibyyumZHd+jjRUpRnsW2A1q2O8+KlC2ZHzimwZ+O4kXUG7ERF8UnSJlil1nQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gjFl4xPWx5jAemVjsuAMLiYgL29MXpiSRcu3Y1IOUn0=;
- b=ejcYJqc0q2ptSEWl1X2WpfXk/e+vQ10O1bxnSRXy+ddfbaH/Tb6TdvVc/PCRWrGmOLKSbT00rAX1CipKYfBFlqsieeP4PW0e+fQwm5zTWw3cNwI/73HVuIlzszm2ij61o2A5zQMcEOALzmfv/4+qUgPQOmEByLsR0vu1Ta+/Nrf0R35IK+kZtRltAUaMBFUmTdtZQQchAYUUiA1qRzFYB3wmQLrE3VGC7dCFVEvw5Ig2JHr28EXJCMxtnrIokmfLRUGs4L5uYrXNtshfJnEJYJVNHZWnIDZ4EIzdAO0XYr78y43acQDQkmayyq9/BnVe3hDV1JtgvcvfImSG5gYdyA==
+ bh=g9ks7wfPjYklqP2OjIQKPmY4G+1cmPloa0oUqxQH5UY=;
+ b=mc0YHjJ6CDW1RxxlRqdp1ivvvv/29TJCw0ZFwWJQ8RYeljrPfSZcrDVEZSm2eZTcgTxkZBwiKZYhsGNqG5x3YON6uuq3pSTVCkJJbg7s5FBtFbD0R4NUGdOxtu6NIsI06PLWlAz3LU4z8MnWYMmZ8hvXTli0eskklVXZZInpIP5na8yxeVE5xaXnReZ9MyfYVr2ZJ/USwkRc4zEFzhFgJmz9oFxODHW8yriPgVdpAcaFS9w9UySQW3/WdmEnIpm6nNeb3eh/TnwAh4kw/hZZEKSJYnEdDEmLhQTyRNa63hbvSQizucP9k/j3u0K886IQGLA6z8Al0b10rdnsC3bv8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gjFl4xPWx5jAemVjsuAMLiYgL29MXpiSRcu3Y1IOUn0=;
- b=hU/wcUViL4chFL7kJkzH8Toflum6ejTgp4+V+44Wfmv/i1x81EKZZTm7jj25z+Y32h7k6hRC8vPWvEvg3NO2PMwBzro2yCE1I+eCBIMwvNqPA6r9BHke+6zsyzLlaqb5xkNZuegRks78ga6sMZkvkF5fbE5Iuf5/Q/MluzlElj4=
-Received: from BL1P222CA0024.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:2c7::29)
- by IA1PR12MB6259.namprd12.prod.outlook.com (2603:10b6:208:3e5::17) with
+ bh=g9ks7wfPjYklqP2OjIQKPmY4G+1cmPloa0oUqxQH5UY=;
+ b=VP1XpiqGtMWZO/4CxFbbVLT6kXY1RlHTHQi2vbc26G5bUZWhoVOWM/ZUGpOE2FOf9kG8+Xf35OXJZ7vAo5rB/Mt9knpbbhsoxPeyTAJ8lVryc+LDz1FeYIWyog99w5q/uz78pFZIyaVpE2L8bSXipavfzPdN+FOvc2V5KHu9Ghs=
+Received: from MN2PR19CA0057.namprd19.prod.outlook.com (2603:10b6:208:19b::34)
+ by PH8PR12MB7184.namprd12.prod.outlook.com (2603:10b6:510:227::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.45; Fri, 13 Oct
- 2023 11:18:48 +0000
-Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
- (2603:10b6:208:2c7:cafe::9a) by BL1P222CA0024.outlook.office365.com
- (2603:10b6:208:2c7::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.27 via Frontend
- Transport; Fri, 13 Oct 2023 11:18:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Fri, 13 Oct
+ 2023 11:22:51 +0000
+Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
+ (2603:10b6:208:19b:cafe::33) by MN2PR19CA0057.outlook.office365.com
+ (2603:10b6:208:19b::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.28 via Frontend
+ Transport; Fri, 13 Oct 2023 11:22:51 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,15 +55,15 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Fri, 13 Oct 2023 11:18:47 +0000
+ 15.20.6838.22 via Frontend Transport; Fri, 13 Oct 2023 11:22:51 +0000
 Received: from [192.168.137.2] (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 13 Oct
- 2023 06:18:45 -0500
-Message-ID: <ec924502-ddf0-4821-945d-7c1649502574@amd.com>
-Date: Fri, 13 Oct 2023 13:18:43 +0200
+ 2023 06:22:49 -0500
+Message-ID: <91d61e1a-abb0-4b31-aa22-aff72d582ebe@amd.com>
+Date: Fri, 13 Oct 2023 13:22:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: zynqmp: Add ZynqnMP nvmem nodes
+Subject: Re: [PATCH 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to
+ yaml
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Praveen Teja
  Kundanala" <praveen.teja.kundanala@amd.com>,
@@ -80,8 +81,8 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Praveen Teja
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
 CC: <linux-kernel@vger.kernel.org>
 References: <20231013101450.573-1-praveen.teja.kundanala@amd.com>
- <20231013101450.573-5-praveen.teja.kundanala@amd.com>
- <acd0e775-9766-49b6-8dc1-22fdd5d63688@linaro.org>
+ <20231013101450.573-3-praveen.teja.kundanala@amd.com>
+ <02d3fa42-75a3-4f4f-ade6-204c8146d694@linaro.org>
 From: Michal Simek <michal.simek@amd.com>
 Autocrypt: addr=michal.simek@amd.com; keydata=
  xsFNBFFuvDEBEAC9Amu3nk79+J+4xBOuM5XmDmljuukOc6mKB5bBYOa4SrWJZTjeGRf52VMc
@@ -127,7 +128,7 @@ Autocrypt: addr=michal.simek@amd.com; keydata=
  y7RkYPOpmElF2pwWI/SXKOgMUgigedGCl1QRUio7iifBmXHkRrTgNT0PWQmeGsWTmfRit2+i
  l2dpB2lxha72cQ6MTEmL65HaoeANhtfO1se2R9dej57g+urO9V2v/UglZG1wsyaP/vOrgs+3
  3i3l5DA=
-In-Reply-To: <acd0e775-9766-49b6-8dc1-22fdd5d63688@linaro.org>
+In-Reply-To: <02d3fa42-75a3-4f4f-ade6-204c8146d694@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.180.168.240]
@@ -135,26 +136,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|IA1PR12MB6259:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0423b141-0f7b-4ec0-2643-08dbcbde2bae
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|PH8PR12MB7184:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06515ee3-0f6d-4503-143f-08dbcbdebcb8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	bK2t5khZGJ5+CXxFEWBSlCvok+oZL+aMo6P69gAhXr1g3K+sVub1TCoWJxYTdsu0X2H05IxdEIFT2dUdUI40QuJ69HvMq3LXW5hk2KoR50hHjnDerXPcOwDaY0pPgIDga257QrntK2bzv/BHAqON/sIjCfsKxhTihclWoE8UPKAovJ1W9yVdYHfBiBPI6J9txCT7yNJvAJdIT4V5mUWDEfv+j20oXtVeteh2Cy6rhWsbLWdYG9voEbGUOK/mskhF6TlCHcXNmgd206xc8SBFt+Aa7ALH/ypFD7rcagkS9mq/GZODZ5G9B06spkOO93hkE1Nb8HXazEDLWw1cATfEtyLwyGyytvXIVJARQVNl+CI9+/SVjIKg3vMVShB127AAmaiyWwqcCOicWIlwYjnlk6GKyq3oOILr0wuXaEpj0XCI0I5SoKtzrFDobwUGk8PQKyrndFUsbmBTUsa3X6Ta/o5a7BFvFCu6hsc6yamcf20hnvwg1i8QZ3KCGrzFAIWn5V0G/NL38WpLLiyqeg8v/R16aJcY7ofMjd2vzFKbkyTaD2WgpCQcrM0e8YwfWwBEbUxCuBxpoqVNPoQsUiwos96mdbZI65j07n5S5YV78ptexxxpZhTfA7KaHOJkjGNEe6Di0kfXCLajTmNs2h0aJYNMRq6WBIKs/9nBnyNVBkuNNgiM98ZeioeXeNfaeN8gVT5hdY1Zcn6mEUED69M89QXdFSFXgh//IXELGP3C0MCH8BWAYkY4ertJbBjSfTc+n0akYwXrSuxKIiAZWAhiDss2RtNXfuy0jN/zJGL4Jb4=
+	AFPB1eRe7b5HoF1nOSiXDmrb6JJhzYkZQfjjEdH3HJbqaWa/cNO8wCTq1/ji0te/L6rXg0fq0CX+MfeT5dq+JyUXGfM0R68FXAnHaGnj8aw2QWSGZ8G64bQ+syV91/wdk55o/y6Bv3gs8EXCAXSC+hJ6B0H6ikrdcXiDBVpGVDOx23j4W1i8h6Wx2Pq8PZwv3as09m29Iw+M2yvO5tuqTysXCGkZHOx8QiAJEVpY1n/fnultxsi6xBJkXrLuwCpCE16D5hn5hawexcA90uWz7/oZkpRxfgkFgkcGRC7rc9F3Gwgnkpa4qKWjHQ7H/tptPRxc+8MJOxW1XzpyGjziTFRGOCBAJTquxpPai5nan2qKxxXi/1of1iYdrD6XiLGVA2KPQjyZnuRFMuE/wXzRy8WkihPNu+adHxfKoC6c0mNppcKbLiZw3+nu3jYHoboB4U80+RSwbX2nKeBBjpWp0VH/M4vpqNv1isFSFD8pn4Rdv1UK6eddEY99uaEabU/4oMbcZ2NMxIlBzdUr47Rqrm2ekADbiefjp7hN8kdJ5Euuk/gZhXKCoRcOExTV3D4NsF6oXs4SsoxWnP4n8d9Rz6AQ21UoSNzakrPvQ3gSoyD3LwwvOhHAPxeL9tscfSOgZYhAVcpB/bnOL9QSrWJ1ZpC5HxYlSi4MC8Fhvhfx5VS+TnPhEpqSY4RnA69QK5rumrfCl1ZRofjO35mhft0lQYC+pLeNEFmFG0GdRsNxYH2CaUqdkAczGJOA5dRTaTajN0Y7fem3wmx4Z6Jkan4kbv+rAFDvRiJeHlLttYeyiKP/7xp0TRAdSad6KemamGG6sdFlirJBr/GVPxjXBADIjg==
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(136003)(396003)(376002)(39860400002)(230922051799003)(82310400011)(1800799009)(64100799003)(451199024)(186009)(36840700001)(40470700004)(46966006)(478600001)(16576012)(316002)(16526019)(82740400003)(53546011)(70586007)(70206006)(110136005)(966005)(31686004)(4326008)(41300700001)(44832011)(8676002)(8936002)(356005)(81166007)(36860700001)(336012)(26005)(426003)(2616005)(40480700001)(83380400001)(2906002)(5660300002)(40460700003)(31696002)(36756003)(47076005)(86362001)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(136003)(376002)(396003)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(82310400011)(46966006)(36840700001)(40470700004)(478600001)(40480700001)(6666004)(4326008)(47076005)(8676002)(40460700003)(70206006)(966005)(16576012)(110136005)(70586007)(316002)(31696002)(86362001)(82740400003)(8936002)(2906002)(81166007)(356005)(36756003)(5660300002)(41300700001)(44832011)(36860700001)(26005)(16526019)(31686004)(2616005)(83380400001)(426003)(336012)(53546011)(36900700001)(43740500002);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 11:18:47.8599
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 11:22:51.1947
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0423b141-0f7b-4ec0-2643-08dbcbde2bae
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06515ee3-0f6d-4503-143f-08dbcbdebcb8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0DE.namprd04.prod.outlook.com
+	BL02EPF0001A0FC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6259
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7184
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
 	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
@@ -164,33 +165,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 
 
-On 10/13/23 12:32, Krzysztof Kozlowski wrote:
+On 10/13/23 12:30, Krzysztof Kozlowski wrote:
 > On 13/10/2023 12:14, Praveen Teja Kundanala wrote:
->> Add nvmem DT nodes for ZynqMP SOC
+>> Convert the xlnx,zynqmp-nvmem.txt to yaml.
 >>
 >> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
 >> ---
->>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 55 ++++++++++++++++++++++++++
->>   1 file changed, 55 insertions(+)
+>>   .../bindings/nvmem/xlnx,zynqmp-nvmem.txt      | 46 ---------------
+>>   .../bindings/nvmem/xlnx,zynqmp-nvmem.yaml     | 59 +++++++++++++++++++
+>>   2 files changed, 59 insertions(+), 46 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+>>   create mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
 >>
->> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> index 02cfcc716936..b8807dcce442 100644
->> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> @@ -190,6 +190,61 @@ nvmem_firmware {
->>   				soc_revision: soc_revision@0 {
->>   					reg = <0x0 0x4>;
->>   				};
->> +				/* efuse access */
->> +				efuse_dna: efuse_dna@c {
+>> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+>> deleted file mode 100644
+>> index 4881561b3a02..000000000000
+>> --- a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+>> +++ /dev/null
+>> @@ -1,46 +0,0 @@
+>> ---------------------------------------------------------------------------
+>> -=  Zynq UltraScale+ MPSoC nvmem firmware driver binding =
+>> ---------------------------------------------------------------------------
+>> -The nvmem_firmware node provides access to the hardware related data
+>> -like soc revision, IDCODE... etc, By using the firmware interface.
+>> -
+>> -Required properties:
+>> -- compatible: should be "xlnx,zynqmp-nvmem-fw"
+>> -
+>> -= Data cells =
+>> -Are child nodes of silicon id, bindings of which as described in
+>> -bindings/nvmem/nvmem.txt
+>> -
+>> --------
+>> - Example
+>> --------
+>> -firmware {
+>> -	zynqmp_firmware: zynqmp-firmware {
+>> -		compatible = "xlnx,zynqmp-firmware";
+>> -		method = "smc";
+>> -
+>> -		nvmem_firmware {
+>> -			compatible = "xlnx,zynqmp-nvmem-fw";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -
+>> -			/* Data cells */
+>> -			soc_revision: soc_revision {
+>> -				reg = <0x0 0x4>;
+>> -			};
+>> -		};
+>> -	};
+>> -};
+>> -
+>> -= Data consumers =
+>> -Are device nodes which consume nvmem data cells.
+>> -
+>> -For example:
+>> -	pcap {
+>> -		...
+>> -
+>> -		nvmem-cells = <&soc_revision>;
+>> -		nvmem-cell-names = "soc_revision";
+>> -
+>> -		...
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+>> new file mode 100644
+>> index 000000000000..e03ed8c32537
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/nvmem/xlnx,zynqmp-nvmem.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Zynq UltraScale+ MPSoC Non Volatile Memory interface
+>> +
+>> +description: |
+>> +    The ZynqMP MPSoC provides access to the hardware related data
+>> +    like SOC revision, IDCODE.
+>> +
+>> +maintainers:
+>> +  - Kalyani Akula <kalyani.akula@amd.com>
+>> +  - Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+>> +
+>> +allOf:
+>> +  - $ref: "nvmem.yaml#"
 > 
-> No underscores in node names. I see now from where did you get the
-> initial pattern. Would be great if you fixed Xilinx DTS :/
+> Drop quotes.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: xlnx,zynqmp-nvmem-fw
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+> 
+> Drop
+> 
+>> +
+>> +  '#size-cells':
+>> +    const: 1
+> 
+> Drop
+> 
+>> +
+>> +required:
+>> +  - compatible
+> 
+> required: block goes after patternProperties: block
+> 
+>> +
+>> +patternProperties:
+>> +  "^soc_revision@0$":
+> 
+> Why do you define individual memory cells? Is this part of a binding?
+> IOW, OS/Linux requires this?
 
-I actually fixed soc-revision here.
-
-https://lore.kernel.org/all/5137958580c85a35cf6aadd1c33a2f6bcf81a9e5.1695040866.git.michal.simek@amd.com/
+nvmem has in kernel interface where you can reference to nodes. nvmem_cell_get() 
+calls. It means you should be able to describe internal layout that's why names 
+are used. And address in name is there because of reg property is used to 
+describe base offset and size.
 
 Thanks,
 Michal
+
+
 
