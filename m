@@ -1,127 +1,160 @@
-Return-Path: <devicetree+bounces-8479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571627C84D9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B43A7C84F4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB1CAB20993
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:47:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9ECB0B20979
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEF513FFC;
-	Fri, 13 Oct 2023 11:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FAFE13FF1;
+	Fri, 13 Oct 2023 11:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XN2hI3fY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OsH95ppr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BCD813FF1
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:47:51 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821FFBF;
-	Fri, 13 Oct 2023 04:47:49 -0700 (PDT)
-Received: from obbardc-t14.home (unknown [IPv6:2a00:23c8:b70a:ae01:c2e1:3bb7:ed5c:6a0d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: obbardc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 24893660735E;
-	Fri, 13 Oct 2023 12:47:48 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697197668;
-	bh=CCYO2Nxk6wHQeFOamNkL/4O7unR6kwkhjTCQuRoEydY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XN2hI3fYED/cM0FKRFyzVDLMLuOThRPGfqH52Baig1uVi93sCyF8orvE3K3/wyciY
-	 aTS3P6U34nJKMd4bIw94gbKZ3tS6O/3CXTLqLqH8RreEWYVVUzk4/PjRvWZ9V4LMle
-	 BCmwQY8zEhnTacnUQd0jkK9iIjgaoRskGmDNUl81/Gp24lVEBIWVgqTfu2OD+Wki63
-	 5TmLyj6gQTDowHkDOuj5S7eD8+/R0xsViFXcCp6ZRRar37ixnfPBUSDsyJjwgrhsMh
-	 UyiMdWzRBVN4zmyrYH+TtYadA5v0mcApRkiLgQdEdrh46GXHfmFhbOpW8Sy6+KiOyy
-	 BsCRc9JizbPvg==
-From: Christopher Obbard <chris.obbard@collabora.com>
-To: linux-rockchip@lists.infradead.org
-Cc: kernel@collabora.com,
-	Christopher Obbard <chris.obbard@collabora.com>,
-	Brian Norris <briannorris@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Judy Hsiao <judyhsiao@chromium.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Yogesh Hegde <yogi.kernel@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: Fix i2s0 pin conflict on ROCK Pi 4 boards
-Date: Fri, 13 Oct 2023 12:47:27 +0100
-Message-ID: <20231013114737.494410-3-chris.obbard@collabora.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231013114737.494410-1-chris.obbard@collabora.com>
-References: <20231013114737.494410-1-chris.obbard@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8456F13AC9
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:51:04 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B639D106
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 04:50:45 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-53e3e7e478bso959152a12.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 04:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697197844; x=1697802644; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RlWyBAlnNkL97B9uFnxIPAxyiYY6f2FScf2sGwpC230=;
+        b=OsH95pprrsqU4C8RXoUQRJ1+XyAquUsbz60I+uQx3Rtcc7ICAozUquV+OsAOoh4IvN
+         3JOT4lHgPkW7wB/xMowAc9AK3hBlVOYdIlG7zXelaHCQJCIV5EInneFXFVDqG6LqMN+b
+         TfwYO1tacqgIRRYW1IHA6gpm0hENk/Vn9II9q5Ab8998GH+yQ/34LMShyUXeQo134W0f
+         ZbgUgw8aNR6BfWLyq/+JCuaNwALD1DxQ5plpUSRuh5c0vTYZtPDLiowWXmYbWyL+253o
+         mJfSiP5qIM7s76xWV4rY8GiA0U/sH4lmyLXi/zL/c35TWbabGC55ghloH1MRJTMn/xBU
+         0Whg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697197844; x=1697802644;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RlWyBAlnNkL97B9uFnxIPAxyiYY6f2FScf2sGwpC230=;
+        b=f1eSqQ/gwSpHmMwNwY3xdeH32O25U7WOYgfUa8pScz/8D+/h/5P+7E0RPcVDtNx2Zt
+         8YGs6rCJuaCU3uYXciJaFRmYVkmBv106A9TOJlEvfnFFPWeU2XmTmqZdxw7CeXmCBE1s
+         Nm5TEYD35JPz1jfrbuK8Iddys7I8s6x3tqXct+s5sbgyxs8VNADwS3SEbroZXXMY+sNv
+         k0nSR1rBbrpnIAq7kqAaRF5fk5AzgJ1sgPMfbxtt4Ch28d6JrSHSBXeV00bsbTbgGKDn
+         vmSyrShJTDeE2gtFG380N3Ug7TcpEmmuObNFXKX5SqF18L3glKskxah1AVygM7qnozhA
+         eABg==
+X-Gm-Message-State: AOJu0YyoidcBBvR2hsO9uvnPog38tIyuiV27sO01xsiaPJNs34VwimJ3
+	xcLAgtKQyw6Fj+AQLkawErCEXQ==
+X-Google-Smtp-Source: AGHT+IEJoR/VHdNl6bTvYFWkcLiHNQWLAQ7VtYXGcdP3RwVtf2/2Lviium2SclwNgNdjYoI6hEGR6w==
+X-Received: by 2002:a05:6402:951:b0:53d:a4a3:e5c4 with SMTP id h17-20020a056402095100b0053da4a3e5c4mr8086654edz.1.1697197844035;
+        Fri, 13 Oct 2023 04:50:44 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id er24-20020a056402449800b0052febc781bfsm4218376edb.36.2023.10.13.04.50.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Oct 2023 04:50:43 -0700 (PDT)
+Message-ID: <37a2d2d1-5ede-4f88-b4e7-d9750336465d@linaro.org>
+Date: Fri, 13 Oct 2023 13:50:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw88399 amplifier driver
+Content-Language: en-US
+To: wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ perex@perex.cz, tiwai@suse.com, herve.codina@bootlin.com,
+ shumingf@realtek.com, rf@opensource.cirrus.com, arnd@arndb.de,
+ 13916275206@139.com, ryans.lee@analog.com, linus.walleij@linaro.org,
+ ckeepax@opensource.cirrus.com, fido_max@inbox.ru,
+ sebastian.reichel@collabora.com, colin.i.king@gmail.com,
+ liweilei@awinic.com, trix@redhat.com, dan.carpenter@linaro.org,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231013104220.279953-1-wangweidong.a@awinic.com>
+ <20231013104220.279953-4-wangweidong.a@awinic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231013104220.279953-4-wangweidong.a@awinic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Commit 91419ae0420f ("arm64: dts: rockchip: use BCLK to GPIO switch on
-rk3399") modified i2s0 to switch the corresponding pins off when idle.
-For the ROCK Pi 4 boards, this means that i2s0 has the following pinctrl
-setting:
+On 13/10/2023 12:42, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
+> 
+> Add i2c and amplifier registration for
+> aw88399 and their associated operation functions.
+> 
 
-    pinctrl-names = "bclk_on", "bclk_off";
-    pinctrl-0 = <&i2s0_2ch_bus>;
-    pinctrl-1 = <&i2s0_8ch_bus_bclk_off>;
 
-Due to this change, i2s0 fails to probe on my Radxa ROCK 4SE and ROCK Pi
-4B boards:
+> +
+> +static void aw88399_hw_reset(struct aw88399 *aw88399)
+> +{
+> +	if (aw88399->reset_gpio) {
+> +		gpiod_set_value_cansleep(aw88399->reset_gpio, 0);
+> +		usleep_range(AW88399_1000_US, AW88399_1000_US + 10);
+> +		gpiod_set_value_cansleep(aw88399->reset_gpio, 1);
 
-    rockchip-pinctrl pinctrl: pin gpio3-29 already requested by leds; cannot claim for ff880000.i2s
-    rockchip-pinctrl pinctrl: pin-125 (ff880000.i2s) status -22
-    rockchip-pinctrl pinctrl: could not request pin 125 (gpio3-29) from group i2s0-8ch-bus-bclk-off  on device rockchip-pinctrl
-    rockchip-i2s ff880000.i2s: Error applying setting, reverse things back
-    rockchip-i2s ff880000.i2s: bclk disable failed -22
+Why do you leave the device in reset state? I think you wanted these
+reverted.
 
-A pin requested for i2s0_8ch_bus_bclk_off has already been requested by
-user_led2, so whichever driver probes first will have the pin allocated.
-
-The hardware uses 2-channel i2s so fix this error by setting pinctl-1 to
-i2s0_2ch_bus_bclk_off which doesn't contain the pin allocated to user_led2.
-
-I checked the schematics for all Radxa boards based on ROCK Pi 4 and this
-change is compatible with all boards.
-
-Fixes: 91419ae0420f ("arm64: dts: rockchip: use BCLK to GPIO switch on rk3399")
-Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
----
-
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-index 7dccbe8a93930..f2279aa6ca9e1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-@@ -492,6 +492,7 @@ &i2c4 {
- 
- &i2s0 {
- 	pinctrl-0 = <&i2s0_2ch_bus>;
-+	pinctrl-1 = <&i2s0_2ch_bus_bclk_off>;
- 	rockchip,capture-channels = <2>;
- 	rockchip,playback-channels = <2>;
- 	status = "okay";
--- 
-2.42.0
+Best regards,
+Krzysztof
 
 
