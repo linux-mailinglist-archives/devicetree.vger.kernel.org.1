@@ -1,76 +1,110 @@
-Return-Path: <devicetree+bounces-8361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B02E7C7D7A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:09:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF0C7C7DB4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:30:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3909B20975
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:09:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC59C1C20BCA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8076FC6;
-	Fri, 13 Oct 2023 06:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BEC23CB;
+	Fri, 13 Oct 2023 06:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="I760LBV9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECC433D2
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:09:04 +0000 (UTC)
-Received: from mail.andi.de1.cc (unknown [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DE5C0;
-	Thu, 12 Oct 2023 23:09:02 -0700 (PDT)
-Received: from p5dc58bc7.dip0.t-ipconnect.de ([93.197.139.199] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qrBLs-004u5D-Rg; Fri, 13 Oct 2023 08:08:48 +0200
-Date: Fri, 13 Oct 2023 08:08:46 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lee@kernel.org,
- bcousson@baylibre.com, tony@atomide.com, mturquette@baylibre.com,
- sboyd@kernel.org, andreas@kemnade.info, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 4/5] clk: twl: add clock driver for TWL6032
-Message-ID: <20231013080846.2422475f@aktux>
-In-Reply-To: <20230916100515.1650336-5-andreas@kemnade.info>
-References: <20230916100515.1650336-1-andreas@kemnade.info>
-	<20230916100515.1650336-5-andreas@kemnade.info>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D902E101E1
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:30:15 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE380BC;
+	Thu, 12 Oct 2023 23:30:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1697178614; x=1728714614;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=c8NemQmEEtATdCtPjluXwUnrBkqItgm8r0eFaVBUzMw=;
+  b=I760LBV9USYelfzJyg5/eSLL6clOrUvTZx/HV36iSa8AIIeKFzZQYF8D
+   l8XjeOPllZxXWuJsyJRRSu12fKTYFbFfMdZL3GDWFslTwXnOWJgqPo6WO
+   J8D6gdV6z3VIWOGaJ0IIbpkhSUs9c2pqmsrASw30oHYoDUzsi0yVo2CM7
+   jzdv1tFweMRccD8BImO6X6MB3kqw0x3GjryvWkHe0k+sPOP4/M5dfvuvB
+   NQFD59LJqE5KNrw5kHYTzQoRRPMnGJUeMoRFZKYGwQksOGBEvlKcFCeRH
+   YsXF2VKYOblmTOVER4uWxDvTDASkJXU8nn1HJLkoaGI/JGDMn30VH4jUC
+   w==;
+X-IronPort-AV: E=Sophos;i="6.03,221,1694728800"; 
+   d="scan'208";a="33444546"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2023 08:30:11 +0200
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 529E7280082;
+	Fri, 13 Oct 2023 08:30:11 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-i2c@vger.kernel.org
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	Marek Vasut <marex@denx.de>
+Subject: [PATCH 1/2] dt-bindings: at24: add ST M24C64-D Additional Write lockable page
+Date: Fri, 13 Oct 2023 08:30:07 +0200
+Message-Id: <20231013063008.2879314-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sat, 16 Sep 2023 12:05:14 +0200
-Andreas Kemnade <andreas@kemnade.info> wrote:
+The ST M24C64-D behaves as a regular M24C64, except for the -D variant
+which uses up another I2C address for Additional Write lockable page.
+This page is 32 Bytes long and can contain additional data. Document
+compatible string for it, so users can describe that page in DT. Note
+that users still have to describe the main M24C64 area separately as
+that is on separate I2C address from this page.
 
-> The TWL6032 has some clock outputs which are controlled like
-> fixed-voltage regulators, in some drivers for these chips
-> found in the wild, just the regulator api is abused for controlling
-> them, so simply use something similar to the regulator functions.
-> Due to a lack of hardware available for testing, leave out the
-> TWL6030-specific part of those functions.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
-ping...
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+This is a copy & paste of [1] for ST M24C64-D. I reused the same pattern and
+also used Marek's commit message.
 
-anything left to do here?
+[1] https://lore.kernel.org/all/20231010190926.57674-1-marex@denx.de/#t
 
-Regards,
-Andreas
+ Documentation/devicetree/bindings/eeprom/at24.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+index 7be127e9b2507..6385b05a1e62f 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -73,6 +73,8 @@ properties:
+                   pattern: cs32$
+               - items:
+                   pattern: c64$
++              - items:
++                  pattern: c64d-wl$
+               - items:
+                   pattern: cs64$
+               - items:
+-- 
+2.34.1
+
 
