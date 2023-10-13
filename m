@@ -1,150 +1,128 @@
-Return-Path: <devicetree+bounces-8582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086ED7C8D43
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:45:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D63F07C8D64
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 395E01C20B05
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:45:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1D2FB20A5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927511C290;
-	Fri, 13 Oct 2023 18:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B299210FE;
+	Fri, 13 Oct 2023 18:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VWCNBmGe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PNqceIBu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B5C33D2
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:45:48 +0000 (UTC)
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5939DBE;
-	Fri, 13 Oct 2023 11:45:43 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so27816015e9.0;
-        Fri, 13 Oct 2023 11:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697222742; x=1697827542; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nS/B/9nUlLmw6S4KsFUi4nqKiJBJFKciQh4FDxh+L/s=;
-        b=VWCNBmGeZethL9drvaz2BFBuuHeshfVwQWIyDsom5kSEDWjXymqfdEHMBwuZfpEZPv
-         PzRTAlF0tGzixcs8G4qVDkafWDPQrQT/rTF60rqR6FFGAOzdvwtJg5cCD8ERtlmgjKDK
-         HlQnjHEYmFlX0WNmfQLVLqaaN6J84SqF6qgDq4OPt/wj0rlKIUEoH1STdfBzDBJxkXup
-         UAz/FmHq2hJw1WqS2GOk9MwSZpRNhs6Dx3NnQbAs4KW7R6Z2/Z1zEb6xYI9AyWSko1KU
-         OIVQbn1lRxI/aChFNk8BbAE8ioCrnV0NVyfPVPzZrrO4iYZEgaTHDvlI4ghV2M4mezcZ
-         3GPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697222742; x=1697827542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nS/B/9nUlLmw6S4KsFUi4nqKiJBJFKciQh4FDxh+L/s=;
-        b=ZLJd+9pQvY6RmB1kIzsATuTOlhXvz7ipXRkcCGQaBHOq8RMhCEkhNDuilTkn2PvgI/
-         kiYhLXD9QACXA9cwG1ZPCpRq4vHNaMydRH43bKn4GYUsiFgtocKYJiE/FrcG80A6/H0b
-         efh0tgfQodFp0LIi4rC7DdmJrqIbOnW5lea4VZnJIwdQVH5pNT6r2IoNxNH53CG6x1No
-         s035GjOn3uG8+amOWwH3LMCUK5ZoBXcBd73ndA1bJgHgQnXyfMrFMovmnGC1b97B84eN
-         DLShrZiU++nw9p/L6XaUao0Lt2tov2HaFp+H002VzbS8jSaDG9Tzae3fH94lgwNWvYRU
-         oiyQ==
-X-Gm-Message-State: AOJu0YzAeJNieQY3F4lVi1qbQtqY89OxJf2QcXlXR794XgwvNknyjXOH
-	2ttDH8VrPNyOvwjTy3l36SH8KWu/c3Vn9g==
-X-Google-Smtp-Source: AGHT+IHcbqPBjzX48zCFbc2YsOP+a2i9HmTRCmgyTQhV4W9XaKQNyEHu+7HzI1xt2rz8SXlqw5MDaQ==
-X-Received: by 2002:a7b:cb8c:0:b0:406:517f:ac71 with SMTP id m12-20020a7bcb8c000000b00406517fac71mr24094789wmi.29.1697222741548;
-        Fri, 13 Oct 2023 11:45:41 -0700 (PDT)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id e16-20020a05600c4e5000b004068495910csm840969wmq.23.2023.10.13.11.45.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 11:45:40 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Chukun Pan <amadeus@jmu.edu.cn>
-Subject:
- Re: [PATCH 2/2] arm64: dts: allwinner: h616: update emac properties for
- Orange Pi Zero 3
-Date: Fri, 13 Oct 2023 20:45:38 +0200
-Message-ID: <3254946.aeNJFYEL58@jernej-laptop>
-In-Reply-To: <20231010153812.2869633-2-amadeus@jmu.edu.cn>
-References:
- <20231010153812.2869633-1-amadeus@jmu.edu.cn>
- <20231010153812.2869633-2-amadeus@jmu.edu.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD6BEC6
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:59:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D2A83;
+	Fri, 13 Oct 2023 11:59:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697223570; x=1728759570;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EsdyqAMRIhj+nuI28f5pAZYuhBMa9I0ITCTO8KcjSjQ=;
+  b=PNqceIBunZrAczyg4HTLpmJ08UWg2GpiipPgih01QmV9nDceLQOA0/fi
+   hroOtrr02g7M0h6VvMmx4swPm34abWE22sSLA5K+lxKVQx0g7n2xMs4NL
+   umml1upE4IGmb+lCkyaGkYz0AoDbj95Ff2REDY8T9cVSZr5bpf30AcUss
+   foKFGU0C7+Gd5Z35RL4HLcTS83ay+YAW6G5+5kI19fGXNjtsZXhto16yz
+   oOQ1UGOltFbVAsOrTh9d64X90RGzlwDb7KxGEkFtdQ85oc79ResIhxYCo
+   lTU1vzUxYQkF0jzlv462WafQss8AHDBx1qndMUMyJSG7q/fv2Sdbai2/H
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="370308615"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
+   d="scan'208";a="370308615"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2023 11:59:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="1002055617"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
+   d="scan'208";a="1002055617"
+Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 13 Oct 2023 11:59:23 -0700
+Received: from kbuild by f64821696465 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qrNNY-0005Ht-35;
+	Fri, 13 Oct 2023 18:59:20 +0000
+Date: Sat, 14 Oct 2023 02:58:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+	nfraprado@collabora.com, u-kumar1@ti.com, peng.fa@nxp.com,
+	quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+	kernel@quicinc.com, Tengfei Fan <quic_tengfan@quicinc.com>,
+	Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: Re: [PATCH v5 RESEND 3/7] arm64: dts: qcom: sm4450: Add RPMH and
+ Global clock
+Message-ID: <202310140224.m4RecMup-lkp@intel.com>
+References: <20231011031415.3360-4-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231011031415.3360-4-quic_tengfan@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi!
+Hi Tengfei,
 
-Dne torek, 10. oktober 2023 ob 17:38:12 CEST je Chukun Pan napisal(a):
-> Add the correct delay value to emac. Also add missing mdio
-> properties for the YT8531 PHY (clock output required).
-> With these changes, Ethernet now looks stable.
+kernel test robot noticed the following build errors:
 
-This is also a fix, so it would also deserve Fixes tag. In fact, please merge
-previous and this patch into one. After all, you are fixing only one thing -
-ethernet on OrangePi Zero 3 board.
+[auto build test ERROR on 940fcc189c51032dd0282cbee4497542c982ac59]
 
-Can you also explain how did you figure out that additional PHY properties
-are needed? At first glance, based on description of motorcomm,keep-pll-enabled,
-it's not immediately clear why it should be needed. Same goes for second
-property.
+url:    https://github.com/intel-lab-lkp/linux/commits/Tengfei-Fan/dt-bindings-interrupt-controller-qcom-pdc-document-qcom-sm4450-pdc/20231011-111816
+base:   940fcc189c51032dd0282cbee4497542c982ac59
+patch link:    https://lore.kernel.org/r/20231011031415.3360-4-quic_tengfan%40quicinc.com
+patch subject: [PATCH v5 RESEND 3/7] arm64: dts: qcom: sm4450: Add RPMH and Global clock
+config: arm64-randconfig-003-20231014 (https://download.01.org/0day-ci/archive/20231014/202310140224.m4RecMup-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231014/202310140224.m4RecMup-lkp@intel.com/reproduce)
 
-1800 ps delay basically means that rgmii is not correct type and rgmii-rxid
-should be used instead. Indeed, schematic confirms that's the case. With that,
-allwinner,rx-delay-ps can be 0 and thus ommited from DT file.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310140224.m4RecMup-lkp@intel.com/
 
-Since there is many differences, I suggest that you remove whole emac0
-node from common DTSI file and put specific ones to each board. It will
-be less confusing that way.
+All errors (new ones prefixed by >>):
 
-Best regards,
-Jernej
-
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> index 00fe28caac93..02c7836b624a 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> @@ -13,10 +13,14 @@ / {
->  };
->  
->  &emac0 {
-> +	allwinner,rx-delay-ps = <1800>;
-> +	allwinner,tx-delay-ps = <700>;
->  	phy-supply = <&reg_dldo1>;
->  };
->  
->  &ext_rgmii_phy {
-> +	motorcomm,keep-pll-enabled;
-> +	motorcomm,auto-sleep-disabled;
->  	motorcomm,clk-out-frequency-hz = <125000000>;
->  };
->  
-> 
+   In file included from arch/arm64/boot/dts/qcom/sm4450-qrd.dts:8:
+>> arch/arm64/boot/dts/qcom/sm4450.dtsi:7:10: fatal error: dt-bindings/clock/qcom,sm4450-gcc.h: No such file or directory
+       7 | #include <dt-bindings/clock/qcom,sm4450-gcc.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
 
 
+vim +7 arch/arm64/boot/dts/qcom/sm4450.dtsi
 
+   > 7	#include <dt-bindings/clock/qcom,sm4450-gcc.h>
+     8	#include <dt-bindings/gpio/gpio.h>
+     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
+    10	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+    11	
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
