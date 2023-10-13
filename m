@@ -1,165 +1,146 @@
-Return-Path: <devicetree+bounces-8408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB347C80F3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:55:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 306B27C80F8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43B6FB20923
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:55:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37ADC1C20A50
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8A710944;
-	Fri, 13 Oct 2023 08:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAE910946;
+	Fri, 13 Oct 2023 08:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="R+EiyWoP"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="PZ1PzOuQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C9B107A1
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:55:00 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7B4DC
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:54:57 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ae75ece209so299652166b.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:54:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1697187296; x=1697792096; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E8JKGwUdtfI1UibvU08qy7GVuAI+nB0XIQdzpOpzSSg=;
-        b=R+EiyWoP31Irvq7IKhtzusGibou/eRuJMG4YoX+vb8wooHWC1mT/8aONpZU1afd9mX
-         wfPndGJRV28Rt93F1Mqv/IF9aHEU/6iO2lvOk3ZNtLwbq/sn6uov0oMwGEwEfujI/aZu
-         7ctCGtjfeU2fetAuEwnuu3aDKYbLwyi6R/C6/+9Yb7MwjwQgHhjhuR43v8NBZvvLpVw0
-         NmSaFFOKx414YlIEYxToaBZ1/+ium4SezdUgH7aqHm2z2oyAJWJGyOY6nbxqGUtyNsst
-         c1UZ+7Eh1uFDTPhCGSwr91AynwvV17NhwmJ8C5snrNQAwQgbzQXleTNg7rTHSXuF5q8c
-         m4LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697187296; x=1697792096;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=E8JKGwUdtfI1UibvU08qy7GVuAI+nB0XIQdzpOpzSSg=;
-        b=sdmQAfaQjhXc1E2D0J8M3cv1/iUkzMmkfS/4nHiNdNxt89yuZ47W2J9BfOebgreIPU
-         JWk40UKhI1VwndFOToSPKQ8DCwSbc//qpGkaBx4Mu/wNenF9RG5/QZ5uX4VB3hepUsO+
-         geY2h6VLOP+wEh4nm0kE9T2V6obHdxuqK+v948K5T7UjX0rN4EO15OtmyBbVDLeVOmjO
-         Z4DNN+RExEC5potC9OBeR2eogbAvvFxbfcUK/0eww46k4iNQIcbFVnzeP9/Z0QAEdhVi
-         rnmnT0raHfd7YdXITELPEeoi8dLh6jtn1sexQKUiak9yjbHNFUpmvEOUBM/Psav30e+H
-         xNSQ==
-X-Gm-Message-State: AOJu0YypJxS0/LXAEsHS2RnVQspPolMX0Oud+X2Xm1Cu9HIu0Kbxi2Xv
-	4ESPMHPilSZTns4lUk/HObL36A==
-X-Google-Smtp-Source: AGHT+IFQW+e6DzHU2VifEKGLahVlTkYJYnI7A6Tsm8CCDJVU+34O2IQjYZBMFJQFchrXoyL66dYLVQ==
-X-Received: by 2002:a17:906:23e2:b0:9b9:b12c:133d with SMTP id j2-20020a17090623e200b009b9b12c133dmr19287609ejg.53.1697187296173;
-        Fri, 13 Oct 2023 01:54:56 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id oz10-20020a170906cd0a00b009ad8acac02asm12219112ejb.172.2023.10.13.01.54.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Oct 2023 01:54:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D81107A1
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:55:16 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2027.outbound.protection.outlook.com [40.92.21.27])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 862ECB7;
+	Fri, 13 Oct 2023 01:55:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nFwCYi96odg+M8n6o+qEcPx3rhvxTabTAO4yeXHDmNSxoS6zMsaz80eszVegYz/eqL8B9XnTzxe9wdVqx7Q83+Mjo2XNmozH/0Sop0AW6Wanht4UD0Uyp3VuNR8TEL5sO1APZ7w3r58YCvFBce6AH8/vgzZPvu9pFlNKPpc/W/14bOJniYDiB9TlLK5HWBvbUjTzoMZ1TA3KW38Ejd2FvGvIos2JMm5//k3YzB6atbI9Fi8UEJZ1gogE09Gw6E6fnv9p81YKZcPdRL+S/4mjP7srtseSPh+xuMeDBEeyaSl1idFQ8oLXD1GoPI9M+0HpYCDqfTf7I33Xz1yoEnkwsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zb3BUgkVgvcqA7Wlgjhpby29+KWoSquyYdSU6t5Sbgk=;
+ b=e8sbg8/Q97/2yd7QqV34p5Y1pJ/tif534r1/fOOS9S1ctp4Swe4OWzfC4UP/UQ5Hb+wWg8g3Bo3vBAHDzGpGHi/jdwsc4p2Tte8twsiKAlVXJLmjVu0/z7H9SPg7LQTgZKnllflU5fFHuf3otnNxKpKdrs99BMCzmsIWucIJx8W2a6gL5K1yb+4gZX5IFiW4KD0uecCCBKYYMnu8eGwqA2/LRpdOpLudpCQDfnFEC4t3ZKpYLE2UkAR4tFdtFZd1q909i/1uzlulqhZBCk5MddqE3N9TRXeBIbyDJylqUWRfu0D1EVm2SF67R8bF0LSdWSHvNW+TILVl+1C5pggL/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zb3BUgkVgvcqA7Wlgjhpby29+KWoSquyYdSU6t5Sbgk=;
+ b=PZ1PzOuQ3AZ/OQODZijOAzvdW3FFkSZE6Qchz/muZkIrWmz0EuXoHRROo++apiE41PmISH1AXBuNfLuOQBgy5Nb+kGBd4YwuDoLV/7D20lgtF37MSBy1kednW9h4ICHNXFbslOgIkHXVNU8k0rleSzNqOMiSgxHRkMp090mUANPaV82RLEBOXhL06s1ktEqmgk5DuZAhakzYCqBO3OuJT3OG55k9pOdBp9F8+cMvubKoSQgGnYGSlfllN2V+5UusuPHnRWRJnyPE8esF6+OGPGvCMHbkmaM7fwTqJBAer2WXltDt4tAlBlhbze+ACsq7D4+QEoBcAbFCUEg/Qevz/g==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS0PR20MB5686.namprd20.prod.outlook.com (2603:10b6:8:11d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Fri, 13 Oct
+ 2023 08:55:13 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6863.046; Fri, 13 Oct 2023
+ 08:55:13 +0000
+Date: Fri, 13 Oct 2023 16:55:18 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Chao Wei <chao.wei@sophgo.com>, 
+	Chen Wang <unicorn_wang@outlook.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel <anup@brainfault.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/7] Add Huashan Pi board support
+Message-ID:
+ <IA1PR20MB4953B73EDA0F872B10D79CDABBD2A@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <c3920f4e-9e93-4a33-b3af-cc30cf6c1fe3@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c3920f4e-9e93-4a33-b3af-cc30cf6c1fe3@linaro.org>
+X-TMN: [OrLtoNhOaaW7f8ePkC+kTAbiotstX9HQ7AexpreVrZc=]
+X-ClientProxiedBy: SI2PR04CA0017.apcprd04.prod.outlook.com
+ (2603:1096:4:197::15) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <gp63m3gioxy37ozd2tpwu5qdwgfd3nifao2htfbyduabrccwse@zd7igtqr23vb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Oct 2023 10:54:55 +0200
-Message-Id: <CW76ONZKCJD7.RH8K3GG6ZT9R@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@linaro.org>, "Jonathan Cameron" <jic23@kernel.org>,
- "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/4] iio: adc: Add PM7325 PMIC7 ADC bindings
-X-Mailer: aerc 0.15.2
-References: <20231013-fp5-thermals-v1-0-f14df01922e6@fairphone.com>
- <20231013-fp5-thermals-v1-1-f14df01922e6@fairphone.com>
- <d1c8a6e2-1c12-4b67-bc67-45f0b41a2fef@linaro.org>
-In-Reply-To: <d1c8a6e2-1c12-4b67-bc67-45f0b41a2fef@linaro.org>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB5686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99fed2b0-b6b7-4023-cbde-08dbcbca1c20
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HIbvuDQF4MT3ZcI+okSco0UDl/d0kiIfa1iFmRJgN8wPS76sTeMJjQBiJ58nQ1xvWVmKCufJVbWqbVbfEKruUtD9dF76WBhBY4guRtF2Mzu2q1KiIVaJ3KienZsjjgUR/KHuezi58GZ2pDSkub4Mb2XOA97TXU93nlsYwX43sGEnQX41cfCCuF7lvou+BRydW0INS9D67mwu0LZXXiiNoxvOmgh48HWLu6tZz8KltWxXiXDPEj8mLGCyFCYjSNCerfFBzxfCOtC0INeOuKxXzlVgf5MdgWvaRm2z/tWeB41KUv2Bas93Dydmu1LD3S7/Fml3zI1p9eXE7pkf1N7g9iy6pxLm6K8xM2oWTcTm7LqWExC7vBUadFOxzjGuF/REzn87npnhCYldmMjsRRQxRqjTDbUdv71n93uuK4/Bsy1/lM6ogQsoG4L2yBKSIkiHZ8SBZkMMOhj7ndevb08/tz5KV3XKS2q/i9yimzfMMCwPnPOBO7bsJA4iUA2kVm3j7OhdFArnoDTy4HYWZXZPfuxnBPaSmhI2GmSZq8PxwPx3rB2tYPlaoxdmr/+02bcua5a4QfgnFR0E7cpMzmr9jrF1j5bkOm519tAUgYuSEjg=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GjZfYR/Ugq2y7FI/52XRrDnyErkDE/l7NQaJhX5zZbMgwbZSXuNriAdlTj8H?=
+ =?us-ascii?Q?asx4lUVxJWsy8hshR4RVSccDA4EHiwgfPNZ+IjZc/B/CaIob2c+m9nOkL/zP?=
+ =?us-ascii?Q?JeT+zHdBFwIzFNHpzmcio40QwsjOD5O6fl5/Xb1Wz+az9A9+xEKAGMzyinfN?=
+ =?us-ascii?Q?XywhDebyeTUkn3d0gNgkYO/mVhhutuYntPz7O+mN/jysE9wqGeMj7Fv41aGE?=
+ =?us-ascii?Q?XnDNQS/UWeu7M28/L/tda16cRBmFI1SJ9KIczHFbMqnCvHZ7OX/ttTpu1t4m?=
+ =?us-ascii?Q?SyWXK4Bb2m1e1GXZOwmeM6/NHGI3yZ5QMwmEh2Nt5Cv9i+mWdh0hBomTCZLv?=
+ =?us-ascii?Q?6PEj6AMehtGoR30fryT1iRSoLq6PKgeZVv7auKLPFbj63pRTBvboVrzrFHCy?=
+ =?us-ascii?Q?ip1CRUH7FP5OcdUiEvTilscVSAFjSJpeYFTDyttDiDc3jGXfLxXPpnJWA5NP?=
+ =?us-ascii?Q?Gy0q+bGo0C1FxtuPDURAXWKKlreyybEtZG6LXWk+TbxhlSF2SDeccVOUC/cN?=
+ =?us-ascii?Q?3A7sEmASRjl/5c/JOksYnI3N+tuY3/tZSqreorNMArp3mPLhXnIpjWs1+e1J?=
+ =?us-ascii?Q?/M3+lQlmgYwDlo2F/AgVBjhDhlwLoV46yvGZ2s6gHGHY4gaEzj+YfgdF6sbN?=
+ =?us-ascii?Q?L9Q6EuftL7tQ8czyd6ucvVChxNPZnjItnA9cv2uu+9wEw9GgLiKdBB0pR9Af?=
+ =?us-ascii?Q?6M88nqrXsCQt1pT12wwuPavzFV0ZbcLh5ke88DZTAEa2az3e+ODZuugOoX7P?=
+ =?us-ascii?Q?rH0wjKJG48b/p+yo26uFh4HxFN8oqtabYOfq4Nd1iyF9z1HMPVoTCpmjIVhI?=
+ =?us-ascii?Q?tVz/3peNQ7yhzO6wCzCAM6RPVfB9CloF2RHi53VYNdvz7uf732pkp3hqjyMC?=
+ =?us-ascii?Q?rydgsE2tVft0gFx8bs74UtyAiixqv3sdBeKe72SPtDOrAqzUlNuCwN9rJze0?=
+ =?us-ascii?Q?oIcjiFQrgBAWEbSd4UOdFDdnU+4vOztLceaU+2wrMACrWXkEKabdShrjWJH2?=
+ =?us-ascii?Q?fLGlc5cQy90dW497J4sqXkOarD12Kk5eNcMz1MiT2fGbJaTwUT2BxhWvmFZz?=
+ =?us-ascii?Q?MFtwA6GewWaecjODmjWONRpByE+VMHS85SfxAXxcgFFbvO4g3iB6m/afBzOC?=
+ =?us-ascii?Q?/i3sxt+eDonuzIG5Nv7VaM6MyQn4sCU6/DAQSa+AQTL3s4P2faeSLa8JYOaI?=
+ =?us-ascii?Q?mnge7Jnj2tEEKW4a34GLBv9tchUQ4KUwvMCBeO4zYCz8lAmV8DqsTXZ4G7o?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99fed2b0-b6b7-4023-cbde-08dbcbca1c20
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 08:55:13.0522
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB5686
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri Oct 13, 2023 at 10:38 AM CEST, Krzysztof Kozlowski wrote:
-> On 13/10/2023 10:09, Luca Weiss wrote:
-> > Add the defines for the ADC channels found on the PM7325. The list is
-> > taken from downstream msm-5.4 and adjusted for mainline.
->
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
+On Fri, Oct 13, 2023 at 10:48:23AM +0200, Krzysztof Kozlowski wrote:
+> On 09/10/2023 13:25, Inochi Amaoto wrote:
+> > Huashan Pi board is an embedded development platform based on the
+> > CV1812H chip. Add minimal device tree files for this board.
+> > Currently, it can boot to a basic shell.
+> > 
+> > NOTE: this series is based on the Jisheng's Milk-V Duo patch.
+> 
+> Which is? This must be clear dependency - lore link.
+> 
 
-Seems very inconsistent (git log --oneline include/dt-bindings/iio/qcom,*)
-but I guess this would fit better?
+https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
+AFAIK, This is merged in the for-next.
 
-  dt-bindings: iio: adc: Add PM7325 PMIC7 ADC bindings
-
-Will update for v2.
-
->
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h | 69 +++++++++++++++++=
-++++++++
-> >  1 file changed, 69 insertions(+)
-> >=20
-> > diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h b/include/=
-dt-bindings/iio/qcom,spmi-adc7-pm7325.h
-> > new file mode 100644
-> > index 000000000000..96908014e09e
-> > --- /dev/null
-> > +++ b/include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h
-> > @@ -0,0 +1,69 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
->
-> We expect the bindings to be dual licensed. What was the license of the
-> original work?
-
-Yes, just GPL-2.0-only:
-https://git.codelinaro.org/clo/la/kernel/msm-5.4/-/blob/LA.UM.9.14.1.r1-086=
-00-QCM6490.QSSI13.0/include/dt-bindings/iio/qcom%2Cspmi-adc7-pm7325.h
-
-Unfortunately it's the same situation with all the other header files
-like this one.
-
-  $ grep SPDX include/dt-bindings/iio/qcom,spmi-adc7-*
-  include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h:/* SPDX-License-Identifie=
-r: GPL-2.0-only */
-  include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h:/* SPDX-License-Identifi=
-er: GPL-2.0-only */
-  include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h:/* SPDX-License-Identifi=
-er: GPL-2.0-only */
-  include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h:/* SPDX-License-Identifi=
-er: GPL-2.0-only */
-  include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h:/* SPDX-License-Identifi=
-er: GPL-2.0-only */
-
-If you know someone at Qualcomm to ask nicely to relicense those (plus
-ones that will presumably be added later), that'd be appreciated.
-
-Regards
-Luca
-
->
-> > +/*
-> > + * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-> > + */
->
->
->
 > Best regards,
 > Krzysztof
-
+> 
 
