@@ -1,563 +1,176 @@
-Return-Path: <devicetree+bounces-8525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636817C87C8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:25:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CA667C8834
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9388F282D22
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:25:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36797282D0E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A093B1B285;
-	Fri, 13 Oct 2023 14:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAE515E86;
+	Fri, 13 Oct 2023 15:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="GbHF6JNr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOboIkdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8C91B262
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 14:25:09 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31ED6E0
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:25:05 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5384975e34cso4060204a12.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1697207104; x=1697811904; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3hYPyNWfhlkAln59TS92vnWpVAX7i6/D2Sn4mNSBY2s=;
-        b=GbHF6JNrrs+7Hgo5LCG7qLywJOKZodejfYJ7TVfWdC7Gv/zqLIoE9mJcmqxkeworHV
-         nafGxLRUaZNFm0+4+z0F1aCoRjL/56s7I7n0wfM/ZFuHIZK+Z34MxEyRR9MOcorGVNKO
-         wdTUpnVtiGNoNZIGtkcxueMQTYOaxG9rz0FHXPv3e0eN5cLfRCddcCqRFNq6H5iTg0TZ
-         +6xxjuk2yS0LjqlWmCzAqacj/H42O6Ur2clrA34VZg2U7sZJ27po/s5Y6aldk3sROaw5
-         vJwnOh8pp2aObG/Qfv+tl6JCN9zyadnwIVjYYM1RRLCy3fkZV/Epwb1KwU8SGuJzT+CN
-         1rrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697207104; x=1697811904;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3hYPyNWfhlkAln59TS92vnWpVAX7i6/D2Sn4mNSBY2s=;
-        b=as7+mygQxELCTJgFPrcwL+Out9io5SC2ytvy8vJO6exIVrPs6qIIR4BlX/b0RpBHe5
-         F/vEom6U0nJzsbKfEUPCIyVdLRom8WNi+JeXr8tmxME5to1i+een8hn4tunnLQPZ2N8h
-         pwX9x8uN5oaCFBjPE3pcyB5nYBRxQsCw9dEYkRL/WvliAOqLllOq8+hGhoDcufa13QO8
-         lOkFe/52U+iDUSAx8aHW01RaZqA34pP4iNARnGwMjZzVrK1hD6IFdeK7nx5BV31t43od
-         OOUrtoAzjm/3InISd5dietOVOniX5MT2mxV159FcEPHpBEI92q4CsQ8xuLPDU5Gerygs
-         MHYg==
-X-Gm-Message-State: AOJu0YwJm07qnjYf9T9yrYrsF6c9QeWq1/WKTa16dnp4zG216wopmSMc
-	Y4Nrs4E5yTY3z6LEqTJvXAfdsQ==
-X-Google-Smtp-Source: AGHT+IFvjntRCzlOTLOhrrn4X5qZIuJRrGLj/5bP4lIY8YzrZnkT5mj4tEcCIfgjQRcrlee/HFAFqg==
-X-Received: by 2002:a17:906:55:b0:9ae:68bf:bec with SMTP id 21-20020a170906005500b009ae68bf0becmr25242910ejg.75.1697207104287;
-        Fri, 13 Oct 2023 07:25:04 -0700 (PDT)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id ot21-20020a170906ccd500b0099df2ddfc37sm12412041ejb.165.2023.10.13.07.25.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 07:25:03 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 13 Oct 2023 16:24:48 +0200
-Subject: [PATCH 2/2] usb: typec: add support for PTN36502 redriver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6DB1B260
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 15:01:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6469EC433C7;
+	Fri, 13 Oct 2023 15:01:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697209297;
+	bh=XwBgXpXgYLg9MgD+nnnx88FLFxUjShjOXlnTqK+olfw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pOboIkdNWOEKjYfIskqC+u3bj27ujMsDVh9PHb/Hzjl4zAasVGX6FNlVirBn93CT7
+	 tr9GyiYMPJv3EBei09cmulhYfaQMMsKzvnrJx/l6bh88LzS48lIZPZwYvyePbMXvwE
+	 v7DK28FKj/PU4Dyeec4VEuxMJdSJS0S9S0OyDn/W89ubeQnui9DbH843eGJTMluf+X
+	 ox2IW/U6UXO2wYNS7jh/bfv2TjJxbXlHxiSRyzoXdOFRmN+pq3vt4KqSK8XRREHxgL
+	 A4WEsjrlCIFLwT13JPcSbjtF6H/0eN7FwbrF8lq6xF25p920TWYnCfC9n1LxMcMddM
+	 l9JqAlQfJVZmQ==
+Date: Fri, 13 Oct 2023 16:01:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Kris Chaplin <kris.chaplin@amd.com>
+Cc: thomas.delev@amd.com, michal.simek@amd.com,
+	krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH 1/2] dt-bindings: w1: Add YAML DT Schema for AMD w1
+ master and MAINTAINERS entry
+Message-ID: <20231013-blip-sheath-440f05d3767e@spud>
+References: <20231013093109.37165-1-kris.chaplin@amd.com>
+ <20231013093109.37165-2-kris.chaplin@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231013-ptn36502-v1-2-98109a430efc@fairphone.com>
-References: <20231013-ptn36502-v1-0-98109a430efc@fairphone.com>
-In-Reply-To: <20231013-ptn36502-v1-0-98109a430efc@fairphone.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0bXVZ/QeawNbrU3k"
+Content-Disposition: inline
+In-Reply-To: <20231013093109.37165-2-kris.chaplin@amd.com>
 
-Add a driver for the NXP PTN36502 Type-C USB 3.1 Gen 1 and DisplayPort
-v1.2 combo redriver.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- drivers/usb/typec/mux/Kconfig    |  10 +
- drivers/usb/typec/mux/Makefile   |   1 +
- drivers/usb/typec/mux/ptn36502.c | 421 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 432 insertions(+)
+--0bXVZ/QeawNbrU3k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index 65da61150ba7..816b9bd08355 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -46,4 +46,14 @@ config TYPEC_MUX_NB7VPQ904M
- 	  Say Y or M if your system has a On Semiconductor NB7VPQ904M Type-C
- 	  redriver chip found on some devices with a Type-C port.
- 
-+config TYPEC_MUX_PTN36502
-+	tristate "NXP PTN36502 Type-C redriver driver"
-+	depends on I2C
-+	depends on DRM || DRM=n
-+	select DRM_PANEL_BRIDGE if DRM
-+	select REGMAP_I2C
-+	help
-+	  Say Y or M if your system has a NXP PTN36502 Type-C redriver chip
-+	  found on some devices with a Type-C port.
-+
- endmenu
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 76196096ef41..9d6a5557b0bd 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -5,3 +5,4 @@ obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
- obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
-+obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
-diff --git a/drivers/usb/typec/mux/ptn36502.c b/drivers/usb/typec/mux/ptn36502.c
-new file mode 100644
-index 000000000000..91684a856f3a
---- /dev/null
-+++ b/drivers/usb/typec/mux/ptn36502.c
-@@ -0,0 +1,421 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * NXP PTN36502 Type-C driver
-+ *
-+ * Copyright (C) 2023 Luca Weiss <luca.weiss@fairphone.com>
-+ *
-+ * Based on NB7VPQ904M driver:
-+ * Copyright (C) 2023 Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-+ */
-+
-+#include <drm/drm_bridge.h>
-+#include <linux/bitfield.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_graph.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+#include <linux/usb/typec_retimer.h>
-+
-+#define PTN36502_CHIP_ID_REG				0x00
-+#define PTN36502_CHIP_ID				0x02
-+
-+#define PTN36502_CHIP_REVISION_REG			0x01
-+#define PTN36502_CHIP_REVISION_BASE(val)		FIELD_GET(GENMASK(7, 4), (val))
-+#define PTN36502_CHIP_REVISION_METAL(val)		FIELD_GET(GENMASK(3, 0), (val))
-+
-+#define PTN36502_DP_LINK_CTRL_REG			0x06
-+#define PTN36502_DP_LINK_CTRL_LANES_2			(2 << 2)
-+#define PTN36502_DP_LINK_CTRL_LANES_4			(3 << 2)
-+#define PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS		(2 << 0)
-+
-+/* Registers for lane 0 (0x07) to lane 3 (0x0a) have the same layout */
-+#define PTN36502_DP_LANE_CTRL_REG(n)			(0x07 + (n))
-+#define PTN36502_DP_LANE_CTRL_RX_GAIN_3DB		(2<<4)
-+#define PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD		(2<<2)
-+#define PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB	(1<<0)
-+
-+#define PTN36502_MODE_CTRL1_REG				0x0b
-+#define PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE		(1<<5)
-+#define PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON		(1<<3)
-+#define PTN36502_MODE_CTRL1_MODE_OFF			(0<<0)
-+#define PTN36502_MODE_CTRL1_MODE_USB_ONLY		(1<<0)
-+#define PTN36502_MODE_CTRL1_MODE_USB_DP			(2<<0)
-+#define PTN36502_MODE_CTRL1_MODE_DP			(3<<0)
-+
-+#define PTN36502_DEVICE_CTRL_REG			0x0d
-+#define PTN36502_DEVICE_CTRL_AUX_MONITORING_EN		(1<<7)
-+
-+struct ptn36502 {
-+	struct i2c_client *client;
-+	struct regulator *vdd18_supply;
-+	struct regmap *regmap;
-+	struct typec_switch_dev *sw;
-+	struct typec_retimer *retimer;
-+
-+	struct typec_switch *typec_switch;
-+
-+	struct drm_bridge bridge;
-+
-+	struct mutex lock; /* protect non-concurrent retimer & switch */
-+
-+	enum typec_orientation orientation;
-+	unsigned long mode;
-+	unsigned int svid;
-+};
-+
-+static int ptn36502_set(struct ptn36502 *ptn)
-+{
-+	bool reverse = (ptn->orientation == TYPEC_ORIENTATION_REVERSE);
-+	unsigned int ctrl1_val = 0;
-+	unsigned int lane_ctrl_val = 0;
-+	unsigned int link_ctrl_val = 0;
-+
-+	switch (ptn->mode) {
-+	case TYPEC_STATE_SAFE:
-+		/* Deep power saving state */
-+		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG,
-+			     PTN36502_MODE_CTRL1_MODE_OFF);
-+		return 0;
-+
-+	case TYPEC_STATE_USB:
-+		/*
-+		 * Normal Orientation (CC1)
-+		 * A -> USB RX
-+		 * B -> USB TX
-+		 * C -> X
-+		 * D -> X
-+		 * Flipped Orientation (CC2)
-+		 * A -> X
-+		 * B -> X
-+		 * C -> USB TX
-+		 * D -> USB RX
-+		 */
-+
-+		/* USB 3.1 Gen 1 only */
-+		ctrl1_val = PTN36502_MODE_CTRL1_MODE_USB_ONLY;
-+		if (reverse)
-+			ctrl1_val |= PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE;
-+
-+		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
-+		return 0;
-+
-+	default:
-+		if (ptn->svid != USB_TYPEC_DP_SID)
-+			return -EINVAL;
-+
-+		break;
-+	}
-+
-+	/* DP Altmode Setup */
-+
-+	switch (ptn->mode) {
-+	case TYPEC_DP_STATE_C:
-+	case TYPEC_DP_STATE_E:
-+		/*
-+		 * Normal Orientation (CC1)
-+		 * A -> DP3
-+		 * B -> DP2
-+		 * C -> DP1
-+		 * D -> DP0
-+		 * Flipped Orientation (CC2)
-+		 * A -> DP0
-+		 * B -> DP1
-+		 * C -> DP2
-+		 * D -> DP3
-+		 */
-+
-+		/* 4-lane DP */
-+		ctrl1_val |= PTN36502_MODE_CTRL1_MODE_DP;
-+		link_ctrl_val |= PTN36502_DP_LINK_CTRL_LANES_4;
-+		break;
-+
-+	case TYPEC_DP_STATE_D:
-+	case TYPEC_DP_STATE_F: /* State F is deprecated */
-+		/*
-+		 * Normal Orientation (CC1)
-+		 * A -> USB RX
-+		 * B -> USB TX
-+		 * C -> DP1
-+		 * D -> DP0
-+		 * Flipped Orientation (CC2)
-+		 * A -> DP0
-+		 * B -> DP1
-+		 * C -> USB TX
-+		 * D -> USB RX
-+		 */
-+
-+		/* USB 3.1 Gen 1 and 2-lane DP */
-+		ctrl1_val |= PTN36502_MODE_CTRL1_MODE_USB_DP;
-+		link_ctrl_val |= PTN36502_DP_LINK_CTRL_LANES_2;
-+		break;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	/* Enable AUX monitoring */
-+	regmap_write(ptn->regmap, PTN36502_DEVICE_CTRL_REG,
-+		     PTN36502_DEVICE_CTRL_AUX_MONITORING_EN);
-+
-+	/* Enable AUX switch path */
-+	ctrl1_val |= PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON;
-+	if (reverse)
-+		ctrl1_val |= PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE;
-+	regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
-+
-+	/* DP Link rate: 5.4 Gbps (HBR2) */
-+	link_ctrl_val |= PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS;
-+	regmap_write(ptn->regmap, PTN36502_DP_LINK_CTRL_REG, link_ctrl_val);
-+
-+	/*
-+	 * For all lanes:
-+	 * - Rx equivalization gain: 3 dB
-+	 * - TX output swing control: 800 mVppd
-+	 * - Pre-emphasis control: 3.5 dB
-+	 */
-+	lane_ctrl_val = PTN36502_DP_LANE_CTRL_RX_GAIN_3DB |
-+			PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD |
-+			PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB;
-+	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(0), lane_ctrl_val);
-+	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(1), lane_ctrl_val);
-+	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(2), lane_ctrl_val);
-+	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(3), lane_ctrl_val);
-+
-+	return 0;
-+}
-+
-+static int ptn36502_sw_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
-+{
-+	struct ptn36502 *ptn = typec_switch_get_drvdata(sw);
-+	int ret;
-+
-+	ret = typec_switch_set(ptn->typec_switch, orientation);
-+	if (ret)
-+		return ret;
-+
-+	mutex_lock(&ptn->lock);
-+
-+	if (ptn->orientation != orientation) {
-+		ptn->orientation = orientation;
-+
-+		ret = ptn36502_set(ptn);
-+	}
-+
-+	mutex_unlock(&ptn->lock);
-+
-+	return ret;
-+}
-+
-+static int ptn36502_retimer_set(struct typec_retimer *retimer, struct typec_retimer_state *state)
-+{
-+	struct ptn36502 *ptn = typec_retimer_get_drvdata(retimer);
-+	int ret = 0;
-+
-+	mutex_lock(&ptn->lock);
-+
-+	if (ptn->mode != state->mode) {
-+		ptn->mode = state->mode;
-+
-+		if (state->alt)
-+			ptn->svid = state->alt->svid;
-+		else
-+			ptn->svid = 0; // No SVID
-+
-+		ret = ptn36502_set(ptn);
-+	}
-+
-+	mutex_unlock(&ptn->lock);
-+
-+	return ret;
-+}
-+
-+static int ptn36502_detect(struct ptn36502 *ptn)
-+{
-+	struct device *dev = &ptn->client->dev;
-+	unsigned int reg_val;
-+	int ret;
-+
-+	ret = regmap_read(ptn->regmap, PTN36502_CHIP_ID_REG,
-+			  &reg_val);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to read chip ID\n");
-+
-+	if (reg_val != PTN36502_CHIP_ID)
-+		return dev_err_probe(dev, -ENODEV, "Unexpected chip ID: %x\n", reg_val);
-+
-+	ret = regmap_read(ptn->regmap, PTN36502_CHIP_REVISION_REG,
-+			  &reg_val);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to read chip revision\n");
-+
-+	dev_dbg(dev, "Chip revision: base layer version %lx, metal layer version %lx\n",
-+		PTN36502_CHIP_REVISION_BASE(reg_val),
-+		PTN36502_CHIP_REVISION_METAL(reg_val));
-+
-+	return 0;
-+}
-+
-+#if IS_ENABLED(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_PANEL_BRIDGE)
-+static int ptn36502_bridge_attach(struct drm_bridge *bridge,
-+				    enum drm_bridge_attach_flags flags)
-+{
-+	struct ptn36502 *ptn = container_of(bridge, struct ptn36502, bridge);
-+	struct drm_bridge *next_bridge;
-+
-+	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
-+		return -EINVAL;
-+
-+	next_bridge = devm_drm_of_get_bridge(&ptn->client->dev, ptn->client->dev.of_node, 0, 0);
-+	if (IS_ERR(next_bridge)) {
-+		dev_err(&ptn->client->dev, "failed to acquire drm_bridge: %pe\n", next_bridge);
-+		return PTR_ERR(next_bridge);
-+	}
-+
-+	return drm_bridge_attach(bridge->encoder, next_bridge, bridge,
-+				 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-+}
-+
-+static const struct drm_bridge_funcs ptn36502_bridge_funcs = {
-+	.attach	= ptn36502_bridge_attach,
-+};
-+
-+static int ptn36502_register_bridge(struct ptn36502 *ptn)
-+{
-+	ptn->bridge.funcs = &ptn36502_bridge_funcs;
-+	ptn->bridge.of_node = ptn->client->dev.of_node;
-+
-+	return devm_drm_bridge_add(&ptn->client->dev, &ptn->bridge);
-+}
-+#else
-+static int ptn36502_register_bridge(struct ptn36502 *ptn)
-+{
-+	return 0;
-+}
-+#endif
-+
-+static const struct regmap_config ptn36502_regmap = {
-+	.max_register = 0x0d,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static int ptn36502_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_retimer_desc retimer_desc = { };
-+	struct ptn36502 *ptn;
-+	int ret;
-+
-+	ptn = devm_kzalloc(dev, sizeof(*ptn), GFP_KERNEL);
-+	if (!ptn)
-+		return -ENOMEM;
-+
-+	ptn->client = client;
-+
-+	ptn->regmap = devm_regmap_init_i2c(client, &ptn36502_regmap);
-+	if (IS_ERR(ptn->regmap)) {
-+		dev_err(&client->dev, "Failed to allocate register map\n");
-+		return PTR_ERR(ptn->regmap);
-+	}
-+
-+	ptn->mode = TYPEC_STATE_SAFE;
-+	ptn->orientation = TYPEC_ORIENTATION_NONE;
-+
-+	mutex_init(&ptn->lock);
-+
-+	ptn->vdd18_supply = devm_regulator_get_optional(dev, "vdd18");
-+	if (IS_ERR(ptn->vdd18_supply))
-+		return PTR_ERR(ptn->vdd18_supply);
-+
-+	ptn->typec_switch = fwnode_typec_switch_get(dev->fwnode);
-+	if (IS_ERR(ptn->typec_switch))
-+		return dev_err_probe(dev, PTR_ERR(ptn->typec_switch),
-+				     "Failed to acquire orientation-switch\n");
-+
-+	ret = regulator_enable(ptn->vdd18_supply);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to enable vdd18\n");
-+
-+	ret = ptn36502_detect(ptn);
-+	if (ret)
-+		goto err_disable_regulator;
-+
-+	ret = ptn36502_register_bridge(ptn);
-+	if (ret)
-+		goto err_disable_regulator;
-+
-+	sw_desc.drvdata = ptn;
-+	sw_desc.fwnode = dev->fwnode;
-+	sw_desc.set = ptn36502_sw_set;
-+
-+	ptn->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(ptn->sw)) {
-+		ret = dev_err_probe(dev, PTR_ERR(ptn->sw),
-+				    "Failed to register typec switch\n");
-+		goto err_disable_regulator;
-+	}
-+
-+	retimer_desc.drvdata = ptn;
-+	retimer_desc.fwnode = dev->fwnode;
-+	retimer_desc.set = ptn36502_retimer_set;
-+
-+	ptn->retimer = typec_retimer_register(dev, &retimer_desc);
-+	if (IS_ERR(ptn->retimer)) {
-+		ret = dev_err_probe(dev, PTR_ERR(ptn->retimer),
-+				    "Failed to register typec retimer\n");
-+		goto err_switch_unregister;
-+	}
-+
-+	return 0;
-+
-+err_switch_unregister:
-+	typec_switch_unregister(ptn->sw);
-+
-+err_disable_regulator:
-+	regulator_disable(ptn->vdd18_supply);
-+
-+	return ret;
-+}
-+
-+static void ptn36502_remove(struct i2c_client *client)
-+{
-+	struct ptn36502 *ptn = i2c_get_clientdata(client);
-+
-+	typec_retimer_unregister(ptn->retimer);
-+	typec_switch_unregister(ptn->sw);
-+
-+	regulator_disable(ptn->vdd18_supply);
-+}
-+
-+static const struct i2c_device_id ptn36502_table[] = {
-+	{ "ptn36502" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ptn36502_table);
-+
-+static const struct of_device_id ptn36502_of_table[] = {
-+	{ .compatible = "nxp,ptn36502" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ptn36502_of_table);
-+
-+static struct i2c_driver ptn36502_driver = {
-+	.driver = {
-+		.name = "ptn36502",
-+		.of_match_table = ptn36502_of_table,
-+	},
-+	.probe		= ptn36502_probe,
-+	.remove		= ptn36502_remove,
-+	.id_table	= ptn36502_table,
-+};
-+module_i2c_driver(ptn36502_driver);
-+
-+MODULE_AUTHOR("Luca Weiss <luca.weiss@fairphone.com>");
-+MODULE_DESCRIPTION("NXP PTN36502 Type-C driver");
-+MODULE_LICENSE("GPL");
+On Fri, Oct 13, 2023 at 02:30:12AM -0700, Kris Chaplin wrote:
+> Add YAML DT Schema for the AMD w1 master IP.
+>=20
+> This hardware guarantees protocol timing for driving off-board devices su=
+ch
+> as thermal sensors, proms, etc using the 1wire protocol.
+>=20
+> Add MAINTAINERS entry for DT Schema.
+>=20
+> Co-developed-by: Thomas Delev <thomas.delev@amd.com>
+> Signed-off-by: Thomas Delev <thomas.delev@amd.com>
+> Signed-off-by: Kris Chaplin <kris.chaplin@amd.com>
+> ---
+>  .../bindings/w1/amd,axi-1wire-master.yaml     | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-ma=
+ster.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.ya=
+ml b/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.yaml
+> new file mode 100644
+> index 000000000000..41f7294a84a3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/w1/amd,axi-1wire-master.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AMD AXI 1-wire bus master for Programmable Logic
 
--- 
-2.42.0
+Inconsistent case for the title here bothers my OCD, but the binding is
+fine as far as I can see.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
+
+> +
+> +maintainers:
+> +  - Kris Chaplin <kris.chaplin@amd.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amd,axi-1wire-master
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    onewire@a0000000 {
+> +        compatible =3D "amd,axi-1wire-master";
+> +        reg =3D <0xa0000000 0x10000>;
+> +        clocks =3D <&zynqmp_clk 0x47>;
+> +        interrupts =3D <GIC_SPI 0x59 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4b2c378b4fd9..6ec3922b256e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1066,6 +1066,13 @@ M:	Sanjay R Mehta <sanju.mehta@amd.com>
+>  S:	Maintained
+>  F:	drivers/spi/spi-amd.c
+> =20
+> +AMD W1 DRIVER
+> +M:	Kris Chaplin <kris.chaplin@amd.com>
+> +R:	Thomas Delev <thomas.delev@amd.com>
+> +R:	Michal Simek <michal.simek@amd.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/w1/amd,axi-1wire-master.yaml
+> +
+>  AMD XGBE DRIVER
+>  M:	"Shyam Sundar S K" <Shyam-sundar.S-k@amd.com>
+>  L:	netdev@vger.kernel.org
+> --=20
+> 2.42.GIT
+>=20
+
+--0bXVZ/QeawNbrU3k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSlbywAKCRB4tDGHoIJi
+0tHYAP4uAXwv3ro3wdcDxYLMpAqtbZ6nqRBVfA3Ai/RL7xr9vgD/VbV4jzbXlwRc
+w7H6U85tITzD5uMAE7D5G/OhIU/1EAM=
+=DJTU
+-----END PGP SIGNATURE-----
+
+--0bXVZ/QeawNbrU3k--
 
