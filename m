@@ -1,124 +1,212 @@
-Return-Path: <devicetree+bounces-8551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC167C8A2B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:12:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D69A7C8AF2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B16BB20C5B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:12:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590812830C7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FBD1D6A1;
-	Fri, 13 Oct 2023 16:12:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHTGGbsS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E63821116;
+	Fri, 13 Oct 2023 16:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47F71CFAC
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:12:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B01C433C8;
-	Fri, 13 Oct 2023 16:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697213560;
-	bh=eZ+fvPLkMyb+DJfFUnuMWJsRKI1Y554XSjCKOcKo0bw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KHTGGbsSkL6J3HabN3JEbUMbtfWYVI+0YkRkcWfsynfc1mr/Un8+/xkFMUYNPT2VZ
-	 sYFk2sMnK8RJNENBt5m9VlwBeQvJgYNHbpJ6opUh6572YB8Z5hyYWRZE5GER1Pu+fL
-	 7yaefd6AV1raTSy+XU3HLJQbdw5X7h8RmmDl1ETDRzVK4FACVvT87ij/F/+dDTvtba
-	 3ahRbpEvVnobrvdLe4ce5uyRvNSYNLN9gsxRpcIyhiEihXj1MeAQGAOf4j4kd/foAT
-	 yiAcmMp4Iap6+dIybibxd3Bqmy1UXYBMtyGbDYFsrhpu8f2JaF8uGOw41rPS1M7EFK
-	 kQB5fooRvJwDA==
-Date: Fri, 13 Oct 2023 17:12:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
- property
-Message-ID: <20231013-planner-irate-8e411cc54a48@spud>
-References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
- <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
- <20231012-storage-directory-548905001d10@spud>
- <87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
- <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7729210FB
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:23:22 +0000 (UTC)
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F18E116;
+	Fri, 13 Oct 2023 09:23:07 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5812eaed1eeso1217370eaf.0;
+        Fri, 13 Oct 2023 09:23:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697214186; x=1697818986;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NTeWtczTCim3bUIkTH8/1bxuqk9pVOgqh9GbNsNWAg4=;
+        b=b+pHnikdxY+shFSVcCUlNqtPbTEClBtTKId9E5lplf85J1+ccIYg13MDgJ5QFTO2xW
+         1M9WBfgkuR5iNd50gaVLEdg/MAUhKyDnqpAErrGxGiWp/EJiH0lO4BwEOo12hFBtihDc
+         Qgwb/SDIeK3INnrEjMqsLPY/0aKBdNawCxDBzZMP844XqMTnT7E85uwCRAZwf9BujP0H
+         Zw7lolkiP46JjY2tvR353Q+RQ6iIz8C6i85DBi/F4fWE6l/trGWIvo5IB2oNUkj3mpGP
+         9y03MQX3Dqvp4gS27Gk47lXi4yfoTMBFIcNiFNIjHoN/Mx9e93TYIuNIEpf6cp+TSJF8
+         102g==
+X-Gm-Message-State: AOJu0YxHAD7+yq0TbUr5WGnC6S+vxTkwLKbg3ySJOotrvJk4aJzq/KcA
+	T1qcAAyStDt4+H2Wf041yQ==
+X-Google-Smtp-Source: AGHT+IE9D0QOvXopUn2q1b4CNs+O8E6MeuJ6J3Rueqw1UVR0S1wokx9EVO1bmxvkK3J7jzfvrnszSg==
+X-Received: by 2002:a4a:3543:0:b0:57d:e3e4:49bc with SMTP id w3-20020a4a3543000000b0057de3e449bcmr25443137oog.8.1697214186330;
+        Fri, 13 Oct 2023 09:23:06 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y45-20020a4a9830000000b0056dbeb283cesm3190019ooi.43.2023.10.13.09.23.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Oct 2023 09:23:04 -0700 (PDT)
+Received: (nullmailer pid 4063494 invoked by uid 1000);
+	Fri, 13 Oct 2023 16:23:03 -0000
+Date: Fri, 13 Oct 2023 11:23:03 -0500
+From: Rob Herring <robh@kernel.org>
+To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+Cc: srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, michal.simek@amd.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to
+ yaml
+Message-ID: <20231013162303.GA3803760-robh@kernel.org>
+References: <20231013101450.573-1-praveen.teja.kundanala@amd.com>
+ <20231013101450.573-3-praveen.teja.kundanala@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YKanpJSQoSs+i+/r"
-Content-Disposition: inline
-In-Reply-To: <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
-
-
---YKanpJSQoSs+i+/r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231013101450.573-3-praveen.teja.kundanala@amd.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Oct 13, 2023 at 04:41:42PM +0100, Mark Brown wrote:
-> On Fri, Oct 13, 2023 at 12:33:34AM +0000, Kuninori Morimoto wrote:
->=20
-> > > > +      ch-maps:
-> > > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
->=20
-> > > I only got this one patch, so I have no context at all for this chang=
-e.
-> > > Given that, and since I know almost nothing about sound stuff...
-> > (snip)
-> > > ...I have absolutely no idea how I would populate "ch_maps" correctly.
-> > > Please describe (in the binding) what this property actually does
-> > > & how to use it. Also, properties use -s not _s.
->=20
-> > Some Sound want to use multiple connections between CPUs (N) and Codecs=
- (M).
-> > Current audio-graph-card2 driver is already supporting 1:N / N:1 / N:N
-> > connections, this patch expand it.
->=20
-> Some of this explanation needs to go into the binding - someone reading
-> the binding should really be able to figure out what numbers to put in
-> there without looking at the code.
+On Fri, Oct 13, 2023 at 03:44:47PM +0530, Praveen Teja Kundanala wrote:
+> Convert the xlnx,zynqmp-nvmem.txt to yaml.
+> 
+> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> ---
+>  .../bindings/nvmem/xlnx,zynqmp-nvmem.txt      | 46 ---------------
+>  .../bindings/nvmem/xlnx,zynqmp-nvmem.yaml     | 59 +++++++++++++++++++
+>  2 files changed, 59 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+> deleted file mode 100644
+> index 4881561b3a02..000000000000
+> --- a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> ---------------------------------------------------------------------------
+> -=  Zynq UltraScale+ MPSoC nvmem firmware driver binding =
+> ---------------------------------------------------------------------------
+> -The nvmem_firmware node provides access to the hardware related data
+> -like soc revision, IDCODE... etc, By using the firmware interface.
+> -
+> -Required properties:
+> -- compatible: should be "xlnx,zynqmp-nvmem-fw"
+> -
+> -= Data cells =
+> -Are child nodes of silicon id, bindings of which as described in
+> -bindings/nvmem/nvmem.txt
+> -
+> --------
+> - Example
+> --------
+> -firmware {
+> -	zynqmp_firmware: zynqmp-firmware {
+> -		compatible = "xlnx,zynqmp-firmware";
+> -		method = "smc";
+> -
+> -		nvmem_firmware {
+> -			compatible = "xlnx,zynqmp-nvmem-fw";
+> -			#address-cells = <1>;
+> -			#size-cells = <1>;
+> -
+> -			/* Data cells */
+> -			soc_revision: soc_revision {
+> -				reg = <0x0 0x4>;
+> -			};
+> -		};
+> -	};
+> -};
+> -
+> -= Data consumers =
+> -Are device nodes which consume nvmem data cells.
+> -
+> -For example:
+> -	pcap {
+> -		...
+> -
+> -		nvmem-cells = <&soc_revision>;
+> -		nvmem-cell-names = "soc_revision";
+> -
+> -		...
+> -	};
+> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> new file mode 100644
+> index 000000000000..e03ed8c32537
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/xlnx,zynqmp-nvmem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Zynq UltraScale+ MPSoC Non Volatile Memory interface
+> +
+> +description: |
+> +    The ZynqMP MPSoC provides access to the hardware related data
+> +    like SOC revision, IDCODE.
+> +
+> +maintainers:
+> +  - Kalyani Akula <kalyani.akula@amd.com>
+> +  - Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> +
+> +allOf:
+> +  - $ref: "nvmem.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynqmp-nvmem-fw
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +
+> +patternProperties:
+> +  "^soc_revision@0$":
 
-Absolutely :)
+Fixed string, not a pattern. dtschema will now flag this. Thanks for the 
+test case. ;)
 
-> > ch-maps =3D <0 0 1> means,=20
-> > 	cpu0 <-> codec0
-> > 	cpu1 <-> codec0
-> > 	cpu2 <-> codec1
+> +    type: object
 
-What happens when you want to convey that codec0 & codec1 are both
-connected to cpu0 & codec2 is connected to cpu1?
-How would that be described in a DT?
-Or is that not something anyone would even want to do?
-
-> > Thank you for your help !!
->=20
-> So probably somthing along the lines of saying "there should be one
-> element in the array for each CPU DAI, this should be the CODEC number
-> to route to" (that's probably still a bit unclear but roughly that).
+Needs 'additionalProperties' or...
 
 
---YKanpJSQoSs+i+/r
-Content-Type: application/pgp-signature; name="signature.asc"
+> +    description:
+> +      This node is used to read SOC version and IDCODE of ZynqMP. Read-only.
+> +
 
------BEGIN PGP SIGNATURE-----
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSlscwAKCRB4tDGHoIJi
-0mMmAP9Nb483b0dBaBUFHXG0WX2fOcV2+9tOiuO5YHM7z5uF2wD/c5bcMJsmpzS0
-yqb+QJFoKLGVpbitjhIhLtUc975zRgk=
-=88E7
------END PGP SIGNATURE-----
+fixed-cell.yaml (via nvmem.yaml) already says this, so this can all be 
+dropped. Except that this[1] just landed, so you will need to adapt to 
+it.
 
---YKanpJSQoSs+i+/r--
+Though there is an issue that fixed-cell.yaml doesn't restrict the 
+allowed properties, so that needs to happen somewhere... Not sure what 
+the fix is. Hopefully fixed-cell.yaml can just be changed to 
+'additionalProperties: false', but need to see if other properties are 
+in use.
+
+Rob
+
+[1] https://lore.kernel.org/all/169667333484.74178.7121029453685069845.b4-ty@linaro.org/
 
