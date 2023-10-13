@@ -1,150 +1,142 @@
-Return-Path: <devicetree+bounces-8406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4BD7C809D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:48:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3547C80ED
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:54:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4AA61C208EB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:48:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75071B2093E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485CF107A1;
-	Fri, 13 Oct 2023 08:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA93107B8;
+	Fri, 13 Oct 2023 08:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tatkJP5i"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ulAQTU51"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD387101F8
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:48:29 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769B695
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:48:27 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32caaa1c493so1509309f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:48:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697186906; x=1697791706; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GP5blqQ3LCrSVqcO9fHnLfVRN8hhI4qOqx231yP1jos=;
-        b=tatkJP5ijDuxlW/kTR6JWjWYj1GYOJK/MBPjBK1nnAQCWup8GIJkteJBCxOrg+p7pz
-         zM+G0wwzjrNUcKstfZBQmlIoZfO7doVYq4T7eRNhX/gmnIXdLrAM7s6xc0HLi17HDikY
-         g0gLu8GlAO2CEdSgHylr01CwzzxHsGjuy3xmMovVWOlF4ZxPh7eRrysCgG6gch5iBBLq
-         hyOPehn/Gy8lQrcUnsTzlWGsWkCgk7hdx9aXtbJFH0uBFcRd2iXzU2mlocYnGQnJDGJX
-         20AUM7tPPOF0on8L2A/S16WM3bjsyoRQ/QKKkdIghkYD/1t15ksVu0mmVXfHOHbKxdIG
-         mbqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697186906; x=1697791706;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GP5blqQ3LCrSVqcO9fHnLfVRN8hhI4qOqx231yP1jos=;
-        b=lKuGMfHQ0zXSZqDtzy/0DXVxeQBa+HpnKNOIqbKZnSEYNDhS7RADM+cPo+4UPcbJes
-         o4aewL7LmN/kqojv80Yy4m3H4MNvJ+L2QScmyVGAaqcMii9VjsAvBIHkm7AztsRZ97Pi
-         jMhUw6H7eWPRRqZ9JerQLdJkKR27QnFSTYdD8Y9dgLZbkkLN0Pk6sXYK0PeP4NyNe/HP
-         h/qvzVeZC+AW9ug0soLdqme+RTqHFnPlbWWV9AsryOhTkZeLnS3IuMtlWso+ZYFwtyVP
-         i8gOdvxRyj30GI/ny+reeDHj2nR2aIJc2nmDDmgBTCEY6BEHTyVFpq4AmBD/i9bG9plJ
-         jGgg==
-X-Gm-Message-State: AOJu0Yxzv9n7kfKYXEDcWMEXPwpF7LFDb4Sd2c/3Qsi9MNAz0sf8yrkL
-	1IRNPgNdeO4y0R94qHCUkdl2eQ==
-X-Google-Smtp-Source: AGHT+IHgforrNiLpmCR3+624RlHEHzwTdK5tLAFXzdmU5yJBU9KYdNxHTEqzdFXMCt2kiOqSgQmvrA==
-X-Received: by 2002:a05:6000:cb:b0:321:6e68:ec3b with SMTP id q11-20020a05600000cb00b003216e68ec3bmr22324664wrx.49.1697186905903;
-        Fri, 13 Oct 2023 01:48:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id d9-20020a5d6dc9000000b00327b5ca093dsm20139536wrz.117.2023.10.13.01.48.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Oct 2023 01:48:25 -0700 (PDT)
-Message-ID: <c3920f4e-9e93-4a33-b3af-cc30cf6c1fe3@linaro.org>
-Date: Fri, 13 Oct 2023 10:48:23 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3BE710944
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 08:54:33 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D72C95;
+	Fri, 13 Oct 2023 01:54:31 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39D8sPwe065459;
+	Fri, 13 Oct 2023 03:54:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697187265;
+	bh=EIam3hHPeLxKkwM9apMuaUiIVgyIIPYm6Gl0dS+/eNc=;
+	h=From:To:CC:Subject:Date;
+	b=ulAQTU51GdEa+oQ/saoxM+fXUgbPwSrq1PZYzKpVPlRAgj9sjoong40r+wGg6OkdI
+	 gVZrbBHOrB9CL7Bf+lPWghbDsOC3SwbP9LjueAULBUJbI9h5bf4lQnZnit2jxT2p+w
+	 RJmwM9qBzTBjPsbVxVwmM3ki4JFROwbDlpdqYl20=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39D8sPsN037438
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 13 Oct 2023 03:54:25 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 13
+ Oct 2023 03:54:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 13 Oct 2023 03:54:25 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39D8sOTZ040179;
+	Fri, 13 Oct 2023 03:54:25 -0500
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>
+CC: Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>, Nishanth Menon
+	<nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar
+	<devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary
+	<j-choudhary@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH] scripts/dtc: Allow ports to have a single port@0 child
+Date: Fri, 13 Oct 2023 14:24:24 +0530
+Message-ID: <20231013085424.7137-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Add Huashan Pi board support
-Content-Language: en-US
-To: Inochi Amaoto <inochiama@outlook.com>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Chao Wei <chao.wei@sophgo.com>,
- Chen Wang <unicorn_wang@outlook.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel <anup@brainfault.org>
-Cc: Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 09/10/2023 13:25, Inochi Amaoto wrote:
-> Huashan Pi board is an embedded development platform based on the
-> CV1812H chip. Add minimal device tree files for this board.
-> Currently, it can boot to a basic shell.
-> 
-> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
+Exempt 'ports' from the rule which asserts that nodes with single child
+node having reg = 0, should not have the '#size-cells' and
+'#address-cells' properties.
 
-Which is? This must be clear dependency - lore link.
+Ports of certain hardware do need to be described as only having a
+single child node 'port@0', especially when hardware has multiple ports,
+and the other ports 'port@x' are planned to be added subsequently. In
+such cases, just using 'port', would be an inaccurate hardware
+description.
 
-Best regards,
-Krzysztof
+For example, Texas Instruments' DSS (display-subsystem), which has 2 or
+4 video ports depending on the SoC. Describing the first video port with
+just 'port' under ports would be inaccurate and even slightly
+misleading. Simply using port@0 (when other ports are not added)
+produces the following warning, while making dtbs with W=1 flag set[0].
+
+code-block ::
+
+	Warning (graph_child_address): /bus@100000/dss@4a00000/ports:
+	graph node has single child node 'port@0',
+	#address-cells/#size-cells are not necessary
+
+Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+
+[0]: https://lore.kernel.org/all/570903b6-8239-d44a-5fac-71700804cb5d@ti.com/
+---
+ scripts/dtc/checks.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+index 9f31d2607182..705aa0fbcfa2 100644
+--- a/scripts/dtc/checks.c
++++ b/scripts/dtc/checks.c
+@@ -1797,9 +1797,18 @@ static void check_graph_child_address(struct check *c, struct dt_info *dti,
+ 		cnt++;
+ 	}
+ 
+-	if (cnt == 1 && node->addr_cells != -1)
++	if (cnt == 1 && node->addr_cells != -1) {
++		/*
++		 * The graph node "ports" are exempt from this rule, because
++		 * certain hardware do need to be described as only having a
++		 * signle port with reg = 0.
++		 */
++		if (!strcmp(node->name, "ports"))
++			return;
++
+ 		FAIL(c, dti, node, "graph node has single child node '%s', #address-cells/#size-cells are not necessary",
+ 		     node->children->name);
++	}
+ }
+ WARNING(graph_child_address, check_graph_child_address, NULL, &graph_nodes);
+ 
+
+base-commit: e3b18f7200f45d66f7141136c25554ac1e82009b
+-- 
+2.40.1
 
 
