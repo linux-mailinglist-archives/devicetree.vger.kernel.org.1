@@ -1,251 +1,124 @@
-Return-Path: <devicetree+bounces-8550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFEA7C89C4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:06:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC167C8A2B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4641CB2111B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:06:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B16BB20C5B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C503219F6;
-	Fri, 13 Oct 2023 16:05:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FBD1D6A1;
+	Fri, 13 Oct 2023 16:12:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHTGGbsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F3A21343
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:05:11 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8BDA0BE;
-	Fri, 13 Oct 2023 09:05:08 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8800B11FB;
-	Fri, 13 Oct 2023 09:05:48 -0700 (PDT)
-Received: from [10.57.2.80] (unknown [10.57.2.80])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BF0393F5A1;
-	Fri, 13 Oct 2023 09:05:05 -0700 (PDT)
-Message-ID: <dff4bd1d-e32a-9541-94d2-c354adf3d23b@arm.com>
-Date: Fri, 13 Oct 2023 17:05:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47F71CFAC
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:12:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B01C433C8;
+	Fri, 13 Oct 2023 16:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697213560;
+	bh=eZ+fvPLkMyb+DJfFUnuMWJsRKI1Y554XSjCKOcKo0bw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KHTGGbsSkL6J3HabN3JEbUMbtfWYVI+0YkRkcWfsynfc1mr/Un8+/xkFMUYNPT2VZ
+	 sYFk2sMnK8RJNENBt5m9VlwBeQvJgYNHbpJ6opUh6572YB8Z5hyYWRZE5GER1Pu+fL
+	 7yaefd6AV1raTSy+XU3HLJQbdw5X7h8RmmDl1ETDRzVK4FACVvT87ij/F/+dDTvtba
+	 3ahRbpEvVnobrvdLe4ce5uyRvNSYNLN9gsxRpcIyhiEihXj1MeAQGAOf4j4kd/foAT
+	 yiAcmMp4Iap6+dIybibxd3Bqmy1UXYBMtyGbDYFsrhpu8f2JaF8uGOw41rPS1M7EFK
+	 kQB5fooRvJwDA==
+Date: Fri, 13 Oct 2023 17:12:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
+ property
+Message-ID: <20231013-planner-irate-8e411cc54a48@spud>
+References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
+ <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
+ <20231012-storage-directory-548905001d10@spud>
+ <87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
+ <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Warning notice "Memory manager not clean during takedown" on RB5 runs
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, broonie@kernel.org
-References: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
- <20230817145940.9887-5-dmitry.baryshkov@linaro.org>
-From: Aishwarya TCV <aishwarya.tcv@arm.com>
-In-Reply-To: <20230817145940.9887-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-
-Hi Dmitry
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YKanpJSQoSs+i+/r"
+Content-Disposition: inline
+In-Reply-To: <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
 
 
-On 17/08/2023 15:59, Dmitry Baryshkov wrote:
-> Add displayport altmode declaration to the Type-C controller node to
-> enable DP altmode negotiation.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+--YKanpJSQoSs+i+/r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-At present RB5 runs against next-master are consistently throwing
-warning messages (attached below with call trace) on "Memory manager not
-clean during takedown". I can send full logs if required. However, the
-runs are booting successfully so the logs are quite big. Tried running
-with older dtb built, where these
-warnings was not observed.
+On Fri, Oct 13, 2023 at 04:41:42PM +0100, Mark Brown wrote:
+> On Fri, Oct 13, 2023 at 12:33:34AM +0000, Kuninori Morimoto wrote:
+>=20
+> > > > +      ch-maps:
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>=20
+> > > I only got this one patch, so I have no context at all for this chang=
+e.
+> > > Given that, and since I know almost nothing about sound stuff...
+> > (snip)
+> > > ...I have absolutely no idea how I would populate "ch_maps" correctly.
+> > > Please describe (in the binding) what this property actually does
+> > > & how to use it. Also, properties use -s not _s.
+>=20
+> > Some Sound want to use multiple connections between CPUs (N) and Codecs=
+ (M).
+> > Current audio-graph-card2 driver is already supporting 1:N / N:1 / N:N
+> > connections, this patch expand it.
+>=20
+> Some of this explanation needs to go into the binding - someone reading
+> the binding should really be able to figure out what numbers to put in
+> there without looking at the code.
 
+Absolutely :)
 
-A bisect (full log below) identified this patch as
-introducing the failure.
+> > ch-maps =3D <0 0 1> means,=20
+> > 	cpu0 <-> codec0
+> > 	cpu1 <-> codec0
+> > 	cpu2 <-> codec1
 
-git bisect start
-# good: [8a749fd1a8720d4619c91c8b6e7528c0a355c0aa] Linux 6.6-rc4
-git bisect good 8a749fd1a8720d4619c91c8b6e7528c0a355c0aa
-# bad: [2a860505b617cf8fda4ebff6cf05d3f774145440] Add linux-next
-specific files for 20231009
-git bisect bad 2a860505b617cf8fda4ebff6cf05d3f774145440
-# bad: [11a92414d65ec3ea50b86004baa9b54e03fc454a] Merge branch 'master'
-of git://linuxtv.org/media_tree.git
-git bisect bad 11a92414d65ec3ea50b86004baa9b54e03fc454a
-# good: [d4ec2b3f0e34a40991fb8d5fb374c07382fe0892] bcachefs:
-stack_trace_save_tsk() depends on CONFIG_STACKTRACE
-git bisect good d4ec2b3f0e34a40991fb8d5fb374c07382fe0892
-# good: [94b6eadf2db4b7ec5b6e5c4dfd3d552ea388e441] Merge branch
-'for-next' of
-git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git
-git bisect good 94b6eadf2db4b7ec5b6e5c4dfd3d552ea388e441
-# bad: [15c1906eb69acb82e6992d701f9522216fdaf234] Merge branch
-'xtensa-for-next' of git://github.com/jcmvbkbc/linux-xtensa.git
-git bisect bad 15c1906eb69acb82e6992d701f9522216fdaf234
-# bad: [b837ae5f505e0a05329ab9c72ed1a6c55f70456c] Merge branch
-'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git
-git bisect bad b837ae5f505e0a05329ab9c72ed1a6c55f70456c
-# bad: [33e9032a1875bb1aee3c68a4540f5a577ff44130] arm64: dts: qcom:
-apq8016-sbc: Add missing ADV7533 regulators
-git bisect bad 33e9032a1875bb1aee3c68a4540f5a577ff44130
-# bad: [a6546460ca439bade19d64eb63cee2d97c29fb72] arm64: dts: qcom:
-sc8180x: switch PCIe QMP PHY to new style of bindings
-git bisect bad a6546460ca439bade19d64eb63cee2d97c29fb72
-# good: [4988881ec067c3e6d382de1583b7f5b1095ddea2] arm64: dts: qcom:
-sm6125: Add dispcc node
-git bisect good 4988881ec067c3e6d382de1583b7f5b1095ddea2
-# good: [ea96b90a58cf5d2e91ac177f081118ff26b85c1d] arm64: dts: qcom:
-sm8250: Define ports for qmpphy orientation-switching
-git bisect good ea96b90a58cf5d2e91ac177f081118ff26b85c1d
-# bad: [b3dea914127e9065df003002ed13a2ef40d19877] arm64: dts: qcom:
-qrb5165-rb5: enable DP altmode
-git bisect bad b3dea914127e9065df003002ed13a2ef40d19877
-# good: [25defdca4d902b338c05bc01a1de1064a6d3b7f3] arm64: dts: qcom:
-qrb5165-rb5: Switch on TCPM usb-role-switching for usb_1
-git bisect good 25defdca4d902b338c05bc01a1de1064a6d3b7f3
-# good: [956aa24b16350a50d3a6beb9237bc35aa2f447d6] arm64: dts: qcom:
-sm8250: Add DisplayPort device node
-git bisect good 956aa24b16350a50d3a6beb9237bc35aa2f447d6
-# bad: [96387ee7534dc449be35a9bb98b7668da2bed545] arm64: dts: qcom:
-qrb5165-rb5: enable displayport controller
-git bisect bad 96387ee7534dc449be35a9bb98b7668da2bed545
-# good: [d342e1c993bd7589cad9d2da099c6a9c652ecb9f] arm64: dts: qcom:
-qrb5165-rb5: add onboard USB-C redriver
-git bisect good d342e1c993bd7589cad9d2da099c6a9c652ecb9f
-# first bad commit: [96387ee7534dc449be35a9bb98b7668da2bed545] arm64:
-dts: qcom: qrb5165-rb5: enable displayport controller
+What happens when you want to convey that codec0 & codec1 are both
+connected to cpu0 & codec2 is connected to cpu1?
+How would that be described in a DT?
+Or is that not something anyone would even want to do?
+
+> > Thank you for your help !!
+>=20
+> So probably somthing along the lines of saying "there should be one
+> element in the array for each CPU DAI, this should be the CODEC number
+> to route to" (that's probably still a bit unclear but roughly that).
 
 
-Boot log:
+--YKanpJSQoSs+i+/r
+Content-Type: application/pgp-signature; name="signature.asc"
 
-<4>[   87.062915] ------------[ cut here ]------------
-<4>[   87.067944] Memory manager not clean during takedown.
-<4>[   87.074791] WARNING: CPU: 7 PID: 70 at
-drivers/gpu/drm/drm_mm.c:999 drm_mm_takedown+0x28/0x38 [drm]
-<4>[   87.084382] Modules linked in: fuse ip_tables x_tables ipv6
-r8153_ecm cdc_ether snd_soc_hdmi_codec ax88179_178a venus_dec venus_enc
-r8152 videobuf2_dma_contig usbnet videobuf2_memops onboard_usb_hub
-mcp251xfd nb7vpq904m can_dev lontium_lt9611uxc msm leds_qcom_lpg
-qcom_spmi_adc_tm5 qcom_spmi_adc5 rtc_pm8xxx led_class_multicolor ocmem
-qcom_pon qcom_spmi_temp_alarm qcom_vadc_common venus_core v4l2_mem2mem
-gpu_sched videobuf2_v4l2 crct10dif_ce drm_dp_aux_bus videodev
-snd_soc_sm8250 snd_soc_qcom_sdw drm_display_helper videobuf2_common
-snd_soc_qcom_common qrtr qcom_stats mc coresight_stm stm_core
-qcom_q6v5_pas spi_geni_qcom llcc_qcom phy_qcom_qmp_combo qcom_pil_info
-typec icc_bwmon i2c_qcom_geni phy_qcom_qmp_usb qcom_q6v5
-coresight_replicator coresight_tmc coresight_etm4x coresight_funnel
-phy_qcom_snps_femto_v2 qcom_rng qcom_sysmon snd_soc_lpass_va_macro
-qcom_common lpass_gfm_sm8250 qcrypto pinctrl_sm8250_lpass_lpi
-qcom_glink_smem snd_soc_lpass_macro_common coresight ufs_qcom
-sha256_generic mdt_loader libsha256 qmi_helpers
-<4>[   87.084435]  pinctrl_lpass_lpi soundwire_qcom soundwire_bus
-authenc display_connector qcom_wdt phy_qcom_qmp_ufs
-snd_soc_lpass_wsa_macro phy_qcom_qmp_pcie slimbus icc_osm_l3 libdes
-drm_kms_helper drm socinfo backlight qnoc_sm8250
-<4>[   87.198040] CPU: 7 PID: 70 Comm: kworker/u16:3 Tainted: G        W
-         6.6.0-rc5-next-20231013 #1
-<4>[   87.207857] Hardware name: Qualcomm Technologies, Inc. Robotics
-RB5 (DT)
-<4>[   87.215009] Workqueue: events_unbound deferred_probe_work_func
-<4>[   87.221273] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
-BTYPE=--)
-<4>[   87.228686] pc : drm_mm_takedown+0x28/0x38 [drm]
-<4>[   87.233716] lr : drm_mm_takedown+0x28/0x38 [drm]
-<4>[   87.238741] sp : ffff800080743810
-<4>[   87.242416] x29: ffff800080743810 x28: ffff7824cd321880 x27:
-ffff7824c36c9d40
-<4>[   87.250007] x26: ffffb54fa83c71a0 x25: dead000000000100 x24:
-dead000000000122
-<4>[   87.257599] x23: ffff7824c3600810 x22: ffffb54f5a99b708 x21:
-ffff7824c3600800
-<4>[   87.265189] x20: ffff7824c4a4c600 x19: ffff7824c7752800 x18:
-ffffb54f5a8e0048
-<4>[   87.272779] x17: 0000000000010108 x16: 0000000000010108 x15:
-0000483e088c93ae
-<4>[   87.280371] x14: 00000000000002a4 x13: 00000000000002a4 x12:
-0000000000000000
-<4>[   87.287962] x11: 0000000000000001 x10: 0000000000000a60 x9 :
-ffff800080743680
-<4>[   87.295554] x8 : ffff7824c0320ac0 x7 : ffff78263efaf040 x6 :
-00000000012105e7
-<4>[   87.303140] x5 : 00000000410fd0d0 x4 : 0000000000f0000f x3 :
-0000000000100000
-<4>[   87.310730] x2 : 0000000000000000 x1 : 0000000000000000 x0 :
-ffff7824c0320000
-<4>[   87.318317] Call trace:
-<4>[   87.321103]  drm_mm_takedown+0x28/0x38 [drm]
-<4>[   87.325778]  drm_vma_offset_manager_destroy+0x14/0x20 [drm]
-<4>[   87.331794]  drm_gem_init_release+0x14/0x20 [drm]
-<4>[   87.336918]  drm_managed_release+0xac/0x140 [drm]
-<4>[   87.342043]  drm_dev_put+0x94/0xbc [drm]
-<4>[   87.346366]  msm_drm_uninit.isra.0+0x98/0xd0 [msm]
-<4>[   87.351594]  msm_drm_bind+0x20c/0x3b0 [msm]
-<4>[   87.356181]  try_to_bring_up_aggregate_device+0x168/0x1d4
-<4>[   87.361994]  __component_add+0xa4/0x170
-<4>[   87.366202]  component_add+0x14/0x20
-<4>[   87.370142]  dsi_dev_attach+0x20/0x2c [msm]
-<4>[   87.374731]  dsi_host_attach+0x9c/0x144 [msm]
-<4>[   87.379493]  devm_mipi_dsi_attach+0x34/0xb4
-<4>[   87.384064]  lt9611uxc_attach_dsi.isra.0+0x84/0xfc [lontium_lt9611uxc]
-<4>[   87.391040]  lt9611uxc_probe+0x598/0x65c [lontium_lt9611uxc]
-<4>[   87.397126]  i2c_device_probe+0x1a8/0x330
-<4>[   87.401520]  really_probe+0x148/0x2b4
-<4>[   87.405554]  __driver_probe_device+0x78/0x12c
-<4>[   87.410302]  driver_probe_device+0x3c/0x15c
-<4>[   87.414875]  __device_attach_driver+0xb8/0x134
-<4>[   87.419710]  bus_for_each_drv+0x84/0xe0
-<4>[   87.423929]  __device_attach+0xa8/0x1b0
-<4>[   87.428138]  device_initial_probe+0x14/0x20
-<4>[   87.432704]  bus_probe_device+0xa8/0xac
-<4>[   87.436913]  deferred_probe_work_func+0x88/0xc0
-<4>[   87.441829]  process_one_work+0x138/0x260
-<4>[   87.446225]  worker_thread+0x32c/0x438
-<4>[   87.450346]  kthread+0x118/0x11c
-<4>[   87.453941]  ret_from_fork+0x10/0x20
-<4>[   87.457888] ---[ end trace 0000000000000000 ]---
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Aishwarya
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSlscwAKCRB4tDGHoIJi
+0mMmAP9Nb483b0dBaBUFHXG0WX2fOcV2+9tOiuO5YHM7z5uF2wD/c5bcMJsmpzS0
+yqb+QJFoKLGVpbitjhIhLtUc975zRgk=
+=88E7
+-----END PGP SIGNATURE-----
 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 3bd0c06e7315..c8cd40a462a3 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1423,6 +1423,13 @@ PDO_FIXED_DUAL_ROLE |
->  					 PDO_FIXED_USB_COMM |
->  					 PDO_FIXED_DATA_SWAP)>;
->  
-> +		altmodes {
-> +			displayport {
-> +				svid = <0xff01>;
-> +				vdo = <0x00001c46>;
-> +			};
-> +		};
-> +
->  		ports {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
+--YKanpJSQoSs+i+/r--
 
