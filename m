@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-8446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91FE7C8362
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:42:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932897C8365
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:42:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC218282BA8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:42:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE8191C20B37
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD3210A32;
-	Fri, 13 Oct 2023 10:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C710970;
+	Fri, 13 Oct 2023 10:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428C763DC
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 10:42:34 +0000 (UTC)
-Received: from out28-97.mail.aliyun.com (out28-97.mail.aliyun.com [115.124.28.97])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47D5BB;
-	Fri, 13 Oct 2023 03:42:32 -0700 (PDT)
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.251197|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00428145-6.11179e-05-0.995657;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.V-L310G_1697193742;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V-L310G_1697193742)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850BC63DC
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 10:42:43 +0000 (UTC)
+Received: from out28-172.mail.aliyun.com (out28-172.mail.aliyun.com [115.124.28.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6261DE;
+	Fri, 13 Oct 2023 03:42:40 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.4424414|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0223272-0.000603026-0.97707;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.V-L318f_1697193750;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V-L318f_1697193750)
           by smtp.aliyun-inc.com;
-          Fri, 13 Oct 2023 18:42:29 +0800
+          Fri, 13 Oct 2023 18:42:37 +0800
 From: wangweidong.a@awinic.com
 To: lgirdwood@gmail.com,
 	broonie@kernel.org,
@@ -52,10 +52,12 @@ To: lgirdwood@gmail.com,
 	alsa-devel@alsa-project.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH V1 0/3] ASoC: codecs: Add aw88399 amplifier driver
-Date: Fri, 13 Oct 2023 18:42:17 +0800
-Message-ID: <20231013104220.279953-1-wangweidong.a@awinic.com>
+Subject: [PATCH V1 1/3] ASoC: dt-bindings: Add schema for "awinic,aw88399"
+Date: Fri, 13 Oct 2023 18:42:18 +0800
+Message-ID: <20231013104220.279953-2-wangweidong.a@awinic.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231013104220.279953-1-wangweidong.a@awinic.com>
+References: <20231013104220.279953-1-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,27 +76,23 @@ From: Weidong Wang <wangweidong.a@awinic.com>
 
 Add the awinic,aw88399 property to the awinic,aw88395.yaml file.
 
-Add i2c and amplifier registration for
-aw88399 and their associated operation functions.
+Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+---
+ Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Weidong Wang (3):
-  ASoC: dt-bindings: Add schema for "awinic,aw88399"
-  ASoC: codecs: Add code for bin parsing compatible with aw88399
-  ASoC: codecs: Add aw88399 amplifier driver
-
- .../bindings/sound/awinic,aw88395.yaml        |    1 +
- sound/soc/codecs/Kconfig                      |   14 +
- sound/soc/codecs/Makefile                     |    2 +
- sound/soc/codecs/aw88395/aw88395_lib.c        |    3 +
- sound/soc/codecs/aw88395/aw88395_reg.h        |    1 +
- sound/soc/codecs/aw88399.c                    | 1964 +++++++++++++++++
- sound/soc/codecs/aw88399.h                    |  615 ++++++
- 7 files changed, 2600 insertions(+)
- create mode 100644 sound/soc/codecs/aw88399.c
- create mode 100644 sound/soc/codecs/aw88399.h
-
-
-base-commit: ce583d5fb9d3f4e20473b9d5619d51ea3cc92283
+diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+index 4051c2538caf..db36b01206b7 100644
+--- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
++++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+@@ -22,6 +22,7 @@ properties:
+     enum:
+       - awinic,aw88395
+       - awinic,aw88261
++      - awinic,aw88399
+ 
+   reg:
+     maxItems: 1
 -- 
 2.41.0
 
