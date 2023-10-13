@@ -1,245 +1,101 @@
-Return-Path: <devicetree+bounces-8328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9157C7B47
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 03:41:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFAF17C7B76
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 04:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1254B207E9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 01:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69299282C9B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 02:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E3781D;
-	Fri, 13 Oct 2023 01:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423B881D;
+	Fri, 13 Oct 2023 02:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OtjityQG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VC8r0ZqR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B1781C
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 01:41:24 +0000 (UTC)
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF66C0;
-	Thu, 12 Oct 2023 18:41:22 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-79fe8986355so62689539f.2;
-        Thu, 12 Oct 2023 18:41:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697161282; x=1697766082; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SZStzgvvobzmH5MTIYJodlyUC67aXTA2OSqCAvankGE=;
-        b=OtjityQGBucnHnuFIJ3Qy2XGhp8D7AlA9IDOQMK19gQN5r/RrgJdPxOcFs7aKGb+Ye
-         oIx7VMgZlTZ4sCmc8cL2SPkX4Kk2pix8dkiRY72PS15K4gV6IMiZoAjUpGvIrGhPPOvi
-         OzCIFjaG1KFccQR5lsUWQm/kIKeAS83AKMKma8gY9mf21xZiyY+KVv4cAJx1bvFyhesF
-         wGFX0cNjypBwA1FtuIcDn1DMLy9tUu0mmXZqKTuwPm16oT5Ixt4ncxu+q6J3TR7BKHN/
-         YviIA7w84pBtx1YZRXvNvL61eox6n5IZpUdqqpPQ+TiLKIDj60qT3dnmYyKlm/et6Z9x
-         LTlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697161282; x=1697766082;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SZStzgvvobzmH5MTIYJodlyUC67aXTA2OSqCAvankGE=;
-        b=uG7p7QO/b7z9JaN1XqtoWPdlpfqG6WTzqLohhIFGJ00w2IKH7UceEyEXr82y6lztcG
-         QdXfBX9AyNYOZIXrwh6q9qMRuFrNPImRKgrLStYSd26bR+oOkNp9nCM5GVuO9M/588Ek
-         I4jfQ8klY6o2UHxfA1ALlTFBmGYAoT6f5Esf/bFXWnuuUnxGvE8gfQPgzZzcICVBZR5R
-         TJsutniZfVt4yUAEmCjpXH/1Iv8kSljQoMHPPfF9T4CE9SiIHeliDxeSxmWt4O/7LxhA
-         Eut3c4+kAKlbQ26aj03OnCllD62nfqKbQf4nRKTlmTEjo9JoQj0cnXlwGdZ6TRRUNwPq
-         KD1g==
-X-Gm-Message-State: AOJu0YwFWbTWmXFg65EbXe4D5e+LbglG0c5MHLt24EarlKZb2WtXPaN8
-	ftF281crGuZLWenqsPOnK4U=
-X-Google-Smtp-Source: AGHT+IGEoCXsBz9wCXz64aA5MQm1zNM7DnhY0QAIfvaYwZjL8u3dp/WMyMgk5S05hZAKbWLRNiWXzw==
-X-Received: by 2002:a6b:7841:0:b0:79f:e99b:474a with SMTP id h1-20020a6b7841000000b0079fe99b474amr26209903iop.18.1697161281732;
-        Thu, 12 Oct 2023 18:41:21 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:4979:b5dc:3d65:edd2])
-        by smtp.gmail.com with ESMTPSA id r18-20020a056638101200b0042319c38763sm4325633jab.15.2023.10.12.18.41.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Oct 2023 18:41:21 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp-beacon-kit: Enable DSI to HDMI Bridge
-Date: Thu, 12 Oct 2023 20:41:17 -0500
-Message-Id: <20231013014117.124202-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.40.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F13A2A
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:03:22 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6563C0;
+	Thu, 12 Oct 2023 19:03:20 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-212-229.ewe-ip-backbone.de [91.248.212.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id ED4C4660735A;
+	Fri, 13 Oct 2023 03:03:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697162599;
+	bh=sKttk4Nu1SkDWKSUsvrHZFpKP7vj4n6hxYQeDBYZvwE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=VC8r0ZqRFJ1DHgyi+V+LGXZMS2b4TcWQvS1VcjhTVdgYMWpqm523dPU8uXpSJpMLH
+	 jrwx0MGshwhqlIyxe0xwSbAPX1KIUPBbkhmnf9HJlXZ6OysBmhLZfX1v2Fxlrg6AZH
+	 dVzqzLx0EoK96WHsUFlU3blT5j1ns3ET0aJcNdRHTP74pphoXf5mTOogGZWxCk39B6
+	 xm72K+2GtrGeqXG4Y6HNbgGomVMbNcJ9fxealSUwhz6i3apg4rV88Z2fJpLf4U0tsw
+	 XncyE0UCeGB9fUEhgAJCbC1F1jLFbDmW5WncfYmW5v0dXNtOb8+yj1w5bvKxf9n2L7
+	 3irbUQMWdJ/1A==
+Received: by mercury (Postfix, from userid 1000)
+	id 75CAF1062B50; Fri, 13 Oct 2023 04:03:16 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Francesco Dolcini <francesco@dolcini.it>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20231006130428.11259-1-francesco@dolcini.it>
+References: <20231006130428.11259-1-francesco@dolcini.it>
+Subject: Re: [PATCH v2 0/4] power: reset: gpio-poweroff: use sys-off
+ handler API
+Message-Id: <169716259646.1002132.13986378548211553065.b4-ty@collabora.com>
+Date: Fri, 13 Oct 2023 04:03:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The baseboard of the Beacon i.MX8M Plus development kit has
-an ADV7535 DSI to HDMI bridge capable of stereo sound.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On Fri, 06 Oct 2023 10:04:24 -0300, Francesco Dolcini wrote:
+> Use the new sys-off handler API for gpio-poweroff. This allows us to have more
+> than one power-off handler and to have a priority for the handler. Also, add a
+> priority property so we can use gpio-poweroff even when registering another
+> poweroff handler or using the legacy pm_power_off method.
+> 
+> v1->v2:
+>  - Add $ref to restart-handler.yaml in gpio-poweroff.yaml
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index 0bea0798d2db..feae77e03835 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -94,6 +94,17 @@ button-3 {
- 		};
- 	};
- 
-+	bridge-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&adv7535_out>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -153,6 +164,21 @@ reg_usb1_host_vbus: regulator-usb1-vbus {
- 		enable-active-high;
- 	};
- 
-+	sound-adv7535 {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sound-adv7535";
-+		simple-audio-card,format = "i2s";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai5>;
-+			system-clock-direction-out;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&adv_bridge>;
-+		};
-+	};
-+
- 	sound-dmic {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "sound-pdm";
-@@ -274,6 +300,35 @@ pca6416_3: gpio@20 {
- 		#interrupt-cells = <2>;
- 	};
- 
-+	adv_bridge: hdmi@3d {
-+		compatible = "adi,adv7535";
-+		reg = <0x3d>, <0x3c>, <0x3e>, <0x3f>;
-+		reg-names = "main", "cec", "edid", "packet";
-+		adi,dsi-lanes = <4>;
-+		#sound-dai-cells = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				adv7535_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				adv7535_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+
- 	pcieclk: clock-generator@68 {
- 		compatible = "renesas,9fgv0241";
- 		reg = <0x68>;
-@@ -398,6 +453,10 @@ hd3ss3220_out_ep: endpoint {
- 	};
- };
- 
-+&lcdif1 {
-+	status = "okay";
-+};
-+
- &micfil {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pdm>;
-@@ -407,6 +466,21 @@ &micfil {
- 	status = "okay";
- };
- 
-+&mipi_dsi {
-+	samsung,esc-clock-frequency = <10000000>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi_out: endpoint {
-+				remote-endpoint = <&adv7535_in>;
-+			};
-+		};
-+	};
-+};
-+
- &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pcie>;
-@@ -433,6 +507,16 @@ &sai3 {
- 	status = "okay";
- };
- 
-+&sai5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai5>;
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI5>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -612,6 +696,14 @@ MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK	0xd6
- 		>;
- 	};
- 
-+	pinctrl_sai5: sai5grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXD3__AUDIOMIX_SAI5_TX_DATA00	0xd6
-+			MX8MP_IOMUXC_SAI5_RXD2__AUDIOMIX_SAI5_TX_BCLK	0xd6
-+			MX8MP_IOMUXC_SAI5_RXD1__AUDIOMIX_SAI5_TX_SYNC	0xd6
-+		>;
-+	};
-+
- 	pinctrl_tpm: tpmgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI1_RXFS__GPIO4_IO00	0x19 /* Reset */
+Applied, thanks!
+
+[1/4] power: reset: gpio-poweroff: use a struct to store the module variables
+      commit: 13b4c6964665cadb9b06c085029710c43a0c662e
+[2/4] power: reset: gpio-poweroff: use sys-off handler API
+      commit: b16d9f49735f3d26e23f0ba4a2cf21668fc6b66b
+[3/4] dt-bindings: power: reset: gpio-poweroff: Add priority property
+      commit: 4ee17bd30788496a279ceaabc7ecaaf39f61cfc4
+[4/4] power: reset: gpio-poweroff: make sys handler priority configurable
+      commit: d03d2a8cdefe86f04cfb53934a708620e7dfbfcb
+
+Best regards,
 -- 
-2.40.1
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
