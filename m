@@ -1,302 +1,150 @@
-Return-Path: <devicetree+bounces-8581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127327C8D2B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:39:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086ED7C8D43
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C1451F214CD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:39:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 395E01C20B05
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9781CAA7;
-	Fri, 13 Oct 2023 18:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927511C290;
+	Fri, 13 Oct 2023 18:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fNqy2zLb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VWCNBmGe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B691C298
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:39:31 +0000 (UTC)
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500D583
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:39:29 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-3b2b1af09c5so497306b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 11:39:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B5C33D2
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:45:48 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5939DBE;
+	Fri, 13 Oct 2023 11:45:43 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so27816015e9.0;
+        Fri, 13 Oct 2023 11:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697222368; x=1697827168; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1697222742; x=1697827542; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=taQ7vAEpEsyYFLFUuiwGBIsz4PkgF1SnWSyqumrI0Hg=;
-        b=fNqy2zLbtD2s/YfTmvq+s7b07OeGTEc0CrZCE7Pmcy5LAMUIF0QtwVVmvjgc/g7Qh8
-         kIXxMZEmScdk4C7xoftMMqFA3pKnsSfnqqbbdDqskrGsC0nBZHIPQiTsqKItl6dodD4M
-         pvLyh+55ZY+r9G9s2nHmufSpKa4b1SQuVg/aBiUXUbByGDyY/Z18e/+PUOk+UCqDdwyI
-         aoV60xyBSDtOzRipqrtz8pVQdR00s7vpAuyfkS8ozD4sbB5V7aoSnQCUtoaI5T1KK3YL
-         HsM+AhlKYZlylP/DIF8VDx977hDI9HxEnEen9OlY1lO5FQGkk4yMUqz+UYTzAPcHW5Tq
-         mqyA==
+        bh=nS/B/9nUlLmw6S4KsFUi4nqKiJBJFKciQh4FDxh+L/s=;
+        b=VWCNBmGeZethL9drvaz2BFBuuHeshfVwQWIyDsom5kSEDWjXymqfdEHMBwuZfpEZPv
+         PzRTAlF0tGzixcs8G4qVDkafWDPQrQT/rTF60rqR6FFGAOzdvwtJg5cCD8ERtlmgjKDK
+         HlQnjHEYmFlX0WNmfQLVLqaaN6J84SqF6qgDq4OPt/wj0rlKIUEoH1STdfBzDBJxkXup
+         UAz/FmHq2hJw1WqS2GOk9MwSZpRNhs6Dx3NnQbAs4KW7R6Z2/Z1zEb6xYI9AyWSko1KU
+         OIVQbn1lRxI/aChFNk8BbAE8ioCrnV0NVyfPVPzZrrO4iYZEgaTHDvlI4ghV2M4mezcZ
+         3GPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697222368; x=1697827168;
+        d=1e100.net; s=20230601; t=1697222742; x=1697827542;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=taQ7vAEpEsyYFLFUuiwGBIsz4PkgF1SnWSyqumrI0Hg=;
-        b=Yyhd8HtJlo05R/WBfDn96tF+dxIPLL0/qiUmr0PHmjz8wTWWr3fzcbiOi4PY7c5kkM
-         KafPgBqvv9KlU38kEn3I4Muv9Go2UZzbFkhiCBT43rC0/VWl6KuZNoiK9LAHvQ+vEfRX
-         BbipABaB4cQLdLK0Wo/mE+yhdILPydlJKZdpU2bNqmNZGKhsHzU7vGth4vtHjsD32OYE
-         CgJJEWsLLCVxSLsG8cwTFGfyxCeJbicKgk+PpBeD35ZPPKqWvm2y3rClhiQ6hEqcws/c
-         fy+ndJuXrA0oKAe78SbQuv+so52lpPCEN5Xs9aU+/RpEUIHjW2Mytcg1I1GagEboazl2
-         /dkA==
-X-Gm-Message-State: AOJu0YwNObOfFIIDrLfmQX233eJIMMu1RzUsAUD8kSX0PgATKkUfWKGY
-	0v/EJJVsJaG5Q2gi2/wuTpM=
-X-Google-Smtp-Source: AGHT+IEOHRMzzwdVAGQ57P+LsaY7TAEk+aijWm2eVqpD+nW1THPcnfl7PoK9r88Yvpx6L8xVpVn8yg==
-X-Received: by 2002:aca:220e:0:b0:3af:26e3:92e with SMTP id b14-20020aca220e000000b003af26e3092emr23790520oic.28.1697222368552;
-        Fri, 13 Oct 2023 11:39:28 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id bx19-20020a0568081b1300b003afe584ed4fsm842159oib.42.2023.10.13.11.39.27
+        bh=nS/B/9nUlLmw6S4KsFUi4nqKiJBJFKciQh4FDxh+L/s=;
+        b=ZLJd+9pQvY6RmB1kIzsATuTOlhXvz7ipXRkcCGQaBHOq8RMhCEkhNDuilTkn2PvgI/
+         kiYhLXD9QACXA9cwG1ZPCpRq4vHNaMydRH43bKn4GYUsiFgtocKYJiE/FrcG80A6/H0b
+         efh0tgfQodFp0LIi4rC7DdmJrqIbOnW5lea4VZnJIwdQVH5pNT6r2IoNxNH53CG6x1No
+         s035GjOn3uG8+amOWwH3LMCUK5ZoBXcBd73ndA1bJgHgQnXyfMrFMovmnGC1b97B84eN
+         DLShrZiU++nw9p/L6XaUao0Lt2tov2HaFp+H002VzbS8jSaDG9Tzae3fH94lgwNWvYRU
+         oiyQ==
+X-Gm-Message-State: AOJu0YzAeJNieQY3F4lVi1qbQtqY89OxJf2QcXlXR794XgwvNknyjXOH
+	2ttDH8VrPNyOvwjTy3l36SH8KWu/c3Vn9g==
+X-Google-Smtp-Source: AGHT+IHcbqPBjzX48zCFbc2YsOP+a2i9HmTRCmgyTQhV4W9XaKQNyEHu+7HzI1xt2rz8SXlqw5MDaQ==
+X-Received: by 2002:a7b:cb8c:0:b0:406:517f:ac71 with SMTP id m12-20020a7bcb8c000000b00406517fac71mr24094789wmi.29.1697222741548;
+        Fri, 13 Oct 2023 11:45:41 -0700 (PDT)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id e16-20020a05600c4e5000b004068495910csm840969wmq.23.2023.10.13.11.45.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 11:39:28 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	andyshrk@163.com,
-	jagan@edgeble.ai,
-	daniel@ffwll.ch,
-	airlied@gmail.com,
-	sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	megous@megous.com,
-	kernel@puri.sm,
-	agx@sigxcpu.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 5/5] arm64: dts: rockchip: add support for Powkiddy RGB30
-Date: Fri, 13 Oct 2023 13:39:18 -0500
-Message-Id: <20231013183918.225666-6-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231013183918.225666-1-macroalpha82@gmail.com>
-References: <20231013183918.225666-1-macroalpha82@gmail.com>
+        Fri, 13 Oct 2023 11:45:40 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Chukun Pan <amadeus@jmu.edu.cn>
+Subject:
+ Re: [PATCH 2/2] arm64: dts: allwinner: h616: update emac properties for
+ Orange Pi Zero 3
+Date: Fri, 13 Oct 2023 20:45:38 +0200
+Message-ID: <3254946.aeNJFYEL58@jernej-laptop>
+In-Reply-To: <20231010153812.2869633-2-amadeus@jmu.edu.cn>
+References:
+ <20231010153812.2869633-1-amadeus@jmu.edu.cn>
+ <20231010153812.2869633-2-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Hi!
 
-The Powkiddy RGB30 is a portable game device based on the Rockchip
-RK3566 SoC. It has GPIO buttons on the face and sides for input, stereo
-speakers, a 720x720 4 inch DSI display, a USB-C host port and a USB-C
-peripheral port, dual SD card slots, WiFi, Bluetooth, and 1GB of RAM.
+Dne torek, 10. oktober 2023 ob 17:38:12 CEST je Chukun Pan napisal(a):
+> Add the correct delay value to emac. Also add missing mdio
+> properties for the YT8531 PHY (clock output required).
+> With these changes, Ethernet now looks stable.
 
-Working/Tested:
-- SDMMC
-- UART (for debugging)
-- Buttons
-- Charging/battery/PMIC
-- Speaker/Headphones
-- USB
-- WiFi
-- Bluetooth
-- Display (at 59.04hz)
+This is also a fix, so it would also deserve Fixes tag. In fact, please merge
+previous and this patch into one. After all, you are fixing only one thing -
+ethernet on OrangePi Zero 3 board.
 
-Not Working/TODO:
-- Display does not resume from suspend properly. I'm working with the
-  manufacturer to resolve this.
+Can you also explain how did you figure out that additional PHY properties
+are needed? At first glance, based on description of motorcomm,keep-pll-enabled,
+it's not immediately clear why it should be needed. Same goes for second
+property.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3566-powkiddy-rgb30.dts    | 152 ++++++++++++++++++
- 2 files changed, 153 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
+1800 ps delay basically means that rgmii is not correct type and rgmii-rxid
+should be used instead. Indeed, schematic confirms that's the case. With that,
+allwinner,rx-delay-ps can be 0 and thus ommited from DT file.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index e7728007fd1b..3f01b429a3aa 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353vs.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-radxa-cm3-io.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-new file mode 100644
-index 000000000000..c7828c99a1bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3566-anbernic-rg353x.dtsi"
-+
-+/ {
-+	model = "RGB30";
-+	compatible = "powkiddy,rgb30", "rockchip,rk3566";
-+
-+	aliases {
-+		mmc1 = &sdmmc0;
-+		mmc2 = &sdmmc1;
-+		mmc3 = &sdmmc2;
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3151000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <2000000>;
-+		constant-charge-voltage-max-microvolt = <4250000>;
-+		factory-internal-resistance-micro-ohms = <117000>;
-+		voltage-max-design-microvolt = <4172000>;
-+		voltage-min-design-microvolt = <3400000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =  <4172000 100>, <4092000 95>, <4035000 90>, <3990000 85>,
-+					<3939000 80>, <3895000 75>, <3852000 70>, <3807000 65>,
-+					<3762000 60>, <3713000 55>, <3672000 50>, <3647000 45>,
-+					<3629000 40>, <3613000 35>, <3598000 30>, <3578000 25>,
-+					<3550000 20>, <3519000 15>, <3479000 10>, <3438000 5>,
-+					<3400000 0>;
-+	};
-+
-+	/*
-+	 * Channels reversed for speakers. Headphones automatically switch via hardware when
-+	 * detected with no ability to control output in software. Headphones appear to be mono
-+	 * (each output channel receives all audio). No microphone support on 3.5mm jack.
-+	 */
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "rk817_ext";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphones";
-+		simple-audio-card,routing =
-+			"Headphones", "HPOL",
-+			"Headphones", "HPOR";
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&rk817>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s1_8ch>;
-+		};
-+	};
-+};
-+
-+/delete-node/ &adc_keys;
-+
-+&cru {
-+	assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>,
-+			  <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
-+	assigned-clock-rates = <32768>, <1200000000>,
-+			       <200000000>, <108000000>;
-+};
-+
-+&gpio_keys_control {
-+	button-r1 {
-+		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+		label = "TR";
-+		linux,code = <BTN_TR>;
-+	};
-+
-+	button-r2 {
-+		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-+		label = "TR2";
-+		linux,code = <BTN_TR2>;
-+	};
-+};
-+
-+/delete-node/ &{/i2c@fdd40000/regulator@40};
-+
-+&i2c0 {
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1390000>;
-+		regulator-name = "vdd_cpu";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+/*
-+ * Device has 2 red LEDs instead of an amber and a red. Relabel LEDs as
-+ * red_led0 and red_led1.
-+ */
-+/delete-node/ &{/pwm-leds/led-1};
-+/delete-node/ &{/pwm-leds/led-2};
-+
-+&leds {
-+	red_led0: led-1 {
-+		color = <LED_COLOR_ID_RED>;
-+		function = LED_FUNCTION_CHARGING;
-+		max-brightness = <255>;
-+		pwms = <&pwm7 0 25000 0>;
-+	};
-+
-+	red_led1: led-2 {
-+		color = <LED_COLOR_ID_RED>;
-+		default-state = "off";
-+		function = LED_FUNCTION_STATUS;
-+		max-brightness = <255>;
-+		pwms = <&pwm0 0 25000 0>;
-+	};
-+};
-+
-+&panel {
-+	compatible = "powkiddy,rgb30-panel";
-+	vcc-supply = <&vcc3v3_lcd0_n>;
-+	iovcc-supply = <&vcc3v3_lcd0_n>;
-+	/delete-property/ vdd-supply;
-+};
-+
-+&pwm5 {
-+	status = "disabled";
-+};
-+
-+&rk817 {
-+	rk817_charger: charger {
-+		monitored-battery = <&battery>;
-+		rockchip,resistor-sense-micro-ohms = <10000>;
-+		rockchip,sleep-enter-current-microamp = <300000>;
-+		rockchip,sleep-filter-current-microamp = <100000>;
-+	};
-+};
-+
-+/delete-node/ &vibrator;
--- 
-2.34.1
+Since there is many differences, I suggest that you remove whole emac0
+node from common DTSI file and put specific ones to each board. It will
+be less confusing that way.
+
+Best regards,
+Jernej
+
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> index 00fe28caac93..02c7836b624a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> @@ -13,10 +13,14 @@ / {
+>  };
+>  
+>  &emac0 {
+> +	allwinner,rx-delay-ps = <1800>;
+> +	allwinner,tx-delay-ps = <700>;
+>  	phy-supply = <&reg_dldo1>;
+>  };
+>  
+>  &ext_rgmii_phy {
+> +	motorcomm,keep-pll-enabled;
+> +	motorcomm,auto-sleep-disabled;
+>  	motorcomm,clk-out-frequency-hz = <125000000>;
+>  };
+>  
+> 
+
+
+
 
 
