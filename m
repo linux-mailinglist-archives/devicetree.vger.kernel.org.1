@@ -1,153 +1,200 @@
-Return-Path: <devicetree+bounces-8500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401397C860E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:48:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC107C862B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA30E1F2117A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:48:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B83C1C20ABF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2F913AF5;
-	Fri, 13 Oct 2023 12:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD2F14008;
+	Fri, 13 Oct 2023 12:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ONzCKknM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VA1hix7n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F6B3D026;
-	Fri, 13 Oct 2023 12:48:22 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35AA891;
-	Fri, 13 Oct 2023 05:48:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697201300; x=1728737300;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o60+COZma8TeT2EpeOij8I3evH4uZFQtT4ewUOYUpfI=;
-  b=ONzCKknMCIVIK7n3JwMpgBaNI3D+kEtS0ZvEUreuIpKv6+i7LTwLLgOH
-   KHxi9H/I+F6y1qMEsHiiu/y1xc8rk+++zKUX8ZqIMn1yEXpG/A0azKpwI
-   rk0HcwikFUwMOWoIdvphGBGQ02PTGPGJZ//Y4s73zez/yjDsYLgNoFK39
-   c2IWGAUwmRJCds949U7x/Ct9YSMrFQqrkS61sMOleZeFTngCjY/SuhorY
-   yp62M7M6RHppso00IfBm9OD1fPoAzGvEJNsv+QKGLLHh/F82pqzGZjmRA
-   Sop7vJ66MY+mOcH0mMpaE7sEQzOavNii+4suO1Djlt8zC/5LAZelWlYYF
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="384036299"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; 
-   d="scan'208";a="384036299"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2023 05:48:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="898547173"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; 
-   d="scan'208";a="898547173"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 13 Oct 2023 05:46:23 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qrHaN-0004mH-1z;
-	Fri, 13 Oct 2023 12:48:11 +0000
-Date: Fri, 13 Oct 2023 20:47:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sarah Walker <sarah.walker@imgtec.com>, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, frank.binns@imgtec.com,
-	donald.robson@imgtec.com, boris.brezillon@collabora.com,
-	faith.ekstrand@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
-	matthew.brost@intel.com, christian.koenig@amd.com,
-	luben.tuikov@amd.com, dakr@redhat.com, linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, Matt Coster <matt.coster@imgtec.com>
-Subject: Re: [PATCH v7 11/20] drm/imagination: Add GEM and VM related code
-Message-ID: <202310132017.sS9EaOVp-lkp@intel.com>
-References: <20231010133738.35274-12-sarah.walker@imgtec.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584B73D026
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 12:54:41 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D49C0
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:54:37 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso3847107a12.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:54:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697201676; x=1697806476; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=spTfC78Itvw/hW/o2eytnI9brc+L/P4ujKi/XHn8SkQ=;
+        b=VA1hix7nAUFCI5wOY4CZCIWUuj9s6LO8iOmS7RGyGzv+5W1FPpQHyXYPF/7CvlO+e7
+         xr9z5tgWUvfCz6z1Bq2ufzjOq0HDX1JK42GZQk4yXeRY1dOxVX3VTKAi9LAOEy91BKdQ
+         AvdfRgWwAWjzrXjXCwYNz/Ms6UqCpqw486oNyyTxeXaYtCe/BK8yu6bkkjcfB/WplwPK
+         PyOT0DhH4p1cnWS1nExRTRADC6wXLtZKL6qWDfHfBnJ2zQVv5AYN3izmId6EXw5gmO1Q
+         G8RzsrvsF1hVApaobo4vQhtMi3/XoUF5hzAWnV3Ed7nVRVlsrAxFFDBknCly0sUsdxV5
+         a8fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697201676; x=1697806476;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=spTfC78Itvw/hW/o2eytnI9brc+L/P4ujKi/XHn8SkQ=;
+        b=CzOolfT9YpNcl9USp5I8UzZmrg4/HiDm5K8bbw00LYnmKh82JX9ZGoPu1BNzDylfPU
+         8vcHWQxPjXyY70wqyOzoqAzMvT1n9O7GLIO7a3txcFxbLYITWQh9Y/OZHaiREa72b3Kv
+         QST+PrNgUmlLZXkZCGRo6Wbmg91goiUYGhJEq6ra/3O4sT3XbkyAQ6L2wSJ0g3toGU4m
+         37tYubb+HKeFTMp5yfFjaWkUR5Upqaqoe5WKI1//zO4sMPBH3C1EAEbUqrSAzwr+HhXE
+         Zo6tLp8wnkj2cFO2pQX09q1QpT0eh32k/s8og37s13yXyF3XKaUq50KUZEprvXogtn0n
+         1gaw==
+X-Gm-Message-State: AOJu0Yz9SbqvoauKQIc9yjtmdHeC18C0VrBANqnBbXqx5OZNEId3iET0
+	jv45jzTZ+9mNn1tVVl00+RLCSg==
+X-Google-Smtp-Source: AGHT+IHmWYDS78zBfrXaXOT2tqxlDxLju4GNSBtW3NWuZ7y5KuM0DJ+rqI5HR7dz8smGz0Fmh2gW2g==
+X-Received: by 2002:a17:907:1dd8:b0:9ba:3434:482b with SMTP id og24-20020a1709071dd800b009ba3434482bmr9420633ejc.26.1697201676134;
+        Fri, 13 Oct 2023 05:54:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id jp20-20020a170906f75400b0099bcb44493fsm12486065ejb.147.2023.10.13.05.54.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Oct 2023 05:54:35 -0700 (PDT)
+Message-ID: <209334cd-c922-4bd6-b116-83297c7e8b79@linaro.org>
+Date: Fri, 13 Oct 2023 14:54:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010133738.35274-12-sarah.walker@imgtec.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to
+ yaml
+Content-Language: en-US
+To: Michal Simek <michal.simek@amd.com>,
+ Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+References: <20231013101450.573-1-praveen.teja.kundanala@amd.com>
+ <20231013101450.573-3-praveen.teja.kundanala@amd.com>
+ <02d3fa42-75a3-4f4f-ade6-204c8146d694@linaro.org>
+ <91d61e1a-abb0-4b31-aa22-aff72d582ebe@amd.com>
+ <b72e6fe0-2ba4-47ac-80a5-94ee4101ad2b@linaro.org>
+ <013e44c6-45f5-44c1-94b3-536955fae78f@amd.com>
+ <b5a2d37b-168c-4cc9-9dc0-68f131cdf3ad@linaro.org>
+ <5a3b6efe-5884-4727-a1e1-e9b8b0658523@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5a3b6efe-5884-4727-a1e1-e9b8b0658523@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Sarah,
+On 13/10/2023 14:08, Michal Simek wrote:
+> 
+> 
+> On 10/13/23 13:58, Krzysztof Kozlowski wrote:
+>> On 13/10/2023 13:51, Michal Simek wrote:
+>>>
+>>>
+>>> On 10/13/23 13:46, Krzysztof Kozlowski wrote:
+>>>> On 13/10/2023 13:22, Michal Simek wrote:
+>>>>>>
+>>>>>>> +
+>>>>>>> +required:
+>>>>>>> +  - compatible
+>>>>>>
+>>>>>> required: block goes after patternProperties: block
+>>>>>>
+>>>>>>> +
+>>>>>>> +patternProperties:
+>>>>>>> +  "^soc_revision@0$":
+>>>>>>
+>>>>>> Why do you define individual memory cells? Is this part of a binding?
+>>>>>> IOW, OS/Linux requires this?
+>>>>>
+>>>>> nvmem has in kernel interface where you can reference to nodes. nvmem_cell_get()
+>>>>> calls. It means you should be able to describe internal layout that's why names
+>>>>> are used. And address in name is there because of reg property is used to
+>>>>> describe base offset and size.
+>>>>
+>>>> That's not really what I am asking. Why internal layout of memory must
+>>>> be part of the bindings?
+>>>
+>>> It doesn't need to be but offsets are hardcoded inside the driver itself and
+>>> they can't be different.
+>>
+>> Hm, where? I opened drivers/nvmem/zynqmp_nvmem.c and I do not see any
+>> hard-coded offsets.
+> 
+> Current driver supports only soc revision from offset 0.
+> But if you look at 5/5 you need to define offsets where information is present.
+> +#define SOC_VERSION_OFFSET	0x0
+> +#define EFUSE_START_OFFSET	0xC
+> +#define EFUSE_END_OFFSET	0xFC
+> +#define EFUSE_PUF_START_OFFSET	0x100
+> +#define EFUSE_PUF_MID_OFFSET	0x140
+> +#define EFUSE_PUF_END_OFFSET	0x17F
 
-kernel test robot noticed the following build warnings:
+There is nothing like this in existing driver, so the argument that "I
+am adding this to the binding during conversion because driver needs it"
+is not true. Conversion is only a conversion.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm/drm-next drm-intel/for-linux-next drm-tip/drm-tip next-20231012]
-[cannot apply to drm-exynos/exynos-drm-next drm-intel/for-linux-next-fixes linus/master v6.6-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Now, if you want to add something new to the binding because of new
+driver changes, that's separate topic.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sarah-Walker/sizes-h-Add-entries-between-SZ_32G-and-SZ_64T/20231010-221057
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20231010133738.35274-12-sarah.walker%40imgtec.com
-patch subject: [PATCH v7 11/20] drm/imagination: Add GEM and VM related code
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231013/202310132017.sS9EaOVp-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231013/202310132017.sS9EaOVp-lkp@intel.com/reproduce)
+And since it is new change in the driver I can comment: please don't.
+Your nvmem driver should not depend on it. nvmem is only the provider.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310132017.sS9EaOVp-lkp@intel.com/
+Best regards,
+Krzysztof
 
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/imagination/pvr_mmu.c:9:
->> drivers/gpu/drm/imagination/pvr_rogue_fwif.h:56:52: warning: 'rogue_fwif_log_group_name_value_map' defined but not used [-Wunused-const-variable=]
-      56 | static const struct rogue_fwif_log_group_map_entry rogue_fwif_log_group_name_value_map[] = {
-         |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
->> drivers/gpu/drm/imagination/pvr_mmu.c:1331: warning: Incorrect use of kernel-doc format:          * @curr_page - A reference to a single physical page as indexed by
->> drivers/gpu/drm/imagination/pvr_mmu.c:1345: warning: Function parameter or member 'curr_page' not described in 'pvr_mmu_op_context'
->> drivers/gpu/drm/imagination/pvr_mmu.c:1744: warning: Function parameter or member 'ctx' not described in 'pvr_mmu_get_root_table_dma_addr'
->> drivers/gpu/drm/imagination/pvr_mmu.c:1744: warning: Excess function parameter 'root' description in 'pvr_mmu_get_root_table_dma_addr'
->> drivers/gpu/drm/imagination/pvr_mmu.c:2156: warning: Excess function parameter 'ptr' description in 'pvr_page_destroy'
-
-
-vim +/rogue_fwif_log_group_name_value_map +56 drivers/gpu/drm/imagination/pvr_rogue_fwif.h
-
-b4ef9acd8e065c Sarah Walker 2023-10-10  51  
-b4ef9acd8e065c Sarah Walker 2023-10-10  52  /*
-b4ef9acd8e065c Sarah Walker 2023-10-10  53   * Macro for use with the ROGUE_FWIF_LOG_GROUP_MAP_ENTRY type to create a lookup
-b4ef9acd8e065c Sarah Walker 2023-10-10  54   * table where needed. Keep log group names short, no more than 20 chars.
-b4ef9acd8e065c Sarah Walker 2023-10-10  55   */
-b4ef9acd8e065c Sarah Walker 2023-10-10 @56  static const struct rogue_fwif_log_group_map_entry rogue_fwif_log_group_name_value_map[] = {
-b4ef9acd8e065c Sarah Walker 2023-10-10  57  	{"none", ROGUE_FWIF_LOG_TYPE_NONE},
-b4ef9acd8e065c Sarah Walker 2023-10-10  58  	{"main", ROGUE_FWIF_LOG_TYPE_GROUP_MAIN},
-b4ef9acd8e065c Sarah Walker 2023-10-10  59  	{"mts", ROGUE_FWIF_LOG_TYPE_GROUP_MTS},
-b4ef9acd8e065c Sarah Walker 2023-10-10  60  	{"cleanup", ROGUE_FWIF_LOG_TYPE_GROUP_CLEANUP},
-b4ef9acd8e065c Sarah Walker 2023-10-10  61  	{"csw", ROGUE_FWIF_LOG_TYPE_GROUP_CSW},
-b4ef9acd8e065c Sarah Walker 2023-10-10  62  	{"bif", ROGUE_FWIF_LOG_TYPE_GROUP_BIF},
-b4ef9acd8e065c Sarah Walker 2023-10-10  63  	{"pm", ROGUE_FWIF_LOG_TYPE_GROUP_PM},
-b4ef9acd8e065c Sarah Walker 2023-10-10  64  	{"rtd", ROGUE_FWIF_LOG_TYPE_GROUP_RTD},
-b4ef9acd8e065c Sarah Walker 2023-10-10  65  	{"spm", ROGUE_FWIF_LOG_TYPE_GROUP_SPM},
-b4ef9acd8e065c Sarah Walker 2023-10-10  66  	{"pow", ROGUE_FWIF_LOG_TYPE_GROUP_POW},
-b4ef9acd8e065c Sarah Walker 2023-10-10  67  	{"hwr", ROGUE_FWIF_LOG_TYPE_GROUP_HWR},
-b4ef9acd8e065c Sarah Walker 2023-10-10  68  	{"hwp", ROGUE_FWIF_LOG_TYPE_GROUP_HWP},
-b4ef9acd8e065c Sarah Walker 2023-10-10  69  	{"rpm", ROGUE_FWIF_LOG_TYPE_GROUP_RPM},
-b4ef9acd8e065c Sarah Walker 2023-10-10  70  	{"dma", ROGUE_FWIF_LOG_TYPE_GROUP_DMA},
-b4ef9acd8e065c Sarah Walker 2023-10-10  71  	{"misc", ROGUE_FWIF_LOG_TYPE_GROUP_MISC},
-b4ef9acd8e065c Sarah Walker 2023-10-10  72  	{"debug", ROGUE_FWIF_LOG_TYPE_GROUP_DEBUG}
-b4ef9acd8e065c Sarah Walker 2023-10-10  73  };
-b4ef9acd8e065c Sarah Walker 2023-10-10  74  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
