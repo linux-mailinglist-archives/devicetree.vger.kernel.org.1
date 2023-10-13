@@ -1,100 +1,260 @@
-Return-Path: <devicetree+bounces-8386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988007C7E68
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:11:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A227C7E8C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3234AB208A1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:11:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E795282917
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D36BD307;
-	Fri, 13 Oct 2023 07:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14F1CDDB8;
+	Fri, 13 Oct 2023 07:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RfYM7Hrz"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XF8FeLe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29518D304
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:11:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F918C433C8;
-	Fri, 13 Oct 2023 07:11:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697181099;
-	bh=MwaYf7/fVl29eeEa1PR2hVMy/u8Gb+fyB79xZCGocz0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RfYM7HrzJUY5Keay15CPDjBgu3kJqSs4/uctlZq02hUWkzSFnBUwa7Majwvh6VX2p
-	 0ZBL0bktqn5BBgFIl7ftJX3PG1DEkjPYrfp6a6HumjgQsAG+G7IAWlCH+iKifcBb+0
-	 kChUKP6avE+fRfeXCm+klY//emkEkQJsdidHVzDIbNyfvEh+Rsl0vtDv5JtZb6QGx2
-	 Z182q/w8OSKAec67XDmfG79oWqxLb4SXeEyG0HOWxYcf4ch5gJ2tHE68G6UJ95tDS1
-	 LuW3P/uWPKhDVgwV46vuLv55AHM8kF7LXOvuS3+jafcmIg4XeEJenh3HqwXW3Gskfh
-	 8lR4tEGPPRK6g==
-Date: Fri, 13 Oct 2023 09:11:33 +0200
-From: Wolfram Sang <wsa@kernel.org>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	gregory.clement@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pierre.gondois@arm.com, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] i2c: mv64xxx: add support for FSM based recovery
-Message-ID: <ZSjtpWukWHeZp///@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	gregory.clement@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pierre.gondois@arm.com, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231006003321.2100016-1-chris.packham@alliedtelesis.co.nz>
- <20231006003321.2100016-4-chris.packham@alliedtelesis.co.nz>
- <20231012201541.nzlxyjngm3d5asir@zenone.zhora.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F60101C9
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 07:28:15 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824B8B7;
+	Fri, 13 Oct 2023 00:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1697182092; x=1728718092;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=+TKsRjxrX6tB1ZMIkNFNS1tku+Zy3RG3lIVtHGUk82U=;
+  b=XF8FeLe88nH8Uu0Xd/MpMAA70qpdDrk7LZcJ8sQARJcFUDNtpnOzK9gc
+   Ix/LuR35LML7nay6yFpH+HesWvX/F+rJxfrDfzVrhJmHDlYiwIhJVnKp8
+   R3N6ivVaJg/yRk7tn6QaEDucD50+jqOTxetjlZUhjLsQgLFHcJJEjOAGQ
+   wnWd328mMKwpVcx6HYPvquxetdtYGdvqB+ylIxGWbc6m3oA5M9Vvj7kcq
+   /5P+8YqvWAPtl8vIfQyUhbfPP2FwyLCMvUktbD/DCD9IMeYYqdrBZ5zBr
+   SoFxPQx7/rtpMZYbXSe8OBnexfCCbk2F+KA6LIsOCGPksmXXH4xNssU84
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.03,221,1694728800"; 
+   d="scan'208";a="33446454"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2023 09:28:10 +0200
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 2A520280082;
+	Fri, 13 Oct 2023 09:28:10 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, Sandor Yu <Sandor.yu@nxp.com>, Sandor.yu@nxp.com
+Cc: kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, sam@ravnborg.org
+Subject: Re: [PATCH v10 4/7] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+Date: Fri, 13 Oct 2023 09:28:10 +0200
+Message-ID: <5605026.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
+References: <cover.1697162990.git.Sandor.yu@nxp.com> <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yUuHd2/0fA2YiRP9"
-Content-Disposition: inline
-In-Reply-To: <20231012201541.nzlxyjngm3d5asir@zenone.zhora.eu>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+Hi Sandor,
+
+thanks for the updated series.
+
+Am Freitag, 13. Oktober 2023, 05:24:23 CEST schrieb Sandor Yu:
+> Add a new DRM DisplayPort and HDMI bridge driver for Candence MHDP8501
+> used in i.MX8MQ SOC. MHDP8501 could support HDMI or DisplayPort
+> standards according embedded Firmware running in the uCPU.
+>=20
+> For iMX8MQ SOC, the DisplayPort/HDMI FW was loaded and activated by
+> SOC's ROM code. Bootload binary included respective specific firmware
+> is required.
+>=20
+> Driver will check display connector type and
+> then load the corresponding driver.
+>=20
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> v9->v10:
+>  - struct cdns_mhdp_device is renamed to cdns_mhdp8501_device.
+>  - update for mhdp helper driver is introduced.
+> Remove head file cdns-mhdp-mailbox.h and add cdns-mhdp-helper.h
+> Add struct cdns_mhdp_base base to struct cdns_mhdp8501_device.
+> Init struct cdns_mhdp_base base when driver probe.
+>=20
+>  drivers/gpu/drm/bridge/cadence/Kconfig        |  16 +
+>  drivers/gpu/drm/bridge/cadence/Makefile       |   2 +
+>  .../drm/bridge/cadence/cdns-mhdp8501-core.c   | 316 ++++++++
+>  .../drm/bridge/cadence/cdns-mhdp8501-core.h   | 365 +++++++++
+>  .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 708 ++++++++++++++++++
+>  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 673 +++++++++++++++++
+>  6 files changed, 2080 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
+>  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.h
+>  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c
+>  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+>=20
+> [...]
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+> b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c new file mode 100644
+> index 0000000000000..73d1c35a74599
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+> @@ -0,0 +1,673 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Cadence MHDP8501 HDMI bridge driver
+> + *
+> + * Copyright (C) 2019-2023 NXP Semiconductor, Inc.
+> + *
+> + */
+> +#include <drm/display/drm_hdmi_helper.h>
+> +#include <drm/display/drm_scdc_helper.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_edid.h>
+> +#include <drm/drm_print.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/phy/phy-hdmi.h>
+> +
+> +#include "cdns-mhdp8501-core.h"
+> +
+> +/**
+> + * cdns_hdmi_infoframe_set() - fill the HDMI AVI infoframe
+> + * @mhdp: phandle to mhdp device.
+> + * @entry_id: The packet memory address in which the data is written.
+> + * @packet_len: 32, only 32 bytes now.
+> + * @packet: point to InfoFrame Packet.
+> + *          packet[0] =3D 0
+> + *          packet[1-3] =3D HB[0-2]  InfoFrame Packet Header
+> + *          packet[4-31 =3D PB[0-27] InfoFrame Packet Contents
+> + * @packet_type: Packet Type of InfoFrame in HDMI Specification.
+> + *
+> + */
+> +static void cdns_hdmi_infoframe_set(struct cdns_mhdp8501_device *mhdp,
+> +				    u8 entry_id, u8 packet_len,
+> +				    u8 *packet, u8 packet_type)
+> +{
+> +	u32 packet32, len32;
+> +	u32 val, i;
+> +
+> +	/* only support 32 bytes now */
+> +	if (packet_len !=3D 32)
+> +		return;
+> +
+> +	/* invalidate entry */
+> +	val =3D F_ACTIVE_IDLE_TYPE(1) | F_PKT_ALLOC_ADDRESS(entry_id);
+> +	writel(val, mhdp->regs + SOURCE_PIF_PKT_ALLOC_REG);
+> +	writel(F_PKT_ALLOC_WR_EN(1), mhdp->regs +=20
+SOURCE_PIF_PKT_ALLOC_WR_EN);
+> +
+> +	/* flush fifo 1 */
+> +	writel(F_FIFO1_FLUSH(1), mhdp->regs + SOURCE_PIF_FIFO1_FLUSH);
+> +
+> +	/* write packet into memory */
+> +	len32 =3D packet_len / 4;
+> +	for (i =3D 0; i < len32; i++) {
+> +		packet32 =3D get_unaligned_le32(packet + 4 * i);
+> +		writel(F_DATA_WR(packet32), mhdp->regs +=20
+SOURCE_PIF_DATA_WR);
+> +	}
+> +
+> +	/* write entry id */
+> +	writel(F_WR_ADDR(entry_id), mhdp->regs + SOURCE_PIF_WR_ADDR);
+> +
+> +	/* write request */
+> +	writel(F_HOST_WR(1), mhdp->regs + SOURCE_PIF_WR_REQ);
+> +
+> +	/* update entry */
+> +	val =3D F_ACTIVE_IDLE_TYPE(1) | F_TYPE_VALID(1) |
+> +		F_PACKET_TYPE(packet_type) |=20
+=46_PKT_ALLOC_ADDRESS(entry_id);
+> +	writel(val, mhdp->regs + SOURCE_PIF_PKT_ALLOC_REG);
+> +
+> +	writel(F_PKT_ALLOC_WR_EN(1), mhdp->regs +=20
+SOURCE_PIF_PKT_ALLOC_WR_EN);
+> +}
+> +
+> +static int cdns_hdmi_get_edid_block(void *data, u8 *edid,
+> +				    u32 block, size_t length)
+> +{
+> +	struct cdns_mhdp8501_device *mhdp =3D data;
+> +	u8 msg[2], reg[5], i;
+> +	int ret;
+> +
+> +	mutex_lock(&mhdp->mbox_mutex);
+> +
+> +	for (i =3D 0; i < 4; i++) {
+> +		msg[0] =3D block / 2;
+> +		msg[1] =3D block % 2;
+> +
+> +		ret =3D cdns_mhdp_mailbox_send(&mhdp->base,=20
+MB_MODULE_ID_HDMI_TX,
+> HDMI_TX_EDID, +					     sizeof(msg),=20
+msg);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret =3D cdns_mhdp_mailbox_recv_header(&mhdp->base,=20
+MB_MODULE_ID_HDMI_TX,
+> +						    HDMI_TX_EDID,=20
+sizeof(reg) + length);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret =3D cdns_mhdp_mailbox_recv_data(&mhdp->base, reg,=20
+sizeof(reg));
+> +		if (ret)
+> +			continue;
+> +
+> +		ret =3D cdns_mhdp_mailbox_recv_data(&mhdp->base, edid,=20
+length);
+> +		if (ret)
+> +			continue;
+> +
+> +		if ((reg[3] << 8 | reg[4]) =3D=3D length)
+> +			break;
+> +	}
+> +
+> +	mutex_unlock(&mhdp->mbox_mutex);
+> +
+> +	if (ret)
+> +		DRM_ERROR("get block[%d] edid failed: %d\n", block, ret);
+> +	return ret;
+> +}
+> +
+> +static int cdns_hdmi_scdc_write(struct cdns_mhdp8501_device *mhdp, u8 ad=
+dr,
+> u8 value) +{
+> +	u8 msg[5], reg[5];
+> +	int ret;
+> +
+> +	msg[0] =3D 0x54;
+> +	msg[1] =3D addr;
+> +	msg[2] =3D 0;
+> +	msg[3] =3D 1;
+> +	msg[4] =3D value;
+> +
+> +	mutex_lock(&mhdp->mbox_mutex);
+
+I don't like that locking. Sometimes the mutex is locked by HDMI driver,=20
+sometimes within the helper.
+What is this mutex actually protecting? Concurrent access to the mailbox or=
+ a=20
+programming sequence which must not be interrupted aka critical section? Wh=
+en=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
 
 
---yUuHd2/0fA2YiRP9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-
-> mmmhhh... still a bit skeptical about waiting 100 times 10us in
-> atomic.
-
-Has it been discussed already why the non-atomic version of
-read_poll_timeout is not enough?
-
-
---yUuHd2/0fA2YiRP9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmUo7aIACgkQFA3kzBSg
-Kbal9A//YfTs2FwExG43E0KNO0IIjqQIEObxAQBXKGd7PJyY7JKWbqrlYbskfRS8
-7U6e9oMkpWvT91CgcgOwgF30VqDe59rdo/amSGdBmeopShnHZdc63sVEkTTFkAeI
-l76gwWGx6oip5WZvVFMp67GC/Fd0CZILgh1JURVL0Ijoyd7XdLo8NCZRNBBoA0SV
-HGhfZW4xmLHT02stokWcfUrmWDbYj5WvG7HbgwgPaFVK67ny4vfR1cbZJMXBG5LQ
-Lj80y6mHVCRJUacAoL78GK9yK+JrRZQ5dgaETCoYzDL/FXvGlUsPw6HQmh67pMTX
-JnVo1jhVqrkn/SIhXDfubk3zphgOFMEsr3ketN7OGDDTl/huux3ySu3R4wM9KQBL
-3lFQrMXrsEbLMMd34z84ZRzeYn/KXk7AJp6gc2yPfHYaNN23KV6WCyKDtJfMA90S
-EONP5VmsvS39VxkAJUXWIVBiL9zV1EAo3rYLIXe8AE5T66lC+ioVacM+/VoUi8ba
-K8WwlM2uElr/TNI8sPyGyCNb+DK6/dRXVV0szakGB+D31+a+z3fMLI5dqoU4C+Dp
-HpI18NOzvVVVTY7Jdb8ZKDKQS0BU/XNe8Ld7IFRjOuliwHq5k//qccEF6yQbs01M
-cLTIGfrFIc9wNvqn3I9Dijea1VEAxbjiDKpa1QVbEq98mqGL/2Y=
-=QbRi
------END PGP SIGNATURE-----
-
---yUuHd2/0fA2YiRP9--
 
