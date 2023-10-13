@@ -1,144 +1,106 @@
-Return-Path: <devicetree+bounces-8553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A457C8AF3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:24:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E977C8AF8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37D1D1C209E2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:24:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42280B20AEB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41AA21356;
-	Fri, 13 Oct 2023 16:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128D521374;
+	Fri, 13 Oct 2023 16:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JsHvwils"
+	dkim=pass (2048-bit key) header.d=fooishbar-org.20230601.gappssmtp.com header.i=@fooishbar-org.20230601.gappssmtp.com header.b="s3cNDlsl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1A61B285
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:24:15 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F8ACA9;
-	Fri, 13 Oct 2023 09:24:11 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-536b39daec1so3852649a12.2;
-        Fri, 13 Oct 2023 09:24:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672661B285
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 16:27:10 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 421F5210B
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:27:03 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c3c8adb27so363928466b.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697214250; x=1697819050; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zizxzHDdvMghQ8MHo3aHnYXx7ejJUjFj9o4g619WJCQ=;
-        b=JsHvwilsPDTjxAZ+XtOVJ8WyqONQWgXiYqseX3FoBljQhel1fQ2CUSGD62+i691mE4
-         1GhLq5TW0r5tSuTwv3dKMfBhtjc916S0tYgebs1w1Z6o2pkcUwFCLPUqE/wWUy6RYHTt
-         CQwsiDlM5SeCgUF0egkiL/3FBnPfIfkfkrFE2vx7rivt88OExzH6CfX7WIamsH+no4w9
-         wEk2ljv9CLz0a6V2nYvwTycnOIOG4ep4ctPSTnMdD9sLWD0Fvr/r+bw8TZYJb0Uog4PW
-         Tu5EVWnx+q3eOEyPLpiIRqzrBbReOUuaee6X4kdGnKLSNK5axJIz2mehgf08e9vgcWyh
-         IiqA==
+        d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1697214421; x=1697819221; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dDChyjARcHDkjDQPX6XB8cVwDI75Vj0OVvNyqfGNTb8=;
+        b=s3cNDlsldiqyjzOLg547DBYOsLYWWbgb6vsLhuV0Y8zYJFWObDbWfQayX07PPazwy3
+         kj4r4qXeU8T8YUbExJ+PwPRssFn5eIsLRE2yzpK32dBYrWEBECdplmy1+tA0wlSCsQRz
+         stE9FPJqLNUju96XVYsoe7bD8iAE87W7WgUASDq7P4qegELjSRlxJXadZ7eq0Vyro9Ri
+         hiV79oeRFHXlAwlE86Whb2IKKAtxqaf3hEOITkM4Ok5AnhKZ759/SMyS2SeMWB5mFy6b
+         5O/541Ubm1QvqN7VcqHH6BzDk0s8zTOU+x6Fmf3hVHF9BqbBFyHrjCmmK/K5gmgu+BM5
+         awsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697214250; x=1697819050;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zizxzHDdvMghQ8MHo3aHnYXx7ejJUjFj9o4g619WJCQ=;
-        b=tE+zRGVPkbDsrodSzFl+O97TsK64L/WfSJPkWpaLc4NA+P7rtEehWUVb2JJKCw2wYZ
-         F2xpS4PwxZsCuSsTXWf87fnuI+eAiBQmCNI4NIOC0170Y+lp1IRNT9EYQnTahHbUyBxd
-         DdhgfvG5hznHlRit8vTSFZbMK3wtjiVecLCKI5W8uRGLGrosnov58vo9wQ87JYhDmjko
-         T5rnc/LmaZuvBUiZajpzJmPW7kRCEMBwwTuasHfiWie4fDwVMENEiagfgemD0xS6MrnE
-         lq34FYRPyPfcnyj9cFeU8lOKiGK0Fr/sJIhxBXWXfdmejulHNG8qb9wpkBKeuxr1eOwa
-         mIVg==
-X-Gm-Message-State: AOJu0YxuHXQaetf2uIWoV84I8VgHbA3D6yQNCk5kCfoixj8ZjXAldlfX
-	kyExlTKnazHcO+/emgfDuIRGYe9h+7B75tvtrGQq3q41ydE=
-X-Google-Smtp-Source: AGHT+IEszXjFKSidX2y7Q+53gnLCwRD+Y69DadWTR+KKbDxL1IitJsgUwsdzTKiu3hi42npHihA53UsX/ig2NR0Z+Q8=
-X-Received: by 2002:a50:d68f:0:b0:53e:4c39:5608 with SMTP id
- r15-20020a50d68f000000b0053e4c395608mr1455028edi.17.1697214249625; Fri, 13
- Oct 2023 09:24:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697214421; x=1697819221;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dDChyjARcHDkjDQPX6XB8cVwDI75Vj0OVvNyqfGNTb8=;
+        b=VIudAuojj/vGdHR6JISWB+NHXOWYP/lOXMNgErH+ARp86Sa9yHHbNvlNXZ+86OtWc6
+         n3zgtHvGIv4gUoPHQWJVhsLEP1OYrAKzoCsl0wKohDMXHitmqJxIALTfFx8Q2MOVVTLV
+         fITPNmt0QvNvsC7r34oEUADziMY7BSRH+VrQagAgHoXo4sR2G/8bEIr6vpjfybDv/+Ay
+         jSXhfAbbrXSECObpIiz27TuT+BJ1vb420ZvBLtIGwiCJWPkdT9fkkMIe22FrLdU4Q3g9
+         ozQu2/VzaNZodQw4KNnf1CtqbO6nvFyR6OOkcSVGbZnKGC9l6AZ6xHZmufbvpo6oqdzu
+         LHOA==
+X-Gm-Message-State: AOJu0YyTXb3Mn6eEOgWKKq86CbqUrHvim7l1U82SXx/fXq2iylnbtZ33
+	lZ5lGLy7hIfvkuDDZXQyei1ZmTGCyKSuJK1qgeis3Q==
+X-Google-Smtp-Source: AGHT+IH4mCWm8Z2elsfB5wPDuFnQnwc2DSuvszMcvKnLJwB6uCPWL0qpI196Srkb4PahcQqJyczrTAjD9wvlQcukgRA=
+X-Received: by 2002:a17:907:74b:b0:9bd:bbc1:1c5f with SMTP id
+ xc11-20020a170907074b00b009bdbbc11c5fmr1802252ejb.35.1697214421164; Fri, 13
+ Oct 2023 09:27:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-2-jagathjog1996@gmail.com> <20230924143710.7c6edc4a@jic23-huawei>
- <CAM+2EuJ8o5X2ucph8gic2=03bbLQmUCX=j3SFLrqD4Y6rwXs9A@mail.gmail.com>
- <20230930170530.0b8f185c@jic23-huawei> <CAM+2EuKzBVbTF2SrpYEYfzap1wrONboFV-QuTU9Fz7sVjqJLeA@mail.gmail.com>
- <20231010100002.0163d681@jic23-huawei> <CACRpkdY+K90mN1Q1tf38FLRgEsz3q8dK9SJYSQVwGe=PL3FaUQ@mail.gmail.com>
- <20231010154216.6032a1c2@jic23-huawei> <CACRpkdY4yJKmc_Sbr=4sJ0WseCEEBOQ7wKj4fBUMG2_cx-Xxbw@mail.gmail.com>
- <20231013091615.00007399@Huawei.com>
-In-Reply-To: <20231013091615.00007399@Huawei.com>
-From: Jagath Jog J <jagathjog1996@gmail.com>
-Date: Fri, 13 Oct 2023 21:53:57 +0530
-Message-ID: <CAM+2EuLFZBnrhqb1e67XAU0ssOwsfjeR+c=xn5j7Hpts80D96Q@mail.gmail.com>
-Subject: Re: [RFC 1/2] dt-bindings: iio: imu: Add DT binding doc for BMI323
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Jonathan Cameron <jic23@kernel.org>, 
-	andriy.shevchenko@linux.intel.com, lars@metafoo.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231006073831.10402-1-shawn.sung@mediatek.com> <20231006073831.10402-5-shawn.sung@mediatek.com>
+In-Reply-To: <20231006073831.10402-5-shawn.sung@mediatek.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Fri, 13 Oct 2023 17:26:47 +0100
+Message-ID: <CAPj87rMUbP12uwzyhV=94wR7LkQK4JfTB4kEMGADq2YJOk8Vrw@mail.gmail.com>
+Subject: Re: [PATCH v7 04/23] dt-bindings: display: mediatek: padding: Add MT8188
+To: Hsiao Chien Sung <shawn.sung@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>, 
+	Singo Chang <singo.chang@mediatek.com>, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, "Nancy . Lin" <nancy.lin@mediatek.com>, 
+	linux-mediatek@lists.infradead.org, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+Hi Shawn,
 
-On Fri, Oct 13, 2023 at 1:46=E2=80=AFPM Jonathan Cameron
-<Jonathan.Cameron@huawei.com> wrote:
->
-> On Tue, 10 Oct 2023 21:51:17 +0200
-> Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> > On Tue, Oct 10, 2023 at 4:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.=
-org> wrote:
-> >
-> > > We kind of lost the question along the way.  Wasn't so much about whe=
-ther
-> > > there was a generic binding but more about whether it is worth provid=
-ing
-> > > separate controls for the two IRQ pins?  Or just assume no one is cra=
-zy
-> > > enough to play that level of mix and match.
-> >
-> > Ugh no, that's upfront design for a nonexistent use case.
-> >
-> > - First, to even consider open drain the designer need to be really
-> >   short of IRQ lines/rails, and, despite knowing it's a bad idea, decid=
-e
-> >   to share this line between several peripherals, even though it will
-> >   require I2C traffic to just determine which one even fired the IRQ.
-> >
-> > - Second, be interested in using two IRQs to distinguish between
-> >   different events? When we just faced the situation that we had
-> >   too few IRQ lines so we need to start sharing them with open
-> >   drain...?
-> >
-> > It's not gonna happen.
-> >
-> > Stay with just drive-open-drain; and configure them all as that if
-> > that property is set.
->
-> Good insights, I'd not really thought about the wider reasons for using
-> this :)  Not done any circuit design or embedded board bring up in a
-> long while.
->
-> Thanks!
+On Fri, 6 Oct 2023 at 08:38, Hsiao Chien Sung <shawn.sung@mediatek.com> wrote:
+> +  Padding provides ability to add pixels to width and height of a layer with
+> +  specified colors. Due to hardware design, Mixer in VDOSYS1 requires
+> +  width of a layer to be 2-pixel-align, or 4-pixel-align when ETHDR is enabled,
+> +  we need Padding to deal with odd width.
+> +  Please notice that even if the Padding is in bypass mode, settings in
+> +  register must be cleared to 0, or undefined behaviors could happen.
 
-Thank you for the explanation and suggestion.
+If I understand the driver correctly, padding is automatically applied
+to compensate for unaligned dimensions. The first/last rows/columns of
+the overlay area will be filled with a specified colour (black?) to
+preserve the area. This is unfortunately not OK to do transparently.
+Userspace must be aware of this policy decision and specifically
+request it. If not, the atomic request check should fail and tell
+userspace that the requested configuration is not possible to achieve.
 
-Regards
-Jagath.
-
->
-> >
-> > Yours,
-> > Linus Walleij
-> >
->
+Cheers,
+Daniel
 
