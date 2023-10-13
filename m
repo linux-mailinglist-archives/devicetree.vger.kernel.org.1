@@ -1,111 +1,90 @@
-Return-Path: <devicetree+bounces-8601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B6C7C8FFB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 00:01:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D167C8FF9
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 00:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FAED1F21729
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 22:01:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A017B282ECE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 22:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD53286A5;
-	Fri, 13 Oct 2023 22:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A216D286A1;
+	Fri, 13 Oct 2023 22:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iit.uni-miskolc.hu header.i=@iit.uni-miskolc.hu header.b="tITqHzmN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYvvVIrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC2521A0A
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 22:01:22 +0000 (UTC)
-X-Greylist: delayed 537 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 13 Oct 2023 15:01:20 PDT
-Received: from hera.iit.uni-miskolc.hu (hera.iit.uni-miskolc.hu [193.6.5.4])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3DDB7;
-	Fri, 13 Oct 2023 15:01:20 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hera.iit.uni-miskolc.hu (Postfix) with ESMTP id 473FE13E;
-	Fri, 13 Oct 2023 23:52:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-	iit.uni-miskolc.hu; h=content-transfer-encoding:content-type
-	:content-type:mime-version:x-mailer:message-id:date:date:subject
-	:subject:from:from:received:received; s=hera; t=1697233932; x=
-	1699048333; bh=E6GGdU8NqUAeueW/49LZQZKoh1Ml+Xu2MiTlxVU/v5s=; b=t
-	ITqHzmN8urDujkz/Yn1T8x+zlXEkpXj9dGIKGPA/Yu8AU/NeGQd2JDcEclISodCV
-	81N6dqvbfxYIQhdx0DIHcB+SYqFxXbZl7z703SFbLS884E7M5cOelQVYMWo+wWod
-	oxPdDEEyXH6XBN08Kbke7Y0yKuyEovq7MTwpIAOWIYK+QZJ1raGjgsgk8zt+zYZ8
-	NhYy1kSCLKxxSbCSWR+siFEhPIksfyVwCI4HXKK7fSv6lbyGRx4dmahtR6MtKqjM
-	MdtA70pqIWmfjsZpe6y88QEoIjNsT+mZ8jq7kzQf1xUfOKk+zFzpsiN+cE7tPvuu
-	cJAK78n4EZGZ7e0lPhz9Q==
-X-Virus-Scanned: Kamavis at iit.uni-miskolc.hu
-Received: from hera.iit.uni-miskolc.hu ([127.0.0.1])
-	by localhost (hera.iit.uni-miskolc.hu [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KuN4sTeSYG-T; Fri, 13 Oct 2023 23:52:12 +0200 (CEST)
-Received: from liberty.hitronhub.home (unknown [IPv6:2a02:8109:a181:1400::3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: szucst@iit.uni-miskolc.hu)
-	by hera.iit.uni-miskolc.hu (Postfix) with ESMTPSA id 2E9F313C;
-	Fri, 13 Oct 2023 23:52:11 +0200 (CEST)
-From: =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <szucst@iit.uni-miskolc.hu>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Christopher Obbard <chris.obbard@collabora.com>,
-	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>,
-	Shreeya Patel <shreeya.patel@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <szucst@iit.uni-miskolc.hu>
-Subject: [RESEND] arm64: dts: rockchip: Enable UART6 on rock-5b
-Date: Fri, 13 Oct 2023 23:51:53 +0200
-Message-ID: <20231013215208.81345-1-szucst@iit.uni-miskolc.hu>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8028021A0A
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 22:01:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC245C433C7;
+	Fri, 13 Oct 2023 22:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697234476;
+	bh=eN7+8Uo6JxL07H1+Tga+pr6b8+j6RjcgOEu8xBzIYig=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=KYvvVIrF5//SG+aOAPpO3yWmmp1TqkuMIlU8WxVNmZDEhYWdtuFm+6kba3N9CE9Cq
+	 jLFWe4Rhl7nhpLf/wx/PxCClh+kbhGuuIIT+ModtT7r1iAZoqO5OVh1m8GkUoTdreA
+	 uyfODD467MPyXEHr97OmwdZC3cO3m0xV2bbhUlLXeSVp9CN9o4/Gd2eGIsegyw0m7U
+	 uvDmAhJSP7k9uEf45oWh5agWBwdIm6/5Ju0ponf+KoPFpNAzKCoONa+U27g+KAyJgd
+	 MwpfyNG1UXXA1tCMSRQ/t+spLCiEfrKM/5meejxctbynQvm2IphlygNupZ6VHp6VbJ
+	 Dihkm/p62bC4w==
+Message-ID: <2fb931d1aa2190b918d0ddba87579eeb.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1jmswnvub2.fsf@starbuckisacylon.baylibre.com>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com> <20231010062917.3624223-5-xianwei.zhao@amlogic.com> <5e0bd4bba88701dd1a7a3e89d18412f0.sboyd@kernel.org> <1jmswnvub2.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH V2 4/4] clk: meson: c3: add c3 clock peripherals controller driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Fri, 13 Oct 2023 15:01:14 -0700
+User-Agent: alot/0.10
 
-Enable UART lines on Radxa ROCK 5 Model B M.2 Key E.
+Quoting Jerome Brunet (2023-10-13 00:38:14)
+>=20
+> On Thu 12 Oct 2023 at 16:51, Stephen Boyd <sboyd@kernel.org> wrote:
+>=20
+> > Quoting Xianwei Zhao (2023-10-09 23:29:17)
+> >> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> >> index 76be4bbd2afb..c8d59d28c8ff 100644
+> >> --- a/drivers/clk/meson/Kconfig
+> >> +++ b/drivers/clk/meson/Kconfig
+> >> @@ -140,6 +140,19 @@ config COMMON_CLK_C3_PLL
+> >>           Say Y if you want the board to work, because PLLs are the pa=
+rent of most
+> >>           peripherals.
+> >> =20
+> >> +config COMMON_CLK_C3_PERIPHERALS
+> >> +       tristate "Amlogic C3 peripherals clock controller"
+> >> +       default y
+> >
+> > Why are these default y? They should depend on something like ARM64 and
+> > even then I don't see why we want to enable them by default if we're
+> > building the ARM64 kernel.
+>=20
+> Should indeed depend on ARM64.
 
-Signed-off-by: Tamás Szűcs <szucst@iit.uni-miskolc.hu>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Cool.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 392ac783c3ad..ea1e3d09ea62 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -377,6 +377,12 @@ &sdio {
- 	status = "okay";
- };
- 
-+&uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
-+	status = "okay";
-+};
-+
- &spi2 {
- 	status = "okay";
- 	assigned-clocks = <&cru CLK_SPI2>;
--- 
-2.42.0
+>=20
+> Those are the main clock controllers. Like for other AML SoC families,
+> they are necessary to boot the device which is why they use 'default y'
+>=20
+> Is it a problem ?
+>=20
+> The whole meson directory depends on ARCH_MESON, so the drivers will go
+> away if Amlogic support is removed on ARM64.
 
+No it isn't a problem if the entire section is implicitly depending on
+ARCH_MESON.
 
