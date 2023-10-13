@@ -1,210 +1,232 @@
-Return-Path: <devicetree+bounces-8330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14147C7B89
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 04:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FF77C7B9B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 04:28:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3EE11C210CF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 02:15:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE8411C20B97
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 02:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3BB7FC;
-	Fri, 13 Oct 2023 02:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D51A44;
+	Fri, 13 Oct 2023 02:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="gJAtSS4r"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="OmWoC3nd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C22A35
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:15:27 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB2BB7
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:15:25 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40572aeb73cso17410635e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:15:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0E0A40
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:28:30 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E9795
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:28:28 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4053f24c900so21935e9.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 19:28:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1697163324; x=1697768124; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1697164107; x=1697768907; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=479sT2wXZ3lF8ZnjGHtr1v6duycKwjupuTdioRmVjBQ=;
-        b=gJAtSS4rsORc76dR2jDaa4rHv4A8CgHZRqOVwnrCkuyVR60kwpSVnAgpibIQZ/X3Wc
-         yEUUHLs9RcWzIvqQSJw9EbYEb3ZT6oQNV2CB2t2RjGWLBwT2hE2JkjUpeUS8e7QYLTKc
-         TeevjP/OIBeeq5tr7+BWlAoaptjbu48lJtsILKUW74UIi3aOb+tgVTatZM9epxtdgiVx
-         CoZ5fDq67eCP3V8+AoPz5f2x9VVnZlH/aaHJv2mb0P+RULbzozHSN0AooSzukmWJA3Cp
-         0aXlCSzPZ83Teu9EcdNnkERYoB2PKKp45WS1TpIlOmvkmFmqfP6mlskl5G1IOcXzzNzu
-         h2ZA==
+        bh=R9/YuC6y9eUihKpZ8jmF6NlsO7n14+K0koQ+noy1ggQ=;
+        b=OmWoC3nd59yaNI16Fbi2/oU1YekFIfue7+44AXYOFFyYyQIQJAKgmDAP/CcYnpixXu
+         nIIRlrh59ifFabgPugRGFzKAVLEVZg6MVez/4U4AB+1Bw3qUBeVqdUeLK0rnjud1B7rs
+         4Z5EGXReX7CGbEa8dNfxTUy18ypEwuWixrMujAIZzoKM/t6zAEPgIe52yWLqaCZaHFgR
+         Dwc3VhtdIH7vptrxSWvmlzXPkpI9KNk5CH4DnHuTVOlRSWX3cVzbj+kLrOxYsNHxHD7M
+         Afj8YEOVRFEx/DWp4ExFO/6wumotSu6+7eiB38TLll2+i+iwhH6NmL/vbKjeBAgqXEjY
+         VxrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697163324; x=1697768124;
+        d=1e100.net; s=20230601; t=1697164107; x=1697768907;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=479sT2wXZ3lF8ZnjGHtr1v6duycKwjupuTdioRmVjBQ=;
-        b=ENgTgnOtYK62ZbVX+VyFITIsPkHt9RTf+n4QVvMqZHAigU1Us0WFmzrOJd7t7XYzKp
-         15uVHt5A5qvPw90D/JwBFCQi7uJO5S4joewk13lwYR7hf1ZzY+Yi3AZGRIUS24GXzgvV
-         gk1zafQYnISsG4uyu7OzPtwzaeAiGdnayE0nkIGR5NNpUcVH0h94CgPW0DQzzkdPVrwK
-         nZ24HuuXtrbRl3TKmyt47/a+55Iz70Ptur52BwvVrtuokgtZapy1HsSR23P44/Uy/uVo
-         6qS0T8R/OYVk/sqMxRewkOy2nO0qQz0CdTneEmydIlLnS40UADt5TA2nhg4HbI/FsvD5
-         XNpw==
-X-Gm-Message-State: AOJu0YwIHJJDmlOYzItctRoVa/rHklcASj9gFqam3FSFotpHTCv8vcma
-	zkxEotb4hxmDAbVfBkEkxoOJbVzn6Nj+6pI8uzLqPw==
-X-Google-Smtp-Source: AGHT+IFhpyBP7U/5sPsuSV3WRb3/V3m+DTQDPdPSdTYu6ljAIoR+ANHbmo+h3/cwZ/iAOsdX96X0bgvSpXAcCKHMEck=
-X-Received: by 2002:adf:f4c5:0:b0:32d:9585:8680 with SMTP id
- h5-20020adff4c5000000b0032d95858680mr2180378wrp.4.1697163323265; Thu, 12 Oct
- 2023 19:15:23 -0700 (PDT)
+        bh=R9/YuC6y9eUihKpZ8jmF6NlsO7n14+K0koQ+noy1ggQ=;
+        b=hUfLMKKGSGp9uTyETE9sZw/ZOFaP2MfcSSZbIoDQo/C6bfbMf3O2INnkzP3+SXaRit
+         Z/UeKAqkUmjPJZf4wzC1AyrTQJcBMI7zi7NYunp5vjai6mPQkWnmNiz1zu8PLoy4yw2z
+         l5ygNwjex7Vdl3y8cYqg8oRkShHgS3FQaGS10ot30LM/LmL84fjhtKOk5e37C+Nb8giW
+         EDa5eWaAsbPKXnxuFOzsO1Hz5tW5+VwzotFzQoVUApsvYZXrjt/gEtbPgtn0njrsRilx
+         XcQCFa5lbQAIKK3mg6QEPtJuK/1cXpPKmQwQ9uvxg3Wnkbmc58D2XLzWiGDWG5dDda0l
+         XENQ==
+X-Gm-Message-State: AOJu0YwMjBpOk020GYfy9Eh3zKfnzU09zFM09viNcg5U8JzuLR7n4CuR
+	gNef+p1Rrrlxt+ErLmXjYnZ5feYkd9YRfuT7/aC4Iw==
+X-Google-Smtp-Source: AGHT+IEu3bheZn/kvrw6MTnB9tzASaTpUw4xRezBw/4fkpa7r55AH2ohLLQYSj1JU+sur8lRAt/zUYM8E4TeV6/Dtk0=
+X-Received: by 2002:a05:600c:2102:b0:405:38d1:e146 with SMTP id
+ u2-20020a05600c210200b0040538d1e146mr63274wml.4.1697164107120; Thu, 12 Oct
+ 2023 19:28:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230925-cod-vacancy-08dc8d88f90e@wendy> <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
- <20230926-action-sludge-ec8e51fdd6d4@spud> <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
- <20230926-reverence-unlit-d0027225cc43@spud> <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
- <20230928-spectacle-civic-339c0d71d8d7@spud> <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
- <20231009-pentagram-clamshell-b14ff00743fd@spud> <CAGD2q_aqr+mu4K1SkTVC+65ctL6BsqRP4Ld0HD_H0_rgzFT9MQ@mail.gmail.com>
- <20231012-pope-denatured-c1898bc1e44b@spud>
-In-Reply-To: <20231012-pope-denatured-c1898bc1e44b@spud>
-From: yang tylor <tylor_yang@himax.corp-partner.google.com>
-Date: Fri, 13 Oct 2023 10:15:13 +0800
-Message-ID: <CAGD2q_YKJyLn8q1F661kRRpZtCtN4w46+mdh2Fq9rkfQ78ssOA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI device
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jikos@kernel.org, benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org, 
-	"jingyliang@chromium.org" <jingyliang@chromium.org>, wuxy23@lenovo.com, luolm1@lenovo.com, 
-	hung poyu <poyu_hung@himax.corp-partner.google.com>
+References: <20231012121004.2127918-1-yangcong5@huaqin.corp-partner.google.com>
+ <20231012121004.2127918-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=VwUHctAQXGr_6FZfTS3r0-MZaSiB8+YkfJJzrJsnZDLw@mail.gmail.com> <CAHwB_NKSL8vHdN8TnQY2Z04E4rDRLK5BHoryZCi2kNAwQEjisQ@mail.gmail.com>
+In-Reply-To: <CAHwB_NKSL8vHdN8TnQY2Z04E4rDRLK5BHoryZCi2kNAwQEjisQ@mail.gmail.com>
+From: Doug Anderson <dianders@google.com>
+Date: Thu, 12 Oct 2023 19:28:11 -0700
+Message-ID: <CAD=FV=VmiS6G25JyAj4UGjU5Q9f80GcjLq1xwU4gdVyzDdk8LQ@mail.gmail.com>
+Subject: Re: [v3 2/3] drm/panel: ili9882t: Avoid blurred screen from fast sleep
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
+	airlied@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 12, 2023 at 11:24=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
+Hi,
+
+On Thu, Oct 12, 2023 at 6:12=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
 >
-> On Thu, Oct 12, 2023 at 10:30:03AM +0800, yang tylor wrote:
-> > On Tue, Oct 10, 2023 at 1:52=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Mon, Oct 02, 2023 at 06:44:41PM +0800, yang tylor wrote:
-> > > > On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel=
-.org> wrote:
-> > > > >
-> > > > > On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
-> > > > > > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@ker=
-nel.org> wrote:
-> > > > > > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
-> > > > > > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor=
-@kernel.org> wrote:
-> > > > > > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrot=
-e:
-> > > > > > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <c=
-onor.dooley@microchip.com> wrote:
-> > > > > > > > > > We have a default prefix firmware name(like himax_xxxx.=
-bin) in the driver code.
-> > > > > > > > >
-> > > > > > > > > How do you intend generating the name of the firmware fil=
-e? I assume the
-> > > > > > > > > same firmware doesn't work on every IC, so you'll need to=
- pick a
-> > > > > > > > > different one depending on the compatible?
-> > > > > > > > >
-> > > > > > > > If considering a firmware library line-up for all the incom=
-ing panels
-> > > > > > > > of this driver.
-> > > > > > > > We would use PID as part of the file name. Because all the =
-support panels would
-> > > > > > > > have a unique PID associated. Which will make the firmware =
-name like
-> > > > > > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID b=
-efore firmware load
-> > > > > > > > at no flash condition. Thus PID information is required in =
-dts when
-> > > > > > > > no-flash-flag
-> > > > > > > > is specified.
-> > > > > > >
-> > > > > > > Firstly, where does the "xxx" come from?
-> > > > > > > And you're making it sound more like having firmware-name is =
-suitable
-> > > > > > > for this use case, given you need to determine the name of th=
-e file to
-> > > > > > > use based on something that is hardware specific but is not
-> > > > > > > dynamically detectable.
-> > > > > > Current driver patch uses a prefix name "himax_i2chid" which co=
-mes
-> > > > > > from the previous project
-> > > > > >  and seems not suitable for this condition, so I use "xxx" and =
-plan to
-> > > > > > replace it in the next version.
-> > > > > > For finding firmware, I think both solutions are reasonable.
-> > > > > > - provide firmware name directly: implies no-flash and use user
-> > > > > > specified firmware, no PID info.
-> > > > > > - provide no-flash-flag and PID info: loading firmware from org=
-anized
-> > > > > > names with PID info.
-> > > > > > I prefer the 2nd solution, but it needs more properties in dts.=
- 1st
-> > > > > > has less properties and more
-> > > > > > intuitive.
-> > > > > >
-> > > > > > I don't know which one is more acceptable by the community, as =
-you
-> > > > > > know I'm a newbie here.
-> > > > >
-> > > > > To be honest, I am not all that sure either! Does the panel id ha=
-ve
-> > > > > value in its own right, or is that only used to determine the fir=
-mware
-> > > > > filename?
-> > > > Currently, PID stands for Panel/Project ID and is used for determin=
-ing
-> > > > the firmware filename only. We haven't come up with any new attribu=
-te that
-> > > > may attach to it. The differences between panels are handled in fir=
-mware
-> > > > dedicated to its PID.
-> > > >
-> > > > > Also, if it does have value in its own right, rather than a "pid"=
-,
-> > > > > should the panel be a child node of this hid device with its own
-> > > > > compatible?
-> > > > It may need a child node if we find it necessary to add attributes =
-to each PID.
-> > > > But currently we have no idea about it.
-> > >
-> > > To be honest, it seems to me like you are using "PID" in place of a
-> > > compatible for the panel, since it needs to be provided via DT anyway=
-.
+> Hi,
+>
+> On Thu, Oct 12, 2023 at 11:15=E2=80=AFPM Doug Anderson <dianders@google.c=
+om> wrote:
 > >
-> > Hmm... So the more formal way is?
-> > If I add a sub-note inside this spi-device block, such as "panel" and
-> > add PID inside.
-> > Will it be more appropriate?
-> > ...
-> > spi {
-> > ...
-> >     hx_spi@0 {
-> > ...
-> >         panel {
-> >             himax,pid =3D ...
+> > Hi,
+> >
+> > On Thu, Oct 12, 2023 at 5:10=E2=80=AFAM Cong Yang
+> > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> > >
+> > > At present, we have found that there may be a problem of blurred
+> > > screen during fast sleep/resume. The direct cause of the blurred
+> > > screen is that the IC does not receive 0x28/0x10. Because of the
+> > > particularity of the IC, before the panel enters sleep hid must
+> > > stop scanning, as i2c_hid_core_suspend before ili9882t_disable.
+> > > If move the ili9882t_enter_sleep_mode function to ili9882t_unprepare,
+> > > touch reset will pull low before panel entersleep, which does not mee=
+t
+> > > the timing requirements..
+> >
+> > The above makes me believe that the reset GPIO should be moved out of
+> > the input driver and into the panel driver. I could just imagine that
+> > the kernel might have some reason it wants to suspend the i2c hid
+> > device. If that causes the panel to suddenly start failing then that
+> > would be bad... I think we should fix this.
 >
-> And this now looks exactly like compatible =3D "vendor,part" now, no?
+> Thanks, I will confirm with ilitek in further analysis and use "move
+> the ili9882t_enter_sleep_mode
+> function to ili9882t_unprepare".  Is the test failure really because
+> the touch reset timing
+> does not match? There is also a separate reset GPIO on the panel.
+> Shouldn't touch reset not
+> affect the panel?
+>
+> If we find a better solution I will continue upstream,=E3=80=82 So is it
+> possible to apply this plan now?
 
-I think it's not the same, I thought "compatible" is used to target
-from the driver side.
-For finding other information inside the block. But I just store PID
-information in this
-one, not used for targeting but getting infos from it.
+I wouldn't be too upset at applying the current code as long as you're
+going to continue to investigate. We can always continue to iterate on
+it and having something working reasonably well is better than nothing
+at all. However, I probably would wait at least 1 week before applying
+any patch from you just simply out of courtesy to give others on the
+mailing list time to express their comments. ...presumably we could
+get to the bottom of the problem in that 1 week time anyway...
 
-Thanks,
-Tylor
+I'm not trying to be an obstinate pain here--I'm merely trying to make
+sure that whatever we land will continue to work across kernel uprevs,
+even if driver probe order / timing changes in the kernel. If the
+panel is really so tied to the touchscreen device's reset GPIO timing
+then it worries me. What happens, for instance, if you disable the
+touchscreen CONFIG in the kernel? Does the panel still work, or is
+that extra reset GPIO totally critical to the functioning of the
+panel. If it's totally critical then it probably makes sense to move
+to the panel driver given that the touchscreen is a panel follower
+anyway...
+
+
+> > > So in order to solve this problem, the IC
+> > > can handle it through the exception mechanism when it cannot receive
+> > > 0x28/0x10 command. Handling exceptions requires a reset 50ms delay.
+> > > Refer to vendor detailed analysis [1].
+> > >
+> > > Ilitek vendor also suggested switching the page before entering sleep=
+ to
+> > > avoid panel IC not receiving 0x28/0x10 command.
+> > >
+> > > Note: 0x28 is display off, 0x10 is sleep in.
+> > >
+> > > [1]: https://github.com/ILITEK-LoganLin/Document/tree/main/ILITEK_Pow=
+er_Sequence
+> > >
+> > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > > ---
+> > >  drivers/gpu/drm/panel/panel-ilitek-ili9882t.c | 22 +++++++++++++++++=
++-
+> > >  1 file changed, 21 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c b/drivers/=
+gpu/drm/panel/panel-ilitek-ili9882t.c
+> > > index 93a40c2f1483..54ff1efb94aa 100644
+> > > --- a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
+> > > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
+> > > @@ -463,6 +463,24 @@ static int ili9882t_init_dcs_cmd(struct ili9882t=
+ *ili)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int ili9882t_switch_page(struct mipi_dsi_device *dsi, u8 page=
+)
+> > > +{
+> > > +       int ret;
+> > > +       const struct panel_init_cmd cmd =3D _INIT_SWITCH_PAGE_CMD(pag=
+e);
+> > > +
+> > > +       ret =3D mipi_dsi_dcs_write(dsi, cmd.data[0],
+> > > +                                cmd.len <=3D 1 ? NULL :
+> > > +                                &cmd.data[1],
+> > > +                                cmd.len - 1);
+> > > +       if (ret) {
+> > > +               dev_err(&dsi->dev,
+> > > +                       "error switching panel controller page (%d)\n=
+", ret);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static int ili9882t_enter_sleep_mode(struct ili9882t *ili)
+> > >  {
+> > >         struct mipi_dsi_device *dsi =3D ili->dsi;
+> > > @@ -484,8 +502,10 @@ static int ili9882t_enter_sleep_mode(struct ili9=
+882t *ili)
+> > >  static int ili9882t_disable(struct drm_panel *panel)
+> > >  {
+> > >         struct ili9882t *ili =3D to_ili9882t(panel);
+> > > +       struct mipi_dsi_device *dsi =3D ili->dsi;
+> > >         int ret;
+> > >
+> > > +       ili9882t_switch_page(dsi, 0x00);
+> > >         ret =3D ili9882t_enter_sleep_mode(ili);
+> > >         if (ret < 0) {
+> > >                 dev_err(panel->dev, "failed to set panel off: %d\n", =
+ret);
+> > > @@ -546,7 +566,7 @@ static int ili9882t_prepare(struct drm_panel *pan=
+el)
+> > >         gpiod_set_value(ili->enable_gpio, 1);
+> > >         usleep_range(1000, 2000);
+> > >         gpiod_set_value(ili->enable_gpio, 0);
+> > > -       usleep_range(1000, 2000);
+> > > +       usleep_range(50000, 51000);
+> >
+> > From my previous response, I think the above is better as msleep(50).
+>
+> Sorry. Will be corrected in V4.
+
+Thanks! It's not a huge deal, but it's nice to fix.
+
+-Doug
 
