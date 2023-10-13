@@ -1,38 +1,37 @@
-Return-Path: <devicetree+bounces-8593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37DA67C8E88
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 22:52:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C9BB7C8E89
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 22:52:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7081F1C209B9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:52:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA4E3282F1A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307F1200D1;
-	Fri, 13 Oct 2023 20:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A8F219FC;
+	Fri, 13 Oct 2023 20:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5D8101F9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A792170
 	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 20:52:40 +0000 (UTC)
 Received: from smtprelay02.ispgateway.de (smtprelay02.ispgateway.de [80.67.31.40])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0CBA9;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F468BB;
 	Fri, 13 Oct 2023 13:52:37 -0700 (PDT)
 Received: from [92.206.139.21] (helo=note-book.lan)
 	by smtprelay02.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96.1)
 	(envelope-from <git@apitzsch.eu>)
-	id 1qrP98-0002ny-0b;
+	id 1qrP98-0002ny-2y;
 	Fri, 13 Oct 2023 22:52:34 +0200
 From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Subject: [PATCH 0/2] arm64: dts: qcom: longcheer l8910 and l9100: Enable
- RGB LED
-Date: Fri, 13 Oct 2023 22:51:35 +0200
-Message-Id: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
+Date: Fri, 13 Oct 2023 22:51:36 +0200
+Subject: [PATCH 1/2] arm64: dts: qcom: msm8916-longcheer-l8910: Enable RGB
+ LED
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,9 +40,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIANetKWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDA0Nj3aTC+JzUlGJdgxSLRMskQ9PUZLNEJaDqgqLUtMwKsEnRsbW1AG4
- aLYtZAAAA
+Message-Id: <20231013-bq_leds-v1-1-cc374369fc56@apitzsch.eu>
+References: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
+In-Reply-To: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
@@ -61,26 +60,92 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-With the driver for ktd2026 recently applied to linux-leds[1], the LED
-can be enabled on longcheer l8910 and l9100.
+l8910 uses KTD2026 LED driver. Add it to the device tree.
 
-[1] https://lore.kernel.org/all/20231002-ktd202x-v6-0-26be8eefeb88@apitzsch.eu/
-
+Tested-by: Stephan Gerhold <stephan@gerhold.net>
 Signed-off-by: André Apitzsch <git@apitzsch.eu>
 ---
-André Apitzsch (2):
-      arm64: dts: qcom: msm8916-longcheer-l8910: Enable RGB LED
-      arm64: dts: qcom: msm8939-longcheer-l9100: Enable RGB LED
-
  .../boot/dts/qcom/msm8916-longcheer-l8910.dts      | 51 ++++++++++++++++++++++
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 51 ++++++++++++++++++++++
- 2 files changed, 102 insertions(+)
----
-base-commit: beb63bee4857fd3661305eec8888d025a7c26c56
-change-id: 20231013-bq_leds-0d8a9b15ec6a
+ 1 file changed, 51 insertions(+)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+index 41cadb906b98..68258cf4205f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ 
+ / {
+ 	model = "BQ Aquaris X5 (Longcheer L8910)";
+@@ -74,6 +75,46 @@ usb_id: usb-id {
+ 	};
+ };
+ 
++&blsp_i2c2 {
++	status = "okay";
++
++	led-controller@30 {
++		compatible = "kinetic,ktd2026";
++		reg = <0x30>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		vin-supply = <&pm8916_l17>;
++		vio-supply = <&pm8916_l6>;
++
++		pinctrl-0 = <&status_led_default>;
++		pinctrl-names = "default";
++
++		multi-led {
++			color = <LED_COLOR_ID_RGB>;
++			function = LED_FUNCTION_STATUS;
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				color = <LED_COLOR_ID_RED>;
++			};
++
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_GREEN>;
++			};
++
++			led@2 {
++				reg = <2>;
++				color = <LED_COLOR_ID_BLUE>;
++			};
++		};
++	};
++};
++
+ &blsp_i2c3 {
+ 	status = "okay";
+ 
+@@ -107,6 +148,16 @@ &blsp_uart2 {
+ 	status = "okay";
+ };
+ 
++&pm8916_gpios {
++	status_led_default: status-led-default-state {
++		pins = "gpio3";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		power-source = <PM8916_GPIO_VPH>;
++		bias-disable;
++		output-high;
++	};
++};
++
+ &pm8916_resin {
+ 	status = "okay";
+ 	linux,code = <KEY_VOLUMEDOWN>;
+
 -- 
-André Apitzsch <git@apitzsch.eu>
+2.42.0
 
 
