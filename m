@@ -1,140 +1,153 @@
-Return-Path: <devicetree+bounces-8503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344F57C8655
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:04:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B116E7C8657
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E890E282B9B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:04:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FAFBB209A8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 13:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C65E14F67;
-	Fri, 13 Oct 2023 13:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A726C15492;
+	Fri, 13 Oct 2023 13:04:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lqekpmIP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JCy9AsMh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C0211C91
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:04:14 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87206CF;
-	Fri, 13 Oct 2023 06:04:10 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39DBll0m007023;
-	Fri, 13 Oct 2023 13:03:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=gk42qaoLNddKysFeceY+W12+6tch9B+vp6mMXDw5XcY=;
- b=lqekpmIPmIjNViKyYq9S2NHvzVBTdyFJFllgqu5xgZdvkTNxICokE5aNVBeyju7zZIk9
- WBVoq9Abr7BDLfVXRzwo4QjFo3ARSgf+Tby/uqce7nW3Eh1oaFJaQEiJPFwT2RnlkOve
- aGLC30MWJIki3yNxDyMXHHydu/l+kGmJEaHuiqER9cLd8/2mUMkTA4q8ieNJDYs99SS/
- BsFcfI8gtitc+NSqbN4pv85CfKLCiOvhu5ciquivhw6P7fqJXZogFc26phrFowu51KdH
- QoMs/NYQFsV+X+vSKmpS0YWzjgo63Iy75p5j2KPca58njqp/yEcdQO/mJTg0HEBCU9Tl MQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt11hqns-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Oct 2023 13:03:51 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39DD3of5028742
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Oct 2023 13:03:50 GMT
-Received: from [10.216.5.96] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 13 Oct
- 2023 06:03:42 -0700
-Message-ID: <4aba3ad7-c1b0-cac6-9f02-ac1258b27dee@quicinc.com>
-Date: Fri, 13 Oct 2023 18:33:39 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B085914ABD
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 13:04:26 +0000 (UTC)
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1038E5
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:04:22 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5a7c011e113so27784927b3.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:04:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697202261; x=1697807061; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zTDB06WuV7DXLenpqB3BP0igc3WK0O/XPFiYBVmb3IU=;
+        b=JCy9AsMhCsEJpZNLPuzbxfnYI5o/ucSnolkreMMh8kvmLAYgwppmTzYB8GmjDfSAj0
+         2RssITkwLF3FShl5r7I0drYyO++Ea/+CmWaCD8hm/CzQmLqIUJdfKoX0rcivhPs/d+7m
+         OWrhdZ5vfCDS99xOUscuzWm8MIlSuc36mdlpTZxeZsWB630kyvHu3T+HSu/cjVos0EYG
+         qlQnKnvZp0aYud9mXQKivhC1EQd0On6KDEsxeifr/vy5zXrKBzC3P5rIXteujSHN/8FM
+         /JdOdn+A/6j+5rPYWA22KxJ1AqhV858YslVI5S2Hora6ubk+34RFeqwT7A+bbLAFRe33
+         xh/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697202261; x=1697807061;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zTDB06WuV7DXLenpqB3BP0igc3WK0O/XPFiYBVmb3IU=;
+        b=F607b8jyHKzI5DrGzbT2xXXDJBA4UHgXYTRlLpruHm67kdz/k0XmmJ/5YV1hK5QUsk
+         VCB5F0sMrFUYW1I8fgFq9nd5JjZFf8e3nWpBzfm2OkXy7Ls3Gu8YC4bGCuyDdXZ3zjKz
+         Vv8f77KkZPeXtTKQjSxlPxYbOz/fizqntQamwl3Ubotad4ZfA2KzoSuZUQk4slJeUk6f
+         bEnqWIHA3oxqvD9s/E6Xma5cwj5My6gssvWM+s9gf2K7ClZtZIxndZPKjOe2reAsD/zd
+         wZ87wq/u/Bir7c5hxyf6GvM1xNfn+jW5eLf1EdsNoj8wgrMNDqYZ7uZw7n2POc41+Uge
+         XezQ==
+X-Gm-Message-State: AOJu0YzMEHa10FK0+pza2VjQ3z5t5ZR6QnF929s8ZmqewUqsFdSQkEzh
+	i5D2ZkswUhvKxtOFP24wfW1OQvsTBTjEjGh8mAbwnA==
+X-Google-Smtp-Source: AGHT+IH8FM/iWk8oBbKZNdvfP7rzi0aGHHvSU3/uiwbyENQSYy2btpQIq4hLmrd+2uOljN+UDzs8nEi0TOWfys/whVM=
+X-Received: by 2002:a0d:d183:0:b0:59b:5170:a0f3 with SMTP id
+ t125-20020a0dd183000000b0059b5170a0f3mr30546187ywd.36.1697202261559; Fri, 13
+ Oct 2023 06:04:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 2/5] PCI: qcom-ep: Add support for SA8775P SoC
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mani@kernel.org>
-CC: <quic_shazhuss@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nayiluri@quicinc.com>,
-        <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>,
-        <quic_parass@quicinc.com>, Bjorn Helgaas <bhelgaas@google.com>,
-        "Lorenzo
- Pieralisi" <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Kishon Vijay Abraham I
-	<kishon@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
-        <linux-phy@lists.infradead.org>
-References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
- <1695218113-31198-3-git-send-email-quic_msarkar@quicinc.com>
- <4b20d3bb-d2d2-0864-013f-104e26ae558c@linaro.org>
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-In-Reply-To: <4b20d3bb-d2d2-0864-013f-104e26ae558c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BUHS7wb-AyXwb10BhMuVb9rCZHwk2m0v
-X-Proofpoint-ORIG-GUID: BUHS7wb-AyXwb10BhMuVb9rCZHwk2m0v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-13_04,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- phishscore=0 mlxlogscore=852 impostorscore=0 suspectscore=0
- priorityscore=1501 spamscore=0 adultscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310130108
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20231013-marvell-88e6152-wan-led-v1-0-0712ba99857c@linaro.org>
+ <20231013-marvell-88e6152-wan-led-v1-2-0712ba99857c@linaro.org> <d971d7c1-c6b5-44a4-81cf-4f634e760e87@lunn.ch>
+In-Reply-To: <d971d7c1-c6b5-44a4-81cf-4f634e760e87@lunn.ch>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 13 Oct 2023 15:04:10 +0200
+Message-ID: <CACRpkdYocdsrsydHwe_FF--6g-Y_YwxHXF6GUTe3wRY0suSCCg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] RFC: dt-bindings: marvell: Rewrite in schema
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Christian Marangi <ansuelsmth@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Andrew,
 
-On 9/20/2023 7:54 PM, Konrad Dybcio wrote:
->
->
-> On 9/20/23 15:55, Mrinmay Sarkar wrote:
->> Add support for SA8775P SoC to the Qualcomm PCIe Endpoint Controller
->> driver.
->>
->> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->> ---
-> This compatible does not bring anything new to the table
-> on its own. Please create a fallback compatible, document it
-> in the bindings and use that. See [1] and [2] for example.
->
-> Konrad
->
-> [1] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml?h=next-20230920
->
-> [2] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/pm7550ba.dtsi?h=next-20230920#n65
+thanks for reviewing!
 
-Hi Konrad,
+On Fri, Oct 13, 2023 at 2:43=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
 
-yes as of now this compatible does not bring anything new to the table.
-recently we got additional feature regarding cache coherency for sa8775p
-for that we need to add change only for sa8775p.
-that's why we need to add the compatible for sa8775p.
-and I will be uploading patch for that in some days.
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - marvell,mv88e6060
+>
+> The 6060 is a separate driver. Its not part of mv88e6xxx. So it should
+> have a binding document of its own.
 
-Thanks,
-Mrinmay
+It really doesn't matter to the DT bindings.
+It is not the job of DT to reflect the state of Linux.
+
+In another operating system they might all be the same driver.
+Or all four variants have their own driver.
+
+If the hardware is distinctly different so a lot of the properties
+are unique then it may be warranted with a separate DT
+binding, for the sake of keeping bindings simpler and
+coherent.
+
+> > +  '#interrupt-cells':
+> > +    description: The internal interrupt controller only supports trigg=
+ering
+> > +      on IRQ_TYPE_LEVEL_HIGH
+> > +      # FIXME: what is this? this should be one cell should it not?
+> > +      # the Linux mv88e6xxx driver does not implement .irq_set_type in=
+ its irq_chip
+> > +      # so at least in that implementation the type is flat out ignore=
+d.
+> > +    const: 2
+>
+> This interrupt controller is for the embedded PHYs. Its is hard wired
+> active high.
+
+Hmm.... I need feedback from the DT people here. It does have a
+polarity, but the polarity cannot be changed. So shall we encode this
+always the same polarity in the flags cell or skip it altogether?
+
+I'm uncertain. The currens scheme does reflect a reality.
+
+> > +  mdio1:
+> > +    $ref: /schemas/net/mdio.yaml#
+> > +    unevaluatedProperties: false
+> > +    description: Older version of mdio-external
+> > +    deprecated: true
+> > +    properties:
+> > +      compatible:
+> > +        const: marvell,mv88e6xxx-mdio-external
+>
+> The driver only looks at the compatible. It does not care what the
+> node is called. So you are going to need to change the driver if you
+> want this in the schema.
+
+Yeah, thats what patch 3/3 does :D
+
+Yours,
+Linus Walleij
 
