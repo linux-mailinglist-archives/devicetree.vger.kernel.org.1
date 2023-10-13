@@ -1,128 +1,276 @@
-Return-Path: <devicetree+bounces-8583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63F07C8D64
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 20:59:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B207C8D8D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 21:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1D2FB20A5E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 18:59:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87AD7282E9C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 19:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B299210FE;
-	Fri, 13 Oct 2023 18:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D96219E5;
+	Fri, 13 Oct 2023 19:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PNqceIBu"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="bNtl/9EB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD6BEC6
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 18:59:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D2A83;
-	Fri, 13 Oct 2023 11:59:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697223570; x=1728759570;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EsdyqAMRIhj+nuI28f5pAZYuhBMa9I0ITCTO8KcjSjQ=;
-  b=PNqceIBunZrAczyg4HTLpmJ08UWg2GpiipPgih01QmV9nDceLQOA0/fi
-   hroOtrr02g7M0h6VvMmx4swPm34abWE22sSLA5K+lxKVQx0g7n2xMs4NL
-   umml1upE4IGmb+lCkyaGkYz0AoDbj95Ff2REDY8T9cVSZr5bpf30AcUss
-   foKFGU0C7+Gd5Z35RL4HLcTS83ay+YAW6G5+5kI19fGXNjtsZXhto16yz
-   oOQ1UGOltFbVAsOrTh9d64X90RGzlwDb7KxGEkFtdQ85oc79ResIhxYCo
-   lTU1vzUxYQkF0jzlv462WafQss8AHDBx1qndMUMyJSG7q/fv2Sdbai2/H
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="370308615"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
-   d="scan'208";a="370308615"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2023 11:59:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="1002055617"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
-   d="scan'208";a="1002055617"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 13 Oct 2023 11:59:23 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qrNNY-0005Ht-35;
-	Fri, 13 Oct 2023 18:59:20 +0000
-Date: Sat, 14 Oct 2023 02:58:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
-	nfraprado@collabora.com, u-kumar1@ti.com, peng.fa@nxp.com,
-	quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
-	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
-	kernel@quicinc.com, Tengfei Fan <quic_tengfan@quicinc.com>,
-	Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: Re: [PATCH v5 RESEND 3/7] arm64: dts: qcom: sm4450: Add RPMH and
- Global clock
-Message-ID: <202310140224.m4RecMup-lkp@intel.com>
-References: <20231011031415.3360-4-quic_tengfan@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C802136F
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 19:11:11 +0000 (UTC)
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8911083
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 12:11:09 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1c9d4f08d7cso26645ad.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 12:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1697224269; x=1697829069; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OIApqMtAf+eEfCsXpXLPAMDeUbkWbPlPHXxQvDgA8ZU=;
+        b=bNtl/9EBTlrnmRKO6KYrBKa3ODSTOYlD4lA1mZP0yNG99hyljV23AX9f6uqB7tylb1
+         YYWY5pExEmkBCv/GhX03l2ztot23iUldjWlYAZMFL7ocirgBV4R0Zp74uofXUuaqz2SG
+         RsDMUb8kQqUt/pr1dRCR5noL/AHEhks0R6YQ6ymW7x9HGSJkqrsiXiFgb9S98ghs2DVs
+         OszM5MbkTWzRz830j6Fort5evh/9xTArO1v6ibviQA3ALgKrF/G67tKG9yWRoRG3izo5
+         E2XCzSQhBgVEtGe+QNOrTQP8Ku4AoOfsxnztOuT5p0GZVMJrMX1flL6I+EIg/gUADgm8
+         pd9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697224269; x=1697829069;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OIApqMtAf+eEfCsXpXLPAMDeUbkWbPlPHXxQvDgA8ZU=;
+        b=ESQoFgmbQRvUkr6td8RaqJPzRuZKJjFDGvFm1hNQ8ojoa49+Hgb8h8H86r603dFViG
+         BkzisdtzaRVymx2NniQV3VMB8JnGqWRVkqEW2gRCKQFQRNzCpvZQsUS7gnmQU3PbYfCP
+         PZqltPfMi8qkX4QPczoxcO0MNRiXoZXM64VVgTGsG8Vpqo+vIxkMjb2VRTj1jHznN1sS
+         BZyL2YoeXjxtMGZust9XOkPDDlGtKdHwI74/hKWDpT2CyTmIVdHuxScB/Bhe6Nv1dOp3
+         +u6zkJeATgRrbfI5fXodjMwaf0qDG39uzhYUgAubM+VLP92gBI6pdRKLfTLjq/EcVuNJ
+         tkQw==
+X-Gm-Message-State: AOJu0YxSYPv1DhNpjAkty8zBAlttrwfMiAefHwSgvg1zKk0gHOtObBmO
+	W4ywJShxoFOcX7bNTHZ79doDno8WdaSqH7GWI2yg
+X-Google-Smtp-Source: AGHT+IEbp+zs59rwJa1MDe1tv5wsWi8dFryOgKdUJ954CEvyw0oPHsE6G9aZGZSlQ2dzDzA0ijsFPKGAHWeYvLgdlco=
+X-Received: by 2002:a17:902:d544:b0:1c5:ca8d:136b with SMTP id
+ z4-20020a170902d54400b001c5ca8d136bmr14874plf.14.1697224268678; Fri, 13 Oct
+ 2023 12:11:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231011031415.3360-4-quic_tengfan@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+References: <20230911023038.30649-1-yong.wu@mediatek.com> <20230911023038.30649-6-yong.wu@mediatek.com>
+ <d0373c02-9b22-661f-9930-ca720053c2a0@collabora.com> <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
+ <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com> <a4ecc2792f3a4d3159e34415be984ff7d5f5e263.camel@mediatek.com>
+ <20230927134614.kp27moxdw72jiu4y@pop-os.localdomain> <3aaafe47-3733-a4d5-038d-a7e439309282@collabora.com>
+ <CA+ddPcP4=p37cV5Tbn5zTUbiL4ou+Yqb=5rS+O_ff8ZUw64D3Q@mail.gmail.com>
+ <80695726-1a98-12d4-ad7d-d731f2f3caeb@collabora.com> <CA+ddPcPES=4FcQRkvVnW=C9mL6hCxVfCcoLDJSjb58UiDmS_Mg@mail.gmail.com>
+ <32e515e1-b7a2-de3c-723b-ade3ec760b4d@collabora.com>
+In-Reply-To: <32e515e1-b7a2-de3c-723b-ade3ec760b4d@collabora.com>
+From: Jeffrey Kardatzke <jkardatzke@google.com>
+Date: Fri, 13 Oct 2023 12:10:56 -0700
+Message-ID: <CA+ddPcNMBhXPNie3XUzbnCME_KccOxsNsWREmO80nwhSskN7JQ@mail.gmail.com>
+Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: Joakim Bech <joakim.bech@linaro.org>, =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"christian.koenig@amd.com" <christian.koenig@amd.com>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"jstultz@google.com" <jstultz@google.com>, 
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	=?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= <Jianjiao.Zeng@mediatek.com>, 
+	=?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= <kuohong.wang@mediatek.com>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>, 
+	"tjmercier@google.com" <tjmercier@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Tengfei,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 940fcc189c51032dd0282cbee4497542c982ac59]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tengfei-Fan/dt-bindings-interrupt-controller-qcom-pdc-document-qcom-sm4450-pdc/20231011-111816
-base:   940fcc189c51032dd0282cbee4497542c982ac59
-patch link:    https://lore.kernel.org/r/20231011031415.3360-4-quic_tengfan%40quicinc.com
-patch subject: [PATCH v5 RESEND 3/7] arm64: dts: qcom: sm4450: Add RPMH and Global clock
-config: arm64-randconfig-003-20231014 (https://download.01.org/0day-ci/archive/20231014/202310140224.m4RecMup-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231014/202310140224.m4RecMup-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310140224.m4RecMup-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sm4450-qrd.dts:8:
->> arch/arm64/boot/dts/qcom/sm4450.dtsi:7:10: fatal error: dt-bindings/clock/qcom,sm4450-gcc.h: No such file or directory
-       7 | #include <dt-bindings/clock/qcom,sm4450-gcc.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+Sorry for the delayed reply, needed to get some more info. This really
+wouldn't be possible due to the limitation on the number of
+regions...for example only 32 regions can be defined on some SoCs, and
+you'd run out of regions really fast trying to do this. That's why
+this is creating heaps for those regions and then allocations are
+performed within the defined region is the preferred strategy.
 
 
-vim +7 arch/arm64/boot/dts/qcom/sm4450.dtsi
-
-   > 7	#include <dt-bindings/clock/qcom,sm4450-gcc.h>
-     8	#include <dt-bindings/gpio/gpio.h>
-     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
-    10	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-    11	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On Thu, Sep 28, 2023 at 11:54=E2=80=AFPM Benjamin Gaignard
+<benjamin.gaignard@collabora.com> wrote:
+>
+>
+> Le 28/09/2023 =C3=A0 19:48, Jeffrey Kardatzke a =C3=A9crit :
+> > On Thu, Sep 28, 2023 at 1:30=E2=80=AFAM Benjamin Gaignard
+> > <benjamin.gaignard@collabora.com> wrote:
+> >>
+> >> Le 27/09/2023 =C3=A0 20:56, Jeffrey Kardatzke a =C3=A9crit :
+> >>> On Wed, Sep 27, 2023 at 8:18=E2=80=AFAM Benjamin Gaignard
+> >>> <benjamin.gaignard@collabora.com> wrote:
+> >>>> Le 27/09/2023 =C3=A0 15:46, Joakim Bech a =C3=A9crit :
+> >>>>> On Mon, Sep 25, 2023 at 12:49:50PM +0000, Yong Wu (=E5=90=B4=E5=8B=
+=87) wrote:
+> >>>>>> On Tue, 2023-09-12 at 11:32 +0200, AngeloGioacchino Del Regno wrot=
+e:
+> >>>>>>> Il 12/09/23 08:17, Yong Wu (=E5=90=B4=E5=8B=87) ha scritto:
+> >>>>>>>> On Mon, 2023-09-11 at 11:29 +0200, AngeloGioacchino Del Regno
+> >>>>>>>> wrote:
+> >>>>>>>>> Il 11/09/23 04:30, Yong Wu ha scritto:
+> >>>>>>>>>> The TEE probe later than dma-buf heap, and PROBE_DEDER doesn't
+> >>>>>>>>>> work
+> >>>>>>>>>> here since this is not a platform driver, therefore initialise
+> >>>>>>>>>> the
+> >>>>>>>>>> TEE
+> >>>>>>>>>> context/session while we allocate the first secure buffer.
+> >>>>>>>>>>
+> >>>>>>>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> >>>>>>>>>> ---
+> >>>>>>>>>>       drivers/dma-buf/heaps/mtk_secure_heap.c | 61
+> >>>>>>>>>> +++++++++++++++++++++++++
+> >>>>>>>>>>       1 file changed, 61 insertions(+)
+> >>>>>>>>>>
+> >>>>>>>>>> diff --git a/drivers/dma-buf/heaps/mtk_secure_heap.c
+> >>>>>>>>>> b/drivers/dma-
+> >>>>>>>>>> buf/heaps/mtk_secure_heap.c
+> >>>>>>>>>> index bbf1c8dce23e..e3da33a3d083 100644
+> >>>>>>>>>> --- a/drivers/dma-buf/heaps/mtk_secure_heap.c
+> >>>>>>>>>> +++ b/drivers/dma-buf/heaps/mtk_secure_heap.c
+> >>>>>>>>>> @@ -10,6 +10,12 @@
+> >>>>>>>>>>       #include <linux/err.h>
+> >>>>>>>>>>       #include <linux/module.h>
+> >>>>>>>>>>       #include <linux/slab.h>
+> >>>>>>>>>> +#include <linux/tee_drv.h>
+> >>>>>>>>>> +#include <linux/uuid.h>
+> >>>>>>>>>> +
+> >>>>>>>>>> +#define TZ_TA_MEM_UUID          "4477588a-8476-11e2-ad15-
+> >>>>>>>>>> e41f1390d676"
+> >>>>>>>>>> +
+> >>>>>>>>> Is this UUID the same for all SoCs and all TZ versions?
+> >>>>>>>> Yes. It is the same for all SoCs and all TZ versions currently.
+> >>>>>>>>
+> >>>>>>> That's good news!
+> >>>>>>>
+> >>>>>>> Is this UUID used in any userspace component? (example: Android
+> >>>>>>> HALs?)
+> >>>>>> No. Userspace never use it. If userspace would like to allocate th=
+is
+> >>>>>> secure buffer, it can achieve through the existing dmabuf IOCTL vi=
+a
+> >>>>>> /dev/dma_heap/mtk_svp node.
+> >>>>>>
+> >>>>> In general I think as mentioned elsewhere in comments, that there i=
+sn't
+> >>>>> that much here that seems to be unique for MediaTek in this patch
+> >>>>> series, so I think it worth to see whether this whole patch set can=
+ be
+> >>>>> made more generic. Having said that, the UUID is always unique for =
+a
+> >>>>> certain Trusted Application. So, it's not entirely true saying that=
+ the
+> >>>>> UUID is the same for all SoCs and all TrustZone versions. It might =
+be
+> >>>>> true for a family of MediaTek devices and the TEE in use, but not
+> >>>>> generically.
+> >>>>>
+> >>>>> So, if we need to differentiate between different TA implementation=
+s,
+> >>>>> then we need different UUIDs. If it would be possible to make this =
+patch
+> >>>>> set generic, then it sounds like a single UUID would be sufficient,=
+ but
+> >>>>> that would imply that all TA's supporting such a generic UUID would=
+ be
+> >>>>> implemented the same from an API point of view. Which also means th=
+at
+> >>>>> for example Trusted Application function ID's needs to be the same =
+etc.
+> >>>>> Not impossible to achieve, but still not easy (different TEE follow=
+s
+> >>>>> different specifications) and it's not typically something we've do=
+ne in
+> >>>>> the past.
+> >>>>>
+> >>>>> Unfortunately there is no standardized database of TA's describing =
+what
+> >>>>> they implement and support.
+> >>>>>
+> >>>>> As an alternative, we could implement a query call in the TEE answe=
+ring,
+> >>>>> "What UUID does your TA have that implements secure unmapped heap?"=
+.
+> >>>>> I.e., something that reminds of a lookup table. Then we wouldn't ha=
+ve to
+> >>>>> carry this in UAPI, DT or anywhere else.
+> >>>> Joakim does a TA could offer a generic API and hide the hardware spe=
+cific
+> >>>> details (like kernel uAPI does for drivers) ?
+> >>> It would have to go through another layer (like the tee driver) to be
+> >>> a generic API. The main issue with TAs is that they have UUIDs you
+> >>> need to connect to and specific codes for each function; so we should
+> >>> abstract at a layer above where those exist in the dma-heap code.
+> >>>> Aside that question I wonder what are the needs to perform a 'secure=
+' playback.
+> >>>> I have in mind 2 requirements:
+> >>>> - secure memory regions, which means configure the hardware to ensur=
+e that only
+> >>>> dedicated hardware blocks and read or write into it.
+> >>>> - set hardware blocks in secure modes so they access to secure memor=
+y.
+> >>>> Do you see something else ?
+> >>> This is more or less what is required, but this is out of scope for
+> >>> the Linux kernel since it can't be trusted to do these things...this
+> >>> is all done in firmware or the TEE itself.
+> >> Yes kernel can't be trusted to do these things but know what we need c=
+ould help
+> >> to define a API for a generic TA.
+> >>
+> >> Just to brainstorm on mailing list:
+> >> What about a TA API like
+> >> TA_secure_memory_region() and TA_unsecure_memory_region() with paramet=
+ers like:
+> >> - device identifier (an ID or compatible string maybe)
+> >> - memory region (physical address, size, offset)
+> >> - requested access rights (read, write)
+> >>
+> >> and on kernel side a IOMMU driver because it basically have all this i=
+nformation already
+> >> (device attachment, kernel map/unmap).
+> >>
+> >> In my mind it sound like a solution to limit the impact (new controls,=
+ new memory type)
+> >> inside v4l2. Probably we won't need new heap either.
+> >> All hardware dedicated implementations could live inside the TA which =
+can offer a generic
+> >> API.
+> > The main problem with that type of design is the limitations of
+> > TrustZone memory protection. Usually there is a limit to the number of
+> > regions you can define for memory protection (and there is on
+> > Mediatek). So you can't pass an arbitrary memory region and mark it
+> > protected/unprotected at a given time. You need to establish these
+> > regions in the firmware instead and then configure those regions for
+> > protection in the firmware or the TEE.
+>
+> The TEE iommu could be aware of these limitations and merge the regions w=
+hen possible
+> plus we can define a CMA region for each device to limit the secured memo=
+ry fragmentation.
+>
+> >
+> >>>> Regards,
+> >>>> Benjamin
+> >>>>
 
