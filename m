@@ -1,117 +1,129 @@
-Return-Path: <devicetree+bounces-8531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7004A7C884C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 364827C884E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 17:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29C1D282D18
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:07:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF1F6282D8A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 15:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48ECB18C2A;
-	Fri, 13 Oct 2023 15:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F3418E20;
+	Fri, 13 Oct 2023 15:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gNe5ra6S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LdS4R5qu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C300E29A9
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 15:07:40 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0E4BD;
-	Fri, 13 Oct 2023 08:07:37 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 02377660731E;
-	Fri, 13 Oct 2023 16:07:33 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697209655;
-	bh=KENb6WnDrYEIv2tlDoQvqvhs4xHUGs9UXkMbd8bq8HE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gNe5ra6S/GCUHQiYbmDocwcriA4LrHATwxyGJWNY9fFpxT3CIgJdlrKcY0Uy0Khvw
-	 djPpT82RXWmws+oEHWKvrTMRhRjXmcxW2D6guBRX2nfRTatZGqYw7+6tKPSDyn3MSO
-	 2J8qVXPOGft/KwQahO9ffeE5TrL33P87geTiqf0JqfekkrdkmWKormxIzzXn/6Kub1
-	 e1yPci12wiV2so5j1xGqDkAiziV711S4ue0TGDWlaUAi3yPrYgJhmdbhbsm/T2V9H5
-	 L+bRkuSuTVfy0FmFtdC3Y+JEcepB0BaG7EiQk8ThtbIAMsLsfcqcnKlWCZp5LsUT6m
-	 JWKmBgnm8ekQw==
-From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	kernel@collabora.com,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm64: dts: mediatek: mt8192-asurada: Remove CrosEC base detection node
-Date: Fri, 13 Oct 2023 11:06:38 -0400
-Message-ID: <20231013150729.750609-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DDF18C2A
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 15:07:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 603ACC433C7;
+	Fri, 13 Oct 2023 15:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697209677;
+	bh=dhX9Cz4CPdlTS15c30PJqSWT8Hhp5TTCXVK+ytwsF+k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LdS4R5qu/2CmE/A/7LWDaTOjVXe9stnWCGRS3hmJXHIOGqjNXPJ1Auge+RaBdJPf+
+	 QjAJye2oMUHKRQwNdCtGqE0d6/Qwc0iGVzvHu/dnUOImiA4Z3lXSd19b5OEZzWxvSO
+	 uQLTYYA//2o9MjVMkK6HYwiJRxCUdZ4zePrq4D5cE8dwdupPAOPOeXJdrPyguxQe7a
+	 xdxCSs57gRfobdSGacBkWhFZlcZk+rV9lXiB70tk/NZfp8TcMqEccyrl+zBVOmgG02
+	 lAY5Z4okTJCIzcxOeE1RT6M5Z3EfslthRBSub9lD2fzuxH6vz3N99oSrZKr/Igu257
+	 nfBdmpb69SSpA==
+Date: Fri, 13 Oct 2023 16:07:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Kris Chaplin <kris.chaplin@amd.com>, thomas.delev@amd.com,
+	michal.simek@amd.com, robh+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	git@amd.com
+Subject: Re: [PATCH 1/2] dt-bindings: w1: Add YAML DT Schema for AMD w1
+ master and MAINTAINERS entry
+Message-ID: <20231013-january-caliber-2e7acbee15ec@spud>
+References: <20231013093109.37165-1-kris.chaplin@amd.com>
+ <20231013093109.37165-2-kris.chaplin@amd.com>
+ <f864dd17-7848-4a83-bd8b-2093d11a153a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="D0eSubfO6C5kvNYG"
+Content-Disposition: inline
+In-Reply-To: <f864dd17-7848-4a83-bd8b-2093d11a153a@linaro.org>
 
-The commit adding the ChromeOS EC to the Asurada Devicetree mistakenly
-added a base detection node. While tablet mode detection is supported by
-CrosEC and used by Hayato, it is done through the cros-ec-keyb driver.
-The base detection node, which is handled by the hid-google-hammer
-driver, also provides tablet mode detection but by checking base
-attachment status on the CrosEC, which is not supported for Asurada.
 
-Hence, remove the unused CrosEC base detection node for Asurada.
+--D0eSubfO6C5kvNYG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: eb188a2aaa82 ("arm64: dts: mediatek: asurada: Add ChromeOS EC")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+On Fri, Oct 13, 2023 at 05:04:32PM +0200, Krzysztof Kozlowski wrote:
+> On 13/10/2023 11:30, Kris Chaplin wrote:
+> > Add YAML DT Schema for the AMD w1 master IP.
+> >=20
+> > This hardware guarantees protocol timing for driving off-board devices =
+such
+> > as thermal sensors, proms, etc using the 1wire protocol.
+> >=20
+> > Add MAINTAINERS entry for DT Schema.
+> >=20
+> > Co-developed-by: Thomas Delev <thomas.delev@amd.com>
+> > Signed-off-by: Thomas Delev <thomas.delev@amd.com>
+> > Signed-off-by: Kris Chaplin <kris.chaplin@amd.com>
+> > ---
+> >  .../bindings/w1/amd,axi-1wire-master.yaml     | 44 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 +++
+> >  2 files changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-=
+master.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.=
+yaml b/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.yaml
+> > new file mode 100644
+> > index 000000000000..41f7294a84a3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/w1/amd,axi-1wire-master.yaml
+> > @@ -0,0 +1,44 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/w1/amd,axi-1wire-master.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: AMD AXI 1-wire bus master for Programmable Logic
+> > +
+> > +maintainers:
+> > +  - Kris Chaplin <kris.chaplin@amd.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: amd,axi-1wire-master
+>=20
+> That's a quite generic compatible. axi is ARM term, 1-wire is the name
+> of the bus and master is the role. Concatenating three common words does
+> not create unique device name. Compatibles are supposed to be specific
+> and this is really relaxed. Anything can be over AXI, everything in
+> 1wire is 1wire and every master device is a master.
 
----
-Chen-Yu,
-if you could test this on Hayato just to be extra sure tablet mode
-detection still works fine, that'd be appreciated as I don't have access
-to one. That said, I've tested on Tomato which should behave exactly the
-same so I'm confident this node was entirely unused.
+Given the vendor (and the title of the binding) this is almost certainly
+an FPGA IP core, so the generic name is understandable. Using the exact
+name of the IP in the AMD/Xilinx catalog probably is the best choice?
 
-Thanks,
-Nícolas
+--D0eSubfO6C5kvNYG
+Content-Type: application/pgp-signature; name="signature.asc"
 
- arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index f2281250ac35..02ce05bc151a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -1336,10 +1336,6 @@ cros_ec: ec@0 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		base_detection: cbas {
--			compatible = "google,cros-cbas";
--		};
--
- 		cros_ec_pwm: pwm {
- 			compatible = "google,cros-ec-pwm";
- 			#pwm-cells = <1>;
--- 
-2.42.0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSldSAAKCRB4tDGHoIJi
+0sBKAP93WwQ4YTKSu7mJymnqveBhEtNSTuCJf8KJYNoJgZVzfAD9F0MIZhF1dKAC
+2RQaPgWN8gVOs/24ipBDUWeEca2vAwY=
+=VLV0
+-----END PGP SIGNATURE-----
 
+--D0eSubfO6C5kvNYG--
 
