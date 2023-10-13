@@ -1,165 +1,175 @@
-Return-Path: <devicetree+bounces-8355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953757C7D1B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:41:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0D17C7D29
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C750B208CB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:41:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64C721F2063A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E945663;
-	Fri, 13 Oct 2023 05:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EEE75695;
+	Fri, 13 Oct 2023 05:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lpcjn1XJ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fc2PHm0I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCEE3D007
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:41:45 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA98B7;
-	Thu, 12 Oct 2023 22:41:44 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39D2iG5E009646;
-	Fri, 13 Oct 2023 05:41:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=k7srpVrEMj0jtruEIJpxYUZScvzOnfM7JeWmVEFFr2U=;
- b=lpcjn1XJ2XPvk3Qoi+J3yETVKyweKrX755xZtx0LaKkGT36cVoKreyaFl+M4yFE+ibo4
- D0IdtsMZzrtJBFD9chNMVLcq8es0054KlludOkaIQTFoGp08RWwYeoH99itD8Qm0AOkW
- jGRY9Q9WeuQ2N+B2/YNvD1iPdggmUmwN9Eh+eV7KIqxRxWsud9Uoxdcj7JJloQvZZe1M
- AaGj8F4kEWnGqcA4kcb91y6DpvG1lEi1SetMkeUcIGrlEwH4h1L1OtW1cz4gZflIIehQ
- SYrkMGprEpMgx/ECV7TKa2fhKNldR0Ff/4WZhdIr/20I9uH+asAi12AzfvH8y11c3Ile xw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt1u8nt2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Oct 2023 05:41:38 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39D5fAYU029856
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Oct 2023 05:41:10 GMT
-Received: from [10.214.67.128] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 12 Oct
- 2023 22:41:06 -0700
-Message-ID: <994a6ff0-9b6c-0ac8-9a6c-694a2abd0f4d@quicinc.com>
-Date: Fri, 13 Oct 2023 11:11:00 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FDF5693
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:46:04 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3CCB8
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:45:58 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53dfc28a2afso2930720a12.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 22:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1697175957; x=1697780757; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OxZEgbxCg5FDJLZd0opb0NR1i2vaQaa75X9YgsS3o4g=;
+        b=fc2PHm0IL2c6Zhq39zqnqxfE8WqxyzCVBMBy6I9C0VQuIx5H5qIISsxvu0TSNcjIbX
+         uNTqDzPMLgiboajiuQ8yf6oFWqFJgj2B7asTxI0nKYXQILVCX79M1xrtOx8YkFTguO0I
+         26W3Pecp6YCyq+zdWNbfn2QKoZH5cOHPC9aOwKkVlY19xgI3ftrB4p2levQhxhSlGV2F
+         5Ps7G90XLcHSArTX5iZufZf5MiT7E4gYO1ZYLvaIlrdLaxTnT8Lx998MGJ2maaPAa1A0
+         TcwDAzGDSXl9z92LeEwnXEOXG8bkKDghevgPsqM57qzBkbhpqKp1HcNLFDXmnqzaGS8P
+         12ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697175957; x=1697780757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OxZEgbxCg5FDJLZd0opb0NR1i2vaQaa75X9YgsS3o4g=;
+        b=JUSkowll7KeSq0nmmb2BUAGQ5DjcoN2mIRiAe2yXuRzM48+s8R0DA1Rud7c//HeZLp
+         /SZ9+GmX4wQqw1wPym9+vsr8gxznkG9U6xGPCAvbiRPwh8ej11VhQEKlw1Uyq303E0tg
+         OERo8SoEG7u9iH1Ma/XwIBJTVneVHete4s+HFRYxKuw+rqrqmaO0RtFoG7vtpcC2LXlE
+         Nk911v5A2n9CltKw61tVFKPr0xCx9TS99cszE2Vch0+7O69EuCqJSB+Ny+QpC9P8j/s1
+         ckaTKV8D2nTtHQSGw50X9R3D/V/5zZdU9dORwBYRbEA5DZfel8HpdAq0xBkaTza7JPMX
+         LCRA==
+X-Gm-Message-State: AOJu0YzLJZMqBeNF21304d0DQycBh1Nk5HMT0puoz9QsEEkok6Xy1RiT
+	Ybe4WO7+2S90X8/HGvjnYv2SlIWH3v4miEYmyeE=
+X-Google-Smtp-Source: AGHT+IEU1XyeStB/aWD0WH+ornRlse4gB07KLRSG9FvBu7tXwdQTee0owSG7ClQpIarIJaHs7bVU0A==
+X-Received: by 2002:a17:906:3086:b0:9b2:765b:273b with SMTP id 6-20020a170906308600b009b2765b273bmr25027063ejv.70.1697175957346;
+        Thu, 12 Oct 2023 22:45:57 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.133])
+        by smtp.gmail.com with ESMTPSA id kt13-20020a170906aacd00b009a5f1d15644sm11761505ejb.119.2023.10.12.22.45.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Oct 2023 22:45:56 -0700 (PDT)
+Message-ID: <a007c3a9-0a68-4f4c-bcea-4ffc111939a1@tuxon.dev>
+Date: Fri, 13 Oct 2023 08:45:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] arm64: dts: renesas: rzg3s-smarc-som: Enable SDHI2
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <luca.weiss@fairphone.com>
-References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
- <20231003175456.14774-3-quic_kbajaj@quicinc.com>
- <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Bdgp0tnyLPhoGmyKiLzGk3GKDixczKwO
-X-Proofpoint-ORIG-GUID: Bdgp0tnyLPhoGmyKiLzGk3GKDixczKwO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-13_03,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 phishscore=0 mlxlogscore=933 clxscore=1011 adultscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310130049
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: magnus.damm@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20231010132701.1658737-1-claudiu.beznea.uj@bp.renesas.com>
+ <20231010132701.1658737-5-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdW-m+ikzOiCqGaiofd0QG5BVuoMK+z6G7u2JboGTw3xhQ@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdW-m+ikzOiCqGaiofd0QG5BVuoMK+z6G7u2JboGTw3xhQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi, Geert,
 
+Thanks for reviewing!
 
-On 10/7/2023 5:03 AM, Konrad Dybcio wrote:
-> On 3.10.2023 19:54, Komal Bajaj wrote:
->> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
->> platform. QCM6490 is derived from SC7280 meant for various
->> form factor including IoT.
+On 12.10.2023 17:36, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> Thanks for your patch!
+> 
+> On Tue, Oct 10, 2023 at 3:27 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >>
->> Supported features are, as of now:
->> * Debug UART
->> * eMMC
->> * USB
+>> Add SDHI2 to RZ/G3S Smarc SoM. SDHI2 pins are multiplexed with SCIF1, SSI3,
+> 
+> SSI0
+> 
+>> IRQ0. The selection b/w SDHI2 and SCIF1, SSI3, IRQ0 is done with a switch
+> 
+> and IRQ1 (twice). Or just say "The selection is done ...".
+> 
+>> button. To be able to select b/w these a compilation flag has been added
+>> (SW_SD2_EN) at the moment being instantiated to select SDHI2.
 >>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile        |   1 +
->>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 333 +++++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/qcm6490.dtsi    |  94 +++++++
->>   3 files changed, 428 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+>> @@ -13,14 +13,21 @@
+>>   * @SW_SD0_DEV_SEL:
+>>   *     0 - SD0 is connected to eMMC
+>>   *     1 - SD0 is connected to uSD0 card
+>> + * @SW_SD2_EN:
+>> + *     0 - SCIF1, SSI3, IRQ0, IRQ1 connected to SoC
+> 
+> SSI0
+> 
+>> + *     1 - SD2 is connected to SoC
+>>   */
+>>  #define SW_SD0_DEV_SEL 1
+>> +#define SW_SD2_EN      1
+> 
+>> @@ -100,6 +125,19 @@ &sdhi0 {
+>>  };
+>>  #endif
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 73c3be0f8872..3a2d9dbaacce 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> new file mode 100644
->> index 000000000000..d81a7810fd5a
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> @@ -0,0 +1,333 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
+>> +#if SW_SD2_EN
+>> +&sdhi2 {
+>> +       pinctrl-0 = <&sdhi2_pins>;
+>> +       pinctrl-1 = <&sdhi2_pins>;
+>> +       pinctrl-names = "default", "state_uhs";
+> 
+> Do you need two states if there is only a single voltage?
+> AFAIK, UHS needs 1.8V.
+
+I had the impression that driver needs them both anyway. I double checked
+now and it seems it is not the case. I'll update it in the next version.
+
+Thank you,
+Claudiu Beznea
+
+> 
+>> +       vmmc-supply = <&vcc_sdhi2>;
+>> +       vqmmc-supply = <&reg_3p3v>;
+>> +       bus-width = <4>;
+>> +       max-frequency = <50000000>;
+>> +       status = "okay";
+>> +};
+>> +#endif
 >> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +#include "pm7325.dtsi"
->> +#include "pm8350c.dtsi"
->> +#include "pmk8350.dtsi"
->> +#include "qcm6490.dtsi"
-> As the kernel robot pointed out, this has clearly not even been
-> compile-tested..
-
-Sorry for this.. I made this change as per the comment that I got to 
-sort the
-inclusion files in alphabetical order. Incremental build compilation 
-wasn't able
-to catch this error.
-I will move qcm6490.dtsi file inclusion before pm* files inclusion.
-
-Thanks
-Komal
-
->
-> Konrad
-
+>>  &pinctrl {
+>>         sdhi0_pins: sd0 {
+>>                 data {
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
