@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-8447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932897C8365
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:42:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB217C8366
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:43:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE8191C20B37
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:42:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E744EB2098B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 10:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C710970;
-	Fri, 13 Oct 2023 10:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7A610970;
+	Fri, 13 Oct 2023 10:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850BC63DC
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 10:42:43 +0000 (UTC)
-Received: from out28-172.mail.aliyun.com (out28-172.mail.aliyun.com [115.124.28.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6261DE;
-	Fri, 13 Oct 2023 03:42:40 -0700 (PDT)
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.4424414|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0223272-0.000603026-0.97707;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.V-L318f_1697193750;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V-L318f_1697193750)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BF663DC
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 10:42:53 +0000 (UTC)
+Received: from out28-123.mail.aliyun.com (out28-123.mail.aliyun.com [115.124.28.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0396FB;
+	Fri, 13 Oct 2023 03:42:48 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08533934|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00817213-0.000206141-0.991622;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047212;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.V-L31GU_1697193757;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V-L31GU_1697193757)
           by smtp.aliyun-inc.com;
-          Fri, 13 Oct 2023 18:42:37 +0800
+          Fri, 13 Oct 2023 18:42:44 +0800
 From: wangweidong.a@awinic.com
 To: lgirdwood@gmail.com,
 	broonie@kernel.org,
@@ -52,9 +52,9 @@ To: lgirdwood@gmail.com,
 	alsa-devel@alsa-project.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH V1 1/3] ASoC: dt-bindings: Add schema for "awinic,aw88399"
-Date: Fri, 13 Oct 2023 18:42:18 +0800
-Message-ID: <20231013104220.279953-2-wangweidong.a@awinic.com>
+Subject: [PATCH V1 2/3] ASoC: codecs: Add code for bin parsing compatible with aw88399
+Date: Fri, 13 Oct 2023 18:42:19 +0800
+Message-ID: <20231013104220.279953-3-wangweidong.a@awinic.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231013104220.279953-1-wangweidong.a@awinic.com>
 References: <20231013104220.279953-1-wangweidong.a@awinic.com>
@@ -74,25 +74,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Weidong Wang <wangweidong.a@awinic.com>
 
-Add the awinic,aw88399 property to the awinic,aw88395.yaml file.
+Add aw88399 compatible code to the aw88395_lib.c file
+so that it can parse aw88399's bin file.
 
 Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 ---
- Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/codecs/aw88395/aw88395_lib.c | 3 +++
+ sound/soc/codecs/aw88395/aw88395_reg.h | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-index 4051c2538caf..db36b01206b7 100644
---- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-+++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-@@ -22,6 +22,7 @@ properties:
-     enum:
-       - awinic,aw88395
-       - awinic,aw88261
-+      - awinic,aw88399
+diff --git a/sound/soc/codecs/aw88395/aw88395_lib.c b/sound/soc/codecs/aw88395/aw88395_lib.c
+index 87dd0ccade4c..692ad9fa65a6 100644
+--- a/sound/soc/codecs/aw88395/aw88395_lib.c
++++ b/sound/soc/codecs/aw88395/aw88395_lib.c
+@@ -702,6 +702,7 @@ static int aw_dev_load_cfg_by_hdr(struct aw_device *aw_dev,
+ 	}
  
-   reg:
-     maxItems: 1
+ 	switch (aw_dev->chip_id) {
++	case AW88399_CHIP_ID:
+ 	case AW88395_CHIP_ID:
+ 		ret = aw88395_dev_cfg_get_valid_prof(aw_dev, *all_prof_info);
+ 		if (ret < 0)
+@@ -791,6 +792,7 @@ static int aw_get_dev_scene_count_v1(struct aw_device *aw_dev, struct aw_contain
+ 
+ 	switch (aw_dev->chip_id) {
+ 	case AW88395_CHIP_ID:
++	case AW88399_CHIP_ID:
+ 		for (i = 0; i < cfg_hdr->ddt_num; ++i) {
+ 			if ((cfg_dde[i].data_type == ACF_SEC_TYPE_MULTIPLE_BIN) &&
+ 			    (aw_dev->chip_id == cfg_dde[i].chip_id) &&
+@@ -832,6 +834,7 @@ static int aw_get_default_scene_count_v1(struct aw_device *aw_dev,
+ 
+ 	switch (aw_dev->chip_id) {
+ 	case AW88395_CHIP_ID:
++	case AW88399_CHIP_ID:
+ 		for (i = 0; i < cfg_hdr->ddt_num; ++i) {
+ 			if ((cfg_dde[i].data_type == ACF_SEC_TYPE_MULTIPLE_BIN) &&
+ 			    (aw_dev->chip_id == cfg_dde[i].chip_id) &&
+diff --git a/sound/soc/codecs/aw88395/aw88395_reg.h b/sound/soc/codecs/aw88395/aw88395_reg.h
+index e7a7c02efaf3..63d2bac85715 100644
+--- a/sound/soc/codecs/aw88395/aw88395_reg.h
++++ b/sound/soc/codecs/aw88395/aw88395_reg.h
+@@ -95,6 +95,7 @@
+ #define AW88395_TM_REG			(0x7C)
+ 
+ enum aw88395_id {
++	AW88399_CHIP_ID = 0x2183,
+ 	AW88395_CHIP_ID = 0x2049,
+ 	AW88261_CHIP_ID = 0x2113,
+ };
 -- 
 2.41.0
 
