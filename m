@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-8515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988CE7C8785
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:11:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DD17C87E7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 16:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 537B128180F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:11:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C77ECB209F1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D448918E23;
-	Fri, 13 Oct 2023 14:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A7629A9;
+	Fri, 13 Oct 2023 14:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BDgw2I9R"
+	dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b="TY0kQ4rY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B363D37A
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 14:11:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76931C433C7;
-	Fri, 13 Oct 2023 14:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697206260;
-	bh=yblgfOK1RNan7Z74qeOHcSvb7Lln2WHm9wFm6gXbhf8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BDgw2I9RUVi8FmfXMdDwfGWWNWixrlRokLda/7jno+fJ0koZRbGXp4dIOEsmtjntk
-	 6fTddidzhz/mBuaPzrgogyNNdQ4S/lmQAX+MOzr6brBSVnw8KeMcPv8anPgzJdIlKd
-	 4trW7twlDDnTL7za8haPzW56eNNAUr/sVEvMqRvex2XCQQRRqBNKLpBFiZJEMthMLz
-	 0RKpWnMpUztZPjibvq/g53a3cHwBso92RdxE1Hu11O9jXTAoWHQ+EnBQkRbto/DNjS
-	 qQ8ECY/K6f3DxAk2jfce54Obn1QWtZMLUuYoodqBF+OM0hH1f5lS2YGjeCbn5ELlkc
-	 kJow/8QLddtPw==
-Date: Fri, 13 Oct 2023 15:10:56 +0100
-From: Mark Brown <broonie@kernel.org>
-To: wangweidong.a@awinic.com
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	perex@perex.cz, tiwai@suse.com, herve.codina@bootlin.com,
-	shumingf@realtek.com, rf@opensource.cirrus.com, arnd@arndb.de,
-	13916275206@139.com, ryans.lee@analog.com, linus.walleij@linaro.org,
-	ckeepax@opensource.cirrus.com, fido_max@inbox.ru,
-	sebastian.reichel@collabora.com, colin.i.king@gmail.com,
-	liweilei@awinic.com, trix@redhat.com, dan.carpenter@linaro.org,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw88399 amplifier driver
-Message-ID: <ZSlP8GvTAOe35peC@finisterre.sirena.org.uk>
-References: <20231013104220.279953-1-wangweidong.a@awinic.com>
- <20231013104220.279953-4-wangweidong.a@awinic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B128A1B277
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 14:33:42 +0000 (UTC)
+X-Greylist: delayed 1331 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 13 Oct 2023 07:33:39 PDT
+Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D75AABD;
+	Fri, 13 Oct 2023 07:33:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:
+	Content-Transfer-Encoding:To:From:Cc:Subject:Message-Id:Date:Content-Type:
+	Sender:Reply-To:MIME-Version:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=TxwwokEAbgE2tWmv/Wot1RPxsCzOem/ELZjKvvjAb+M=; b=TY0kQ4rYjnJByIpl42J3+RKmun
+	F+N+FRYTXPViiQDUgf3Sw+XssHSi1xvG7DzyPVg24tCIgxIoTBWg2Dy6/X657L5BFsLgp2g67H4/t
+	34dJbD1ViiCT+8j62dj/nzVi+QuXrWGANBDQ0Xkr23NORANlk/edKrUf/6n/jIKA8z61KAqvkwmYT
+	KAi3gS5dJAp3J9Z+sVR3dgutoNvFI3XGTA/YBQEn2k/CeD27ajKDvpTGG2TjWvO9GNBeUZcMvJ/93
+	IS2t0WgXks0Q6J4Ye3oJ3TT0rhI8/Ry7EHJwUCEZjGqMchg+3oPIrrSTQUYv8AggXpkUBtJefvNVP
+	5iOT6+KA==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+	by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1qrIsv-000HXg-MS; Fri, 13 Oct 2023 16:11:25 +0200
+Received: from [80.88.27.155] (helo=localhost)
+	by sslproxy02.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1qrIsk-000T92-MZ; Fri, 13 Oct 2023 16:11:24 +0200
+Content-Type: multipart/signed;
+ boundary=0377e7501be3d79d6faabf808a2de3b62744369f17e3be7eb4f7324fb286;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Fri, 13 Oct 2023 14:11:13 +0000
+Message-Id: <CW7DEUEAKEXO.KE3YKH135Y3C@folker-schwesinger.de>
+Subject: Re: [PATCH v1 0/2] Fix i2s0 pin conflict on ROCK Pi 4 RK3399 boards
+Cc: <kernel@collabora.com>, "Arnaud Ferraris"
+ <arnaud.ferraris@collabora.com>, "Brian Norris" <briannorris@chromium.org>,
+ "Caleb Connolly" <kc@postmarketos.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Corentin Labbe" <clabbe@baylibre.com>, "FUKAUMI
+ Naoki" <naoki@radxa.com>, "Heiko Stuebner" <heiko@sntech.de>, "Jagan Teki"
+ <jagan@amarulasolutions.com>, "Johan Jonker" <jbx6244@gmail.com>, "Judy
+ Hsiao" <judyhsiao@chromium.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Rick Wertenbroek"
+ <rick.wertenbroek@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Yogesh
+ Hegde" <yogi.kernel@gmail.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+From: "Folker Schwesinger" <dev@folker-schwesinger.de>
+To: "Christopher Obbard" <chris.obbard@collabora.com>,
+ <linux-rockchip@lists.infradead.org>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: aerc 0.16.0-6-gd179485eefe5
+References: <20231013114737.494410-1-chris.obbard@collabora.com>
+In-Reply-To: <20231013114737.494410-1-chris.obbard@collabora.com>
+X-Authenticated-Sender: dev@folker-schwesinger.de
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27060/Fri Oct 13 09:41:49 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ralK2eSCf+ixFXP0"
-Content-Disposition: inline
-In-Reply-To: <20231013104220.279953-4-wangweidong.a@awinic.com>
-X-Cookie: Save energy:  Drive a smaller shell.
+
+--0377e7501be3d79d6faabf808a2de3b62744369f17e3be7eb4f7324fb286
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
 
---ralK2eSCf+ixFXP0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri Oct 13, 2023 at 1:47 PM CEST, Christopher Obbard wrote:
+> i2s0 fails to probe on my Radxa ROCK 4SE and ROCK Pi 4B boards with:
+>
+>     rockchip-pinctrl pinctrl: pin gpio3-29 already requested by leds; can=
+not claim for ff880000.i2s
+>     rockchip-pinctrl pinctrl: pin-125 (ff880000.i2s) status -22
+>     rockchip-pinctrl pinctrl: could not request pin 125 (gpio3-29) from g=
+roup i2s0-8ch-bus-bclk-off  on device rockchip-pinctrl
+>     rockchip-i2s ff880000.i2s: Error applying setting, reverse things bac=
+k
+>     rockchip-i2s ff880000.i2s: bclk disable failed -22
+>
+> This is due to the pinctl attempting to request a GPIO which the boards
+> use for a different function.
+>
+> The first patch adds a missing pinctl node i2s0_2ch_bus_bclk_off to the
+> RK3399 devicetree.
+>
+> The second patch sets the i2s0 pinctrl to use the new node when idle and
+> fixes the issue.
+>
+>
+> Christopher Obbard (2):
+>   arm64: dts: rockchip: Add i2s0-2ch-bus-bclk-off pins to RK3399
+>   arm64: dts: rockchip: Fix i2s0 pin conflict on ROCK Pi 4 boards
+>
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi |  1 +
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi           | 10 ++++++++++
+>  2 files changed, 11 insertions(+)
 
-On Fri, Oct 13, 2023 at 06:42:20PM +0800, wangweidong.a@awinic.com wrote:
+Thanks, works as advertised on my Rock 4SE!
 
-This looks good - some *very* minor comments below.
+So for the entire series:
 
-> +static const struct regmap_config aw88399_remap_config = {
-> +	.val_bits = 16,
-> +	.reg_bits = 8,
-> +	.max_register = AW88399_REG_MAX - 1,
+Tested-By: Folker Schwesinger <dev@folker-schwesinger.de>
 
-I see this is already the case for the aw88261 driver but it is a bit
-weird that _REG_MAX isn't the maximum register - it looks like it should
-probably be _NUM_REG.  Not the end of the world though.
+Kind regards,
+Folker
 
-> +static int aw_dev_dsp_update_container(struct aw_device *aw_dev,
-> +			unsigned char *data, unsigned int len, unsigned short base)
-> +{
-> +	int i, ret;
-> +
-> +#ifdef AW88399_DSP_I2C_WRITES
-> +	u32 tmp_len;
-
-This looks like debug code which can hopefully be removed in favour of
-the regmap implementation?
-
-> +static int aw88399_codec_probe(struct snd_soc_component *component)
-> +{
-> +	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
-> +	struct aw88399 *aw88399 = snd_soc_component_get_drvdata(component);
-> +	int ret;
-> +
-> +	ret = aw88399_request_firmware_file(aw88399);
-> +	if (ret < 0) {
-> +		dev_err(aw88399->aw_pa->dev, "%s failed\n", __func__);
-> +		return ret;
-> +	}
-> +
-> +	INIT_DELAYED_WORK(&aw88399->start_work, aw88399_startup_work);
-> +
-> +	/* add widgets */
-> +	ret = snd_soc_dapm_new_controls(dapm, aw88399_dapm_widgets,
-> +							ARRAY_SIZE(aw88399_dapm_widgets));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* add route */
-> +	ret = snd_soc_dapm_add_routes(dapm, aw88399_audio_map,
-> +							ARRAY_SIZE(aw88399_audio_map));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = snd_soc_add_component_controls(component, aw88399_controls,
-> +							ARRAY_SIZE(aw88399_controls));
-
-You should just be able to pass these arrays in the component strucutre?
-
---ralK2eSCf+ixFXP0
+--0377e7501be3d79d6faabf808a2de3b62744369f17e3be7eb4f7324fb286
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUpT+8ACgkQJNaLcl1U
-h9CaAggAgc0J/p2bTSZNLjaIAKHFr9ldNYbl+3tMxNJwBnPfL3p07scPxSt/foY8
-rLrtsYpfxKahAjbKlN1R9JtZVYuMyUfO33ed2Ww093sWB513nZMd31yCzh1+sY1g
-DlRT6ezLSe2XTkGTt2mFyzJcqLZOIrIzfOndism4/Esuk872ziqlaMTjq/2GBLVb
-WNY4D5bUcRxlFl1jphCDCSsJYCy9lpZMLaHPWrlbJh0tq1k5r7WvJ/rG0vOhGQTN
-GT5x1j0CifyeA5x5TjI/wWuJhAVRjHxc4NYaI8806i34cybrI8JUIf98JYyD/M7+
-7xDFdzxO/GXPZzSRctMol3uf+grzhQ==
-=22g1
+iJAEABYIADgWIQQFbmi0A2l3pTuK+esCQHEyPYq7fQUCZSlQAhocZGV2QGZvbGtl
+ci1zY2h3ZXNpbmdlci5kZQAKCRACQHEyPYq7fcaaAPsFBvjaD6faGXW/mZLedAE8
+Oio8383iwlnrrWOmoshgcAEAxShIZ4xIjPkCTtOnd8Z/OI4flfytkRBns2asy9ei
+9AE=
+=n0fE
 -----END PGP SIGNATURE-----
 
---ralK2eSCf+ixFXP0--
+--0377e7501be3d79d6faabf808a2de3b62744369f17e3be7eb4f7324fb286--
 
