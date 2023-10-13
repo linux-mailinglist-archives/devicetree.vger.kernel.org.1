@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-8488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51FC37C85AB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:25:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A927C85AC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 14:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05569282E00
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:25:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D34A0B20AED
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 12:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E499C18E2E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C2618E20;
 	Fri, 13 Oct 2023 12:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E365F15E94
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CCA15E8D
 	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 12:24:33 +0000 (UTC)
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869B2C9
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:24:31 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7BDD7
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:24:32 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD6-00016C-4U; Fri, 13 Oct 2023 14:24:08 +0200
+	id 1qrHD6-00016E-4V; Fri, 13 Oct 2023 14:24:08 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD4-001OKg-UQ; Fri, 13 Oct 2023 14:24:06 +0200
+	id 1qrHD4-001OKh-VV; Fri, 13 Oct 2023 14:24:06 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qrHD4-00FiNS-2o;
+	id 1qrHD4-00FiNc-2t;
 	Fri, 13 Oct 2023 14:24:06 +0200
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: "David S. Miller" <davem@davemloft.net>,
@@ -56,10 +56,12 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	UNGLinuxDriver@microchip.com,
 	"Russell King (Oracle)" <linux@armlinux.org.uk>,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next v3 0/7] net: dsa: microchip: provide Wake on LAN support
-Date: Fri, 13 Oct 2023 14:23:58 +0200
-Message-Id: <20231013122405.3745475-1-o.rempel@pengutronix.de>
+Subject: [PATCH net-next v3 1/7] net: dsa: microchip: Add missing MAC address register offset for ksz8863
+Date: Fri, 13 Oct 2023 14:23:59 +0200
+Message-Id: <20231013122405.3745475-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231013122405.3745475-1-o.rempel@pengutronix.de>
+References: <20231013122405.3745475-1-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,42 +79,26 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-changes v3:
-- use ethernet address of DSA master instead from devicetree
-- use dev_ops->wol* instead of list of supported switch
-- don't shotdown the switch if WoL is enabled
-- rework on top of latest HSR changes
+Add the missing offset for the global MAC address register
+(REG_SW_MAC_ADDR) for the ksz8863 family of switches.
 
-changes v2:
-- rebase against latest next
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ drivers/net/dsa/microchip/ksz_common.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-This series of patches provides Wake on LAN support for the KSZ9477
-family of switches. It was tested on KSZ8565 Switch with PME pin
-attached to an external PMIC.
-
-The patch making WoL configuration persist on system shutdown will be
-send separately, since it will potentially need more discussion.
-
-Oleksij Rempel (7):
-  net: dsa: microchip: Add missing MAC address register offset for
-    ksz8863
-  net: dsa: microchip: Set unique MAC at startup for WoL support
-  net: dsa: microchip: ksz9477: add Wake on LAN support
-  net: dsa: microchip: ksz9477: add Wake on PHY event support
-  dt-bindings: net: dsa: microchip: add wakeup-source property
-  net: dsa: microchip: use wakeup-source DT property to enable PME
-    output
-  net: dsa: microchip: do not shut down the switch if WoL is active
-
- .../bindings/net/dsa/microchip,ksz.yaml       |   2 +
- drivers/net/dsa/microchip/ksz9477.c           | 116 +++++++++++++++++
- drivers/net/dsa/microchip/ksz9477.h           |   4 +
- drivers/net/dsa/microchip/ksz9477_i2c.c       |   3 +
- drivers/net/dsa/microchip/ksz_common.c        | 117 ++++++++++++++++--
- drivers/net/dsa/microchip/ksz_common.h        |   7 ++
- drivers/net/dsa/microchip/ksz_spi.c           |   3 +
- 7 files changed, 245 insertions(+), 7 deletions(-)
-
+diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+index b800ace40ce1..02fab1adb27f 100644
+--- a/drivers/net/dsa/microchip/ksz_common.c
++++ b/drivers/net/dsa/microchip/ksz_common.c
+@@ -441,6 +441,7 @@ static const u8 ksz8795_shifts[] = {
+ };
+ 
+ static const u16 ksz8863_regs[] = {
++	[REG_SW_MAC_ADDR]		= 0x70,
+ 	[REG_IND_CTRL_0]		= 0x79,
+ 	[REG_IND_DATA_8]		= 0x7B,
+ 	[REG_IND_DATA_CHECK]		= 0x7B,
 -- 
 2.39.2
 
