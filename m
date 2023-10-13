@@ -1,245 +1,158 @@
-Return-Path: <devicetree+bounces-8343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71CF57C7C5E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:56:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC0F7C7C72
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95D6E1C20909
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 03:56:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA26C282DDA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 04:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F326417C1;
-	Fri, 13 Oct 2023 03:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998505677;
+	Fri, 13 Oct 2023 04:06:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="mPnGvxQi"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="WA1+AMKx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF201C2E
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 03:56:05 +0000 (UTC)
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2459AB7
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 20:56:04 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-27cefb5ae1fso1108115a91.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 20:56:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5931879;
+	Fri, 13 Oct 2023 04:06:46 +0000 (UTC)
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E451C0;
+	Thu, 12 Oct 2023 21:06:42 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+	id AE3062001E; Fri, 13 Oct 2023 12:06:36 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1697169363; x=1697774163; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wIHLpJzADGVfsixYsPearKAep1jENI5gM5uG8d38gEE=;
-        b=mPnGvxQiKEbJlBPn5tzT2Ty5EKJFdbOMI3R8lBzoxgXAZruXWXgd61WajBOHWN6ng+
-         kPPENB5W87Am3cg0UgPw8m69dDY283P8cVEhTsHQKEZivNDYKCfjHbYfR0/q9NkrW95m
-         Ct1oxwlYj1dLfNpuyh8GdBe63ATLLWbJyksfozYxpDFyIdzORH35MDMkIvbXKPgF68y7
-         bkGX+ejpaAixWvxBGBjrvmB9kXMK2lyJAyUESv0UkierS6B0oDxPfj1m/PhrT44f4qXR
-         bTDkao8RaZzH9LRI3rl6e/uFdaSTGqwO8WTGmH1i25jWvtaMnk1SKzgHOAolR6AQBvI1
-         uh/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697169363; x=1697774163;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wIHLpJzADGVfsixYsPearKAep1jENI5gM5uG8d38gEE=;
-        b=pxN2i6XtuS76YDlyb4LcQ15ZeFaZCd1GpdNZHspuFCz1vh0UCyri2LuyXM0zpfD7+C
-         /XupSSvuk/Y7stp5SoeUE1oTC33Unv31EeutcXzh735Iq4nlLwBUIVpE0YZgXWQQZ428
-         VBPPzOUMLylldEQvnJjyQGCAFP020UEULyBL+U1kjqrhbvtSPLT+YZhegsv5gn1rNx0i
-         b37iTRMd3G0p4pkifpdTmB40oPYfrgXu/Pf0fhal1fpAAP1Ot5fX/DEoBDBlkKu/APdL
-         p/88LJGCT0h9FcQQftVU/Nd5FE3ZzDPM5JzOzR+l0ced2KOBK7Kh9s8YEYuewEuzfMFa
-         sXUw==
-X-Gm-Message-State: AOJu0Yy9hCXiMJ5i80I8UM4RlZt4maOMtV5sHAlq05XPAcBRcZgH68uk
-	nq6Cfmceri2KmT5xEMkWH+GuVNaFboSCW+q8mtySpw==
-X-Google-Smtp-Source: AGHT+IElj/scEolxQo0Jr+6lqUbHjeByQUChKuIhq69cnRLDSf1j85AU3lUtlFYNeZZTHhzt6IJ/oVftys4qYi+ykX4=
-X-Received: by 2002:a17:90b:1050:b0:27c:f4c7:57f with SMTP id
- gq16-20020a17090b105000b0027cf4c7057fmr8017881pjb.35.1697169363541; Thu, 12
- Oct 2023 20:56:03 -0700 (PDT)
+	d=codeconstruct.com.au; s=2022a; t=1697169996;
+	bh=KJt7lTCB5sxACrtL1ItOeJi93rzBwWIsEjBgwX79PAQ=;
+	h=From:To:Cc:Subject:Date;
+	b=WA1+AMKxXOSKKlQlvcJKMsxQBLNvDYwLThnW84chJOwMMByk+yer9UHXTj7Ow5bZp
+	 6Go1dc/JD7K+yqYc7q3sw7KAoJq6BvhemqAPsPYkNJezr/PbGX/eH4ZTiF9KlfQ4Vt
+	 q85qS6zWR1a5Dnn16HNQlcIEZVx43E8UKMmsZFhJIRN6bh9c0in5ML42goFRy5BE1o
+	 1HhMzxz+FC4B3+5bdbJo3MqPupM60Nihz1euKoPIaPSoKADGrgD4IJfL2sr14S/KrW
+	 U/P6aNf/S+NRpRFQcnf63GLpQfLDR2ROx/ju/sur4D84C5nsxKfKBRsuML+NTUAGj1
+	 jnLAHIgbTLerw==
+From: Matt Johnston <matt@codeconstruct.com.au>
+To: linux-i3c@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	miquel.raynal@bootlin.com
+Subject: [PATCH net-next v6 0/3] I3C MCTP net driver
+Date: Fri, 13 Oct 2023 12:06:22 +0800
+Message-ID: <20231013040628.354323-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231012121004.2127918-1-yangcong5@huaqin.corp-partner.google.com>
- <20231012121004.2127918-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=VwUHctAQXGr_6FZfTS3r0-MZaSiB8+YkfJJzrJsnZDLw@mail.gmail.com>
- <CAHwB_NKSL8vHdN8TnQY2Z04E4rDRLK5BHoryZCi2kNAwQEjisQ@mail.gmail.com> <CAD=FV=VmiS6G25JyAj4UGjU5Q9f80GcjLq1xwU4gdVyzDdk8LQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=VmiS6G25JyAj4UGjU5Q9f80GcjLq1xwU4gdVyzDdk8LQ@mail.gmail.com>
-From: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date: Fri, 13 Oct 2023 11:55:52 +0800
-Message-ID: <CAHwB_NL_RfLBmAOWqj-9iaUZEg-C2JUUveP1cn4dnR98az0BXQ@mail.gmail.com>
-Subject: Re: [v3 2/3] drm/panel: ili9882t: Avoid blurred screen from fast sleep
-To: Doug Anderson <dianders@google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
-	airlied@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-On Fri, Oct 13, 2023 at 10:28=E2=80=AFAM Doug Anderson <dianders@google.com=
-> wrote:
->
-> Hi,
->
-> On Thu, Oct 12, 2023 at 6:12=E2=80=AFPM cong yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Oct 12, 2023 at 11:15=E2=80=AFPM Doug Anderson <dianders@google=
-.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Thu, Oct 12, 2023 at 5:10=E2=80=AFAM Cong Yang
-> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > > >
-> > > > At present, we have found that there may be a problem of blurred
-> > > > screen during fast sleep/resume. The direct cause of the blurred
-> > > > screen is that the IC does not receive 0x28/0x10. Because of the
-> > > > particularity of the IC, before the panel enters sleep hid must
-> > > > stop scanning, as i2c_hid_core_suspend before ili9882t_disable.
-> > > > If move the ili9882t_enter_sleep_mode function to ili9882t_unprepar=
-e,
-> > > > touch reset will pull low before panel entersleep, which does not m=
-eet
-> > > > the timing requirements..
-> > >
-> > > The above makes me believe that the reset GPIO should be moved out of
-> > > the input driver and into the panel driver. I could just imagine that
-> > > the kernel might have some reason it wants to suspend the i2c hid
-> > > device. If that causes the panel to suddenly start failing then that
-> > > would be bad... I think we should fix this.
-> >
-> > Thanks, I will confirm with ilitek in further analysis and use "move
-> > the ili9882t_enter_sleep_mode
-> > function to ili9882t_unprepare".  Is the test failure really because
-> > the touch reset timing
-> > does not match? There is also a separate reset GPIO on the panel.
-> > Shouldn't touch reset not
-> > affect the panel?
-> >
-> > If we find a better solution I will continue upstream,=E3=80=82 So is i=
-t
-> > possible to apply this plan now?
->
-> I wouldn't be too upset at applying the current code as long as you're
-> going to continue to investigate. We can always continue to iterate on
-> it and having something working reasonably well is better than nothing
-> at all. However, I probably would wait at least 1 week before applying
-> any patch from you just simply out of courtesy to give others on the
-> mailing list time to express their comments. ...presumably we could
-> get to the bottom of the problem in that 1 week time anyway...
->
-> I'm not trying to be an obstinate pain here--I'm merely trying to make
-> sure that whatever we land will continue to work across kernel uprevs,
-> even if driver probe order / timing changes in the kernel. If the
-> panel is really so tied to the touchscreen device's reset GPIO timing
-> then it worries me. What happens, for instance, if you disable the
-> touchscreen CONFIG in the kernel? Does the panel still work, or is
-> that extra reset GPIO totally critical to the functioning of the
-> panel. If it's totally critical then it probably makes sense to move
-> to the panel driver given that the touchscreen is a panel follower
-> anyway...
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
 
-Thanks. It looks like the panel works fine after I disable the touch screen
-device. So the panel may not depend on touch screen reset.
-Need to continue investigating the root cause for current status.
+&i3c0 {
+        mctp-controller;
+}
 
->
->
-> > > > So in order to solve this problem, the IC
-> > > > can handle it through the exception mechanism when it cannot receiv=
-e
-> > > > 0x28/0x10 command. Handling exceptions requires a reset 50ms delay.
-> > > > Refer to vendor detailed analysis [1].
-> > > >
-> > > > Ilitek vendor also suggested switching the page before entering sle=
-ep to
-> > > > avoid panel IC not receiving 0x28/0x10 command.
-> > > >
-> > > > Note: 0x28 is display off, 0x10 is sleep in.
-> > > >
-> > > > [1]: https://github.com/ILITEK-LoganLin/Document/tree/main/ILITEK_P=
-ower_Sequence
-> > > >
-> > > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > > > ---
-> > > >  drivers/gpu/drm/panel/panel-ilitek-ili9882t.c | 22 +++++++++++++++=
-+++-
-> > > >  1 file changed, 21 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c b/driver=
-s/gpu/drm/panel/panel-ilitek-ili9882t.c
-> > > > index 93a40c2f1483..54ff1efb94aa 100644
-> > > > --- a/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
-> > > > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9882t.c
-> > > > @@ -463,6 +463,24 @@ static int ili9882t_init_dcs_cmd(struct ili988=
-2t *ili)
-> > > >         return 0;
-> > > >  }
-> > > >
-> > > > +static int ili9882t_switch_page(struct mipi_dsi_device *dsi, u8 pa=
-ge)
-> > > > +{
-> > > > +       int ret;
-> > > > +       const struct panel_init_cmd cmd =3D _INIT_SWITCH_PAGE_CMD(p=
-age);
-> > > > +
-> > > > +       ret =3D mipi_dsi_dcs_write(dsi, cmd.data[0],
-> > > > +                                cmd.len <=3D 1 ? NULL :
-> > > > +                                &cmd.data[1],
-> > > > +                                cmd.len - 1);
-> > > > +       if (ret) {
-> > > > +               dev_err(&dsi->dev,
-> > > > +                       "error switching panel controller page (%d)=
-\n", ret);
-> > > > +               return ret;
-> > > > +       }
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > >  static int ili9882t_enter_sleep_mode(struct ili9882t *ili)
-> > > >  {
-> > > >         struct mipi_dsi_device *dsi =3D ili->dsi;
-> > > > @@ -484,8 +502,10 @@ static int ili9882t_enter_sleep_mode(struct il=
-i9882t *ili)
-> > > >  static int ili9882t_disable(struct drm_panel *panel)
-> > > >  {
-> > > >         struct ili9882t *ili =3D to_ili9882t(panel);
-> > > > +       struct mipi_dsi_device *dsi =3D ili->dsi;
-> > > >         int ret;
-> > > >
-> > > > +       ili9882t_switch_page(dsi, 0x00);
-> > > >         ret =3D ili9882t_enter_sleep_mode(ili);
-> > > >         if (ret < 0) {
-> > > >                 dev_err(panel->dev, "failed to set panel off: %d\n"=
-, ret);
-> > > > @@ -546,7 +566,7 @@ static int ili9882t_prepare(struct drm_panel *p=
-anel)
-> > > >         gpiod_set_value(ili->enable_gpio, 1);
-> > > >         usleep_range(1000, 2000);
-> > > >         gpiod_set_value(ili->enable_gpio, 0);
-> > > > -       usleep_range(1000, 2000);
-> > > > +       usleep_range(50000, 51000);
-> > >
-> > > From my previous response, I think the above is better as msleep(50).
-> >
-> > Sorry. Will be corrected in V4.
->
-> Thanks! It's not a huge deal, but it's nice to fix.
->
-> -Doug
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
+
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
+
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against QEMU, as well as using the target mode support 
+in Aspeed's vendor tree.
+
+I3C maintainers have acked merging this through net-next tree.
+
+Thanks,
+Matt
+
+---
+
+Thank you for the review Paolo, I've made those changes.
+
+v6:
+
+- Use multiple labels for error path handling
+- Fix error handling from mctp_i3c_probe()
+- Use spinlock_bh() instead for tx_lock
+- Remove stale TODO comment (it had been tested)
+
+v5:
+
+- Use #define for constant initializer, fixes older gcc
+- Wrap lines at 80 characters, fix parenthesis alignment 
+
+v4:
+
+- Add asm/unaligned.h include
+
+v3:
+
+- Use get_unaligned_be48()
+- Use kthread_run()
+- Don't set net namespace
+
+v2:
+
+- Rebased to net-next
+- Removed unnecessary pr_ printing
+- Fixed reverse christmas tree ordering
+- Reworded DT property description to match I2C
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   6 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 755 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 817 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
+
+-- 
+2.42.0
+
 
