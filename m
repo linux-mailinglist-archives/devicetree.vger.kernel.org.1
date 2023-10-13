@@ -1,286 +1,165 @@
-Return-Path: <devicetree+bounces-8354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 835817C7CEA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:09:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953757C7D1B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 07:41:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6376B20924
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:09:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C750B208CB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 05:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C613D02A;
-	Fri, 13 Oct 2023 05:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E945663;
+	Fri, 13 Oct 2023 05:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JBpbE3KG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lpcjn1XJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EEB3D022
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:09:04 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1099B7;
-	Thu, 12 Oct 2023 22:09:02 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39D58mXY053987;
-	Fri, 13 Oct 2023 00:08:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697173728;
-	bh=2+cvJVnOhFVfgkEgfsoaZQcfvoEufy700Ckb9mO3bRs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=JBpbE3KGsfK4QZ3JWEjvjSaIG+Dwb5N/FdiUbX7eqSccXy1veHbtHcg5Xwtrt8B4m
-	 Idr/IMD3Gpgk+B+IgP7A9IEu6zkMc40rXpjPESr8/jae5HIeIj+/Wmi6QTCdXa0UxU
-	 XJnt1VyneastL9Tx8E7k9WNPk0cER4QqwqcmguOE=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39D58mc8028923
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 13 Oct 2023 00:08:48 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 13
- Oct 2023 00:08:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 13 Oct 2023 00:08:47 -0500
-Received: from [172.24.227.112] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39D58gh1101318;
-	Fri, 13 Oct 2023 00:08:43 -0500
-Message-ID: <4fed02bb-3f10-4694-800a-484d76833414@ti.com>
-Date: Fri, 13 Oct 2023 10:38:42 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCEE3D007
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 05:41:45 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA98B7;
+	Thu, 12 Oct 2023 22:41:44 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39D2iG5E009646;
+	Fri, 13 Oct 2023 05:41:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=k7srpVrEMj0jtruEIJpxYUZScvzOnfM7JeWmVEFFr2U=;
+ b=lpcjn1XJ2XPvk3Qoi+J3yETVKyweKrX755xZtx0LaKkGT36cVoKreyaFl+M4yFE+ibo4
+ D0IdtsMZzrtJBFD9chNMVLcq8es0054KlludOkaIQTFoGp08RWwYeoH99itD8Qm0AOkW
+ jGRY9Q9WeuQ2N+B2/YNvD1iPdggmUmwN9Eh+eV7KIqxRxWsud9Uoxdcj7JJloQvZZe1M
+ AaGj8F4kEWnGqcA4kcb91y6DpvG1lEi1SetMkeUcIGrlEwH4h1L1OtW1cz4gZflIIehQ
+ SYrkMGprEpMgx/ECV7TKa2fhKNldR0Ff/4WZhdIr/20I9uH+asAi12AzfvH8y11c3Ile xw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt1u8nt2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Oct 2023 05:41:38 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39D5fAYU029856
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Oct 2023 05:41:10 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 12 Oct
+ 2023 22:41:06 -0700
+Message-ID: <994a6ff0-9b6c-0ac8-9a6c-694a2abd0f4d@quicinc.com>
+Date: Fri, 13 Oct 2023 11:11:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/5] arm64: dts: ti: k3-j784s4-evm: Enable
- DisplayPort-0
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <rogerq@kernel.org>,
-        Andrew Davis
-	<afd@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
-CC: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <s-vadapalli@ti.com>,
-        <kristo@kernel.org>, <conor+dt@kernel.org>, <r-ravikumar@ti.com>,
-        <sabiya.d@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20230803080441.367341-1-j-choudhary@ti.com>
- <20230803080441.367341-5-j-choudhary@ti.com>
- <9f19e01e-6211-16eb-c911-998ee2d46161@ti.com>
- <2ddc34f9-92ad-9a0c-8044-0ec671e55e9e@ti.com>
- <06708b12-34af-bcb5-7b65-c9bdd830b9f0@ti.com>
- <7c2b0f22-95d3-2976-7999-7e65c6d9801b@ti.com>
- <435f9b99-b888-2e18-cf70-8c7d074b68be@ti.com>
- <570903b6-8239-d44a-5fac-71700804cb5d@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
 Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <570903b6-8239-d44a-5fac-71700804cb5d@ti.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <luca.weiss@fairphone.com>
+References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
+ <20231003175456.14774-3-quic_kbajaj@quicinc.com>
+ <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Bdgp0tnyLPhoGmyKiLzGk3GKDixczKwO
+X-Proofpoint-ORIG-GUID: Bdgp0tnyLPhoGmyKiLzGk3GKDixczKwO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-13_03,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxlogscore=933 clxscore=1011 adultscore=0
+ malwarescore=0 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310130049
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
-On 08/08/23 00:24, Andrew Davis wrote:
-> On 8/7/23 1:29 PM, Aradhya Bhatia wrote:
->>
->>
->> On 07-Aug-23 21:19, Andrew Davis wrote:
->>> On 8/7/23 7:56 AM, Aradhya Bhatia wrote:
->>>> Hi Jayesh,
->>>>
->>>> On 07-Aug-23 17:54, Jayesh Choudhary wrote:
->>>>> Hello Aradhya,
->>>>>
->>>>> Thank you for the review.
->>>>>
->>>>> On 05/08/23 00:52, Aradhya Bhatia wrote:
->>>>>> Hi Jayesh,
->>>>>>
->>>>>>
->>>>>> On 03-Aug-23 13:34, Jayesh Choudhary wrote:
->>>>>>> From: Rahul T R <r-ravikumar@ti.com>
->>>>>>>
->>>>>>> Enable display for J784S4 EVM.
->>>>>>>
->>>>>>> Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux
->>>>>>> for
->>>>>>> DP HPD. Add the clock frequency for serdes_refclk.
->>>>>>>
->>>>>>> Add the endpoint nodes to describe connection from:
->>>>>>> DSS => MHDP => DisplayPort connector.
->>>>>>>
->>>>>>> Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
->>>>>>> required for controlling DP power. Set status for all required nodes
->>>>>>> for DP-0 as "okay".
->>>>>>>
->>>>>>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
->>>>>>> [j-choudhary@ti.com: move all the changes together to enable DP-0 in
->>>>>>> EVM]
->>>>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->>>>>>> ---
->>>>>>>     arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 119
->>>>>>> +++++++++++++++++++++++
->>>>>>>     1 file changed, 119 insertions(+)
->>>>>
->>>>> [...]
->>>>>
->>>>>>> +        reg = <0>;
->>>>>>> +        cdns,num-lanes = <4>;
->>>>>>> +        #phy-cells = <0>;
->>>>>>> +        cdns,phy-type = <PHY_TYPE_DP>;
->>>>>>> +        resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
->>>>>>> +             <&serdes_wiz4 3>, <&serdes_wiz4 4>;
->>>>>>> +    };
->>>>>>> +};
->>>>>>> +
->>>>>>> +&mhdp {
->>>>>>> +    status = "okay";
->>>>>>> +    pinctrl-names = "default";
->>>>>>> +    pinctrl-0 = <&dp0_pins_default>;
->>>>>>> +    phys = <&serdes4_dp_link>;
->>>>>>> +    phy-names = "dpphy";
->>>>>>> +};
->>>>>>> +
->>>>>>> +&dss_ports {
->>>>>>> +    port {
->>>>>>
->>>>>> Port index has not been added here. Since this port outputs to MHDP
->>>>>> bridge, this should be "port@0", and a "reg = <0>;" property 
->>>>>> should be
->>>>>> added below (along with the address and size cells properties).
->>>>>>
->>>>>> I suppose this works functionally in this case, because the port gets
->>>>>> defaulted to "0" by the driver. But in future, when we add support 
->>>>>> for
->>>>>> other dss output(s) on j784s4-evm, the driver will need indices to
->>>>>> distinguish among them.
->>>>>>
->>>>>
->>>>> Okay. It makes sense.
->>>>> Just one thing here. Adding reg here would require it to have 
->>>>> #address-
->>>>> cells and #size-cell but since we have only single child port that too
->>>>> at reg=<0>, it would throw dtbs_check warning:
->>>>>
->>>>> arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi:1828.20-1831.5: Warning
->>>>> (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has
->>>>> single child node 'port@0', #address-cells/#size-cells are not 
->>>>> necessary
->>>>>     also defined at 
->>>>> arch/arm64/boot/dts/ti/k3-j784s4-evm.dts:911.12-919.3
->>>>>
->>>>
->>>> Okay! Was not aware about this. I still think "port@0" should be
->>>> specified instead of just "port" and the warning should be ignored, if
->>>> possible.
->>>>
->>>
->>> Do not ignore new DT check warnings, if you go with "port@0" (which you
->>> need to do as the "ti,j721e-dss" binding requires it) you must also add
->>> the #address-cells/#size-cells.
->>>
->>
->> The warning that Jayesh mentioned above comes when "port@0" is
->> mentioned, *along-with* the #address-cells/#size-cells properties.
->> Essentially, it wants us to not use "port@0" when only single port is
->> being added whose reg values is 0.
->>
->> This warning does not come when only a single port other than 0,
->> "port@1" for e.g., is being used. That's the warning, that should get
->> ignored, if possible.
->>
-> 
-> Ah, I see now.
-> 
-> Almost seems like a bug in dtc checks, but checking the code it
-> looks deliberate, although I cannot see why..
-> 
-> Rob,
-> 
-> Could you provide some guidance on why graph nodes are handled
-> this way? Seems this is valid:
-> 
-> ports {
->      #address-cells = <1>;
->      #size-cells = <0>;
-> 
->      port@1 {
->          reg = <1>;
->      };
-> }
-> 
-> but this is not:
-> 
-> ports {
->      #address-cells = <1>;
->      #size-cells = <0>;
-> 
->      port@0 {
->          reg = <0>;
->      };
-> };
-> 
-> I'm guessing we allow port 0 to not be numbered if it is the only
-> one for legacy convenience, but *forcing* it to not be numbered
-> when it would otherwise be more consistent seems overly strict.
-> 
-> Andrew
 
-Hello Rob, Krzysztof,
-
-For this series, v11 has been already reviewed by Roger and Aradhya:
-<https://lore.kernel.org/all/77701023-7bd1-4e04-aa44-0e46aa087c4f@kernel.org/>
-
-Only this warning persist. Can you ACK the series so that it can
-be queued/merged.
-If W=1 warning is not acceptable, I can revert to port description
-here in v9.
-
-Warm Regards,
-Jayesh
-
-
-
-> 
->> However, just mentioning "port@0", without the #address-cells/
->> #size-cells, would be plain wrong.
+On 10/7/2023 5:03 AM, Konrad Dybcio wrote:
+> On 3.10.2023 19:54, Komal Bajaj wrote:
+>> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
+>> platform. QCM6490 is derived from SC7280 meant for various
+>> form factor including IoT.
 >>
->> Regards
->> Aradhya
+>> Supported features are, as of now:
+>> * Debug UART
+>> * eMMC
+>> * USB
 >>
->>>
->>>> If there were only a "port@1" child node, this warning would not have
->>>> come up, and I believe "port@0" should be treated just the same.
->>>>
->>>> Moreover, while we can add these properties at a later stage as an
->>>> incremental patch, adding the size and address cells in the dtsi would
->>>> affect other platform dts files as well, that use this SoC.
->>>>
->>>> For e.g., the patch 5/5 of this series, on AM69-SK will still require
->>>> the size and address cells for its ports. The clean up then will be 
->>>> that
->>>> much more, when adding those incremental patches.
->>>>
->>>> Anyway, I will let Nishanth and Vignesh take the final call on this.
->>>>
->>>> Regards
->>>> Aradhya
->>>>
->>>>>
->>>>>>> +        dpi0_out: endpoint {
->>>>>>> +            remote-endpoint = <&dp0_in>;
->>>>>
->>>>>
->>>>> [...]
->>>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile        |   1 +
+>>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 333 +++++++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/qcm6490.dtsi    |  94 +++++++
+>>   3 files changed, 428 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>>   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
 >>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 73c3be0f8872..3a2d9dbaacce 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> new file mode 100644
+>> index 000000000000..d81a7810fd5a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> @@ -0,0 +1,333 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +#include "pm7325.dtsi"
+>> +#include "pm8350c.dtsi"
+>> +#include "pmk8350.dtsi"
+>> +#include "qcm6490.dtsi"
+> As the kernel robot pointed out, this has clearly not even been
+> compile-tested..
+
+Sorry for this.. I made this change as per the comment that I got to 
+sort the
+inclusion files in alphabetical order. Incremental build compilation 
+wasn't able
+to catch this error.
+I will move qcm6490.dtsi file inclusion before pm* files inclusion.
+
+Thanks
+Komal
+
+>
+> Konrad
+
 
