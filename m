@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE437C7DE2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:48:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 819E87C7DF9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 08:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 187241F2064D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:48:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 745981C210E6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 06:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC3946AC;
-	Fri, 13 Oct 2023 06:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E545748A;
+	Fri, 13 Oct 2023 06:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t4Isnceh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nZqqbYU9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E30110C
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:47:56 +0000 (UTC)
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24635BD
-	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:54 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-405361bba99so17717765e9.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:47:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CA83C36
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 06:48:14 +0000 (UTC)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2750210E
+	for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:48:11 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3248ac76acbso1497654f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Oct 2023 23:48:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697179672; x=1697784472; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697179690; x=1697784490; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xUk88pXA4HbgocOi/3GyNd+MEZIumOgfSFsnVzW7HfY=;
-        b=t4IsncehTjjw3Du/v4IhlUWehV+UpUfzKuSEnWaZVaXsR7VaqUKXlEDpDr9lIndVIS
-         E63y5LiPvtKpkZCOwNlTLSiFeV3vSrE8CTIq7oMYIQDKxq8QGOv6Y3jFsCDTNcZ+BOFf
-         Co/k0hq5t7rO3Kyxl8d+/PeJNFg4SuW3zUqP0Y+Iusbyw4m6F2xbI9bs9op3TFZoV6V4
-         GOM2lBbA0ZEAPpPBoxtkQZnfAF09Gj/tk8+Y8kphnI6LOFYOzhrf7Dht0a8FA1jCEjYJ
-         8BQLFerv2MKrPbbSORA1nlFD4y/0GN69fnQ1Ja3vsGSKmTi25gAT5k4N9LXPIDu3QqCv
-         +BbQ==
+        bh=dE5sPNJlVdxdAJaUOgccJq38ol73+4SQGHVkAzb1X1g=;
+        b=nZqqbYU9zcPYycqO1CfFusZaE3xx6raCFqTde1zwBrUTo6sXvm8nl6Ub0MLxd7ulLJ
+         /if9WT1KKcZFISZ3eQ8rcjFr3ToroVk2Bs9vdxtcoa3VlSAla81ubxzT59jnXz4v19In
+         +alqzNXz/UkU5w7pbuMFGC13mKnfpv2Lryc78OA7gp8WBa6+OmZuOh6qwWz0Z/h7FDfD
+         +nSka6OIRZbQf9RRePKDLYZEHASAPJtSog23eBB63GeYLFSWQjjGT9uE8ujTsV15r547
+         41eV4z7mRzuUrfNZaK5XcdbSLOuBaGNEX4hpLW7OKc2tEcY2IhBcZ130heYYVOfOE1n/
+         XiPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697179672; x=1697784472;
+        d=1e100.net; s=20230601; t=1697179690; x=1697784490;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xUk88pXA4HbgocOi/3GyNd+MEZIumOgfSFsnVzW7HfY=;
-        b=qHVwiFXa7KhaiJ55Reyy8JeLb+E5Zq2Msf+IFW5mT35pmB3QMCp0MgcymO3DtXqrMF
-         wlB9SmEQyO+hUc22ORmEKnsRpjivVRtOR/J2AsCCw4jtqRVyG0gfWvUY7+PLdaVkOOsU
-         0jlI+XTTiOhbjB3CZQcEcuHBLn9iRPywWSbEHmZCMhplLdkbm4x+6DbB0pkf7ZRg/IE8
-         EPkqlj0XaXNKST362eW64qrXn3GARhuAKBerdx0TaOQuQmYVSkG5Wx1dVg5NlwoJnZGO
-         iIhpB+wWUR7y6Gftd6FSy13Qr21KwXwFzQVnCSC6wMv+nN8rNfh4suZHapch+mm57LSW
-         g4ZA==
-X-Gm-Message-State: AOJu0YyJ3mD5Wi2ZVFZmHINsmnJiGXmAOJeBHtpJkAYKmjUOetZ9/HtU
-	FXw4SEbCSJdRh2pHcqLGkSk6nw==
-X-Google-Smtp-Source: AGHT+IFeYGhP+sg7PVhbgM3EK7/9AfDwnxbXSEaNenfXCyTHtqUSExhxPJOqPg+/T2XC+KjSGQYFaQ==
-X-Received: by 2002:adf:ea4f:0:b0:32d:8958:c570 with SMTP id j15-20020adfea4f000000b0032d8958c570mr4870366wrn.29.1697179672591;
-        Thu, 12 Oct 2023 23:47:52 -0700 (PDT)
+        bh=dE5sPNJlVdxdAJaUOgccJq38ol73+4SQGHVkAzb1X1g=;
+        b=xQm16d5hIqte7a5DcSOpEcmCJiH4yiSi6/h329b+fJvZs1rA61gXsYugPwp1vcm2FB
+         W2TGhNcH+AbLRGhRAMUOd38ekh1vNoAFdQzyiOOGZv/qRxnTiUHxFBH4nlgBhrmTkVcM
+         b8MiglWLuiWd/O8FkTH2Oj8O8KHODrpO/gJ7Qj/etm5ChMwoymg0LtGSspp8pm9EJ5Vo
+         7MtEp424IL+R2nJp0VBuYRhOOzC3XKuXHp1rhkv2vYTwOFmiut9UHDDhC4PadWInlNG+
+         OEtcS0h6tuVUjFCJ9U/JHNn3zhclv+a1OuFMkCkfaPlKNF04DLgTzc9jPPNFm1I/diu5
+         mmGg==
+X-Gm-Message-State: AOJu0YxPZ1SDe4hliKyIW9/DykatdkP26JucuVivhx3kyUXzm6lzNkXP
+	BSDTM7UlcPA5K4L/44LvZOHpOA==
+X-Google-Smtp-Source: AGHT+IEv0AtEHCE1fGbMzoA+JvtfPUy9NicLV4sqVjpMnptsodFzu3q2UMDl3x7wS9itz6dNciAVQw==
+X-Received: by 2002:adf:e947:0:b0:32d:8c57:b4f2 with SMTP id m7-20020adfe947000000b0032d8c57b4f2mr4019386wrn.37.1697179690280;
+        Thu, 12 Oct 2023 23:48:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n9-20020adff089000000b0031ad2f9269dsm19962518wro.40.2023.10.12.23.47.51
+        by smtp.gmail.com with ESMTPSA id n9-20020adff089000000b0031ad2f9269dsm19962518wro.40.2023.10.12.23.48.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Oct 2023 23:47:52 -0700 (PDT)
-Message-ID: <4d43cabf-c350-48c8-b1ef-cd6842d86ce6@linaro.org>
-Date: Fri, 13 Oct 2023 08:47:50 +0200
+        Thu, 12 Oct 2023 23:48:09 -0700 (PDT)
+Message-ID: <a97a94c3-1c1d-4a6e-a637-a40d18fc37b8@linaro.org>
+Date: Fri, 13 Oct 2023 08:48:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 04/16] dt-bindings: media: mediatek: mdp3: add
- compatible for MT8195 RSZ
+Subject: Re: [PATCH v7 05/16] dt-bindings: media: mediatek: mdp3: add
+ compatible for MT8195 WROT
 Content-Language: en-US
 To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
  <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
@@ -84,7 +84,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-5-moudy.ho@mediatek.com>
+ <20231012084037.19376-6-moudy.ho@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,7 +130,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231012084037.19376-5-moudy.ho@mediatek.com>
+In-Reply-To: <20231012084037.19376-6-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -141,10 +141,11 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 12/10/2023 10:40, Moudy Ho wrote:
-> MT8195 RSZ inherited from MT8183, add the corresponding
+> MT8195 WROT inherited from MT8183, add the corresponding
 > compatible name to it.
 > 
 > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
