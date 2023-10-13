@@ -1,208 +1,364 @@
-Return-Path: <devicetree+bounces-8427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165037C8285
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:53:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29597C8291
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 11:54:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50C2C1C20A56
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:53:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66C7C282BCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 09:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D1B111AA;
-	Fri, 13 Oct 2023 09:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B48F111AF;
+	Fri, 13 Oct 2023 09:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PGKX9A/a"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="vxE6Nr1J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9300F1118E
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:53:39 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DF6B7
-	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:53:37 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53e16f076b3so2875121a12.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 02:53:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697190815; x=1697795615; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WkuVxbIEDiPcXFcI1G0VHHSKRSTqjnTTd0Ixg+X9Clo=;
-        b=PGKX9A/a2KHJrWae4tJb/ZNjmA4lilvJgk6ZUAkEdGr7pYJfSqikTwpelQLkXYdTgZ
-         TYo2LegV9UNaFSqdZ41HMvcCuZOHO9IQqaVHo3re1MhQDAKYgtHKeQBN12j5J21g9xMy
-         dqM7PMLxFj9Zek633UWn3VzP64V46GphkN2r4KSx75bgOj5hT0NzQO09j4LlZ54t1wev
-         5H5Jcgu0vs64X1cJLdsog0S5nbiYlt7Od8DFVyS7TOUYD6UFMjqNbWXBSU47Nks52zZc
-         JNHDWA850WH4wZcZcW/pIbBN4gLtkAN1SxRARptXL6IvFI9bb+Dv6lRRANU0pFArzSuw
-         EC+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697190815; x=1697795615;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WkuVxbIEDiPcXFcI1G0VHHSKRSTqjnTTd0Ixg+X9Clo=;
-        b=tEft6bKd+W/ZLBEGhdYyurltkdf4grot78Pj9eDCO1I3i/5otDOiFUFRxbTK8HVVqk
-         raVhj2v1zPoK5QWiclfekz4wGJyuV3ZaE8pQUlCfLXABhP9mRKC1vAzLXEpknIYfDJjA
-         aCZazGxzshrelEN0ZtC7xUiUoHJAO459mo4Wi22LqYs8c46Hyn+pEqfcENoc0wyQwL9t
-         FGf5Orh2DiJn8ICGobBbcTKrOnAlyZQ6oK83D9DmxwvhAZ/hGBe7kcjiDNEPQWJNr4jl
-         ZamkKS+u3XCsutNXSa0sHLkGRXMxy0cUAQAG2L6cZWAz0BpGTAdUZWBVndC6z/vf1bdN
-         9Uyw==
-X-Gm-Message-State: AOJu0YwF3/kq+lpu7vV99NF4wX6Gxgyco1p4JQGLVaSkch2gbvi416lt
-	aIJAOZeHBVd+ndA2o01zIrb/Qg==
-X-Google-Smtp-Source: AGHT+IGjNeXVilC+CrFYPS0vWgxr62tccKu1v1YBauL0P3QvzaLroanfvTZ4YXInxShyHL84Pi653A==
-X-Received: by 2002:a17:907:61a8:b0:9bd:81c3:2a85 with SMTP id mt40-20020a17090761a800b009bd81c32a85mr5133624ejc.32.1697190815507;
-        Fri, 13 Oct 2023 02:53:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n12-20020a170906378c00b0099d45ed589csm12172789ejc.125.2023.10.13.02.53.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Oct 2023 02:53:35 -0700 (PDT)
-Message-ID: <9996a912-7b4e-4247-bb8a-716782fbcc2a@linaro.org>
-Date: Fri, 13 Oct 2023 11:53:33 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4848478
+	for <devicetree@vger.kernel.org>; Fri, 13 Oct 2023 09:54:45 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2057.outbound.protection.outlook.com [40.107.7.57])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6A9DC;
+	Fri, 13 Oct 2023 02:54:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kXemllKhyHykeMibhBG5hLOlY3Qa1/5XGF/Ef3oSJt+L9+s0SjKabwdHsIObKAqAKaGfmAeVqPrIzuL37C83Oiv72XPW+GbpcOK7Db4MkzhGc0aShjfCfazY4bZVXb7MHBVuXcn1eTyptbxOZpJtAnC/94fPsW/CSmLLYyD0ScT9o4dHmNIswtwY5TfanTt07eGdnjFRrzj3sG7HmRRkDyISqdXdA/cL2LRlpNRRGlSdlYRi75YqRVkn6YZ8xGvUEIkxwVX1L4BhKa+5kN6RaccfRnFksoHcDCW68U5OuQSbtS7RoFS7vsoWuyV0hMwWSUt0UV5DqVMegWyl64S0qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h6HAf8yRJTkZvaFcG1Jl/uiCXVE+YKygxWASEC1Rspo=;
+ b=VzJvk8YSeC8lKmgciCvcSFSINwSz+Zil1mP8utwGKUtIwafVfUyM29NPHn3bKywtbjMmi1V5fY3PaHT9/yQOVPj29BnFS8OiXXmy27cf9orBWmMdnulQQmbyvCDxqqJ5A3cX+2kp984zHLxejGmeyey1HiR24OX8HEKdxwiCGQ3kKFSYuEPXakwydKPzUdoM/mX48URf8HTfC1B1mYDehnSPHKnQov5amxAAcV74oJhfxe1IZnf6szal4bHBhcG0fBFNrR1kGpiHuJTGc6EmbhXANeo/pM/8snvPTKifUwQYOjUHGxzVDDwCksS5CwgTEDZ2DJgcSCXmc/KyQwLCLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h6HAf8yRJTkZvaFcG1Jl/uiCXVE+YKygxWASEC1Rspo=;
+ b=vxE6Nr1JydbWJ00aAqYKT/fB23SM+fHClPi8Fe+S/yo0D8FimGX3tuTyX9RY/MKYKx4Y5ABLdyOVRUetjkh8jld8pMe4UjRnBGMj+ZIe0XMbqjqS59PE4A9QvlTpwTrI2L7D8cqxTsLLSu04ttWP39EfBVEx4kgXlep8Way8Wx0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.42; Fri, 13 Oct
+ 2023 09:54:39 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::bc92:216b:11ed:db63]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::bc92:216b:11ed:db63%6]) with mapi id 15.20.6863.043; Fri, 13 Oct 2023
+ 09:54:38 +0000
+Message-ID: <811dfdb3-d5e0-443d-b7ac-6f7ef7ce22ea@wolfvision.net>
+Date: Fri, 13 Oct 2023 11:54:35 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] dt-bindings: touchscreen: add overlay-touchscreen
+ and overlay-buttons properties
+To: Rob Herring <robh@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
+ Bastian Hecht <hechtb@gmail.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230510-feature-ts_virtobj_patch-v4-0-5c6c0fc1eed6@wolfvision.net>
+ <20230510-feature-ts_virtobj_patch-v4-2-5c6c0fc1eed6@wolfvision.net>
+ <20230831114827.GA1941458-robh@kernel.org>
+Content-Language: en-US
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <20230831114827.GA1941458-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR0202CA0031.eurprd02.prod.outlook.com
+ (2603:10a6:803:14::44) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: adc: provide max34408/9 device tree
- binding document
-Content-Language: en-US
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Ivan Mikhaylov <fr0st61te@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231007234838.8748-1-fr0st61te@gmail.com>
- <20231007234838.8748-2-fr0st61te@gmail.com>
- <20231010154042.2ef667b2@jic23-huawei>
- <383064a5b0863a4a616cd60cff8d4bc18e397fd7.camel@gmail.com>
- <20231012084052.504ac930@jic23-huawei>
- <e7b74daa9d0131246fd10f47aa4128bc8f8f3177.camel@gmail.com>
- <20231013091952.00002573@Huawei.com>
- <2eafa89c-7c95-4bc1-85cb-a6d7417dcea8@linaro.org>
- <20231013100930.000043b2@Huawei.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231013100930.000043b2@Huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|PA4PR08MB7411:EE_
+X-MS-Office365-Filtering-Correlation-Id: b20a4727-593c-4a84-c6e1-08dbcbd269bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bsfYlSkIjVapsn+pwduFYkNXHvzclQ9RjMXZOE7y6jmbiTYm75E4mAsgcVq0EspQgiTcIllmK8gW6Ezs6YFwE7eO3DatcGQKP+WAXIJjqSSNWbYpgFubS0rNeGNJZ9EbE1gVL0BWp+Y7+gyD+B7/xK0cpnWqOJ+XnmVv5jLBNVwU+H39jwmHzzt1nMdYNE+RtPtXeIiXqAO1+oH9r8ARk9O9EgVIquL1Ehn1qQs8aYgu3w/enKEYf6GFsoEI3EjYjFp37WNbv6rG9zD50OQieUZukUcjJz/C2+NchSvCXQQlD4hTjNyDJ3L+ENVFHhDHgYFN4eSxhPmC6ZPrryPb/AovzVYCKfELBxtX2HGdI2eHsBjtmWiGi32mvcjzsgguramH4XZ+pPsR9LfBDrD5Uw3ujjMrG3I/8+41kiWZXbkQnSSuE7T8RcXd8VNOfPljCMHKLd7R2nIZP1PRSJrb+7V7H5ZXpLnq0zwlM7gBMDItH9xPa4m8Mg2r1utjfC8mvGZXTY0Yw43Z6nCtCb/5jwZxIO5uZjhFX5GQRNpdx5JmCIufZmnzw+noc0ROEjS/xttXO7RJTo6Au7Fldo8TWlyNg7z3FgS7Y9Oj1NIoM6XTTHYx/bH6mYSPdM3OD5rDn8ZBKnlr1vjS6SurLKlDJw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39850400004)(346002)(136003)(396003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(6512007)(86362001)(44832011)(6916009)(53546011)(66556008)(6506007)(54906003)(41300700001)(66946007)(36756003)(26005)(2616005)(5660300002)(31686004)(66476007)(38100700002)(316002)(6666004)(4326008)(8936002)(8676002)(478600001)(31696002)(6486002)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TXk4a0QrdHlrOXRXM0RWdG5YWFFpdkFmaXA0dXI1R3VONVdWSG5uUWFBdVJ2?=
+ =?utf-8?B?N001Ri9GVnltNFVnUzVXZXZQa24rZEhIUUhFam04S01NS0pqbGNzVWhrc28w?=
+ =?utf-8?B?V2pvUTkzWjdFam9zVzFWV1dwdnFsdkNVZncwakx6YzZkbGZuQ0Vid3Y2b2xT?=
+ =?utf-8?B?V0VBRUZaNFdGZHd5aGtaaHMzdkpFaDIwNURRa2w0dHdLelhSUE0yaEZKQXNU?=
+ =?utf-8?B?aFQxRnRRZHdlRGlSQUdxcjVGMUN5MDBtbzJkRHNoMGFKTmlOTjYwRUQvazdQ?=
+ =?utf-8?B?K0Zsc2NhZFhZNEdlR0xrd3d1REc5b084WWswa0laZUpidmpUWkZGOFRGL1cv?=
+ =?utf-8?B?Qjh1NjhYdEVOQjFkMUdJTWc2T3Uzb0VRZ09xRWh6RlZET2xoS1AwU0dsczFn?=
+ =?utf-8?B?Vk50ajV4cXlTK3VQQ3c3b0J0RWw4VVVCS1pMSzlTMlZ5bFlCV0Rmc1g1Vklr?=
+ =?utf-8?B?dFd4QXMrZVBDbXFVeDAyZ1V4RXRXaFlLNXFpL00weEFmMnpKKytGWGZtRGE0?=
+ =?utf-8?B?eEdYY0F5b3JQQmJlb29WZ2JyUHJVVFUzUGl2R2I4Y3FuTWx2d0JtTy9vSXFM?=
+ =?utf-8?B?ZjljcU56dGlnZDJjVTFqb04yUmFTcFZTald0WUxnMDk5cXpQUkYrcVJEOFhB?=
+ =?utf-8?B?bzZlNVloYjVQeG5CcjVDTWpBRXg2bVJ3SVp4OE1jbUFZT3UrWm40ZUh1bTJz?=
+ =?utf-8?B?bEN3VVVLUjllNjVmWW42Z0xZenl1WkViOTVTcTk5UDdxbVhwRUw5a2ZQWXBk?=
+ =?utf-8?B?T0RTaUhMUURqNU1DWGxkeHVMdmJTWjRUVFBlMUpuQkdicm5rOSt3Y3NjOHlI?=
+ =?utf-8?B?VkZuTzgrd3lTMnFyMEtXb3Y1eEdEZjFZSkwxSTVaYkU0QXh3em1sb2RkaURz?=
+ =?utf-8?B?ZG5Zb2NWVHdHcWpUV0ZvdHVKbUE3Sk1PNEVMeEZKbkxjSzhLb2lPeFhEY2tI?=
+ =?utf-8?B?OWU2QUZsaFNGc2JrUlFFbEM5ZkNjaENJZ2hCOTZHR0twaXVXWkhGcjlIVVdu?=
+ =?utf-8?B?WFB2SUhNRDc1Yy9CUEJ0WFgxcW1XeEdXVFlrNHcyQ1BMNWd0WkNmeTkvMmRG?=
+ =?utf-8?B?dS9tejMxWHBDSWtHTGViTXN6MVFFVHpqOTA2c2J1RWQxWVZ6cHRGMGVUUWVX?=
+ =?utf-8?B?OGRVa2lTNm8yMzR4WGNzT0RrWSsyL2N0anBuQkpNTkNLWmw3K0didE1NLzJU?=
+ =?utf-8?B?ejhVbnVrSTJDOUdOQnRBYTFYNXlybUpGU0o1bkFsRXpUa0xDMTFjcTlHOFB1?=
+ =?utf-8?B?TjZSRGw3TU5NYUVldnNKU2s2NjYvdnFSSGtFUzZLbG1wSWNCOE5pSlUyL3NL?=
+ =?utf-8?B?dXJ1ZTFXanE2V0NEMlRVWnAwZnJTMGxIU21QcElwZ09FaXFWUCtaUlZKcGpt?=
+ =?utf-8?B?R3poOFpwQkxQMWVLZmFlZDRscE1xaTRBUGlSaVVxVWZVODNxdXl1T2JkNXFQ?=
+ =?utf-8?B?M2pYQ3d6WUFDWW9aSWo5VE1DazlGd2tnNlJqVDBMQi9vMHRiMjgxOWlsd2hX?=
+ =?utf-8?B?SVp5T0ttVXVhM3JBYWhuZzBDb3c1Rzdpc2w1blEwcUZnRHZpenY5TG1laG5z?=
+ =?utf-8?B?VzYwQTRhRFdmd2FHVnFqMVdmRUpBUnlRWmJYSU9EWmxPSXA5M0t3SXQvT1M5?=
+ =?utf-8?B?RGJtYlJDL2orSnh5MytMN2lYOGJjbHVrQ1hNb0RybkErM0s3eTFuT0I5YlRz?=
+ =?utf-8?B?SUdBSWwvaE80bmNqQld2US96Z1dhajNuQnpxUXFJUyszc0kwRUNRS3BQS2pu?=
+ =?utf-8?B?NHB4Y1JmOXlWNWxFOVNrSlMxVjl6N040ZDJUd1hSaTdUaGNiUUlxbXk3QUla?=
+ =?utf-8?B?d0NBVmdKVXZXSGRXY2lMZDZrTHJHYllSSlFBbXdiSzVSSXJ1N0dlSkNSV1J5?=
+ =?utf-8?B?UlJqbTV1cDY5NHpUbUpReW9TWmFIQjhZNm9xMVROeHNmVEVia0VBYXFvOWpD?=
+ =?utf-8?B?T3J6MTZHRTAvK1g2K242bENnREovSXNrYmorM3JGMGc4a2ZVMFhSQURvM2hu?=
+ =?utf-8?B?enR5V0VTNk9VWk9QZVRIRUhnbE8zK0ljUW1YeURPM0RlKzcxRjMzZTNiUHpJ?=
+ =?utf-8?B?WTVyVkFmWE0xMWx2L21Ja1BPUWw2QllkZEZPckJvUnkveWdaaU1nVFlBRjRu?=
+ =?utf-8?B?bjE5anhWQ2p3cVd4SGVONzZzWjNVc3NLNE51dWdqVnRpVGY4alY0UXg2TStp?=
+ =?utf-8?B?Mmc9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: b20a4727-593c-4a84-c6e1-08dbcbd269bf
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 09:54:38.5094
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xMN5GlxleFZpg7eLTB4M8TUi/2oTYipjRrvV5zq7QalwPfegSHr3JhrQo0p/MM0CC/hnyTPfuNrfsJuytl76RM6F5a2XF0OppmmOvEwzrp8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB7411
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 13/10/2023 11:09, Jonathan Cameron wrote:
->>>>>>>> +  shtdn-enable-gpios:      
->>>>>>>
->>>>>>> I guess the review crossed with you sending v5.  There is some
->>>>>>> feedback on v4 you need
->>>>>>> to address here.      
->>>>>>
->>>>>> Jonathan, I thought I did, I've changed ena to powerdown-gpios from
->>>>>> Krzysztof's comments but about this one pin I'm still not sure, it
->>>>>> looks like *-enable-gpios (like in *-enable-gpios pins in
->>>>>> iio/frequency/adi,adf4377.yaml) pin or is it not? Or maybe any
->>>>>> other
->>>>>> suggestions about naming of this one?
->>>>>>
->>>>>> Thanks.    
->>>>>
->>>>> shutdown-gpios and make the sense (active high / low) such that
->>>>> setting
->>>>> it results in teh device being shut down.
->>>>> Or treat it as an enable and enable-gpios
->>>>>
->>>>> Something that indicates both shutdown and enable is confusing ;)
->>>>>
->>>>> Jonathan    
->>>>
->>>>
->>>> Jonathan, then I make these changes:
->>>>
->>>> powerdown-gpios: -> output-enable:  
->>> Needs to retain the gpios bit as we want the standard gpio stuff to pick
->>> them up. I'm not that keen on output-enable-gpios though.  The activity
->>> here is very much 'shutdown because of error or not enabled' I think.
->>> So perhaps we flip the sense and document that it needs to be active low?
->>>   
->>>> shtdn-enable-gpios: -> enable-gpios:
->>>>
->>>> Is it ok?  
->>>
->>> Conor, Rob, Krzysztof - you probably have a better insight into this than
->>> I do.
->>>   
+Hi Rob,
+
+On 31.08.23 13:48, Rob Herring wrote:
+> On Thu, Aug 24, 2023 at 03:17:10PM +0200, Javier Carrasco wrote:
+>> The overlay-touchscreen object defines an area within the touchscreen
+>> where touch events are reported and their coordinates get converted to
+>> the overlay origin. This object avoids getting events from areas that
+>> are physically hidden by overlay frames.
 >>
->> "enable-gpios" are for turning on a specific feature, not powering
->> on/off entire device. For example to enable regulator output.
+>> For touchscreens where overlay buttons on the touchscreen surface are
+>> provided, the overlay-buttons object contains a node for every button
+>> and the key event that should be reported when pressed.
 >>
->> "powerdown-gpios" are for turning device on/off.
+>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+>> ---
+>>  .../bindings/input/touchscreen/touchscreen.yaml    | 152 +++++++++++++++++++++
+>>  1 file changed, 152 insertions(+)
 >>
->> I don't know what do you have in your device.
-> Ok. Sounds like that what is enable-gpios above should be shutdown-gpios.
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+>> index 895592da9626..d90cbb4932b5 100644
+>> --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+>> @@ -80,6 +80,158 @@ properties:
+>>    touchscreen-y-plate-ohms:
+>>      description: Resistance of the Y-plate in Ohms
+>>  
+>> +  overlay-touchscreen:
+>> +    description: Clipped touchscreen area
+>> +
+>> +      This object can be used to describe a frame that restricts the area
+>> +      within touch events are reported, ignoring the events that occur outside
+>> +      this area. This is of special interest if the touchscreen is shipped
+>> +      with a physical overlay on top of it with a frame that hides some part
+>> +      of the original touchscreen area.
+>> +
+>> +      The x-origin and y-origin properties of this object define the offset of
+>> +      a new origin from where the touchscreen events are referenced.
+>> +      This offset is applied to the events accordingly. The x-size and y-size
+>> +      properties define the size of the overlay-touchscreen (effective area).
+>> +
+>> +      The following example shows the new touchscreen area and the new origin
+>> +      (0',0') for the touch events generated by the device.
+>> +
+>> +                   Touchscreen (full area)
+>> +         ┌────────────────────────────────────────┐
+>> +         │    ┌───────────────────────────────┐   │
+>> +         │    │                               │   │
+>> +         │    ├ y-size                        │   │
+>> +         │    │                               │   │
+>> +         │    │      overlay-touchscreen      │   │
+>> +         │    │                               │   │
+>> +         │    │                               │   │
+>> +         │    │            x-size             │   │
+>> +         │   ┌└──────────────┴────────────────┘   │
+>> +         │(0',0')                                 │
+>> +        ┌└────────────────────────────────────────┘
+>> +      (0,0)
+>> +
+>> +     where (0',0') = (0+x-origin,0+y-origin)
+> 
+> What happens if touchscreen-inverted-x/y are set?
+> 
+> Though the existing binding never defines what the non-inverted 
+> orientation is.
+> 
+This feature acts on the raw input values and the inversion is carried
+out afterwards.The events will be inverted within the defined frame,
+which is probably the expected behavior.
 
-shutdown-gpios sounds exactly the same as powerdown-gpios and it is
-already used in exactly same context.
-
-> The other case is a device output indicating whether the device is
-> shutdown.  That can happen because it was told to do so (via the other gpio),
-> or because it is in an error state. What's a good naming convention for that?
-
-There is no convention and I did not see such case so far.
-powerdown-status-gpios? powerdown-state-gpios?
-
-
+>> +
+>> +    type: object
+>> +
+>> +    properties:
+>> +      x-origin:
+>> +        description: horizontal origin of the clipped area
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +      y-origin:
+>> +        description: vertical origin of the clipped area
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +      x-size:
+>> +        description: horizontal resolution of the clipped area
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +      y-size:
+>> +        description: vertical resolution of the clipped area
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +        required:
+>> +          - x-origin
+>> +          - y-origin
+>> +          - x-size
+>> +          - y-size
+>> +
+>> +  overlay-buttons:
+>> +    description: list of nodes defining the buttons on the touchscreen
+>> +
+>> +      This object can be used to describe buttons on the touchscreen area,
+>> +      reporting the touch events on their surface as key events instead of
+>> +      the original touch events.
+>> +
+>> +      This is of special interest if the touchscreen is shipped with a
+>> +      physical overlay on top of it where a number of buttons with some
+>> +      predefined functionality are printed. In that case a specific behavior
+>> +      is expected from those buttons instead of raw touch events.
+>> +
+>> +      The overlay-buttons properties define a per-button area as well as an
+>> +      origin relative to the real touchscreen origin. Touch events within the
+>> +      button area are reported as the key event defined in the linux,code
+>> +      property. Given that the key events do not provide coordinates, the
+>> +      button origin is only used to place the button area on the touchscreen
+>> +      surface. Any event outside the overlay-buttons object is reported as a
+>> +      touch event with no coordinate transformation.
+>> +
+>> +      The following example shows a touchscreen with a single button on it
+>> +
+>> +              Touchscreen (full area)
+>> +        ┌───────────────────────────────────┐
+>> +        │                                   │
+>> +        │                                   │
+>> +        │   ┌─────────┐                     │
+>> +        │   │button 0 │                     │
+>> +        │   │KEY_POWER│                     │
+>> +        │   └─────────┘                     │
+>> +        │                                   │
+>> +        │                                   │
+>> +       ┌└───────────────────────────────────┘
+>> +     (0,0)
+>> +
+>> +      The overlay-buttons object can  be combined with the overlay-touchscreen
+>> +      object as shown in the following example. In that case only the events
+>> +      within the overlay-touchscreen object are reported as touch events.
+>> +
+>> +                  Touchscreen (full area)
+>> +        ┌─────────┬──────────────────────────────┐
+>> +        │         │                              │
+>> +        │         │    ┌───────────────────────┐ │
+>> +        │ button 0│    │                       │ │
+>> +        │KEY_POWER│    │                       │ │
+>> +        │         │    │                       │ │
+>> +        ├─────────┤    │  overlay-touchscreen  │ │
+>> +        │         │    │                       │ │
+>> +        │         │    │                       │ │
+>> +        │ button 1│    │                       │ │
+>> +        │ KEY_INFO│   ┌└───────────────────────┘ │
+>> +        │         │(0',0')                       │
+>> +       ┌└─────────┴──────────────────────────────┘
+>> +     (0,0)
+>> +
+>> +    type: object
+>> +
+>> +    patternProperties:
+>> +      '^button-':
+>> +        type: object
+>> +        description:
+>> +          Each button (key) is represented as a sub-node.
+>> +
+>> +        properties:
+>> +          label:
+>> +            $ref: /schemas/types.yaml#/definitions/string
+>> +            description: descriptive name of the button
+>> +
+>> +          linux,code: true
+>> +
+>> +          x-origin:
+>> +            description: horizontal origin of the button area
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +          y-origin:
+>> +            description: vertical origin of the button area
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +          x-size:
+>> +            description: horizontal resolution of the button area
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +          y-size:
+>> +            description: vertical resolution of the button area
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +        required:
+>> +          - linux,code
+>> +          - x-origin
+>> +          - y-origin
+>> +          - x-size
+>> +          - y-size
+> 
+> We have the same properties defined twice. Move all the common ones to a 
+> $def entry and then reference it here and in overlay-touchscreen.
+> 
+> $defs:
+>   overlay-node:
+>     type: object
+>     properties:
+>       x-origin:
+>       ...
+> 
+> And then here:
+> 
+> '^button-':
+>   $ref: '#/$defs/overlay-node
+>   unevaluatedProperties: false
+> 
+>   properties:
+>     label:
+>       ...
+> 
+> 
+> Rob
+Thank your for your feedback, I will send a next version with this
+modification in it.
 
 Best regards,
-Krzysztof
-
+Javier Carrasco
 
