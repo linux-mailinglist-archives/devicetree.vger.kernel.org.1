@@ -1,93 +1,190 @@
-Return-Path: <devicetree+bounces-8617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87B37C93C7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 11:28:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8AA27C9456
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 13:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2586C1C20965
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:28:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 577AAB20AAD
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 11:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F6463B0;
-	Sat, 14 Oct 2023 09:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9B510781;
+	Sat, 14 Oct 2023 11:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bFcq0Gjz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZiFkVXUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DD1E549
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 09:28:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6E6C433C8;
-	Sat, 14 Oct 2023 09:28:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697275734;
-	bh=ZpEO1IMYtH2irsHJdzCqFNZXRTOe6izWzOLePcvLYVQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bFcq0GjznydPaTONKjqfjV1+Nr7NZVwNPCQW5bLkxT1fQZovxY9n1S6AvO4BFzWuU
-	 TjR6cYOn61RQGer1aEsC4MPdJvFsGAslrjiZtzLUnGEUVNs91m9cmwvzq2qT5YNRcG
-	 l6zO8wCj9jejD8frT/V93xclYkS6S3IXunPiHuLvx2EL7DTPGOcqkrwE9GpJh3M1ZK
-	 bVFGRUI5GflYDnfCP5qrC+KThsY3q7iP4WZOoSlUM0lcAv1eUQc/UOZsCqUTEKyhVn
-	 hB0u8fypH9jkVxH2IVGTufXhjD17LMQI5jPHVb5xCgF+Hp2fDvLmB6JXCIV3gLeuV0
-	 n+y2+d3E6cfAw==
-Date: Sat, 14 Oct 2023 10:28:49 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90C3EAE9
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 11:32:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C6AA9;
+	Sat, 14 Oct 2023 04:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697283122; x=1728819122;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=+7rcNmKnwufjlL6AHwqt0bX7NfKG6QQIv0CPhQLel/I=;
+  b=ZiFkVXUwMSq5eLfPqzjMwZBJyXoAqY4xNBSVwX13gq7T7quBIIolpTZ1
+   4scMbml3Zl8j6IWkbXFBDMattM9Ig9/ypw0lyj7dk7y+lwR50qEUcEDQF
+   Qc841uBcl9Ginx3WVwvv/mLi4UsbKilefWZkLm/UCd3qm/GjyAUCVNmO0
+   ry/pG9hnVh6voyowWm3qKZby/Hvbm2j4kTEK02Qhl9pepRTF9nTWD+sXK
+   2MSICnns9rgEh9Q7P4nkQmjY0MTJjy1LQpNMRpKqsPMtfqN5QxB6bRMBZ
+   phD+1jRw/yL3vdCmpuOfzMQbe9q2UUsBIwgqpPQOOpmGbr7IQWzMmTJON
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="389179269"
+X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
+   d="scan'208";a="389179269"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2023 04:32:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="928745036"
+X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
+   d="scan'208";a="928745036"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga005.jf.intel.com with ESMTP; 14 Oct 2023 04:31:59 -0700
+From: niravkumar.l.rabara@intel.com
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 4/7] riscv: dts: sophgo: Separate common devices from
- cv1800b soc
-Message-ID: <20231014-scooter-blurred-995313b571ea@spud>
-References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231009112642.477337-1-inochiama@outlook.com>
- <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231013-catchable-wince-f24060feb639@spud>
- <ZSpZmsb29ZC5L9dS@xhacker>
+	Conor Dooley <conor+dt@kernel.org>,
+	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+	Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: soc: altera: convert socfpga-system.txt to yaml
+Date: Sat, 14 Oct 2023 19:29:05 +0800
+Message-Id: <20231014112905.1512650-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="a/zpBNbMNsth1Q72"
-Content-Disposition: inline
-In-Reply-To: <ZSpZmsb29ZC5L9dS@xhacker>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
---a/zpBNbMNsth1Q72
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Convert socfpga-system.txt to altr,socfpga-sys-mgr.yaml and move to
+soc directory.
 
-> Maybe this has been discussed before but I didn't find it. I'm wondering
-> the reason of adding each plic and clint binding for each SoC, can we
-> just use the thead,c900-plic for plic?
-> FWICT, arm gic dt usage follows this way, there's no binding for each SoC's
-> gic but directly use "arm,gic-v3" and so on.
+Add platform names in description for clarity. ARM(32-bit) platforms
+Cyclone5, Arria5 and Arria10 is using "altr,sys-mgr" compatible,
+while ARM64 is using "altr,sys-mgr-s10" compatible.
+Removed "cpu1-start-addr" for ARM64 as it is not required.
 
-I'm not aware of why the gic-v3 is done like this, but having different
-compatibles allows differentiation between implementations/integrations
-of this interrupt controller. I think having that ability is especially
-helpful given T-Head have open-sourced a bunch of their IP.
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
 
---a/zpBNbMNsth1Q72
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- Added detail description of changes in commit message.
+- Moved coverted yaml file to soc folder.  
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/arm/altera/socfpga-system.txt    | 25 ---------
+ .../soc/altera/altr,socfpga-sys-mgr.yaml      | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/altera/altr,socfpga-sys-mgr.yaml
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSpfUQAKCRB4tDGHoIJi
-0pX2AP4wYdW2thFcBTVUGxaO74xEyj4aQ1WBKWyE5D7v2uZ9JAEAkJn4LfRJBEGC
-c4In3tyIqVJS+5Y1dWIQO6WzcjO0tgk=
-=XuAN
------END PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
+deleted file mode 100644
+index 82edbaaa3f85..000000000000
+--- a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Altera SOCFPGA System Manager
+-
+-Required properties:
+-- compatible : "altr,sys-mgr"
+-- reg : Should contain 1 register ranges(address and length)
+-- cpu1-start-addr : CPU1 start address in hex.
+-
+-Example:
+-	 sysmgr@ffd08000 {
+-		compatible = "altr,sys-mgr";
+-		reg = <0xffd08000 0x1000>;
+-		cpu1-start-addr = <0xffd080c4>;
+-	};
+-
+-ARM64 - Stratix10
+-Required properties:
+-- compatible : "altr,sys-mgr-s10"
+-- reg : Should contain 1 register range(address and length)
+-        for system manager register.
+-
+-Example:
+-	 sysmgr@ffd12000 {
+-		compatible = "altr,sys-mgr-s10";
+-		reg = <0xffd12000 0x228>;
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/altera/altr,socfpga-sys-mgr.yaml b/Documentation/devicetree/bindings/soc/altera/altr,socfpga-sys-mgr.yaml
+new file mode 100644
+index 000000000000..b8bf63bba567
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/altera/altr,socfpga-sys-mgr.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/altera/altr,socfpga-sys-mgr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera SOCFPGA System Manager
++
++maintainers:
++  - Dinh Nguyen <dinguyen@kernel.org>
++
++properties:
++  compatible:
++    oneOf:
++      - description: Cyclone5/Arria5/Arria10
++        const: altr,sys-mgr
++      - description: Stratix10 SoC
++        items:
++          - const: altr,sys-mgr-s10
++          - const: altr,sys-mgr
++
++  reg:
++    maxItems: 1
++
++  cpu1-start-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: CPU1 start address in hex
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: altr,sys-mgr-s10
++    then:
++      properties:
++        cpu1-start-addr: false
++
++additionalProperties: false
++
++examples:
++  - |
++    sysmgr@ffd08000 {
++      compatible = "altr,sys-mgr";
++      reg = <0xffd08000 0x1000>;
++      cpu1-start-addr = <0xffd080c4>;
++    };
+-- 
+2.25.1
 
---a/zpBNbMNsth1Q72--
 
