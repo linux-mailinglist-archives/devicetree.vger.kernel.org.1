@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-8632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0632E7C951C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 17:10:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA067C951F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 17:10:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E5CF282219
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 15:10:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B4E21C20965
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 15:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD8A134C7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87EE13AF9;
 	Sat, 14 Oct 2023 15:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377A9134A0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C9A134A3
 	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 15:10:27 +0000 (UTC)
-Received: from hsmtpd-def.xspmail.jp (hsmtpd-def.xspmail.jp [202.238.198.243])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B103FCE
+Received: from hsmtpd-def.xspmail.jp (hsmtpd-def.xspmail.jp [202.238.198.237])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4CE9CC
 	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 08:10:25 -0700 (PDT)
 X-Country-Code: JP
 Received: from sakura.ysato.name (ik1-413-38519.vs.sakura.ne.jp [153.127.30.23])
 	by hsmtpd-out-0.asahinet.cluster.xspmail.jp (Halon) with ESMTPA
-	id 83d8e8af-847f-4749-ae51-a1bc9974faf3;
-	Sat, 14 Oct 2023 23:54:22 +0900 (JST)
+	id e7e1f33a-a6a0-48c9-81c1-fe0fffd66319;
+	Sat, 14 Oct 2023 23:54:23 +0900 (JST)
 Received: from SIOS1075.ysato.name (ZM005235.ppp.dion.ne.jp [222.8.5.235])
-	by sakura.ysato.name (Postfix) with ESMTPSA id 70E131C050D;
+	by sakura.ysato.name (Postfix) with ESMTPSA id CF7771C04FD;
 	Sat, 14 Oct 2023 23:54:22 +0900 (JST)
 From: Yoshinori Sato <ysato@users.sourceforge.jp>
 To: linux-sh@vger.kernel.org
@@ -38,9 +38,9 @@ Cc: Yoshinori Sato <ysato@users.sourceforge.jp>,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org
-Subject: [RFC PATCH v3 25/35] Documentation/devicetree/bindings/sh/cpus.yaml: Add SH CPU.
-Date: Sat, 14 Oct 2023 23:54:00 +0900
-Message-Id: <46ef748dd27127ef9b39fa6c97fe51e8d3422a4f.1697199949.git.ysato@users.sourceforge.jp>
+Subject: [RFC PATCH v3 26/35] arch/sh/boot/dts: SH7751R SoC Internal peripheral definition dtsi.
+Date: Sat, 14 Oct 2023 23:54:01 +0900
+Message-Id: <01c234379a48f89df5150fa2b5eae867df08d858.1697199949.git.ysato@users.sourceforge.jp>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1697199949.git.ysato@users.sourceforge.jp>
 References: <cover.1697199949.git.ysato@users.sourceforge.jp>
@@ -57,65 +57,168 @@ X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Renesas SuperH binding definition.
+Renesas SuperH SH7751R common definition.
 
 Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 ---
- .../devicetree/bindings/sh/cpus.yaml          | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sh/cpus.yaml
+ arch/sh/boot/dts/sh7751r.dtsi | 148 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 148 insertions(+)
+ create mode 100644 arch/sh/boot/dts/sh7751r.dtsi
 
-diff --git a/Documentation/devicetree/bindings/sh/cpus.yaml b/Documentation/devicetree/bindings/sh/cpus.yaml
+diff --git a/arch/sh/boot/dts/sh7751r.dtsi b/arch/sh/boot/dts/sh7751r.dtsi
 new file mode 100644
-index 000000000000..273df4dfb74e
+index 000000000000..66f71372baad
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sh/cpus.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sh/cpus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/sh/boot/dts/sh7751r.dtsi
+@@ -0,0 +1,148 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the SH7751R SoC
++ */
 +
-+title: Renesas SuperH CPUs
++#include <dt-bindings/interrupt-controller/sh_intc.h>
++#include <dt-bindings/clock/sh7750.h>
 +
-+maintainers:
-+  - Yoshinori Sato <ysato@users.sourceforge.jp>
++/ {
++	#address-cells = <1>;
++	#size-cells = <1>;
 +
-+description: |+
-+  The device tree allows to describe the layout of CPUs in a system through
-+  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
-+  defining properties for every cpu.
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+  Bindings for CPU nodes follow the Devicetree Specification, available from:
++		cpu@0 {
++		      compatible = "renesas,sh4", "renesas,sh";
++		      device_type = "cpu";
++		      reg = <0>;
++		      clocks = <&cpg SH7750_CPG_ICK>;
++		      clock-names = "ick";
++		      icache-size = <16384>;
++		      icache-line-size = <32>;
++		      dcache-size = <32768>;
++		      dcache-line-size = <32>;
++		};
++	};
 +
-+  https://www.devicetree.org/specifications/
++	xtal: oscillator {
++		#clock-cells = <0>;
++		compatible = "fixed-clock";
++		clock-frequency = <0>;
++		clock-output-names = "xtal";
++	};
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,sh4
-+      - const: renesas,sh
++	soc {
++		compatible = "simple-bus";
++		interrupt-parent = <&shintc>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
 +
-+  clock-frequency:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      CPU core clock freqency.
++		cpg: clock-controller@ffc00000 {
++			#clock-cells = <1>;
++			#power-domain-cells = <0>;
++			compatible = "renesas,sh7751r-cpg", "renesas,sh7750-cpg";
++			clocks = <&xtal>;
++			clock-names = "xtal";
++			reg = <0xffc00000 20>, <0xfe0a0000 16>;
++			reg-names = "FRQCR", "CLKSTP00";
++		};
 +
-+required:
-+  - compatible
++		shintc: interrupt-controller@ffd00000 {
++			compatible = "renesas,sh7751-intc";
++			#interrupt-cells = <2>;
++			interrupt-controller;
++			reg = <0xffd00000 20>, <0xfe080000 128>;
++			reg-names = "ICR", "INTPRI00";
++			renesas,ipr-map = IPRDEF(0x240, IPRD, IPR_B12),	/* IRL0 */
++					  IPRDEF(0x2a0, IPRD, IPR_B8),	/* IRL1 */
++					  IPRDEF(0x300, IPRD, IPR_B4),	/* IRL2 */
++					  IPRDEF(0x360, IPRD, IPR_B0),	/* IRL3 */
++					  IPRDEF(0x400, IPRA, IPR_B12),	/* TMU0 */
++					  IPRDEF(0x420, IPRA, IPR_B8),	/* TMU1 */
++					  IPRDEF(0x440, IPRA, IPR_B4),	/* TMU2 TNUI */
++					  IPRDEF(0x460, IPRA, IPR_B4),	/* TMU2 TICPI */
++					  IPRDEF(0x480, IPRA, IPR_B0),	/* RTC ATI */
++					  IPRDEF(0x4a0, IPRA, IPR_B0),	/* RTC PRI */
++					  IPRDEF(0x4c0, IPRA, IPR_B0),	/* RTC CUI */
++					  IPRDEF(0x4e0, IPRB, IPR_B4),	/* SCI ERI */
++					  IPRDEF(0x500, IPRB, IPR_B4),	/* SCI RXI */
++					  IPRDEF(0x520, IPRB, IPR_B4),	/* SCI TXI */
++					  IPRDEF(0x540, IPRB, IPR_B4),	/* SCI TEI */
++					  IPRDEF(0x560, IPRB, IPR_B12),	/* WDT */
++					  IPRDEF(0x580, IPRB, IPR_B8),	/* REF RCMI */
++					  IPRDEF(0x5a0, IPRB, IPR_B4),	/* REF ROVI */
++					  IPRDEF(0x600, IPRC, IPR_B0),	/* H-UDI */
++					  IPRDEF(0x620, IPRC, IPR_B12),	/* GPIO */
++					  IPRDEF(0x640, IPRC, IPR_B8),	/* DMAC DMTE0 */
++					  IPRDEF(0x660, IPRC, IPR_B8),	/* DMAC DMTE1 */
++					  IPRDEF(0x680, IPRC, IPR_B8),	/* DMAC DMTE2 */
++					  IPRDEF(0x6a0, IPRC, IPR_B8),	/* DMAC DMTE3 */
++					  IPRDEF(0x6c0, IPRC, IPR_B8),	/* DMAC DMAE */
++					  IPRDEF(0x700, IPRC, IPR_B4),	/* SCIF ERI */
++					  IPRDEF(0x720, IPRC, IPR_B4),	/* SCIF RXI */
++					  IPRDEF(0x740, IPRC, IPR_B4),	/* SCIF BRI */
++					  IPRDEF(0x760, IPRC, IPR_B4),	/* SCIF TXI */
++					  IPRDEF(0x780, IPRC, IPR_B8),	/* DMAC DMTE4 */
++					  IPRDEF(0x7a0, IPRC, IPR_B8),	/* DMAC DMTE5 */
++					  IPRDEF(0x7c0, IPRC, IPR_B8),	/* DMAC DMTE6 */
++					  IPRDEF(0x7e0, IPRC, IPR_B8),	/* DMAC DMTE7 */
++					  IPRDEF(0xa00, INTPRI00, IPR_B0),	/* PCIC PCISERR */
++					  IPRDEF(0xa20, INTPRI00, IPR_B4),	/* PCIC PCIDMA3 */
++					  IPRDEF(0xa40, INTPRI00, IPR_B4),	/* PCIC PCIDMA2 */
++					  IPRDEF(0xa60, INTPRI00, IPR_B4),	/* PCIC PCIDMA1 */
++					  IPRDEF(0xa80, INTPRI00, IPR_B4),	/* PCIC PCIDMA0 */
++					  IPRDEF(0xaa0, INTPRI00, IPR_B4),	/* PCIC PCIPWON */
++					  IPRDEF(0xac0, INTPRI00, IPR_B4),	/* PCIC PCIPWDWN */
++					  IPRDEF(0xae0, INTPRI00, IPR_B4),	/* PCIC PCIERR */
++					  IPRDEF(0xb00, INTPRI00, IPR_B8),	/* TMU3 */
++					  IPRDEF(0xb80, INTPRI00, IPR_B12);	/* TMU4 */
++		};
 +
-+additionalProperties: true
++		/* sci0 is rarely used, so it is not defined here. */
++		scif1: serial@ffe80000 {
++			compatible = "renesas,scif-sh7751", "renesas,scif";
++			reg = <0xffe80000 0x100>;
++			interrupts = <evt2irq(0x700) 0>,
++				     <evt2irq(0x720) 0>,
++				     <evt2irq(0x760) 0>,
++				     <evt2irq(0x740) 0>;
++			interrupt-names = "eri", "rxi", "txi", "bri";
++			clocks = <&cpg SH7750_CPG_SCIF_CLK>;
++			clock-names = "fck";
++			power-domains = <&cpg>;
++		};
 +
-+examples:
-+  - |
-+        cpus {
-+                cpu: cpu@0 {
-+                      compatible = "renesas,sh4", "renesas,sh";
-+                };
-+        };
-+...
++		/* Normally ch0 and ch1 are used, so we will define ch0 to ch2 here. */
++		tmu0: timer@ffd80000 {
++			compatible = "renesas,tmu-sh", "renesas,tmu";
++			reg = <0xffd80000 12>;
++			interrupts = <evt2irq(0x400) 0>,
++				     <evt2irq(0x420) 0>,
++				     <evt2irq(0x440) 0>,
++				     <evt2irq(0x460) 0>;
++			interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
++			clocks = <&cpg SH7750_CPG_TMU012_CLK>;
++			clock-names = "fck";
++			power-domains = <&cpg>;
++			#renesas,channels = <3>;
++		};
++
++		pcic: pci@fe200000 {
++			compatible = "renesas,pci-sh7751";
++			#address-cells = <3>;
++			#size-cells = <2>;
++			#interrupt-cells = <1>;
++			device_type = "pci";
++			bus-range = <0 0>;
++			ranges = <0x02000000 0 0xfd000000 0xfd000000 0 0x01000000>,
++				 <0x01000000 0 0x00000000 0xfe240000 0 0x00040000>;
++			reg = <0xfe200000 0x0400>,
++			      <0x0c000000 0x04000000>,
++			      <0xff800000 0x0030>;
++		};
++	};
++};
 -- 
 2.39.2
 
