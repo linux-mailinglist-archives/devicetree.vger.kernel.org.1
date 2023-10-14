@@ -1,125 +1,118 @@
-Return-Path: <devicetree+bounces-8667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B0E7C9684
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 23:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE267C968A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 23:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D7471C2093C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 21:35:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 607F31C20952
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 21:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1740D2629E;
-	Sat, 14 Oct 2023 21:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010B0262A4;
+	Sat, 14 Oct 2023 21:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B36CF4F8;
-	Sat, 14 Oct 2023 21:35:16 +0000 (UTC)
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3190CC;
-	Sat, 14 Oct 2023 14:35:14 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1e5602c12e5so1884437fac.3;
-        Sat, 14 Oct 2023 14:35:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA2D185A
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 21:44:47 +0000 (UTC)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3A5CE;
+	Sat, 14 Oct 2023 14:44:44 -0700 (PDT)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-57e40f0189aso1760528eaf.1;
+        Sat, 14 Oct 2023 14:44:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697319314; x=1697924114;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MBwRMIVROmmBQpDc6SVXosJBDiLfO3KWW/346cMaQiY=;
-        b=YKf78jn6KC/TudurfnV/D1x5YxmIAAvVBhHm3I2FmuIZIEJ/eHLYHdpbV+XNNnMWmc
-         GcFQJzgnR9qDbZ0nqg9gTLqQid5ShaN9dIvEBZaidmDXPWztv6IR4cUAUTQXhy+ONTjx
-         qDFNWq9/d2yJYobd6HNnF9DOAs9Prsvy7TeOp2L/gufpooat5ThP7HqCX8LJokUjKlyM
-         rD9wRzQ98sF/Jek7RIr/kVIOo2sJ7ZgmfDPn/cOyjM4jSDy91SVnH1E11adQzpfpUDXU
-         WNNqSc1gBrVdaLAgJsJncIJ0Umk8wS9n31xZd/4uJliGO/hCxdcSN3MY+whTYM4oXt5q
-         2B0Q==
-X-Gm-Message-State: AOJu0YxM2Q/11xoMuG6Ujo0tym190v9fY6okUZCXiwVCgbQD2PXgfpuU
-	sfl+GUAhpLdMTUpSaGogAA==
-X-Google-Smtp-Source: AGHT+IFh0ejBA0W/YnotiYIWBBpOzR7ycB6HKOGMnb3NELy6Kfr3Pi1cDDqsdVs5YRxjMJ/+og7j5g==
-X-Received: by 2002:a05:6870:b79c:b0:1e9:dd69:2fba with SMTP id ed28-20020a056870b79c00b001e9dd692fbamr5560561oab.9.1697319314080;
-        Sat, 14 Oct 2023 14:35:14 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dy40-20020a056870c7a800b001e1754b9fc1sm1221798oab.24.2023.10.14.14.35.12
+        d=1e100.net; s=20230601; t=1697319884; x=1697924684;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3CedS0UtUemXwbonN9/fFRXtk39jIVXXNQiChUqQ1fk=;
+        b=nhInuReZCfXJeuBeUQEBesKcOjpD7b3etNmic4siZwXOvjJ53hE7l5ryGSRAwzXfKQ
+         NjTvr+OP+3W8MBevbKhR76dXrcr7tzQa33oEsuHjABA3BR8NVVBrPUtp9e6nNYR8X1ZO
+         jGxL9yA70GTErMKLW9bELZEs5y3Jt0i9fFN4ze83pIXJ8KYERUsp8XlzOxMPDX5Ck08j
+         UCvncBNc54QU5SKGFvhXSxbmipamCplp0aPmV83a/4YE/KWBn5SNGrwW3x3seYAJ5xQM
+         TUt0VcKuIpDnTzWkrsE/VBE0fPJ0OY+Zx6nctUdYO26V4jSeGOgy+MPvauiLcepMNlG4
+         /s+g==
+X-Gm-Message-State: AOJu0YzXmwqhfOtw8wAHKuRapyVR8bM982wrPg6ojtz71e6P4AyJzI09
+	v5yrM7zOSkf7HJyP9rwotyY=
+X-Google-Smtp-Source: AGHT+IFkHb4GyAH4twL5cQ/no5AbXoxMjN3bWktyTKRtOuu6b+LNQXUeyS53IKdpj8GMVFuDfmZ8sg==
+X-Received: by 2002:a05:6358:6f97:b0:166:a6e3:dfc2 with SMTP id s23-20020a0563586f9700b00166a6e3dfc2mr4690514rwn.9.1697319883990;
+        Sat, 14 Oct 2023 14:44:43 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id g27-20020aa79f1b000000b0068fb9f98467sm1974370pfr.107.2023.10.14.14.44.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Oct 2023 14:35:13 -0700 (PDT)
-Received: (nullmailer pid 2970737 invoked by uid 1000);
-	Sat, 14 Oct 2023 21:35:12 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Sat, 14 Oct 2023 14:44:43 -0700 (PDT)
+Date: Sun, 15 Oct 2023 06:44:42 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+	mani@kernel.org, marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v24 00/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ support
+Message-ID: <20231014214442.GC1246721@rocinante>
+References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, Gregory Clement <gregory.clement@bootlin.com>, linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>, Christian Marangi <ansuelsmth@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org, netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, linux-arm-kernel@lists.infradead.org, Eric Dumazet <edumazet@google.com>, Conor Dooley <conor+dt@kernel.org>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20231014-marvell-88e6152-wan-led-v2-1-7fca08b68849@linaro.org>
-References: <20231014-marvell-88e6152-wan-led-v2-0-7fca08b68849@linaro.org>
- <20231014-marvell-88e6152-wan-led-v2-1-7fca08b68849@linaro.org>
-Message-Id: <169731931217.2970721.15978003644189758136.robh@kernel.org>
-Subject: Re: [PATCH net-next v2 1/5] dt-bindings: marvell: Rewrite
- MV88E6xxx in schema
-Date: Sat, 14 Oct 2023 16:35:12 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hello,
 
-On Sat, 14 Oct 2023 22:51:32 +0200, Linus Walleij wrote:
-> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
-> in YAML schema.
-> 
-> The current text binding says:
->   WARNING: This binding is currently unstable. Do not program it into a
->   FLASH never to be changed again. Once this binding is stable, this
->   warning will be removed.
-> 
-> Well that never happened before we switched to YAML markup,
-> we can't have it like this, what about fixing the mess?
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 241 +++++++++++++++++++++
->  .../devicetree/bindings/net/dsa/marvell.txt        | 109 ----------
->  MAINTAINERS                                        |   2 +-
->  3 files changed, 242 insertions(+), 110 deletions(-)
-> 
+> Add R-Car S4-8 (R-Car Gen4) PCIe controller for both host and endpoint modes.
+> To support them, modify PCIe DesignWare common codes.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied to controller/rcar, thank you!
 
-yamllint warnings/errors:
+[01/16] PCI: dwc: endpoint: Add multiple PFs support for dbi2
+        https://git.kernel.org/pci/pci/c/cca7bd87028c
+[02/16] PCI: dwc: Add dw_pcie_link_set_max_link_width()
+        https://git.kernel.org/pci/pci/c/4f3d04e53b9d
+[03/16] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
+        https://git.kernel.org/pci/pci/c/0d8ef6f3065e
+[04/16] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
+        https://git.kernel.org/pci/pci/c/42a0aaac1df2
+[05/16] PCI: dwc: Add EDMA_UNROLL capability flag
+        https://git.kernel.org/pci/pci/c/9ece6ac45d1b
+[06/16] PCI: dwc: Expose dw_pcie_ep_exit() to module
+        https://git.kernel.org/pci/pci/c/3f643b8dd982
+[07/16] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+        https://git.kernel.org/pci/pci/c/b4e028978e1e
+[08/16] PCI: dwc: Disable two BARs to avoid unnecessary memory assignment
+        https://git.kernel.org/pci/pci/c/e308528cac3e
+[09/16] dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+        https://git.kernel.org/pci/pci/c/e7bb27bdb333
+[10/16] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+        https://git.kernel.org/pci/pci/c/888d9525eaee
+[11/16] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+        https://git.kernel.org/pci/pci/c/323d6545bc64
+[12/16] PCI: Add T_PVPERL macro
+        https://git.kernel.org/pci/pci/c/bfd7a42cd940
+[13/16] PCI: rcar-gen4: Add R-Car Gen4 PCIe controller support for host mode
+        https://git.kernel.org/pci/pci/c/8386896d2eb6
+[14/16] PCI: rcar-gen4: Add endpoint mode support
+        https://git.kernel.org/pci/pci/c/32b83c68d634
+[15/16] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+        https://git.kernel.org/pci/pci/c/714e7cd07645
+[16/16] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
+        https://git.kernel.org/pci/pci/c/de45624e69e1
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231014-marvell-88e6152-wan-led-v2-1-7fca08b68849@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+	Krzysztof
 
