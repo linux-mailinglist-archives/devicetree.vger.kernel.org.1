@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-8668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE267C968A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 23:44:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 236407C96FF
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 00:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 607F31C20952
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 21:44:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD270B20BE7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 22:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010B0262A4;
-	Sat, 14 Oct 2023 21:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDC5266BD;
+	Sat, 14 Oct 2023 22:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CGbVUNAb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA2D185A
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 21:44:47 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3A5CE;
-	Sat, 14 Oct 2023 14:44:44 -0700 (PDT)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-57e40f0189aso1760528eaf.1;
-        Sat, 14 Oct 2023 14:44:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697319884; x=1697924684;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3CedS0UtUemXwbonN9/fFRXtk39jIVXXNQiChUqQ1fk=;
-        b=nhInuReZCfXJeuBeUQEBesKcOjpD7b3etNmic4siZwXOvjJ53hE7l5ryGSRAwzXfKQ
-         NjTvr+OP+3W8MBevbKhR76dXrcr7tzQa33oEsuHjABA3BR8NVVBrPUtp9e6nNYR8X1ZO
-         jGxL9yA70GTErMKLW9bELZEs5y3Jt0i9fFN4ze83pIXJ8KYERUsp8XlzOxMPDX5Ck08j
-         UCvncBNc54QU5SKGFvhXSxbmipamCplp0aPmV83a/4YE/KWBn5SNGrwW3x3seYAJ5xQM
-         TUt0VcKuIpDnTzWkrsE/VBE0fPJ0OY+Zx6nctUdYO26V4jSeGOgy+MPvauiLcepMNlG4
-         /s+g==
-X-Gm-Message-State: AOJu0YzXmwqhfOtw8wAHKuRapyVR8bM982wrPg6ojtz71e6P4AyJzI09
-	v5yrM7zOSkf7HJyP9rwotyY=
-X-Google-Smtp-Source: AGHT+IFkHb4GyAH4twL5cQ/no5AbXoxMjN3bWktyTKRtOuu6b+LNQXUeyS53IKdpj8GMVFuDfmZ8sg==
-X-Received: by 2002:a05:6358:6f97:b0:166:a6e3:dfc2 with SMTP id s23-20020a0563586f9700b00166a6e3dfc2mr4690514rwn.9.1697319883990;
-        Sat, 14 Oct 2023 14:44:43 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id g27-20020aa79f1b000000b0068fb9f98467sm1974370pfr.107.2023.10.14.14.44.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Oct 2023 14:44:43 -0700 (PDT)
-Date: Sun, 15 Oct 2023 06:44:42 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	mani@kernel.org, marek.vasut+renesas@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v24 00/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
- support
-Message-ID: <20231014214442.GC1246721@rocinante>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6CC185A;
+	Sat, 14 Oct 2023 22:16:04 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF8CC9;
+	Sat, 14 Oct 2023 15:16:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=lpa5eriPWM9dxuddCalTlYIIqTArjMNddT2P9YogWKQ=; b=CGbVUNAbfYENXWWQZdsLI67aA5
+	eYQdgeHdWWGUnp/rRrUhotFQgJSXiVVMpQY8zpUP660XQjRiwKOWSHE1Fh6uYOzZo0V7sIh+y0mYG
+	JXr+Z0TnIkkx48bmjTFB9tgcrNkdfGiQ/ZURQgHuTBH8CucPlCsVOOKmOa+FV2t/tv/s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qrmvE-002CtS-DC; Sun, 15 Oct 2023 00:15:48 +0200
+Date: Sun, 15 Oct 2023 00:15:48 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/5] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <367d2734-13bb-44f9-832c-f17b1a2194e2@lunn.ch>
+References: <20231014-marvell-88e6152-wan-led-v2-0-7fca08b68849@linaro.org>
+ <20231014-marvell-88e6152-wan-led-v2-1-7fca08b68849@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,53 +64,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20231014-marvell-88e6152-wan-led-v2-1-7fca08b68849@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description: Marvell MV88E6xxx switches have an internal mdio bus to
+> +      access switch ports, which is handled in this node.
 
-> Add R-Car S4-8 (R-Car Gen4) PCIe controller for both host and endpoint modes.
-> To support them, modify PCIe DesignWare common codes.
+This is not quite correct. For marvell,mv88e6085 and marvell,mv88e6250
+there is one MDIO bus, which can be used both internally and
+externally.
 
-Applied to controller/rcar, thank you!
+For marvell,mv88e6190, there are two MDIO buses. This one is used only
+internally, and 'mdio-external' is connected to pins for external use.
 
-[01/16] PCI: dwc: endpoint: Add multiple PFs support for dbi2
-        https://git.kernel.org/pci/pci/c/cca7bd87028c
-[02/16] PCI: dwc: Add dw_pcie_link_set_max_link_width()
-        https://git.kernel.org/pci/pci/c/4f3d04e53b9d
-[03/16] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
-        https://git.kernel.org/pci/pci/c/0d8ef6f3065e
-[04/16] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
-        https://git.kernel.org/pci/pci/c/42a0aaac1df2
-[05/16] PCI: dwc: Add EDMA_UNROLL capability flag
-        https://git.kernel.org/pci/pci/c/9ece6ac45d1b
-[06/16] PCI: dwc: Expose dw_pcie_ep_exit() to module
-        https://git.kernel.org/pci/pci/c/3f643b8dd982
-[07/16] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
-        https://git.kernel.org/pci/pci/c/b4e028978e1e
-[08/16] PCI: dwc: Disable two BARs to avoid unnecessary memory assignment
-        https://git.kernel.org/pci/pci/c/e308528cac3e
-[09/16] dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
-        https://git.kernel.org/pci/pci/c/e7bb27bdb333
-[10/16] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
-        https://git.kernel.org/pci/pci/c/888d9525eaee
-[11/16] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
-        https://git.kernel.org/pci/pci/c/323d6545bc64
-[12/16] PCI: Add T_PVPERL macro
-        https://git.kernel.org/pci/pci/c/bfd7a42cd940
-[13/16] PCI: rcar-gen4: Add R-Car Gen4 PCIe controller support for host mode
-        https://git.kernel.org/pci/pci/c/8386896d2eb6
-[14/16] PCI: rcar-gen4: Add endpoint mode support
-        https://git.kernel.org/pci/pci/c/32b83c68d634
-[15/16] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
-        https://git.kernel.org/pci/pci/c/714e7cd07645
-[16/16] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-        https://git.kernel.org/pci/pci/c/de45624e69e1
+Also, its not used to access switch ports. It is used to access PHYs
+which can connected to switch ports.
 
-	Krzysztof
+      Andrew
 
