@@ -1,181 +1,124 @@
-Return-Path: <devicetree+bounces-8643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16377C956F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:46:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE1E7C9577
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:49:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68383B20B4F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 16:46:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1CA1C2093A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 16:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354771803B;
-	Sat, 14 Oct 2023 16:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB98618633;
+	Sat, 14 Oct 2023 16:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YmPSIqUv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EHYGJqeY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C9B125B0
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 16:46:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D9BC433C7;
-	Sat, 14 Oct 2023 16:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697301970;
-	bh=UkfmNLmsfbE9sjB4/yEQF1Ft7jr9aA3XJDIvkkE44fo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=YmPSIqUvEHAxvFAjD6DrziJgMQL/SbwsYC8Z61eSceDlL32C92Ogki1SAOSWthKCk
-	 j7BwSQ5azdfLnbONZN6EkgLERGpNEOtubu/H/+IRWn7Omico3Ic+v0jNCZt6WP2nOO
-	 wWWnxMyIiioYfN1PoJh0Da524R+9v3F8SshyArfE9DABTOlbNRqRu4kXs1tpf0+Fr2
-	 bh3SUJKs9gk+wsw3oOHQcEicNxA4ntPc4ZcEhcQqO+8cC/sQhZm+FW6znO2ULQ5p2e
-	 qHevB5ZVnrnLP7eDF3UN2j8PBrRuJuD6iza2TYJ9enV0Jy3aT1ME4XiIqwCoCv5hBj
-	 y68Mw4NJGN4eA==
-Date: Sat, 14 Oct 2023 17:46:26 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jagath Jog J <jagathjog1996@gmail.com>
-Cc: andriy.shevchenko@linux.intel.com, u.kleine-koenig@pengutronix.de,
- lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linus.walleij@linaro.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: imu: Add driver for BMI323 IMU
-Message-ID: <20231014174626.3c203096@jic23-huawei>
-In-Reply-To: <20231013034808.8948-3-jagathjog1996@gmail.com>
-References: <20231013034808.8948-1-jagathjog1996@gmail.com>
-	<20231013034808.8948-3-jagathjog1996@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5567418629
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 16:49:49 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E61FAD;
+	Sat, 14 Oct 2023 09:49:46 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b96c3b4be4so475820866b.1;
+        Sat, 14 Oct 2023 09:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697302184; x=1697906984; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=veap3HUMBgA583vnOk4BmY03alSHYRQTG/HGCOjLb9g=;
+        b=EHYGJqeYCpBzoWk6D6PuIGS0dsdxmaKcp8QUfUcpzs8tZV6kSNonT25qI6xEWzyr0+
+         w7RU3E7TltjVPXRAnZ70EgNW7qvkaiy5lXnsptXK/cx+ws7ozF0SQcW9CLUcRJONXccm
+         TFA643QTBKoorlN5ssBdt50gX/eBuwYrvC4zS5Pn59CMRkxiyTb7rKub39sG0BzxaMEh
+         hC56oYgcHCDvqyp3Vb/Yy6gYaf2GkMITEoItwqy7FkIAkuY6Mq2IwDxD9Srw1klNhhEw
+         bm8nv/Hh4j9u3Z+DBTZ12G4ILNVw6RdAVZxgpDhMDxDxFWMfX+Ek/dmUnOlNSk3bquQZ
+         ITYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697302184; x=1697906984;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=veap3HUMBgA583vnOk4BmY03alSHYRQTG/HGCOjLb9g=;
+        b=vT+zIr47jOV43wTiLHaQtphUvEjfeTD8chldDnBdwiKcZ5c4VpBf4kJBthwFiUvcLh
+         whOxMOSYiY5Jr3oh3xsx+IxFltCuuHZT6PmqvQQFnXPJ+WF5or/C5y1l0TRuuLciA7CR
+         hKztji374CBe1Ui+PV5IxGgAbaqVfC8bp2dk/Tagstb+95Lgu7K7aWjpBiTJ6Xv++7Wl
+         C2OD7BH/j8UpXiE6EAW6r0qlHUvuvCKl2e4p3Ee+P+PouK06Vl+aTHjd7gXT3gfgP/Iu
+         gJ2Ql9gagiu7CQuSaDMZ4mqVAXXHO+hmzv5yTkhLgdUYI5vmZkqJWeRSaUw5k2CnhlrA
+         GAaw==
+X-Gm-Message-State: AOJu0YzN7/Uf/+G92ZlRAQv4EJbuKdyvnOHURu7GX1GMemkq6Oy5BQXn
+	uBuQDnifaLhrC9Eex+JPiGY=
+X-Google-Smtp-Source: AGHT+IE+stZPfZFt/v8+kjd4oYjAoJOqwImXshPcHDylzFE0ASyB4jB90tYB51ZrQ4N7mmapG3cYdg==
+X-Received: by 2002:a17:907:8691:b0:9be:d217:40b7 with SMTP id qa17-20020a170907869100b009bed21740b7mr1559152ejc.32.1697302184285;
+        Sat, 14 Oct 2023 09:49:44 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3664:9329:4692:d4de:7b69])
+        by smtp.gmail.com with ESMTPSA id w23-20020a170907271700b009b654751c14sm1120727ejk.47.2023.10.14.09.49.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Oct 2023 09:49:44 -0700 (PDT)
+From: Nik Bune <n2h9z4@gmail.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	skhan@linuxfoundation.org,
+	stwiss.opensource@diasemi.com
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [v2 PATCH] dt-bindings: watchdog: da9062-wdt: convert txt to yaml
+Date: Sat, 14 Oct 2023 18:49:42 +0200
+Message-Id: <20231014164942.154468-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231012-flaky-humvee-0a0532621940@spud>
+References: <20231012-flaky-humvee-0a0532621940@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 13 Oct 2023 09:18:08 +0530
-Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>This property is a boolean...
+>
+>> +    description:
+>> +      Set what happens on watchdog timeout. If this bit is set the
+>> +      watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
+>> +      POWERDOWN. Can be 0 or 1.
+>
+>... but you say "can be 0 or 1". Does this refer to the bit value, or
+>the property? There are no in-kernel users of this property as far as a
+>quick grep shows so it is a bi hard to tell.
+>
+>Otherwise, I'm happy with this.
+>
+>Thanks,
+>Conor.
 
-> The Bosch BMI323 is a 6-axis low-power IMU that provide measurements for
-> acceleration, angular rate, and temperature. This sensor includes
-> motion-triggered interrupt features, such as a step counter, tap detection,
-> and activity/inactivity interrupt capabilities.
-> 
-> The driver supports various functionalities, including data ready, FIFO
-> data handling, and events such as tap detection, step counting, and
-> activity interrupts.
-> 
-> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
-Hi Jagath,
+Hello, thank you for your review!
 
-Nice driver.
+Good point. 
+It looks like it is related to property itself. 
 
-We are rapidly approaching the end of this cycle and as this is a
-large driver, I think it could do to remain on list at least a week
-before I apply it or until it picks up some tags from others if that
-happens sooner. Hence I'm afraid it might well sneak into next cycle.
+I checked other bindings, like https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/adc/adi%2Cad7192.yaml . They have fields of type boolean with description “When this bit is set to 1”.
+So I put it as boolean.
 
-A couple of really small things in the docs and build files from me.
+I have just checked a couple more, and looks like they are mostly uint32 types with enum, when it goes about 0, 1 bit value in a description.  
+$ref: /schemas/types.yaml#/definitions/uint32
+enum: [0, 1]
 
-Jonathan
+I will update. 
 
-> ---
->  Documentation/ABI/testing/sysfs-bus-iio |   18 +
->  MAINTAINERS                             |    7 +
->  drivers/iio/imu/Kconfig                 |    1 +
->  drivers/iio/imu/Makefile                |    1 +
->  drivers/iio/imu/bmi323/Kconfig          |   33 +
->  drivers/iio/imu/bmi323/Makefile         |    7 +
->  drivers/iio/imu/bmi323/bmi323.h         |  209 +++
->  drivers/iio/imu/bmi323/bmi323_core.c    | 2139 +++++++++++++++++++++++
->  drivers/iio/imu/bmi323/bmi323_i2c.c     |  121 ++
->  drivers/iio/imu/bmi323/bmi323_spi.c     |   92 +
->  10 files changed, 2628 insertions(+)
->  create mode 100644 drivers/iio/imu/bmi323/Kconfig
->  create mode 100644 drivers/iio/imu/bmi323/Makefile
->  create mode 100644 drivers/iio/imu/bmi323/bmi323.h
->  create mode 100644 drivers/iio/imu/bmi323/bmi323_core.c
->  create mode 100644 drivers/iio/imu/bmi323/bmi323_i2c.c
->  create mode 100644 drivers/iio/imu/bmi323/bmi323_spi.c
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 19cde14f3869..c66fc560ee4b 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -2254,3 +2254,21 @@ Description:
->  		If a label is defined for this event add that to the event
->  		specific attributes. This is useful for userspace to be able to
->  		better identify an individual event.
-> +
-> +What:		/sys/.../events/in_accel_gesture_tap_wait_timeout
-> +KernelVersion:	6.7
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Enable tap gesture confirmation with timeout.
-
-> +
-> +What:		/sys/.../events/in_accel_gesture_tap_wait_dur
-> +KernelVersion:	6.7
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Timeout value for tap gesture confirmation.
-
-Units need to be specified.  Seconds?
-
-> +
-> +What:		/sys/.../events/in_accel_gesture_tap_wait_dur_available
-> +KernelVersion:	6.7
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		List of available timeout value for tap gesture confirmation.
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4e07c032d06a..47ca415212a7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3595,6 +3595,13 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/accel/bosch,bma400.yaml
->  F:	drivers/iio/accel/bma400*
->  
-> +BOSCH SENSORTEC BMI323 IMU IIO DRIVER
-> +M:	Jagath Jog J <jagathjog1996@gmail.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/imu/bosch,bma400.yaml
-> +F:	drivers/iio/imu/bmi323/
-> +
->  BPF JIT for ARM
->  M:	Shubham Bansal <illusionist.neo@gmail.com>
->  L:	bpf@vger.kernel.org
-> diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
-> index c2f97629e9cd..6c9a85294bc1 100644
-> --- a/drivers/iio/imu/Kconfig
-> +++ b/drivers/iio/imu/Kconfig
-> @@ -54,6 +54,7 @@ config ADIS16480
->  
->  source "drivers/iio/imu/bmi160/Kconfig"
->  source "drivers/iio/imu/bno055/Kconfig"
-> +source "drivers/iio/imu/bmi323/Kconfig"
-Same on ordering.
->  
->  config FXOS8700
->  	tristate
-> diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
-> index 6eb612034722..627406476357 100644
-> --- a/drivers/iio/imu/Makefile
-> +++ b/drivers/iio/imu/Makefile
-> @@ -16,6 +16,7 @@ obj-$(CONFIG_IIO_ADIS_LIB) += adis_lib.o
->  
->  obj-y += bmi160/
->  obj-y += bno055/
-> +obj-y += bmi323/ 
-Alphabetical order. 
-
-> diff --git a/drivers/iio/imu/bmi323/bmi323_core.c b/drivers/iio/imu/bmi323/bmi323_core.c
-> new file mode 100644
-> index 000000000000..0bd5dedd9a63
-> --- /dev/null
-> +++ b/drivers/iio/imu/bmi323/bmi323_core.c
-> @@ -0,0 +1,2139 @@
-
+Thank you. 
 
