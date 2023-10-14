@@ -1,52 +1,49 @@
-Return-Path: <devicetree+bounces-8642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD537C954D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:16:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16377C956F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:46:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B15D1C2085A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 16:16:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68383B20B4F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 16:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E220E14280;
-	Sat, 14 Oct 2023 16:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354771803B;
+	Sat, 14 Oct 2023 16:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1EmAge9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YmPSIqUv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C320712B90
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 16:16:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA56AC433C8;
-	Sat, 14 Oct 2023 16:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C9B125B0
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 16:46:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D9BC433C7;
+	Sat, 14 Oct 2023 16:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697300166;
-	bh=bloyWWM50cgSdXW/M/ONp1t9BKdvFll8JAVkflss0qk=;
+	s=k20201202; t=1697301970;
+	bh=UkfmNLmsfbE9sjB4/yEQF1Ft7jr9aA3XJDIvkkE44fo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=X1EmAge9ScIen7JtkLBWghNUQoZoy6NrdY9FNXqGPKimSOb8r1kTs7tfdeHZNPfu/
-	 RNDhoI+VmRsexi0e0SXt+tc9EIjIPw60d/r6XV28LspIuwRUvGBI3kd8QaKzeGm5xO
-	 hc/5VkpxH39bziNl07SEOdU0vq5RzDq1C+FQf1b2uytuIYtSFAbraSQ6PvaYPMD+Pn
-	 fDZIA1nVe7FPGRpjsmAY+UsrMBb+u1HJKuhcDz0z/XmCgGRHTvAA2+eIWNZkz3ZVvN
-	 EKkF8OvaUP1rPC18c8k7C6IkJHXQOQepCuXFEWq/hN9YlRf09M9E5jQs+JwqPpkXfK
-	 ACSuaD8wHHS9w==
-Date: Sat, 14 Oct 2023 17:16:19 +0100
+	b=YmPSIqUvEHAxvFAjD6DrziJgMQL/SbwsYC8Z61eSceDlL32C92Ogki1SAOSWthKCk
+	 j7BwSQ5azdfLnbONZN6EkgLERGpNEOtubu/H/+IRWn7Omico3Ic+v0jNCZt6WP2nOO
+	 wWWnxMyIiioYfN1PoJh0Da524R+9v3F8SshyArfE9DABTOlbNRqRu4kXs1tpf0+Fr2
+	 bh3SUJKs9gk+wsw3oOHQcEicNxA4ntPc4ZcEhcQqO+8cC/sQhZm+FW6znO2ULQ5p2e
+	 qHevB5ZVnrnLP7eDF3UN2j8PBrRuJuD6iza2TYJ9enV0Jy3aT1ME4XiIqwCoCv5hBj
+	 y68Mw4NJGN4eA==
+Date: Sat, 14 Oct 2023 17:46:26 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] iio: adc: Add PM7325 PMIC7 ADC bindings
-Message-ID: <20231014171619.7b7ea921@jic23-huawei>
-In-Reply-To: <20231013-fp5-thermals-v1-1-f14df01922e6@fairphone.com>
-References: <20231013-fp5-thermals-v1-0-f14df01922e6@fairphone.com>
-	<20231013-fp5-thermals-v1-1-f14df01922e6@fairphone.com>
+To: Jagath Jog J <jagathjog1996@gmail.com>
+Cc: andriy.shevchenko@linux.intel.com, u.kleine-koenig@pengutronix.de,
+ lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ linus.walleij@linaro.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: imu: Add driver for BMI323 IMU
+Message-ID: <20231014174626.3c203096@jic23-huawei>
+In-Reply-To: <20231013034808.8948-3-jagathjog1996@gmail.com>
+References: <20231013034808.8948-1-jagathjog1996@gmail.com>
+	<20231013034808.8948-3-jagathjog1996@gmail.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,97 +54,128 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 13 Oct 2023 10:09:53 +0200
-Luca Weiss <luca.weiss@fairphone.com> wrote:
+On Fri, 13 Oct 2023 09:18:08 +0530
+Jagath Jog J <jagathjog1996@gmail.com> wrote:
 
-> Add the defines for the ADC channels found on the PM7325. The list is
-> taken from downstream msm-5.4 and adjusted for mainline.
+> The Bosch BMI323 is a 6-axis low-power IMU that provide measurements for
+> acceleration, angular rate, and temperature. This sensor includes
+> motion-triggered interrupt features, such as a step counter, tap detection,
+> and activity/inactivity interrupt capabilities.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> The driver supports various functionalities, including data ready, FIFO
+> data handling, and events such as tap detection, step counting, and
+> activity interrupts.
+> 
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+Hi Jagath,
 
-I assume this will go with the dts changes that use it.
+Nice driver.
 
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+We are rapidly approaching the end of this cycle and as this is a
+large driver, I think it could do to remain on list at least a week
+before I apply it or until it picks up some tags from others if that
+happens sooner. Hence I'm afraid it might well sneak into next cycle.
+
+A couple of really small things in the docs and build files from me.
+
+Jonathan
 
 > ---
->  include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h | 69 +++++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
+>  Documentation/ABI/testing/sysfs-bus-iio |   18 +
+>  MAINTAINERS                             |    7 +
+>  drivers/iio/imu/Kconfig                 |    1 +
+>  drivers/iio/imu/Makefile                |    1 +
+>  drivers/iio/imu/bmi323/Kconfig          |   33 +
+>  drivers/iio/imu/bmi323/Makefile         |    7 +
+>  drivers/iio/imu/bmi323/bmi323.h         |  209 +++
+>  drivers/iio/imu/bmi323/bmi323_core.c    | 2139 +++++++++++++++++++++++
+>  drivers/iio/imu/bmi323/bmi323_i2c.c     |  121 ++
+>  drivers/iio/imu/bmi323/bmi323_spi.c     |   92 +
+>  10 files changed, 2628 insertions(+)
+>  create mode 100644 drivers/iio/imu/bmi323/Kconfig
+>  create mode 100644 drivers/iio/imu/bmi323/Makefile
+>  create mode 100644 drivers/iio/imu/bmi323/bmi323.h
+>  create mode 100644 drivers/iio/imu/bmi323/bmi323_core.c
+>  create mode 100644 drivers/iio/imu/bmi323/bmi323_i2c.c
+>  create mode 100644 drivers/iio/imu/bmi323/bmi323_spi.c
 > 
-> diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h b/include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 19cde14f3869..c66fc560ee4b 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -2254,3 +2254,21 @@ Description:
+>  		If a label is defined for this event add that to the event
+>  		specific attributes. This is useful for userspace to be able to
+>  		better identify an individual event.
+> +
+> +What:		/sys/.../events/in_accel_gesture_tap_wait_timeout
+> +KernelVersion:	6.7
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Enable tap gesture confirmation with timeout.
+
+> +
+> +What:		/sys/.../events/in_accel_gesture_tap_wait_dur
+> +KernelVersion:	6.7
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Timeout value for tap gesture confirmation.
+
+Units need to be specified.  Seconds?
+
+> +
+> +What:		/sys/.../events/in_accel_gesture_tap_wait_dur_available
+> +KernelVersion:	6.7
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		List of available timeout value for tap gesture confirmation.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4e07c032d06a..47ca415212a7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3595,6 +3595,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/accel/bosch,bma400.yaml
+>  F:	drivers/iio/accel/bma400*
+>  
+> +BOSCH SENSORTEC BMI323 IMU IIO DRIVER
+> +M:	Jagath Jog J <jagathjog1996@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/imu/bosch,bma400.yaml
+> +F:	drivers/iio/imu/bmi323/
+> +
+>  BPF JIT for ARM
+>  M:	Shubham Bansal <illusionist.neo@gmail.com>
+>  L:	bpf@vger.kernel.org
+> diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
+> index c2f97629e9cd..6c9a85294bc1 100644
+> --- a/drivers/iio/imu/Kconfig
+> +++ b/drivers/iio/imu/Kconfig
+> @@ -54,6 +54,7 @@ config ADIS16480
+>  
+>  source "drivers/iio/imu/bmi160/Kconfig"
+>  source "drivers/iio/imu/bno055/Kconfig"
+> +source "drivers/iio/imu/bmi323/Kconfig"
+Same on ordering.
+>  
+>  config FXOS8700
+>  	tristate
+> diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
+> index 6eb612034722..627406476357 100644
+> --- a/drivers/iio/imu/Makefile
+> +++ b/drivers/iio/imu/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_IIO_ADIS_LIB) += adis_lib.o
+>  
+>  obj-y += bmi160/
+>  obj-y += bno055/
+> +obj-y += bmi323/ 
+Alphabetical order. 
+
+> diff --git a/drivers/iio/imu/bmi323/bmi323_core.c b/drivers/iio/imu/bmi323/bmi323_core.c
 > new file mode 100644
-> index 000000000000..96908014e09e
+> index 000000000000..0bd5dedd9a63
 > --- /dev/null
-> +++ b/include/dt-bindings/iio/qcom,spmi-adc7-pm7325.h
-> @@ -0,0 +1,69 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_QCOM_SPMI_VADC_PM7325_H
-> +#define _DT_BINDINGS_QCOM_SPMI_VADC_PM7325_H
-> +
-> +#ifndef PM7325_SID
-> +#define PM7325_SID					1
-> +#endif
-> +
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +
-> +/* ADC channels for PM7325_ADC for PMIC7 */
-> +#define PM7325_ADC7_REF_GND			(PM7325_SID << 8 | ADC7_REF_GND)
-> +#define PM7325_ADC7_1P25VREF			(PM7325_SID << 8 | ADC7_1P25VREF)
-> +#define PM7325_ADC7_VREF_VADC			(PM7325_SID << 8 | ADC7_VREF_VADC)
-> +#define PM7325_ADC7_DIE_TEMP			(PM7325_SID << 8 | ADC7_DIE_TEMP)
-> +
-> +#define PM7325_ADC7_AMUX_THM1			(PM7325_SID << 8 | ADC7_AMUX_THM1)
-> +#define PM7325_ADC7_AMUX_THM2			(PM7325_SID << 8 | ADC7_AMUX_THM2)
-> +#define PM7325_ADC7_AMUX_THM3			(PM7325_SID << 8 | ADC7_AMUX_THM3)
-> +#define PM7325_ADC7_AMUX_THM4			(PM7325_SID << 8 | ADC7_AMUX_THM4)
-> +#define PM7325_ADC7_AMUX_THM5			(PM7325_SID << 8 | ADC7_AMUX_THM5)
-> +#define PM7325_ADC7_GPIO1			(PM7325_SID << 8 | ADC7_GPIO1)
-> +#define PM7325_ADC7_GPIO2			(PM7325_SID << 8 | ADC7_GPIO2)
-> +#define PM7325_ADC7_GPIO3			(PM7325_SID << 8 | ADC7_GPIO3)
-> +#define PM7325_ADC7_GPIO4			(PM7325_SID << 8 | ADC7_GPIO4)
-> +
-> +/* 30k pull-up1 */
-> +#define PM7325_ADC7_AMUX_THM1_30K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM1_30K_PU)
-> +#define PM7325_ADC7_AMUX_THM2_30K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM2_30K_PU)
-> +#define PM7325_ADC7_AMUX_THM3_30K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM3_30K_PU)
-> +#define PM7325_ADC7_AMUX_THM4_30K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM4_30K_PU)
-> +#define PM7325_ADC7_AMUX_THM5_30K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM5_30K_PU)
-> +#define PM7325_ADC7_GPIO1_30K_PU		(PM7325_SID << 8 | ADC7_GPIO1_30K_PU)
-> +#define PM7325_ADC7_GPIO2_30K_PU		(PM7325_SID << 8 | ADC7_GPIO2_30K_PU)
-> +#define PM7325_ADC7_GPIO3_30K_PU		(PM7325_SID << 8 | ADC7_GPIO3_30K_PU)
-> +#define PM7325_ADC7_GPIO4_30K_PU		(PM7325_SID << 8 | ADC7_GPIO4_30K_PU)
-> +
-> +/* 100k pull-up2 */
-> +#define PM7325_ADC7_AMUX_THM1_100K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM1_100K_PU)
-> +#define PM7325_ADC7_AMUX_THM2_100K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM2_100K_PU)
-> +#define PM7325_ADC7_AMUX_THM3_100K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM3_100K_PU)
-> +#define PM7325_ADC7_AMUX_THM4_100K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM4_100K_PU)
-> +#define PM7325_ADC7_AMUX_THM5_100K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM5_100K_PU)
-> +#define PM7325_ADC7_GPIO1_100K_PU		(PM7325_SID << 8 | ADC7_GPIO1_100K_PU)
-> +#define PM7325_ADC7_GPIO2_100K_PU		(PM7325_SID << 8 | ADC7_GPIO2_100K_PU)
-> +#define PM7325_ADC7_GPIO3_100K_PU		(PM7325_SID << 8 | ADC7_GPIO3_100K_PU)
-> +#define PM7325_ADC7_GPIO4_100K_PU		(PM7325_SID << 8 | ADC7_GPIO4_100K_PU)
-> +
-> +/* 400k pull-up3 */
-> +#define PM7325_ADC7_AMUX_THM1_400K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM1_400K_PU)
-> +#define PM7325_ADC7_AMUX_THM2_400K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM2_400K_PU)
-> +#define PM7325_ADC7_AMUX_THM3_400K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM3_400K_PU)
-> +#define PM7325_ADC7_AMUX_THM4_400K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM4_400K_PU)
-> +#define PM7325_ADC7_AMUX_THM5_400K_PU		(PM7325_SID << 8 | ADC7_AMUX_THM5_400K_PU)
-> +#define PM7325_ADC7_GPIO1_400K_PU		(PM7325_SID << 8 | ADC7_GPIO1_400K_PU)
-> +#define PM7325_ADC7_GPIO2_400K_PU		(PM7325_SID << 8 | ADC7_GPIO2_400K_PU)
-> +#define PM7325_ADC7_GPIO3_400K_PU		(PM7325_SID << 8 | ADC7_GPIO3_400K_PU)
-> +#define PM7325_ADC7_GPIO4_400K_PU		(PM7325_SID << 8 | ADC7_GPIO4_400K_PU)
-> +
-> +/* 1/3 Divider */
-> +#define PM7325_ADC7_GPIO4_DIV3			(PM7325_SID << 8 | ADC7_GPIO4_DIV3)
-> +
-> +#define PM7325_ADC7_VPH_PWR			(PM7325_SID << 8 | ADC7_VPH_PWR)
-> +
-> +#endif /* _DT_BINDINGS_QCOM_SPMI_VADC_PM7325_H */
-> 
+> +++ b/drivers/iio/imu/bmi323/bmi323_core.c
+> @@ -0,0 +1,2139 @@
 
 
