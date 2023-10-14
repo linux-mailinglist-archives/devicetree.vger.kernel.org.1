@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-8639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 357FC7C9524
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 17:10:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4337C9522
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 17:10:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9310B20C8B
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBD271C209DE
 	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 15:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B37615E90;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E7715EB8;
 	Sat, 14 Oct 2023 15:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91836134D5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9AAA13AC8
 	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 15:10:30 +0000 (UTC)
-Received: from hsmtpd-def.xspmail.jp (hsmtpd-def.xspmail.jp [202.238.198.242])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECA75DA
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 08:10:27 -0700 (PDT)
+Received: from hsmtpd-def.xspmail.jp (hsmtpd-def.xspmail.jp [202.238.198.239])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F671DC
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 08:10:28 -0700 (PDT)
 X-Country-Code: JP
 Received: from sakura.ysato.name (ik1-413-38519.vs.sakura.ne.jp [153.127.30.23])
-	by hsmtpd-out-2.asahinet.cluster.xspmail.jp (Halon) with ESMTPA
-	id 604aaef4-7250-4120-b97d-7e731a4a5916;
+	by hsmtpd-out-1.asahinet.cluster.xspmail.jp (Halon) with ESMTPA
+	id 87092f59-b890-4ffa-b4bd-d36d4be5688c;
 	Sat, 14 Oct 2023 23:54:25 +0900 (JST)
 Received: from SIOS1075.ysato.name (ZM005235.ppp.dion.ne.jp [222.8.5.235])
-	by sakura.ysato.name (Postfix) with ESMTPSA id 879AB1C03DF;
+	by sakura.ysato.name (Postfix) with ESMTPSA id D3BAE1C0037;
 	Sat, 14 Oct 2023 23:54:24 +0900 (JST)
 From: Yoshinori Sato <ysato@users.sourceforge.jp>
 To: linux-sh@vger.kernel.org
@@ -38,9 +38,9 @@ Cc: Yoshinori Sato <ysato@users.sourceforge.jp>,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org
-Subject: [RFC PATCH v3 31/35] arch/sh/boot/dts: LANDISK DeviceTree.
-Date: Sat, 14 Oct 2023 23:54:06 +0900
-Message-Id: <e4dc8cdb92ddc5333337b06024bb7e89f8f37ea2.1697199949.git.ysato@users.sourceforge.jp>
+Subject: [RFC PATCH v3 32/35] arch/sh/boot/dts: USL-5P DeviceTree.
+Date: Sat, 14 Oct 2023 23:54:07 +0900
+Message-Id: <ad6a5ba411562c480aa2dbec430377a7e4022434.1697199949.git.ysato@users.sourceforge.jp>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1697199949.git.ysato@users.sourceforge.jp>
 References: <cover.1697199949.git.ysato@users.sourceforge.jp>
@@ -57,33 +57,32 @@ X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-IO DATA Device LANDISK devicetree.
+IO DATA Device USL-5P devicetree.
 
 Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 ---
- arch/sh/boot/dts/landisk.dts | 79 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 arch/sh/boot/dts/landisk.dts
+ arch/sh/boot/dts/usl-5p.dts | 88 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 88 insertions(+)
+ create mode 100644 arch/sh/boot/dts/usl-5p.dts
 
-diff --git a/arch/sh/boot/dts/landisk.dts b/arch/sh/boot/dts/landisk.dts
+diff --git a/arch/sh/boot/dts/usl-5p.dts b/arch/sh/boot/dts/usl-5p.dts
 new file mode 100644
-index 000000000000..bcbaf5e4af13
+index 000000000000..ce5320348140
 --- /dev/null
-+++ b/arch/sh/boot/dts/landisk.dts
-@@ -0,0 +1,79 @@
++++ b/arch/sh/boot/dts/usl-5p.dts
+@@ -0,0 +1,88 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Device Tree Source for the IO DATA DEVICE LANDISK
++ * Device Tree Source for the IO DATA DEVICE USL-5P
 + */
 +
 +/dts-v1/;
 +
-+#include <dt-bindings/clock/sh7750.h>
 +#include "sh7751r.dtsi"
 +
 +/ {
-+	model = "IO DATA Device LANDISK";
-+	compatible = "iodata,landisk", "renesas,sh7751r";
++	model = "IO-DATA Device USL-5P";
++	compatible = "iodata,usl-5p", "renesas,sh7751r";
 +
 +	aliases {
 +		serial0 = &scif1;
@@ -103,6 +102,8 @@ index 000000000000..bcbaf5e4af13
 +		reg = <0xb0000005 0x01>;
 +		interrupt-controller;
 +		#interrupt-cells = <1>;
++		#address-cells = <0>;
++		#size-cells = <0>;
 +		renesas,width = <8>;
 +		renesas,regtype = "enable";
 +		renesas,irqbit = <0xffffffff>,	/* Not use */
@@ -122,6 +123,14 @@ index 000000000000..bcbaf5e4af13
 +
 +	oscillator {
 +		clock-frequency = <22222222>;
++	};
++
++	compact-flash@b4001000 {
++		compatible = "iodata,usl-5p-ata", "ata-generic";
++		reg = <0xb4000040 0x0e>, <0xb400002c 2>;
++		reg-shift = <1>;
++		interrupt-parent = <&julianintc>;
++		interrupts = <10>;
 +	};
 +
 +	soc {
