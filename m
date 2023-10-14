@@ -1,78 +1,125 @@
-Return-Path: <devicetree+bounces-8610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B607C9181
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 01:46:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626867C9249
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 04:06:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F623282DCA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Oct 2023 23:46:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93D621F21A14
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 02:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 996D530FAF;
-	Fri, 13 Oct 2023 23:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93067E;
+	Sat, 14 Oct 2023 02:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lC51rbW1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iFkmK4Ih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACB72C878;
-	Fri, 13 Oct 2023 23:46:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF9EC433C7;
-	Fri, 13 Oct 2023 23:46:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697240810;
-	bh=I0Ybzefpb0f46pCoW0lXoe0QVolFQKp1by7iMXMV2ig=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lC51rbW1gspwCMSFrJZZKpFXg7hwiUBH02usnJhD4v+VeActrNiPIFdHj9RlFhcIO
-	 OrnL8HaWjePfytoVvVqKd/HhDiXPeYY7lk1ZxdWxEXyatr1hXgkp9n7IUYwlypwC4n
-	 0M3CV7Pq+jjkV3gaxEHD0prKTp+saM5DxkDMl3AaXnHCsGYqbgbk2l/TbdBO63wZif
-	 7/CkacxbI+QhT3KnrqbGwNLiScxjQskkwXtU7yvDQsgk22IKrukuEL2XzEi104Npny
-	 SQbjMVZC/WNa2BVJiSItinrMu0FI0V/yIfzrTnEqNw9u6gyALZLXMsA+Y7QwuYWImc
-	 jms88xG498QjA==
-Date: Fri, 13 Oct 2023 16:46:47 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
- <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang
- Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
- <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
- netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- alsa-devel@alsa-project.org, Simon Horman <horms@kernel.org>, Christophe
- JAILLET <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 00/30] Add support for QMC HDLC, framer
- infrastructure and PEF2256 framer
-Message-ID: <20231013164647.7855f09a@kernel.org>
-In-Reply-To: <20231011061437.64213-1-herve.codina@bootlin.com>
-References: <20231011061437.64213-1-herve.codina@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B758110B
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 02:06:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA347A9;
+	Fri, 13 Oct 2023 19:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697249187; x=1728785187;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xyjrz+nCGtVP4cpNDKqWDKVaYylaSAY+4OG7ML8ydcU=;
+  b=iFkmK4IhZHzcBMlH+dtJjLUysZqJk5vi93PncWoN4+9r19+QNNJ38yIa
+   qivKClZlMRKQxTPHRqtM5gPO4pNsSAeRCF6iTE4Yrh4kyacbQSl7u2rm+
+   OkphSbTaY9kQidEgZUsjgxSu/FZZYD6UE3dI+RwB8W6vpu83upYv+K9We
+   blbCzHXVE92rY0ZQqQ1hTef9MCTGXS0D1iRX3AR3SqVgDVzpk38DfXm2r
+   4+UA0pW+SxHpiAU2cfql9E9nj6JjX40ctsaAzMszILBlB4tYQtnjYaJH3
+   /xAEkzw1UWEDdS2c0oFALfr/rrhqfg1YzZjaV+4mDvBJy1EMbzHDFVvLh
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="384166978"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
+   d="scan'208";a="384166978"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2023 19:06:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="754918435"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; 
+   d="scan'208";a="754918435"
+Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 13 Oct 2023 19:06:23 -0700
+Received: from kbuild by f64821696465 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qrU2m-0005bv-2y;
+	Sat, 14 Oct 2023 02:06:20 +0000
+Date: Sat, 14 Oct 2023 10:05:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>, geert+renesas@glider.be,
+	mturquette@baylibre.com, sboyd@kernel.org,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, magnus.damm@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 4/4] clk: renesas: add minimal boot support for RZ/G3S
+ SoC
+Message-ID: <202310140917.e8Qm1PYJ-lkp@intel.com>
+References: <20231006103959.197485-5-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231006103959.197485-5-claudiu.beznea.uj@bp.renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, 11 Oct 2023 08:14:04 +0200 Herve Codina wrote:
-> Compare to the previous iteration
->   https://lore.kernel.org/linux-kernel/20230928070652.330429-1-herve.codina@bootlin.com/
-> This v8 series:
->  - Fixes a race condition
->  - Uses menuconfig instead of menu and hides CONFIG_GENERIC_FRAMER
->  - Performs minor changes
+Hi Claudiu,
 
-Which way will those patches go? Via some FSL SoC tree?
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on geert-renesas-drivers/renesas-clk]
+[cannot apply to tty/tty-testing tty/tty-next tty/tty-linus usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.6-rc5 next-20231013]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Claudiu/dt-bindings-serial-renesas-scif-document-r9a08g045-support/20231006-184301
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git renesas-clk
+patch link:    https://lore.kernel.org/r/20231006103959.197485-5-claudiu.beznea.uj%40bp.renesas.com
+patch subject: [PATCH v3 4/4] clk: renesas: add minimal boot support for RZ/G3S SoC
+config: xtensa-allyesconfig (https://download.01.org/0day-ci/archive/20231014/202310140917.e8Qm1PYJ-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231014/202310140917.e8Qm1PYJ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310140917.e8Qm1PYJ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/renesas/r9a08g045-cpg.c:13:10: fatal error: dt-bindings/clock/r9a08g045-cpg.h: No such file or directory
+      13 | #include <dt-bindings/clock/r9a08g045-cpg.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +13 drivers/clk/renesas/r9a08g045-cpg.c
+
+    12	
+  > 13	#include <dt-bindings/clock/r9a08g045-cpg.h>
+    14	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
