@@ -1,314 +1,138 @@
-Return-Path: <devicetree+bounces-8663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BFD7C965C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 22:52:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF80C7C9677
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 23:13:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA78D281E0D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 20:52:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C9BBB20C3D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 21:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A59126E14;
-	Sat, 14 Oct 2023 20:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF3626281;
+	Sat, 14 Oct 2023 21:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hgcT2xmz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndvlOupf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413C6266BA
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 20:51:47 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC8AE9
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 13:51:43 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5079eed8bfbso1757893e87.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 13:51:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94981FA3
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 21:13:02 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B60CE;
+	Sat, 14 Oct 2023 14:13:00 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5079c846dcfso1987693e87.2;
+        Sat, 14 Oct 2023 14:13:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697316701; x=1697921501; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e1L3K+Ebs1IkB2w2DJrMtsRdnXrx4C52cUF/HzYsLH8=;
-        b=hgcT2xmzTa2ohiYfPvBgzJfM95hZwp9YcR0f64odrMk4/FOXw6mQrQl4/PszvgTLjl
-         v1XB43QvH5psCS/tdEPbAkiZVM0MFjwnbynU+fnufV5GlvpSA45369Wiu9MQBgE5PimC
-         2QQkjrdm0ozN6KLNzGRHL1A4OVJSmx7v2ND8vQ4kgP27IN9Mfn9+aNYOW+2jfnS0Naxm
-         IUaA7ioovaTRxSEJHECdaLNHhkh8tZaORZDWqDyAb2PTZnJgSL/pZV14UcY6LUJ052xo
-         8DoqRJ2CWGZoKFBkSSsk5M5ieVxQ0l1MjWJGKWQt/b356VmbNROqstobR5Ztww2LZZfE
-         Hqog==
+        d=gmail.com; s=20230601; t=1697317978; x=1697922778; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y0kP5eY/UA3bzuOu4DpvQfR2TaaataaNhpPQGnL7330=;
+        b=ndvlOupfmxT1Fy5dfv5QyO5AJGyVs/VhgnoLJQXBB7H/VgVHw2KGEGTsGIGjtrBzOO
+         nRF27rVkM23zjoVXTEEGafQcrIyN4ATCfIiSLZV62iDhler5ZdH02/sILUY4B9FrWE27
+         LBGSkwWYKXT+eYkeqI2lL0EYxq5XRT9ee587dyO84hUT2esctL4QTt9oQ7xcCVHKNXT1
+         1v0BTiMerTCQet7B1iNJiXnmEHE30JHLMY0jDCUP+POyKubfmpl/27+7u22ykMs9b/VK
+         K5UgkffqSL5bY8G99TxvTl2LLHl5t60z6p716lPsnwfti1nqYLC/EumtfwxupADxxJf0
+         +sPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697316701; x=1697921501;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e1L3K+Ebs1IkB2w2DJrMtsRdnXrx4C52cUF/HzYsLH8=;
-        b=W8AnC3yKWMIN2Me8zxAXdEueRDdKF4y6/mATMUUwbVc/crVtZFts4Guyuo1i9/g4xS
-         /dZ4buersJQGfRoX6dQsNgn9hslzqyDG1MOYnQXraO6eiyV6Umio/GPqRUtol09flDYi
-         DqHj7Tid9AQ0RUAk+/W74DicDDjIyMdXfJT5YsOQrrHJMWj0CSEigzYKdI8mC6kGGpoI
-         D9Q+aIboSz8/gpE+AWUZKF5DekTXxgGeSKPJrMUow2DRbu3FEBTHGh6DqsMg1VJxd5XB
-         ZkEId4IF6hMRO7XkhSMWhfCZweAemOSeD8fSg6ioR3kdyBVcipv7EWMVsjEX5VqJIbRf
-         U7KQ==
-X-Gm-Message-State: AOJu0YyRhpHXyknDoUPEyKT32fu7gsGhJu1K/qclrekecqjSxw/CUZ20
-	xCmEN/31pc1y1jqo3/jVcm/tEQ==
-X-Google-Smtp-Source: AGHT+IHtQpWgOHFYKb5Kidy8nqsBhBLPrhhxehpUXmo1r7QzUOnSNYAcKW4qHHgvbKZzfo+tqHM7mg==
-X-Received: by 2002:a05:6512:b01:b0:503:19d9:4b6f with SMTP id w1-20020a0565120b0100b0050319d94b6fmr29910390lfu.0.1697316701548;
-        Sat, 14 Oct 2023 13:51:41 -0700 (PDT)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id o17-20020ac24e91000000b004ff96c09b47sm49926lfr.260.2023.10.14.13.51.40
+        d=1e100.net; s=20230601; t=1697317978; x=1697922778;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y0kP5eY/UA3bzuOu4DpvQfR2TaaataaNhpPQGnL7330=;
+        b=rqVU1vtOAN7Eh0NQ6eOo/C2MSLAsqwTk9J2nRj2vj2ifiYGM+b9Kj+J8+RtgQRCAZZ
+         +D0km36PH99Pr5ZxaTBRacdrdy83oeqplzgMls9C+tjPA8RJpbpC3QK244Rim+UGgqlQ
+         fKvkwAjfoIFDRvMw7xyeZM5aee1ox5cMYi3pCDHvko1hZiOzTMhuQRWGgJgbcKpu9vD8
+         xBET44Dg2N08Swk6NeDryrT9Sc4B9tiOgeET64W+d/BVcBkQde7JCteKV/MvMPiozL31
+         lNG1CuYYPIj1ckzTZbjBO2/KoSo4c820VTVF7FJJCkkWH35cOv6I/IPlpQXN9H7+r/VH
+         xNnw==
+X-Gm-Message-State: AOJu0YxRjURfUWVFeShxCUhPIFA8RavLkPsU5qvrTI0HvlyRs7jrftQD
+	gvAP/0qCBGGPz1Poew+EGL0=
+X-Google-Smtp-Source: AGHT+IFreEc1NpIWamPWW00rUTFFa62be+gcxqUaXCLRh3Bg+lWCNoZ8k4EVxWuZItpxD74Ci3+hHA==
+X-Received: by 2002:a05:6512:794:b0:502:cc8d:f1fc with SMTP id x20-20020a056512079400b00502cc8df1fcmr22437887lfr.37.1697317978149;
+        Sat, 14 Oct 2023 14:12:58 -0700 (PDT)
+Received: from fr.lan ([46.31.31.132])
+        by smtp.googlemail.com with ESMTPSA id g3-20020a056512118300b00507a9b2eff4sm78759lfr.22.2023.10.14.14.12.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Oct 2023 13:51:41 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 14 Oct 2023 22:51:36 +0200
-Subject: [PATCH net-next v2 5/5] ARM64: dts: marvell: Fix some common
- switch mistakes
+        Sat, 14 Oct 2023 14:12:57 -0700 (PDT)
+From: Ivan Mikhaylov <fr0st61te@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Ivan Mikhaylov <fr0st61te@gmail.com>
+Subject: [PATCH v6 0/2] Add maxim max34408/34409 ADC driver and yaml
+Date: Sun, 15 Oct 2023 00:12:52 +0300
+Message-ID: <20231014211254.16719-1-fr0st61te@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231014-marvell-88e6152-wan-led-v2-5-7fca08b68849@linaro.org>
-References: <20231014-marvell-88e6152-wan-led-v2-0-7fca08b68849@linaro.org>
-In-Reply-To: <20231014-marvell-88e6152-wan-led-v2-0-7fca08b68849@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
-Cc: Christian Marangi <ansuelsmth@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Fix some errors in the Marvell MV88E6xxx switch descriptions:
-- The top node had no address size or cells.
-- switch0@0 is not OK, should be switch@0.
-- port@a is not normal port naming, use decimal port@10.
+Add Maxim max34408/34409 ADC driver and yaml for it. Until now it
+supports only current monitioring function without overcurrent
+threshold/delay, shutdown delay configuration, alert interrupt.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../boot/dts/marvell/armada-3720-espressobin.dtsi  |  4 +--
- .../boot/dts/marvell/armada-3720-gl-mv1000.dts     |  4 +--
- .../boot/dts/marvell/armada-3720-turris-mox.dts    | 32 +++++++++++-----------
- .../boot/dts/marvell/armada-7040-mochabin.dts      |  2 --
- .../dts/marvell/armada-8040-clearfog-gt-8k.dts     |  2 +-
- arch/arm64/boot/dts/marvell/cn9130-crb.dtsi        |  6 ++--
- 6 files changed, 21 insertions(+), 29 deletions(-)
+Changes from v1:
+   - minor changes from Rob's comments for yaml
+   - add ena, shtdn and make 4 inputs for R sense from Jonathan's comments for yaml
+   - add _REG suffix and make prefix for bitmasks and statuses
+   - add SCALE/OFFSET instead of AVG/PROCESSED from Jonathan and
+     Lars-Peter comments
+   - add chip data from Jonathan and Lars-Peter comments
+   - minor changes from Lars-Peter and Jonathan comments for driver
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-index 5fc613d24151..b526efeee293 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-@@ -145,10 +145,8 @@ &usb2 {
- };
- 
- &mdio {
--	switch0: switch0@1 {
-+	switch0: switch@1 {
- 		compatible = "marvell,mv88e6085";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		reg = <1>;
- 
- 		dsa,member = <0 0>;
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-index b1b45b4fa9d4..5de4417f929c 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-@@ -152,10 +152,8 @@ &uart0 {
- };
- 
- &mdio {
--	switch0: switch0@1 {
-+	switch0: switch@1 {
- 		compatible = "marvell,mv88e6085";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		reg = <1>;
- 
- 		dsa,member = <0 0>;
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 9eab2bb22134..ea66ba5a9762 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -305,7 +305,7 @@ phy1: ethernet-phy@1 {
- 	};
- 
- 	/* switch nodes are enabled by U-Boot if modules are present */
--	switch0@10 {
-+	switch@10 {
- 		compatible = "marvell,mv88e6190";
- 		reg = <0x10>;
- 		dsa,member = <0 0>;
-@@ -410,8 +410,8 @@ port@9 {
- 				managed = "in-band-status";
- 			};
- 
--			switch0port10: port@a {
--				reg = <0xa>;
-+			switch0port10: port@10 {
-+				reg = <10>;
- 				label = "dsa";
- 				phy-mode = "2500base-x";
- 				managed = "in-band-status";
-@@ -419,8 +419,8 @@ switch0port10: port@a {
- 				status = "disabled";
- 			};
- 
--			port-sfp@a {
--				reg = <0xa>;
-+			port-sfp@10 {
-+				reg = <10>;
- 				label = "sfp";
- 				sfp = <&sfp>;
- 				phy-mode = "sgmii";
-@@ -430,7 +430,7 @@ port-sfp@a {
- 		};
- 	};
- 
--	switch0@2 {
-+	switch@2 {
- 		compatible = "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 0>;
-@@ -497,7 +497,7 @@ port@5 {
- 		};
- 	};
- 
--	switch1@11 {
-+	switch@11 {
- 		compatible = "marvell,mv88e6190";
- 		reg = <0x11>;
- 		dsa,member = <0 1>;
-@@ -602,8 +602,8 @@ switch1port9: port@9 {
- 				link = <&switch0port10>;
- 			};
- 
--			switch1port10: port@a {
--				reg = <0xa>;
-+			switch1port10: port@10 {
-+				reg = <10>;
- 				label = "dsa";
- 				phy-mode = "2500base-x";
- 				managed = "in-band-status";
-@@ -611,8 +611,8 @@ switch1port10: port@a {
- 				status = "disabled";
- 			};
- 
--			port-sfp@a {
--				reg = <0xa>;
-+			port-sfp@10 {
-+				reg = <10>;
- 				label = "sfp";
- 				sfp = <&sfp>;
- 				phy-mode = "sgmii";
-@@ -622,7 +622,7 @@ port-sfp@a {
- 		};
- 	};
- 
--	switch1@2 {
-+	switch@2 {
- 		compatible = "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 1>;
-@@ -689,7 +689,7 @@ port@5 {
- 		};
- 	};
- 
--	switch2@12 {
-+	switch@12 {
- 		compatible = "marvell,mv88e6190";
- 		reg = <0x12>;
- 		dsa,member = <0 2>;
-@@ -794,8 +794,8 @@ switch2port9: port@9 {
- 				link = <&switch1port10 &switch0port10>;
- 			};
- 
--			port-sfp@a {
--				reg = <0xa>;
-+			port-sfp@10 {
-+				reg = <10>;
- 				label = "sfp";
- 				sfp = <&sfp>;
- 				phy-mode = "sgmii";
-@@ -805,7 +805,7 @@ port-sfp@a {
- 		};
- 	};
- 
--	switch2@2 {
-+	switch@2 {
- 		compatible = "marvell,mv88e6085";
- 		reg = <0x2>;
- 		dsa,member = <0 2>;
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-index 48202810bf78..3cc794fcf12e 100644
---- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-@@ -303,8 +303,6 @@ eth2phy: ethernet-phy@1 {
- 	/* 88E6141 Topaz switch */
- 	switch: switch@3 {
- 		compatible = "marvell,mv88e6085";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		reg = <3>;
- 
- 		pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-index 4125202028c8..7a25ea36b565 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-@@ -497,7 +497,7 @@ ge_phy: ethernet-phy@0 {
- 		reset-deassert-us = <10000>;
- 	};
- 
--	switch0: switch0@4 {
-+	switch0: switch@4 {
- 		compatible = "marvell,mv88e6085";
- 		reg = <4>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-index 32cfb3e2efc3..2f6281b66467 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-@@ -207,11 +207,9 @@ phy0: ethernet-phy@0 {
- 		reg = <0>;
- 	};
- 
--	switch6: switch0@6 {
-+	switch6: switch@6 {
- 		/* Actual device is MV88E6393X */
- 		compatible = "marvell,mv88e6190";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		reg = <6>;
- 		interrupt-parent = <&cp0_gpio1>;
- 		interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
-@@ -280,7 +278,7 @@ port@9 {
- 				managed = "in-band-status";
- 			};
- 
--			port@a {
-+			port@10 {
- 				reg = <10>;
- 				ethernet = <&cp0_eth0>;
- 				phy-mode = "10gbase-r";
+Changes from v2:
+   - add channels into hardware description into yaml
+   - add rsense property per channel
+   - rename pins for shtdn and ena pins
+   - make one array for input_rsense values
+
+Changes from v3:
+   - change *_34408_OCT3 and 4 to *_34409_OCT3 and 4
+   - change of_property_read_u32 to fwnode family calls
+   - add i2c dev table
+   - change of_match_device to i2c_of_match_device
+   - change match->data to i2c_get_match_data 
+
+Changes from v4:
+   - minor changes in yaml
+
+Changes from v5:
+   - name and minor changes to properties in yaml from Rob's comments
+   - shtdn-enable-gpios -> powerdown-status-gpios from Krzysztof and
+     Jonathan comments in yaml
+   - minor changes to driver
+
+Ivan Mikhaylov (2):
+  dt-bindings: adc: provide max34408/9 device tree binding document
+  iio: adc: Add driver support for MAX34408/9
+
+ .../bindings/iio/adc/maxim,max34408.yaml      | 139 +++++++++
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max34408.c                    | 276 ++++++++++++++++++
+ 4 files changed, 427 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+ create mode 100644 drivers/iio/adc/max34408.c
 
 -- 
-2.34.1
+2.42.0
 
 
