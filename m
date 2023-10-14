@@ -1,283 +1,190 @@
-Return-Path: <devicetree+bounces-8612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE257C9303
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 08:37:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745447C931B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5399F1C20A13
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 06:37:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50758B20B0C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 07:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C71A1C27;
-	Sat, 14 Oct 2023 06:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E401C1859;
+	Sat, 14 Oct 2023 07:15:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Xdk+oiBt"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QwkgGyvM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53531C3D
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 06:37:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE4D1BF;
-	Fri, 13 Oct 2023 23:37:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697265435; x=1728801435;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qTONI1fWdA+lqNPUY29CNOZIdwmpNPm69ZTN+9zKPhg=;
-  b=Xdk+oiBtd+sK/BpXMO2CKVGTMZawDhEnWAX6DfX8NRCW10XvwRVmSIOF
-   2CiEF2/hwVb8iSn1+9AoyPsPRpCAm9K30sP3yKxvkxUF4wtd+5ln5tqmF
-   H0XCnuYgYE2hEUX9kckKqnYRPcMW+nhr0fokSi+rmJFFipWypFAl8UfCu
-   TlyXK1r3iDVEO56KzPwFQ/f7HPbMbqxI9/XI+jiV8n1Cl51i3Daz/JjnA
-   m0SA1lB9HrTcWSf+i5iAwqqemTFfRNIDkqbTVBFwqqikqKXp07eQdgI8I
-   C4bJEYZPwvXgC0TmrJbTSJknNZx0r/GLTfmsrd4u7AeUpboaUpS1vAOaD
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="375658886"
-X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
-   d="scan'208";a="375658886"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2023 23:37:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="790108731"
-X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
-   d="scan'208";a="790108731"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 13 Oct 2023 23:37:07 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qrYGm-0005mp-1d;
-	Sat, 14 Oct 2023 06:37:04 +0000
-Date: Sat, 14 Oct 2023 14:37:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
-	s.nawrocki@samsung.com, linus.walleij@linaro.org,
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com,
-	will@kernel.org, arnd@arndb.de, olof@lixom.net,
-	cw00.choi@samsung.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	peter.griffin@linaro.org, tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org, semen.protsenko@linaro.org,
-	soc@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH 13/21] clk: samsung: clk-gs101: Add cmu_top registers,
- plls, mux and gates
-Message-ID: <202310141437.xBrLtPIH-lkp@intel.com>
-References: <20231005155618.700312-14-peter.griffin@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6068A566E
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 07:15:33 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCDDBB
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1697267727;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=/5sur0d8z6Ch5nawEvWUvmJt66ioO3eas3zF7Y15+CY=;
+	b=QwkgGyvMpB6xJyYZBsjYNjleTo9N3MKt3dtJYVER6y22aJRdy3k8J7E0XEXMiWUWrQireZ
+	LUhQspWvk4TruDyJutgruPTTO5+ZaKjwXz+Z6Od2+HqXLeE8kLg3okeD/eOc+CflYSJujR
+	6xlW2V/sI0VDAgLtL7dhRZAON8bSNhM=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-500-v1lACZaNMM2XBeSD3c4JGg-1; Sat, 14 Oct 2023 03:15:26 -0400
+X-MC-Unique: v1lACZaNMM2XBeSD3c4JGg-1
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-32d9602824dso1291731f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697267725; x=1697872525;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/5sur0d8z6Ch5nawEvWUvmJt66ioO3eas3zF7Y15+CY=;
+        b=ElApk48eUKfxSCapTvzYiWFff8Yd+wVYUJ2djK7tTcEG0JwlZg4eI+djFA0rOZ0LNL
+         BXXxv3nyOVmEia74c+c/ohRqQcloNJRv4uwV6B3uABVzaOtrJrOxz297Tan1arrmwQ0I
+         R9CkHWJWwZekVCsUUvEB4HCoygjOqtCPbDXTNZdxw8Lp7+EqTAGKbgULN619oBAvILRM
+         eGpkp1vAMkEhCJFGOXy0iaZcoqWubmc3zOMAdvsjU8Z00Gk1p35EgAqlX6UQwmLs+CXi
+         UOOJVfMzFv/Rd1dyc+u89WrB6e1rkBmbL0WJEXssbq1VL6UALfq9TGJUjDG5lzP7h1iX
+         XYOA==
+X-Gm-Message-State: AOJu0Yz+4V9Gynx/nSDfhITyWCSBip1m8erzs0eXEF2QD8OSwXcgf/xY
+	XWlMUPK4xJOXoZ4NI6RvRWkX0Ky+0eXqU7ckdtvvdVERmvbkiEGoKkg/O8iBUuZWN8sbre0zHxJ
+	DsSBCe02nlUo/Oh720Jinnw==
+X-Received: by 2002:adf:cc8a:0:b0:31a:d49a:38d with SMTP id p10-20020adfcc8a000000b0031ad49a038dmr25614649wrj.54.1697267725164;
+        Sat, 14 Oct 2023 00:15:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFtx68sm77fSM2l+MPku3L9wgkn1CIXV77p6tOGdf1hWrtQhINmwCfG/IjzsrkVnrDfksdvNw==
+X-Received: by 2002:adf:cc8a:0:b0:31a:d49a:38d with SMTP id p10-20020adfcc8a000000b0031ad49a038dmr25614629wrj.54.1697267724773;
+        Sat, 14 Oct 2023 00:15:24 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id w15-20020a5d404f000000b0032da471c0c1sm866163wrp.7.2023.10.14.00.15.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Oct 2023 00:15:24 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 0/6] drm/solomon: Add support for the SSD132x controller family
+Date: Sat, 14 Oct 2023 09:15:02 +0200
+Message-ID: <20231014071520.1342189-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231005155618.700312-14-peter.griffin@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Peter,
+Hello,
 
-kernel test robot noticed the following build warnings:
+This patch-set adds support for the family of SSD132x Solomon controllers,
+such as the SSD1322, SSD1325 and SSD1327 chips. These are used for 16 Gray
+Scale Dot Matrix OLED panels.
 
-[auto build test WARNING on krzk/for-next]
-[also build test WARNING on robh/for-next linus/master pinctrl-samsung/for-next v6.6-rc5 next-20231013]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This is a v4 that just rebases on top of commit a48e2cc92835 ("drm/ssd130x:
+Fix atomic_check for disabled planes"), that landed in drm-misc tree and
+conflicts with this series.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Griffin/dt-bindings-interrupt-controller-Add-gs101-interrupt-controller/20231005-235922
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231005155618.700312-14-peter.griffin%40linaro.org
-patch subject: [PATCH 13/21] clk: samsung: clk-gs101: Add cmu_top registers, plls, mux and gates
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231014/202310141437.xBrLtPIH-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231014/202310141437.xBrLtPIH-lkp@intel.com/reproduce)
+It also fixes ssd132x_primary_plane_atomic_check(), using the same change
+in the mentioned commit to fix the ssd132x_primary_plane_atomic_check()
+callback function.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310141437.xBrLtPIH-lkp@intel.com/
+The patches were tested on a Waveshare SSD1327 display using glmark2-drm,
+fbcon, fbtests and the retroarch emulator.
 
-All warnings (new ones prefixed by >>):
+Patch #1 drops the .page_height field from the device info with a constant
+because it's only needed by the SSD130x family and not the SSD132x family.
 
->> drivers/clk/samsung/clk-gs101.c:809:7: warning: unused variable 'mout_cmu_pdp_vra_p' [-Wunused-const-variable]
-     809 | PNAME(mout_cmu_pdp_vra_p)       = { "fout_shared2_pll", "dout_shared0_div3",
-         |       ^
->> drivers/clk/samsung/clk-gs101.c:888:7: warning: unused variable 'mout_cmu_boost_p' [-Wunused-const-variable]
-     888 | PNAME(mout_cmu_boost_p)         = { "dout_shared0_div4", "dout_shared1_div4",
-         |       ^
->> drivers/clk/samsung/clk-gs101.c:935:7: warning: unused variable 'mout_cmu_g2d_p' [-Wunused-const-variable]
-     935 | PNAME(mout_cmu_g2d_p)           = { "dout_shared0_div3", "fout_shared3_pll",
-         |       ^
-   3 warnings generated.
+Patch #2 adds a per controller family id field to the device info data, to
+allow the driver to support different Solomon display controller families.
 
+Patch #3 renames some SSD130X_* commands that are shared by both families.
 
-vim +/mout_cmu_pdp_vra_p +809 drivers/clk/samsung/clk-gs101.c
+Patch #4 adds the support for the SSD132x controller family.
 
-   790	
-   791	PNAME(mout_cmu_hsi2_ufs_embd_p)	= { "oscclk", "dout_shared0_div4",
-   792					    "dout_shared2_div2", "fout_spare_pll" };
-   793	
-   794	PNAME(mout_cmu_hsi2_mmc_card_p)	= { "fout_shared2_pll", "fout_shared3_pll",
-   795					    "dout_shared0_div4", "fout_spare_pll" };
-   796	
-   797	/* List of parent clocks for Muxes in CMU_TOP: for CMU_CSIS */
-   798	PNAME(mout_cmu_csis_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   799					    "dout_shared1_div3", "dout_shared0_div4",
-   800					    "dout_shared1_div4", "dout_shared2_div2",
-   801					    "fout_spare_pll" };
-   802	
-   803	/* List of parent clocks for Muxes in CMU_TOP: for CMU_PDP */
-   804	PNAME(mout_cmu_pdp_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   805					    "dout_shared1_div3", "dout_shared0_div4",
-   806					    "dout_shared1_div4", "dout_shared2_div2",
-   807					    "fout_spare_pll" };
-   808	
- > 809	PNAME(mout_cmu_pdp_vra_p)	= { "fout_shared2_pll", "dout_shared0_div3",
-   810					    "fout_shared3_pll", "dout_shared1_div3",
-   811					    "dout_shared0_div4", "dout_shared1_div4",
-   812					    "fout_spare_pll" };
-   813	
-   814	/* List of parent clocks for Muxes in CMU_TOP: for CMU_IPP */
-   815	PNAME(mout_cmu_ipp_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   816					    "dout_shared1_div3", "dout_shared0_div4",
-   817					    "dout_shared1_div4", "dout_shared2_div2",
-   818					    "fout_spare_pll" };
-   819	
-   820	/* List of parent clocks for Muxes in CMU_TOP: for CMU_G3AA */
-   821	PNAME(mout_cmu_g3aa_p)		= { "dout_shared0_div3", "fout_shared3_pll",
-   822					    "dout_shared1_div3", "dout_shared0_div4",
-   823					    "dout_shared1_div4", "dout_shared2_div2",
-   824					    "fout_spare_pll" };
-   825	
-   826	/* List of parent clocks for Muxes in CMU_TOP: for CMU_ITP */
-   827	PNAME(mout_cmu_itp_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   828					    "dout_shared1_div3", "dout_shared0_div4",
-   829					    "dout_shared1_div4", "dout_shared2_div2",
-   830					    "fout_spare_pll" };
-   831	
-   832	/* List of parent clocks for Muxes in CMU_TOP: for CMU_DNS */
-   833	PNAME(mout_cmu_dns_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   834					    "dout_shared1_div3", "dout_shared0_div4",
-   835					    "dout_shared1_div4", "dout_shared2_div2",
-   836					    "fout_spare_pll" };
-   837	
-   838	/* List of parent clocks for Muxes in CMU_TOP: for CMU_TNR */
-   839	PNAME(mout_cmu_tnr_bus_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   840					    "dout_shared1_div3", "dout_shared0_div4",
-   841					    "dout_shared1_div4", "dout_shared2_div2",
-   842					    "fout_spare_pll" };
-   843	
-   844	/* List of parent clocks for Muxes in CMU_TOP: for CMU_MCSC */
-   845	PNAME(mout_cmu_mcsc_itsc_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   846					    "dout_shared1_div3", "dout_shared0_div4",
-   847					    "dout_shared1_div4", "dout_shared2_div2",
-   848					    "fout_spare_pll" };
-   849	
-   850	PNAME(mout_cmu_mcsc_mcsc_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   851					    "dout_shared1_div3", "dout_shared0_div4",
-   852					    "dout_shared1_div4", "dout_shared2_div2",
-   853					    "fout_spare_pll" };
-   854	
-   855	/* List of parent clocks for Muxes in CMU_TOP: for CMU_GDC */
-   856	PNAME(mout_cmu_gdc_scsc_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   857					    "dout_shared1_div3", "dout_shared0_div4",
-   858					    "dout_shared1_div4", "dout_shared2_div2",
-   859					    "fout_spare_pll" };
-   860	
-   861	PNAME(mout_cmu_gdc_gdc0_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   862					    "dout_shared1_div3", "dout_shared0_div4",
-   863					    "dout_shared1_div4", "dout_shared2_div2",
-   864					    "fout_spare_pll" };
-   865	
-   866	PNAME(mout_cmu_gdc_gdc1_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   867					    "dout_shared1_div3", "dout_shared0_div4",
-   868					    "dout_shared1_div4", "dout_shared2_div2",
-   869					    "fout_spare_pll" };
-   870	
-   871	/* List of parent clocks for Muxes in CMU_TOP: for CMU_MFC */
-   872	PNAME(mout_cmu_mfc_mfc_p)	= { "dout_shared0_div3", "fout_shared3_pll",
-   873					    "dout_shared1_div3", "dout_shared0_div4",
-   874					    "dout_shared1_div4", "dout_shared2_div2",
-   875					    "fout_spare_pll" };
-   876	
-   877	/* List of parent clocks for Muxes in CMU_TOP: for DDRPHY0/1/2/3 */
-   878	
-   879	PNAME(mout_cmu_mif_switch_p)	= { "fout_shared0_pll", "fout_shared1_pll",
-   880					    "dout_shared0_div2", "dout_shared1_div2",
-   881					    "fout_shared2_pll", "dout_shared0_div3",
-   882					    "fout_shared3_pll", "fout_spare_pll" };
-   883	
-   884	/* List of parent clocks for Muxes in CMU_TOP: for CMU_MIF0/1/2/3 */
-   885	PNAME(mout_cmu_mif_busp_p)	= { "dout_shared0_div4", "dout_shared1_div4",
-   886					    "dout_shared0_div5", "fout_spare_pll" };
-   887	
- > 888	PNAME(mout_cmu_boost_p)		= { "dout_shared0_div4", "dout_shared1_div4",
-   889					    "dout_shared2_div2", "dout_shared3_div2" };
-   890	
-   891	/* List of parent clocks for Muxes in CMU_TOP: for CMU_MISC */
-   892	PNAME(mout_cmu_misc_bus_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   893					    "dout_shared3_div2", "fout_spare_pll" };
-   894	PNAME(mout_cmu_misc_sss_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   895					    "dout_shared3_div2", "fout_spare_pll" };
-   896	
-   897	/* List of parent clocks for Muxes in CMU_TOP: for CMU_PERIC0 */
-   898	PNAME(mout_cmu_peric0_bus_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   899					    "dout_shared3_div2", "fout_spare_pll" };
-   900	PNAME(mout_cmu_peric0_ip_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   901					    "dout_shared3_div2", "fout_spare_pll" };
-   902	
-   903	/* List of parent clocks for Muxes in CMU_TOP: for CMU_PERIC1 */
-   904	PNAME(mout_cmu_peric1_bus_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   905					    "dout_shared3_div2", "fout_spare_pll" };
-   906	PNAME(mout_cmu_peric1_ip_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   907					    "dout_shared3_div2", "fout_spare_pll" };
-   908	
-   909	/* List of parent clocks for Muxes in CMU_TOP: for CMU_TPU */
-   910	PNAME(mout_cmu_tpu_tpu_p)	= { "dout_shared0_div2", "dout_shared1_div2",
-   911					    "fout_shared2_pll", "fout_shared3_pll",
-   912					    "dout_shared0_div3", "dout_shared1_div3",
-   913					    "dout_shared0_div4", "fout_spare_pll" };
-   914	
-   915	PNAME(mout_cmu_tpu_tpuctl_p)	= { "dout_shared0_div2", "dout_shared1_div2",
-   916					    "fout_shared2_pll", "fout_shared3_pll",
-   917					    "dout_shared0_div3", "dout_shared1_div3",
-   918					    "dout_shared0_div4", "fout_spare_pll" };
-   919	
-   920	PNAME(mout_cmu_tpu_bus_p)	= { "dout_shared0_div2", "dout_shared1_div2",
-   921					    "fout_shared2_pll", "fout_shared3_pll",
-   922					    "dout_shared0_div3", "dout_shared1_div3",
-   923					    "dout_shared0_div4", "fout_spare_pll" };
-   924	
-   925	PNAME(mout_cmu_tpu_uart_p)	= { "dout_shared0_div4", "dout_shared2_div2",
-   926					    "dout_shared3_div2", "fout_spare_pll" };
-   927	
-   928	/* List of parent clocks for Muxes in CMU_TOP: for CMU_BO */
-   929	PNAME(mout_cmu_bo_bus_p)	= { "fout_shared2_pll", "dout_shared0_div3",
-   930					    "fout_shared3_pll", "dout_shared1_div3",
-   931					    "dout_shared0_div4", "dout_shared1_div4",
-   932					    "fout_spare_pll" };
-   933	
-   934	/* List of parent clocks for Muxes in CMU_TOP: for CMU_G2D */
- > 935	PNAME(mout_cmu_g2d_p)		= { "dout_shared0_div3", "fout_shared3_pll",
-   936					    "dout_shared1_div3", "dout_shared0_div4",
-   937					    "dout_shared1_div4", "dout_shared2_div2",
-   938					    "fout_spare_pll" };
-   939	
+Patch #5 splits out some properties that are shared across both controller
+families bindings and move them into a separate solomon,ssd-common schema.
+
+Finally patch #6 adds a DT binding schema for the SSD132x controllers.
+
+Best regards,
+Javier
+
+Changes in v4:
+- Fix ssd132x_primary_plane_atomic_check() with the same change that commit
+  48e2cc92835 ("drm/ssd130x: Fix atomic_check for disabled planes") did for
+  the ssd130x_primary_plane_atomic_check() callback.
+- Add Thomas Zimmermann's Acked-by tag to all the patches in the series.
+
+Changes in v3:
+- Drop the per controller family functions table (Thomas Zimmermann).
+- Use different modesetting pipelines for chip families (Thomas Zimmermann).
+- Change the i,j variables type to unsigned int (Geert Uytterhoeven).
+- Fix "No newline at end of file" in solomon,ssd-common.yaml (Rob Herring).
+- Add Rob Herring's Reviewed-by tag to patch #5.
+- Add Rob Herring's Reviewed-by tag to patch #6.
+
+Changes in v2:
+- Add Geert Uytterhoeven's Reviewed-by tag to patch #1.
+- Squash patch that uses drm_format_info_min_pitch() to calculate dest_pitch
+  with the following patch (Geert Uytterhoeven).
+- Store ssd13xx_family_funcs[SSD130X_FAMILY] in struct ssd130x_deviceinfo
+  (Geert Uytterhoeven).
+- Don't mix switch (family_id) and ssd13xx_funcs[family_id] (Geert Uytterhoeven).
+- Replace switch (family_id) by an .set_buffer_sizes (Geert Uytterhoeven).
+- Move the rect alignment to a per chip family function (Geert Uytterhoeven).
+- Align the rectangle to the segment width (Geert Uytterhoeven).
+- Drop patches that rename driver and prefixes (Maxime Ripard, Peter Robinson).
+- Remove unnecessary 'oneOf' in the SSD132x DT binding schema (Conor Dooley).
+- Remove unused DT nodes labels in the binding schema examples (Conor Dooley).
+- Split out common Solomon properties into a separate schema (Rob Herring).
+
+Javier Martinez Canillas (6):
+  drm/ssd130x: Replace .page_height field in device info with a constant
+  drm/ssd130x: Add a controller family id to the device info data
+  drm/ssd130x: Rename commands that are shared across chip families
+  drm/ssd130x: Add support for the SSD132x OLED controller family
+  dt-bindings: display: Split common Solomon properties in their own
+    schema
+  dt-bindings: display: Add SSD132x OLED controllers
+
+ .../bindings/display/solomon,ssd-common.yaml  |  42 ++
+ .../bindings/display/solomon,ssd1307fb.yaml   |  28 +-
+ .../bindings/display/solomon,ssd132x.yaml     |  89 +++
+ MAINTAINERS                                   |   3 +-
+ drivers/gpu/drm/solomon/Kconfig               |  12 +-
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         |  18 +-
+ drivers/gpu/drm/solomon/ssd130x-spi.c         |  27 +-
+ drivers/gpu/drm/solomon/ssd130x.c             | 508 ++++++++++++++++--
+ drivers/gpu/drm/solomon/ssd130x.h             |  17 +-
+ 9 files changed, 645 insertions(+), 99 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.41.0
+
 
