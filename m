@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-8616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DBF7C93B4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 11:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E87B37C93C7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 11:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9447A1C20A00
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:16:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2586C1C20965
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04FA66ABA;
-	Sat, 14 Oct 2023 09:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F6463B0;
+	Sat, 14 Oct 2023 09:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExLN7t9J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bFcq0Gjz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6436AAC
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 09:16:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC86C433C7;
-	Sat, 14 Oct 2023 09:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DD1E549
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 09:28:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6E6C433C8;
+	Sat, 14 Oct 2023 09:28:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697274998;
-	bh=k52xWdFX6UjAOvOzI3AWhj638Tolfhfcr0twbZHvcUA=;
+	s=k20201202; t=1697275734;
+	bh=ZpEO1IMYtH2irsHJdzCqFNZXRTOe6izWzOLePcvLYVQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ExLN7t9JOPknABzwTs92zb6MYEd7IAByQ2A4ANceSuRUOlbKMSUwhNbY4zapvk57K
-	 4Wwjpm34RhzcKKtIxFnFb3o3rhhkeWvq0tI0u5G4dd6nfEPNpUzqXm4vMAbS/u0KA1
-	 eQ5zEwMwkUHIcxqiYT5B9qgNn/jrtXxrQDFj/5tf4Pniv+wlXeBo/2lj5IrZklvTdg
-	 6h7hd8GpbyGjL7UoTa0ZNTQgcYTED7bLRARpuR9wb3f6KwpE0cWGKdfq2v9XgBPIVz
-	 3DndQSGJ6v+gnyd6B6iDbKC6tHDX6H0mlHF2vWdYXez/SPK437P6JyhqjvUcaOStwH
-	 p+kyy4v6kBSoQ==
-Date: Sat, 14 Oct 2023 17:04:26 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Conor Dooley <conor@kernel.org>
+	b=bFcq0GjznydPaTONKjqfjV1+Nr7NZVwNPCQW5bLkxT1fQZovxY9n1S6AvO4BFzWuU
+	 TjR6cYOn61RQGer1aEsC4MPdJvFsGAslrjiZtzLUnGEUVNs91m9cmwvzq2qT5YNRcG
+	 l6zO8wCj9jejD8frT/V93xclYkS6S3IXunPiHuLvx2EL7DTPGOcqkrwE9GpJh3M1ZK
+	 bVFGRUI5GflYDnfCP5qrC+KThsY3q7iP4WZOoSlUM0lcAv1eUQc/UOZsCqUTEKyhVn
+	 hB0u8fypH9jkVxH2IVGTufXhjD17LMQI5jPHVb5xCgF+Hp2fDvLmB6JXCIV3gLeuV0
+	 n+y2+d3E6cfAw==
+Date: Sat, 14 Oct 2023 10:28:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
 Cc: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
 	Chen Wang <unicorn_wang@outlook.com>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -45,165 +45,49 @@ Cc: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
 	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
 Subject: Re: [PATCH v2 4/7] riscv: dts: sophgo: Separate common devices from
  cv1800b soc
-Message-ID: <ZSpZmsb29ZC5L9dS@xhacker>
+Message-ID: <20231014-scooter-blurred-995313b571ea@spud>
 References: <IA1PR20MB49531C1C34C3E972DBBA4151BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
  <20231009112642.477337-1-inochiama@outlook.com>
  <IA1PR20MB49532560A3CA2670A0EAB846BBCEA@IA1PR20MB4953.namprd20.prod.outlook.com>
  <20231013-catchable-wince-f24060feb639@spud>
+ <ZSpZmsb29ZC5L9dS@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="a/zpBNbMNsth1Q72"
 Content-Disposition: inline
-In-Reply-To: <20231013-catchable-wince-f24060feb639@spud>
-
-On Fri, Oct 13, 2023 at 10:08:24AM +0100, Conor Dooley wrote:
-> Yo,
-> 
-> On Mon, Oct 09, 2023 at 07:26:35PM +0800, Inochi Amaoto wrote:
-> > Move the cpu and the common peripherals of CV181x and CV180x to new file.
-> > 
-...
-
-> >  	};
-> >  };
-> 
-> What I wanted to comment on was this though - it seems that both the
-> cv1800b and the cv1812h have identical plic and clint nodes, other than
-> their compatibles? If that is the case, why create a cv1800b and a
-> cv1812h specific file containing entirely new nodes, when overriding the
-> compatible would be sufficient? Doubly so if the other SoCs in the
-> cv18xx series are going to have identical layouts.
-> 
-> I gave it a quick test locally with the below diff applied on top of
-> this series - although I didn't make sure that I didn't re-order the
-> plic & clint nodes, I just wanted to demonstrate what I had done.
-> 
-> Cheers,
-> Conor.
-> 
-> -- 8< --
-> 
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-> index 3af9e34b3bc7..a9d809a49e7a 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-> @@ -5,7 +5,7 @@
->  
->  /dts-v1/;
->  
-> -#include "cv1800b.dtsi"
-> +#include "cv180x.dtsi"
->  
->  / {
->  	model = "Milk-V Duo";
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> index 0904154f9829..e69de29bb2d1 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -1,30 +0,0 @@
-> -// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> -/*
-> - * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> - */
-> -
-> -#include "cv180x.dtsi"
-> -
-> -/ {
-> -	compatible = "sophgo,cv1800b";
-> -
-> -	soc {
-> -		interrupt-parent = <&plic>;
-> -
-> -		plic: interrupt-controller@70000000 {
-> -			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> -			reg = <0x70000000 0x4000000>;
-> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> -			interrupt-controller;
-> -			#address-cells = <0>;
-> -			#interrupt-cells = <2>;
-> -			riscv,ndev = <101>;
-> -		};
-> -
-> -		clint: timer@74000000 {
-> -			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
-> -			reg = <0x74000000 0x10000>;
-> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> -		};
-> -	};
-> -};
-> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> index 64ffb23d3626..1a2c44ba4de9 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> @@ -48,6 +48,7 @@ osc: oscillator {
->  
->  	soc {
->  		compatible = "simple-bus";
-> +		interrupt-parent = <&plic>;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		dma-noncoherent;
-> @@ -174,5 +175,21 @@ uart4: serial@41c0000 {
->  			reg-io-width = <4>;
->  			status = "disabled";
->  		};
-> +
-> +		plic: interrupt-controller@70000000 {
-> +			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
-> +			reg = <0x70000000 0x4000000>;
-> +			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			#interrupt-cells = <2>;
-> +			riscv,ndev = <101>;
-> +		};
-> +
-> +		clint: timer@74000000 {
-> +			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
-> +			reg = <0x74000000 0x10000>;
-> +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> +		};
->  	};
->  };
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-> index 3864d34b0100..c0a8d3290cc8 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-> @@ -15,22 +15,13 @@ memory@80000000 {
->  	};
->  
->  	soc {
-> -		interrupt-parent = <&plic>;
->  
->  		plic: interrupt-controller@70000000 {
->  			compatible = "sophgo,cv1812h-plic", "thead,c900-plic";
-
-Hi Conor,
-
-Maybe this has been discussed before but I didn't find it. I'm wondering
-the reason of adding each plic and clint binding for each SoC, can we
-just use the thead,c900-plic for plic?
-FWICT, arm gic dt usage follows this way, there's no binding for each SoC's
-gic but directly use "arm,gic-v3" and so on.
+In-Reply-To: <ZSpZmsb29ZC5L9dS@xhacker>
 
 
-Thanks in advance
+--a/zpBNbMNsth1Q72
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> -			reg = <0x70000000 0x4000000>;
-> -			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
-> -			interrupt-controller;
-> -			#address-cells = <0>;
-> -			#interrupt-cells = <2>;
-> -			riscv,ndev = <101>;
->  		};
->  
->  		clint: timer@74000000 {
->  			compatible = "sophgo,cv1812h-clint", "thead,c900-clint";
-> -			reg = <0x74000000 0x10000>;
-> -			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
+> Maybe this has been discussed before but I didn't find it. I'm wondering
+> the reason of adding each plic and clint binding for each SoC, can we
+> just use the thead,c900-plic for plic?
+> FWICT, arm gic dt usage follows this way, there's no binding for each SoC's
+> gic but directly use "arm,gic-v3" and so on.
 
+I'm not aware of why the gic-v3 is done like this, but having different
+compatibles allows differentiation between implementations/integrations
+of this interrupt controller. I think having that ability is especially
+helpful given T-Head have open-sourced a bunch of their IP.
+
+--a/zpBNbMNsth1Q72
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSpfUQAKCRB4tDGHoIJi
+0pX2AP4wYdW2thFcBTVUGxaO74xEyj4aQ1WBKWyE5D7v2uZ9JAEAkJn4LfRJBEGC
+c4In3tyIqVJS+5Y1dWIQO6WzcjO0tgk=
+=XuAN
+-----END PGP SIGNATURE-----
+
+--a/zpBNbMNsth1Q72--
 
