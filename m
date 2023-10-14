@@ -1,108 +1,115 @@
-Return-Path: <devicetree+bounces-8622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F7B7C94A8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 14:55:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1194D7C94B5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 15:26:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 831CBB20B47
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 12:55:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBC75282329
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 13:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92371171C;
-	Sat, 14 Oct 2023 12:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B562125D8;
+	Sat, 14 Oct 2023 13:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqlHHKcZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OlLa0Ulc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8755682
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 12:55:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE83CC433C8;
-	Sat, 14 Oct 2023 12:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAC4125C5
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 13:25:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9506EC433C7;
+	Sat, 14 Oct 2023 13:25:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697288149;
-	bh=/lc79HEJR074zhVDTlVtO5LTAdeKCDnQSo7gS31fcjI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qqlHHKcZdLhDWJxm1NuBxTdlUHaRSnSFIQ9q9zq2ruckPGylkmaqyiwGCrABL8ZDD
-	 wG28TjhOuHnmxpxA/zVViVAUEszi7bowEF7Cv+/uMb/CeX058kWlP/IoAKVey1sPMw
-	 f8LCbxOA87yEDB3oG+OCXrFqHX0t/czr8Ped69mOc6KVFwBDyoOkZZMbrFX+3/dsyD
-	 5hm70g5fwMKqfu3Oi6MHL2byDyzyBlgced5vuCRWzEawk5zGpn6WpgXKfqiUu0fI0G
-	 zcg0rNOw3/jXf+mKheaNjICNCZtVy+65YstJJgQpwxEhwWN5Pabp9KXzCurLqLdg6Y
-	 XQThwD9L6oYUw==
-Date: Sat, 14 Oct 2023 13:56:03 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Martin Kepplinger <martink@posteo.de>, lorenzo@kernel.org,
- lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, kernel@puri.sm, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: imu: st,lsm6dsx: add mount-matrix
- property
-Message-ID: <20231014135603.4f4a632c@jic23-huawei>
-In-Reply-To: <20231013-violin-craziness-f63d75ce0116@spud>
-References: <20231012142041.253332-1-martink@posteo.de>
-	<20231013-violin-craziness-f63d75ce0116@spud>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1697289955;
+	bh=xyAHBtwF6qf+q9F9kmfhHuJJAP88d/S1vOjvN3+mXHw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OlLa0Ulc0DKDp2Ct10MC5Zsba52hUu+14ZbgGrlmTFVOb+MSAqT6NFF3knJbmDzqZ
+	 xXOuQvyOL/5JfqzX7hgYx3FHfjHw4KFxg3NaJpm3SH4+pnAxmNmWndifO5AapuoMuC
+	 W2aQSHZEA+Ut5u4ayVY3NM4r+7zfLMYrU89VOuRA74QbdcnNEYtofU6mAJPNUcx8xE
+	 ZrA3QUmfdCmFRLCcmGf3FotFK+dyRS6iYvapj4jIaX7Heh5xxjbT9zlMOuLcY/2/go
+	 V6iA8DtVFoHP14QMrfr27cj1Shnb8as0vDk2qKu/PONC/9R4WFQ3dFZ5YIM53l2DlT
+	 T9MYJd/YjQlQg==
+Date: Sat, 14 Oct 2023 14:25:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linu Cherian <lcherian@marvell.com>
+Cc: Mike Leach <mike.leach@linaro.org>,
+	"suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
+	"james.clark@arm.com" <james.clark@arm.com>,
+	"leo.yan@linaro.org" <leo.yan@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"coresight@lists.linaro.org" <coresight@lists.linaro.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+	George Cherian <gcherian@marvell.com>
+Subject: Re: [EXT] Re: [PATCH 1/7] dt-bindings: arm: coresight-tmc: Add
+ "memory-region" property
+Message-ID: <20231014-carbon-slept-9464499a4156@spud>
+References: <20230929133754.857678-1-lcherian@marvell.com>
+ <20230929133754.857678-2-lcherian@marvell.com>
+ <CAJ9a7VhzARGmywQFPNCZ27D5UKEEPSR9_hmL5fo3daFWpB26Vg@mail.gmail.com>
+ <PH0PR18MB500266F8C82877450DC9DDD2CED1A@PH0PR18MB5002.namprd18.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xODWgUT9EMkdmFwT"
+Content-Disposition: inline
+In-Reply-To: <PH0PR18MB500266F8C82877450DC9DDD2CED1A@PH0PR18MB5002.namprd18.prod.outlook.com>
 
-On Fri, 13 Oct 2023 16:19:54 +0100
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Thu, Oct 12, 2023 at 02:20:41PM +0000, Martin Kepplinger wrote:
-> > Add the mount-matrix optional property to the binding since it's supported
-> > and very useful when using the chip on a board.
-> > 
-> > Signed-off-by: Martin Kepplinger <martink@posteo.de>  
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Thanks,
-> Cnor.
-> 
-> > ---
-> > 
-> > revision history
-> > ----------------
-> > v2: (thanks Jonathan)
-> > * remove the addition to the example to avoid unrelated discussions :)
-:)
+--xODWgUT9EMkdmFwT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied
+On Sat, Oct 14, 2023 at 11:36:37AM +0000, Linu Cherian wrote:
+> > > +      - description: Reserved meta data memory. Used for ETR and ETF=
+ sinks.
+> > > +
+> > > +  memory-region-names:
+> > > +    items:
+> > > +      - const: trace-mem
+> > > +      - const: metadata-mem
+> > > +
+> >=20
+> > Is there a constraint required here? If we are using the memory area for
+> > trace in a panic situation, then we must have the meta data memory area
+> > defined?
+> > Perhaps a set of names such as "etr-trace-mem", "panic-trace-mem" ,
+> > "panic-metadata-mem", were the first is for general ETR trace in non-pa=
+nic
+> > situation and then constrain the "panic-" areas to appear together.
+> > The "etr-trace-mem", "panic-trace-mem" could easily point to the same
+> > area.
+> >=20
+> As noted above, we do not have other generic use case for these reserved =
+regions now.
+> Hence two regions/names, panic-trace-mem and panic-metadata-mem with cons=
+traints kept as
+>  minItems: 2 and maxItems: 2 would suffice ?
 
-> > 
-> > v1:
-> > https://lore.kernel.org/linux-devicetree/20230721103410.575555-1-martink@posteo.de/
-> > 
-> > 
-> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > index ee8724ad33ab..28b667a9cb76 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > @@ -93,6 +93,9 @@ properties:
-> >    wakeup-source:
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> >  
-> > +  mount-matrix:
-> > +    description: an optional 3x3 mounting rotation matrix
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.39.2
-> >   
+Whatever you do, please delete the -mem suffix.
 
+--xODWgUT9EMkdmFwT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSqWzgAKCRB4tDGHoIJi
+0qX6AP9zu1/zSvIKb+Or0bUn+DYlqMtR8PQFTUOPeVyvcHN8SwEA1kUb5kBtLo7/
+/tHTuGBcFv3oHZR+As70GVeHsRHGtwA=
+=JnQT
+-----END PGP SIGNATURE-----
+
+--xODWgUT9EMkdmFwT--
 
