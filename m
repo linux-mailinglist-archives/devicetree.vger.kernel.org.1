@@ -1,156 +1,147 @@
-Return-Path: <devicetree+bounces-8653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BD77C95D7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 20:11:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D3C7C95E7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 20:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C9FB20B9F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:11:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C161B20BBE
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 18:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E153E21A0E;
-	Sat, 14 Oct 2023 18:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79FC224F8;
+	Sat, 14 Oct 2023 18:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NdDXoOA6"
+	dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b="CI/R2blf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621541803B
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 18:11:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365F6BB;
-	Sat, 14 Oct 2023 11:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697307068; x=1728843068;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eiDmfD8lwVIVrPcqy/x65+noFv8kPKYhkxxPejyvs4k=;
-  b=NdDXoOA6p8UlKvJp2H/F583IP853etkFxXZyaVJrNYP790eGqvchvbXK
-   5Br7oPTbRcJASY6cGIyIAn9jzCBm3DL+YSyDrXFsaNTNejJo+AHlcsakc
-   qMaiFdVCdxbegRqNpjKCRPkSiRhdDGmgFlnd4BDs6dfHWJGYWby/8M+a1
-   SGTDIYKzqC//ejY4AhpRcQiB6C5T+4gq+gVYTmGAm9BNXUpZvcO5Si8+Y
-   fgCchV7DxJASUI/Al+IExJboSN920bquHS8uVeRE1L+0gS2JrD71rfysA
-   SdjoN47aretMAZs1TOfnikjFmbc/2tiuWPDOyF9NOdLYVgm42zMPMb8h+
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="385180115"
-X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
-   d="scan'208";a="385180115"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2023 11:11:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="898928706"
-X-IronPort-AV: E=Sophos;i="6.03,224,1694761200"; 
-   d="scan'208";a="898928706"
-Received: from lkp-server02.sh.intel.com (HELO f64821696465) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 14 Oct 2023 11:09:10 -0700
-Received: from kbuild by f64821696465 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qrj6L-0006U4-3D;
-	Sat, 14 Oct 2023 18:11:02 +0000
-Date: Sun, 15 Oct 2023 02:11:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
-	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	laurent.pinchart@ideasonboard.com,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
-	Mehdi Djait <mehdi.djait@bootlin.com>
-Subject: Re: [PATCH v6 3/3] media: i2c: Introduce a driver for the Techwell
- TW9900 decoder
-Message-ID: <202310150123.XoLU3dcO-lkp@intel.com>
-References: <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3693812B8F
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 18:20:09 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C084ACE
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 11:20:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-53dd752685fso5556117a12.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 11:20:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pqrs.dk; s=google; t=1697307606; x=1697912406; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6fOl+bxIlDqRdabWV4eMcPga/r08+UAl61pbyIP1Fbo=;
+        b=CI/R2blfT4aj3bZA7FuBTBeCrJ5D1W2lHpUTuttuu2icJ7h6uiub6248pm+8c6M8NM
+         m4fTxS5O9ojlGfEH93efaSgq3rTL5da5LiMNZQ9hT5+pw4kpUh1onmnSTYXxF7fk9MxP
+         ThSlg1PWRHIKfB1jpIjpZHj28T/6vhLCDNLMiU6OPcD6dI4Pfsvee4yf1RDiapfdjs9q
+         CAcuvii6W0pfYj11QwCEoNmtkPN2WBeGshP5tbkHqa7ZhomYk86kzPx98Z/DJJkx4HGH
+         afxqRWLjuDPK0DbK1nbItP9BVuxmWK9TJaBHX+48xzzaLXjty4SHHz1Reoc6SEnnRn6O
+         kMRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697307606; x=1697912406;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6fOl+bxIlDqRdabWV4eMcPga/r08+UAl61pbyIP1Fbo=;
+        b=Dkl2Jv/HXFsN6yz6rWVNhdzDSEkZOukCRlbBBUMCwYoojGIhYU41V4ZNEHve5xnh2l
+         5dM7LX1GqDfzuz++PfQ8/cpL+HbZkDBvt7uvDdDyjZFZa9Yb/hDl3edfYSmLtpqkh1uR
+         jvcCZt3KCrLA9EtB5JIEHsCw5STKYybJuiCld9h3AlJFJVWQ+JbTmaXbXTYvPaXM/0tA
+         UKTI/U+V6MhtIyLBE+xS0TRTNUYXOX6bzp3RF2MLG2KdH55fku7wIuTKZJPIifk8yEtA
+         uktHRSb8hxVcX4HJ59WGevdvXgfIbzDV+yWl/zgFXA5nKhdUoMMzisIaoZMhBAnjps25
+         gcag==
+X-Gm-Message-State: AOJu0Ywo7kf3STIJNq01B5n1x+RRo6m/rmai8PaA8EbS+QI4VXNxzGjt
+	NN+Hk7hvbv1zruuS458k3chaXw==
+X-Google-Smtp-Source: AGHT+IFR9nQTum39uWgT3lfCZqNdApJtGkGJUxCRS85dC01cenjmbGl9KKwCRplUainYK5xaGtAtLA==
+X-Received: by 2002:a05:6402:241a:b0:53d:bdd2:3d62 with SMTP id t26-20020a056402241a00b0053dbdd23d62mr11762343eda.30.1697307606118;
+        Sat, 14 Oct 2023 11:20:06 -0700 (PDT)
+Received: from capella.localdomain (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
+        by smtp.gmail.com with ESMTPSA id i13-20020a056402054d00b005231e3d89efsm13032574edx.31.2023.10.14.11.20.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Oct 2023 11:20:05 -0700 (PDT)
+From: =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Subject: [PATCH v4 0/3] clk: si5351: add option to adjust PLL without
+ glitches
+Date: Sat, 14 Oct 2023 20:19:40 +0200
+Message-Id: <20231014-alvin-clk-si5351-no-pll-reset-v4-0-a3567024007d@bang-olufsen.dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIALzbKmUC/y2NQQ6CMBAAv0L27JJuoQY9+Q/DoSmLbGgKtoRoC
+ H+3oseZw8wGiaNwgmuxQeRVkkwhQ30qwA02PBilywxa6YoU1Wj9KgGdHzGJqQxhmHD2HiMnXpB
+ db52yZ2OUg9yYI/fyOvr3NvMgaZni+9it9LX/smqIqNJ1aRptLgbpN7rNz5jKboR23/cPER/K6
+ a0AAAA=
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rabeeh Khoury <rabeeh@solid-run.com>, 
+ Jacob Siverskog <jacob@teenage.engineering>, 
+ Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Mehdi,
+This series intends to address a problem I had when using the Si5351A as
+a runtime adjustable audio bit clock. The basic issue is that the driver
+in its current form unconditionally resets the PLL whenever adjusting
+its rate. But this reset causes an unwanted ~1.4 ms LOW signal glitch in
+the clock output.
 
-kernel test robot noticed the following build errors:
+As a remedy, a new property is added to control the reset behaviour of
+the PLLs more precisely. In the process I also converted the bindings to
+YAML.
 
-[auto build test ERROR on media-tree/master]
-[also build test ERROR on robh/for-next linus/master v6.6-rc5 next-20231013]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-vendor-prefixes-Add-techwell-vendor-prefix/20231007-002623
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/857baa8073f0b8051720959ef8fb1d49a6161d36.1696608809.git.mehdi.djait%40bootlin.com
-patch subject: [PATCH v6 3/3] media: i2c: Introduce a driver for the Techwell TW9900 decoder
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20231015/202310150123.XoLU3dcO-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231015/202310150123.XoLU3dcO-lkp@intel.com/reproduce)
+v3 -> v4:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310150123.XoLU3dcO-lkp@intel.com/
+- remove spurious | per Rob's suggestion
+- simplify conditional clocks/clock-names per Rob's suggestion
+- remove mention of clkout[0-7] still being admissible in the commit
+  body of patch 1 - while the Linux driver still tolerates this, the
+  new dt-bindings do not
 
-All errors (new ones prefixed by >>):
+v2 -> v3:
 
-   drivers/media/i2c/tw9900.c: In function 'tw9900_get_stream_std':
->> drivers/media/i2c/tw9900.c:359:15: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
-     359 |         std = FIELD_GET(TW9900_STDNOW_MASK, ret);
-         |               ^~~~~~~~~
-   cc1: some warnings being treated as errors
+- address further comments from Rob:
+  - drop unnecessary refs and minItems
+  - simplify if conditions for chip variants
+  - ignore his comment about dropping '|', as line would be >80 columns
+  - move additionalProperties: false close to type: object
+  - define clocks/clock-names at top-level
+- drop patch to dove-cubox dts per Krzysztof's comment - will send
+  separately
+- collect Sebastian's Acked-by
 
+v1 -> v2:
 
-vim +/FIELD_GET +359 drivers/media/i2c/tw9900.c
+- address Rob's comments on the two dt-bindings patches
+- new patch to correct the clock node names in the only upstream device
+  tree using si5351
 
-   347	
-   348	static int tw9900_get_stream_std(struct tw9900 *tw9900,
-   349					 v4l2_std_id *std_id)
-   350	{
-   351		int std, ret;
-   352	
-   353		ret = tw9900_read_reg(tw9900->client, TW9900_REG_STD_SEL);
-   354		if (ret < 0) {
-   355			*std_id = V4L2_STD_UNKNOWN;
-   356			return ret;
-   357		}
-   358	
- > 359		std = FIELD_GET(TW9900_STDNOW_MASK, ret);
-   360	
-   361		switch (std) {
-   362		case TW9900_STD_NTSC_M:
-   363			*std_id = V4L2_STD_NTSC;
-   364			break;
-   365		case TW9900_STD_PAL_BDGHI:
-   366			*std_id = V4L2_STD_PAL;
-   367			break;
-   368		case TW9900_STD_AUTO:
-   369			*std_id = V4L2_STD_UNKNOWN;
-   370			break;
-   371		default:
-   372			*std_id = V4L2_STD_UNKNOWN;
-   373			break;
-   374		}
-   375	
-   376		return 0;
-   377	}
-   378	
+---
+Alvin Šipraga (3):
+      dt-bindings: clock: si5351: convert to yaml
+      dt-bindings: clock: si5351: add PLL reset mode property
+      clk: si5351: allow PLLs to be adjusted without reset
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+ .../devicetree/bindings/clock/silabs,si5351.txt    | 126 ----------
+ .../devicetree/bindings/clock/silabs,si5351.yaml   | 269 +++++++++++++++++++++
+ drivers/clk/clk-si5351.c                           |  47 +++-
+ include/linux/platform_data/si5351.h               |   2 +
+ 4 files changed, 315 insertions(+), 129 deletions(-)
+---
+base-commit: b7c08e5d3824bc57182b308c1e158ddfdbe4cd00
+change-id: 20231014-alvin-clk-si5351-no-pll-reset-ecfac0a6550c
+
 
