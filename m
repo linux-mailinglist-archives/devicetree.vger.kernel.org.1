@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-8613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745447C931B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A28797C931F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 09:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50758B20B0C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 07:15:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 923A6B20AD7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Oct 2023 07:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E401C1859;
-	Sat, 14 Oct 2023 07:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9931859;
+	Sat, 14 Oct 2023 07:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QwkgGyvM"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AkM2NncQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6068A566E
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 07:15:33 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCDDBB
-	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019585396
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 07:15:39 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5D5CA
+	for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1697267727;
+	s=mimecast20190719; t=1697267737;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=/5sur0d8z6Ch5nawEvWUvmJt66ioO3eas3zF7Y15+CY=;
-	b=QwkgGyvMpB6xJyYZBsjYNjleTo9N3MKt3dtJYVER6y22aJRdy3k8J7E0XEXMiWUWrQireZ
-	LUhQspWvk4TruDyJutgruPTTO5+ZaKjwXz+Z6Od2+HqXLeE8kLg3okeD/eOc+CflYSJujR
-	6xlW2V/sI0VDAgLtL7dhRZAON8bSNhM=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=L40KmVEphI0s36UXbc+Nqi/6EpaBRCldyiUbNkbVIGc=;
+	b=AkM2NncQhxN8eRjBPuy1gubIfJJ/RSxzoITSFXywYtVRDJk+AlNKO0aLoIArM4lRZB27Ka
+	Pr7itpIBVgHXMgPnY+sS6PeZNphXb70Zu8qPxxoR5b5m3vO7ck4mhh9YraTxR8tVTyNEPl
+	Pp8C7Bjdv1fqVpM+eC4WfzM5ytdjTrU=
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
+ [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-500-v1lACZaNMM2XBeSD3c4JGg-1; Sat, 14 Oct 2023 03:15:26 -0400
-X-MC-Unique: v1lACZaNMM2XBeSD3c4JGg-1
-Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-32d9602824dso1291731f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:26 -0700 (PDT)
+ us-mta-493-XDlRNcX9NwOYsjdS74MMxw-1; Sat, 14 Oct 2023 03:15:34 -0400
+X-MC-Unique: XDlRNcX9NwOYsjdS74MMxw-1
+Received: by mail-lf1-f71.google.com with SMTP id 2adb3069b0e04-5079fe7cc7cso608409e87.2
+        for <devicetree@vger.kernel.org>; Sat, 14 Oct 2023 00:15:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697267725; x=1697872525;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/5sur0d8z6Ch5nawEvWUvmJt66ioO3eas3zF7Y15+CY=;
-        b=ElApk48eUKfxSCapTvzYiWFff8Yd+wVYUJ2djK7tTcEG0JwlZg4eI+djFA0rOZ0LNL
-         BXXxv3nyOVmEia74c+c/ohRqQcloNJRv4uwV6B3uABVzaOtrJrOxz297Tan1arrmwQ0I
-         R9CkHWJWwZekVCsUUvEB4HCoygjOqtCPbDXTNZdxw8Lp7+EqTAGKbgULN619oBAvILRM
-         eGpkp1vAMkEhCJFGOXy0iaZcoqWubmc3zOMAdvsjU8Z00Gk1p35EgAqlX6UQwmLs+CXi
-         UOOJVfMzFv/Rd1dyc+u89WrB6e1rkBmbL0WJEXssbq1VL6UALfq9TGJUjDG5lzP7h1iX
-         XYOA==
-X-Gm-Message-State: AOJu0Yz+4V9Gynx/nSDfhITyWCSBip1m8erzs0eXEF2QD8OSwXcgf/xY
-	XWlMUPK4xJOXoZ4NI6RvRWkX0Ky+0eXqU7ckdtvvdVERmvbkiEGoKkg/O8iBUuZWN8sbre0zHxJ
-	DsSBCe02nlUo/Oh720Jinnw==
-X-Received: by 2002:adf:cc8a:0:b0:31a:d49a:38d with SMTP id p10-20020adfcc8a000000b0031ad49a038dmr25614649wrj.54.1697267725164;
-        Sat, 14 Oct 2023 00:15:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFtx68sm77fSM2l+MPku3L9wgkn1CIXV77p6tOGdf1hWrtQhINmwCfG/IjzsrkVnrDfksdvNw==
-X-Received: by 2002:adf:cc8a:0:b0:31a:d49a:38d with SMTP id p10-20020adfcc8a000000b0031ad49a038dmr25614629wrj.54.1697267724773;
-        Sat, 14 Oct 2023 00:15:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697267732; x=1697872532;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L40KmVEphI0s36UXbc+Nqi/6EpaBRCldyiUbNkbVIGc=;
+        b=SzADPgNulDifYx90xW6tNXozzVWkaw7rho9uBAnXj85c8MbesKR+mISiCX2TtMika5
+         E2V9LREVRsQugEttBHEl8lHwqIKooRnri85msgAX1B8Bt7iq1CJpnoUMgsDoH7eQrJgs
+         F9FdnXG758pEotwmtf9yXjjTqLxKj76gWGE4b9RR0BcB62W8TvzarIeSPO3gUEKmww3Z
+         9qPLpTNLR3U7H5fjoof8MJ8KSUgUKOgCVpXkrK3x9jrfB5bJWiLhCyrhpip8JUdmFjsF
+         GTQwqIcFr3mPA681HFe697Yx9Mu1/7x2rirJZoAtBlRNTs1zqQxnFFjLuPMRuYdmsm0Q
+         J2Xg==
+X-Gm-Message-State: AOJu0YzyC21piwt7lL3gfCS1u4/Xm7BS42nAO6Bqcv41eFDmp/5HJQCP
+	cCOOdBrKXtzPwMs0A7JMFk2b77nxBYtuWJ2Es5jHu8PsX+wQg7UdGPQ2PXUz/RuX9zs3u0RrYgs
+	YJyn7QUY2oERxQANEwa474Q==
+X-Received: by 2002:a05:6512:3a83:b0:503:2deb:bbc1 with SMTP id q3-20020a0565123a8300b005032debbbc1mr28600318lfu.22.1697267732532;
+        Sat, 14 Oct 2023 00:15:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEacEunJ2/vtjj/hMo9XgpbKpPFdZ+wm3KP0SVdHibnjcsC4EB/kyupw46K5iKtSYP274RS7g==
+X-Received: by 2002:a05:6512:3a83:b0:503:2deb:bbc1 with SMTP id q3-20020a0565123a8300b005032debbbc1mr28600300lfu.22.1697267732165;
+        Sat, 14 Oct 2023 00:15:32 -0700 (PDT)
 Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id w15-20020a5d404f000000b0032da471c0c1sm866163wrp.7.2023.10.14.00.15.23
+        by smtp.gmail.com with ESMTPSA id i9-20020a05600c354900b003fee53feab5sm1154353wmq.10.2023.10.14.00.15.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Oct 2023 00:15:24 -0700 (PDT)
+        Sat, 14 Oct 2023 00:15:31 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: Rob Herring <robh@kernel.org>,
@@ -80,10 +81,12 @@ Cc: Rob Herring <robh@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 0/6] drm/solomon: Add support for the SSD132x controller family
-Date: Sat, 14 Oct 2023 09:15:02 +0200
-Message-ID: <20231014071520.1342189-1-javierm@redhat.com>
+Subject: [PATCH v4 5/6] dt-bindings: display: Split common Solomon properties in their own schema
+Date: Sat, 14 Oct 2023 09:15:07 +0200
+Message-ID: <20231014071520.1342189-6-javierm@redhat.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231014071520.1342189-1-javierm@redhat.com>
+References: <20231014071520.1342189-1-javierm@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,98 +95,146 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+There are DT properties that can be shared across different Solomon OLED
+Display Controller families. Split them into a separate common schema to
+avoid these properties to be duplicated in different DT bindings schemas.
 
-This patch-set adds support for the family of SSD132x Solomon controllers,
-such as the SSD1322, SSD1325 and SSD1327 chips. These are used for 16 Gray
-Scale Dot Matrix OLED panels.
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
 
-This is a v4 that just rebases on top of commit a48e2cc92835 ("drm/ssd130x:
-Fix atomic_check for disabled planes"), that landed in drm-misc tree and
-conflicts with this series.
-
-It also fixes ssd132x_primary_plane_atomic_check(), using the same change
-in the mentioned commit to fix the ssd132x_primary_plane_atomic_check()
-callback function.
-
-The patches were tested on a Waveshare SSD1327 display using glmark2-drm,
-fbcon, fbtests and the retroarch emulator.
-
-Patch #1 drops the .page_height field from the device info with a constant
-because it's only needed by the SSD130x family and not the SSD132x family.
-
-Patch #2 adds a per controller family id field to the device info data, to
-allow the driver to support different Solomon display controller families.
-
-Patch #3 renames some SSD130X_* commands that are shared by both families.
-
-Patch #4 adds the support for the SSD132x controller family.
-
-Patch #5 splits out some properties that are shared across both controller
-families bindings and move them into a separate solomon,ssd-common schema.
-
-Finally patch #6 adds a DT binding schema for the SSD132x controllers.
-
-Best regards,
-Javier
-
-Changes in v4:
-- Fix ssd132x_primary_plane_atomic_check() with the same change that commit
-  48e2cc92835 ("drm/ssd130x: Fix atomic_check for disabled planes") did for
-  the ssd130x_primary_plane_atomic_check() callback.
-- Add Thomas Zimmermann's Acked-by tag to all the patches in the series.
+(no changes since v3)
 
 Changes in v3:
-- Drop the per controller family functions table (Thomas Zimmermann).
-- Use different modesetting pipelines for chip families (Thomas Zimmermann).
-- Change the i,j variables type to unsigned int (Geert Uytterhoeven).
 - Fix "No newline at end of file" in solomon,ssd-common.yaml (Rob Herring).
 - Add Rob Herring's Reviewed-by tag to patch #5.
-- Add Rob Herring's Reviewed-by tag to patch #6.
 
-Changes in v2:
-- Add Geert Uytterhoeven's Reviewed-by tag to patch #1.
-- Squash patch that uses drm_format_info_min_pitch() to calculate dest_pitch
-  with the following patch (Geert Uytterhoeven).
-- Store ssd13xx_family_funcs[SSD130X_FAMILY] in struct ssd130x_deviceinfo
-  (Geert Uytterhoeven).
-- Don't mix switch (family_id) and ssd13xx_funcs[family_id] (Geert Uytterhoeven).
-- Replace switch (family_id) by an .set_buffer_sizes (Geert Uytterhoeven).
-- Move the rect alignment to a per chip family function (Geert Uytterhoeven).
-- Align the rectangle to the segment width (Geert Uytterhoeven).
-- Drop patches that rename driver and prefixes (Maxime Ripard, Peter Robinson).
-- Remove unnecessary 'oneOf' in the SSD132x DT binding schema (Conor Dooley).
-- Remove unused DT nodes labels in the binding schema examples (Conor Dooley).
-- Split out common Solomon properties into a separate schema (Rob Herring).
-
-Javier Martinez Canillas (6):
-  drm/ssd130x: Replace .page_height field in device info with a constant
-  drm/ssd130x: Add a controller family id to the device info data
-  drm/ssd130x: Rename commands that are shared across chip families
-  drm/ssd130x: Add support for the SSD132x OLED controller family
-  dt-bindings: display: Split common Solomon properties in their own
-    schema
-  dt-bindings: display: Add SSD132x OLED controllers
-
- .../bindings/display/solomon,ssd-common.yaml  |  42 ++
- .../bindings/display/solomon,ssd1307fb.yaml   |  28 +-
- .../bindings/display/solomon,ssd132x.yaml     |  89 +++
- MAINTAINERS                                   |   3 +-
- drivers/gpu/drm/solomon/Kconfig               |  12 +-
- drivers/gpu/drm/solomon/ssd130x-i2c.c         |  18 +-
- drivers/gpu/drm/solomon/ssd130x-spi.c         |  27 +-
- drivers/gpu/drm/solomon/ssd130x.c             | 508 ++++++++++++++++--
- drivers/gpu/drm/solomon/ssd130x.h             |  17 +-
- 9 files changed, 645 insertions(+), 99 deletions(-)
+ .../bindings/display/solomon,ssd-common.yaml  | 42 +++++++++++++++++++
+ .../bindings/display/solomon,ssd1307fb.yaml   | 28 +------------
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 44 insertions(+), 27 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
- create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
 
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd-common.yaml b/Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
+new file mode 100644
+index 000000000000..3e6998481a75
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/solomon,ssd-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common properties for Solomon OLED Display Controllers
++
++maintainers:
++  - Javier Martinez Canillas <javierm@redhat.com>
++
++properties:
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  # Only required for SPI
++  dc-gpios:
++    description:
++      GPIO connected to the controller's D/C# (Data/Command) pin,
++      that is needed for 4-wire SPI to tell the controller if the
++      data sent is for a command register or the display data RAM
++    maxItems: 1
++
++  solomon,height:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Height in pixel of the screen driven by the controller.
++      The default value is controller-dependent.
++
++  solomon,width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Width in pixel of the screen driven by the controller.
++      The default value is controller-dependent.
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+index 20e2bd15d4d2..3afbb52d1b7f 100644
+--- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -27,38 +27,12 @@ properties:
+           - solomon,ssd1307
+           - solomon,ssd1309
+ 
+-  reg:
+-    maxItems: 1
+-
+   pwms:
+     maxItems: 1
+ 
+-  reset-gpios:
+-    maxItems: 1
+-
+-  # Only required for SPI
+-  dc-gpios:
+-    description:
+-      GPIO connected to the controller's D/C# (Data/Command) pin,
+-      that is needed for 4-wire SPI to tell the controller if the
+-      data sent is for a command register or the display data RAM
+-    maxItems: 1
+-
+   vbat-supply:
+     description: The supply for VBAT
+ 
+-  solomon,height:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      Height in pixel of the screen driven by the controller.
+-      The default value is controller-dependent.
+-
+-  solomon,width:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      Width in pixel of the screen driven by the controller.
+-      The default value is controller-dependent.
+-
+   solomon,page-offset:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     default: 1
+@@ -148,7 +122,7 @@ required:
+   - reg
+ 
+ allOf:
+-  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - $ref: solomon,ssd-common.yaml#
+ 
+   - if:
+       properties:
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 987152e3be02..c63649e9ba58 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6765,6 +6765,7 @@ DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
+ M:	Javier Martinez Canillas <javierm@redhat.com>
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
++F:	Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
+ F:	Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+ F:	drivers/gpu/drm/solomon/ssd130x*
+ 
 -- 
 2.41.0
 
