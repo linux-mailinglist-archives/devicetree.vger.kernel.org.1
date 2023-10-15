@@ -1,39 +1,38 @@
-Return-Path: <devicetree+bounces-8690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 345187C9B32
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 22:04:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7745D7C9B36
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 22:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64D241C208F2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 20:04:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC0651C209F2
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 20:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260B111721;
-	Sun, 15 Oct 2023 20:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8361172B;
+	Sun, 15 Oct 2023 20:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="eibEV0Jg"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="wCMCKUVt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1995CA4D
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 20:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F5411706
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 20:04:06 +0000 (UTC)
 Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FF9C5;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B89ED9;
 	Sun, 15 Oct 2023 13:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-	t=1697400212; bh=HsI6q5ZqWA2Xqb7iuplYKiKLey5gau/NWt1cjNPYiYY=;
-	h=From:Subject:Date:To:Cc;
-	b=eibEV0JgXjMSfigi6w8SQom18W9kxtWAUaGm3ygoHsIpQBIuT3Ls0VUtLq0m6LcGR
-	 ioWkLPyESxVYM8f+klu/B7KfdFsbuts9Yb3Wo9J7GCh5dQxKZMoOVv1BpeJvPh9kZc
-	 +qndWPnRl9OZebR6NZ0790k5kZQn4oOZThl4RG70=
+	t=1697400213; bh=UBcuPPvCkMF5VJX2cM/TeeQFIz6MAcbcTnhTFVt0/f0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=wCMCKUVtrDwe6X5Bg0nId5QFXMCRKYAZBulQ++9fqc4RZbqaXcXAEJ3pHToYx8aED
+	 LCfIvxiV8jkgwvHzkyJAeGWDnDXrVnjh6vP3nrmocf6uFs6O+l8MUms6eq3qQDJBlS
+	 wfmuo14ZjcLcv1Iy5UfrQEeHCmg0RKMgnmXepZyg=
 From: Luca Weiss <luca@z3ntu.xyz>
-Subject: [PATCH 0/4] Add WCN3680B WiFi/Bluetooth and enable it on Fairphone
- 3
-Date: Sun, 15 Oct 2023 22:03:05 +0200
-Message-Id: <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
+Date: Sun, 15 Oct 2023 22:03:06 +0200
+Subject: [PATCH 1/4] dt-bindings: remoteproc: qcom: wcnss: Add WCN3680B
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,9 +41,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHpFLGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDA0NT3bQCY93y5LziYl0j41QL4yQLI2PTNFMloPqCotS0zAqwWdGxtbU
- ALtuZRVsAAAA=
+Message-Id: <20231015-fp3-wcnss-v1-1-1b311335e931@z3ntu.xyz>
+References: <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
+In-Reply-To: <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
 To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
  Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>, 
@@ -60,20 +59,20 @@ Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org, 
  Luca Weiss <luca@z3ntu.xyz>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1128; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=HsI6q5ZqWA2Xqb7iuplYKiKLey5gau/NWt1cjNPYiYY=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlLEWG9Gp66ulRUz7oQWuzEBvMk2DKLUswm1NFY
- OuLLA8+1VaJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZSxFhgAKCRBy2EO4nU3X
- VspqD/0c+2OcM1vAUEhGee8RMbaeYcyy0yD6WuefeqaEEHO51eB9PlZimEv/NDVi2H/N1FFvKjG
- PhA96ExHV1idW3gUcEod6w8QSGGSu8FSVEY08LfV8iIFxZiZazxvrKAzOOI5KpI28btSbsLjg4E
- 4A6alHfxWSfoeAAvLwgb070Pj7D8mIqjhQ9gasW85r+Z5hb+5l/qOe/mp+gKXuQ+8vIu9b5OXFj
- dEc+O0V3XEzfwANhzmYfZVcQoXqFAsPGyKLLuglHsVGXS7uSXxdEwR7XfXh5pmszFVAomIKjboY
- U6NRRq6otOG/6nKxy8GLv4yQjuVd8I95IUvTk7wlMYJeJDnOAQmaHZGLcfHIfs5RpzITo+p8n+1
- cSrpKVligbDsaJZBSct8IttOph6UL8XdhM7l9skVtlHLiMPLcbYFQaxwNDduJOxDyaC0ukQD/db
- Mmsj38SNSAoJOIV43HTygfFHVB4en7/8CpyGSQ5xG35u1sdpT633ZSfZKBc8NXyCQMCtuRWUsdL
- dJsCUg//rZ6JOSlfUg25WUXZeGO/60D86DZkyOk/KhYpSD77VpQDQTJ7oF/5qR9JwjCOfbNsGLa
- T3X3Vz1YLzwn2bqqVL1t9P1GL1DbLir2IL2spBuk0qaEGAAYC6tQwbT9l3gbsM9eF+R9KDRY/nn
- YhEGG6xQG3LxoQA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=746; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=UBcuPPvCkMF5VJX2cM/TeeQFIz6MAcbcTnhTFVt0/f0=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlLEWQWYz3VnCBzuywdfmhz0FJE7b161pJE9+zl
+ YZAeemp6A+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZSxFkAAKCRBy2EO4nU3X
+ VgUoD/957O200UjOLzDFN3HHOTl5/M5HtqlfCK+sAZl73OpKRDMj0Jcp8oMLl0OnrElRbTtpkJW
+ croer+9sw6euIA03ntodsFpkA/HSSMSWV8fsYdsa5hs9Vl1M5KT1E8eskSJriUOML2thUt1uvBY
+ PbB8K5X5pxSssglgqmFNhrYPaJzQz+rWYCiY1k5PQwHYj1SHfSGaPrT+nGYEK7TtyzZtA7vGOwE
+ Os+46TJqIcBEDRjmgNDPR505ZSMESvjZB6tNhgN6bK9bJpb94Ef2uU+8fTXvWaB2ha+NSGQjEZ/
+ 3O0jTCXwVfd5RitkoJPIPr8JsHmaZnmb4PzhuUa49t72dAuAVmaFKiG81Uvo75et+Q9Vi7UEWrD
+ rpTdYS9lwzQIE7rFG6Hd4xJwe488aEEw1PusLwpksOBnxg31L3PRSw3ARAoObqG8751HWPdwCFB
+ NAqpeCXIxCFEcYnzNDSA5NaMhSCMkEaUjPN7SaItoLNIy9FuCkqDsDGAPAe9+VJF1G53hpHk7ib
+ 44eplItLHmqFYdpY7mkAUQjD1XW2Q3JPf0UtrwxiuKNj6slkNvhTBRLp7KZR2BGcFgiEi/eEdyV
+ ki9H78THtYsJd2h9ziLiE+n0GyDHhK0GGhQjhLftDK+Ri1ruKO7l3K2K7jPLc+9VVANiw+uBku0
+ dv2y6ikI1jaqFTQ==
 X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
  fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,32 +81,27 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a new compatible for the WCN3680B found together with some Qualcomm
-SoCs. And enable this WiFi/Bluetooth combo on Fairphone 3 smartphone.
-
-Worth noting that I'm pretty sure some phones already in mainline do
-have this WCN3680B chip enabled but are using a different compatible,
-e.g. qcom,wcn3680 (without the b suffix).
+Add a compatible for the iris subnode in the WCNSS PIL.
 
 Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
-Luca Weiss (4):
-      dt-bindings: remoteproc: qcom: wcnss: Add WCN3680B compatible
-      remoteproc: qcom_wcnss: Add WCN3680B compatible
-      wifi: wcn36xx: Add check for WCN3680B
-      arm64: dts: qcom: sdm632-fairphone-fp3: Enable WiFi/Bluetooth
+ Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml    |  1 +
- arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts         | 15 +++++++++++++++
- drivers/net/wireless/ath/wcn36xx/main.c                   |  3 ++-
- drivers/remoteproc/qcom_wcnss_iris.c                      |  1 +
- 4 files changed, 19 insertions(+), 1 deletion(-)
----
-base-commit: 09eda82818c490a6fb24f1374bd704ea5c3b577a
-change-id: 20231015-fp3-wcnss-23e83b8235f5
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+index 45eb42bd3c2c..0e5e0b7a0610 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+@@ -111,6 +111,7 @@ properties:
+           - qcom,wcn3660
+           - qcom,wcn3660b
+           - qcom,wcn3680
++          - qcom,wcn3680b
+ 
+       clocks:
+         minItems: 1
 
-Best regards,
 -- 
-Luca Weiss <luca@z3ntu.xyz>
+2.42.0
 
 
