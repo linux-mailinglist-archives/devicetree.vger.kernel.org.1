@@ -1,249 +1,94 @@
-Return-Path: <devicetree+bounces-8676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A677C9903
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 14:39:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4697C993D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 15:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF0F72816B5
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 12:39:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E8DDB20BDE
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 13:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599C263DE;
-	Sun, 15 Oct 2023 12:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF21D6FC8;
+	Sun, 15 Oct 2023 13:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="lWTA4B8o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZKncDzAW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D079563C6
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 12:39:21 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A88FD6;
-	Sun, 15 Oct 2023 05:39:18 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BB896327;
-	Sun, 15 Oct 2023 14:39:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697373551;
-	bh=dzjnCjwfcqMfcNNHqBSajU7MAd1Z/q6f1+jISiGq4wc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lWTA4B8ogveTLdw4KUrBd92ZacGUfzAzx2gzJrDfDJ/16yA/g2TGCCHhyvM2P68qH
-	 h3Qg+CWBdsF8xgm9KIiiVa5VvB59fB98tyuRRSlSus/PJLOGaPy//rLMiMPgfRkIBJ
-	 RWqATi8lPV9zVrOGPW76Wwg/zk0sURwIQGQhPcLY=
-Date: Sun, 15 Oct 2023 15:39:23 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: media: Add bindings for THine
- THP7312 ISP
-Message-ID: <20231015123923.GB23177@pendragon.ideasonboard.com>
-References: <20231012193737.7251-1-laurent.pinchart@ideasonboard.com>
- <20231012193737.7251-2-laurent.pinchart@ideasonboard.com>
- <aaa41ff2-d2e3-4c25-9654-065a02275619@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698A16FA3;
+	Sun, 15 Oct 2023 13:55:22 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B294FDA;
+	Sun, 15 Oct 2023 06:55:20 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso32379721fa.2;
+        Sun, 15 Oct 2023 06:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697378119; x=1697982919; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+nu3q9xetfUZuBGmSKSjg8GptXQiPNikua8+gYwpkQE=;
+        b=ZKncDzAWlIvq2GmpGSrjfAuqINPl+FvDXkQv2Em+73xUCQ6j3f1CRBFPH2GTp0jEca
+         +5HLfp8cq0BofapnlMXPeVpeemnN7zonqwDVUgzomEOTb/7d1+92Ul/tgKEzbQjiwXIH
+         SNQXm21FDZrlR7E4ExU4rUz9EYwp2B+lL9FRBxaHEA4hpHbW8ytHQhKP/HlykcGoFHCf
+         /0Wlc4M75UNAQsMjs4nUfVwaBHVaJEyVN9muJoz6EGRBPwVn/jnshwnPDLxCqv0k/x6p
+         jcKrTFivOhUSR5a2MprC3DKr3U2zgkG4p2m3egrvTydNg5u6LOx6kRY6eTvvvWIXp007
+         j9Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697378119; x=1697982919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+nu3q9xetfUZuBGmSKSjg8GptXQiPNikua8+gYwpkQE=;
+        b=fsjNodRCogOIhM9NPfvlJFAyJ2Hj6cLSJsya/40BVVYsHsq0h+LIK4H/+ZIJwb5DWy
+         utTLHrnaSMkSnr3uK1kbt1qcFUjFbbu7AKlpE1eU/qOOeciuMU4KVnWOL0H1w93LkFNA
+         kLTxCD6DJW8nvPL8iHA5MzoTx0+o+OjW3LCxkJ9G2GeP8RjyGiiMuTX6WWqSHRLJDgPX
+         Nwcq0efARHlIy5t5GxQkd7L0uKr5TBVp+vymg9uF8wrVSTvOXsnvjhSV4WexXp/cXe+F
+         aFV+JhfCjrSVtFkUPbdul/qJGcpZay0G7J2k4XmSkU/KBZHuaBORzAEXa1iMpnYFlRgb
+         8Y1A==
+X-Gm-Message-State: AOJu0YxYQCZ31pZZm3eCUVqsWD6v7pw5zpADlAXYVmfd95LU3CWkYZzL
+	NTj/youy89v/UalY5SJfpdlBavzJVEv58B3FEi5Xg6UKMBo=
+X-Google-Smtp-Source: AGHT+IEfZ7cvgrZH1UzPtCzRRkhnrKWh8hqNkVeeXFK7ca5VK0TSV58DyxUiQUgcwGoUdmuKyzoJfHUd4fli02773zM=
+X-Received: by 2002:a05:6512:158e:b0:506:899d:1989 with SMTP id
+ bp14-20020a056512158e00b00506899d1989mr25089203lfb.44.1697378118570; Sun, 15
+ Oct 2023 06:55:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aaa41ff2-d2e3-4c25-9654-065a02275619@linaro.org>
+References: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
+In-Reply-To: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
+From: Akinobu Mita <akinobu.mita@gmail.com>
+Date: Sun, 15 Oct 2023 22:55:06 +0900
+Message-ID: <CAC5umyi2QK+R2M3gFpkFu7jy_rwJY9Q5JdHQzLAJssHyhKxLrw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] Support byte access in the RTC7301 driver
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Howard Harte <hharte@magicandroidapps.com>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+2023=E5=B9=B410=E6=9C=8811=E6=97=A5(=E6=B0=B4) 4:42 Linus Walleij <linus.wa=
+lleij@linaro.org>:
+>
+> This augments the Epson RTC7301 driver so that is supports
+> both 8bit byte and 32bit word access.
 
-On Thu, Oct 12, 2023 at 09:57:38PM +0200, Krzysztof Kozlowski wrote:
-> On 12/10/2023 21:37, Laurent Pinchart wrote:
-> 
-> Thanks for the changes
+I don't have access to that device anymore, but I think it's a good change.
 
-You're welcome. Sorry again for missing some of your review comments on
-v1.
-
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            description:
-> > +              This property is for lane reordering between the THP7312 and the
-> > +              SoC. The sensor supports either two-lane, or four-lane operation.
-> > +              If this property is omitted four-lane operation is assumed. For
-> > +              two-lane operation the property must be set to <1 2>.
-> > +            minItems: 2
-> > +            maxItems: 4
-> > +            items:
-> > +              maximum: 4
-> > +
-> > +  sensors:
-> > +    type: object
-> > +    description: List of connected sensors
-> 
-> I don't understand why do you list sensors here. From the binding
-> description I understood these are external sensors, which usually sit
-> on I2C bus.
-
-Good question :-)
-
-The sensors connected to the THP7312 input are controlled over I2C by
-the THP7312 itself. The host operating system doesn't have access to
-that I2C bus. The sensors are listed here because their power supplies
-need to be controlled by the host operating system.
-
-> > +
-> > +    properties:
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^sensor@[01]":
-> > +        type: object
-> > +        description:
-> > +          Sensors connected to the first and second input, with one node per
-> > +          sensor.
-> > +
-> > +        properties:
-> > +          thine,model:
-> > +            $ref: /schemas/types.yaml#/definitions/string
-> > +            description:
-> > +              Model of the connected sensors. Must be a valid compatible string.
-> 
-> Then why this isn't compatible?
-
-We picked a vendor-specific property to avoid implying that the sensor
-nodes will result in devices being created by the host operating system.
-I don't mind using "compatible" instead, but as far as I understand, a
-compatible string implies that corresponding device DT bindings should
-exist, and that won't be the case here necessarily.
-
-> > +
-> > +          reg:
-> > +            maxItems: 1
-> > +            description: THP7312 input port number
-> > +
-> > +          data-lanes:
-> > +            $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
-> > +            items:
-> > +              maxItems: 4
-> > +            description:
-> > +              This property is for lane reordering between the THP7312 and the imaging
-> > +              sensor that it is connected to.
-> > +
-> > +        patternProperties:
-> > +          ".*-supply":
-> > +            description: Power supplies for the sensor
-> > +
-> > +        required:
-> > +          - reg
-> > +          - data-lanes
-> > +
-> > +        additionalProperties: false
-> > +
-> > +    required:
-> > +      - "#address-cells"
-> > +      - "#size-cells"
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reset-gpios
-> > +  - clocks
-> > +  - vddcore-supply
-> > +  - vhtermrx-supply
-> > +  - vddtx-supply
-> > +  - vddhost-supply
-> > +  - vddcmos-supply
-> > +  - vddgpio-0-supply
-> > +  - vddgpio-1-supply
-> > +  - sensors
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        camera@61 {
-> > +            compatible = "thine,thp7312";
-> > +            reg = <0x61>;
-> > +
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&cam1_pins_default>;
-> > +
-> > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
-> > +            clocks = <&camera61_clk>;
-> > +
-> > +            vddcore-supply = <&vsys_v4p2>;
-> > +            vhtermrx-supply = <&vsys_v4p2>;
-> > +            vddtx-supply = <&vsys_v4p2>;
-> > +            vddhost-supply = <&vsys_v4p2>;
-> > +            vddcmos-supply = <&vsys_v4p2>;
-> > +            vddgpio-0-supply = <&vsys_v4p2>;
-> > +            vddgpio-1-supply = <&vsys_v4p2>;
-> > +
-> > +            orientation = <0>;
-> > +            rotation = <0>;
-> > +
-> > +            sensors {
-> > +                #address-cells = <1>;
-> > +                #size-cells = <0>;
-> > +
-> > +                sensor@0 {
-> > +                    thine,model = "sony,imx258";
-> > +                    reg = <0>;
-> > +
-> > +                    data-lanes = <4 1 3 2>;
-> > +
-> > +                    dovdd-supply = <&vsys_v4p2>;
-> > +                    avdd-supply = <&vsys_v4p2>;
-> > +                    dvdd-supply = <&vsys_v4p2>;
-> > +                };
-> > +            };
-> > +
-> > +            port {
-> > +                thp7312_2_endpoint: endpoint {
-> > +                    remote-endpoint = <&mipi_thp7312_2>;
-> > +                    data-lanes = <4 2 1 3>;
-> > +                };
-> > +            };
-> > +    	  };
-> > +    };
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Akinobu Mita <akinobu.mita@gmail.com>
 
