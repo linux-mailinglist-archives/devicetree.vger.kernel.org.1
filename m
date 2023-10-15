@@ -1,151 +1,110 @@
-Return-Path: <devicetree+bounces-8680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75FC07C9AF7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:18:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2D97C9B18
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C76022817CC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 19:18:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 085C4281752
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 19:40:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4348E11703;
-	Sun, 15 Oct 2023 19:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D06B111B5;
+	Sun, 15 Oct 2023 19:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AX0y1Zcz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C6FE11702
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 19:18:04 +0000 (UTC)
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8171CB7;
-	Sun, 15 Oct 2023 12:18:01 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6c63588b554so2575767a34.0;
-        Sun, 15 Oct 2023 12:18:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697397481; x=1698002281;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4J9M6Q/Fs2kk5+JVwAA7fWPPg0+sN3LtWvj/onmeBpI=;
-        b=Vfh5uqf6K61puPn1Zqw20AWTscLhXJEGaCY6BH4u+9MdQYI0UPrFSPSlvbLGcikRQ0
-         kPzucuTgQ+TbFPb2ZIJCf+2yovGTBoajXcv3QVJNjmWqHz5pVToGUZRAFYbmEnADZUTI
-         gBsUqGEzCDfYhkmQ71VXp6gXuWEG8tXDcIGpZ0gmXJEws1Ggt3BXTRPeLbc3j1vQ7Pz1
-         +Hi6mLtM1s4mbEvJBOXD/TXV/6uNQuAV36kUMvkdLStjCe2OAEJbwCsJi6okqHcNdWcG
-         /xrb0FxOtAfu9l59qE54Ra4O7nCwwTwqVT441CQlJmpL0lexcIxc3/n12mj5RwVHQ4ZD
-         h+pw==
-X-Gm-Message-State: AOJu0Yy0p3uU7SjmGvUhdxvbL0ZILlk/rVceX44X1PJ5lpcgHiGipI5o
-	0GacwH+glvp9wJg9Z4wzyOnE2el8eQ==
-X-Google-Smtp-Source: AGHT+IGkt06dc7qCuMxBb7Nw9BsjyJwuBXkEDdDzef3EKu7IjKViBYtfVjhVjm4sz0+Mjr27UFstbg==
-X-Received: by 2002:a9d:4d0a:0:b0:6bd:93e:460b with SMTP id n10-20020a9d4d0a000000b006bd093e460bmr30718901otf.19.1697397480689;
-        Sun, 15 Oct 2023 12:18:00 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dj23-20020a0568303a9700b006b9a9bc7773sm1455775otb.56.2023.10.15.12.17.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Oct 2023 12:17:59 -0700 (PDT)
-Received: (nullmailer pid 609034 invoked by uid 1000);
-	Sun, 15 Oct 2023 19:17:55 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6812107BE
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 19:39:55 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7351B7;
+	Sun, 15 Oct 2023 12:39:54 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39FJVW2O008852;
+	Sun, 15 Oct 2023 19:39:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=qY5smuiGl5lC2VMUh/40TPR7PQajpU0c5/Ii9PEv0tg=;
+ b=AX0y1ZczOzn2RfVPOtk83hDICttjSufiHTNQvzaKlVDqR2GFjFFFdtl0HuKXyvjcwi2X
+ odqqHzuIKjJqSAe5BxwGN12V2AW59C/MG1xHeH+ScraMHGmBtb2x5vId1F/xBPxQn2pZ
+ efD7lh4Yx9O5TrzZx8hJ4BlYmvsIZUeWz6fvWCvex5+cvtc4Os+nOhTbkAJxlYuC/e5z
+ dwXFGuoQiK4/HjfXFfhD2TJ1Q+UNMLKIgS9u4w910awgesNK9NHtzHf4621VTTzYFE2+
+ 2Qx2vxo3WUqty8dGWnLl+USKD97wb5w3Rww33Kbo5i7cZ1e5ekTqowiX7RCuQkLOucX4 eg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tqm61ag1a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Oct 2023 19:39:37 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39FJdPN7023961
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Oct 2023 19:39:25 GMT
+Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Sun, 15 Oct 2023 12:39:20 -0700
+From: Om Prakash Singh <quic_omprsing@quicinc.com>
+To: <quic_omprsing@quicinc.com>
+CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+Subject: [PATCH V1 0/4] Enable TRNG for SA8775P and SC7280
+Date: Mon, 16 Oct 2023 01:08:57 +0530
+Message-ID: <20231015193901.2344590-1-quic_omprsing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: werneazc@gmail.com
-Cc: devicetree@vger.kernel.org, Andre Werner <andre.werner@systec-electronic.com>, jic23@kernel.org, linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, linux-iio@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de
-In-Reply-To: <20231015184517.3582-1-andre.werner@systec-electronic.com>
-References: <20231015184517.3582-1-andre.werner@systec-electronic.com>
-Message-Id: <169739747509.608933.6680883828849778208.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: ti,ads7038: Add
- description for ADS7038
-Date: Sun, 15 Oct 2023 14:17:55 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FkSCI09k6GnwgfR4mx60Z2d5hUT0_nl9
+X-Proofpoint-GUID: FkSCI09k6GnwgfR4mx60Z2d5hUT0_nl9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-15_06,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 phishscore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 spamscore=0
+ mlxlogscore=493 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310150179
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add device-tree nodes to enable TRNG for SA8775P and SC7280
 
-On Sun, 15 Oct 2023 20:32:20 +0200, werneazc@gmail.com wrote:
-> From: Andre Werner <andre.werner@systec-electronic.com>
-> 
-> Add basic description for ADS7038 ADC devices.
-> The devicetree adds the following device specific options:
-> 
-> - average-samples: Program device's programmable average filter.
-> - crc-enabled: Enable the CRC check for SPI transfers. Sadly, this
->   option has currently no effect in the driver.
-> - status-enabled: Enable the appending of the device's status on the
->   measure value transmission.
-> - gpio-controller: Sadly function not implemented yet in the driver.
-> 
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> ---
-> v3:
-> - Delete ADS7138 compatible and comments.
-> - Add options for CRC, status and average samples as well as
->   gpio-controller.
-> - Update example.
-> ---
->  .../bindings/iio/adc/ti,ads7038.yaml          | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> 
+*** BLURB HERE ***
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Om Prakash Singh (4):
+  dt-bindings: crypto: qcom,prng: document SA8775P
+  dt-bindings: crypto: qcom,prng: document SC7280
+  arm64: dts: qcom: sa8775p: add TRNG node
+  arm64: dts: qcom: sc7280: add TRNG node
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:14: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:16: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:18: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:20: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:22: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:24: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:39:26: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml:65:6: [error] missing starting space in comment (comments)
+ Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 2 ++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi                   | 5 +++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                    | 5 +++++
+ 3 files changed, 12 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: required:5: None is not of type 'string'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: properties:gpio-controller:const: True is not of type 'integer', 'string'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: properties:gpio-controller: 'anyOf' conditional failed, one must be fixed:
-	'decription' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: properties:gpio-controller: Additional properties are not allowed ('const', 'decription' were unexpected)
-	from schema $id: http://devicetree.org/meta-schemas/boolean.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: ignoring, error in schema: required: 5
-Documentation/devicetree/bindings/iio/adc/ti,ads7038.example.dts:25.17-52: ERROR (duplicate_property_names): /example-0/spi/adc@0:avdd-supply: Duplicate property name
-ERROR: Input tree has errors, aborting (use -f to force output)
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/iio/adc/ti,ads7038.example.dtb] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231015184517.3582-1-andre.werner@systec-electronic.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.25.1
 
 
