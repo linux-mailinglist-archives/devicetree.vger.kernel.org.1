@@ -1,106 +1,119 @@
-Return-Path: <devicetree+bounces-8716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C2B7C9C01
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 23:48:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E07957C9C05
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 23:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D043B20BC8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:48:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D1B281600
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A34D14A89;
-	Sun, 15 Oct 2023 21:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1996114A8F;
+	Sun, 15 Oct 2023 21:54:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c8IoE1Vl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79FB15D4
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 21:48:33 +0000 (UTC)
-Received: from mail.andi.de1.cc (unknown [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D04E8C1;
-	Sun, 15 Oct 2023 14:48:31 -0700 (PDT)
-Received: from p5dc58b95.dip0.t-ipconnect.de ([93.197.139.149] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qs8y9-0052jb-1N; Sun, 15 Oct 2023 23:48:17 +0200
-Date: Sun, 15 Oct 2023 23:48:15 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tony Lindgren <tony@atomide.com>
-Cc: =?UTF-8?B?UMOpdGVy?= Ujfalusi <peter.ujfalusi@gmail.com>,
- bcousson@baylibre.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
- fck_src
-Message-ID: <20231015234815.637f5c14@aktux>
-In-Reply-To: <20231007062518.GM34982@atomide.com>
-References: <20230705190324.355282-1-andreas@kemnade.info>
-	<20230705190324.355282-2-andreas@kemnade.info>
-	<7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
-	<20230920063353.GQ5285@atomide.com>
-	<dac768d2-2c66-4d6b-b3d3-d1ef69103c76@gmail.com>
-	<20230921121626.GT5285@atomide.com>
-	<20231006102348.GK34982@atomide.com>
-	<20231006213003.0fbac87a@aktux>
-	<20231007062518.GM34982@atomide.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1592EEA1
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 21:54:40 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7339C1
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 14:54:38 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40684f53bfcso36151225e9.0
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 14:54:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697406877; x=1698011677; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0QG9vlqxiNVALcyUAQIY9+SbjzzlS00U4CnvIpEmDRQ=;
+        b=c8IoE1VlOM4P9DeE5bJfPGlVr0Wb1LMAzh5d8PG+SvqnBc0nVUaBZkJqYihYDOaxSB
+         BQApQS79Z4v8pF1ea1UvPY3pBQC+DNpUhmcOEGi2CJsHIx+csl0ugEFQ9IRGMWX2KJgK
+         KYd+8iQnkV/cn9NsDC4iXejKtMBTW3D3O0FtlEYfvjtwJYjwN+r4CppydQkEI7dsqp5a
+         rp+QuP3UUcKtfB3HBlvzTVYtymcYMgCNGRBlfV8V1KMW3tRODTq9m89AVZWH51KHJYr0
+         PAlk6g1YV7ISOfC/Vtoc284501bvqd/I2hnyYzXIX8Z7FUiOC0J8JQoGx3rziJB8DXBx
+         AaAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697406877; x=1698011677;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0QG9vlqxiNVALcyUAQIY9+SbjzzlS00U4CnvIpEmDRQ=;
+        b=BT4soqg6ywZuTZnUVmOlK0BAE7838oSDXb3PpHdyrABA5Y7mmFze6fX9eU+2VtdyYX
+         4qB6Lhmu1vKGCMk3S7OIGRqV2MLh7bbdiZvhQkMUdqncYSx1zt9tpfyWrPp+yEhNLyDB
+         KKsn07pWL1omZ1+rTITK3fyY/UHcn41ABcwMrvOhBcWgf58hHHPsi8Zx3TSmau+Otfmc
+         43X/IukIH1C85OzJnuyRMRJNUPO5rxS+4xdhrvVC2nOo0qcqN2XuvMBKioafuTZEa28J
+         51Fdc7IDHtgVwFZkeAEefadUgOOtnLPwFvBspDlw426bk/WMloJ6SOiKZbZslDYX+xNF
+         s0rg==
+X-Gm-Message-State: AOJu0YzxgbqFLLtn7XBDDPFg4Sr8LLXgipqBUDtdZ4QW+eWFDheQ9bAj
+	IJA9pda/py0Fjn+6R78fY7KDdQ==
+X-Google-Smtp-Source: AGHT+IGXZ6gUTWqXb+xT9o+FleuWv6jXqAEwhIBbsrFbTegYHrtte+4y/J8ZdhEBguj+srpdLn/7kg==
+X-Received: by 2002:a05:600c:1910:b0:407:859c:a1bc with SMTP id j16-20020a05600c191000b00407859ca1bcmr709327wmq.26.1697406877121;
+        Sun, 15 Oct 2023 14:54:37 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id jb17-20020a05600c54f100b00401bbfb9b2bsm889040wmb.0.2023.10.15.14.54.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Oct 2023 14:54:36 -0700 (PDT)
+Message-ID: <83dbd835-c36e-4e7d-a5e4-c572e19c649d@linaro.org>
+Date: Sun, 15 Oct 2023 23:54:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/4] dt-bindings: thermal-zones: Document
+ critical-action
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>
+Cc: rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20231006180453.2903342-1-festevam@gmail.com>
+ <CAOMZO5CfW10dwVDYaHkvhTMKeHw38ZAt1kdH8qB=8AM=cqdHvw@mail.gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAOMZO5CfW10dwVDYaHkvhTMKeHw38ZAt1kdH8qB=8AM=cqdHvw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Tony,
+On 13/10/2023 12:39, Fabio Estevam wrote:
+> Hi Daniel,
+> 
+> On Fri, Oct 6, 2023 at 3:05 PM Fabio Estevam <festevam@gmail.com> wrote:
+>>
+>> From: Fabio Estevam <festevam@denx.de>
+>>
+>> Document the critical-action property to describe the thermal action
+>> the OS should perform after the critical temperature is reached.
+> 
+> Are you happy with the v10 series?
 
-On Sat, 7 Oct 2023 09:25:18 +0300
-Tony Lindgren <tony@atomide.com> wrote:
+Yes, I think they are fine except one thing.
 
-> * Andreas Kemnade <andreas@kemnade.info> [231006 19:30]:
-> > On Fri, 6 Oct 2023 13:23:48 +0300
-> > Tony Lindgren <tony@atomide.com> wrote:  
-> > > Here's what I think the regression fix for omap4 clocks would be, the
-> > > old main_clk is not the same as the module clock that we get by default.
-> > > If this looks OK I'll do a similar fix also for omap5.
-> > > 
-> > > Or is something else also needed?
-> > >   
-> > 
-> > hmm,
-> > audio output works, the waring is away, but something new is here:  
-> 
-> OK good to hear it works, I'll send out fixes for omap4 and 5, seems
-> the runtime PM warning is something different.
-> 
-> > omap-mcbsp 40124000.mcbsp: Runtime PM usage count underflow!
-> > # cat /sys/bus/platform/devices/40124000.mcbsp/power/runtime_status 
-> > active
-> > 
-> > even with no sound.  
-> 
-> I guess if the mcbsp instance is not used, runtime PM is enabled but
-> pm_runtime_resume_and_get() is never called by ASoC?
-> 
-> If so then the following might be a fix, not familiar with runtime PM
-> done by ASoC though and not sure if some kind of locking would be
-> needed here.
-> 
-just checked: that one fixes the regression. runtime suspends again.
+The include/linux/reboot.h is changed along with thermal*.c file. IMO it 
+is preferable to have separate patch, I mean all reboot.h changes folded 
+in a single patch before the thermal_*.c changes. It is actually 
+orphaned and we should ask Matti Vaittinen <mazziesaccount@gmail.com> 
+its acked-by as he is the author of the code you are changing. 
+Otherwise, he will have to ack the patches which contain also thermal 
+code which is not its area.
 
-Regards,
-Andreas
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
