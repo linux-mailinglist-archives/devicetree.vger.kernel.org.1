@@ -1,269 +1,143 @@
-Return-Path: <devicetree+bounces-8706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EF87C9BC8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 23:12:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F031A7C9BCB
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 23:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3BE2816F1
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:12:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21E871C208D9
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 21:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A321426F;
-	Sun, 15 Oct 2023 21:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63B0112B9D;
+	Sun, 15 Oct 2023 21:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KXFLYNrz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jo6Yp26S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159C413ADF
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 21:12:07 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBEEE5
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 14:12:06 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so42452585e9.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 14:12:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38AF125C1;
+	Sun, 15 Oct 2023 21:15:03 +0000 (UTC)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D97A1;
+	Sun, 15 Oct 2023 14:15:02 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-27d0e3d823fso2023739a91.1;
+        Sun, 15 Oct 2023 14:15:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697404324; x=1698009124; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IPbEl3a+GSATMX0xKBiAaSsckvKrX/yZx29OiKgfOoY=;
-        b=KXFLYNrzBP3XG8vUv7Qbe+R1hjLRsIqAms2bO9LN8Vegz5NCA7qgUhxSK7QyuQSGkX
-         AL7y3DiPrSeSMfkw4ZbPf7xpXXD6YIGT25Nu3afhuYeFjEg9B5somdQAQGqSgJOgFHWG
-         HbzOTv7OAz5hswSKa90FBNj6yLBgSpnDOhckIxIM/U/FJ8FALtNXq0EVEbnLHLhe1Gc4
-         0d7h0tYuVOwvZyqsvWHV8q4503Ibwu45gX347cFDjZvRMWWSW4ZFiQEorwhDC/UC6iP4
-         nEVoihm5giG1MnMd/RbKomJT/Iq970mFehyN+6Y4Q6C1LkzdiFyNLnZ38trSUHC5Bci8
-         pFSQ==
+        d=gmail.com; s=20230601; t=1697404502; x=1698009302; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=FybfQL/2+am3fBvki3QXc8OJ8OyWG0HEMSqGclx17ZY=;
+        b=jo6Yp26SHrKcEsmUN0exs2XM+qIrQm576pFIPSULmhxd1FByGpGtNe5TT+lou4TDSK
+         0+tfJz9osIGHQAyF5ZGehSXbIpeu77EwRwGtgVAtJ48HXrwRk/O7KQ+QEGT/cxeIWMCq
+         3Lnc+j7ljaNEvmTdQmx2a1Mw1t2Nr4xh+kzWKvOqhjxkY1hW9IMn0VoP7yAHp913xc90
+         3+Ztg7gUQ/PeRWf4LLetsVG+pc0cfqSO/fw7M8/hPxWvQKeDk8QZQdYazTER11ffVLQi
+         HQAr/xaR91ASzcnM1XQho5auOxbTx59aeOICkAK89lq99To9QYSi5qEY3z2a3Quvl8v+
+         d57w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697404324; x=1698009124;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IPbEl3a+GSATMX0xKBiAaSsckvKrX/yZx29OiKgfOoY=;
-        b=kWzKX3nYUUK+nNBlX3f0/R56H7stXtiAZ/5Sn7RQOOdn5SRHrukwbwusegx8LIBpgW
-         PvyJHw+Hl4bYZnUs/bae7EYcFy3j/sJjGlcO5HnZwo3dmwkmhLdJjSIQt8BPcDDHWsnu
-         LI3XXOnfTMtbF+r5nGZk2W1ijuoSqjR4HY/Gvyn2JLvSQUrrhLgmiF7/Zc8J+/0XHUp2
-         57+s19H6eOb0tc23Epn33jPDUOvQTOkWFZKXRANo1WdCb3iEywXqTO7M2OtdO6QynJu4
-         RaAjnWxiMtRjfik/91LsgJtBolxF+fkZRMbUh0U8B06snh8RVA+dYF7skSAhAzwKrVlB
-         BUQw==
-X-Gm-Message-State: AOJu0YzACo49uJLxPb4CYp26q89NPl+SOcayWr3vZjc+Fk2AGZVE8weM
-	FKtBD2nWmdvEsTSG0//4wkDUpw==
-X-Google-Smtp-Source: AGHT+IHLJHyAK/IO20D8onfVloDRBZUxAlFnFPYdQTpisAb4QgFcWRCH0lk29htFCqoCn4DWbBKf4g==
-X-Received: by 2002:adf:ec0f:0:b0:32d:9787:53b6 with SMTP id x15-20020adfec0f000000b0032d978753b6mr6634785wrn.44.1697404324598;
-        Sun, 15 Oct 2023 14:12:04 -0700 (PDT)
-Received: from lion.localdomain (host-2-99-112-229.as13285.net. [2.99.112.229])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5d4d11000000b0032d9548240fsm8456734wrt.82.2023.10.15.14.12.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Oct 2023 14:12:04 -0700 (PDT)
-From: Caleb Connolly <caleb.connolly@linaro.org>
-Date: Sun, 15 Oct 2023 22:11:55 +0100
-Subject: [PATCH v2 7/7] Input: synaptics-rmi4 - support fallback values for
- PDT descriptor bytes
+        d=1e100.net; s=20230601; t=1697404502; x=1698009302;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FybfQL/2+am3fBvki3QXc8OJ8OyWG0HEMSqGclx17ZY=;
+        b=KDbraCB/r/l3Fyo/aPWjkhls1ORI06oHwZYg9z1aCfRxg54kJLRzmdL6Zf2Ik0HkhV
+         EEy2QZNaciXED9u8VhEY3mkL/c31akFDt3IWorP0x9estV1RQRxUaxeJ+yUkTt+C4UKh
+         I6Uo7k719ERxo/h1SUUf9I6zobvSJ+7IsBkLgXRWiGJOKRWpKc/IkM3kWylT3RCb9CPN
+         1SuA9jKSe4EGuoair1wVuFyFpulCt3enESt/ioiwFXmJJStIkH0XCKaC0DiXk3SDr2FE
+         x+SV4p7PuzJy8NHLxf8cwXgnsvVH8NOepVekBwk/M43w/Z2OT9++eMa+0ZIbAI2QKWjr
+         D56Q==
+X-Gm-Message-State: AOJu0YxPrKeCl2X1FmPRocq4LV0QOw5F/GclcdxXj9WoGnGbclWu5vdp
+	pq9r6+z7xEEBrynqgaLF/ho=
+X-Google-Smtp-Source: AGHT+IEwrA4hVASNryTALr0Tia5CHED9xGaftHF/wvs19wA9nwBhJpPBoFgJf/+RkD7c28SIK12kYQ==
+X-Received: by 2002:a17:90a:1997:b0:27d:22d7:9787 with SMTP id 23-20020a17090a199700b0027d22d79787mr7604097pji.36.1697404502110;
+        Sun, 15 Oct 2023 14:15:02 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id b1-20020a655781000000b005b488b6441esm1673680pgr.58.2023.10.15.14.14.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Oct 2023 14:15:01 -0700 (PDT)
+Message-ID: <3ea4860a-b93d-469c-b132-ea6470833f77@gmail.com>
+Date: Sun, 15 Oct 2023 14:14:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 1/7] net: dsa: microchip: Add missing MAC
+ address register offset for ksz8863
+To: Oleksij Rempel <o.rempel@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Arun Ramadoss <arun.ramadoss@microchip.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+ "Russell King (Oracle)" <linux@armlinux.org.uk>, devicetree@vger.kernel.org
+References: <20231013122405.3745475-1-o.rempel@pengutronix.de>
+ <20231013122405.3745475-2-o.rempel@pengutronix.de>
+Content-Language: en-US
+From: Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; keydata=
+ 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
+ HGuUuzv+GKZ6nsysJw==
+In-Reply-To: <20231013122405.3745475-2-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230929-caleb-rmi4-quirks-v2-7-b227ac498d88@linaro.org>
-References: <20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org>
-In-Reply-To: <20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: methanal <baclofen@tuta.io>, linux-input@vger.kernel.org, 
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Caleb Connolly <caleb.connolly@linaro.org>
-X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5774;
- i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=XfJQ2GHO50MV7MnlNjDjRwUK62lemo3DJeS3CYiDH+I=;
- b=owGbwMvMwCFYaeA6f6eBkTjjabUkhlSd0LmvBLLdNWwX3vp/WSfrp/zSkOdvei56XD6c9+H8A
- 6f2TtWsjlIWBkEOBlkxRRbxE8ssm9ZettfYvuACzBxWJpAhDFycAjARpgaG/8kbZsrIOyv4uoc7
- 8NR5/DmnXbF2d+ixat5yaUFPjjzLdIb/Jc1PXvQ9CdybLueks5BVbv+nnMuBnqkc53tDmBguyoU
- /BwA=
-X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
- fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: methanal <baclofen@tuta.io>
 
-Some replacement displays include third-party touch ICs which do not
-expose the function number and the interrupt status in its PDT entries.
 
-OnePlus 6 (original touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2b 22 0d 06 01 01)
+On 10/13/2023 5:23 AM, Oleksij Rempel wrote:
+> Add the missing offset for the global MAC address register
+> (REG_SW_MAC_ADDR) for the ksz8863 family of switches.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-OnePlus 6 (aftermarket touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2c 23 0d 06 00 00)
-
-Introduce a new devicetree property `syna,pdt-desc` which can be used to
-provide platform-specific fallback values for users with a replacement
-display with an aftermarket touch IC.
-
-Signed-off-by: methanal <baclofen@tuta.io>
-[codeflow adjustments, checkpatch fixes, wording]
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- drivers/input/rmi4/rmi_driver.c | 67 ++++++++++++++++++++++++++++++++++++++---
- drivers/input/rmi4/rmi_driver.h |  2 ++
- include/linux/rmi.h             |  3 ++
- 3 files changed, 67 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-index 22f0b35bb70b..f1c09fdb8d73 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -461,9 +461,10 @@ static int rmi_driver_reset_handler(struct rmi_device *rmi_dev)
- 	return 0;
- }
- 
--static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
--			      struct pdt_entry *entry, u16 pdt_address)
-+static int rmi_read_pdt_entry(struct rmi_device *rmi_dev, struct pdt_entry *entry,
-+			      struct pdt_scan_state *state, u16 pdt_address)
- {
-+	const struct rmi_device_platform_data *pdata = rmi_get_platform_data(rmi_dev);
- 	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int error;
- 
-@@ -474,6 +475,21 @@ static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
- 		return error;
- 	}
- 
-+	if (pdata->pdt_fallback_size > state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1) {
-+		/* Use the description bytes from DT */
-+		buf[5] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS];
-+		buf[4] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1];
-+
-+		error = rmi_read_block(rmi_dev, pdt_address, buf,
-+				RMI_PDT_ENTRY_SIZE - 2);
-+		if (error) {
-+			dev_err(&rmi_dev->dev,
-+					"Read PDT entry at %#06x failed, code: %d.\n",
-+					pdt_address, error);
-+			return error;
-+		}
-+	}
-+
- 	entry->page_start = pdt_address & RMI4_PAGE_MASK;
- 	entry->query_base_addr = buf[0];
- 	entry->command_base_addr = buf[1];
-@@ -551,7 +567,7 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 	int retval;
- 
- 	for (addr = pdt_start; addr >= pdt_end; addr -= RMI_PDT_ENTRY_SIZE) {
--		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, addr);
-+		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, state, addr);
- 		if (error)
- 			return error;
- 
-@@ -1028,9 +1044,11 @@ static int rmi_driver_remove(struct device *dev)
- }
- 
- #ifdef CONFIG_OF
--static int rmi_driver_of_probe(struct device *dev,
-+static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
- 				struct rmi_device_platform_data *pdata)
- {
-+	struct device *dev = rmi_dev->xport->dev;
-+	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int retval;
- 
- 	retval = rmi_of_property_read_u32(dev, &pdata->reset_delay_ms,
-@@ -1038,6 +1056,45 @@ static int rmi_driver_of_probe(struct device *dev,
- 	if (retval)
- 		return retval;
- 
-+	/*
-+	 * In some aftermerket touch ICs, the first PDT entry is empty and
-+	 * the function number register is 0. If so, the platform
-+	 * may have provided backup PDT entries in the device tree.
-+	 */
-+
-+	retval = rmi_read_block(rmi_dev, PDT_START_SCAN_LOCATION,
-+			buf, RMI_PDT_ENTRY_SIZE);
-+	if (retval) {
-+		dev_err(dev, "Read PDT entry at %#06x failed, code: %d.\n",
-+			PDT_START_SCAN_LOCATION, retval);
-+		return retval;
-+	}
-+
-+	if (!RMI4_END_OF_PDT(buf[5]))
-+		return 0;
-+
-+	pdata->pdt_fallback_size = of_property_count_u8_elems(dev->of_node,
-+						  "syna,pdt-fallback-desc");
-+
-+	/* The rmi4 driver would fail later anyway, so just error out now. */
-+	if (pdata->pdt_fallback_size == -EINVAL) {
-+		dev_err(dev, "First PDT entry is empty and no backup values provided\n");
-+		return -EINVAL;
-+	}
-+
-+	if (pdata->pdt_fallback_size < 0) {
-+		dev_err(dev, "syna,pdt-fallback-desc property was not specified properly: %d\n",
-+			pdata->pdt_fallback_size);
-+		return pdata->pdt_fallback_size;
-+	}
-+
-+	pdata->pdt_fallback_desc = devm_kzalloc(dev, pdata->pdt_fallback_size, GFP_KERNEL);
-+
-+	retval = of_property_read_u8_array(dev->of_node, "syna,pdt-fallback-desc",
-+		pdata->pdt_fallback_desc, pdata->pdt_fallback_size);
-+	if (retval < 0)
-+		return retval;
-+
- 	return 0;
- }
- #else
-@@ -1163,7 +1220,7 @@ static int rmi_driver_probe(struct device *dev)
- 	pdata = rmi_get_platform_data(rmi_dev);
- 
- 	if (rmi_dev->xport->dev->of_node) {
--		retval = rmi_driver_of_probe(rmi_dev->xport->dev, pdata);
-+		retval = rmi_driver_of_probe(rmi_dev, pdata);
- 		if (retval)
- 			return retval;
- 	}
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index e1a5412f2f8f..2531c32d6163 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -31,6 +31,8 @@
- #define RMI_PDT_FUNCTION_VERSION_MASK   0x60
- #define RMI_PDT_INT_SOURCE_COUNT_MASK   0x07
- 
-+#define RMI_OF_PDT_DESC_CELLS 2
-+
- #define PDT_START_SCAN_LOCATION 0x00e9
- #define PDT_END_SCAN_LOCATION	0x0005
- #define RMI4_END_OF_PDT(id) ((id) == 0x00 || (id) == 0xff)
-diff --git a/include/linux/rmi.h b/include/linux/rmi.h
-index ab7eea01ab42..974597960b5e 100644
---- a/include/linux/rmi.h
-+++ b/include/linux/rmi.h
-@@ -214,6 +214,9 @@ struct rmi_device_platform_data {
- 	int reset_delay_ms;
- 	int irq;
- 
-+	u8 *pdt_fallback_desc;
-+	int pdt_fallback_size;
-+
- 	struct rmi_device_platform_data_spi spi_data;
- 
- 	/* function handler pdata */
-
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
-2.42.0
-
+Florian
 
