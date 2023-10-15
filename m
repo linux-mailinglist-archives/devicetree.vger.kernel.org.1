@@ -1,94 +1,206 @@
-Return-Path: <devicetree+bounces-8677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4697C993D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 15:55:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 453F77C9AD8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 20:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E8DDB20BDE
-	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 13:55:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97BB9B20B79
+	for <lists+devicetree@lfdr.de>; Sun, 15 Oct 2023 18:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF21D6FC8;
-	Sun, 15 Oct 2023 13:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F7FE578;
+	Sun, 15 Oct 2023 18:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZKncDzAW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jJl5Zqcm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698A16FA3;
-	Sun, 15 Oct 2023 13:55:22 +0000 (UTC)
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B294FDA;
-	Sun, 15 Oct 2023 06:55:20 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso32379721fa.2;
-        Sun, 15 Oct 2023 06:55:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4BF33F7
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 18:45:33 +0000 (UTC)
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB94AB;
+	Sun, 15 Oct 2023 11:45:29 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so601583866b.3;
+        Sun, 15 Oct 2023 11:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697378119; x=1697982919; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+nu3q9xetfUZuBGmSKSjg8GptXQiPNikua8+gYwpkQE=;
-        b=ZKncDzAWlIvq2GmpGSrjfAuqINPl+FvDXkQv2Em+73xUCQ6j3f1CRBFPH2GTp0jEca
-         +5HLfp8cq0BofapnlMXPeVpeemnN7zonqwDVUgzomEOTb/7d1+92Ul/tgKEzbQjiwXIH
-         SNQXm21FDZrlR7E4ExU4rUz9EYwp2B+lL9FRBxaHEA4hpHbW8ytHQhKP/HlykcGoFHCf
-         /0Wlc4M75UNAQsMjs4nUfVwaBHVaJEyVN9muJoz6EGRBPwVn/jnshwnPDLxCqv0k/x6p
-         jcKrTFivOhUSR5a2MprC3DKr3U2zgkG4p2m3egrvTydNg5u6LOx6kRY6eTvvvWIXp007
-         j9Jw==
+        d=gmail.com; s=20230601; t=1697395528; x=1698000328; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kTpg3JCWb8aZBFizVHxcNIM+2U6d4eSO0KhtJCpgmZw=;
+        b=jJl5ZqcmhQaRf6o9SKO6n80JFaBOTbL8dafa3+ezWbwYKFOPpHJATnbAaOW/Y5FeuR
+         Xex1gLUuM6Abn8WINM5Lln+GRTuFsz1CC3SLZBwxJESVrCFC0iJsVooAOsGTGM0pBpIb
+         AthWK5I8LEU+6kF5GOWh0oJopjjdxCuXvFe0JoLTBvdTWD59DKeG8T5YV+tfn1gCiJy5
+         lGV+lyGaKKKlS6bXOUmYF6+Bhgb5NObjAqvvHyy8UUSvxe20nYEJOg2TjmEieNcjRLjE
+         Ude4uqlFJQnnPRIYDwMBC31q2FTToYygoWmkuJ0xQCAVCnXUU5iyir0P+aH1TaeHGR7H
+         Qr6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697378119; x=1697982919;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+nu3q9xetfUZuBGmSKSjg8GptXQiPNikua8+gYwpkQE=;
-        b=fsjNodRCogOIhM9NPfvlJFAyJ2Hj6cLSJsya/40BVVYsHsq0h+LIK4H/+ZIJwb5DWy
-         utTLHrnaSMkSnr3uK1kbt1qcFUjFbbu7AKlpE1eU/qOOeciuMU4KVnWOL0H1w93LkFNA
-         kLTxCD6DJW8nvPL8iHA5MzoTx0+o+OjW3LCxkJ9G2GeP8RjyGiiMuTX6WWqSHRLJDgPX
-         Nwcq0efARHlIy5t5GxQkd7L0uKr5TBVp+vymg9uF8wrVSTvOXsnvjhSV4WexXp/cXe+F
-         aFV+JhfCjrSVtFkUPbdul/qJGcpZay0G7J2k4XmSkU/KBZHuaBORzAEXa1iMpnYFlRgb
-         8Y1A==
-X-Gm-Message-State: AOJu0YxYQCZ31pZZm3eCUVqsWD6v7pw5zpADlAXYVmfd95LU3CWkYZzL
-	NTj/youy89v/UalY5SJfpdlBavzJVEv58B3FEi5Xg6UKMBo=
-X-Google-Smtp-Source: AGHT+IEfZ7cvgrZH1UzPtCzRRkhnrKWh8hqNkVeeXFK7ca5VK0TSV58DyxUiQUgcwGoUdmuKyzoJfHUd4fli02773zM=
-X-Received: by 2002:a05:6512:158e:b0:506:899d:1989 with SMTP id
- bp14-20020a056512158e00b00506899d1989mr25089203lfb.44.1697378118570; Sun, 15
- Oct 2023 06:55:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697395528; x=1698000328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kTpg3JCWb8aZBFizVHxcNIM+2U6d4eSO0KhtJCpgmZw=;
+        b=ZUnZV3QDsCWOCLC3MeQ6tbVEFhxpmeq4ZAfsdt/EYNSHl2nuNhRxO4BFNt493ut/g8
+         98N8GlfUrlNWS0KDju0v0dFriSPHUnO0UclCl+rI8nVSNaRhNl/OkAtEjs4p++ea1rBU
+         SLOCzKUjgChIbQ7FSLy8U2csiQjRbcQNagheJK4dKSwpanbY3ROj7UwhohcBzDmt1ple
+         UbfIEbzH3fRyCWzc+rGwUhNGDjBkdfV3Hkq469ONHCib6gr8pHUZ6AMPKJt9gW3tnf6H
+         VlmMZnHw3972BXAVnON041O9EK3I6Qn52bGHlJMBwzbGn+EaHK9U516sfGbYTepLUlOp
+         akWA==
+X-Gm-Message-State: AOJu0YwMkxKlmRx9WRde6rXFkFCoeiXG6Xg60HzB0nUZ/snnHtUncI5Y
+	ScLbxFMSLmrvNRs7jHZfnFJ5XWgN3ZYCSQ==
+X-Google-Smtp-Source: AGHT+IFruBgtsd7n7L074+8guktrs9jivFVKOewe8Cdwla5p1EUuRb87QVzqZI+aijQrRg6gtKmqew==
+X-Received: by 2002:a17:906:da8c:b0:9a2:139:f45d with SMTP id xh12-20020a170906da8c00b009a20139f45dmr34428737ejb.43.1697395528148;
+        Sun, 15 Oct 2023 11:45:28 -0700 (PDT)
+Received: from ws-565760.systec.local ([212.185.67.148])
+        by smtp.gmail.com with ESMTPSA id ga19-20020a170906b85300b0099b76c3041csm2608200ejb.7.2023.10.15.11.45.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Oct 2023 11:45:27 -0700 (PDT)
+From: werneazc@gmail.com
+X-Google-Original-From: andre.werner@systec-electronic.com
+To: jic23@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	lars@metafoo.de
+Cc: devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andre Werner <andre.werner@systec-electronic.com>
+Subject: [PATCH v3 1/2] dt-bindings: iio: adc: ti,ads7038: Add description for ADS7038
+Date: Sun, 15 Oct 2023 20:32:20 +0200
+Message-ID: <20231015184517.3582-1-andre.werner@systec-electronic.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
-In-Reply-To: <20231010-rtc-7301-regwidth-v3-0-ade586b62794@linaro.org>
-From: Akinobu Mita <akinobu.mita@gmail.com>
-Date: Sun, 15 Oct 2023 22:55:06 +0900
-Message-ID: <CAC5umyi2QK+R2M3gFpkFu7jy_rwJY9Q5JdHQzLAJssHyhKxLrw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Support byte access in the RTC7301 driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Howard Harte <hharte@magicandroidapps.com>, linux-rtc@vger.kernel.org, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-2023=E5=B9=B410=E6=9C=8811=E6=97=A5(=E6=B0=B4) 4:42 Linus Walleij <linus.wa=
-lleij@linaro.org>:
->
-> This augments the Epson RTC7301 driver so that is supports
-> both 8bit byte and 32bit word access.
+From: Andre Werner <andre.werner@systec-electronic.com>
 
-I don't have access to that device anymore, but I think it's a good change.
+Add basic description for ADS7038 ADC devices.
+The devicetree adds the following device specific options:
 
-Reviewed-by: Akinobu Mita <akinobu.mita@gmail.com>
+- average-samples: Program device's programmable average filter.
+- crc-enabled: Enable the CRC check for SPI transfers. Sadly, this
+  option has currently no effect in the driver.
+- status-enabled: Enable the appending of the device's status on the
+  measure value transmission.
+- gpio-controller: Sadly function not implemented yet in the driver.
+
+Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+---
+v3:
+- Delete ADS7138 compatible and comments.
+- Add options for CRC, status and average samples as well as
+  gpio-controller.
+- Update example.
+---
+ .../bindings/iio/adc/ti,ads7038.yaml          | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+new file mode 100644
+index 000000000000..323f86c5e682
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments ADS7038 and similar ADCs
++
++maintainers:
++  - Andre Werner <andre.werner@systec-electronic.com>
++
++description: |
++  Family of 7 channel, 12 bit ADCs with SPI interface.
++
++  Datasheet: https://www.ti.com/lit/gpn/ads7038
++
++properties:
++  compatible:
++    enum:
++      - ti,ads7038
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 60000000
++
++  avdd-supply:
++    description: Analog supply voltage, also used as the reference voltage to the ADC.
++
++  dvdd-supply:
++    description: Digital I/O supply voltage.
++
++  average-samples:
++    description: |
++      If specified ADC is configured for avaraging measurements (OSR_CFG Register).
++      This effects output format for measurement and sampling time.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0,1,2,3,4,5,6,7]
++
++  status-enabled:
++    description: |
++      If specified ADC transmits chip status (DATA_CFG Register).
++
++  crc-enabled:
++    description: |
++      Checking the integrity of the data bits exchanged over
++      SPI interface (GENERAL_CFG Register).
++
++  gpio-controller:
++    const: true
++    decription: Marks the device node as a GPIO controller.
++
++  "#gpio-cells":
++    const: 2
++    description: Should be 2. See gpio.txt in this directory for a
++                 description of the cells format.
++
++required:
++  - compatible
++  - reg
++  - avdd-supply
++  - dvdd-supply
++  - gpio-controller
++  - #gpio-cells
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "ti,ads7038";
++            reg = <0>;
++            avdd-supply = <&refin_avdd_supply>;
++            avdd-supply = <&refin_dvdd_supply>;
++            spi-max-frequency = <10000000>;
++            gpio-controller;
++            #gpio-cells = <2>;
++        };
++    };
+-- 
+2.42.0
+
 
