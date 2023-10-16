@@ -1,193 +1,372 @@
-Return-Path: <devicetree+bounces-8803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F7B7CA1DE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBA77CA1BD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CBA428108B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:41:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAFCC281576
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2378C18643;
-	Mon, 16 Oct 2023 08:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F22018B19;
+	Mon, 16 Oct 2023 08:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UWkiP0Gg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BFA1A5A5
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:41:11 +0000 (UTC)
-X-Greylist: delayed 479 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Oct 2023 01:41:09 PDT
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B36F9B
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:41:09 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by honk.sigxcpu.org (Postfix) with ESMTP id 87C85FB0F;
-	Mon, 16 Oct 2023 10:33:06 +0200 (CEST)
-Received: from honk.sigxcpu.org ([127.0.0.1])
-	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 4a32YQ3nMSmE; Mon, 16 Oct 2023 10:33:03 +0200 (CEST)
-Date: Mon, 16 Oct 2023 10:33:01 +0200
-From: Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
-	andyshrk@163.com, jagan@edgeble.ai, daniel@ffwll.ch,
-	airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
-	megous@megous.com, kernel@puri.sm, heiko@sntech.de,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 3/5] drm/panel: st7703: Add Powkiddy RGB30 Panel Support
-Message-ID: <ZSz1PeHhFp0AHtMl@qwark.sigxcpu.org>
-References: <20231013183918.225666-1-macroalpha82@gmail.com>
- <20231013183918.225666-4-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44AD18AF3
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:36:25 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B298FA2;
+	Mon, 16 Oct 2023 01:36:22 -0700 (PDT)
+Received: from [172.20.10.2] (unknown [185.53.196.201])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id AB7CB66072AF;
+	Mon, 16 Oct 2023 09:36:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697445381;
+	bh=85a6e1GLRwqdGuYwYwQLoBaxkBk7BfUNiV3Le2vYw7w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UWkiP0GgDBo82iC17eChfr7i8COXpTXMo/5pjPdCRbKAAzIGeIFbvmXSssMjZ1ZDZ
+	 zIbMjakxUvcCnZ/DEgfan84Wqy1xlf+60pTQdtrPZ1GKvTQRbjmvredwlR+/SGgJCQ
+	 0NSNDb/F880OERvy2kV7JRoOmobl2EBc9rB9QTpbF8PX2BSCbfjXCnwY3gPsCBiEXF
+	 272nUogKl5d0rbF1XzIF8z4wxE8joSmshM3CWbQ78z24Wd6J6NWAucA4cPcdxyNaW6
+	 pRMARhT+TThMRXoj+F70PBlq+YS6gac3FgCJqpBz/fJmOvGpuPCHe2Yp2yQBzUMCzC
+	 nXfHP9RZ2yXKg==
+Message-ID: <bbc99c85-750e-4736-9320-cf9471fe4c92@collabora.com>
+Date: Mon, 16 Oct 2023 11:36:16 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231013183918.225666-4-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_FAIL,SPF_HELO_NONE autolearn=no
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] arm64: dts: mediatek: Introduce MT8186 Steelix
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231012230237.2676469-1-wenst@chromium.org>
+ <20231012230237.2676469-8-wenst@chromium.org>
+Content-Language: en-US
+From: Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <20231012230237.2676469-8-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Chris,
-On Fri, Oct 13, 2023 at 01:39:16PM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 10/13/23 02:02, Chen-Yu Tsai wrote:
+> The MT8186 Steelix, also known as the Lenovo 300e Yoga Chromebook Gen 4,
+> is a convertible device based on a common design of the same name. The
+> device comes in different variants. Of them, whether a world facing
+> camera is integrated is the only differentiating factor between the
+> two device trees added. The different SKU IDs describe this alone.
 > 
-> The Powkiddy RGB30 4 inch panel is a 4 inch 720x720 DSI panel used in
-> the Powkiddy RGB30 handheld gaming device. Add support for it.
+> The other device difference is the touchpad component used. This is
+> simply handled by having both possible components described in the
+> device tree, and letting the implementation figure out which one is
+> actually available. The system bootloader / firmware does not
+> differentiate this in that they share the same SKU IDs.
 > 
-> TODO: The panel seems to not resume properly from suspend. I've
-> confirmed on the other ST7703 based devices it works correctly.
-
-Regarding drm-misc-next has improvements regarding this prompted by the
-PinePhone. Maybe that fixes suspend for you too?
-
-Cheers,
- -- Guido
-
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
->  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
+>   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+>   .../mt8186-corsola-steelix-sku131072.dts      |  18 ++
+>   .../mt8186-corsola-steelix-sku131073.dts      |  18 ++
+>   .../dts/mediatek/mt8186-corsola-steelix.dtsi  | 197 ++++++++++++++++++
+>   4 files changed, 235 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> index 6a3945639535..a9892a4447fb 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> @@ -433,6 +433,94 @@ static const struct st7703_panel_desc rg353v2_desc = {
->  	.init_sequence = rg353v2_init_sequence,
->  };
->  
-> +static int rgb30panel_init_sequence(struct st7703 *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index 442af61b1305..7bd9471b89f9 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -43,6 +43,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327683.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262144.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
+> new file mode 100644
+> index 000000000000..eae17bca8585
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
+> @@ -0,0 +1,18 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2022 Google LLC
+> + */
 > +
-> +	/* Init sequence extracted from Powkiddy RGB30 BSP kernel. */
+> +/dts-v1/;
+> +#include "mt8186-corsola-steelix.dtsi"
 > +
-> +	/*
-> +	 * For some reason this specific panel must be taken out of sleep
-> +	 * before the full init sequence, or else it will not display.
-> +	 */
-> +	mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +	msleep(250);
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xf1, 0x12, 0x83);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05, 0xf9,
-> +			       0x0e, 0x0e, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x44, 0x25, 0x00, 0x90, 0x0a, 0x00,
-> +			       0x00, 0x01, 0x4f, 0x01, 0x00, 0x00, 0x37);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x25, 0x22, 0xf0,
-> +			       0x63);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
-> +			       0x28, 0x03, 0xff, 0x00, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50, 0x50,
-> +			       0x00, 0x00, 0x12, 0x70, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x46);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0b);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0x3c, 0x12, 0x30);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0b, 0x0b,
-> +			       0x03, 0x0b, 0x00, 0x00, 0x00, 0x00, 0xff, 0x00,
-> +			       0xc0, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x36, 0x00, 0x32,
-> +			       0x32, 0x77, 0xf1, 0xcc, 0xcc, 0x77, 0x77, 0x33,
-> +			       0x33);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x0a, 0x0a);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x88, 0x88);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xc8, 0x10, 0x0a, 0x10,
-> +			       0x0f, 0xa1, 0x80, 0x12, 0x31, 0x23, 0x47, 0x86,
-> +			       0xa1, 0x80, 0x47, 0x08, 0x00, 0x00, 0x0d, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00,
-> +			       0x48, 0x02, 0x8b, 0xaf, 0x46, 0x02, 0x88, 0x88,
-> +			       0x88, 0x88, 0x88, 0x48, 0x13, 0x8b, 0xaf, 0x57,
-> +			       0x13, 0x88, 0x88, 0x88, 0x88, 0x88, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x96, 0x12, 0x01, 0x01,
-> +			       0x01, 0x78, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x4f, 0x31, 0x8b, 0xa8, 0x31, 0x75, 0x88, 0x88,
-> +			       0x88, 0x88, 0x88, 0x4f, 0x20, 0x8b, 0xa8, 0x20,
-> +			       0x64, 0x88, 0x88, 0x88, 0x88, 0x88, 0x23, 0x00,
-> +			       0x00, 0x01, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x40, 0xa1, 0x80, 0x00, 0x00, 0x00,
-> +			       0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x0a, 0x0f,
-> +			       0x29, 0x3b, 0x3f, 0x42, 0x39, 0x06, 0x0d, 0x10,
-> +			       0x13, 0x15, 0x14, 0x15, 0x10, 0x17, 0x00, 0x0a,
-> +			       0x0f, 0x29, 0x3b, 0x3f, 0x42, 0x39, 0x06, 0x0d,
-> +			       0x10, 0x13, 0x15, 0x14, 0x15, 0x10, 0x17);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode rgb30panel_mode = {
-> +	.hdisplay	= 720,
-> +	.hsync_start	= 720 + 45,
-> +	.hsync_end	= 720 + 45 + 4,
-> +	.htotal		= 720 + 45 + 4 + 45,
-> +	.vdisplay	= 720,
-> +	.vsync_start	= 720 + 15,
-> +	.vsync_end	= 720 + 15 + 3,
-> +	.vtotal		= 720 + 15 + 3 + 11,
-> +	.clock		= 36570,
-> +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +	.width_mm	= 76,
-> +	.height_mm	= 76,
+> +/ {
+> +	model = "Google Steelix board";
+> +	compatible = "google,steelix-sku131072", "google,steelix",
+> +		     "mediatek,mt8186";
+> +	chassis-type = "convertible";
 > +};
 > +
-> +static const struct st7703_panel_desc rgb30panel_desc = {
-> +	.mode = &rgb30panel_mode,
-> +	.lanes = 4,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.init_sequence = rgb30panel_init_sequence,
+> +&mt6366codec {
+> +	mediatek,dmic-mode = <0>; /* two-wire */
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
+> new file mode 100644
+> index 000000000000..a55375b95d0d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
+> @@ -0,0 +1,18 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2022 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8186-corsola-steelix.dtsi"
+> +
+> +/ {
+> +	model = "Google Steelix board";
+> +	compatible = "google,steelix-sku131073", "google,steelix",
+> +		     "mediatek,mt8186";
+> +	chassis-type = "convertible";
 > +};
 > +
->  static int st7703_enable(struct drm_panel *panel)
->  {
->  	struct st7703 *ctx = panel_to_st7703(panel);
-> @@ -694,6 +782,7 @@ static void st7703_remove(struct mipi_dsi_device *dsi)
->  
->  static const struct of_device_id st7703_of_match[] = {
->  	{ .compatible = "anbernic,rg353v-panel-v2", .data = &rg353v2_desc },
-> +	{ .compatible = "powkiddy,rgb30-panel", .data = &rgb30panel_desc },
->  	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
->  	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
->  	{ /* sentinel */ }
-> -- 
-> 2.34.1
-> 
+> +&mt6366codec {
+> +	mediatek,dmic-mode = <1>; /* one-wire */
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
+> new file mode 100644
+> index 000000000000..8488f2f9dc4d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
+> @@ -0,0 +1,197 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8186-corsola.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +
+> +/{
+> +	pp1000_edpbrdg: regulator-pp1000-edpbrdg {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp1000_edpbrdg";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&en_pp1000_edpbrdg>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		gpio = <&pio 29 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&pp3300_z2>;
+> +	};
+> +
+> +	pp1800_edpbrdg_dx: regulator-pp1800-edpbrdg-dx {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp1800_edpbrdg_dx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&en_pp1800_edpbrdg>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		gpio = <&pio 30 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&mt6366_vio18_reg>;
+> +	};
+> +
+> +	pp3300_edp_dx: regulator-pp3300-edp-dx {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp3300_edp_dx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&en_pp3300_edpbrdg>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		gpio = <&pio 31 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&pp3300_z2>;
+> +	};
+> +};
+> +
+> +&dsi_out {
+> +	remote-endpoint = <&anx7625_in>;
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <400000>;
+> +
+> +	anx_bridge: anx7625@58 {
+> +		compatible = "analogix,anx7625";
+> +		reg = <0x58>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&anx7625_pins>;
+> +		enable-gpios = <&pio 96 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios = <&pio 98 GPIO_ACTIVE_HIGH>;
+> +		vdd10-supply = <&pp1000_edpbrdg>;
+> +		vdd18-supply = <&pp1800_edpbrdg_dx>;
+> +		vdd33-supply = <&pp3300_edp_dx>;
+> +		analogix,lane0-swing = /bits/ 8 <0x70 0x30>;
+> +		analogix,lane1-swing = /bits/ 8 <0x70 0x30>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				anx7625_in: endpoint {
+> +					remote-endpoint = <&dsi_out>;
+> +					data-lanes = <0 1 2 3>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				anx7625_out: endpoint {
+> +					remote-endpoint = <&panel_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		aux-bus {
+> +			panel: panel {
+> +				compatible = "edp-panel";
+> +				power-supply = <&pp3300_disp_x>;
+> +				backlight = <&backlight_lcd0>;
+> +
+> +				port {
+> +					panel_in: endpoint {
+> +						remote-endpoint = <&anx7625_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	touchscreen: touchscreen@5d {
+> +		compatible = "goodix,gt7375p";
+> +		reg = <0x5d>;
+> +		interrupts-extended = <&pio 12 IRQ_TYPE_EDGE_FALLING>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touchscreen_pins>;
+> +		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&pp3300_s3>;
+> +		goodix,no-reset-during-suspend;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	i2c-scl-internal-delay-ns = <22000>;
+> +
+> +	/* second source component */
+> +	touchpad@2c {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x2c>;
+> +		hid-descr-addr = <0x20>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&trackpad_pin>;
+> +		vdd-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+
+Hi Chen-Yu,
+
+This is not okay, the `trackpad_pin` is shared with touchpad@15 , and if 
+drivers are probed in parallel , this can lead to a conflict on this pin 
+(GPIO11)
+
+Eugen
+
+> +};
+> +
+> +&keyboard_controller {
+> +	function-row-physmap = <
+> +		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
+> +		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
+> +		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
+> +		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
+> +		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
+> +		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
+> +		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
+> +		MATRIX_KEY(0x02, 0x09, 0)	/* T8 */
+> +		MATRIX_KEY(0x01, 0x09, 0)	/* T9 */
+> +		MATRIX_KEY(0x00, 0x04, 0)	/* T10 */
+> +	>;
+> +
+> +	linux,keymap = <
+> +		MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> +		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> +		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> +		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> +		MATRIX_KEY(0x03, 0x04, KEY_BRIGHTNESSDOWN)
+> +		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSUP)
+> +		MATRIX_KEY(0x01, 0x04, KEY_MICMUTE)
+> +		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> +		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> +		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> +		CROS_STD_MAIN_KEYMAP
+> +	>;
+> +};
+> +
+> +&pio {
+> +	anx7625_pins: anx7625-pins {
+> +		pins1 {
+> +			pinmux = <PINMUX_GPIO96__FUNC_GPIO96>,
+> +				 <PINMUX_GPIO98__FUNC_GPIO98>;
+> +			output-low;
+> +		};
+> +
+> +		pins2 {
+> +			pinmux = <PINMUX_GPIO9__FUNC_GPIO9>;
+> +			input-enable;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	en_pp1000_edpbrdg: pp1000-edpbrdg-en-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO29__FUNC_GPIO29>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	en_pp1800_edpbrdg: pp1800-edpbrdg-en-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO30__FUNC_GPIO30>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	en_pp3300_edpbrdg: pp3300-edpbrdg-en-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO31__FUNC_GPIO31>;
+> +			output-low;
+> +		};
+> +	};
+> +};
+
 
