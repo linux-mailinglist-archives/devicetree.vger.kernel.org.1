@@ -1,123 +1,175 @@
-Return-Path: <devicetree+bounces-8814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE9F7CA39F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E07037CA3B0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56306B20C8B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:10:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8349CB20E1C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715811A5B7;
-	Mon, 16 Oct 2023 09:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AAC1C2B5;
+	Mon, 16 Oct 2023 09:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UzW0mQ18"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x/DqVFu0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF4A15ADD
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:10:33 +0000 (UTC)
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8088DEA
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:10:30 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d9b9adaf291so1315429276.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:10:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3DF1B269
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:12:59 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BBB6B4
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:12:57 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50325ce89e9so5512208e87.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697447429; x=1698052229; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=guQPwERqmbSLzSooVd6YufMruj6qPUsQ0NJuOYONZV8=;
-        b=UzW0mQ18HYp6YBW86q5rAqSxVT7feh4y7gARycMHDhoFl+QI2kpxPQOlGdl2pRKYF6
-         zauv5e5rmcw6uVE/bUEuzDEBjkHWuQAChwT8v0P84nJMt4elO1DSWC8maafSqZMKJyzy
-         ewR5N3FCRmd0sp0PsGhyENJvFhvXHkzocDzYp122X2fw9in3W/4YqkcjaDS3Ok/bB8kD
-         OpBECv30SQkgv8fpN2bgnATmweSQQlsXHrxq4JGyrJjx9rsJqGPiO4ADAcE/OULABbII
-         Qt0xnzRVUr4hXAj86p3xWUxBHDdXuAvklJjdn5qJM1olstXCHTVDKZ9OsxvNZxjCGzdS
-         N3Nw==
+        d=linaro.org; s=google; t=1697447575; x=1698052375; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WZ8ecWrZiBw7tKD+R4W1tepO49kifDs5CDZYCV5hVF8=;
+        b=x/DqVFu0XAlmpHk/tbtYegO91wxWWNucwPd1Ar+YDQSYKMdCxYwGgbJmnlD3I0n2on
+         OonIDjG0FKLXaEt4drRddyggZl45oNzcjYj6/Vfu2xPD4Dd6nToiAqk15yafR8nshdUH
+         gB4wPweiJYiUgHC6VPMmsl6XHP6O5LwSSjCo/GJd9n05TLPPqIb99w/TAjPSY07LMh0D
+         2R57VFDAOSAjINmR1vKH2jwDu1K7sbfrYXeiHE6r99DKr5eX1p5QXXI8Oeu57dS4G9/C
+         2RmzN6i08VgqBulXJYpjrebR0SOHuHpDDYHMGa4bNYHy0Lrz2DpZPb6HSOU/V30tR7s1
+         0VDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697447429; x=1698052229;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1697447575; x=1698052375;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=guQPwERqmbSLzSooVd6YufMruj6qPUsQ0NJuOYONZV8=;
-        b=tgPW7kBkrRbKZUIidn4n9ilE3qoGElkv2sgw49H4K7UO7CW2tDOvnoCN3XremSVnjq
-         H4K8lLS+j0TFNcMNK7qGZ+0yF5wwBe5UBH6cMBSnlGCDtZ6embrVSbs0CvWBJ0ryoWK5
-         dqtSoxF+IkW6mMMFVydTGHyBWJ+FpghlrZUZj5CIFkGaWNhGQopjUw8UuAbSiFb07gqT
-         fD55IYDQcZrjdp4Cbbsz5lr3KrBVNcjjX22BXr9bYRMuierq48hfezCTGuJD5edz6GIh
-         2pNjK1PjNk3taCz5tOrkywwl/VS/AzYC4jxNYeyNBjBwiNv3VcO+qcBwXBlwgRWEUfUB
-         OkUg==
-X-Gm-Message-State: AOJu0Yxd8BRZ41F0VuyYJAWY04HGaBfYoNfBS5jkRg6UoW6ftYnv7SY7
-	plKZmMnnl/GWM0zIMrfojWlaJp1rISmGo1BNL/NmKw==
-X-Google-Smtp-Source: AGHT+IEipLFuUHaj03dCPa+NLWOhQ2iBypofZTx9FT231tcwWJ3nORz6xeMQ828d5I4aN/9HcL4F2UL/3nAKisR9Nto=
-X-Received: by 2002:a25:bcc6:0:b0:d9a:4da4:b793 with SMTP id
- l6-20020a25bcc6000000b00d9a4da4b793mr16728922ybm.62.1697447429585; Mon, 16
- Oct 2023 02:10:29 -0700 (PDT)
+        bh=WZ8ecWrZiBw7tKD+R4W1tepO49kifDs5CDZYCV5hVF8=;
+        b=M1LTWDhffU0gmH/xqGREMECxzZjg3f8VqtjuEP18tgsb7xNnfIGD3fB+6yRAndDb5a
+         hd+4da8MZMQAatrQHeZInQ2m93L9JF+YszKkAgx/NxIHzjXtAebX8S6OBF0fM6M1IC+E
+         0hjzIUIgETop6xZdtSRvka+vhP1P+QNMeubuuvT6k1iEMud7HQ2TzhaGunOm5Ag0LYpL
+         CV4d8IZTL2Ot/DuHG/FWRtuhOkTnTxPJWjiBZhHKdr7aHwUGoX0gPgdS9ysyNzkmc8of
+         juWDreR4K618ZPcx1f53Z8/+ZnKL1NFYhtlfHGFJMLOpqtsDj1aLyy08dzqB4IeAMDv9
+         Fr5w==
+X-Gm-Message-State: AOJu0YwyYRi2oMCOSrirxWelJjj0RoiReWgySqjBl3fHGCs77x3Xpvid
+	zXdOQmuz/+QKIKoZZzWk6rrIHw8p+FlXt5TmYsI=
+X-Google-Smtp-Source: AGHT+IEyNwIV4lQLtApT9PUXRaVGf07GyDdtakoBSXy1ah0wDPOGkKQGeCoFWnPvGcaojFu4SR19dQ==
+X-Received: by 2002:a05:6512:328f:b0:503:1c07:f7f9 with SMTP id p15-20020a056512328f00b005031c07f7f9mr24887142lfe.29.1697447575471;
+        Mon, 16 Oct 2023 02:12:55 -0700 (PDT)
+Received: from [127.0.1.1] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id br34-20020a056512402200b005068e7a2e7dsm4160986lfb.77.2023.10.16.02.12.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 02:12:55 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH net-next v3 0/6] Create a binding for the Marvell MV88E6xxx
+ DSA switches
+Date: Mon, 16 Oct 2023 11:12:53 +0200
+Message-Id: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
- <CAA8EJprXCzVyaU49qgVcVfF0-FJ3QqAfTMZj5CEZm187hoi4=g@mail.gmail.com> <ZSz7---IW_7Oj2Zr@hovoldconsulting.com>
-In-Reply-To: <ZSz7---IW_7Oj2Zr@hovoldconsulting.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 16 Oct 2023 12:10:18 +0300
-Message-ID: <CAA8EJpr=HQOs8Ho_s_34y0-krCHwq3MThMkUzhOkPVdOSMQ62A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Use the correct DP PHY compatible
-To: Johan Hovold <johan@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJX+LGUC/3XNyw6CMBCF4Vchs7amFy7Fle9hXJR2gCZYTEsqh
+ vDuNnWjC5Z/TuabDQJ6iwEuxQYeow12dinEqQA9KjcgsSY1cMoFo1SSh/IRp4lIiTWrOHkpRyY
+ 0qXUpuqY3vDeQrp8ee7tm+QYOF+JwXeCeltGGZfbv/DKyvH91Jg71yAgltGG8U20rq0ZfJ+uUn
+ 8+zHzIa+S9UHkM8QU2vFZVdLWXZ/kH7vn8AZKge/xIBAAA=
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Florian Fainelli <f.fainelli@gmail.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 16 Oct 2023 at 12:01, Johan Hovold <johan@kernel.org> wrote:
->
-> On Mon, Oct 16, 2023 at 11:51:33AM +0300, Dmitry Baryshkov wrote:
-> > On Fri, 29 Sept 2023 at 19:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > >
-> > > The DP PHY needs different settings when an eDP display is used.
-> > > Make sure these apply on the X13s.
-> >
-> > Could you please clarify, is it the same PHY type, just being
-> > repurposed for eDP or is it a different PHY type?
->
-> Same PHY, just different settings AFAIK.
->
-> > If the former is the case (and the same PHY can be used for both DP
-> > and eDP), it should carry the same compatible string and use software
-> > mechanisms (e.g. phy_set_mode_ext()) to be programmed for the correct
-> > operation mode.
->
-> Possibly, but that's not how the current binding and implementation
-> works:
->
->         6993c079cd58 ("dt-bindings: phy: qcom-edp: Add SC8280XP PHY compatibles")
->         2300d1cb24b3 ("phy: qcom: edp: Introduce support for DisplayPort")
->         3b7267dec445 ("phy: qcom: edp: Add SC8280XP eDP and DP PHYs")
->
->         https://lore.kernel.org/lkml/20220810040745.3582985-1-bjorn.andersson@linaro.org/
->
-> And you'd still need to infer the mode from DT somehow.
+This shows the path we could take with this, deprecating the
+weird external bus thing.
 
-If it is the same hardware block, it seems incorrect to have two
-different compat entries. For example, for PCIe RC vs PCIe EP we
-specify the PHY mode from the host controller driver.
-I'd say, we need to fix the bindings for both DP/eDP controller and
-the PHY.  See the `phy-mode` DT property for example.
+I don't know what to do about the irq lines with a pointless
+type flag that should be onecell:ed.
 
+I need proper schema checking to add LED support to the
+Marvell switch. Just how it is, it can't go on like this.
 
+Some Device Tree fixes are included in the series, these
+remove the major and most annoying warnings fallout noise:
+some warnings remain, and these are of more serious nature,
+such as missing phy-mode.
+
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v3:
+- Fix up a related mvusb example in a different binding that
+  the scripts were complaining about.
+- Fix up the wording on internal vs external MDIO buses in the
+  mv88e6xxx binding document.
+- Remove pointless label and put the right rev-mii into the
+  MV88E6060 schema.
+- Link to v2: https://lore.kernel.org/r/20231014-marvell-88e6152-wan-led-v2-0-7fca08b68849@linaro.org
+
+Changes in v2:
+- Break out a separate Marvell MV88E6060 binding file. I stand corrected.
+- Drop the idea to rely on nodename mdio-external for the external
+  MDIO bus, keep the compatible, drop patch for the driver.
+- Fix more Marvell DT mistakes.
+- Fix NXP DT mistakes in a separate patch.
+- Fix Marvell ARM64 mistakes in a separate patch.
+- Link to v1: https://lore.kernel.org/r/20231013-marvell-88e6152-wan-led-v1-0-0712ba99857c@linaro.org
+
+---
+Linus Walleij (6):
+      dt-bindings: marvell: Rewrite MV88E6xxx in schema
+      dt-bindings: marvell: Add Marvell MV88E6060 DSA schema
+      dt-bindings: net: mvusb: Fix up DSA example
+      ARM: dts: marvell: Fix some common switch mistakes
+      ARM: dts: nxp: Fix some common switch mistakes
+      ARM64: dts: marvell: Fix some common switch mistakes
+
+ .../bindings/net/dsa/marvell,mv88e6060.yaml        | 105 +++++++++
+ .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 243 +++++++++++++++++++++
+ .../devicetree/bindings/net/dsa/marvell.txt        | 109 ---------
+ .../devicetree/bindings/net/marvell,mvusb.yaml     |   6 +
+ MAINTAINERS                                        |   3 +-
+ arch/arm/boot/dts/marvell/armada-370-rd.dts        |   2 -
+ .../dts/marvell/armada-381-netgear-gs110emx.dts    |   6 +-
+ .../dts/marvell/armada-385-clearfog-gtr-l8.dts     |   2 +-
+ .../dts/marvell/armada-385-clearfog-gtr-s4.dts     |   2 +-
+ arch/arm/boot/dts/marvell/armada-385-linksys.dtsi  |   2 -
+ .../boot/dts/marvell/armada-385-turris-omnia.dts   |  16 +-
+ arch/arm/boot/dts/marvell/armada-388-clearfog.dts  |   2 -
+ .../boot/dts/marvell/armada-xp-linksys-mamba.dts   |   2 -
+ arch/arm/boot/dts/nxp/vf/vf610-zii-cfu1.dts        |   2 +-
+ arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts    |   8 +-
+ arch/arm/boot/dts/nxp/vf/vf610-zii-spb4.dts        |   2 +-
+ arch/arm/boot/dts/nxp/vf/vf610-zii-ssmb-dtu.dts    |   4 +-
+ arch/arm/boot/dts/nxp/vf/vf610-zii-ssmb-spu3.dts   |   2 +-
+ .../boot/dts/marvell/armada-3720-espressobin.dtsi  |   4 +-
+ .../boot/dts/marvell/armada-3720-gl-mv1000.dts     |   4 +-
+ .../boot/dts/marvell/armada-3720-turris-mox.dts    |  32 +--
+ .../boot/dts/marvell/armada-7040-mochabin.dts      |   2 -
+ .../dts/marvell/armada-8040-clearfog-gt-8k.dts     |   2 +-
+ arch/arm64/boot/dts/marvell/cn9130-crb.dtsi        |   6 +-
+ 24 files changed, 397 insertions(+), 171 deletions(-)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20231008-marvell-88e6152-wan-led-88c43b7fd2fd
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Linus Walleij <linus.walleij@linaro.org>
+
 
