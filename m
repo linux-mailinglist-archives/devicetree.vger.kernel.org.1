@@ -1,156 +1,131 @@
-Return-Path: <devicetree+bounces-8885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B09817CA6CB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:35:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDE7CA6D9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:40:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04BCEB20CE2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:35:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2198028135E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9363E241E3;
-	Mon, 16 Oct 2023 11:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB92250E8;
+	Mon, 16 Oct 2023 11:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD17823775
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:35:03 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E98D9
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 04:35:02 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsLrv-0006gp-Oq; Mon, 16 Oct 2023 13:34:43 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsLru-0024VF-Ap; Mon, 16 Oct 2023 13:34:42 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsLru-00EjWY-7l; Mon, 16 Oct 2023 13:34:42 +0200
-Date: Mon, 16 Oct 2023 13:34:42 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Chanwoo Choi <chanwoo@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	kernel@pengutronix.de,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v7 10/26] PM / devfreq: rockchip-dfi: Add RK3568 support
-Message-ID: <20231016113442.GZ3359458@pengutronix.de>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-11-s.hauer@pengutronix.de>
- <ac224dfe-ff7d-57c7-89ad-f10939975b4d@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F55724214;
+	Mon, 16 Oct 2023 11:40:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B50C433C8;
+	Mon, 16 Oct 2023 11:40:52 +0000 (UTC)
+Message-ID: <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
+Date: Mon, 16 Oct 2023 13:40:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ac224dfe-ff7d-57c7-89ad-f10939975b4d@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US, nl
+To: Jack Zhu <jack.zhu@starfivetech.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ changhuang.liang@starfivetech.com
+References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Oct 07, 2023 at 03:17:14AM +0900, Chanwoo Choi wrote:
-> On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> > This adds RK3568 support to the DFI driver.  Only iniitialization
-> > differs from the currently supported RK3399.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  drivers/devfreq/event/rockchip-dfi.c | 21 +++++++++++++++++++++
-> >  include/soc/rockchip/rk3568_grf.h    | 12 ++++++++++++
-> >  2 files changed, 33 insertions(+)
-> >  create mode 100644 include/soc/rockchip/rk3568_grf.h
-> > 
-> > diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> > index 6b3ef97b3be09..261d112580c9e 100644
-> > --- a/drivers/devfreq/event/rockchip-dfi.c
-> > +++ b/drivers/devfreq/event/rockchip-dfi.c
-> > @@ -23,6 +23,7 @@
-> >  
-> >  #include <soc/rockchip/rockchip_grf.h>
-> >  #include <soc/rockchip/rk3399_grf.h>
-> > +#include <soc/rockchip/rk3568_grf.h>
-> >  
-> >  #define DMC_MAX_CHANNELS	2
-> >  
-> > @@ -209,10 +210,30 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
-> >  	return 0;
-> >  };
-> >  
-> > +static int rk3568_dfi_init(struct rockchip_dfi *dfi)
-> > +{
-> > +	struct regmap *regmap_pmu = dfi->regmap_pmu;
-> > +	u32 reg2, reg3;
-> > +
-> > +	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG2, &reg2);
-> > +	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG3, &reg3);
-> > +
-> > +	dfi->ddr_type = FIELD_GET(RK3568_PMUGRF_OS_REG2_DRAMTYPE_INFO, reg2);
+Hi Jack,
 
-The ddr_type is 5 bits wide. The lower three bits are here.
-
-> > +
-> > +	if (FIELD_GET(RK3568_PMUGRF_OS_REG3_SYSREG_VERSION, reg3) >= 0x3)
-> > +		dfi->ddr_type |= FIELD_GET(RK3568_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3, reg3) << 3;
-
-The upper two bits are here, hence we need to shift the value above the
-lower three bits.
-
+On 08/10/2023 10:51, Jack Zhu wrote:
+> Hi,
 > 
-> There are no reason of why shifting the '3'.
-> Could you add the comment about '3' or add the constant definition '3'?
-
-I don't think adding a constant makes sense. I'll add a comment making
-it more clear what happens.
-
+> This series is the v10 series that attempts to support the Camera Subsystem
+> found on StarFive JH7110 SoC.
 > 
-> > +
-> > +	dfi->channel_mask = 1;
+> This series is based on top of the master branch of media_stage repository,
+> which is tested with a v4l2-compliance compiled from the git repo
+> (git://linuxtv.org/v4l-utils.git).
+
+I get one smatch warning:
+
+drivers/staging/media/starfive/camss/stf-isp.c:122 isp_enum_mbus_code() warn: unsigned 'code->index' is never less than zero.
+
+And I also notice that there is no TODO file: staging drivers should have a
+TODO file explaining what needs to be done to get them out of staging.
+
+I'm curious to know that as well :-)
+
+It looks like there is a lot of additional development that can be done, since
+most of the ISP parameters appear to be hardcoded.
+
+I also notice something weird in the compliance test output for v4l-subdev0 vs
+v4l-subdev1:
+
+> Compliance test for starfive-camss device /dev/v4l-subdev0:
 > 
-> nitpick.
-> On other rkXXXX_dfi_init, use GENMASK() to initialize 'dfi->channel_mask'.
-> In order to keep the consistency, it is better to use BIT() macro as following:
-> 	dfi->channel_mask = BIT(0);
+> Driver Info:
+> 	Driver version   : 6.6.0
+> 	Capabilities     : 0x00000000
+> Media Driver Info:
+> 	Driver name      : starfive-camss
+> 	Model            : Starfive Camera Subsystem
+> 	Serial           : 
+> 	Bus info         : platform:19840000.camss
+> 	Media version    : 6.6.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.6.0
+> Interface Info:
+> 	ID               : 0x0300001c
+> 	Type             : V4L Sub-Device
+> Entity Info:
+> 	ID               : 0x00000001 (1)
+> 	Name             : stf_isp
+> 	Function         : Image Signal Processor
+> 	Pad 0x01000002   : 0: Sink
+> 	  Link 0x02000014: from remote pad 0x1000010 of entity 'cdns_csi2rx.19800000.csi-bridge' (Video Interface Bridge): Data, Enabled
+> 	Pad 0x01000003   : 1: Source
+> 	  Link 0x0200000c: to remote pad 0x1000009 of entity 'capture_yuv' (V4L2 I/O): Data, Enabled
 
-Ok, will do.
+Here it shows the Media Driver Info for v4l-subdev0.
 
-Sascha
+<snip>
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> --------------------------------------------------------------------------------
+> Compliance test for device /dev/v4l-subdev1:
+> 
+> Driver Info:
+> 	Driver version   : 6.6.0
+> 	Capabilities     : 0x00000000
+
+But this does not appear for v4l-subdev1.
+
+I can't really tell why it doesn't show that. Can you debug a little bit?
+The code is in v4l2-compliance.cpp, line 1086:
+
+ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
+
+The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
+and that fails for some reason. It could be that media_fd is invalid (would be weird).
+
+This could well be a v4l2-compliance bug that you hit with this driver.
+
+Regards,
+
+	Hans
 
