@@ -1,676 +1,121 @@
-Return-Path: <devicetree+bounces-9054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C25907CB5AB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:51:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AD97CB5C0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75F5428184B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:51:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2ED41C20B4E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AA9381DD;
-	Mon, 16 Oct 2023 21:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16DD38DFE;
+	Mon, 16 Oct 2023 21:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DEHS7Aoz"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dye2UvF1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E5537CBC
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 21:51:26 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91EAA2
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:51:23 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4A1081225;
-	Mon, 16 Oct 2023 23:51:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697493075;
-	bh=eCXOgDDIN3HW+GS4jg+CcSNaMRqdaosojFrcUTLDESU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DEHS7AozKrSWDiuO5F4t4IBrfbL0gi8R6prKkedGKgjwIvV2zegBlmjk7KRjIK8Iv
-	 DxPOIjUnslJVNrygJ/LXwXZ6jsw1Fp8kpgL+jsGQlZvzpv5peEQy5zN+URNJgnlIGY
-	 Hw0a3PGmZEXxXy8i/029TXfC8R0b3IlgCkoeX0hI=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-mediatek@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Fabien Parent <fabien.parent@linaro.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Julien Stephan <jstephan@baylibre.com>,
-	Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
-	Ted Larson <ted@ologicinc.com>
-Subject: [PATCH v1 3/3] arm64: dts: mediatek: Add device tree for MT8365-based Pumpkin i350
-Date: Tue, 17 Oct 2023 00:51:23 +0300
-Message-ID: <20231016215123.30343-4-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
-References: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3E438BBA
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 21:54:25 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15780FB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:54:24 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-53d9f001b35so8687371a12.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:54:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1697493262; x=1698098062; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sFyszUAKH1Bi59GLrKaH1xZ412ynyNyWfhIyPM619dM=;
+        b=dye2UvF1lKkLi0fV3wHVTP6JUvjcdYunlfnQzKTUzXyrJbQd4sWyBw5B1YF8VxTgM0
+         gbVwGMogydnomEriyQ/r0zm3ManSGscCp/qO7p/dCuqZz0tQezxkjVOgF7U8hI7Xnlix
+         c4d7s2iyCm9vADjIYnBPN5QZeFASBv7lAvIL8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697493262; x=1698098062;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sFyszUAKH1Bi59GLrKaH1xZ412ynyNyWfhIyPM619dM=;
+        b=TMfRG9oxJgP1s3JOQSlDRGHrEPA79h9WkmvM2SCmRd5NnxOetVJiSxSzpoSVO6RLKN
+         36KMJtR1jj+B7oxaFdxr/7OMt48iETVI6lqWFjCmc8hgUu/H9sIRDvFndmUdFskWzlQm
+         3O8BzzUW0EUfT6OfsKZDjCCFasaYA5i59rZYqjqo/WPVzQF8bSe42KsiJ8EnQB2HF/Dj
+         TPN46qhj/9yoSR9x/7sjpZ+DtKE0BR+bUVHUW6NXDt6BO6YplUYORTW1bMfYAVyaG0dF
+         Eh6WAjrFcmluUmrfp8GwwHKadF2vIaFB1S+/5E+yhwauQ2VRLo4ld5KwhIhzwkcONwlF
+         Pr0g==
+X-Gm-Message-State: AOJu0YyAKLc24hFm5uaEWTrFH/wf0JkblZAgs0vXrNooYG1p5fM47NJY
+	gxnjAHc1V80wzuDi5K/WiH3HeJxLXh1ekmZ8QVg/mA==
+X-Google-Smtp-Source: AGHT+IGZoGGJeNshHE+uBukBw1GOLWeEgu2vwWq8BjnV21H2X6/a8NzxZphGstDjGzZP8Yp311u7fu7RX+UlFVrwkP0=
+X-Received: by 2002:a05:6402:34d3:b0:53e:467c:33f1 with SMTP id
+ w19-20020a05640234d300b0053e467c33f1mr440773edc.8.1697493262341; Mon, 16 Oct
+ 2023 14:54:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230926194242.2732127-1-sjg@chromium.org> <20231016195728.GA3574754-robh@kernel.org>
+In-Reply-To: <20231016195728.GA3574754-robh@kernel.org>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 16 Oct 2023 15:54:10 -0600
+Message-ID: <CAPnjgZ3xo6Rz8dGe+UtNxv9O96sbaphx0DYkKcRNd1m2nozQ3A@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] schemas: memory: Add ECC properties
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>, 
+	Lean Sheng Tan <sheng.tan@9elements.com>, lkml <linux-kernel@vger.kernel.org>, 
+	Dhaval Sharma <dhaval@rivosinc.com>, Maximilian Brune <maximilian.brune@9elements.com>, 
+	Yunhui Cui <cuiyunhui@bytedance.com>, Guo Dong <guo.dong@intel.com>, 
+	Tom Rini <trini@konsulko.com>, ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>, Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a minimal device tree for the Genio i350 Pumpkin development board,
-which is based on a MediaTek MT8365.
+Hi Rob,
 
-The device tree is based on an initial version by Fabien Parent Based
-written against the MediaTek BSP kernel ([1]). It has been cleaned up,
-some features have been added (GPIO LEDs, ethernet), and some features
-removed (audio, camera, display and dual-role USB). Those features will
-be added back once the corresponding DT bindings and/or drivers become
-available in the upstream kernel.
+On Mon, 16 Oct 2023 at 13:57, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Sep 26, 2023 at 01:42:38PM -0600, Simon Glass wrote:
+> > Some memories provide ECC detection and/or correction. For software which
+> > wants to check memory, it is helpful to see which regions provide this
+> > feature.
+> >
+> > Add this as a property of the /memory nodes, since it presumably follows
+> > the hardware-level memory system.
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >
+> > Changes in v7:
+> > - Drop unnecessary |
+> > - Add a blank line between properties
+> >
+> > Changes in v6:
+> > - Use a number of bits instead of a string property
+> > - Fix inidcates typo
+> >
+> > Changes in v5:
+> > - Redo to make this property specific to ECC
+> > - Provide properties both for detection and correction
+> >
+> > Changes in v3:
+> > - Add new patch to update the /memory nodes
+> >
+> >  dtschema/schemas/memory.yaml | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+>
+> Applied this patch.
 
-[1] https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v5.15-dev/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+Thank you for your help and guidance on this.
 
-Co-developed-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Co-developed-by: Paul Elder <paul.elder@ideasonboard.com>
-Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes compared to the BSP version:
-
-- Add ethernet controller
-- Add GPIO LEDs
-- Add reserved memory region for BL31
-- Update board model and compatible
-- Rename enable-sdio-wakeup to wakeup-source
-- Drop audio support
-- Drop display support
-- Drop dual role USB support
-- Don't use underscores in node names
-- Normalize pinmux node names
-- Remove unneeded labels
-- Drop unneeded always-on
-- Drop unused pinmux nodes
-- Drop camera GPIO hog
-- Update copyright
-- Fix formatting
-- Sort alphabetically
----
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- .../boot/dts/mediatek/mt8365-pumpkin.dts      | 542 ++++++++++++++++++
- 2 files changed, 543 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index c99c3372a4b5..bbc232bdadc4 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -53,4 +53,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-pumpkin.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-new file mode 100644
-index 000000000000..88fa5d19c627
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-@@ -0,0 +1,542 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 BayLibre, SAS.
-+ * Copyright (c) 2023 Ideas on Board Oy
-+ *
-+ * Author: Fabien Parent <fparent@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
-+
-+#include "mt8365.dtsi"
-+#include "mt6357.dtsi"
-+
-+/ {
-+	model = "OLogic Pumpkin i350 EVK";
-+	compatible = "ologic,pumpkin-i350", "mediatek,mt8365";
-+
-+	aliases {
-+		ethernet0 = &ethernet_usb;
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		mmc2 = &mmc2;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+
-+	firmware {
-+		optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-red {
-+			gpios = <&gpio_exp 12 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-green {
-+			gpios = <&gpio_exp 13 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
-+		secmon@43000000 {
-+			no-map;
-+			reg = <0 0x43000000 0 0x30000>;
-+		};
-+
-+		/*
-+		 * 12 MiB reserved for OP-TEE (BL32)
-+		 * +-----------------------+ 0x43e0_0000
-+		 * |      SHMEM 2MiB       |
-+		 * +-----------------------+ 0x43c0_0000
-+		 * |        | TA_RAM  8MiB |
-+		 * + TZDRAM +--------------+ 0x4340_0000
-+		 * |        | TEE_RAM 2MiB |
-+		 * +-----------------------+ 0x4320_0000
-+		 */
-+		optee@43200000 {
-+			no-map;
-+			reg = <0 0x43200000 0 0x00c00000>;
-+		};
-+	};
-+
-+	usb_otg_vbus: usb-otg-vbus-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&pio 25 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&cpu0 {
-+	proc-supply = <&mt6357_vproc_reg>;
-+	sram-supply = <&mt6357_vsram_proc_reg>;
-+};
-+
-+&cpu1 {
-+	proc-supply = <&mt6357_vproc_reg>;
-+	sram-supply = <&mt6357_vsram_proc_reg>;
-+};
-+
-+&cpu2 {
-+	proc-supply = <&mt6357_vproc_reg>;
-+	sram-supply = <&mt6357_vsram_proc_reg>;
-+};
-+
-+&cpu3 {
-+	proc-supply = <&mt6357_vproc_reg>;
-+	sram-supply = <&mt6357_vsram_proc_reg>;
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+
-+	clock-frequency = <100000>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins>;
-+
-+	clock-frequency = <100000>;
-+
-+	gpio_exp: gpio@20 {
-+		compatible = "ti,tca6416";
-+		reg = <0x20>;
-+		reset-gpios = <&pio 78 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tca6416_pins>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins>;
-+
-+	clock-frequency = <100000>;
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3_pins>;
-+
-+	clock-frequency = <100000>;
-+};
-+
-+&keypad {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&keypad_pins>;
-+
-+	keypad,num-rows = <2>;
-+	keypad,num-columns = <1>;
-+	mediatek,debounce-us = <32000>;
-+	mediatek,double-keys;
-+
-+	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
-+			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
-+};
-+
-+/* eMMC */
-+&mmc0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc0_pins_default>;
-+	pinctrl-1 = <&mmc0_pins_uhs>;
-+
-+	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-+	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
-+
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+
-+	vmmc-supply = <&mt6357_vemc_reg>;
-+	vqmmc-supply = <&mt6357_vio18_reg>;
-+
-+	cap-mmc-highspeed;
-+	cap-mmc-hw-reset;
-+	hs400-ds-delay = <0x12012>;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	no-sd;
-+	no-sdio;
-+	non-removable;
-+};
-+
-+/* SD card connector */
-+&mmc1 {
-+	status = "okay";
-+
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc1_pins_default>;
-+	pinctrl-1 = <&mmc1_pins_uhs>;
-+
-+	bus-width = <4>;
-+	max-frequency = <200000000>;
-+
-+	vmmc-supply = <&mt6357_vmch_reg>;
-+	vqmmc-supply = <&mt6357_vmc_reg>;
-+
-+	cap-sd-highspeed;
-+	cd-gpios = <&pio 76 GPIO_ACTIVE_LOW>;
-+	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
-+};
-+
-+/* WiFi module */
-+&mmc2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc2_pins_default>;
-+	pinctrl-1 = <&mmc2_pins_uhs>;
-+
-+	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
-+	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
-+
-+	bus-width = <4>;
-+	max-frequency = <200000000>;
-+
-+	vmmc-supply = <&mt6357_vemc_reg>;
-+	vqmmc-supply = <&mt6357_vio18_reg>;
-+
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	wakeup-source;
-+	hs400-ds-delay = <0x12012>;
-+	keep-power-in-suspend;
-+	non-removable;
-+	sd-uhs-sdr104;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+};
-+
-+&mt6357_pmic {
-+	interrupt-parent = <&pio>;
-+	interrupts = <145 IRQ_TYPE_LEVEL_HIGH>;
-+	interrupt-controller;
-+	#interrupt-cells = <2>;
-+};
-+
-+&pio {
-+	i2c0_pins: i2c0-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
-+				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
-+			mediatek,pull-up-adv = <3>;
-+			mediatek,drive-strength-adv = <00>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+
-+	i2c1_pins: i2c1-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_59_SDA1__FUNC_SDA1_0>,
-+				 <MT8365_PIN_60_SCL1__FUNC_SCL1_0>;
-+			mediatek,pull-up-adv = <3>;
-+			mediatek,drive-strength-adv = <00>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	i2c2_pins: i2c2-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_61_SDA2__FUNC_SDA2_0>,
-+				 <MT8365_PIN_62_SCL2__FUNC_SCL2_0>;
-+			mediatek,pull-up-adv = <3>;
-+			mediatek,drive-strength-adv = <00>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	i2c3_pins: i2c3-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_63_SDA3__FUNC_SDA3_0>,
-+				 <MT8365_PIN_64_SCL3__FUNC_SCL3_0>;
-+			mediatek,pull-up-adv = <3>;
-+			mediatek,drive-strength-adv = <00>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	keypad_pins: keypad-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_22_KPROW0__FUNC_KPROW0>,
-+				 <MT8365_PIN_23_KPROW1__FUNC_KPROW1>,
-+				 <MT8365_PIN_24_KPCOL0__FUNC_KPCOL0>;
-+		};
-+	};
-+
-+	mmc0_pins_default: mmc0-default-pins {
-+		clk-pins {
-+			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
-+			bias-pull-down;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_103_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
-+				 <MT8365_PIN_102_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
-+				 <MT8365_PIN_101_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
-+				 <MT8365_PIN_100_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
-+				 <MT8365_PIN_96_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
-+				 <MT8365_PIN_95_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
-+				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
-+				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
-+				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		rst-pins {
-+			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc0_pins_uhs: mmc0-uhs-pins{
-+		clk-pins {
-+			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
-+			drive-strength = <MTK_DRIVE_10mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_103_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
-+				 <MT8365_PIN_102_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
-+				 <MT8365_PIN_101_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
-+				 <MT8365_PIN_100_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
-+				 <MT8365_PIN_96_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
-+				 <MT8365_PIN_95_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
-+				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
-+				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
-+				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
-+			input-enable;
-+			drive-strength = <MTK_DRIVE_10mA>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+
-+		ds-pins {
-+			pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
-+			drive-strength = <MTK_DRIVE_10mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		rst-pins {
-+			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
-+			drive-strength = <MTK_DRIVE_10mA>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc1_pins_default: mmc1-default-pins {
-+		cd-pins {
-+			pinmux = <MT8365_PIN_76_CMDAT8__FUNC_GPIO76>;
-+			bias-pull-up;
-+		};
-+
-+		clk-pins {
-+			pinmux = <MT8365_PIN_88_MSDC1_CLK__FUNC_MSDC1_CLK>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_89_MSDC1_DAT0__FUNC_MSDC1_DAT0>,
-+				 <MT8365_PIN_90_MSDC1_DAT1__FUNC_MSDC1_DAT1>,
-+				 <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
-+				 <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
-+				 <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
-+			input-enable;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+	};
-+
-+	mmc1_pins_uhs: mmc1-uhs-pins {
-+		cd-pins {
-+			pinmux = <MT8365_PIN_76_CMDAT8__FUNC_GPIO76>;
-+			bias-pull-up;
-+		};
-+
-+		clk-pins {
-+			pinmux = <MT8365_PIN_88_MSDC1_CLK__FUNC_MSDC1_CLK>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_89_MSDC1_DAT0__FUNC_MSDC1_DAT0>,
-+				 <MT8365_PIN_90_MSDC1_DAT1__FUNC_MSDC1_DAT1>,
-+				 <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
-+				 <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
-+				 <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
-+			input-enable;
-+			drive-strength = <MTK_DRIVE_6mA>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+	};
-+
-+	mmc2_pins_default: mmc2-default-pins {
-+		clk-pins {
-+			pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
-+				 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
-+				 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
-+				 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
-+				 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
-+			input-enable;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+
-+		sysrstb-en-pins {
-+			pinmux = <MT8365_PIN_74_CMDAT6__FUNC_GPIO74>;
-+			output-low;
-+		};
-+	};
-+
-+	mmc2_pins_uhs: mmc2-uhs-pins {
-+		clk-pins {
-+			pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		cmd-dat-pins {
-+			pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
-+				 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
-+				 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
-+				 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
-+				 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
-+			input-enable;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+
-+		ds-pins {
-+			pinmux = <MT8365_PIN_86_MSDC2_DSL__FUNC_MSDC2_DSL>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-+		};
-+
-+		sysrstb-en-pins {
-+			pinmux = <MT8365_PIN_126_DMIC3_CLK__FUNC_GPIO126>;
-+			output-high;
-+		};
-+	};
-+
-+	tca6416_pins: tca6416-pins {
-+		rst-n-pins {
-+			pinmux = <MT8365_PIN_78_CMHSYNC__FUNC_GPIO78>;
-+			output-high;
-+		};
-+
-+		int-n-pins {
-+			pinmux = <MT8365_PIN_79_CMVSYNC__FUNC_GPIO79>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	usb_pins: usb-pins {
-+		hub-rst-pins {
-+			pinmux = <MT8365_PIN_70_CMDAT2__FUNC_GPIO70>;
-+			output-low;
-+		};
-+
-+		id-pins {
-+			pinmux = <MT8365_PIN_39_URXD2__FUNC_GPIO39>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		vbus-pins {
-+			pinmux = <MT8365_PIN_25_KPCOL1__FUNC_USB_DRVVBUS>;
-+		};
-+	};
-+};
-+
-+&ssusb {
-+	status = "okay";
-+
-+	pinctrl-0 = <&usb_pins>;
-+	pinctrl-names = "default";
-+
-+	/* Host mode only for now, TUSB322 support is missing. */
-+	dr_mode = "host";
-+	maximum-speed = "high-speed";
-+	vusb33-supply = <&mt6357_vusb33_reg>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&usb_host {
-+	status = "okay";
-+
-+	vusb33-supply = <&mt6357_vusb33_reg>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hub@2 {
-+		reg = <2>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethernet_usb: ethernet@1 {
-+			compatible = "usb424,ec00";
-+			reg = <1>;
-+		};
-+	};
-+};
--- 
 Regards,
-
-Laurent Pinchart
-
+Simon
 
