@@ -1,197 +1,108 @@
-Return-Path: <devicetree+bounces-8918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19547CA9A3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:35:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2807CA9AE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:36:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 247CBB20F24
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:35:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F022C1C209F2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E262727EF4;
-	Mon, 16 Oct 2023 13:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FrxoHnYk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B43827EF4;
+	Mon, 16 Oct 2023 13:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D2826E16
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:35:46 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A245136;
-	Mon, 16 Oct 2023 06:35:44 -0700 (PDT)
-Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 56E4766071EF;
-	Mon, 16 Oct 2023 14:35:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697463342;
-	bh=TznfC4TF12W8ScIql5iv7WR3cxstbuq3pTRFxtuJ+jA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FrxoHnYktcz29ytK0yQxtJuylDb1WXgY2mbz2qhy/TUqunmGrD6m4jl9VgBPYnX4t
-	 ZYa9He71mfD2osZUfoN1o1dVHRGA+1g2us4NoWitlWsYB5O5k30oHPE5qhfJQpEz/1
-	 Ig79kvBC1oXtddtrkoPMwqleom/HGGyM85O3eTgdmy/LtDl+vVRKZdbGtykktKOvC8
-	 Gt0ZreKiCzJ5E02DVDOFavAM9KircMhEcOGP5MQDbp09bAysFP/C2KCxlmTB0lSU7W
-	 VaztqmNIS8pD3nBHoMowTmHEo1op3bal1x5/TLK9y8oGq1dl22YnLiBfAWBv6raNDo
-	 P7BxVe1l5OzEw==
-Date: Mon, 16 Oct 2023 15:35:39 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nas Chung <nas.chung@chipsnmedia.com>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
-Message-ID: <20231016133539.m3i5crlsknoidim3@basti-XPS-13-9310>
-References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
- <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
- <c5e826a2-5bc6-4c49-9a6d-655d26a3b97f@xs4all.nl>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D0726E16
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:36:53 +0000 (UTC)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5422311B;
+	Mon, 16 Oct 2023 06:36:52 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1e12f41e496so2848087fac.3;
+        Mon, 16 Oct 2023 06:36:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697463411; x=1698068211;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xRUIaXf9k/DIdXsT6g0H4xCygfKjx74subHfMqQgJpY=;
+        b=n442ToXGz5orUI7U1bGMHu1m8FyFDNwOAWoURhMM8zhwDbzvN46JQdTeNfIWgsT35U
+         DWwWIujfKBcRiyxH5hv6iPEoo+xQwXmXah98VQHD0J1duRZebTd4HP27MtYFHvOngNj9
+         u/vUR1VsZbDSO7GG+Lvwa4WafK/z2t2v2KmwLavPDfrq0ele8lHXiISrsBMBp1Qt4LMz
+         5p5+7SwY/DCwXu1wGJGIgDSVnfUXj4is68m6sCEOPHff7YsLqHt9Q4kSbbQYalwntAEW
+         p2QgLTgsw279EBZ4D1ho0JmJSpz2zC3wTbryn5kOW6ooKeCpUfWoRW9ZyF4aqdfm0bbH
+         hZZA==
+X-Gm-Message-State: AOJu0Yx3nxqjlDSsJ2ADxLrTb8csr38G8mi8mxLhW0cT3h2BDy9dgFxC
+	xZmVkwYStD5MmChSMvAYfA==
+X-Google-Smtp-Source: AGHT+IEe4san7PMnmHiunNMgfm3nxMWqNytNcxP9iMBm33pTk2KyiFPmmXl06nI1WoeZ1jyKakgadw==
+X-Received: by 2002:a05:6870:ad08:b0:1e9:8d44:a5cf with SMTP id nt8-20020a056870ad0800b001e98d44a5cfmr17432707oab.17.1697463411381;
+        Mon, 16 Oct 2023 06:36:51 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o12-20020a056870910c00b001e126575e1bsm2015347oae.34.2023.10.16.06.36.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 06:36:50 -0700 (PDT)
+Received: (nullmailer pid 2642681 invoked by uid 1000);
+	Mon, 16 Oct 2023 13:36:49 -0000
+Date: Mon, 16 Oct 2023 08:36:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, kernel-team@android.com, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v3 03/20] dt-bindings: soc: google: exynos-sysreg: add
+ dedicated SYSREG compatibles to GS101
+Message-ID: <20231016133649.GA2641997-robh@kernel.org>
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-4-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c5e826a2-5bc6-4c49-9a6d-655d26a3b97f@xs4all.nl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20231011184823.443959-4-peter.griffin@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hey Hans,
+On Wed, Oct 11, 2023 at 07:48:06PM +0100, Peter Griffin wrote:
+> GS101 has three different SYSREG controllers, add dedicated
+> compatibles for them to the documentation.
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 163e912e9cad..dbd12a97faad 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -30,6 +30,12 @@ properties:
+>                - samsung,exynos5433-fsys-sysreg
+>            - const: samsung,exynos5433-sysreg
+>            - const: syscon
+> +      - items:
+> +          - enum:
+> +              - google,gs101-peric0-sysreg
+> +              - google,gs101-peric1-sysreg
+> +              - google,gs101-apm-sysreg
 
-On 16.10.2023 13:57, Hans Verkuil wrote:
->Hi Sebastian,
->
->On 12/10/2023 13:01, Sebastian Fricke wrote:
->> Add the decoder and encoder implementing the v4l2
->> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
->>
->> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->> Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
->> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
->> ---
->>  drivers/media/platform/chips-media/Kconfig         |    1 +
->>  drivers/media/platform/chips-media/Makefile        |    1 +
->>  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
->>  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
->>  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
->>  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
->>  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
->>  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
->>  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
->>  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
->>  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
->>  11 files changed, 4389 insertions(+), 2 deletions(-)
->>
->
-><snip>
->
->> +static int wave5_vpu_dec_create_bufs(struct file *file, void *priv,
->> +				     struct v4l2_create_buffers *create)
->> +{
->> +	struct vpu_instance *inst = wave5_to_vpu_inst(priv);
->> +	struct v4l2_format *f = &create->format;
->> +
->> +	/* Firmware does not support CREATE_BUFS for CAPTURE queues. */
->> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
->> +		dev_dbg(inst->dev->dev,
->> +			"%s: VIDIOC_CREATE_BUFS not supported on CAPTURE queues.\n",
->> +			__func__);
->> +		return -EOPNOTSUPP;
->> +	}
->> +
->> +	return v4l2_m2m_ioctl_create_bufs(file, priv, create);
->> +}
->
->Regarding the EOPNOTSUPP discussion: I discussed this some more with
->Nicolas on irc, and we wonder if it isn't better to just drop create_bufs
->support for the wave5 decoder altogether. Is there any point in supporting
->it for OUTPUT but not CAPTURE?
->
-><snip>
->
->> +static const struct v4l2_ioctl_ops wave5_vpu_dec_ioctl_ops = {
->> +	.vidioc_querycap = wave5_vpu_dec_querycap,
->> +	.vidioc_enum_framesizes = wave5_vpu_dec_enum_framesizes,
->> +
->> +	.vidioc_enum_fmt_vid_cap	= wave5_vpu_dec_enum_fmt_cap,
->> +	.vidioc_s_fmt_vid_cap_mplane = wave5_vpu_dec_s_fmt_cap,
->> +	.vidioc_g_fmt_vid_cap_mplane = wave5_vpu_dec_g_fmt_cap,
->> +	.vidioc_try_fmt_vid_cap_mplane = wave5_vpu_dec_try_fmt_cap,
->> +
->> +	.vidioc_enum_fmt_vid_out	= wave5_vpu_dec_enum_fmt_out,
->> +	.vidioc_s_fmt_vid_out_mplane = wave5_vpu_dec_s_fmt_out,
->> +	.vidioc_g_fmt_vid_out_mplane = wave5_vpu_g_fmt_out,
->> +	.vidioc_try_fmt_vid_out_mplane = wave5_vpu_dec_try_fmt_out,
->> +
->> +	.vidioc_g_selection = wave5_vpu_dec_g_selection,
->> +	.vidioc_s_selection = wave5_vpu_dec_s_selection,
->> +
->> +	.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,
->> +	.vidioc_querybuf = v4l2_m2m_ioctl_querybuf,
->> +	.vidioc_create_bufs = wave5_vpu_dec_create_bufs,
->
->So this would just be dropped.
->
->> +	.vidioc_prepare_buf = v4l2_m2m_ioctl_prepare_buf,
->> +	.vidioc_qbuf = v4l2_m2m_ioctl_qbuf,
->> +	.vidioc_expbuf = v4l2_m2m_ioctl_expbuf,
->> +	.vidioc_dqbuf = v4l2_m2m_ioctl_dqbuf,
->> +	.vidioc_streamon = v4l2_m2m_ioctl_streamon,
->> +	.vidioc_streamoff = v4l2_m2m_ioctl_streamoff,
->> +
->> +	.vidioc_try_decoder_cmd = v4l2_m2m_ioctl_try_decoder_cmd,
->> +	.vidioc_decoder_cmd = wave5_vpu_dec_decoder_cmd,
->> +
->> +	.vidioc_subscribe_event = wave5_vpu_subscribe_event,
->> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
->> +};
->
->This also means there is no need to document the new EOPNOTSUPP error
->code in VIDIOC_CREATE_BUFS, or to modify v4l2-compliance.
->
->You *do* need to add a comment somewhere explaining why you don't
->support this ioctl. I think it would be best to do that right after
->'.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,'.
+Alphabetical order.
 
-So, besides this issue would you judge the v4l2 layer of the driver to
-be ready? Do you want a reviewed by tag for it or would you take it like
-this as well?
-
->
->Regards,
->
->	Hans
-
-Sincerly,
-Sebastian
->_______________________________________________
->Kernel mailing list -- kernel@mailman.collabora.com
->To unsubscribe send an email to kernel-leave@mailman.collabora.com
+> +          - const: syscon
+>        - items:
+>            - enum:
+>                - samsung,exynos5433-sysreg
+> -- 
+> 2.42.0.655.g421f12c284-goog
+> 
 
