@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-8816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F20BA7CA3B2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:13:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21D77CA3B9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A91BA281577
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:13:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EDCB1C209AE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476081C689;
-	Mon, 16 Oct 2023 09:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB531C28D;
+	Mon, 16 Oct 2023 09:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="glCx+sFS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nQb0QjKa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE051C28C
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:13:00 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD93EB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:12:59 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5046bf37ec1so5139367e87.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:12:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DF81C683
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:13:02 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F910E5
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:13:00 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-5041bb9ce51so5059468e87.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:13:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697447577; x=1698052377; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697447578; x=1698052378; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=foLlklZzbf/rl97C1z+LoU2FISNG4qswwP4hiHZTUHc=;
-        b=glCx+sFS7PVZ6BNeOuCkfrFMdt5RVOVRnTP8XwIKpskDEV+J5GjXzS3+CtlgaJTnht
-         +S9qwLqceyo7/293Z+UEkUcd21Ttrx+HhAmhg3chf8x/PRwyerkylldmUH0SaUr7CbBM
-         bzeI9A1kuv911ZO4b1P4mL7UqTkFkNaJGo5mOGsj89qSgDy5h+Dml+EdxJTIkDbBNiw9
-         ObwsxJxGtIFI9aywY5Zmdr4hiFDluY76P0eOnjy07RJLqmXgaEF9bKnjvwP6J8ZI62z2
-         +N4bfsKqEXlRa760Og0Ei42y06zUzxbaL7jlqL3wtomi0AhK4cpUGvgJZMo/yrb/dW5n
-         9oZQ==
+        bh=XQgNJEaB9CDsyBYuoK51xMQLKTuugJ9THzHXrzK30U8=;
+        b=nQb0QjKaJfnIvo4xGbOlb7nrByQ5Rzxb52OhRQingH6C7lOLJ6+YiClX5pi4SVfrf0
+         CJB1vn/eD5cNAbQwpqc4vGlwM5DDzPrKJmhHpAK6QZP7Sazrwt12ZCyWTiSU2vSTyuOW
+         M91/zICsKRcowA/fbLtD2jurEDb2iCjHktQV0OXBullY5DvOtK/2Af1PFnzJUnXHtbsn
+         xzWmbzgFD4qkTLZ41IJGdW80y2AJV43bKvAi8IVR2891r0CPF3OFHeK6aXQZGyQK8vhD
+         7BB+bd/jX9UnVZXBNlr136ByUytUMfoXCXGrPEhgDc/JEJ+9RpXBZhOjX+FIzKracN6n
+         DGrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697447577; x=1698052377;
+        d=1e100.net; s=20230601; t=1697447578; x=1698052378;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=foLlklZzbf/rl97C1z+LoU2FISNG4qswwP4hiHZTUHc=;
-        b=b9M3YM7dh2DjRNuPrW+wE1MBzr75E8hHFgBGIJC87u8UH0LAMdY8kcadzuBxAa2zyM
-         FLI4FZQNHwf7bTgXu4SwLbexnJErmERck4SU7NG81jehglznJg7eX2HZS6nDaBk7iXuP
-         FY+o7OtnoVNJFaf44A1hy4fbfFJRYO5bm1N0KzSlgB5enlCMP/B1cGKiUfzCFpbhL4xZ
-         Ln2fMMBKdOGhCQV3d9LMzkragqUz22sD233DJfC2HLNaKiaF8SLbKVnr1fuPx17RmiIp
-         2uK324vKNbaZj9UxJzxwBOcPD5dk03DEclFe/S/QBsN0yb741IQ5upX98955s2+UoSid
-         T28A==
-X-Gm-Message-State: AOJu0YwTuGpWUtByGit3XAKnBK28w69C8h8Dli97bM0VSVVG9hDjAqBH
-	wgXgduED7AwcFBR3tXawSCZ0bA==
-X-Google-Smtp-Source: AGHT+IG2GhFbq/EMk1PUmpZ8MUfeXX8qH7HWNL/Fj075OUu2vQo3TeP8g91KjGe733R2bDqtbRjm2w==
-X-Received: by 2002:a05:6512:324e:b0:503:7c0:ae96 with SMTP id c14-20020a056512324e00b0050307c0ae96mr26361366lfr.20.1697447577585;
-        Mon, 16 Oct 2023 02:12:57 -0700 (PDT)
+        bh=XQgNJEaB9CDsyBYuoK51xMQLKTuugJ9THzHXrzK30U8=;
+        b=X2ZMVCJGde9HqtFOFZnqpw5aZYlBIjtL5JEh6Tzbj0/m3tKHbUJ9PCPPXZ+eHQvi9R
+         XkApcYEwrhcwlZ1fa08TTmptHXRgBDvGsX+SVIDrsPlgbXcMI0bPzasAX8NUEAufKbQK
+         RU0ggYkbDKoRk/r/z5xRAz0YU3mBL9udeVkf72ztA9Bi557WVmzmuSDg/prpSUGgP301
+         a/UjNIjnD/F7HdX7Y69AkyCVLsVpOi6TpuX7wzXT+CrkicYz4wDOHkpqDYWFYa8sh495
+         51LNpe1QYHgwJ7cqNhYSi+WFgo/dTh70RLOkEyl1b0+9LfIkjsN51YoHcXOXUeInzYtd
+         Adiw==
+X-Gm-Message-State: AOJu0YzPp3FjztE0rPJC8uUvbLDz9ocndhIsuLjFO7KaQ8gz99o7po9a
+	iaZJg7p1VRPGSkTf/2cabmsOAsN79YmW+jDw8dQ=
+X-Google-Smtp-Source: AGHT+IHOrYoJN6TnzySSc3vvbrP9tHzSMIjwBQxg9l9tIyLk+Fcasw6JOLV7wUx0Rx3P9qzDheo1ow==
+X-Received: by 2002:a05:6512:39d1:b0:500:ac71:8464 with SMTP id k17-20020a05651239d100b00500ac718464mr33408434lfu.66.1697447578588;
+        Mon, 16 Oct 2023 02:12:58 -0700 (PDT)
 Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id br34-20020a056512402200b005068e7a2e7dsm4160986lfb.77.2023.10.16.02.12.56
+        by smtp.gmail.com with ESMTPSA id br34-20020a056512402200b005068e7a2e7dsm4160986lfb.77.2023.10.16.02.12.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 02:12:57 -0700 (PDT)
+        Mon, 16 Oct 2023 02:12:58 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 16 Oct 2023 11:12:55 +0200
-Subject: [PATCH net-next v3 2/6] dt-bindings: marvell: Add Marvell
- MV88E6060 DSA schema
+Date: Mon, 16 Oct 2023 11:12:56 +0200
+Subject: [PATCH net-next v3 3/6] dt-bindings: net: mvusb: Fix up DSA
+ example
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231016-marvell-88e6152-wan-led-v3-2-38cd449dfb15@linaro.org>
+Message-Id: <20231016-marvell-88e6152-wan-led-v3-3-38cd449dfb15@linaro.org>
 References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
 In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
 To: Andrew Lunn <andrew@lunn.ch>, 
@@ -90,146 +90,46 @@ Cc: Christian Marangi <ansuelsmth@gmail.com>,
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Marvell MV88E6060 is one of the oldest DSA switches from
-Marvell, and it has DT bindings used in the wild. Let's define
-them properly.
+When adding a proper schema for the Marvell mx88e6xxx switch,
+the scripts start complaining about this embedded example:
 
-It is different enough from the rest of the MV88E6xxx switches
-that it deserves its own binding.
+  dtschema/dtc warnings/errors:
+  net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells'
+  is a required property
+  from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+  net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells'
+  is a required property
+  from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+
+Fix this up by extending the example.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../bindings/net/dsa/marvell,mv88e6060.yaml        | 105 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 2 files changed, 106 insertions(+)
+ Documentation/devicetree/bindings/net/marvell,mvusb.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-new file mode 100644
-index 000000000000..01db7df1bab6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6060.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/net/marvell,mvusb.yaml b/Documentation/devicetree/bindings/net/marvell,mvusb.yaml
+index 3a3325168048..ee677cf7df4e 100644
+--- a/Documentation/devicetree/bindings/net/marvell,mvusb.yaml
++++ b/Documentation/devicetree/bindings/net/marvell,mvusb.yaml
+@@ -56,6 +56,12 @@ examples:
+ 
+                             ports {
+                                     /* Port definitions */
++                                    #address-cells = <1>;
++                                    #size-cells = <0>;
 +
-+title: Marvell MV88E6060 DSA switch
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description:
-+  The Marvell MV88E6060 switch has been produced and sold by Marvell
-+  since at least 2010. The switch has one pin ADDR4 that controls the
-+  MDIO address of the switch to be 0x10 or 0x00, and on the MDIO bus
-+  connected to the switch, the PHY:s inside the switch appear as
-+  independent devices on address 0x00-0x04 or 0x10-0x14, so in difference
-+  from many other DSA switches this switch does not have an internal
-+  MDIO bus for the PHY devices.
-+
-+properties:
-+  compatible:
-+    const: marvell,mv88e6060
-+    description:
-+      The MV88E6060 is the oldest Marvell DSA switch product, and
-+      as such a bit limited in features compared to later hardware.
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      GPIO to be used to reset the whole device
-+    maxItems: 1
-+
-+$ref: dsa.yaml#
-+
-+patternProperties:
-+  "^(ethernet-)?ports$":
-+    type: object
-+    patternProperties:
-+      "^(ethernet-)?port@[0-9]+$":
-+        type: object
-+        description: Ethernet switch ports
-+
-+        $ref: dsa-port.yaml#
-+
-+        unevaluatedProperties: false
-+
-+oneOf:
-+  - required:
-+      - ports
-+  - required:
-+      - ethernet-ports
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        switch@16 {
-+            compatible = "marvell,mv88e6060";
-+            reg = <16>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                };
-+                port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                };
-+                port@2 {
-+                    reg = <2>;
-+                    label = "lan3";
-+                };
-+                port@3 {
-+                    reg = <3>;
-+                    label = "lan4";
-+                };
-+                port@5 {
-+                    reg = <5>;
-+                    phy-mode = "rev-mii";
-+                    ethernet = <&ethc>;
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1b4475254d27..4c933a2a56ad 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12625,6 +12625,7 @@ MARVELL 88E6XXX ETHERNET SWITCH FABRIC DRIVER
- M:	Andrew Lunn <andrew@lunn.ch>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
- F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
- F:	Documentation/networking/devlink/mv88e6xxx.rst
- F:	drivers/net/dsa/mv88e6xxx/
++                                    port@0 {
++                                            reg = <0>;
++                                    };
+                             };
+ 
+                             mdio {
 
 -- 
 2.34.1
