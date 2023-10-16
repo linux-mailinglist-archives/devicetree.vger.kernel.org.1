@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-8846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E97A7CA56E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:32:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2257CA597
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:37:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69F88B20CEE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:32:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B375F1C20A09
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F82815ADE;
-	Mon, 16 Oct 2023 10:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFB91BDF7;
+	Mon, 16 Oct 2023 10:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cXZkqlo6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SSqz0NLo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70E720B20;
-	Mon, 16 Oct 2023 10:32:23 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB2FAC;
-	Mon, 16 Oct 2023 03:32:18 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9c3aec5f326so194441766b.1;
-        Mon, 16 Oct 2023 03:32:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C10208A3;
+	Mon, 16 Oct 2023 10:37:14 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78230B4;
+	Mon, 16 Oct 2023 03:37:12 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53db1fbee70so7296241a12.2;
+        Mon, 16 Oct 2023 03:37:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697452336; x=1698057136; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1697452631; x=1698057431; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y21BLo6GxvvTucZUxMoXeh+PM3v9sp2+9sBYuxtUsU8=;
-        b=cXZkqlo664VvCiDZnasa6fzyshtTFoZEDICo36OF7rpQ2qBWjh3454VYZH8S8ESlA1
-         7b8CIRwYZtznrdmbsZDjsrydy44d6JEQjNboUiysbnz+1wY0iLCDUsxBIilyKRnod66j
-         4QJbqxEedfTP76TYgd2dHZiQJvIf+qBA36Wq3yWJHtWAa3VUy1dtBy64DSk1ynDj/kUr
-         o4Lj6gxNyYjN61WgHI4joafCkrtuE0E5xaZ4pSMDN35X7oIWJNIaMVA/lg0i/8zE8JnO
-         U7eYBSKTLawmuT9y45r6qgjRMv+3cjN0ahnY00wugyhG22TH2L5w4oa8BaPk10F3m4IM
-         cVYQ==
+        bh=GYPaLG/yqq2AeQmdJ6S7bmu8cvVq2TzURcOqOkOdsJE=;
+        b=SSqz0NLoHwFG1V+5Ci+O0kVUQcxHU/wgnB0vyJvBLSOc6ODc39SzMaQak9eUn7zKag
+         VA0QEnbnRlY802OiJpuTwaOqcTeJs9ggieUyKrb4llO5asPIJ8gAcIxEmwzviUJSeQJp
+         BX24BuAvgzmIO7bIpgC9DuZKHKIaJCCA0mXLpDlICV5dOp+IcchKfUEyO/wDOCdbvKvz
+         /Tauuh9w83lqUfX7pQH9sI37GfHEXO51tgNcuqd3RjARaDbIFi9PFg3kENRFcfaz9fuy
+         Xe0/9WZ9q93T6wFZQWX+V9X8nypGtCAL6owp1zkekzES0OfDG81Wy5VfpINTY5uqk63i
+         wyyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697452336; x=1698057136;
+        d=1e100.net; s=20230601; t=1697452631; x=1698057431;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y21BLo6GxvvTucZUxMoXeh+PM3v9sp2+9sBYuxtUsU8=;
-        b=GEARrA+ZOE9ouTmD72BUnDcD5wrVKmIHD9h77TQfREP/fffwMaTj8hQWAUTB5jL2Jy
-         t97h7Mih3sEVsSBg0qQIM+VV17uDTEWeBntzEW2+kMFSo840npa9Ws2ceUtFkKz49CXG
-         flnf02gfUJjapm3zY7MX/jnreAKFwAiIFj01R/igr4wWw4hEngjKO70H2cRwvmxncOIA
-         lEJt7DYrs+mXPQ/7Zm0iRHkNcHUSAoCyFcA7oKpZUdfHj9MEDmKnNz1VN15USTaRKVVj
-         /i9bHKCteYNczdQr79nKhuj7bJfxKmXWm0vNY8dwFchD8vUGtNF3wy94Xdw00bSKughk
-         NUTw==
-X-Gm-Message-State: AOJu0YzipZX9ehkvC35VJsWcIBzYgrglWobzjow3PP3X0G+iS8aL700M
-	hPTqVG9FU4PrYCdAZmfpdiI=
-X-Google-Smtp-Source: AGHT+IE53bLZD6T3ir5GF90pvg5jjiWFAXSdkbehJZTtccharwoE2eJQ4/dd4r3RCNcmmtEjjL78kw==
-X-Received: by 2002:a17:907:9303:b0:9b2:bdbb:f145 with SMTP id bu3-20020a170907930300b009b2bdbbf145mr6216924ejc.34.1697452335848;
-        Mon, 16 Oct 2023 03:32:15 -0700 (PDT)
+        bh=GYPaLG/yqq2AeQmdJ6S7bmu8cvVq2TzURcOqOkOdsJE=;
+        b=NH9yquLh8bkSwhETtvD45mG6iG2ME/4ErILBtHaLlXPw/CBaZtgfhbbf1MkxDoQRAu
+         dochGi8OuWzMtdCOJjedh3+PNsDQcGm0K0dzTBUFkRrs4Lwf+UoQNOiK+b6KNQpUu6Yw
+         6wY+2g6zY1PWhd5P2GbK0dBMxsbUvj80ER3OnU/J55GGxGWvQUG5Gr0n0zkBjLGYC3uM
+         ijqaCkq83JLia+U4KGJBI+KVp8cI3o1ZtVWP2I9lXqVZMrwzHoIEZDpXPEKrX8y5Gtgv
+         vvs9QlhPfAJYBLKs6HViPufOrskifig4qqxMVIgRZPt1yXvlSOS75NrWw2VtjlfhGq4E
+         OtPg==
+X-Gm-Message-State: AOJu0Yz05GnTQUEh65iFHjLMloGFfpvZSlVVQ4kUm5wUjzmtqX1mZLQI
+	ckHlusoQY5BDLk0HhDA7Qo0=
+X-Google-Smtp-Source: AGHT+IEXtTbrs2iEVL6pfGr8blG7GifaIRJu/lvf+cSiq6TJEJoDPY9DrrN3BE9mCdr2dSxUY4ut7g==
+X-Received: by 2002:a05:6402:40d0:b0:53e:a9bd:508 with SMTP id z16-20020a05640240d000b0053ea9bd0508mr3069297edb.25.1697452630828;
+        Mon, 16 Oct 2023 03:37:10 -0700 (PDT)
 Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id z4-20020a1709064e0400b00982a352f078sm3813603eju.124.2023.10.16.03.32.14
+        by smtp.gmail.com with ESMTPSA id a26-20020a50e71a000000b00537963f692esm15440188edn.0.2023.10.16.03.37.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 03:32:15 -0700 (PDT)
-Date: Mon, 16 Oct 2023 13:32:13 +0300
+        Mon, 16 Oct 2023 03:37:10 -0700 (PDT)
+Date: Mon, 16 Oct 2023 13:37:08 +0300
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Ante Knezic <ante.knezic@helmholz.de>
 Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
@@ -66,11 +66,13 @@ Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
 	marex@denx.de, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: microchip,ksz:
- document microchip,rmii-clk-internal
-Message-ID: <20231016103213.uqnc2pjehsz6iy5b@skbuf>
+Subject: Re: [PATCH net-next v2 1/2] net:dsa:microchip: add property to
+ select internal RMII reference clock
+Message-ID: <20231016103708.6ka5vxfkdatrjvdk@skbuf>
 References: <cover.1697107915.git.ante.knezic@helmholz.de>
- <1b8db5331638f1380ec2ba6e00235c8d5d7a882c.1697107915.git.ante.knezic@helmholz.de>
+ <cover.1697107915.git.ante.knezic@helmholz.de>
+ <c8bb7002e6d81a661c853dd21e0fe18e95887609.1697107915.git.ante.knezic@helmholz.de>
+ <c8bb7002e6d81a661c853dd21e0fe18e95887609.1697107915.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,64 +81,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1b8db5331638f1380ec2ba6e00235c8d5d7a882c.1697107915.git.ante.knezic@helmholz.de>
+In-Reply-To: <c8bb7002e6d81a661c853dd21e0fe18e95887609.1697107915.git.ante.knezic@helmholz.de>
+ <c8bb7002e6d81a661c853dd21e0fe18e95887609.1697107915.git.ante.knezic@helmholz.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 12, 2023 at 12:55:56PM +0200, Ante Knezic wrote:
-> Add documentation for selecting reference rmii clock on KSZ88X3 devices
+Commit message: "net: dsa: microchip: ".
+
+On Thu, Oct 12, 2023 at 12:55:55PM +0200, Ante Knezic wrote:
+> Microchip KSZ8863/KSZ8873 have the ability to select between internal
+> and external RMII reference clock. By default, reference clock
+> needs to be provided via REFCLKI_3 pin. If required, device can be
+> setup to provide RMII clock internally so that REFCLKI_3 pin can be
+> left unconnected.
+> Add a new "microchip,rmii-clk-internal" property which will set
+> RMII clock reference to internal. If property is not set, reference
+> clock needs to be provided externally.
 > 
 > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
 > ---
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  drivers/net/dsa/microchip/ksz8795.c     | 5 +++++
+>  drivers/net/dsa/microchip/ksz8795_reg.h | 3 +++
+>  drivers/net/dsa/microchip/ksz_common.c  | 3 +++
+>  drivers/net/dsa/microchip/ksz_common.h  | 1 +
+>  4 files changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> index 41014f5c01c4..eaa347b04db1 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -72,6 +72,25 @@ properties:
->    interrupts:
->      maxItems: 1
+> diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
+> index 91aba470fb2f..78f3a668aa99 100644
+> --- a/drivers/net/dsa/microchip/ksz8795.c
+> +++ b/drivers/net/dsa/microchip/ksz8795.c
+> @@ -1434,6 +1434,11 @@ int ksz8_setup(struct dsa_switch *ds)
+>  	for (i = 0; i < (dev->info->num_vlans / 4); i++)
+>  		ksz8_r_vlan_entries(dev, i);
 >  
-> +  microchip,rmii-clk-internal:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Set if the RMII reference clock is provided internally. Otherwise
-> +      reference clock should be provided externally.
+> +	if (ksz_is_ksz88x3(dev))
+> +		ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
+> +			KSZ88X3_PORT3_RMII_CLK_INTERNAL,
+> +			dev->rmii_clk_internal);
 > +
-> +if:
-> +  not:
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - microchip,ksz8863
-> +          - microchip,ksz8873
-> +then:
-> +  not:
-> +    required:
-> +      - microchip,rmii-clk-internal
 
-I think that what you want to express is that microchip,rmii-clk-internal
-is only defined for microchip,ksz8863 and microchip,ksz8873.
-Can't you describe that as "if: properties: compatible: (...) then:
-properties: microchip,rmii-clk-internal"?
+Can this be done in dev->dev_ops->phylink_mac_config() (which so far has no implementation)
+for port 3 of ksz88x3?
 
-Also, this is a port interface property, so I would like to see it in
-the xMII port and not global to the switch. The KSZ8873/KSZ8863 is
-somewhat special in that it only contains a single xMII port, but that
-doesn't mean that RMII settings are switch-wide.
+>  	return ksz8_handle_global_errata(ds);
+>  }
+>  
+> diff --git a/drivers/net/dsa/microchip/ksz8795_reg.h b/drivers/net/dsa/microchip/ksz8795_reg.h
+> index 3c9dae53e4d8..beca974e0171 100644
+> --- a/drivers/net/dsa/microchip/ksz8795_reg.h
+> +++ b/drivers/net/dsa/microchip/ksz8795_reg.h
+> @@ -22,6 +22,9 @@
+>  #define KSZ8863_GLOBAL_SOFTWARE_RESET	BIT(4)
+>  #define KSZ8863_PCS_RESET		BIT(0)
+>  
+> +#define KSZ88X3_REG_FVID_AND_HOST_MODE  0xC6
+> +#define KSZ88X3_PORT3_RMII_CLK_INTERNAL BIT(3)
+> +
+>  #define REG_SW_CTRL_0			0x02
+>  
+>  #define SW_NEW_BACKOFF			BIT(7)
+> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+> index b800ace40ce1..0a0a53ce5b1b 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.c
+> +++ b/drivers/net/dsa/microchip/ksz_common.c
+> @@ -4160,6 +4160,9 @@ int ksz_switch_register(struct ksz_device *dev)
+>  		}
+>  	}
+>  
+> +	dev->rmii_clk_internal = of_property_read_bool(dev->dev->of_node,
+> +						       "microchip,rmii-clk-internal");
+
+Port property.
 
 > +
-> +
->  required:
->    - compatible
->    - reg
+>  	ret = dsa_register_switch(dev->ds);
+>  	if (ret) {
+>  		dev->dev_ops->exit(dev);
+> diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
+> index 8842efca0871..e5b0445fe2ca 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.h
+> +++ b/drivers/net/dsa/microchip/ksz_common.h
+> @@ -163,6 +163,7 @@ struct ksz_device {
+>  	phy_interface_t compat_interface;
+>  	bool synclko_125;
+>  	bool synclko_disable;
+> +	bool rmii_clk_internal;
+>  
+>  	struct vlan_table *vlan_cache;
+>  
 > -- 
 > 2.11.0
-> 
 
