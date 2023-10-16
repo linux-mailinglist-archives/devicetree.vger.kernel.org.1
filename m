@@ -1,112 +1,197 @@
-Return-Path: <devicetree+bounces-8917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EBE7CA931
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:17:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19547CA9A3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C50C6B20C56
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:17:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 247CBB20F24
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2087727736;
-	Mon, 16 Oct 2023 13:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E262727EF4;
+	Mon, 16 Oct 2023 13:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7fgNdSx"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FrxoHnYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0046CE541
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:17:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DF8C433C8;
-	Mon, 16 Oct 2023 13:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697462235;
-	bh=TSb9GxD5oEeI6PePIO1j8fweqhj9PYyACbhpg9yRRMU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D2826E16
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:35:46 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A245136;
+	Mon, 16 Oct 2023 06:35:44 -0700 (PDT)
+Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 56E4766071EF;
+	Mon, 16 Oct 2023 14:35:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697463342;
+	bh=TznfC4TF12W8ScIql5iv7WR3cxstbuq3pTRFxtuJ+jA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A7fgNdSxwKQ4ttsJo+HVlMcDisGXhNgNP/FcfBU30+LmCVjzYMc6peeGkKk7Zhchs
-	 4kBpr71VXyksh3CTaRrfZY0B/7L08C6DOZDfMaYpZnix96I9vSm2q2M8nAipp6yJPe
-	 kJGcFWjhC7QAnSuIKc6pkcEm6k0KdPhFouF6xc/8QAXvFfRupyCCPkNkbkHhlGyqgw
-	 C4g7L3xPSsT0Wh3H03UYY+XlMY1KKaVvficA3P/yoFjkIHIoSUCPMxW6KyYYWvctPo
-	 YDvBP9eKVA8zUgm7CzV7fCFUprNdfcoMBQEkoBL+Zryl1+0mYxy/KOHNLsKu3vLxKE
-	 RaQ4ZdCPd7Kfg==
-Date: Mon, 16 Oct 2023 14:17:08 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: Rob Herring <robh@kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-	"Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-	"perex@perex.cz" <perex@perex.cz>,
-	"tiwai@suse.com" <tiwai@suse.com>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List
- DAPM endpoints ignoring system suspend
-Message-ID: <09061842-ce15-4f24-8098-56ecbb4fb6a2@sirena.org.uk>
-References: <20231011114759.1073757-1-chancel.liu@nxp.com>
- <f639c88d-371a-4c72-a906-47d643b24ca8@sirena.org.uk>
- <20231012204739.GA1706264-robh@kernel.org>
- <DB9PR04MB94987AD33756548323D8D101E3D7A@DB9PR04MB9498.eurprd04.prod.outlook.com>
+	b=FrxoHnYktcz29ytK0yQxtJuylDb1WXgY2mbz2qhy/TUqunmGrD6m4jl9VgBPYnX4t
+	 ZYa9He71mfD2osZUfoN1o1dVHRGA+1g2us4NoWitlWsYB5O5k30oHPE5qhfJQpEz/1
+	 Ig79kvBC1oXtddtrkoPMwqleom/HGGyM85O3eTgdmy/LtDl+vVRKZdbGtykktKOvC8
+	 Gt0ZreKiCzJ5E02DVDOFavAM9KircMhEcOGP5MQDbp09bAysFP/C2KCxlmTB0lSU7W
+	 VaztqmNIS8pD3nBHoMowTmHEo1op3bal1x5/TLK9y8oGq1dl22YnLiBfAWBv6raNDo
+	 P7BxVe1l5OzEw==
+Date: Mon, 16 Oct 2023 15:35:39 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nas Chung <nas.chung@chipsnmedia.com>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Darren Etheridge <detheridge@ti.com>
+Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
+Message-ID: <20231016133539.m3i5crlsknoidim3@basti-XPS-13-9310>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
+ <c5e826a2-5bc6-4c49-9a6d-655d26a3b97f@xs4all.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CxOpNCJuLtIFp8ru"
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-In-Reply-To: <DB9PR04MB94987AD33756548323D8D101E3D7A@DB9PR04MB9498.eurprd04.prod.outlook.com>
-X-Cookie: If you're happy, you're successful.
+In-Reply-To: <c5e826a2-5bc6-4c49-9a6d-655d26a3b97f@xs4all.nl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hey Hans,
 
---CxOpNCJuLtIFp8ru
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 16.10.2023 13:57, Hans Verkuil wrote:
+>Hi Sebastian,
+>
+>On 12/10/2023 13:01, Sebastian Fricke wrote:
+>> Add the decoder and encoder implementing the v4l2
+>> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
+>>
+>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+>> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>> Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
+>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+>> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+>> ---
+>>  drivers/media/platform/chips-media/Kconfig         |    1 +
+>>  drivers/media/platform/chips-media/Makefile        |    1 +
+>>  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
+>>  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
+>>  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
+>>  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
+>>  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
+>>  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
+>>  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
+>>  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
+>>  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
+>>  11 files changed, 4389 insertions(+), 2 deletions(-)
+>>
+>
+><snip>
+>
+>> +static int wave5_vpu_dec_create_bufs(struct file *file, void *priv,
+>> +				     struct v4l2_create_buffers *create)
+>> +{
+>> +	struct vpu_instance *inst = wave5_to_vpu_inst(priv);
+>> +	struct v4l2_format *f = &create->format;
+>> +
+>> +	/* Firmware does not support CREATE_BUFS for CAPTURE queues. */
+>> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+>> +		dev_dbg(inst->dev->dev,
+>> +			"%s: VIDIOC_CREATE_BUFS not supported on CAPTURE queues.\n",
+>> +			__func__);
+>> +		return -EOPNOTSUPP;
+>> +	}
+>> +
+>> +	return v4l2_m2m_ioctl_create_bufs(file, priv, create);
+>> +}
+>
+>Regarding the EOPNOTSUPP discussion: I discussed this some more with
+>Nicolas on irc, and we wonder if it isn't better to just drop create_bufs
+>support for the wave5 decoder altogether. Is there any point in supporting
+>it for OUTPUT but not CAPTURE?
+>
+><snip>
+>
+>> +static const struct v4l2_ioctl_ops wave5_vpu_dec_ioctl_ops = {
+>> +	.vidioc_querycap = wave5_vpu_dec_querycap,
+>> +	.vidioc_enum_framesizes = wave5_vpu_dec_enum_framesizes,
+>> +
+>> +	.vidioc_enum_fmt_vid_cap	= wave5_vpu_dec_enum_fmt_cap,
+>> +	.vidioc_s_fmt_vid_cap_mplane = wave5_vpu_dec_s_fmt_cap,
+>> +	.vidioc_g_fmt_vid_cap_mplane = wave5_vpu_dec_g_fmt_cap,
+>> +	.vidioc_try_fmt_vid_cap_mplane = wave5_vpu_dec_try_fmt_cap,
+>> +
+>> +	.vidioc_enum_fmt_vid_out	= wave5_vpu_dec_enum_fmt_out,
+>> +	.vidioc_s_fmt_vid_out_mplane = wave5_vpu_dec_s_fmt_out,
+>> +	.vidioc_g_fmt_vid_out_mplane = wave5_vpu_g_fmt_out,
+>> +	.vidioc_try_fmt_vid_out_mplane = wave5_vpu_dec_try_fmt_out,
+>> +
+>> +	.vidioc_g_selection = wave5_vpu_dec_g_selection,
+>> +	.vidioc_s_selection = wave5_vpu_dec_s_selection,
+>> +
+>> +	.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,
+>> +	.vidioc_querybuf = v4l2_m2m_ioctl_querybuf,
+>> +	.vidioc_create_bufs = wave5_vpu_dec_create_bufs,
+>
+>So this would just be dropped.
+>
+>> +	.vidioc_prepare_buf = v4l2_m2m_ioctl_prepare_buf,
+>> +	.vidioc_qbuf = v4l2_m2m_ioctl_qbuf,
+>> +	.vidioc_expbuf = v4l2_m2m_ioctl_expbuf,
+>> +	.vidioc_dqbuf = v4l2_m2m_ioctl_dqbuf,
+>> +	.vidioc_streamon = v4l2_m2m_ioctl_streamon,
+>> +	.vidioc_streamoff = v4l2_m2m_ioctl_streamoff,
+>> +
+>> +	.vidioc_try_decoder_cmd = v4l2_m2m_ioctl_try_decoder_cmd,
+>> +	.vidioc_decoder_cmd = wave5_vpu_dec_decoder_cmd,
+>> +
+>> +	.vidioc_subscribe_event = wave5_vpu_subscribe_event,
+>> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+>> +};
+>
+>This also means there is no need to document the new EOPNOTSUPP error
+>code in VIDIOC_CREATE_BUFS, or to modify v4l2-compliance.
+>
+>You *do* need to add a comment somewhere explaining why you don't
+>support this ioctl. I think it would be best to do that right after
+>'.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,'.
 
-On Mon, Oct 16, 2023 at 12:08:56PM +0000, Chancel Liu wrote:
+So, besides this issue would you judge the v4l2 layer of the driver to
+be ready? Do you want a reviewed by tag for it or would you take it like
+this as well?
 
-> Thanks Mark and Rob for your advice. In fact, it's common use case. We can see
-> many drivers set widgets ignoring suspend. I will remove the linux specifics
-> and focus on the key concept. How about the modification on the property name
-> and description as following:
->   ignore-suspend-widgets:
->     description: |
->       A list of audio sound widgets which are marked ignoring system suspend.
-> 	  Paths between these endpoints are still active over suspend of the main
-> 	  application processor that the current operating system is running.
+>
+>Regards,
+>
+>	Hans
 
-That's probably fine from my point of view.  There's likely a better way
-of saying system suspend but I'm not immediately seeing it and it could
-always be improved later.
-
---CxOpNCJuLtIFp8ru
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUtN9MACgkQJNaLcl1U
-h9AMyAf/RUOysUsrGEWQC4UlZkLrJEHxMIM6hDxLpZweAie5qQ6rOFMl5ft3BFZC
-M9J42RBQwCyAqpmArKhQR1Dr5TMgf0VdaoOmFWLc0xQpMc25W88cIEafU8y+mUua
-e6K/k0aIyYZdjwkP4Es88cLi8iA9nl66TBMbNNhVCPFu4ANu/cxaDwEYfisTIfAR
-JYHPBdK8nZkSRUGu15z5IswGwSChMEvpWGPfbaz030xacAabehc3JcPSUv+2ogKN
-xiEDDICnrN7oi4QKyUgw+Hsd1AnWhJmU3mJ6cNrh8DStFdq1XfWFD0jzbeQLCRC2
-vM+z/sNri+7PeKmxVzfVXTZTJUZkrQ==
-=HWHj
------END PGP SIGNATURE-----
-
---CxOpNCJuLtIFp8ru--
+Sincerly,
+Sebastian
+>_______________________________________________
+>Kernel mailing list -- kernel@mailman.collabora.com
+>To unsubscribe send an email to kernel-leave@mailman.collabora.com
 
