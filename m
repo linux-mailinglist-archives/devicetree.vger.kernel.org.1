@@ -1,168 +1,401 @@
-Return-Path: <devicetree+bounces-8878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492C87CA641
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:06:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD757CA644
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E77A1C208BE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:06:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F992B20C8B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C51D20B19;
-	Mon, 16 Oct 2023 11:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D276E210EB;
+	Mon, 16 Oct 2023 11:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hjMQKLVC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DnK5M0I7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5176F4E5
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:06:25 +0000 (UTC)
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF55EAB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 04:06:18 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-5041d6d8b10so5605506e87.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 04:06:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C82BF4E5;
+	Mon, 16 Oct 2023 11:09:04 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0407A83;
+	Mon, 16 Oct 2023 04:09:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-53db1fbee70so7355279a12.2;
+        Mon, 16 Oct 2023 04:09:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697454377; x=1698059177; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LXEVQS6bjiXAKpDplUeSAZwBvte/3ftCu9KDPLrWwj0=;
-        b=hjMQKLVCSNc4Z/e1tRujtYEocZEJ4C6FPbrlXV7pniRimHFQO/+Di7bmXM+q84CMZC
-         ICLLJ1Q45GmCpCpmbDuBMh/dDZt2Ncfo6g27lcJDjSYdA+2xaCqo+3w/4OJqZVY+g0B6
-         j/qiIvRs9s48QLGOwcEsKNxZuJ5VzJ8X+ewZCfVWWBbqEFigiUv+gKsObK/sFLGxF1/f
-         8VUHgLB/cutHSHCtPP4Mw3wUXGkLntKPtp8mOVGHhxwiBwEZQmMhPqHMGj1zeZsJnjPy
-         9ccJ6A/1U8UyE4PtFTjsFcKwQeg/L0NTroPjDFQ3sZP8nA8azUW3CvHaPPnDhINIKkLo
-         Si2Q==
+        d=gmail.com; s=20230601; t=1697454541; x=1698059341; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xDaXo5MTP4dUtT2V4pjnvLHYZsmOGF0BPQquHVNEV4Q=;
+        b=DnK5M0I7D9snjD45PPJVyro+tB+/HvcYc27wzai+XPGh7pHpdIXnmnCzqtHFbV3TOM
+         /2nnTgEw2C43jfPtHIH4PE5W4BpHIWmllJhQZ6fiuYnTV0FbB4LvVSByo0Nat6RJ58Kl
+         l+jAuJO4PsCBkLM5ptKB/fo9QuWo0WbeUyYYstMss/r5raa01NuKRZRhxv+mvM9dZbjM
+         8es+0HyC6YSuZXqFtSmaUzPcwIiskhkHKBjHliMSnOy+9fW76tWT3wDN+F797+BLxFOa
+         CEwThvTJ7syFbumNx8aNS1lt1lfOQ44uhiiUj+dOrAUF4cb5AKUskH2CS6wcYRM3d0vh
+         z2ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697454377; x=1698059177;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LXEVQS6bjiXAKpDplUeSAZwBvte/3ftCu9KDPLrWwj0=;
-        b=XMvYFJ8CE3ZdPV5f0Y1TMEdA5k1+3svOIwg5H1j0w5NJM6o/iBvQ9eRcMwJ0d3SHYb
-         Ptkg/fX9RBdWf7uYVOqtTBA1tCzH0HgHyvX/WkMxagcCKAN0p+vqcl/qvMH7XwZqdrYz
-         26ujroUcmkOPiuIguPTblB61++xe1fT2199zd9jD/xdfZmVt9NAu3SVcoBK4PfYJwAFN
-         7qXoblAITWLlOQCfkSehIdxcR+d/wEtPRkM9WR4Pi/AIEHKUo0CMbJa8kQ0uJ4RrzI28
-         pWwv+Q9KF9A41FG9oVOL1pUtiBAshTRP8N4CRVRXIfHTYZn2wPViT1fA5PQP+WCG1K9x
-         PvFg==
-X-Gm-Message-State: AOJu0YzuO6weXbMKqk25ut4S0CRlg/YzgNKrpPaqKo6XLExfFGXvT0hg
-	7KDXQG4uS+9/eE1u3zOmCnQlog==
-X-Google-Smtp-Source: AGHT+IEYyBsPUxOh4md1Gs8glUia+ByhRldm5segshEthvDKHCAiPDGq5a3hP8xxDBKzG69zoztWBw==
-X-Received: by 2002:a19:ac0b:0:b0:507:a40e:d8bf with SMTP id g11-20020a19ac0b000000b00507a40ed8bfmr4130555lfc.7.1697454377148;
-        Mon, 16 Oct 2023 04:06:17 -0700 (PDT)
-Received: from [192.168.1.15] (host-2-99-112-229.as13285.net. [2.99.112.229])
-        by smtp.gmail.com with ESMTPSA id j11-20020a05600c190b00b0040646a708dasm6843691wmq.15.2023.10.16.04.06.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 04:06:16 -0700 (PDT)
-Message-ID: <77aa8c48-42da-46eb-92c1-5950c9bdfec7@linaro.org>
-Date: Mon, 16 Oct 2023 12:06:15 +0100
+        d=1e100.net; s=20230601; t=1697454541; x=1698059341;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xDaXo5MTP4dUtT2V4pjnvLHYZsmOGF0BPQquHVNEV4Q=;
+        b=kiXIp+qh7auHifDSUCMnOOxwIygMMBEf0M0aahK+j8roptM1BN7TtFOLyEosLJz19w
+         YU3iqDjH3AvrHmvyN/NILR9TqKcYFYhq2HJOVgZsDLKP1t7HqrqOUtiC0Vx8LRZCiYYG
+         YCaJhPNisphaPxGd4UG2mdsRZmTGp14WKThrRUZjjtdt2cuo8mPeoa4elACIPX61pEim
+         ULlT7io1qXYgxJyKzZT639avar/FpqBCHauLcWZVe2cD4udwLzW+pfJ6kuUyV1iaF6dc
+         IJk86vUZ3eDSaq7EF8Dc0baNwxhJ4TA1CbWs+RJ96OCmWzUR2ZTprOqkscneCft6JeXw
+         UcEQ==
+X-Gm-Message-State: AOJu0Yz5ZMpGVvophBPqSf9zo1ejuai+xB557JhVFRiyJKq/wPzKO/R8
+	UvMLxDXCCFa3uR1P63LwF4N0kjQ6JFyjVw==
+X-Google-Smtp-Source: AGHT+IGvxW1HlHJOzu2eVLozsnUNyEAyJ1WzlS5teJ9Anku85o1gYAixK4qMjJv3NB0bFi87s9t/lA==
+X-Received: by 2002:a05:6402:2712:b0:53e:708c:40be with SMTP id y18-20020a056402271200b0053e708c40bemr5252469edd.6.1697454541137;
+        Mon, 16 Oct 2023 04:09:01 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id c11-20020aa7c98b000000b00536ad96f867sm15269923edt.11.2023.10.16.04.08.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 04:09:00 -0700 (PDT)
+Date: Mon, 16 Oct 2023 14:08:58 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/6] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <20231016110858.ljvjssqujuesu7kd@skbuf>
+References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: input: syna,rmi4: document
- syna,pdt-fallback-desc
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: methanal <baclofen@tuta.io>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, "Jason A. Donenfeld"
- <Jason@zx2c4.com>, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org>
- <20230929-caleb-rmi4-quirks-v2-1-b227ac498d88@linaro.org>
- <42709208-6f3b-4ae0-a7bc-f23be6370171@linaro.org>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <42709208-6f3b-4ae0-a7bc-f23be6370171@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Mon, Oct 16, 2023 at 11:12:54AM +0200, Linus Walleij wrote:
+> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
+> in YAML schema.
+> 
+> The current text binding says:
+>   WARNING: This binding is currently unstable. Do not program it into a
+>   FLASH never to be changed again. Once this binding is stable, this
+>   warning will be removed.
+> 
+> Well that never happened before we switched to YAML markup,
+> we can't have it like this, what about fixing the mess?
 
+Removing that remark seems in order.
 
-On 16/10/2023 06:31, Krzysztof Kozlowski wrote:
-> On 15/10/2023 23:11, Caleb Connolly wrote:
->> This new property allows devices to specify some register values which
->> are missing on units with third party replacement displays. These
->> displays use unofficial touch ICs which only implement a subset of the
->> RMI4 specification.
->>
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->> ---
->> To: "Jason A. Donenfeld" <Jason@zx2c4.com>
->> To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
->> To: Rob Herring <robh+dt@kernel.org>
->> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> To: Conor Dooley <conor+dt@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> ---
->>  Documentation/devicetree/bindings/input/syna,rmi4.yaml | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
->> index 4d4e1a8e36be..1f4a2179e4d3 100644
->> --- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
->> +++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
->> @@ -49,6 +49,21 @@ properties:
->>      description:
->>        Delay to wait after powering on the device.
->>  
->> +  syna,pdt-fallback-desc:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-matrix
->> +    description:
->> +      An array of pairs of function number and version. These are used
 > 
-> You nicely explained what is expected to be here, but what is the
-> purpose of adding this property? Please add it to the description.
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 243 +++++++++++++++++++++
+>  .../devicetree/bindings/net/dsa/marvell.txt        | 109 ---------
+>  MAINTAINERS                                        |   2 +-
+>  3 files changed, 244 insertions(+), 110 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+> new file mode 100644
+> index 000000000000..954db04147f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+> @@ -0,0 +1,243 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell MV88E6xxx DSA switch family
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +
+> +description:
+> +  The Marvell MV88E6xxx switch series has been produced and sold
+> +  by Marvell since at least 2010. The switch has a few compatibles which
+> +  just indicate the base address of the switch, then operating systems
+> +  can investigate switch ID registers to find out which actual version
+> +  of the switch it is dealing with.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - marvell,mv88e6085
+> +          - marvell,mv88e6190
+> +          - marvell,mv88e6250
+> +    description: |
+> +      marvell,mv88e6085: This switch uses base address 0x10.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6085" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6085, 6095, 6097, 6123, 6131, 6141, 6161, 6165, 6171, 6172, 6175, 6176,
+> +        6185, 6240, 6320, 6321, 6341, 6350, 6351, 6352
+> +      marvell,mv88e6190: This switch uses base address 0x00.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6190" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6190, 6190X, 6191, 6290, 6361, 6390, 6390X
+> +      marvell,mv88e6250: This switch uses base address 0x08 or 0x18.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6250" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6220, 6250
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  eeprom-length:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Set to the length of an EEPROM connected to the switch. Must be
+> +      set if the switch can not detect the presence and/or size of a connected
+> +      EEPROM, otherwise optional.
+> +
+> +  reset-gpios:
+> +    description:
+> +      GPIO to be used to reset the whole device
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: The switch provides an external interrupt line, but it is
+> +      not always used by target systems.
+> +    maxItems: 1
+> +
+> +  interrupt-controller:
+> +    description: The switch has an internal interrupt controller used by
+> +      the different sub-blocks.
+> +
+> +  '#interrupt-cells':
+> +    description: The internal interrupt controller only supports triggering
+> +      on active high level interrupts so the second cell must alway be set to
+> +      IRQ_TYPE_LEVEL_HIGH.
+> +    const: 2
+> +
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description: Marvell MV88E6xxx switches have an varying combination of
+> +    internal and external MDIO buses, in some cases a combined bus that
+> +    can be used both internally and externally. This node is for the
+> +    primary bus, used internally and sometimes also externally.
+> +
+> +  mdio-external:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description: Marvell MV88E6xxx switches that have a separate external
+> +      MDIO bus use this port to access external components on the MDIO bus.
+> +
+> +    properties:
+> +      compatible:
+> +        const: marvell,mv88e6xxx-mdio-external
+> +
+> +    required:
+> +      - compatible
+> +
+> +$ref: dsa.yaml#
+> +
+> +patternProperties:
+> +  "^(ethernet-)?ports$":
+> +    type: object
+> +    patternProperties:
+> +      "^(ethernet-)?port@[0-9]+$":
+> +        type: object
+> +        description: Ethernet switch ports
+> +
+> +        $ref: dsa-port.yaml#
+> +
+> +        unevaluatedProperties: false
+> +
+> +oneOf:
+> +  - required:
+> +      - ports
+> +  - required:
+> +      - ethernet-ports
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        switch0: switch@0 {
 
-This property is to provide some "expected" register values to handle
-hardware where registers that should have values are empty (MCUs running
-dodgy firmware pretending to be an rmi4 capable controller).
-> 
->> +      on some devices with replacement displays that use unofficial touch
->> +      controllers. These controllers do report the properties of their Page
->> +      Descriptor Table (PDT) entries, but leave the function_number and
->> +      function_version registers blank. These values should match exactly
->> +      the 5th and 4th bytes of each PDT entry from the original display's
->> +      touch controller.
->> +    items:
->> +      items:
->> +        - description: The 5th byte of the PDT entry
->> +        - description: The 4th byte of the PDT entry
-> 
-> Missing constraints on outer level:
->     maxItems: 1
+ethernet-switch is preferred
 
-There can be (technically) an arbitrary number of pairs here, it should
-align with the number of Page Descriptor Tables supported by the device.
-This is basically meant to done on a best-effort basis. The OnePlus 6
-has 3 pairs here.
+> +            compatible = "marvell,mv88e6085";
+> +            reg = <0>;
+> +            reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+> +            interrupt-parent = <&gpio0>;
 
-I'll give another pass at the description and see if I can explain this
-better heh.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+I don't see interrupt-parent as an accepted property in the schema.
+Should interrupts-extended also be accepted?
 
--- 
-// Caleb (they/them)
+> +            interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +
+> +            ports {
+
+ethernet-ports is preferred
+
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    label = "lan1";
+> +                };
+> +                port@1 {
+> +                    reg = <1>;
+> +                    label = "lan2";
+> +                };
+> +                port@2 {
+> +                    reg = <2>;
+> +                    label = "lan3";
+> +                };
+> +                port@3 {
+> +                    reg = <3>;
+> +                    label = "lan4";
+> +                };
+> +                port@4 {
+> +                    reg = <4>;
+> +                    label = "wan";
+> +                };
+> +
+> +                port@5 {
+> +                    reg = <5>;
+> +                    phy-mode = "sgmii";
+> +                    ethernet = <&eth2>;
+> +
+> +                    fixed-link {
+> +                        speed = <1000>;
+> +                        full-duplex;
+> +                    };
+> +                };
+> +            };
+> +
+> +            mdio {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+
+One blank link here
+
+> +                switch0phy0: switch0phy@0 {
+
+ethernet-phy@0
+
+> +                    reg = <0>;
+> +                    interrupt-parent = <&switch0>;
+> +                    interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+
+interrupts-extended = <&switch0 0 IRQ_TYPE_LEVEL_HIGH>; would be shorter
+
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        switch1: switch@0 {
+> +            compatible = "marvell,mv88e6190";
+> +            reg = <0>;
+> +            reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    label = "lan1";
+> +                };
+> +                port@1 {
+> +                    reg = <1>;
+> +                    label = "lan2";
+> +                };
+> +                port@2 {
+> +                    reg = <2>;
+> +                    label = "lan3";
+> +                };
+> +                port@3 {
+> +                    reg = <3>;
+> +                    label = "lan4";
+> +                };
+
+FWIW, this example would be rejected by real-life DSA, because a CPU
+port is missing (no port has an "ethernet" phandle).
+
+> +            };
+> +
+> +            mdio {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                switch1phy0: switch1phy@0 {
+
+ethernet-phy@0
+
+> +                    reg = <0>;
+> +                    interrupt-parent = <&switch1>;
+> +                    interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +                };
+> +            };
+> +
+> +            mdio-external {
+> +                compatible = "marvell,mv88e6xxx-mdio-external";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                switch1phy9: switch1phy@9 {
+
+ethernet-phy@9
+
+> +                    reg = <9>;
+> +                };
+> +            };
+> +        };
+> +    };
 
