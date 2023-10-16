@@ -1,68 +1,195 @@
-Return-Path: <devicetree+bounces-9006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE72D7CB275
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:26:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEA87CB27E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6894228110A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:26:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F399CB20DD1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:27:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03A233999;
-	Mon, 16 Oct 2023 18:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7866339A0;
+	Mon, 16 Oct 2023 18:27:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Ufl78Ecq"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="Fp7TXLtP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13DC31A70
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:26:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA4A4C433C8;
-	Mon, 16 Oct 2023 18:26:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1697480780;
-	bh=4QtD0+rLtxMS6U30O6ec7Ox44kseY4kSGF0z7NZ53XI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ufl78Ecqmotfjh5acHuhamZFw9ydHrqbHUmCQT+Z2jsGFLPTD0K7kUUVJm6LIuL7B
-	 K61baQNTSCk3h+pxmocjQT21QHEiJp13ByRijMcnrX40jbtEjfF8COrDSWjIdZQJfj
-	 fdJcyoPUU37C818FG3xVlgjIqDBME8mOk2t+dVjw=
-Date: Mon, 16 Oct 2023 20:26:12 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: greybus-dev@lists.linaro.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vaishnav@beagleboard.org,
-	jkridner@beagleboard.org, nm@ti.com,
-	krzysztof.kozlowski+dt@linaro.org, johan@kernel.org,
-	elder@kernel.org
-Subject: Re: [PATCH v8 2/3] greybus: Add BeaglePlay Linux Driver
-Message-ID: <2023101618-concept-rarity-3e0f@gregkh>
-References: <20231006041035.652841-1-ayushdevel1325@gmail.com>
- <20231006041035.652841-3-ayushdevel1325@gmail.com>
- <9affdae9-9e95-1f6c-5f18-845d5ffcbd71@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16BFD31A70
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:27:06 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2074.outbound.protection.outlook.com [40.92.22.74])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FD095
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:27:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WVeRnHXFOTeM5PyNS+iGvEiA//K4GBKJgHY9dgA6QvrknZ0/puZGurrsD6ArCi8WSPdKhENVP9yXhbDakaMx7LqgTK2Y8XyTj39g4ugHDE+ecwtmaUtLpUtYmWTFSXdwMK2evTwBn0LCf07s62FC7yTUb5AShUBjxO8DZdaoY5NP9P9vVBDH/Nrzur24gfeqIpCuF6/TVQJkMzVz1KRl8aNdaa8kMnGstVg/59oLzYbZW0oCvad4nkcEvQfeUWGyaB1dCbJ+PoW+k2YLqgMdbGkL6eK3JSN2AHBZPZQFk0fp047+6CQD2QWBeGd93WnxCfJB17ExXkFUi886d5HmlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NvJ4mfik3XzEi/okf1swtRB4K+RlxRRGjhOGzAREJew=;
+ b=ELhnGqv7P50pr+H4NA1X+VcZIKx+X1SdpEEjfADfHdO5XYdiZv4y7emPGKAnB4G2y2m/DgwLuSHMtucFRkS2D1pkBE81uRTsIMiasse6LMahifZOvkzZjONvbUcADhGzUIuz21MT4o6mETVXyMY253dL3Zps/Bc8s5fWKdlcAlFl5FqLIB2gRTQdeoF7fQcLOJbgSb6RJVBooskrT8Ufu46d4xot5o1BC0fKPXHfp9kRpgUi1sEKksZuN/oyC7phdonMz0hQA8SeVJ6rGK7yjALl1iv/FsiGETk5km1xUOLjxn9hwZfNegfRU0j648wFnmOSvvKLuS9Cpk7WQmgb+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NvJ4mfik3XzEi/okf1swtRB4K+RlxRRGjhOGzAREJew=;
+ b=Fp7TXLtPYn0mUjTvGS7o2N4Zn5Sn804r+fyIbPiZDzNmthBpm8/52Bhjt6xTJPwk2+Pa6VuTHvVpz1G8ohnBY88VQHlG7GALHSVV0k/WV+rT612VMpZz+VLWK2K1SytrwVuWeqBe5lAaNuA+OiPlqvDA6dkZlwhNmcx8ON8jS1Zec+jNoMWT3zu3LpZvIKOtZshQBnqkAMRwXf/g8jfpkzAK1lCv0iHC7xm6dEpfsVqj+UNzrb/KpbwZMIIB85ElUrsyIiXntz51Es9uruUXA4DjWB7tUCholRDFc8dEkK49Ij69qq4/CknRICS2bgJarxpR0ke4cLYjmLltf6ZYhA==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by PH7PR06MB9041.namprd06.prod.outlook.com (2603:10b6:510:12c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35; Mon, 16 Oct
+ 2023 18:27:01 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Mon, 16 Oct 2023
+ 18:27:01 +0000
+Date: Mon, 16 Oct 2023 13:26:58 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Chris Morgan <macroalpha82@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+	andyshrk@163.com, jagan@edgeble.ai, daniel@ffwll.ch,
+	airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
+	megous@megous.com, kernel@puri.sm, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH 3/5] drm/panel: st7703: Add Powkiddy RGB30 Panel Support
+Message-ID:
+ <SN6PR06MB53428A7534F1AB449688AA67A5D7A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20231013183918.225666-1-macroalpha82@gmail.com>
+ <CADcbR4+i_B26g_gLrjTm8dxVzprb-WHRrx=r07wKhcJuei+96w@mail.gmail.com>
+ <e52152b6783e3fce9aebb64a553c6922@manjaro.org>
+ <2140189.3Lj2Plt8kZ@diego>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2140189.3Lj2Plt8kZ@diego>
+X-TMN: [3FMJltSazDMsTNBWqX/5n9uRmOQr5BMP]
+X-ClientProxiedBy: SA1PR04CA0017.namprd04.prod.outlook.com
+ (2603:10b6:806:2ce::22) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZS2AcgCVHNJj/iHZ@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9affdae9-9e95-1f6c-5f18-845d5ffcbd71@gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|PH7PR06MB9041:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0129c36d-066e-4fba-223e-08dbce757d3d
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	m5/yBApDdhOKlQPt9E1EK01hFPb3jDhNMjt/xvgaNhbyVaBHnFDHcRdkqQbSQus+q2D99GDM8uCSPhIhB1k1XeGSVoWwcibCKd8tCYQLV172hHRrHxcsMIPDBnIc41ogmEwFuEKIHgmv5yPuUmXLIXi9Liug7KQRNGhXVt4pLN0NkCptzkKaehK58D+oLJ87nSvJIDHYoWdyyYLOTGl3yU4FVc15o31KvCKVy4I++FSBFIlo+9u/Sdx4mKjJWg5LVfGfBNAnIJ2NcCfG/Q+SeMoZ7CmHYbqv+sZks4QEhZ5lOP+KRj7ceLX73yqp8mLz2uFiJmJgMY6JHE2dV8rewdrrD6Ys8UIkrycmcImdmSZOvqlbVSz/nlIcUDAush2THuWk45VpM5UfHF/LNFJYpHwY4CuOsiK2kMKAy5jyNpLrFTMufJlNzWVUH4513ZKc2DGD43ugndGa7VIHZUOFnmK8Az5KxXQYbZcE2nrPaflCHlvFTKAgii2KBGtaOiVI/X6dwtVFZViM9hT1etlgEIumylmGiPwyRJXH6gzfEO4=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?cEV3RzNudkcyU1VLc2lIbTBiUG5BajJFQlppb0ZVdmJ1WEsra2J5L1lzNVJX?=
+ =?utf-8?B?b1FxTEpTRHhIMTFNYkwyMnJXclVaUDBFbHVrbE90VS9xKzR3b2xUbU5CcnVT?=
+ =?utf-8?B?VUptNUhhSmxLQmlPN3M2ZExYYlF4TERqZ3poYWJOeGtaaG1lOWtBRzhpRWVL?=
+ =?utf-8?B?RkF3bzR0MkZQV0tkM0N1K0NOalZNeVpVVHh6d3NrbXpEcXFvRURKZEQ2RE84?=
+ =?utf-8?B?bXpOZEZsWW84bHhCUWxtV09WRTNwVytJSGx6aXhNRTh2aUFSR3lJcmZwSHJ4?=
+ =?utf-8?B?S2t0S21UMFdTV2hGR1ZOYmhLajc5TTJHclpCbUJ5cHZiRFBSWDAyT3ltQ0FR?=
+ =?utf-8?B?cVJHQmh3UWp3ODA0NGExa2JHOC9kaXlJRGx2amJyQVQvbTM0b0RFaHlFNXpm?=
+ =?utf-8?B?VWVaTFkvNDNSTlN4SWpvTXl5b2U3RURkTUUyU3FVVzBNdkU2YnlPdllXU1M3?=
+ =?utf-8?B?UzROVU91NWF5SksxNkUwb3djY21mNzhqYnFTRjlmNnpaeiswVkIzT0I0U0tJ?=
+ =?utf-8?B?R3pQUlhqQ1lvbXVKVVFqaEV4NC9zRVBHaW1DZnc4OFJRaVJxZjFPT1l3eFBQ?=
+ =?utf-8?B?SC9tbWRPNVlFazk3RzVneVRxaW1FMEMyYTQ4QUZtcloyOFB5aGkzK1dPN2ls?=
+ =?utf-8?B?MWkxc2dUeHlicTV3ZTQ3SUlBNDZ2RlRUVUN1NEJFNGxSb3JkOWMyREhnaEl1?=
+ =?utf-8?B?bGdYbVBWVlN2NW44TDNacWN4K25qaC9DOFF3TWYxa2Z3cko5ZitwOHdxdGpx?=
+ =?utf-8?B?NlNWQVEwUElyZ29DLytldVpEQ1Q3K1U0WlFlbTdqNFhpeUpFL0RBM21nWkVq?=
+ =?utf-8?B?V2F2bmdPN3dqT3dXaktkTTBNTkFCWUt3ZVFtVG5vNzQvNUR3K0V6ZW81RkZ1?=
+ =?utf-8?B?WThsTkRHZ2FvZ1B4ZjJFdWxocllvL01MN1Z5RjBhZWlTVU1zemdiL2k1V1N0?=
+ =?utf-8?B?YWNaQ1BPTkMrdEVwY0VMKzlXUFpLSmJCd0Y5NnZVbGZISU9ydUdMNjVPb2Y5?=
+ =?utf-8?B?Ym83L0pXMXRDeU5MVmRqZk5uNjcyMitoWmk5amF3ZXF3SXZsQnBheUdML3gx?=
+ =?utf-8?B?ZU9LQ1FTNkVYMnNYSExkYXViT202U2R5TmxGaTZTTVQ2WTY1QzRmc2swV3RM?=
+ =?utf-8?B?R2ozckF0dVNsVkoyVGc5RzRjWWd3OVJxNWQzenQ0Y2oyVS9KOE4xb2krSFI0?=
+ =?utf-8?B?eThBQW9HaDNaaStJMjJpWHVTQ1NtMmpEWXR1TE5qS1ZSbVFXaGxJVDZkYUhv?=
+ =?utf-8?B?Y01KaXpiQ2FMaTVZaTcxTTkwMG5vQnRxajFJZHRPZ3BsSTMyZjdNTkdTZXRX?=
+ =?utf-8?B?dUVka3ZEVWU1NngvRU1OUS9lVFk4U25NbkVuYzFtTytmdlQzei8xM3lsM1RF?=
+ =?utf-8?B?QWNmZFBZVmFQbEJneWNQOXc3d2JGWGRBOUQyT0R1bWl1bFNqZEJhUHNFanVa?=
+ =?utf-8?B?OVNYclRDdTdLaTJjazhUenEyOGhWRVllN0JJVzd1M29WTHI4Z2d4YTE1Z3pk?=
+ =?utf-8?B?NkpZQm9SL05PVmI5YkRpT1RPVUUraVBWaXpMcVRoR3oxa01vL1VPd2lVdHc4?=
+ =?utf-8?B?V0w2Zm4zTEV5UFlBSlBDSTgvNFNvN3lpNWppSGhLaHB4MStXNjIwRVF0cjdB?=
+ =?utf-8?Q?zkpU0ZrdHftBN1XEf174yttHNXWMzC38XBhg3tw0WwQo=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0129c36d-066e-4fba-223e-08dbce757d3d
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2023 18:27:01.7951
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR06MB9041
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Oct 13, 2023 at 05:11:23PM +0530, Ayush Singh wrote:
-> Hello everyone, I would like to get some feedback on the driver patch before
-> submitting the new version of this patch series.
+On Mon, Oct 16, 2023 at 08:18:25PM +0200, Heiko Stübner wrote:
+> Hi,
+> 
+> Am Montag, 16. Oktober 2023, 18:07:52 CEST schrieb Dragan Simic:
+> > On 2023-10-16 17:52, Chris Morgan wrote:
+> > > Confirmed that those pending patches DO fix the panel suspend issues. 
+> > > Thank you.
+> > 
+> > Awesome, that's great to hear!  Perhaps a "Tested-by" in the original 
+> > LKML thread [1] could help with having the patch pulled sooner.
+> > 
+> > Links:
+> > [1] 
+> > https://lore.kernel.org/lkml/33b72957-1062-1b66-85eb-c37dc5ca259b@redhat.com/T/
+> > 
+> > 
+> > > On Mon, Oct 16, 2023 at 3:41 AM Guido Günther <guido.gunther@puri.sm> 
+> > > wrote:
+> > >> 
+> > >> Hi Chris,
+> > >> On Fri, Oct 13, 2023 at 01:39:16PM -0500, Chris Morgan wrote:
+> > >> > From: Chris Morgan <macromorgan@hotmail.com>
+> > >> >
+> > >> > The Powkiddy RGB30 4 inch panel is a 4 inch 720x720 DSI panel used in
+> > >> > the Powkiddy RGB30 handheld gaming device. Add support for it.
+> > >> >
+> > >> > TODO: The panel seems to not resume properly from suspend. I've
+> > >> > confirmed on the other ST7703 based devices it works correctly.
+> 
+> so this TODO item could go away, right?
+> I can remove it when applying the patch, just want to make sure
+> all review comments are addressed - only the suspend thing it seems.
 
-I don't want to review a version that I know you are going to resubmit,
-as that would waste my time when I should be reviewing patches from
-others that they think are complete.
+That is correct, but let me send a v2 of this instead. I'll remove this
+verbiage among other fixes. End users wanted me to see if I could get
+this panel to run at precisely 60hz, which I believe I am able to do
+with the addition of a new PLL clock in clk_rk3568. I believe I have
+taken every constraint detailed in the datasheet to heart for the new
+frequency I'll be requesting. By using the frequency of 292500000 for
+the VPLL I can get the panel running at 59.969hz which in my view is
+close enough to the ideal 59.98hz.
 
-So just update and resend the new series please, no need to ask.
+I also accidentally left the UART2 active even though this device has
+no exposed UART port, so I need to fix that too by disabling it.
 
-thanks,
+Lastly I'll add my tested by to the dri-devel patches as well.
 
-greg k-h
+Thank you,
+Chris
+
+> 
+> 
+> Thanks
+> Heiko
+> 
+> 
 
