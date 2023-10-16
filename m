@@ -1,142 +1,89 @@
-Return-Path: <devicetree+bounces-8973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643557CADBE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:39:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1A8C7CADC2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:40:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9577C1C203DF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:39:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB3E1C2030D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E302AB49;
-	Mon, 16 Oct 2023 15:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F376D2AB36;
+	Mon, 16 Oct 2023 15:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NpqRwS0l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXBxWqD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D9F2AB2B;
-	Mon, 16 Oct 2023 15:39:38 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97179AC;
-	Mon, 16 Oct 2023 08:39:36 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5a7af20c488so57697047b3.1;
-        Mon, 16 Oct 2023 08:39:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697470776; x=1698075576; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i71WqBTF0Gd9XLapkEYhFiADewwOIyPH5hrL9rl36R8=;
-        b=NpqRwS0lVvDKfKfU/lg/tajmyYVsZm4AUE5JrEWx+TkPdc1xabyT0hNYqS0eVntfAI
-         g8YSHlslhDvOz0KXqCA0es65aGbQcHOBXguZku1FUTDYWwvGRmsBXJOSCthRswBnn3Ps
-         SId8ctI90YPHbU4sGqXimoLt3pVcSDfdONg9eWmyCLW7UgRJDbSUSDfRb4tlpARIWRm7
-         3IF44kW1TvBN279B/XJIiIiwSqksvlzzAadjaHxHt/dL+tQ37oOAT/795MkdA9uxMgOz
-         XW9Ogg1njB33HBe0fVyu3fQB6XWcGUzfoRTc0gTNk/8wP74lqKc3qzKbc3zHbeA2SbLD
-         zEjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697470776; x=1698075576;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i71WqBTF0Gd9XLapkEYhFiADewwOIyPH5hrL9rl36R8=;
-        b=LeN6X8k5uF77/+4y4nQhGy8hyyFLx2bhBLTb1gJHKSBc79tVc2f1ZL5JtHJXa5mavs
-         FdLifo1T1kiRtezCyN7HZJIElB9ZrOVQJaTGrRPQ3epTJlYjtckHsH9NIX7ctA1va+BJ
-         c5JKunPq7EJz4lHGq2A9mDs5zL/uHFtfFwtH6srOEfZsrXV5ioLa88A9FuQnTNDSe0lO
-         Myeb45fUIM2T7pJabnQLVosU2pW3TqUgkDf56zbGRRfnypJy3Avtcn6IKRPrfjNh+MUt
-         ycsDjyc44mbwcdNhshHXsbZdoUZSOenmGjXZf7izVoViPGwhObskE3wB2eHqGngYoUx3
-         wgZA==
-X-Gm-Message-State: AOJu0Yzc30vTACb5d08BHX/xUhUJnH06aTSHvzbco0U0yJjQW/NTSGwR
-	EDg5Yhli7QCMUWf5x0iyWuQ=
-X-Google-Smtp-Source: AGHT+IHmla4wNNq5FnCFvtQ/XzV+pwwTjMIHmZc5Wlttbc0Af2qynVzjx4Mx4NUMMONGJGMmVIH+QA==
-X-Received: by 2002:a81:a193:0:b0:5a8:1812:a7ee with SMTP id y141-20020a81a193000000b005a81812a7eemr10080984ywg.3.1697470775566;
-        Mon, 16 Oct 2023 08:39:35 -0700 (PDT)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id x21-20020a05620a14b500b00773f008da40sm3061221qkj.125.2023.10.16.08.39.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 08:39:35 -0700 (PDT)
-Message-ID: <24ffddd0-3497-4888-9f0f-29e20281360c@gmail.com>
-Date: Mon, 16 Oct 2023 08:39:33 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65F729422
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 15:40:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DEBAC433C9;
+	Mon, 16 Oct 2023 15:40:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697470808;
+	bh=x6oRhyvnMXidDUSwxZNupzsLuIKRsX2HDyNAn1+O64I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kXBxWqD4scC//5xFA/IbPLVe2hmBXfo/NuwPIiTN4Opt2RlGCYkMMH2UzKrvWrASn
+	 EUagcH0hn8LcKPU5yzPgYcRjYlqahu+21++XIRYHjDU/UWV0cs1dhBfPjWlbuJB+Xg
+	 EhtnShMNLxxQpT01801ABqnmKZ7izPuM1/ZoShWhR7KqDF4JeuKsbe0nTbF8Gs49y3
+	 guav1fURR8Bzn2SJv+yUH/3X4FDUu7gH6IAiJgjkphGD76kv8OKOzVyrHaV6GxG1R0
+	 Sjq5ncTm2umWjuG10RDeNLfC3fDEbia1yFGfIrMknth4yD7AKNBwmEpssbW5GR2c0j
+	 5OsP0roHy64EQ==
+Date: Mon, 16 Oct 2023 08:43:55 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sdm845-mtp: switch to mbn
+ firmware
+Message-ID: <af4fx3u6c3znawelenzwtm2cter7cpdis34q64ug3cqzina774@jhqj6o3ectv3>
+References: <20230826221915.846937-1-dmitry.baryshkov@linaro.org>
+ <20230826221915.846937-4-dmitry.baryshkov@linaro.org>
+ <a12eee9b-e159-4e1b-b812-60cdf93c1b41@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 9/9] net: dsa: microchip: do not reset the
- switch on shutdown if WoL is active
-Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Arun Ramadoss <arun.ramadoss@microchip.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
- "Russell King (Oracle)" <linux@armlinux.org.uk>, devicetree@vger.kernel.org
-References: <20231016141256.2011861-1-o.rempel@pengutronix.de>
- <20231016141256.2011861-10-o.rempel@pengutronix.de>
-From: Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; keydata=
- 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
- HGuUuzv+GKZ6nsysJw==
-In-Reply-To: <20231016141256.2011861-10-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a12eee9b-e159-4e1b-b812-60cdf93c1b41@app.fastmail.com>
 
-
-
-On 10/16/2023 7:12 AM, Oleksij Rempel wrote:
-> For Wake on Lan we should not reconfigure, reset or power down the
-> switch on shut down sequence.
+On Mon, Oct 16, 2023 at 03:39:01PM +0200, Arnd Bergmann wrote:
+> On Sun, Aug 27, 2023, at 00:19, Dmitry Baryshkov wrote:
+> > We have switched most of devices to use mbn (squashed) firmware files
+> > instead of spit mdt+bNN. Even this DT uses modem.mbn and a630_zap.mbn.
+> > Let's switch adsp and cdsp firmware files to use .mbn format too.
+> >
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> I saw this pop up in the dts pull request today, and this needs
+> some more clarification I think: Why does the dts have to know
+> about which format the files are in? I would expect that to be
+> handled by the driver internally.
+> 
+> From what I can tell, either the two files are compatible,
+> and the driver can just try both names by manipulating that
+> string, or the two are incompatible and changing the firmware
+> name would also mean that the dts node and driver would
+> have to be aware of the difference.
+> 
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+The implementation does not care about the file name, it will detect
+which of the two formats is being provided and load the content
+accordingly.
+
+So what this patch does is to align the firmware file name to match what
+we have in linux-firmware, and what the few of us booting this device
+have hacked around in /lib/firmware for (quite) a while now.
+
+Regards,
+Bjorn
 
