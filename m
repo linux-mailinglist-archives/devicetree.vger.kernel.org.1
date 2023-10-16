@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFD67C9ECF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:32:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0576D7C9EDD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C166C2815F7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:32:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809E828155E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD6A79EE;
-	Mon, 16 Oct 2023 05:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A0B848C;
+	Mon, 16 Oct 2023 05:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bC45lCxG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iMlkcRWP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70A71FA9
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:32:48 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0018FED
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:32:46 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40572aeb73cso41784745e9.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:32:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD9979FD
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:36:01 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C566810C9
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:35:39 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-406619b53caso41822635e9.1
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:35:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697434365; x=1698039165; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697434536; x=1698039336; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cahZBYlxb+nHcg00wtQSR4/273TLxW5YHWH0Zq0a+9k=;
-        b=bC45lCxGEG9ymuPX2oiVUgCiTtGHuyYawQeLZOmWZ0OiQh2s5y0pYFenfTo/R84MLd
-         TqwZYJbFmkDyt8gZeMG7lSsZJY/TYWEO+bwYmXFMVXFB9pEf96cPUpmxQ8ZlSipdEy/u
-         zpb/WUWtZGSRjiP6lCNi1xs6LVgYA1iWec7kAb4emMakKD/sAIHBbxQkkevHyQ0Ygbzk
-         CwXBw/0Pb5+OecvV/0tTffalfhs9fKgSFlS6N4gWGV0nH1GhFwmdv/BtvYIB0DB+DlhE
-         9OpcZXThtnIm4hJBMCSPPwZ6Gk57yTo7CZzoUlXo/txhWIzuNrNY+JrSWDb5c5sT+cQZ
-         ZHTQ==
+        bh=1lRW6iqRQ1rx4JmMgr/7+KkLqDf3AWZfuUZmiEDm6kI=;
+        b=iMlkcRWP3YtzK34Q3y3gI6//E3vNBuxuRSN4UOnyZ0iD3/Shb4MQciYU7xlbESP5R3
+         92y82aZr03Kd2Jo7YD3GfSkJ80omqdGV5InepJaZ99Rc0qZCbbwKKH2B3AIsnd4Pq8Dh
+         QKl2mqtrKz0pj+dmrZOI5Mh42MLg09kEVLY8YgsuHtIMnG+6SykZZWXIRUJwAWSjhctt
+         Pu/0unsTAwV80ISk9p2WHceYUwmSxl+L503IX4k+ywM5mdVSy3SqHPUrbhKlXBwmsOvS
+         Ly13zTwc9Sb9t0HNUR+/bZlyvmvHYSJy9pjf4xMby5CBeREiv4iEn+7ne3XtqQF4J5Uc
+         6rAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697434365; x=1698039165;
+        d=1e100.net; s=20230601; t=1697434536; x=1698039336;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cahZBYlxb+nHcg00wtQSR4/273TLxW5YHWH0Zq0a+9k=;
-        b=iDNwPE1Y2RDWAOvH4olL7C7lgUo7OXBXEjlSZx3MsGTmCQtbkrZkKfXwRQLz8wUz4P
-         bSMjGc9ekkzDH5dW8TsdaUm1jW6bQ73lCH8TzYu8NMom5wj57yic497IRS9rD1iL8VTN
-         XWZA6W6fgclvoxflWTg5ol79ML3yGjnRVqrw504krBleW+DM1HNCXq4dJh0HpiSJvIxf
-         CGD5ZWIIR+uioc/mZVh4r0VNpXMD/LAxk5it7sd6mc0e6qOdoezG84/XdDTnPBtbmHtB
-         hWgUsWUOD8fKkR/bHU7jumunWRBDDyzuWnqQL/iiyWS2LouxPZpR0UbfGXF1qZW66zb8
-         Q/NQ==
-X-Gm-Message-State: AOJu0YxvC4W1nRCeOVFfYUpfAVcNW25XU4TFg5uHH9fPPRzJ0nV9cJ23
-	ttGo5EmJ3oOBRwb9YT7vsyL+a+XyIQZ8yACo1So=
-X-Google-Smtp-Source: AGHT+IHT1DShnEauSsz6zKTV4Fd2wxmSLcXOWS+sIvsgHJ56bQ8Kjh/Cj77fjZJi0qpCVhhj/l+e/g==
-X-Received: by 2002:adf:f404:0:b0:31c:3136:60af with SMTP id g4-20020adff404000000b0031c313660afmr25541534wro.61.1697434365472;
-        Sun, 15 Oct 2023 22:32:45 -0700 (PDT)
+        bh=1lRW6iqRQ1rx4JmMgr/7+KkLqDf3AWZfuUZmiEDm6kI=;
+        b=X9uHE79bi+x4jzcx7kHYxnJDyaxlN4cBKA331Hnsj3DydN9lZNc0QxoGC5WLH30gct
+         ggBf4kB8TujNDN713oVdk4s9JjGv5FMyUuwJioLOhYftrVLemjJK2e+XbaKNN6+jSIIc
+         ff1DwHHD+PW20JF7aZlzKOBxZqUbcIBg9I6TjgrK2v5dLY1qhFPzL+nzpPUXDRgBbtuX
+         KmhMLLS81aGBzZxiUAAczmHj3wvMwORMq/OPjxTJzaCqfT7Ma2d7mCR1GicvjgY6Ab5t
+         8zuVKXmOeXhPrrtefY+MbMWAAzJXBxfdaU8W+E5E/rqKToQodESYLHnwPQOCrOnphWSG
+         h+hw==
+X-Gm-Message-State: AOJu0Yz+sPQOrDhyGWHmxxbZaRLywNCCecw77MIEi4I3wwwydy5quQ0n
+	vCDJ5FieJKQa7QAESIUbaF4xdw==
+X-Google-Smtp-Source: AGHT+IERpfoiaji28Dum93uMtxDB7WpJU3fQVZVKC+lYEF1YzNOo/U9HY7otv0RfqmIdfi9cPXuwrQ==
+X-Received: by 2002:a05:600c:2050:b0:405:3955:5881 with SMTP id p16-20020a05600c205000b0040539555881mr27050920wmg.36.1697434536660;
+        Sun, 15 Oct 2023 22:35:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05600c474c00b003fee6e170f9sm6128233wmo.45.2023.10.15.22.32.44
+        by smtp.gmail.com with ESMTPSA id p18-20020a05600c431200b0040642a1df1csm6114712wme.25.2023.10.15.22.35.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 22:32:45 -0700 (PDT)
-Message-ID: <4ad7cea6-806b-44cb-80ad-73d2f459936a@linaro.org>
-Date: Mon, 16 Oct 2023 07:32:44 +0200
+        Sun, 15 Oct 2023 22:35:36 -0700 (PDT)
+Message-ID: <ffca099a-bf05-4973-885d-b049a45d466f@linaro.org>
+Date: Mon, 16 Oct 2023 07:35:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8953: Use non-deprecated
- qcom,domain in LPASS
+Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: qcom: wcnss: Add WCN3680B
+ compatible
 Content-Language: en-US
 To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
  phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231015-msm8953-misc-fixes-v1-0-b800deca9e46@z3ntu.xyz>
- <20231015-msm8953-misc-fixes-v1-2-b800deca9e46@z3ntu.xyz>
+ Conor Dooley <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Kalle Valo <kvalo@kernel.org>, Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>,
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org
+References: <20231015-fp3-wcnss-v1-0-1b311335e931@z3ntu.xyz>
+ <20231015-fp3-wcnss-v1-1-1b311335e931@z3ntu.xyz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,22 +131,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231015-msm8953-misc-fixes-v1-2-b800deca9e46@z3ntu.xyz>
+In-Reply-To: <20231015-fp3-wcnss-v1-1-1b311335e931@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/10/2023 22:26, Luca Weiss wrote:
-> Use the qcom,domain property instead of the deprecated qcom,apr-domain,
-> which in turn also fixes a bunch of dtbs_checks warnings.
+On 15/10/2023 22:03, Luca Weiss wrote:
+> Add a compatible for the iris subnode in the WCNSS PIL.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> index 45eb42bd3c2c..0e5e0b7a0610 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> @@ -111,6 +111,7 @@ properties:
+>            - qcom,wcn3660
+>            - qcom,wcn3660b
+>            - qcom,wcn3680
+> +          - qcom,wcn3680b
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Looks like this should be made as compatible with qcom,wcn3680 (so with
+fallback).
 
 Best regards,
 Krzysztof
