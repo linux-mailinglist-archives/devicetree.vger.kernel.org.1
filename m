@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-8752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C735B7C9EA6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:24:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA847C9EAB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 580B81F219E2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:24:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DF382815EF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB5979D1;
-	Mon, 16 Oct 2023 05:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1CC79D8;
+	Mon, 16 Oct 2023 05:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YluxtC7I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wWAyWHIe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72246FCE
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:24:38 +0000 (UTC)
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E058DA1
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:24:33 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-32003aae100so3244636f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:24:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A1579D1
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:25:27 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C48EE
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:25:26 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3226cc3e324so3920429f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:25:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697433872; x=1698038672; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=K/b0EIw6Lv4KLA7L2mO3jyC4V0pA77j6I9zGomE3mmw=;
-        b=YluxtC7Iff28S9OsQpsDCaTAQVtWQ7+yE16xaH+tABYZIQSy5cepKiVPz6EJsqJHip
-         Nyga6q/C0GYNSPXmw9dPmrFAMBH/axGArn1oLX8TPaRuYufpVW2i3+YwrXwC3NlvPijK
-         rC7jUPolY4m2maX93hTMpvtnaQ1tcxwAIUGBFUJphgVQTqT6X853pcqTM1KFIrBR6N0I
-         28ilFDdCm/TCeQNeQ2Sl6zfnYPPTiEg6yWF+jyDoO2uBigl9fTVO4WirmJxyrTY9+HRX
-         rHKo7lyYbGLmzkjmAZOGzApzl4GxsX8hYf3fbppCavZsBQADqXEtW94TSznYdBHk/J08
-         748Q==
+        d=linaro.org; s=google; t=1697433924; x=1698038724; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3fNdbZkH6+vh8oxmhmh4uBymKBcImKlI2HltIO/mLv8=;
+        b=wWAyWHIeAvQlUBgU/bfFLQOEI9Oy7HicsyVAxnOA/TAMKBZ1RjEEVyR5bOTH6tvodV
+         7LTixMsEB1hHtfpnko/cHWKo8m1Ldq669Il3MdcoI9SvNwIqyjgZIBYa2+O1Jeyxt5He
+         E6bvBAJ5Ob1AvzpAd+JswhULWE5plyMYuBOvScJdUe3zz808ML0fwOWLElnbaVoA9aYR
+         YuNHIqu9ZowBKRmabPxmAUlomtOoKlFPbLx8cBWFTb+f/vGZhzB4oOdQt+UsuHcGdj/y
+         TdGeGtcwD62kkFFlDZZ1tCxuDF8GxqeH4tR305C1WI15l9BjBNSEc1av3R+lgvtpAf0z
+         W0Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697433872; x=1698038672;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K/b0EIw6Lv4KLA7L2mO3jyC4V0pA77j6I9zGomE3mmw=;
-        b=oWAK+j+AWObghHe8NEPi2pkh3CasfxH+oo3JlXCKyzRyNTyzY/ZkrIes0RXDitCpSq
-         C34lgYqOs46k76G8Q6tFhjFfaGPw40Ri8WY7MKYuTHeLzbATj+duLjAkoK8/qa1YlGac
-         /u5JOGbHtb+PACYTP/D485m1v6nDEo+qO3Hmj4nSQGdFD05sdBtvM1vMMvXX1cg3mOqz
-         aCQ0v/S3IE30MJ0nagrwBRtubf3lVdhibrr06gRjQpKjyo2la1iwC1r9inXsxXBoJ0jv
-         zfSb3HY36HaFHUgwJ7dfWgXt7LD74dyz8/ereN/2ROZ6TCizv9YYbk4uIk3ea9VKt2s0
-         FFVg==
-X-Gm-Message-State: AOJu0Yy76VFgB/377XzsIn2TTo838J05vmTXJJS+OyGoI3WIyYf2rxRT
-	Q+dskWRUsP/KJSC40wxRsCaw9A==
-X-Google-Smtp-Source: AGHT+IGpjHCdhzj/Snf+iK0GKEnaXdl8aZjMxPPXlx0SdfWi9I47a31bHKDbcXUGXNaqXJWLPQR0/w==
-X-Received: by 2002:adf:978d:0:b0:323:1df6:7c17 with SMTP id s13-20020adf978d000000b003231df67c17mr3874874wrb.9.1697433872398;
-        Sun, 15 Oct 2023 22:24:32 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697433924; x=1698038724;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3fNdbZkH6+vh8oxmhmh4uBymKBcImKlI2HltIO/mLv8=;
+        b=WxspSl1i02nwLekpWhnb6nb9DDkWkKLTnFrPCMKNkJwSyBr55LFjfNIlzM4NOETQ/p
+         2TQ8jQXWKOMeg/5toClruLMlzehdhnFq1bGtpBU9ESBgYY6cWk4gBGfGvR1J0oLdBqla
+         E8l90WEpw+bLBXYseXAKvrlkKTMPJtNn2WpzK2UVL8YEWjFaPDaEzUgBQ9GQ+KLrfHWo
+         PtDVlyAUOSHQndTywvBFAFpIiXiACkBp6eoeyS5I9zC6HPSmKNxsbIfWO45HUHIHfCwA
+         DD9VRhqoFxe4o1sC9yaB+Z+RGvwCtsxXpNetxRpQiezoZbRn9D2FRfyGCDY/sUOIlm7q
+         8Emg==
+X-Gm-Message-State: AOJu0YwVIBcM/U8WOjcNpdWx8ZG21uFjmfPcgJlC9/RubgarKdzFBpme
+	SqvBeiRqEfohoNL8+xkV/zPmwA==
+X-Google-Smtp-Source: AGHT+IFb75ndzmnmxeuSsO1Av0QPsu8HLjrAMlvZEMuZE51cyX08amXXbF+erNGhhjmPaY8aD1pkxA==
+X-Received: by 2002:a05:6000:10c7:b0:31f:f893:e07f with SMTP id b7-20020a05600010c700b0031ff893e07fmr26178060wrx.12.1697433924416;
+        Sun, 15 Oct 2023 22:25:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id i9-20020a5d6309000000b0032da40fd7bdsm5045106wru.24.2023.10.15.22.24.30
+        by smtp.gmail.com with ESMTPSA id i9-20020a5d6309000000b0032da40fd7bdsm5045106wru.24.2023.10.15.22.25.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 22:24:31 -0700 (PDT)
-Message-ID: <b7be1f61-c11d-4138-897d-9d67ddd5c943@linaro.org>
-Date: Mon, 16 Oct 2023 07:24:30 +0200
+        Sun, 15 Oct 2023 22:25:23 -0700 (PDT)
+Message-ID: <a7d8800b-1c9c-4750-a471-0d7ba0404053@linaro.org>
+Date: Mon, 16 Oct 2023 07:25:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,19 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/4] dt-bindings: crypto: qcom,prng: document SC7280
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: mv64xxx: add reset-gpios
+ property
 Content-Language: en-US
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ gregory.clement@bootlin.com, andi.shyti@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231016023504.3976746-1-chris.packham@alliedtelesis.co.nz>
+ <20231016023504.3976746-2-chris.packham@alliedtelesis.co.nz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Om Prakash Singh <quic_omprsing@quicinc.com>
-Cc: neil.armstrong@linaro.org, konrad.dybcio@linaro.org, agross@kernel.org,
- andersson@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
- devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- marijn.suijten@somainline.org, robh+dt@kernel.org, vkoul@kernel.org
-References: <20231015193901.2344590-1-quic_omprsing@quicinc.com>
- <20231015193901.2344590-3-quic_omprsing@quicinc.com>
- <9d18adbf-11f7-45ff-902f-e0092abb44a1@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -125,38 +122,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9d18adbf-11f7-45ff-902f-e0092abb44a1@linaro.org>
+In-Reply-To: <20231016023504.3976746-2-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16/10/2023 07:23, Krzysztof Kozlowski wrote:
-> On 15/10/2023 21:38, Om Prakash Singh wrote:
->> Document SC7280 compatible for the True Random Number Generator.
->>
->> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
->> index 85e6b1c199f5..d52355fbd1d6 100644
->> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
->> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
->> @@ -20,6 +20,7 @@ properties:
->>                - qcom,sm8450-trng
->>                - qcom,sm8550-trng
->>                - qcom,sa8775p-trng
->> +              - qcom,sc7280-trng
+On 16/10/2023 04:35, Chris Packham wrote:
+> Add reset-gpios and reset-delay-us properties to the marvell,mv64xxx-i2c
+> binding. These can be used to describe hardware where a common reset
+> GPIO is connected to all downstream devices on and I2C bus. This reset
+> will be released before the downstream devices on the bus are probed.
 > 
-> sc comes before sm
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     Changes in v2:
+>     - Update commit message
+>     - Add reset-delay-us property
+> 
+>  .../devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml        | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> index 461d1c9ee3f7..7223797b0572 100644
+> --- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> @@ -70,6 +70,12 @@ properties:
+>    resets:
+>      maxItems: 1
+>  
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  reset-delay-us:
+> +    description: Delay in us to wait after reset gpio de-assertion.
 
-also, this should be squashed with previous patch.
+Add:
+  default: XXXX
+
 
 Best regards,
 Krzysztof
