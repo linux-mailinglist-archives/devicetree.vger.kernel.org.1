@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA847C9EAB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:25:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3037C9ECC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:32:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DF382815EF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:25:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83894B20BFA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1CC79D8;
-	Mon, 16 Oct 2023 05:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28C5B79E1;
+	Mon, 16 Oct 2023 05:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wWAyWHIe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yug0XPa2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A1579D1
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:25:27 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C48EE
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:25:26 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3226cc3e324so3920429f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:25:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0AB41FA9
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:32:00 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71FC10FD
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:31:45 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c501bd6ff1so41522461fa.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:31:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697433924; x=1698038724; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697434304; x=1698039104; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3fNdbZkH6+vh8oxmhmh4uBymKBcImKlI2HltIO/mLv8=;
-        b=wWAyWHIeAvQlUBgU/bfFLQOEI9Oy7HicsyVAxnOA/TAMKBZ1RjEEVyR5bOTH6tvodV
-         7LTixMsEB1hHtfpnko/cHWKo8m1Ldq669Il3MdcoI9SvNwIqyjgZIBYa2+O1Jeyxt5He
-         E6bvBAJ5Ob1AvzpAd+JswhULWE5plyMYuBOvScJdUe3zz808ML0fwOWLElnbaVoA9aYR
-         YuNHIqu9ZowBKRmabPxmAUlomtOoKlFPbLx8cBWFTb+f/vGZhzB4oOdQt+UsuHcGdj/y
-         TdGeGtcwD62kkFFlDZZ1tCxuDF8GxqeH4tR305C1WI15l9BjBNSEc1av3R+lgvtpAf0z
-         W0Vg==
+        bh=5LzrbzCEzpt14vbBoE9s87dnrFaWt8dpWizanL2QoQg=;
+        b=Yug0XPa2kDjj4g1OmvpwZQK1Iof5kDe/0Bgs3dlSRnG9x8diuxEG42PTx/EdxFaQxZ
+         mXWWvnphrQ4C9jqHWeHhKQouMO2EteFYu6UrinfhW2bzIH75ftXRHGMFcNrBBkw2W/aj
+         5a9bbH0E0sr1NzKSCCd7RODA+ODR7jO7JVTWf1JGBSNQTwW+2Tr0YKx+KkUx9zDomgag
+         TBE0IbgKkgnmKoJc59z9O7Y7Ci42kll/MHoOHTmrkZqPVvyu7GHuzuygOPK9aorX+8lQ
+         76ndNQkgrY3JY7oznPZlogoQcJE+IXEudD7SDeb40HkRI5NuCLSwOMyoDCH2dxfjujqH
+         m37A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697433924; x=1698038724;
+        d=1e100.net; s=20230601; t=1697434304; x=1698039104;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3fNdbZkH6+vh8oxmhmh4uBymKBcImKlI2HltIO/mLv8=;
-        b=WxspSl1i02nwLekpWhnb6nb9DDkWkKLTnFrPCMKNkJwSyBr55LFjfNIlzM4NOETQ/p
-         2TQ8jQXWKOMeg/5toClruLMlzehdhnFq1bGtpBU9ESBgYY6cWk4gBGfGvR1J0oLdBqla
-         E8l90WEpw+bLBXYseXAKvrlkKTMPJtNn2WpzK2UVL8YEWjFaPDaEzUgBQ9GQ+KLrfHWo
-         PtDVlyAUOSHQndTywvBFAFpIiXiACkBp6eoeyS5I9zC6HPSmKNxsbIfWO45HUHIHfCwA
-         DD9VRhqoFxe4o1sC9yaB+Z+RGvwCtsxXpNetxRpQiezoZbRn9D2FRfyGCDY/sUOIlm7q
-         8Emg==
-X-Gm-Message-State: AOJu0YwVIBcM/U8WOjcNpdWx8ZG21uFjmfPcgJlC9/RubgarKdzFBpme
-	SqvBeiRqEfohoNL8+xkV/zPmwA==
-X-Google-Smtp-Source: AGHT+IFb75ndzmnmxeuSsO1Av0QPsu8HLjrAMlvZEMuZE51cyX08amXXbF+erNGhhjmPaY8aD1pkxA==
-X-Received: by 2002:a05:6000:10c7:b0:31f:f893:e07f with SMTP id b7-20020a05600010c700b0031ff893e07fmr26178060wrx.12.1697433924416;
-        Sun, 15 Oct 2023 22:25:24 -0700 (PDT)
+        bh=5LzrbzCEzpt14vbBoE9s87dnrFaWt8dpWizanL2QoQg=;
+        b=guREynez3AnHNgjJwfxQi97uYa8fQgEJY0LnfEhr0K3fqMmcQjOgFycfSSwmGU7t92
+         p0bHSHuDu6AbnblfhLQXy0JdE3OeoSNS0nXGuWrjDer//qRDCNqufl6d3TNaUG0WmmdU
+         DT5T77b6aJfDH2vLgxT26Lk1td87DFr4ieg037RnW6e1uswEMSFf/w0qCA+sX1NXRD8B
+         UbOu5B14D32XxfEM8xtgHmQVvVBIZRqrdCsu+Yjaky9pyZ/JWyZgs0wEKroL9/A/hHa8
+         iXvQYQxy97puFbvyxR59mdvoqjC30ons3gwW0y9uT8hsdS4Y1F6C2VJpn7IGYwBg6bRB
+         Dfqg==
+X-Gm-Message-State: AOJu0Yz0ewsw2xiKMN7066qmHbzHiouff+iHPvxGZid1myO+hRwpLttJ
+	6K2P2j+Ac4YND2Kjhh9jZMYmuQ==
+X-Google-Smtp-Source: AGHT+IGSkvlBKCosd0olm17I07FJgdH9chu6XyfR6FxGz/GT6Lfocs5u93ooQqc0i2OW9b9ZKsgzUA==
+X-Received: by 2002:a05:651c:54c:b0:2c5:569:5aaf with SMTP id q12-20020a05651c054c00b002c505695aafmr7322426ljp.51.1697434304014;
+        Sun, 15 Oct 2023 22:31:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id i9-20020a5d6309000000b0032da40fd7bdsm5045106wru.24.2023.10.15.22.25.23
+        by smtp.gmail.com with ESMTPSA id w12-20020a05600c474c00b003fee6e170f9sm6128233wmo.45.2023.10.15.22.31.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 22:25:23 -0700 (PDT)
-Message-ID: <a7d8800b-1c9c-4750-a471-0d7ba0404053@linaro.org>
-Date: Mon, 16 Oct 2023 07:25:22 +0200
+        Sun, 15 Oct 2023 22:31:43 -0700 (PDT)
+Message-ID: <42709208-6f3b-4ae0-a7bc-f23be6370171@linaro.org>
+Date: Mon, 16 Oct 2023 07:31:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: mv64xxx: add reset-gpios
- property
+Subject: Re: [PATCH v2 1/7] dt-bindings: input: syna,rmi4: document
+ syna,pdt-fallback-desc
 Content-Language: en-US
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
- gregory.clement@bootlin.com, andi.shyti@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231016023504.3976746-1-chris.packham@alliedtelesis.co.nz>
- <20231016023504.3976746-2-chris.packham@alliedtelesis.co.nz>
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>
+Cc: methanal <baclofen@tuta.io>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, "Jason A. Donenfeld"
+ <Jason@zx2c4.com>, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org>
+ <20230929-caleb-rmi4-quirks-v2-1-b227ac498d88@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,7 +127,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231016023504.3976746-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20230929-caleb-rmi4-quirks-v2-1-b227ac498d88@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -131,39 +136,54 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16/10/2023 04:35, Chris Packham wrote:
-> Add reset-gpios and reset-delay-us properties to the marvell,mv64xxx-i2c
-> binding. These can be used to describe hardware where a common reset
-> GPIO is connected to all downstream devices on and I2C bus. This reset
-> will be released before the downstream devices on the bus are probed.
+On 15/10/2023 23:11, Caleb Connolly wrote:
+> This new property allows devices to specify some register values which
+> are missing on units with third party replacement displays. These
+> displays use unofficial touch ICs which only implement a subset of the
+> RMI4 specification.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
+> To: "Jason A. Donenfeld" <Jason@zx2c4.com>
+> To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/input/syna,rmi4.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> Notes:
->     Changes in v2:
->     - Update commit message
->     - Add reset-delay-us property
-> 
->  .../devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml        | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-> index 461d1c9ee3f7..7223797b0572 100644
-> --- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-> @@ -70,6 +70,12 @@ properties:
->    resets:
->      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
+> index 4d4e1a8e36be..1f4a2179e4d3 100644
+> --- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
+> +++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
+> @@ -49,6 +49,21 @@ properties:
+>      description:
+>        Delay to wait after powering on the device.
 >  
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  reset-delay-us:
-> +    description: Delay in us to wait after reset gpio de-assertion.
+> +  syna,pdt-fallback-desc:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-matrix
+> +    description:
+> +      An array of pairs of function number and version. These are used
 
-Add:
-  default: XXXX
+You nicely explained what is expected to be here, but what is the
+purpose of adding this property? Please add it to the description.
+
+> +      on some devices with replacement displays that use unofficial touch
+> +      controllers. These controllers do report the properties of their Page
+> +      Descriptor Table (PDT) entries, but leave the function_number and
+> +      function_version registers blank. These values should match exactly
+> +      the 5th and 4th bytes of each PDT entry from the original display's
+> +      touch controller.
+> +    items:
+> +      items:
+> +        - description: The 5th byte of the PDT entry
+> +        - description: The 4th byte of the PDT entry
+
+Missing constraints on outer level:
+    maxItems: 1
+
 
 
 Best regards,
