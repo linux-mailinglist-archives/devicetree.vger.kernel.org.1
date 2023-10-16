@@ -1,185 +1,156 @@
-Return-Path: <devicetree+bounces-8884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 552D57CA6AE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:26:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B09817CA6CB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 111A5281564
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:26:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04BCEB20CE2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E86023768;
-	Mon, 16 Oct 2023 11:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WXYvfGGK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9363E241E3;
+	Mon, 16 Oct 2023 11:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820FD208CA
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:26:34 +0000 (UTC)
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F638E;
-	Mon, 16 Oct 2023 04:26:30 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5a7be88e9ccso55216587b3.2;
-        Mon, 16 Oct 2023 04:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697455590; x=1698060390; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/yQmSlsxbnMckjW63VAfUcoliPYUbmy3I2guqKRcrjg=;
-        b=WXYvfGGKVVAOfjX4uomvB7l9ylK+K37BrzcEegphhHBm6tfx7h1tCA9DIVn4Q+PEHB
-         yIHkDje1JWgCs9lSDyfMNonm/jgtCn0ntphSzcKpYM1GR2AEnWmZ4QLHVmcb/RdMV4lN
-         JOnp2aLwZ+xfytzCMcxzQpPK09UKrzPzdFkAQmrq28F1/HYuhmXhk8e7m9b3IEx1Llkn
-         br6iNve0F6mwdNqi1M7taTWuWpubSnO8knbRDN2zTuSr6CvufkyMlg1IL7vxOlvVeQX4
-         yQXn2Ko4oCqZHzKpKc4dGYp++8WnXYFK6mXzgxcUbVrVuojdRJzBd6IMc0iHyt7g3Kup
-         gzkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697455590; x=1698060390;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/yQmSlsxbnMckjW63VAfUcoliPYUbmy3I2guqKRcrjg=;
-        b=kc/cpeAgp47vPsGhriLckp1fYF1oMh6OSwU9iPRClm+3ggIkZg28FrI4du0RML7HvZ
-         XS8Y7yqFe/t3OrHiNnjnBIauiVAVvXEC9PSw9VnaEV1q+IC6VOPMRdLXzYNvBvWCwSCj
-         t06pr+YOW06CNksfm42lS7O3QVdWlkec1ZaYGfCcjJIuq5tCUeDaMrBd3y4urU624Xwc
-         lj/OsvK0rFMQ1+K5r0OpHQkAwZQSU374QHDkFqjw2r0n/jTNFPHgjsuWB1DIUS8bjE1z
-         x3znmdWmVy35ZH9aJXWDXPqhjKCvU6/qqH4Pu1QB24i5WsQTqhwCbQpBDkXeFOpEzpi8
-         4CdA==
-X-Gm-Message-State: AOJu0YxCHcgre+nhtqTmvsImxetRCzoDgDWftEJbzt+jzxNJ2avV7A72
-	aNPxMclliAzgtobZVdk71MkJypHQpWgXp7XVHls=
-X-Google-Smtp-Source: AGHT+IH1bcIS3tF3im0FBq83yq9oAgb+7dUHfMwOTu59VXIzcm4XrCfp5dma/A/3H4Z2CPsF/nk5vAHl8NcQA7AwAuk=
-X-Received: by 2002:a25:b94f:0:b0:d9b:1495:cfe5 with SMTP id
- s15-20020a25b94f000000b00d9b1495cfe5mr7839940ybm.51.1697455589696; Mon, 16
- Oct 2023 04:26:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD17823775
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:35:03 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E98D9
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 04:35:02 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1qsLrv-0006gp-Oq; Mon, 16 Oct 2023 13:34:43 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1qsLru-0024VF-Ap; Mon, 16 Oct 2023 13:34:42 +0200
+Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1qsLru-00EjWY-7l; Mon, 16 Oct 2023 13:34:42 +0200
+Date: Mon, 16 Oct 2023 13:34:42 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Chanwoo Choi <chanwoo@kernel.org>
+Cc: linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	kernel@pengutronix.de,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Vincent Legoll <vincent.legoll@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v7 10/26] PM / devfreq: rockchip-dfi: Add RK3568 support
+Message-ID: <20231016113442.GZ3359458@pengutronix.de>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-11-s.hauer@pengutronix.de>
+ <ac224dfe-ff7d-57c7-89ad-f10939975b4d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org> <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org> <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
- <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org> <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
- <86wmxcejav.wl-maz@kernel.org> <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
- <86pm2ye2si.wl-maz@kernel.org>
-In-Reply-To: <86pm2ye2si.wl-maz@kernel.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 16 Oct 2023 17:26:18 +0600
-Message-ID: <CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To: Marc Zyngier <maz@kernel.org>
-Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-mips@vger.kernel.org, diasyzhang@tencent.com, 
-	linux-kernel@vger.kernel.org, frowand.list@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ac224dfe-ff7d-57c7-89ad-f10939975b4d@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi all:
+On Sat, Oct 07, 2023 at 03:17:14AM +0900, Chanwoo Choi wrote:
+> On 23. 7. 4. 18:32, Sascha Hauer wrote:
+> > This adds RK3568 support to the DFI driver.  Only iniitialization
+> > differs from the currently supported RK3399.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  drivers/devfreq/event/rockchip-dfi.c | 21 +++++++++++++++++++++
+> >  include/soc/rockchip/rk3568_grf.h    | 12 ++++++++++++
+> >  2 files changed, 33 insertions(+)
+> >  create mode 100644 include/soc/rockchip/rk3568_grf.h
+> > 
+> > diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+> > index 6b3ef97b3be09..261d112580c9e 100644
+> > --- a/drivers/devfreq/event/rockchip-dfi.c
+> > +++ b/drivers/devfreq/event/rockchip-dfi.c
+> > @@ -23,6 +23,7 @@
+> >  
+> >  #include <soc/rockchip/rockchip_grf.h>
+> >  #include <soc/rockchip/rk3399_grf.h>
+> > +#include <soc/rockchip/rk3568_grf.h>
+> >  
+> >  #define DMC_MAX_CHANNELS	2
+> >  
+> > @@ -209,10 +210,30 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
+> >  	return 0;
+> >  };
+> >  
+> > +static int rk3568_dfi_init(struct rockchip_dfi *dfi)
+> > +{
+> > +	struct regmap *regmap_pmu = dfi->regmap_pmu;
+> > +	u32 reg2, reg3;
+> > +
+> > +	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG2, &reg2);
+> > +	regmap_read(regmap_pmu, RK3568_PMUGRF_OS_REG3, &reg3);
+> > +
+> > +	dfi->ddr_type = FIELD_GET(RK3568_PMUGRF_OS_REG2_DRAMTYPE_INFO, reg2);
 
-Sorry, it's been a while since the last discussion.
+The ddr_type is 5 bits wide. The lower three bits are here.
 
-Previously, Krzysztof suggested using the standard "interrupt-map"
-attribute instead of the "loongson,parent_int_map" attribute, which I
-tried to implement, but the downside of this approach seems to be
-obvious.
+> > +
+> > +	if (FIELD_GET(RK3568_PMUGRF_OS_REG3_SYSREG_VERSION, reg3) >= 0x3)
+> > +		dfi->ddr_type |= FIELD_GET(RK3568_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3, reg3) << 3;
 
-First of all, let me explain again the interrupt routing of the
-loongson liointc.
-For example, the Loongson-2K1000 has 64 interrupt sources, each with
-the following 8-bit interrupt routing registers (main regs attribute
-in dts):
+The upper two bits are here, hence we need to shift the value above the
+lower three bits.
 
-+----+-------------------------------------------------------------------+
-| bit  | description
-            |
-+----+-------------------------------------------------------------------+
-| 3:0 | Processor core to route                                           |
-| 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-+-----+------------------------------------------------------------------+
+> 
+> There are no reason of why shifting the '3'.
+> Could you add the comment about '3' or add the constant definition '3'?
 
-The "loongson,parent_int_map" attribute is to describe the routed
-interrupt pins to cpuintc.
+I don't think adding a constant makes sense. I'll add a comment making
+it more clear what happens.
 
-However, the "interrupt-map" attribute is not supposed to be used for
-interrupt controller in the normal case. Though since commit
-041284181226 ("of/irq: Allow matching of an interrupt-map local to an
-interrupt controller"), the "interrupt-map" attribute can be used in
-interrupt controller nodes. Some interrupt controllers were found not
-to work properly later, so in commit de4adddcbcc2 ("of/irq: Add a
-quirk for controllers with their own definition of interrupt-map"), a
-quirk was added for these interrupt controllers. As we can see from
-the commit message, this is a bad solution in itself.
+> 
+> > +
+> > +	dfi->channel_mask = 1;
+> 
+> nitpick.
+> On other rkXXXX_dfi_init, use GENMASK() to initialize 'dfi->channel_mask'.
+> In order to keep the consistency, it is better to use BIT() macro as following:
+> 	dfi->channel_mask = BIT(0);
 
-Similarly, if we choose to use the "interrupt-map" attribute in the
-interrupt controller, we have to use this unfriendly solution (quirk).
-Because we hope of_irq_parse_raw() stops at the liointc level rather
-than goto its parent level.
+Ok, will do.
 
-So, I don't think it's a good choice to use a bad solution as a replacement=
-.
+Sascha
 
-Do you have any other ideas?
-
-Thanks.
-Binbin
-
-On Mon, Sep 4, 2023 at 2:54=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Wed, 30 Aug 2023 16:25:48 +0100,
-> Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
-> >
-> >
-> >
-> > =E5=9C=A8 2023/8/30 21:44, Marc Zyngier =E5=86=99=E9=81=93:
-> > [...]
-> > >> What's the best way, in your opinion, to overhaul this property? As =
-we don't
-> > >> really care backward compatibility of DTBs on those systems we can
-> > >> just redesign it.
-> > > You may not care about backward compatibility, but I do. We don't
-> > > break existing systems, full stop.
-> > Ah it won't break any existing system. Sorry for not giving enough insi=
-ght
-> > into the platform in previous reply. As for Loongson64 all DTBs are bui=
-lt
-> > into kernel binary. So as long as binding are changed together with all=
- DTS
-> > in tree we won't break any system.
->
-> This is factually wrong. QEMU produces a DT for Loongarch at runtime.
-> So no, you're not allowed to just drop bindings on the floor. They
-> stay forever.
->
-> > > As for the offending property, it has no place here either. DT is not
-> > > the place where you put "performance knobs".
-> > Hmm, I can see various bindings with vendor prefix exposing device
-> > configurations. If we seen this interrupt routing as a device configura=
-tion
-> > I don't think it's against devicetree design philosophy.
->
-> Just because we have tons of crap in the device trees doesn't give you
-> a license to be just as bad.
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
