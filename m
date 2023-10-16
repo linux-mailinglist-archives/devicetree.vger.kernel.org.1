@@ -1,178 +1,90 @@
-Return-Path: <devicetree+bounces-8995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0361A7CB1A7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 19:55:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677167CB214
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:05:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96A20B20E10
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:55:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2071B281617
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DC69328BC;
-	Mon, 16 Oct 2023 17:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D290347D8;
+	Mon, 16 Oct 2023 18:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MBePew5s"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="jcY1Mg2a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F2F328AE
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 17:55:41 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B14E8;
-	Mon, 16 Oct 2023 10:55:39 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so797136666b.3;
-        Mon, 16 Oct 2023 10:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697478938; x=1698083738; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aQdpEuv4vLtd9fu4lMup/0rMiADAMdZidxkRPcxjiRg=;
-        b=MBePew5szZS94gB8YqhLFB3H97w1DOyxDFCaW9Koodr+3SnSVQKXcvfXzq4J70TQax
-         dr+/YF1GYSY+4n3n/yySaGEavkNM+A12xJq4Siue+MIYMp2AWEMrCXtNPjBZQKW+v6RN
-         hNrl1YpSngKTPJZCySmJf4DSNgGdkf0HGUFBe6TMZfx/UgZIDjRqtV7D4HScwv2MJuCX
-         lwt15bIHl2CB0VPqogWamvAIdDK/MSqGG+0HMzuy4kJO1+TOnwcUPZZxFDHooglxmfxl
-         TTUV/mcn8zipPdp6tUY57MltcZdoLG/j4XuG6CS3gSmwaSKGZ1xCggJFQ4bxaZzbi75i
-         jv0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697478938; x=1698083738;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aQdpEuv4vLtd9fu4lMup/0rMiADAMdZidxkRPcxjiRg=;
-        b=MIT+w9lFZWoPBmo85rpoyIebReg/AjCTP+wqSkHlx2WxM2cyTHGYCPSofRUqdwmNRO
-         QrnIxXB7Z2NQoEPRT/9xQEjLRhXMsm+90JRasBUfpjpZyMG0OPBkUnXY87YRXbcM2kqo
-         3zo/V0K6bd7etmHBzWI/8wJ1CfHTg5POXY8i+KaBKj56wsdLe6krGfi+NhIjCdT6RPHP
-         6NXIOIyyzz+y47FNwQMxVBphL5zVPTK9HxJ7PXU2CUGEqeGP5z7vALttd4yfjFS1mqEN
-         z51cuC0QmHxBMud0D9zr+S4n2ypGAqeVah/pRFrDTIvvHawxgn7YyXRB/ihl57qjNE2q
-         fdhA==
-X-Gm-Message-State: AOJu0Yw+rOozETl95T6BxuNX+Ec83/zPiAhFIQEcw03bWf4z0noBKcr/
-	Tl9/JNp2ZQIUiUCF0E6t3JU=
-X-Google-Smtp-Source: AGHT+IF8EqapZ2nACxkwdt7P9Hf2e3bP/oVDvAFtHnicGV15QFg7/GojYDqzSz6dPNFOulWDfNAleg==
-X-Received: by 2002:a17:906:10b:b0:9ae:50c4:4df9 with SMTP id 11-20020a170906010b00b009ae50c44df9mr30106593eje.61.1697478937843;
-        Mon, 16 Oct 2023 10:55:37 -0700 (PDT)
-Received: from fedora.. ([188.252.220.210])
-        by smtp.googlemail.com with ESMTPSA id g15-20020a170906348f00b009c3f8f46c22sm2378007ejb.77.2023.10.16.10.55.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 10:55:37 -0700 (PDT)
-From: Robert Marko <robimarko@gmail.com>
-To: agross@kernel.org,
-	andersson@kernel.org,
-	konrad.dybcio@linaro.org,
-	ilia.lin@kernel.org,
-	rafael@kernel.org,
-	viresh.kumar@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB06339AD;
+	Mon, 16 Oct 2023 18:03:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CE11C433C9;
+	Mon, 16 Oct 2023 18:03:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1697479405;
+	bh=cDqOHBDA5sbY8y5If7BevRuuz2CJcTopzlG8CQRr2AE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jcY1Mg2aUxBHZjp+t2axFYVkPigBmbnkMqlmGGzpE7BagcZmgjaVOPsQdyXhSLPgj
+	 8MJOGK07bmGeYKXvVWGxW9sPe7m1H1cyZHKRE50A+5DhQxCyhi5SJIf0LdSpbqXaCZ
+	 xJH5Qhom2DGL9r8fJX0YeNJSoe1IPqGacKpdTG+0=
+Date: Mon, 16 Oct 2023 20:03:23 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq6018: use CPUFreq NVMEM
-Date: Mon, 16 Oct 2023 19:55:17 +0200
-Message-ID: <20231016175532.2081344-3-robimarko@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231016175532.2081344-1-robimarko@gmail.com>
-References: <20231016175532.2081344-1-robimarko@gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: ti,tps6598x: Disallow undefined
+ properties
+Message-ID: <2023101616-fantastic-spearman-b1e4@gregkh>
+References: <20231016155527.2973385-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016155527.2973385-1-robh@kernel.org>
 
-IPQ6018 comes in multiple SKU-s and some of them dont support all of the
-OPP-s that are current set, so lets utilize CPUFreq NVMEM to allow only
-supported OPP-s based on the SoC dynamically.
+On Mon, Oct 16, 2023 at 10:55:27AM -0500, Rob Herring wrote:
+> Device specific bindings should not allow undefined properties. This is
+> accomplished in json-schema with 'additionalProperties: false'. With this,
+> the 'connector' child node needs to be defined to prevent warnings.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> index 5497a60cddbc..6ab674dea4c6 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> @@ -32,11 +32,14 @@ properties:
+>      items:
+>        - const: irq
+>  
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+>  required:
+>    - compatible
+>    - reg
+>  
+> -additionalProperties: true
+> +additionalProperties: false
+>  
+>  examples:
+>    - |
+> -- 
+> 2.42.0
+> 
+> 
 
-As an example, IPQ6018 is generaly rated at 1.8GHz but some silicon only
-goes up to 1.5GHz and is marked as such via an eFuse.
-
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 9aec89d5e095b..49f0e6aa4b5bb 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -96,42 +96,49 @@ scm {
- 	};
- 
- 	cpu_opp_table: opp-table-cpu {
--		compatible = "operating-points-v2";
-+		compatible = "operating-points-v2-kryo-cpu";
-+		nvmem-cells = <&cpu_speed_bin>;
- 		opp-shared;
- 
- 		opp-864000000 {
- 			opp-hz = /bits/ 64 <864000000>;
- 			opp-microvolt = <725000>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1056000000 {
- 			opp-hz = /bits/ 64 <1056000000>;
- 			opp-microvolt = <787500>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1320000000 {
- 			opp-hz = /bits/ 64 <1320000000>;
- 			opp-microvolt = <862500>;
-+			opp-supported-hw = <0x3>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1440000000 {
- 			opp-hz = /bits/ 64 <1440000000>;
- 			opp-microvolt = <925000>;
-+			opp-supported-hw = <0x3>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1608000000 {
- 			opp-hz = /bits/ 64 <1608000000>;
- 			opp-microvolt = <987500>;
-+			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1800000000 {
- 			opp-hz = /bits/ 64 <1800000000>;
- 			opp-microvolt = <1062500>;
-+			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
- 		};
- 	};
-@@ -314,6 +321,11 @@ qfprom: efuse@a4000 {
- 			reg = <0x0 0x000a4000 0x0 0x2000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			cpu_speed_bin: cpu_speed_bin@135 {
-+				reg = <0x135 0x1>;
-+				bits = <7 1>;
-+			};
- 		};
- 
- 		prng: qrng@e3000 {
--- 
-2.41.0
-
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
