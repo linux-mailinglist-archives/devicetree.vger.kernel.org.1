@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-8922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC5077CA9EB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E00C87CAA54
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C24BB20DD3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:41:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EF42B20EC8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09B627EFB;
-	Mon, 16 Oct 2023 13:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A386028692;
+	Mon, 16 Oct 2023 13:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dweae+Ln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B5E26E16
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:41:13 +0000 (UTC)
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241C810DD;
-	Mon, 16 Oct 2023 06:41:10 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6c4bf619b57so3121960a34.1;
-        Mon, 16 Oct 2023 06:41:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697463669; x=1698068469;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NQ/G/Xth0D6auFNQK3nHPPfnMBEhXE0kDfRXlTn6UOY=;
-        b=eLwgFyt5DikRmvW7Fm6aHwG9TWBtTqL1kvC0FjL5uD0cVFzQvkySagRSQI92HT/fJc
-         iSiB1JPIsOzr9+f4ea0le9X/JDjsUXHP8H5aPKReG7b3wngCsduLX7IKNZeEhGIJaiuH
-         qaL0cyKnb4bN75N17SnlOgEx1gO/yUxXBnzSZdG+qa/BMpym1IOacde4zpCdqaNtjqX3
-         Ztt8XixWdSXZCPKRbtZ2lLB4hlxfHn4D3TH7UiwF6v4u8O2j6jY+zgX3Pp074xu73IbP
-         FNu3TtTKwkO2BKJzd5kD8wpAw5jS2et6Y0yy3XoXioOWvOjmHnrd0hhwlPN1jD/W6M6b
-         f7Eg==
-X-Gm-Message-State: AOJu0Ywv2OCl841qP/RiUR3nNz5IFAJZL83Xd0vcIZuuBWwBdRi396pf
-	Bjck5i700LOXzmImkyf3JA==
-X-Google-Smtp-Source: AGHT+IGL1M0GWp//j3qCJFUvTJjD9rn+kXQBERESjCk07ye3/whM/gGvUfOfSpVq8l85kMc+xe7a6g==
-X-Received: by 2002:a9d:6398:0:b0:6bd:a82:8edb with SMTP id w24-20020a9d6398000000b006bd0a828edbmr32048175otk.10.1697463669404;
-        Mon, 16 Oct 2023 06:41:09 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w6-20020a9d6386000000b006b96384ba1csm1689759otk.77.2023.10.16.06.41.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 06:41:08 -0700 (PDT)
-Received: (nullmailer pid 2647360 invoked by uid 1000);
-	Mon, 16 Oct 2023 13:41:06 -0000
-Date: Mon, 16 Oct 2023 08:41:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, kernel-team@android.com, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 06/20] dt-bindings: pinctrl: samsung: add
- google,gs101-pinctrl compatible
-Message-ID: <20231016134106.GA2643742-robh@kernel.org>
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-7-peter.griffin@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8687727EFF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:48:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1EB8C433C7;
+	Mon, 16 Oct 2023 13:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697464104;
+	bh=mp6Ing2YjlDv1+wriMn3sVvWUPfFi63z7zsEQ3CoIrw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dweae+LnGibLZesbVnqLLBumRbUyfz206BCR1yQZqc8RdVV21FzYK8n7v+ymThCF2
+	 I/klQuyMWVsm4BRTvm4rwgXbI3/7Cbly2L/gz2MURSY0akDWuDgNIQbykAsa1wigZZ
+	 LHJOYY5xOdwK2OKSzpTVT1x9nOMwiUHTdGa5qY9tRPgj3HWxx4Hiu/tXFCJJCU17pG
+	 r9wbcDpAm4VKxKlxT5WQmM3N3JwnMcrmmxFW7yYSatTSHJx+8sHSfgCdsKTPzp+P2z
+	 d5zmoSHwBpItr1h3emi6v6s+5B2h6e+Q+5PSP8i4FGD2fyYnpRlWSHerskiVQ5MyHE
+	 QMGNBy2Z6kYjA==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qsNsp-0004Di-2T;
+	Mon, 16 Oct 2023 15:43:48 +0200
+Date: Mon, 16 Oct 2023 15:43:47 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: gnss: u-blox: add "reset-gpios"
+ binding
+Message-ID: <ZS0-E_h4I_g7zVIm@hovoldconsulting.com>
+References: <20230921133202.5828-1-wsa+renesas@sang-engineering.com>
+ <20230921133202.5828-3-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,83 +59,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231011184823.443959-7-peter.griffin@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230921133202.5828-3-wsa+renesas@sang-engineering.com>
 
-On Wed, Oct 11, 2023 at 07:48:09PM +0100, Peter Griffin wrote:
-> Add the "google,gs101-pinctrl" compatible to the dt-schema bindings
-> documentation.
-> 
-> Add maxItems of 50 for the interrupts property as gs101 can have
-> multiple irqs.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  .../bindings/pinctrl/samsung,pinctrl.yaml     | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> index 26614621774a..6dc648490668 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> @@ -35,6 +35,7 @@ properties:
->  
->    compatible:
->      enum:
-> +      - google,gs101-pinctrl
->        - samsung,s3c2412-pinctrl
->        - samsung,s3c2416-pinctrl
->        - samsung,s3c2440-pinctrl
-> @@ -58,7 +59,8 @@ properties:
->    interrupts:
->      description:
->        Required for GPIO banks supporting external GPIO interrupts.
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 50
->  
->    power-domains:
->      maxItems: 1
-> @@ -134,6 +136,24 @@ allOf:
->            minItems: 1
->            maxItems: 1
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: google,gs101-pinctrl
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          description:
-> +            Required for external wakeup interrupts. List all external
+On Thu, Sep 21, 2023 at 03:32:00PM +0200, Wolfram Sang wrote:
+> Needed to enable this chip on a Renesas KingFisher board.
 
-Is it external GPIO interrupts or wakeup interrupts?
+What is needed? Please make the commit message self-contained.
 
-> +            wakeup interrupts supported by this bank.
-> +          minItems: 1
-> +          maxItems: 50
+And what GNSS chip/module is this? This should also be included in the
+commit message.
 
-For a given SoC, I don't see how this is variable? If it is variable, 
-how do you know which entry is what?
+Do you have a link to a datasheet?
 
+None of the u-blox modules I've seen have a reset line so I'd like to
+where this came from and how it is intended to be used.
 
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.42.0.655.g421f12c284-goog
-> 
+> Description
+> copied over from the Mediatek driver which already supports it.
+
+The mediatek driver does not support managing a reset line, but the
+binding includes a description of this pin for completeness. Also you
+don't seem include any description of the property below (which is fine)
+so perhaps you can just drop this sentence.
+
+Johan
 
