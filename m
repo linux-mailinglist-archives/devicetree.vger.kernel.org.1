@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-8980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F817CAE53
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:56:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846ED7CAE54
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45433281366
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:56:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B69F81C2048A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3BE2C855;
-	Mon, 16 Oct 2023 15:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84722E64B;
+	Mon, 16 Oct 2023 15:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E96E33FF
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 15:55:57 +0000 (UTC)
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EAA109;
-	Mon, 16 Oct 2023 08:55:54 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6c665b2469dso3181022a34.0;
-        Mon, 16 Oct 2023 08:55:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1322E28E3B
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 15:56:08 +0000 (UTC)
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A39AB;
+	Mon, 16 Oct 2023 08:56:02 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6c67060fdfbso3366761a34.2;
+        Mon, 16 Oct 2023 08:56:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697471753; x=1698076553;
+        d=1e100.net; s=20230601; t=1697471762; x=1698076562;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bYqTlxzJpgPZHi0SFQeGZeZ+UqJkgDA/Fe8BpwAySnI=;
-        b=LeRqlsXFavZF/pAgOwuOwgFtG2IZZ5wRQ/ZHB/78Eo/j7URCy6yy8P3YcIEomdLFkQ
-         R0gmmScS3djnixodnRzq5eFsnbrLPHjXx6V/TXg2Lp2xidEqys5bQCN2J7oYLms3aBZn
-         yvJGoxP4D5iSfZKvK1cXY5QuPs+gnLzT+9RtHn0d0cZkvM7qrtI+V/f7u9RHSBiqmm7k
-         OvzKFjMRhP5/Gvbt0ctS0l/HLvKvZm/cXsT6mj7dOUa2wwGnFnmPCzZ5KSMiMafxV1Qk
-         gpdVrMh85x0jiu6KCoVy790jSUkzjZu+/pe3MUH61oaiS656fBxb+MiJEGPGGyFPmyz0
-         fbtw==
-X-Gm-Message-State: AOJu0YxvjRTxFRh5KiNAZBp8DEZhdRQotJaPXU4WeDA3ZZgFx+u4c6Je
-	36S1ujtA9ouXqCuR18oydA==
-X-Google-Smtp-Source: AGHT+IEYO0DVPg5dp2+bVEWXMrPE9XhLRSLjbH9Y4SXF1r+s0lXGRz4Tf3jf1v0cAjqE7L7uP7K+Gw==
-X-Received: by 2002:a9d:74d9:0:b0:6b8:7eef:a236 with SMTP id a25-20020a9d74d9000000b006b87eefa236mr36034676otl.30.1697471753539;
-        Mon, 16 Oct 2023 08:55:53 -0700 (PDT)
+        bh=MK37q1XJzWSoKvjEt9e5ahg/V9ZLCNMRU55JDeXGR3I=;
+        b=qvG/pr5FWjLuwpqTd2pwkVoJOMuAoBtK9trGHayaLILnmR8Vwen8g/1faYcXaBPXIm
+         TSUgIlkNkloTUsRo0Zt5GsOk6trBR7EtPZN7emV95I/U8N4XeN6ZaWosjhUtbLcIXpo1
+         tYPAc30t7U/9hmo8Ug1kYrJhp7/QDDgueaLNBJefzF8j0TsdiHVXzQqAtJRIcWQnWgRq
+         m+7R/lkhGXDCCLpqs6todiTEBdGlYjndn0aguKifsNgQS1IAySPZ0ZeZR6n+FdcNLTsr
+         wl3CULG36KUnlVQv2z0Q6v7gI08gLQLrGwgRC3vTIej+VjA/aFTOHZySCt4H6QAHWVk/
+         +uKQ==
+X-Gm-Message-State: AOJu0YwMNdF8OBDMB8/5lhFxUtFP4km/Eets1xziXfcXRozsuOKaVzG2
+	OIkCXw14joOe8qbQLLT1W9ObT0R6wA==
+X-Google-Smtp-Source: AGHT+IFq89bwTY6QgYTGDazR8YRF0lHfhQCysfNHhc6pISdMHgdvtPJ2K4X5/IPm/p+CbDmwMU+quA==
+X-Received: by 2002:a9d:6849:0:b0:6c4:c026:a658 with SMTP id c9-20020a9d6849000000b006c4c026a658mr39826634oto.26.1697471762060;
+        Mon, 16 Oct 2023 08:56:02 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020a9d4b06000000b006b89dafb721sm1726248otf.78.2023.10.16.08.55.52
+        by smtp.gmail.com with ESMTPSA id a24-20020a056830009800b006b4281cf424sm1731229oto.4.2023.10.16.08.56.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 08:55:52 -0700 (PDT)
-Received: (nullmailer pid 2973998 invoked by uid 1000);
-	Mon, 16 Oct 2023 15:55:51 -0000
+        Mon, 16 Oct 2023 08:56:01 -0700 (PDT)
+Received: (nullmailer pid 2974154 invoked by uid 1000);
+	Mon, 16 Oct 2023 15:55:58 -0000
 From: Rob Herring <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Daniel Beer <daniel.beer@igorinstitute.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: tas5805m: Disallow undefined properties
-Date: Mon, 16 Oct 2023 10:55:47 -0500
-Message-ID: <20231016155547.2973853-1-robh@kernel.org>
+To: Damien Le Moal <dlemoal@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: ata: tegra: Disallow undefined properties
+Date: Mon, 16 Oct 2023 10:55:54 -0500
+Message-ID: <20231016155555.2974051-1-robh@kernel.org>
 X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,7 +63,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
 	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,34 +72,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 Device specific bindings should not allow undefined properties. This is
 accomplished in json-schema with 'additionalProperties: false'.
 
-Examples should be last in the schema, so move additionalProperties up
-while we're here.
-
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/sound/tas5805m.yaml | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/tas5805m.yaml b/Documentation/devicetree/bindings/sound/tas5805m.yaml
-index 63edf52f061c..12c41974274e 100644
---- a/Documentation/devicetree/bindings/sound/tas5805m.yaml
-+++ b/Documentation/devicetree/bindings/sound/tas5805m.yaml
-@@ -37,6 +37,8 @@ properties:
-       generated from TI's PPC3 tool.
-     $ref: /schemas/types.yaml#/definitions/string
+diff --git a/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+index 3c7a2425f3e6..a17297cbefcb 100644
+--- a/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
++++ b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+@@ -151,7 +151,7 @@ allOf:
+         - interconnects
+         - power-domains
  
+-additionalProperties: true
 +additionalProperties: false
-+
+ 
  examples:
    - |
-     i2c {
-@@ -52,5 +54,4 @@ examples:
-                 ti,dsp-config-name = "mono_pbtl_48khz";
-         };
-     };
--
--additionalProperties: true
-+...
 -- 
 2.42.0
 
