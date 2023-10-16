@@ -1,115 +1,139 @@
-Return-Path: <devicetree+bounces-8888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82497CA709
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:53:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC827CA73E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:57:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7893BB20DEA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:53:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDAE11C20A48
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:57:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8E266A1;
-	Mon, 16 Oct 2023 11:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B16262BE;
+	Mon, 16 Oct 2023 11:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Esqsr6Yq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSjFpCro"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE0A2374B;
-	Mon, 16 Oct 2023 11:52:57 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A85A109;
-	Mon, 16 Oct 2023 04:52:51 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9be7e3fa1daso317801566b.3;
-        Mon, 16 Oct 2023 04:52:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697457170; x=1698061970; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ylGPgerA7JSBXW4o/i4XQZounlAgX7/yFcNqik5k9g4=;
-        b=Esqsr6YqSFba8nEZLfkO1aT6pKmzrJWzDZoUGVJOvkVGkAN3nmkuRSBirpcg73nx9s
-         dT1fxFMrzXci3A28gVarRR79a04K4+snxj5pNh7MpzMKXOAKScUY39PQHkd/XHllYYDv
-         okc7BKhvMna2jHe3yOKqtOyiNbDnSmC/KZmL/1AUO7MreImdwmxYl7v332cnuwbJ0J5b
-         ulTcYLcut1cigUc3mCbHxATkxMWBXzkgOaXv9N93BatHvqbARKpF8G9pUMTDKB1mKEmT
-         i3Wh4HaCqBqA5VmxfpV7MEhFqf48o/wJW4wOyALbSuI3PF7mN+CHhwMslbSCO/FxSbpk
-         1uIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697457170; x=1698061970;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ylGPgerA7JSBXW4o/i4XQZounlAgX7/yFcNqik5k9g4=;
-        b=wTyfl+VDIYUZucNlIYV+e3zgypCZ2YEAI35O3m5wwnhYyujsIhqDmLCxoPVz9h79Hr
-         NKm+H3oNEVRnaRAF+FczuNdyJ/rYhe9IswUOAWZhnOzRgH9VZuI+D26OP8D5U7Fd+46u
-         10p6jRByBGETGOCjPoEmMoZWfV67oO0ZdPt+SgiJmwjwYzZ82ZOsDNtIC8e7UTo2c58a
-         Scs1P5580QsmbwZulihFtG4q9boc+mNcD45K6wvvgOTv7IkuNcuWEINouzx4+D0VYtHE
-         3uOrRaA21okMNTdWAy5y0eaxuz2KQ696l9fFq8OE4Bym6oYuuVRYp+fqtEmrqZJVHjKJ
-         XaNA==
-X-Gm-Message-State: AOJu0YywxHR4Auxx2YS3V7L6nIvRvDvK3AzEMCi7SG27UbYpzTy2aaRY
-	1O0gi4/9UT1lZr3oYw+6fIo=
-X-Google-Smtp-Source: AGHT+IGwUZmGUJ7eZXwonOqTO+7N6o6Q7P3ALprk6hBr0aDB1PQwIovP+gi/1e90a/uQqx6HTZl51w==
-X-Received: by 2002:a17:907:2d09:b0:9be:d55a:81c5 with SMTP id gs9-20020a1709072d0900b009bed55a81c5mr5620750ejc.60.1697457169543;
-        Mon, 16 Oct 2023 04:52:49 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id p22-20020a1709061b5600b009737b8d47b6sm3815855ejg.203.2023.10.16.04.52.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 04:52:49 -0700 (PDT)
-Date: Mon, 16 Oct 2023 14:52:46 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v3 1/6] dt-bindings: marvell: Rewrite MV88E6xxx
- in schema
-Message-ID: <20231016115246.rjcoggwtpkmw7f4v@skbuf>
-References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
- <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FC52629D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98143C433C7;
+	Mon, 16 Oct 2023 11:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697457426;
+	bh=JKkLHlefXiDiDYienAtz7iVlJtzOe0TV1BHQ6sC3knc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fSjFpCroKZzXKWNLZ3y23G+1iDO5EBsKyVgQdD9075LzXBANtCgoBMGKm8Ld3c2+8
+	 iyGu0uo6VgmOPK/K7sOdofJ2niJQF/KqN6oo1lTgu2e2v204zvTCCycet2m+wCPrd9
+	 HlaJibRqAvD8HeiRjgCxgtbHJQ89uUWbi0v4qmkL3s267pQal+xwk95cSECN3um0LA
+	 9Qyy+LA+0r6qlr5wN6tDGkdqeoIICcoaOwabbTPefF+7f0swA/UeMyX2wccwX6UraU
+	 sG4yHrcbXAoZBAcg1wD0g2Uogigyb5m298xDsCC+TECQ4nhmsTDVsITEQKOB+EdsMs
+	 ppp92EQCn8Aqg==
+Message-ID: <b20bba75-e646-4c16-a4aa-7085291cfb1f@kernel.org>
+Date: Mon, 16 Oct 2023 13:56:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/7] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+Content-Language: en-US
+To: Sandor Yu <Sandor.yu@nxp.com>, dmitry.baryshkov@linaro.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Cc: kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com,
+ alexander.stein@ew.tq-group.com, sam@ravnborg.org
+References: <cover.1697162990.git.Sandor.yu@nxp.com>
+ <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 16, 2023 at 11:12:54AM +0200, Linus Walleij wrote:
-> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
-> in YAML schema.
-> 
-> The current text binding says:
->   WARNING: This binding is currently unstable. Do not program it into a
->   FLASH never to be changed again. Once this binding is stable, this
->   warning will be removed.
-> 
-> Well that never happened before we switched to YAML markup,
-> we can't have it like this, what about fixing the mess?
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+On 13/10/2023 05:24, Sandor Yu wrote:
+> Add a new DRM DisplayPort and HDMI bridge driver for Candence MHDP8501
+> used in i.MX8MQ SOC. MHDP8501 could support HDMI or DisplayPort
+> standards according embedded Firmware running in the uCPU.
 
-It would make more sense for this patch to be last, after you've fixed
-the warnings that this patch introduces.
+...
+
+> +
+> +static struct platform_driver cdns_mhdp8501_driver = {
+> +	.probe = cdns_mhdp8501_probe,
+> +	.remove = cdns_mhdp8501_remove,
+> +	.driver = {
+> +		.name = "cdns-mhdp8501",
+> +		.of_match_table = cdns_mhdp8501_dt_ids,
+> +	},
+> +};
+> +
+> +module_platform_driver(cdns_mhdp8501_driver);
+> +
+> +MODULE_AUTHOR("Sandor Yu <sandor.yu@nxp.com>");
+> +MODULE_DESCRIPTION("Cadence MHDP8501 bridge driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:cdns-mhdp8501");
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong.
+
+This applies everywhere, to all your patches.
+
+Best regards,
+Krzysztof
+
 
