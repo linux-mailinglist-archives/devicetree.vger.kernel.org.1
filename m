@@ -1,100 +1,154 @@
-Return-Path: <devicetree+bounces-8987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B607CB0EF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 19:04:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110BC7CB11A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 19:10:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 144921C20B1A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:04:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F540B20DE5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 17:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C734130FB9;
-	Mon, 16 Oct 2023 17:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35CD30FBB;
+	Mon, 16 Oct 2023 17:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SrfgRR6O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8006A168DE
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 17:04:24 +0000 (UTC)
-Received: from smtprelay05.ispgateway.de (smtprelay05.ispgateway.de [80.67.18.28])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26592100;
-	Mon, 16 Oct 2023 10:04:21 -0700 (PDT)
-Received: from [92.206.139.21] (helo=note-book.lan)
-	by smtprelay05.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1qsR0t-0001Jg-0y;
-	Mon, 16 Oct 2023 19:04:19 +0200
-Message-ID: <f88b9f79fab9eded9ffb77e2347e028e53744707.camel@apitzsch.eu>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8939-longcheer-l9100: Enable
- wcnss_mem
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Stephan Gerhold <stephan@gerhold.net>, Bjorn Andersson
-	 <andersson@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>,  Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Mon, 16 Oct 2023 19:04:18 +0200
-In-Reply-To: <20230921-msm8916-rmem-fixups-v1-2-34d2b6e721cf@gerhold.net>
-References: <20230921-msm8916-rmem-fixups-v1-0-34d2b6e721cf@gerhold.net>
-	 <20230921-msm8916-rmem-fixups-v1-2-34d2b6e721cf@gerhold.net>
-Autocrypt: addr=git@apitzsch.eu; prefer-encrypt=mutual;
- keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39260273EB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 17:10:40 +0000 (UTC)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89062FD
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 10:10:37 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6bd73395bceso1202982b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 10:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1697476237; x=1698081037; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dEgoT4wnSbfKqiobyL8tOMupICht6HOuE8CfHQmqQMc=;
+        b=SrfgRR6OB9ruKuwnVYsao2wZlIXJFg/DSCUoRUaquXHEkBswrOqYrQloMFry2vhlej
+         bMREr3gJqUNAz+aChbiEJ/Ybg+SkoZ2RQkKHzpQsDPgDImjWfIRDjcTquCB+w+nW19ne
+         G2CY6rurvfMGgYIR/bETjRLrDtVmN9/EwUPwOeJyjHpvLrP+c7eq+JPAXEGvmFtREa3x
+         ElnVAoEgXi5dIrJqc8tZ2iD3EClw1C8coQeLr3lCZOXeZR80bhUPihXs8fZOZhq66/J8
+         IA2gXeTwur3/RSiH0rSD+LvJ6HpcQcDrOgM5bPA0+5HiS/qCGCoEQAwi9/nU0pJsFwrC
+         URRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697476237; x=1698081037;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dEgoT4wnSbfKqiobyL8tOMupICht6HOuE8CfHQmqQMc=;
+        b=ciegytbWIEPZMxoWvfvuhH/O5w0m8h30+zuESqy0n3xZSZIsLoF5vYFEGPGzpxC5tC
+         RZwu5kZZa8t7dYUV0VU4Cl87PSou2MD4/UPAAOtPNDyytHgvCXcRclLZ/10VK+Kn+GXW
+         ndR2GJpwjdUciLAVLt1ULK86boeZvIvH4z2itd0rgASqFekqoKkRCgKgNLKbsFP9x1gr
+         fMCg/1FyaLRNLVSEL2ohDXh8Z3s42NhnaIw6xvcux84//fKQreAjH00W8C3NvqPlPNA/
+         Ubtv1HcqyNbXUaxL1zt1/9VL4LtT80I9BiXj+LaM3Fd9ayGeaSt5igB5+2MN5V1Fyu86
+         IWvg==
+X-Gm-Message-State: AOJu0YzddAFfEhKyyZMNt0sPMqDhGQVBlu5HnLd0r7oI1xoMzCiwSLDS
+	gNzh+h3OZCCceep7B3FEv3oRDQ==
+X-Google-Smtp-Source: AGHT+IGguDhVITJIvhBzWf+6Op1xFKO1SJ/TmEkeSW6nK5Opr8475dRlcc4zfVYS/Ev4Bc6d7YnIDA==
+X-Received: by 2002:a05:6a20:6a03:b0:15a:6733:24e2 with SMTP id p3-20020a056a206a0300b0015a673324e2mr12179788pzk.25.1697476236976;
+        Mon, 16 Oct 2023 10:10:36 -0700 (PDT)
+Received: from x1 ([2601:1c2:1800:f680:619d:5ad3:44b1:eec4])
+        by smtp.gmail.com with ESMTPSA id k64-20020a632443000000b0057c44503835sm5910283pgk.65.2023.10.16.10.10.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 10:10:36 -0700 (PDT)
+Date: Mon, 16 Oct 2023 10:10:33 -0700
+From: Drew Fustini <dfustini@baylibre.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus
+Message-ID: <ZS1uiXORq2IRPnId@x1>
+References: <20230912072232.2455-1-jszhang@kernel.org>
+ <20230912-trailing-pampered-52738ec6f009@spud>
+ <ZQHSLdPufI6CXApg@xhacker>
+ <20230913-faster-spotted-9df41a0d7787@spud>
+ <20230920-pesky-stalemate-88f5036b8084@wendy>
+ <ZQwL6fxi6IkUEIMc@xhacker>
+ <20230921-4a1fe80384e083c67f38dc27@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230921-4a1fe80384e083c67f38dc27@fedora>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Am Donnerstag, dem 21.09.2023 um 20:56 +0200 schrieb Stephan Gerhold:
-> Enable &wcnss_mem for msm8939-longcheer-l9100. This is needed now to
-> have WCNSS working. It was missed when &wcnss_mem was disabled by
-> default because the patch with the msm8939-longcheer-l9100 device
-> tree
-> was not applied yet.
->=20
-> Fixes: 0ece6438a8c0 ("arm64: dts: qcom: msm8916/39: Disable unneeded
-> firmware reservations")
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> =C2=A0arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts | 4 ++++
-> =C2=A01 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-> b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-> index 6802714fda3f..a3357513037c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-> @@ -247,6 +247,10 @@ &wcnss_iris {
-> =C2=A0	compatible =3D "qcom,wcn3620";
-> =C2=A0};
-> =C2=A0
-> +&wcnss_mem {
-> +	status =3D "okay";
-> +};
-> +
-> =C2=A0&tlmm {
-> =C2=A0	button_backlight_default: button-backlight-default-state {
-> =C2=A0		pins =3D "gpio17";
->=20
+On Thu, Sep 21, 2023 at 11:08:28AM +0100, Conor Dooley wrote:
+> On Thu, Sep 21, 2023 at 05:24:57PM +0800, Jisheng Zhang wrote:
+> > On Wed, Sep 20, 2023 at 09:36:19AM +0100, Conor Dooley wrote:
+> > > Hey Jisheng,
+> > > 
+> > > On Wed, Sep 13, 2023 at 04:44:18PM +0100, Conor Dooley wrote:
+> > > > On Wed, Sep 13, 2023 at 11:15:57PM +0800, Jisheng Zhang wrote:
+> > > > > On Tue, Sep 12, 2023 at 05:27:31PM +0100, Conor Dooley wrote:
+> > > > > > On Tue, Sep 12, 2023 at 03:22:32PM +0800, Jisheng Zhang wrote:
+> > > > > > > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> > > > > > > dma coherent, so set dma-noncoherent to reflect this fact.
+> > > > > > > 
+> > > > > > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > > > > > Tested-by: Drew Fustini <dfustini@baylibre.com>
+> > > > > > > ---
+> > > > > > > 
+> > > > > > > Since v1:
+> > > > > > >  - rebase on v6.6-rc1
+> > > > > > >  - collect Tested-by tag
+> > > > > > 
+> > > > > > Does this mean you're expecting me to take this?
+> > > > > 
+> > > > > Hi Conor,
+> > > > > 
+> > > > > I think I will take this and send PR to soc people. The reason
+> > > > > I send v2 is the rebasing on new rc1 and v1 wasn't in linux-riscv
+> > > > > mailist due to typo;
+> > > > 
+> > > > Great, thanks. Please ask SFR to add your tree to linux-next.
+> > 
+> > Hi Conor,
+> > 
+> > I'm not sure how to do this. When MAINTAINERS patch is merged, send
+> > an email to Stephen Rothwell, are these steps correct?
+> 
+> Sorta, yeah. You don't need to have the MAINTAINERS patch merged first
+> though, just send him a link to your tree and the branch name(s) & he
+> will include it in linux-next.
+> 
+> > > I lost my main x86 box over the weekend (looks like probably a dead
+> > > motherboard), so I may have missed a response to this.
+> > > 
+> > > Did you see this email? Additionally, can you add that git tree to the
+> > > maintainers entry for the thead devicetrees?
+> > 
+> > I just created a tree in
+> > git://git.kernel.org/pub/scm/linux/kernel/git/jszhang/linux.git
+> > 
+> > But it needs time for cgit to take place. I will send a patch
+> > once it appears.
+> 
+> Looks to be there for me now. Thanks for doing this!
 
-Reviewed-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-Tested-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+Hi Jisheng, I'm writing the cover letter for v2 of my th1520 mmc series
+and I am wondering if this dma-noncoherent patch is in any tree yet?
+
+Thanks,
+Drew
 
