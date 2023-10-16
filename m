@@ -1,103 +1,119 @@
-Return-Path: <devicetree+bounces-8872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30F77CA5FB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:47:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 575D57CA610
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAB521C2093B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:47:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A82A1C20841
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CE11F947;
-	Mon, 16 Oct 2023 10:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A121A208C4;
+	Mon, 16 Oct 2023 10:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WJPN3yVx"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="WN9CMfWC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84D701C04;
-	Mon, 16 Oct 2023 10:47:18 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5155CAC;
-	Mon, 16 Oct 2023 03:47:17 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53d82bea507so7559137a12.2;
-        Mon, 16 Oct 2023 03:47:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839A41CFA2
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 10:54:01 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC2B95
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 03:53:58 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98377c5d53eso668810266b.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 03:53:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697453236; x=1698058036; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=H+48sY2mCt5Sm/YpA0tYQ1OglqW65/llPrp6rg7x088=;
-        b=WJPN3yVxJmiR2VKG8a5NRrm9epYm9MYy7G8ROAt5caw/7/8ba1dffqbZblVZvLe4ru
-         D3nC2HT1ohDN11aIkkah+QmnN5Gt3jKEctm8d+hbKYHr+J8f6xAGjF5XLUUY9Iz9cp2m
-         7gs7UkUQcNTeNDcCLM3ScXyhM4pEIr3N+WyYma1/p+n/akFMDsv3BWrr9g3plHsA3uXv
-         ibllHldWQ9hsofAvPIQP4flVkA2/lAZ6NXZx1IG2sSGYqf5NbkJfrlalmSk4fiQ7fMke
-         kOT2OpzcFOulvDfViu0qDGXNroVnSOi7ym6lG67EqcisMVHPvxVvTAUy38YarmrGnRmK
-         0Xgw==
+        d=tuxon.dev; s=google; t=1697453637; x=1698058437; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SxNTh+uyDKLWsmxupnWSc6U2Hic2Ni63Y8zI4pPRJak=;
+        b=WN9CMfWCAYW3W0yCYxM1fL9tXMmiHKT6I2wWi0B7bvuNnLZCZmxUK4aMdud5JBvMo2
+         Ngl7oVQAGv/tKBHcMBqZhZgfyllsBiIaJ91FXWNvIJxFkyfCXyaOdIhMAv8cdYSTdLJo
+         MsigUpBmgcgAsNym3+5Oplk6bBDeONvYHqdLAr1vruP3ibEDOfeect7TMARi5r93Yoh2
+         ENwldK9++/gPhbB7EvvqQXvFI2KajhYx+FAC0ehIytmWvHe+IwBg+6Vohjc9Bho9EMzs
+         C6ZSOK3R9YRmR1vzQFTg+HLl59hkIeRGtqhkxTe+JFlZQd8ZnRSgO9rz1dUxzGs3+G/W
+         zjoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697453236; x=1698058036;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H+48sY2mCt5Sm/YpA0tYQ1OglqW65/llPrp6rg7x088=;
-        b=UPvorveIbg99xnsjXbcWRc14womkBQtdlSpsF6nlbV8HN5tQ6YzpPnO4IT0GCS8929
-         2gxU+DNh966p86XWKZ9Yremz05N8P1IrWoqTCf+rstUTubkPlgR3HWRSHIEjL8wAnCeo
-         6+yLyX2sFqb52pqF8GwAANyRwGbCznNOK6rN8Y4DOLoRIObx4R3woIxoftKjJTQPflYf
-         dteJfpKsXCZxaJTBjkj/ov4nNYi4s+HUMYj0D9q46QIasIqST2c8p/sqXy2AkZG+dAus
-         NOEvaTMP2zY3J4tsjjF0zZCxU0T5wGRjPZ5r12VZ3d1fjEWWtURvuJ5wNYin+iPnX6LG
-         RUDQ==
-X-Gm-Message-State: AOJu0YysPlScLYYe54hKG1A3vYfh+Hd5B1RcIKChsLLs5B7TOAZWlu5s
-	I0CmVj7k8C9wrq7VLPJmEIs=
-X-Google-Smtp-Source: AGHT+IHXT/aLR/uxanC19FG7JSmsoYwhws3oyMnBrRVQL3gX1VwuZn90b9rQj8kM3/dozhmTVdcCcw==
-X-Received: by 2002:a05:6402:388b:b0:53d:ff30:921 with SMTP id fd11-20020a056402388b00b0053dff300921mr11388615edb.18.1697453235779;
-        Mon, 16 Oct 2023 03:47:15 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id l16-20020a056402125000b00536159c6c45sm15095756edw.15.2023.10.16.03.47.14
+        d=1e100.net; s=20230601; t=1697453637; x=1698058437;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SxNTh+uyDKLWsmxupnWSc6U2Hic2Ni63Y8zI4pPRJak=;
+        b=wGwSwmbaN0l/foJCDNY1hDsKMSnSNye6AhI4NiOK9mur/fVm2Noy49kWVJjw/D97/0
+         N3UqTHOOeFgS9Zby7M8x0mOqoBcZcBhH1oJHIB1iyjFVH91VscH09qoCeW8nU7MSOsea
+         /14Zh4aSWsNcjl7aIFDHW+ir7BnIrjJWAPmzMJ6j1+vJU6CQboKuWsyN9lP/O57Kxbjy
+         oK95pn4z9xCR7oGNDU3b6iwLeXPwDlS/oErd6ZOEkxLvu7vu+jlMs2rBltGjgzD4MdCk
+         AzMCikiYfNrYRCX9jEGiTlZZdErNxPS9pyxeCC5SshGMweHZav3SEbKGWXwbDsmc6/6M
+         zsZw==
+X-Gm-Message-State: AOJu0YwB3AjOVKRHpzHqFOSmoQ0sXNXgJXj38Pqu8iJij7kCoZgPa0gS
+	KAnJmmYX1ziIST70Koa0Wl1f4g==
+X-Google-Smtp-Source: AGHT+IGbVnaMTAqevmmvuacn2EkANYMZ2bGIY2fOygD1PBvhtQX9uA7CkemAj8Augtl4aoePWVjCGQ==
+X-Received: by 2002:a17:907:e86:b0:9bf:1142:4361 with SMTP id ho6-20020a1709070e8600b009bf11424361mr5137635ejc.10.1697453637002;
+        Mon, 16 Oct 2023 03:53:57 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.103])
+        by smtp.gmail.com with ESMTPSA id v2-20020a17090651c200b009a5f7fb51dcsm3818126ejk.42.2023.10.16.03.53.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 03:47:15 -0700 (PDT)
-Date: Mon, 16 Oct 2023 13:47:13 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v3 6/6] ARM64: dts: marvell: Fix some common
- switch mistakes
-Message-ID: <20231016104713.pg33afclsd56tavq@skbuf>
-References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
- <20231016-marvell-88e6152-wan-led-v3-6-38cd449dfb15@linaro.org>
+        Mon, 16 Oct 2023 03:53:55 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 0/2] arm64: dts: renesas: Add SDHI1 and SDHI2 for RZ/G3S
+Date: Mon, 16 Oct 2023 13:53:42 +0300
+Message-Id: <20231016105344.294096-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-6-38cd449dfb15@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 16, 2023 at 11:12:59AM +0200, Linus Walleij wrote:
-> - port@a is not normal port naming, use decimal port@10.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-What is the basis on which you are claiming this? How do you explain
-"ethernet@30000" for "reg = <0x30000 0x4000>"?
+Hi,
+
+This series enables Renesas RZ/G3S (R9A08G045) SDHI1 and SDHI2.
+SDHI1 is connected to a uSD interface available on Smarc-II carrier
+board while SDHI2 is connected to a uSD interface available on
+RZ/G3S Smarc Module (SoM).
+
+Thank you,
+Claudiu Beznea
+
+[1] https://lore.kernel.org/all/20231006103959.197485-1-claudiu.beznea.uj@bp.renesas.com/
+
+Changes in v2:
+- addressed review comments
+- remove patches from series that were already integrated
+
+Claudiu Beznea (2):
+  arm64: dts: renesas: rzg3s-smarc-som: Enable SDHI2
+  arm64: dts: renesas: rzg3s-smarc: Enable SDHI1
+
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 49 ++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  | 65 +++++++++++++++++++
+ 2 files changed, 114 insertions(+)
+
+-- 
+2.39.2
+
 
