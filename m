@@ -1,157 +1,175 @@
-Return-Path: <devicetree+bounces-8785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2730D7CA0C7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:37:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C4557CA0CB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:38:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C565E281518
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:37:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36032B20D38
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A030168C8;
-	Mon, 16 Oct 2023 07:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80143171CA;
+	Mon, 16 Oct 2023 07:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="GATbcje9";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="5CUdjxel"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xsi262bs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631E7A2D
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:37:52 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2452AD;
-	Mon, 16 Oct 2023 00:37:49 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1697441859; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=Q7m8ITfBvAJ8v4ng1TMJI2xyAn+ApY7whJVrGseOfx/a2FcDvfWvOyaUrl7GGPWDZY
-    Ocu+VCLHA5WSQY+u4YVCONfL2awR6hbIEhFVk/lM9rbgynOHCode2ebRU5ubD6eVTIDy
-    TDA46/rncawma8Yd/OG0bZ5cmx2I3Dx+JvXknEp0WREb4jqdBc5w5yQi7Rq7yoW3yaH8
-    0zC6HHGdNMWWfMa1JEaojMNI3w3QnDzOESQ/Vchqp8BIq5K0jy4TIiGdAsB1lPkbA0fh
-    GxrYxebkFZiQ/9Y4QNn6lOtJ+LdDY5rFIHMwqwhddxiHvlt2Y0s6gm6GJhqvsJx5tpDb
-    SGBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1697441859;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=AlaJj77DqQEREN4W2oqNqqXui1B4mTuRTUEpEAgS0r8=;
-    b=fj1zC7R6C6s9VINtX4t1g4g1GwL6TIeWjJ+B2C14xlKa63pjJPxR9bE37k3zIa11PX
-    4B9Kab6uhjgxb4wRLgYZGhFXf1Xd+R6lZk9c7erDb1OY0uigUVnyA6PuabDmgNrr/kC5
-    KyV81YbVg5K2F5eQE2punq8HVTkg3KpAoLE1MDDAipzgoMBgXjd0Tebl7GMRs1DJ6JCD
-    0C7oTVbwnU/HnsEb1dNM5hwE9rvMPDp817F3mKPW0eDmr5hwPHb5EFg2vgnHRfF7SMWo
-    Lex3rWRw7wNNEjFzFEIi1TJ7ttJlzeCkNUSDz+oXXc0fnFAX0RUbuXSU3EFHQhYaXR4a
-    PW0w==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1697441859;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=AlaJj77DqQEREN4W2oqNqqXui1B4mTuRTUEpEAgS0r8=;
-    b=GATbcje9ZIPvGG9aoyTPYw9TbkgmY2rJM+D/Et2SeZDZob6MvZ+LaStP83a57t1VI0
-    +4510Ibba1zZxYZgPpCjqnXv+1n3uBfc5MaaCjThO8lWna/npO2MgfYhpPgPA5hiRBiY
-    8Z604Nm65fJK7wiRqTqxkkNrSMhQb94WJvInAAcCwvyqV7Ag/JoCKzOMhIgTYDslEzN/
-    ctHF4N5YV5vKnkz28PBOa4Q2R2HybSU1haWDoonGHbYeJLcIl4m5SWE8pmf6/ABGjKy8
-    KlYMfNt+Ws/ga0GYHr5WJzJ5FFE3x8MC3R+Up+88nBzam/qFWA9g5CWoJNh3JRwT8lWu
-    CF/Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1697441859;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=AlaJj77DqQEREN4W2oqNqqXui1B4mTuRTUEpEAgS0r8=;
-    b=5CUdjxelU8c93FFsQRaUtMK6Iyi5VN7qlbQyuc9UcIzmcjkUw+Hc/jaM0Ecs+TkH5D
-    QCWq+1Fihukfm0oX+sCQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA+p3h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z9G7bcla6
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Mon, 16 Oct 2023 09:37:38 +0200 (CEST)
-Date: Mon, 16 Oct 2023 09:37:31 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Luca Weiss <luca@z3ntu.xyz>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8953: Set initial address for
- memory
-Message-ID: <ZSzoO9QhwVmL8jLk@gerhold.net>
-References: <20231015-msm8953-misc-fixes-v1-0-b800deca9e46@z3ntu.xyz>
- <20231015-msm8953-misc-fixes-v1-1-b800deca9e46@z3ntu.xyz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641EBA2D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:37:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF2F3C433CA;
+	Mon, 16 Oct 2023 07:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697441878;
+	bh=o2W+3Zlbc0rb+VxU0ocDQzUG1+stctWBCShpZiJXHb4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Xsi262bsc/yZOiFtUbhpJZHXFt6NXRQhUc5RE+pAd3Dy7zzgTCV7RdvThs7RcswiQ
+	 tCOSbl4EdNANiB4veO6BnKcMm6xnPkX442SXQSfdUM1R2fCCuwA36L2q+pPxbhL4TN
+	 uiRI2f9YzrnM5e/BF7uU9pqfGB8dhSS1SdoeM8VcOvCgYB0pXB7UURsqe6/B8IZWXg
+	 l4vURZn3UtT3TjG7gJijF1Wxnm/z5WHEYTlv2UsUq4FMWCl3kc2AdQSwLdTCLFL2Lm
+	 TR0hrDxT6aUSkpa/KpYgb5Vm/EIY2gWLo5QybV/8mp2wrmP3zHSisx1LpUDWkckpsZ
+	 gMqrF1wa4OtHA==
+Date: Mon, 16 Oct 2023 08:38:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: werneazc@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lars@metafoo.de,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Andre Werner
+ <andre.werner@systec-electronic.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: ti,ads7038: Add
+ description for ADS7038
+Message-ID: <20231016083815.0b49cab1@jic23-huawei>
+In-Reply-To: <2ae8c910-3fa5-4835-9d2a-fbab64d3aabf@linaro.org>
+References: <20231016070318.28355-1-andre.werner@systec-electronic.com>
+	<2ae8c910-3fa5-4835-9d2a-fbab64d3aabf@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231015-msm8953-misc-fixes-v1-1-b800deca9e46@z3ntu.xyz>
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Sun, Oct 15, 2023 at 10:26:01PM +0200, Luca Weiss wrote:
-> The dtbs_check really doesn't like having memory without reg set.
-> Address this by setting it to 0x10000000 which seems to be the value
-> filled in by the bootloader.
+On Mon, 16 Oct 2023 09:18:46 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 16/10/2023 09:02, werneazc@gmail.com wrote:
+> > From: Andre Werner <andre.werner@systec-electronic.com>
+> > 
+> > Add basic description for ADS7038 ADC devices.
+> > The devicetree adds the following device specific options:
+> > 
+> > - average-samples: Program device's programmable average filter.
+> > - crc-enabled: Enable the CRC check for SPI transfers. Sadly, this
+> >   option has currently no effect in the driver.
+> > - status-enabled: Enable the appending of the device's status on the
+> >   measure value transmission.
+> > - gpio-controller: Sadly function not implemented yet in the driver.
+> > 
+> > Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> > ---
+> > v3
+> > - Delete ADS7138 compatible and comments.
+> > - Add options for CRC, status and average samples as well as
+> >   gpio-controller.
+> > - Update example.
+> > - add regulator for digital IO voltage.  
+> 
+> You received several build errors before. Did you really test it now,
+> because looks like not.
+> 
+> > ---
+> >  .../bindings/iio/adc/ti,ads7038.yaml          | 83 +++++++++++++++++++
+> >  1 file changed, 83 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> > new file mode 100644
+> > index 000000000000..fc1054ca93f7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> > @@ -0,0 +1,83 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments ADS7038 and similar ADCs
+> > +
+> > +maintainers:
+> > +  - Andre Werner <andre.werner@systec-electronic.com>
+> > +
+> > +description: |
+> > +  Family of 7 channel, 12 bit ADCs with SPI interface.
+> > +
+> > +  Datasheet: https://www.ti.com/lit/gpn/ads7038
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,ads7038
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 60000000
+> > +
+> > +  avdd-supply:
+> > +    description: Analog supply voltage, also used as the reference voltage to the ADC.
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital I/O supply voltage.
+> > +
+> > +  average-samples:
+> > +    description: |
+> > +      If specified ADC is configured for avaraging measurements (OSR_CFG Register).
+> > +      This effects output format for measurement and sampling time.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> > +
+> > +  status-enabled:
+> > +    description: |  
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+> > +      If specified ADC transmits chip status (DATA_CFG Register).  
+> 
+> Missing type.
+> 
+> You described the desired Linux feature or behavior, not the actual
+> hardware. The bindings are about the latter, so instead you need to
+> rephrase the property and its description to match actual hardware
+> capabilities/features/configuration etc. Why this is a property of a board?
+
+Agreed - if this information is useful always transmit or enabling when
+whatever feature makes it useful is enabled by the driver / userspace interaction.
+If it's not useful don't :)
+
+> 
+> > +
+> > +  crc-enabled:
+> > +    description: |
+> > +      Checking the integrity of the data bits exchanged over
+> > +      SPI interface (GENERAL_CFG Register).  
+> 
+> Same comment.
+Even if you do want to make this controllable from userspace, we will need
+a strong argument for why.  People rarely buy CRC capable chips and not
+want it turned on.  I'd just always turn it on.
+
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Looks like MSM8953 has the same RAM setup as MSM8916, where the base
-address depends on the amount of RAM you have:
-
-  <= 2.00 GiB RAM: 0x80000000
-   = 3.00 GiB RAM: 0x40000000
-   = 3.75 GiB RAM: 0x10000000
- (more does not fit into the 32-bit physical address space)
-
-So, 0x10000000 will only end up being used on devices with 3.75 GiB RAM.
-
-Can you add a note about this in the commit message maybe? We don't know
-in advance which base address a device will use, so I think it's fine to
-hardcode one of the choices by default. msm8916.dtsi does the same.
-
-Thanks,
-Stephan
-
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> index e7de7632669a..a3ba24ca599b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> @@ -174,10 +174,10 @@ scm: scm {
->  		};
->  	};
->  
-> -	memory {
-> +	memory@10000000 {
->  		device_type = "memory";
->  		/* We expect the bootloader to fill in the reg */
-> -		reg = <0 0 0 0>;
-> +		reg = <0 0x10000000 0 0>;
->  	};
->  
->  	pmu {
-> 
-> -- 
-> 2.42.0
-> 
 
