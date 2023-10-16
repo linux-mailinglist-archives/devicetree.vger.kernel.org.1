@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-8729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DD97C9D72
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 04:35:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56067C9D70
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 04:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1369B20BC9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 02:35:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7514428162B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 02:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9DC17D9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE51185C;
 	Mon, 16 Oct 2023 02:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="kUbKuvA4"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="b5pXqZug"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA2A620
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA5B1389
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:35:13 +0000 (UTC)
 Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8480D9
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82F7C5
 	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 19:35:10 -0700 (PDT)
 Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E99432C0405;
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E47942C0381;
 	Mon, 16 Oct 2023 15:35:07 +1300 (NZDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
 	s=mail181024; t=1697423707;
-	bh=OB1HFD0haj60ittWb4C4v4aE6Zvqg/jIQB4+5b3lZ8I=;
+	bh=aCgNbznu5ctmkUYc5AaiEvFzQOMDXqXtMYjFRvtkLjM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kUbKuvA4hJxMPzKxurRcQFeYQKJLAbYdmc5d8iJffeGIvFq4R87Nm+FI93Kp6MDI5
-	 HpGUwrZhx0paEVdzcX9HEVTK4a/B+1BaaTCfBh4s+Z7gmgdy+55X0ed7DUqI/5bor/
-	 5plNxxpS38BU7M/5iHcWDhGX+ZDAOSVJauLx5gQqqDvHzszG3qvGW/lhBTfv+ppe9O
-	 CGQjY2wAH8JfScQt3wd3Sslhwd9cka0ea/LZctHSC0jmQS55taAnc+q0wOihrs0ngL
-	 Y0o2l1ELwt3fXrZWvbzRyDmkzqN7M967lmWQb/d0mx5H/YU+OYEKL3/G0SwZ0wel4L
-	 RWM+pIrXbE10A==
+	b=b5pXqZugtz0gQkC57FTOCbYsBpMB+TKmdU3EKS91m0zJl4LclBDOUZZwnE/k1l0ml
+	 9WgB2UcNNWPsN+8w3HFjRb/O+wtxmTWncJsVpk47mKmioYM0cKJKCI6EE1e9yUWadL
+	 fC9j5p98yjA4hFkoaijR3KyWVrL8lyyUR+iMLyZd+K3umqLYlDpyby0lGLUOW3140k
+	 wAxLJbF3hfhDENZk3jNcQm50wseILsgjrc4GlnJpzkEAZ3+BSwRRLeZ/06WdRWX7ba
+	 jeZnGkxwXcITPnuubE4LErIncETWjQVcZ0YYxqyakWdjeaoG5x+EnExH6jCYnzhcdw
+	 cJ9Iz/wuMGHsA==
 Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B652ca15b0001>; Mon, 16 Oct 2023 15:35:07 +1300
+	id <B652ca15b0002>; Mon, 16 Oct 2023 15:35:07 +1300
 Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id ADADF13EE4B;
+	by pat.atlnz.lc (Postfix) with ESMTP id AFFF513EE9B;
 	Mon, 16 Oct 2023 15:35:07 +1300 (NZDT)
 Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id AB2A0280056; Mon, 16 Oct 2023 15:35:07 +1300 (NZDT)
+	id AE1D028140C; Mon, 16 Oct 2023 15:35:07 +1300 (NZDT)
 From: Chris Packham <chris.packham@alliedtelesis.co.nz>
 To: gregory.clement@bootlin.com,
 	andi.shyti@kernel.org,
@@ -56,9 +56,9 @@ Cc: linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 1/2] dt-bindings: i2c: mv64xxx: add reset-gpios property
-Date: Mon, 16 Oct 2023 15:35:03 +1300
-Message-ID: <20231016023504.3976746-2-chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 2/2] i2c: mv64xxx: add an optional reset-gpios property
+Date: Mon, 16 Oct 2023 15:35:04 +1300
+Message-ID: <20231016023504.3976746-3-chris.packham@alliedtelesis.co.nz>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231016023504.3976746-1-chris.packham@alliedtelesis.co.nz>
 References: <20231016023504.3976746-1-chris.packham@alliedtelesis.co.nz>
@@ -69,49 +69,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=bhdUkHdE2iEA:10 a=KjBMs4lFH6h5yTpZ_i4A:9
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=bhdUkHdE2iEA:10 a=VsZq4EHS3crWG1I_hwYA:9
 X-SEG-SpamProfiler-Score: 0
 x-atlnz-ls: pat
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add reset-gpios and reset-delay-us properties to the marvell,mv64xxx-i2c
-binding. These can be used to describe hardware where a common reset
-GPIO is connected to all downstream devices on and I2C bus. This reset
-will be released before the downstream devices on the bus are probed.
+Some hardware designs have a GPIO used to control the reset of all the
+devices on and I2C bus. It's not possible for every child node to
+declare a reset-gpios property as only the first device probed would be
+able to successfully request it (the others will get -EBUSY). Represent
+this kind of hardware design by associating the reset-gpios with the
+parent I2C bus. The reset line will be released prior to the child I2C
+devices being probed.
 
 Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
 
 Notes:
     Changes in v2:
-    - Update commit message
-    - Add reset-delay-us property
+    - Add a property to cover the length of delay after releasing the res=
+et
+      GPIO
+    - Use dev_err_probe() when requesing the GPIO fails
 
- .../devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/i2c/busses/i2c-mv64xxx.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.ya=
-ml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-index 461d1c9ee3f7..7223797b0572 100644
---- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-@@ -70,6 +70,12 @@ properties:
-   resets:
-     maxItems: 1
+diff --git a/drivers/i2c/busses/i2c-mv64xxx.c b/drivers/i2c/busses/i2c-mv=
+64xxx.c
+index efd28bbecf61..50c470e5c4be 100644
+--- a/drivers/i2c/busses/i2c-mv64xxx.c
++++ b/drivers/i2c/busses/i2c-mv64xxx.c
+@@ -160,6 +160,7 @@ struct mv64xxx_i2c_data {
+ 	bool			clk_n_base_0;
+ 	struct i2c_bus_recovery_info	rinfo;
+ 	bool			atomic;
++	struct gpio_desc	*reset_gpio;
+ };
 =20
-+  reset-gpios:
-+    maxItems: 1
+ static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx =3D {
+@@ -1036,6 +1037,7 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+ 	struct mv64xxx_i2c_data		*drv_data;
+ 	struct mv64xxx_i2c_pdata	*pdata =3D dev_get_platdata(&pd->dev);
+ 	struct resource *res;
++	u32	reset_udelay;
+ 	int	rc;
+=20
+ 	if ((!pdata && !pd->dev.of_node))
+@@ -1083,6 +1085,14 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+ 	if (drv_data->irq < 0)
+ 		return drv_data->irq;
+=20
++	drv_data->reset_gpio =3D devm_gpiod_get_optional(&pd->dev, "reset", GPI=
+OD_OUT_HIGH);
++	if (IS_ERR(drv_data->reset_gpio))
++		return dev_err_probe(&pd->dev, PTR_ERR(drv_data->reset_gpio),
++				     "Cannot get reset gpio\n");
++	rc =3D device_property_read_u32(&pd->dev, "reset-delay-us", &reset_udel=
+ay);
++	if (rc)
++		reset_udelay =3D 1;
 +
-+  reset-delay-us:
-+    description: Delay in us to wait after reset gpio de-assertion.
+ 	if (pdata) {
+ 		drv_data->freq_m =3D pdata->freq_m;
+ 		drv_data->freq_n =3D pdata->freq_n;
+@@ -1121,6 +1131,11 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+ 			goto exit_disable_pm;
+ 	}
+=20
++	if (drv_data->reset_gpio) {
++		gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
++		usleep_range(reset_udelay, reset_udelay + 10);
++	}
 +
-   dmas:
-     items:
-       - description: RX DMA Channel
+ 	rc =3D request_irq(drv_data->irq, mv64xxx_i2c_intr, 0,
+ 			 MV64XXX_I2C_CTLR_NAME, drv_data);
+ 	if (rc) {
 --=20
 2.42.0
 
