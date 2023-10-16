@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-9052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C2347CB5A9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:51:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E4A7CB5A8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D90C02812C7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:51:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9501E1C20995
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1857D381DF;
-	Mon, 16 Oct 2023 21:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71648381DA;
+	Mon, 16 Oct 2023 21:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="E9DxHMUh"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vfhAjRiS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45AB6381D6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D16527732
 	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 21:51:22 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5A8D9
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:51:21 -0700 (PDT)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA49AC
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:51:20 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 621C4552;
-	Mon, 16 Oct 2023 23:51:11 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A289389D;
+	Mon, 16 Oct 2023 23:51:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697493071;
-	bh=3d/7SCNqU7/RsD8wbHd7RzFgECg/EnHTwz1WsD2cXBM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=E9DxHMUhrSgScicLIJZ7TZp+dReeHAPEp6ezW9T5qkOiEb/fZr9+HfES7DXcem75W
-	 vO6hm7oPoXMys1jwE/h71rUnz6aVN1zYsGSAv6Vs83vQBIRAdYHZdyqKNbjyLigZ/c
-	 grKgp/7YeXy7aBYBy6jcEQKxBcjyxz5W6IF/qf2Y=
+	s=mail; t=1697493072;
+	bh=4hjvHsVqzqOYZWkil1rRouOrvHTjXpzmHt0/v6juDpA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=vfhAjRiSLGTvVpo/2J6z2VgAuv4xIyAzbKcecBMDmxlrYOfHiJF69kMmQvhW+cMxk
+	 d8dVJb9pA3IrnKGR57GCBS8OsW8JK53uYrd4Rmdqy7QQmBBHy5Iuo4lHB29B2XW5cV
+	 MJAwlyU77yI18m23q+T3HdXwe/x+aL6GpgBoeAv4=
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: linux-mediatek@lists.infradead.org
 Cc: devicetree@vger.kernel.org,
@@ -48,10 +48,12 @@ Cc: devicetree@vger.kernel.org,
 	Julien Stephan <jstephan@baylibre.com>,
 	Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
 	Ted Larson <ted@ologicinc.com>
-Subject: [PATCH v1 0/2] arm64: dts: mediatek: Add device tree for MT8365-based Pumpkin i350
-Date: Tue, 17 Oct 2023 00:51:20 +0300
-Message-ID: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add prefix for OLogic, Inc.
+Date: Tue, 17 Oct 2023 00:51:21 +0300
+Message-ID: <20231016215123.30343-2-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
+References: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,45 +67,28 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+Add a DT vendor prefix for OLogic, Inc. OLogic is a hardware and system
+design company that manufactures, among other things, development boards
+with MediaTek SoCs.
 
-This small patch series adds a device tree for the Pumpkin i350 board
-made by OLogic. It starts with two small patches to add a vendor prefix
-for OLogic (1/3) and a compatible string for the board (2/3), and then
-adds the device tree (3/3).
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-The device tree is based on work from Fabien Parent, with a few features
-added, and a set of devices removed:
-
-- Audio support, as I can't easily test it at the moment due to lack of
-  local access to the board.
-
-- Display support, for the same reason.
-
-- Dual-role USB support, due to missing bindings and drivers for the
-  TUSB322 in the upstream kernel.
-
-Support for the crypto processor (ATECC608B) and the WiFi/Bluetooth
-module (MT7663S) is also missing, but this wasn't present in the BSP
-either.
-
-Once camera support for the MT8365 lands upstream, I will probably send
-patches for DT integration with this board.
-
-Laurent Pinchart (3):
-  dt-bindings: vendor-prefixes: Add prefix for OLogic, Inc.
-  dt-bindings: arm64: dts: mediatek: Add ologic,pumpkin-i350 board
-  arm64: dts: mediatek: Add device tree for MT8365-based Pumpkin i350
-
- .../devicetree/bindings/arm/mediatek.yaml     |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- .../boot/dts/mediatek/mt8365-pumpkin.dts      | 542 ++++++++++++++++++
- 4 files changed, 546 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-
-
-base-commit: 58720809f52779dc0f08e53e54b014209d13eebb
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..247b724bc01f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -981,6 +981,8 @@ patternProperties:
+     description: Oki Electric Industry Co., Ltd.
+   "^olimex,.*":
+     description: OLIMEX Ltd.
++  "^ologic,.*":
++    description: OLogic, Inc.
+   "^olpc,.*":
+     description: One Laptop Per Child
+   "^oneplus,.*":
 -- 
 Regards,
 
