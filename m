@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE987C9F49
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CD67C9F4F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:11:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F21F51F21B27
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 06:10:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 289122815FA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 06:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C244883B;
-	Mon, 16 Oct 2023 06:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2603E1172D;
+	Mon, 16 Oct 2023 06:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="acbH/J5P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vHxaa/N1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A343B15480
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 06:10:02 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 088C2D9
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 23:10:01 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ad8a822508so657115666b.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 23:10:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88F81C14
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 06:11:34 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B16DE
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 23:11:32 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9936b3d0286so665448066b.0
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 23:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697436599; x=1698041399; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697436690; x=1698041490; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PVE4Fp1iw8WKJixYgT2hJ0Ht8/G6WBROKr6ExMjWaXM=;
-        b=acbH/J5PiPeqQwRFpcr6iPFmltneRENfbBvsLYEzKo7TIsPHSpSUsaHREe0tRENTdR
-         bYCgkfSsN3BohDcqpDZMsxcc2QPpPTxmBMJgB56OVlzyWtUXXBlay7sRxdF9oUlk/Dxu
-         ndS1g3D2k2zCtB6+xQgXEdnlnnyktLmYoSaZ/IkVhXIUMpRWHaIn/48h/bllKZlKhf94
-         klfFb/j04O4Mrsy0k9ksuSojp4SJigUlQ0hX58L2/VZq6H0sfGM8qhBDTo0kXzShSsV1
-         DCLZBk/sZxFm3CDEzC+MZFXBWXpB+hWK4gx7KJ7IlBJ5rbAFb5zrpO3blnlsWJgFiM7R
-         H9SA==
+        bh=vF79aULcz1sIXc9hQlXxFw5EsuIwvZhPnZf3dLMpAkg=;
+        b=vHxaa/N1MUjJAci4pvmWYABUon+IhbSpaFyOIc3FoA2HuIlZ63qdmBxlD5csll72im
+         +vOJ/pQkSB4CaO3AEzuiIt4tDxM96UEkNsz7P6AQi20ffUL1wPE8Xi8uTGZ5vRPxdfQO
+         nVvgYD6mKsEsnUURKVujUlUggIn0JmEJF0yGFpQ4OM9fil4YjPA7XiWx1D9vbpcEqftK
+         2hLZ01Cxr5jDTL4l8GA9uml69BN+gItcd9R05fgoAkMvLK8SBbBxs1Lzgdg7k82fT6Zp
+         6sYLWUKW7v/hfRKj+XeQ9DsneOpA4JGuBeJP3xJrfXOtl/KroO9vmFHgNcMXDz6oZZxb
+         a42g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697436599; x=1698041399;
+        d=1e100.net; s=20230601; t=1697436690; x=1698041490;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PVE4Fp1iw8WKJixYgT2hJ0Ht8/G6WBROKr6ExMjWaXM=;
-        b=PzOlcZe2VPjLaw8wStoOBt8EkZ+xpWy/pgMsboxk9VXMxWxQKKfxCT3/XaDXT1KYIW
-         T8FWDWMHPWDHnH/Ab+B8eh6q3vzBn9kcIFa+Gr7dOYEDqro+uBSDl3CUCz39xtFziPxw
-         uORMhQ8VAr5kEMFibXdZI4O5LymfoLKApMy3+6eQGls5wCu5jSxK/u3Cj9O8UnKnr2Y5
-         1NVUDRj25qEl4MtKv0WC6uNyI62T6DCkacRwf/aHAdKjvB4Xf7tOnmA4JOv9PiV6R5w2
-         HuOZMx55ujFmqXbGNLL97bGZiqo8UGhoHOy1OwYxB7efYIaGN/bz+7+nRASYcAooHqtk
-         S7Gw==
-X-Gm-Message-State: AOJu0YwadOF9siFxHxxTiWPVZVzxToMWAYxq9wexJchO+DrYCX+znl4M
-	n6dYuk4sGztREdihZ37MznF8MQ==
-X-Google-Smtp-Source: AGHT+IFVCD+geRuU9sZalpDfWWdxh3WfdnKKNn/dFPghy+JHOER3vWK96NGqLbZKG7pEz9gDUKIc8Q==
-X-Received: by 2002:a17:907:da6:b0:9be:dce3:6e09 with SMTP id go38-20020a1709070da600b009bedce36e09mr5526916ejc.68.1697436599486;
-        Sun, 15 Oct 2023 23:09:59 -0700 (PDT)
+        bh=vF79aULcz1sIXc9hQlXxFw5EsuIwvZhPnZf3dLMpAkg=;
+        b=Sr4kGFK2US2JlxEBbBxO9K9Eceho/D6g94rXHLM4OeTxmOjcQcsUVFiqtZGcAMIhGb
+         FJ1DraOMcJ3enT5YUhL4PY6dYniy8akqnHJ/eBNmID2FkWZqgbzCXI72Ui7Zdi7vyiOH
+         8MNZ5sdgBAva/TZ+2GKD/Y3PvMQSFiu+W2OEBJgVLKhxRS8CD1PLsh2fm8+vPCC/QeGG
+         H8jLl4gx6JdbBTC8PylZkgMAs/jHNnvNVh1fjxs+SYT5OqAcJVQ3XtTfFlsl8VyD801F
+         8UzSkMB9gp1Ek+KfP4/b0nrsjRea8nunxbv3eAf84e7NegRV+sONqy8Vn0Eda7/6QCap
+         oALw==
+X-Gm-Message-State: AOJu0YzWCqYm8kkRC/EUAfuzmsdFGJSVOOH+QMITX6wANTiFzHUDTc97
+	gy9GWtIT+N10ms8fK9P4DWxqmQ==
+X-Google-Smtp-Source: AGHT+IEXdFFcaRItGeSRZQulllW5dkpEmZ2hGyYRZIvwx+8YORDkhao1DuaEHQ2RvcED7wVuWZ+sKA==
+X-Received: by 2002:a17:906:4fcd:b0:9bf:4915:22ca with SMTP id i13-20020a1709064fcd00b009bf491522camr4385412ejw.45.1697436690676;
+        Sun, 15 Oct 2023 23:11:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id m24-20020a170906235800b009c503bf61c9sm153141eja.165.2023.10.15.23.09.57
+        by smtp.gmail.com with ESMTPSA id m24-20020a170906235800b009c503bf61c9sm153141eja.165.2023.10.15.23.11.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 23:09:58 -0700 (PDT)
-Message-ID: <2b12a49c-ed82-4632-86c6-349976cd714b@linaro.org>
-Date: Mon, 16 Oct 2023 08:09:56 +0200
+        Sun, 15 Oct 2023 23:11:30 -0700 (PDT)
+Message-ID: <6bc4e497-97df-4e46-b981-9679c5830492@linaro.org>
+Date: Mon, 16 Oct 2023 08:11:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: serial: sc16is7xx: remove
- 'clock-frequency' property
+Subject: Re: [PATCH 1/2] dt-bindings: serial: sc16is7xx: move 'allOf' block
+ after 'required'
 Content-Language: en-US
 To: Hugo Villeneuve <hugo@hugovil.com>, gregkh@linuxfoundation.org,
  jirislaby@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -76,7 +76,7 @@ To: Hugo Villeneuve <hugo@hugovil.com>, gregkh@linuxfoundation.org,
 Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20231013141925.3427158-1-hugo@hugovil.com>
- <20231013141925.3427158-3-hugo@hugovil.com>
+ <20231013141925.3427158-2-hugo@hugovil.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,25 +122,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231013141925.3427158-3-hugo@hugovil.com>
+In-Reply-To: <20231013141925.3427158-2-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 13/10/2023 16:19, Hugo Villeneuve wrote:
 > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> The 'clock-frequency' property is supported but mainly in ACPI-based
-> configurations, for example.
+> The 'allOf' block should go after the 'required' block according to DT
+> bindings best practices.
 > 
-> This property has therefore no place in the sc16is7xx YAML binding.
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
 
-Please reference commit which you question - 0d447e927. I don't
-understand why do you remove it. The property was in the original binding.
+This is just a matter of style.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
