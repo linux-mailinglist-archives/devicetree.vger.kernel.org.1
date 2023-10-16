@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-8751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAEBE7C9EA2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:24:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C735B7C9EA6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF6C31C208D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:24:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 580B81F219E2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD2B79CD;
-	Mon, 16 Oct 2023 05:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB5979D1;
+	Mon, 16 Oct 2023 05:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NI82ucMz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YluxtC7I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9C96FCE
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:24:01 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66DCEA
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:23:59 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40675f06f1fso31261385e9.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:23:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72246FCE
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:24:38 +0000 (UTC)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E058DA1
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:24:33 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-32003aae100so3244636f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:24:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697433838; x=1698038638; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BPg+u6DXoov81DzJxUpC55Cj3HjO/2ssQ4EG/89xapY=;
-        b=NI82ucMzje7+usxYa22yfnP+1QSf/XzfBP1R1R72gFyBOKkajzMNfnFBp6Iqhm/UWP
-         HaQVtzup5hbgg4lezFXvTOVag7l6ttwA3VIdHYFfvJY5m7Yrx/Iw0MWj2j0M2PneKoI6
-         i41ekNXs2+xxrqw8MFPTFjFkMxqDNaFmP7c0MudBE5o33ssDceVxbfqx64hc689P5Rlc
-         uZwH+MkjPBl6Wmb78FJMz7rHVKkZAXOqHQ7PsPIFHUhGAMvab52ncjUPKKJN68PuaZiu
-         9ytnDrlQW14+Ct8sqyvuvKn5ReuWyBo54BkQdaU5fUiaXfjCYcWNXvxXbrtEpGV6T/ri
-         13Gg==
+        d=linaro.org; s=google; t=1697433872; x=1698038672; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=K/b0EIw6Lv4KLA7L2mO3jyC4V0pA77j6I9zGomE3mmw=;
+        b=YluxtC7Iff28S9OsQpsDCaTAQVtWQ7+yE16xaH+tABYZIQSy5cepKiVPz6EJsqJHip
+         Nyga6q/C0GYNSPXmw9dPmrFAMBH/axGArn1oLX8TPaRuYufpVW2i3+YwrXwC3NlvPijK
+         rC7jUPolY4m2maX93hTMpvtnaQ1tcxwAIUGBFUJphgVQTqT6X853pcqTM1KFIrBR6N0I
+         28ilFDdCm/TCeQNeQ2Sl6zfnYPPTiEg6yWF+jyDoO2uBigl9fTVO4WirmJxyrTY9+HRX
+         rHKo7lyYbGLmzkjmAZOGzApzl4GxsX8hYf3fbppCavZsBQADqXEtW94TSznYdBHk/J08
+         748Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697433838; x=1698038638;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BPg+u6DXoov81DzJxUpC55Cj3HjO/2ssQ4EG/89xapY=;
-        b=ZS60n3EcV6Mu/PY0EYqameDbLx/2f+s/HuoDUeAmxU+5BrVh6Ain6gihkAB4iBVhmL
-         EMszivmHnjrP80xbB/HbCesLONNTe19IILj4T1CAucZTei7x3d3bb5VEqWF8G2+v5H3y
-         m3N38juxkDlvOBwHZ7STxYMGW2BKUTbh0vowC7bVUVQDWLafGm2vhrPY/gsQb/ajXavg
-         pkJfUQlDEvjkXI+ZNYn3T+2q+y+1MZP1K4d4f0GvO58QWFCCZn5q7JHYtyw4uKhcBWeP
-         saamtHVHggU86wXulOkjX/cE0MaeiDFPE70W3V/czGHLmNi6zYBHmgnP+cI7rkpQ2XBP
-         KsMg==
-X-Gm-Message-State: AOJu0Yxl6oMzf26gxsnYZwVSXwp7R5cNQu4HqcJqWiJl8C5VKbt66hdg
-	vBaY171xFRp5pN1QwvLR/bw2Eg==
-X-Google-Smtp-Source: AGHT+IG3U2VJhr1VhipPc3FkwcugR0JbK0DPX15Le2fihCwVyHMIBhQlIpyJsWHxkjAk9iEnpc+Yiw==
-X-Received: by 2002:a5d:680d:0:b0:32d:81e3:f0d8 with SMTP id w13-20020a5d680d000000b0032d81e3f0d8mr4030138wru.26.1697433838253;
-        Sun, 15 Oct 2023 22:23:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697433872; x=1698038672;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K/b0EIw6Lv4KLA7L2mO3jyC4V0pA77j6I9zGomE3mmw=;
+        b=oWAK+j+AWObghHe8NEPi2pkh3CasfxH+oo3JlXCKyzRyNTyzY/ZkrIes0RXDitCpSq
+         C34lgYqOs46k76G8Q6tFhjFfaGPw40Ri8WY7MKYuTHeLzbATj+duLjAkoK8/qa1YlGac
+         /u5JOGbHtb+PACYTP/D485m1v6nDEo+qO3Hmj4nSQGdFD05sdBtvM1vMMvXX1cg3mOqz
+         aCQ0v/S3IE30MJ0nagrwBRtubf3lVdhibrr06gRjQpKjyo2la1iwC1r9inXsxXBoJ0jv
+         zfSb3HY36HaFHUgwJ7dfWgXt7LD74dyz8/ereN/2ROZ6TCizv9YYbk4uIk3ea9VKt2s0
+         FFVg==
+X-Gm-Message-State: AOJu0Yy76VFgB/377XzsIn2TTo838J05vmTXJJS+OyGoI3WIyYf2rxRT
+	Q+dskWRUsP/KJSC40wxRsCaw9A==
+X-Google-Smtp-Source: AGHT+IGpjHCdhzj/Snf+iK0GKEnaXdl8aZjMxPPXlx0SdfWi9I47a31bHKDbcXUGXNaqXJWLPQR0/w==
+X-Received: by 2002:adf:978d:0:b0:323:1df6:7c17 with SMTP id s13-20020adf978d000000b003231df67c17mr3874874wrb.9.1697433872398;
+        Sun, 15 Oct 2023 22:24:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id i9-20020a5d6309000000b0032da40fd7bdsm5045106wru.24.2023.10.15.22.23.55
+        by smtp.gmail.com with ESMTPSA id i9-20020a5d6309000000b0032da40fd7bdsm5045106wru.24.2023.10.15.22.24.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 22:23:57 -0700 (PDT)
-Message-ID: <9d18adbf-11f7-45ff-902f-e0092abb44a1@linaro.org>
-Date: Mon, 16 Oct 2023 07:23:55 +0200
+        Sun, 15 Oct 2023 22:24:31 -0700 (PDT)
+Message-ID: <b7be1f61-c11d-4138-897d-9d67ddd5c943@linaro.org>
+Date: Mon, 16 Oct 2023 07:24:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,6 +70,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH V1 2/4] dt-bindings: crypto: qcom,prng: document SC7280
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Om Prakash Singh <quic_omprsing@quicinc.com>
 Cc: neil.armstrong@linaro.org, konrad.dybcio@linaro.org, agross@kernel.org,
  andersson@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
@@ -78,7 +80,7 @@ Cc: neil.armstrong@linaro.org, konrad.dybcio@linaro.org, agross@kernel.org,
  marijn.suijten@somainline.org, robh+dt@kernel.org, vkoul@kernel.org
 References: <20231015193901.2344590-1-quic_omprsing@quicinc.com>
  <20231015193901.2344590-3-quic_omprsing@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <9d18adbf-11f7-45ff-902f-e0092abb44a1@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -123,7 +125,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231015193901.2344590-3-quic_omprsing@quicinc.com>
+In-Reply-To: <9d18adbf-11f7-45ff-902f-e0092abb44a1@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -133,25 +135,28 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/10/2023 21:38, Om Prakash Singh wrote:
-> Document SC7280 compatible for the True Random Number Generator.
+On 16/10/2023 07:23, Krzysztof Kozlowski wrote:
+> On 15/10/2023 21:38, Om Prakash Singh wrote:
+>> Document SC7280 compatible for the True Random Number Generator.
+>>
+>> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> index 85e6b1c199f5..d52355fbd1d6 100644
+>> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>                - qcom,sm8450-trng
+>>                - qcom,sm8550-trng
+>>                - qcom,sa8775p-trng
+>> +              - qcom,sc7280-trng
 > 
-> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-> index 85e6b1c199f5..d52355fbd1d6 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-> @@ -20,6 +20,7 @@ properties:
->                - qcom,sm8450-trng
->                - qcom,sm8550-trng
->                - qcom,sa8775p-trng
-> +              - qcom,sc7280-trng
+> sc comes before sm
 
-sc comes before sm
+also, this should be squashed with previous patch.
 
 Best regards,
 Krzysztof
