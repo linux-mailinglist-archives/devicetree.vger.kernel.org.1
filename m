@@ -1,1128 +1,1504 @@
-Return-Path: <devicetree+bounces-8833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C85D7CA45C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:39:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D1A7CA45E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:39:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5148B28150D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:38:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C660FB20EB0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE2B1CAAB;
-	Mon, 16 Oct 2023 09:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6186D1CF8D;
+	Mon, 16 Oct 2023 09:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="im9z2JeK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EnBplM0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DC21C6AE
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:36:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B77BC43391
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697449017;
-	bh=qdzj79GxjVduoH+bIxug5yDVSUjAmrZeZCOqoyqgZog=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=im9z2JeKqvu9gxxz3VEu7F+QlSZETu0KvyIg1A0IxbDhn1/l3iAkJbwTZfZB6OUyr
-	 mi9rMZtZBwVFWrFKWQ8Z+fc8ewSeh+J5U+SlWdnPVxWkKELcHuClKWHKHT3DRocRzz
-	 1ptWKvuSVLjIAYGGsGKX9giq9NyicvS6mPY79pCZeCAYL1Ga+H5E2C8VzlQt1d6jtK
-	 gDO798CcNJ+LjBR1i/y3Zo3UyWqXzkWXGRLj2RRObYYM+9bcKB1I7AVslze0jsMzyL
-	 DAu96z+QcCiV54SisjEUSZRwSI/htvFalyKmGJUZBwp0wEwXyckpHdB/8KGH4AidXe
-	 xuDeAf554Fwyg==
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-27d153c7f00so2647275a91.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:36:57 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxFk/LObfSPjmc1esh9Wxr5cfBHkzqhWLFA38qHOfquXsi+3xtE
-	93sZQUTpEW4+ON2SI6q8EOjk9iofE3Qw9DkN1RAtKQ==
-X-Google-Smtp-Source: AGHT+IEVGNqs2alsqliELarTsHzR+3eTyqUkJPoEpbXihnRt0MVrYX/x1WugI9Rvmg/dKriX4dGYn2YIpMcx+SLnm+I=
-X-Received: by 2002:a17:90b:118a:b0:27d:19ef:fa2c with SMTP id
- gk10-20020a17090b118a00b0027d19effa2cmr9509834pjb.14.1697449016748; Mon, 16
- Oct 2023 02:36:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9191C6AE
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:36:58 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD251AB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:36:53 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-405361bb9f7so43445245e9.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:36:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1697449012; x=1698053812; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TpG3oMrjIsT8xDGmfuQ2fU/AReBP2VaA+uUxIlZGvrQ=;
+        b=EnBplM0Q9HsFj+qYsqlIeAQ5uGmRVsKBakHt3gFnydVMOasV+VrbQjCjIW6FuULlSs
+         1aFEKVUXRCRAirMb/HyHIsPYT9ZO0fV0VorjFVS7V+gsIDFuBGE8OImIBLDIVCMfY7YI
+         OCJNJePIZ33TMim48o/REZxAEAk0sF/+igy46ZQWT5oXbePVWTnNpYZpez8aStmLWkrr
+         TluXkj8ik4BF8LTVI2uyFrUNPDyakp+U5CgmeQVKXBDaylyFM3DmTbJ8yLJrwhhX8u1d
+         PYVj+gPIZtkFrvp4tHLuuutCtIdkFAeXvp5531u7gO/BTa7Q+yYoJZN9eERotbk9QUSx
+         d0xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697449012; x=1698053812;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TpG3oMrjIsT8xDGmfuQ2fU/AReBP2VaA+uUxIlZGvrQ=;
+        b=wXSGugge6DD6rE+GRAWuah5aTum7N05mVsOGNH8IYefNU7OaZqHvztdpgrzzA1aZXm
+         bOmk37ixFUX9eQoArv8kzTWa3dkeS5jBL+jeajy5Bm3zjmNnXfzU3IeAz0LClyGkNw3o
+         o0N2++MjeoamOoLC98+ELppUHrbZ3zMmtZ4zEvMJ5d5ob8iKndJi3jSqUx6BP9H0H1am
+         5oB3gb4rqEiPPzu/OnAiJjzdR3i6Dxz/pbrpeg2dd8eVnz4uUfnCYboVkoWO7NL7gIYw
+         4PTlFPShzyFXd22DZulFh2Wg38N85MLfiCbgA//uRINKH8HCAO6v2IviFxQpCoLA33ef
+         SXnQ==
+X-Gm-Message-State: AOJu0Yxwh7esyDSPSv3UlQOU1PPf0JQDL54/759ozjRcdj0NxfkwkgJZ
+	hZxGUI77q+MuVEATHy4n9XWmddJK9ck3zkpybhg=
+X-Google-Smtp-Source: AGHT+IH/ZtlBXNIdbthN2kGK9l0A+zO40WM2DyE7paHyzWXN65vzbqLy6bgTSXvzpfj+1kfBYpyGPQ==
+X-Received: by 2002:a1c:7c0b:0:b0:402:8896:bb7b with SMTP id x11-20020a1c7c0b000000b004028896bb7bmr27843813wmc.6.1697449011759;
+        Mon, 16 Oct 2023 02:36:51 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id l5-20020a7bc445000000b00406847c988asm6602483wmi.12.2023.10.16.02.36.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Oct 2023 02:36:51 -0700 (PDT)
+Message-ID: <3de3e2ad-382d-4e2f-8943-1cd284604ab7@baylibre.com>
+Date: Mon, 16 Oct 2023 11:36:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821034008.3876938-1-victor.liu@nxp.com> <20230821034008.3876938-10-victor.liu@nxp.com>
-In-Reply-To: <20230821034008.3876938-10-victor.liu@nxp.com>
-From: Robert Foss <rfoss@kernel.org>
-Date: Mon, 16 Oct 2023 11:36:45 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi73J16xHNC704s8TX8ytNY5=os6CjYrTUSLAr64inR4RA@mail.gmail.com>
-Message-ID: <CAN6tsi73J16xHNC704s8TX8ytNY5=os6CjYrTUSLAr64inR4RA@mail.gmail.com>
-Subject: Re: [PATCH v3 RESEND 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
-	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, linux-imx@nxp.com, alexander.stein@ew.tq-group.com, 
-	sam@ravnborg.org, jagan@amarulasolutions.com, yannick.fertre@foss.st.com, 
-	raphael.gallais-pou@foss.st.com, philippe.cornu@foss.st.com, 
-	hjc@rock-chips.com, heiko@sntech.de, zyw@rock-chips.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v4 4/4] arm64: dts: Add MediaTek MT8188 dts and
+ evaluation board and Makefile
+Content-Language: en-US
+To: Jason-ch Chen <jason-ch.chen@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
+ <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
+ <20230921060235.32478-5-jason-ch.chen@mediatek.com>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230921060235.32478-5-jason-ch.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Aug 21, 2023 at 5:38=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrote=
-:
->
-> Freescale i.MX93 SoC embeds a Synopsys Designware MIPI DSI host
-> controller and a Synopsys Designware MIPI DPHY.  Some configurations
-> and extensions to them are controlled by i.MX93 media blk-ctrl.
->
-> Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
-> bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+
+
+On 21/09/2023 08:02, Jason-ch Chen wrote:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> 
+> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
+> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
+> 
+> We add basic chip support for MediaTek MT8188 on evaluation board.
+> 
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> v2->v3:
-> * Select GENERIC_PHY to fix Kconfig warning for GENERIC_PHY_MIPI_DPHY
->   dependency.
->
-> v1->v2:
-> * Use dev_err_probe() to replace DRM_DEV_ERROR().  (Sam and Alexander)
-> * Use dev_*() to replace DRM_*().  (Sam)
-> * Fix build for arm architecture.
->   (Reported-by: kernel test robot <lkp@intel.com>)
-> * Improve error messages for imx93_dsi_phy_init().
->
->  drivers/gpu/drm/bridge/imx/Kconfig          |  11 +
->  drivers/gpu/drm/bridge/imx/Makefile         |   1 +
->  drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c | 917 ++++++++++++++++++++
->  3 files changed, 929 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
->
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
-imx/Kconfig
-> index 9fae28db6aa7..5a4f3d58501e 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -49,4 +49,15 @@ config DRM_IMX8QXP_PIXEL_LINK_TO_DPI
->           Choose this to enable pixel link to display pixel interface(PXL=
-2DPI)
->           found in Freescale i.MX8qxp processor.
->
-> +config DRM_IMX93_MIPI_DSI
-> +       tristate "Freescale i.MX93 specific extensions for Synopsys DW MI=
-PI DSI"
-> +       depends on OF
-> +       depends on COMMON_CLK
-> +       select DRM_DW_MIPI_DSI
-> +       select GENERIC_PHY
-> +       select GENERIC_PHY_MIPI_DPHY
-> +       help
-> +         Choose this to enable MIPI DSI controller found in Freescale i.=
-MX93
-> +         processor.
-> +
->  endif # ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge=
-/imx/Makefile
-> index 8e2ebf3399a1..2b0c2e44aa1b 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_IMX8QXP_LDB) +=3D imx8qxp-ldb.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pixel-combiner.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) +=3D imx8qxp-pixel-link.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) +=3D imx8qxp-pxl2dpi.o
-> +obj-$(CONFIG_DRM_IMX93_MIPI_DSI) +=3D imx93-mipi-dsi.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c b/drivers/gpu/dr=
-m/bridge/imx/imx93-mipi-dsi.c
+>   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+>   arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 400 ++++++++
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951 ++++++++++++++++++++
+>   3 files changed, 1352 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index c99c3372a4b5..9bd2324259a3 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-evb.dts b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
 > new file mode 100644
-> index 000000000000..3ff30ce80c5b
+> index 000000000000..ad71a0e1ad41
 > --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
-> @@ -0,0 +1,917 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+> @@ -0,0 +1,400 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > +/*
-> + * Copyright 2022,2023 NXP
+> + * Copyright (C) 2023 MediaTek Inc.
+> + */
+> +/dts-v1/;
+> +#include "mt8188.dtsi"
+> +#include "mt6359.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek MT8188 evaluation board";
+> +	compatible = "mediatek,mt8188-evb", "mediatek,mt8188";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		i2c0 = &i2c0;
+> +		i2c1 = &i2c1;
+> +		i2c2 = &i2c2;
+> +		i2c3 = &i2c3;
+> +		i2c4 = &i2c4;
+> +		i2c5 = &i2c5;
+> +		i2c6 = &i2c6;
+> +		mmc0 = &mmc0;
+> +	};
+> +
+> +	chosen: chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0 0x40000000 0 0x80000000>;
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		scp_mem_reserved: memory@50000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x50000000 0 0x2900000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&auxadc {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c3_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c4_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c5_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c6_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	status = "okay";
+> +	pinctrl-names = "default", "state_uhs";
+> +	pinctrl-0 = <&mmc0_default_pins>;
+> +	pinctrl-1 = <&mmc0_uhs_pins>;
+> +	bus-width = <8>;
+> +	max-frequency = <200000000>;
+> +	cap-mmc-highspeed;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	supports-cqe;
+> +	cap-mmc-hw-reset;
+> +	no-sdio;
+> +	no-sd;
+> +	hs400-ds-delay = <0x1481b>;
+> +	vmmc-supply = <&mt6359_vemc_1_ldo_reg>;
+> +	vqmmc-supply = <&mt6359_vufs_ldo_reg>;
+> +	non-removable;
+> +};
+> +
+> +&mt6359_vbbck_ldo_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vcn33_2_bt_ldo_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vcore_buck_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vgpu11_buck_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vpu_buck_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vrf12_ldo_reg {
+> +	regulator-always-on;
+> +};
+> +
+> +&mt6359_vufs_ldo_reg {
+> +	regulator-always-on;
+> +};
+> +
+
+This is a lot of always-on regulator.
+Is it possible to justify them? Maybe some of them should be just 
+included into a relevent node ? For example, "mt6359_vcn33_2_bt_ldo_reg" 
+could be into the bluetooth node right ?
+
+Angelo already wrote me a feedback about that in the MT8365 serie:
+https://lore.kernel.org/all/ff7292f0-9055-1787-2543-e219fe30dddf@collabora.com/
+
+> +&nor_flash {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&nor_pins_default>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <52000000>;
+> +	};
+> +};
+> +
+> +&pio {
+> +	adsp_uart_pins: adsp-uart-pins {
+> +		pins-adsp-uart {
+> +			pinmux = <PINMUX_GPIO35__FUNC_O_ADSP_UTXD0>,
+> +				 <PINMUX_GPIO36__FUNC_I1_ADSP_URXD0>;
+> +		};
+> +	};
+> +
+> +	i2c0_pins: i2c0-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>,
+> +				 <PINMUX_GPIO55__FUNC_B1_SCL0>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c1_pins: i2c1-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO58__FUNC_B1_SDA1>,
+> +				 <PINMUX_GPIO57__FUNC_B1_SCL1>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c2_pins: i2c2-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO60__FUNC_B1_SDA2>,
+> +				 <PINMUX_GPIO59__FUNC_B1_SCL2>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c3_pins: i2c3-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO62__FUNC_B1_SDA3>,
+> +				 <PINMUX_GPIO61__FUNC_B1_SCL3>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c4_pins: i2c4-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO64__FUNC_B1_SDA4>,
+> +				 <PINMUX_GPIO63__FUNC_B1_SCL4>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c5_pins: i2c5-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO66__FUNC_B1_SDA5>,
+> +				 <PINMUX_GPIO65__FUNC_B1_SCL5>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	i2c6_pins: i2c6-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO68__FUNC_B1_SDA6>,
+> +				 <PINMUX_GPIO67__FUNC_B1_SCL6>;
+> +			bias-pull-up = <MTK_PULL_SET_RSEL_011>;
+> +		};
+> +	};
+> +
+> +	mmc0_default_pins: mmc0-default-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO161__FUNC_B1_MSDC0_DAT0>,
+> +				 <PINMUX_GPIO160__FUNC_B1_MSDC0_DAT1>,
+> +				 <PINMUX_GPIO159__FUNC_B1_MSDC0_DAT2>,
+> +				 <PINMUX_GPIO158__FUNC_B1_MSDC0_DAT3>,
+> +				 <PINMUX_GPIO154__FUNC_B1_MSDC0_DAT4>,
+> +				 <PINMUX_GPIO153__FUNC_B1_MSDC0_DAT5>,
+> +				 <PINMUX_GPIO152__FUNC_B1_MSDC0_DAT6>,
+> +				 <PINMUX_GPIO151__FUNC_B1_MSDC0_DAT7>,
+> +				 <PINMUX_GPIO156__FUNC_B1_MSDC0_CMD>;
+> +			input-enable;
+> +			drive-strength = <6>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +
+> +		pins-clk {
+> +			pinmux = <PINMUX_GPIO157__FUNC_B1_MSDC0_CLK>;
+> +			drive-strength = <6>;
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+> +		};
+> +
+> +		pins-rst {
+> +			pinmux = <PINMUX_GPIO155__FUNC_O_MSDC0_RSTB>;
+> +			drive-strength = <6>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +	};
+> +
+> +	mmc0_uhs_pins: mmc0-uhs-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO161__FUNC_B1_MSDC0_DAT0>,
+> +				 <PINMUX_GPIO160__FUNC_B1_MSDC0_DAT1>,
+> +				 <PINMUX_GPIO159__FUNC_B1_MSDC0_DAT2>,
+> +				 <PINMUX_GPIO158__FUNC_B1_MSDC0_DAT3>,
+> +				 <PINMUX_GPIO154__FUNC_B1_MSDC0_DAT4>,
+> +				 <PINMUX_GPIO153__FUNC_B1_MSDC0_DAT5>,
+> +				 <PINMUX_GPIO152__FUNC_B1_MSDC0_DAT6>,
+> +				 <PINMUX_GPIO151__FUNC_B1_MSDC0_DAT7>,
+> +				 <PINMUX_GPIO156__FUNC_B1_MSDC0_CMD>;
+> +			input-enable;
+> +			drive-strength = <8>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +
+> +		pins-clk {
+> +			pinmux = <PINMUX_GPIO157__FUNC_B1_MSDC0_CLK>;
+> +			drive-strength = <8>;
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+> +		};
+> +
+> +		pins-ds {
+> +			pinmux = <PINMUX_GPIO162__FUNC_B0_MSDC0_DSL>;
+> +			drive-strength = <8>;
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+> +		};
+> +
+> +		pins-rst {
+> +			pinmux = <PINMUX_GPIO155__FUNC_O_MSDC0_RSTB>;
+> +			drive-strength = <8>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +	};
+> +
+> +	nor_pins_default: nor-pins {
+> +		pins0 {
+> +			pinmux = <PINMUX_GPIO127__FUNC_B0_SPINOR_IO0>,
+> +				 <PINMUX_GPIO125__FUNC_O_SPINOR_CK>,
+> +				 <PINMUX_GPIO128__FUNC_B0_SPINOR_IO1>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pins1 {
+> +			pinmux = <PINMUX_GPIO126__FUNC_O_SPINOR_CS>,
+> +				 <PINMUX_GPIO129__FUNC_B0_SPINOR_IO2>,
+> +				 <PINMUX_GPIO130__FUNC_B0_SPINOR_IO3>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	spi0_pins: spi0-pins {
+> +		pins-spi {
+> +			pinmux = <PINMUX_GPIO69__FUNC_O_SPIM0_CSB>,
+> +				 <PINMUX_GPIO70__FUNC_O_SPIM0_CLK>,
+> +				 <PINMUX_GPIO71__FUNC_B0_SPIM0_MOSI>,
+> +				 <PINMUX_GPIO72__FUNC_B0_SPIM0_MISO>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	spi1_pins: spi1-pins {
+> +		pins-spi {
+> +			pinmux = <PINMUX_GPIO75__FUNC_O_SPIM1_CSB>,
+> +				 <PINMUX_GPIO76__FUNC_O_SPIM1_CLK>,
+> +				 <PINMUX_GPIO77__FUNC_B0_SPIM1_MOSI>,
+> +				 <PINMUX_GPIO78__FUNC_B0_SPIM1_MISO>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	spi2_pins: spi2-pins {
+> +		pins-spi {
+> +			pinmux = <PINMUX_GPIO79__FUNC_O_SPIM2_CSB>,
+> +				 <PINMUX_GPIO80__FUNC_O_SPIM2_CLK>,
+> +				 <PINMUX_GPIO81__FUNC_B0_SPIM2_MOSI>,
+> +				 <PINMUX_GPIO82__FUNC_B0_SPIM2_MISO>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	uart0_pins: uart0-pins {
+> +		pins-uart0 {
+> +			pinmux = <PINMUX_GPIO31__FUNC_O_UTXD0>,
+> +				 <PINMUX_GPIO32__FUNC_I1_URXD0>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> +
+> +&pmic {
+> +	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+> +};
+> +
+> +&scp {
+> +	memory-region = <&scp_mem_reserved>;
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi1_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&spi2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi2_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&u3phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&u3phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&u3phy2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&xhci0 {
+> +	status = "okay";
+> +};
+> +
+> +&xhci1 {
+> +	status = "okay";
+> +};
+> +
+> +&xhci2 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> new file mode 100644
+> index 000000000000..37343297e392
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -0,0 +1,951 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2023 MediaTek Inc.
+> + *
 > + */
 > +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/math.h>
-> +#include <linux/media-bus-format.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/phy/phy-mipi-dphy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
+> +/dts-v1/;
+> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h>
+> +#include <dt-bindings/power/mediatek,mt8188-power.h>
 > +
-> +#include <drm/bridge/dw_mipi_dsi.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
+> +/ {
+> +	compatible = "mediatek,mt8188";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
 > +
-> +/* DPHY PLL configuration registers */
-> +#define DSI_REG                                0x4c
-> +#define  CFGCLKFREQRANGE_MASK          GENMASK(5, 0)
-> +#define  CFGCLKFREQRANGE(x)            FIELD_PREP(CFGCLKFREQRANGE_MASK, =
-(x))
-> +#define  CLKSEL_MASK                   GENMASK(7, 6)
-> +#define  CLKSEL_STOP                   FIELD_PREP(CLKSEL_MASK, 0)
-> +#define  CLKSEL_GEN                    FIELD_PREP(CLKSEL_MASK, 1)
-> +#define  CLKSEL_EXT                    FIELD_PREP(CLKSEL_MASK, 2)
-> +#define  HSFREQRANGE_MASK              GENMASK(14, 8)
-> +#define  HSFREQRANGE(x)                        FIELD_PREP(HSFREQRANGE_MA=
-SK, (x))
-> +#define  UPDATE_PLL                    BIT(17)
-> +#define  SHADOW_CLR                    BIT(18)
-> +#define  CLK_EXT                       BIT(19)
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +#define DSI_WRITE_REG0                 0x50
-> +#define  M_MASK                                GENMASK(9, 0)
-> +#define  M(x)                          FIELD_PREP(M_MASK, ((x) - 2))
-> +#define  N_MASK                                GENMASK(13, 10)
-> +#define  N(x)                          FIELD_PREP(N_MASK, ((x) - 1))
-> +#define  VCO_CTRL_MASK                 GENMASK(19, 14)
-> +#define  VCO_CTRL(x)                   FIELD_PREP(VCO_CTRL_MASK, (x))
-> +#define  PROP_CTRL_MASK                        GENMASK(25, 20)
-> +#define  PROP_CTRL(x)                  FIELD_PREP(PROP_CTRL_MASK, (x))
-> +#define  INT_CTRL_MASK                 GENMASK(31, 26)
-> +#define  INT_CTRL(x)                   FIELD_PREP(INT_CTRL_MASK, (x))
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x000>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define DSI_WRITE_REG1                 0x54
-> +#define  GMP_CTRL_MASK                 GENMASK(1, 0)
-> +#define  GMP_CTRL(x)                   FIELD_PREP(GMP_CTRL_MASK, (x))
-> +#define  CPBIAS_CTRL_MASK              GENMASK(8, 2)
-> +#define  CPBIAS_CTRL(x)                        FIELD_PREP(CPBIAS_CTRL_MA=
-SK, (x))
-> +#define  PLL_SHADOW_CTRL               BIT(9)
+> +		cpu1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x100>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +/* display mux control register */
-> +#define DISPLAY_MUX                    0x60
-> +#define  MIPI_DSI_RGB666_MAP_CFG       GENMASK(7, 6)
-> +#define  RGB666_CONFIG1                        FIELD_PREP(MIPI_DSI_RGB66=
-6_MAP_CFG, 0)
-> +#define  RGB666_CONFIG2                        FIELD_PREP(MIPI_DSI_RGB66=
-6_MAP_CFG, 1)
-> +#define  MIPI_DSI_RGB565_MAP_CFG       GENMASK(5, 4)
-> +#define  RGB565_CONFIG1                        FIELD_PREP(MIPI_DSI_RGB56=
-5_MAP_CFG, 0)
-> +#define  RGB565_CONFIG2                        FIELD_PREP(MIPI_DSI_RGB56=
-5_MAP_CFG, 1)
-> +#define  RGB565_CONFIG3                        FIELD_PREP(MIPI_DSI_RGB56=
-5_MAP_CFG, 2)
-> +#define  LCDIF_CROSS_LINE_PATTERN      GENMASK(3, 0)
-> +#define  RGB888_TO_RGB888              FIELD_PREP(LCDIF_CROSS_LINE_PATTE=
-RN, 0)
-> +#define  RGB888_TO_RGB666              FIELD_PREP(LCDIF_CROSS_LINE_PATTE=
-RN, 6)
-> +#define  RGB565_TO_RGB565              FIELD_PREP(LCDIF_CROSS_LINE_PATTE=
-RN, 7)
+> +		cpu2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x200>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define MHZ(x)                         ((x) * 1000000UL)
+> +		cpu3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x300>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define REF_CLK_RATE_MAX               MHZ(64)
-> +#define REF_CLK_RATE_MIN               MHZ(2)
-> +#define FOUT_MAX                       MHZ(1250)
-> +#define FOUT_MIN                       MHZ(40)
-> +#define FVCO_DIV_FACTOR                        MHZ(80)
+> +		cpu4: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x400>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define MBPS(x)                                ((x) * 1000000UL)
+> +		cpu5: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x500>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2000000000>;
+> +			capacity-dmips-mhz = <282>;
+> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_0>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define DATA_RATE_MAX_SPEED            MBPS(2500)
-> +#define DATA_RATE_MIN_SPEED            MBPS(80)
+> +		cpu6: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x600>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2600000000>;
+> +			capacity-dmips-mhz = <1024>;
+> +			cpu-idle-states = <&cpu_off_b &cluster_off_b>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_1>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define M_MAX                          625UL
-> +#define M_MIN                          64UL
+> +		cpu7: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x700>;
+> +			enable-method = "psci";
+> +			clock-frequency = <2600000000>;
+> +			capacity-dmips-mhz = <1024>;
+> +			cpu-idle-states = <&cpu_off_b &cluster_off_b>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_1>;
+> +			#cooling-cells = <2>;
+> +		};
 > +
-> +#define N_MAX                          16U
-> +#define N_MIN                          1U
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
 > +
-> +struct imx93_dsi {
-> +       struct device *dev;
-> +       struct regmap *regmap;
-> +       struct clk *clk_pixel;
-> +       struct clk *clk_ref;
-> +       struct clk *clk_cfg;
-> +       struct dw_mipi_dsi *dmd;
-> +       struct dw_mipi_dsi_plat_data pdata;
-> +       union phy_configure_opts phy_cfg;
-> +       unsigned long ref_clk_rate;
-> +       u32 format;
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +
+> +				core4 {
+> +					cpu = <&cpu4>;
+> +				};
+> +
+> +				core5 {
+> +					cpu = <&cpu5>;
+> +				};
+> +
+> +				core6 {
+> +					cpu = <&cpu6>;
+> +				};
+> +
+> +				core7 {
+> +					cpu = <&cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			cpu_off_l: cpu-off-l {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x00010000>;
+> +				local-timer-stop;
+> +				entry-latency-us = <50>;
+> +				exit-latency-us = <95>;
+> +				min-residency-us = <580>;
+> +			};
+> +
+> +			cpu_off_b: cpu-off-b {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x00010000>;
+> +				local-timer-stop;
+> +				entry-latency-us = <45>;
+> +				exit-latency-us = <140>;
+> +				min-residency-us = <740>;
+> +			};
+> +
+> +			cluster_off_l: cluster-off-l {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x01010010>;
+> +				local-timer-stop;
+> +				entry-latency-us = <55>;
+> +				exit-latency-us = <155>;
+> +				min-residency-us = <840>;
+> +			};
+> +
+> +			cluster_off_b: cluster-off-b {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x01010010>;
+> +				local-timer-stop;
+> +				entry-latency-us = <50>;
+> +				exit-latency-us = <200>;
+> +				min-residency-us = <1000>;
+> +			};
+> +		};
+> +
+> +		l2_0: l2-cache0 {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			next-level-cache = <&l3_0>;
+> +			cache-unified;
+> +		};
+> +
+> +		l2_1: l2-cache1 {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			next-level-cache = <&l3_0>;
+> +			cache-unified;
+> +		};
+> +
+> +		l3_0: l3-cache {
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-unified;
+> +		};
+> +	};
+> +
+> +	clk13m: oscillator-13m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <13000000>;
+> +		clock-output-names = "clk13m";
+> +	};
+> +
+> +	clk26m: oscillator-26m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +		clock-output-names = "clk26m";
+> +	};
+> +
+> +	clk32k: oscillator-32k {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "clk32k";
+> +	};
+> +
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster0>;
+> +	};
+> +
+> +	pmu-a78 {
+> +		compatible = "arm,cortex-a78-pmu";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster1>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	timer: timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		clock-frequency = <13000000>;
+> +	};
+> +
+> +	soc {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		compatible = "simple-bus";
+> +		ranges;
+> +
+> +		gic: interrupt-controller@c000000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <4>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			#redistributor-regions = <1>;
+> +			interrupt-parent = <&gic>;
+> +			interrupt-controller;
+> +			reg = <0 0x0c000000 0 0x40000>,
+> +			      <0 0x0c040000 0 0x200000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +
+> +			ppi-partitions {
+> +				ppi_cluster0: interrupt-partition-0 {
+> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+> +				};
+> +
+> +				ppi_cluster1: interrupt-partition-1 {
+> +					affinity = <&cpu6 &cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		topckgen: syscon@10000000 {
+> +			compatible = "mediatek,mt8188-topckgen", "syscon";
+> +			reg = <0 0x10000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		infracfg_ao: syscon@10001000 {
+> +			compatible = "mediatek,mt8188-infracfg-ao", "syscon";
+> +			reg = <0 0x10001000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		pericfg: syscon@10003000 {
+> +			compatible = "mediatek,mt8188-pericfg", "syscon";
+> +			reg = <0 0x10003000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		pio: pinctrl@10005000 {
+> +			compatible = "mediatek,mt8188-pinctrl";
+> +			reg = <0 0x10005000 0 0x1000>,
+> +			      <0 0x11c00000 0 0x1000>,
+> +			      <0 0x11e10000 0 0x1000>,
+> +			      <0 0x11e20000 0 0x1000>,
+> +			      <0 0x11ea0000 0 0x1000>,
+> +			      <0 0x1000b000 0 0x1000>;
+> +			reg-names = "iocfg0", "iocfg_rm",
+> +				    "iocfg_lt", "iocfg_lm", "iocfg_rt",
+> +				    "eint";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pio 0 0 176>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		watchdog: watchdog@10007000 {
+> +			compatible = "mediatek,mt8188-wdt";
+> +			mediatek,disable-extrst;
+> +			reg = <0 0x10007000 0 0x100>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+> +		apmixedsys: syscon@1000c000 {
+> +			compatible = "mediatek,mt8188-apmixedsys", "syscon";
+> +			reg = <0 0x1000c000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		systimer: timer@10017000 {
+> +			compatible = "mediatek,mt8188-timer", "mediatek,mt6765-timer";
+> +			reg = <0 0x10017000 0 0x1000>;
+> +			reg-names = "sys_timer_base";
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&clk13m>;
+> +		};
+> +
+> +		pwrap: pwrap@10024000 {
+> +			compatible = "mediatek,mt8188-pwrap", "mediatek,mt8195-pwrap", "syscon";
+> +			reg = <0 0x10024000 0 0x1000>;
+> +			reg-names = "pwrap";
+> +			interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_PMIC_AP>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PMIC_TMR>;
+> +			clock-names = "spi", "wrap";
+> +		};
+> +
+> +		scp: scp@10500000 {
+> +			compatible = "mediatek,mt8188-scp";
+> +			reg = <0 0x10500000 0 0x100000>,
+> +			      <0 0x10720000 0 0xe0000>;
+> +			reg-names = "sram", "cfg";
+> +			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		};
+> +
+> +		adsp_audio26m: clock-controller@10b91100 {
+> +			compatible = "mediatek,mt8188-adsp-audio26m";
+> +			reg = <0 0x10b91100 0 0x100>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		uart0: serial@11001100 {
+> +			compatible = "mediatek,mt8188-uart", "mediatek,mt6577-uart";
+> +			reg = <0 0x11001100 0 0x100>;
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART0>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: serial@11001200 {
+> +			compatible = "mediatek,mt8188-uart", "mediatek,mt6577-uart";
+> +			reg = <0 0x11001200 0 0x100>;
+> +			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART1>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: serial@11001300 {
+> +			compatible = "mediatek,mt8188-uart", "mediatek,mt6577-uart";
+> +			reg = <0 0x11001300 0 0x100>;
+> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART2>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		uart3: serial@11001400 {
+> +			compatible = "mediatek,mt8188-uart", "mediatek,mt6577-uart";
+> +			reg = <0 0x11001400 0 0x100>;
+> +			interrupts = <GIC_SPI 723 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART3>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		auxadc: adc@11002000 {
+> +			compatible = "mediatek,mt8188-auxadc", "mediatek,mt8173-auxadc";
+> +			reg = <0 0x11002000 0 0x1000>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_AUXADC>;
+> +			clock-names = "main";
+> +			#io-channel-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pericfg_ao: syscon@11003000 {
+> +			compatible = "mediatek,mt8188-pericfg-ao", "syscon";
+> +			reg = <0 0x11003000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		spi0: spi@1100a000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x1100a000 0 0x1000>;
+> +			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI0>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		spi1: spi@11010000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x11010000 0 0x1000>;
+> +			interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI1>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		spi2: spi@11012000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x11012000 0 0x1000>;
+> +			interrupts = <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI2>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		spi3: spi@11013000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x11013000 0 0x1000>;
+> +			interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI3>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		spi4: spi@11018000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x11018000 0 0x1000>;
+> +			interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI4>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		spi5: spi@11019000 {
+> +			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x11019000 0 0x1000>;
+> +			interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SPI5>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		xhci1: usb@11200000 {
+> +			compatible = "mediatek,mt8188-xhci", "mediatek,mtk-xhci";
+> +			reg = <0 0x11200000 0 0x1000>,
+> +			      <0 0x11203e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port1 PHY_TYPE_USB2>,
+> +			       <&u3port1 PHY_TYPE_USB3>;
+> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
+> +					  <&topckgen CLK_TOP_SSUSB_XHCI>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_BUS>,
+> +				 <&topckgen CLK_TOP_SSUSB_TOP_REF>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_XHCI>;
+> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
+> +			mediatek,syscon-wakeup = <&pericfg 0x468 2>;
+> +			wakeup-source;
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc0: mmc@11230000 {
+> +			compatible = "mediatek,mt8188-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11230000 0 0x10000>,
+> +			      <0 0x11f50000 0 0x1000>;
+> +			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC50_0>,
+> +				 <&infracfg_ao CLK_INFRA_AO_MSDC0>,
+> +				 <&infracfg_ao CLK_INFRA_AO_MSDC0_SRC>,
+> +				 <&infracfg_ao CLK_INFRA_AO_RG_AES_MSDCFDE_CK_0P>;
+> +			clock-names = "source", "hclk", "source_cg", "crypto_clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@11240000 {
+> +			compatible = "mediatek,mt8188-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11240000 0 0x1000>,
+> +			      <0 0x11eb0000 0 0x1000>;
+> +			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC30_1>,
+> +				 <&infracfg_ao CLK_INFRA_AO_MSDC1>,
+> +				 <&infracfg_ao CLK_INFRA_AO_MSDC1_SRC>;
+> +			clock-names = "source", "hclk", "source_cg";
+> +			assigned-clocks = <&topckgen CLK_TOP_MSDC30_1>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c0: i2c@11280000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11280000 0 0x1000>,
+> +			      <0 0x10220080 0 0x80>;
+> +			interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_c CLK_IMP_IIC_WRAP_C_AP_CLOCK_I2C0>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c2: i2c@11281000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11281000 0 0x1000>,
+> +			      <0 0x10220180 0 0x80>;
+> +			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_c CLK_IMP_IIC_WRAP_C_AP_CLOCK_I2C2>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c3: i2c@11282000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11282000 0 0x1000>,
+> +			      <0 0x10220280 0 0x80>;
+> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_c CLK_IMP_IIC_WRAP_C_AP_CLOCK_I2C3>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		imp_iic_wrap_c: clock-controller@11283000 {
+> +			compatible = "mediatek,mt8188-imp-iic-wrap-c";
+> +			reg = <0 0x11283000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		xhci2: usb@112a0000 {
+> +			compatible = "mediatek,mt8188-xhci", "mediatek,mtk-xhci";
+> +			reg = <0 0x112a0000 0 0x1000>,
+> +			      <0 0x112a3e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port2 PHY_TYPE_USB2>;
+> +			assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_3P>,
+> +					  <&topckgen CLK_TOP_USB_TOP_3P>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
+> +				 <&topckgen CLK_TOP_SSUSB_TOP_P3_REF>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
+> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
+> +			status = "disabled";
+> +		};
+> +
+> +		xhci0: usb@112b0000 {
+> +			compatible = "mediatek,mt8188-xhci", "mediatek,mtk-xhci";
+> +			reg = <0 0x112b0000 0 0x1000>,
+> +			      <0 0x112b3e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port0 PHY_TYPE_USB2>;
+> +			assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_2P>,
+> +					  <&topckgen CLK_TOP_USB_TOP_2P>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
+> +				 <&topckgen CLK_TOP_SSUSB_TOP_P2_REF>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
+> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
+> +			mediatek,syscon-wakeup = <&pericfg 0x460 2>;
+> +			wakeup-source;
+> +			status = "disabled";
+> +		};
+> +
+> +		nor_flash: spi@1132c000 {
+> +			compatible = "mediatek,mt8188-nor", "mediatek,mt8186-nor";
+> +			reg = <0 0x1132c000 0 0x1000>;
+> +			clocks = <&topckgen CLK_TOP_SPINOR>,
+> +				 <&pericfg_ao CLK_PERI_AO_FLASHIFLASHCK>,
+> +				 <&pericfg_ao CLK_PERI_AO_FLASHIF_BUS>;
+> +			clock-names = "spi", "sf", "axi";
+> +			assigned-clocks = <&topckgen CLK_TOP_SPINOR>;
+> +			interrupts = <GIC_SPI 825 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c1: i2c@11e00000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11e00000 0 0x1000>,
+> +			      <0 0x10220100 0 0x80>;
+> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_w CLK_IMP_IIC_WRAP_W_AP_CLOCK_I2C1>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c4: i2c@11e01000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11e01000 0 0x1000>,
+> +			      <0 0x10220380 0 0x80>;
+> +			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_w CLK_IMP_IIC_WRAP_W_AP_CLOCK_I2C4>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		imp_iic_wrap_w: clock-controller@11e02000 {
+> +			compatible = "mediatek,mt8188-imp-iic-wrap-w";
+> +			reg = <0 0x11e02000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		u3phy0: t-phy@11e30000 {
+> +			compatible = "mediatek,mt8188-tphy", "mediatek,generic-tphy-v3";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x11e30000 0x1000>;
+> +			status = "disabled";
+> +
+> +			u2port0: usb-phy@0 {
+> +				reg = <0x0 0x700>;
+> +				clocks = <&topckgen CLK_TOP_SSUSB_PHY_P2_REF>,
+> +					 <&apmixedsys CLK_APMIXED_PLL_SSUSB26M_EN>;
+> +				clock-names = "ref", "da_ref";
+> +				#phy-cells = <1>;
+> +			};
+> +		};
+> +
+> +		u3phy1: t-phy@11e40000 {
+> +			compatible = "mediatek,mt8188-tphy", "mediatek,generic-tphy-v3";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x11e40000 0x1000>;
+> +			status = "disabled";
+> +
+> +			u2port1: usb-phy@0 {
+> +				reg = <0x0 0x700>;
+> +				clocks = <&topckgen CLK_TOP_SSUSB_PHY_REF>,
+> +					 <&apmixedsys CLK_APMIXED_PLL_SSUSB26M_EN>;
+> +				clock-names = "ref", "da_ref";
+> +				#phy-cells = <1>;
+> +			};
+> +
+> +			u3port1: usb-phy@700 {
+> +				reg = <0x700 0x700>;
+> +				clocks = <&apmixedsys CLK_APMIXED_PLL_SSUSB26M_EN>,
+> +					 <&clk26m>;
+> +				clock-names = "ref", "da_ref";
+> +				#phy-cells = <1>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		u3phy2: t-phy@11e80000 {
+> +			compatible = "mediatek,mt8188-tphy", "mediatek,generic-tphy-v3";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x11e80000 0x1000>;
+> +			status = "disabled";
+> +
+> +			u2port2: usb-phy@0 {
+> +				reg = <0x0 0x700>;
+> +				clocks = <&topckgen CLK_TOP_SSUSB_PHY_P3_REF>,
+> +					 <&apmixedsys CLK_APMIXED_PLL_SSUSB26M_EN>;
+> +				clock-names = "ref", "da_ref";
+> +				#phy-cells = <1>;
+> +			};
+> +		};
+> +
+> +		i2c5: i2c@11ec0000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11ec0000 0 0x1000>,
+> +			      <0 0x10220480 0 0x80>;
+> +			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_en CLK_IMP_IIC_WRAP_EN_AP_CLOCK_I2C5>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c6: i2c@11ec1000 {
+> +			compatible = "mediatek,mt8188-i2c";
+> +			reg = <0 0x11ec1000 0 0x1000>,
+> +			      <0 0x10220600 0 0x80>;
+> +			interrupts = <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clock-div = <1>;
+> +			clocks = <&imp_iic_wrap_en CLK_IMP_IIC_WRAP_EN_AP_CLOCK_I2C6>,
+> +				 <&infracfg_ao CLK_INFRA_AO_APDMA_BCLK>;
+> +			clock-names = "main", "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		imp_iic_wrap_en: clock-controller@11ec2000 {
+> +			compatible = "mediatek,mt8188-imp-iic-wrap-en";
+> +			reg = <0 0x11ec2000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		mfgcfg: clock-controller@13fbf000 {
+> +			compatible = "mediatek,mt8188-mfgcfg";
+> +			reg = <0 0x13fbf000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vppsys0: clock-controller@14000000 {
+> +			compatible = "mediatek,mt8188-vppsys0";
+> +			reg = <0 0x14000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		wpesys: clock-controller@14e00000 {
+> +			compatible = "mediatek,mt8188-wpesys";
+> +			reg = <0 0x14e00000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		wpesys_vpp0: clock-controller@14e02000 {
+> +			compatible = "mediatek,mt8188-wpesys-vpp0";
+> +			reg = <0 0x14e02000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vppsys1: clock-controller@14f00000 {
+> +			compatible = "mediatek,mt8188-vppsys1";
+> +			reg = <0 0x14f00000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys: clock-controller@15000000 {
+> +			compatible = "mediatek,mt8188-imgsys";
+> +			reg = <0 0x15000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys1_dip_top: clock-controller@15110000 {
+> +			compatible = "mediatek,mt8188-imgsys1-dip-top";
+> +			reg = <0 0x15110000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys1_dip_nr: clock-controller@15130000 {
+> +			compatible = "mediatek,mt8188-imgsys1-dip-nr";
+> +			reg = <0 0x15130000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys_wpe1: clock-controller@15220000 {
+> +			compatible = "mediatek,mt8188-imgsys-wpe1";
+> +			reg = <0 0x15220000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		ipesys: clock-controller@15330000 {
+> +			compatible = "mediatek,mt8188-ipesys";
+> +			reg = <0 0x15330000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys_wpe2: clock-controller@15520000 {
+> +			compatible = "mediatek,mt8188-imgsys-wpe2";
+> +			reg = <0 0x15520000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys_wpe3: clock-controller@15620000 {
+> +			compatible = "mediatek,mt8188-imgsys-wpe3";
+> +			reg = <0 0x15620000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys: clock-controller@16000000 {
+> +			compatible = "mediatek,mt8188-camsys";
+> +			reg = <0 0x16000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys_rawa: clock-controller@1604f000 {
+> +			compatible = "mediatek,mt8188-camsys-rawa";
+> +			reg = <0 0x1604f000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys_yuva: clock-controller@1606f000 {
+> +			compatible = "mediatek,mt8188-camsys-yuva";
+> +			reg = <0 0x1606f000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys_rawb: clock-controller@1608f000 {
+> +			compatible = "mediatek,mt8188-camsys-rawb";
+> +			reg = <0 0x1608f000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys_yuvb: clock-controller@160af000 {
+> +			compatible = "mediatek,mt8188-camsys-yuvb";
+> +			reg = <0 0x160af000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		ccusys: clock-controller@17200000 {
+> +			compatible = "mediatek,mt8188-ccusys";
+> +			reg = <0 0x17200000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vdecsys_soc: clock-controller@1800f000 {
+> +			compatible = "mediatek,mt8188-vdecsys-soc";
+> +			reg = <0 0x1800f000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vdecsys: clock-controller@1802f000 {
+> +			compatible = "mediatek,mt8188-vdecsys";
+> +			reg = <0 0x1802f000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vencsys: clock-controller@1a000000 {
+> +			compatible = "mediatek,mt8188-vencsys";
+> +			reg = <0 0x1a000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +	};
 > +};
-> +
-> +struct dphy_pll_cfg {
-> +       u32 m;  /* PLL Feedback Multiplication Ratio */
-> +       u32 n;  /* PLL Input Frequency Division Ratio */
-> +};
-> +
-> +struct dphy_pll_vco_prop {
-> +       unsigned long max_fout;
-> +       u8 vco_cntl;
-> +       u8 prop_cntl;
-> +};
-> +
-> +struct dphy_pll_hsfreqrange {
-> +       unsigned long max_mbps;
-> +       u8 hsfreqrange;
-> +};
-> +
-> +/* DPHY Databook Table 3-13 Charge-pump Programmability */
-> +static const struct dphy_pll_vco_prop vco_prop_map[] =3D {
-> +       {   55, 0x3f, 0x0d },
-> +       {   82, 0x37, 0x0d },
-> +       {  110, 0x2f, 0x0d },
-> +       {  165, 0x27, 0x0d },
-> +       {  220, 0x1f, 0x0d },
-> +       {  330, 0x17, 0x0d },
-> +       {  440, 0x0f, 0x0d },
-> +       {  660, 0x07, 0x0d },
-> +       { 1149, 0x03, 0x0d },
-> +       { 1152, 0x01, 0x0d },
-> +       { 1250, 0x01, 0x0e },
-> +};
-> +
-> +/* DPHY Databook Table 5-7 Frequency Ranges and Defaults */
-> +static const struct dphy_pll_hsfreqrange hsfreqrange_map[] =3D {
-> +       {   89, 0x00 },
-> +       {   99, 0x10 },
-> +       {  109, 0x20 },
-> +       {  119, 0x30 },
-> +       {  129, 0x01 },
-> +       {  139, 0x11 },
-> +       {  149, 0x21 },
-> +       {  159, 0x31 },
-> +       {  169, 0x02 },
-> +       {  179, 0x12 },
-> +       {  189, 0x22 },
-> +       {  204, 0x32 },
-> +       {  219, 0x03 },
-> +       {  234, 0x13 },
-> +       {  249, 0x23 },
-> +       {  274, 0x33 },
-> +       {  299, 0x04 },
-> +       {  324, 0x14 },
-> +       {  349, 0x25 },
-> +       {  399, 0x35 },
-> +       {  449, 0x05 },
-> +       {  499, 0x16 },
-> +       {  549, 0x26 },
-> +       {  599, 0x37 },
-> +       {  649, 0x07 },
-> +       {  699, 0x18 },
-> +       {  749, 0x28 },
-> +       {  799, 0x39 },
-> +       {  849, 0x09 },
-> +       {  899, 0x19 },
-> +       {  949, 0x29 },
-> +       {  999, 0x3a },
-> +       { 1049, 0x0a },
-> +       { 1099, 0x1a },
-> +       { 1149, 0x2a },
-> +       { 1199, 0x3b },
-> +       { 1249, 0x0b },
-> +       { 1299, 0x1b },
-> +       { 1349, 0x2b },
-> +       { 1399, 0x3c },
-> +       { 1449, 0x0c },
-> +       { 1499, 0x1c },
-> +       { 1549, 0x2c },
-> +       { 1599, 0x3d },
-> +       { 1649, 0x0d },
-> +       { 1699, 0x1d },
-> +       { 1749, 0x2e },
-> +       { 1799, 0x3e },
-> +       { 1849, 0x0e },
-> +       { 1899, 0x1e },
-> +       { 1949, 0x2f },
-> +       { 1999, 0x3f },
-> +       { 2049, 0x0f },
-> +       { 2099, 0x40 },
-> +       { 2149, 0x41 },
-> +       { 2199, 0x42 },
-> +       { 2249, 0x43 },
-> +       { 2299, 0x44 },
-> +       { 2349, 0x45 },
-> +       { 2399, 0x46 },
-> +       { 2449, 0x47 },
-> +       { 2499, 0x48 },
-> +       { 2500, 0x49 },
-> +};
-> +
-> +static void dphy_pll_write(struct imx93_dsi *dsi, unsigned int reg, u32 =
-value)
-> +{
-> +       int ret;
-> +
-> +       ret =3D regmap_write(dsi->regmap, reg, value);
-> +       if (ret < 0)
-> +               dev_err(dsi->dev, "failed to write 0x%08x to pll reg 0x%x=
-: %d\n",
-> +                       value, reg, ret);
-> +}
-> +
-> +static inline unsigned long data_rate_to_fout(unsigned long data_rate)
-> +{
-> +       /* Fout is half of data rate */
-> +       return data_rate / 2;
-> +}
-> +
-> +static int
-> +dphy_pll_get_configure_from_opts(struct imx93_dsi *dsi,
-> +                                struct phy_configure_opts_mipi_dphy *dph=
-y_opts,
-> +                                struct dphy_pll_cfg *cfg)
-> +{
-> +       struct device *dev =3D dsi->dev;
-> +       unsigned long fin =3D dsi->ref_clk_rate;
-> +       unsigned long fout;
-> +       unsigned long best_fout =3D 0;
-> +       unsigned int fvco_div;
-> +       unsigned int min_n, max_n, n, best_n;
-> +       unsigned long m, best_m;
-> +       unsigned long min_delta =3D ULONG_MAX;
-> +       unsigned long delta;
-> +       u64 tmp;
-> +
-> +       if (dphy_opts->hs_clk_rate < DATA_RATE_MIN_SPEED ||
-> +           dphy_opts->hs_clk_rate > DATA_RATE_MAX_SPEED) {
-> +               dev_dbg(dev, "invalid data rate per lane: %lu\n",
-> +                       dphy_opts->hs_clk_rate);
-> +               return -EINVAL;
-> +       }
-> +
-> +       fout =3D data_rate_to_fout(dphy_opts->hs_clk_rate);
-> +
-> +       /* DPHY Databook 3.3.6.1 Output Frequency */
-> +       /* Fout =3D Fvco / Fvco_div =3D (Fin * M) / (Fvco_div * N) */
-> +       /* Fvco_div could be 1/2/4/8 according to Fout range. */
-> +       fvco_div =3D 8UL / min(DIV_ROUND_UP(fout, FVCO_DIV_FACTOR), 8UL);
-> +
-> +       /* limitation: 2MHz <=3D Fin / N <=3D 8MHz */
-> +       min_n =3D DIV_ROUND_UP_ULL((u64)fin, MHZ(8));
-> +       max_n =3D DIV_ROUND_DOWN_ULL((u64)fin, MHZ(2));
-> +
-> +       /* clamp possible N(s) */
-> +       min_n =3D clamp(min_n, N_MIN, N_MAX);
-> +       max_n =3D clamp(max_n, N_MIN, N_MAX);
-> +
-> +       dev_dbg(dev, "Fout =3D %lu, Fvco_div =3D %u, n_range =3D [%u, %u]=
-\n",
-> +               fout, fvco_div, min_n, max_n);
-> +
-> +       for (n =3D min_n; n <=3D max_n; n++) {
-> +               /* M =3D (Fout * N * Fvco_div) / Fin */
-> +               m =3D DIV_ROUND_CLOSEST(fout * n * fvco_div, fin);
-> +
-> +               /* check M range */
-> +               if (m < M_MIN || m > M_MAX)
-> +                       continue;
-> +
-> +               /* calculate temporary Fout */
-> +               tmp =3D m * fin;
-> +               do_div(tmp, n * fvco_div);
-> +               if (tmp < FOUT_MIN || tmp > FOUT_MAX)
-> +                       continue;
-> +
-> +               delta =3D abs(fout - tmp);
-> +               if (delta < min_delta) {
-> +                       best_n =3D n;
-> +                       best_m =3D m;
-> +                       min_delta =3D delta;
-> +                       best_fout =3D tmp;
-> +               }
-> +       }
-> +
-> +       if (best_fout) {
-> +               cfg->m =3D best_m;
-> +               cfg->n =3D best_n;
-> +               dev_dbg(dev, "best Fout =3D %lu, m =3D %u, n =3D %u\n",
-> +                       best_fout, cfg->m, cfg->n);
-> +       } else {
-> +               dev_dbg(dev, "failed to find best Fout\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void dphy_pll_clear_shadow(struct imx93_dsi *dsi)
-> +{
-> +       /* Reference DPHY Databook Figure 3-3 Initialization Timing Diagr=
-am. */
-> +       /* Select clock generation first. */
-> +       dphy_pll_write(dsi, DSI_REG, CLKSEL_GEN);
-> +
-> +       /* Clear shadow after clock selection is done a while. */
-> +       fsleep(1);
-> +       dphy_pll_write(dsi, DSI_REG, CLKSEL_GEN | SHADOW_CLR);
-> +
-> +       /* A minimum pulse of 5ns on shadow_clear signal. */
-> +       fsleep(1);
-> +       dphy_pll_write(dsi, DSI_REG, CLKSEL_GEN);
-> +}
-> +
-> +static unsigned long dphy_pll_get_cfgclkrange(struct imx93_dsi *dsi)
-> +{
-> +       /*
-> +        * DPHY Databook Table 4-4 System Control Signals mentions an equ=
-ation
-> +        * for cfgclkfreqrange[5:0].
-> +        */
-> +       return (clk_get_rate(dsi->clk_cfg) / MHZ(1) - 17) * 4;
-> +}
-> +
-> +static u8
-> +dphy_pll_get_hsfreqrange(struct phy_configure_opts_mipi_dphy *dphy_opts)
-> +{
-> +       unsigned long mbps =3D dphy_opts->hs_clk_rate / MHZ(1);
-> +       int i;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(hsfreqrange_map); i++)
-> +               if (mbps <=3D hsfreqrange_map[i].max_mbps)
-> +                       return hsfreqrange_map[i].hsfreqrange;
-> +
-> +       return 0;
-> +}
-> +
-> +static u8 dphy_pll_get_vco(struct phy_configure_opts_mipi_dphy *dphy_opt=
-s)
-> +{
-> +       unsigned long fout =3D data_rate_to_fout(dphy_opts->hs_clk_rate) =
-/ MHZ(1);
-> +       int i;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(vco_prop_map); i++)
-> +               if (fout <=3D vco_prop_map[i].max_fout)
-> +                       return vco_prop_map[i].vco_cntl;
-> +
-> +       return 0;
-> +}
-> +
-> +static u8 dphy_pll_get_prop(struct phy_configure_opts_mipi_dphy *dphy_op=
-ts)
-> +{
-> +       unsigned long fout =3D data_rate_to_fout(dphy_opts->hs_clk_rate) =
-/ MHZ(1);
-> +       int i;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(vco_prop_map); i++)
-> +               if (fout <=3D vco_prop_map[i].max_fout)
-> +                       return vco_prop_map[i].prop_cntl;
-> +
-> +       return 0;
-> +}
-> +
-> +static int dphy_pll_update(struct imx93_dsi *dsi)
-> +{
-> +       int ret;
-> +
-> +       ret =3D regmap_update_bits(dsi->regmap, DSI_REG, UPDATE_PLL, UPDA=
-TE_PLL);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to set UPDATE_PLL: %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       /*
-> +        * The updatepll signal should be asserted for a minimum of four =
-clkin
-> +        * cycles, according to DPHY Databook Figure 3-3 Initialization T=
-iming
-> +        * Diagram.
-> +        */
-> +       fsleep(10);
-> +
-> +       ret =3D regmap_update_bits(dsi->regmap, DSI_REG, UPDATE_PLL, 0);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to clear UPDATE_PLL: %d\n", ret=
-);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int dphy_pll_configure(struct imx93_dsi *dsi, union phy_configure=
-_opts *opts)
-> +{
-> +       struct dphy_pll_cfg cfg =3D { 0 };
-> +       u32 val;
-> +       int ret;
-> +
-> +       ret =3D dphy_pll_get_configure_from_opts(dsi, &opts->mipi_dphy, &=
-cfg);
-> +       if (ret) {
-> +               dev_err(dsi->dev, "failed to get phy pll cfg %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       dphy_pll_clear_shadow(dsi);
-> +
-> +       /* DSI_REG */
-> +       val =3D CLKSEL_GEN |
-> +             CFGCLKFREQRANGE(dphy_pll_get_cfgclkrange(dsi)) |
-> +             HSFREQRANGE(dphy_pll_get_hsfreqrange(&opts->mipi_dphy));
-> +       dphy_pll_write(dsi, DSI_REG, val);
-> +
-> +       /* DSI_WRITE_REG0 */
-> +       val =3D M(cfg.m) | N(cfg.n) | INT_CTRL(0) |
-> +             VCO_CTRL(dphy_pll_get_vco(&opts->mipi_dphy)) |
-> +             PROP_CTRL(dphy_pll_get_prop(&opts->mipi_dphy));
-> +       dphy_pll_write(dsi, DSI_WRITE_REG0, val);
-> +
-> +       /* DSI_WRITE_REG1 */
-> +       dphy_pll_write(dsi, DSI_WRITE_REG1, GMP_CTRL(1) | CPBIAS_CTRL(0x1=
-0));
-> +
-> +       ret =3D clk_prepare_enable(dsi->clk_ref);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to enable ref clock: %d\n", ret=
-);
-> +               return ret;
-> +       }
-> +
-> +       /*
-> +        * At least 10 refclk cycles are required before updatePLL assert=
-ion,
-> +        * according to DPHY Databook Figure 3-3 Initialization Timing Di=
-agram.
-> +        */
-> +       fsleep(10);
-> +
-> +       ret =3D dphy_pll_update(dsi);
-> +       if (ret < 0) {
-> +               clk_disable_unprepare(dsi->clk_ref);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void dphy_pll_clear_reg(struct imx93_dsi *dsi)
-> +{
-> +       dphy_pll_write(dsi, DSI_REG, 0);
-> +       dphy_pll_write(dsi, DSI_WRITE_REG0, 0);
-> +       dphy_pll_write(dsi, DSI_WRITE_REG1, 0);
-> +}
-> +
-> +static int dphy_pll_init(struct imx93_dsi *dsi)
-> +{
-> +       int ret;
-> +
-> +       ret =3D clk_prepare_enable(dsi->clk_cfg);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to enable config clock: %d\n", =
-ret);
-> +               return ret;
-> +       }
-> +
-> +       dphy_pll_clear_reg(dsi);
-> +
-> +       return 0;
-> +}
-> +
-> +static void dphy_pll_uninit(struct imx93_dsi *dsi)
-> +{
-> +       dphy_pll_clear_reg(dsi);
-> +       clk_disable_unprepare(dsi->clk_cfg);
-> +}
-> +
-> +static void dphy_pll_power_off(struct imx93_dsi *dsi)
-> +{
-> +       dphy_pll_clear_reg(dsi);
-> +       clk_disable_unprepare(dsi->clk_ref);
-> +}
-> +
-> +static int imx93_dsi_get_phy_configure_opts(struct imx93_dsi *dsi,
-> +                                           const struct drm_display_mode=
- *mode,
-> +                                           union phy_configure_opts *phy=
-_cfg,
-> +                                           u32 lanes, u32 format)
-> +{
-> +       struct device *dev =3D dsi->dev;
-> +       int bpp;
-> +       int ret;
-> +
-> +       bpp =3D mipi_dsi_pixel_format_to_bpp(format);
-> +       if (bpp < 0) {
-> +               dev_dbg(dev, "failed to get bpp for pixel format %d\n", f=
-ormat);
-> +               return -EINVAL;
-> +       }
-> +
-> +       ret =3D phy_mipi_dphy_get_default_config(mode->clock * MSEC_PER_S=
-EC, bpp,
-> +                                              lanes, &phy_cfg->mipi_dphy=
-);
-> +       if (ret < 0) {
-> +               dev_dbg(dev, "failed to get default phy cfg %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static enum drm_mode_status
-> +imx93_dsi_validate_mode(struct imx93_dsi *dsi, const struct drm_display_=
-mode *mode)
-> +{
-> +       struct drm_bridge *bridge =3D dw_mipi_dsi_get_bridge(dsi->dmd);
-> +
-> +       /* Get the last bridge */
-> +       while (drm_bridge_get_next_bridge(bridge))
-> +               bridge =3D drm_bridge_get_next_bridge(bridge);
-> +
-> +       if ((bridge->ops & DRM_BRIDGE_OP_DETECT) &&
-> +           (bridge->ops & DRM_BRIDGE_OP_EDID)) {
-> +               unsigned long pixel_clock_rate =3D mode->clock * 1000;
-> +               unsigned long rounded_rate;
-> +
-> +               /* Allow +/-0.5% pixel clock rate deviation */
-> +               rounded_rate =3D clk_round_rate(dsi->clk_pixel, pixel_clo=
-ck_rate);
-> +               if (rounded_rate < pixel_clock_rate * 995 / 1000 ||
-> +                   rounded_rate > pixel_clock_rate * 1005 / 1000) {
-> +                       dev_dbg(dsi->dev, "failed to round clock for mode=
- " DRM_MODE_FMT "\n",
-> +                               DRM_MODE_ARG(mode));
-> +                       return MODE_NOCLOCK;
-> +               }
-> +       }
-> +
-> +       return MODE_OK;
-> +}
-> +
-> +static enum drm_mode_status
-> +imx93_dsi_validate_phy(struct imx93_dsi *dsi, const struct drm_display_m=
-ode *mode,
-> +                      unsigned long mode_flags, u32 lanes, u32 format)
-> +{
-> +       union phy_configure_opts phy_cfg;
-> +       struct dphy_pll_cfg cfg =3D { 0 };
-> +       struct device *dev =3D dsi->dev;
-> +       int ret;
-> +
-> +       ret =3D imx93_dsi_get_phy_configure_opts(dsi, mode, &phy_cfg, lan=
-es,
-> +                                              format);
-> +       if (ret < 0) {
-> +               dev_dbg(dev, "failed to get phy cfg opts %d\n", ret);
-> +               return MODE_ERROR;
-> +       }
-> +
-> +       ret =3D dphy_pll_get_configure_from_opts(dsi, &phy_cfg.mipi_dphy,=
- &cfg);
-> +       if (ret < 0) {
-> +               dev_dbg(dev, "failed to get phy pll cfg %d\n", ret);
-> +               return MODE_NOCLOCK;
-> +       }
-> +
-> +       return MODE_OK;
-> +}
-> +
-> +static enum drm_mode_status
-> +imx93_dsi_mode_valid(void *priv_data, const struct drm_display_mode *mod=
-e,
-> +                    unsigned long mode_flags, u32 lanes, u32 format)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +       struct device *dev =3D dsi->dev;
-> +       enum drm_mode_status ret;
-> +
-> +       ret =3D imx93_dsi_validate_mode(dsi, mode);
-> +       if (ret !=3D MODE_OK) {
-> +               dev_dbg(dev, "failed to validate mode " DRM_MODE_FMT "\n"=
-,
-> +                       DRM_MODE_ARG(mode));
-> +               return ret;
-> +       }
-> +
-> +       ret =3D imx93_dsi_validate_phy(dsi, mode, mode_flags, lanes, form=
-at);
-> +       if (ret !=3D MODE_OK) {
-> +               dev_dbg(dev, "failed to validate phy for mode " DRM_MODE_=
-FMT "\n",
-> +                       DRM_MODE_ARG(mode));
-> +               return ret;
-> +       }
-> +
-> +       return MODE_OK;
-> +}
-> +
-> +static bool imx93_dsi_mode_fixup(void *priv_data,
-> +                                const struct drm_display_mode *mode,
-> +                                struct drm_display_mode *adjusted_mode)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +       unsigned long pixel_clock_rate;
-> +       unsigned long rounded_rate;
-> +
-> +       pixel_clock_rate =3D mode->clock * 1000;
-> +       rounded_rate =3D clk_round_rate(dsi->clk_pixel, pixel_clock_rate)=
-;
-> +
-> +       memcpy(adjusted_mode, mode, sizeof(*mode));
-> +       adjusted_mode->clock =3D rounded_rate / 1000;
-> +
-> +       dev_dbg(dsi->dev, "adj clock %d for mode " DRM_MODE_FMT "\n",
-> +               adjusted_mode->clock, DRM_MODE_ARG(mode));
-> +
-> +       return true;
-> +}
-> +
-> +static u32 *imx93_dsi_get_input_bus_fmts(void *priv_data,
-> +                                        struct drm_bridge *bridge,
-> +                                        struct drm_bridge_state *bridge_=
-state,
-> +                                        struct drm_crtc_state *crtc_stat=
-e,
-> +                                        struct drm_connector_state *conn=
-_state,
-> +                                        u32 output_fmt,
-> +                                        unsigned int *num_input_fmts)
-> +{
-> +       u32 *input_fmts, input_fmt;
-> +
-> +       *num_input_fmts =3D 0;
-> +
-> +       switch (output_fmt) {
-> +       case MEDIA_BUS_FMT_RGB888_1X24:
-> +       case MEDIA_BUS_FMT_RGB666_1X18:
-> +       case MEDIA_BUS_FMT_FIXED:
-> +               input_fmt =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +               break;
-> +       case MEDIA_BUS_FMT_RGB565_1X16:
-> +               input_fmt =3D output_fmt;
-> +               break;
-> +       default:
-> +               return NULL;
-> +       }
-> +
-> +       input_fmts =3D kmalloc(sizeof(*input_fmts), GFP_KERNEL);
-> +       if (!input_fmts)
-> +               return NULL;
-> +       input_fmts[0] =3D input_fmt;
-> +       *num_input_fmts =3D 1;
-> +
-> +       return input_fmts;
-> +}
-> +
-> +static int imx93_dsi_phy_init(void *priv_data)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +       unsigned int fmt =3D 0;
-> +       int ret;
-> +
-> +       switch (dsi->format) {
-> +       case MIPI_DSI_FMT_RGB888:
-> +               fmt =3D RGB888_TO_RGB888;
-> +               break;
-> +       case MIPI_DSI_FMT_RGB666:
-> +               fmt =3D RGB888_TO_RGB666;
-> +               regmap_update_bits(dsi->regmap, DISPLAY_MUX,
-> +                                  MIPI_DSI_RGB666_MAP_CFG, RGB666_CONFIG=
-2);
-> +               break;
-> +       case MIPI_DSI_FMT_RGB666_PACKED:
-> +               fmt =3D RGB888_TO_RGB666;
-> +               regmap_update_bits(dsi->regmap, DISPLAY_MUX,
-> +                                  MIPI_DSI_RGB666_MAP_CFG, RGB666_CONFIG=
-1);
-> +               break;
-> +       case MIPI_DSI_FMT_RGB565:
-> +               fmt =3D RGB565_TO_RGB565;
-> +               regmap_update_bits(dsi->regmap, DISPLAY_MUX,
-> +                                  MIPI_DSI_RGB565_MAP_CFG, RGB565_CONFIG=
-1);
-> +               break;
-> +       }
-> +
-> +       regmap_update_bits(dsi->regmap, DISPLAY_MUX, LCDIF_CROSS_LINE_PAT=
-TERN, fmt);
-> +
-> +       ret =3D dphy_pll_init(dsi);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to init phy pll: %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       ret =3D dphy_pll_configure(dsi, &dsi->phy_cfg);
-> +       if (ret < 0) {
-> +               dev_err(dsi->dev, "failed to configure phy pll: %d\n", re=
-t);
-> +               dphy_pll_uninit(dsi);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void imx93_dsi_phy_power_off(void *priv_data)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +
-> +       dphy_pll_power_off(dsi);
-> +       dphy_pll_uninit(dsi);
-> +}
-> +
-> +static int
-> +imx93_dsi_get_lane_mbps(void *priv_data, const struct drm_display_mode *=
-mode,
-> +                       unsigned long mode_flags, u32 lanes, u32 format,
-> +                       unsigned int *lane_mbps)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +       union phy_configure_opts phy_cfg;
-> +       struct device *dev =3D dsi->dev;
-> +       int ret;
-> +
-> +       ret =3D imx93_dsi_get_phy_configure_opts(dsi, mode, &phy_cfg, lan=
-es,
-> +                                              format);
-> +       if (ret < 0) {
-> +               dev_dbg(dev, "failed to get phy cfg opts %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       *lane_mbps =3D DIV_ROUND_UP(phy_cfg.mipi_dphy.hs_clk_rate, USEC_P=
-ER_SEC);
-> +
-> +       memcpy(&dsi->phy_cfg, &phy_cfg, sizeof(phy_cfg));
-> +
-> +       dev_dbg(dev, "get lane_mbps %u for mode " DRM_MODE_FMT "\n",
-> +               *lane_mbps, DRM_MODE_ARG(mode));
-> +
-> +       return 0;
-> +}
-> +
-> +/* High-Speed Transition Times */
-> +struct hstt {
-> +       unsigned int maxfreq;
-> +       struct dw_mipi_dsi_dphy_timing timing;
-> +};
-> +
-> +#define HSTT(_maxfreq, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp) \
-> +{                                                              \
-> +       .maxfreq =3D (_maxfreq),                                  \
-> +       .timing =3D {                                             \
-> +               .clk_lp2hs =3D (_c_lp2hs),                        \
-> +               .clk_hs2lp =3D (_c_hs2lp),                        \
-> +               .data_lp2hs =3D (_d_lp2hs),                       \
-> +               .data_hs2lp =3D (_d_hs2lp),                       \
-> +       }                                                       \
-> +}
-> +
-> +/* DPHY Databook Table A-4 High-Speed Transition Times */
-> +static const struct hstt hstt_table[] =3D {
-> +       HSTT(80,    21,  17,  15, 10),
-> +       HSTT(90,    23,  17,  16, 10),
-> +       HSTT(100,   22,  17,  16, 10),
-> +       HSTT(110,   25,  18,  17, 11),
-> +       HSTT(120,   26,  20,  18, 11),
-> +       HSTT(130,   27,  19,  19, 11),
-> +       HSTT(140,   27,  19,  19, 11),
-> +       HSTT(150,   28,  20,  20, 12),
-> +       HSTT(160,   30,  21,  22, 13),
-> +       HSTT(170,   30,  21,  23, 13),
-> +       HSTT(180,   31,  21,  23, 13),
-> +       HSTT(190,   32,  22,  24, 13),
-> +       HSTT(205,   35,  22,  25, 13),
-> +       HSTT(220,   37,  26,  27, 15),
-> +       HSTT(235,   38,  28,  27, 16),
-> +       HSTT(250,   41,  29,  30, 17),
-> +       HSTT(275,   43,  29,  32, 18),
-> +       HSTT(300,   45,  32,  35, 19),
-> +       HSTT(325,   48,  33,  36, 18),
-> +       HSTT(350,   51,  35,  40, 20),
-> +       HSTT(400,   59,  37,  44, 21),
-> +       HSTT(450,   65,  40,  49, 23),
-> +       HSTT(500,   71,  41,  54, 24),
-> +       HSTT(550,   77,  44,  57, 26),
-> +       HSTT(600,   82,  46,  64, 27),
-> +       HSTT(650,   87,  48,  67, 28),
-> +       HSTT(700,   94,  52,  71, 29),
-> +       HSTT(750,   99,  52,  75, 31),
-> +       HSTT(800,  105,  55,  82, 32),
-> +       HSTT(850,  110,  58,  85, 32),
-> +       HSTT(900,  115,  58,  88, 35),
-> +       HSTT(950,  120,  62,  93, 36),
-> +       HSTT(1000, 128,  63,  99, 38),
-> +       HSTT(1050, 132,  65, 102, 38),
-> +       HSTT(1100, 138,  67, 106, 39),
-> +       HSTT(1150, 146,  69, 112, 42),
-> +       HSTT(1200, 151,  71, 117, 43),
-> +       HSTT(1250, 153,  74, 120, 45),
-> +       HSTT(1300, 160,  73, 124, 46),
-> +       HSTT(1350, 165,  76, 130, 47),
-> +       HSTT(1400, 172,  78, 134, 49),
-> +       HSTT(1450, 177,  80, 138, 49),
-> +       HSTT(1500, 183,  81, 143, 52),
-> +       HSTT(1550, 191,  84, 147, 52),
-> +       HSTT(1600, 194,  85, 152, 52),
-> +       HSTT(1650, 201,  86, 155, 53),
-> +       HSTT(1700, 208,  88, 161, 53),
-> +       HSTT(1750, 212,  89, 165, 53),
-> +       HSTT(1800, 220,  90, 171, 54),
-> +       HSTT(1850, 223,  92, 175, 54),
-> +       HSTT(1900, 231,  91, 180, 55),
-> +       HSTT(1950, 236,  95, 185, 56),
-> +       HSTT(2000, 243,  97, 190, 56),
-> +       HSTT(2050, 248,  99, 194, 58),
-> +       HSTT(2100, 252, 100, 199, 59),
-> +       HSTT(2150, 259, 102, 204, 61),
-> +       HSTT(2200, 266, 105, 210, 62),
-> +       HSTT(2250, 269, 109, 213, 63),
-> +       HSTT(2300, 272, 109, 217, 65),
-> +       HSTT(2350, 281, 112, 225, 66),
-> +       HSTT(2400, 283, 115, 226, 66),
-> +       HSTT(2450, 282, 115, 226, 67),
-> +       HSTT(2500, 281, 118, 227, 67),
-> +};
-> +
-> +static int imx93_dsi_phy_get_timing(void *priv_data, unsigned int lane_m=
-bps,
-> +                                   struct dw_mipi_dsi_dphy_timing *timin=
-g)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +       struct device *dev =3D dsi->dev;
-> +       int i;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(hstt_table); i++)
-> +               if (lane_mbps <=3D hstt_table[i].maxfreq)
-> +                       break;
-> +
-> +       if (i =3D=3D ARRAY_SIZE(hstt_table)) {
-> +               dev_err(dev, "failed to get phy timing for lane_mbps %u\n=
-",
-> +                       lane_mbps);
-> +               return -EINVAL;
-> +       }
-> +
-> +       *timing =3D hstt_table[i].timing;
-> +
-> +       dev_dbg(dev, "get phy timing for %u <=3D %u (lane_mbps)\n",
-> +               lane_mbps, hstt_table[i].maxfreq);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct dw_mipi_dsi_phy_ops imx93_dsi_phy_ops =3D {
-> +       .init =3D imx93_dsi_phy_init,
-> +       .power_off =3D imx93_dsi_phy_power_off,
-> +       .get_lane_mbps =3D imx93_dsi_get_lane_mbps,
-> +       .get_timing =3D imx93_dsi_phy_get_timing,
-> +};
-> +
-> +static int imx93_dsi_host_attach(void *priv_data, struct mipi_dsi_device=
- *device)
-> +{
-> +       struct imx93_dsi *dsi =3D priv_data;
-> +
-> +       dsi->format =3D device->format;
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct dw_mipi_dsi_host_ops imx93_dsi_host_ops =3D {
-> +       .attach =3D imx93_dsi_host_attach,
-> +};
-> +
-> +static int imx93_dsi_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct device_node *np =3D dev->of_node;
-> +       struct imx93_dsi *dsi;
-> +       int ret;
-> +
-> +       dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
-> +       if (!dsi)
-> +               return -ENOMEM;
-> +
-> +       dsi->regmap =3D syscon_regmap_lookup_by_phandle(np, "fsl,media-bl=
-k-ctrl");
-> +       if (IS_ERR(dsi->regmap)) {
-> +               ret =3D PTR_ERR(dsi->regmap);
-> +               dev_err(dev, "failed to get block ctrl regmap: %d\n", ret=
-);
-> +               return ret;
-> +       }
-> +
-> +       dsi->clk_pixel =3D devm_clk_get(dev, "pix");
-> +       if (IS_ERR(dsi->clk_pixel))
-> +               return dev_err_probe(dev, PTR_ERR(dsi->clk_pixel),
-> +                                    "failed to get pixel clock\n");
-> +
-> +       dsi->clk_cfg =3D devm_clk_get(dev, "phy_cfg");
-> +       if (IS_ERR(dsi->clk_cfg))
-> +               return dev_err_probe(dev, PTR_ERR(dsi->clk_cfg),
-> +                                    "failed to get phy cfg clock\n");
-> +
-> +       dsi->clk_ref =3D devm_clk_get(dev, "phy_ref");
-> +       if (IS_ERR(dsi->clk_ref))
-> +               return dev_err_probe(dev, PTR_ERR(dsi->clk_ref),
-> +                                    "failed to get phy ref clock\n");
-> +
-> +       dsi->ref_clk_rate =3D clk_get_rate(dsi->clk_ref);
-> +       if (dsi->ref_clk_rate < REF_CLK_RATE_MIN ||
-> +           dsi->ref_clk_rate > REF_CLK_RATE_MAX) {
-> +               dev_err(dev, "invalid phy ref clock rate %lu\n",
-> +                       dsi->ref_clk_rate);
-> +               return -EINVAL;
-> +       }
-> +       dev_dbg(dev, "phy ref clock rate: %lu\n", dsi->ref_clk_rate);
-> +
-> +       dsi->dev =3D dev;
-> +       dsi->pdata.max_data_lanes =3D 4;
-> +       dsi->pdata.mode_valid =3D imx93_dsi_mode_valid;
-> +       dsi->pdata.mode_fixup =3D imx93_dsi_mode_fixup;
-> +       dsi->pdata.get_input_bus_fmts =3D imx93_dsi_get_input_bus_fmts;
-> +       dsi->pdata.phy_ops =3D &imx93_dsi_phy_ops;
-> +       dsi->pdata.host_ops =3D &imx93_dsi_host_ops;
-> +       dsi->pdata.priv_data =3D dsi;
-> +       platform_set_drvdata(pdev, dsi);
-> +
-> +       dsi->dmd =3D dw_mipi_dsi_probe(pdev, &dsi->pdata);
-> +       if (IS_ERR(dsi->dmd))
-> +               return dev_err_probe(dev, PTR_ERR(dsi->dmd),
-> +                                    "failed to probe dw_mipi_dsi\n");
-> +
-> +       return 0;
-> +}
-> +
-> +static void imx93_dsi_remove(struct platform_device *pdev)
-> +{
-> +       struct imx93_dsi *dsi =3D platform_get_drvdata(pdev);
-> +
-> +       dw_mipi_dsi_remove(dsi->dmd);
-> +}
-> +
-> +static const struct of_device_id imx93_dsi_dt_ids[] =3D {
-> +       { .compatible =3D "fsl,imx93-mipi-dsi", },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx93_dsi_dt_ids);
-> +
-> +static struct platform_driver imx93_dsi_driver =3D {
-> +       .probe  =3D imx93_dsi_probe,
-> +       .remove_new =3D imx93_dsi_remove,
-> +       .driver =3D {
-> +               .of_match_table =3D imx93_dsi_dt_ids,
-> +               .name =3D "imx93_mipi_dsi",
-> +       },
-> +};
-> +module_platform_driver(imx93_dsi_driver);
-> +
-> +MODULE_DESCRIPTION("Freescale i.MX93 MIPI DSI driver");
-> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.37.1
->
 
-
-Reviewed-by: Robert Foss <rfoss@kernel.org>
+-- 
+Regards,
+Alexandre
 
