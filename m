@@ -1,118 +1,176 @@
-Return-Path: <devicetree+bounces-8722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DA47C9CDF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 03:33:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E397C9CE6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 03:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCB071C208A8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 01:33:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CAA42815B6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 01:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5A41369;
-	Mon, 16 Oct 2023 01:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A561377;
+	Mon, 16 Oct 2023 01:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="dhYgZVE5"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="l1F9RJZe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C31136D
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:33:08 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7AEDA
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 18:33:07 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B7F072C0733;
-	Mon, 16 Oct 2023 14:33:05 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1697419985;
-	bh=ko5T8oZxTS9rIyp1bVTVligc3kX9bo+JSpSRE33ApsY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dhYgZVE5mzOHTRTF/qyeXifd9fuLrkEsacshOLJ5gze9eEP7cszJ6BdreWlvrxmA6
-	 GmhwOJsQGTnMbY2glQZtdj63PMSQndKiMw8yyGSRerpeqi18naWry34mRwbxzDFMGX
-	 Djy9QLRXIAiA4kPrFlO/jYSXo18wNCDpjo+oQQWPViI9v1G6wpWx9p0WN1+MNw3F6d
-	 BjEq9QS0nwlNtrWvvmp7FC3IW3chRf2QAyrNfVzOgKwL5+XrkpWmPW/lum5YY0dI7A
-	 9yMplHdXZLu5hWi/mrBT3TMmi+/yfjYHkaDHqm+nk9IGmPiOuP7jEbPRuPP/1MzkgB
-	 qMTZk6+Tw2Lcw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B652c92d10000>; Mon, 16 Oct 2023 14:33:05 +1300
-Received: from richardl-dl.ws.atlnz.lc (richardl-dl.ws.atlnz.lc [10.33.23.23])
-	by pat.atlnz.lc (Postfix) with ESMTP id 9808813EDA9;
-	Mon, 16 Oct 2023 14:33:05 +1300 (NZDT)
-Received: by richardl-dl.ws.atlnz.lc (Postfix, from userid 1481)
-	id 959D6520158; Mon, 16 Oct 2023 14:33:05 +1300 (NZDT)
-From: Richard Laing <richard.laing@alliedtelesis.co.nz>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	ilpo.jarvinen@linux.intel.com,
-	andriy.shevchenko@linux.intel.com
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Richard Laing <richard.laing@alliedtelesis.co.nz>
-Subject: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Add property to drain TX FIFO
-Date: Mon, 16 Oct 2023 14:32:07 +1300
-Message-ID: <20231016013207.2249946-3-richard.laing@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231016013207.2249946-1-richard.laing@alliedtelesis.co.nz>
-References: <20231016013207.2249946-1-richard.laing@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC3E1369
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:37:28 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2139.outbound.protection.outlook.com [40.107.113.139])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998DBA9
+	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 18:37:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NyTYJWbFYRAEb4eJWcV9ecVhY/MdWTKeAnhiv+F712vW0VEUrgfWnzf2GAY13hDd3OuFH7OctezqoabvwBJIQVxQkrOUJXh0L1kX7dw8unzS3yXFmdvwjAqYD+QSVzyvxKNLbZ9rmRhkEnCH+fLvKlsi3ChkgRrorXE02M/7H8oV1vXlhqcV8eXNuvGv6+JkfMkqeXhyAThPfFEipY9CS4qPIminDi7IEa3lXGa3tIwx1YEZgHkblnFEnCmovrY/sKmnsHFqCuJWRQ1I+4oN/Fr8yeBs/oHU4O+vyGPXyqmS4uDBLQIRFUf/N+X0PyEK9gJBsVKhB9bl3ng7j/cJKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OyHSX6TkNkujBJQP3tbVz0PGOK1lfrx5Y9A7BNTqYCA=;
+ b=UppMAI2sFKb/pBwnuCsf62+fDCksSjN/FG9Rw6mYjBNmKeTVsVH12eWZRAhpnCmKheStDXJF5W0NMtSeIrZPgNjqsqfBrNhj4mvF6hDvu1/HD9pXWbbd/+qushV5sh+r+ju64KLVmDumRwyReYl1imFN8dy2CloU0cUngg8ZuTAncT0m7ndDVOiSCazCFh6Gb5cU4TJw1Da5kw3nceP+6toG/WM5kDaSouDUudYbS7reWlKrIiTtqWmxDYVJ8VlZIM9+r9JAw8b3EO//PsrrvXtSZr/JBOc0WMBTvZNp6DTmS5rd9NgAvX7gbVMgbvr0VQOBCwICwYwyMr7iL3Nh0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OyHSX6TkNkujBJQP3tbVz0PGOK1lfrx5Y9A7BNTqYCA=;
+ b=l1F9RJZehYPzAxR2Df476cVuzEq0V04StIqsIVWp0aAebxmLOyD/RgbWUQ+xHPOz1eA87ItfpEvTC4dEgOY5FH/YfrNA8k+QwdKa/3TGK95wI/L3wQ08mAA1vha0HGLvGv+2rA0IhqKijxGxCcJVGHroGVHHorhNpC1qhTC9pkM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TY3PR01MB11744.jpnprd01.prod.outlook.com (2603:1096:400:407::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.47; Mon, 16 Oct
+ 2023 01:37:21 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::d2a3:45df:a180:595c]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::d2a3:45df:a180:595c%6]) with mapi id 15.20.6886.034; Mon, 16 Oct 2023
+ 01:37:21 +0000
+Message-ID: <87zg0jwdnz.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v4 0/4] ASoC: makes CPU/Codec channel connection map more generic
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, Mark Brown <broonie@kernel.org>, Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Mon, 16 Oct 2023 01:37:20 +0000
+X-ClientProxiedBy: TYAPR03CA0016.apcprd03.prod.outlook.com
+ (2603:1096:404:14::28) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=bhdUkHdE2iEA:10 a=yJYUBcXGP3-BVwV7yiEA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TY3PR01MB11744:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc5c57ca-ac86-4a9e-772e-08dbcde870ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	VCVFo4hb6ecNpYZdxMRcM5FI8wYV8XrfTuMrAHtRCadHzLTnM1kruK4G/QqXR5y9kr56IV8znU9Glc3EwxyTziI0nrXbnhVBBnVBMRcgy07a9/uTxMoN10LS0AR0YgfktMvUdPeK2SRQv+GUFscQumo661Ujr7nkN9FPFZTrjs25fZ0wOaJKNPB5FwcM5ZFkIrXtIVU6n9/KnbsJaGSxJPNbeLF024LOfAgWahaxkKkya3G8i9pYkkwa+PwVniVlHk5MZ4r335OHTdK7qOXStC2Wm7E73LNP/JcqnJ+5YcGUrD0GwUCClJn092/GbAKy5HEG/uDBABOwAnrrEI0zYwn48aXyzF1drGPwaROn2t5F3kX/kqzuPL3b9IllDlH4IPKT7Q9uJ/OiARuaqXj1EvIadvxAhkDXirGId9SUzRvqsA68aNpAvX+3SeeH91vBnYH9s56+78QxlauOc/6dh0SGO8RP9A8obLPvYhPrzB9hr9L4Ljq+psxfIHsVk+/qvXOtbQSqMICd5bJYpvVljhwVHQMVDSQ4z29dEBxg1YbZmTZJS+md/704BwcexAQAkt1usBls/QGElnhXX4mKbiUk6X9PHMetpvgpAmCHCKg7hq7mYYMjKptjH9Fulb6O
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(366004)(396003)(376002)(136003)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(966005)(478600001)(66556008)(6486002)(110136005)(66946007)(66476007)(2616005)(52116002)(316002)(6512007)(6506007)(26005)(8936002)(8676002)(5660300002)(7416002)(41300700001)(2906002)(38100700002)(4326008)(36756003)(86362001)(83380400001)(38350700005)(41533002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+sRsw83NHk8AlbpbPfm1mLuI71GnBFw+G0c6YYZ9zHJnpLmmHQ0xApPCjrBz?=
+ =?us-ascii?Q?chUggSKfNSSA3fsYlmD0Y5PUCo0CqCZMQyMsYhOBi068othYcBI8mMiUyARp?=
+ =?us-ascii?Q?9b9X14zdpo6iKWfSrQSLHVD6wMrIlCQSl3prnqzySJcBxxnXFfh4SSyzNlPQ?=
+ =?us-ascii?Q?kwKu056ye27LBYaTMU4qC52niTX5KNtQLcWS7IQWyqqsLiGUKrU78AvFli0k?=
+ =?us-ascii?Q?jL0TVzlWHJr8p2PAvRrcppw8lcbw4Xeia+bitwT4XoFNfeHlRh/X52e3fTT3?=
+ =?us-ascii?Q?mM7RdWa3Px1wEREjaJDI9GUBohhwKmNuH6R8FwJ+kuppxM7RdjROU6545t2m?=
+ =?us-ascii?Q?Q5LTr6/lzl92eU9C/IIwZsEjBjjopbrkEsNesMFLkYI29tOgsg0IzSLhitaS?=
+ =?us-ascii?Q?E4hJPlJUJVMFPx/sy3dBvCE+8brEvagnNOGobvvMnihTh8uqO8ZqzFZ7kpXL?=
+ =?us-ascii?Q?hW1kFD5w+MoPsj6FIt430fOz4o3mcdKMi+E7gTwqdULavNtr2YqSwIq/hTiG?=
+ =?us-ascii?Q?rKDAdzD2ugeSKHfCMdxH+2X+T+hBe01Z/l9nXKpqG2FVqp48VjwtHoCshucn?=
+ =?us-ascii?Q?YGuvBjSlm8FjyTiSRLUrAh2RkotQ7p/kJpHmvWHBqFxmDZk4W330U5ggzLjp?=
+ =?us-ascii?Q?xB9J3v/SId6zNcJCs9MfzfLH0Ygr3I4w+2MSGWz+PQfRCVOCUCpQ3NyZAlff?=
+ =?us-ascii?Q?a6vkPavgLXHKXOXvKc+u91CJNdLUu9j4Am02FpSOFXavUZNm9e9/TRAV6R4z?=
+ =?us-ascii?Q?eBzcZwOsDRkqRic0tu/m6yXaVE9LWq8KAoHfScHJuEAWmESJcgX1jS91Lldm?=
+ =?us-ascii?Q?2MkoVm//3EQa1bdEFHRVoQwC5LsLgxsTRmp8K1tI9Rp3plXf3qwnJc/vHyri?=
+ =?us-ascii?Q?VoXvqqnMXAnkv0gc5kGIyiMig2miscW+Uno381YcY1u0nPphWaiptQ97BAiP?=
+ =?us-ascii?Q?Ae9i30Yr3amJ1R7keu2OzUnjq/SGYXC5VGart8cS0REEY4QkZUWq78WMKWtx?=
+ =?us-ascii?Q?1k0ILIGBWDgFNeJKxig1IGpv31xdjo1bFiPxsf0GDq2u+7Nom4NC85nnxk9N?=
+ =?us-ascii?Q?xLwQLBWNIeLgd0wfavZrAmMehH91ls7Be8PUzyo2TLglbeA79SdfETiKOFIQ?=
+ =?us-ascii?Q?EL0cCFOVx4VMzRMBvDbjXGKjkFHregE/PA8IfU/cT6LOGIdZHbHiRg+iJoT1?=
+ =?us-ascii?Q?T5sQjeRwk0WljD8ED/S/A1wCLqENST6kWcAsST8IGW8TFB5O/CtUjRWh2v1+?=
+ =?us-ascii?Q?9P6oAbEAwHlx2pMAmVVon7WbI1/lvKFMmtMJC3i3PIytYoRR4VCRIM2EkYsI?=
+ =?us-ascii?Q?NlWTK1KGZOCpP8meJg1jdAxCxzvviP9zwwv+y1T+Cad79X38HdiOu62NorfI?=
+ =?us-ascii?Q?CcOgoXwodaKq4jhBzBGcHmdi9OMDjzYJEUEa5PuhJdv+3xc+Of1/W0z9h3h7?=
+ =?us-ascii?Q?LsSqbE0UWAK3u1eukFiLFKWLey/IGmF+5K01iOTWUtHPMfD/yn1FY6rAjDZY?=
+ =?us-ascii?Q?VnN2YtPpn/TPyAwx/wfh7T9h14Kmaa0hv4fkSC584wLeNlPUKwbp3SfPnFof?=
+ =?us-ascii?Q?wClox6xt63L7EHhlfcTCR2I8qRuTmHQwXrcGPJ5w5WvehbsIO+n58Yv2hBDy?=
+ =?us-ascii?Q?DWEC8iVTYcwEGrLix5iHLao=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc5c57ca-ac86-4a9e-772e-08dbcde870ab
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2023 01:37:21.0686
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ND4X98MwG2pCNbBnd0xSnlZ6iybI5TuVh2wLAuHEfSRSH9V2xk9E1Pc+sPAV7WiQSO0pZC6M44QM1TtSTf40ZnBP+9niJejiVklUKPhWSZAloNWXPYI82IKc49H7MG96
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11744
+X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-An issue has been observed on the Broadcom BCM56160 serial port which
-appears closely related to a similar issue on the Marvell Armada 38x
-serial port.
 
-Add a new property to force the TX FIFO to be drained before
-changing the UART_LCR.
+Hi Mark
+Cc Bard, Pierre-Louis, Jerome, DT-ML
 
-Signed-off-by: Richard Laing <richard.laing@alliedtelesis.co.nz>
----
- .../devicetree/bindings/serial/snps-dw-apb-uart.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+This is v4 patch-set.
 
-diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.ya=
-ml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-index 17c553123f96..4266ef96832c 100644
---- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-@@ -114,6 +114,12 @@ properties:
-       register. Define this if your serial port does not use this pin.
-     type: boolean
-=20
-+  drain-before-lcr-change:
-+    description: Force TX buffer flush before LCR change. Make sure all
-+    characters in the buffer are sent before reconfiguring. Define this =
-if
-+    the UART drops its FIFO when reconfiguring.
-+    type: boolean
-+
- required:
-   - compatible
-   - reg
---=20
-2.42.0
+Current ASoC is supporting CPU/Codec = N:M (N < M) connection by using
+ch_map idea. This patch-set expands it that all connection uses this idea,
+and no longer N < M limit [1].
+
+Link: https://lore.kernel.org/r/87fs6wuszr.wl-kuninori.morimoto.gx@renesas.com [1]
+
+This patch is tested on Audio-Graph-Card2 with sample dtsi,
+but needs Tested-by, at least from Intel.
+
+v3 -> v4
+	- add Jerome on To
+	- add "description" on "ch-maps"
+
+v2 -> v3
+	- tidyup comment
+	- use more clear connection image on DT
+	- "ch_maps" -> "ch-maps" on DT
+	- Add DT maintainer on "To:" for all patches
+
+v1 -> v2
+	- makes CPU/Codec connection relation clear on comment/sample
+	- fixup type "connction" -> "connection"
+	- makes error message clear
+
+Kuninori Morimoto (4):
+  ASoC: makes CPU/Codec channel connection map more generic
+  ASoC: audio-graph-card2: add CPU:Codec = N:M support
+  ASoC: audio-graph-card2-custom-sample: add CPU/Codec = N:M sample
+  dt-bindings: audio-graph-port: add ch-maps property
+
+ .../bindings/sound/audio-graph-port.yaml      |   8 +-
+ include/sound/soc.h                           |  66 ++++++++-
+ .../audio-graph-card2-custom-sample.dtsi      | 138 +++++++++++++++---
+ sound/soc/generic/audio-graph-card2.c         |  29 ++++
+ sound/soc/intel/boards/sof_sdw.c              |  14 +-
+ sound/soc/soc-core.c                          |  85 +++++++++++
+ sound/soc/soc-dapm.c                          |  47 +++---
+ sound/soc/soc-pcm.c                           |  73 ++++-----
+ 8 files changed, 368 insertions(+), 92 deletions(-)
+
+-- 
+2.25.1
 
 
