@@ -1,201 +1,185 @@
-Return-Path: <devicetree+bounces-8894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00567CA7BE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:06:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF137CA7C1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:09:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78E61281724
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:06:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46FC32812F6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E6326E1F;
-	Mon, 16 Oct 2023 12:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3546C26E25;
+	Mon, 16 Oct 2023 12:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="j/xP9xUq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF90266CD
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:04:17 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E27E6
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:04:15 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMK9-0004KA-HN; Mon, 16 Oct 2023 14:03:53 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMK7-0024Zf-Fz; Mon, 16 Oct 2023 14:03:51 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMK7-00EjhX-D1; Mon, 16 Oct 2023 14:03:51 +0200
-Date: Mon, 16 Oct 2023 14:03:51 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Chanwoo Choi <chanwoo@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	kernel@pengutronix.de,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v7 09/26] PM / devfreq: rockchip-dfi: Clean up DDR type
- register defines
-Message-ID: <20231016120351.GA3359458@pengutronix.de>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-10-s.hauer@pengutronix.de>
- <1eaa8d5b-af6b-71bb-df7a-d438b483f5bb@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32C2B241FF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:09:01 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2052.outbound.protection.outlook.com [40.107.6.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B598E;
+	Mon, 16 Oct 2023 05:08:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dsyUQrFonYvuNgRcgZV85ItNP6IMtQUZ2zLW+A5npgWw5YQBXpuNEp94cdscrQYPipVc0soAZMXCtNkb0L8GJjjmWLJQ/CFhhYBuC3oms+hgNuGXJnQRDvTTApOhrDhLvnc2eOl/vjhrnl9TrGq3NAK4ceAoj4wYBiF8wyLJYcM2iD6T54JIYaRpiOZpSILIJs+RmUPjrITJancOYD/q151aZnfdCm+SsNjzd8d5ZIlDMOoY6Bj8kg+KL4NQmkjiO2yDd+TP6EVnX6fSEFBZv4ehy61Ya5711GDMthvqnAipapWfpXEjjmNsQxpHILz4HxOJ5Lts9E69RlJu1ALMwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yjaNb794B5WdEQV6oO0OJ1tASt26o2uz5whqXeaaP6g=;
+ b=HAkPGf7FoYr5XAyFO2homGEaV0dSZsbW7e6bqyAww5fypyOIGfSIHP0DA92q98C7c5xqgINpLOpbstTH+kRhpdnOCQtqlZkTLmnvNXFZVjZBALfZkeum3+uQF3b9/NmbVslsrKFnylmrSGafQeBAx4kDGqhIyrfE9ppphzduW8GUpu169Dm/hOcnYfeyJBJj56+PfHeL92leTWrAMTadd5qjQTJfr5dnvjdU3pf0vRRMkXi6w+BzXwyVptXh0D6t6jfnAoVSGOCkd71CiqbNGb/GQWq8s9+Mkd3gO6x9G4R+LK0Qqw+MLwsz2oAGrjtKO0csj+b1Q4HKs3sSKUyWxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yjaNb794B5WdEQV6oO0OJ1tASt26o2uz5whqXeaaP6g=;
+ b=j/xP9xUqu3PTqmi5mrdSPgV3FQgU5ebCmo8/Yj7ItG9nQzCm342uTIK9FMil1LwKtosJBT0vw7Qy9I9shB+7Y4b44/ozul5NuEpYW299MiVk/B3KnQMjF4XAy+Q0ZmqTonBVQ7cSGz6jv8JsCZXWwyL181oOrZx+98/fK8IZ1bs=
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by DU2PR04MB9523.eurprd04.prod.outlook.com (2603:10a6:10:2f6::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Mon, 16 Oct
+ 2023 12:08:57 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6886.034; Mon, 16 Oct 2023
+ 12:08:56 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shengjiu.wang@gmail.com"
+	<shengjiu.wang@gmail.com>, "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+	"festevam@gmail.com" <festevam@gmail.com>, "nicoleotsuka@gmail.com"
+	<nicoleotsuka@gmail.com>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
+	<tiwai@suse.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linuxppc-dev@lists.ozlabs.org"
+	<linuxppc-dev@lists.ozlabs.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: RE: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List
+ DAPM endpoints ignoring system suspend
+Thread-Topic: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List
+ DAPM endpoints ignoring system suspend
+Thread-Index: AQHaACmJsu5Q9I39WkaHWuyFJN2nYQ==
+Date: Mon, 16 Oct 2023 12:08:56 +0000
+Message-ID:
+ <DB9PR04MB94987AD33756548323D8D101E3D7A@DB9PR04MB9498.eurprd04.prod.outlook.com>
+References: <20231011114759.1073757-1-chancel.liu@nxp.com>
+ <f639c88d-371a-4c72-a906-47d643b24ca8@sirena.org.uk>
+ <20231012204739.GA1706264-robh@kernel.org>
+In-Reply-To: <20231012204739.GA1706264-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB9PR04MB9498:EE_|DU2PR04MB9523:EE_
+x-ms-office365-filtering-correlation-id: 9262a0b7-ed0e-4318-e93d-08dbce40ac72
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ rLZ2UzHzMTDGo7ILn/bQgE1kkF39hIAeL2LAgfxnycI2x+c5L2nAWHP6RXb7X4mczPwwh0Pzl/QyU8lHFWLX9aVDkH/IWvA09/dTAvKJQQbo3vcoLm1YmsU0TwZCwLgJzq0hS6ROnCK37Uxg5HfIZkQM2vG4gKraHucDQO5AbfIqriYHid3cONSyd9E1IGM4oLkTQ8RH7fwBYbidVheHjlmm+wcJUqDafaa7WoE0XKLrTQtDB2E5FwruNmJA2z7sFfwzXMWOzsiZTapwsbFwjFb0HSexMV0M9Rz2Pdo1BxrtX2DwXuyyjzLaDi3OZGjYqFABOCGUaEoTAZnGAs1z0VBfCWIaoqg0edBzTjoVGVqXye3cqwA7WX5oW0bCb3s/iZE2RP7isIzRdDhu8LWuzO5qbNV/lPGd/2jMLo3ZvxsxTTlTAFgng8o/1T7uHOvJKC6uCCSOdmKhN38HRkcKBgtZRJuP2A9dtuCKNUxGPq79g7/805KH9z29EUdgk3TdMq5f1DjNd05jF/pupbgainE3QCEzwqmkukEeT3ZbnZH3+JdFATnPtEtr/Jhxh6+Th2TyknfeJ5quuATPoAa1e27/II51Tvm1lN0fTuTilwlOUmDUV0ioy/xysRT7o2wQ
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39860400002)(376002)(346002)(396003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(7416002)(478600001)(9686003)(26005)(6506007)(7696005)(4326008)(8936002)(8676002)(83380400001)(5660300002)(41300700001)(66556008)(52536014)(44832011)(66476007)(15650500001)(316002)(76116006)(66946007)(64756008)(54906003)(66446008)(2906002)(38100700002)(38070700005)(110136005)(71200400001)(122000001)(33656002)(86362001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?I3k/3HVDkdAoN/0nplMYPFQSsK/frP+KD8EJx1Bdyj25RW4psatvL2vdcKDh?=
+ =?us-ascii?Q?g/+YUOG/7xGUb9MGwY3fjA3YunbpO4A5rESLH6Ly9ywpTcoso8mh8+huZEuN?=
+ =?us-ascii?Q?1w4liHK2yoPhKckewLaoAAsB19mF/nA8GifQ/H5DDQ2FKJh/PrtfSQdcsrBo?=
+ =?us-ascii?Q?aVrUBcKOSuFZD/KaaVKeqXd2T6gYmZi10UOvhpl988HWgICjEeV1QbgKyQ+n?=
+ =?us-ascii?Q?5rihHf8dH6eTNumLj0YJcXQss6CoT+71n5JQtfm2k2/WPTlDeOW21k/aBK/D?=
+ =?us-ascii?Q?n4vt6m3sfhEf9B+Ng9raxkfRHeXtrUyo3H/1gcau774t472JNlZpEQ3RRkgP?=
+ =?us-ascii?Q?miogBmdImBVCbNEApLayaGXz3xNA0QMMtEs5qDox4Jkj6FAWfHk19PDSobX7?=
+ =?us-ascii?Q?vX3jaMSvFxYJZges2oKmVqR7bQcVN/wNxm96bR9OrEsIfupM/AmRsgHaDFWX?=
+ =?us-ascii?Q?A9xkFLzE+6ut0OLs/HGio/seKlBDk/fkajH3IGZ+n2/FIg8vUjBSmgFeHbrX?=
+ =?us-ascii?Q?IW1y4MgwhyfLhhj7bRR0QXywNuj/rrQx7G92UlHBqsaCIDLZrWS6ydTvGlP/?=
+ =?us-ascii?Q?wPWvexIE8xdcBG5lYJwozO2AQn22YpH8yqILOokXqeUzeVqFHvDyo7tjOoQo?=
+ =?us-ascii?Q?LNcPDd5wguWIKAFZ33FggJZUv75eZXnidFr3hTG0hWwzvyhBysKIueGxhqq/?=
+ =?us-ascii?Q?lwNxoUF6tXsyqNQ/OVoT9u2eNd9ECLGACPDvlKA4AIaqrkaC2TOP1u9jyjnj?=
+ =?us-ascii?Q?UKF3mrhBqwwcmGFKm2OLbDhAa+UmmoHgyWdarYyyE1iZUMNQLAcMnNlRIlks?=
+ =?us-ascii?Q?t8ZjNNJPUPRyfiBkHRNNif4DxtRF2Tp/TayerJthSiX51GOCGPn7L+aWvkgw?=
+ =?us-ascii?Q?Znbmp/BpVJj5HYOBdiLd8HSqIgdryv8l379YJyBYlTRXg87tQSdR+Y/ltgZZ?=
+ =?us-ascii?Q?Wq2x8SjxdmlvAMOQp/qVuGCcH6KIuN0tTamFKpRFrqpyWxWrrGPXFID3fYdm?=
+ =?us-ascii?Q?F63Iqnk9WW5J9v7tOGTxbyCESIxO3sluo3rOgZ9K55IxlgsO4N3pJV1szDrK?=
+ =?us-ascii?Q?Jh9HVY7g+1uGYTq8KbAKzhCgIsc8Cd+tcCNNwifcNhBGhmRafnQpCmNA/vfv?=
+ =?us-ascii?Q?GfNe45I3L6Hcz8lv5y55e2cCAakmsI446d0LfjorBOsExD30lcye8pl4T1bO?=
+ =?us-ascii?Q?juulH+kq/mz83IXqoopGk1Oeh3vsSHN4hf+LYQaxSIuU8e+C1x0Af7hzoZYg?=
+ =?us-ascii?Q?QEcwD0NkezjqJYEI5+MrvPL2XMPKugTWjbubdpSxlfohWRypFQ34TkqL5cSb?=
+ =?us-ascii?Q?NjsiH01rUZTa32sYpeQfi9cEzEHs5cnDac7NvM8xZba6ckbhrK5NplHI+mv/?=
+ =?us-ascii?Q?s5UnDbOQmVxLv5fgy829swwMeQ4s7hbWJ/iyRxiNv20gONrICI9iWff9zftJ?=
+ =?us-ascii?Q?7/UdhRDCPDKu1cz+/qWSh8g6FTtcRWzVA7VU9k+bfbNnKEHERDtlNCh7ZqGs?=
+ =?us-ascii?Q?4Ei4b3dlR/LkrWGAEM6qfkOMUHP14rXbNtwHsmA0fOjt3g30vqpjBB1kJeED?=
+ =?us-ascii?Q?aJYNg3ggvshLOfo/Bdw=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1eaa8d5b-af6b-71bb-df7a-d438b483f5bb@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9262a0b7-ed0e-4318-e93d-08dbce40ac72
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2023 12:08:56.8982
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qFSSUTw1DKn+fj1G4B4JB5meILLkUTBTlB1IYhhm6pVhL2iO7ms2dcukgM11itE2Chl4DX+24mAOGs42oN2uOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9523
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sat, Oct 07, 2023 at 04:11:22AM +0900, Chanwoo Choi wrote:
-> On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> > Use the HIWORD_UPDATE() define known from other rockchip drivers to
-> > make the defines look less odd to the readers who've seen other
-> > rockchip drivers.
-> > 
-> > The HIWORD registers have their functional bits in the lower 16 bits
-> > whereas the upper 16 bits contain a mask. Only the functional bits that
-> > have the corresponding mask bit set are modified during a write. Although
-> > the register writes look different, the end result should be the same,
-> > at least there's no functional change intended with this patch.
-> > 
-> > Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  drivers/devfreq/event/rockchip-dfi.c | 33 ++++++++++++++++++----------
-> >  1 file changed, 21 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> > index 6bccb6fbcfc0c..6b3ef97b3be09 100644
-> > --- a/drivers/devfreq/event/rockchip-dfi.c
-> > +++ b/drivers/devfreq/event/rockchip-dfi.c
-> > @@ -26,15 +26,19 @@
-> >  
-> >  #define DMC_MAX_CHANNELS	2
-> >  
-> > +#define HIWORD_UPDATE(val, mask)	((val) | (mask) << 16)
-> > +
-> >  /* DDRMON_CTRL */
-> >  #define DDRMON_CTRL	0x04
-> > -#define CLR_DDRMON_CTRL	(0x1f0000 << 0)
-> > -#define LPDDR4_EN	(0x10001 << 4)
-> > -#define HARDWARE_EN	(0x10001 << 3)
-> > -#define LPDDR3_EN	(0x10001 << 2)
-> > -#define SOFTWARE_EN	(0x10001 << 1)
-> > -#define SOFTWARE_DIS	(0x10000 << 1)
-> > -#define TIME_CNT_EN	(0x10001 << 0)
-> > +#define DDRMON_CTRL_DDR4		BIT(5)
-> > +#define DDRMON_CTRL_LPDDR4		BIT(4)
-> > +#define DDRMON_CTRL_HARDWARE_EN		BIT(3)
-> > +#define DDRMON_CTRL_LPDDR23		BIT(2)
-> > +#define DDRMON_CTRL_SOFTWARE_EN		BIT(1)
-> > +#define DDRMON_CTRL_TIMER_CNT_EN	BIT(0)
-> > +#define DDRMON_CTRL_DDR_TYPE_MASK	(DDRMON_CTRL_DDR4 | \
-> > +					 DDRMON_CTRL_LPDDR4 | \
-> > +					 DDRMON_CTRL_LPDDR23)
-> >  
-> >  #define DDRMON_CH0_COUNT_NUM		0x28
-> >  #define DDRMON_CH0_DFI_ACCESS_NUM	0x2c
-> > @@ -73,16 +77,20 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
-> >  	void __iomem *dfi_regs = dfi->regs;
-> >  
-> >  	/* clear DDRMON_CTRL setting */
-> > -	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
-> > +	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN |
-> > +		       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
-> 
-> You mentioned that there are no behavior changes even if the different value is written.
-> But, it looks strange. Could you please explain more detailed about it?
+> >  I think the key thing
+> > here is that these are endpoints that can be active over suspend of
+> > the main application processor that the current operating system is
+> > running (system DT stuff is an interesting corner case here...), and
+> > the example is probably a bit specific.  Other bindings use "audio soun=
+d
+> widgets"
+> > rather than "DAPM widgets".
+> >
+> > We also shouldn't see that these endpoints "should not be disabled"
+> > since that implies that they should be left on even if they aren't
+> > active which isn't quite the case, instead it's that we can continue
+> > playing an audio stream through them in suspend.
+>=20
+> This seems like one of those things that everyone has/does, and everyone
+> handles it a bit differently. I applaud trying to do something common, bu=
+t it
+> isn't really common until we have multiple users.
+>=20
+> Rob
 
-Many registers on Rockchip SoCs are effectively only 16 bits wide. The
-lower 16 bits are the functional bits. The upper 16 bits contain a mask
-value. The lower 16 bits are only modified when the coresponding bit in
-the upper 16bits is set.
+Thanks Mark and Rob for your advice. In fact, it's common use case. We can =
+see
+many drivers set widgets ignoring suspend. I will remove the linux specific=
+s
+and focus on the key concept. How about the modification on the property na=
+me
+and description as following:
+  ignore-suspend-widgets:
+    description: |
+      A list of audio sound widgets which are marked ignoring system suspen=
+d.
+	  Paths between these endpoints are still active over suspend of the main
+	  application processor that the current operating system is running.
 
-For example writing 0x0001dead has the same effect as writing
-0x00010001: The lower bit is set, the remaining are unchanged due to the
-mask value being 0.
-
-> 
-> 
-> CLR_DDRMON_CTRL is 0x1f0000
-
-This clears the lower 5 bits.
-
-> vs.
-> HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN | DDRMON_CTRL_HARDWARE_EN) = (0 | (BIT(0)|BIT(1)|BIT(3))<<16) = 0xb0000
-
-This clears BIT(0), BIT(1) and BIT(3), so it clears:
-
-DDRMON_CTRL_TIMER_CNT_EN, DDRMON_CTRL_SOFTWARE_EN and DDRMON_CTRL_HARDWARE_EN.
-
-In fact it doesn't clear DDRMON_CTRL_LPDDR23 and DDRMON_CTRL_LPDDR4 like
-the operation with CLR_DDRMON_CTRL does, but the LPDDR type bits are
-handled below:
-
-> 			
-> >  
-> >  	/* set ddr type to dfi */
-> >  	if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR3)
-> > -		writel_relaxed(LPDDR3_EN, dfi_regs + DDRMON_CTRL);
-> > +		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
-> > +			       dfi_regs + DDRMON_CTRL);
-> 
-> LPDDR3_EN	(0x10001 << 2) = 0x40004
-
-This sets BIT(2) aka DDRMON_CTRL_LPDDR23
-
-> vs.
-> HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK) = (BIT(2) | (BIT(5)|BIT(4)|BIT(2))<<16) = 0x340004
-
-This sets BIT(2) and *clears* BIT(4) (DDRMON_CTRL_LPDDR4) and BIT(5)
-(DDRMON_CTRL_DDR4). So effectively we no longer clear BIT(4) in the
-first register access as we do with CLR_DDRMON_CTRL, but in the second
-register access instead.
-
-This also clears BIT(5) which was untouched previously, but this bit had
-never been set by the driver, so should be 0 anyway.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Regards,=20
+Chancel Liu
 
