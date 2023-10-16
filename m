@@ -1,72 +1,65 @@
-Return-Path: <devicetree+bounces-8793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E79F7CA12B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:02:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3765D7CA13A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FAD6B20CF4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:02:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBAF5B20C03
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D58118621;
-	Mon, 16 Oct 2023 08:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D6E182C7;
+	Mon, 16 Oct 2023 08:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B51A2D
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:02:23 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36529DC;
-	Mon, 16 Oct 2023 01:02:19 -0700 (PDT)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50435ad51bbso5317898e87.2;
-        Mon, 16 Oct 2023 01:02:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697443337; x=1698048137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qtLS9Nj2nFZBWPhUvEtRP9PYRoru3Ywsw6HKjKsybKc=;
-        b=c0IZT4D8Nsxv62ZEZlgu2DEtSvWccOrCZFGl5xEN5f3Zf6/A3QZtj1WLO9HAQPcyn7
-         lVoy6gz6uyWT+wiWKYRkoEqtTy7r5sCJX3bd45pwpb2f9pZ3GoQkO5R89WMIplbM8KHz
-         KnyAh24OhQJ8/Qd7VI17JBaHRITSHl6kqjoHzlD6umbYj0/ewPlYHCOlWyHkh/DGUDtq
-         vArVJN00Q5RKyXIaLzI6VY/QTvH/HvHy7rX10KULcRzrG3fVN5EeqkkIHhmP9Q5GmfrN
-         WwO9qdiHr0jhPbpmtlXfh5XtSgi51z16aTYoBIU3LMsRgZMk7DZGJyYH5CcZGXFKcQiA
-         qJ7w==
-X-Gm-Message-State: AOJu0Yw/3APZs4kQoqub3dP3Q00Ve4ryvSdnyroZru67MC+CYlmocv6P
-	nnrZL7c8v92q9J4Q/MFXrYAFX6Pe+5cR1jLH
-X-Google-Smtp-Source: AGHT+IEJgVTIkDdKS8wbwl9GR9zgveQ3KCzOuWUyYvLzmOvka53rPoTXp7pcFySPS7cbYgXGyHt08g==
-X-Received: by 2002:a05:6512:33d0:b0:507:a1df:1408 with SMTP id d16-20020a05651233d000b00507a1df1408mr4684169lfg.55.1697443337286;
-        Mon, 16 Oct 2023 01:02:17 -0700 (PDT)
-Received: from cizrna.home (cst-prg-37-192.cust.vodafone.cz. [46.135.37.192])
-        by smtp.gmail.com with ESMTPSA id p22-20020a05600c419600b00407460234f9sm6395535wmh.21.2023.10.16.01.02.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 01:02:16 -0700 (PDT)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-To: linux-kernel@vger.kernel.org
-Cc: Da Xue <da@libre.computer>,
-	Tomeu Vizoso <tomeu@tomeuvizoso.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D164E1802D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:06:02 +0000 (UTC)
+Received: from out28-218.mail.aliyun.com (out28-218.mail.aliyun.com [115.124.28.218])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B783DE;
+	Mon, 16 Oct 2023 01:05:59 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.2612196|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_news_journal|0.0128076-0.000445282-0.986747;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.V04MZU._1697443545;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V04MZU._1697443545)
+          by smtp.aliyun-inc.com;
+          Mon, 16 Oct 2023 16:05:53 +0800
+From: wangweidong.a@awinic.com
+To: krzysztof.kozlowski@linaro.org
+Cc: 13916275206@139.com,
+	alsa-devel@alsa-project.org,
+	arnd@arndb.de,
+	broonie@kernel.org,
+	ckeepax@opensource.cirrus.com,
+	colin.i.king@gmail.com,
+	conor+dt@kernel.org,
+	dan.carpenter@linaro.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH 2/2] pmdomain: amlogic: Fix mask for the second NNA mem PD domain
-Date: Mon, 16 Oct 2023 10:02:04 +0200
-Message-ID: <20231016080205.41982-2-tomeu@tomeuvizoso.net>
+	fido_max@inbox.ru,
+	herve.codina@bootlin.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	lgirdwood@gmail.com,
+	linus.walleij@linaro.org,
+	linux-kernel@vger.kernel.org,
+	liweilei@awinic.com,
+	perex@perex.cz,
+	rf@opensource.cirrus.com,
+	robh+dt@kernel.org,
+	ryans.lee@analog.com,
+	sebastian.reichel@collabora.com,
+	shumingf@realtek.com,
+	tiwai@suse.com,
+	trix@redhat.com,
+	wangweidong.a@awinic.com,
+	yijiangtao@awinic.com
+Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw88399 amplifier driver
+Date: Mon, 16 Oct 2023 16:05:44 +0800
+Message-ID: <20231016080544.45778-1-wangweidong.a@awinic.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231016080205.41982-1-tomeu@tomeuvizoso.net>
-References: <20231016080205.41982-1-tomeu@tomeuvizoso.net>
+In-Reply-To: <37a2d2d1-5ede-4f88-b4e7-d9750336465d@linaro.org>
+References: <37a2d2d1-5ede-4f88-b4e7-d9750336465d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,36 +67,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Without this change, the NPU hangs when the 8th NN core is used.
+Thank you very much for your review
 
-It matches what the out-of-tree driver does.
+On 13/10/2023 13:50, +200 krzysztof.kozlowski@linaro.org wrote:
+> On 13/10/2023 12:42, wangweidong.a@awinic.com wrote:
+>> From: Weidong Wang <wangweidong.a@awinic.com>
+>> 
+>> Add i2c and amplifier registration for
+>> aw88399 and their associated operation functions.
+>> 
 
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
----
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index cfb796d40d9d..0dd71cd814c5 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -228,7 +228,7 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 
- static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_nna[] = {
- 	{ G12A_HHI_NANOQ_MEM_PD_REG0, GENMASK(31, 0) },
--	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(23, 0) },
-+	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(31, 0) },
- };
- 
- #define VPU_PD(__name, __top_pd, __mem, __is_pwr_off, __resets, __clks)	\
--- 
-2.41.0
+>> +
+>> +static void aw88399_hw_reset(struct aw88399 *aw88399)
+>> +{
+>> +	if (aw88399->reset_gpio) {
+>> +		gpiod_set_value_cansleep(aw88399->reset_gpio, 0);
+>> +		usleep_range(AW88399_1000_US, AW88399_1000_US + 10);
+>> +		gpiod_set_value_cansleep(aw88399->reset_gpio, 1);
 
+> Why do you leave the device in reset state? I think you wanted these
+> reverted.
+
+our chip is reset at low level, So I'll change it to
+    gpiod_set_value_cansleep(aw88399->reset_gpio, 1);
+	usleep_range(AW88399_1000_US, AW88399_1000_US + 10);
+	gpiod_set_value_cansleep(aw88399->reset_gpio, 0);
+	usleep_range(AW88399_1000_US, AW88399_1000_US + 10);
+	gpiod_set_value_cansleep(aw88399->reset_gpio, 1);
+Thanks again for your advice.
+
+Best regards,
+Weidong Wang
 
