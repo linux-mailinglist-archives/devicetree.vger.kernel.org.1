@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-8828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158207CA42B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:31:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AADA7CA432
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CEB41C20929
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:31:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CACD31C2093B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5623C1C6B8;
-	Mon, 16 Oct 2023 09:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B371CA86;
+	Mon, 16 Oct 2023 09:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4MOcFg1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c3lOy9a5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364258482
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:31:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8573C43395
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE9B8482
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:33:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AEA4C433AD
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697448690;
-	bh=YD1pOXaF0MDt7HSRIm5Qk+XONV9K3q5VwtsmFICAcLo=;
+	s=k20201202; t=1697448792;
+	bh=DBt7lyUHYvCXUBZt2LPp0v0GAfbjDSBNVaR8OunA9u4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=k4MOcFg1BXUE/srqwo67HqlgAEVQQVavXI4Endo/7E5nh6LMQ4uHJ5lrgAYr0R7SZ
-	 pGf+89L7tG2KqoGv4r6mpJAuXFCfASuM/UHzWBLF4pcxWn9bd/xs1ViGriY2z41iec
-	 NVbI6H0S52c5xPE0/ICyQDC/piCaiIzFIsWu1KwyObHjYf//TMIhif1WNipPrJBe8h
-	 CF5fVmHAAygSziC0vBjkx/6g4uk6knz6viAtyZfI1+DMXR2aEpoRBqRnu44Vf708cv
-	 w1zf9MiuXOa5LMPLo9EKqI9O4rk1d6WjP2UCnEzyCpIiR5sgv+xPS2iUsC4iyIim4j
-	 q8tFsuWZyiXMw==
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1c8a1541232so37069515ad.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:31:30 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzpirJYAQ/Ktf83DksnlNRaf4ygIFdszCxmkJnPhsw3Auckc6lj
-	i3kZNBGvW7b1/DSQ7/0Dh9SYBrrv/5pl6iBpkC55WQ==
-X-Google-Smtp-Source: AGHT+IGuAte+Sk8BC41gI0Ofl+D+wCmH3/tS5o5YUOmqbVY0bQWJGeHaAOWe3/gtISyD2PFz2F++nUlxzGGbCPuSU5A=
-X-Received: by 2002:a17:90a:117:b0:273:4944:2eba with SMTP id
- b23-20020a17090a011700b0027349442ebamr29749474pjb.40.1697448690010; Mon, 16
- Oct 2023 02:31:30 -0700 (PDT)
+	b=c3lOy9a5RzKGRI3GfbIwr08KNxULZgsy2PR7jpXI/v0e68ixDu7CidLzypTTmn3m6
+	 WKgoWpiiUTvG8CvOnt6lgXwHOXV3ymxLiSxYb81rgOcwFKKBDVa7SSsrnGOurmx+d5
+	 I7jxEvHIi+Z5vxYxU4o2VjPx52DVlE8llNBsqx3d6G0kOlbXgGfT5lu9SLZjT+12Ts
+	 VX2xiZ9QsHbjfJ0Spter1z6hhblto4eYF861Dtc1h25q94t8DQkJ+paNZFdvzv7hg8
+	 a2LY15OhJmTix1l4hGFJUzfiUZE2qIOnP7ZzZT2sQ+PLzjEvjzVA6gv9PUmZo/ntGe
+	 MWWSCs6Mvcvyw==
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6bd32d1a040so1310853b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 02:33:12 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yxf5xo4xMhl4vXLiFVAaJZI01gOfOzyCAdHjmhmE9j5Kb1XrMjN
+	0l4cGUcRUM8uykp80XEmhrgUZjZwjAwW7+ckFG6HWA==
+X-Google-Smtp-Source: AGHT+IH6bsBjg9dmPxALknay8+6CXpFs3GzPg+s6/BIuFJVsOhNDLzp58nBxP57YuNnjGBgTvodNycBsBNWhnkLeTC8=
+X-Received: by 2002:a05:6a20:1586:b0:173:e36c:6d03 with SMTP id
+ h6-20020a056a20158600b00173e36c6d03mr16851842pzj.22.1697448791926; Mon, 16
+ Oct 2023 02:33:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821034008.3876938-1-victor.liu@nxp.com> <20230821034008.3876938-5-victor.liu@nxp.com>
-In-Reply-To: <20230821034008.3876938-5-victor.liu@nxp.com>
+References: <20230821034008.3876938-1-victor.liu@nxp.com> <20230821034008.3876938-4-victor.liu@nxp.com>
+In-Reply-To: <20230821034008.3876938-4-victor.liu@nxp.com>
 From: Robert Foss <rfoss@kernel.org>
-Date: Mon, 16 Oct 2023 11:31:19 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi6xecKbq426BJ8xL92Ox=tPApJe0SzGog7gZY4E1c9s6w@mail.gmail.com>
-Message-ID: <CAN6tsi6xecKbq426BJ8xL92Ox=tPApJe0SzGog7gZY4E1c9s6w@mail.gmail.com>
-Subject: Re: [PATCH v3 RESEND 4/9] drm/bridge: synopsys: dw-mipi-dsi: Add mode
- fixup support
+Date: Mon, 16 Oct 2023 11:33:01 +0200
+X-Gmail-Original-Message-ID: <CAN6tsi7hafwVmJDpDXTw14Qq28ZyjZYq9LeM6tq-REhrpD7pZQ@mail.gmail.com>
+Message-ID: <CAN6tsi7hafwVmJDpDXTw14Qq28ZyjZYq9LeM6tq-REhrpD7pZQ@mail.gmail.com>
+Subject: Re: [PATCH v3 RESEND 3/9] drm/bridge: synopsys: dw-mipi-dsi: Force
+ input bus flags
 To: Liu Ying <victor.liu@nxp.com>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, 
@@ -70,71 +70,72 @@ Content-Transfer-Encoding: quoted-printable
 On Mon, Aug 21, 2023 at 5:37=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrote=
 :
 >
-> Vendor drivers may need to fixup mode due to pixel clock tree limitation,
-> so introduce the ->mode_fixup() callcack to struct dw_mipi_dsi_plat_data
-> and call it at atomic check stage if available.
+> The DATAEN_ACTIVE_LOW bit in DSI_DPI_CFG_POL register is set to zero,
+> so set the DRM_BUS_FLAG_DE_HIGH flag in input_bus_cfg.flags.  It appears
+> that the DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE flag also makes sense, so
+> set it in input_bus_cfg.flags too.  With this patch, the flags set by
+> drm_atomic_bridge_propagate_bus_flags() are overridden (see comment in
+> that function) in case any downstream bridges propagates invalid flags
+> to this bridge.  A real problematic case is to connect a RM67191 MIPI
+> DSI panel whose driver sets DRM_BUS_FLAG_DE_LOW and
+> DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE bus flags.
 >
 > Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
 > v1->v3:
 > * No change.
 >
->  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 14 ++++++++++++++
->  include/drm/bridge/dw_mipi_dsi.h              |  3 +++
->  2 files changed, 17 insertions(+)
+>  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/=
 drm/bridge/synopsys/dw-mipi-dsi.c
-> index ed9288a9c444..b2da803c9de7 100644
+> index 945d46a76995..ed9288a9c444 100644
 > --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
 > +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-> @@ -573,9 +573,23 @@ static int dw_mipi_dsi_bridge_atomic_check(struct dr=
-m_bridge *bridge,
->                                            struct drm_crtc_state *crtc_st=
-ate,
->                                            struct drm_connector_state *co=
-nn_state)
->  {
-> +       struct dw_mipi_dsi *dsi =3D bridge_to_dsi(bridge);
-> +       const struct dw_mipi_dsi_plat_data *pdata =3D dsi->plat_data;
-> +       bool ret;
-> +
->         bridge_state->input_bus_cfg.flags =3D
->                 DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDG=
-E;
->
-> +       if (pdata->mode_fixup) {
-> +               ret =3D pdata->mode_fixup(pdata->priv_data, &crtc_state->=
-mode,
-> +                                       &crtc_state->adjusted_mode);
-> +               if (!ret) {
-> +                       DRM_DEBUG_DRIVER("failed to fixup mode " DRM_MODE=
-_FMT "\n",
-> +                                        DRM_MODE_ARG(&crtc_state->mode))=
-;
-> +                       return -EINVAL;
-> +               }
-> +       }
-> +
->         return 0;
+> @@ -23,6 +23,7 @@
+>  #include <drm/bridge/dw_mipi_dsi.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_connector.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_modes.h>
+> @@ -567,6 +568,17 @@ dw_mipi_dsi_bridge_atomic_get_input_bus_fmts(struct =
+drm_bridge *bridge,
+>         return input_fmts;
 >  }
 >
-> diff --git a/include/drm/bridge/dw_mipi_dsi.h b/include/drm/bridge/dw_mip=
-i_dsi.h
-> index 246650f2814f..65d5e68065e3 100644
-> --- a/include/drm/bridge/dw_mipi_dsi.h
-> +++ b/include/drm/bridge/dw_mipi_dsi.h
-> @@ -59,6 +59,9 @@ struct dw_mipi_dsi_plat_data {
->                                            unsigned long mode_flags,
->                                            u32 lanes, u32 format);
->
-> +       bool (*mode_fixup)(void *priv_data, const struct drm_display_mode=
- *mode,
-> +                          struct drm_display_mode *adjusted_mode);
+> +static int dw_mipi_dsi_bridge_atomic_check(struct drm_bridge *bridge,
+> +                                          struct drm_bridge_state *bridg=
+e_state,
+> +                                          struct drm_crtc_state *crtc_st=
+ate,
+> +                                          struct drm_connector_state *co=
+nn_state)
+> +{
+> +       bridge_state->input_bus_cfg.flags =3D
+> +               DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDG=
+E;
 > +
->         u32 *(*get_input_bus_fmts)(void *priv_data,
->                                    struct drm_bridge *bridge,
->                                    struct drm_bridge_state *bridge_state,
+> +       return 0;
+> +}
+> +
+>  static void dw_mipi_dsi_video_mode_config(struct dw_mipi_dsi *dsi)
+>  {
+>         u32 val;
+> @@ -1036,6 +1048,7 @@ static const struct drm_bridge_funcs dw_mipi_dsi_br=
+idge_funcs =3D {
+>         .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
+ate,
+>         .atomic_destroy_state   =3D drm_atomic_helper_bridge_destroy_stat=
+e,
+>         .atomic_get_input_bus_fmts =3D dw_mipi_dsi_bridge_atomic_get_inpu=
+t_bus_fmts,
+> +       .atomic_check           =3D dw_mipi_dsi_bridge_atomic_check,
+>         .atomic_reset           =3D drm_atomic_helper_bridge_reset,
+>         .atomic_pre_enable      =3D dw_mipi_dsi_bridge_atomic_pre_enable,
+>         .atomic_enable          =3D dw_mipi_dsi_bridge_atomic_enable,
 > --
 > 2.37.1
 >
