@@ -1,128 +1,116 @@
-Return-Path: <devicetree+bounces-8787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C5C7CA0DD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:40:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43C27CA10A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:54:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 620E01C20878
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:40:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6D2D1C2090C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9A2EEB9;
-	Mon, 16 Oct 2023 07:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF17717722;
+	Mon, 16 Oct 2023 07:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="RTzkJj3B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985BDA2D
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:40:12 +0000 (UTC)
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CB3102;
-	Mon, 16 Oct 2023 00:40:08 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1e59894d105so2496546fac.1;
-        Mon, 16 Oct 2023 00:40:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697442007; x=1698046807;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=dGIab8fIcyevykBTB4mpYGLAzJrjPEg4bPMfLcokB60=;
-        b=ZU7u5x5ITz2gpI+RFlBtE6YfZG636LXslU4d+sLECTa6m6CZhlr5IZZKhqoDONw693
-         Oxe/k85UITyACiIHjMbaeeyZpuGewMuvgoVvafn/67g51XM2EHyoY0UUzjPz4HuTEyKz
-         zYSAS2JPb67qDpfsNtf2cqXwf+SbPM53swqK/skC7h0myAefpNhQ0Sx69oclcJc7hUgu
-         ORi0IPT7qKS0a0dYOCLteK9duwFhNO35GOanTV4LdfzelSteHM5QjkFVNBQEBfkI9yEc
-         aVHBW18T7rUN/SeMHsrCkzdN+XYQzTl5Pc9c+aNiYDG4B17/djzgDJLYv5zwDEYiiIN7
-         lrHw==
-X-Gm-Message-State: AOJu0YyiKmkZGpBUIjmI8yD0H4aMDS/eWHOJY7yeujIIe/FSf2PLm2bc
-	cCET+qfUIayvUPQpcPCxRw==
-X-Google-Smtp-Source: AGHT+IHB4U15AtwXgr2q53vf2S1ML9wxd69t/SNeT1LuZvoF+Dhu/0yELrxhyRpTOhM2JqPRWD0blg==
-X-Received: by 2002:a05:6871:5308:b0:1e9:e3be:434f with SMTP id hx8-20020a056871530800b001e9e3be434fmr9331659oac.55.1697442007209;
-        Mon, 16 Oct 2023 00:40:07 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dt1-20020a0568705a8100b001e12bb81363sm1935742oab.35.2023.10.16.00.40.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 00:40:06 -0700 (PDT)
-Received: (nullmailer pid 1750852 invoked by uid 1000);
-	Mon, 16 Oct 2023 07:40:05 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CDD01802D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:54:02 +0000 (UTC)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFEA103
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 00:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=ngQA2UXPqbvVAjT+xhmuNpfsjFjFJDhMWj120VzIiR0=; b=RTzkJj3BM96l6JFb2aDFsGl5DP
+	Js9q3EFC5LsPQGcycbtoLcdYVdhuESKlc4YXifHnbHE0MIIXBDCVNhxJK9zIm/801jeLBVaqyBRq2
+	mAl3eeHKSKIa6wDsm7mDcwYdTjEiGztYsm4ny5Vd6ytQ58/BtEkN1UeH2j0LNfXyg9wSgK2WstQCG
+	X+QrEQYPUGpHVOrTnmVaa4sNqLN5WtMrHxUPBIZgcB/lcOBFBq8sumF1+Vr6BU7L0Hu0cAS247CQX
+	UpSh4fJhOYMZoCl/gYc1cJkPU6Q883kActkYiJF4yv6OYg1ikBb9HDUSYfy6v81cSPcQPABBk0/g+
+	6668kK5A==;
+Received: from [192.168.1.4] (port=11103 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1qsIQF-0006Qb-0B;
+	Mon, 16 Oct 2023 09:53:55 +0200
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Mon, 16 Oct 2023 09:53:54 +0200
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <conor@kernel.org>
+CC: <andrew@lunn.ch>, <ante.knezic@helmholz.de>, <conor+dt@kernel.org>,
+	<davem@davemloft.net>, <devicetree@vger.kernel.org>, <edumazet@google.com>,
+	<f.fainelli@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<kuba@kernel.org>, <linux-kernel@vger.kernel.org>, <marex@denx.de>,
+	<netdev@vger.kernel.org>, <olteanv@gmail.com>, <pabeni@redhat.com>,
+	<robh+dt@kernel.org>, <woojung.huh@microchip.com>
+Subject: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document microchip,rmii-clk-internal
+Date: Mon, 16 Oct 2023 09:53:49 +0200
+Message-ID: <20231016075349.18792-1-ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20231012-unicorn-rambling-55dc66b78f2f@spud>
+References: <20231012-unicorn-rambling-55dc66b78f2f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: werneazc@gmail.com
-Cc: robh+dt@kernel.org, Andre Werner <andre.werner@systec-electronic.com>, linux-kernel@vger.kernel.org, jic23@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de
-In-Reply-To: <20231016070318.28355-1-andre.werner@systec-electronic.com>
-References: <20231016070318.28355-1-andre.werner@systec-electronic.com>
-Message-Id: <169744200549.1750835.3657501443373325472.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: ti,ads7038: Add
- description for ADS7038
-Date: Mon, 16 Oct 2023 02:40:05 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [192.168.6.7]
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On Mon, 16 Oct 2023 09:02:04 +0200, werneazc@gmail.com wrote:
-> From: Andre Werner <andre.werner@systec-electronic.com>
+On Thu, 12 Oct 2023 16:18:09 +0100, Conor Dooley wrote:
+> On Thu, Oct 12, 2023 at 12:55:56PM +0200, Ante Knezic wrote:
+> > Add documentation for selecting reference rmii clock on KSZ88X3 devices
+> > 
+> > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+> > ---
+> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > index 41014f5c01c4..eaa347b04db1 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > @@ -72,6 +72,25 @@ properties:
+> >    interrupts:
+> >      maxItems: 1
+> >  
+> > +  microchip,rmii-clk-internal:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Set if the RMII reference clock is provided internally. Otherwise
+> > +      reference clock should be provided externally.
 > 
-> Add basic description for ADS7038 ADC devices.
-> The devicetree adds the following device specific options:
+> I regret not asking this on the previous iteration - how come you need a
+> custom property? In the externally provided case would there not be a
+> clocks property pointing to the RMII reference clock, that would be
+> absent when provided by the itnernal reference?
 > 
-> - average-samples: Program device's programmable average filter.
-> - crc-enabled: Enable the CRC check for SPI transfers. Sadly, this
->   option has currently no effect in the driver.
-> - status-enabled: Enable the appending of the device's status on the
->   measure value transmission.
-> - gpio-controller: Sadly function not implemented yet in the driver.
-> 
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> ---
-> v3
-> - Delete ADS7138 compatible and comments.
-> - Add options for CRC, status and average samples as well as
->   gpio-controller.
-> - Update example.
-> - add regulator for digital IO voltage.
-> ---
->  .../bindings/iio/adc/ti,ads7038.yaml          | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> 
+> Cheers,
+> Conor.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: status-enabled: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml: crc-enabled: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231016070318.28355-1-andre.werner@systec-electronic.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+In both cases (external and internal), the KSZ88X3 is actually providing the
+RMII reference clock. Difference is only will the clock be routed as external
+copper track (pin REFCLKO -> pin REFCLKI), or will it be routed internally.
+So, this should not affect the clock relation between the uC and the switch
+device? 
+This property has no effect if KSZ88X3 is not providing the reference clock.
+Maybe I should provide more info in the commit message of both patches as well?
 
