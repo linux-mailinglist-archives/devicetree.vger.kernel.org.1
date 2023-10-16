@@ -1,96 +1,207 @@
-Return-Path: <devicetree+bounces-8835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BC37CA46D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C13E7CA4A6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58616B20C53
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:42:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C086B20CC0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F221CAAF;
-	Mon, 16 Oct 2023 09:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O46nt9Z5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036A51D558;
+	Mon, 16 Oct 2023 09:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D2B1C28C
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:42:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB327C433C8;
-	Mon, 16 Oct 2023 09:42:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697449335;
-	bh=1I7dIX7GqvLMEA2fUJIzQxzuYe7pwiH/zksIhIJbzKY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=O46nt9Z5kLfZ/tmbUT2RnKqug8FypN/I1SAQ0LGt4hMHOz5FwMe6B32iPr2WVwpOe
-	 numa1CDNR/IKeSY1+1a2cKRhcPtyqNByqLDLMm1qX+3MzT12UE2Z6ZDJL4OTBFeuB9
-	 JCYW0FVo5nO+37tD5jogG3tWwZusWbpa9aejHSomcki3eOBOUA4fIdMujZKZNRroqu
-	 761J/wnGI1xSToYuWpHHx5zAAHOE8e9PbteLUiGIaKXBbDXK6lMHXYtuczhL8TL7vm
-	 vWKNM9T4X4xrusTsU3a8I2QSFwZ/yVmJ4G4uzL/Ry06SyFs/wqe7QLQQiiPuro3iEU
-	 WNn+p9kIPT9Hw==
-From: Robert Foss <rfoss@kernel.org>
-To: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Liu Ying <victor.liu@nxp.com>
-Cc: yannick.fertre@foss.st.com, hjc@rock-chips.com, festevam@gmail.com, zyw@rock-chips.com, conor+dt@kernel.org,
- daniel@ffwll.ch, shawnguo@kernel.org, raphael.gallais-pou@foss.st.com, andrzej.hajda@intel.com,
- jernej.skrabec@gmail.com, alexander.stein@ew.tq-group.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- neil.armstrong@linaro.org, heiko@sntech.de, kernel@pengutronix.de, jagan@amarulasolutions.com, jonas@kwiboo.se,
- sam@ravnborg.org, philippe.cornu@foss.st.com, Laurent.pinchart@ideasonboard.com, airlied@gmail.com,
- s.hauer@pengutronix.de, linux-imx@nxp.com
-In-Reply-To: <20230821034008.3876938-1-victor.liu@nxp.com>
-References: <20230821034008.3876938-1-victor.liu@nxp.com>
-Subject: Re: [PATCH v3 RESEND 0/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-Message-Id: <169744932839.577518.15289591083022609443.b4-ty@kernel.org>
-Date: Mon, 16 Oct 2023 11:42:08 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D29A1CF8D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:59:16 +0000 (UTC)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4F59C;
+	Mon, 16 Oct 2023 02:59:14 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d77ad095f13so4279981276.2;
+        Mon, 16 Oct 2023 02:59:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697450353; x=1698055153;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i9GLVUGKessKoslJIZpAI7+l//jryIRXWw3bJSWd/JU=;
+        b=YpDAPKeVaVk1om3qEAtzdITkpkguvsjgbnlLajX5IRwq2TkM9TxIcL1p0S0ZmmVckF
+         A0x+ofvsJMYjROMp2PtTgDf1CU1Fo0Ylz+dq+We7gyYjX4h8UQH8zeTVJqsmn2DRLTJ5
+         SswsTJEzJxsypsRZ2hORFL680Cc9wtTQeHWr9p40xJ5JY22csfxEAvUDsPUe6hQ4marD
+         iNcRBKzq5hJ2cPl5VotwkrC1h6tCsn0EKlz5saQ29r7B2rR43Q1DSmGo/9ifiCRFj4c/
+         xXIh3fEKUTDXPvJjrh3kynCkyZqINJ52l4fZcn3c+bTTZBXWPBq+EU7/rhPr3VnsPTA8
+         f5lA==
+X-Gm-Message-State: AOJu0Yzmn5aPl+3Sq+cW4aiMGD9x2AQwmBanQ5emqVFkWnZmXJZbenrm
+	v8diF7JUoDbSZYE/rWdWJ4idOe8NfGvpAQ==
+X-Google-Smtp-Source: AGHT+IHDifpYoVg377WaVlCQbyVtL075I/N8OSBwyoKSlQwbzsy4Q39TGatkdfof4lMFOPSU9W6aXg==
+X-Received: by 2002:a25:a044:0:b0:d32:cd49:2469 with SMTP id x62-20020a25a044000000b00d32cd492469mr30483446ybh.24.1697450353351;
+        Mon, 16 Oct 2023 02:59:13 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id s10-20020a056902120a00b00d800eb5ac2asm2501003ybu.65.2023.10.16.02.59.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Oct 2023 02:59:12 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5a2536adaf3so58366447b3.2;
+        Mon, 16 Oct 2023 02:59:12 -0700 (PDT)
+X-Received: by 2002:a81:b661:0:b0:5a7:b9b1:c0bd with SMTP id
+ h33-20020a81b661000000b005a7b9b1c0bdmr19215902ywk.11.1697450352391; Mon, 16
+ Oct 2023 02:59:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.1
+References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 16 Oct 2023 11:59:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
+Message-ID: <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
+Subject: [GIT PULL v2] drm: renesas: shmobile: Atomic conversion + DT support
+ (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion + DT support)
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, 
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, 21 Aug 2023 11:39:59 +0800, Liu Ying wrote:
-> This series aims to add MIPI DSI support for Freescale i.MX93 SoC.
-> 
-> There is a Synopsys DesignWare MIPI DSI host controller and a Synopsys
-> Designware MIPI DPHY embedded in i.MX93.  Some configurations and
-> extensions to them are controlled by i.MX93 media blk-ctrl.
-> 
-> Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
-> bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
-> 
-> [...]
+        Hi David, Daniel,
 
-Applied, thanks!
+The following changes since commit 389af786f92ecdff35883551d54bf4e507ffcccb:
 
-[1/9] drm/bridge: synopsys: dw-mipi-dsi: Add dw_mipi_dsi_get_bridge() helper
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ec20c510ee2d
-[2/9] drm/bridge: synopsys: dw-mipi-dsi: Add input bus format negotiation support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=0de852d4c23a
-[3/9] drm/bridge: synopsys: dw-mipi-dsi: Force input bus flags
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d5116fb29dc0
-[4/9] drm/bridge: synopsys: dw-mipi-dsi: Add mode fixup support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5a67ec8c64ec
-[5/9] drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to calculate lbcc
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ac87d23694f4
-[6/9] drm/bridge: synopsys: dw-mipi-dsi: Set minimum lane byte clock cycles for HSA and HBP
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d22e9a6df2db
-[7/9] drm/bridge: synopsys: dw-mipi-dsi: Disable HSTX and LPRX timeout check
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=743bf594a3b1
-[8/9] dt-bindings: display: bridge: Document Freescale i.MX93 MIPI DSI
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=db95a55ccec7
-[9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ce62f8ea7e3f
+  Merge tag 'drm-intel-next-2023-09-29' of
+git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-10-04
+13:55:19 +1000)
 
+are available in the Git repository at:
 
+  git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
+tags/shmob-drm-atomic-dt-tag2
 
-Rob
+for you to fetch changes up to 1399ebacbf590dfbac4fbba181dd1595b2fa10ba:
 
+  drm: renesas: shmobile: Add DT support (2023-10-16 11:47:48 +0200)
+
+----------------------------------------------------------------
+drm: renesas: shmobile: Atomic conversion + DT support
+
+Currently, there are two drivers for the LCD controller on Renesas
+SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+  1. sh_mobile_lcdcfb, using the fbdev framework,
+  2. shmob_drm, using the DRM framework.
+However, only the former driver is used, as all platform support
+integrates the former.  None of these drivers support DT-based systems.
+
+Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+support, complemented by the customary set of fixes and improvements.
+
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider.be/
+
+Changes compared to v1:
+  - Rebase to drm-next,
+  - Add Acked-by.
+
+Thanks for pulling!
+
+----------------------------------------------------------------
+Geert Uytterhoeven (36):
+      MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
+      dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
+      media: uapi: Add MEDIA_BUS_FMT_RGB666_2X9_BE format
+      drm: renesas: shmobile: Fix overlay plane disable
+      drm: renesas: shmobile: Fix ARGB32 overlay format typo
+      drm: renesas: shmobile: Correct encoder/connector types
+      drm: renesas: shmobile: Add support for Runtime PM
+      drm: renesas: shmobile: Restore indentation of shmob_drm_setup_clocks()
+      drm: renesas: shmobile: Use %p4cc to print fourcc code
+      drm: renesas: shmobile: Add missing YCbCr formats
+      drm: renesas: shmobile: Improve shmob_drm_format_info table
+      drm: renesas: shmobile: Improve error handling
+      drm: renesas: shmobile: Convert to use devm_request_irq()
+      drm: renesas: shmobile: Remove custom plane destroy callback
+      drm: renesas: shmobile: Use drmm_universal_plane_alloc()
+      drm: renesas: shmobile: Embed drm_device in shmob_drm_device
+      drm: renesas: shmobile: Convert container helpers to static
+inline functions
+      drm: renesas: shmobile: Replace .dev_private with container_of()
+      drm: renesas: shmobile: Use media bus formats in platform data
+      drm: renesas: shmobile: Move interface handling to connector setup
+      drm: renesas: shmobile: Unify plane allocation
+      drm: renesas: shmobile: Rename shmob_drm_crtc.crtc
+      drm: renesas: shmobile: Rename shmob_drm_connector.connector
+      drm: renesas: shmobile: Rename shmob_drm_plane.plane
+      drm: renesas: shmobile: Use drm_crtc_handle_vblank()
+      drm: renesas: shmobile: Move shmob_drm_crtc_finish_page_flip()
+      drm: renesas: shmobile: Wait for page flip when turning CRTC off
+      drm: renesas: shmobile: Turn vblank on/off when enabling/disabling CRTC
+      drm: renesas: shmobile: Shutdown the display on remove
+      drm: renesas: shmobile: Cleanup encoder
+      drm: renesas: shmobile: Atomic conversion part 1
+      drm: renesas: shmobile: Atomic conversion part 2
+      drm: renesas: shmobile: Use suspend/resume helpers
+      drm: renesas: shmobile: Remove internal CRTC state tracking
+      drm: renesas: shmobile: Atomic conversion part 3
+      drm: renesas: shmobile: Add DT support
+
+Laurent Pinchart (5):
+      drm: renesas: shmobile: Remove backlight support
+      drm: renesas: shmobile: Don't set display info width and height twice
+      drm: renesas: shmobile: Rename input clocks
+      drm: renesas: shmobile: Remove support for SYS panels
+      drm: renesas: shmobile: Use struct videomode in platform data
+
+ .../bindings/display/renesas,shmobile-lcdc.yaml    | 130 +++++
+ .../userspace-api/media/v4l/subdev-formats.rst     |  72 +++
+ MAINTAINERS                                        |  13 +-
+ drivers/gpu/drm/renesas/shmobile/Kconfig           |   3 +-
+ drivers/gpu/drm/renesas/shmobile/Makefile          |   3 +-
+ .../gpu/drm/renesas/shmobile/shmob_drm_backlight.c |  82 ---
+ .../gpu/drm/renesas/shmobile/shmob_drm_backlight.h |  19 -
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  | 650 +++++++++------------
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h  |  27 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c   | 179 +++---
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h   |  18 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c   |  77 ++-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.h   |   9 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c | 326 ++++++-----
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.h |   5 +-
+ include/linux/platform_data/shmob_drm.h            |  57 +-
+ include/uapi/linux/media-bus-format.h              |   3 +-
+ 17 files changed, 860 insertions(+), 813 deletions(-)
+ create mode 100644
+Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+ delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.c
+ delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.h
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
