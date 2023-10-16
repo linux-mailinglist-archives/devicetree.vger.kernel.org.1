@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-8909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6E97CA87D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:49:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 152B57CA8AB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:57:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CDEFB20AB6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:49:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 954FD2814F1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B6226E10;
-	Mon, 16 Oct 2023 12:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965CA2771E;
+	Mon, 16 Oct 2023 12:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4C4208C0
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:49:35 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D15AB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:49:33 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsN1u-0003V0-JA; Mon, 16 Oct 2023 14:49:06 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsN1r-0025Wd-Gh; Mon, 16 Oct 2023 14:49:03 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsN1r-00EkBm-DU; Mon, 16 Oct 2023 14:49:03 +0200
-Date: Mon, 16 Oct 2023 14:49:03 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Chanwoo Choi <chanwoo@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	kernel@pengutronix.de,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v7 18/26] PM / devfreq: rockchip-dfi: account for
- multiple DDRMON_CTRL registers
-Message-ID: <20231016124903.GC3359458@pengutronix.de>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-19-s.hauer@pengutronix.de>
- <98c448be-8ea8-a0bd-62cc-3bc3a5cf5569@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7972771D;
+	Mon, 16 Oct 2023 12:57:48 +0000 (UTC)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B194A2;
+	Mon, 16 Oct 2023 05:57:47 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3afc38cbdbcso2328455b6e.1;
+        Mon, 16 Oct 2023 05:57:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697461066; x=1698065866;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9MwlUK1egCZ2dvdbGrNweXe0Njk0R/Nf5RkQ1HODqQg=;
+        b=VSrkCkeOlPO1yxYOGPLh+sLtzaQKikbMIvkGFfMop5MStuYxtiD5iPU2qdgW9DM7dU
+         5AB/FITR1JGsDXA9y+PwQhjdueG9PXc7LbD1uTmzTufSPBMzuRl151ZRuN9BKNWxD9Mi
+         8VCugpZJUzMFr2SjDe2wraa2qvPZ9KPXQyodLayStxc+eGq4P9W7jpFPZ7+7I78h50aX
+         0nUqzgxcrncmDGSP9hzebocuNhSgLCuVxXclQX7zKaL0h0RwDf+NkjYdCHsQq1Co9xA7
+         NWu6NA6/kEnYWFujQTVb3e1VLSSUSbx3EJYkxKtbawGBf/cwKX8HMeJO+JShPOsjTtF5
+         a8Hw==
+X-Gm-Message-State: AOJu0YzRse4+AMvGe2p0FBDcCFB1/7G8jU/OMCl3Na9UjrT22mXjy4tO
+	hImZ9xTZCcWNNA5edsmJog==
+X-Google-Smtp-Source: AGHT+IFyYahMS48AlCxtEa8fqlsOgFUCfzkyZbq3xoT1b3JjxPOUHloC5ggzFsKyNNZvSpU7Q1muyw==
+X-Received: by 2002:a05:6808:1a21:b0:3ad:cb0f:afa8 with SMTP id bk33-20020a0568081a2100b003adcb0fafa8mr4589679oib.2.1697461066341;
+        Mon, 16 Oct 2023 05:57:46 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j5-20020a056808034500b003afe5617691sm1844805oie.12.2023.10.16.05.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 05:57:45 -0700 (PDT)
+Received: (nullmailer pid 2590929 invoked by uid 1000);
+	Mon, 16 Oct 2023 12:57:38 -0000
+Date: Mon, 16 Oct 2023 07:57:38 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Christian Marangi <ansuelsmth@gmail.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/6] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <20231016125738.GA2578576-robh@kernel.org>
+References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,174 +64,162 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <98c448be-8ea8-a0bd-62cc-3bc3a5cf5569@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-1-38cd449dfb15@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 09, 2023 at 07:19:04AM +0900, Chanwoo Choi wrote:
-> On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> > The currently supported RK3399 has a set of registers per channel, but
-> > it has only a single DDRMON_CTRL register. With upcoming RK3588 this
-> > will be different, the RK3588 has a DDRMON_CTRL register per channel.
-> > 
-> > Instead of expecting a single DDRMON_CTRL register, loop over the
-> > channels and write the channel specific DDRMON_CTRL register. Break
-> > out early out of the loop when there is only a single DDRMON_CTRL
-> > register like on the RK3399.
-> > 
-> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  drivers/devfreq/event/rockchip-dfi.c | 72 ++++++++++++++++++----------
-> >  1 file changed, 48 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> > index 85ec93fd41858..2362d3953ba40 100644
-> > --- a/drivers/devfreq/event/rockchip-dfi.c
-> > +++ b/drivers/devfreq/event/rockchip-dfi.c
-> > @@ -113,12 +113,13 @@ struct rockchip_dfi {
-> >  	int burst_len;
-> >  	int buswidth[DMC_MAX_CHANNELS];
-> >  	int ddrmon_stride;
-> > +	bool ddrmon_ctrl_single;
-> >  };
-> >  
-> >  static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
-> >  {
-> >  	void __iomem *dfi_regs = dfi->regs;
-> > -	int ret = 0;
-> > +	int i, ret = 0;
-> >  
-> >  	mutex_lock(&dfi->mutex);
-> >  
-> > @@ -132,29 +133,41 @@ static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
-> >  		goto out;
-> >  	}
-> >  
-> > -	/* clear DDRMON_CTRL setting */
-> > -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN |
-> > -		       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
-> > +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
-> > +		u32 ctrl = 0;
-> >  
-> > -	/* set ddr type to dfi */
-> > -	switch (dfi->ddr_type) {
-> > -	case ROCKCHIP_DDRTYPE_LPDDR2:
-> > -	case ROCKCHIP_DDRTYPE_LPDDR3:
-> > -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
-> > -			       dfi_regs + DDRMON_CTRL);
-> > -		break;
-> > -	case ROCKCHIP_DDRTYPE_LPDDR4:
-> > -	case ROCKCHIP_DDRTYPE_LPDDR4X:
-> > -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
-> > -			       dfi_regs + DDRMON_CTRL);
-> > -		break;
-> > -	default:
-> > -		break;
-> > -	}
-> > +		if (!(dfi->channel_mask & BIT(i)))
-> > +			continue;
-> >  
-> > -	/* enable count, use software mode */
-> > -	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
-> > -		       dfi_regs + DDRMON_CTRL);
-> > +		/* clear DDRMON_CTRL setting */
-> > +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN |
-> > +			       DDRMON_CTRL_SOFTWARE_EN | DDRMON_CTRL_HARDWARE_EN),
-> > +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
-> > +
-> > +		/* set ddr type to dfi */
-> > +		switch (dfi->ddr_type) {
-> > +		case ROCKCHIP_DDRTYPE_LPDDR2:
-> > +		case ROCKCHIP_DDRTYPE_LPDDR3:
-> > +			ctrl = DDRMON_CTRL_LPDDR23;
-> > +			break;
-> > +		case ROCKCHIP_DDRTYPE_LPDDR4:
-> > +		case ROCKCHIP_DDRTYPE_LPDDR4X:
-> > +			ctrl = DDRMON_CTRL_LPDDR4;
-> > +			break;
-> > +		default:
-> > +			break;
-> > +		}
-> > +
-> > +		writel_relaxed(HIWORD_UPDATE(ctrl, DDRMON_CTRL_DDR_TYPE_MASK),
-> > +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
-> > +
-> > +		/* enable count, use software mode */
-> > +		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
-> > +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
-> > +
-> > +		if (dfi->ddrmon_ctrl_single)
-> > +			break;
-> > +	}
-> >  out:
-> >  	mutex_unlock(&dfi->mutex);
-> >  
-> > @@ -164,6 +177,7 @@ static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
-> >  static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
-> >  {
-> >  	void __iomem *dfi_regs = dfi->regs;
-> > +	int i;
-> >  
-> >  	mutex_lock(&dfi->mutex);
-> >  
-> > @@ -174,8 +188,17 @@ static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
-> >  	if (dfi->usecount > 0)
-> >  		goto out;
-> >  
-> > -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
-> > -		       dfi_regs + DDRMON_CTRL);
-> > +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
-> > +		if (!(dfi->channel_mask & BIT(i)))
-> > +			continue;
-> > +
-> > +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
-> > +			      dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
-> > +
-> > +		if (dfi->ddrmon_ctrl_single)
-> > +			break;
-> > +	}
-> > +
-> >  	clk_disable_unprepare(dfi->clk);
-> >  out:
-> >  	mutex_unlock(&dfi->mutex);
-> > @@ -666,6 +689,7 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
-> >  	dfi->buswidth[1] = FIELD_GET(RK3399_PMUGRF_OS_REG2_BW_CH1, val) == 0 ? 4 : 2;
-> >  
-> >  	dfi->ddrmon_stride = 0x14;
-> > +	dfi->ddrmon_ctrl_single = true;
-> >  
-> >  	return 0;
-> >  };
+On Mon, Oct 16, 2023 at 11:12:54AM +0200, Linus Walleij wrote:
+> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
+> in YAML schema.
 > 
-> Even if rk3568 has the only one channle and don't need to check whether 'dfi->ddrmon_ctrl_single'
-> is true or not because of 'if (!(dfi->channel_mask & BIT(i)))',
-> I recommand the add 'dfi->ddrmon_ctrl_single = true;' for rk3568 in order to
-> provide the number of DDRMON_CTRL reigster of rk3568.
+> The current text binding says:
+>   WARNING: This binding is currently unstable. Do not program it into a
+>   FLASH never to be changed again. Once this binding is stable, this
+>   warning will be removed.
 > 
-> If rk3568 doesn't have the 'ddrmon_ctrl_single', actually it is not easy
-> to catch what why are there no initilization for rk3568.
+> Well that never happened before we switched to YAML markup,
+> we can't have it like this, what about fixing the mess?
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 243 +++++++++++++++++++++
+>  .../devicetree/bindings/net/dsa/marvell.txt        | 109 ---------
+>  MAINTAINERS                                        |   2 +-
+>  3 files changed, 244 insertions(+), 110 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+> new file mode 100644
+> index 000000000000..954db04147f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+> @@ -0,0 +1,243 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell MV88E6xxx DSA switch family
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +
+> +description:
+> +  The Marvell MV88E6xxx switch series has been produced and sold
+> +  by Marvell since at least 2010. The switch has a few compatibles which
+> +  just indicate the base address of the switch, then operating systems
+> +  can investigate switch ID registers to find out which actual version
+> +  of the switch it is dealing with.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
 
-Ok, will change.
+Don't need oneOf with only 1 entry. However, I'd probably split each 
+compatible and description for it into 3 entries.
 
-Sascha
+> +          - marvell,mv88e6085
+> +          - marvell,mv88e6190
+> +          - marvell,mv88e6250
+> +    description: |
+> +      marvell,mv88e6085: This switch uses base address 0x10.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6085" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6085, 6095, 6097, 6123, 6131, 6141, 6161, 6165, 6171, 6172, 6175, 6176,
+> +        6185, 6240, 6320, 6321, 6341, 6350, 6351, 6352
+> +      marvell,mv88e6190: This switch uses base address 0x00.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6190" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6190, 6190X, 6191, 6290, 6361, 6390, 6390X
+> +      marvell,mv88e6250: This switch uses base address 0x08 or 0x18.
+> +        This switch and its siblings will be autodetected from
+> +        ID registers found in the switch, so only "marvell,mv88e6250" should be
+> +        specified. This includes the following list of MV88Exxxx switches:
+> +        6220, 6250
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  eeprom-length:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Set to the length of an EEPROM connected to the switch. Must be
+> +      set if the switch can not detect the presence and/or size of a connected
+> +      EEPROM, otherwise optional.
+> +
+> +  reset-gpios:
+> +    description:
+> +      GPIO to be used to reset the whole device
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: The switch provides an external interrupt line, but it is
+> +      not always used by target systems.
+> +    maxItems: 1
+> +
+> +  interrupt-controller:
+> +    description: The switch has an internal interrupt controller used by
+> +      the different sub-blocks.
+> +
+> +  '#interrupt-cells':
+> +    description: The internal interrupt controller only supports triggering
+> +      on active high level interrupts so the second cell must alway be set to
+> +      IRQ_TYPE_LEVEL_HIGH.
+> +    const: 2
+> +
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description: Marvell MV88E6xxx switches have an varying combination of
+> +    internal and external MDIO buses, in some cases a combined bus that
+> +    can be used both internally and externally. This node is for the
+> +    primary bus, used internally and sometimes also externally.
+> +
+> +  mdio-external:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description: Marvell MV88E6xxx switches that have a separate external
+> +      MDIO bus use this port to access external components on the MDIO bus.
+> +
+> +    properties:
+> +      compatible:
+> +        const: marvell,mv88e6xxx-mdio-external
+> +
+> +    required:
+> +      - compatible
+> +
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +$ref: dsa.yaml#
+> +
+> +patternProperties:
+> +  "^(ethernet-)?ports$":
+> +    type: object
+> +    patternProperties:
+> +      "^(ethernet-)?port@[0-9]+$":
+> +        type: object
+> +        description: Ethernet switch ports
+> +
+> +        $ref: dsa-port.yaml#
+> +
+> +        unevaluatedProperties: false
+
+You can drop all this and ref dsa.yaml#/$defs/ethernet-ports instead of 
+just dsa.yaml.
+
+> +
+> +oneOf:
+> +  - required:
+> +      - ports
+> +  - required:
+> +      - ethernet-ports
+
+This probably belongs in dsa.yaml.
+
+Rob
 
