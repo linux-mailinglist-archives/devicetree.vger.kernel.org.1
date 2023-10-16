@@ -1,372 +1,161 @@
-Return-Path: <devicetree+bounces-8802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBA77CA1BD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:36:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F23B7CA233
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:47:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAFCC281576
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:36:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F13AB20C56
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F22018B19;
-	Mon, 16 Oct 2023 08:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80F818640;
+	Mon, 16 Oct 2023 08:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UWkiP0Gg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NDfzuOtu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44AD18AF3
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:36:25 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B298FA2;
-	Mon, 16 Oct 2023 01:36:22 -0700 (PDT)
-Received: from [172.20.10.2] (unknown [185.53.196.201])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: ehristev)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id AB7CB66072AF;
-	Mon, 16 Oct 2023 09:36:19 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697445381;
-	bh=85a6e1GLRwqdGuYwYwQLoBaxkBk7BfUNiV3Le2vYw7w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UWkiP0GgDBo82iC17eChfr7i8COXpTXMo/5pjPdCRbKAAzIGeIFbvmXSssMjZ1ZDZ
-	 zIbMjakxUvcCnZ/DEgfan84Wqy1xlf+60pTQdtrPZ1GKvTQRbjmvredwlR+/SGgJCQ
-	 0NSNDb/F880OERvy2kV7JRoOmobl2EBc9rB9QTpbF8PX2BSCbfjXCnwY3gPsCBiEXF
-	 272nUogKl5d0rbF1XzIF8z4wxE8joSmshM3CWbQ78z24Wd6J6NWAucA4cPcdxyNaW6
-	 pRMARhT+TThMRXoj+F70PBlq+YS6gac3FgCJqpBz/fJmOvGpuPCHe2Yp2yQBzUMCzC
-	 nXfHP9RZ2yXKg==
-Message-ID: <bbc99c85-750e-4736-9320-cf9471fe4c92@collabora.com>
-Date: Mon, 16 Oct 2023 11:36:16 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DA315AE3
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:47:10 +0000 (UTC)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE56102
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:47:07 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a7af20c488so52398037b3.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:47:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697446027; x=1698050827; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=W5NJ69kX6Bm+ubsFCLmuvdrCURMYuhfL3kxTQtdRQ+o=;
+        b=NDfzuOtuFXPrbza2/JIvk8SJzRnoHadvnc4lSEoz3ZoB1hxYL/9U4eNiPtfpC7e0oY
+         g1CaX6WftO0AaYzWCA3Y4bJJAdw2zeWFRAeDwMoGInJYqmBievaBPkYpFJjpzDm2yjv4
+         KwpTGHDJM8boc1r23WOYKu3qh9S/vbVigURfoE4C+nkPO2zWlqLKD92jKc/YnB+IdP7I
+         FCsi4CYb8etuLw8KJCgPUfPkqPgHq6+BvtfFQnLlPKAn7+jm6vRSbzRT8eb4aOF6bX07
+         LJarDWzLy99oJRE/KVCpl0RqauR+k7tVlY4LiQuSF+cL1QpLQqeHddgpVPAvMKHhwBNc
+         XzBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697446027; x=1698050827;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W5NJ69kX6Bm+ubsFCLmuvdrCURMYuhfL3kxTQtdRQ+o=;
+        b=PLXZrOGvo/izHn4NKNFj4AwJXYDDR7oMDVs9hjv5h5HSM5N8j6LCnRZyc5BZWD2vOf
+         GWaKSf6Cz0WWu8N9FrVOzve25yXh/5RSYqF42sjl1iF25RvYAm8uzIGunrRzeN0YeWdh
+         VotoulQ7K1KgtvQoNGCw9HCOMn0q7bSQzBEt4WU7SJkW9HQF64GozB3p5AC5TwQkjc7r
+         LzkURNuJOVQUvfvnQXMJCfLMRV8I2+EeXlqqVT9qn6FJMFVSe1mAskehEDgbgqTF6cpb
+         3seXl/SBSfiSt8yncWBDqpR4vpo/xrjR1jykwIMz8MpUXhxV2dHDtQc8t7Y+zmXSmUuG
+         gXdg==
+X-Gm-Message-State: AOJu0Yx3+eZZ5aBwVOIpq6xzrrjt7ccxzo/QjD4MzYN2vJ5OLAEq9NMx
+	hrp7t+IFZv+URtwGL4tdIlK1778fEc6XRIzsdHMvOw==
+X-Google-Smtp-Source: AGHT+IG8XvfaO2iDQZru45tosMwj2yXei141FG7yCZLeVf1EhFA7GavmH/c+LB3Hs9LuIeU78Tz3RVP03MeUP/zdExg=
+X-Received: by 2002:a05:690c:a08:b0:5a7:af51:e274 with SMTP id
+ cg8-20020a05690c0a0800b005a7af51e274mr17967004ywb.18.1697446027019; Mon, 16
+ Oct 2023 01:47:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] arm64: dts: mediatek: Introduce MT8186 Steelix
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231012230237.2676469-1-wenst@chromium.org>
- <20231012230237.2676469-8-wenst@chromium.org>
-Content-Language: en-US
-From: Eugen Hristev <eugen.hristev@collabora.com>
-In-Reply-To: <20231012230237.2676469-8-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1697101543.git.quic_varada@quicinc.com> <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
+ <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org> <20231016070256.GA24128@varda-linux.qualcomm.com>
+In-Reply-To: <20231016070256.GA24128@varda-linux.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 16 Oct 2023 11:46:56 +0300
+Message-ID: <CAA8EJpoQwDaUa+-WyM6FBzQJo9gn1k2rYLmKSFBLUH00epGJ0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] clk: qcom: clk-alpha-pll: introduce stromer plus ops
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, agross@kernel.org, andersson@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, ilia.lin@kernel.org, 
+	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	mturquette@baylibre.com, quic_kathirav@quicinc.com, rafael@kernel.org, 
+	robh+dt@kernel.org, viresh.kumar@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/13/23 02:02, Chen-Yu Tsai wrote:
-> The MT8186 Steelix, also known as the Lenovo 300e Yoga Chromebook Gen 4,
-> is a convertible device based on a common design of the same name. The
-> device comes in different variants. Of them, whether a world facing
-> camera is integrated is the only differentiating factor between the
-> two device trees added. The different SKU IDs describe this alone.
-> 
-> The other device difference is the touchpad component used. This is
-> simply handled by having both possible components described in the
-> device tree, and letting the implementation figure out which one is
-> actually available. The system bootloader / firmware does not
-> differentiate this in that they share the same SKU IDs.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
->   .../mt8186-corsola-steelix-sku131072.dts      |  18 ++
->   .../mt8186-corsola-steelix-sku131073.dts      |  18 ++
->   .../dts/mediatek/mt8186-corsola-steelix.dtsi  | 197 ++++++++++++++++++
->   4 files changed, 235 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 442af61b1305..7bd9471b89f9 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -43,6 +43,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327683.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262144.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
-> new file mode 100644
-> index 000000000000..eae17bca8585
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2022 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola-steelix.dtsi"
-> +
-> +/ {
-> +	model = "Google Steelix board";
-> +	compatible = "google,steelix-sku131072", "google,steelix",
-> +		     "mediatek,mt8186";
-> +	chassis-type = "convertible";
-> +};
-> +
-> +&mt6366codec {
-> +	mediatek,dmic-mode = <0>; /* two-wire */
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
-> new file mode 100644
-> index 000000000000..a55375b95d0d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2022 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola-steelix.dtsi"
-> +
-> +/ {
-> +	model = "Google Steelix board";
-> +	compatible = "google,steelix-sku131073", "google,steelix",
-> +		     "mediatek,mt8186";
-> +	chassis-type = "convertible";
-> +};
-> +
-> +&mt6366codec {
-> +	mediatek,dmic-mode = <1>; /* one-wire */
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
-> new file mode 100644
-> index 000000000000..8488f2f9dc4d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2023 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +
-> +/{
-> +	pp1000_edpbrdg: regulator-pp1000-edpbrdg {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pp1000_edpbrdg";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&en_pp1000_edpbrdg>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		gpio = <&pio 29 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&pp3300_z2>;
-> +	};
-> +
-> +	pp1800_edpbrdg_dx: regulator-pp1800-edpbrdg-dx {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pp1800_edpbrdg_dx";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&en_pp1800_edpbrdg>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		gpio = <&pio 30 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&mt6366_vio18_reg>;
-> +	};
-> +
-> +	pp3300_edp_dx: regulator-pp3300-edp-dx {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pp3300_edp_dx";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&en_pp3300_edpbrdg>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		gpio = <&pio 31 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&pp3300_z2>;
-> +	};
-> +};
-> +
-> +&dsi_out {
-> +	remote-endpoint = <&anx7625_in>;
-> +};
-> +
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +
-> +	anx_bridge: anx7625@58 {
-> +		compatible = "analogix,anx7625";
-> +		reg = <0x58>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&anx7625_pins>;
-> +		enable-gpios = <&pio 96 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&pio 98 GPIO_ACTIVE_HIGH>;
-> +		vdd10-supply = <&pp1000_edpbrdg>;
-> +		vdd18-supply = <&pp1800_edpbrdg_dx>;
-> +		vdd33-supply = <&pp3300_edp_dx>;
-> +		analogix,lane0-swing = /bits/ 8 <0x70 0x30>;
-> +		analogix,lane1-swing = /bits/ 8 <0x70 0x30>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				anx7625_in: endpoint {
-> +					remote-endpoint = <&dsi_out>;
-> +					data-lanes = <0 1 2 3>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				anx7625_out: endpoint {
-> +					remote-endpoint = <&panel_in>;
-> +				};
-> +			};
-> +		};
-> +
-> +		aux-bus {
-> +			panel: panel {
-> +				compatible = "edp-panel";
-> +				power-supply = <&pp3300_disp_x>;
-> +				backlight = <&backlight_lcd0>;
-> +
-> +				port {
-> +					panel_in: endpoint {
-> +						remote-endpoint = <&anx7625_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	touchscreen: touchscreen@5d {
-> +		compatible = "goodix,gt7375p";
-> +		reg = <0x5d>;
-> +		interrupts-extended = <&pio 12 IRQ_TYPE_EDGE_FALLING>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_pins>;
-> +		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
-> +		vdd-supply = <&pp3300_s3>;
-> +		goodix,no-reset-during-suspend;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	i2c-scl-internal-delay-ns = <22000>;
-> +
-> +	/* second source component */
-> +	touchpad@2c {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x2c>;
-> +		hid-descr-addr = <0x20>;
-> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&trackpad_pin>;
-> +		vdd-supply = <&pp3300_s3>;
-> +		wakeup-source;
-> +	};
+On Mon, 16 Oct 2023 at 10:03, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> On Thu, Oct 12, 2023 at 01:55:36PM -0700, Stephen Boyd wrote:
+> > Quoting Varadarajan Narayanan (2023-10-12 02:26:17)
+> > > Stromer plus APSS PLL does not support dynamic frequency scaling.
+> > > To switch between frequencies, we have to shut down the PLL,
+> > > configure the L and ALPHA values and turn on again. So introduce the
+> > > separate set of ops for Stromer Plus PLL.
+> >
+> > Does this assume the PLL is always on?
+>
+> Yes once the PLL is configured by apss-ipq-pll driver, it is always on.
+>
+> > > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > ---
+> > > v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
+> > >         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
+> > >         is same for both
+> > >
+> > >         Fix review comments
+> > >                 udelay(50) -> usleep_range(50, 60)
+> > >                 Remove SoC-specific from print message
+> > > ---
+> > >  drivers/clk/qcom/clk-alpha-pll.c | 57 ++++++++++++++++++++++++++++++++++++++++
+> > >  drivers/clk/qcom/clk-alpha-pll.h |  1 +
+> > >  2 files changed, 58 insertions(+)
+> > >
+> > > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> > > index 4edbf77..5221b6c 100644
+> > > --- a/drivers/clk/qcom/clk-alpha-pll.c
+> > > +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> > > @@ -2508,3 +2508,60 @@ const struct clk_ops clk_alpha_pll_stromer_ops = {
+> > >         .set_rate = clk_alpha_pll_stromer_set_rate,
+> > >  };
+> > >  EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_ops);
+> > > +
+> > > +static int clk_alpha_pll_stromer_plus_set_rate(struct clk_hw *hw,
+> > > +                                              unsigned long rate,
+> > > +                                              unsigned long prate)
+> > > +{
+> > > +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> > > +       u32 l, alpha_width = pll_alpha_width(pll);
+> > > +       int ret;
+> > > +       u64 a;
+> > > +
+> > > +       rate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
+> > > +
+> > > +       regmap_write(pll->clkr.regmap, PLL_MODE(pll), 0);
+> >
+> > There's a theoretical problem here if I understand correctly. A call to
+> > clk_enable() can happen while clk_set_rate() is in progress or vice
+> > versa. Probably we need some sort of spinlock for this PLL that
+> > synchronizes any enable/disable with the rate change so that when we
+> > restore the enable bit the clk isn't enabled when it was supposed to be
+> > off.
+>
+> Since the PLL is always on, should we worry about enable/disable?
+> If you feel it is better to synchronize with a spin lock, will
+> add and post a new revision. Please let me know.
 
-Hi Chen-Yu,
+Probably another option might be to change stromer PLL ops to use
+prepare/unprepare instead of enable/disable. This way the
+clk_prepare_lock() in clk_set_rate() will take care of locking.
 
-This is not okay, the `trackpad_pin` is shared with touchpad@15 , and if 
-drivers are probed in parallel , this can lead to a conflict on this pin 
-(GPIO11)
+>
+> Thanks
+> Varada
 
-Eugen
 
-> +};
-> +
-> +&keyboard_controller {
-> +	function-row-physmap = <
-> +		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
-> +		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
-> +		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
-> +		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
-> +		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
-> +		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
-> +		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
-> +		MATRIX_KEY(0x02, 0x09, 0)	/* T8 */
-> +		MATRIX_KEY(0x01, 0x09, 0)	/* T9 */
-> +		MATRIX_KEY(0x00, 0x04, 0)	/* T10 */
-> +	>;
-> +
-> +	linux,keymap = <
-> +		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-> +		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-> +		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-> +		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-> +		MATRIX_KEY(0x03, 0x04, KEY_BRIGHTNESSDOWN)
-> +		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSUP)
-> +		MATRIX_KEY(0x01, 0x04, KEY_MICMUTE)
-> +		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-> +		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-> +		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-> +		CROS_STD_MAIN_KEYMAP
-> +	>;
-> +};
-> +
-> +&pio {
-> +	anx7625_pins: anx7625-pins {
-> +		pins1 {
-> +			pinmux = <PINMUX_GPIO96__FUNC_GPIO96>,
-> +				 <PINMUX_GPIO98__FUNC_GPIO98>;
-> +			output-low;
-> +		};
-> +
-> +		pins2 {
-> +			pinmux = <PINMUX_GPIO9__FUNC_GPIO9>;
-> +			input-enable;
-> +			bias-disable;
-> +		};
-> +	};
-> +
-> +	en_pp1000_edpbrdg: pp1000-edpbrdg-en-pins {
-> +		pins {
-> +			pinmux = <PINMUX_GPIO29__FUNC_GPIO29>;
-> +			output-low;
-> +		};
-> +	};
-> +
-> +	en_pp1800_edpbrdg: pp1800-edpbrdg-en-pins {
-> +		pins {
-> +			pinmux = <PINMUX_GPIO30__FUNC_GPIO30>;
-> +			output-low;
-> +		};
-> +	};
-> +
-> +	en_pp3300_edpbrdg: pp3300-edpbrdg-en-pins {
-> +		pins {
-> +			pinmux = <PINMUX_GPIO31__FUNC_GPIO31>;
-> +			output-low;
-> +		};
-> +	};
-> +};
 
+-- 
+With best wishes
+Dmitry
 
