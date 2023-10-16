@@ -1,206 +1,157 @@
-Return-Path: <devicetree+bounces-8778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFC8F7CA013
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:03:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A494F7CA010
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:03:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9388281180
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:03:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFC891F21B6B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92AB14ABA;
-	Mon, 16 Oct 2023 07:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76E9F513;
+	Mon, 16 Oct 2023 07:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FHmLqwIg"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pkKpausm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33031185C
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:03:30 +0000 (UTC)
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239CAEB;
-	Mon, 16 Oct 2023 00:03:28 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id e9e14a558f8ab-35749556444so12754655ab.1;
-        Mon, 16 Oct 2023 00:03:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697439807; x=1698044607; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XLJbO+EIJJiDFsSKcJDqvmRwk3aK8ZgxXFUwOOoaZfU=;
-        b=FHmLqwIgP8rR0HmFbrl5vT/Ybm9kKVbJAsS91URjkZbS4E4ymshzIzd/rCQdKTa06f
-         y1BZHetas5CLOzxY5Q/FDG42EnIm0ZOOPIpcMO3E3bCP6hAbHJyuMSEWTDwdE6whAGlk
-         ldDMY2W4yfkyNpGXvb7D96dgb4w9fjCexusSmJnlhWyERvu0kBnFARhnxM3fvCpUZ72S
-         vkc5E/LmcqlCsgLRGSNH/ouoQNRq/0Njo4Kao0GiSmmpntIPk2ihuzCsBYFMHBO58Tgi
-         p+lyzcmdJOgRQIgLjEA0i5nruAAktvezAp5Wj0AqQqsaElUGu2y+Waz1ts2a58hgnefX
-         cLYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697439807; x=1698044607;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XLJbO+EIJJiDFsSKcJDqvmRwk3aK8ZgxXFUwOOoaZfU=;
-        b=pu4x5so2yqZkZvSblo35sNNhqsLtJMBQXQVExGgwGZKYP7tHWkPK4BZcQn3w5gJGDw
-         iNpcuvDm9nSQXkqknYjkQpPiGmhP2LrBXan8i8WtkmQMFmrjUabksdXzBkbicG5EZqXO
-         rWMzuAdumHWyKzTXkn7oy67AsmaUEpjCZxQTQrQwJycHRmzU15/ESogifdJ3yibFPkQI
-         gW1le+eCTK9YcKsL1CtASMzY9GRncqkJ5VDUQlp4Ud6VncGKrIEKYLSyaIiKstt/eHln
-         Dys2mvnItYpsiXlTyga1lTc5IaMqchmcGRKmDGK0KHz5sC41H9de7JW/0hVEAXy7yMVM
-         nDKQ==
-X-Gm-Message-State: AOJu0YyAU62TY+GztM2MVAeGPgZLvNGKZv+snVdU0ieGp50xpY7mZecL
-	HEeiVGVWcoiGARCMltz9n24=
-X-Google-Smtp-Source: AGHT+IF99mWDnJ8aI9TBkq1u3lz/abMZyyl+nEE18PPTAhSAuEy4H6ulHsglpGQiYe93QT/rMDAxeQ==
-X-Received: by 2002:a05:6e02:1a48:b0:357:4779:9dbc with SMTP id u8-20020a056e021a4800b0035747799dbcmr5267997ilv.10.1697439807356;
-        Mon, 16 Oct 2023 00:03:27 -0700 (PDT)
-Received: from ws-565760.systec.local ([212.185.67.148])
-        by smtp.gmail.com with ESMTPSA id a10-20020a92d58a000000b00351076c43e3sm3244553iln.4.2023.10.16.00.03.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 00:03:26 -0700 (PDT)
-From: werneazc@gmail.com
-X-Google-Original-From: andre.werner@systec-electronic.com
-To: jic23@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	lars@metafoo.de
-Cc: devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v3 1/2] dt-bindings: iio: adc: ti,ads7038: Add description for ADS7038
-Date: Mon, 16 Oct 2023 09:02:04 +0200
-Message-ID: <20231016070318.28355-1-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7AB185C
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:03:17 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D9297;
+	Mon, 16 Oct 2023 00:03:15 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39G6H59K028812;
+	Mon, 16 Oct 2023 07:03:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=17sxN1p7rORK+aDYPpUNLI9nkqxS5BmjqXxXbni6Ke4=;
+ b=pkKpausmx3Qh6II+766RwgsTw7pfGUSLaGPYu0m2A6c/xJa4xGRyhASCX1PHERVRuYDd
+ orRPQIXpr2EgDUTurfFBK4F9kgqJuDiWyxDZ0sWUC2xhRjgLgxlF8OFCra+IZO1TQ0X1
+ CuEI9/Mkgj7JmNU+cf7VlJu9ab06pVFcVcss7ljs4i4sVMzcCG4F26d0VOhbF3Kc5p6K
+ UOYlzgFIEFBBpUdvXt14+eZX69nOHfrQKhgZ9xz5L1CiKYREu+gHEEv1/ErDyqlmRAqB
+ hGvAzpHHPuKYxuVAChe+6uYYD3yIgcuPlD94rcWpsT2lw2tuzpgHsSUKuLslvAoWUbxd 2g== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tqkrpbd87-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Oct 2023 07:03:06 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39G736kW004835
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Oct 2023 07:03:06 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Mon, 16 Oct 2023 00:03:00 -0700
+Date: Mon, 16 Oct 2023 12:32:56 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Stephen Boyd <sboyd@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <ilia.lin@kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <mturquette@baylibre.com>, <quic_kathirav@quicinc.com>,
+        <rafael@kernel.org>, <robh+dt@kernel.org>, <viresh.kumar@linaro.org>
+Subject: Re: [PATCH v2 1/8] clk: qcom: clk-alpha-pll: introduce stromer plus
+ ops
+Message-ID: <20231016070256.GA24128@varda-linux.qualcomm.com>
+References: <cover.1697101543.git.quic_varada@quicinc.com>
+ <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
+ <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Is35Iy1OTMyWouqkVf0a2KM7CBzvmL3C
+X-Proofpoint-GUID: Is35Iy1OTMyWouqkVf0a2KM7CBzvmL3C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-15_09,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 adultscore=0 bulkscore=0 spamscore=0 priorityscore=1501
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310160060
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Andre Werner <andre.werner@systec-electronic.com>
+On Thu, Oct 12, 2023 at 01:55:36PM -0700, Stephen Boyd wrote:
+> Quoting Varadarajan Narayanan (2023-10-12 02:26:17)
+> > Stromer plus APSS PLL does not support dynamic frequency scaling.
+> > To switch between frequencies, we have to shut down the PLL,
+> > configure the L and ALPHA values and turn on again. So introduce the
+> > separate set of ops for Stromer Plus PLL.
+>
+> Does this assume the PLL is always on?
 
-Add basic description for ADS7038 ADC devices.
-The devicetree adds the following device specific options:
+Yes once the PLL is configured by apss-ipq-pll driver, it is always on.
 
-- average-samples: Program device's programmable average filter.
-- crc-enabled: Enable the CRC check for SPI transfers. Sadly, this
-  option has currently no effect in the driver.
-- status-enabled: Enable the appending of the device's status on the
-  measure value transmission.
-- gpio-controller: Sadly function not implemented yet in the driver.
+> > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> > v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
+> >         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
+> >         is same for both
+> >
+> >         Fix review comments
+> >                 udelay(50) -> usleep_range(50, 60)
+> >                 Remove SoC-specific from print message
+> > ---
+> >  drivers/clk/qcom/clk-alpha-pll.c | 57 ++++++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/qcom/clk-alpha-pll.h |  1 +
+> >  2 files changed, 58 insertions(+)
+> >
+> > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> > index 4edbf77..5221b6c 100644
+> > --- a/drivers/clk/qcom/clk-alpha-pll.c
+> > +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> > @@ -2508,3 +2508,60 @@ const struct clk_ops clk_alpha_pll_stromer_ops = {
+> >         .set_rate = clk_alpha_pll_stromer_set_rate,
+> >  };
+> >  EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_ops);
+> > +
+> > +static int clk_alpha_pll_stromer_plus_set_rate(struct clk_hw *hw,
+> > +                                              unsigned long rate,
+> > +                                              unsigned long prate)
+> > +{
+> > +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> > +       u32 l, alpha_width = pll_alpha_width(pll);
+> > +       int ret;
+> > +       u64 a;
+> > +
+> > +       rate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
+> > +
+> > +       regmap_write(pll->clkr.regmap, PLL_MODE(pll), 0);
+>
+> There's a theoretical problem here if I understand correctly. A call to
+> clk_enable() can happen while clk_set_rate() is in progress or vice
+> versa. Probably we need some sort of spinlock for this PLL that
+> synchronizes any enable/disable with the rate change so that when we
+> restore the enable bit the clk isn't enabled when it was supposed to be
+> off.
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
----
-v3
-- Delete ADS7138 compatible and comments.
-- Add options for CRC, status and average samples as well as
-  gpio-controller.
-- Update example.
-- add regulator for digital IO voltage.
----
- .../bindings/iio/adc/ti,ads7038.yaml          | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+Since the PLL is always on, should we worry about enable/disable?
+If you feel it is better to synchronize with a spin lock, will
+add and post a new revision. Please let me know.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-new file mode 100644
-index 000000000000..fc1054ca93f7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments ADS7038 and similar ADCs
-+
-+maintainers:
-+  - Andre Werner <andre.werner@systec-electronic.com>
-+
-+description: |
-+  Family of 7 channel, 12 bit ADCs with SPI interface.
-+
-+  Datasheet: https://www.ti.com/lit/gpn/ads7038
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,ads7038
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 60000000
-+
-+  avdd-supply:
-+    description: Analog supply voltage, also used as the reference voltage to the ADC.
-+
-+  dvdd-supply:
-+    description: Digital I/O supply voltage.
-+
-+  average-samples:
-+    description: |
-+      If specified ADC is configured for avaraging measurements (OSR_CFG Register).
-+      This effects output format for measurement and sampling time.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+  status-enabled:
-+    description: |
-+      If specified ADC transmits chip status (DATA_CFG Register).
-+
-+  crc-enabled:
-+    description: |
-+      Checking the integrity of the data bits exchanged over
-+      SPI interface (GENERAL_CFG Register).
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+    description: |
-+      Should be 2. See gpio.txt in this directory for a
-+      description of the cells format.
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - dvdd-supply
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+            compatible = "ti,ads7038";
-+            reg = <0>;
-+            avdd-supply = <&refin_avdd_supply>;
-+            dvdd-supply = <&refin_dvdd_supply>;
-+            spi-max-frequency = <10000000>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+        };
-+    };
--- 
-2.42.0
-
+Thanks
+Varada
 
