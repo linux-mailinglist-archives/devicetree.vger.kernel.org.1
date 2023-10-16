@@ -1,134 +1,137 @@
-Return-Path: <devicetree+bounces-8934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D037CAAEC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:03:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103857CAB0E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:13:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBE9B281753
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:03:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A550FB20DB2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3330328DA2;
-	Mon, 16 Oct 2023 14:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D3CA28E10;
+	Mon, 16 Oct 2023 14:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE2927EFB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:02:59 +0000 (UTC)
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945751AC;
-	Mon, 16 Oct 2023 07:02:52 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6c64a3c4912so3236411a34.3;
-        Mon, 16 Oct 2023 07:02:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697464971; x=1698069771;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aPwOcKolA5h59LfiwhDD2NsiWDiYTaeF64Ez9uATyPQ=;
-        b=RonnbeL+twCYiA6d79iP+7XIaQC0Hn0CNAMI1GIvR0bTCMeoN1hldlyjNV9YumgPIQ
-         XTWhCQrnD15vxNwOkCkuDaY93zj0cnua8cLzbYw0E3aDMnNaJNWqLdtsCrG8YmugD0h+
-         a+4cHXkF3xI2lShe1vjqf9h0d3bd3wMEW9YCroHGDGYSwDkuWUty6vA148fSTxDhRHct
-         4T6L2YlgHkbEpHA1HD8MzJogUYJiQt/6eSKho9Ja3dsN7JV4hVicsUrk+KVLQHi03+7b
-         1IrjY19CvkiqcxBrVV/wV+6e75p8lAMhZe8w5BnyLB5euiytrCIdhpkOvw6KPuT7nuVj
-         BLbQ==
-X-Gm-Message-State: AOJu0YwDH3DzPTFzhioWbdsEdSNsz0ZC05eyQqAZa9npotInM/yo3gyO
-	NagfO/Ss3ONIjNLcKIjVWw==
-X-Google-Smtp-Source: AGHT+IGtFSHkWAYs7Rmg3ynupfWgMC2K0w58JDQY6Ll10QBud020o2yHbCZ3OrASx4vDGZ+riEGT+A==
-X-Received: by 2002:a05:6870:7d12:b0:1ea:3746:b7d6 with SMTP id os18-20020a0568707d1200b001ea3746b7d6mr4026697oab.28.1697464971594;
-        Mon, 16 Oct 2023 07:02:51 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gk24-20020a0568703c1800b001dcde628a6fsm2016544oab.42.2023.10.16.07.02.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 07:02:50 -0700 (PDT)
-Received: (nullmailer pid 2677955 invoked by uid 1000);
-	Mon, 16 Oct 2023 14:02:49 -0000
-Date: Mon, 16 Oct 2023 09:02:49 -0500
-From: Rob Herring <robh@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 02/13] dt-bindings: thermal: tegra: Document throttle
- temperature
-Message-ID: <20231016140249.GA2655027-robh@kernel.org>
-References: <20231012175836.3408077-1-thierry.reding@gmail.com>
- <20231012175836.3408077-3-thierry.reding@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5456728DB7
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:13:24 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A54C9B
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:13:23 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qsOL4-0002pB-HV; Mon, 16 Oct 2023 16:12:58 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qsOL3-0026aC-8g; Mon, 16 Oct 2023 16:12:57 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qsOL3-008RNy-0e;
+	Mon, 16 Oct 2023 16:12:57 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: "David S. Miller" <davem@davemloft.net>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: [PATCH net-next v4 0/9] net: dsa: microchip: provide Wake on LAN support
+Date: Mon, 16 Oct 2023 16:12:47 +0200
+Message-Id: <20231016141256.2011861-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231012175836.3408077-3-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 12, 2023 at 07:58:23PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Each throttling configuration needs to specify the temperature threshold
-> at which it should start throttling. Previously this was tied to a given
-> trip point as a cooling device and used the temperature specified for
-> that trip point. This doesn't work well because the throttling mechanism
-> is not a cooling device in the traditional sense.
-> 
-> Instead, allow device trees to specify the throttle temperature in the
-> throttle configuration directly so that the throttle doesn't need to be
-> exposed as a cooling device.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v2:
-> - rename temperature to temperature-millicelsius and drop $ref
-> - add hysteresis-millicelsius property
-> 
->  .../bindings/thermal/nvidia,tegra124-soctherm.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
-> index 04a2ba1aa946..0eb6277082fe 100644
-> --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
-> @@ -121,6 +121,20 @@ properties:
->                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
->                - 3
->  
-> +          temperature-millicelsius:
+This patch series introduces extensive Wake on LAN (WoL) support for the
+Microchip KSZ9477 family of switches, coupled with some code refactoring
+and error handling enhancements. The principal aim is to enable and
+manage Wake on Magic Packet and other PHY event triggers for waking up
+the system, whilst ensuring that the switch isn't reset during a
+shutdown if WoL is active.
 
-'temperature' is redundant since we have units. Perhaps 
-'throttle-millicelsius' or 'auto-throttle-millicelsius' instead to say 
-what the temperature is for.
+The Wake on LAN functionality is optional and is particularly beneficial
+if the PME pins are connected to the SoC as a wake source or to a PMIC
+that can enable or wake the SoC.
 
-> +            minimum: -273000
-> +            maximum: 200000
+changes v4:
+- add ksz_switch_shutdown() and do not skip dsa_switch_shutdown() and
+  etc.
+- try to configure MAC address on WAKE_MAGIC. If not possible, prevent
+  WAKE_MAGIC configuration
+- use ksz_switch_macaddr_get() for WAKE_MAGIC.
+- prevent ksz_port_set_mac_address if WAKE_MAGIC is active
+- do some more refactoring and patch reordering
 
-Quite impressive operating range.
+changes v3:
+- use ethernet address of DSA master instead from devicetree
+- use dev_ops->wol* instead of list of supported switch
+- don't shotdown the switch if WoL is enabled
+- rework on top of latest HSR changes
 
-> +            description: The temperature threshold (in millicelsius) that,
-> +              when crossed, will trigger the configured automatic throttling.
-> +
-> +          hysteresis-millicelsius:
-> +            description: An unsigned integer expressing the hysteresis delta
-> +              (in millicelsius) with respect to the threshold temperature
-> +              property above. Throttling will be initiated when the
-> +              temperature falls below (temperature - hysteresis). This avoids
-> +              situations where throttling is repeatedly initiated and stopped
-> +              because of minor temperature variations.
-> +
->            # optional
->            # Tegra210 specific and valid only for OCx throttle events
->            nvidia,count-threshold:
-> -- 
-> 2.42.0
-> 
+changes v2:
+- rebase against latest next
+
+Oleksij Rempel (9):
+  net: dsa: microchip: Add missing MAC address register offset for
+    ksz8863
+  dt-bindings: net: dsa: microchip: add wakeup-source property
+  net: dsa: microchip: use wakeup-source DT property to enable PME
+    output
+  net: dsa: microchip: ksz9477: add Wake on LAN support
+  net: dsa: microchip: ksz9477: Add Wake on Magic Packet support
+  net: dsa: microchip: Refactor comment for ksz_switch_macaddr_get()
+    function
+  net: dsa: microchip: Add error handling for ksz_switch_macaddr_get()
+  net: dsa: microchip: Refactor switch shutdown routine for WoL
+    preparation
+  net: dsa: microchip: do not reset the switch on shutdown if WoL is
+    active
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |   2 +
+ drivers/net/dsa/microchip/ksz9477.c           | 122 ++++++++++++++++++
+ drivers/net/dsa/microchip/ksz9477.h           |   4 +
+ drivers/net/dsa/microchip/ksz9477_i2c.c       |   5 +-
+ drivers/net/dsa/microchip/ksz_common.c        | 115 +++++++++++++++--
+ drivers/net/dsa/microchip/ksz_common.h        |   8 ++
+ drivers/net/dsa/microchip/ksz_spi.c           |   5 +-
+ 7 files changed, 242 insertions(+), 19 deletions(-)
+
+-- 
+2.39.2
+
 
