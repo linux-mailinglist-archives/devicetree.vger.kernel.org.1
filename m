@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-9051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E4A7CB5A8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:51:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5A77CB5AA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 23:51:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9501E1C20995
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:51:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89B8228176C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 21:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71648381DA;
-	Mon, 16 Oct 2023 21:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B24338BB4;
+	Mon, 16 Oct 2023 21:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vfhAjRiS"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="e2hVp5xH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D16527732
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 21:51:22 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA49AC
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:51:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FE3381DD
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 21:51:24 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622C3A1
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:51:23 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A289389D;
-	Mon, 16 Oct 2023 23:51:12 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 04ACE11B4;
+	Mon, 16 Oct 2023 23:51:13 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697493072;
-	bh=4hjvHsVqzqOYZWkil1rRouOrvHTjXpzmHt0/v6juDpA=;
+	s=mail; t=1697493074;
+	bh=vm0/1wlj1oWdGfLB7hd2PEG0FEkTFXDPEq9DFqp0y5s=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=vfhAjRiSLGTvVpo/2J6z2VgAuv4xIyAzbKcecBMDmxlrYOfHiJF69kMmQvhW+cMxk
-	 d8dVJb9pA3IrnKGR57GCBS8OsW8JK53uYrd4Rmdqy7QQmBBHy5Iuo4lHB29B2XW5cV
-	 MJAwlyU77yI18m23q+T3HdXwe/x+aL6GpgBoeAv4=
+	b=e2hVp5xH89QYDyTehal7ezrVhgc5qJv15X7Pql1aEovjRmWRqCAiqqYAUVZkU7knW
+	 SWg4K/LNDtTjh2eVYFixEj9J88IV1zbZFou4/U6cgElJvk/ragTXqI6yHrflQc0e4L
+	 6jSBLHkWuirCw8LKuDOANWchJDz4u9bkUWZaxO3I=
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: linux-mediatek@lists.infradead.org
 Cc: devicetree@vger.kernel.org,
@@ -48,9 +48,9 @@ Cc: devicetree@vger.kernel.org,
 	Julien Stephan <jstephan@baylibre.com>,
 	Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
 	Ted Larson <ted@ologicinc.com>
-Subject: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add prefix for OLogic, Inc.
-Date: Tue, 17 Oct 2023 00:51:21 +0300
-Message-ID: <20231016215123.30343-2-laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v1 2/3] dt-bindings: arm64: dts: mediatek: Add ologic,pumpkin-i350 board
+Date: Tue, 17 Oct 2023 00:51:22 +0300
+Message-ID: <20231016215123.30343-3-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
 References: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
@@ -67,28 +67,26 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a DT vendor prefix for OLogic, Inc. OLogic is a hardware and system
-design company that manufactures, among other things, development boards
-with MediaTek SoCs.
+Add a compatible string for the Pumpkin i350 board, an MT8365-based
+board developed by OLogic.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 573578db9509..247b724bc01f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -981,6 +981,8 @@ patternProperties:
-     description: Oki Electric Industry Co., Ltd.
-   "^olimex,.*":
-     description: OLIMEX Ltd.
-+  "^ologic,.*":
-+    description: OLogic, Inc.
-   "^olpc,.*":
-     description: One Laptop Per Child
-   "^oneplus,.*":
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index ae12b1cab9fb..dc34e62c6756 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -247,6 +247,7 @@ properties:
+       - items:
+           - enum:
+               - mediatek,mt8365-evk
++              - ologic,pumpkin-i350
+           - const: mediatek,mt8365
+       - items:
+           - enum:
 -- 
 Regards,
 
