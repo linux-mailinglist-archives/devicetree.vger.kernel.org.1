@@ -1,88 +1,113 @@
-Return-Path: <devicetree+bounces-9009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503167CB297
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:35:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DC67CB306
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:55:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF508B20EBF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:35:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3A461F22748
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58FD31588;
-	Mon, 16 Oct 2023 18:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C63831A96;
+	Mon, 16 Oct 2023 18:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5TuNaew"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9r2kdvs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55733418B
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:35:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2574C433C7;
-	Mon, 16 Oct 2023 18:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301C528DDF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:54:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D51C433C7;
+	Mon, 16 Oct 2023 18:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697481332;
-	bh=NpIaTvuHw8Le9ChpmPmnRspLxE9CIeioI03Nv4mZ9zA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=V5TuNaew8UyYa92+nB9zmq6FI1jsWRiB0dl5SWe7Ch5b/Hs2KPDJGZCq4PRBB+Oxx
-	 FXzH2BdJF1dQo0XlIoJ/kjFM/eItqKTy+kHrs7C3z/IbS8GEKlPOacpyhdt6xQf/IR
-	 /h1vwzAle8iipeF//iwFP04/zzwty7DugLSuLjuObx2unrrWZ4WGLmHgQh2Q9wnsrI
-	 4wpKP5e7KC3v10kCk6TIJu3/r5Oe67SErZzdoktLOGL4NHY39GDmjwSJfl6pKVxIO8
-	 gNZDn6PAM+gmyFzDJ24OAOQ++Y2t2xuvyco0lk8LjnWNlLVlOuxLh0jo9Dpqh3x5+y
-	 EZYOyzN18SVig==
+	s=k20201202; t=1697482496;
+	bh=vnpuG6oJGzk3oI7/3eK+xoXxYSfxQmaYjHfWNJ6kGbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t9r2kdvshd6iY6IW+giqum/YnWI5uOQBJvCbnTe4xaBNsbUaDnathoKktNFsQH0vs
+	 V/ruciEdbvU9rBB4Fxv3qaW+K8DjR0+FtiZnfLhw7myfmjR6hCB7599DJLOv30PJwU
+	 uuMX6hEt3rFIQVwJoV+EwGdbyZULjExk8BIdKVxLicg/5dMx0jGaQZ3dLxRARFcOrw
+	 LNMcqo6bua3X2ehb9ik/lAFEhNj183ZhI78Y4L7ev51fJ4/e+hjeqo6+e4NUlPNdAD
+	 bpWFMyDgfOcIE3pZiR/5C674Pi9SfwgcSRR4NxCOc0CvpAhGGf+GTukZqun49ytDDc
+	 8RiRS8jKx5CdQ==
+Date: Mon, 16 Oct 2023 11:58:44 -0700
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Priyansh Jain <quic_priyjain@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	quic_manafm@quicinc.com,
-	kernel@quicinc.com
-Subject: Re: (subset) [PATCH v2 0/2] Enable tsens and thermal for sa8775p SoC
-Date: Mon, 16 Oct 2023 11:39:18 -0700
-Message-ID: <169748155481.1250452.18230103775371703582.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230926085948.23046-1-quic_priyjain@quicinc.com>
-References: <20230926085948.23046-1-quic_priyjain@quicinc.com>
+To: Robert Marko <robimarko@gmail.com>
+Cc: agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: ipq5018: add QUP1 SPI controller
+Message-ID: <jxvpt2xo3fc2k7kflfsdov6uxpjpgqpomgmfvfgxwytejvkcgu@xwnfrg7be6qi>
+References: <20231004191303.331055-1-robimarko@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004191303.331055-1-robimarko@gmail.com>
 
-
-On Tue, 26 Sep 2023 14:29:46 +0530, Priyansh Jain wrote:
-> Adding compatible string in TSENS dt-bindings, device node
-> for TSENS controller and Thermal zone support
+On Wed, Oct 04, 2023 at 09:12:30PM +0200, Robert Marko wrote:
+> Add the required BAM and QUP nodes for the QUP1 SPI controller on IPQ5018.
 > 
-> Changes since v3:
-> - Correct the unit address of tsens node
-> - Updated tsens nodes in sorted order by address
-> - Moved thermal zones outside /soc node
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+
+I padded the spi node to 8 digits, and applied the patch.
+
+Thanks,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> [...]
-
-Applied, thanks!
-
-[2/2] arm64: dts: qcom: Enable tsens and thermal for sa8775p SoC
-      commit: 4e7870360366b79f8a37ab0809895359105e5b78
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 38ffdc3cbdcd..484034e65f4f 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -146,6 +146,16 @@ sdhc_1: mmc@7804000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		blsp_dma: dma-controller@7884000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x07884000 0x1d000>;
+> +			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "bam_clk";
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +		};
+> +
+>  		blsp1_uart1: serial@78af000 {
+>  			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+>  			reg = <0x078af000 0x200>;
+> @@ -156,6 +166,20 @@ blsp1_uart1: serial@78af000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		blsp1_spi1: spi@78b5000 {
+> +			compatible = "qcom,spi-qup-v2.2.1";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x78b5000 0x600>;
+> +			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_QUP1_SPI_APPS_CLK>,
+> +				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp_dma 4>, <&blsp_dma 5>;
+> +			dma-names = "tx", "rx";
+> +			status = "disabled";
+> +		};
+> +
+>  		intc: interrupt-controller@b000000 {
+>  			compatible = "qcom,msm-qgic2";
+>  			reg = <0x0b000000 0x1000>,  /* GICD */
+> -- 
+> 2.41.0
+> 
 
