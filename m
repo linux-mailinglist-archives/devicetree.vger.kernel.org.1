@@ -1,131 +1,110 @@
-Return-Path: <devicetree+bounces-8886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDE7CA6D9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:40:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893017CA6FB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2198028135E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:40:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83D231C20B5C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB92250E8;
-	Mon, 16 Oct 2023 11:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5308262AC;
+	Mon, 16 Oct 2023 11:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UOUh9ZJ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F55724214;
-	Mon, 16 Oct 2023 11:40:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B50C433C8;
-	Mon, 16 Oct 2023 11:40:52 +0000 (UTC)
-Message-ID: <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
-Date: Mon, 16 Oct 2023 13:40:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F782628A;
+	Mon, 16 Oct 2023 11:52:15 +0000 (UTC)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32406E5;
+	Mon, 16 Oct 2023 04:52:13 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53e855d7dacso2719271a12.0;
+        Mon, 16 Oct 2023 04:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697457131; x=1698061931; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6TWA9LwAA8tsEVaY9yQUvcKb1zGp7WNzBzeWulwFOsY=;
+        b=UOUh9ZJ2ZtxWQYAAaFaM44H6oF/uyu+/HUTgxTMSQF/mPnCysT8auabmA6C6BN1Hr4
+         qSjnZgkRZsl69UiGzMhsf2Vl0Uvkjv6Yc8zacUAAxuKJrv35+ixcsRkh8gfeHJ+TgzM1
+         L1TJUgkmO1kKkwY+1t81qO1hFOEf8KpF2w1rIMQs3ypTbuCm0tXWoM9X9UiWVrTq4YQ+
+         URFAe0xpW13MQOB+7Pk2/kyBrOnOWL+JwjD1UISeFyg5lOLJQhRxtv/UnQaP3puYc5y/
+         wjB6QgvSAjeqNlfPzsqs52EF70wf0lZAvs6uhGO4s89KmDkQJxdVs1oU7wTbfTqrtmC4
+         q/Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697457131; x=1698061931;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6TWA9LwAA8tsEVaY9yQUvcKb1zGp7WNzBzeWulwFOsY=;
+        b=Qmi0Inp5qB9q0FlO9t44yErP4G87l0QRM3bsr5/nSz+mbNpf7+RsHwxk/Ww3FHEKrg
+         2WAJvnI2U+9ZJAw608omJ9DmRIfb0wcTKPyTMJ58oCX6HMOqoSmbHOnvhF/gpSzRwFMw
+         ouLvkI/73C9tulnEUY1Tx5ICBxIzmWoflazSfyjMDuCuLW8vv2B3Fa7xU7E93YHCPJow
+         X3liNHahzDbBAbnhjCFZs64wJSh2djzTZPULEdQJqCt3KPrSzg7MYVVbo1dL+oEV3lDf
+         9a0n+vkdtTeLETaQxQwh3YOTtXS99dw+cIEhre33ZAC5NwY/uIv2WaWvmqcB7a2MmY/b
+         F6jA==
+X-Gm-Message-State: AOJu0YxETHCTxITJ1XS8+5SSXdIIvw2WL4FOpt+3FzgpT7mbGPht76q5
+	04wKjlpOTWYcassK78q7yjghzq+xnYQxcg==
+X-Google-Smtp-Source: AGHT+IFPCJmiJnv0H5Ibu+0EgGaiO1e4yhydt0CO23AM5hIh8EAM544OLHRLRDgCjmk1myJR8lwv/Q==
+X-Received: by 2002:a05:6402:3212:b0:53d:b5bc:6415 with SMTP id g18-20020a056402321200b0053db5bc6415mr13068236eda.15.1697457131517;
+        Mon, 16 Oct 2023 04:52:11 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id a26-20020a50e71a000000b00537963f692esm15555389edn.0.2023.10.16.04.52.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 04:52:11 -0700 (PDT)
+Date: Mon, 16 Oct 2023 14:52:08 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/6] dt-bindings: marvell: Add Marvell
+ MV88E6060 DSA schema
+Message-ID: <20231016115208.434cpmke4q3g3lwu@skbuf>
+References: <20231016-marvell-88e6152-wan-led-v3-0-38cd449dfb15@linaro.org>
+ <20231016-marvell-88e6152-wan-led-v3-2-38cd449dfb15@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
-Content-Language: en-US, nl
-To: Jack Zhu <jack.zhu@starfivetech.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- changhuang.liang@starfivetech.com
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20231008085154.6757-1-jack.zhu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-marvell-88e6152-wan-led-v3-2-38cd449dfb15@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hi Jack,
+On Mon, Oct 16, 2023 at 11:12:55AM +0200, Linus Walleij wrote:
+> +description:
+> +  The Marvell MV88E6060 switch has been produced and sold by Marvell
+> +  since at least 2010. The switch has one pin ADDR4 that controls the
+> +  MDIO address of the switch to be 0x10 or 0x00, and on the MDIO bus
+> +  connected to the switch, the PHY:s inside the switch appear as
 
-On 08/10/2023 10:51, Jack Zhu wrote:
-> Hi,
-> 
-> This series is the v10 series that attempts to support the Camera Subsystem
-> found on StarFive JH7110 SoC.
-> 
-> This series is based on top of the master branch of media_stage repository,
-> which is tested with a v4l2-compliance compiled from the git repo
-> (git://linuxtv.org/v4l-utils.git).
+PHYs without :, I guess
 
-I get one smatch warning:
-
-drivers/staging/media/starfive/camss/stf-isp.c:122 isp_enum_mbus_code() warn: unsigned 'code->index' is never less than zero.
-
-And I also notice that there is no TODO file: staging drivers should have a
-TODO file explaining what needs to be done to get them out of staging.
-
-I'm curious to know that as well :-)
-
-It looks like there is a lot of additional development that can be done, since
-most of the ISP parameters appear to be hardcoded.
-
-I also notice something weird in the compliance test output for v4l-subdev0 vs
-v4l-subdev1:
-
-> Compliance test for starfive-camss device /dev/v4l-subdev0:
-> 
-> Driver Info:
-> 	Driver version   : 6.6.0
-> 	Capabilities     : 0x00000000
-> Media Driver Info:
-> 	Driver name      : starfive-camss
-> 	Model            : Starfive Camera Subsystem
-> 	Serial           : 
-> 	Bus info         : platform:19840000.camss
-> 	Media version    : 6.6.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 6.6.0
-> Interface Info:
-> 	ID               : 0x0300001c
-> 	Type             : V4L Sub-Device
-> Entity Info:
-> 	ID               : 0x00000001 (1)
-> 	Name             : stf_isp
-> 	Function         : Image Signal Processor
-> 	Pad 0x01000002   : 0: Sink
-> 	  Link 0x02000014: from remote pad 0x1000010 of entity 'cdns_csi2rx.19800000.csi-bridge' (Video Interface Bridge): Data, Enabled
-> 	Pad 0x01000003   : 1: Source
-> 	  Link 0x0200000c: to remote pad 0x1000009 of entity 'capture_yuv' (V4L2 I/O): Data, Enabled
-
-Here it shows the Media Driver Info for v4l-subdev0.
-
-<snip>
-
-> --------------------------------------------------------------------------------
-> Compliance test for device /dev/v4l-subdev1:
-> 
-> Driver Info:
-> 	Driver version   : 6.6.0
-> 	Capabilities     : 0x00000000
-
-But this does not appear for v4l-subdev1.
-
-I can't really tell why it doesn't show that. Can you debug a little bit?
-The code is in v4l2-compliance.cpp, line 1086:
-
-ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
-
-The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
-and that fails for some reason. It could be that media_fd is invalid (would be weird).
-
-This could well be a v4l2-compliance bug that you hit with this driver.
-
-Regards,
-
-	Hans
+> +  independent devices on address 0x00-0x04 or 0x10-0x14, so in difference
+> +  from many other DSA switches this switch does not have an internal
+> +  MDIO bus for the PHY devices.
 
