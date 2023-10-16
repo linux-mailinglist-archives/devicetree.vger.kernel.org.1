@@ -1,317 +1,227 @@
-Return-Path: <devicetree+bounces-8766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F0E7C9FBF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A74E17C9FCD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 708D0B20C09
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 06:41:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0846FB20DA7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 06:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6F9134D2;
-	Mon, 16 Oct 2023 06:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5EE2154A3;
+	Mon, 16 Oct 2023 06:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="uX3XzTir"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ux+xXG6t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AEE14F63
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 06:41:29 +0000 (UTC)
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2135.outbound.protection.outlook.com [40.107.117.135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED058E;
-	Sun, 15 Oct 2023 23:41:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H/DLTCLTJCpjYwVm8DJEor0Zw7QMmX2HRswzs4GvVFcSjZEZPlgqYfi6DkbcF5in4x5ASPrlipNjeKmbw/OrGdY2HmHlrNzhJ7qcKvwB+CXX/6cgdzKrt29aSkKkd9VXNLnfGS9xDOsrEZ6bAdqA4qXO+QXtt/hjBqLArrLKvwFE6u3QIp+pHdFMP9kBGqV91lRWE81PHRmXhBabXcXWprf0pQyqN798fUH0MYx5sElu63fy1sr5TdjB+T5oldfMhnBulXVw/hDfF59kNDDcIjkQYpS/rnQiAlA9EXvgsb4Iq+c2eXlXh5NN1jr7cMQNjP8EVuzMoTeAJ6Z3D4MhJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OVFK3r0GEoaXyBMF6BvTbPcXH6q6NW2aqcze9N4nl04=;
- b=NS5VMStd5noFLPRm85xzN8UZ01fEZDMfAGmoZPQvaZy2PI8FwRTh65roP21Uziis81E/OAKlUZY9c8Vk50EXrwErO2VSdB03xYjXiFFivDWFXQzJMwrhaoi+aRAiHVd0ae6ijVs5E08gnmbC5LOcURXEi3fiDkeZOZ6gH1+MGaoHwnEr5czWw3pYIvCg1EtEWOqlMyPYHw8cJZgFZze3Itb1HU2tbD0A5QJ5tAtc0HScdQXb1raktFSCaJO1SjxZvTh3MgKefe5x231d6xF5Sw1mlPdjgtPkFUb6S+f0OtrDKjDbJlOIruRMJ+dGEwsuuRCM9S7A2G5UmyKyQgs8mA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OVFK3r0GEoaXyBMF6BvTbPcXH6q6NW2aqcze9N4nl04=;
- b=uX3XzTir5KS+gIl3CmJ5FQVFk0wt/JVL/C4e3+mn0OFaSZClKFT5C2YWzAr9nvF+5FozpES/BWdzWif0IYk2MC89syKLfT7OOXtlnYy5bjFVgXTBMW9yd0J65D7vVul2Q8ENaKAyRfjoj1fQ9TeZcxAtPM7RJT1IZIociK/B4xhpA/ZZcXOLI6Owm7p7QuBmg68HwLY2t/UYJBbZGJWRdhGN1puYOdj9hhFp3JapnJ5cA2TImsWiILm+j3hq2wV4aapS6JQbcEd4ZbfllI7xKYzr9lMNd4evej07fPujyc5J9xKRr/pV7dSpws2G0peyAHZtUxP9S5nbwTtKbisoAA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SI2PR03MB5916.apcprd03.prod.outlook.com (2603:1096:4:148::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35; Mon, 16 Oct
- 2023 06:41:21 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::792a:209d:4919:5db6]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::792a:209d:4919:5db6%7]) with mapi id 15.20.6886.034; Mon, 16 Oct 2023
- 06:41:21 +0000
-Message-ID: <4da5dae6-6f94-9ab9-3a25-8ed7f4be30b1@amlogic.com>
-Date: Mon, 16 Oct 2023 14:41:13 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH V2 1/4] dt-bindings: clock: add Amlogic C3 PLL clock
- controller bindings
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Chuan Liu <chuan.liu@amlogic.com>
-References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
- <20231010062917.3624223-2-xianwei.zhao@amlogic.com>
- <20231010132151.GA557938-robh@kernel.org>
- <291f03f9-72aa-2842-b44a-c88c812df4f1@amlogic.com>
- <1jr0lzvuql.fsf@starbuckisacylon.baylibre.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <1jr0lzvuql.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TY2PR01CA0017.jpnprd01.prod.outlook.com
- (2603:1096:404:a::29) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A29F14ABA
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 06:44:04 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471C8A2;
+	Sun, 15 Oct 2023 23:43:58 -0700 (PDT)
+X-UUID: 5cd146686bef11eea33bb35ae8d461a2-20231016
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IwOkqyzoE6mDo8cw/0FXt9hr2/pYnq8pP5H1PTNxgrA=;
+	b=Ux+xXG6tCKjNd3ZhZIWFWjMfL5nll0+qPr93fqvmHWuGmnzC5mfXFV/4Iu4r+Skq/QWReUKZn594iYFKlcJfeLEJUzUiF1K936wcnw6ozn7oaPFP6qhdmN4pQcYjge4dclq2L6sGHIpG1HOzpUeCpkjjK3v7Nofvl2d2Ww6xCVY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:447a1c49-019b-469f-9bb5-bafd0594ea89,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:4ccdf9bf-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 5cd146686bef11eea33bb35ae8d461a2-20231016
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 420164673; Mon, 16 Oct 2023 14:43:49 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 16 Oct 2023 14:43:47 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 16 Oct 2023 14:43:47 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, Steve
+ Cho <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 1/7] media: mediatek: vcodec: Getting the chip name of each platform
+Date: Mon, 16 Oct 2023 14:43:40 +0800
+Message-ID: <20231016064346.31451-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI2PR03MB5916:EE_
-X-MS-Office365-Filtering-Correlation-Id: 44a66031-aefe-4344-10fb-08dbce12e7c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	gPyKY3l12l6Eidolo/e9YY6z1dgs9QNQT5y6+ecSGtwoJ0plqFvCE9/y0pbFsH8gcHNF1mAOhMIX2fykCS//TgNbn4je6TzeVxoCXKTMVH1psBc1eSrAYtBKXF3Lye009L/rPd9LJqFf7hGHgDjVFMxkQxAg1cdFkEyCfRIj88WHE3Ra3JCkB87IA/zsEGIA+TP2VCH0Niu6nV2CcSy0CM+B+IbKqqDI9PSRpf/aljQW4vzHyAsw4HvyVBuj1H+tbGMVuSe0kDeVdeVfvmSqea0PfJ7ghtLsTJ8MtlSswlglqdEsAznAW0JY+9FozIsn2XW2+BpAixFOoDFLZpJwSLnLZ+NO1PmzyO+pPsTinuh7vuaGxMeNr73lyLiY8BBUDV7w5rFsgcCfQgaCecKtEtwORE6BdK84x9SAIxldvQFN1xkDWyg7dmkipEjHls76uRGt5cn7uQTjNH94cXU4cxp0a6n3LLfdPQdVoMn0a0iZmx006PJ2Wmd/PHLUG3z3KPMyJz1y3zO96d8+19MKtIfTDD/2RStgyp6nHz22xKarRhjlbvdpi2cjGhUECzuFD+d5XbhC6o2pJQZAl2b8KXPoUv2vKg5CaM483eM5+5x2QZiM5iRxO8iMnCI0oOpOOKefBRWKJOlKQJCDZ6NSTrZ4OqvpS0hZQ7+AUthztiR1FDfmK3Ea04+iaW0/94N9
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39850400004)(366004)(136003)(396003)(346002)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(31686004)(478600001)(966005)(6486002)(110136005)(66946007)(66476007)(54906003)(6666004)(66556008)(83380400001)(31696002)(86362001)(38100700002)(2616005)(6512007)(316002)(26005)(107886003)(53546011)(6506007)(41300700001)(44832011)(5660300002)(36756003)(8936002)(8676002)(4326008)(7416002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eFF6NVRDNnlGL1ZnMlN5STJ1ZkRRdTU4Y2t2RUI0WjNhaUdRTXhKQjNSUkw0?=
- =?utf-8?B?TWlCSnovWWFhb0lwSmVOMno1WlAzRDlrRkdKT0RjSUJRaW1zVWtkcStwSlN0?=
- =?utf-8?B?QUhYb3BCbnlVa3BZRkVFQ2RwVC9TdkZTVzFVb21jUk1oNTVTeEFxZ0pFQ2Rp?=
- =?utf-8?B?dnRsYzlGeTg0WXVraGVLYW5nVUI0cGVTbXFyWTVFS1JPN0VNaTFmNUljWi9P?=
- =?utf-8?B?MzNDbmNqL2c5MFZtRjZMRzA3aWdPbmRkbDRBa0FBSlJxTkp3SVlwZ1JrUWRm?=
- =?utf-8?B?Wm03V1o1VnpQOE9CQkc2Z2wwRVJ5M25lUGlnN1QwdzNTUlQ2d0JGVkkyYlh0?=
- =?utf-8?B?ZDFJb2JpUktWWHkwWXJ6OXh5RUdFVm91MVRXdGovRVNqd3U5YUMvWXRyK2tB?=
- =?utf-8?B?Wk84SUY2eHd5SGhlK3h0SXo4YVhLSGoxM3FpZHlCY0dOWWg0d21zS1BiTWtT?=
- =?utf-8?B?azRXSnRMQ2dRVkRDbHhkeEhoTittZmtiL1pkVldmaUxqWjBFR05aUHJLR1Zj?=
- =?utf-8?B?ZFhXYjNjM28rTTBTWng5M08yU2Y0cTZ2Q0R3MmQxM1NFYXVqQU9QK1RIZ2lt?=
- =?utf-8?B?MGlHNDR2MEhzQnhSUlErd29mcGNINjhqNDcyaDNkRittTXAveDNkZTRRN2Jo?=
- =?utf-8?B?Nm1ma2hzUGxEMFpQL2JmOFRCR2kwaW41NHdkNnE3SjByZURKcEtRdEZZWnZj?=
- =?utf-8?B?RVdhWUxQYVhjWkVKdGxUTkk5NythSit2WFk5bG9GbDdIL20yM0g4R1JVYkFr?=
- =?utf-8?B?YUhsVUlxa3J6OFlxa0Jwa3JmN0k3MDk5bFV6eUZxTW9VaWp4UkJCVnpFTVpZ?=
- =?utf-8?B?NUNMWDVDbzRRYnR3clpMQVZLWUtpZzJYOUE1NG9UTWtySU5hU2hQb2RPYmFn?=
- =?utf-8?B?MVZneS8reFNMd2N5R0JFZkdkOGhsOURud1RSZUlxakJsZEovSEI1c2d5T3d0?=
- =?utf-8?B?NElOY1hpNVJObm9PNGkrQVlNaVprdlJWTnl4czBXcUhjWDY4STVYVWdlSWZs?=
- =?utf-8?B?TTFUSTBuOG1kKzVNT1NFeEQxOGdqUnV5MzdMSnAySTdOWlVXTngwMzJLOVRp?=
- =?utf-8?B?WTNVNlBEQVdHUzlXUzhMMWFHRndHSjltb0VVNS9RTWUyY1VlNUdJb3NGNVRH?=
- =?utf-8?B?TjJSL2VUU0p4K0hwOUdabm5qOXU3a3BQUml6c2NZcTJNMTh2Zy90MStrWG1H?=
- =?utf-8?B?bWEvTGNVRmZHUnU5NjlmSUsxOVVRaER6bC96NVV6dmh6ak9UQU9weEpRM0x0?=
- =?utf-8?B?YUpCSWhNOVRiMFcwUUZWQU41NkNaa3A3dWdtTkRqWmRLdHpLeS9jMjlmaURF?=
- =?utf-8?B?K25JdHRnL2V1eERhaE9XNlF4dFl1Q2NUZ0JCR1o3QkVoWTQyaUlkWmNhODhV?=
- =?utf-8?B?WDBYS2NpbDg2VitCajFuL294UVhDaUlJTkx5R1BFaUE3US9lbnRVS29HcHhl?=
- =?utf-8?B?MUVVV3YybEE0dmRVZlpKR3U3dlhoWnFQNE1XMm1aZ0NSd3g5aFJTR0YxT2lv?=
- =?utf-8?B?RjYrMHR5Z2JseXhOM0RTYUtOOTdnSkk1WkR1dHdKdmkrREpZeHZqQ25oVStZ?=
- =?utf-8?B?eTArUVVDb3BkWnZIWTdXUkx5SWYxL3ZzSERnNUVTUjRLbW1BbHlNNDZQaWhI?=
- =?utf-8?B?UFZ0U3kzSk1qcWVOU0psMDBLUjBqVytzQ1VjZmJCa3Z2Y2tVL1J4MnYxQXFT?=
- =?utf-8?B?aVByMEdFakFvenpST0Z4RFB4TVExMlVqSXFZaHI4c0tJZW41TkRoZ3Uva29B?=
- =?utf-8?B?dHVTR2FpbUlTMXhvdGpwWnlMNUZwSEdEUUtZR3VmN0kyS3BpOVl6SjZPMElX?=
- =?utf-8?B?bno3ODByVlBaeTJtZE5wNkE4d1VtU0ZUOEpoeGQrZ29Wb2JYZVVvMi9UU2JS?=
- =?utf-8?B?QVpkUXdmUVcxUnhoZ2ovSVcySWw5dkJVY2xjL3NIdmxuamgwT0QvZGI0M3BC?=
- =?utf-8?B?eGU0a290dmR4K0w3dmtLOXFVRXZNU1hUVEU3dWtKOVZaRWt1KzI3NW1jZ3ph?=
- =?utf-8?B?dGpmeU5KbHU5bWJjZEE5aG83VW1sZUQ3cGdVdGt5eVJsZXJTMW9VOHN0RzBR?=
- =?utf-8?B?WEJlTmZyRkdQN01BQ2FVUnZYYVNwenN6V2pVdHZTTGhkczh0aXQ1V2pUQzgv?=
- =?utf-8?B?Y3duYzM3Rko5cmE0YTAveVMrVis1TkhaNGhFZHR6YUZRYVFpaG1BSHFIakEy?=
- =?utf-8?B?SEE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44a66031-aefe-4344-10fb-08dbce12e7c1
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2023 06:41:19.9485
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cd3cBD1WCMFdKb2Ze5Ezq9LX/YD9Rr4MO48COWBU5vNyVI2kxhiK2GgWfzR/R+T7l2yqLvKCag9Q9iccPx+HIRPFnsvAjV4HCElenUcIAXI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5916
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Jerome,
-     Thanks for your reply.
+Getting the chip name of each platform according to the device
+compatible to set different parameter.
 
-On 2023/10/13 15:35, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Wed 11 Oct 2023 at 10:50, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
-> 
->> Hi Rob,
->>      Thanks for your advise.
->>
->> On 2023/10/10 21:21, Rob Herring wrote:
->>> [ EXTERNAL EMAIL ]
->>> On Tue, Oct 10, 2023 at 02:29:14PM +0800, Xianwei Zhao wrote:
->>>> Add the C3 PLL clock controller dt-bindings for Amlogic C3 SoC family
->>>>
->>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>> ---
->>>> V1 -> V2: Fix errors when check dtbinding use "make dt_binding_check"
->>> Your patches aren't bisectable. It's fine if you want to combine patch 1
->>> and 2 into 1 patch. Or just use the raw numbers here instead of the
->>> header.
->>>
->> I will combine patch 1 and 2 into 1 patch in V3.
-> 
-> I'd prefer if you used raw ids or even fake node for the example, like
-> <&pll_in> and <&mpll_in> for readability, rather than combining the patches
-> 
-Will do.
->>>> ---
->>>>    .../bindings/clock/amlogic,c3-pll-clkc.yaml   | 59 +++++++++++++++++++
->>>>    .../dt-bindings/clock/amlogic,c3-pll-clkc.h   | 42 +++++++++++++
->>>>    2 files changed, 101 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>>>    create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>>> new file mode 100644
->>>> index 000000000000..a646992917b7
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>>> @@ -0,0 +1,59 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/amlogic,c3-pll-clkc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Amlogic C3 serials PLL Clock Controller
->>> s/serials/Serials/
->>>
->> Will fix
->>>> +
->>>> +maintainers:
->>>> +  - Chuan Liu <chuan.liu@amlogic.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: amlogic,c3-pll-clkc
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    minItems: 1
->>>> +    items:
->>>> +      - description: input pll_in
->>>> +      - description: input mclk_pll_in
->>>> +
->>>> +  clock-names:
->>>> +    minItems: 1
->>>> +    items:
->>>> +      - const: pll_in
->>>> +      - const: mclk_pll_in
->>>> +
->>>> +  "#clock-cells":
->>>> +    const: 1
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +  - "#clock-cells"
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
->>>> +    apb {
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        clkc_pll: clock-controller@8000 {
->>> Drop unused labels.
->>>
->> Will delete clkc_pll.
->>>> +          compatible = "amlogic,c3-pll-clkc";
->>> Your indentation is not consistent.
->>>
->> Will fix it in V3.
->>>> +          reg = <0x0 0x8000 0x0 0x1a4>;
->>>> +          clocks = <&clkc_periphs CLKID_PLL_IN>,
->>>> +                   <&clkc_periphs CLKID_MCLK_PLL_IN>;
->>>> +          clock-names = "pll_in", "mclk_pll_in";
->>>> +          #clock-cells = <1>;
->>>> +        };
->>>> +    };
->>>> diff --git a/include/dt-bindings/clock/amlogic,c3-pll-clkc.h b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
->>>> new file mode 100644
->>>> index 000000000000..aa731e8fae29
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
->>>> @@ -0,0 +1,42 @@
->>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>>> +/*
->>>> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
->>>> + * Author: Chuan Liu <chuan.liu@amlogic.com>
->>>> + */
->>>> +
->>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
->>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
->>>> +
->>>> +#define CLKID_FIXED_PLL_DCO                  0
->>>> +#define CLKID_FIXED_PLL                              1
->>>> +#define CLKID_FCLK_DIV40_DIV                 2
->>>> +#define CLKID_FCLK_DIV40                     3
->>>> +#define CLKID_FCLK_DIV2_DIV                  4
->>>> +#define CLKID_FCLK_DIV2                              5
->>>> +#define CLKID_FCLK_DIV2P5_DIV                        6
->>>> +#define CLKID_FCLK_DIV2P5                    7
->>>> +#define CLKID_FCLK_DIV3_DIV                  8
->>>> +#define CLKID_FCLK_DIV3                              9
->>>> +#define CLKID_FCLK_DIV4_DIV                  10
->>>> +#define CLKID_FCLK_DIV4                              11
->>>> +#define CLKID_FCLK_DIV5_DIV                  12
->>>> +#define CLKID_FCLK_DIV5                              13
->>>> +#define CLKID_FCLK_DIV7_DIV                  14
->>>> +#define CLKID_FCLK_DIV7                              15
->>>> +#define CLKID_GP0_PLL_DCO                    16
->>>> +#define CLKID_GP0_PLL                                17
->>>> +#define CLKID_HIFI_PLL_DCO                   18
->>>> +#define CLKID_HIFI_PLL                               19
->>>> +#define CLKID_MCLK_PLL_DCO                   20
->>>> +#define CLKID_MCLK_PLL                               21
->>>> +#define CLKID_MCLK_PLL_CLK                   22
->>>> +#define CLKID_MCLK0_SEL                              23
->>>> +#define CLKID_MCLK0_SEL_OUT                  24
->>>> +#define CLKID_MCLK0_DIV                              25
->>>> +#define CLKID_MCLK0                          26
->>>> +#define CLKID_MCLK1_SEL                              27
->>>> +#define CLKID_MCLK1_SEL_OUT                  28
->>>> +#define CLKID_MCLK1_DIV                              29
->>>> +#define CLKID_MCLK1                          30
->>>> +
->>>> +#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H */
->>>>
->>>> base-commit: 57b55c76aaf1ba50ecc6dcee5cd6843dc4d85239
->>>> --
->>>> 2.37.1
->>>>
-> 
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 24 +----------------
+ .../vcodec/decoder/mtk_vcodec_dec_drv.c       | 26 +++++++++++++++++++
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       | 17 ++++++++++++
+ 3 files changed, 44 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+index 91ed576d6821..ba742f0e391d 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+@@ -208,36 +208,14 @@ static int vidioc_vdec_dqbuf(struct file *file, void *priv,
+ 	return v4l2_m2m_dqbuf(file, ctx->m2m_ctx, buf);
+ }
+ 
+-static int mtk_vcodec_dec_get_chip_name(void *priv)
+-{
+-	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+-	struct device *dev = &ctx->dev->plat_dev->dev;
+-
+-	if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
+-		return 8173;
+-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
+-		return 8183;
+-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
+-		return 8192;
+-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
+-		return 8195;
+-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
+-		return 8186;
+-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
+-		return 8188;
+-	else
+-		return 8173;
+-}
+-
+ static int vidioc_vdec_querycap(struct file *file, void *priv,
+ 				struct v4l2_capability *cap)
+ {
+ 	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+ 	struct device *dev = &ctx->dev->plat_dev->dev;
+-	int platform_name = mtk_vcodec_dec_get_chip_name(priv);
+ 
+ 	strscpy(cap->driver, dev->driver->name, sizeof(cap->driver));
+-	snprintf(cap->card, sizeof(cap->card), "MT%d video decoder", platform_name);
++	snprintf(cap->card, sizeof(cap->card), "MT%d video decoder", ctx->dev->chip_name);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+index 0a89ce452ac3..f47c98faf068 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+@@ -326,6 +326,26 @@ static const struct v4l2_file_operations mtk_vcodec_fops = {
+ 	.mmap		= v4l2_m2m_fop_mmap,
+ };
+ 
++static void mtk_vcodec_dec_get_chip_name(struct mtk_vcodec_dec_dev *vdec_dev)
++{
++	struct device *dev = &vdec_dev->plat_dev->dev;
++
++	if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8173;
++	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8183;
++	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8192;
++	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8195;
++	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8186;
++	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
++		vdec_dev->chip_name = MTK_VDEC_MT8188;
++	else
++		vdec_dev->chip_name = MTK_VDEC_INVAL;
++}
++
+ static int mtk_vcodec_probe(struct platform_device *pdev)
+ {
+ 	struct mtk_vcodec_dec_dev *dev;
+@@ -341,6 +361,12 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 	INIT_LIST_HEAD(&dev->ctx_list);
+ 	dev->plat_dev = pdev;
+ 
++	mtk_vcodec_dec_get_chip_name(dev);
++	if (dev->chip_name == MTK_VDEC_INVAL) {
++		dev_err(&pdev->dev, "Failed to get decoder chip name");
++		return -EINVAL;
++	}
++
+ 	dev->vdec_pdata = of_device_get_match_data(&pdev->dev);
+ 	if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vpu",
+ 				  &rproc_phandle)) {
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+index 7e36b2c69b7d..8f228ba9aa47 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+@@ -18,6 +18,19 @@
+ #define IS_VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
+ #define IS_VDEC_INNER_RACING(capability) ((capability) & MTK_VCODEC_INNER_RACING)
+ 
++/*
++ * enum mtk_vcodec_dec_chip_name - Structure used to separate different platform
++ */
++enum mtk_vcodec_dec_chip_name {
++	MTK_VDEC_INVAL = 0,
++	MTK_VDEC_MT8173 = 8173,
++	MTK_VDEC_MT8183 = 8183,
++	MTK_VDEC_MT8186 = 8186,
++	MTK_VDEC_MT8188 = 8188,
++	MTK_VDEC_MT8192 = 8192,
++	MTK_VDEC_MT8195 = 8195,
++};
++
+ /*
+  * enum mtk_vdec_format_types - Structure used to get supported
+  *		  format types according to decoder capability
+@@ -249,6 +262,8 @@ struct mtk_vcodec_dec_ctx {
+  * @vdec_racing_info: record register value
+  * @dec_racing_info_mutex: mutex lock used for inner racing mode
+  * @dbgfs: debug log related information
++ *
++ * @chip_name: the chip name used to separate different platform
+  */
+ struct mtk_vcodec_dec_dev {
+ 	struct v4l2_device v4l2_dev;
+@@ -289,6 +304,8 @@ struct mtk_vcodec_dec_dev {
+ 	/* Protects access to vdec_racing_info data */
+ 	struct mutex dec_racing_info_mutex;
+ 	struct mtk_vcodec_dbgfs dbgfs;
++
++	enum mtk_vcodec_dec_chip_name chip_name;
+ };
+ 
+ static inline struct mtk_vcodec_dec_ctx *fh_to_dec_ctx(struct v4l2_fh *fh)
+-- 
+2.18.0
+
 
