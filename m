@@ -1,39 +1,28 @@
-Return-Path: <devicetree+bounces-8889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACC827CA73E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:57:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6187CA749
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:57:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDAE11C20A48
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:57:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D37531F220EB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B16262BE;
-	Mon, 16 Oct 2023 11:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSjFpCro"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D534F266C3;
+	Mon, 16 Oct 2023 11:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FC52629D
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:57:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98143C433C7;
-	Mon, 16 Oct 2023 11:57:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697457426;
-	bh=JKkLHlefXiDiDYienAtz7iVlJtzOe0TV1BHQ6sC3knc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fSjFpCroKZzXKWNLZ3y23G+1iDO5EBsKyVgQdD9075LzXBANtCgoBMGKm8Ld3c2+8
-	 iyGu0uo6VgmOPK/K7sOdofJ2niJQF/KqN6oo1lTgu2e2v204zvTCCycet2m+wCPrd9
-	 HlaJibRqAvD8HeiRjgCxgtbHJQ89uUWbi0v4qmkL3s267pQal+xwk95cSECN3um0LA
-	 9Qyy+LA+0r6qlr5wN6tDGkdqeoIICcoaOwabbTPefF+7f0swA/UeMyX2wccwX6UraU
-	 sG4yHrcbXAoZBAcg1wD0g2Uogigyb5m298xDsCC+TECQ4nhmsTDVsITEQKOB+EdsMs
-	 ppp92EQCn8Aqg==
-Message-ID: <b20bba75-e646-4c16-a4aa-7085291cfb1f@kernel.org>
-Date: Mon, 16 Oct 2023 13:56:58 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACA32629D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:57:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954E8C433C7;
+	Mon, 16 Oct 2023 11:57:38 +0000 (UTC)
+Message-ID: <c5e826a2-5bc6-4c49-9a6d-655d26a3b97f@xs4all.nl>
+Date: Mon, 16 Oct 2023 13:57:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,99 +30,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 4/7] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-Content-Language: en-US
-To: Sandor Yu <Sandor.yu@nxp.com>, dmitry.baryshkov@linaro.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-Cc: kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com,
- alexander.stein@ew.tq-group.com, sam@ravnborg.org
-References: <cover.1697162990.git.Sandor.yu@nxp.com>
- <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <037c61d582df78a3309a5672ac66b9e74b396ddd.1697162990.git.Sandor.yu@nxp.com>
+Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
+Content-Language: en-US, nl
+To: Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>
+Cc: linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ linux-kernel@vger.kernel.org,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
+ Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/10/2023 05:24, Sandor Yu wrote:
-> Add a new DRM DisplayPort and HDMI bridge driver for Candence MHDP8501
-> used in i.MX8MQ SOC. MHDP8501 could support HDMI or DisplayPort
-> standards according embedded Firmware running in the uCPU.
+Hi Sebastian,
 
-...
+On 12/10/2023 13:01, Sebastian Fricke wrote:
+> Add the decoder and encoder implementing the v4l2
+> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
+> 
+> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> ---
+>  drivers/media/platform/chips-media/Kconfig         |    1 +
+>  drivers/media/platform/chips-media/Makefile        |    1 +
+>  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
+>  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
+>  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
+>  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
+>  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
+>  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
+>  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
+>  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
+>  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
+>  11 files changed, 4389 insertions(+), 2 deletions(-)
+> 
 
+<snip>
+
+> +static int wave5_vpu_dec_create_bufs(struct file *file, void *priv,
+> +				     struct v4l2_create_buffers *create)
+> +{
+> +	struct vpu_instance *inst = wave5_to_vpu_inst(priv);
+> +	struct v4l2_format *f = &create->format;
 > +
-> +static struct platform_driver cdns_mhdp8501_driver = {
-> +	.probe = cdns_mhdp8501_probe,
-> +	.remove = cdns_mhdp8501_remove,
-> +	.driver = {
-> +		.name = "cdns-mhdp8501",
-> +		.of_match_table = cdns_mhdp8501_dt_ids,
-> +	},
+> +	/* Firmware does not support CREATE_BUFS for CAPTURE queues. */
+> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+> +		dev_dbg(inst->dev->dev,
+> +			"%s: VIDIOC_CREATE_BUFS not supported on CAPTURE queues.\n",
+> +			__func__);
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	return v4l2_m2m_ioctl_create_bufs(file, priv, create);
+> +}
+
+Regarding the EOPNOTSUPP discussion: I discussed this some more with
+Nicolas on irc, and we wonder if it isn't better to just drop create_bufs
+support for the wave5 decoder altogether. Is there any point in supporting
+it for OUTPUT but not CAPTURE?
+
+<snip>
+
+> +static const struct v4l2_ioctl_ops wave5_vpu_dec_ioctl_ops = {
+> +	.vidioc_querycap = wave5_vpu_dec_querycap,
+> +	.vidioc_enum_framesizes = wave5_vpu_dec_enum_framesizes,
+> +
+> +	.vidioc_enum_fmt_vid_cap	= wave5_vpu_dec_enum_fmt_cap,
+> +	.vidioc_s_fmt_vid_cap_mplane = wave5_vpu_dec_s_fmt_cap,
+> +	.vidioc_g_fmt_vid_cap_mplane = wave5_vpu_dec_g_fmt_cap,
+> +	.vidioc_try_fmt_vid_cap_mplane = wave5_vpu_dec_try_fmt_cap,
+> +
+> +	.vidioc_enum_fmt_vid_out	= wave5_vpu_dec_enum_fmt_out,
+> +	.vidioc_s_fmt_vid_out_mplane = wave5_vpu_dec_s_fmt_out,
+> +	.vidioc_g_fmt_vid_out_mplane = wave5_vpu_g_fmt_out,
+> +	.vidioc_try_fmt_vid_out_mplane = wave5_vpu_dec_try_fmt_out,
+> +
+> +	.vidioc_g_selection = wave5_vpu_dec_g_selection,
+> +	.vidioc_s_selection = wave5_vpu_dec_s_selection,
+> +
+> +	.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,
+> +	.vidioc_querybuf = v4l2_m2m_ioctl_querybuf,
+> +	.vidioc_create_bufs = wave5_vpu_dec_create_bufs,
+
+So this would just be dropped.
+
+> +	.vidioc_prepare_buf = v4l2_m2m_ioctl_prepare_buf,
+> +	.vidioc_qbuf = v4l2_m2m_ioctl_qbuf,
+> +	.vidioc_expbuf = v4l2_m2m_ioctl_expbuf,
+> +	.vidioc_dqbuf = v4l2_m2m_ioctl_dqbuf,
+> +	.vidioc_streamon = v4l2_m2m_ioctl_streamon,
+> +	.vidioc_streamoff = v4l2_m2m_ioctl_streamoff,
+> +
+> +	.vidioc_try_decoder_cmd = v4l2_m2m_ioctl_try_decoder_cmd,
+> +	.vidioc_decoder_cmd = wave5_vpu_dec_decoder_cmd,
+> +
+> +	.vidioc_subscribe_event = wave5_vpu_subscribe_event,
+> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
 > +};
-> +
-> +module_platform_driver(cdns_mhdp8501_driver);
-> +
-> +MODULE_AUTHOR("Sandor Yu <sandor.yu@nxp.com>");
-> +MODULE_DESCRIPTION("Cadence MHDP8501 bridge driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:cdns-mhdp8501");
 
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong.
+This also means there is no need to document the new EOPNOTSUPP error
+code in VIDIOC_CREATE_BUFS, or to modify v4l2-compliance.
 
-This applies everywhere, to all your patches.
+You *do* need to add a comment somewhere explaining why you don't
+support this ioctl. I think it would be best to do that right after
+'.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,'.
 
-Best regards,
-Krzysztof
+Regards,
 
+	Hans
 
