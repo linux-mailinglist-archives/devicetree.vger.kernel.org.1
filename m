@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-8983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7327CAF0D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:22:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C9E7CB019
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:44:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6647328145C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:22:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1F1F1C209AE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E048430D01;
-	Mon, 16 Oct 2023 16:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3973B28DB4;
+	Mon, 16 Oct 2023 16:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HSS6T3/a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CP4yIFTy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952AA2C87E
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 16:22:13 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A23D619B
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:21:45 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-503056c8195so6056606e87.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:21:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580D630F97
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 16:44:53 +0000 (UTC)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6341E76B2
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:43:20 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-32d81864e3fso3905439f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:43:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697473304; x=1698078104; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697474598; x=1698079398; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QbEwLv24nD3uUkOKHu8cF5O7V7n6JfgHXxT91pg/exM=;
-        b=HSS6T3/ar7UnkGJex/eYuuDIhwcjje8OWhzISUVWiEhiytcn4jpiZbzUfsK7+RTgmC
-         0ap6FTBkEa9yBAGwu6kRCBCVm/9AqF/R1bKf8M2Gzz8DotzZzvbXfd1bvHEwMVNXgO/C
-         f13xLKCOF5zKInPCoDpGim2GmKRY4KyvhlUnHgHY7ckf9CbuxJVEMvAE45r9JYLMOILA
-         hCt5br1RKs4aEIz+KTSv129sdh1pPDFXQPnu/lRhbQVaR+PUltLQ0TNCQf5yrqgxKFRg
-         H/4T8vsDWPWVqj1UN0Q2YrZCKtlZexr+DZaf3RuwCbW9JSH2r/QSBQ/++DF/BVVoVXtV
-         +Qlg==
+        bh=U90PKyQy8RzBzVE8g7+FffuJkYhpwU9/9u8RDDZpT5A=;
+        b=CP4yIFTyTnCeWQuyA7VpmZeC6291kdSA3lotlCWTvo7q30yNArqmdWqkki7LzJOg1z
+         XbSyRZAUT0x0Ak0czCD27nQPM/z3OucRWwAnm9ZpOrvwRRMWMVz43dqOQH41+7siVX/B
+         OwaSH2NxY1CXh/a2RdIWnSsCyFviXaB12A8E4OyozLT9X8HtLCKRvC2wfUckkclK+Dk/
+         OllTi4pi5xObfPErzzeLSesVDHZdLb+hlJQmpwjwEBrGoBRmNy2EHIUJ9ptHAlLUcp3h
+         7drI7IV1K+6kTmdBDaTtro++TMLGeRe+Nd7lgbQSoSPIdrHmAm9Wlo8Y1L1mOKcLBE+m
+         A0Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697473304; x=1698078104;
+        d=1e100.net; s=20230601; t=1697474598; x=1698079398;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QbEwLv24nD3uUkOKHu8cF5O7V7n6JfgHXxT91pg/exM=;
-        b=EYlDnD+9+gSDc0ZcFXHmlsHCI++F6OVI8rNzQ42ASoJkf94rOlpTarV4QIBbbgQgN1
-         gj4lptSE0H29E0AQXvKMzeMesbAi9IeixlQqMvT/6aKSxa4fWouMCtfec9nGacyy1Ui2
-         JTAt/UD3HNQIVl67HO6x/eHqJZDpB8PZLfm/6nCnRcKvK0zodiZ7awCApsJFmagjvN7c
-         2uUiBNyuuuohayuUh2To7p27uG9xlNTQHenZSkaFcelwhkAAvHBJZ8xfRDU76ACgCmVL
-         Eaz+B2jzERLXv5wDtSy0ZEDtSrsj5/O4mcmBduuQbldA3vYqouL2/yxpkXfL7/sHBfDh
-         KOCQ==
-X-Gm-Message-State: AOJu0YwoQnhe4kpgyu9hMjqOLxyYrQxf7459J9/7CfGlac8vs4e4Q6ds
-	UbQbPBE5X/qkb0fAU5Ho++0M9A==
-X-Google-Smtp-Source: AGHT+IEqZQva0zNXaGCmQpdid2AhqCuoy55evuXJRL6J2L2Dxp9l2OSR6DK5ZN3TGaeMtlxtNu9UyQ==
-X-Received: by 2002:ac2:5238:0:b0:507:a703:886e with SMTP id i24-20020ac25238000000b00507a703886emr4048512lfl.53.1697473303647;
-        Mon, 16 Oct 2023 09:21:43 -0700 (PDT)
+        bh=U90PKyQy8RzBzVE8g7+FffuJkYhpwU9/9u8RDDZpT5A=;
+        b=a373wwOpznUV9zJA0nvj0/q6XkIoKy/QFVJyAPlcF0HvfuN8e2A16L5bSjyR57L5xq
+         6cYEWtgcB/ZMkZ2UurSa7Cc5FCp0ajvdHQ00aYgd+3/Jlk60BOSxFvR68eraABO8+C7Y
+         w9FxXH74DsgjXzEZxzycLq0h8GzUvi8ndLufVGcrpbVMi7Rm+v0zIl0AB8HzuG+Zt4b4
+         pQdKDhATgufvQkCIEV2c5idIpQUO5YRECUl3KlDlp++tfvosQgdupMs7ut9oo4K747UB
+         6uuQdNytJ+K+asCzeFMbI/0xj2grHlzDbocAzhxTyrM0+ADmgI8ZPrSPcpftQUKv0SMK
+         Ovnw==
+X-Gm-Message-State: AOJu0Yz+yp0C0oLHBpK9fQ0zTtQ7QMTMlH4ap87by9kE3QFPiGySCRaO
+	MrsIozj2tXRC5cPjWvJI0QTAjA==
+X-Google-Smtp-Source: AGHT+IHm5BYixCZcKzMcNGKF90Yd8AI//XzB6EXLdNhPg6zWoBLyzYBhSNSxhkSXpQeKd1R7PEILlw==
+X-Received: by 2002:a5d:6a8e:0:b0:323:36f1:c256 with SMTP id s14-20020a5d6a8e000000b0032336f1c256mr28191416wru.11.1697474598616;
+        Mon, 16 Oct 2023 09:43:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id g7-20020a056402114700b0053da777f7d1sm107223edw.10.2023.10.16.09.21.41
+        by smtp.gmail.com with ESMTPSA id bx7-20020a5d5b07000000b003232f167df5sm2075253wrb.108.2023.10.16.09.43.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 09:21:43 -0700 (PDT)
-Message-ID: <a05a7fb0-2de8-4d59-af8b-41b5a19de927@linaro.org>
-Date: Mon, 16 Oct 2023 18:21:40 +0200
+        Mon, 16 Oct 2023 09:43:18 -0700 (PDT)
+Message-ID: <45c6ab18-4bdd-455a-beb6-da9b25c6fd2c@linaro.org>
+Date: Mon, 16 Oct 2023 18:43:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +67,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 15/16] dt-bindings: display: mediatek: split: add
- compatible for MT8195
+Subject: Re: [PATCH] dt-bindings: serial: re-order entries to match coding
+ convention
 Content-Language: en-US
-To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231012084037.19376-1-moudy.ho@mediatek.com>
- <20231012084037.19376-16-moudy.ho@mediatek.com>
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20231016061654.22267-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdVTFpqbXc0L--Kz3URrfpSm9NX8th9zAp+th1Tv1+027g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,25 +130,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231012084037.19376-16-moudy.ho@mediatek.com>
+In-Reply-To: <CAMuHMdVTFpqbXc0L--Kz3URrfpSm9NX8th9zAp+th1Tv1+027g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12/10/2023 10:40, Moudy Ho wrote:
-> Add compatible string and GCE property for MT8195 SPLIT, of
-> which is operated by MDP3.
+On 16/10/2023 10:00, Geert Uytterhoeven wrote:
+> On Mon, Oct 16, 2023 at 8:17 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> The DT schema coding convetion express in
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
+> convention expressed
+> 
+>> Documentation/devicetree/bindings/example-schema.yaml expects entries in
+>> following order:
+>>  - properties, patternProperties
+>>  - required
+>>  - if blocks, allOf with if-blocks
+>>  - additionalProperties/unevaluatedProperties
+>>
+>> Re-order few schemas to match the convention to avoid repeating reviews
+> 
+> review comments
+> 
+>> for new patches using existing code as template.  No functional changes.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-After feedback from Angelo:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I should have run spell-check. Thanks for review. I will send v2.
 
 Best regards,
 Krzysztof
