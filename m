@@ -1,100 +1,355 @@
-Return-Path: <devicetree+bounces-8998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 959F17CB22A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:18:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 393B27CB232
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5773F2816EB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:18:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89845B20DF6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 18:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC8C33988;
-	Mon, 16 Oct 2023 18:18:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAE633988;
+	Mon, 16 Oct 2023 18:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ryfDFKBR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9540631A88
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:18:36 +0000 (UTC)
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7A5F9
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:18:33 -0700 (PDT)
-Received: from i53875b5b.versanet.de ([83.135.91.91] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qsSAc-0007vZ-Ly; Mon, 16 Oct 2023 20:18:26 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Chris Morgan <macroalpha82@gmail.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: Guido =?ISO-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- andyshrk@163.com, jagan@edgeble.ai, daniel@ffwll.ch, airlied@gmail.com,
- sam@ravnborg.org, neil.armstrong@linaro.org, megous@megous.com,
- kernel@puri.sm, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
- Ondrej Jirman <megi@xff.cz>
-Subject: Re: [PATCH 3/5] drm/panel: st7703: Add Powkiddy RGB30 Panel Support
-Date: Mon, 16 Oct 2023 20:18:25 +0200
-Message-ID: <2140189.3Lj2Plt8kZ@diego>
-In-Reply-To: <e52152b6783e3fce9aebb64a553c6922@manjaro.org>
-References:
- <20231013183918.225666-1-macroalpha82@gmail.com>
- <CADcbR4+i_B26g_gLrjTm8dxVzprb-WHRrx=r07wKhcJuei+96w@mail.gmail.com>
- <e52152b6783e3fce9aebb64a553c6922@manjaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3AAA31A88
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 18:19:20 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B66EB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:19:15 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso8655981a12.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 11:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697480354; x=1698085154; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yHxnwMIuOK6pun4FBy6K8m98uQdlQ5j3Zr63BQJ4VwE=;
+        b=ryfDFKBR//BHm5yLeVLYxiDiksAsxv2jQLH4sey9IbaTwN+sVWh3aJOD9gcojk3Dks
+         4GYIBP+pj8hTuCfJ8JgMZ6weUiYmTTvQRVSrrLU9/WSGaG9hB4gbbF/NMVsb5fZ8Mz5+
+         /PjOizwC7whJXwJ8RumtRzt0g/+Qnu7q/og1dCWllOyGb+szbdY9SaYOAaU+r/eXCVcw
+         p51cnTiYTlFt9jasyQXUt7T64FQH6gSo/uAbCIXx269bs4d0Qmj6gVnC2/bhoFWfwQVK
+         0N1nWDTqN0xEt5ROx+ZXjXyVPJiGwk7EXxTuSq6nHv+bH2rRO5gvsinMO2IwTlnsDNGS
+         s7EA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697480354; x=1698085154;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yHxnwMIuOK6pun4FBy6K8m98uQdlQ5j3Zr63BQJ4VwE=;
+        b=AQWx1+tbvwhLJ6ej+aa91fEVhuLiN8he+QsQ7az0SIP0PBCutgIookbGLozNjDz9Fv
+         74Xb9xqdfXX26fp7p/G46MK6XGhusTTVc3g/7U3JnMC8uKMCCwfd6g0sjW0rfhrYi5QV
+         UZ1K2hw2kjH1L8WSzyeebRKphXi1UJWAMAYQMk6c68YisX1Jk//Ddsbpd1gbmygnyd6w
+         d2mngz1OXREe64rC47x+XemEPvhL/QGeDELlO/3+XpVpvMCiH9vsZFC62L0xGsTPLLXE
+         iBd49u1cL5TlKOpEZF4lTuAOjBofsKSNPO3BC/NgvxwMHZBgID3G9lD4A25BLMFVdEj5
+         j/+g==
+X-Gm-Message-State: AOJu0YyZLQQaQKM7szMmAw3mzye/4Sn93/ibxQwtF7TSErrChWXm+FNk
+	qAAWnPc40AAhkA/TKNWs+5ibGg==
+X-Google-Smtp-Source: AGHT+IHaIMFNUycBgL3Pnr/xgETpMNd73VZDZCmkin8neQ/N99qgETS78YHHg5F5PDrGT6N3LQzRHg==
+X-Received: by 2002:a05:6402:4405:b0:53e:343a:76c4 with SMTP id y5-20020a056402440500b0053e343a76c4mr7073eda.30.1697480354326;
+        Mon, 16 Oct 2023 11:19:14 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.154])
+        by smtp.gmail.com with ESMTPSA id cw3-20020a056402228300b005333922efb0sm237483edb.78.2023.10.16.11.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 11:19:13 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: serial: re-order entries to match coding convention
+Date: Mon, 16 Oct 2023 20:19:09 +0200
+Message-Id: <20231016181909.368429-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-	T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+The DT schema coding convention expressed in
+Documentation/devicetree/bindings/example-schema.yaml expects entries in
+following order:
+ - properties, patternProperties
+ - required
+ - if blocks, allOf with if-blocks
+ - additionalProperties/unevaluatedProperties
 
-Am Montag, 16. Oktober 2023, 18:07:52 CEST schrieb Dragan Simic:
-> On 2023-10-16 17:52, Chris Morgan wrote:
-> > Confirmed that those pending patches DO fix the panel suspend issues.=20
-> > Thank you.
->=20
-> Awesome, that's great to hear!  Perhaps a "Tested-by" in the original=20
-> LKML thread [1] could help with having the patch pulled sooner.
->=20
-> Links:
-> [1]=20
-> https://lore.kernel.org/lkml/33b72957-1062-1b66-85eb-c37dc5ca259b@redhat.=
-com/T/
->=20
->=20
-> > On Mon, Oct 16, 2023 at 3:41=E2=80=AFAM Guido G=C3=BCnther <guido.gunth=
-er@puri.sm>=20
-> > wrote:
-> >>=20
-> >> Hi Chris,
-> >> On Fri, Oct 13, 2023 at 01:39:16PM -0500, Chris Morgan wrote:
-> >> > From: Chris Morgan <macromorgan@hotmail.com>
-> >> >
-> >> > The Powkiddy RGB30 4 inch panel is a 4 inch 720x720 DSI panel used in
-> >> > the Powkiddy RGB30 handheld gaming device. Add support for it.
-> >> >
-> >> > TODO: The panel seems to not resume properly from suspend. I've
-> >> > confirmed on the other ST7703 based devices it works correctly.
+Re-order few schemas to match the convention to avoid repeating review
+comments for new patches using existing code as template.  No functional
+changes.
 
-so this TODO item could go away, right?
-I can remove it when applying the patch, just want to make sure
-all review comments are addressed - only the suspend thing it seems.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+---
 
-Thanks
-Heiko
+Changes in v2:
+1. Fix typos in commit msg.
+2. Add Geert's review tag.
+---
+ .../bindings/serial/nvidia,tegra20-hsuart.yaml   | 10 +++++-----
+ .../bindings/serial/qcom,msm-uart.yaml           |  4 ++--
+ .../bindings/serial/qcom,msm-uartdm.yaml         |  4 ++--
+ .../bindings/serial/renesas,em-uart.yaml         | 14 +++++++-------
+ .../bindings/serial/renesas,hscif.yaml           |  4 ++--
+ .../bindings/serial/renesas,scifa.yaml           |  4 ++--
+ .../bindings/serial/renesas,scifb.yaml           |  4 ++--
+ .../devicetree/bindings/serial/samsung_uart.yaml |  4 ++--
+ .../devicetree/bindings/serial/serial.yaml       | 16 ++++++++--------
+ 9 files changed, 32 insertions(+), 32 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+index 04d55fecf47c..a5d67563cd53 100644
+--- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
++++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+@@ -91,11 +91,6 @@ properties:
+         - description: range upper bound
+         - description: adjustment (in permyriad, i.e. 0.01%)
+ 
+-allOf:
+-  - $ref: serial.yaml
+-
+-unevaluatedProperties: false
+-
+ required:
+   - compatible
+   - reg
+@@ -106,6 +101,11 @@ required:
+   - dmas
+   - dma-names
+ 
++allOf:
++  - $ref: serial.yaml
++
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/tegra30-car.h>
+diff --git a/Documentation/devicetree/bindings/serial/qcom,msm-uart.yaml b/Documentation/devicetree/bindings/serial/qcom,msm-uart.yaml
+index a052aaef21f4..ea6abfe2d95e 100644
+--- a/Documentation/devicetree/bindings/serial/qcom,msm-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/qcom,msm-uart.yaml
+@@ -40,11 +40,11 @@ required:
+   - interrupts
+   - reg
+ 
+-unevaluatedProperties: false
+-
+ allOf:
+   - $ref: /schemas/serial/serial.yaml#
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     serial@a9c00000 {
+diff --git a/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml b/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
+index 484b9a51f6a9..ee52bf8e8917 100644
+--- a/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
++++ b/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
+@@ -78,8 +78,6 @@ required:
+   - interrupts
+   - reg
+ 
+-unevaluatedProperties: false
+-
+ allOf:
+   - $ref: /schemas/serial/serial.yaml#
+ 
+@@ -97,6 +95,8 @@ allOf:
+         reg:
+           maxItems: 1
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+diff --git a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+index 3fc2601f1338..89f1eb0f2c5a 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+@@ -38,6 +38,13 @@ properties:
+       - const: sclk
+       - const: pclk
+ 
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
+ allOf:
+   - $ref: serial.yaml#
+ 
+@@ -53,13 +60,6 @@ allOf:
+         clock-names:
+           minItems: 2
+ 
+-required:
+-  - compatible
+-  - reg
+-  - interrupts
+-  - clocks
+-  - clock-names
+-
+ unevaluatedProperties: false
+ 
+ examples:
+diff --git a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
+index 1c7f1276aed6..2046e2dc0a3d 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
+@@ -111,8 +111,6 @@ required:
+   - clock-names
+   - power-domains
+ 
+-unevaluatedProperties: false
+-
+ if:
+   properties:
+     compatible:
+@@ -125,6 +123,8 @@ then:
+   required:
+     - resets
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
+index 499507678cdf..c98657cf4666 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scifa.yaml
+@@ -77,8 +77,6 @@ required:
+   - clock-names
+   - power-domains
+ 
+-unevaluatedProperties: false
+-
+ if:
+   properties:
+     compatible:
+@@ -89,6 +87,8 @@ then:
+   required:
+     - resets
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
+index 810d8a991fdd..fb695b3111ac 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scifb.yaml
+@@ -77,8 +77,6 @@ required:
+   - clock-names
+   - power-domains
+ 
+-unevaluatedProperties: false
+-
+ if:
+   properties:
+     compatible:
+@@ -89,6 +87,8 @@ then:
+   required:
+     - resets
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/r8a7740-clock.h>
+diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+index 8bd88d5cbb11..aecb6761b49c 100644
+--- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
++++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+@@ -86,8 +86,6 @@ required:
+   - interrupts
+   - reg
+ 
+-unevaluatedProperties: false
+-
+ allOf:
+   - $ref: serial.yaml#
+ 
+@@ -128,6 +126,8 @@ allOf:
+             - const: uart
+             - const: clk_uart_baud0
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/samsung,s3c64xx-clock.h>
+diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
+index 468af429c3e6..65804ca274ae 100644
+--- a/Documentation/devicetree/bindings/serial/serial.yaml
++++ b/Documentation/devicetree/bindings/serial/serial.yaml
+@@ -87,14 +87,6 @@ properties:
+     description:
+       TX FIFO threshold configuration (in bytes).
+ 
+-if:
+-  required:
+-    - uart-has-rtscts
+-then:
+-  properties:
+-    cts-gpios: false
+-    rts-gpios: false
+-
+ patternProperties:
+   "^(bluetooth|bluetooth-gnss|gnss|gps|mcu)$":
+     if:
+@@ -136,6 +128,14 @@ patternProperties:
+       required:
+         - compatible
+ 
++if:
++  required:
++    - uart-has-rtscts
++then:
++  properties:
++    cts-gpios: false
++    rts-gpios: false
++
+ additionalProperties: true
+ 
+ examples:
+-- 
+2.34.1
 
 
