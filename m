@@ -1,194 +1,112 @@
-Return-Path: <devicetree+bounces-8948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308437CAB88
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C2D7CAB8F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:33:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61B361C20997
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:33:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DAA31C208F2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D472869F;
-	Mon, 16 Oct 2023 14:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8162B273F8;
+	Mon, 16 Oct 2023 14:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZVhLTHNm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dyiCuyOC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B5C28E13
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:33:00 +0000 (UTC)
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C4DA2
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:32:58 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31c5cac3ae2so4129554f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 07:32:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1675F28E06;
+	Mon, 16 Oct 2023 14:33:35 +0000 (UTC)
+Received: from mail-vk1-xa2d.google.com (mail-vk1-xa2d.google.com [IPv6:2607:f8b0:4864:20::a2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0846E9C;
+	Mon, 16 Oct 2023 07:33:34 -0700 (PDT)
+Received: by mail-vk1-xa2d.google.com with SMTP id 71dfb90a1353d-49dc95be894so1239092e0c.2;
+        Mon, 16 Oct 2023 07:33:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697466777; x=1698071577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5MirTTMDBF2noGg1AFEV5Zt62GQyR/ng5/Y330ynh3s=;
-        b=ZVhLTHNmvvCnlbKyQw7z1zpWq8NqJtZFaqCSVm78GH4TwaBWh3WFJ+Ul08VvznjCmM
-         uGisGLIiK9t9buOCwZg3YJsoKZjcGszWrB6p52W4Kv7ZX3Nb2hjHblKc0LzVwreK8RkU
-         e/z2mn1Mu50BCeGkI53ls2vPsRptgzYnWotoHynlRla66AllofWCEa7T54h/h1MS3+Yj
-         /zR8UzBnl6Yw9evCLqOxyNBCDbeas3aXLI0RFCuXLp1cUK7oniQlhJGdwnjSZZDNHk+D
-         leQKQHzdP3zDiA09HoRet99zN9L6/Dl1JgOoSaKvGecslHAM0I5Ct7NhxCQN1MfALOxh
-         Q6gA==
+        d=gmail.com; s=20230601; t=1697466813; x=1698071613; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aKbVtZEcxrlUrif4l+3ZGL6RWVrOciPsrJ6sBAx6X9g=;
+        b=dyiCuyOCHGbTyqoDNvx9FF66mZysg19dfSv/9TM0skI9usZQ260a6FquctHFuzRcr6
+         VuKpg2G8Mv25e91as27FjDTGBuk64+OwWKiVb3ATHv4ATuofilYXsD2kaWzOdCtcbSlL
+         bnoP5RvyMamsGrK7atcAmJOJ63Hun/wGbl9yXiY8IKzu3qm+pGCz+IifRdJDeHmOqLEc
+         ZeOe+04frMnksQ2WEp8S15PW+pIRjTgk8zzIl8z2GON64p886ANu0Kor3k8BCHOLtq75
+         A1Yy3bjRpd9gbs+8HbYrya4BFX8ZnLldsFhYnEPrX3OYHh5m+6oXtpchP49/mzDawkL2
+         wOag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697466777; x=1698071577;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5MirTTMDBF2noGg1AFEV5Zt62GQyR/ng5/Y330ynh3s=;
-        b=jVnZ4BSqK0+Fs9hlNXpj7qJDS07JEqcYBIPeEbAuVWkkIWoMQDrD3RwGG/zJRrfqEi
-         Sm7gyhfyEHmuXe4TTvU1VQPnKGfI2iOlu5L8jcKBRE1iU/7MX9FFUXxb8C9+bYoQmp+f
-         x6cupAkK0Sk0LJB7SYwvL9ELt6s4qiijRxXUUmJfmCbdNHtcsTuEdTstGLbnJ3Ay2EFw
-         1xJ7mriASEvq/ambwqQ3+5h3tXqZBUaUQ75tb/XS6jyLGF6w7wn1lP6pAXvCPzJwIMPf
-         z584MFRJfWGVBYvib+vgCuBl3zV+QqpdWKCNptqk51hwMHLL7inZP013F2MpNp2gDjLh
-         Md7g==
-X-Gm-Message-State: AOJu0YySO5nsVEMEjHgJpra9FH2Bcr1i5BBK7RdtUQ1k19AVHPatvdaa
-	Ij3uGkvtC864IqgF/qnPvRQBRA==
-X-Google-Smtp-Source: AGHT+IFk0Upybw+CNBvkb8f8bHryxWmhv+wiTfTAiv3+xIUVY/TgT74Vle1GgSWRTpx+Q/RrDa+FNg==
-X-Received: by 2002:a05:6000:709:b0:32d:b06c:80b2 with SMTP id bs9-20020a056000070900b0032db06c80b2mr3538892wrb.0.1697466776794;
-        Mon, 16 Oct 2023 07:32:56 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b5ab:4a16:fd45:8130? ([2a01:e0a:982:cbb0:b5ab:4a16:fd45:8130])
-        by smtp.gmail.com with ESMTPSA id bx7-20020a5d5b07000000b003232f167df5sm1845522wrb.108.2023.10.16.07.32.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 07:32:56 -0700 (PDT)
-Message-ID: <323ff7db-0963-4e63-94e9-551540dd6490@linaro.org>
-Date: Mon, 16 Oct 2023 16:32:55 +0200
+        d=1e100.net; s=20230601; t=1697466813; x=1698071613;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aKbVtZEcxrlUrif4l+3ZGL6RWVrOciPsrJ6sBAx6X9g=;
+        b=m1zWdHx7KBT+Tz9H/np4P7ixswen5t3U7+K95eKdYtYBw4ctNg7rMWyCvJLyUimGYI
+         /vK7FpSYhyoUn0esCZXvb6O2WH+zyQ3Xkyl62X7c60Q8gvbLakarAFXh8s3yzFKVvyE2
+         Jce7iwyrzysMMnIr4i6EX9SU1VnzLywunShK4GiBRnylL/ztbFY5buQyzuze1j7odLp3
+         RG9qmnLxD8aTfR1uAStC2MZxkmsnv3q3Zk4od7QKjfAIa1ziIWxjw2lgxiJ00mhC9ytW
+         yJ+s85Uk3TtPb7MQxp+VmKlW8WH8mXZI2o0uzxWJwiVfPjbqmp9ylFMUAIV3e/lQ9t2X
+         Noeg==
+X-Gm-Message-State: AOJu0YyS3mjq6a5ixiD8UGpXTh2NF/FGNtn0K1tRIMMrK6c2bX3eIYe7
+	5J56bJavKK+8LwTO+OJMjhYa2f3qCgSWL1IMDdQ=
+X-Google-Smtp-Source: AGHT+IEiHoKuEeEu3QjUpjWt2jSpomVBuxgwgkzSyuPOUSNBkFo7dTBa8GlsonlmQDcbuZLiZgys6QjIfAS9Ef9zdGQ=
+X-Received: by 2002:a1f:e2c3:0:b0:496:1f95:209a with SMTP id
+ z186-20020a1fe2c3000000b004961f95209amr23134232vkg.15.1697466813052; Mon, 16
+ Oct 2023 07:33:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: fsa4480: Add data-lanes property to
- endpoint
-Content-Language: en-US, fr
-To: Rob Herring <robh@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
- <20231013-fsa4480-swap-v1-1-b877f62046cc@fairphone.com>
- <20231016142256.GA2754674-robh@kernel.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231016142256.GA2754674-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230913151606.69494-1-romain.perier@gmail.com>
+ <20230913151606.69494-2-romain.perier@gmail.com> <2023101521480226f64b51@mail.local>
+In-Reply-To: <2023101521480226f64b51@mail.local>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Mon, 16 Oct 2023 16:33:22 +0200
+Message-ID: <CABgxDoK12ZLbc-js1fFRAtZ3sV--19xu3DhV1aC46DE5R+3n5w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] rtc: Add support for the SSD202D RTC
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Daniel Palmer <daniel@0x0f.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16/10/2023 16:22, Rob Herring wrote:
-> On Fri, Oct 13, 2023 at 01:38:05PM +0200, Luca Weiss wrote:
->> Allow specifying data-lanes to reverse the SBU muxing orientation where
->> necessary by the hardware design.
-> 
-> What situation in the hardware design makes this necessary. Please
-> describe the problem.
-> 
->>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>   .../devicetree/bindings/usb/fcs,fsa4480.yaml       | 29 +++++++++++++++++++++-
->>   1 file changed, 28 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> index f6e7a5c1ff0b..86f6d633c2fb 100644
->> --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
->> @@ -32,10 +32,37 @@ properties:
->>       type: boolean
->>   
->>     port:
->> -    $ref: /schemas/graph.yaml#/properties/port
->> +    $ref: /schemas/graph.yaml#/$defs/port-base
->>       description:
->>         A port node to link the FSA4480 to a TypeC controller for the purpose of
->>         handling altmode muxing and orientation switching.
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          data-lanes:
->> +            $ref: /schemas/types.yaml#/definitions/uint32-array
->> +            description:
->> +              Specifies how the AUX+/- lines are connected to SBU1/2.
-> 
-> Doesn't this depend on the connector orientation? Or it is both that and
-> the lines can be swapped on the PCB?
-> 
-> Seems like an abuse of data-lanes which already has a definition which
-> is not about swapping + and - differential lanes.
+Le dim. 15 oct. 2023 =C3=A0 23:48, Alexandre Belloni
+<alexandre.belloni@bootlin.com> a =C3=A9crit :
+>
+> Hello Romain,
+>
+> Sorry for the very long delay,
 
-The FSA acts as a mux between DP AUX, Audio lanes on one side and
-the USB-C SBU lanes on the other side.
-_______          ______
-       |          |     |
-       |-- HP   --|     |
-       |-- MIC  --|     |or
-SoC   |          | MUX |-- SBU1 --->  To the USB-C
-Codec |-- AUX+ --|     |-- SBU2 --->  connected
-       |-- AUX- --|     |
-______|          |____ |
+Hi,
 
-The SBU1 & SBU2 are connected to the USB-C connector, and the actual orientation
-to the connected devices/cable/whatever is determined by the TPCM and the MUX in
-the FSA4480 with be dynamically changed according to the CC1/CC2 detection and PD alt mode.
+np,
 
-But on the other side the orientation of the AUX+/AUX- connected to the SoC
-is not tied to the USB-C orientation but how it's routed on the PCB.
+>
+> On 13/09/2023 17:16:04+0200, Romain Perier wrote:
+> > +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
+> > +MODULE_AUTHOR("Romain Perier <romain.perier@gmail.com>");
+> > +MODULE_DESCRIPTION("MStar SSD202D RTC Driver");
+> > +MODULE_LICENSE("GPL v2");
+>
+> checkpatch complains rightfully about GPL v2 here. If you agree, I'll
+> change this to simply GPL.
 
-This describes how the AUX+/AUX- are physically routed to the FSA4480 chip.
+Aah, good catch , yes I agree, it will be simpler.
 
-Neil
-
-> 
-> Rob
-
+Thanks,
+Regards,
+Romain
 
