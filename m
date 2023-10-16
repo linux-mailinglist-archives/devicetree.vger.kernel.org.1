@@ -1,92 +1,148 @@
-Return-Path: <devicetree+bounces-9028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0107CB482
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 22:18:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A6B7CB489
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 22:22:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EB1DB20ED6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:18:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83C5AB20DE9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 20:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEECE37165;
-	Mon, 16 Oct 2023 20:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDF23717A;
+	Mon, 16 Oct 2023 20:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F030B358BB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 20:18:49 +0000 (UTC)
-Received: from smtprelay04.ispgateway.de (smtprelay04.ispgateway.de [80.67.18.16])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B404EB0;
-	Mon, 16 Oct 2023 13:18:47 -0700 (PDT)
-Received: from [92.206.139.21] (helo=note-book.lan)
-	by smtprelay04.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1qsU31-0007dx-1R;
-	Mon, 16 Oct 2023 22:18:43 +0200
-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date: Mon, 16 Oct 2023 22:18:08 +0200
-Subject: [PATCH] arm64: dts: qcom: msm8939-longcheer-l9100: Add
- proximity-near-level
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29918358BB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 20:22:05 +0000 (UTC)
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5789083;
+	Mon, 16 Oct 2023 13:22:03 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-57b811a6ce8so2771381eaf.3;
+        Mon, 16 Oct 2023 13:22:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697487722; x=1698092522;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=n8Ejd5Pa0+899H+ST1facS1EVWLpMPKF/gO5qmwkR4w=;
+        b=hEsRXUpe8RNhoecgcfDj41iAUv2IDu3+valzY1GC13wjaAWGCtjaMYz7ps3R4K4DGN
+         3Hx/OiM8xgWZ7K/LCQJBUkSoN5tss6g1yzoPvVdX2S92b1fJ0YnHsdkn7kNGILYvyMzq
+         Fn+mcb2S8aMETAQkzkLUgyA6F/4tWjmY4+ZvQXTWkdFsEg54qvla7WIkRh5cgrzk2qhk
+         G7Vy6bnQMW2N4OuqgeAEWKgED3PFfRT64vhcQZfCdMFVlqFVfMQBJldcahKzMYXWuIUg
+         7CCAWAy0Z4WBMSEKslMk7tO1XYHQ/7pJgPnHitbnP9yTQ4zc/Ncnc3HM1eqautIW9G/+
+         FlRg==
+X-Gm-Message-State: AOJu0YxTryU30HC8P1m3hb8tj8SFDP9yvENK7cklUMAzbOepTPbIfYmr
+	cyYoirlPPgPQyofSGZ3NKXSVHwZvWg==
+X-Google-Smtp-Source: AGHT+IGEYagCHsUBCuyxmcGOPHRUwWB7THaDN4+NC/pbptGn33Manj5wy9VEGgn9ovwHhqVg4gR47g==
+X-Received: by 2002:a4a:4245:0:b0:57b:469d:8af6 with SMTP id i5-20020a4a4245000000b0057b469d8af6mr112518ooj.4.1697487722620;
+        Mon, 16 Oct 2023 13:22:02 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o10-20020a9d718a000000b006c4e71a022bsm1199otj.52.2023.10.16.13.22.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 13:22:01 -0700 (PDT)
+Received: (nullmailer pid 3615546 invoked by uid 1000);
+	Mon, 16 Oct 2023 20:22:01 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20231016-bqm5_prox-v1-1-2acdc732be9d@apitzsch.eu>
-X-B4-Tracking: v=1; b=H4sIAH+aLWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDA0Mz3aTCXNP4gqL8Cl0TS1OLtDQzAyMLU1MloPqCotS0zAqwWdGxtbU
- ArB1bPFsAAAA=
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+From: Rob Herring <robh@kernel.org>
+To: Eugen Hristev <eugen.hristev@collabora.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, conor+dt@kernel.org, matthias.bgg@gmail.com, linux-kernel@vger.kernel.org, kernel@collabora.com, devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, angelogioacchino.delregno@collabora.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <20231016151553.5336-1-eugen.hristev@collabora.com>
+References: <20231016151553.5336-1-eugen.hristev@collabora.com>
+Message-Id: <169748772099.3615502.6790888257320558610.robh@kernel.org>
+Subject: Re: [PATCH v6] dt-bindings: arm: mediatek: convert audsys and
+ mt2701-afe-pcm to yaml
+Date: Mon, 16 Oct 2023 15:22:01 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Consider an object near to the sensor when their distance is about 4 cm
-or below.
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, 16 Oct 2023 18:15:53 +0300, Eugen Hristev wrote:
+> Convert the mediatek,audsys binding to YAML, together with the associated
+> binding bindings/sound/mt2701-afe-pcm.yaml .
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes in v6:
+> - renamed mt2701-audio.yaml to mediatek,mt2701-audio.yaml
+> - add Rb Rob Herring
+> 
+> Changes in v5:
+> - removed example for mt2701-audio
+> - renamed mt2701-afe-pcm to mt2701-audio
+> - added clock cells as required, removed reg from required, in audsys binding
+> - removed reference comment in mt2701-audio
+> - removed assigned clocks from mt2701-audio
+> 
+> Changes in v4:
+> - fix error reported by Rob's bot :
+> ./Documentation/devicetree/bindings/sound/mt2701-afe-pcm.yaml:11:4: [error] missing starting space in comment (comments)
+> 
+> Changes in v3:
+> - not added Rb Conor Dooley since the patch was changed in a big essence
+> - As per review by Krzysztof, also convert the mt2701-afe-pcm and reference
+> the correct schema in the audsys binding.
+> 
+> Changes in v2:
+> - remove comment reference to inexistent binding
+> 
+> 
+> 
+>  .../bindings/arm/mediatek/mediatek,audsys.txt |  39 -----
+>  .../arm/mediatek/mediatek,audsys.yaml         | 153 ++++++++++++++++++
+>  .../bindings/sound/mediatek,mt2701-audio.yaml | 117 ++++++++++++++
+>  .../bindings/sound/mt2701-afe-pcm.txt         | 146 -----------------
+>  4 files changed, 270 insertions(+), 185 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-index 6802714fda3f..43cadc826121 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -139,6 +139,7 @@ magnetometer@d {
- 	light-sensor@23 {
- 		compatible = "liteon,ltr559";
- 		reg = <0x23>;
-+		proximity-near-level = <75>;
- 
- 		vdd-supply = <&pm8916_l17>;
- 		vddio-supply = <&pm8916_l5>;
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
----
-base-commit: 4d0515b235dec789578d135a5db586b25c5870cb
-change-id: 20231016-bqm5_prox-4958ff602855
+yamllint warnings/errors:
 
-Best regards,
--- 
-André Apitzsch <git@apitzsch.eu>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/sound/mt2701-audio.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/sound/mt2701-audio.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231016151553.5336-1-eugen.hristev@collabora.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
