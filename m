@@ -1,123 +1,134 @@
-Return-Path: <devicetree+bounces-8933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418447CAA9F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 15:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D037CAAEC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 16:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F02A82814E7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 13:58:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBE9B281753
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F15F286A3;
-	Mon, 16 Oct 2023 13:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="R58bHo9+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3330328DA2;
+	Mon, 16 Oct 2023 14:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB02286A7
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 13:58:54 +0000 (UTC)
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77A510D;
-	Mon, 16 Oct 2023 06:58:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=IlCu/jWp8SVoI/cMKgzgDIUk/DbaqOCC0hxXFHL5jQs=; b=R58bHo9++XgOQJOs0Ni2j2q631
-	5at3w+OTR1BhxmRlw9U03h0l8beJbj9vhcM5wSS5Ar7V49Lta+q8FmgHU4YnwojtnNeMqtld1dxt4
-	A1YF6Jx7y0Lh4dnZApjwUgb3aJiFp8LebkIMbxE6hL8oor6YAh541SAsqoRlThxD2xOw=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:56974 helo=pettiford)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1qsO7N-000654-LP; Mon, 16 Oct 2023 09:58:50 -0400
-Date: Mon, 16 Oct 2023 09:58:48 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- hvilleneuve@dimonoff.com, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Message-Id: <20231016095848.ba76e14c41bb7ceae8217e04@hugovil.com>
-In-Reply-To: <2b12a49c-ed82-4632-86c6-349976cd714b@linaro.org>
-References: <20231013141925.3427158-1-hugo@hugovil.com>
-	<20231013141925.3427158-3-hugo@hugovil.com>
-	<2b12a49c-ed82-4632-86c6-349976cd714b@linaro.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE2927EFB
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 14:02:59 +0000 (UTC)
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945751AC;
+	Mon, 16 Oct 2023 07:02:52 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6c64a3c4912so3236411a34.3;
+        Mon, 16 Oct 2023 07:02:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697464971; x=1698069771;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aPwOcKolA5h59LfiwhDD2NsiWDiYTaeF64Ez9uATyPQ=;
+        b=RonnbeL+twCYiA6d79iP+7XIaQC0Hn0CNAMI1GIvR0bTCMeoN1hldlyjNV9YumgPIQ
+         XTWhCQrnD15vxNwOkCkuDaY93zj0cnua8cLzbYw0E3aDMnNaJNWqLdtsCrG8YmugD0h+
+         a+4cHXkF3xI2lShe1vjqf9h0d3bd3wMEW9YCroHGDGYSwDkuWUty6vA148fSTxDhRHct
+         4T6L2YlgHkbEpHA1HD8MzJogUYJiQt/6eSKho9Ja3dsN7JV4hVicsUrk+KVLQHi03+7b
+         1IrjY19CvkiqcxBrVV/wV+6e75p8lAMhZe8w5BnyLB5euiytrCIdhpkOvw6KPuT7nuVj
+         BLbQ==
+X-Gm-Message-State: AOJu0YwDH3DzPTFzhioWbdsEdSNsz0ZC05eyQqAZa9npotInM/yo3gyO
+	NagfO/Ss3ONIjNLcKIjVWw==
+X-Google-Smtp-Source: AGHT+IGtFSHkWAYs7Rmg3ynupfWgMC2K0w58JDQY6Ll10QBud020o2yHbCZ3OrASx4vDGZ+riEGT+A==
+X-Received: by 2002:a05:6870:7d12:b0:1ea:3746:b7d6 with SMTP id os18-20020a0568707d1200b001ea3746b7d6mr4026697oab.28.1697464971594;
+        Mon, 16 Oct 2023 07:02:51 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id gk24-20020a0568703c1800b001dcde628a6fsm2016544oab.42.2023.10.16.07.02.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 07:02:50 -0700 (PDT)
+Received: (nullmailer pid 2677955 invoked by uid 1000);
+	Mon, 16 Oct 2023 14:02:49 -0000
+Date: Mon, 16 Oct 2023 09:02:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 02/13] dt-bindings: thermal: tegra: Document throttle
+ temperature
+Message-ID: <20231016140249.GA2655027-robh@kernel.org>
+References: <20231012175836.3408077-1-thierry.reding@gmail.com>
+ <20231012175836.3408077-3-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231012175836.3408077-3-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-Subject: Re: [PATCH 2/2] dt-bindings: serial: sc16is7xx: remove
- 'clock-frequency' property
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Mon, 16 Oct 2023 08:09:56 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 13/10/2023 16:19, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > The 'clock-frequency' property is supported but mainly in ACPI-based
-> > configurations, for example.
-> > 
-> > This property has therefore no place in the sc16is7xx YAML binding.
+On Thu, Oct 12, 2023 at 07:58:23PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Please reference commit which you question - 0d447e927. I don't
-> understand why do you remove it. The property was in the original binding.
+> Each throttling configuration needs to specify the temperature threshold
+> at which it should start throttling. Previously this was tied to a given
+> trip point as a cooling device and used the temperature specified for
+> that trip point. This doesn't work well because the throttling mechanism
+> is not a cooling device in the traditional sense.
+> 
+> Instead, allow device trees to specify the throttle temperature in the
+> throttle configuration directly so that the throttle doesn't need to be
+> exposed as a cooling device.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v2:
+> - rename temperature to temperature-millicelsius and drop $ref
+> - add hysteresis-millicelsius property
+> 
+>  .../bindings/thermal/nvidia,tegra124-soctherm.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+> index 04a2ba1aa946..0eb6277082fe 100644
+> --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+> @@ -121,6 +121,20 @@ properties:
+>                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
+>                - 3
+>  
+> +          temperature-millicelsius:
 
-Hi,
-in the max310x YAML conversion review (last week), you told me to
-drop the clock-frequency from the binding, even
-if it is supported by the driver, since it is related to ACPI
-configuration, not DT.
+'temperature' is redundant since we have units. Perhaps 
+'throttle-millicelsius' or 'auto-throttle-millicelsius' instead to say 
+what the temperature is for.
 
-The sc16is7xx driver (IC) is very similar to the max310x, and it also
-supports the clock-frequency property, and I just assumed that its
-presence in the original text binding was some kind of error or legacy
-leftover, and would need to be removed based on your comments.
+> +            minimum: -273000
+> +            maximum: 200000
 
-Just as a reference, here are the original commits in both drivers that
-added support for the clock-frequency property:
+Quite impressive operating range.
 
------------------------
-commit d4d6f03c4fb3a91dadfe147b47edd40e4d7e4d36
-Author: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Date:   Mon May 17 20:29:30 2021 +0300
-
-    serial: max310x: Try to get crystal clock rate from property
-    
-    In some configurations, mainly ACPI-based, the clock frequency of
-the device is supplied by very well established 'clock-frequency'
-property. Hence, try to get it from the property at last if no other
-providers are available.
-
-
-commit 24bc6e68efa00f95034dbef0ba91661dd80bd37d
-Author: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Date:   Mon Mar 18 12:29:15 2019 +0200
-
-    serial: sc16is7xx: Respect clock-frequency property
-    
-    If the property is provided and there are no other possibilities to
-detect UART clock frequency, use it as a fallback.
------------------------
-
-Hugo.
+> +            description: The temperature threshold (in millicelsius) that,
+> +              when crossed, will trigger the configured automatic throttling.
+> +
+> +          hysteresis-millicelsius:
+> +            description: An unsigned integer expressing the hysteresis delta
+> +              (in millicelsius) with respect to the threshold temperature
+> +              property above. Throttling will be initiated when the
+> +              temperature falls below (temperature - hysteresis). This avoids
+> +              situations where throttling is repeatedly initiated and stopped
+> +              because of minor temperature variations.
+> +
+>            # optional
+>            # Tegra210 specific and valid only for OCx throttle events
+>            nvidia,count-threshold:
+> -- 
+> 2.42.0
+> 
 
