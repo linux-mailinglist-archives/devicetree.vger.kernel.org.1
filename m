@@ -1,206 +1,144 @@
-Return-Path: <devicetree+bounces-8744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A6E7C9E68
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:06:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA687C9E7B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 07:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C556C281602
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:06:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74EC7B20BFF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 05:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AB26FA4;
-	Mon, 16 Oct 2023 05:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685591C14;
+	Mon, 16 Oct 2023 05:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i++GlTq/"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="4ANPAq5i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40F91C14
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:06:38 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1660BED
-	for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:06:33 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so6761306a12.2
-        for <devicetree@vger.kernel.org>; Sun, 15 Oct 2023 22:06:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697432791; x=1698037591; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ljLUfJ605ma450XY7PNUj3Yr/a3QuI1zYReWh/UDky8=;
-        b=i++GlTq/d7+oEddgvvmwjw8XCQD+glJRBKgb+MOI/GYcQSpGwcIKCfxlEtO8AdlBcp
-         Dz8DkprYugSih5FBKFr7NWN0AGB0Cs5bORtq8O4pi+x9u5/3WVE789sf8cAvwTqX6DFp
-         PAEwUTvdrXekMqR0cuwX29/HoGInUpOhdnX8y+bhqlEwNocbUplc7NYvOmibhtQLRm0t
-         eivD0Au4EBSLDCg5hUrAmPelFtjh+JQm+9MDvf3MVpA9cVXjYL3ZBse/b+aJGxXTNYCh
-         ketyI9U5EEeHUn+JHZhkP3olAqRT9mi7PGFWGNbfkHSSU6GBVtQcTaSnLfq60Q9Vv9SU
-         nOEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697432791; x=1698037591;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ljLUfJ605ma450XY7PNUj3Yr/a3QuI1zYReWh/UDky8=;
-        b=ukucpLy5ZsPe4ald8maxYN3621wM/VVZOqeUDlqDawVmRo/nehzo3Mmeq95JZiA2E/
-         VHKvaBktq8aWXDfHktpTVkqBPq/YGNd+y4AZsc0CYCpiqC6y56XQfAjpCkQFfH9Oyxnt
-         lGbrrHEgZEBZFOd9WBWj03kTAUc7LfHI4xvQsMkpUikSH3eetgZxXTaWRFcItBh0pZYi
-         pCtXL0jSgIdjEqS+XpvoonFWYSKQmBfgcQ0PR+mTs6sKW5ZduhVXkjDDdezqC0GJsLrO
-         tOYDSQFGcggek/PFpaaafVlHYORgbFh/ZVr2l/WRsWI6BSG27YRCBEsZ9Xn4MuBdlkET
-         qDyw==
-X-Gm-Message-State: AOJu0Yz4WwygQv4BbwPtjI2C8lTj2SyOldyN5saoFvFJEZA3k4HvsPLc
-	gIAt79YQ8ISmQ8jU4sPwO7Y+8g==
-X-Google-Smtp-Source: AGHT+IFmlppKIfIeLxzkFAIjRYC4PTqJ/fa4UN+nQcWy5Nx6i1olN86boxhNG3/NjoCFqfMjEEBeAQ==
-X-Received: by 2002:a17:907:8b8c:b0:9a2:28dc:4166 with SMTP id tb12-20020a1709078b8c00b009a228dc4166mr31041615ejc.75.1697432791464;
-        Sun, 15 Oct 2023 22:06:31 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id e5-20020a17090681c500b00977cad140a8sm3247163ejx.218.2023.10.15.22.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Oct 2023 22:06:30 -0700 (PDT)
-Message-ID: <5d7f8083-5bcc-4742-aa46-48e63072fc6b@linaro.org>
-Date: Mon, 16 Oct 2023 07:06:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC676FBF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:11:38 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2077.outbound.protection.outlook.com [40.107.96.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF156E6;
+	Sun, 15 Oct 2023 22:11:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ME/jJKSD5ezp34DaANXEW4yL9g5d7BeJHHsHZm4bs27+v2d6iQ5ux7G9qfTZiivUvxoNGQ/jvcQC/tQaZNo6s4u3oS5mU6t9H69igCg1v/ozv2WLMwhed14kclMg7dLmZb88EWeMd4g+pInoQX5usVqh2vrABP5NU0NIjaGpplbMdWI895WZyQo+ngLBeKp8+NaXkbo3xnAdOCsStDL6Zvu3MHOwgfWxy7UqyNSjGVfOzWvAZ9OhWi1AAV9R8aVL6gXWo4ufxHkN2wiETZuvuUAE3q8EKGyopEyRdQnczJ8Dh3ZMgrTFKY0ct0yOkiqW4wOgkkx1u6J/ZIyxDWIHeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pDp1xSqJUy/X3KgfO2i7a/7rznbyqcW3efpc1pzhCAA=;
+ b=gGIm1OSn5VXVOPK42iiRCzOMf4DaMbvFyahIZSu2ZnFNUG3SHzz9N5BBuMHiNnIRyfv7mg/S47P6BGwx8UTTnYvH2jvhPZQmzQRU3/IazuSjbLWi3bqFsZDNQfgxNDlQkoEpYrsA5WXKCnYUZ0NumKX1YfiA+bJB0S07QaUipqNeyiLwVoMnCmAGuFEVxHTPx2aONgxqY1CM5oP5s812LgwRQ2XikIXH6cB01coKBHXMIyolfZHqF7/nXnFSkQ5Fly/BafktUe6V8U28qoHd20euiDc/n+Dl2ar4vpLlzs4OmwXsd2Dw9589bZmJrce3/t6n48eky+OmtreV0pv2PQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pDp1xSqJUy/X3KgfO2i7a/7rznbyqcW3efpc1pzhCAA=;
+ b=4ANPAq5iJA1lVyjnAIHK6eh77FTxUUM/0PHDeYTArWoaZHw/XjFgxSGNtVZ4VSpM7+oLczKLd+iNU9NSsWBiNN3uCCrktyw60n6iEgFAyQkbMQ3ugVLP6HOfmfif+aWLdLCjgDwSaQtsDDxxkLZwpZGBUEgj3xePd2qadMg2dIc=
+Received: from CH2PR17CA0029.namprd17.prod.outlook.com (2603:10b6:610:53::39)
+ by PH7PR12MB7331.namprd12.prod.outlook.com (2603:10b6:510:20e::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Mon, 16 Oct
+ 2023 05:11:32 +0000
+Received: from MWH0EPF000971E4.namprd02.prod.outlook.com
+ (2603:10b6:610:53:cafe::ce) by CH2PR17CA0029.outlook.office365.com
+ (2603:10b6:610:53::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35 via Frontend
+ Transport; Mon, 16 Oct 2023 05:11:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000971E4.mail.protection.outlook.com (10.167.243.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Mon, 16 Oct 2023 05:11:32 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 16 Oct
+ 2023 00:11:31 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 15 Oct
+ 2023 22:11:30 -0700
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Mon, 16 Oct 2023 00:11:27 -0500
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<colnor+dt@kernel.org>, <thippeswamy.havalige@amd.com>,
+	<michal.simek@amd.com>, <bharat.kumar.gogada@amd.com>
+Subject: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256 buses during
+Date: Mon, 16 Oct 2023 10:40:58 +0530
+Message-ID: <20231016051102.1180432-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: media: Add bindings for THine THP7312
- ISP
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20231012193737.7251-1-laurent.pinchart@ideasonboard.com>
- <20231012193737.7251-2-laurent.pinchart@ideasonboard.com>
- <aaa41ff2-d2e3-4c25-9654-065a02275619@linaro.org>
- <20231015123923.GB23177@pendragon.ideasonboard.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231015123923.GB23177@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000971E4:EE_|PH7PR12MB7331:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6126713-86a1-463a-2eb2-08dbce065cb0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	+BGDVzSrgsP/6lx9qiCO0X043FE/RifTO7rTOxQ6NGw9KmlM12fADJSP6HVP8c6Y6atOLh82+eP/8fsu2pNIbghLgjLBTbJ7Dqsd1ykKJ51MepBjOK7qJ/19aa7cxptb0vLnHI4v0QT0h+vVlLgGU7ytTxjSPAwkarzlAhsefsHIkY9gzG5UTKSXqVonLkL4StpRMnwICj/9zNFM+URvN5r+ZTuU/onNEq+uExGnmIvLEyKga+x9Oniaak7fGEHSLqlW8ks08dTDjyczgHaxtZ5J+AO0iAue3qdxabd3fApnOOE8ajVvP+XKBPeuq/GKqOobCPMLRzW1gQTGqt6rpSHe6/ohgXdSRbhrt5QivQxPQM2TV3UAxWq6GaLJTKky0jbdak0ffhssdP9Q7lv/5+qss7cYVy/otzHD2OlgM88THxpwc6rcdZ62FUzyey4AkQX+OavSi2lVfFKLNJ/G1nnwjJ4yVSfj0LZcywbGdgJ7f16B66EmF276Fh7goOv4lXwjLsu9U8Hr3oBQyhch/2VeUAPlvDlpsa4wVlRNOMv7txIVLpVT0G/8CG0f67lJGVZqF05SH6zHg9U7YOFxi+JO8pO/HXlEZjeg4+vDR+l2mWxTzSHneb0G40iWeYNsAItzYvrseCKZLKp81rfS8NkVuuMhkwzYY4aR83aIFIe5UaguUr0dw0U/CNlQkpZTEQZIHd0giCCcTs3k4vAfkUmVAFhlY/X9fblCM/PwKDGfvFS+6TwS/kgamzwEv8mkMboQMlzbW9UVxmF1Z5CzKKsDdbizUKuhFfZX5L1H/mE=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(396003)(136003)(346002)(376002)(230922051799003)(64100799003)(186009)(1800799009)(82310400011)(451199024)(36840700001)(46966006)(40470700004)(40460700003)(1076003)(336012)(26005)(426003)(2616005)(6666004)(36860700001)(83380400001)(47076005)(4326008)(5660300002)(8676002)(44832011)(8936002)(2906002)(7416002)(4744005)(478600001)(316002)(41300700001)(54906003)(70206006)(70586007)(110136005)(81166007)(82740400003)(86362001)(356005)(36756003)(40480700001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2023 05:11:32.1201
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6126713-86a1-463a-2eb2-08dbce065cb0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000971E4.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7331
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/10/2023 14:39, Laurent Pinchart wrote:
->>> +        properties:
->>> +          data-lanes:
->>> +            description:
->>> +              This property is for lane reordering between the THP7312 and the
->>> +              SoC. The sensor supports either two-lane, or four-lane operation.
->>> +              If this property is omitted four-lane operation is assumed. For
->>> +              two-lane operation the property must be set to <1 2>.
->>> +            minItems: 2
->>> +            maxItems: 4
->>> +            items:
->>> +              maximum: 4
->>> +
->>> +  sensors:
->>> +    type: object
->>> +    description: List of connected sensors
->>
->> I don't understand why do you list sensors here. From the binding
->> description I understood these are external sensors, which usually sit
->> on I2C bus.
-> 
-> Good question :-)
-> 
-> The sensors connected to the THP7312 input are controlled over I2C by
-> the THP7312 itself. The host operating system doesn't have access to
-> that I2C bus. The sensors are listed here because their power supplies
-> need to be controlled by the host operating system.
+Current driver is supports up to 16 buses. The following code fixes 
+to support up to 256 buses.
 
-OK
+update "NWL_ECAM_VALUE_DEFAULT " to 16  can access up to 256MB ECAM
+region to detect 256 buses.
 
-> 
->>> +
->>> +    properties:
->>> +      "#address-cells":
->>> +        const: 1
->>> +
->>> +      "#size-cells":
->>> +        const: 0
->>> +
->>> +    patternProperties:
->>> +      "^sensor@[01]":
->>> +        type: object
->>> +        description:
->>> +          Sensors connected to the first and second input, with one node per
->>> +          sensor.
->>> +
->>> +        properties:
->>> +          thine,model:
->>> +            $ref: /schemas/types.yaml#/definitions/string
->>> +            description:
->>> +              Model of the connected sensors. Must be a valid compatible string.
->>
->> Then why this isn't compatible?
-> 
-> We picked a vendor-specific property to avoid implying that the sensor
-> nodes will result in devices being created by the host operating system.
-> I don't mind using "compatible" instead, but as far as I understand, a
-> compatible string implies that corresponding device DT bindings should
-> exist, and that won't be the case here necessarily.
+Update ecam size to 256MB in device tree binding example.
 
-OK, looks sensible to me.
+Remove unwanted code.
 
-Best regards,
-Krzysztof
+Thippeswamy Havalige (4):
+  PCI: xilinx-nwl: Remove unnecessary code which updates primary,
+    secondary and sub-ordinate bus numbers
+  dt-bindings: PCI: xilinx-nwl: Modify ECAM size in example
+  PCI: xilinx-nwl: Rename ECAM size default macro
+  PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
+
+ .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml |  2 +-
+ drivers/pci/controller/pcie-xilinx-nwl.c       | 18 +++---------------
+ 2 files changed, 4 insertions(+), 16 deletions(-)
+
+-- 
+2.25.1
 
 
