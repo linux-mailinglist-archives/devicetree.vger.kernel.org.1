@@ -1,125 +1,271 @@
-Return-Path: <devicetree+bounces-8806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EBFD7CA2B4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:53:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 834327CA314
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 11:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5B31C208CB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:53:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BC40B20C91
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 09:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D68D1A289;
-	Mon, 16 Oct 2023 08:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4F81A58C;
+	Mon, 16 Oct 2023 09:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xgc028NS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C17z9Rr2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84CB18C03
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:53:15 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0773AF2
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:53:14 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5a7cc03dee5so52444517b3.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697446393; x=1698051193; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0qjL7Jne2EuSY8hJrWaJD0Y2w0iLDuf6rVnD3m4Il5Y=;
-        b=xgc028NSAPx6kQQEGoEWI+YHMHnAt9mDVB0tPtr8ZMFeMqlw6AVj67SODYXbXfzCAK
-         sqZwyJAlpTIMzvOMG6RJz3qEENDQYm1jeNYLU5rhYHeLQ7MOFcubwZfhxNUhjfGCbjDG
-         CZfwbJeO6h6z+EziW0JkyCUv0PRCdCKmDS3s5/Rxb/4ILGfhusiTUGmCU/SVHx3DLj5y
-         VvZY1E6L2B9yeTpBIj6DadquAPsh72JWEVxlAKUd08scKGBIIzXOuyOjoPmw6mDV++Z9
-         zUqoUCFF5ocpYESHgp1vBGD9SC034vQX0scdYdx0+s8DjvkejI6dWeL/uBqZuerE0Aze
-         40aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697446393; x=1698051193;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0qjL7Jne2EuSY8hJrWaJD0Y2w0iLDuf6rVnD3m4Il5Y=;
-        b=FqZrlXabH+CaRRYfTXHslOqxwNURTztI/NyeCBbd1WgNTsn9RbnKZfTSqVUh+2M0rA
-         3BlKoU+BXU9AABqUXaNAz000x3snNFm110kNLmcEbe2/2RdfohoUZnHbuhXa0QkF4P/m
-         iTshRZbEKTbGOv+8CcyR/EdFEdUMV82oJnHoy50Jq1Qc1b+NBZUtPkHejTzCT6Pfwp3G
-         nl1mMDzww/q9t3IkgFL2X2jBjdR7DD5XQHf7TfXCuEHCAud+q0z5qWes0+cQ8Qnf98GL
-         LPljXM85i8KmM4+dOc6uMSnPu1H1e/pdjcC9jfwG5TW80dsAyK3uisvdiOKe8AaLADqS
-         +1GA==
-X-Gm-Message-State: AOJu0Yx/pJMzl9/xieohJLhBy63vqLh8JLjmR6lPpLkw+PHsBbO2C/kF
-	GgYCbnjw8ibwHlaM0grbO4BIz8n86eUn8w0SKuNlxw==
-X-Google-Smtp-Source: AGHT+IH4xBr1KrgiLsfmacR6sZSOPfQzcHLoH+Lo+h6GkkMSCXJ0UKEHTksgQfzA2wSwtVAKncDAED18cfQIE+i3W6k=
-X-Received: by 2002:a81:4fd3:0:b0:5a7:dbd1:4889 with SMTP id
- d202-20020a814fd3000000b005a7dbd14889mr17047139ywb.2.1697446393255; Mon, 16
- Oct 2023 01:53:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7060B1C28D
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 09:00:38 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529E7F7;
+	Mon, 16 Oct 2023 02:00:35 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 77386FF821;
+	Mon, 16 Oct 2023 09:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1697446833;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=R7Cz4gMkKtHSEbn9b4AaEiwai8L2LYY05rNv81sPeAU=;
+	b=C17z9Rr2WN4k6+gn1+GPlFPBLsKWBEQ9EcaWIB7lDUVaeIzBU1RC8SEEyzxyPE2/D5Qnpu
+	E7NCn8X7ALrMVgILvDtYu8syu1QDnbBQGNTxSoWJVGlGVgc92aO1+Vy6IwQg30R5ewJ0vA
+	SVlpDEitLpIJQyv578V+VVnvXJWYvyntyrCT0V5oUmsxzsyV3vqoNHiaL4Pkb0xO6uiO7v
+	FqhZh3ICd0wvCdKduZhGre9tsezq7UAmgi2wUSq3d8tjPNe+SdmCQaBwgLcm39Clb3Petd
+	YkxDIrb8DsKtTvbmyqSFzpatWJSWN1yg75KFEq//pbkmEfKJNqyVyER3gz+alg==
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: mchehab@kernel.org,
+	heiko@sntech.de,
+	hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	ezequiel@vanguardiasur.com.ar
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com,
+	paul.kocialkowski@bootlin.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: [PATCH v8 0/3] media: rockchip: Add a driver for Rockchip's camera interface
+Date: Mon, 16 Oct 2023 11:00:02 +0200
+Message-ID: <cover.1697446303.git.mehdi.djait@bootlin.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231016080658.6667-1-johan+linaro@kernel.org>
-In-Reply-To: <20231016080658.6667-1-johan+linaro@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 16 Oct 2023 11:53:02 +0300
-Message-ID: <CAA8EJpoPSHfRMgzs69Z-Zk0L8z8_8sveh22pj4ZOAwyAPvesHQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-crd: fix eDP phy compatible
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: mehdi.djait@bootlin.com
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS,URI_HEX autolearn=no autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 16 Oct 2023 at 11:07, Johan Hovold <johan+linaro@kernel.org> wrote:
->
-> The sc8280xp Display Port PHYs can be used in either DP or eDP mode and
-> this is configured using the devicetree compatible string which defaults
-> to DP mode in the SoC dtsi.
->
-> Override the default compatible string for the CRD eDP PHY node so that
-> the eDP settings are used.
->
-> Fixes: 4a883a8d80b5 ("arm64: dts: qcom: sc8280xp-crd: Enable EDP")
-> Cc: stable@vger.kernel.org      # 6.3
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 772953dc428e..31a2a2d27f4e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -458,6 +458,8 @@ mdss0_dp3_out: endpoint {
->  };
->
->  &mdss0_dp3_phy {
-> +       compatible = "qcom,sc8280xp-edp-phy";
+Hello everyone,
 
-Same question here as the one I've sent for Konrad's patch. Is it the
-same PHY type, just being repurposed for eDP or is it a different PHY
-type?
+V8 for basic support of the Video Input Processor found on the Rockchip PX30 SoC
 
-> +
->         vdda-phy-supply = <&vreg_l6b>;
->         vdda-pll-supply = <&vreg_l3b>;
->
-> --
-> 2.41.0
->
+The v6 is based on the fifth iteration of the series introducing the
+driver: sent 29 Dec 2020 [1]
 
+Most of this driver was written following the BSP driver from rockchip,
+removing the parts that either didn't fit correctly the guidelines, or
+that couldn't be tested.
+
+In the BSP, this driver is known as the "cif" driver, but this was
+renamed to "vip" to better fit the controller denomination in the
+datasheet.
+
+This version of the driver supports ONLY the parallel interface BT656
+and was tested/implemented using an SDTV video decoder
+
+media_tree, base-commit: 2c1bae27df787c9535e48cc27bbd11c3c3e0a235
+
+V7 => V8:
+vip/capture.c:
+- fixed a warning: unused variable reported by the kernel test robot
+
+V6 => V7:
+vip/capture.c vip/dev.c vip/dev.h
+- renamed all struct rk_vip_dev dev => struct rk_vip_dev vip_dev
+- added some error when rk_vip_get_buffer() returns NULL
+- removed a WARN_ON
+- made the irq NOT shared
+- dropped of_match_ptr
+- added the rk_vip_get_resource() function
+
+rockchip,px30-vip.yaml:
+- changed filename to match the compatible
+- dropped the mention of the other rockchip SoC in the dt-binding
+  description and added a more detailed description of VIP
+- removed unused labels in the example
+
+
+V5 [1] => V6:
+vip/capture.c vip/dev.c vip/dev.h
+- added a video g_input_status subdev call, V4L2_IN_CAP_STD and the
+  supported stds in rk_vip_enum_input callback
+- added rk_vip_g_std, rk_vip_s_std and rk_vip_querystd callbacks
+- added the supported video_device->tvnorms
+- s_std will now update the format as this depends on the standard
+  NTSC/PAL (as suggested by Hans in [1])
+- removed STD_ATSC
+- moved the colorimetry information to come from the subdev
+- removed the core s_power subdev calls
+- dropped cropping in rk_vip_stream struct
+
+rockchip-vip.yaml:
+- fixed a mistake in the name of third clock plckin -> plck
+- changed the reg maxItems 2 -> 1
+
+[1] https://lore.kernel.org/linux-media/20201229161724.511102-1-maxime.chevallier@bootlin.com/
+
+I used v4l-utils with HEAD: commit 1ee258e5bb91a12df378e19eb255c5219d6bc36b
+
+# v4l2-compliance 
+v4l2-compliance 1.25.0, 64 bits, 64-bit time_t
+
+Compliance test for rk_vip device /dev/video0:
+
+Driver Info:
+        Driver name      : rk_vip
+        Card type        : rk_vip
+        Bus info         : platform:ff490000.vip
+        Driver version   : 6.6.0
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : rk_vip
+        Model            : rk_vip
+        Serial           : 
+        Bus info         : platform:ff490000.vip
+        Media version    : 6.6.0
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 6.6.0
+Interface Info:
+        ID               : 0x03000002
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000001 (1)
+        Name             : video_rkvip
+        Function         : V4L2 I/O
+        Pad 0x01000004   : 0: Sink
+          Link 0x02000009: from remote pad 0x1000006 of entity 'tw9900 2-0044' (Digital Video Decoder): Data, Enabled
+
+Required ioctls:
+        test MC information (see 'Media Driver Info' above): OK
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+        test VIDIOC_QUERYCTRL: OK (Not Supported)
+        test VIDIOC_G/S_CTRL: OK (Not Supported)
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Input 0):
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Total for rk_vip device /dev/video0: 46, Succeeded: 46, Failed: 0, Warnings: 0
+
+Mehdi Djait (3):
+  media: dt-bindings: media: add bindings for Rockchip VIP
+  media: rockchip: Add a driver for Rockhip's camera interface
+  arm64: dts: rockchip: Add the camera interface
+
+ .../bindings/media/rockchip,px30-vip.yaml     |   93 ++
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   12 +
+ drivers/media/platform/rockchip/Kconfig       |    1 +
+ drivers/media/platform/rockchip/Makefile      |    1 +
+ drivers/media/platform/rockchip/vip/Kconfig   |   14 +
+ drivers/media/platform/rockchip/vip/Makefile  |    3 +
+ drivers/media/platform/rockchip/vip/capture.c | 1210 +++++++++++++++++
+ drivers/media/platform/rockchip/vip/dev.c     |  346 +++++
+ drivers/media/platform/rockchip/vip/dev.h     |  163 +++
+ drivers/media/platform/rockchip/vip/regs.h    |  260 ++++
+ 10 files changed, 2103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+ create mode 100644 drivers/media/platform/rockchip/vip/Kconfig
+ create mode 100644 drivers/media/platform/rockchip/vip/Makefile
+ create mode 100644 drivers/media/platform/rockchip/vip/capture.c
+ create mode 100644 drivers/media/platform/rockchip/vip/dev.c
+ create mode 100644 drivers/media/platform/rockchip/vip/dev.h
+ create mode 100644 drivers/media/platform/rockchip/vip/regs.h
 
 -- 
-With best wishes
-Dmitry
+2.41.0
+
 
