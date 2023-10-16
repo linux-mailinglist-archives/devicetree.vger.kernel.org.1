@@ -1,175 +1,126 @@
-Return-Path: <devicetree+bounces-8902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590C47CA854
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:46:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C14D7CA86E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:47:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87C1B1C20929
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:46:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80AE02816DA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F59224F6;
-	Mon, 16 Oct 2023 12:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281AE1D551;
+	Mon, 16 Oct 2023 12:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="ZDXmYOWC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DDE20B22
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:46:29 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B67AB
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 05:46:27 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMyu-0002vE-Om; Mon, 16 Oct 2023 14:46:00 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMys-0025WN-VP; Mon, 16 Oct 2023 14:45:58 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qsMys-00EkA2-SI; Mon, 16 Oct 2023 14:45:58 +0200
-Date: Mon, 16 Oct 2023 14:45:58 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Chanwoo Choi <chanwoo@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	kernel@pengutronix.de,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v7 07/26] PM / devfreq: rockchip-dfi: introduce channel
- mask
-Message-ID: <20231016124558.GL235829@pengutronix.de>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-8-s.hauer@pengutronix.de>
- <859b0091-e361-6060-2977-4aba13af418a@kernel.org>
- <20231016112216.GY3359458@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B63241FF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:47:17 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA1EE8;
+	Mon, 16 Oct 2023 05:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=CFtUyAN6O7E+QyTtUN2EU3o8sz6NRVpWpTj2DZbCLpQ=; b=ZDXmYOWCB6yKXxVmi8wGftScPv
+	98EFanT7UhxuI8EtDHvOHMfKvFxtUJTTZZA7Xgof1LZDxbTAHBI8NUwxTmVrF+wDDI1S8c7yKfjBn
+	Ktr7thQWYLxB+iGU4uKI+1DVzTTda9wS3YFtVLYCzAwN6KLKALGWDuS3qfGLHTmdaBFTlcsLWzT5S
+	sMYi22VcnXRfaioYL9d1PtXbsuq8g1hHGYZSq8rvUR7JfqXJ74mk86VW82LGc0g3Ml/cTREvuGeru
+	OZ1QUeQ2BbXy9Po1WvYNm1rUDDH9rZjeUU0dV6okDDuYE6mO/KXGnhIhKEYyyqoIygAyeyscm+1Hj
+	FdtAozHQ==;
+Received: from re-byods-146-50-198-227.wireless.uva.nl ([146.50.198.227])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1qsN01-0013kp-Gu; Mon, 16 Oct 2023 14:47:09 +0200
+From: Nia Espera <nespera@igalia.com>
+Subject: [PATCH 0/5] support oneplus-lemonade(p) devices
+Date: Mon, 16 Oct 2023 14:47:00 +0200
+Message-Id: <20231016-nia-sm8350-for-upstream-v1-0-bb557a0af2e9@igalia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231016112216.GY3359458@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMQwLWUC/x3MwQqDMAyA4VeRnBdoUy3DV5EdykxdDlZJNhlI3
+ 93i8Tv8/wnGKmwwdicoH2KylQb/6OD9SWVhlLkZyFHwzkcsktDWZxgc5k3xt9tXOa1IuR8oxMg
+ 9eWj1rpzlf5+nV60Xxl49/2kAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>, 
+ Clayton Craft <clayton@igalia.com>, ~postmarketos/upstreaming@lists.sr.ht, 
+ Nia Espera <nespera@igalia.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1355; i=nespera@igalia.com;
+ h=from:subject:message-id; bh=bIskzxPUt7FDQ9Ass8yJo8NTY3rS5cJSwIYFvaHIvcY=;
+ b=owEB7QES/pANAwAIAfIkzsI3VuKtAcsmYgBlLTDMc2l+MDTBvbmuoCZBPwv/k/7mGg2+gHMJO
+ Vus5H+a6ayJAbMEAAEIAB0WIQSBPDomug3slDJEnubyJM7CN1birQUCZS0wzAAKCRDyJM7CN1bi
+ rdnhDACtx/iJZxetyCX8WoDbdad9WnhxxRp6xz2Hh+g3e/UN5CFN1mGYn3L3MHv+yS1/Q+IBQe3
+ G/9QSCIqvAQBcmQVPZgW1Pujd5PcQ5ASJJ4VgG73j3wAGvt5YX1ILx7LPhbC3VLNWuUPWDAR2IR
+ yZhEPkNnDXnr/+7A8dvhNRKGkxIC3e1wvJ16nBJkeFfXWYepurlI9unEUtkS8o+eptGr8kGVB+i
+ CVM4lS7gMHwNtCUCHCkgNhGsFW4c//ZLh3j9hWTNYHIhbjSDUne+qyq+dbD39uLXe7oIHDNIhwv
+ tuxoHILkFt/u2UeNh/SVMHUs9KtuLJSpWBGzRVCSJJTzvjZtjRNl3quAGjDIjGah1o128jXddK+
+ 6C+u9tgFQbvGKZIIBaHZGZHDpdnE8Wj4h0jJqEY79hrn8MnyDD6y2EZEjVaQbNc6gAUiwg2InTq
+ 8m78o+RnwUUB4HKJElKeECJCWlpeoNbp7pLykUN4/LXRff9P53St5+gFdMIUW8Wb91feg=
+X-Developer-Key: i=nespera@igalia.com; a=openpgp;
+ fpr=813C3A26BA0DEC9432449EE6F224CEC23756E2AD
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 16, 2023 at 01:22:16PM +0200, Sascha Hauer wrote:
-> On Sat, Oct 07, 2023 at 02:21:10AM +0900, Chanwoo Choi wrote:
-> > Hi,
-> > 
-> > On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> > > Different Rockchip SoC variants have a different number of channels.
-> > > Introduce a channel mask to make the number of channels configurable
-> > > from SoC initialization code.
-> > > 
-> > > Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > ---
-> > >  drivers/devfreq/event/rockchip-dfi.c | 23 +++++++++++++++++------
-> > >  1 file changed, 17 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> > > index 126bb744645b6..82de24a027579 100644
-> > > --- a/drivers/devfreq/event/rockchip-dfi.c
-> > > +++ b/drivers/devfreq/event/rockchip-dfi.c
-> > > @@ -18,10 +18,11 @@
-> > >  #include <linux/list.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/of_device.h>
-> > > +#include <linux/bits.h>
-> > >  
-> > >  #include <soc/rockchip/rk3399_grf.h>
-> > >  
-> > > -#define RK3399_DMC_NUM_CH	2
-> > > +#define DMC_MAX_CHANNELS	2
-> > >  
-> > >  /* DDRMON_CTRL */
-> > >  #define DDRMON_CTRL	0x04
-> > > @@ -44,7 +45,7 @@ struct dmc_count_channel {
-> > >  };
-> > >  
-> > >  struct dmc_count {
-> > > -	struct dmc_count_channel c[RK3399_DMC_NUM_CH];
-> > > +	struct dmc_count_channel c[DMC_MAX_CHANNELS];
-> > >  };
-> > >  
-> > >  /*
-> > > @@ -61,6 +62,7 @@ struct rockchip_dfi {
-> > >  	struct regmap *regmap_pmu;
-> > >  	struct clk *clk;
-> > >  	u32 ddr_type;
-> > > +	unsigned int channel_mask;
-> > >  };
-> > >  
-> > >  static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
-> > > @@ -95,7 +97,9 @@ static void rockchip_dfi_read_counters(struct devfreq_event_dev *edev, struct dm
-> > >  	u32 i;
-> > >  	void __iomem *dfi_regs = dfi->regs;
-> > >  
-> > > -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> > > +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
-> > > +		if (!(dfi->channel_mask & BIT(i)))
-> > > +			continue;
-> > >  		count->c[i].access = readl_relaxed(dfi_regs +
-> > >  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
-> > >  		count->c[i].total = readl_relaxed(dfi_regs +
-> > > @@ -145,9 +149,14 @@ static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
-> > >  	rockchip_dfi_read_counters(edev, &count);
-> > >  
-> > >  	/* We can only report one channel, so find the busiest one */
-> > > -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> > > -		u32 a = count.c[i].access - last->c[i].access;
-> > > -		u32 t = count.c[i].total - last->c[i].total;
-> > > +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
-> > 
-> > Instead of DMC_MAX_CHANNELS defintion,
-> > you can initialize the max channel in each rkXXXX_dfi_init() like 'dfi->channel_count'.
-> > It reduces the unnecessary loop by initializing the proper max channel.
-> 
-> That is not easily possible. Some SoCs, eg the RK3588 have four
-> channels, but not all channels are necessarily enabled it also
-> might not be the first channels that are enabled. On a RK3588
-> the channel mask might for example be 0b0101.
+Patch series adding support for oneplus-lemonade and oneplus-lemonadep
+devices (OnePlus 9 & 9 Pro), along with a few needed fixups. Currently
+working as of this series:
 
-Nah, forget this comment. Of course I can initialize a variable with a
-maximum value of channels that could be available on this SoC and only
-iterate over these. Will do.
+- USB OTG
+- UFS
+- Framebuffer display
+- Touchscreen (for lemonade)
+- Power & volume down keys
+- Battery reading
+- Modem, IPA, and remoteproc bringup
 
-Sascha
+Signed-off-by: Nia Espera <nespera@igalia.com>
+---
+Nia Espera (5):
+      iio: adc: add smb139x bindings
+      arm64: dts: qcom: sm8350: Fix DMA0 address
+      arm64: dts: qcom: pm8350k: remove hanging whitespace
+      arm64: dts: qcom: sm8350: Fix remoteproc interrupt type
+      arm64: dts: qcom: sm8350-lemonade(p): new devices
 
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi              |    2 +-
+ .../arm64/boot/dts/qcom/sm8350-oneplus-common.dtsi | 1247 ++++++++++++++++++++
+ .../boot/dts/qcom/sm8350-oneplus-lemonade.dts      |   82 ++
+ .../boot/dts/qcom/sm8350-oneplus-lemonadep.dts     |   37 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |   12 +-
+ include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h   |   17 +
+ 7 files changed, 1392 insertions(+), 7 deletions(-)
+---
+base-commit: 58720809f52779dc0f08e53e54b014209d13eebb
+change-id: 20231016-nia-sm8350-for-upstream-2f452366e421
+
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Nia Espera <nespera@igalia.com>
+
 
