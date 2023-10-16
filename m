@@ -1,185 +1,186 @@
-Return-Path: <devicetree+bounces-8895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF137CA7C1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:09:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A62FC7CA7CB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 14:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46FC32812F6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:09:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17D60B20E6C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 12:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3546C26E25;
-	Mon, 16 Oct 2023 12:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA0F26E26;
+	Mon, 16 Oct 2023 12:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="j/xP9xUq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YJIgkJki"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32C2B241FF
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:09:01 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2052.outbound.protection.outlook.com [40.107.6.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B598E;
-	Mon, 16 Oct 2023 05:08:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dsyUQrFonYvuNgRcgZV85ItNP6IMtQUZ2zLW+A5npgWw5YQBXpuNEp94cdscrQYPipVc0soAZMXCtNkb0L8GJjjmWLJQ/CFhhYBuC3oms+hgNuGXJnQRDvTTApOhrDhLvnc2eOl/vjhrnl9TrGq3NAK4ceAoj4wYBiF8wyLJYcM2iD6T54JIYaRpiOZpSILIJs+RmUPjrITJancOYD/q151aZnfdCm+SsNjzd8d5ZIlDMOoY6Bj8kg+KL4NQmkjiO2yDd+TP6EVnX6fSEFBZv4ehy61Ya5711GDMthvqnAipapWfpXEjjmNsQxpHILz4HxOJ5Lts9E69RlJu1ALMwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yjaNb794B5WdEQV6oO0OJ1tASt26o2uz5whqXeaaP6g=;
- b=HAkPGf7FoYr5XAyFO2homGEaV0dSZsbW7e6bqyAww5fypyOIGfSIHP0DA92q98C7c5xqgINpLOpbstTH+kRhpdnOCQtqlZkTLmnvNXFZVjZBALfZkeum3+uQF3b9/NmbVslsrKFnylmrSGafQeBAx4kDGqhIyrfE9ppphzduW8GUpu169Dm/hOcnYfeyJBJj56+PfHeL92leTWrAMTadd5qjQTJfr5dnvjdU3pf0vRRMkXi6w+BzXwyVptXh0D6t6jfnAoVSGOCkd71CiqbNGb/GQWq8s9+Mkd3gO6x9G4R+LK0Qqw+MLwsz2oAGrjtKO0csj+b1Q4HKs3sSKUyWxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yjaNb794B5WdEQV6oO0OJ1tASt26o2uz5whqXeaaP6g=;
- b=j/xP9xUqu3PTqmi5mrdSPgV3FQgU5ebCmo8/Yj7ItG9nQzCm342uTIK9FMil1LwKtosJBT0vw7Qy9I9shB+7Y4b44/ozul5NuEpYW299MiVk/B3KnQMjF4XAy+Q0ZmqTonBVQ7cSGz6jv8JsCZXWwyL181oOrZx+98/fK8IZ1bs=
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by DU2PR04MB9523.eurprd04.prod.outlook.com (2603:10a6:10:2f6::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Mon, 16 Oct
- 2023 12:08:57 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6886.034; Mon, 16 Oct 2023
- 12:08:56 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shengjiu.wang@gmail.com"
-	<shengjiu.wang@gmail.com>, "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-	"festevam@gmail.com" <festevam@gmail.com>, "nicoleotsuka@gmail.com"
-	<nicoleotsuka@gmail.com>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
-	<tiwai@suse.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>, "alsa-devel@alsa-project.org"
-	<alsa-devel@alsa-project.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linuxppc-dev@lists.ozlabs.org"
-	<linuxppc-dev@lists.ozlabs.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List
- DAPM endpoints ignoring system suspend
-Thread-Topic: Re: [PATCH v3 1/2] ASoC: dt-bindings: sound-card-common: List
- DAPM endpoints ignoring system suspend
-Thread-Index: AQHaACmJsu5Q9I39WkaHWuyFJN2nYQ==
-Date: Mon, 16 Oct 2023 12:08:56 +0000
-Message-ID:
- <DB9PR04MB94987AD33756548323D8D101E3D7A@DB9PR04MB9498.eurprd04.prod.outlook.com>
-References: <20231011114759.1073757-1-chancel.liu@nxp.com>
- <f639c88d-371a-4c72-a906-47d643b24ca8@sirena.org.uk>
- <20231012204739.GA1706264-robh@kernel.org>
-In-Reply-To: <20231012204739.GA1706264-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR04MB9498:EE_|DU2PR04MB9523:EE_
-x-ms-office365-filtering-correlation-id: 9262a0b7-ed0e-4318-e93d-08dbce40ac72
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- rLZ2UzHzMTDGo7ILn/bQgE1kkF39hIAeL2LAgfxnycI2x+c5L2nAWHP6RXb7X4mczPwwh0Pzl/QyU8lHFWLX9aVDkH/IWvA09/dTAvKJQQbo3vcoLm1YmsU0TwZCwLgJzq0hS6ROnCK37Uxg5HfIZkQM2vG4gKraHucDQO5AbfIqriYHid3cONSyd9E1IGM4oLkTQ8RH7fwBYbidVheHjlmm+wcJUqDafaa7WoE0XKLrTQtDB2E5FwruNmJA2z7sFfwzXMWOzsiZTapwsbFwjFb0HSexMV0M9Rz2Pdo1BxrtX2DwXuyyjzLaDi3OZGjYqFABOCGUaEoTAZnGAs1z0VBfCWIaoqg0edBzTjoVGVqXye3cqwA7WX5oW0bCb3s/iZE2RP7isIzRdDhu8LWuzO5qbNV/lPGd/2jMLo3ZvxsxTTlTAFgng8o/1T7uHOvJKC6uCCSOdmKhN38HRkcKBgtZRJuP2A9dtuCKNUxGPq79g7/805KH9z29EUdgk3TdMq5f1DjNd05jF/pupbgainE3QCEzwqmkukEeT3ZbnZH3+JdFATnPtEtr/Jhxh6+Th2TyknfeJ5quuATPoAa1e27/II51Tvm1lN0fTuTilwlOUmDUV0ioy/xysRT7o2wQ
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39860400002)(376002)(346002)(396003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(7416002)(478600001)(9686003)(26005)(6506007)(7696005)(4326008)(8936002)(8676002)(83380400001)(5660300002)(41300700001)(66556008)(52536014)(44832011)(66476007)(15650500001)(316002)(76116006)(66946007)(64756008)(54906003)(66446008)(2906002)(38100700002)(38070700005)(110136005)(71200400001)(122000001)(33656002)(86362001)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?I3k/3HVDkdAoN/0nplMYPFQSsK/frP+KD8EJx1Bdyj25RW4psatvL2vdcKDh?=
- =?us-ascii?Q?g/+YUOG/7xGUb9MGwY3fjA3YunbpO4A5rESLH6Ly9ywpTcoso8mh8+huZEuN?=
- =?us-ascii?Q?1w4liHK2yoPhKckewLaoAAsB19mF/nA8GifQ/H5DDQ2FKJh/PrtfSQdcsrBo?=
- =?us-ascii?Q?aVrUBcKOSuFZD/KaaVKeqXd2T6gYmZi10UOvhpl988HWgICjEeV1QbgKyQ+n?=
- =?us-ascii?Q?5rihHf8dH6eTNumLj0YJcXQss6CoT+71n5JQtfm2k2/WPTlDeOW21k/aBK/D?=
- =?us-ascii?Q?n4vt6m3sfhEf9B+Ng9raxkfRHeXtrUyo3H/1gcau774t472JNlZpEQ3RRkgP?=
- =?us-ascii?Q?miogBmdImBVCbNEApLayaGXz3xNA0QMMtEs5qDox4Jkj6FAWfHk19PDSobX7?=
- =?us-ascii?Q?vX3jaMSvFxYJZges2oKmVqR7bQcVN/wNxm96bR9OrEsIfupM/AmRsgHaDFWX?=
- =?us-ascii?Q?A9xkFLzE+6ut0OLs/HGio/seKlBDk/fkajH3IGZ+n2/FIg8vUjBSmgFeHbrX?=
- =?us-ascii?Q?IW1y4MgwhyfLhhj7bRR0QXywNuj/rrQx7G92UlHBqsaCIDLZrWS6ydTvGlP/?=
- =?us-ascii?Q?wPWvexIE8xdcBG5lYJwozO2AQn22YpH8yqILOokXqeUzeVqFHvDyo7tjOoQo?=
- =?us-ascii?Q?LNcPDd5wguWIKAFZ33FggJZUv75eZXnidFr3hTG0hWwzvyhBysKIueGxhqq/?=
- =?us-ascii?Q?lwNxoUF6tXsyqNQ/OVoT9u2eNd9ECLGACPDvlKA4AIaqrkaC2TOP1u9jyjnj?=
- =?us-ascii?Q?UKF3mrhBqwwcmGFKm2OLbDhAa+UmmoHgyWdarYyyE1iZUMNQLAcMnNlRIlks?=
- =?us-ascii?Q?t8ZjNNJPUPRyfiBkHRNNif4DxtRF2Tp/TayerJthSiX51GOCGPn7L+aWvkgw?=
- =?us-ascii?Q?Znbmp/BpVJj5HYOBdiLd8HSqIgdryv8l379YJyBYlTRXg87tQSdR+Y/ltgZZ?=
- =?us-ascii?Q?Wq2x8SjxdmlvAMOQp/qVuGCcH6KIuN0tTamFKpRFrqpyWxWrrGPXFID3fYdm?=
- =?us-ascii?Q?F63Iqnk9WW5J9v7tOGTxbyCESIxO3sluo3rOgZ9K55IxlgsO4N3pJV1szDrK?=
- =?us-ascii?Q?Jh9HVY7g+1uGYTq8KbAKzhCgIsc8Cd+tcCNNwifcNhBGhmRafnQpCmNA/vfv?=
- =?us-ascii?Q?GfNe45I3L6Hcz8lv5y55e2cCAakmsI446d0LfjorBOsExD30lcye8pl4T1bO?=
- =?us-ascii?Q?juulH+kq/mz83IXqoopGk1Oeh3vsSHN4hf+LYQaxSIuU8e+C1x0Af7hzoZYg?=
- =?us-ascii?Q?QEcwD0NkezjqJYEI5+MrvPL2XMPKugTWjbubdpSxlfohWRypFQ34TkqL5cSb?=
- =?us-ascii?Q?NjsiH01rUZTa32sYpeQfi9cEzEHs5cnDac7NvM8xZba6ckbhrK5NplHI+mv/?=
- =?us-ascii?Q?s5UnDbOQmVxLv5fgy829swwMeQ4s7hbWJ/iyRxiNv20gONrICI9iWff9zftJ?=
- =?us-ascii?Q?7/UdhRDCPDKu1cz+/qWSh8g6FTtcRWzVA7VU9k+bfbNnKEHERDtlNCh7ZqGs?=
- =?us-ascii?Q?4Ei4b3dlR/LkrWGAEM6qfkOMUHP14rXbNtwHsmA0fOjt3g30vqpjBB1kJeED?=
- =?us-ascii?Q?aJYNg3ggvshLOfo/Bdw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3A4241FF
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 12:14:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5718E;
+	Mon, 16 Oct 2023 05:14:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697458442; x=1728994442;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=fYX09gVTs+rdDQq31Aoyype6rTbwF7iR1knuJuk7e3c=;
+  b=YJIgkJkiK06uaWWlR8PBXUYghOok8tWbm6xqg/Gp+UrIm9/teAqypPSw
+   XblyLHWYKcS4rlVfvmM7j4jYLckJzWY0100mIwISAO0DwH5jLtJ5jDeK4
+   IQDwrBX3rZGy3Y6cop36fusWR3WZZX04dfUSQXYr3Tj9u17s2ZTOGJoyv
+   xIHHEqoY3XlztNI0a3wFGLaUIpiHiOYrVVjliyK6RhygxHcQXz0PhferE
+   gOwpVBxSJIhsIbwmRr8anteOrjdWGWjHl9NgS/taEIgStVhwyyY7/2N80
+   jGzNad//S4EJFuYrPPAqW/QHYuvrFWlircBFxHWDMtB5tMblDY6uXpqiI
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="449720154"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
+   d="scan'208";a="449720154"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:14:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="929322173"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
+   d="scan'208";a="929322173"
+Received: from rhaeussl-mobl.ger.corp.intel.com ([10.252.59.103])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:13:59 -0700
+Date: Mon, 16 Oct 2023 15:13:56 +0300 (EEST)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Richard Laing <richard.laing@alliedtelesis.co.nz>
+cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org, 
+    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+    ilpo.jarvinen@linux.intel.com, 
+    Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+    LKML <linux-kernel@vger.kernel.org>, 
+    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] serial: 8250_dw: Allow TX FIFO to drain before writing
+ to UART_LCR An issue has been observed on the Broadcom BCM56160 serial port
+ which appears closely related to a similar issue on the Marvell Armada 38x
+ serial port.
+In-Reply-To: <20231016013207.2249946-2-richard.laing@alliedtelesis.co.nz>
+Message-ID: <fb92ed83-478-4d71-2bd-ab3a37b1352@linux.intel.com>
+References: <20231016013207.2249946-1-richard.laing@alliedtelesis.co.nz> <20231016013207.2249946-2-richard.laing@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9262a0b7-ed0e-4318-e93d-08dbce40ac72
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2023 12:08:56.8982
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qFSSUTw1DKn+fj1G4B4JB5meILLkUTBTlB1IYhhm6pVhL2iO7ms2dcukgM11itE2Chl4DX+24mAOGs42oN2uOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9523
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> >  I think the key thing
-> > here is that these are endpoints that can be active over suspend of
-> > the main application processor that the current operating system is
-> > running (system DT stuff is an interesting corner case here...), and
-> > the example is probably a bit specific.  Other bindings use "audio soun=
-d
-> widgets"
-> > rather than "DAPM widgets".
-> >
-> > We also shouldn't see that these endpoints "should not be disabled"
-> > since that implies that they should be left on even if they aren't
-> > active which isn't quite the case, instead it's that we can continue
-> > playing an audio stream through them in suspend.
->=20
-> This seems like one of those things that everyone has/does, and everyone
-> handles it a bit differently. I applaud trying to do something common, bu=
-t it
-> isn't really common until we have multiple users.
->=20
-> Rob
+On Mon, 16 Oct 2023, Richard Laing wrote:
 
-Thanks Mark and Rob for your advice. In fact, it's common use case. We can =
-see
-many drivers set widgets ignoring suspend. I will remove the linux specific=
-s
-and focus on the key concept. How about the modification on the property na=
-me
-and description as following:
-  ignore-suspend-widgets:
-    description: |
-      A list of audio sound widgets which are marked ignoring system suspen=
-d.
-	  Paths between these endpoints are still active over suspend of the main
-	  application processor that the current operating system is running.
+Your subject line is way too long. If you refer to some other issue, 
+please link to it properly with commit id and/or with Link: tags.
 
-Regards,=20
-Chancel Liu
+> Writes to UART_LCR can result in characters that are currently held in the
+> TX FIFO being lost rather than sent, even if the userspace process has
+> attempted to flush them.
+> 
+> This is most visible when using the "resize" command (tested on Busybox),
+> where we have observed the escape code for restoring cursor position
+> becoming mangled.
+> 
+> Since this appears to be a more common problem add a new driver option
+> to flush the TX FIFO before writing to the UART_LCR.
+
+This looks like a problem we already have solution for, the userspace can 
+use TCSADRAIN/FLUSH to indicate what kind of flushing it wants for Tx 
+when it makes the tcsetattr() call. Thus, userspace can avoid the Tx side 
+corruption as long as its behavior is sane and doesn't e.g. try to race 
+writes with tcsetattr() call as mentioned in commit 094fb49a2d0d ("tty: 
+Prevent writing chars during tcsetattr TCSADRAIN/FLUSH").
+
+Have you tried to use the userspace solution? Isn't it working for some 
+reason?
+
+-- 
+ i.
+
+> 
+> Signed-off-by: Richard Laing <richard.laing@alliedtelesis.co.nz>
+> ---
+>  drivers/tty/serial/8250/8250_dw.c    | 18 ++++++++++++++++++
+>  drivers/tty/serial/8250/8250_dwlib.h |  1 +
+>  2 files changed, 19 insertions(+)
+> 
+> diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
+> index f4cafca1a7da..17ee824294c7 100644
+> --- a/drivers/tty/serial/8250/8250_dw.c
+> +++ b/drivers/tty/serial/8250/8250_dw.c
+> @@ -161,6 +161,10 @@ static void dw8250_serial_out(struct uart_port *p, int offset, int value)
+>  {
+>  	struct dw8250_data *d = to_dw8250_data(p->private_data);
+>  
+> +	/* Allow the TX to drain before we reconfigure */
+> +	if (offset == UART_LCR && d->drain_before_lcr_change)
+> +		dw8250_tx_wait_empty(p);
+> +
+>  	writeb(value, p->membase + (offset << p->regshift));
+>  
+>  	if (offset == UART_LCR && !d->uart_16550_compatible)
+> @@ -197,6 +201,10 @@ static void dw8250_serial_outq(struct uart_port *p, int offset, int value)
+>  {
+>  	struct dw8250_data *d = to_dw8250_data(p->private_data);
+>  
+> +	/* Allow the TX to drain before we reconfigure */
+> +	if (offset == UART_LCR && d->drain_before_lcr_change)
+> +		dw8250_tx_wait_empty(p);
+> +
+>  	value &= 0xff;
+>  	__raw_writeq(value, p->membase + (offset << p->regshift));
+>  	/* Read back to ensure register write ordering. */
+> @@ -211,6 +219,10 @@ static void dw8250_serial_out32(struct uart_port *p, int offset, int value)
+>  {
+>  	struct dw8250_data *d = to_dw8250_data(p->private_data);
+>  
+> +	/* Allow the TX to drain before we reconfigure */
+> +	if (offset == UART_LCR && d->drain_before_lcr_change)
+> +		dw8250_tx_wait_empty(p);
+> +
+>  	writel(value, p->membase + (offset << p->regshift));
+>  
+>  	if (offset == UART_LCR && !d->uart_16550_compatible)
+> @@ -228,6 +240,10 @@ static void dw8250_serial_out32be(struct uart_port *p, int offset, int value)
+>  {
+>  	struct dw8250_data *d = to_dw8250_data(p->private_data);
+>  
+> +	/* Allow the TX to drain before we reconfigure */
+> +	if (offset == UART_LCR && d->drain_before_lcr_change)
+> +		dw8250_tx_wait_empty(p);
+> +
+>  	iowrite32be(value, p->membase + (offset << p->regshift));
+>  
+>  	if (offset == UART_LCR && !d->uart_16550_compatible)
+> @@ -597,6 +613,8 @@ static int dw8250_probe(struct platform_device *pdev)
+>  	/* Always ask for fixed clock rate from a property. */
+>  	device_property_read_u32(dev, "clock-frequency", &p->uartclk);
+>  
+> +	data->drain_before_lcr_change = device_property_read_bool(dev, "drain-before-lcr-change");
+> +
+>  	/* If there is separate baudclk, get the rate from it. */
+>  	data->clk = devm_clk_get_optional(dev, "baudclk");
+>  	if (data->clk == NULL)
+> diff --git a/drivers/tty/serial/8250/8250_dwlib.h b/drivers/tty/serial/8250/8250_dwlib.h
+> index f13e91f2cace..f7d88fa8f058 100644
+> --- a/drivers/tty/serial/8250/8250_dwlib.h
+> +++ b/drivers/tty/serial/8250/8250_dwlib.h
+> @@ -45,6 +45,7 @@ struct dw8250_data {
+>  
+>  	unsigned int		skip_autocfg:1;
+>  	unsigned int		uart_16550_compatible:1;
+> +	unsigned int		drain_before_lcr_change:1;
+>  };
+>  
+>  void dw8250_do_set_termios(struct uart_port *p, struct ktermios *termios, const struct ktermios *old);
+
 
