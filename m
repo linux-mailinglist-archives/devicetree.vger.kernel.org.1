@@ -1,80 +1,77 @@
-Return-Path: <devicetree+bounces-8804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-8805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F23B7CA233
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:47:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8D37CA298
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 10:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F13AB20C56
-	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:47:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 771871C2086A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Oct 2023 08:51:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80F818640;
-	Mon, 16 Oct 2023 08:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D78E199C1;
+	Mon, 16 Oct 2023 08:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NDfzuOtu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m81bMpI+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DA315AE3
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:47:10 +0000 (UTC)
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE56102
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:47:07 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a7af20c488so52398037b3.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:47:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF33F1944F
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 08:51:47 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A98A4E5
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:51:45 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5a7c93507d5so50474037b3.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 01:51:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697446027; x=1698050827; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697446304; x=1698051104; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=W5NJ69kX6Bm+ubsFCLmuvdrCURMYuhfL3kxTQtdRQ+o=;
-        b=NDfzuOtuFXPrbza2/JIvk8SJzRnoHadvnc4lSEoz3ZoB1hxYL/9U4eNiPtfpC7e0oY
-         g1CaX6WftO0AaYzWCA3Y4bJJAdw2zeWFRAeDwMoGInJYqmBievaBPkYpFJjpzDm2yjv4
-         KwpTGHDJM8boc1r23WOYKu3qh9S/vbVigURfoE4C+nkPO2zWlqLKD92jKc/YnB+IdP7I
-         FCsi4CYb8etuLw8KJCgPUfPkqPgHq6+BvtfFQnLlPKAn7+jm6vRSbzRT8eb4aOF6bX07
-         LJarDWzLy99oJRE/KVCpl0RqauR+k7tVlY4LiQuSF+cL1QpLQqeHddgpVPAvMKHhwBNc
-         XzBQ==
+        bh=lXGsc0Da4hN/PIZizg8vgj/+4wq2DaVxoawz9xj9Tyo=;
+        b=m81bMpI+2R07e9xkaoyJ+dxONpUhKBglFjlVhxyHo+boqhFXUpRpwODeDi5bkmyNoE
+         xkgrTXq78GfXDRgjo+UUwa1qke8o4cZJIY9HchmDb6Yodq+zLVPmzTrVBh2qp8BW5N1E
+         WlcU6Q3zEr+c92g1KJfTCoVwj5XgMOIQqT4P+HVqi60Cy6tplEjurwOGYRmzwO7UUeiP
+         /cSlf6PfnN9i7GfToWXHTX2feH6HyZluAWFBnUTfIKFYilSL78q+pkSlP32iuVKmCJ0Z
+         Y0W1hIwm5wR3jJuaKuLqa/0buuHGDz45+TBVceRvKbQjdacpbt4QrOHGMjYysTVvXliy
+         PVfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697446027; x=1698050827;
+        d=1e100.net; s=20230601; t=1697446304; x=1698051104;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W5NJ69kX6Bm+ubsFCLmuvdrCURMYuhfL3kxTQtdRQ+o=;
-        b=PLXZrOGvo/izHn4NKNFj4AwJXYDDR7oMDVs9hjv5h5HSM5N8j6LCnRZyc5BZWD2vOf
-         GWaKSf6Cz0WWu8N9FrVOzve25yXh/5RSYqF42sjl1iF25RvYAm8uzIGunrRzeN0YeWdh
-         VotoulQ7K1KgtvQoNGCw9HCOMn0q7bSQzBEt4WU7SJkW9HQF64GozB3p5AC5TwQkjc7r
-         LzkURNuJOVQUvfvnQXMJCfLMRV8I2+EeXlqqVT9qn6FJMFVSe1mAskehEDgbgqTF6cpb
-         3seXl/SBSfiSt8yncWBDqpR4vpo/xrjR1jykwIMz8MpUXhxV2dHDtQc8t7Y+zmXSmUuG
-         gXdg==
-X-Gm-Message-State: AOJu0Yx3+eZZ5aBwVOIpq6xzrrjt7ccxzo/QjD4MzYN2vJ5OLAEq9NMx
-	hrp7t+IFZv+URtwGL4tdIlK1778fEc6XRIzsdHMvOw==
-X-Google-Smtp-Source: AGHT+IG8XvfaO2iDQZru45tosMwj2yXei141FG7yCZLeVf1EhFA7GavmH/c+LB3Hs9LuIeU78Tz3RVP03MeUP/zdExg=
-X-Received: by 2002:a05:690c:a08:b0:5a7:af51:e274 with SMTP id
- cg8-20020a05690c0a0800b005a7af51e274mr17967004ywb.18.1697446027019; Mon, 16
- Oct 2023 01:47:07 -0700 (PDT)
+        bh=lXGsc0Da4hN/PIZizg8vgj/+4wq2DaVxoawz9xj9Tyo=;
+        b=d9ae+2H58gGvoRvwitUCNhWW7bKHEtqhmyMbHOcAtDqta80XV8xBqYh2QG/ZpINUOK
+         X1MQYqih+jWYrrZuLJ/qTsXHWIJKUZ9DxpSmjk67uXms/MK6eUhZCrWC9tQs1XtxBE+Y
+         eICKc+2ZVT+4hqhyMv9kVZZ8GqdUeErt7qhuHl471K6SMyul6mOJwkc/VJDqXENiRt/z
+         tJ0O5lIGjD40mu+wvz8OsRWYj8axazVE48rH+jPlConGSWOYe2OmENzqueJlWecxTYfx
+         jL7ik+x8RXzdQqDw4iWiD9FmNTzD5zSayJ36nAZP7baSu/fK4ct6qY5ylQDlTvl650iS
+         nOcQ==
+X-Gm-Message-State: AOJu0YycxVlYClH0G38/5kVadJS3AdCzcWSyjT3EEF1xQCXQ/yp6oQ6y
+	1Wltupx5bUhMlbvTzIe1qSk3/DDmDjxXw5hWyoZH8g==
+X-Google-Smtp-Source: AGHT+IF0GpgqPc7n9XdLnHCL9z0TU9/c8LFokbztpOKfofS1TAHe3iHJo+xA70QmWdRBqyMEWBk1SOc2WIvgf119tMQ=
+X-Received: by 2002:a0d:f985:0:b0:59f:21c1:30b6 with SMTP id
+ j127-20020a0df985000000b0059f21c130b6mr37856143ywf.51.1697446304502; Mon, 16
+ Oct 2023 01:51:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1697101543.git.quic_varada@quicinc.com> <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
- <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org> <20231016070256.GA24128@varda-linux.qualcomm.com>
-In-Reply-To: <20231016070256.GA24128@varda-linux.qualcomm.com>
+References: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
+In-Reply-To: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 16 Oct 2023 11:46:56 +0300
-Message-ID: <CAA8EJpoQwDaUa+-WyM6FBzQJo9gn1k2rYLmKSFBLUH00epGJ0Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] clk: qcom: clk-alpha-pll: introduce stromer plus ops
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, agross@kernel.org, andersson@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, ilia.lin@kernel.org, 
-	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	mturquette@baylibre.com, quic_kathirav@quicinc.com, rafael@kernel.org, 
-	robh+dt@kernel.org, viresh.kumar@linaro.org
+Date: Mon, 16 Oct 2023 11:51:33 +0300
+Message-ID: <CAA8EJprXCzVyaU49qgVcVfF0-FJ3QqAfTMZj5CEZm187hoi4=g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Use the correct DP PHY compatible
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -83,76 +80,54 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 16 Oct 2023 at 10:03, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
+On Fri, 29 Sept 2023 at 19:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> On Thu, Oct 12, 2023 at 01:55:36PM -0700, Stephen Boyd wrote:
-> > Quoting Varadarajan Narayanan (2023-10-12 02:26:17)
-> > > Stromer plus APSS PLL does not support dynamic frequency scaling.
-> > > To switch between frequencies, we have to shut down the PLL,
-> > > configure the L and ALPHA values and turn on again. So introduce the
-> > > separate set of ops for Stromer Plus PLL.
-> >
-> > Does this assume the PLL is always on?
->
-> Yes once the PLL is configured by apss-ipq-pll driver, it is always on.
->
-> > > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > ---
-> > > v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
-> > >         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
-> > >         is same for both
-> > >
-> > >         Fix review comments
-> > >                 udelay(50) -> usleep_range(50, 60)
-> > >                 Remove SoC-specific from print message
-> > > ---
-> > >  drivers/clk/qcom/clk-alpha-pll.c | 57 ++++++++++++++++++++++++++++++++++++++++
-> > >  drivers/clk/qcom/clk-alpha-pll.h |  1 +
-> > >  2 files changed, 58 insertions(+)
-> > >
-> > > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> > > index 4edbf77..5221b6c 100644
-> > > --- a/drivers/clk/qcom/clk-alpha-pll.c
-> > > +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> > > @@ -2508,3 +2508,60 @@ const struct clk_ops clk_alpha_pll_stromer_ops = {
-> > >         .set_rate = clk_alpha_pll_stromer_set_rate,
-> > >  };
-> > >  EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_ops);
-> > > +
-> > > +static int clk_alpha_pll_stromer_plus_set_rate(struct clk_hw *hw,
-> > > +                                              unsigned long rate,
-> > > +                                              unsigned long prate)
-> > > +{
-> > > +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > > +       u32 l, alpha_width = pll_alpha_width(pll);
-> > > +       int ret;
-> > > +       u64 a;
-> > > +
-> > > +       rate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
-> > > +
-> > > +       regmap_write(pll->clkr.regmap, PLL_MODE(pll), 0);
-> >
-> > There's a theoretical problem here if I understand correctly. A call to
-> > clk_enable() can happen while clk_set_rate() is in progress or vice
-> > versa. Probably we need some sort of spinlock for this PLL that
-> > synchronizes any enable/disable with the rate change so that when we
-> > restore the enable bit the clk isn't enabled when it was supposed to be
-> > off.
->
-> Since the PLL is always on, should we worry about enable/disable?
-> If you feel it is better to synchronize with a spin lock, will
-> add and post a new revision. Please let me know.
+> The DP PHY needs different settings when an eDP display is used.
+> Make sure these apply on the X13s.
 
-Probably another option might be to change stromer PLL ops to use
-prepare/unprepare instead of enable/disable. This way the
-clk_prepare_lock() in clk_set_rate() will take care of locking.
+Could you please clarify, is it the same PHY type, just being
+repurposed for eDP or is it a different PHY type?
+
+If the former is the case (and the same PHY can be used for both DP
+and eDP), it should carry the same compatible string and use software
+mechanisms (e.g. phy_set_mode_ext()) to be programmed for the correct
+operation mode.
 
 >
-> Thanks
-> Varada
-
+> FWIW
+> I could not notice any user-facing change stemming from this commit.
+>
+> Fixes: f48c70b111b4 ("arm64: dts: qcom: sc8280xp-x13s: enable eDP display")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> I have no idea whether DP3 is hardwired to be eDP, like it
+> seems to be on the last DP controller of SC7280. In that
+> case this would be moved to the SoC DTSI.
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 38edaf51aa34..6a4c6cc19c09 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -601,6 +601,7 @@ mdss0_dp3_out: endpoint {
+>  };
+>
+>  &mdss0_dp3_phy {
+> +       compatible = "qcom,sc8280xp-edp-phy";
+>         vdda-phy-supply = <&vreg_l6b>;
+>         vdda-pll-supply = <&vreg_l3b>;
+>
+>
+> ---
+> base-commit: df964ce9ef9fea10cf131bf6bad8658fde7956f6
+> change-id: 20230929-topic-x13s_edpphy-0e172498c432
+>
+> Best regards,
+> --
+> Konrad Dybcio <konrad.dybcio@linaro.org>
+>
 
 
 -- 
