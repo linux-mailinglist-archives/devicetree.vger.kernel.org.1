@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E9F7CC95B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:01:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5CF97CC968
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59AA6B21055
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:01:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1297B1C20921
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4DB8475;
-	Tue, 17 Oct 2023 17:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A957241AA5;
+	Tue, 17 Oct 2023 17:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vgEag2u+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QZUZ8le1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5662D028
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:01:29 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F94B0
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:01:26 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52bd9ddb741so10380342a12.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:01:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 258B542BFD
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:03:29 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE06B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:03:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9bf0ac97fdeso486548366b.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697562085; x=1698166885; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697562206; x=1698167006; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8dCbFI8/hJKUj+ad2n9M8RPpYFsoFt09ySpeSzWAUjg=;
-        b=vgEag2u+VomgOjH9f1YSAWkbK4eFTBWIljpfhioKLhd6rLT+vLVDTZCu6B8tc32+Jt
-         wsfJKE0bw//uwSwrRfpetWio2GFPBT9VSKPM2UrLoNVRVbvM3DkVd8RuwMRaGBhTMVRd
-         rBwtgk4N03WonU8FClGbF4ADUdju7enqvaDGtOiLFUGhhmkwQ1f3FSxxmwKMGfzkE9OD
-         xHl96eSoLks5TECDZHKmPu5ERBZ9E6pfJjrfZj8z7ekVzwCHGwmpTFhQ9DEOVjJzB6zC
-         7dm99kwG55Kj8pruzTTgb4K/fnTPP8ofOV4jNLCHciLq83yM+flFW5JkOFrS6vMJBocS
-         fOUw==
+        bh=Kgy0xobdqAbjZ7PDnTLH7bL6TueBeeQA6u4OOu5zZug=;
+        b=QZUZ8le1HaPKrEVCJD/xnsVnaJmjFiryEPp4lHp97eNJAo2mWBQIqH0CYE3qyrkGe5
+         Rv7itiL5Nfz4fE8+TkTtWmsVwKfBv6dafygy9CLiYTx8852dJKo+IIoog1oL1BhLCtj+
+         5vh5IGWMOqmSHPxd0BmhUxRg+SIPdkuM61mK8yRL1XvVGo3kwyS808H1CSTcJkA3Wi34
+         oPBBmSyFWNFvcvj9+BPtviEAbhmzGF/lfBeOGYDWp615JdRFTNP9/DhAGt5I9dXVJPFx
+         gBDo2ortd/WBzusHGiwTDh/t/Q9DZL0zTCvAthLHiVRKgIatRCBgm8JEgUXWejLA94Fk
+         aK4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697562085; x=1698166885;
+        d=1e100.net; s=20230601; t=1697562206; x=1698167006;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8dCbFI8/hJKUj+ad2n9M8RPpYFsoFt09ySpeSzWAUjg=;
-        b=Ar6qMHQClZDrsTYkaGcybBDtm83gviC7Pv0QIZSrJQIuQqnIg2MC3huvXj9+94GItU
-         D2YkKSS/+uJICSvc9uyRGk1fLRf2Fwqkfe3/wd+KWyGPO7PLp4aZhtS2hc02m14gnYEk
-         iATJwOolmvOf8CbJIgAQgZKpkX4JEX8p92hQihhljT+w4x8w+jTY7RMJUuefHHplxnkW
-         U4pj5COM4UNdyLQp5K/oMqQVQ7e+wDkYjWk1PTSp1QUCD0l8R8pjAq8MQ9iZ7Skm5DyN
-         fv/bP62hAnRVdG2hlKjMINvARcG+hXoXxguuexeCqv4aQqTh+/I4Pblxx0m/Va+hIIMb
-         i+aQ==
-X-Gm-Message-State: AOJu0YxPlryXdIVTQuVcc1RS+X66cTnlpzw04da0hicbdv6ogYeuC7tG
-	KEHEpM7vocCnC3YoKcEEnlqxRg==
-X-Google-Smtp-Source: AGHT+IEuVqprcZXsUObhszNBpu2NWjMMxUwaYaLozqOLmhg8gXaL7IZfxXuMhDsuSDXCdO8QPV9ACA==
-X-Received: by 2002:a17:907:268c:b0:9ba:65e:750e with SMTP id bn12-20020a170907268c00b009ba065e750emr1968560ejc.32.1697562085211;
-        Tue, 17 Oct 2023 10:01:25 -0700 (PDT)
+        bh=Kgy0xobdqAbjZ7PDnTLH7bL6TueBeeQA6u4OOu5zZug=;
+        b=PCmTY3wgwE5ARKzWVWaMGgjbHT2f2Vww/sLw/IoSzR5rrzcWTEg+EvdeXBh14r+RRx
+         79+VQv/zyb3hYGD8sCJYcps7uFgJg5YC0NzvOcll1MBduQnlJpAHIUFxIckcfwfiU90L
+         kc2T06BaF5GDZOlaIDQ27Ju6A2eEOjG/gCIBfey+q2pm3ezleZwbgGgxCIj+FI7nHqok
+         UwV83/u0fnfpUWZF9fVSpDmF2anVmPFAtH+m1QfKiEkNM7Q0ExdU0zHm1ysybXXFWNrc
+         PJ/Ej0YApgtfAb8jQt/wwQ7vvuOno2+qcfLfxzXPE9WWWt1MeDTT5Ql96NfUC3UYqH6D
+         oMAQ==
+X-Gm-Message-State: AOJu0Yx9mY4h5hUJOm1jWRtBVs1GVYM7ZaR9mddJkpHWbmo3cKqSPQbe
+	3epUb+wxDtHLMzrz+KCEQc0N6g==
+X-Google-Smtp-Source: AGHT+IGTk9EVS6aqAErr7g6dhZbskEbYeowGHCgWBXaQ/vOTHbiUHAdtYMNHfeuzg9MS/rEUt1MEyQ==
+X-Received: by 2002:a17:906:7949:b0:9bf:39f3:f11d with SMTP id l9-20020a170906794900b009bf39f3f11dmr1824319ejo.30.1697562205938;
+        Tue, 17 Oct 2023 10:03:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id f18-20020a17090624d200b009adc77fe165sm128227ejb.118.2023.10.17.10.01.23
+        by smtp.gmail.com with ESMTPSA id k8-20020a170906054800b0099315454e76sm125677eja.211.2023.10.17.10.03.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 10:01:24 -0700 (PDT)
-Message-ID: <dd47ff4f-bea8-4091-b572-5bef4aa187d3@linaro.org>
-Date: Tue, 17 Oct 2023 19:01:22 +0200
+        Tue, 17 Oct 2023 10:03:25 -0700 (PDT)
+Message-ID: <9da94b23-cfcb-4086-a080-7e6e59866d25@linaro.org>
+Date: Tue, 17 Oct 2023 19:03:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] HID: touchscreen: Add initial support for Himax
+Subject: Re: [PATCH v3 4/4] HID: touchscreen: Add initial support for Himax
  HID-over-SPI
 Content-Language: en-US
 To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
@@ -79,7 +79,7 @@ Cc: poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
  hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
  poyu_hung@himax.corp-partner.google.com
 References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <20231017091900.801989-3-tylor_yang@himax.corp-partner.google.com>
+ <20231017091900.801989-5-tylor_yang@himax.corp-partner.google.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,7 +125,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231017091900.801989-3-tylor_yang@himax.corp-partner.google.com>
+In-Reply-To: <20231017091900.801989-5-tylor_yang@himax.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -135,106 +135,32 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 11:18, Tylor Yang wrote:
-> The hx83102j is a TDDI IC (Touch with Display Driver). The
-> IC using SPI to transferring HID packet to host CPU. The IC also
-> report HID report descriptor for driver to register HID device.
-> The driver is designed as a framework for future expansion and
-> hx83102j is the first case. Each hx_spi_hid_hx8xxxxx modules are
-> mutual exclusive, it should be initiate one at a time.
-> 
-> This driver takes a position similar to i2c-hid, it initialize
-> and control the touch IC below and register HID to upper hid-core.
-> When touch ic report an interrupt, it receive the data from IC
-> and report as HID input to hid-core. Let hid-core dispatch input
-> to registered hid-protocol and report to related input sub-system.
-> 
-> This driver also provide advanced functions by hidraw interface:
-> - runtime firmware update
-> - debug functions, such as reg r/w
-> - self test for touch panel
-> 
-> Due to patch size is too big, separate into 3 part. This is part 1.
-> 
-> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> ---
->  MAINTAINERS                       |    1 +
->  drivers/hid/hx-hid/hx_acpi.c      |   81 ++
->  drivers/hid/hx-hid/hx_core.c      | 1605 +++++++++++++++++++++++++++++
->  drivers/hid/hx-hid/hx_core.h      |  489 +++++++++
->  drivers/hid/hx-hid/hx_hid.c       |  753 ++++++++++++++
->  drivers/hid/hx-hid/hx_hid.h       |   96 ++
->  drivers/hid/hx-hid/hx_ic_83102j.c |  340 ++++++
->  drivers/hid/hx-hid/hx_ic_83102j.h |   42 +
->  8 files changed, 3407 insertions(+)
->  create mode 100644 drivers/hid/hx-hid/hx_acpi.c
->  create mode 100644 drivers/hid/hx-hid/hx_core.c
->  create mode 100644 drivers/hid/hx-hid/hx_core.h
->  create mode 100644 drivers/hid/hx-hid/hx_hid.c
->  create mode 100644 drivers/hid/hx-hid/hx_hid.h
->  create mode 100644 drivers/hid/hx-hid/hx_ic_83102j.c
->  create mode 100644 drivers/hid/hx-hid/hx_ic_83102j.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 883870ab316f..95ea8159eced 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9345,6 +9345,7 @@ M:	Tylor Yang <tylor_yang@himax.corp-partner.google.com>
->  L:	linux-input@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/input/himax,hid.yaml
-> +F:	drivers/hid/hx-hid/
->  
->  HIMAX HX83112B TOUCHSCREEN SUPPORT
->  M:	Job Noorman <job@noorman.info>
-> diff --git a/drivers/hid/hx-hid/hx_acpi.c b/drivers/hid/hx-hid/hx_acpi.c
-> new file mode 100644
-> index 000000000000..2dc7c611a61a
-> --- /dev/null
-> +++ b/drivers/hid/hx-hid/hx_acpi.c
-> @@ -0,0 +1,81 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*  Himax Driver Code for Common IC to simulate HID
-> + *
-> + *  Copyright (C) 2023 Himax Corporation.
-> + *
-> + *  This software is licensed under the terms of the GNU General Public
-> + *  License version 2,  as published by the Free Software Foundation,  and
-> + *  may be copied,  distributed,  and modified under those terms.
-> + *
-> + *  This program is distributed in the hope that it will be useful,
-> + *   but WITHOUT ANY WARRANTY; without even the implied warranty of
-> + *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> + *  GNU General Public License for more details.
+On 17/10/2023 11:19, Tylor Yang wrote:
 
-Drop boiler plate. It's gone since some years. Having it here suggests
-you just push downstream crappy code. Please don't. Start from scratch
-taking existing driver.
+...
 
-> + */
 > +
-> +#include "hx_core.h"
-> +
-> +int himax_parse_acpi(struct device *dev,
-> +		     struct himax_platform_data *pdata)
+> +#if defined(CONFIG_FB)
+> +int fb_notifier_callback(struct notifier_block *self,
+> +			 unsigned long event, void *data)
 > +{
-> +	int ret = 0;
-> +	struct gpio_desc *desc;
-> +	const u32 interrupt_pin_idx = 0;
-> +	// const u32 reset_pin_idx = 1;
-> +	const char *interrupt_pin_dsd_name = "irq"; // to name "irq-gpios"
-> +	const char *reset_pin_dsd_name = "reset"; // to name "reset-gpios"
-
-This style, dead code, comments is not a Linux coding style.
-
+> +	const struct fb_event *evdata = data;
+> +	int *blank;
+> +	struct himax_ts_data *ts =
+> +	    container_of(self, struct himax_ts_data, fb_notif);
 > +
-> +	D("Entered");
+> +	I("entered");
+> +
+> +	if (!ts) {
+> +		E("ts is NULL");
+> +		return -ECANCELED;
+> +	}
 
-OK, I'll finish review. A lot further looks even worse. This is not code
-suitable for inclusion in mainline. Please start from scratch from
-existing code and customize it per your needs. This way you will keep
-Linux coding style instead introducing some totally different coding
-style from downstream, terrible quality driver.
+There are so many wrong things with this.... First, tell me, how
+container of valid pointer can be NULL?
+
+Second, this is not Linux coding style.
+
 
 Best regards,
 Krzysztof
