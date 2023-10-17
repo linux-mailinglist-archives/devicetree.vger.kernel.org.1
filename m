@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-9342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A96D7CCBD3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:09:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8C77CCBEA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CA161C209B2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:09:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C6C11C20873
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F94EBE;
-	Tue, 17 Oct 2023 19:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EB42EAF5;
+	Tue, 17 Oct 2023 19:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3502EAEF
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 19:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161E7EBE;
+	Tue, 17 Oct 2023 19:12:40 +0000 (UTC)
 Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E83ED;
-	Tue, 17 Oct 2023 12:09:50 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6c67060fdfbso4246307a34.2;
-        Tue, 17 Oct 2023 12:09:50 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 910BAB0;
+	Tue, 17 Oct 2023 12:12:39 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6c4bad60a1aso3656654a34.2;
+        Tue, 17 Oct 2023 12:12:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697569790; x=1698174590;
+        d=1e100.net; s=20230601; t=1697569959; x=1698174759;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Hsq/qKnq6l/ZglDvqX8puzt3/YPat0dlcmzHX8n059w=;
-        b=NlzBa1ci8yQ+FekNyMscEYJrANVRqMXJMmE9gar0IZ20kz1cB4kJFNcRhFCPNER1y1
-         A865kKCiqMltpy2ygiSYwFUrh0WaldbTMMe2fOPnHoPs5n38hv82QGWj0bkZXDdcyFcd
-         ySO6Zgl97OYfSjikJFf24fNqYxJpRP46jM0GyLCp+FJ8jbWNDSFwa1vr0pPucrRDs5oe
-         x0MhrSqYkxALapKbaqT8z6upK4mEDeBTdKEXjRanpuM1PWhL6WXmwLD2Y1zKwNfxtaVs
-         vDjZ5dZIf6VVFPLjSzHux8O5IEj9ZX+5OIrTaznmXTZEhThwWZ98rm5E95a9PC5Zv1EZ
-         Ncvg==
-X-Gm-Message-State: AOJu0Yx5Ifc/xzgi3sDvuliNAd8eNGY629XdEywfOdKcTARKmCp+qSUt
-	Nj0agi0/p7ttFiLBQywBQQ==
-X-Google-Smtp-Source: AGHT+IFsuTE38qfeNB0xuLfLDlF3//sxJrUPKESH01L/xPOutm3tTkoAeKJmsazGo7ze21d+XITEfQ==
-X-Received: by 2002:a05:6808:138a:b0:3b2:e12e:d2db with SMTP id c10-20020a056808138a00b003b2e12ed2dbmr1925675oiw.39.1697569789785;
-        Tue, 17 Oct 2023 12:09:49 -0700 (PDT)
+        bh=YKOdpoZLrfC7mZi7adYpYhK/nK8naai8II+Wc2lfLxY=;
+        b=VH1fWjwecDmcLNZggU66HmnglpzwHfNtLJEN/PE4vQzDy9eKw+q0Q7I8XXybbRC6CU
+         PynCNYod0cYwmUEiEfpHCQwdMsMx6I7gl/rq9u00lwYama9ZEnurxRbNxWqxtV9fL/lx
+         +1xA2D+KP82NzkPYWgVLmZaDjYfe7/k0x32vAPJYs4RS/7VR5Y0NG0NsI6RlP2Kcy/MX
+         UrJ7VA3X+HxQ/WRCc1EVEOlbA5xBej4Y1QxLuCPa5X5GDCPEPl8xTLWsvHJzpTy2hTT1
+         i3b/rCWdDJTMt4wBQ+h1lDz1qLk8kosHW1rmAvcfbJR3+4ONn3p4BJqf+JdihfLPYHc9
+         EC/g==
+X-Gm-Message-State: AOJu0YzrWEBG8sZWVzpU2LPTXKlQ68NgwYWSGhfq45rB0auwqCWK505t
+	5yPr4mDS5iPR9qhhNCZg8LO8tliKMQ==
+X-Google-Smtp-Source: AGHT+IGkXqhJ5ElPxLv4x+02C3cqbHcjm/YAs7LK6bTEQxHSpBtRkAaBTPSRRFt1R25w+BMNr/s/zA==
+X-Received: by 2002:a05:6830:1d62:b0:6bc:8afe:8a15 with SMTP id l2-20020a0568301d6200b006bc8afe8a15mr2927536oti.38.1697569958861;
+        Tue, 17 Oct 2023 12:12:38 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bl24-20020a056808309800b003afc33bf048sm253949oib.2.2023.10.17.12.09.48
+        by smtp.gmail.com with ESMTPSA id q20-20020a05683031b400b006b8c277be12sm359714ots.8.2023.10.17.12.12.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 12:09:49 -0700 (PDT)
-Received: (nullmailer pid 2526574 invoked by uid 1000);
-	Tue, 17 Oct 2023 19:09:48 -0000
-Date: Tue, 17 Oct 2023 14:09:48 -0500
+        Tue, 17 Oct 2023 12:12:38 -0700 (PDT)
+Received: (nullmailer pid 2529777 invoked by uid 1000);
+	Tue, 17 Oct 2023 19:12:37 -0000
+Date: Tue, 17 Oct 2023 14:12:37 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sam Edwards <cfsworks@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Daniel =?utf-8?Q?Kukie=C5=82a?= <daniel@kukiela.pl>, Lokesh Poovaragan <loki@gimmeapis.com>, Sam Edwards <CFSworks@gmail.com>, Sven Rademakers <sven.rademakers@gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: rockchip: Add Turing RK1
-Message-ID: <169756978718.2526521.10700760788625408970.robh@kernel.org>
-References: <20231011225823.2542262-1-CFSworks@gmail.com>
- <20231011225823.2542262-3-CFSworks@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: usb: fsa4480: Add data-lanes property
+ to endpoint
+Message-ID: <20231017191237.GA2527374-robh@kernel.org>
+References: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
+ <20231013-fsa4480-swap-v1-1-b877f62046cc@fairphone.com>
+ <20231016142256.GA2754674-robh@kernel.org>
+ <323ff7db-0963-4e63-94e9-551540dd6490@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231011225823.2542262-3-CFSworks@gmail.com>
+In-Reply-To: <323ff7db-0963-4e63-94e9-551540dd6490@linaro.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,17 +75,75 @@ X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On Wed, 11 Oct 2023 16:58:22 -0600, Sam Edwards wrote:
-> Add the Turing RK1, a Jetson-compatible system-on-module (SoM)
-> powered by RK3588, from Turing Machines, Inc.
+On Mon, Oct 16, 2023 at 04:32:55PM +0200, Neil Armstrong wrote:
+> On 16/10/2023 16:22, Rob Herring wrote:
+> > On Fri, Oct 13, 2023 at 01:38:05PM +0200, Luca Weiss wrote:
+> > > Allow specifying data-lanes to reverse the SBU muxing orientation where
+> > > necessary by the hardware design.
+> > 
+> > What situation in the hardware design makes this necessary. Please
+> > describe the problem.
+> > 
+> > > 
+> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > ---
+> > >   .../devicetree/bindings/usb/fcs,fsa4480.yaml       | 29 +++++++++++++++++++++-
+> > >   1 file changed, 28 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+> > > index f6e7a5c1ff0b..86f6d633c2fb 100644
+> > > --- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+> > > @@ -32,10 +32,37 @@ properties:
+> > >       type: boolean
+> > >     port:
+> > > -    $ref: /schemas/graph.yaml#/properties/port
+> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > >       description:
+> > >         A port node to link the FSA4480 to a TypeC controller for the purpose of
+> > >         handling altmode muxing and orientation switching.
+> > > +    unevaluatedProperties: false
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          data-lanes:
+> > > +            $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +            description:
+> > > +              Specifies how the AUX+/- lines are connected to SBU1/2.
+> > 
+> > Doesn't this depend on the connector orientation? Or it is both that and
+> > the lines can be swapped on the PCB?
+> > 
+> > Seems like an abuse of data-lanes which already has a definition which
+> > is not about swapping + and - differential lanes.
 > 
-> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> The FSA acts as a mux between DP AUX, Audio lanes on one side and
+> the USB-C SBU lanes on the other side.
+> _______          ______
+>       |          |     |
+>       |-- HP   --|     |
+>       |-- MIC  --|     |or
+> SoC   |          | MUX |-- SBU1 --->  To the USB-C
+> Codec |-- AUX+ --|     |-- SBU2 --->  connected
+>       |-- AUX- --|     |
+> ______|          |____ |
 > 
+> The SBU1 & SBU2 are connected to the USB-C connector, and the actual orientation
+> to the connected devices/cable/whatever is determined by the TPCM and the MUX in
+> the FSA4480 with be dynamically changed according to the CC1/CC2 detection and PD alt mode.
+> 
+> But on the other side the orientation of the AUX+/AUX- connected to the SoC
+> is not tied to the USB-C orientation but how it's routed on the PCB.
+> 
+> This describes how the AUX+/AUX- are physically routed to the FSA4480 chip.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I'd hate for this ASCII art to go to waste. Please add this detail to 
+the commit message.
+
+Rob
 
 
