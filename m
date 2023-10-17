@@ -1,264 +1,377 @@
-Return-Path: <devicetree+bounces-9272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0CE7CC567
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:00:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B92187CC572
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35E47B21028
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:00:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAEA91C20912
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B1B43A82;
-	Tue, 17 Oct 2023 14:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28BF43A84;
+	Tue, 17 Oct 2023 14:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmDHg0xK"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="OAzxZG3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79223436B0
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 14:00:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAFF9C433C9;
-	Tue, 17 Oct 2023 14:00:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697551203;
-	bh=ogyJKWZQozXRb1pM2bJA3u5IHZ6moRSNNmWvQiTwxGQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DmDHg0xK9dsy8NLYVYANKT/5eKaAxXQXuVyZproHp/fyLPKkcZzhbdcN1qkrwIood
-	 394/gE9mdk1eNyjtrsOSuSwct/0Cb/8goBkFgKH6PGRoMacR4sLDmc4yWn67wLpNSa
-	 VBLUUOCaPuQw/Z0RLEdS02kQuzrEW+FaOtfroa0piPYQRbTW7fRGsLt1uGvmoEJ+Ld
-	 dX8MSpZT0UAeRXBjidGg+8A5gWP+GWJPtnaEjuqzNp1X797RsIdOFobjW0aphp5V8j
-	 QYHHrHBiXAkFjSZbNilE/dn8rz7y8HKL0yO3Cpds84w/p0HDEc/KwUPdY8l2ix/pvq
-	 As0c2hCdFUmPA==
-Date: Tue, 17 Oct 2023 14:59:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jikos@kernel.org, benjamin.tissoires@redhat.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
-	hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
-	poyu_hung@himax.corp-partner.google.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20231017-womb-lantern-186f16ce67af@spud>
-References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <20231017091900.801989-2-tylor_yang@himax.corp-partner.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96008881F
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 14:02:13 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15810102;
+	Tue, 17 Oct 2023 07:02:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1697551330; x=1729087330;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jANLk1Fnic8hXh7J6ape/eAxnsf8qTgjV0Zfaqe390w=;
+  b=OAzxZG3EzLlUe/nZ8WwyY760l7RoAC3ShpkYCxZWeFEnhgFcK1q+AoHI
+   je7++6piGLHBTmomZXXw/WtkmXgmslpe5Jf/hqezPakpktSVK803j2sDx
+   7y72ds6oW16yYbDbAUy1uXXHH//MQIAMddx/yppba9CBWJNUCNQzXSmAp
+   ewh2Lxz7mxBgGghErsL6qpJS66e0CUE//h9WV3HJMasndR80Gqeakjx4R
+   hDdfmDy3DZLEEMKQ5jhFSIe9AN2f73BX4GHauSQKckxjy5ZewK1OQ4399
+   9rfiNhYWHWQUF2rnjnatE4GomZnB5oLfQjmKa3rOV3/IzojaqApl3OX0k
+   A==;
+X-IronPort-AV: E=Sophos;i="6.03,232,1694728800"; 
+   d="scan'208";a="33509080"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 17 Oct 2023 16:02:08 +0200
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BC0BB280082;
+	Tue, 17 Oct 2023 16:02:07 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Jacky Bai <ping.bai@nxp.com>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org" <broonie@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, Joy Zou <joy.zou@nxp.com>
+Cc: "kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a support
+Date: Tue, 17 Oct 2023 16:02:09 +0200
+Message-ID: <2213718.72vocr9iq0@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <AM6PR04MB59255766CED30160FB552F94E10AA@AM6PR04MB5925.eurprd04.prod.outlook.com>
+References: <20230531065724.3671795-1-joy.zou@nxp.com> <4630917.iIbC2pHGDl@steina-w> <AM6PR04MB59255766CED30160FB552F94E10AA@AM6PR04MB5925.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8k9kbDByS1+37zNr"
-Content-Disposition: inline
-In-Reply-To: <20231017091900.801989-2-tylor_yang@himax.corp-partner.google.com>
-
-
---8k9kbDByS1+37zNr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Yo,
+Hi,
 
-On Tue, Oct 17, 2023 at 05:18:57PM +0800, Tylor Yang wrote:
-> The Himax HID-over-SPI framework support for Himax touchscreen ICs
-> that report HID packet through SPI bus. The driver core need reset
->  pin to meet reset timing spec. of IC. An interrupt to disable
-> and enable interrupt when suspend/resume. Two optional power control
->  if target board needed.
+Am Dienstag, 1. August 2023, 12:17:20 CEST schrieb Joy Zou:
+> > -----Original Message-----
+> > From: Alexander Stein
+> > <alexander.stein@ew.tq-group.com<mailto:alexander.stein@ew.tq-group.com=
+>>
+> >=20
+ Sent: 2023=E5=B9=B47=E6=9C=885=E6=97=A5 21:13
+> > To: Jacky Bai <ping.bai@nxp.com<mailto:ping.bai@nxp.com>>;
+> > lgirdwood@gmail.com<mailto:lgirdwood@gmail.com>;
+> > broonie@kernel.org<mailto:broonie@kernel.org>;
+> > robh+dt@kernel.org<mailto:robh+dt@kernel.org>;
+> > krzysztof.kozlowski+dt@linaro.org<mailto:krzysztof.kozlowski+dt@linaro.=
+or
+> > g>; conor+dt@kernel.org<mailto:conor+dt@kernel.org>;
+> > shawnguo@kernel.org<mailto:shawnguo@kernel.org>;
+> > s.hauer@pengutronix.de<mailto:s.hauer@pengutronix.de>;
+> > linux-arm-kernel@lists.infradead.org<mailto:linux-arm-kernel@lists.infr=
+ad
+> > ead.org>; Joy Zou <joy.zou@nxp.com<mailto:joy.zou@nxp.com>> Cc:
+> > kernel@pengutronix.de<mailto:kernel@pengutronix.de>;
+> > festevam@gmail.com<mailto:festevam@gmail.com>; dl-linux-imx
+> > <linux-imx@nxp.com<mailto:linux-imx@nxp.com>>;
+> > devicetree@vger.kernel.org<mailto:devicetree@vger.kernel.org>;
+> > linux-arm-kernel@lists.infradead.org<mailto:linux-arm-kernel@lists.infr=
+ad
+> > ead.org>;
+> > linux-kernel@vger.kernel.org<mailto:linux-kernel@vger.kernel.org>
+> > Subject: [EXT] Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a
+> > support>
+> >
+> >
+> > Caution: This is an external email. Please take care when clicking links
+> > or
+ opening attachments. When in doubt, report the message using the
+> > 'Report this email' button
+> >
+> >
+> >
+> >
+> > Hello,
+> >
+> >
+> >
+> > Am Mittwoch, 5. Juli 2023, 08:50:24 CEST schrieb Joy Zou:
+> >=20
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Alexander Stein
+> > > > <alexander.stein@ew.tq-group.com<mailto:alexander.stein@ew.tq-group=
+=2Ec
+> > > > om>>
+ Sent: 2023=E5=B9=B45=E6=9C=8831=E6=97=A5 19:35
+> > > > To: Jacky Bai <ping.bai@nxp.com<mailto:ping.bai@nxp.com>>;
+> > > > lgirdwood@gmail.com<mailto:lgirdwood@gmail.com>;
+> > > > broonie@kernel.org<mailto:broonie@kernel.org>;
+> > > > robh+dt@kernel.org<mailto:robh+dt@kernel.org>;
+> > > > krzysztof.kozlowski+dt@linaro.org<mailto:krzysztof.kozlowski+dt@lin=
+ar
+> > > > o.org>; conor+dt@kernel.org<mailto:conor+dt@kernel.org>;
+> > > > shawnguo@kernel.org<mailto:shawnguo@kernel.org>;
+> > > > s.hauer@pengutronix.de<mailto:s.hauer@pengutronix.de>;
+> > > > linux-arm-kernel@lists.infradead.org<mailto:linux-arm-kernel@lists.=
+in
+> > > > fradead.org> Cc: kernel@pengutronix.de<mailto:kernel@pengutronix.de=
+>;
+> > > > festevam@gmail.com<mailto:festevam@gmail.com>; dl-linux-imx
+> > > > <linux-imx@nxp.com<mailto:linux-imx@nxp.com>>;
+> > > > devicetree@vger.kernel.org<mailto:devicetree@vger.kernel.org>;
+> > > > linux-arm-kernel@lists.infradead.org<mailto:linux-arm-kernel@lists.=
+in
+> > > > fradead.org>;
+> > > > linux-kernel@vger.kernel.org<mailto:linux-kernel@vger.kernel.org>;
+> > > > Joy Zou
+> > =20
+> >  <joy.zou@nxp.com<mailto:joy.zou@nxp.com>>
+> > =20
+> > > > Subject: Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a
+> > > > support
+> > > >
+> > > >
+> > > >
+> > > > Hi,
+> > > >=20
+> > > > > @@ -104,7 +104,15 @@ static const struct regulator_ops
+> > > > > pca9450_ldo_regulator_ops =3D { * 0.60 to 2.1875V (12.5mV step)
+> > > > >
+> > > > >
+> > > > >
+> > > > >   */
+> > > > >
+> > > > >
+> > > > >
+> > > > >  static const struct linear_range pca9450_dvs_buck_volts[] =3D {
+> > > > >
+> > > > >
+> > > > >
+> > > > > -     REGULATOR_LINEAR_RANGE(600000,  0x00, 0x7F, 12500),
+> > > > > +     REGULATOR_LINEAR_RANGE(600000, 0x00, 0x7F, 12500), };
+> > > > > +
+> > > > > +/*
+> > > > > + * BUCK1/3
+> > > > > + * 0.65 to 2.2375V (12.5mV step)
+> > > >
+> > > >
+> > > >
+> > > >
+> > > >
+> > > > Reading this comment, it seems the same distinction needs to be done
+> > > > for
+> > > > BUCK3 as well, no?
+> > >
+> > >
+> > >
+> > > Sorry for the late reply!
+> > > The BUCK1 and BUCK3 are dual phase, so don't need to be done for BUCK=
+3.
+> > >
+> > >
+> > >
+> > > >
+> > > >
+> > > >
+> > > > > + */
+> > > > > +static const struct linear_range pca9450_trim_dvs_buck_volts[] =
+=3D {
+> > > > > +     REGULATOR_LINEAR_RANGE(650000, 0x00, 0x7F, 12500),
+> > > > >
+> > > > >
+> > > > >
+> > > > >  };
 >=20
-> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> ---
->  .../devicetree/bindings/input/himax,hid.yaml  | 123 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/himax,hid.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/input/himax,hid.yaml b/Doc=
-umentation/devicetree/bindings/input/himax,hid.yaml
-> new file mode 100644
-> index 000000000000..9ba86fe1b7da
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/himax,hid.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/himax,hid.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax TDDI devices using SPI to send HID packets
-> +
-> +maintainers:
-> +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> +
-> +description: |
-> +  Support the Himax TDDI devices which using SPI interface to acquire
-> +  HID packets from the device. The device needs to be initialized using
-> +  Himax protocol before it start sending HID packets.
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hid
-
-This compatible seems far too generic. Why are there not device specific
-compatibles for each TDDI device?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset:
-> +    maxItems: 1
-> +    description: Reset device, active low signal.
-> +
-> +  vccd-supply:
-> +    description:
-> +      Optional regulator for the 1.8V voltage.
-> +
-> +  vcca-supply:
-> +    description:
-> +      Optional regulator for the analog 3.3V voltage.
-> +
-> +  himax,id-gpios:
-> +    maxItems: 8
-> +    description: GPIOs to read physical Panel ID. Optional.
-> +
-> +  spi-cpha: true
-> +  spi-cpol: true
-
-> +  himax,ic-det-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC detection timing must after the
-> +      display panel initialized. This property is used to specify the
-> +      delay time when TPIC detection and display panel initialization
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      detection start.
-> +
-> +  himax,ic-resume-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC resume timing must after the
-> +      display panel resumed. This property is used to specify the
-> +      delay time when TPIC resume and display panel resume
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      resume start.
-
-
-> +  panel:
-> +    description:
-> +      The node of the display panel device. The driver will use this
-> +      node to get the project ID of the display panel. Optional.
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      himax,pid:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        minItems: 1
-> +        maxItems: 8
-> +        items:
-> +          minimum: 0
-> +          maximum: 65535
-> +        description:
-> +          When only one value exist, represent Project ID of the device.
-> +          When multiple values exist, order in event number value repres=
-net
-> +          id value from id-gpios and odd number value represent Project =
-ID
-> +          relatives to prior id value. This is used to specify the firmw=
-are
-> +          for the device.
-
-I am sorry, but I still fail to understand why using device specific
-compatibles & firmware-name does not work here. It still seems like this
-property exists purely because you do not know what device you are
-because of a lack of specific compatibles.
-
-Thanks,
-Conor.
-
-> +
-> +    required:
-> +      - himax,pid
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - reset
-> +
-> +unevaluatedProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        touchscreen@0 {
-> +            compatible =3D "himax,hid";
-> +            reg =3D <0x0>;
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> +            pinctrl-0 =3D <&touch_pins>;
-> +            pinctrl-names =3D "default";
-> +
-> +            spi-max-frequency =3D <12500000>;
-> +            spi-cpha;
-> +            spi-cpol;
-> +
-> +            reset =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
-> +            himax,ic-det-delay-ms =3D <500>;
-> +            himax,ic-resume-delay-ms =3D <100>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7a7bd8bd80e9..883870ab316f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9340,6 +9340,12 @@ L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	drivers/misc/hisi_hikey_usb.c
-> =20
-> +HIMAX HID OVER SPI TOUCHSCREEN SUPPORT
-> +M:	Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> +L:	linux-input@vger.kernel.org
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/input/himax,hid.yaml
-> +
->  HIMAX HX83112B TOUCHSCREEN SUPPORT
->  M:	Job Noorman <job@noorman.info>
->  L:	linux-input@vger.kernel.org
-> --=20
-> 2.25.1
 >=20
+> > > > > @@ -708,8 +917,9 @@ static int pca9450_i2c_probe(struct i2c_client
+> > > > > *i2c)
+> > > > >
+> > > > >
+> > > > >
+> > > > >       const struct pca9450_regulator_desc     *regulator_desc;
+> > > > >       struct regulator_config config =3D { };
+> > > > >       struct pca9450 *pca9450;
+> > > > >
+> > > > >
+> > > > >
+> > > > > -     unsigned int device_id, i;
+> > > > > +     unsigned int device_id, i, val;
+> > > > >
+> > > > >
+> > > > >
+> > > > >       unsigned int reset_ctrl;
+> > > > >
+> > > > >
+> > > > >
+> > > > > +     bool pmic_trim =3D false;
+> > > > >
+> > > > >
+> > > > >
+> > > > >       int ret;
+> > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > > >       if (!i2c->irq) {
+> > > > >
+> > > > >
+> > > > >
+> > > > > @@ -721,6 +931,22 @@ static int pca9450_i2c_probe(struct
+> > > > > i2c_client
+> > > > > *i2c)
+> > > > >
+> > > > >
+> > > > >
+> > > > >       if (!pca9450)
+> > > > >
+> > > > >
+> > > > >
+> > > > >               return -ENOMEM;
+> > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > > > +     pca9450->regmap =3D devm_regmap_init_i2c(i2c,
+> > > > > +
+> > > >
+> > > >
+> > > >
+> > > > &pca9450_regmap_config);
+> > > >
+> > > >
+> > > >
+> > > > > +     if (IS_ERR(pca9450->regmap)) {
+> > > > > +             dev_err(&i2c->dev, "regmap initialization failed\n"=
+);
+> > > > > +             return PTR_ERR(pca9450->regmap);
+> > > > > +     }
+> > > > > +
+> > > > > +     ret =3D regmap_read(pca9450->regmap, PCA9450_REG_PWRCTRL,
+> > > >
+> > > >
+> > > >
+> > > > &val);
+> > > >
+> > > >
+> > > >
+> > > > > +     if (ret) {
+> > > > > +             dev_err(&i2c->dev, "Read device id error\n");
+> > > > > +             return ret;
+> > > > > +     }
+> > > > > +
+> > > > > +     if (val & PCA9450_REG_PWRCTRL_TOFF_DEB)
+> > > > > +             pmic_trim =3D true;
+> > > >
+> > > >
+> > > >
+> > > >
+> > > >
+> > > > PCA9450_REG_PWRCTRL is a read/write register. How is it possible to
+> > > > detect a chip revision using a bit which can be changed by software
+> > > > e.g.
+> > > > bootloader? Despite that this bit sets debounce time for
+> > > > PMIC_ON_REQ, how is this related to BUCK1 voltage range?
+> > >
+> > >
+> > >
+> > > There are old and new two kind PMIC pca9451a.
+> >
+> >
+> >
+> > There is only one part mentioned in the ordering options. How can I
+> > distinguish them? Any chip ID, date codes, markings?
+>=20
+> Yes, there is only one part. We distinguish the new and old part by this
+> bit
+ Toff_Deb of PCA9450_REG_PWRCTRL reset value. The reset value 0 means
+> it's old part, and the reset value 1 means it's new part.
 
---8k9kbDByS1+37zNr
-Content-Type: application/pgp-signature; name="signature.asc"
+Is the "old" part by coincidence an unofficial prerelease/sample chip?
 
------BEGIN PGP SIGNATURE-----
+> >
+> >
+> > > This bit sets debounce time in
+> > > PCA9450_REG_PWRCTRL was set different value by hardware in order to
+> > > only distinguish the old and new PMIC. This bit isn't related to the
+> > > BUCK1 voltage range. If the pmic_trim is true that means it's new
+> > > pca9451a.
+>
+> >
+> >
+> > But this bit is writable. How do you know it has not been modified since
+> > reset?
+> Yes, we don't consider modify the debounce bit case. Modify the Toff_deb
+> value
+ will influence the old and new part judgement.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS6TXgAKCRB4tDGHoIJi
-0uyjAP4kfMd90YPnnCBnbn1Gdr6vm6VSF1jPM2346vOZLdXoBQD/fejsPeA8yFyB
-BtmW46Z7KRSpHjc5TD7Z5uzOFACf3gc=
-=Ewca
------END PGP SIGNATURE-----
+This judgement seems broken to me. How can I know offline whether I have ol=
+d=20
+or new parts? I would like to know if there is a difference on some my boar=
+ds.
 
---8k9kbDByS1+37zNr--
+> For example, this default value of Toff_deb is 1 in the new part, if the
+> customers
+ change the Toff_deb value from 1 to 0, and then make the board
+> warm reset, the Toff_deb value still keep 0, if the Toff_deb value is 0,
+> the PMIC driver will think this part is old part. But this part is new pa=
+rt
+> in fact.
+
+This should show you it's a bad idea to decide the chip revision depending =
+on=20
+Toff_deb.
+
+> Have discussed this issue with our internal team member, we will add a no=
+te
+> to PCA9451
+ datasheet =E2=80=93 =E2=80=9CPlease contract NXP If you want to change
+> Toff_deb.=E2=80=9D But till now, we am not aware any customers case which=
+ need to
+> adjust Toff_deb.
+>=20
+> Make it more clear: If customers do need to manually adjust Toff_deb, It
+> need PMIC driver
+ update to bypass this bit check and directly apply
+> corresponding voltage config table old or new. Thank you very much for yo=
+ur
+> comments and efforts.
+
+In this case I need to know if I use old, new or both revision of these par=
+ts.
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
+
+
 
