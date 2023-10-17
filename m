@@ -1,470 +1,253 @@
-Return-Path: <devicetree+bounces-9223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B917CC222
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 13:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E347CC242
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:05:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0F731C208A3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 11:59:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67B251C20897
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 12:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC4341E30;
-	Tue, 17 Oct 2023 11:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387C441E33;
+	Tue, 17 Oct 2023 12:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="F3UD0xZg"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="FCt04BRE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C6A1946A
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 11:59:42 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2081.outbound.protection.outlook.com [40.107.243.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7538B0;
-	Tue, 17 Oct 2023 04:59:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8461946A
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 12:05:38 +0000 (UTC)
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2125.outbound.protection.outlook.com [40.107.114.125])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4545C10FA;
+	Tue, 17 Oct 2023 05:05:16 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SFZeVaOYGAKLplkVKi9sppZndgsXYHPyzwoRs7M8VhjVBaRaqUfRIi3fivnQNBWXWc8ShJ2hukZJUU7AdvleSuvqP5UdXnu8ozW8nswZpDEYsDC0B9UoXFqQd+UyIs3VHkx1PP1KPYwYp0zdOyiugYMEihBzV/uZY4BgCnzru4J+4DEnPhIbyLfiZapf6bmY462QAR0NQZaM61GZZ7NFZIpUCOCkobt8IvQg4OTKfJeXD2rOlqz4KPhftjRcaJVX+taoA5TX4oY47wnwlduCU9cxAos/Xk/KCeZp1XZWVuA4SYKAoA+K5kZ+eo3OyppdyFTpoXw4kS8ph7+uDrfyQA==
+ b=Lr/rNwv72KWejvwkR83uxBbJfGh61NL4nQ42wgCsup5UAHyrb4unNV39vPpbI7O+WbpTlQh+B+p9iSN3OsiD9rgknK7+9vs7lffaJInkRSJRi+Dc7sBQgWsTCDAjv7KYXm3kgiypit0LOJsn+/i5bw4hdDrypNGgvHlBrkchdo9OlJmRAcQLc/zmZ7gACVWDEl60mqewNbPZeM6L52eK8yDPzBZf26d813WE9FTNsNfKqf/P39WtY8A0Gx2H5nVVcl/IS1Y+qWl0CmTAhLZ29FAbRP7L4U60+OMLcA9eljx8baodqfkBGO6p5WjVVjM6utc4jCchkajNEFizpZAr0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ney9QkRF18Fx/CHlRJ2Y10p5QziLceS9ZY1xEpLyx48=;
- b=R9n3ZWzHEFQFN6GE5565Y18FcCzpyDa4cvuCxTTPVut5kYrUr9jC2H4GrnUCUGUpt7pBD0lPpmdtLV+Z+rlGQ0Ov7afS5d6MjQoyJ84JSj8VBjMsdd87Ir8EuEenS8F81HFwr9SRf5C7L3zY6lmN2xxkiK9fLrThjwyZbjU2+qWAzr62CqBwklDe7/2pkHm7lb49HlYxmzRee1BZLuYJLGqUM1Xih7RILugnks7nQaXXL/KM6/fIiLooE+nCDdBzaw9vhiKmqOnaJncVRSkz5uIBussYPM/3IKJ7lHSLokznVkM5arKBI9I5r5Ogw3DjOoGTUB4/r+xqsrq/uztLPw==
+ bh=W6EzN4bosh5xuY0YhlhxLFcbBWg+mnRuAx0CnBW4Q34=;
+ b=B/BsJEu6zbKuuyr2aT5mf8xr3+d+qIixNXGbwUlBGDGZh3I0W5mWmrbP2IhShU4e4340upOnOzQD51yZG8w/NE9WMddJ/q37HaTiT8FbRJfrgZCIwfmIIgF6+PFx3DGkRAypfhh5i3OX5Ez9kErFoWh9ywpdeBT77DrrkW8syxZUV2RKMg/pjdzOD0y2a6X+qpN78k4J3hlBN7XN4+eoqrWC3kTgMu1fQMhRC/OKSILeEPqNrksrDB3vkMvUh/ATfjcgoIDm7b9JjOhmVeLbYqqXQ7Zm0G6J9viryQe11hBgvN6Yjh4PH+wNuXzSjKQNXomzbAiqzOqqpB8o3vpdhg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ney9QkRF18Fx/CHlRJ2Y10p5QziLceS9ZY1xEpLyx48=;
- b=F3UD0xZgSQ8XXX5fVht20+dhnouA534Cvjf3dY62O7oBYw1GH+cMMOgjt1Xttla5pdFqRCCUFjpIbK2s1aejKEURcJIECMJuLPapeddguxihK74eHyQYIiY8oaACg03mSxhS+HZnpUe0+J3b75Z8T01Lui5Bz5Q8bPKK6RuqR20=
-Received: from DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) by
- PH7PR12MB7843.namprd12.prod.outlook.com (2603:10b6:510:27e::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=W6EzN4bosh5xuY0YhlhxLFcbBWg+mnRuAx0CnBW4Q34=;
+ b=FCt04BRE5SbVh2Aobmll3ukFtlRvTQyZmwxUKmx33zuP7P46M6h1Gs+gmjnFzYbF9lSEPWR04+4VXoS3qlDBgIiIo8OtFyrcEN+n0Esk2NoKoSB+J/ANwOhmyCDjmMhst4XWgfsn8XkbmMK/16+nNRcK7yybhPtohrAnAyeZ+zs=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB11122.jpnprd01.prod.outlook.com
+ (2603:1096:400:3df::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Tue, 17 Oct
- 2023 11:59:36 +0000
-Received: from DM4PR12MB6109.namprd12.prod.outlook.com
- ([fe80::1ef6:8869:d228:ed8a]) by DM4PR12MB6109.namprd12.prod.outlook.com
- ([fe80::1ef6:8869:d228:ed8a%5]) with mapi id 15.20.6886.034; Tue, 17 Oct 2023
- 11:59:36 +0000
-From: "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
-To: "m.brock@vanmierlo.com" <m.brock@vanmierlo.com>
-CC: "git (AMD-Xilinx)" <git@amd.com>, "Simek, Michal" <michal.simek@amd.com>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+ 2023 12:05:12 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::a188:9424:be62:e5fb]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::a188:9424:be62:e5fb%6]) with mapi id 15.20.6886.034; Tue, 17 Oct 2023
+ 12:05:12 +0000
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
+	<robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>,
 	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linux-serial@vger.kernel.org"
-	<linux-serial@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "jirislaby@kernel.org"
-	<jirislaby@kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "Pandey, Radhey Shyam"
-	<radhey.shyam.pandey@amd.com>, "Goud, Srinivas" <srinivas.goud@amd.com>,
-	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>, "manion05gk@gmail.com"
-	<manion05gk@gmail.com>
-Subject: RE: [PATCH V2 2/2] tty: serial: uartps: Add rs485 support to uartps
- driver
-Thread-Topic: [PATCH V2 2/2] tty: serial: uartps: Add rs485 support to uartps
- driver
-Thread-Index: AQHZ/FMvzMspQGxVL0SsVkq4HFh31bBGhVoAgAdR9zA=
-Date: Tue, 17 Oct 2023 11:59:36 +0000
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "jingoohan1@gmail.com"
+	<jingoohan1@gmail.com>, "gustavo.pimentel@synopsys.com"
+	<gustavo.pimentel@synopsys.com>, "mani@kernel.org" <mani@kernel.org>,
+	=?utf-8?B?S3J6eXN6dG9mIFdpbGN6ecWEc2tp?= <kwilczynski@kernel.org>
+CC: "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid unnecessary
+ memory assignment
+Thread-Topic: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
+ unnecessary memory assignment
+Thread-Index: AQHZ/BKVrluFe2vL8EK2EaoOE81Q27BNveCAgAAopfA=
+Date: Tue, 17 Oct 2023 12:05:12 +0000
 Message-ID:
- <DM4PR12MB610907F8A6306E0A9CADAB528CD6A@DM4PR12MB6109.namprd12.prod.outlook.com>
-References: <20231011145602.3619616-1-manikanta.guntupalli@amd.com>
- <20231011145602.3619616-3-manikanta.guntupalli@amd.com>
- <47fcf873a011291d06740ee9af3a45e4@vanmierlo.com>
-In-Reply-To: <47fcf873a011291d06740ee9af3a45e4@vanmierlo.com>
-Accept-Language: en-US
-Content-Language: en-US
+ <TYBPR01MB5341006D4CEAA1422B0A41F3D8D6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
+	<20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
+	<CGME20231017091924eucas1p2e65759cd05340e3e5b3a1d9ab9de1320@eucas1p2.samsung.com>
+ <a85158a0-858c-43c3-b64a-c09de72a50f9@samsung.com>
+In-Reply-To: <a85158a0-858c-43c3-b64a-c09de72a50f9@samsung.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
+ header.d=none;dmarc=none action=none header.from=renesas.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB6109:EE_|PH7PR12MB7843:EE_
-x-ms-office365-filtering-correlation-id: 5bb03e90-2626-4b1e-3390-08dbcf0888b2
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYCPR01MB11122:EE_
+x-ms-office365-filtering-correlation-id: 8a2ef0de-4391-4905-09a2-08dbcf09511c
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info:
- GvqNErJwukor2ljEngriWJENhLEWeoYYFQHPcI4ejPiLp8m3eQaMal36y0IhWdKOzHiXTy5mDdjgAbhSPGjlMD0/xMCfYAji4s0S08cRsSdIFhdMgTir+y6x7W0rPsL5iq+ROyxAgyittlYjFuE9qYD5/gJj+Vf0pa0JyZGJHPmlzq3b4eFZNMbE6y1w+bKikiVpPj/QBnV839vbdy/f43//Oq/36Y1Ec/rxtbLSGb2rk6rwn8QgG/adShsWqacrHPcsPGyTxCTVBXC0PeGGmC6WzDoFuHRpmn3ETqNAOVn2cCwIltiH3p0hdYdBoPcDLBQhDGe9ooKfhAIRrCb3iRhbIiPsj5aQMeP+rlzQfx0MXtjzeKmRp6RudvtMjZtQsNijVwQ8Ui2xwuzGIYCcjzFv+W0xF76/rYShTwQxenlYrWbJ5MpqXbfsiSdprvSiCmq2De3mkWSXgtm8rtN1ATgQ5BYsi+I87nZCNexuOaq/OMMs2pBD2hqyVWEZ+UZ/4nywwvo+bKYzEF89JyJev+MPE44RmT7zm8HY7xo5QOep4eOuIsyrsubd+T/Mw3qpSlw9KNZYRpzb/vctTFbhSUt/SyOXfXrOOjY6TsByloQ=
+ THoGU4HYD+DhlKcTV0g55YAvDdLPCJHluCbVyqV4VOa3uIsG+o4GCxsL50fJrQhn/2NmOIi64XPSza86XaWbsomVze1+oG6HCFGlWcbFS7ObKBZqcN66T4JCIO6m+qxMJ0xo2N/pfVnHd2FjaL4XRyFBdK1MzjdHN7E8n0DsYhkkqPIDbkfZA3gLx9ppoJzZtSefc5Mp/2tbnqv3WOQTG/eyvFSXkGJAkDO641tI4bZ0hmp0xBiqysLgZuGeC8rh8CHGAYVoPAkqiXqqtp+S5CgMtl5wbRZpyLnykdIWy6n9Yvfhg7xd9cd42WdsH0lXFsAOmcnQnlKHpGe+ExXHmFeRBAm5AmT5FgZI3nmKqwNsLhu23TTrQPfj5mIWgKX8bZVMoBXk4GdCz05ZMUwRxwFjcKCUvFcw/SR08zI/BhDV45cOHhae0qqHbQ6yf7sIcm4f71ugy3pHJNY80dyftPJGt5Odh3H9kN+2NMAlSYX2DSKWonkZjWyht+JNlALHAY/o9JMbrvfqtzs2/zo2JcMq5hwWcjKcdB/i1VFf9VqgZLpKaZaFtpZacmFvSJgcXwCH0T4snrDFf+pVC+Ngdeqzb5Jk93f6fefSiA3TpdyvoTpq/1jW0OtKkruJiZP2V7omARBcroNbhtBYSsC/qA==
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(346002)(136003)(376002)(39860400002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(55016003)(66946007)(966005)(64756008)(478600001)(76116006)(66556008)(71200400001)(66446008)(66476007)(6916009)(54906003)(316002)(83380400001)(86362001)(7696005)(38100700002)(26005)(53546011)(6506007)(33656002)(122000001)(41300700001)(38070700005)(5660300002)(8936002)(8676002)(4326008)(2906002)(9686003)(4001150100001)(52536014)(7416002);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(396003)(39860400002)(366004)(346002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(55016003)(52536014)(38100700002)(86362001)(5660300002)(122000001)(921005)(38070700005)(33656002)(41300700001)(2906002)(316002)(478600001)(6506007)(66946007)(66556008)(110136005)(71200400001)(7696005)(76116006)(83380400001)(8936002)(45080400002)(8676002)(4326008)(7416002)(53546011)(9686003)(54906003)(66446008)(64756008)(66476007);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?wVSfXgPMY/CKkpxCIplAC3a4c2Qz2R+sWjHwZ7JKSqRbNDoznkEuh//QRLkb?=
- =?us-ascii?Q?duRDTGBhgZFCzmLyyj6kjU83iVsAAmz+lvfcw7vlwrxsMFoItdMKjGr0yv4w?=
- =?us-ascii?Q?HyZJSpj0T2O9M78bYz1mv867OCq6ERbQOtEvr6NBZZwulttDU/FKDVSy4IIG?=
- =?us-ascii?Q?F3LLPllN3L/Vp6cw6+kU+3phZdWmLG0ZyIjmakCNOAsfIrJG5QH9fk9KXTYo?=
- =?us-ascii?Q?EE9ny6SAekB/oYeMuFfevdQY+H4jh1xcwulo71IoGIzqN70GtxUkbpNRpUnG?=
- =?us-ascii?Q?4twJJhchTFRMdMKyjiGDT2/eBdcMSOux4O+bllGYxP3sEHQSpZOO0Z0bKMbH?=
- =?us-ascii?Q?N0qFscg+XiUBcJZA+262QYS9CRpASqyZqDMEIbMmW6xs6g53Oog0GVCZtByS?=
- =?us-ascii?Q?BsIunOBRtcV0VrceSIIa/l4WLHbxBGqUidTftSf28Iz3W0RxigovJViKvOeC?=
- =?us-ascii?Q?i5VFf/d9QYzt+ogYRsPfci1aw5s6RZhqCB84wvzDp4hJXN5iat55dvbPQ9tX?=
- =?us-ascii?Q?jvN6jRhaD23oBPpJTAeCJhKWRUCNl7zyyk8rX782MknIWHsl4mEgchVmLbW6?=
- =?us-ascii?Q?d2p+DS1Gq66AV4pT6nPFR757UozmIu3qH618x4LnmRdFb7Qyzw2Ro//LK5PD?=
- =?us-ascii?Q?TVN3Lk++u9YOYdsLANNMkP1VMiOaeRf/9Xoy58Hc7g0jj2xUkto0KnbZPlMV?=
- =?us-ascii?Q?pacJUUFOYWNfUt3188BBYBav9td8KoS74UfmIAeOi7fslSk+BQSZ5wQz6uhD?=
- =?us-ascii?Q?Gd986X07fWehvUQhn6wJh14E4npwOzfujAZJhmj6S/iE86buLHRx45FrO1vU?=
- =?us-ascii?Q?SkqzJjDrK1qobd8sii4Os2jw//SR7KOrMEtj1/JLB+pOQVMOdGooEAOpK4B9?=
- =?us-ascii?Q?hsEsf9syACGfz25VAngsK+Sm0BZcaav5gyKoXtqEthJKPSyBCqaeSqXg29BJ?=
- =?us-ascii?Q?INrk51Av41j88kNzSrfB5YMe0+euewJgPRM4fPcilPH3ddpr3HfN2BKu8NSW?=
- =?us-ascii?Q?aZ5EbgPlKWteaq56xTYmZD0gYJf/rikjPBm79uEMiQ9iC5nSyqPM+Jl6Rmmr?=
- =?us-ascii?Q?79m930OczwTEpNJ96Q8/fbki/uJ+5epXkJt9tHkQOPPdb1tuNFhynq/S5jYJ?=
- =?us-ascii?Q?zPJHzjWzBmRH74LIC8JtjQ6oUKuxDAXyjpnlpNcOxKIEbrVkLB5BvA9RabXz?=
- =?us-ascii?Q?sukOtFOyGZH8rTd1XuoQpPBBn73ImwKd/6DElmp+8epqaL6b6Z3VdUjAz3si?=
- =?us-ascii?Q?tDWBL3qckBWXhv33F6TliDCo448/uh/kWdDdtmq/VHgc4JN5P2OaThg5XJG/?=
- =?us-ascii?Q?sOmiSVF4yNHoI6bfiMUvkg/VLTMfZb+ErmvNkjXOWpEpz6CaCZ1euj/WSGQ/?=
- =?us-ascii?Q?raEjHH+6diLJI4itAVM/ZA5Qw+RyN6uULJbIb3GD2HIQsk+g5mmZSPqoo8sy?=
- =?us-ascii?Q?kf3Cj0n83wlWcEq3Y6rUU8Fo6AK7IHDkn88/0gY4+F3EwhiI6ieqJxDH/vOn?=
- =?us-ascii?Q?fBD/1WX8MtYMVr8OW1x1P5b8q/dB0kWqjTaBF27CRdjYae7rKw3jgeh7tew3?=
- =?us-ascii?Q?LJJOp6MSN5huWupgJxY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ =?utf-8?B?dlJKV3ZOSXJyKzFxbDJCOUg1UVZkQVFma014YjZHenFRVU03cWdSa2RvNnBF?=
+ =?utf-8?B?S1ZsbEt1MEJKaTExRFlyUHBBWnI3ZDZNT1pPWllyWFl4V0dmdjcxcHVYbHhV?=
+ =?utf-8?B?UGViVDdVczRjdGRoRGsxZTdnNVJJSGJnSHVHVnVOQ0xsNzFBSDdBUlBoRmNr?=
+ =?utf-8?B?bHRHK0FTRDZncXdQMWNwaWtLK3hpemJwaEdNemMwTzFyTDZHcG80R3hKVFdZ?=
+ =?utf-8?B?OHJrRXNGVTYwajIxYmJTM2x3NklqLzJJbzNMTGZsR3VYZ01QaUI0NkRhOWxu?=
+ =?utf-8?B?clFEbE1wYVVYRlVOSW5zMXV2Q0NvTmN0MjUxWEdYNEhhS1NTSlFZUVgrVjBD?=
+ =?utf-8?B?Mm9UQ0pLVVllNzNURkY1VU5zVEVjTHN1Zkk4Y283V1RkNU8yNytiQTlqRytL?=
+ =?utf-8?B?aXdvU3g0V3owSm9Ud2tyVUNKNk0yUlI2aFJ0YVlXQWNiaWt1M29BZWdiTGVt?=
+ =?utf-8?B?anlFaDVVWWt4c2c0VDVwcHg0aWVCZ1BZVU5vZU5nMjQ0dFRvc25hSVpwTlhl?=
+ =?utf-8?B?dURXMGlhZG9leEJyYlNqV1dTN0kzOXllUmtESHBlV2tvZEVINHE4Wk04Y2xi?=
+ =?utf-8?B?bi9Ua0R0UzY1SmdpbDg4THpHY05Fcm1UMjhMVnZlOGdRam5LTEFtNno5NU56?=
+ =?utf-8?B?NCtPQm9uZTgyeFpTR2JPMytWMmhhYWd5STl3S1QxWTkwS20yNkRkalc1aDF3?=
+ =?utf-8?B?MUJPaHBLKzVkVmpBNHlmUVhrbUIwQ0Z0RDZ1WW1hKzZiZHUwU1lrc3VycW9O?=
+ =?utf-8?B?VFFGQ254V3dZaDdOeXd6cUprR0NMRk5ta05GTG1sVmF0eWhSVkI4VzFLeVpa?=
+ =?utf-8?B?dnZybzdtQjVzbkZ3Um5ReXMrbWtVNmJaZzk0bFR6azU4YXFOcThRZG5UQWE4?=
+ =?utf-8?B?SE50c3FubVZtby90ZmFYT1ZlemN1cFE3UWNHZ0FXRzdkaHRiYkdFQUJKcWZG?=
+ =?utf-8?B?M3hoQVJoK0c1b3BtaCtacWYxUkI4RnF6TTFhOEE3bm1lcE1WOGo3emVOaUdx?=
+ =?utf-8?B?KytTT0ZtazRRZk5JK2FhNkJCVmozVnp3ang5TVlOWkU3UldvYmQ2RFMyYUs1?=
+ =?utf-8?B?ZVJTMGpjVnR6NkNKYWs0RlIreDhDRlRod3hDVGxDSDhTTGZZMVRaNGJyWFJ6?=
+ =?utf-8?B?YWJrUDYwWXJ4bXFVNTA4ZU5HTU91MzY5MEVPZThRT1NSZGRLLzBlQkhTWjV4?=
+ =?utf-8?B?K1A4ejVuQnErU0VSNVY5YmJCTGdnVGhwY1d2Rkc0dDgyOUN3alpJNng3N3ZH?=
+ =?utf-8?B?MXdHRElQYnh6dWQwcVV5RGt0ZkRIRklPWEdXck1oRENscy9sK1lVTjJPRkJE?=
+ =?utf-8?B?U3ZUZEUza1gzRkdQZ1VNY3haN2VkN3hyUmVTRkxUakhHK0g5T1p1Q0RQUjhS?=
+ =?utf-8?B?RHRGWlEwVEpieksra1FoMk9hOEVpVHBBeWRzTC8vUzNiS05NSzB5MHZmK3Jz?=
+ =?utf-8?B?TXFFN0JpTi9Kc251R3VlQVIvQzFRN0N5b25GVUNWSkpJWkhaazVSRy9tRFQ2?=
+ =?utf-8?B?T3k5MUhhSTBNb3dQT084WEFJL21iTk5aT3FRb0syYWFzR2c5MUZyNkV3TmRI?=
+ =?utf-8?B?SkMyaGpTVTVOaldBWlZPQjhxSy9NUy9jTUpCRXhpUGhTc1RpV2NIUUFpSTJW?=
+ =?utf-8?B?TSsxRmNBVjNaazduRCtkWUlBRVNSSmlWUHJHRUl6azY4bE1NaXpJbFVhVVZJ?=
+ =?utf-8?B?bXhjMmFUWUxhNEpyM2pCZ2JpdEk3U1pIbFJaVStzQXBwUEJuWmNaelYvV3VC?=
+ =?utf-8?B?THZUUE04U25rTVY5VnV6QTlhKzU1OURaTE4zNnJLRmIyZlVVd0lRYXcyTFdL?=
+ =?utf-8?B?VlVFN2ZYd256YUdqdVVWNlhCQ2VrYXMzR0NINkUvR2RVRGZ3OXB0R3QrSnky?=
+ =?utf-8?B?TnZ6NXFubm1yYTJoL2V3ZnBkV3dDOCt4VWdSaXJHK1JHR3lRUmZqZ0kvSkNN?=
+ =?utf-8?B?ZlM5NnhlcDlqSU93Y09DMVM4UGpaWWxxbDZDQmczTVZnN29Tam9nRlZ1RUdN?=
+ =?utf-8?B?Y0ZodDBOK2xaYTk4TEswTlNPeStlQ3JFQ21uQjVJK0ZId09IZTBLQWxzeTF5?=
+ =?utf-8?B?N2crZGxnVDE5MVRrNlFZTmQxSkV1aStRdUVQVytNdlkrTEpOVDYvL2J3N2dr?=
+ =?utf-8?B?Y2kzYWxvb05abFM1bFFRSlhQR3ZqZ09GbjBLNkxQd21ZNUx2bEFNYW5LRnBp?=
+ =?utf-8?B?OUluMjlLeXZCR2k3a3BJOWN5OHhKWHpTdlB0Tk12SitqbTlVK0xQQnZ4ZCs4?=
+ =?utf-8?B?d1VBZnovLy8zZkVKRDN3M3pEUzl3PT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-OriginatorOrg: renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bb03e90-2626-4b1e-3390-08dbcf0888b2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2023 11:59:36.2577
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a2ef0de-4391-4905-09a2-08dbcf09511c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2023 12:05:12.5157
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Iw4J4mZkxNGf/vDyyuEXg4yffcDNTKuW/X3V+Wm/frSNuNzPnLQgMt9BCkRRkg7B35turcYqSsXYTvVjlCLQjQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7843
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: U16e5Sg9arHbrLYuBV5+3xYTRf1eBA7BOKS2EUNSMDWEuyKfz9BbLuOCXekpfLaezmgLbp1bLNebQUko/CIFHtv1YqEACQcNIrnNO1lIUoGTY6yU3JeHdJqmemDVyZpB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11122
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
-
-> -----Original Message-----
-> From: m.brock@vanmierlo.com <m.brock@vanmierlo.com>
-> Sent: Friday, October 13, 2023 12:35 AM
-> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
-> Cc: git (AMD-Xilinx) <git@amd.com>; Simek, Michal
-> <michal.simek@amd.com>; gregkh@linuxfoundation.org;
-> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> conor+dt@kernel.org; linux-serial@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> jirislaby@kernel.org; linux-arm-kernel@lists.infradead.org; Pandey, Radhe=
-y
-> Shyam <radhey.shyam.pandey@amd.com>; Goud, Srinivas
-> <srinivas.goud@amd.com>; Datta, Shubhrajyoti
-> <shubhrajyoti.datta@amd.com>; manion05gk@gmail.com
-> Subject: Re: [PATCH V2 2/2] tty: serial: uartps: Add rs485 support to uar=
-tps
-> driver
->=20
-> Manikanta Guntupalli wrote on 2023-10-11 16:56:
-> > In RS485 half duplex configuration, DriverEnable and ReceiverEnable
-> > shorted to each other, and at a time, any node acts as either a driver
-> > or a receiver. Use either xlnx,phy-ctrl-gpios or RTS to control
-> > RS485 phy as driver or a receiver.
-> >
-> > Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> > ---
-> > Changes for V2:
-> > Modify optional gpio name to xlnx,phy-ctrl-gpios.
-> > Update commit description.
-> > Add support for RTS, delay_rts_before_send and delay_rts_after_send in
-> > RS485 mode.
-> > ---
-> >  drivers/tty/serial/xilinx_uartps.c | 116
-> > ++++++++++++++++++++++++++++-
-> >  1 file changed, 115 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/tty/serial/xilinx_uartps.c
-> > b/drivers/tty/serial/xilinx_uartps.c
-> > index 8e521c69a959..abddcf1a8bf4 100644
-> > --- a/drivers/tty/serial/xilinx_uartps.c
-> > +++ b/drivers/tty/serial/xilinx_uartps.c
-> > @@ -23,6 +23,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/pm_runtime.h>
-> >  #include <linux/iopoll.h>
-> > +#include <linux/gpio.h>
-> >
-> >  #define CDNS_UART_TTY_NAME	"ttyPS"
-> >  #define CDNS_UART_NAME		"xuartps"
-> > @@ -193,6 +194,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-
-> 255");
-> >   * @clk_rate_change_nb:	Notifier block for clock changes
-> >   * @quirks:		Flags for RXBS support.
-> >   * @cts_override:	Modem control state override
-> > + * @gpiod:		Pointer to the gpio descriptor
-> >   */
-> >  struct cdns_uart {
-> >  	struct uart_port	*port;
-> > @@ -203,10 +205,19 @@ struct cdns_uart {
-> >  	struct notifier_block	clk_rate_change_nb;
-> >  	u32			quirks;
-> >  	bool cts_override;
-> > +	struct gpio_desc	*gpiod;
-> >  };
-> >  struct cdns_platform_data {
-> >  	u32 quirks;
-> >  };
-> > +
-> > +struct serial_rs485 cdns_rs485_supported =3D {
-> > +	.flags =3D SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-> > +		 SER_RS485_RTS_AFTER_SEND,
->=20
-> You promise here to support both RTS-on-send and RTS-after-send, but...
->=20
-> > +	.delay_rts_before_send =3D 1,
-> > +	.delay_rts_after_send =3D 1,
-> > +};
-> > +
-> >  #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
-> >  		clk_rate_change_nb)
-> >
-> > @@ -305,6 +316,42 @@ static void cdns_uart_handle_rx(void *dev_id,
-> > unsigned int isrstatus)
-> >  	tty_flip_buffer_push(&port->state->port);
-> >  }
-> >
-> > +/**
-> > + * cdns_rs485_tx_setup - Tx setup specific to rs485
-> > + * @cdns_uart: Handle to the cdns_uart  */ static void
-> > +cdns_rs485_tx_setup(struct cdns_uart *cdns_uart) {
-> > +	u32 val;
-> > +
-> > +	if (cdns_uart->gpiod) {
-> > +		gpiod_set_value(cdns_uart->gpiod, 1);
-> > +	} else {
-> > +		val =3D readl(cdns_uart->port->membase +
-> CDNS_UART_MODEMCR);
-> > +		val &=3D ~CDNS_UART_MODEMCR_RTS;
-> > +		writel(val, cdns_uart->port->membase +
-> CDNS_UART_MODEMCR);
->=20
-> Here you don't care about RTS-on-send or RTS-after-send anymore.
-> And neither do you btw. in the if clause.
-On Xilinx/AMD Kria SOM KD240 board rs485 connects via TI ISOW1432
-Transceiver device, where one GPIO is used for driving DE/RE signals.
-With rs485 half duplex configuration, DE and RE shorted to each other,
-and at a time, any node acts as either a driver or a receiver.
-We recommend using either GPIO or RTS to control RS485 phy as driver or a
-receiver. So, we fall back to RTS, if rts-gpios not passed.
->=20
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * cdns_rs485_rx_setup - Rx setup specific to rs485
-> > + * @cdns_uart: Handle to the cdns_uart  */ static void
-> > +cdns_rs485_rx_setup(struct cdns_uart *cdns_uart) {
-> > +	u32 val;
-> > +
-> > +	if (cdns_uart->gpiod) {
-> > +		gpiod_set_value(cdns_uart->gpiod, 0);
-> > +	} else {
-> > +		val =3D readl(cdns_uart->port->membase +
-> CDNS_UART_MODEMCR);
-> > +		val |=3D CDNS_UART_MODEMCR_RTS;
-> > +		writel(val, cdns_uart->port->membase +
-> CDNS_UART_MODEMCR);
-> > +	}
->=20
-> Same here.
->=20
-> > +}
-> > +
-> > +static unsigned int cdns_uart_tx_empty(struct uart_port *port);
-> > +
->=20
-> I think it's better to move up the implementation than to use a forward
-> declaration.
-We will fix.
->=20
-> >  /**
-> >   * cdns_uart_handle_tx - Handle the bytes to be Txed.
-> >   * @dev_id: Id of the UART port
-> > @@ -313,12 +360,20 @@ static void cdns_uart_handle_rx(void *dev_id,
-> > unsigned int isrstatus)  static void cdns_uart_handle_tx(void *dev_id)
-> > {
-> >  	struct uart_port *port =3D (struct uart_port *)dev_id;
-> > +	struct cdns_uart *cdns_uart =3D port->private_data;
-> >  	struct circ_buf *xmit =3D &port->state->xmit;
-> > +	unsigned long time_out;
-> >  	unsigned int numbytes;
-> >
-> > +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> > +		cdns_rs485_tx_setup(cdns_uart);
-> > +		if (cdns_uart->port->rs485.delay_rts_before_send)
-> > +			mdelay(cdns_uart->port-
-> >rs485.delay_rts_before_send);
->=20
-> mdelay?
-> https://www.kernel.org/doc/html/latest/timers/timers-howto.html
-> "In general, use of mdelay is discouraged and code should be refactored t=
-o
-> allow for the use of msleep."
-For refactoring the code will move this code snippet to start_tx, even ther=
-e,
-interrupts are disabled, so can't use msleep.
-
-https://docs.kernel.org/driver-api/serial/driver.html
-Documentation recommends,
-start_tx
-void ()(struct uart_port *port)
-Start transmitting characters.
-Locking: port->lock taken. Interrupts: locally disabled. This call must not=
- sleep.
-
->=20
-> Furthermore, you're delaying before every burst of bytes here!
-> Every TXEMPTY interrupt!
-We will move code to start_tx.
->=20
-> > +	}
-> > +
-> >  	if (uart_circ_empty(xmit)) {
-> >  		writel(CDNS_UART_IXR_TXEMPTY, port->membase +
-> CDNS_UART_IDR);
-> > -		return;
-> > +		goto rs485_rx_setup;
->=20
-> And when there was nothing more to send you waited for nothing.
-We will fix.
->=20
-> >  	}
-> >
-> >  	numbytes =3D port->fifosize;
-> > @@ -332,6 +387,23 @@ static void cdns_uart_handle_tx(void *dev_id)
-> >
-> >  	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
-> >  		uart_write_wakeup(port);
-> > +
-> > +rs485_rx_setup:
-> > +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> > +		time_out =3D jiffies + usecs_to_jiffies(TX_TIMEOUT);
-> > +		/* Wait for tx completion */
-> > +		while ((cdns_uart_tx_empty(cdns_uart->port) !=3D
-> TIOCSER_TEMT) &&
-> > +		       time_before(jiffies, time_out))
-> > +			cpu_relax();
-> > +
-> > +		/*
-> > +		 * Default Rx should be setup, because RX signaling path
-> > +		 * need to enable to receive data.
-> > +		 */
-> > +		cdns_rs485_rx_setup(cdns_uart);
-> > +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> > +			mdelay(cdns_uart->port-
-> >rs485.delay_rts_after_send);
->=20
-> This is not delaying rts after send. You must keep RTS aka DE active for =
-a little
-> longer so even the last stop bit(s) are transmitted correctly. So this de=
-lay must
-> happen before cdns_rs485_rx_setup().
-We will fix.
->=20
-> > +	}
-> >  }
-> >
-> >  /**
-> > @@ -829,6 +901,9 @@ static int cdns_uart_startup(struct uart_port
-> > *port)
-> >  		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
-> >  		cpu_relax();
-> >
-> > +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
-> > +		cdns_rs485_rx_setup(cdns_uart);
-> > +
-> >  	/*
-> >  	 * Clear the RX disable bit and then set the RX enable bit to enable
-> >  	 * the receiver.
-> > @@ -1455,6 +1530,25 @@ MODULE_DEVICE_TABLE(of,
-> cdns_uart_of_match);
-> >  /* Temporary variable for storing number of instances */  static int
-> > instances;
-> >
-> > +/**
-> > + * cdns_rs485_config - Called when an application calls TIOCSRS485
-> > ioctl.
-> > + * @port: Pointer to the uart_port structure
-> > + * @termios: Pointer to the ktermios structure
-> > + * @rs485: Pointer to the serial_rs485 structure
-> > + *
-> > + * Return: 0
-> > + */
-> > +static int cdns_rs485_config(struct uart_port *port, struct ktermios
-> > *termios,
-> > +			     struct serial_rs485 *rs485)
-> > +{
-> > +	port->rs485 =3D *rs485;
-> > +
-> > +	if (rs485->flags & SER_RS485_ENABLED)
-> > +		dev_dbg(port->dev, "Setting UART to RS485\n");
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /**
-> >   * cdns_uart_probe - Platform driver probe
-> >   * @pdev: Pointer to the platform device structure @@ -1597,9
-> > +1691,28 @@ static int cdns_uart_probe(struct platform_device *pdev)
-> >  	port->private_data =3D cdns_uart_data;
-> >  	port->read_status_mask =3D CDNS_UART_IXR_TXEMPTY |
-> > CDNS_UART_IXR_RXTRIG
-> > |
-> >  			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-> > +	port->rs485_config =3D cdns_rs485_config;
-> > +	port->rs485_supported =3D cdns_rs485_supported;
-> >  	cdns_uart_data->port =3D port;
-> >  	platform_set_drvdata(pdev, port);
-> >
-> > +	rc =3D uart_get_rs485_mode(port);
-> > +	if (rc)
-> > +		goto err_out_clk_notifier;
-> > +
-> > +	cdns_uart_data->gpiod =3D devm_gpiod_get_optional(&pdev->dev,
-> > "xlnx,phy-ctrl",
-> > +							GPIOD_OUT_LOW);
-> > +	if (IS_ERR(cdns_uart_data->gpiod)) {
-> > +		rc =3D PTR_ERR(cdns_uart_data->gpiod);
-> > +		dev_err(port->dev, "xuartps: devm_gpiod_get_optional
-> failed\n");
-> > +		goto err_out_clk_notifier;
-> > +	}
-> > +
-> > +	if (cdns_uart_data->gpiod) {
-> > +		gpiod_direction_output(cdns_uart_data->gpiod,
-> GPIOD_OUT_LOW);
-> > +		gpiod_set_value(cdns_uart_data->gpiod, 0);
-> > +	}
-> > +
-> >  	pm_runtime_use_autosuspend(&pdev->dev);
-> >  	pm_runtime_set_autosuspend_delay(&pdev->dev,
-> > UART_AUTOSUSPEND_TIMEOUT);
-> >  	pm_runtime_set_active(&pdev->dev);
-> > @@ -1646,6 +1759,7 @@ static int cdns_uart_probe(struct
-> > platform_device
-> > *pdev)
-> >  	pm_runtime_disable(&pdev->dev);
-> >  	pm_runtime_set_suspended(&pdev->dev);
-> >  	pm_runtime_dont_use_autosuspend(&pdev->dev);
-> > +err_out_clk_notifier:
-> >  #ifdef CONFIG_COMMON_CLK
-> >  	clk_notifier_unregister(cdns_uart_data->uartclk,
-> >  			&cdns_uart_data->clk_rate_change_nb);
->=20
-> Maarten
-
-
-Thanks,
-Manikanta.
-
+RGVhciBNYXJlaywNCg0KPiBGcm9tOiBNYXJlayBTenlwcm93c2tpLCBTZW50OiBUdWVzZGF5LCBP
+Y3RvYmVyIDE3LCAyMDIzIDY6MTkgUE0NCj4gDQo+IERlYXIgQWxsLA0KPiANCj4gT24gMTEuMTAu
+MjAyMyAwOToxNCwgWW9zaGloaXJvIFNoaW1vZGEgd3JvdGU6DQo+ID4gQWNjb3JkaW5nIHRvIHRo
+ZSBzZWN0aW9uIDMuNS43LjIgIlJDIE1vZGUiIGluIERXQyBQQ0llIER1YWwgTW9kZQ0KPiA+IFJl
+di41LjIwYSwgd2Ugc2hvdWxkIGRpc2FibGUgdHdvIEJBUnMgdG8gYXZvaWQgdW5uZWNlc3Nhcnkg
+bWVtb3J5DQo+ID4gYXNzaWdubWVudCBkdXJpbmcgZGV2aWNlIGVudW1lcmF0aW9uLiBPdGhlcndp
+c2UsIFJlbmVzYXMgUi1DYXIgR2VuNA0KPiA+IFBDSWUgY29udHJvbGxlcnMgY2Fubm90IHdvcmsg
+Y29ycmVjdGx5IGluIGhvc3QgbW9kZS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFlvc2hpaGly
+byBTaGltb2RhIDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2FzLmNvbT4NCj4gDQo+IFRoaXMg
+cGF0Y2ggbGFuZGVkIGluIHRvZGF5J3MgbGludXgtbmV4dCAyMDIzMTAxNyBhcyBjb21taXQgZTMw
+ODUyOGNhYzNlDQo+ICgiUENJOiBkd2M6IERpc2FibGUgdHdvIEJBUnMgdG8gYXZvaWQgdW5uZWNl
+c3NhcnkgbWVtb3J5IGFzc2lnbm1lbnQiKS4NCj4gVW5mb3J0dW5hdGVseSBpdCBjYXVzZXMgdGhl
+IGZvbGxvd2luZyBrZXJuZWwgcGFuaWMgb24gU2Ftc3VuZw0KPiBFeHlub3M1NDMzLWJhc2VkIFRN
+MmUgYm9hcmQ6DQo+IA0KPiBleHlub3MtcGNpZSAxNTcwMDAwMC5wY2llOiBob3N0IGJyaWRnZSAv
+c29jQDAvcGNpZUAxNTcwMDAwMCByYW5nZXM6DQo+IGV4eW5vcy1wY2llIDE1NzAwMDAwLnBjaWU6
+wqDCoMKgwqDCoMKgIElPIDB4MDAwYzAwMTAwMC4uMHgwMDBjMDEwZmZmIC0+DQo+IDB4MDAwMDAw
+MDAwMA0KPiBleHlub3MtcGNpZSAxNTcwMDAwMC5wY2llOsKgwqDCoMKgwqAgTUVNIDB4MDAwYzAx
+MTAwMC4uMHgwMDBmZmZmZmZlIC0+DQo+IDB4MDAwYzAxMTAwMA0KPiBleHlub3MtcGNpZSAxNTcw
+MDAwMC5wY2llOiBpQVRVOiB1bnJvbGwgRiwgMyBvYiwgNSBpYiwgYWxpZ24gNEssIGxpbWl0IDRH
+DQo+IFVuYWJsZSB0byBoYW5kbGUga2VybmVsIHBhZ2luZyByZXF1ZXN0IGF0IHZpcnR1YWwgYWRk
+cmVzcyBmZmZmODAwMDg0MTk2MDEwDQo+IE1lbSBhYm9ydCBpbmZvOg0KPiAuLi4NCj4gRGF0YSBh
+Ym9ydCBpbmZvOg0KPiAuLi4NCj4gc3dhcHBlciBwZ3RhYmxlOiA0ayBwYWdlcywgNDgtYml0IFZB
+cywgcGdkcD0wMDAwMDAwMDIyMDQ3MDAwDQo+IFtmZmZmODAwMDg0MTk2MDEwXSBwZ2Q9MTAwMDAw
+MDBkZjZmZjAwMywgcDRkPTEwMDAwMDAwZGY2ZmYwMDMsDQo+IHB1ZD0xMDAwMDAwMGRmNmZlMDAz
+LCBwbWQ9MTAwMDAwMDAyNGFkOTAwMywgcHRlPTAwMDAwMDAwMDAwMDAwMDANCj4gSW50ZXJuYWwg
+ZXJyb3I6IE9vcHM6IDAwMDAwMDAwOTYwMDAwNDcgWyMxXSBQUkVFTVBUIFNNUA0KPiBNb2R1bGVz
+IGxpbmtlZCBpbjoNCj4gQ1BVOiA0IFBJRDogNTUgQ29tbToga3dvcmtlci91MTg6MCBOb3QgdGFp
+bnRlZCA2LjYuMC1yYzErICMxNDEyOQ0KPiBIYXJkd2FyZSBuYW1lOiBTYW1zdW5nIFRNMkUgYm9h
+cmQgKERUKQ0KPiBXb3JrcXVldWU6IGV2ZW50c191bmJvdW5kIGRlZmVycmVkX3Byb2JlX3dvcmtf
+ZnVuYw0KPiBwc3RhdGU6IDYwMDAwMDA1IChuWkN2IGRhaWYgLVBBTiAtVUFPIC1UQ08gLURJVCAt
+U1NCUyBCVFlQRT0tLSkNCj4gcGMgOiBkd19wY2llX3dyaXRlX2RiaTIrMHhiOC8weGM4DQo+IGxy
+IDogZHdfcGNpZV9zZXR1cF9yYysweDMwLzB4NGU0DQo+IC4uLg0KPiBDYWxsIHRyYWNlOg0KPiAg
+wqBkd19wY2llX3dyaXRlX2RiaTIrMHhiOC8weGM4DQo+ICDCoGR3X3BjaWVfc2V0dXBfcmMrMHgz
+MC8weDRlNA0KPiAgwqBkd19wY2llX2hvc3RfaW5pdCsweDIzOC8weDYwOA0KPiAgwqBleHlub3Nf
+cGNpZV9wcm9iZSsweDIzYy8weDM0MA0KPiAgwqBwbGF0Zm9ybV9wcm9iZSsweDY4LzB4ZDgNCj4g
+IMKgcmVhbGx5X3Byb2JlKzB4MTQ4LzB4MmI0DQo+ICDCoF9fZHJpdmVyX3Byb2JlX2RldmljZSsw
+eDc4LzB4MTJjDQo+ICDCoGRyaXZlcl9wcm9iZV9kZXZpY2UrMHhkOC8weDE2MA0KPiAgwqBfX2Rl
+dmljZV9hdHRhY2hfZHJpdmVyKzB4YjgvMHgxMzgNCj4gIMKgYnVzX2Zvcl9lYWNoX2RydisweDg0
+LzB4ZTANCj4gIMKgX19kZXZpY2VfYXR0YWNoKzB4YTgvMHgxYjANCj4gIMKgZGV2aWNlX2luaXRp
+YWxfcHJvYmUrMHgxNC8weDIwDQo+ICDCoGJ1c19wcm9iZV9kZXZpY2UrMHhiMC8weGI0DQo+ICDC
+oGRlZmVycmVkX3Byb2JlX3dvcmtfZnVuYysweDhjLzB4YzgNCj4gIMKgcHJvY2Vzc19vbmVfd29y
+aysweDFlYy8weDUzYw0KPiAgwqB3b3JrZXJfdGhyZWFkKzB4Mjk4LzB4NDA4DQo+ICDCoGt0aHJl
+YWQrMHgxMjQvMHgxMjgNCj4gIMKgcmV0X2Zyb21fZm9yaysweDEwLzB4MjANCj4gQ29kZTogZDUw
+MzMyYmYgNzkwMDAwMjMgMTdmZmZmZTIgZDUwMzMyYmYgKGI5MDAwMDIzKQ0KPiAtLS1bIGVuZCB0
+cmFjZSAwMDAwMDAwMDAwMDAwMDAwIF0tLS0NCj4gS2VybmVsIHBhbmljIC0gbm90IHN5bmNpbmc6
+IE9vcHM6IEZhdGFsIGV4Y2VwdGlvbg0KPiBTTVA6IHN0b3BwaW5nIHNlY29uZGFyeSBDUFVzDQo+
+IEtlcm5lbCBPZmZzZXQ6IGRpc2FibGVkDQo+IENQVSBmZWF0dXJlczogMHg4YzAwMDIwZSwzYzAy
+MDAwMCwwMDAwNDIxYg0KPiBNZW1vcnkgTGltaXQ6IG5vbmUNCj4gLS0tWyBlbmQgS2VybmVsIHBh
+bmljIC0gbm90IHN5bmNpbmc6IE9vcHM6IEZhdGFsIGV4Y2VwdGlvbiBdLS0tDQo+IA0KPiBJJ3Zl
+IG9ic2VydmVkIHNpbWlsYXIgaXNzdWUgb24gUXVhbGNvbW0ncyBSQjUgcGxhdGZvcm0gd2l0aCBz
+b21lDQo+IGFkZGl0aW9uYWwgbm90LXlldCBtZXJnZWQgcGF0Y2hlcyBlbmFibGluZyBQQ0llIHN1
+cHBvcnQuIFJldmVydGluZw0KPiAkc3ViamVjdCBvbiB0b3Agb2YgbGludXgtbmV4dCBmaXhlcyB0
+aGlzIGlzc3VlLg0KPiANCj4gTGV0IG1lIGtub3cgaWYgeW91IG5lZWQgbW9yZSBpbmZvcm1hdGlv
+bi4NCg0KVGhhbmsgeW91IGZvciB0aGUgcmVwb3J0LiBJIGd1ZXNzIHRoYXQgdGhlIGlzc3VlIGlz
+IHJlbGF0ZWQgdG8NCm91dC1vZi1yYW5nZSBhY2Nlc3Mgb2YgZGJpMjoNCi0gSW4gYXJjaC9hcm02
+NC9ib290L2R0cy9leHlub3MvZXh5bm9zNTQzMy5kdHNpLCB0aGUgZGJpIHJlZyBzaXplIGlzIDB4
+MTAwMA0KICBsaWtlIGJlbG93Og0KLS0tLS0NCiAgICAgICAgICAgICAgICBwY2llOiBwY2llQDE1
+NzAwMDAwIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAic2Ftc3VuZyxl
+eHlub3M1NDMzLXBjaWUiOw0KICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MTU3MDAw
+MDAgMHgxMDAwPiwgPDB4MTU2YjAwMDAgMHgxMDAwPiwNCiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIDwweDBjMDAwMDAwIDB4MTAwMD47DQogICAgICAgICAgICAgICAgICAgICAgICByZWct
+bmFtZXMgPSAiZGJpIiwgImVsYmkiLCAiY29uZmlnIjsNCi4uLg0KLS0tLS0NCg0KLSBJbiBkcml2
+ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuYywgImRiaTIiIGFyZWEgaXMg
+Y2FsY3VsYXRlZA0KICBieSB0aGUgZm9sbG93aW5nIGlmIHJlZy1uYW1lcyAiZGJpMiIgZGlkbid0
+IGV4aXN0Og0KLS0tLS0NCiAgICAgICAgICAgICAgICAgICAgICAgIHBjaS0+ZGJpX2Jhc2UyID0g
+cGNpLT5kYmlfYmFzZSArIFNaXzRLOw0KLS0tLS0NCg0KLSBIb3dldmVyLCB0aGlzIGlzIG91dC1v
+Zi1tZW1vcnkgb24gZXh5bm9zNTQzMy5kdHNpIGJlY2F1c2UgdGhlICJkYmkiIHNpemUgaXMNCiAg
+MHgxMDAwIG9ubHkuDQotIEFuZCB0aGVuLCB0aGlzIHBhdGNoIGFsd2F5cyB3cml0ZXMgUENJX0JB
+U0VfQUREUkVTU19bMDFdIHRvIGRiaTIgYXJlYS4NCiAgU28sIHNpbmNlIHRoaXMgaXMgb3V0LW9m
+LXJhbmdlLCB0aGUga2VybmVsIHBhbmljIGhhcHBlbnMuDQoNClBlcmhhcHMsIHdlIHNob3VsZCBy
+ZXZlcnQgdGhpcyBwYXRjaCBhdCBmaXJzdC4gQW5kLCBhZGQgdGhlIHNldHRpbmdzIGludG8NCm15
+IGVudmlyb25tZW50IChwY2llLXJjYXItZ2VuNC5jKSBvbmx5LiBJIGFsc28gaGF2ZSBhbHRlcm5h
+dGl2ZSBzb2x1dGlvbiB3aGljaA0KbW9kaWZpZXMgdGhlICJkYmkyIiBhcmVhIGNhbGN1bGF0aW9u
+IGFuZCBhdm9pZCBvdXQtb2YtcmFuZ2UgYWNjZXNzIHNvbWVob3cuDQpCdXQsIGl0IG1heSBjb21w
+bGljYXRlIHNvdXJjZSBjb2RlLi4uDQoNCkJlc3QgcmVnYXJkcywNCllvc2hpaGlybyBTaGltb2Rh
+DQoNCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdu
+d2FyZS1ob3N0LmMgfCA4ICsrKysrKysrDQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRp
+b25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2Mv
+cGNpZS1kZXNpZ253YXJlLWhvc3QuYyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUt
+ZGVzaWdud2FyZS1ob3N0LmMNCj4gPiBpbmRleCBhNzE3MGZkMGU4NDcuLjU2Y2M3ZmY2ZDUwOCAx
+MDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndh
+cmUtaG9zdC5jDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNp
+Z253YXJlLWhvc3QuYw0KPiA+IEBAIC03MzcsNiArNzM3LDE0IEBAIGludCBkd19wY2llX3NldHVw
+X3JjKHN0cnVjdCBkd19wY2llX3JwICpwcCkNCj4gPiAgIAl1MzIgdmFsLCBjdHJsLCBudW1fY3Ry
+bHM7DQo+ID4gICAJaW50IHJldDsNCj4gPg0KPiA+ICsJLyoNCj4gPiArCSAqIEFjY29yZGluZyB0
+byB0aGUgc2VjdGlvbiAzLjUuNy4yICJSQyBNb2RlIiBpbiBEV0MgUENJZSBEdWFsIE1vZGUNCj4g
+PiArCSAqIFJldi41LjIwYSwgd2Ugc2hvdWxkIGRpc2FibGUgdHdvIEJBUnMgdG8gYXZvaWQgdW5u
+ZWNlc3NhcnkgbWVtb3J5DQo+ID4gKwkgKiBhc3NpZ25tZW50IGR1cmluZyBkZXZpY2UgZW51bWVy
+YXRpb24uDQo+ID4gKwkgKi8NCj4gPiArCWR3X3BjaWVfd3JpdGVsX2RiaTIocGNpLCBQQ0lfQkFT
+RV9BRERSRVNTXzAsIDB4MCk7DQo+ID4gKwlkd19wY2llX3dyaXRlbF9kYmkyKHBjaSwgUENJX0JB
+U0VfQUREUkVTU18xLCAweDApOw0KPiA+ICsNCj4gPiAgIAkvKg0KPiA+ICAgCSAqIEVuYWJsZSBE
+QkkgcmVhZC1vbmx5IHJlZ2lzdGVycyBmb3Igd3JpdGluZy91cGRhdGluZyBjb25maWd1cmF0aW9u
+Lg0KPiA+ICAgCSAqIFdyaXRlIHBlcm1pc3Npb24gZ2V0cyBkaXNhYmxlZCB0b3dhcmRzIHRoZSBl
+bmQgb2YgdGhpcyBmdW5jdGlvbi4NCj4gDQo+IEJlc3QgcmVnYXJkcw0KPiAtLQ0KPiBNYXJlayBT
+enlwcm93c2tpLCBQaEQNCj4gU2Ftc3VuZyBSJkQgSW5zdGl0dXRlIFBvbGFuZA0KDQo=
 
