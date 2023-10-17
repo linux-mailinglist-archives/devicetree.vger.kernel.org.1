@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 252EA7CC97E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:08:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900FD7CC999
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:13:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86CFB1F23426
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:08:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0509DB2101C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0F043AA9;
-	Tue, 17 Oct 2023 17:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEB9436B4;
+	Tue, 17 Oct 2023 17:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nOBOIvvs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uzI6T7N/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6573FB14
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:08:07 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C2EED
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:08:05 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40566f8a093so56626705e9.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:08:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7503D3A8
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:13:08 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD47AB
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:13:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c53c5f7aaaso11044971fa.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:13:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697562484; x=1698167284; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1697562785; x=1698167585; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wxLf5XyHvT0i+YFj0zy66WfQ0UBHwKFSI6ot74gg5Uw=;
-        b=nOBOIvvs3AuunwazWTHWogu+aFJa5P/nhqLTCMmMLi3J1QIKvLnBRHQPVl2AhJUITH
-         +QmRM4MNPmZjuCcDPrVl/yKLP4qAPiCes8vzIV1ez3obL+54zlnqLHPdzdQEL0PgYC6s
-         8tIEnAfMzrkEeWQSWgR6IHrl4kEjEQoMDq/vg6/byfCrq1MgVX7SL80I1Nl1cKqaAcmG
-         3iMHTHWfpoWZvKPXFRdr1lunF78g2l3zXtC56yFvc43Xm1Qrdx+X/+i+ogWQ0zVCfuly
-         FzRM5KLBRtwveifDitOojTPSaYtRvzbBT7j/kAClMHRBHDTWO9tdLd5VuJw2rHdjFDEt
-         HePg==
+        bh=sh8eLOBFVl/qMkjQqVR7VwaPs8qPzyo0SZOnoQF1las=;
+        b=uzI6T7N/NSAYIc2Er26XScp9mEpeLfT5uGoHm1BCvIlmihfxOtrsJSwXDKRzAYPJUo
+         Ik/q+iKOnCfrwnYwsNqEGV3dauBNDBtOUdbX04m6GbsCEI7WZZ7UCLn5RJ86T0OhJbxM
+         QT2oij+1z1MLbtgUq4kA+Pg55HrRe8VEw+zCc22X77neRbqATbqBeapTXEFcizGB5zoG
+         hBkVJ4PHHlSv8622AV1Jy90MHnXfOO9Npvsvo9E9wzM1vNBponsUfBwubdeTaPmMSne+
+         Ch0vZxn45RDbQv1dschJixzxJPO21AS1Z+dY4sA0VOjOtGZZ2irL48yavFHTOt0NXESP
+         yEjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697562484; x=1698167284;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697562785; x=1698167585;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wxLf5XyHvT0i+YFj0zy66WfQ0UBHwKFSI6ot74gg5Uw=;
-        b=HXDWYEtwQcVS8+wqT4iyNV9OtAZaSuEuasOTqNhgxdBQcca8LexoI02wKf+ZNAPPo2
-         lZ/ezbGnzsMMirrz6CrG+gl+wJn5ptJDtcELBh20TcpyjekAKMM/AlJX+I9mifrnB+H1
-         n9Fr8CQRxqFCh0/hAGRhqcK7DGENCa3Dbxb92lhu58TjyVAAhg2/ns/DKEjN3HkxO5AU
-         rpcijg4dZfWzI1I047pNNDdjAu4ch8ZXqmtUrpIjIWlGLyBPYgZDINY3WU4jfV3t/d3a
-         6NqtUHrAe8RfRB0erniPoF8EaXjeQvMgXTrm8yXogHZabRFH8VYjDmpWTrz/55R/cuq0
-         75Kw==
-X-Gm-Message-State: AOJu0YzzHUw1GsEVPkPcBL0EWoB8OiGndiJOE4F8YJAwLcfY1oD9rLIu
-	L/IKYPlvZc3V0Td1bW3WhZLHsg==
-X-Google-Smtp-Source: AGHT+IF+hwCCbhh2L5YcrtEDqHkl+JVInGYryubVQ89hKW56ue5tiPvEwAn+64VUbSlvYZrJRbDUOQ==
-X-Received: by 2002:a05:600c:2e16:b0:407:5b54:bb15 with SMTP id o22-20020a05600c2e1600b004075b54bb15mr2072759wmf.36.1697562484162;
-        Tue, 17 Oct 2023 10:08:04 -0700 (PDT)
+        bh=sh8eLOBFVl/qMkjQqVR7VwaPs8qPzyo0SZOnoQF1las=;
+        b=kERLAhX/ueOxSvb0kYTBAG+wU8G3TU8BaWIduqtXFPaxQRO3tK/FkOcJv4Aw13w6l4
+         DMhYjFGSGrxIKBlpm75AXpQ5zN7DoaMKEHaCid9vHtERIeBjGhkrHy6QwQi50+abeLkH
+         FFxiBf4sDRVlBMKlScLZmUcJCXYtbqXYyk6r0aLiV24SOLHHhlcEPoTrTK/NCrbokFgB
+         xSw1rtOIsg/4ziCT5bcXnCGoqy99iSYEG8jOkwEEWkkLjV1RTE1MDKArdU0HCUuakSZx
+         iVH3Uc+9qL4p8/8c8swpKxaAzwA8FZsyZMXNaI1ctANaQ5iRtnFPazUnXhdAuo7HxJal
+         37Cw==
+X-Gm-Message-State: AOJu0YxOkbuM0QIXySGBUAAOfn4T3PecclCqNTzsHuQ/2ORBqA6m516p
+	WlIUlO2c/pdmFWY7XHV5/joiXQ==
+X-Google-Smtp-Source: AGHT+IFciqtzoNcAnKm6FUo7fRMsIRy+b+gJyFmCmGopJYGEdxNdwig+tCTn4ivIW6GFHBJQC5iNbQ==
+X-Received: by 2002:a2e:8781:0:b0:2c5:1075:5ec9 with SMTP id n1-20020a2e8781000000b002c510755ec9mr2238626lji.13.1697562784813;
+        Tue, 17 Oct 2023 10:13:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05600c429400b00402d34ea099sm10213001wmc.29.2023.10.17.10.08.02
+        by smtp.gmail.com with ESMTPSA id j5-20020a05600c1c0500b003fe1c332810sm10487278wms.33.2023.10.17.10.13.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 10:08:03 -0700 (PDT)
-Message-ID: <6c7d9c92-7616-4fad-806e-44302c33b63c@linaro.org>
-Date: Tue, 17 Oct 2023 19:08:01 +0200
+        Tue, 17 Oct 2023 10:13:04 -0700 (PDT)
+Message-ID: <44333dbf-7023-4124-9586-2ca13e83c0fd@linaro.org>
+Date: Tue, 17 Oct 2023 19:13:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] HID: touchscreen: add himax hid-over-spi driver
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq6018: use CPUFreq NVMEM
 Content-Language: en-US
-To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
- Doug Anderson <dianders@chromium.org>, Tomasz Figa <tfiga@chromium.org>,
- jingyliang@chromium.org, poyuan_chang@himax.corp-partner.google.com,
- hbarnor@chromium.org
-Cc: jikos@kernel.org, wuxy23@lenovo.com, conor+dt@kernel.org,
- luolm1@lenovo.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- poyu_hung@himax.corp-partner.google.com, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, benjamin.tissoires@redhat.com
-References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Robert Marko <robimarko@gmail.com>, agross@kernel.org, andersson@kernel.org,
+ ilia.lin@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231016175532.2081344-1-robimarko@gmail.com>
+ <20231016175532.2081344-3-robimarko@gmail.com>
+ <2f22ed28-47b1-4a92-aae5-b625ab4ad731@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,36 +123,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
+In-Reply-To: <2f22ed28-47b1-4a92-aae5-b625ab4ad731@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 11:18, Tylor Yang wrote:
-> Hello,
+On 17/10/2023 18:55, Konrad Dybcio wrote:
 > 
-> This patch series adds the driver for Himax HID-over-SPI touchscreen ICs.
-> This driver takes a position in [1], it intends to take advantage of SPI
-> transfer speed and HID interface.
 > 
+> On 10/16/23 19:55, Robert Marko wrote:
+>> IPQ6018 comes in multiple SKU-s and some of them dont support all of the
+>> OPP-s that are current set, so lets utilize CPUFreq NVMEM to allow only
+>> supported OPP-s based on the SoC dynamically.
+>>
+>> As an example, IPQ6018 is generaly rated at 1.8GHz but some silicon only
+>> goes up to 1.5GHz and is marked as such via an eFuse.
+>>
+>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 +++++++++++++-
+>>   1 file changed, 13 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> index 9aec89d5e095b..49f0e6aa4b5bb 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> @@ -96,42 +96,49 @@ scm {
+>>   	};
+>>   
+> [...]
+> 
+>> +			cpu_speed_bin: cpu_speed_bin@135 {
+> underscore -> minus sign
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Dear Google/Chromium folks,
-
-As a multi-billion company I am sure you can spare some small amount of
-time/effort/money for internal review before using community for this
-purpose. I mean reviewing trivial issues, like coding style, or just
-running checkpatch. You know, the obvious things.
-
-There is no need to use expensive time of community reviewers to review
-very simple mistakes, the ones which we fixed in Linux kernel years ago
-(also with automated tools). You can and you should do it, before
-submitting drivers for community review.
-
-Thanks in advance.
+I think Bjorn does not read comments, so he just picks up such patches
+because they got review. Better to ask for fixing it, instead of giving
+conditional review tag, IMHO.
 
 Best regards,
 Krzysztof
