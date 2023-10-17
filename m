@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3437CC9BA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:20:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8FA7CC9BF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE5E1B2128B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:20:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E91C5B21298
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBFB45F4D;
-	Tue, 17 Oct 2023 17:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 082A945F6F;
+	Tue, 17 Oct 2023 17:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hKofo1Bi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MiEdnMB9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717D5436B4
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:20:36 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE79B0
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:20:34 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52bd9ddb741so10412238a12.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:20:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A58044488
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:21:14 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764B6B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:21:12 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so14599246a12.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697563233; x=1698168033; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697563271; x=1698168071; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3gp3zIaiEdGDdJ1i8RfepfLpW7TrCewRJzyF35zUtyo=;
-        b=hKofo1BiSkOCS+aCckR8Q265npHDfPNZQ3gQ2YGn0n++/gp7Bz/Q30bvi6TATa4Ok9
-         uz7HBrgTk20WNp8bhEpKgD/PsLBcaaRX/cjeK7VXd0yNkm2QN5e5frHs6DoUIR+w0Q/R
-         lCaKu7Q7URc1cdIFwmFqTEA0IBuZHq8AFjqP47+qqFNNLG5bgPszRE3zti48UwNW4f7A
-         g3/4ZZcf7I/pu4PU1UOKRbnlTQoDJ21yYyfdpCUxg/RWMSXN4GCbCm0phXxbCrWWoN6d
-         y1X4k2YFQ3udRg38TP6mvQekuPX6tjJ+kH2k0YsJyAiwoskZAtsSihoVDxQdUYK5XzMh
-         tvdA==
+        bh=Hxs+sQIbaWHoDQtm6owBdtGOUSGkJHKG73WSj0oPDvk=;
+        b=MiEdnMB9GPJFLp9KpNK3HoOxEImD+N/J0GxeW6S2ResCxkYHLX+pNXCqYGwnlr+IGn
+         IPbhA/Ieb6JlEte1q9VGOHxyV+NV41f8EHwxRgAHUZFVZzwN3g4hsL8Ns7q14tAarKM4
+         kBycPnTWd+QxUhakucXRoVy5i193YcD67mZ3hwqenzhgvq2P+FWRjyv6UqV8CK7KTdS/
+         x19mAEpbkWzw/Zmz/zMxIEcF0ZxOBXlpfvf4q3/MUsARYQ1dymXhgO7BGSMxj5krEn0Q
+         IhV1Hf3RZS8pZJyPkf4NDQo0OHLXJ75u77g5n9uj8Fvr9KNF/ZGcVxggW3aujN7aDREo
+         TJOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697563233; x=1698168033;
+        d=1e100.net; s=20230601; t=1697563271; x=1698168071;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3gp3zIaiEdGDdJ1i8RfepfLpW7TrCewRJzyF35zUtyo=;
-        b=BuGsN8uxTBB6Wa1LDaOGpwe5gaZt4I8lkgiSxRmnopIt+91+wpaoOR6Mvg/wckiBWd
-         UXtCqou6zR6QaQ/ADfQKFOXa7hT6EYWM+FWMb+dDC92+x+WwjfDWDoejebRzLCPw7quy
-         0YgBrmBRc+FDwppApZrlxKS52w+Hi2MlPMerwBa8f/br7S9fF/TX0xS1ljb+V7kcEjmt
-         ScahwZquBzXAEpUtq6MSBepUuqPxYW5gqteoYyuZlXkV1uK9RtoHkMEph4+CL5lsKxkm
-         eWYEp8vOg/mrOENNtGAu+ikWGLX6VL5C42tdz6z68Iv+Nt3wjPY9E+vpnWsRNPz5ZwNr
-         Q+1w==
-X-Gm-Message-State: AOJu0YyxJH5S5FRfyfqclrawEl503eeuWM+2ulnBHET4+wC9qz4REfDr
-	7LDqG9Piaezwhk6shRe96JJYhw==
-X-Google-Smtp-Source: AGHT+IEmA8pjDTnYTE03Z1YM5CEF1xILDmviZn12r/AQvC/9K9FrARLUDiv+Kj8P8fkZhqECrKbjFQ==
-X-Received: by 2002:a17:906:6a1c:b0:9c2:2d0a:320c with SMTP id qw28-20020a1709066a1c00b009c22d0a320cmr2052949ejc.46.1697563232834;
-        Tue, 17 Oct 2023 10:20:32 -0700 (PDT)
+        bh=Hxs+sQIbaWHoDQtm6owBdtGOUSGkJHKG73WSj0oPDvk=;
+        b=YGBURk3GJh7OCB3E1e+Ma33CiiiNOszyjPywe/h88OGP7VbLkGXnTw+fPvczSaRoYB
+         Bm2jM6xwF9Cxj9Z3XoDTBVJH05xS6zFx0AEOByCxgwcIbbfm6skoU6Y52E2YVXs79rMd
+         Hi0L0TCdaGy69kc/XP3YwD2OKvqp1xTvmCPAVYRm+1D50Ioy9+Pt+tJ1rtCulvI3VJck
+         944Jwqo8+A5D/6JBAVcEfK98mBbvKtjDURtMXHE9GecBRd/bmItPM89MdQA2aRv7S+kG
+         En6c2IQ7c6yBMMVoWOBAoKDHe/5YOFOHPB1hgsZMunpSkpuZ8ysxES2LS2UfrdbNrlQN
+         tw0Q==
+X-Gm-Message-State: AOJu0YyDuTf1STQpUKpMuebHkbOTOhLnlgbP0TPkBRg1q85vL5RRbTkj
+	CtSHRD8bvp7mHB55QmieMuFGLQ==
+X-Google-Smtp-Source: AGHT+IH+SOqunJUzfYypKpeVkRROQa3WcKZmcnfXZWk0IUnh2p2QAerpEqyAIZW9JkOx9muY1Re4yA==
+X-Received: by 2002:a17:907:3e13:b0:9a9:f042:deb9 with SMTP id hp19-20020a1709073e1300b009a9f042deb9mr2779657ejc.19.1697563270992;
+        Tue, 17 Oct 2023 10:21:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id jt14-20020a170906ca0e00b009be23a040cfsm158464ejb.40.2023.10.17.10.20.31
+        by smtp.gmail.com with ESMTPSA id jt14-20020a170906ca0e00b009be23a040cfsm158464ejb.40.2023.10.17.10.21.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 10:20:32 -0700 (PDT)
-Message-ID: <8b13c363-f398-406d-b3ab-629c4d2890e3@linaro.org>
-Date: Tue, 17 Oct 2023 19:20:31 +0200
+        Tue, 17 Oct 2023 10:21:10 -0700 (PDT)
+Message-ID: <f4b5d3e6-ff45-45c1-a2ae-dbfab103b83d@linaro.org>
+Date: Tue, 17 Oct 2023 19:21:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 6/8] arm: dts: qcom: Add pmic glink support for sm8450-qrd
+Subject: Re: [RFC 7/8] arm: dts: qcom: Enable runtime for SM8450 QRD
 Content-Language: en-US
 To: Krishna Kurapati <quic_kriskura@quicinc.com>,
  Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
@@ -81,7 +81,7 @@ Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  quic_ppratap@quicinc.com, quic_jackp@quicinc.com
 References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-6-quic_kriskura@quicinc.com>
+ <20231017131851.8299-7-quic_kriskura@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,7 +127,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231017131851.8299-6-quic_kriskura@quicinc.com>
+In-Reply-To: <20231017131851.8299-7-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -138,24 +138,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 17/10/2023 15:18, Krishna Kurapati wrote:
-> Add Pmic Glink support for sm8450-qrd to facilitate passing
-> of roe switch notifications generated by ADSP to dwc3 core
-> via ucsi and pmic glink's.
+> Enable runtime and wakeup source for SM8450 QRD platform.
 > 
 > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
 > ---
->  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 46 ++++++++++++++++++++++++-
->  1 file changed, 45 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> index aec47e45284e..d3e8fe7a37ec 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> @@ -490,6 +490,9 @@ &usb_1 {
+>  
+>  	dr_mode = "otg";
+>  	usb-role-switch;
+> +
+> +	qcom,enable-rt;
 
-With subject fixes:
+NAK. Not a HW property.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
