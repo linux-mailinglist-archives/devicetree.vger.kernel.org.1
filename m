@@ -1,142 +1,118 @@
-Return-Path: <devicetree+bounces-9145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A46B7CBCFA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:00:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3037CBD4C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:24:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E87D4B20FEE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:00:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E8C81C208D0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6889C381C6;
-	Tue, 17 Oct 2023 08:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFAE3AC36;
+	Tue, 17 Oct 2023 08:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tv8hN+5j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4i8S7Ql"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453B930D1D;
-	Tue, 17 Oct 2023 08:00:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A87AC433C7;
-	Tue, 17 Oct 2023 08:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA3D3AC29;
+	Tue, 17 Oct 2023 08:24:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC590C433C7;
+	Tue, 17 Oct 2023 08:24:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697529620;
-	bh=dDKPWob3NTMe7C9SlY1gR19DUsq4sN8SeXQP0UXWyaw=;
+	s=k20201202; t=1697531072;
+	bh=tom3LKzD4WPrxoOMlWcXOkaTJL2PCHAzD27eMGNLLx8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tv8hN+5jlJ0ofhkcuyLjePs3+5j6h6eiQJYCA82U2nTd8vNgQEcUrhJ/e35LA22Ay
-	 aiyYXEGCK+GDNB4BN7Gj/hK49XhXmB2ebQJITOd0Rz83VHTgynZlzTaQHy5KsHcgDd
-	 dYO4dv1dcQXaiTYw23PgvEoCHMQWpGOmyd7o93nJn49CIkt98rgKnNxVHaW2ZBk+n6
-	 reD/irVj5bxCHcmm0CDfxf25qKZgOgQ+gWBhSEMtaDdYik/RU73ytegEKWgbwxpBud
-	 Bx4YmIESFh/B6BtaysceZjBDq054CwtYevuveEio/GfQV4lWIKe61g+XK4dIOd7ico
-	 jTvlG8mLzdUaQ==
-Date: Tue, 17 Oct 2023 09:00:15 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ante Knezic <ante.knezic@helmholz.de>
-Cc: andrew@lunn.ch, conor+dt@kernel.org, davem@davemloft.net,
-	devicetree@vger.kernel.org, edumazet@google.com,
-	f.fainelli@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-	kuba@kernel.org, linux-kernel@vger.kernel.org, marex@denx.de,
-	netdev@vger.kernel.org, olteanv@gmail.com, pabeni@redhat.com,
-	robh+dt@kernel.org, woojung.huh@microchip.com
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document
- microchip,rmii-clk-internal
-Message-ID: <20231017-generous-botanical-28436c5ba13a@spud>
-References: <20231012-unicorn-rambling-55dc66b78f2f@spud>
- <20231016075349.18792-1-ante.knezic@helmholz.de>
+	b=B4i8S7QlyOLUBlWGp+GiUJgclkY3/COY8qdGHgBtegTU+FIthCnqN1sks4Wchm3n+
+	 ZvLhRotboqIec8IrsiX8StkvY4QJl3p4YXrPQVGfgaoHYG1bFBjhxJ+Ww/ONHwroue
+	 0t75VJowGk0w74kGckXoH6NbFcXcxzh+HFcGYmJr0mLmxQE6j6rVQ5OrmeojfNONZH
+	 T3iu192hCqs6kySjc+Uj40AIw5DsnzDb93EbLE5YY4/638MN7PB8cIMdmkLlZIVfqA
+	 h6lrn+w3I8cJD9cTR8PM5mEbk2VFNLkfR60BwGxBHADfAA5y16nMXhRB0e4sv/bfcc
+	 5aX79Mq2hXhnA==
+Date: Tue, 17 Oct 2023 10:24:27 +0200
+From: Simon Horman <horms@kernel.org>
+To: Matt Johnston <matt@codeconstruct.com.au>
+Cc: linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, miquel.raynal@bootlin.com
+Subject: Re: [PATCH net-next v6 3/3] mctp i3c: MCTP I3C driver
+Message-ID: <20231017082427.GH1751252@kernel.org>
+References: <20231013040628.354323-1-matt@codeconstruct.com.au>
+ <20231013040628.354323-4-matt@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RTdQAc1dJT5nSWZw"
-Content-Disposition: inline
-In-Reply-To: <20231016075349.18792-1-ante.knezic@helmholz.de>
-
-
---RTdQAc1dJT5nSWZw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231013040628.354323-4-matt@codeconstruct.com.au>
 
-On Mon, Oct 16, 2023 at 09:53:49AM +0200, Ante Knezic wrote:
-> On Thu, 12 Oct 2023 16:18:09 +0100, Conor Dooley wrote:
-> > On Thu, Oct 12, 2023 at 12:55:56PM +0200, Ante Knezic wrote:
-> > > Add documentation for selecting reference rmii clock on KSZ88X3 devic=
-es
-> > >=20
-> > > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
-> > > ---
-> > >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    | 19 +++++++++=
-++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.=
-yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > > index 41014f5c01c4..eaa347b04db1 100644
-> > > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > > @@ -72,6 +72,25 @@ properties:
-> > >    interrupts:
-> > >      maxItems: 1
-> > > =20
-> > > +  microchip,rmii-clk-internal:
-> > > +    $ref: /schemas/types.yaml#/definitions/flag
-> > > +    description:
-> > > +      Set if the RMII reference clock is provided internally. Otherw=
-ise
-> > > +      reference clock should be provided externally.
-> >=20
-> > I regret not asking this on the previous iteration - how come you need a
-> > custom property? In the externally provided case would there not be a
-> > clocks property pointing to the RMII reference clock, that would be
-> > absent when provided by the itnernal reference?
+On Fri, Oct 13, 2023 at 12:06:25PM +0800, Matt Johnston wrote:
+> Provides MCTP network transport over an I3C bus, as specified in
+> DMTF DSP0233.
+> 
+> Each I3C bus (with "mctp-controller" devicetree property) gets an
+> "mctpi3cX" net device created. I3C devices are reachable as remote
+> endpoints through that net device. Link layer addressing uses the
+> I3C PID as a fixed hardware address for neighbour table entries.
+> 
+> The driver matches I3C devices that have the MIPI assigned DCR 0xCC for
+> MCTP.
+> 
+> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
 
-> In both cases (external and internal), the KSZ88X3 is actually providing =
-the
-> RMII reference clock.
-> Difference is only will the clock be routed as external
-> copper track (pin REFCLKO -> pin REFCLKI), or will it be routed internall=
-y.
+Hi Matt,
 
-The switch always provides it's own external reference, wut? Why would
-anyone actually bother doing this instead of just using the internal
-reference?
+one minor nit below, which you can take, leave, or leave for later
+as far as I am concerned.
 
-> So, this should not affect the clock relation between the uC and the swit=
-ch
-> device?
+Overall the patch looks good to me and I see that Paolo's review of v5 has
+has been addressed.
 
-> This property has no effect if KSZ88X3 is not providing the reference clo=
-ck.
+Reviewed-by: Simon Horman <horms@kernel.org>
 
-This appears to contradict with the above, unless I am misunderstanding
-something.
+> +/* List of mctp_i3c_busdev */
+> +static LIST_HEAD(busdevs);
+> +/* Protects busdevs, as well as mctp_i3c_bus.devs lists */
+> +static DEFINE_MUTEX(busdevs_lock);
+> +
+> +struct mctp_i3c_bus {
+> +	struct net_device *ndev;
+> +
+> +	struct task_struct *tx_thread;
+> +	wait_queue_head_t tx_wq;
+> +	/* tx_lock protects tx_skb and devs */
+> +	spinlock_t tx_lock;
+> +	/* Next skb to transmit */
+> +	struct sk_buff *tx_skb;
+> +	/* Scratch buffer for xmit */
+> +	u8 tx_scratch[MCTP_I3C_MAXBUF];
+> +
+> +	/* Element of busdevs */
+> +	struct list_head list;
 
-> Maybe I should provide more info in the commit message of both patches as=
- well?
+I am unsure if it is important, but I observe that on x86_64
+list spans a cacheline.
 
-What I would have expected to see is that when the reference clock is
-provided externally that there would be a clocks property in the DT
-node, pointing at that external clock & when there was not, then
-no property. Likely that ship has already said, as I don't see clocks
-present in the current binding. How does the driver get the frequency of
-the RMII reference clock when an external reference is provided?
+> +
+> +	/* Provisioned ID of our controller */
+> +	u64 pid;
+> +
+> +	struct i3c_bus *bus;
+> +	/* Head of mctp_i3c_device.list. Protected by busdevs_lock */
+> +	struct list_head devs;
+> +};
 
---RTdQAc1dJT5nSWZw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS4/DwAKCRB4tDGHoIJi
-0rFQAP9m8VpRBlP7rWXT1ZHoFPq6+eLOQwYnPTJprqcCty2+fAEA1o0kvyUPI69W
-wXbdny+DrsOyb/DSpvy1L3OvYkdJ/gg=
-=xLsw
------END PGP SIGNATURE-----
-
---RTdQAc1dJT5nSWZw--
+...
 
