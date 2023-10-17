@@ -1,98 +1,387 @@
-Return-Path: <devicetree+bounces-9323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DA07CCAB9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:35:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 652077CCAD6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BFBF281A5D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:35:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83EA81C20A16
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203AF2D7B7;
-	Tue, 17 Oct 2023 18:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 477942D02B;
+	Tue, 17 Oct 2023 18:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gw9SYMTx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A089CA5C
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 18:35:14 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6EE9E;
-	Tue, 17 Oct 2023 11:35:13 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3af6cd01323so3729508b6e.3;
-        Tue, 17 Oct 2023 11:35:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAE12D7B7
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 18:37:34 +0000 (UTC)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB22B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 11:37:30 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-584a761b301so4425511a12.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 11:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697567850; x=1698172650; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fDIMPqihTJidR00sawm2Nr6O1yAKRnZhnAyaqVDW0po=;
+        b=gw9SYMTx1VjeyOO2N2mVtknygAUZAH94dmQ5kTMONKDKD51x/W/ElnL6uJbniDBpuD
+         ZgnXRcnEdd1t7d/QC8S5AGkEI2bSjdD56bGAyDTB/MbhVdCQYbug66KLD5WP0zw94krE
+         x+WwCBqo6/ozpRYSFOXUyqHnXxSMYHwW86EwZ2jOC/NSWCj/GYUbboj7aNHRQw1NvyX1
+         PYe3tgH6BcJR8a97F2dPY+1wD6f965Zq05WGJ3ZP3b+0WT2aAVkjGgu6DmEo9UYHE0m3
+         8IHDJ4HlKBunB4YjaAP3FsvAtwU+RAc2Oazb2hQeTNBRVrzuuQ42mp6TjvyhPfaNQfy/
+         6KKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697567713; x=1698172513;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IvrIiJWq+n8YDLTkOFBATbZgJOnUihq2U+eENPEqdgI=;
-        b=r07r7jF4FZo4PQAUWLZHeouVmB89GI3FxMVqspmPByc3Zd6ds4Nr/iITI2g+cYl4Sn
-         h8Odrr9dm2YykJfgMm/9zf7+fSdBk6uMFn87HbpsGOcrdefO0QzIPeY0yC/jW5FgHz9N
-         7H5M6oFiYtjE2SLFgtTmF3cFjHzo8Poyu2EB0tXKxBDlgQkdCGM0TE+k5gkm/E4WZ/Qp
-         uN0uN7ev6CdH4h6vCMsEwdfkNXbinWgORTHbfBsNGwAor8gyLMRDHqTnPITcPEF03lti
-         f4LCQX8QfC45I3Is8QUI4lmQTBOdpdiDN9Ta8GpJxX9122mwYfC5JVcUr2RHvxa9GDAV
-         RU/w==
-X-Gm-Message-State: AOJu0Yz75WIFSf4f1daR43y+psrBYRll0Oc9jSglR5eKaIj/rhurRmva
-	a/y1PCsoELYmZLyCMN0pqA==
-X-Google-Smtp-Source: AGHT+IFwrG2G9V+WzMR8t6/VcVQnYVQqqTMf+zxSRlMmdCuFJWQL/bWxYXJZN3yLyevIWE8VSZNj1w==
-X-Received: by 2002:a05:6808:94:b0:3b0:da4a:4823 with SMTP id s20-20020a056808009400b003b0da4a4823mr3195106oic.56.1697567712826;
-        Tue, 17 Oct 2023 11:35:12 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bp18-20020a056808239200b003af644e6e81sm346268oib.45.2023.10.17.11.35.11
+        d=1e100.net; s=20230601; t=1697567850; x=1698172650;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fDIMPqihTJidR00sawm2Nr6O1yAKRnZhnAyaqVDW0po=;
+        b=GYH8jID9OHXjwt32KlvLqH6j0EIhA3g6Iaz9gFvx2zEIOyWJygIRP4mfU98e/rTPNa
+         duij4yWUnpMTHRtXONGi0ogN1vKIQmevJc7xtJiK5FqRZO4nL/UScy2AFKeYG9RBPMlW
+         xr/etw86IR+qTbbcEZFBARvNnoxHLZOeaVnyUP49eqpk3vOs44Eklh3igMUDkmQkn4Gp
+         tzchlukYLoXO4AHuSXrr5aYtqQzqvbFssEbqoX1k2bH+pOxI7/oOV+NHh69FQFQBCMJl
+         wZvZUl0jDNrtdh/vl1yUYOVWR8NAB1T/cFBv2/iOqghNCTD7ZX8Q62eolDMZUUCwjYJl
+         Hb3w==
+X-Gm-Message-State: AOJu0YxV4bdp6PGUr/DpRU1+2vAHyXmwZBng966cvY/SCofJOpTip12z
+	mqZweOwNysLMHDzELrzgr/Qs
+X-Google-Smtp-Source: AGHT+IGZc+AgmoxdQbyFgHaq0HpMKMawgaGe+zQRacb1kYCqnv0STvUbAj7qgu4yUBj9NSvPcrfVDw==
+X-Received: by 2002:a05:6a20:1608:b0:14d:d9f8:83f8 with SMTP id l8-20020a056a20160800b0014dd9f883f8mr3663772pzj.1.1697567849901;
+        Tue, 17 Oct 2023 11:37:29 -0700 (PDT)
+Received: from thinkpad ([117.202.186.25])
+        by smtp.gmail.com with ESMTPSA id i2-20020a63e442000000b00577d53c50f7sm211772pgk.75.2023.10.17.11.37.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 11:35:12 -0700 (PDT)
-Received: (nullmailer pid 2484073 invoked by uid 1000);
-	Tue, 17 Oct 2023 18:35:11 -0000
-Date: Tue, 17 Oct 2023 13:35:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Mohan Kumar <mkumard@nvidia.com>
-Cc: devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com, linux-tegra@vger.kernel.org, vkoul@kernel.org, ldewangan@nvidia.com, robh+dt@kernel.org, dmaengine@vger.kernel.org, jonathanh@nvidia.com
-Subject: Re: [PATCH V2 1/2] dt-bindings: dma: Add dma-channel-mask to
- nvidia,tegra210-adma
-Message-ID: <169756769843.2483754.101770522333028835.robh@kernel.org>
-References: <20231017091816.2490-1-mkumard@nvidia.com>
- <20231017091816.2490-2-mkumard@nvidia.com>
+        Tue, 17 Oct 2023 11:37:29 -0700 (PDT)
+Date: Wed, 18 Oct 2023 00:07:22 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: aisheng.dong@nxp.com, bhelgaas@google.com, devicetree@vger.kernel.org,
+	festevam@gmail.com, imx@lists.linux.dev, jdmason@kudzu.us,
+	kernel@pengutronix.de, kishon@kernel.org, kw@linux.com,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v2 1/5] PCI: endpoint: Add RC-to-EP doorbell support
+ using platform MSI controller
+Message-ID: <20231017183722.GB137137@thinkpad>
+References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+ <20230911220920.1817033-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231017091816.2490-2-mkumard@nvidia.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230911220920.1817033-2-Frank.Li@nxp.com>
+X-Spam-Status: No, score=1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_SORBS_WEB,SORTED_RECIPS,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, 17 Oct 2023 14:48:15 +0530, Mohan Kumar wrote:
-> Add dma-channel-mask binding doc support to nvidia,tegra210-adma
-> to reserve the adma channel usage
+On Mon, Sep 11, 2023 at 06:09:16PM -0400, Frank Li wrote:
+> This commit introduces a common method for sending messages from the Root
+> Complex (RC) to the Endpoint (EP) by utilizing the platform MSI interrupt
+> controller, such as ARM GIC, as an EP doorbell. Maps the memory assigned
+> for the BAR region by the PCI host to the message address of the platform
+> MSI interrupt controller in the PCI EP. As a result, when the PCI RC writes
+
+"Doorbell feature is implemented by mapping the EP's MSI interrupt controller
+message address to a dedicated BAR in the EPC core. It is the responsibility
+of the EPF driver to pass the actual message data to be written by the host to
+the doorbell BAR region through its own logic."
+
+> to the BAR region, it triggers an IRQ at the EP. This implementation serves
+> as a common method for all endpoint function drivers.
 > 
-> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
+> However, it currently supports only one EP physical function due to
+> limitations in ARM MSI/IMS readiness.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/dma/nvidia,tegra210-adma.yaml          | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/pci/endpoint/pci-epc-core.c | 192 ++++++++++++++++++++++++++++
+>  drivers/pci/endpoint/pci-epf-core.c |  44 +++++++
+>  include/linux/pci-epc.h             |   6 +
+>  include/linux/pci-epf.h             |   7 +
+>  4 files changed, 249 insertions(+)
 > 
+> diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
+> index 5a4a8b0be6262..d336a99c6a94f 100644
+> --- a/drivers/pci/endpoint/pci-epc-core.c
+> +++ b/drivers/pci/endpoint/pci-epc-core.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/module.h>
+>  
+> +#include <linux/msi.h>
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+>  #include <linux/pci-ep-cfs.h>
+> @@ -783,6 +784,197 @@ void pci_epc_bme_notify(struct pci_epc *epc)
+>  }
+>  EXPORT_SYMBOL_GPL(pci_epc_bme_notify);
+>  
+> +/**
+> + * pci_epc_alloc_doorbell() - alloc an address space to let RC trigger EP side IRQ by write data to
+> + *			      the space.
 
+"Allocate platform specific doorbell IRQs to be used by the host to trigger
+doorbells on EP."
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+> + *
+> + * @epc: the EPC device that need doorbell address and data from RC.
 
-If a tag was not added on purpose, please state why and what changed.
+EPC device for which the doorbell needs to be allocated
 
-Missing tags:
+> + * @func_no: the physical endpoint function number in the EPC device.
+> + * @vfunc_no: the virtual endpoint function number in the physical function.
+> + * @num_msgs: the total number of doorbell messages
 
-Acked-by: Rob Herring <robh@kernel.org>
+s/num_msgs/num_db
 
+> + *
+> + * Return: 0 success, other is failure
+> + */
+> +int pci_epc_alloc_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no, int num_msgs)
+> +{
+> +	int ret;
+> +
+> +	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> +		return -EINVAL;
+> +
+> +	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +		return -EINVAL;
+> +
+> +	if (!epc->ops->alloc_doorbell)
+> +		return 0;
 
+You mentioned 0 is a success. So if there is no callback, you want to return
+success?
 
+> +
+> +	mutex_lock(&epc->lock);
+> +	ret = epc->ops->alloc_doorbell(epc, func_no, vfunc_no, num_msgs);
+
+Why can't you just call the generic function here and in other places instead of
+implementing callbacks? I do not see a necessity for EPC specific callbacks. If
+there is one, please specify.
+
+> +	mutex_unlock(&epc->lock);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epc_alloc_doorbell);
+> +
+> +/**
+> + * pci_epc_free_doorbell() - free resource allocated by pci_epc_alloc_doorbell()
+> + *
+> + * @epc: the EPC device that need doorbell address and data from RC.
+
+Same as above.
+
+> + * @func_no: the physical endpoint function number in the EPC device.
+> + * @vfunc_no: the virtual endpoint function number in the physical function.
+> + *
+> + * Return: 0 success, other is failure
+> + */
+> +void pci_epc_free_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+> +{
+> +	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
+> +		return;
+> +
+> +	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
+> +		return;
+> +
+> +	if (!epc->ops->free_doorbell)
+> +		return;
+> +
+> +	mutex_lock(&epc->lock);
+> +	epc->ops->free_doorbell(epc, func_no, vfunc_no);
+
+Same as suggested above.
+
+> +	mutex_unlock(&epc->lock);
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epc_free_doorbell);
+> +
+> +static irqreturn_t pci_epf_generic_doorbell_handler(int irq, void *data)
+> +{
+> +	struct pci_epf *epf = data;
+> +
+> +	if (epf->event_ops && epf->event_ops->doorbell)
+> +		epf->event_ops->doorbell(epf, irq - epf->virq_base);
+
+Same as suggested above.
+
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void pci_epc_generic_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> +{
+> +	struct pci_epc *epc = NULL;
+> +	struct class_dev_iter iter;
+> +	struct pci_epf *epf;
+> +	struct device *dev;
+> +
+> +	class_dev_iter_init(&iter, pci_epc_class, NULL, NULL);
+> +	while ((dev = class_dev_iter_next(&iter))) {
+> +		if (dev->parent != desc->dev)
+> +			continue;
+> +
+> +		epc = to_pci_epc(dev);
+> +
+> +		class_dev_iter_exit(&iter);
+> +		break;
+> +	}
+> +
+> +	if (!epc)
+> +		return;
+> +
+> +	/* Only support one EPF for doorbell */
+> +	epf = list_first_entry_or_null(&epc->pci_epf, struct pci_epf, list);
+> +
+
+No need of this newline
+
+> +	if (!epf)
+> +		return;
+> +
+> +	if (epf->msg && desc->msi_index < epf->num_msgs)
+> +		epf->msg[desc->msi_index] = *msg;
+> +}
+> +
+> +
+
+Remove extra newline
+
+> +/**
+> + * pci_epc_generic_alloc_doorbell() - Common help function. Allocate address space from MSI
+> + *                                    controller
+> + *
+> + * @epc: the EPC device that need doorbell address and data from RC.
+> + * @func_no: the physical endpoint function number in the EPC device.
+> + * @vfunc_no: the virtual endpoint function number in the physical function.
+> + * @num_msgs: the total number of doorbell messages
+> + *
+
+Same comment as for pci_epc_alloc_doorbell()
+
+> + * Remark: use this function only if EPC driver just register one EPC device.
+> + *
+> + * Return: 0 success, other is failure
+> + */
+> +int pci_epc_generic_alloc_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no, int num_msgs)
+> +{
+> +	struct pci_epf *epf;
+> +	struct device *dev;
+> +	int virq, last;
+> +	int ret;
+> +	int i;
+> +
+> +	if (IS_ERR_OR_NULL(epc))
+> +		return -EINVAL;
+> +
+> +	/* Currently only support one func and one vfunc for doorbell */
+> +	if (func_no || vfunc_no)
+> +		return -EINVAL;
+> +
+> +	epf = list_first_entry_or_null(&epc->pci_epf, struct pci_epf, list);
+> +	if (!epf)
+> +		return -EINVAL;
+> +
+> +	dev = epc->dev.parent;
+> +	ret = platform_msi_domain_alloc_irqs(dev, num_msgs, pci_epc_generic_write_msi_msg);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to allocate MSI\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	last = -1;
+> +	for (i = 0; i < num_msgs; i++) {
+
+You should iterate over msi_desc as below:
+
+        msi_lock_descs(dev);
+        msi_for_each_desc(desc, dev, MSI_DESC_ALL) {
+		...
+	}
+	msi_unlock_descs(dev);
+
+> +		virq = msi_get_virq(dev, i);
+> +		if (i == 0)
+> +			epf->virq_base = virq;
+> +
+> +		ret = request_irq(virq, pci_epf_generic_doorbell_handler, 0,
+
+	request_irq(desc->irq, ...)
+
+> +				  kasprintf(GFP_KERNEL, "pci-epc-doorbell%d", i), epf);
+> +
+> +		if (ret) {
+> +			dev_err(dev, "Failed to request doorbell\n");
+> +			goto err_free_irq;
+> +		}
+> +		last = i;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_free_irq:
+> +	for (i = 0; i < last; i++)
+> +		kfree(free_irq(epf->virq_base + i, epf));
+> +	platform_msi_domain_free_irqs(dev);
+> +
+> +	return -EINVAL;
+
+	return ret;
+
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epc_generic_alloc_doorbell);
+> +
+
+[...]
+
+> diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
+> index 3f44b6aec4770..485c146a5efe2 100644
+> --- a/include/linux/pci-epf.h
+> +++ b/include/linux/pci-epf.h
+> @@ -79,6 +79,7 @@ struct pci_epc_event_ops {
+>  	int (*link_up)(struct pci_epf *epf);
+>  	int (*link_down)(struct pci_epf *epf);
+>  	int (*bme)(struct pci_epf *epf);
+> +	int (*doorbell)(struct pci_epf *epf, int index);
+
+kdoc missing.
+
+>  };
+>  
+>  /**
+> @@ -180,6 +181,9 @@ struct pci_epf {
+>  	unsigned long		vfunction_num_map;
+>  	struct list_head	pci_vepf;
+>  	const struct pci_epc_event_ops *event_ops;
+> +	struct msi_msg *msg;
+> +	u16 num_msgs;
+
+num_db
+
+You also need to add kdoc for each new member.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
