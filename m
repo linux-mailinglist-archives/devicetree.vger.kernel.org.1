@@ -1,39 +1,47 @@
-Return-Path: <devicetree+bounces-9154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54F27CBDB2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:36:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D8E7CBDE2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35E4BB20FDF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:36:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 902D32819C1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896E5C2D5;
-	Tue, 17 Oct 2023 08:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28323B28B;
+	Tue, 17 Oct 2023 08:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dP8t75ij"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YccWFxDr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAA13C6B4
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:36:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ADC4C433CC;
-	Tue, 17 Oct 2023 08:35:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697531762;
-	bh=bxQ82IWwFTe1mvFeMo6rviRKyG0XFF3pKDzAPLI6B2I=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1952B3CCF0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:38:29 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F3BFB;
+	Tue, 17 Oct 2023 01:38:26 -0700 (PDT)
+Received: from [IPV6:2a02:2f04:a37:9d00:b380:eb44:83c6:6b95] (unknown [IPv6:2a02:2f04:a37:9d00:b380:eb44:83c6:6b95])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 845E46606EE0;
+	Tue, 17 Oct 2023 09:38:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697531905;
+	bh=BSMLjbZcuwNhTxKRB4oqXbZT9i1jbW/ydiS26D4uPQo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dP8t75ijL7gCWo4Ij5upi9+y6xFi/bvXqcHsVyAFyryOsCnpN/aMRDtfTGNcX1CNf
-	 0Bd1Br7vd/qT0gzTlU4ZSoFkULGhfSy8kGwlBusRJjIrEvv1YiJh8mbLz2bSyNq7eh
-	 c9KI+Q3wu2V+LzQAkBq4bK2/TkWt75avov5+2tuwhf8jY6ZUy1VUpEYKHaP8v/8fyL
-	 aF+zUWnJ5Qi+roCFsiCiT+GlFTY3pBbPdzz8z1eXgCxQd97qAn/YZzdpg7LHDGq0g2
-	 4rcLAmVK2vW/9o1YlhjrPxi6jN5meZUolG4TzGk0oOXs3SfzvQR7Q8xUi+s7Su0WbK
-	 QeescrVeMeImQ==
-Message-ID: <b7bf3dc2-c249-4a5c-9715-de35b77706cd@kernel.org>
-Date: Tue, 17 Oct 2023 17:35:57 +0900
+	b=YccWFxDrI8/xGCFcYHGPIGLkbs3FwJSrgHRhoi/litiDLuS1CxIw4ySYdnuJ8lItu
+	 WzDLqQC3CRZtWwaLBfTSnbQJBLym84QrfASDpyxRuuXL2bsqz+M7kG7M0kbHGjbLwf
+	 dLUkSDFMW/FkEQT064gjl3eyspBjwHgrkCUJl94+POe+wGE+XGg1KGty/TPJ87R4q5
+	 MYRT95fAvjchdgY/66rT1FDXzl7Dlbg9fO1NO1Fw16lczTXnINqM1qAjKwlhsaWC+A
+	 HWPHkMPr3wXb+woclNkb0EuKT+/OYEWA4bha8ZmCoIXVAxX94RaNKNhzVIE36vk3xN
+	 pn0TCXNIllB/A==
+Message-ID: <ecd6a00f-2166-48b7-a6ae-e165a2a6d70b@collabora.com>
+Date: Tue, 17 Oct 2023 11:38:20 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,185 +49,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 18/26] PM / devfreq: rockchip-dfi: account for multiple
- DDRMON_CTRL registers
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Heiko Stuebner <heiko@sntech.de>, Kyungmin Park <kyungmin.park@samsung.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Robin Murphy <robin.murphy@arm.com>,
- Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [RESEND PATCH v4 4/4] arm64: dts: Add MediaTek MT8188 dts and
+ evaluation board and Makefile
+To: Jason-ch Chen <jason-ch.chen@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-19-s.hauer@pengutronix.de>
- <98c448be-8ea8-a0bd-62cc-3bc3a5cf5569@kernel.org>
- <20231016124903.GC3359458@pengutronix.de>
-From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20231016124903.GC3359458@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
+ <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
+ <20230921060235.32478-5-jason-ch.chen@mediatek.com>
+Content-Language: en-US
+From: Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <20230921060235.32478-5-jason-ch.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 23. 10. 16. 21:49, Sascha Hauer wrote:
-> On Mon, Oct 09, 2023 at 07:19:04AM +0900, Chanwoo Choi wrote:
->> On 23. 7. 4. 18:32, Sascha Hauer wrote:
->>> The currently supported RK3399 has a set of registers per channel, but
->>> it has only a single DDRMON_CTRL register. With upcoming RK3588 this
->>> will be different, the RK3588 has a DDRMON_CTRL register per channel.
->>>
->>> Instead of expecting a single DDRMON_CTRL register, loop over the
->>> channels and write the channel specific DDRMON_CTRL register. Break
->>> out early out of the loop when there is only a single DDRMON_CTRL
->>> register like on the RK3399.
->>>
->>> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->>> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->>> ---
->>>  drivers/devfreq/event/rockchip-dfi.c | 72 ++++++++++++++++++----------
->>>  1 file changed, 48 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
->>> index 85ec93fd41858..2362d3953ba40 100644
->>> --- a/drivers/devfreq/event/rockchip-dfi.c
->>> +++ b/drivers/devfreq/event/rockchip-dfi.c
->>> @@ -113,12 +113,13 @@ struct rockchip_dfi {
->>>  	int burst_len;
->>>  	int buswidth[DMC_MAX_CHANNELS];
->>>  	int ddrmon_stride;
->>> +	bool ddrmon_ctrl_single;
->>>  };
->>>  
->>>  static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
->>>  {
->>>  	void __iomem *dfi_regs = dfi->regs;
->>> -	int ret = 0;
->>> +	int i, ret = 0;
->>>  
->>>  	mutex_lock(&dfi->mutex);
->>>  
->>> @@ -132,29 +133,41 @@ static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
->>>  		goto out;
->>>  	}
->>>  
->>> -	/* clear DDRMON_CTRL setting */
->>> -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN |
->>> -		       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
->>> +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
->>> +		u32 ctrl = 0;
->>>  
->>> -	/* set ddr type to dfi */
->>> -	switch (dfi->ddr_type) {
->>> -	case ROCKCHIP_DDRTYPE_LPDDR2:
->>> -	case ROCKCHIP_DDRTYPE_LPDDR3:
->>> -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
->>> -			       dfi_regs + DDRMON_CTRL);
->>> -		break;
->>> -	case ROCKCHIP_DDRTYPE_LPDDR4:
->>> -	case ROCKCHIP_DDRTYPE_LPDDR4X:
->>> -		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
->>> -			       dfi_regs + DDRMON_CTRL);
->>> -		break;
->>> -	default:
->>> -		break;
->>> -	}
->>> +		if (!(dfi->channel_mask & BIT(i)))
->>> +			continue;
->>>  
->>> -	/* enable count, use software mode */
->>> -	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
->>> -		       dfi_regs + DDRMON_CTRL);
->>> +		/* clear DDRMON_CTRL setting */
->>> +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN |
->>> +			       DDRMON_CTRL_SOFTWARE_EN | DDRMON_CTRL_HARDWARE_EN),
->>> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
->>> +
->>> +		/* set ddr type to dfi */
->>> +		switch (dfi->ddr_type) {
->>> +		case ROCKCHIP_DDRTYPE_LPDDR2:
->>> +		case ROCKCHIP_DDRTYPE_LPDDR3:
->>> +			ctrl = DDRMON_CTRL_LPDDR23;
->>> +			break;
->>> +		case ROCKCHIP_DDRTYPE_LPDDR4:
->>> +		case ROCKCHIP_DDRTYPE_LPDDR4X:
->>> +			ctrl = DDRMON_CTRL_LPDDR4;
->>> +			break;
->>> +		default:
->>> +			break;
->>> +		}
->>> +
->>> +		writel_relaxed(HIWORD_UPDATE(ctrl, DDRMON_CTRL_DDR_TYPE_MASK),
->>> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
->>> +
->>> +		/* enable count, use software mode */
->>> +		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
->>> +			       dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
->>> +
->>> +		if (dfi->ddrmon_ctrl_single)
->>> +			break;
->>> +	}
->>>  out:
->>>  	mutex_unlock(&dfi->mutex);
->>>  
->>> @@ -164,6 +177,7 @@ static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
->>>  static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
->>>  {
->>>  	void __iomem *dfi_regs = dfi->regs;
->>> +	int i;
->>>  
->>>  	mutex_lock(&dfi->mutex);
->>>  
->>> @@ -174,8 +188,17 @@ static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
->>>  	if (dfi->usecount > 0)
->>>  		goto out;
->>>  
->>> -	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
->>> -		       dfi_regs + DDRMON_CTRL);
->>> +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
->>> +		if (!(dfi->channel_mask & BIT(i)))
->>> +			continue;
->>> +
->>> +		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
->>> +			      dfi_regs + i * dfi->ddrmon_stride + DDRMON_CTRL);
->>> +
->>> +		if (dfi->ddrmon_ctrl_single)
->>> +			break;
->>> +	}
->>> +
->>>  	clk_disable_unprepare(dfi->clk);
->>>  out:
->>>  	mutex_unlock(&dfi->mutex);
->>> @@ -666,6 +689,7 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
->>>  	dfi->buswidth[1] = FIELD_GET(RK3399_PMUGRF_OS_REG2_BW_CH1, val) == 0 ? 4 : 2;
->>>  
->>>  	dfi->ddrmon_stride = 0x14;
->>> +	dfi->ddrmon_ctrl_single = true;
->>>  
->>>  	return 0;
->>>  };
->>
->> Even if rk3568 has the only one channle and don't need to check whether 'dfi->ddrmon_ctrl_single'
->> is true or not because of 'if (!(dfi->channel_mask & BIT(i)))',
->> I recommand the add 'dfi->ddrmon_ctrl_single = true;' for rk3568 in order to
->> provide the number of DDRMON_CTRL reigster of rk3568.
->>
->> If rk3568 doesn't have the 'ddrmon_ctrl_single', actually it is not easy
->> to catch what why are there no initilization for rk3568.
+On 9/21/23 09:02, Jason-ch Chen wrote:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 > 
-> Ok, will change.
+> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
+> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
+> 
+> We add basic chip support for MediaTek MT8188 on evaluation board.
+> 
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+>   arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 400 ++++++++
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951 ++++++++++++++++++++
+>   3 files changed, 1352 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
 > 
 
-Thanks.
+[...]
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+> +	soc {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		compatible = "simple-bus";
+> +		ranges;
+> +
+> +		gic: interrupt-controller@c000000 {
+
+Hi Jason,
+
+arch/arm64/boot/dts/mediatek/mt8188.dtsi:320.37-341.5: Warning 
+(avoid_unnecessary_addr_size): /soc/interrupt-controller@c000000: 
+unnecessary #address-cells/#size-cells without "ranges" or child "reg" 
+property
+
+
+This warning pops up when trying dtbs_check.
+Can you have a look please ?
+
+Eugen
+
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <4>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			#redistributor-regions = <1>;
+> +			interrupt-parent = <&gic>;
+> +			interrupt-controller;
+> +			reg = <0 0x0c000000 0 0x40000>,
+> +			      <0 0x0c040000 0 0x200000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +
+> +			ppi-partitions {
+> +				ppi_cluster0: interrupt-partition-0 {
+> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+> +				};
+> +
+> +				ppi_cluster1: interrupt-partition-1 {
+> +					affinity = <&cpu6 &cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+
+[...]
 
 
