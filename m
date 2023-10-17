@@ -1,266 +1,174 @@
-Return-Path: <devicetree+bounces-9422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BEB7CCFEE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 00:14:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4F07CD087
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 01:23:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A95028113F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:14:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE2A21C20B34
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 23:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499DE2F51B;
-	Tue, 17 Oct 2023 22:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA7F335B9;
+	Tue, 17 Oct 2023 23:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bsnq3ptt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TavW5mbz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645282F518
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 22:14:53 +0000 (UTC)
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6D9B0;
-	Tue, 17 Oct 2023 15:14:51 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9338e4695so82346131fa.2;
-        Tue, 17 Oct 2023 15:14:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697580890; x=1698185690; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zOAltFmNIIk1OQ8RE29YlbSsDwGFJQEW4YapJi7YEcE=;
-        b=bsnq3ptt5rQFAizkxPbThSrT3kNjIERW0xuLe+9Be7ud1vKSABi0eFNx20LwogXf6c
-         veELZaPhzh6tV5Hj3lfqQ/+/Z9V9eT7Jdb/8ZT2/Ep2+X9wVMjEn73bhpqeBXlRZk9Id
-         yaKr4s6AzrTJpmRxTn4cr9xgaSSHI9P8hyPp9hPnS2jM7Wden/TguUJ+uYl4pm7QecEO
-         8VFXKmrE+H4MKtQa6L9Z/CDOyUGuxfUUn2xIVeqPNG3pGBP3Ck8oDEyNQKJZjF3Z9POz
-         +ly19txGXIKU7D0iezGkUHZoS3WazTJ4u4SUFJw22QDyDQ87ihntlQdlvqv7KfYJcoQN
-         JMpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697580890; x=1698185690;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zOAltFmNIIk1OQ8RE29YlbSsDwGFJQEW4YapJi7YEcE=;
-        b=QTCxZc/WmxBdv//y/S0aRb//KTe/dHBkxJ/AWqAfJ6p/tKABlEl3nhB9jV29fxdPiU
-         35q6gv9gEoSgFBLAdb5ivrabJOXqurD5giiylcZGZP0luVfrLP0f4RSdjA8vouihy5dx
-         1t5deq9bFLadklGIFxap1DQB4nuwj7rxrBBaKE5XDjmDIHHqQEtuVK/dKb3dKGxNG/RH
-         GjcWEULnI0xOZDwdoeRioczQbl+lqx7PxkvOfCdFTXrL4qyZv7nRfwHd2cAL+8Cye0tv
-         Ua8c7Bo0XBkeZPKvg2m5YJdw7j6+2KFH9NGIpdjtrBTDyvPT2EM1k9Q9njhKejLff8qI
-         phyQ==
-X-Gm-Message-State: AOJu0YyfwcmYS17jQd4BzYVLnIynFjZXgSAK9QSkp98Kc3Cwg99HvgeK
-	TXCGycgWB0FNiEcmIlr9EkoRLVeQsge7Lw==
-X-Google-Smtp-Source: AGHT+IEOpr6BB0LyNnV+m0noVjJYZ0i8J9qyJIrlwMfaZvC5GGftq5mVNUekH40+/BfvoXTTd9ds7g==
-X-Received: by 2002:a2e:8e22:0:b0:2b6:a804:4cc with SMTP id r2-20020a2e8e22000000b002b6a80404ccmr2153096ljk.53.1697580889428;
-        Tue, 17 Oct 2023 15:14:49 -0700 (PDT)
-Received: from localhost.localdomain ([178.70.169.129])
-        by smtp.gmail.com with ESMTPSA id d13-20020a2eb04d000000b002c09602150asm431479ljl.27.2023.10.17.15.14.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 15:14:48 -0700 (PDT)
-From: Ivan Bornyakov <brnkv.i1@gmail.com>
-To: Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc: Ivan Bornyakov <brnkv.i1@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nas Chung <nas.chung@chipsnmedia.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-media@vger.kernel.org,
-	Tomasz Figa <tfiga@chromium.org>,
-	linux-kernel@vger.kernel.org,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	kernel@collabora.com,
-	Robert Beckett <bob.beckett@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
-Date: Wed, 18 Oct 2023 01:13:52 +0300
-Message-ID: <20231017221359.20164-1-brnkv.i1@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
-References: 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949DE2F51B;
+	Tue, 17 Oct 2023 23:23:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BB1FE;
+	Tue, 17 Oct 2023 16:23:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697585000; x=1729121000;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=2UKUUSI67P7VTV+D5P7W1dLNBm5HCyoV51RKoH6boYk=;
+  b=TavW5mbzx3lO9rKW69sqvxqM4dzMACsepUdqBnL3OVnk5KBuZOcxeI4B
+   eS6guP+5eOYcAmg3r0m8R+VgICIuNUjltV2d0FDPg/Ka3eZ7MqWjsWYzO
+   DFenq8G0jxHufCd4vp0gllAjzr6u35mL7oBqlZJ68pwXfKEj+BD+M1Xow
+   ctV4/Pim70y7v/G3dauag9aD/I6vVudXeTHFSNELdEH00FUoJGXz1PhfQ
+   byHWbqeE5vR+5Hi/HiYXljPW1gsBtdUxAxpDkz7QR/FKtFPYz6iNq9/mC
+   xNG+YXBAObnoEQxReDh9u/FgNqGkIoaLrGhMYLtqCetOBkuJgqNpWS/wG
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="384778101"
+X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; 
+   d="scan'208";a="384778101"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2023 16:23:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="826637465"
+X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; 
+   d="scan'208";a="826637465"
+Received: from asprado-mobl2.amr.corp.intel.com (HELO [10.212.55.179]) ([10.212.55.179])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2023 16:23:17 -0700
+Message-ID: <ad851c66-5c5f-4bbb-b278-7b0c49b3cb07@linux.intel.com>
+Date: Tue, 17 Oct 2023 17:29:05 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 20/34] ALSA: usb-audio: Check for support for requested
+ audio format
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
+ gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+ perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+ Thinh.Nguyen@synopsys.com
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-21-quic_wcheng@quicinc.com>
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20231017200109.11407-21-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi!
 
-On Thu, 12 Oct 2023 13:01:03 +0200, Sebastian Fricke wrote:
-> Add the decoder and encoder implementing the v4l2
-> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
+
+On 10/17/23 15:00, Wesley Cheng wrote:
+> Allow for checks on a specific USB audio device to see if a requested PCM
+> format is supported.  This is needed for support for when playback is
+
+This is needed for support when playback is
+
+> initiated by the ASoC USB backend path.
 > 
-> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 > ---
->  drivers/media/platform/chips-media/Kconfig         |    1 +
->  drivers/media/platform/chips-media/Makefile        |    1 +
->  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
->  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
->  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
->  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
->  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
->  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
->  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
->  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
->  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
->  11 files changed, 4389 insertions(+), 2 deletions(-)
-
-[...]
-
-> diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-> new file mode 100644
-> index 000000000000..74d1fae64fa4
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-
-[...]
-
-> +static int wave5_vpu_dec_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
-> +				     unsigned int *num_planes, unsigned int sizes[],
-> +				     struct device *alloc_devs[])
+>  sound/usb/card.c | 40 ++++++++++++++++++++++++++++++++++++++++
+>  sound/usb/card.h | 11 +++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/sound/usb/card.c b/sound/usb/card.c
+> index c0b312e264bf..88f431917c15 100644
+> --- a/sound/usb/card.c
+> +++ b/sound/usb/card.c
+> @@ -162,6 +162,46 @@ int snd_usb_unregister_platform_ops(void)
+>  }
+>  EXPORT_SYMBOL_GPL(snd_usb_unregister_platform_ops);
+>  
+> +/*
+> + * Checks to see if requested audio profile, i.e sample rate, # of
+> + * channels, etc... is supported by the substream associated to the
+> + * USB audio device.
+> + */
+> +struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
+> +			struct snd_pcm_hw_params *params, int direction)
 > +{
-> +	struct vpu_instance *inst = vb2_get_drv_priv(q);
-> +	struct v4l2_pix_format_mplane inst_format =
-> +		(q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) ? inst->src_fmt : inst->dst_fmt;
-> +	unsigned int i;
+> +	struct snd_usb_audio *chip;
+> +	struct snd_usb_substream *subs = NULL;
+
+useless init?
+
+> +	struct snd_usb_stream *as;
+> +	const struct audioformat *fmt;
 > +
-> +	dev_dbg(inst->dev->dev, "%s: num_buffers: %u | num_planes: %u | type: %u\n", __func__,
-> +		*num_buffers, *num_planes, q->type);
-> +
-> +	/* the CREATE_BUFS case */
-> +	if (*num_planes) {
-> +		if (inst_format.num_planes != *num_planes)
-> +			return -EINVAL;
-> +
-> +		for (i = 0; i < *num_planes; i++) {
-> +			if (sizes[i] < inst_format.plane_fmt[i].sizeimage)
-> +				return -EINVAL;
-> +		}
-> +	/* the REQBUFS case */
-> +	} else {
-> +		*num_planes = inst_format.num_planes;
-> +
-> +		if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
-> +			sizes[0] = inst_format.plane_fmt[0].sizeimage;
-> +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
-> +		} else if (*num_planes == 1) {
-
-I think, you should also set *num_buffers to be inst->fbc_buf_count for
-V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE, like this:
-
-		} else if (q->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
-			if (*num_buffers < inst->fbc_buf_count)
-				*num_buffers = inst->fbc_buf_count;
-
-			switch (*num_planes) {
-			case 1:
-				...
-			case 2:
-				...
-			case 3:
-				...
-			}
-		}
-
-The reason for that is if fbc_buf_count is greater than initial num_buffers,
-wave5_vpu_dec_job_ready() wouldn't allow to invoke wave5_vpu_dec_device_run()
-
-Here is a part of the log of described situation:
-
-  vdec 20410000.wave515: Switch state from NONE to OPEN.
-  [...]
-  vdec 20410000.wave515: wave5_vpu_dec_init_seq: init seq sent (queue 1 : 1)
-  vdec 20410000.wave515: wave5_vpu_dec_get_seq_info: init seq complete (queue 0 : 0)
-  [...]
-  vdec 20410000.wave515: handle_dynamic_resolution_change: width: 4112 height: 3008 profile: 1 | minbuffer: 6
-  ^^^^^^^^ note that minbuffer is 6
-
-  vdec 20410000.wave515: Switch state from OPEN to INIT_SEQ.
-  [...]
-  vdec 20410000.wave515: decoder command: 1
-  [...]
-  vdec 20410000.wave515: wave5_vpu_dec_queue_setup: num_buffers: 4 | num_planes: 0 | type: 9
-  ^^^^^^^^ note that num_buffers is 4
-
-  vdec 20410000.wave515: wave5_vpu_dec_queue_setup: size[0]: 18625536
-  vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-  vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-  vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-  vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-  vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    0 size: ([0]=18625536, [1]=   0, [2]=   0)
-  vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    1 size: ([0]=18625536, [1]=   0, [2]=   0)
-  vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    2 size: ([0]=18625536, [1]=   0, [2]=   0)
-  vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    3 size: ([0]=18625536, [1]=   0, [2]=   0)
-  vdec 20410000.wave515: wave5_vpu_dec_start_streaming: type: 9
-  vdec 20410000.wave515: No capture buffer ready to decode!
-  ^^^^^^^^ here v4l2_m2m_num_dst_bufs_ready(m2m_ctx) < (inst->fbc_buf_count - 1), namely 4 < 6
-  
-  vdec 20410000.wave515: wave5_vpu_dec_stop_streaming: type: 9
-  vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 0, fail: -22
-  vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 1, fail: -22
-  vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 2, fail: -22
-  vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 3, fail: -22
-  [...]
-  vdec 20410000.wave515: wave5_vpu_dec_close: dec_finish_seq complete
-
-Altering num_buffers solves the issue for me.
-
-> +			if (inst->output_format == FORMAT_422)
-> +				sizes[0] = inst_format.width * inst_format.height * 2;
-> +			else
-> +				sizes[0] = inst_format.width * inst_format.height * 3 / 2;
-> +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
-> +		} else if (*num_planes == 2) {
-> +			sizes[0] = inst_format.width * inst_format.height;
-> +			if (inst->output_format == FORMAT_422)
-> +				sizes[1] = inst_format.width * inst_format.height;
-> +			else
-> +				sizes[1] = inst_format.width * inst_format.height / 2;
-> +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u\n",
-> +				__func__, sizes[0], sizes[1]);
-> +		} else if (*num_planes == 3) {
-> +			sizes[0] = inst_format.width * inst_format.height;
-> +			if (inst->output_format == FORMAT_422) {
-> +				sizes[1] = inst_format.width * inst_format.height / 2;
-> +				sizes[2] = inst_format.width * inst_format.height / 2;
-> +			} else {
-> +				sizes[1] = inst_format.width * inst_format.height / 4;
-> +				sizes[2] = inst_format.width * inst_format.height / 4;
-> +			}
-> +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u | size[2]: %u\n",
-> +				__func__, sizes[0], sizes[1], sizes[2]);
-> +		}
+> +	/*
+> +	 * Register mutex is held when populating and clearing usb_chip
+> +	 * array.
+> +	 */
+> +	mutex_lock(&register_mutex);
+> +	chip = usb_chip[card_idx];
+> +	if (!chip) {
+> +		mutex_unlock(&register_mutex);
+> +		return NULL;
 > +	}
 > +
-> +	return 0;
+> +	if (enable[card_idx]) {
+> +		list_for_each_entry(as, &chip->pcm_list, list) {
+> +			subs = &as->substream[direction];
+> +			fmt = snd_usb_find_substream_format(subs, params);
+> +			if (fmt) {
+> +				mutex_unlock(&register_mutex);
+> +				return as;
+> +			}
+> +		}
+> +	}
+> +	mutex_unlock(&register_mutex);
+> +
+> +	return NULL;
 > +}
-
-BTW I'm currently tinkering with your patchset on another C&M IP and would be
-gratefull if you Cc me in the future versions of the patchset, if any.
-
-Thanks.
+> +EXPORT_SYMBOL_GPL(snd_usb_find_suppported_substream);
+> +
+>  /*
+>   * disconnect streams
+>   * called from usb_audio_disconnect()
+> diff --git a/sound/usb/card.h b/sound/usb/card.h
+> index 2884912adc96..e26292363cf0 100644
+> --- a/sound/usb/card.h
+> +++ b/sound/usb/card.h
+> @@ -216,4 +216,15 @@ struct snd_usb_platform_ops {
+>  
+>  int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops);
+>  int snd_usb_unregister_platform_ops(void);
+> +
+> +#if IS_ENABLED(CONFIG_SND_USB_AUDIO)
+> +struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
+> +			struct snd_pcm_hw_params *params, int direction);
+> +#else
+> +static struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
+> +			struct snd_pcm_hw_params *params, int direction)
+> +{
+> +	return NULL;
+> +}
+> +#endif /* IS_ENABLED(CONFIG_SND_USB_AUDIO) */
+>  #endif /* __USBAUDIO_CARD_H */
 
