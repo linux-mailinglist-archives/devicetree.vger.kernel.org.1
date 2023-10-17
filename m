@@ -1,57 +1,53 @@
-Return-Path: <devicetree+bounces-9186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3FC7CC01C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 12:05:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 144217CC023
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 12:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 055921C2092A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:05:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B66C2B20F48
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8535A4122A;
-	Tue, 17 Oct 2023 10:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771034122F;
+	Tue, 17 Oct 2023 10:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzWiZmVb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E4WmtQmU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6846A41226
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:05:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCAAFC433C7;
-	Tue, 17 Oct 2023 10:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C32C3FB24
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:07:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2D62C433C7;
+	Tue, 17 Oct 2023 10:07:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697537100;
-	bh=ORx4TiHbziD8NTKPwE8OIL+NEWrOQyZcTLBjWa2HhFY=;
+	s=k20201202; t=1697537228;
+	bh=unab/tp++OH6BDxky/RYyhrmconOIGNcMkY+KpclhEY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bzWiZmVblW+dKRRPci1CWqNE/MpTQ7bdISzBXNTRIeF7P98FNsDlQQmZbqIqIZjfg
-	 5pCaDS006V42rbl4xZFemx7S1ITFkpYOn70MLbCsdcnOZaJuUUpR7OkvCwcLi+oySi
-	 aqTBIw12FIDJkcDdw+/GM0iOOeE3RUxyAxpfjk/f1gCc1fUytiQ31A5kCo/sAywbsw
-	 yTKP49tEmU8HDhStyuWUR4tjNFEHDLFiK2/jKlz8Bgh0iMHRC0R/RSw3mDTJl9EIXa
-	 UdF2TFB5qOmR1GF22V6Y1vK4+u3LZwS/BtGgou7Pm0qrC7xjx36o6GCACQD2JHIY+p
-	 JruPNGujk+9rQ==
-Date: Tue, 17 Oct 2023 11:04:56 +0100
+	b=E4WmtQmUWFJIgYknJY0NRJKhKxhjNR8lR+Ak5diE4ogCPDkdpGj3eh6qsbEOC2MII
+	 LKSeNGWP/ZSeIPi0cJHTEXW8v2kgVknhw6YwSQWE9zz9MsB30eMQORkNGHgELifT3p
+	 qSxJhO7MiB7bdIOGMRLcmlbbyYReKT2ZMigNd42x5G41Xe9x5xetsIdjHeWYAG3Y5O
+	 Mz8bq5sAw2qFLCw/9t/xBdrbB/8BiYO+Yx3Z/bmQM/HjsB3HGRraR3N9QiPau7Qa7Y
+	 wnR/riMcnV8VZEht3FXTvyAfBJ1ARmycyfls0hxzbzYyTG4DsDMGULpBhCeb/biHIX
+	 Dq1rEcWrn7/pw==
+Date: Tue, 17 Oct 2023 11:07:04 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Mark Brown <broonie@kernel.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
 	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
+Subject: Re: [PATCH v4 4/4] dt-bindings: audio-graph-port: add ch-maps
  property
-Message-ID: <20231017-darkness-jackknife-5cf32246a079@spud>
-References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
- <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
- <20231012-storage-directory-548905001d10@spud>
- <87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
- <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
- <20231013-planner-irate-8e411cc54a48@spud>
- <874jirxul6.wl-kuninori.morimoto.gx@renesas.com>
+Message-ID: <20231017-mutation-perfume-cae0484e8e32@spud>
+References: <87zg0jwdnz.wl-kuninori.morimoto.gx@renesas.com>
+ <87ttqrwdmw.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,74 +55,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mK+KFz/ZbekWv+fv"
+	protocol="application/pgp-signature"; boundary="d2oUw/7aLluqa6Wn"
 Content-Disposition: inline
-In-Reply-To: <874jirxul6.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87ttqrwdmw.wl-kuninori.morimoto.gx@renesas.com>
 
 
---mK+KFz/ZbekWv+fv
+--d2oUw/7aLluqa6Wn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 16, 2023 at 12:46:29AM +0000, Kuninori Morimoto wrote:
->=20
-> Hi Conor
->=20
-> > > Some of this explanation needs to go into the binding - someone readi=
-ng
-> > > the binding should really be able to figure out what numbers to put in
-> > > there without looking at the code.
-> >=20
-> > Absolutely :)
->=20
-> Indeed :) will do in v4
->=20
-> > > > ch-maps =3D <0 0 1> means,=20
-> > > > 	cpu0 <-> codec0
-> > > > 	cpu1 <-> codec0
-> > > > 	cpu2 <-> codec1
-> >=20
-> > What happens when you want to convey that codec0 & codec1 are both
-> > connected to cpu0 & codec2 is connected to cpu1?
-> > How would that be described in a DT?
-> > Or is that not something anyone would even want to do?
->=20
-> In such case, ch-maps is from codec. it will be like below.
-> It is judged by number of cpu vs codec. [PATCH 3/4] has both case sample.
->=20
-> 	cpu >=3D codec : CPU   base
-> 	cpu <  codec : Codec base
->=20
-> 	ch-maps =3D <0 0 1>
-> 	codec0 <-> cpu0
-> 	codec1 <-> cpu0
-> 	codec2 <-> cpu1
+Hey,
 
-That seems like a very unintuitive interface. If there were 32 CPUs and
-30 codecs, then it'd be very inconvenient for a human reader to grok the
-configuration. CPUs were to be disabled in the DT, could the meaning of
-the property invert?
+On Mon, Oct 16, 2023 at 01:37:59AM +0000, Kuninori Morimoto wrote:
+> This patch adds ch-maps property to enable handling CPU:Codec =3D N:M
+> connection.
 
-I am not really the best when it comes to audio (or media) bindings, but
-I am wondering if a phandle based approach would be better, where the
-codecs have phandles for their associated CPUs. Maybe Mark, Rob etc could
-comment if doing that sort of thing is not feasible.
+Please avoid sending new versions before the discussion on existing
+patches have been resolved. I replied on the v1 again just a few moments
+ago.
 
 Cheers,
 Conor.
 
+>=20
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml       | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yam=
+l b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index 60b5e3fd1115..1f7005356efb 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -19,7 +19,13 @@ definitions:
+>      properties:
+>        mclk-fs:
+>          $ref: simple-card.yaml#/definitions/mclk-fs
+> -
+> +      ch-maps:
+> +        description: It indicates how CPU / Codec DAIs are related if nu=
+mber of CPU(N) / Codec(M)
+> +          DAIs were not same in one dai-link. ch-maps is not needed if t=
+he numbers were 1:M or N:1
+> +          or N=3DM. If N <=3D M case, ch-maps indicates connection from =
+CPU, if N > M case,ch-maps
+> +          indicates connection from Codec.
+> +          ${LINUX}/sound/soc/generic/audio-graph-card2-custom-sample.dts=
+i is good sample.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>    endpoint-base:
+>      allOf:
+>        - $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> --=20
+> 2.25.1
+>=20
 
---mK+KFz/ZbekWv+fv
+--d2oUw/7aLluqa6Wn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS5cSAAKCRB4tDGHoIJi
-0mMMAP9g7XeYeu+IjQ9VTU/Ky8piEtPBsAymq6J4HNo8rFtciAD/chwXcCzMp49B
-DMP2Bf4p73/0wUi4X7vBX6zGRrN2Jg8=
-=Un8b
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS5cyAAKCRB4tDGHoIJi
+0mcrAP9kKyPPw1LoXQK+C30x0UAwOmDjRTP06e8CkqKdOYtGNgEA87yUFJKcjFFq
+hsjgzXdGG7rVO3pvSyfPPeqmbw2x/gY=
+=N/af
 -----END PGP SIGNATURE-----
 
---mK+KFz/ZbekWv+fv--
+--d2oUw/7aLluqa6Wn--
 
