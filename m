@@ -1,86 +1,151 @@
-Return-Path: <devicetree+bounces-9399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D62F7CCD6C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:04:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708297CCD7E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04F00B22748
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:04:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A371C209DB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14E3430E1;
-	Tue, 17 Oct 2023 20:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D12430EC;
+	Tue, 17 Oct 2023 20:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fyla5S4O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF53430E2
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:04:09 +0000 (UTC)
-Received: from smtprelay07.ispgateway.de (smtprelay07.ispgateway.de [134.119.228.104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DA23A8D;
-	Tue, 17 Oct 2023 13:03:43 -0700 (PDT)
-Received: from [92.206.139.21] (helo=note-book.lan)
-	by smtprelay07.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1qsqHz-0006Zq-2B;
-	Tue, 17 Oct 2023 22:03:39 +0200
-Message-ID: <65214451e02a38032e9fc6ac4cff185c6b2b5fc8.camel@apitzsch.eu>
-Subject: Re: [PATCH] arm64: dts: qcom: msm8939-longcheer-l9100: Add
- proximity-near-level
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross
- <agross@kernel.org>,  Bjorn Andersson <andersson@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org
-Date: Tue, 17 Oct 2023 22:03:33 +0200
-In-Reply-To: <3aede886-3219-4b9f-a44d-0c414979c260@linaro.org>
-References: <20231016-bqm5_prox-v1-1-2acdc732be9d@apitzsch.eu>
-	 <3aede886-3219-4b9f-a44d-0c414979c260@linaro.org>
-Autocrypt: addr=git@apitzsch.eu; prefer-encrypt=mutual;
- keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248E0430E8
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:07:28 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB5E6EAB;
+	Tue, 17 Oct 2023 13:07:26 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507b18cf2e1so3139907e87.3;
+        Tue, 17 Oct 2023 13:07:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697573245; x=1698178045; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DAg++LrW3itK5V1WlKpiZ2b/nQX2LkLJrp9r6Hg+m/U=;
+        b=fyla5S4OvCipJM/zDK1s9UNIRpBC7Mjb63FEuf2qgq0w3eZv54ii8U42n1acRtFlSw
+         yq7k00GwzCMKz4jmt+KiJkYiSeUE/4cmbNDHSYktDKIdlWGDYIgNhcs0DFWG1Jl56MPo
+         uo6VDd30BbtIAiX3au4GT4clz9qYZ4VUaSb7GVary8cdy8mjgcBsXph+n7+UvIUE7AoH
+         7mi5/PZBMvos2gTshF8dLYuXvkjs29nNkgprcGMwjmduhikymaPHRKGLQSYw/ppFrHSb
+         /HoLYon3T3DmFb9hMflTuH3GBB7EBwfTrBPnNSWY58le9XUVTjeEAky+5tYHtIxK8GAw
+         wmpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697573245; x=1698178045;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DAg++LrW3itK5V1WlKpiZ2b/nQX2LkLJrp9r6Hg+m/U=;
+        b=HtHe4gpvG1/Y25iUr/McroqkQAACDbn8l4UYVUY+3hpxnmYhm+zFKLGcxrWWSIf9tj
+         5e0xZcVmweCm1OB3ljG7Mz2/tKBA3elFabB1LcfC5ALm3RNKWq9dg28ZkZWiiepYB1pq
+         2HIwyQybQgh8EBu0ntTy1jkfMkc8lMiz+iiaWi27T9mML+bZ62hdh1cNfSGlkYrLCOOY
+         mkgXJ2/LVHcu9Hx9yqTzOn4nluo2YmE2CcJVYi47k1o2S1NtrrgN18lZ2o89zOBzRU6r
+         pGhmd1VbMuY6cK31IHvaKcXW0Yy4RPtbgcm9GixbVWGycwt0/duMt9Pm8rzOgq/LuEhE
+         rZ6w==
+X-Gm-Message-State: AOJu0Yx4Pt1zgTrZSevJIRBWWt7tA9ZRqc9ycdsQ2Vh4naix6XvSDelp
+	EYxx/1w0ICTi/SKl2XyuqWDik/mHPSq4Kdg9csY=
+X-Google-Smtp-Source: AGHT+IEqwRenbscVZ0NA7c0QZm2NZMJwFuAjJu03tHzrSKrWUtbnnSQutaqDUbCBHGH8REY6dKqpQ5X1YCi2LT8F0nQ=
+X-Received: by 2002:ac2:4827:0:b0:507:9f4c:efc8 with SMTP id
+ 7-20020ac24827000000b005079f4cefc8mr2339662lft.14.1697573244534; Tue, 17 Oct
+ 2023 13:07:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <cover.1666614295.git.mazziesaccount@gmail.com> <758b00d6aea0a6431a5a3a78d557d449c113b21e.1666614295.git.mazziesaccount@gmail.com>
+In-Reply-To: <758b00d6aea0a6431a5a3a78d557d449c113b21e.1666614295.git.mazziesaccount@gmail.com>
+From: Jagath Jog J <jagathjog1996@gmail.com>
+Date: Wed, 18 Oct 2023 01:37:12 +0530
+Message-ID: <CAM+2Eu+Xp6j1ppLd+zHMTu6jfc6DQKBShfe-nAyokVi0MUmoSA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] iio: accel: Support Kionix/ROHM KX022A accelerometer
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Dmitry Rokosov <DDRokosov@sberdevices.ru>, Cosmin Tanislav <demonsingur@gmail.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Am Dienstag, dem 17.10.2023 um 18:25 +0200 schrieb Konrad Dybcio:
->=20
->=20
-> On 10/16/23 22:18, Andr=C3=A9 Apitzsch wrote:
-> > Consider an object near to the sensor when their distance is about
-> > 4 cm
-> > or below.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->=20
-> Out of interest, what is it set to by default?
->=20
-> Konrad
+Hi Matti,
 
-The default value is 0.
+On Mon, Oct 24, 2022 at 6:10=E2=80=AFPM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+>
+> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> ranges (2, 4, 8 and 16g), and probably some other cool features.
 
-Andr=C3=A9
+This is a nice driver, and I found it very helpful as a reference.
+One question regarding scale please see below.
+
+> + * range is typically +-2G/4G/8G/16G, distributed over the amount of bit=
+s.
+> + * The scale table can be calculated using
+> + *     (range / 2^bits) * g =3D (range / 2^bits) * 9.80665 m/s^2
+> + *     =3D> KX022A uses 16 bit (HiRes mode - assume the low 8 bits are z=
+eroed
+> + *     in low-power mode(?) )
+> + *     =3D> +/-2G  =3D> 4 / 2^16 * 9,80665 * 10^6 (to scale to micro)
+> + *     =3D> +/-2G  - 598.550415
+> + *        +/-4G  - 1197.10083
+> + *        +/-8G  - 2394.20166
+> + *        +/-16G - 4788.40332
+> + */
+> +static const int kx022a_scale_table[][2] =3D {
+> +       { 598, 550415 },
+> +       { 1197, 100830 },
+> +       { 2394, 201660 },
+> +       { 4788, 403320 },
+> +};
+
+Given that the integer part is non-zero, and
+IIO_VAL_INT_PLUS_MICRO is returned for read_scale,
+As raw value will never be fractional how does this
+correspond to a reading of 9.8 m/s=C2=B2 for the Z-axis?
+
+> +
+> +static int kx022a_read_avail(struct iio_dev *indio_dev,
+> +                            struct iio_chan_spec const *chan,
+> +                            const int **vals, int *type, int *length,
+> +                            long mask)
+> +{
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_SAMP_FREQ:
+> +               *vals =3D (const int *)kx022a_accel_samp_freq_table;
+> +               *length =3D ARRAY_SIZE(kx022a_accel_samp_freq_table) *
+> +                         ARRAY_SIZE(kx022a_accel_samp_freq_table[0]);
+> +               *type =3D IIO_VAL_INT_PLUS_MICRO;
+> +               return IIO_AVAIL_LIST;
+> +       case IIO_CHAN_INFO_SCALE:
+> +               *vals =3D (const int *)kx022a_scale_table;
+> +               *length =3D ARRAY_SIZE(kx022a_scale_table) *
+> +                         ARRAY_SIZE(kx022a_scale_table[0]);
+> +               *type =3D IIO_VAL_INT_PLUS_MICRO;
+> +               return IIO_AVAIL_LIST;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+
+Regards
+Jagath
 
