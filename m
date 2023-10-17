@@ -1,90 +1,227 @@
-Return-Path: <devicetree+bounces-9402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9A27CCDC6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:19:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A11A7CCE1A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27F462813C5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:19:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0897DB210CE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D94D43105;
-	Tue, 17 Oct 2023 20:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97442D02B;
+	Tue, 17 Oct 2023 20:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="K9Ey8vw/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A63430EC
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:19:04 +0000 (UTC)
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D7992;
-	Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-581b6b93bd1so1526228eaf.1;
-        Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697573943; x=1698178743;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q6YKzXb6RpcvAIE2KNseI2JNeCjjBedEHxdHH0ygsVs=;
-        b=CZeX9f9JGRBQAGsPQIG+7pwpbu9eBSjOUKMs6aA/9qmbpt4boF2g9+nE4eP531eNjN
-         bM+xQBdSl5HwMNO15FAjSZr4eSQiUaxzm41IYjNlVP+JhwTveEJyyiCDlSVkmQXtFbbh
-         /wEEJ1JKOQPDqa+IXyTBZ3wv0GVwovpzslnLqH0pdqoTgitlsGL1STvhfR716cRf+Nk5
-         tcmdvo07N1fAD2XUvLUaDt8Qac4e/rPsVcQguGyFrkG4tFV+fkfPgBdwzHR25lfMc2Bj
-         ugVwig5jT71yWrrPmNIA8lB5/Ezn8B0CQN8jR2k5N5dh5v0wgC5xyjpUd7TqqbsYmNU3
-         stUQ==
-X-Gm-Message-State: AOJu0YwBLDBRzQjwdotmsFwrdT14hb/74IQVvsHnC+zefgYo9tevhOi4
-	J/eibn4CHak8Bz3Yha1q7Q==
-X-Google-Smtp-Source: AGHT+IGvqa31RZJ8r/SrafiLvgLLHO+b84rMNqNQHLDYchD24kgtHpxnm526SRtBWsxbafS8D89ukQ==
-X-Received: by 2002:a4a:db86:0:b0:57e:1618:e700 with SMTP id s6-20020a4adb86000000b0057e1618e700mr3406874oou.7.1697573943076;
-        Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f7-20020a4aeb07000000b0057bcbc23738sm372285ooj.17.2023.10.17.13.19.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 13:19:02 -0700 (PDT)
-Received: (nullmailer pid 2681966 invoked by uid 1000);
-	Tue, 17 Oct 2023 20:19:01 -0000
-Date: Tue, 17 Oct 2023 15:19:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hsiao Chien Sung <shawn.sung@mediatek.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Sean Paul <sean@poorly.run>, linux-arm-kernel@lists.infradead.org, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, Jason-JH Lin <jason-jh.lin@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, David Airlie <airlied@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v3 03/11] dt-bindings: display: mediatek: ovl: Modify
- rules for MT8195/MT8188
-Message-ID: <169757394073.2681910.919376164260775888.robh@kernel.org>
-References: <20231017064717.21616-1-shawn.sung@mediatek.com>
- <20231017064717.21616-4-shawn.sung@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8349A2E3FB
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:32:22 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2102.outbound.protection.outlook.com [40.107.7.102])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B60892;
+	Tue, 17 Oct 2023 13:32:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=amKZNAT7BJ7UNF7jYKzmBVggsr+2Vw4sxaLhAbLXEexsuVbZh9bjFNMAs67lniI0IwKlKU2IAOJuWxdzRb1hEX9AaKfiZMmi86YWNiO877TVUgqY9IBzLyUPx9MGRn3AyEXqTnuGSw3MUo0O+7a1D/4oJhKwDdCW0XeuOC7/6oRyewK6thdCVWjZepGLCFWfZEBLNUehHn3BnPxaNHOCitk97N4Nt95CUAGcmpyEIHXxKS71opxqZP0yed7L0eCvOsZBkKHpYKXIdJJCGqQ87iZ3HBD15W1kDsfS4I5LsRynsmDjhUWw92aPMG6BaBNuEpDrPCA4v6XqahvJ8jJXgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rIxWAoVgzTWiBnUJ4t/7R2PB8Ue3fnzRwtgvuO4/pRA=;
+ b=j+Ga8L/z729nfzUa65E2akGLKp/r0YxLhY/VsD6e0DVKEPGdwt0gQVIrIp0EI2vOzIhDe/bskSFbeNwcXqrcy54xyYVhK4smdiBRYDav4oO7aFwcwrGWxGSAdMKmRkSquZnPoj4wkdNE22jjgdh2XH0l/bFNhY8rlqafpeAFYl23rdWE6JubJNqpTk3JCOyGVrDayXj4f47f40gsa8i84hlszWDJo0gMlyPVDjOOZhKY2kgDCVDcTKo0KVRIS817EHSyQ48lFL0bDjWjrJA0q6eBxB50Om3TwCweuuwL83htjQRFyQLkh4QcHyJVvmYjGmQQs2aCgQDmOFND0NBq0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rIxWAoVgzTWiBnUJ4t/7R2PB8Ue3fnzRwtgvuO4/pRA=;
+ b=K9Ey8vw/NCkEhKNGwmf81QIYscVXyTX2Rszka49iW/fDr2gD2QBR6JNvfidAXA5Ylfy+ZTfB7b51I8jAeuiEecOcAi8VxZRxhXJNbWe8qdWGEN8TEMiBT6paXPr8X0F//diLNk06XiRwldZt7KnNil2kMSAteLnnLvkczo6EGjA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by VI1PR02MB5759.eurprd02.prod.outlook.com (2603:10a6:803:138::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.46; Tue, 17 Oct
+ 2023 20:32:16 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::4ba4:83a5:e60c:3a5d]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::4ba4:83a5:e60c:3a5d%7]) with mapi id 15.20.6907.021; Tue, 17 Oct 2023
+ 20:32:16 +0000
+Message-ID: <4ece4a98-ff35-6a95-6f06-cbb9eaa50e8c@axentia.se>
+Date: Tue, 17 Oct 2023 22:32:14 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 2/2] i2c: mv64xxx: add an optional reset-gpios property
+Content-Language: sv-SE, en-US
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ gregory.clement@bootlin.com, andi.shyti@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231016023504.3976746-1-chris.packham@alliedtelesis.co.nz>
+ <20231016023504.3976746-3-chris.packham@alliedtelesis.co.nz>
+From: Peter Rosin <peda@axentia.se>
+In-Reply-To: <20231016023504.3976746-3-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MM0P280CA0065.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:190:8::19) To AM0PR02MB4436.eurprd02.prod.outlook.com
+ (2603:10a6:208:ed::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231017064717.21616-4-shawn.sung@mediatek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR02MB4436:EE_|VI1PR02MB5759:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1c528ee-f66e-41b6-d23b-08dbcf5026d7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	6xI7tRz7ADR7WhscU3NzhyPRPtxSgI/Judecj0jQAabKJpdO5uauMya+XCdQnC9dARR3x7yxJivsDgetMDIC0wD/LaXzJ0395Kb3E88DYSAwVdHB9CdHYCll6lDnTwx5un/zUj+qv2fdaAHRQmaOpJzWcLEi3znBR5/rSYDzICHsblHNZprrEOQ9KWcF3eu/vzaAjtNvGcKC5Z53nhtdPbG/93TVXgIWr2I/Jh3SBHIN3HW2SPdqPR6hrArqB+iiWOWC6ghYv8Rz7txrg5TS9AYzKdfGoywrxxV4owF+I34kjtJ7eR0IDoNgZ1uApD24PwY1zAjjWxBtfIRmVDP1mDLCiClC9OwXutEIVz4LM9aWxHbvL+J6zTXXlMO/FpM2t7jrKzGmrnT8WIK6In2/d1t2wvaw2CKwTRCWVRbHk/1HMxSoyFnrQ+bRrLfKSFMkdIaIyQ//meDVf8pEoCcFX2dafpZBNiOqW+lTIgNw3N1ydvNxH+7c+tKyuCWjsXnZCeCgA3Tg0c6hYgZ/Ck6Xdcq7y6cJM5dWUtG8tfCqqcEn/4QyAjTuXp8avnqxe8y9Utxm61EW51S/I9lVNjce4jb+QIui7kS5QS/Mk3M19ZzbA7Y5UMY80x0d0so7XEmVRUqyRMe/3cQbmHWegjhXrw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(346002)(39830400003)(136003)(366004)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(6512007)(2616005)(26005)(6506007)(36756003)(478600001)(38100700002)(2906002)(83380400001)(4001150100001)(41300700001)(6486002)(5660300002)(66476007)(31696002)(66556008)(66946007)(316002)(8676002)(8936002)(31686004)(4326008)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VzlSVnVZSDNTVzZWTTdpZzRGT2dFMkdOLzlCeUt2TmFYR0llWFNxayt4amxB?=
+ =?utf-8?B?cGl2d2xCQkVWeUEyVHJZZUxibXlxejRVWTBqWXEwYXp0S2U2S0EwWTVmQkJ1?=
+ =?utf-8?B?TE8xRGgrb1J4TDRRS0ZOdk5xTFFUeFRTckE1OTA3N1JtVkdzWWVHTWVoSG9u?=
+ =?utf-8?B?U3NIZ2RkMXJGSEhobVEvdjltazYzdE5XMy9oc0tKZGo2bWM3TzF4SzlzVHBU?=
+ =?utf-8?B?MkJTYmlMMVIzM3ExWldnRFltUzAvMTdrNWpSUGFrSzdKUUZwbG1uZHRNOERX?=
+ =?utf-8?B?OHYwUFRSRmttWGFmYzQzWTJaNk4zU0VKNm4wSDRONlBraS9FbGQwcEFvMEpr?=
+ =?utf-8?B?U3BseENQYVdUVWpEMUkwWWxKLzF6enBaZTlSWDRyaWNmMGtnbXFWR003VkM5?=
+ =?utf-8?B?c25ad3ZkTDdyc2FxWHlWNmZ3SjlPdjlCTjdDODZIQVJVSHBlRVluV0U0NDda?=
+ =?utf-8?B?ck44NmpYU05jU0c1dUJjZkFlZHRZTCswYk1mVlk4OFFncXhWMzVmZGdnOFB3?=
+ =?utf-8?B?WGpSOUFuc3IzNU0rMm1JRXVwWmVuTTJXRUFNZHBSakRENkZaNnhlVmFKK3Jl?=
+ =?utf-8?B?Z0Vody90c01TTmJGQyt6VEVZT3VjeXFLQ3VGTHVXM2o3TUdhL3VBYldadHkz?=
+ =?utf-8?B?SDJ6b0FRL2hKanVkb0JUdnVJZmhjSzhnWEZyZjZiKzJWNVhQbGdxbENnSUdu?=
+ =?utf-8?B?azdKbGF1M0daSll0NjZPWDk5MUdkTVd1YnZQclFtby9kR0UrbldvYWxjQWdC?=
+ =?utf-8?B?OStZOEpyZENUbm5SVnU1U2RSS2p3ZS9JU216OE9xbENVSnc1aUM5VnBDYmJM?=
+ =?utf-8?B?V1ZWZTVWWCtvRyt6Y01VMTBiRTJxQndkRjZhSngvU0dNbUMrWWRKQTZ4dEp5?=
+ =?utf-8?B?U3JLRjMrUG1oQzE4ZXpuL0IvNkxOc2JsOVpVTlcyTzZ1OGk3RkFHS3poeW9x?=
+ =?utf-8?B?L3lZRmhFS3pIeFYzclFzcUdmSDJVQnpyOGVLYnROOEFpN2VKQ1pFVm9tT2JR?=
+ =?utf-8?B?eUdlWTRqbVpRRjNCVlNJMHdBaU9LV0hYci9ZYTgycE5pV0JrYlU2NExvc1kx?=
+ =?utf-8?B?NVhZL3poV2dPZEVKQ3dBblVhdXdxOEUwNEdEUFdXOExGOW5pYklvRW5xWVkz?=
+ =?utf-8?B?OHdTbFJON3owUWRKSlE5dnJsMXpJQmMvVDcyZE5idGUzcXdRNHdYRFV6ZnZB?=
+ =?utf-8?B?TkdlQ014KzJUWjhjOWp4M1FkQzZhOFYrY2ZxN2hjem93VEsxL0trZlRkbXBt?=
+ =?utf-8?B?enRNSmJueTA2b1BKZHc0VU1wS1hvNmF1aDBGbXA5eUVNb25VaHBOcThDVE56?=
+ =?utf-8?B?NHBzL0JhZjFsQ0xDL1ZtSCtVUHZXV2ZGaGY1OWMvbktjVDhFSU9Cb2lFbCtO?=
+ =?utf-8?B?NHJxMFp4OU1sMXJKcytyci8xcTBUMXljRlpiR1phV1llSUl6MmhNSXpNUXNM?=
+ =?utf-8?B?Q0R4WUhyNFh0NFdjREJVOTNWaEJnU0hKUWcxaEZXMjVxZWhaL3F6TkhOYWFC?=
+ =?utf-8?B?ODROZFFqZTdQMXdWeU9zdUsvN0lXVUFKQy9jVTRvZVMzdXd2VnBUTnJrblNR?=
+ =?utf-8?B?ZHp2ZjhkV3k0aGl4KzhJRDhPVzhMeGVEdExYU0VnK0pmSFY2dFlqcVRNeEhU?=
+ =?utf-8?B?aFdjTGJId0lBL3FULzE0RlRsTEY2MEJyRTZuNHZGUk9CMXFRcHJUZ1R4cjY4?=
+ =?utf-8?B?d1ZUM2lxeFA4U3JGSjh4dVRyMjhieStZTVk5ZlRBZ04vb2F6cmU0bFZTL2ha?=
+ =?utf-8?B?UW9YRmJIbW1tYlNXN1U0clJVUzB1R1FuWjVTSlZaeVE2MmVFRStzeUY2eU5H?=
+ =?utf-8?B?aEkwZDdOd3VkaFlrY1NFRm1BV2xZZlZ5NzZJM3d2cEtvTTVYUlU4djdWYzh2?=
+ =?utf-8?B?dEJ2T0xYUGVWVzU1cTV0c1YwTGUrRzVEaHdzZjVZQk10SnNNTm5rcjlYNkdr?=
+ =?utf-8?B?WmY3V01SRVVJWVl6T09oNXZWNjhnVjh5MHdvQXVidk5ZZWxzZnBTSjA5NUo2?=
+ =?utf-8?B?cFdFZWxjWlFUVzNQODdkQmY5OS9ONEhHYnl4SHpYb0ZPVjk0c2hQTWczSkts?=
+ =?utf-8?B?K0EvNzVIUFZGajNHSXozblYvL09DS1VwSUp0ZVhhZEY1QjBDSkpmV3NRVU5y?=
+ =?utf-8?Q?1BtbjnJk5Wpt0tEVzFtzyv4UL?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1c528ee-f66e-41b6-d23b-08dbcf5026d7
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2023 20:32:16.0511
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UfVXaIXmHIpUy47ikLZI338oPFVg3Ju2pwxHJe+P5/Zk+FvndwBEBN4eXZTU9MAn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR02MB5759
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi!
 
-On Tue, 17 Oct 2023 14:47:09 +0800, Hsiao Chien Sung wrote:
-> Modify rules for both MT8195 and MT8188.
-> Hardware capabilities include color formats and AFBC are
-> changed since MT8195, stop using the settings of MT8183.
+2023-10-16 at 04:35, Chris Packham wrote:
+> Some hardware designs have a GPIO used to control the reset of all the
+> devices on and I2C bus. It's not possible for every child node to
+> declare a reset-gpios property as only the first device probed would be
+> able to successfully request it (the others will get -EBUSY). Represent
+> this kind of hardware design by associating the reset-gpios with the
+> parent I2C bus. The reset line will be released prior to the child I2C
+> devices being probed.
 > 
-> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  .../bindings/display/mediatek/mediatek,ovl.yaml      | 12 +++++-------
->  1 file changed, 5 insertions(+), 7 deletions(-)
 > 
+> Notes:
+>     Changes in v2:
+>     - Add a property to cover the length of delay after releasing the reset
+>       GPIO
+>     - Use dev_err_probe() when requesing the GPIO fails
+> 
+>  drivers/i2c/busses/i2c-mv64xxx.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-mv64xxx.c b/drivers/i2c/busses/i2c-mv64xxx.c
+> index efd28bbecf61..50c470e5c4be 100644
+> --- a/drivers/i2c/busses/i2c-mv64xxx.c
+> +++ b/drivers/i2c/busses/i2c-mv64xxx.c
+> @@ -160,6 +160,7 @@ struct mv64xxx_i2c_data {
+>  	bool			clk_n_base_0;
+>  	struct i2c_bus_recovery_info	rinfo;
+>  	bool			atomic;
+> +	struct gpio_desc	*reset_gpio;
+>  };
+>  
+>  static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx = {
+> @@ -1036,6 +1037,7 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+>  	struct mv64xxx_i2c_data		*drv_data;
+>  	struct mv64xxx_i2c_pdata	*pdata = dev_get_platdata(&pd->dev);
+>  	struct resource *res;
+> +	u32	reset_udelay;
+>  	int	rc;
+>  
+>  	if ((!pdata && !pd->dev.of_node))
+> @@ -1083,6 +1085,14 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+>  	if (drv_data->irq < 0)
+>  		return drv_data->irq;
+>  
+> +	drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(drv_data->reset_gpio))
+> +		return dev_err_probe(&pd->dev, PTR_ERR(drv_data->reset_gpio),
+> +				     "Cannot get reset gpio\n");
+> +	rc = device_property_read_u32(&pd->dev, "reset-delay-us", &reset_udelay);
+> +	if (rc)
+> +		reset_udelay = 1;
+> +
+>  	if (pdata) {
+>  		drv_data->freq_m = pdata->freq_m;
+>  		drv_data->freq_n = pdata->freq_n;
+> @@ -1121,6 +1131,11 @@ mv64xxx_i2c_probe(struct platform_device *pd)
+>  			goto exit_disable_pm;
+>  	}
+>  
+> +	if (drv_data->reset_gpio) {
+> +		gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
 
-Acked-by: Rob Herring <robh@kernel.org>
+There is no limit to how short the reset pulse will be with this
+implementation. What I was requesting in my comment for v1 was
+a way to control the length of the reset pulse (not the delay
+after the pulse). There are devices that behave very badly if
+the reset pulse is too short for their liking, others might not
+react at all...
 
+Some delay after the pulse might also be needed, of course.
+
+Cheers,
+Peter
+
+> +		usleep_range(reset_udelay, reset_udelay + 10);
+> +	}
+> +
+>  	rc = request_irq(drv_data->irq, mv64xxx_i2c_intr, 0,
+>  			 MV64XXX_I2C_CTLR_NAME, drv_data);
+>  	if (rc) {
 
