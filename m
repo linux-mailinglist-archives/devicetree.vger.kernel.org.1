@@ -1,75 +1,190 @@
-Return-Path: <devicetree+bounces-9142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174417CBCB0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 09:47:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900F27CBCB8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 09:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0EB3281838
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 07:47:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A2E62818F6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 07:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6077B29428;
-	Tue, 17 Oct 2023 07:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE58F339A7;
+	Tue, 17 Oct 2023 07:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=synergyflux.pl header.i=@synergyflux.pl header.b="dFkCcDpQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eHNHh/gm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6DF5380
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 07:47:32 +0000 (UTC)
-Received: from mail.synergyflux.pl (mail.synergyflux.pl [51.38.99.212])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6178BF1
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 00:47:30 -0700 (PDT)
-Received: by mail.synergyflux.pl (Postfix, from userid 1002)
-	id 9609926F06; Tue, 17 Oct 2023 07:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synergyflux.pl;
-	s=mail; t=1697528796;
-	bh=n9RRp8MlabRDJBtJNro49Rmci90RtotaZYZ8+xo6WI4=;
-	h=Date:From:To:Subject:From;
-	b=dFkCcDpQ+AmmYGs+BLIMC9p0+9g5aK1A+SSfQvWfnl54zLuhU2bdauC0tabUCNtas
-	 xSvSgevIGULeHXyASH2+A5qmnmkzd36eyauBcsCZ7tcFTYwXPqiAIfOfRRa6Lhnn30
-	 17vtRexYOOAYwmX63ldKb3YbLPHTgha8jyl7H7ayRU4pxLLoH6HwpjvcxUmDd3UMaP
-	 zL346uv3rnK0fx7cvOg0MJm66kGpV1H+B+sSuvjuO0lmWaDbJIoU6Fod9KOTndhZup
-	 /PGIr2Gy/JeVBDJ+yUXMtOJ9m2D7QqbhUcPk0+sZwvmB8AdhHqOj2gO9J5Sol3O4c/
-	 QzvKB8t8G1w6A==
-Received: by mail.synergyflux.pl for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 07:45:35 GMT
-Message-ID: <20231017064500-0.1.7l.13fbz.0.4k256oel2k@synergyflux.pl>
-Date: Tue, 17 Oct 2023 07:45:35 GMT
-From: =?UTF-8?Q?"Konrad_Zieli=C5=84ski_"?= <konrad.zielinski@synergyflux.pl>
-To: <devicetree@vger.kernel.org>
-Subject: Instalacja pv
-X-Mailer: mail.synergyflux.pl
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1CC23766;
+	Tue, 17 Oct 2023 07:48:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DEFBC433C9;
+	Tue, 17 Oct 2023 07:48:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697528913;
+	bh=ULSURu0f9pF10jB8uWo7rgXsdlYUF/R9Y1q7G+/vIm4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eHNHh/gmur/uVvgbuvQjCDcpZiBcUV6ML9UhjZcjC2NCtGe4I8Zg4p4iWCs0kQzf5
+	 UM6k4E/tTEUqScuFvyXIrwIZPr/t7PaiHmV/sXJKD2qRn89b8oclTi3BlUxSYdQ5rA
+	 oQBMNkh0LddC71ItQZzn5Pn35UcXpzBi4tNlSfYdygxRwagFgRKiRzHnqSvroDIfrz
+	 7xSqjcBMs5+a0S/p9V2/4gqULO/BSx/HVbC5nuA4ZHbi/lNBQqOU3sMRWEIEhW76Xa
+	 JwpBs8Ke4HaMf7vMx3+re7faHHVMrJAKYYC1aKzM+4xRvTveCny8kYO7CrcN+5OYRZ
+	 h1bhxyxKi7c8w==
+Date: Tue, 17 Oct 2023 08:48:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: olteanv@gmail.com, andrew@lunn.ch, conor+dt@kernel.org,
+	davem@davemloft.net, devicetree@vger.kernel.org,
+	edumazet@google.com, f.fainelli@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org, woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <20231017-fading-retrial-7faebda79ebb@spud>
+References: <20231016103708.6ka5vxfkdatrjvdk@skbuf>
+ <20231017073548.15050-1-ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wIO3iCZ/QV7V4j5D"
+Content-Disposition: inline
+In-Reply-To: <20231017073548.15050-1-ante.knezic@helmholz.de>
+
+
+--wIO3iCZ/QV7V4j5D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-Dzie=C5=84 dobry,
+On Tue, Oct 17, 2023 at 09:35:48AM +0200, Ante Knezic wrote:
+> > > +  microchip,rmii-clk-internal:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      Set if the RMII reference clock is provided internally. Otherw=
+ise
+> > > +      reference clock should be provided externally.
+> > > +
+> > > +if:
+> > > +  not:
+> > > +    properties:
+> > > +      compatible:
+> > > +        enum:
+> > > +          - microchip,ksz8863
+> > > +          - microchip,ksz8873
+> > > +then:
+> > > +  not:
+> > > +    required:
+> > > +      - microchip,rmii-clk-internal
 
-czy s=C4=85 Pa=C5=84stwo otwarci na niezobowi=C4=85zuj=C4=85c=C4=85 rozmo=
-w=C4=99 na temat fotowoltaiki?
+I think this bit can become the slightly simpler
+	then:
+	  properties:
+	     microchip,rmii-clk-internal: false
 
-Jako firma specjalizuj=C4=85ca si=C4=99 w instalacji i serwisie najlepszy=
-ch jako=C5=9Bciowo paneli s=C5=82onecznych na rynku chcia=C5=82bym przeds=
-tawi=C4=87 propozycj=C4=99, jak=C4=85 wsp=C3=B3lnie z zespo=C5=82em przyg=
-otowali=C5=9Bmy dla Pa=C5=84stwa obiektu.
+> > I think that what you want to express is that microchip,rmii-clk-intern=
+al
+> > is only defined for microchip,ksz8863 and microchip,ksz8873.
+> > Can't you describe that as "if: properties: compatible: (...) then:
+> > properties: microchip,rmii-clk-internal"?
+>=20
+> If I understood you correctly you are refering to a solution like
+> if:
+>   properties:
+>     compatible:
+>       enum:
+>         - microchip,ksz8863
+>         - microchip,ksz8873
+> then:
+>   properties:
+>     microchip,rmii-clk-internal:
+>       $ref: /schemas/types.yaml#/definitions/flag
+>       description:
+>         Set if the RMII reference clock is provided internally. Otherwise
+>         reference clock should be provided externally.
+>=20
+> This was already suggested in v1, but was not a satisfactory solution
+> according to Mr. Conor Dooley:
 
-B=C4=99d=C4=99 wdzi=C4=99czny za wiadomo=C5=9B=C4=87 od Pa=C5=84stwa czy =
-mo=C5=BCemy porozmawia=C4=87.
+Yeah, we prefer not to have the property definitions inside the
+conditionals, but rather constrain or allow/disallow them there.
 
+Cheers,
+Conor.
 
-Pozdrawiam
-Konrad Zieli=C5=84ski 
+>=20
+> >> On Tue, 10 Oct 2023 16:25:55 +0100, Conor Dooley wrote:
+> >> > On Tue, Oct 10, 2023 at 03:18:54PM +0200, Ante Knezic wrote:
+> >> > > Add documentation for selecting reference rmii clock on KSZ88X3 de=
+vices
+> >> > >=20
+> >> > > Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+> >> > > ---
+> >> > >  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 6 =
+++++++
+> >> > >  1 file changed, 6 insertions(+)
+> >> > >=20
+> >> > > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,k=
+sz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> >> > > index e51be1ac0362..3df5d2e72dba 100644
+> >> > > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> >> > > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> >> > > @@ -49,6 +49,12 @@ properties:
+> >> > >        Set if the output SYNCLKO clock should be disabled. Do not =
+mix with
+> >> > >        microchip,synclko-125.
+> >> > > =20
+> >> > > +  microchip,rmii-clk-internal:
+> >> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> >> > > +    description:
+> >> > > +      Set if the RMII reference clock should be provided internal=
+ly.
+> >> >=20
+> >> > > Applies only
+> >> > > +      to KSZ88X3 devices.
+> >> >=20
+> >> > This should be enforced by the schema, the example schema in the docs
+> >> > should show you how to do this.
+> >>=20
+> >> I am guessing you are refering to limiting the property to ksz88x3 dev=
+ices?
+> >> Something like:
+> >>=20
+> >> if:
+> >>   properties:
+> >>     compatible:
+> >>       enum:
+> >>         - microchip,ksz8863
+> >>         - microchip,ksz8873
+> >> then:
+> >>   properties:
+> >>     microchip,rmii-clk-internal:
+> >>       $ref: /schemas/types.yaml#/definitions/flag
+> >>       description:
+> >>         Set if the RMII reference clock is provided internally. Otherw=
+ise
+> >>         reference clock should be provided externally.
+> >
+> >Not quite. The definition of the property should be outside the if/then,
+> >but one should be used to allow/disallow the property.
+>=20
+
+--wIO3iCZ/QV7V4j5D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS48SwAKCRB4tDGHoIJi
+0velAQClJ9EQ6MEhRqxPuOI8Aa3rxhaXsnRNccr4O2vn8y6vLwD/ffOYqRRz1OQ+
+vAcG8dVYyfmc7/0OfyJOWaW4keCGvQM=
+=/J8x
+-----END PGP SIGNATURE-----
+
+--wIO3iCZ/QV7V4j5D--
 
