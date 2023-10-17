@@ -1,47 +1,39 @@
-Return-Path: <devicetree+bounces-9155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D8E7CBDE2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:38:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B207CBE21
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:52:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 902D32819C1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:38:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 512E72813A4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28323B28B;
-	Tue, 17 Oct 2023 08:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590063C6BF;
+	Tue, 17 Oct 2023 08:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YccWFxDr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmGl+7Ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1952B3CCF0
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:38:29 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F3BFB;
-	Tue, 17 Oct 2023 01:38:26 -0700 (PDT)
-Received: from [IPV6:2a02:2f04:a37:9d00:b380:eb44:83c6:6b95] (unknown [IPv6:2a02:2f04:a37:9d00:b380:eb44:83c6:6b95])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: ehristev)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 845E46606EE0;
-	Tue, 17 Oct 2023 09:38:23 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697531905;
-	bh=BSMLjbZcuwNhTxKRB4oqXbZT9i1jbW/ydiS26D4uPQo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YccWFxDrI8/xGCFcYHGPIGLkbs3FwJSrgHRhoi/litiDLuS1CxIw4ySYdnuJ8lItu
-	 WzDLqQC3CRZtWwaLBfTSnbQJBLym84QrfASDpyxRuuXL2bsqz+M7kG7M0kbHGjbLwf
-	 dLUkSDFMW/FkEQT064gjl3eyspBjwHgrkCUJl94+POe+wGE+XGg1KGty/TPJ87R4q5
-	 MYRT95fAvjchdgY/66rT1FDXzl7Dlbg9fO1NO1Fw16lczTXnINqM1qAjKwlhsaWC+A
-	 HWPHkMPr3wXb+woclNkb0EuKT+/OYEWA4bha8ZmCoIXVAxX94RaNKNhzVIE36vk3xN
-	 pn0TCXNIllB/A==
-Message-ID: <ecd6a00f-2166-48b7-a6ae-e165a2a6d70b@collabora.com>
-Date: Tue, 17 Oct 2023 11:38:20 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE84BE6D
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:52:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BB45C433C8;
+	Tue, 17 Oct 2023 08:52:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697532734;
+	bh=S8dBHgS0EWTG/ajGFs9LTs9c3mXYVBKXTQoIOh3MYZk=;
+	h=Date:Subject:To:List-Id:Cc:References:From:In-Reply-To:From;
+	b=qmGl+7Ch+Zs7/V9N16p77UJoCDDBMgWzU6fUkF6l+WM7LqPA2PN+s85fAK1nXcfub
+	 EWhm1VNc7ncSUcRfoHQLFQ0ku5d3hAsd9/SrtTEm6K8F8Nbpq1KCdOn749f5yYPa4A
+	 dIl5lUcjQy83wvuEHABNMxUZ08Y0smJSIpXWFYfVlEdhy0Gr0cn2UJb8F7sMRzvpNg
+	 F89w4HjLQpcJ7K2NX/I4lw5+J3dlt5/YmqRqcBLj0bMVc6DNFszGaaPhDQT3Mv54jK
+	 EGPiGfRBlMhzakwZiPeUbToF5TJPQ053qKOHqCauUkcAGbR+nD59cm/sY56Lj8x1rl
+	 BqXIEpSo+txdA==
+Message-ID: <ef25ed87-f065-4a75-9e57-1f1073d9c805@kernel.org>
+Date: Tue, 17 Oct 2023 17:52:06 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,97 +41,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v4 4/4] arm64: dts: Add MediaTek MT8188 dts and
- evaluation board and Makefile
-To: Jason-ch Chen <jason-ch.chen@mediatek.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
- <20230921060235.32478-5-jason-ch.chen@mediatek.com>
+Subject: Re: [PATCH v3 09/20] clk: samsung: clk-pll: Add support for
+ pll_{0516,0517,518}
 Content-Language: en-US
-From: Eugen Hristev <eugen.hristev@collabora.com>
-In-Reply-To: <20230921060235.32478-5-jason-ch.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com
+List-Id: <soc.lore.kernel.org>
+Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-10-peter.griffin@linaro.org>
+From: Chanwoo Choi <chanwoo@kernel.org>
+In-Reply-To: <20231011184823.443959-10-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On 9/21/23 09:02, Jason-ch Chen wrote:
-> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
+On 23. 10. 12. 03:48, Peter Griffin wrote:
+> These plls are found in the Tensor gs101 SoC found in the Pixel 6.
 > 
-> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
-> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
+> pll0516x: Integer PLL with high frequency
+> pll0517x: Integer PLL with middle frequency
+> pll0518x: Integer PLL with low frequency
 > 
-> We add basic chip support for MediaTek MT8188 on evaluation board.
+> PLL0516x
+> FOUT = (MDIV * 2 * FIN)/PDIV * 2^SDIV)
 > 
-> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> PLL0517x and PLL0518x
+> FOUT = (MDIV * FIN)/PDIV*2^SDIV)
+> 
+> The PLLs are similar enough to pll_0822x that the same code can handle
+> both. The main difference is the change in the fout formula for the
+> high frequency 0516 pll.
+> 
+> Locktime for 516,517 & 518 is 150 the same as the pll_0822x lock factor.
+> MDIV, SDIV PDIV masks and bit shifts are also the same as 0822x.
+> 
+> When defining the PLL the "con" parameter should be set to CON3
+> register, like this
+> 
+> PLL(pll_0517x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
+>     PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0,
+>     NULL),
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 400 ++++++++
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951 ++++++++++++++++++++
->   3 files changed, 1352 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
+>  drivers/clk/samsung/clk-pll.c | 9 ++++++++-
+>  drivers/clk/samsung/clk-pll.h | 3 +++
+>  2 files changed, 11 insertions(+), 1 deletion(-)
 > 
-
-[...]
-
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		ranges;
+> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+> index 74934c6182ce..4ef9fea2a425 100644
+> --- a/drivers/clk/samsung/clk-pll.c
+> +++ b/drivers/clk/samsung/clk-pll.c
+> @@ -442,7 +442,11 @@ static unsigned long samsung_pll0822x_recalc_rate(struct clk_hw *hw,
+>  	pdiv = (pll_con3 >> PLL0822X_PDIV_SHIFT) & PLL0822X_PDIV_MASK;
+>  	sdiv = (pll_con3 >> PLL0822X_SDIV_SHIFT) & PLL0822X_SDIV_MASK;
+>  
+> -	fvco *= mdiv;
+> +	if (pll->type == pll_0516x)
+> +		fvco = fvco * 2 * mdiv;
+> +	else
+> +		fvco *= mdiv;
 > +
-> +		gic: interrupt-controller@c000000 {
+>  	do_div(fvco, (pdiv << sdiv));
+>  
+>  	return (unsigned long)fvco;
+> @@ -1316,6 +1320,9 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
+>  	case pll_1417x:
+>  	case pll_0818x:
+>  	case pll_0822x:
+> +	case pll_0516x:
+> +	case pll_0517x:
+> +	case pll_0518x:
+>  		pll->enable_offs = PLL0822X_ENABLE_SHIFT;
+>  		pll->lock_offs = PLL0822X_LOCK_STAT_SHIFT;
+>  		if (!pll->rate_table)
+> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
+> index 0725d485c6ee..ffd3d52c0dec 100644
+> --- a/drivers/clk/samsung/clk-pll.h
+> +++ b/drivers/clk/samsung/clk-pll.h
+> @@ -38,6 +38,9 @@ enum samsung_pll_type {
+>  	pll_0822x,
+>  	pll_0831x,
+>  	pll_142xx,
+> +	pll_0516x,
+> +	pll_0517x,
+> +	pll_0518x,
+>  };
+>  
+>  #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
 
-Hi Jason,
+I replied it with ack before. Again, reply it with ack.
 
-arch/arm64/boot/dts/mediatek/mt8188.dtsi:320.37-341.5: Warning 
-(avoid_unnecessary_addr_size): /soc/interrupt-controller@c000000: 
-unnecessary #address-cells/#size-cells without "ranges" or child "reg" 
-property
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-
-This warning pops up when trying dtbs_check.
-Can you have a look please ?
-
-Eugen
-
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <4>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			#redistributor-regions = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupt-controller;
-> +			reg = <0 0x0c000000 0 0x40000>,
-> +			      <0 0x0c040000 0 0x200000>;
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-> +
-> +			ppi-partitions {
-> +				ppi_cluster0: interrupt-partition-0 {
-> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
-> +				};
-> +
-> +				ppi_cluster1: interrupt-partition-1 {
-> +					affinity = <&cpu6 &cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-
-[...]
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
 
