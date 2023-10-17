@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-9109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D095A7CBB61
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:35:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2486A7CBB82
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:44:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CF1D1C20DCB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 06:35:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D405C281442
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 06:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326BAD290;
-	Tue, 17 Oct 2023 06:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1AA11CBA;
+	Tue, 17 Oct 2023 06:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="hk7hMWZJ"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="nbcwPe/Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A6C8494;
-	Tue, 17 Oct 2023 06:35:41 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E68395;
-	Mon, 16 Oct 2023 23:35:38 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 989B72000F;
-	Tue, 17 Oct 2023 06:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9BED2FC;
+	Tue, 17 Oct 2023 06:44:25 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C98A7;
+	Mon, 16 Oct 2023 23:44:23 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 49C166000A;
+	Tue, 17 Oct 2023 06:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1697524537;
+	t=1697525062;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=QGHJSDvI/Hwb9u+AlaUi0HNGz0BkOht5J2pzgelYmEc=;
-	b=hk7hMWZJfrdZnBE9gCeACqGCRePH1tWw1ScI78bRV95Ks21PMGrRaeMw/sr55xr9zpKYzY
-	U8IeLJ5HpN53fY1cgtttB2PN73DeREcT4cw3R8qL2B5suDC8w75CNR00zqkr8dzEbysU3+
-	ky6uMFTGm3Tw2BmpnrkXGm59jYspvW3dXXIfASodGU+fkbBnLdPfxA0nxEMm5qYlJdYLQf
-	DP0K4ieMgvVIiQveO0Fa/SSSUaIfvvzWS+7/5kHbvak0sudLoTEkQ783vjQ6KM+z1HEgAb
-	lVdlOllfQ1buxIRy1qg0nVoUGJomcF5bZgZfYAM+S+y5MIYpf/oMYHsI9ZemZg==
-Message-ID: <478d751e-585d-46f5-b6f5-e2a90025c957@arinc9.com>
-Date: Tue, 17 Oct 2023 09:35:05 +0300
+	bh=aMTy2aajhBK124+9B/NhradBNHtYp8yU8KpYvs1pqVY=;
+	b=nbcwPe/ZaywJ1so6xOi/nu77b3TS9079dNSCr2O6Rmm2OQJAPgKE8eAJhuAEL6oo/1tozM
+	kporfPh/mQ5A7ItyPBiQIbWYbOxXkLG4/9U3uZOn3G8TVGmqu7W6wqu/uHaDhiFZW/rFAm
+	Hfjoo8N/fRT3lsEgt62KHR5ujnTdaCm9wsVnF36omhVCDwM/zsd6ShJLFn7bc0fqDa5BmH
+	WQe9/F37E/8j7JR8hSkJhTgLVEFwj6qumZSYgo+HxpGh/m9EXIWz2CgK6gONtqtV5dBCM+
+	q9PGRx9nE9doX75/4yT8xeMnAQylPNobxoBDIyQU5T2F0ZFGJA9btzQy10wE8g==
+Message-ID: <1864d057-3b9c-447a-9f00-c8ad2fbb74d1@arinc9.com>
+Date: Tue, 17 Oct 2023 09:43:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,8 +46,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 5/8] dt-bindings: net: ethernet-switch: Rename
- $defs "base" to 'ethernet-ports'
+Subject: Re: [PATCH net-next 6/8] dt-bindings: net: mscc,vsc7514-switch:
+ Clean-up example indentation
 Content-Language: en-US
 To: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
  Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
@@ -82,30 +82,75 @@ Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
  linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
  bcm-kernel-feedback-list@broadcom.com
 References: <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-5-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-6-a525a090b444@kernel.org>
 From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20231016-dt-net-cleanups-v1-5-a525a090b444@kernel.org>
+In-Reply-To: <20231016-dt-net-cleanups-v1-6-a525a090b444@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 17.10.2023 00:44, Rob Herring wrote:
-> The name "base" is misleading as the definition is for a complete schema
-> definition without additional properties allowed, not a "base class".
-> Align the same to be the same as dsa.yaml. This schema file without any
-
-Align the same to be the same -> Align the name to be the same
-
-> json pointer path is the base schema which can be extended.
-> 
-> There are not yet any references to $defs/base to update.
+> The indentation for the example is completely messed up for
+> 'ethernet-ports'. Fix it.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>   .../bindings/net/mscc,vsc7514-switch.yaml          | 32 +++++++++++-----------
+>   1 file changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> index 8ee2c7d7ff42..07de52a3a295 100644
+> --- a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> +++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> @@ -185,7 +185,7 @@ examples:
+>       };
+>     # VSC7512 (DSA)
+>     - |
+> -    ethernet-switch@1{
+> +    ethernet-switch@1 {
+>         compatible = "mscc,vsc7512-switch";
+>         reg = <0x71010000 0x10000>,
+>               <0x71030000 0x10000>,
+> @@ -212,22 +212,22 @@ examples:
+>               "port7", "port8", "port9", "port10", "qsys",
+>               "ana", "s0", "s1", "s2";
+>   
+> -            ethernet-ports {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> -
+> -           port@0 {
+> -            reg = <0>;
+> -            ethernet = <&mac_sw>;
+> -            phy-handle = <&phy0>;
+> -            phy-mode = "internal";
+> -          };
+> -          port@1 {
+> -            reg = <1>;
+> -            phy-handle = <&phy1>;
+> -            phy-mode = "internal";
+> -          };
+> +      ethernet-ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          reg = <0>;
+> +          ethernet = <&mac_sw>;
+> +          phy-handle = <&phy0>;
+> +          phy-mode = "internal";
+> +        };
+
+Could use 4-space indentation as described here.
+
+https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-schema.html#example-schema
+
+Regardless:
 
 Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
