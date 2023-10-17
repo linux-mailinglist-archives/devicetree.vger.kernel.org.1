@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-9401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E567CCDAD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:14:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9A27CCDC6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 22:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0BA51C2099B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:14:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27F462813C5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E0D430F9;
-	Tue, 17 Oct 2023 20:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D94D43105;
+	Tue, 17 Oct 2023 20:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19DF2DF9F
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:14:08 +0000 (UTC)
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C2556FAF;
-	Tue, 17 Oct 2023 13:14:07 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1e98e97c824so3607066fac.1;
-        Tue, 17 Oct 2023 13:14:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A63430EC
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 20:19:04 +0000 (UTC)
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D7992;
+	Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-581b6b93bd1so1526228eaf.1;
+        Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697573646; x=1698178446;
+        d=1e100.net; s=20230601; t=1697573943; x=1698178743;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BjtM0th7Ga0wqAkmHHke7zShNUXUXypfVS93GqDMmaU=;
-        b=XS7SkYSiwMnENG4ROGp/EAoYKnN3dL0g2PAAFQa5r9SbbJfF3+807Zvd7zL/IEkAic
-         J2P/LP+KtOD1Ep6Y/wogTD3O/NdB4movC86U2ZA2vUBnNBmPn5KTyENRIXFwYM22Tr+a
-         SIi42vyloJhghteZJgJDiKtiUCINI0NDj2jS1wzwumEjYK92Qg8xZ19d5Q13LhQGCa21
-         CqSEJinac+Y/dexm4UKu9vCU6lU+pPLdo8ymL+a1PEgm4aTynhxpPnQGhg7XOE4GLR8c
-         +tB90hREkb4DE13/+mum8Npvz5yLzstRI/QSOkYkbbQUV0pK91g4K4R6n+7aPop9xRvP
-         0jnQ==
-X-Gm-Message-State: AOJu0YxmYGIYlcaWdAyWpKeLi/f9eFXXmmwWGAK/DaWHaEUqRDhXRpgG
-	2OrLSNT+KBj863ZGyqSwDw==
-X-Google-Smtp-Source: AGHT+IEsn7NyYyz1Bs7OZ8OxYl4q66dyjxMFogx3095CSeMhQzjqBlURuKu92JrCzVigMEE82ibKSw==
-X-Received: by 2002:a05:6871:c17:b0:1e9:d481:52e9 with SMTP id ve23-20020a0568710c1700b001e9d48152e9mr1820295oab.28.1697573646610;
-        Tue, 17 Oct 2023 13:14:06 -0700 (PDT)
+        bh=Q6YKzXb6RpcvAIE2KNseI2JNeCjjBedEHxdHH0ygsVs=;
+        b=CZeX9f9JGRBQAGsPQIG+7pwpbu9eBSjOUKMs6aA/9qmbpt4boF2g9+nE4eP531eNjN
+         bM+xQBdSl5HwMNO15FAjSZr4eSQiUaxzm41IYjNlVP+JhwTveEJyyiCDlSVkmQXtFbbh
+         /wEEJ1JKOQPDqa+IXyTBZ3wv0GVwovpzslnLqH0pdqoTgitlsGL1STvhfR716cRf+Nk5
+         tcmdvo07N1fAD2XUvLUaDt8Qac4e/rPsVcQguGyFrkG4tFV+fkfPgBdwzHR25lfMc2Bj
+         ugVwig5jT71yWrrPmNIA8lB5/Ezn8B0CQN8jR2k5N5dh5v0wgC5xyjpUd7TqqbsYmNU3
+         stUQ==
+X-Gm-Message-State: AOJu0YwBLDBRzQjwdotmsFwrdT14hb/74IQVvsHnC+zefgYo9tevhOi4
+	J/eibn4CHak8Bz3Yha1q7Q==
+X-Google-Smtp-Source: AGHT+IGvqa31RZJ8r/SrafiLvgLLHO+b84rMNqNQHLDYchD24kgtHpxnm526SRtBWsxbafS8D89ukQ==
+X-Received: by 2002:a4a:db86:0:b0:57e:1618:e700 with SMTP id s6-20020a4adb86000000b0057e1618e700mr3406874oou.7.1697573943076;
+        Tue, 17 Oct 2023 13:19:03 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id lb5-20020a05687c330500b001cc9bc7b569sm394499oac.27.2023.10.17.13.14.04
+        by smtp.gmail.com with ESMTPSA id f7-20020a4aeb07000000b0057bcbc23738sm372285ooj.17.2023.10.17.13.19.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 13:14:05 -0700 (PDT)
-Received: (nullmailer pid 2675575 invoked by uid 1000);
-	Tue, 17 Oct 2023 20:14:04 -0000
-Date: Tue, 17 Oct 2023 15:14:04 -0500
+        Tue, 17 Oct 2023 13:19:02 -0700 (PDT)
+Received: (nullmailer pid 2681966 invoked by uid 1000);
+	Tue, 17 Oct 2023 20:19:01 -0000
+Date: Tue, 17 Oct 2023 15:19:01 -0500
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: miquel.raynal@bootlin.com, conor.culhane@silvaco.com, alexandre.belloni@bootlin.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, joe@perches.com, peng.fan@nxp.com, alexander.stein@ew.tq-group.com, haibo.chen@nxp.com, ping.bai@nxp.com, xiaoning.wang@nxp.com, sherry.sun@nxp.com, linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: imx93: add i3c1 and i3c2
-Message-ID: <20231017201404.GA2570433-robh@kernel.org>
-References: <20231016152450.2850498-1-Frank.Li@nxp.com>
- <20231016152450.2850498-2-Frank.Li@nxp.com>
+To: Hsiao Chien Sung <shawn.sung@mediatek.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Sean Paul <sean@poorly.run>, linux-arm-kernel@lists.infradead.org, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, Jason-JH Lin <jason-jh.lin@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, David Airlie <airlied@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 03/11] dt-bindings: display: mediatek: ovl: Modify
+ rules for MT8195/MT8188
+Message-ID: <169757394073.2681910.919376164260775888.robh@kernel.org>
+References: <20231017064717.21616-1-shawn.sung@mediatek.com>
+ <20231017064717.21616-4-shawn.sung@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231016152450.2850498-2-Frank.Li@nxp.com>
+In-Reply-To: <20231017064717.21616-4-shawn.sung@mediatek.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,28 +73,18 @@ X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 16, 2023 at 11:24:50AM -0400, Frank Li wrote:
-> Add I3C1 and I3C2.
+
+On Tue, 17 Oct 2023 14:47:09 +0800, Hsiao Chien Sung wrote:
+> Modify rules for both MT8195 and MT8188.
+> Hardware capabilities include color formats and AFBC are
+> changed since MT8195, stop using the settings of MT8183.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 26 ++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
+>  .../bindings/display/mediatek/mediatek,ovl.yaml      | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 6f85a05ee7e1..4d9ed0b32853 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -242,6 +242,19 @@ tpm2: pwm@44320000 {
->  				status = "disabled";
->  			};
->  
-> +			i3c1: i3c-master@44330000 {
-> +				compatible = "silvaco,i3c-master";
 
-The real problem here is not whether we have "v1" or not, but you need 
-an SoC specific compatible. Unless there's a public spec where we can 
-know exactly how many resets, clocks, interrupts, etc.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Rob
 
