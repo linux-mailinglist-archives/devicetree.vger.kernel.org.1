@@ -1,54 +1,39 @@
-Return-Path: <devicetree+bounces-9147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70A87CBD51
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:25:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E137CBD60
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEC4EB20EFA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:25:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7437B1C208D0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A243E3B282;
-	Tue, 17 Oct 2023 08:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4593B28B;
+	Tue, 17 Oct 2023 08:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RCBaenzL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jrQQ05qC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36DA1381C6
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:25:15 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4DC93;
-	Tue, 17 Oct 2023 01:25:13 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39H7nOBv026221;
-	Tue, 17 Oct 2023 08:24:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=abG+EPXB6BECKL9u/q4R7dYvCyUAXCa41Z+B12FQpWI=;
- b=RCBaenzL+rR6YBrLmsSg4vxUSATLQJ/Sg5Xb7Ae5InKPVzHqOIlfngfTP+8iJ648PeQS
- D+nkejQy1s2aNm+dtOD3J10fTpY1IHK1cfvlBcxSznByCZAcG505MMEEyMmJaSFcYq9e
- 6FB9NDNf7kbHwholG4VPzd4pKmC0HKCC3THaWB6E0ZUpwMa4FNXcDOm8UbXTLC5tII9L
- zZYaKSeH3VBv7SmkMyY7Vwbon60uuzm8AI8veBG5B4NrOWhrZw2jc6D0Q2G7ubcOUU1a
- LYaBQSFO0d392/152fk5GmPBqHa6jkvbRG1Y7mCr9Q3FwKFEDwxVv+GDuzyQMJiG9liO gg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tryn1387n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 08:24:56 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39H8OtIo022458
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 08:24:55 GMT
-Received: from [10.216.24.217] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 17 Oct
- 2023 01:24:47 -0700
-Message-ID: <f12cb246-e7fb-44c4-a17e-0b395a146325@quicinc.com>
-Date: Tue, 17 Oct 2023 13:54:43 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54B0C2CD
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:29:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74F6CC433C8;
+	Tue, 17 Oct 2023 08:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697531343;
+	bh=RESuwpGBnAb12MK/MNuF3dBypxSNz2pAixUEdbu0A0E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jrQQ05qC6teSXhyYJm0Ss3ngnUZJG82JYLoNCYwxd7Qm4BpNnxAVY6tuh2teCUuD0
+	 eUAiXCPii9O5P59rcy//pEOxE+TOb/jpYwsQ/lEcxXZllZVDw1/jCdRXIt3b6rd0vN
+	 EE9UxXzs8ePVIdtwiOsXOCMTRcWfL6419MGz2MKul4FFqf5qqFKX94aYeE4O5dV0HI
+	 WCB1Y8kOt0Sri4PkagJzGQ99EMiw8nL868/MMqiYgByycWSV1kEeDmq03GpZ0EGZ9Q
+	 fwEMb5cFS3e3GBdvocOmxoKOPYdA1wF5FygdYPnaqdEw/zBH7YXzQEZOQuxMiUikn2
+	 RiSG6Z5zIhU3w==
+Message-ID: <3d2b2683-3b7f-403c-a717-9c5e3f2c3939@kernel.org>
+Date: Tue, 17 Oct 2023 17:28:57 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,98 +41,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/11] firmware: qcom-scm: atomically assign and read the
- global __scm pointer
+Subject: Re: [PATCH v7 07/26] PM / devfreq: rockchip-dfi: introduce channel
+ mask
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ Heiko Stuebner <heiko@sntech.de>, Kyungmin Park <kyungmin.park@samsung.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-8-s.hauer@pengutronix.de>
+ <859b0091-e361-6060-2977-4aba13af418a@kernel.org>
+ <20231016112216.GY3359458@pengutronix.de>
+ <20231016124558.GL235829@pengutronix.de>
+From: Chanwoo Choi <chanwoo@kernel.org>
 Content-Language: en-US
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder
-	<elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-4-bartosz.golaszewski@linaro.org>
-From: Om Prakash Singh <quic_omprsing@quicinc.com>
-In-Reply-To: <20230828192507.117334-4-bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <20231016124558.GL235829@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NZoJXFrXHLjPD7Z3Hv_EfwVC3o2YEwqT
-X-Proofpoint-ORIG-GUID: NZoJXFrXHLjPD7Z3Hv_EfwVC3o2YEwqT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-16_13,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- malwarescore=0 priorityscore=1501 mlxlogscore=999 spamscore=0 bulkscore=0
- phishscore=0 impostorscore=0 clxscore=1011 adultscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310170069
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-
-
-On 8/29/2023 12:54 AM, Bartosz Golaszewski wrote:
-> Checking for the availability of SCM bridge can happen from any context.
-> It's only by chance that we haven't run into concurrency issues but with
-> the upcoming SHM Bridge driver that will be initiated at the same
-> initcall level, we need to assure the assignment and readback of the
-> __scm pointer is atomic.
+On 23. 10. 16. 21:45, Sascha Hauer wrote:
+> On Mon, Oct 16, 2023 at 01:22:16PM +0200, Sascha Hauer wrote:
+>> On Sat, Oct 07, 2023 at 02:21:10AM +0900, Chanwoo Choi wrote:
+>>> Hi,
+>>>
+>>> On 23. 7. 4. 18:32, Sascha Hauer wrote:
+>>>> Different Rockchip SoC variants have a different number of channels.
+>>>> Introduce a channel mask to make the number of channels configurable
+>>>> from SoC initialization code.
+>>>>
+>>>> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>> ---
+>>>>  drivers/devfreq/event/rockchip-dfi.c | 23 +++++++++++++++++------
+>>>>  1 file changed, 17 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+>>>> index 126bb744645b6..82de24a027579 100644
+>>>> --- a/drivers/devfreq/event/rockchip-dfi.c
+>>>> +++ b/drivers/devfreq/event/rockchip-dfi.c
+>>>> @@ -18,10 +18,11 @@
+>>>>  #include <linux/list.h>
+>>>>  #include <linux/of.h>
+>>>>  #include <linux/of_device.h>
+>>>> +#include <linux/bits.h>
+>>>>  
+>>>>  #include <soc/rockchip/rk3399_grf.h>
+>>>>  
+>>>> -#define RK3399_DMC_NUM_CH	2
+>>>> +#define DMC_MAX_CHANNELS	2
+>>>>  
+>>>>  /* DDRMON_CTRL */
+>>>>  #define DDRMON_CTRL	0x04
+>>>> @@ -44,7 +45,7 @@ struct dmc_count_channel {
+>>>>  };
+>>>>  
+>>>>  struct dmc_count {
+>>>> -	struct dmc_count_channel c[RK3399_DMC_NUM_CH];
+>>>> +	struct dmc_count_channel c[DMC_MAX_CHANNELS];
+>>>>  };
+>>>>  
+>>>>  /*
+>>>> @@ -61,6 +62,7 @@ struct rockchip_dfi {
+>>>>  	struct regmap *regmap_pmu;
+>>>>  	struct clk *clk;
+>>>>  	u32 ddr_type;
+>>>> +	unsigned int channel_mask;
+>>>>  };
+>>>>  
+>>>>  static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
+>>>> @@ -95,7 +97,9 @@ static void rockchip_dfi_read_counters(struct devfreq_event_dev *edev, struct dm
+>>>>  	u32 i;
+>>>>  	void __iomem *dfi_regs = dfi->regs;
+>>>>  
+>>>> -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
+>>>> +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
+>>>> +		if (!(dfi->channel_mask & BIT(i)))
+>>>> +			continue;
+>>>>  		count->c[i].access = readl_relaxed(dfi_regs +
+>>>>  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
+>>>>  		count->c[i].total = readl_relaxed(dfi_regs +
+>>>> @@ -145,9 +149,14 @@ static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
+>>>>  	rockchip_dfi_read_counters(edev, &count);
+>>>>  
+>>>>  	/* We can only report one channel, so find the busiest one */
+>>>> -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
+>>>> -		u32 a = count.c[i].access - last->c[i].access;
+>>>> -		u32 t = count.c[i].total - last->c[i].total;
+>>>> +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
+>>>
+>>> Instead of DMC_MAX_CHANNELS defintion,
+>>> you can initialize the max channel in each rkXXXX_dfi_init() like 'dfi->channel_count'.
+>>> It reduces the unnecessary loop by initializing the proper max channel.
+>>
+>> That is not easily possible. Some SoCs, eg the RK3588 have four
+>> channels, but not all channels are necessarily enabled it also
+>> might not be the first channels that are enabled. On a RK3588
+>> the channel mask might for example be 0b0101.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->   drivers/firmware/qcom_scm.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+> Nah, forget this comment. Of course I can initialize a variable with a
+> maximum value of channels that could be available on this SoC and only
+> iterate over these. Will do.
 > 
-> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-> index 980fcfa20b9f..422de70faff8 100644
-> --- a/drivers/firmware/qcom_scm.c
-> +++ b/drivers/firmware/qcom_scm.c
-> @@ -1331,7 +1331,7 @@ static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
->    */
->   bool qcom_scm_is_available(void)
->   {
-> -	return !!__scm;
-> +	return !!READ_ONCE(__scm);
->   }
->   EXPORT_SYMBOL(qcom_scm_is_available);
->   
-> @@ -1477,8 +1477,8 @@ static int qcom_scm_probe(struct platform_device *pdev)
->   	if (ret)
->   		return ret;
->   
-> -	__scm = scm;
-> -	__scm->dev = &pdev->dev;
-> +	scm->dev = &pdev->dev;
-> +	WRITE_ONCE(__scm, scm);
 
-In my opinion "__scm = scm;" assignment should be done at the end of 
-probe function success so that qcom_scm_is_available() return true only 
-when probe is completed.
+Thanks.
 
-Other changes may not be needed.
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
->   	init_completion(&__scm->waitq_comp);
->   
 
