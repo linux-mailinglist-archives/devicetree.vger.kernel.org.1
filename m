@@ -1,181 +1,173 @@
-Return-Path: <devicetree+bounces-9073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99ECF7CB86E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 04:32:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB75C7CB8E0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 05:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAF141C20A66
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 02:32:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9398E2817C3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 03:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD0119A;
-	Tue, 17 Oct 2023 02:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFF8179DF;
+	Tue, 17 Oct 2023 03:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Govb0Z/u"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mhfer62g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DE58C00
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 02:32:19 +0000 (UTC)
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC3BDAC
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 19:32:17 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-27d8a1aed37so543115a91.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 19:32:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697509937; x=1698114737; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=trHmVVa3HVQtG4Xt2doqvC4B0sQ9SbK5P7sWmT0onTo=;
-        b=Govb0Z/u4covux+X1yFkUr7/NBoiwPJ9CmtzIkLGTBlixGituoiSBzhgnoGI/bX17P
-         nW4kUiYyec2FbLFc43vRfWbo23b8+zqQNVISgLXERwNW4kbu9GZ7A5+ZqK+hor9+WYBu
-         8Rq2+Ed2ay52cXzNP2vYb7F3fstOpIVMCiij5S88bEULwgvHeDUXgPM+sBJAcMrQrI2e
-         r/s7Yuuttsa/i2pmEvBdoajWP4hmE6KhwGhfN7OmawYUf6/SKbypnqXbspOTDkIPhS3w
-         ZA89Wr3me7gERgE8IXYSxfcGtS9QV/bMCgK/TzSyseAzcOLZDsOYXS34zwgjicfp0VX+
-         gnSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697509937; x=1698114737;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=trHmVVa3HVQtG4Xt2doqvC4B0sQ9SbK5P7sWmT0onTo=;
-        b=sGtI4JTFeOqg2Hjj02IJmK+pS28BNtAtRPyk0Ntbt0x4qJ7qbMpJvsBQRtL6mCvEhq
-         vHU7vt5YykenCIOXgcp82evwwtpfLSkHKfT9v0wBxFRGf1OH63V0IVvU8ZoU7hss1IYz
-         b7JjovO/EeI/HY6EcIUnJCF/fp/s3FgrlwwrhAc5LPbMXOuufsuf0DcFxJ//uTCV6nLI
-         c9X56BoGMo7/zi46Xkz8F2bmBEcVXo23khseH5Lpa0zQzNDrEvtHDwaelVwew7XV/nMJ
-         gISBYV6EXJ2nDq0pUFj3uZKVHW3Ok4jl0Mqi3SbllWRqHfB/m/UngjE+KjRmvi9f8ptG
-         YDJQ==
-X-Gm-Message-State: AOJu0Ywamikd9y5yHxVuKNzGW+C/DTz9iXZzmyMdbA7APIe50XjXNLks
-	iaoLirz65tdtp5OZio8hvWFN1g==
-X-Google-Smtp-Source: AGHT+IGdPnaBYT7c8lIIVrIXW+cFRIDzNmwPorn8Hdp88GfjSDfiCtDs/2w9Fxd3AznDtYhsuNugYw==
-X-Received: by 2002:a17:902:dace:b0:1ca:8e79:53ae with SMTP id q14-20020a170902dace00b001ca8e7953aemr1081353plx.1.1697509937071;
-        Mon, 16 Oct 2023 19:32:17 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:b992:c10c:3bda:e666])
-        by smtp.gmail.com with ESMTPSA id j14-20020a170902da8e00b001c9bca1d705sm284757plx.242.2023.10.16.19.32.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 19:32:16 -0700 (PDT)
-Date: Tue, 17 Oct 2023 11:32:11 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-Message-ID: <ZS3yK/f12Mxw9rXe@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org>
- <20231006132346.GA3426353-robh@kernel.org>
- <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
- <ZSTgTC4cFFpofYAk@octopus>
- <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700908813;
+	Tue, 17 Oct 2023 03:11:39 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB3595;
+	Mon, 16 Oct 2023 20:11:37 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39H2HeiS018193;
+	Tue, 17 Oct 2023 03:11:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=wo666QFHwH9jbueXj1tL9j5DiN6Dpf2gV1xa51nmhl8=;
+ b=Mhfer62gjdT+Q8+y8wq4T7tVJqNuKCN7SSu8AH/ocmifTpPLrg06/I47eDpdbD28KKtq
+ KXw3vBlf1BqRpITPGqU6F7BMkJN3qRNa7yc+jjLfzVVUrQis6JRzpkrKg697L37DI/ZR
+ MxwcZ6xyYLmM8fh8b+3P77UqiL69/+YUVgj8XQ0yQGVLiPQ+u5Y9C+36eISkiNVH/W5H
+ 62VOe/+dfKLIgdJFra5c0//lgQ430anbeItnItYa06h8wkBxpysrvMGVBTqa2Y2naize
+ Xx9XCwlq90M3kbfbrdK2GEdhOl4A6xmLTFSg9Lf5aVy4BxSSnMpExtIG28/3wkgeXj/i yQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ts9jns3vu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Oct 2023 03:11:27 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39H3BQWJ004277
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Oct 2023 03:11:26 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Mon, 16 Oct 2023 20:11:26 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: [PATCH 00/12] usb: dwc3: qcom: Flatten dwc3 structure
+Date: Mon, 16 Oct 2023 20:11:08 -0700
+Message-ID: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEz7LWUC/x2N0QqDMAxFf0XyvEBrYai/IntIa6YBqZJuKhT/f
+ WGP53APt0JhFS4wNBWUDymyZQP/aCAtlGdGmYyhdW3wzj9xOlNA5Telz6bYB88huo662IM1kQp
+ jVMppsSp/19XkbnO5/ifj675/fMAxdHQAAAA=
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Johan Hovold
+	<johan@kernel.org>,
+        Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        "Bjorn Andersson" <quic_bjorande@quicinc.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1697512286; l=2928;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=BfVs6sray0YTN4vc4g+Yvojjyk0sCDR/MLa1TmSoVr4=;
+ b=QF1GXgroHtrSsBhAJ8qMEkbjIkJN7+8nx/i2Ep40qd+yf6XEb7dMmqsdX8WOu3nbHfd/m+LgFxNM
+ lUCFQQx3AyLC9oZu2IU5jfDFdAQYM+XeB7oSWvjtAFkKVDOdsLWg
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: USVpYvXr35ihRY4bccwrV9r5WVoRWpzm
+X-Proofpoint-ORIG-GUID: USVpYvXr35ihRY4bccwrV9r5WVoRWpzm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-16_13,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1011 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 suspectscore=0 mlxlogscore=732 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310170026
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Linus,
+The USB IP-block found in most Qualcomm platforms is modelled in the
+Linux kernel as 3 different independent device drivers, but as shown by
+the already existing layering violations in the Qualcomm glue driver
+they can not be operated independently.
 
-On Thu, Oct 12, 2023 at 09:25:20AM +0200, Linus Walleij wrote:
-> On Tue, Oct 10, 2023 at 7:25???AM AKASHI Takahiro
-> <takahiro.akashi@linaro.org> wrote:
-> 
-> > > We can probably mandate that this has to be inside a pin controller
-> > > since it is a first.
-> >
-> > Yeah, my U-Boot implementation tentatively supports both (inside and
-> > outside pin controller). But it is not a user's choice, but we should
-> > decide which way to go.
-> 
-> OK I have decided we are going to put it inside the pin control node,
-> as a subnode. (I don't expect anyone to object.)
+With the current implementation, the glue driver registers the core and
+has no way to know when this is done. As a result, e.g. the suspend
+callbacks needs to guard against NULL pointer dereferences when trying
+to peek into the struct dwc3 found in the drvdata of the child.
 
-While I'm still thinking of how I can modify my current implementation
-to fit into 'inside' syntax, there are a couple of concerns:
+Missing from the upstream Qualcomm USB support is handling of role
+switching, in which the glue needs to be notified upon DRD mode changes.
+Several attempts has been made through the years to register callbacks
+etc, but they always fall short when it comes to handling of the core's
+probe deferral on resources etc.
 
-1) invoke gpiochip_add_data() at probe function
-Probably we no longer need "compatible" property, but instead we need to
-call gpiochip_add_data() explicitly in SCMI pin controller's probe
-as follows:
+Furhtermore, the DeviceTree binding is a direct representation of the
+Linux driver model, and doesn't necessarily describe "the USB IP-block".
 
-scmi_pinctrl_probe()
-    ...
-    devm_pinctrl_register_and_init(dev, ..., pctrldev);
-    pinctrl_enable(pctrldev);
+This series therefor attempts to flatten the driver split, and operate
+the glue and core out of the same platform_device instance. And in order
+to do this, the DeviceTree representation of the IP block is flattened.
 
-    device_for_each_child_node(dev, fwnode)
-        if (fwnode contains "gpio-controller") {
-            /* what pin_control_gpio_probe() does */
-            gc->get_direction = ...;
-            ...
-            devm_gpiochip_data_add(dev, gc, ...);
-        }
+As a side effect, much of the ACPI integration code is dropped.
 
-2) gpio-by-pinctrl.c
-While this file is SCMI-independent now, due to a change at (1),
-it would be better to move the whole content inside SCMI pin controller
-driver (because there is no other user for now).
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Bjorn Andersson (12):
+      dt-bindings: usb: qcom,dwc3: Add qcom,sc8180x-dwc3
+      usb: dwc3: qcom: Rename dwc3 platform_device reference
+      usb: dwc3: qcom: Merge resources from urs_usb device
+      usb: dwc3: Expose core driver as library
+      usb: dwc3: Override end of dwc3 memory resource
+      usb: dwc3: qcom: Add dwc3 core reference in driver state
+      usb: dwc3: qcom: Instantiate dwc3 core directly
+      usb: dwc3: qcom: Inline the qscratch constants
+      dt-bindings: usb: qcom,dwc3: Rename to "glue"
+      dt-bindings: usb: qcom,dwc3: Introduce flattened qcom,dwc3 binding
+      usb: dwc3: qcom: Flatten the Qualcomm dwc3 binding and implementation
+      arm64: dts: qcom: sc8180x: flatten usb_sec node
 
-3) Then, pin-control-gpio.yaml may also be put into SCMI binding
-(i.e. firmware/arm,scmi.yaml). Can we leave the gpio binding outside?
+ .../devicetree/bindings/usb/qcom,dwc3-glue.yaml    | 626 +++++++++++++++++++++
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         | 321 ++++-------
+ .../devicetree/bindings/usb/snps,dwc3.yaml         |  14 +-
+ .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |   6 +-
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |   6 +-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              |  34 +-
+ drivers/usb/dwc3/core.c                            | 136 +++--
+ drivers/usb/dwc3/core.h                            |  10 +
+ drivers/usb/dwc3/dwc3-qcom.c                       | 328 ++++++-----
+ 9 files changed, 1057 insertions(+), 424 deletions(-)
+---
+base-commit: 4d0515b235dec789578d135a5db586b25c5870cb
+change-id: 20231016-dwc3-refactor-931e3b08a8b9
 
-4) phandle in "gpio-ranges" property
-(As you mentioned)
-The first element in a tuple of "gpio-ranges" is a phandle to a pin
-controller node. Now that the gpio node is a sub node of pin controller,
-the phandle is trivial. But there is no easier way to represent it
-than using an explicit label:
-(My U-Boot implementation does this.)
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
 
-scmi {
-    ...
-    scmi_pinctrl: protocol@19 {
-        ...
-        gpio {
-            gpio-controller;
-            ...
-            gpio-ranges = <&scmi_pinctrl ... >;
-        }
-    }
-}
-
-I tried:
-    gpio-ranges = <0 ...>; // dtc passed, but '0' might be illegal by spec.
-    gpio-ranges = <(-1) ...>; // dtc passed, but ...
-    gpio-ranges = <&{..} ...>; // dtc error because it's not a full path.
-
-Do you have any other idea? Otherwise, I will modify my RFC
-with the changes above.
-
--Takahiro Akashi
-
-
-> It makes everything easier and clearer for users I think.
-> 
-> Yours,
-> Linus Walleij
 
