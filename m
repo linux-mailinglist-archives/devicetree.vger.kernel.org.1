@@ -1,60 +1,72 @@
-Return-Path: <devicetree+bounces-9325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4ED27CCAD8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:37:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21C3A7CCAED
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 20:43:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D7F7281A2F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:37:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86051F23457
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966372D035;
-	Tue, 17 Oct 2023 18:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938093B7AD;
+	Tue, 17 Oct 2023 18:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eQfUATeF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302A82D02B;
-	Tue, 17 Oct 2023 18:37:48 +0000 (UTC)
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E580990;
-	Tue, 17 Oct 2023 11:37:46 -0700 (PDT)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-581d4f9a2c5so544588eaf.0;
-        Tue, 17 Oct 2023 11:37:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697567866; x=1698172666;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YLFTW47UAIBGXkLdBcrMObcIRWeTgSfUsdng3xDHxtM=;
-        b=BMwypR2a5byScN7pz4lybK0Vrn2rJXmjZXHBBPDK9nR11/1aDXVNLGgNRmUmsHYdB3
-         8QZMnZEZCWm9n5mGbvQPsTMI3YghS9plqHP8Djnvu27VhaTFUKkabh7L9DULpaF2Amb0
-         EGO+cOjpylpbqlmLxFBf2RGFI3a9M75NbObdgOOQv4cicyzqlV6VM/mOatjMVsIYFZie
-         V7KRh4inPb8H4SPfjE3Mp5P+rJE+A5ALqzZFzj0JJUGhcC0koJcXnh3jzu3zQuTql6Hi
-         IO4J74pVs2kxTY6d2M1D2eUcFSXhPNekKjNO2NXdOXh63GWyh/nhiEd/cLP5UGEasIIh
-         /atQ==
-X-Gm-Message-State: AOJu0Yw+byuWpPmIR9T0as8O2UHzvJd/lzODXUpcpe7P3872r9GAqA43
-	Cnji4hG7uWlARizWoJxVtQ==
-X-Google-Smtp-Source: AGHT+IGYM6bN09eNkmdiIkM37jIqZ+Xk32CbW/vA5PPI8vSWSwNcgWp/futKRqQbnQwewp5XJ/6FzA==
-X-Received: by 2002:a05:6820:608:b0:57b:92f2:1f64 with SMTP id e8-20020a056820060800b0057b92f21f64mr4158748oow.8.1697567866077;
-        Tue, 17 Oct 2023 11:37:46 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id br7-20020a0568201a4700b00573fb6178a6sm343044oob.44.2023.10.17.11.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 11:37:45 -0700 (PDT)
-Received: (nullmailer pid 2487541 invoked by uid 1000);
-	Tue, 17 Oct 2023 18:37:43 -0000
-Date: Tue, 17 Oct 2023 13:37:43 -0500
-From: Rob Herring <robh@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, Hanjun Guo <guohanjun@huawei.com>, linux-arm-kernel@lists.infradead.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>, Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA13EBE;
+	Tue, 17 Oct 2023 18:43:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310BB90;
+	Tue, 17 Oct 2023 11:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697568183; x=1729104183;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fvN8JtK1YQPBPAULHsac4WHfv28eYma/gXCpzRF16tM=;
+  b=eQfUATeFDDyaDE1nWuHKO+aXCJ9/SulXoQKfZbi8x0hu5WWFD7cqgegl
+   Eh1f28n+wrXeAdR6XlfjVIMmrX6agBjwf54ZA0bPTl/5L9fWzEn7aKWuJ
+   jSNfVw1tTz+liBKJ6xCvy1xqJl/KRm2CG85SOP6L2MkY/8TK9McQ4yTqL
+   UQa+xQ52P07v2zLyauvKw57yqn7B4rAO2x4rTtR4ZyTz7Dx7hpz63kA22
+   Q61NuRlGYsxMH3SfIyf8MxEeNn189Eu39UqUYm1w4IAN/1JMTGKL/TIAB
+   101GNGmTHAbLhRcGsPyHyyydatspn8lrmp1GZ+5dQFRwKN+hDOUFX0xZ6
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="388720984"
+X-IronPort-AV: E=Sophos;i="6.03,232,1694761200"; 
+   d="scan'208";a="388720984"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2023 11:43:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="785584710"
+X-IronPort-AV: E=Sophos;i="6.03,232,1694761200"; 
+   d="scan'208";a="785584710"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2023 11:42:59 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qsp1r-00000006Ohp-3Usv;
+	Tue, 17 Oct 2023 21:42:55 +0300
+Date: Tue, 17 Oct 2023 21:42:55 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hanjun Guo <guohanjun@huawei.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Len Brown <lenb@kernel.org>,
+	devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
 Subject: Re: [PATCH v3 1/2] amba: bus: balance firmware node reference
  counting
-Message-ID: <169756785858.2487391.2620832432762980006.robh@kernel.org>
+Message-ID: <ZS7VrxX6If8Afl5R@smile.fi.intel.com>
 References: <20231006145732.3419115-1-andriy.shevchenko@linux.intel.com>
+ <169756785858.2487391.2620832432762980006.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,41 +75,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231006145732.3419115-1-andriy.shevchenko@linux.intel.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.6
+In-Reply-To: <169756785858.2487391.2620832432762980006.robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Tue, Oct 17, 2023 at 01:37:43PM -0500, Rob Herring wrote:
+> On Fri, 06 Oct 2023 17:57:31 +0300, Andy Shevchenko wrote:
 
-On Fri, 06 Oct 2023 17:57:31 +0300, Andy Shevchenko wrote:
-> Currently the ACPI code doesn't bump the reference count of
-> the firmware node, while OF counter part does. Not that it's
-> a problem right now, since ACPI doesn't really use the reference
-> counting for firmware nodes, it still makes sense to make code
-> robust against any changes done there. For this,
->  - switch ACPI case to use device_set_node() to be unified with OF
->  - move reference counting to amba_device_add()
->  - switch to use firmware nodes instead of OF ones
-> 
-> In the result we will have reference counting done in the same module
-> for all callers independently on the nature of firmware node behind.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
-> 
-> v3: no changes
-> v2: fixed compilation error (LKP), all dependencies are in v6.6-rcX (Rob)
-> 
->  drivers/acpi/arm64/amba.c | 2 +-
->  drivers/amba/bus.c        | 5 ++++-
->  drivers/of/platform.c     | 2 +-
->  3 files changed, 6 insertions(+), 3 deletions(-)
-> 
+...
 
-Applied, thanks!
+> Applied, thanks!
+
+Thanks, I hope w.o. patch 2 as it seems it can't be enabled on non-ARM
+platforms due to some strange MM APIs.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
