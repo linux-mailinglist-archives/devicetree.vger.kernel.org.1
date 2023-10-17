@@ -1,208 +1,181 @@
-Return-Path: <devicetree+bounces-9358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0A87CCC8F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:48:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3327CCCBF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07AA12814D3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:48:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F4611C2094A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DBA2DF99;
-	Tue, 17 Oct 2023 19:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECFA9CA65;
+	Tue, 17 Oct 2023 19:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b="SY7ftcLh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59822DF95
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 19:48:54 +0000 (UTC)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157E493;
-	Tue, 17 Oct 2023 12:48:53 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3af65455e7cso4031817b6e.1;
-        Tue, 17 Oct 2023 12:48:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697572132; x=1698176932;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4OFfScDbSNQGFHtsnm2elv68+EUkC5AazfQeYRwzttU=;
-        b=Fi8KIIQCDxo1M9r9tupwIM0tCoZnTXxQcnHzJK6LBna6hXwT2SsjTuYjZD9E4jO5OO
-         zCn3HYniy33YR1k+UWvOzoXH1ZvgsSLsxpWCAF45f9knWwDdSLwHvQ1tbax6UKtiv0sy
-         Tu9RH/TANEshwbzdU8MzMB18u9XHoh1RNHfHHssc6N75LwGOqPRX5Wrr2ks4IxPdwX4X
-         sPKe1Nq4vREj67uKCjhMtCM58ebVjUeaO6+gO+8os8PEYyDXU1DOGZGBXRk+p/IvCocO
-         27/wQopg9O5/lpwNfX50eslpthkqlGV06NC81T6MdI3cbBREaLIvGFHwdO+2JB/dOVQ0
-         38/Q==
-X-Gm-Message-State: AOJu0YyKYIMi4KZHTIi38FWTMPl15H5riUcc/z9PF6lv8OAIEMiTBXDE
-	awxZRpkvGKQgjmpLAoZtFQ==
-X-Google-Smtp-Source: AGHT+IEsb/OGbaJmy2ZQDNz9KFR5sNPCXNONhQzp69qEAF5KfVi63SR6pfGyNkdxV1M1obkTXoCJ6Q==
-X-Received: by 2002:a05:6808:1694:b0:3ae:1351:d0f with SMTP id bb20-20020a056808169400b003ae13510d0fmr4060402oib.22.1697572132344;
-        Tue, 17 Oct 2023 12:48:52 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bh25-20020a056808181900b003b274008e46sm373254oib.0.2023.10.17.12.48.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 12:48:51 -0700 (PDT)
-Received: (nullmailer pid 2570287 invoked by uid 1000);
-	Tue, 17 Oct 2023 19:48:50 -0000
-Date: Tue, 17 Oct 2023 14:48:50 -0500
-From: Rob Herring <robh@kernel.org>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
-Subject: Re: [PATCH v7 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
-Message-ID: <20231017194850.GA2565799-robh@kernel.org>
-References: <cover.1697463708.git.mehdi.djait@bootlin.com>
- <d5b2b2584fd471a037e574086bfd193b22fb9587.1697463708.git.mehdi.djait@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506EB2EAE2;
+	Tue, 17 Oct 2023 19:59:30 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2051.outbound.protection.outlook.com [40.107.255.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31430F0;
+	Tue, 17 Oct 2023 12:59:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lOvB7U45K+vafh1uOEKspC+4itMfEV/wvl0QXWBJ9/TRIhicVFWnOEaJfevIXIfBGHGDag8tmA9UrfNLBVH18XxXi3XU+zlkMJ8GkANzR29NReVi7+Fe0+0Gth3vWdCTV0oeiruOTI+JsrcoLDQcWXT45ZTdhe3crRsTA7I4Qzu2rBp4mRysm2Cijmwj1WZkrfGMJzRHNdaUYPB6hg7cZSBmBNjVra9KdXRrL5jqGJZFcJWcNwvVkTdD+jPCTX/VVQgnseZczpmx4Nanq72Y4A2iMyHDrc2r9B+Wfc3g8MA75Rc7ogzsGB147PypoQEHNem3jT+2O5skUb2mgEzh+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qH4SxFRSuckPoXgIYXCPM9q1hTpt1F4OYpIVD2EW/30=;
+ b=ALh9A1/1AJ9t65Qz/NgmJ/b8jwtQBx9YGirhdVGPVgcan2GthukevD87WYjvoT01KdumXX24KPc7kil1XAjuN3prt0EFILzG1DWp+pmkomZQmHeSz6uJiZG990D9e25pH65wTOIV07CvJ0yI3J24jDtMWi6h3uq7+8Kv4J6g60XnIMPzvVTSJZkwZ3WgTvbIfBKL1OL3yVAR89KkhNK9KD0q1paY1b1AeMqwUH7ufUYZ+OeKwjyeBTUXdrfFaz/8iLCNWypr4LAstrICKl5sNzAhA4GWw2a0sXvIbc1cJqmoKnj8+CDWY3ojzcYx7v/JHGaeJGkAW/SKUnITrrPhXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=gmail.com smtp.mailfrom=nuvoton.com;
+ dmarc=fail (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qH4SxFRSuckPoXgIYXCPM9q1hTpt1F4OYpIVD2EW/30=;
+ b=SY7ftcLhI6CcH2fgee+z9CmCgWPs81EdwzHZc4FYLA8Av9Bj8xNJUzP1KOTHTuWT3jy8FP2y+nxHocNYICEO+A6JToU7pSvtCURHIjlhUkYfgJjYUaAGTlKFWzae6HqImclPKvmN9fDV7a/R0fTFNoD3TF+u3eEAyXeYy1wKnnQ=
+Received: from KL1P15301CA0051.APCP153.PROD.OUTLOOK.COM (2603:1096:820:3d::23)
+ by TY0PR03MB6426.apcprd03.prod.outlook.com (2603:1096:400:1ae::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.46; Tue, 17 Oct
+ 2023 19:59:26 +0000
+Received: from HK2PEPF00006FB3.apcprd02.prod.outlook.com
+ (2603:1096:820:3d:cafe::b3) by KL1P15301CA0051.outlook.office365.com
+ (2603:1096:820:3d::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.4 via Frontend
+ Transport; Tue, 17 Oct 2023 19:59:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ HK2PEPF00006FB3.mail.protection.outlook.com (10.167.8.9) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Tue, 17 Oct 2023 19:59:24 +0000
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Wed, 18
+ Oct 2023 03:59:23 +0800
+Received: from taln58.nuvoton.co.il (10.191.1.178) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Wed, 18 Oct 2023 03:59:23 +0800
+Received: from taln60.nuvoton.co.il (taln60 [10.191.1.180])
+	by taln58.nuvoton.co.il (Postfix) with ESMTP id DD9A568E43;
+	Tue, 17 Oct 2023 22:59:22 +0300 (IDT)
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+	id B6CD521CFCCF; Tue, 17 Oct 2023 22:59:22 +0300 (IDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: <peter.chen@kernel.org>, <gregkh@linuxfoundation.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<xu.yang_2@nxp.com>, <peng.fan@nxp.com>, <avifishman70@gmail.com>,
+	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
+	<yuenn@google.com>, <benjaminfair@google.com>, <j.neuschaefer@gmx.net>
+CC: <openbmc@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
+	<tmaimon77@gmail.com>
+Subject: [PATCH v7 0/3] usb: ChipIdea: add Nuvoton NPCM UDC support
+Date: Tue, 17 Oct 2023 22:59:00 +0300
+Message-ID: <20231017195903.1665260-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5b2b2584fd471a037e574086bfd193b22fb9587.1697463708.git.mehdi.djait@bootlin.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB3:EE_|TY0PR03MB6426:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec51e798-de99-41c1-9deb-08dbcf4b901d
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	nisTFeSgInhngz3QTkZNKyuwJMoUXBt/OKeYMN5+F1/5kqgFvcQtpfpdSQIc1J3tLPL62FHt+7kpSIKRmKavYix1VUCV9TYO2kH2mle0Wa6equTxPdCXO9a3ecp6/5lmt1gk/vF+W/onWPhPspz3i2Q6UWpgSsM129HS9HBaWlhbiQOtntRQsxO4j5ZllyY6Za6gEB1UkDcbYcx1fgyAyPRMFA5MVmJdNPH4Hlajr3kT66XYhVCPLbt4yaHDyU0l33JS6KH9oqzOH9MWZVWVivc5xkIOJpKjGKOC9Cf4BA2Nhgb/RpRbLZgkaoZMUHaVXxrjgWfHNSxk9PjcHjj1V8MsEPi73hN3BbaYI4qlIhL1urp0RpJP2k6zcPl5O0tC4yUcNtbblGaVx2pS9Dfl/coEtQADnKaMctT+ZVQzsBMgcTjPJ+Z13DMqCyyXyBe+3Tlen9Q9KUKPBZojIYOgVeZ4sw5GNTJbCTxqG4vIXQtBvlKBDs4uvrfLCgshHNr3esu1HMgLnjedh/Bu+rj0A0PCK3d2Pgg/CQ8yc4Xr0MyqWI6QRkZDSWKLDYOkhqgkjEeDXr3nqGOKbEgvEL4CbSgqnKDel/tiSVu0tjrKQUU/EqKshck4/hn97+i2MoOEJuBCcRbU6I9QoXsgX1jSo6QH7QwX1Y0mgJxJbThCVt+rZ6BbrWz0arw4Tu6tOa5Ahp07LU5Tn/Tp4QgkiBGnUc6otTi5gtL73ZknZ+pvPTfoi51prhU3hb43FS5q1s047peHL+mAsO7i1P1775pvA9s77WRddjVVI07sB5eUYglN4oc/BH0XyBRYeHOKsjL3sDf/aDYHnl57+j1VBk6RxrbZxFgtH90P9CvJtw2VHUd/tDWyu9dInU4TBV9KXAcY
+X-Forefront-Antispam-Report:
+	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(396003)(136003)(376002)(346002)(39860400002)(230922051799003)(64100799003)(61400799006)(48200799006)(451199024)(82310400011)(186009)(36840700001)(46966006)(40470700004)(1076003)(2616005)(82202003)(6266002)(8936002)(8676002)(4326008)(6666004)(966005)(478600001)(47076005)(42882007)(336012)(73392003)(83380400001)(26005)(55446002)(36860700001)(54906003)(70586007)(76482006)(110136005)(70206006)(316002)(40480700001)(36756003)(82740400003)(7416002)(41300700001)(2906002)(81166007)(40460700003)(356005)(921005)(42186006)(5660300002)(83170400001)(45356006)(35450700002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2023 19:59:24.9945
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec51e798-de99-41c1-9deb-08dbcf4b901d
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB3.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6426
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 16, 2023 at 03:58:32PM +0200, Mehdi Djait wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards, such as PAL and NTSC, and outputs a BT.656 video
-> signal.
-> 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection
-> 
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> ---
-> V6->V7: 
-> - added powerdown-gpios and input ports
-> - used 4 spaces for example identation
-> 
-> V5->V6: 
-> - This commit had a "Reviewed-by: Rob Herring <robh@kernel.org>" Tag but
->   decided not to collect it because the last Iteration was more than 2
->   years ago
-> - removed SECAM from the mentioned standards
-> - changed maintainer
-> 
-> V4->V5: 
-> - renamed the file to match the compatible string, and referenced
->   the graph.yaml schema
-> 
-> V3->V4: 
-> - add the missing reset-gpios node to the binding
-> 
-> V2->V3: 
-> - fix the example not compiling due to a typo in the reset-gpios
->   node.
-> 
->  .../bindings/media/i2c/techwell,tw9900.yaml   | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
-> new file mode 100644
-> index 000000000000..244289a9a3e0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/techwell,tw9900.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Techwell TW9900 NTSC/PAL video decoder
-> +
-> +maintainers:
-> +  - Mehdi Djait <mehdi.djait@bootlin.com>
-> +
-> +description:
-> +  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL standards
-> +  with auto-detection features.
-> +
-> +properties:
-> +  compatible:
-> +    const: techwell,tw9900
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: VDD power supply
-> +
-> +  reset-gpios:
-> +    description: GPIO descriptor for the RESET input pin
-> +    maxItems: 1
-> +
-> +  powerdown-gpios:
-> +    description: GPIO descriptor for the POWERDOWN input pin
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@3:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for the decoder output.
-> +
-> +    patternProperties:
-> +      "^port@[0-2]$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Analog video input port.
+This patch set add USB device controller for the NPCM Baseboard
+Management Controllers (BMC).
 
-You need to define each port (0, 1, 2). Are those each component or 
-composite, s-video, and component? The latter would make more sense as I 
-don't think there would be a need to route each component to different 
-place. It's logically just 1 stream.
+NPCM UDC driver is a part of the USB ChipIdea driver.
 
-> +
-> +    required:
-> +      - port@3
-> +
-> +required:
-> +  - compatible
-> +  - ports
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        video-decoder@44 {
-> +            compatible = "techwell,tw9900";
-> +            reg = <0x44>;
-> +
-> +            vdd-supply = <&tw9900_supply>;
-> +            reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@3 {
-> +                    reg = <3>;
-> +                    endpoint {
-> +                        remote-endpoint = <&vip_in>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.41.0
-> 
+Adding CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag to modify the vbus_active
+parameter to active in case the ChipIdea USB IP role is device-only and
+there is no otgsc register.
+
+BMC NPCM7XX and BMC NPCM8XX has ten identical NPCM UDC modules,
+
+The NPCM UDC were tested on NPCM845 evaluation board.
+
+Addressed comments from:
+ - Paul Menzel : https://www.spinics.net/lists/linux-usb/msg248033.html
+
+Changes since version 6:
+ - Modify commit message.
+ - Modify debug event message.
+
+Changes since version 5:
+ - Remove unnecessary npcm845-udc compatible.
+
+Changes since version 4:
+ - Modify npcm845-udc compatible.
+
+Changes since version 3:
+ - Add Acked-by Peter Chen.
+ 
+Changes since version 2:
+ - Use dev_err_probe.
+ - Remove MODULE_ALIAS.
+
+Changes since version 1:
+ - Add SoC specific compatible.
+ - Remove USB phy mux property from dt-binding, will be handled differently.
+ - Add CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS commit to this patch set.
+
+Tomer Maimon (3):
+  usb: chipidea: add CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag
+  dt-bindings: usb: ci-hdrc-usb2: add npcm750 and npcm845 compatible
+  usb: chipidea: Add support for NPCM
+
+ .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |   6 +
+ drivers/usb/chipidea/Kconfig                  |   4 +
+ drivers/usb/chipidea/Makefile                 |   1 +
+ drivers/usb/chipidea/ci_hdrc_npcm.c           | 114 ++++++++++++++++++
+ drivers/usb/chipidea/otg.c                    |   5 +-
+ include/linux/usb/chipidea.h                  |   1 +
+ 6 files changed, 130 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/usb/chipidea/ci_hdrc_npcm.c
+
+-- 
+2.33.0
+
 
