@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-9315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494617CCA0A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:42:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33C527CCA18
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:46:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79F491C2082A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:42:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64E5A1C208CE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6D79CA52;
-	Tue, 17 Oct 2023 17:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068772D790;
+	Tue, 17 Oct 2023 17:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="NPYRdxaw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ixaO6Kz0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F2E44469
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:42:42 +0000 (UTC)
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9083DD3
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:42:39 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3af5b26d599so4347003b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:42:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1697564559; x=1698169359; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rPz/XE7kyZI3rqX/gW9OA3u4MOOTZR6TB5rRl4itwhs=;
-        b=NPYRdxawSM8Pj98hHtZ0hv7DfMstgEY1cm+smjxiP93UYH8oiCcGEJ7pl6Ulycltxa
-         L7crYaT91lUTFugINyOOEtR21E5Z/r6zD1Zyznr06CUZOX28REPXq1xU5lGCGfamjGWZ
-         jI8RLKZXJYg8BTdrunZBWCMdpmG1PVARdTfZHQ+T89rMSMzTqCOgewIs2aJN1WiiOpjf
-         Kk5rO7vDYN7tQRVZSnC+ugNRrU7gdq8LO1yr1SbvblyOlKlma33S82PDJt1FeG7CXdzW
-         NKu5JYMMK6Q8H88VJBnLHTQCUN2CnvOdCSWoiLGT6Z89cAK3JASNODqfxYsE3luBA+ri
-         rbEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697564559; x=1698169359;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rPz/XE7kyZI3rqX/gW9OA3u4MOOTZR6TB5rRl4itwhs=;
-        b=WfV7MR6v7uS/bOQ93Am5OXZXyesinz3Am+W7vqFdleVuzk8DGIHAqety3W/8JydYzl
-         9l9e7hsCbWnXq2w0WKRen399ztzw8VkINr9sHQhhI4hzcZ9I2HjTq2DUfvCUwAwOH48w
-         eWmOBNbQr0mvaVDMuc2gETZvXzC6pWevKMUNVEa8wjLiPXmf49rPehy3+txAXQYqJ8Nn
-         c2xEFUapIXq7n45pFR/NzAC7KxOWRk9DDOFVmBQ8R6DLQa5gI7QjYz2Wz7KIWLsd99zH
-         ARR8sq41HafNx1tdZcpP/af2rsjaL0MKyvGufbNBRmWkK4J5TrOM1+GXbXGo8jRH9qMX
-         tcUw==
-X-Gm-Message-State: AOJu0YwflJHcTR1QsjGzlroTCw8vrhluZwyJZwxJ2O8FMuVyfc5Ow+mb
-	VktOdFy0w18wX3BnIbVPK8ih1g==
-X-Google-Smtp-Source: AGHT+IFEfoBhjOQCm3H2dwONN2OZeU0Zpiqlzxa0ALnC7U/VrgPgviuWtLFU33wwArf5EqgRuHAO2w==
-X-Received: by 2002:a05:6808:170b:b0:3a7:37ae:4a47 with SMTP id bc11-20020a056808170b00b003a737ae4a47mr3577036oib.12.1697564558899;
-        Tue, 17 Oct 2023 10:42:38 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2000:b002:95cc:ccc5:95bc:7d2c? ([2600:1700:2000:b002:95cc:ccc5:95bc:7d2c])
-        by smtp.gmail.com with ESMTPSA id g5-20020ac85805000000b00419cb97418bsm785313qtg.15.2023.10.17.10.42.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 10:42:38 -0700 (PDT)
-Message-ID: <8905630a-30dc-4b22-9d6c-fd4af97728bf@sifive.com>
-Date: Tue, 17 Oct 2023 12:42:37 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F912D780;
+	Tue, 17 Oct 2023 17:46:35 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6037783;
+	Tue, 17 Oct 2023 10:46:34 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39HGsRWY022257;
+	Tue, 17 Oct 2023 17:46:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=wizOAI8PdKSoJNpWslPwAMKZwsvY0u4gK5kO6xEFiLU=;
+ b=ixaO6Kz03PxmXAqt3FzQQ8W074Fkj7I3UiHTl0WwUjWUFkCCaCGToHOaUlMTpNRqXCK0
+ b8auLdeGnl+aIJK9tZt4f8NVpYJTw1HVkjb1O9egHU431W1jABcFG7Eqk0UVN4h2bvqR
+ i8plg7snU86MINhuXfWqs0cVjHdyQhKr2qhyrDSESoR8vH0DQEIxq7MPGHD+CxRx9vh8
+ aLWrOaLjOMCxpFVLJ2VMYpvh1RkFxnOOYdBs+2VyBOEjZMKVzWsbNXSWpDFXqh4fbcfY
+ AUXY021ck0s/ONg+5OJaR8eqbL6TARv2WDNqSaEZ14Ce9nA0fstq4YvN7GXn5v4kBydC JQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsvxwrds1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Oct 2023 17:46:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39HHkNwK000725
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Oct 2023 17:46:23 GMT
+Received: from [10.216.40.160] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 17 Oct
+ 2023 10:46:17 -0700
+Message-ID: <189be124-efb1-4843-9a47-db84942838c9@quicinc.com>
+Date: Tue, 17 Oct 2023 23:16:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,45 +56,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: dma: sf-pdma: add new compatible name
+Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
+ runtime
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: shravan chippa <shravan.chippa@microchip.com>, green.wan@sifive.com,
- vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, conor+dt@kernel.org, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, nagasuresh.relli@microchip.com,
- praveen.kumar@microchip.com, Conor Dooley <conor.dooley@microchip.com>
-References: <20231003042215.142678-1-shravan.chippa@microchip.com>
- <20231003042215.142678-3-shravan.chippa@microchip.com>
- <20231004133021.GB2743005-robh@kernel.org>
- <20231005-wanted-plausible-71dae05ccc7b@spud>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <20231005-wanted-plausible-71dae05ccc7b@spud>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <quic_wcheng@quicinc.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-2-quic_kriskura@quicinc.com>
+ <a3d612a8-1917-491d-a944-22ea39879a9d@linaro.org>
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <a3d612a8-1917-491d-a944-22ea39879a9d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GjAApdZHzVFdDuElrfluWIo4xkL-aJyZ
+X-Proofpoint-ORIG-GUID: GjAApdZHzVFdDuElrfluWIo4xkL-aJyZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-17_03,2023-10-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 impostorscore=0 adultscore=0 clxscore=1011 mlxscore=0
+ suspectscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310170150
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Conor,
 
-On 2023-10-05 5:54 AM, Conor Dooley wrote:
-> On Wed, Oct 04, 2023 at 08:30:21AM -0500, Rob Herring wrote:
->> Any fallback is only useful if an OS only understanding the fallback 
->> will work with the h/w. Does this h/w work without the driver changes?
+
+On 10/17/2023 10:49 PM, Krzysztof Kozlowski wrote:
+> On 17/10/2023 15:18, Krishna Kurapati wrote:
+>> Add enable-rt binding to let the device register vendor hooks to
+>> core and facilitate runtime suspend and resume.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> index cb50261c6a36..788d9c510abc 100644
+>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> @@ -151,6 +151,11 @@ properties:
+>>         HS/FS/LS modes are supported.
+>>       type: boolean
+>>   
+>> +  qcom,enable-rt:
+>> +    description:
+>> +      If present, register vendor hooks to facilitate runtime suspend/resume
 > 
-> Yes. 
-> I've been hoping that someone from SiFive would come along, and in
-> response to this patchset, tell us _why_ the driver does not make use of
-> out-of-order transfers to begin with.
+> You described the desired Linux feature or behavior, not the actual
+> hardware. The bindings are about the latter, so instead you need to
+> rephrase the property and its description to match actual hardware
+> capabilities/features/configuration etc.
+> 
 
-I have raised this question internally. So far I have not seen anything to
-suggest we need strictly-ordered transfers either, but I still need to confirm this.
+Hi Krzysztof,
+
+  Thanks for the review. Although it sounds like its a Linux property, 
+internally what it does is configuring qscratch registers properly when 
+(dr_mode == OTG)
+
+  Would it be fine to rephrase the property name to 
+"qcom,config-qscratch" and to make it dependent on dr_mode and 
+usb-role-switch properties ? Would it be possible to make such a 
+dependency in bindings ?
 
 Regards,
-Samuel
-
+Krishna,
 
