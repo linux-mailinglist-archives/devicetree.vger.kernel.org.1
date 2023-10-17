@@ -1,164 +1,202 @@
-Return-Path: <devicetree+bounces-9355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8A397CCC82
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:43:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6133B7CCC88
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 21:47:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73C9C2818DD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:43:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E1EF1C20902
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CF02DF95;
-	Tue, 17 Oct 2023 19:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6435B2DF99;
+	Tue, 17 Oct 2023 19:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RqKYroHG"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="dVw7gsHb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8222DF90
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 19:43:18 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C89698;
-	Tue, 17 Oct 2023 12:43:17 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39HEPN89008517;
-	Tue, 17 Oct 2023 19:43:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=KZ86qm2Odn6qaH8UjSDuQnMrT/mDzTTCaaJv/fM0SLI=;
- b=RqKYroHGPl2bNn/wwNHMW8AAnON1yPuHytJlcBRG6Jgy17UB5LR00qJrpWUIqZ7AnoyT
- AeqkG+/EIVqu72k258Vo+Viv18ztYrUvAXOhrkVrdk0Gcj0iqsUYGRJKqICgeyWnk75X
- 76Syo1k7fsTpoEz9yWNOLYE8lEKe0THmMwhY9LKLiIv5swy5WsOneCeUE3L8GJ0E5N6X
- fpLtIGVXNAzOp2Zz1A/JXEvAXKIhkUsObxfAcV0b8bab68XDfnlkhPhJpvTa9N//QE3S
- /8wjSPMTOiY+XkcHPbjbRSg3YqqpaxYBbK+QLTe0qUEtI8aKfkGa+ml2TvMO+w9utDiD dw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsv0v0uk8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 19:43:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39HJh2GV015529
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 19:43:02 GMT
-Received: from akhilpo-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Tue, 17 Oct 2023 12:42:56 -0700
-Date: Wed, 18 Oct 2023 01:12:53 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Rob Clark <robdclark@chromium.org>, <freedreno@lists.freedesktop.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, Sean Paul <sean@poorly.run>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>, Rob Clark
-	<robdclark@gmail.com>,
-        Andy Gross <agross@kernel.org>, <dri-devel@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>, <linux-arm-msm@vger.kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        "David Airlie" <airlied@gmail.com>, <linux-kernel@vger.kernel.org>
-Subject: Re: [Freedreno] [PATCH 1/7] drm/msm/a6xx: Fix unknown speedbin case
-Message-ID: <tqxrahhvxmzxicru7qyifqcgcc53vzdsuqukharyz2rz5oqn2z@3eppc3t4nw65>
-References: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
- <20230926-topic-a643-v1-1-7af6937ac0a3@linaro.org>
- <bjcjeixkmvhjv7nke65maknrckxjyosqsqpdf5i5v4iingfwj4@bkdhb2nbwbqg>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B002DF6E
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 19:47:23 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2047.outbound.protection.outlook.com [40.107.20.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37F093;
+	Tue, 17 Oct 2023 12:47:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nlVhrw3aDaguBif8afw2uCR3QLVB3asY2tBntn40sKD7fBYcf4Oy0+biOv3OMKFij/IogFcEdSqXs33FhffdNbjMP1EPOhcNj7GsueufwEezoKK9H8aUoFBGo3CgGer+H4ibuvVu9y5NbGAhFoYAtldUJIRfc9aRYfyXcIKSsPjwWaV4KJTG98wNf7vswmVTgNnI2p/c6oyZN9TwlDLz/YQIav+HG/a6SURYAxUYrMGOBNV8ftb1vBzdTCzZUHaXvlu3tcn7JXj+P+6q5FzyRZthxSQbqqCond4Q408YsRNYhWzNHdqXwI4uJnCAFkAn1ybzKeBudqAxOAYQcY4g7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ullkdJJ/EiGV/THB2JFNeF46ooxPxd0mtzetQN6b79s=;
+ b=EtDEf5ujX16sVQ26EXOeqeNTQBqd9cl5uqo/gvJ5szKXg4Qh/TfJ4L3HEtraIVZ+7y2BP3xK2jvU8ckhwLN5zsKPimNjeNlQETkL1v7ApViG/yaZcHXDlEqOtwmM2AiHnln7vsjAeeAitkElRAtzRcIjbgL6TdrR0inO395VE5EB4Nb+LKCsEkQLXmQ8d7FUWTSOleFD9M7Atl4qF0InPk1+UxTQGUVr7grGc6DnBBt9QEkUrPw7TWZpyyzgOk79X8huSUV+JcMgO69gK/g1TerfLUtbdbNYXYt8iNlrenKjmNcse4cThq4L5uLkM7Wk0Pp9F0Xe7DJ9X9ArJlmPCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ullkdJJ/EiGV/THB2JFNeF46ooxPxd0mtzetQN6b79s=;
+ b=dVw7gsHbsIshVOej6tXQJB1P1koNgR1DUi6yL0Mln9W8Jql84yTYxmuwhmexUi70CYHVPwIGI5vciQ3tOZY1owWgcyrrNgqAuTKNqqfx2+VHaodyECJpdndLSDcDBrUYcXq5M2c2qWS7LqAuXSwFYAHpOo/3TamgeBWUGdabmu8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by VI1PR04MB6909.eurprd04.prod.outlook.com (2603:10a6:803:13d::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Tue, 17 Oct
+ 2023 19:47:18 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6907.021; Tue, 17 Oct 2023
+ 19:47:17 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: miquel.raynal@bootlin.com
+Cc: Frank.Li@nxp.com,
+	alexander.stein@ew.tq-group.com,
+	alexandre.belloni@bootlin.com,
+	conor+dt@kernel.org,
+	conor.culhane@silvaco.com,
+	conor@kernel.org,
+	devicetree@vger.kernel.org,
+	festevam@gmail.com,
+	haibo.chen@nxp.com,
+	imx@lists.linux.dev,
+	joe@perches.com,
+	kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-i3c@lists.infradead.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	peng.fan@nxp.com,
+	ping.bai@nxp.com,
+	robh+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	shawnguo@kernel.org,
+	sherry.sun@nxp.com,
+	xiaoning.wang@nxp.com
+Subject: [PATCH v2 1/2] i3c: master: svc: fix compatibility string mismatch with binding doc
+Date: Tue, 17 Oct 2023 15:46:56 -0400
+Message-Id: <20231017194657.3199749-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0203.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::28) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <bjcjeixkmvhjv7nke65maknrckxjyosqsqpdf5i5v4iingfwj4@bkdhb2nbwbqg>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -T2DgK6rkz0P_dvCFV1TA1PJcvaODXgX
-X-Proofpoint-GUID: -T2DgK6rkz0P_dvCFV1TA1PJcvaODXgX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-17_03,2023-10-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 malwarescore=0 phishscore=0 mlxscore=0 mlxlogscore=999
- impostorscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310170167
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|VI1PR04MB6909:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc1cf941-bf5e-41e8-7136-08dbcf49de90
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	jkr0PV5q9OwIltzN9DusML80Bz3d9x3BWfinm/espudKZo2Fl8CIba6mYwtr6QmfjquLIaUDw+e3vwzrgByQ9/TObqw6HyoB9mRR9cv3eb9vRis3PgO0//DrWr084K6z0nNDPK9ajp4d00YpdPpDJPb2J3nivd0kCCz5Knz6gaRgRjqKT7mCzDwOt1CTUqMLZXozKcKdS6EZPM5AbUuENn2eHWDW05YGI77pdCMKjcecL+57tJLoomQDQf4maWT5aActL/qJRmQ+g69NjnI4oepynavXQkcjYeUeSqlhZcL4/D+TFkYGLt/CnJWVu0PLnDTO5y4AiQc4DqMABVPs+jlvLiM9Uw92cQfKmDhoXAXKo9mcSDWD8jYbpYQpH6mXy/a0Mwi/D9XQM503tGzr65WJbM1XNwW57/NxSrYGmlzNvwG4A7FQGfZ70ow3WsfKCMf8bauOUw+dnu+NkL3ZnfmJmMTmU8QfqSfan5nMEcAAinLCtB/0OgU55tOo43eNDDAUbNwzV3Mmc+FCnSKbMhTaA+bsVQiOlGi6fa2JduK2j99cc/FUnI3snOlS0ctb41ygyVUjKGaep8Sp2oWRsEwfhv7mhcVrgN/Z0cGJMU1BjnYBPmBxCRsLc9UHEDKL
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(136003)(396003)(346002)(376002)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(316002)(66946007)(66476007)(6916009)(7416002)(86362001)(66556008)(2906002)(5660300002)(41300700001)(8676002)(8936002)(4326008)(36756003)(2616005)(38100700002)(1076003)(478600001)(6506007)(52116002)(6512007)(6666004)(66574015)(38350700005)(6486002)(26005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MlJlWHdIdkxnNkJQRlVVTTZBYjBMbzBERXkzYkY2dGJrM05kNVZJMkFXS1lT?=
+ =?utf-8?B?ME16ZmgwT3hKYTYxd0VoQkxsNm15MGd2RTJsMXk1eXFzaVJ1WmVDT2U1N3N4?=
+ =?utf-8?B?ZytvSnJrTDU0WFIrUHlCM1RxbUJwNXZSQnNhY1V1cTBIVmFkZGFKbXE3R00v?=
+ =?utf-8?B?K2VaSWJzT0tjTVZGbXhERmZZYUF5elhpY1hKeGFCRmNCVUhYaVdZY0lpbEZa?=
+ =?utf-8?B?MWhiK2ZseEFZSUtiUTVWSUFsZ3N2dytjQlcwOHh0UHMrM05vUEhGak13N0VP?=
+ =?utf-8?B?Wk5GNWlRRmVkV1FBNE02dWp0SkRpK2l4MmhQOGtmdzlHaWZWNGc1M1o5WUY4?=
+ =?utf-8?B?dWJNazZIZDRZUTFpOTFBRXhsVGtxWkZ6dHpvQVRqTy9mYW1abFRQUUI3b2Jn?=
+ =?utf-8?B?b3VtOXc0TnBWL3lpM3ArVm5tQXA0b3lEcDVOWWRZVkxMS0dsOCtTN1FaVXB2?=
+ =?utf-8?B?djVlTUJjUC9HeTNrd1VGVGdnV3hHSjBjSklLVmJZLzl0UElla2hJTmprU0ox?=
+ =?utf-8?B?azlsVHF4WllabWVYejdScjgwTk9xOGtDU2ZwZldyUUUweFdzWUM0S2JBU2tr?=
+ =?utf-8?B?ZnFnVlZWTTZ1UElwdlRmL2NteUZmNm9wNkZndFc0ZjRGeDkwZXBoRW9FVi9Z?=
+ =?utf-8?B?bXl2VzltOEF0alFwLzZPajJuWk9WaFhaZkNCZGM3N25oRnNiNEF5bTIrcFhF?=
+ =?utf-8?B?RmNpV3I4bGZQajFZSXg1Wld2YkJVZk9hR1BRZTROblNCam1uVjlMbEk1cndv?=
+ =?utf-8?B?eHBsODlXcEN6K2l5RGNpdTZlTm5RT2thWkh6ekd0WWkxb0hlUjc4MnBsU0Y2?=
+ =?utf-8?B?ckNGQWVWbHZ5b1pBQ05PRlEyckJXaGl2bG80YnpKNXZ5aW9iVDB2RGVoa3lN?=
+ =?utf-8?B?U2svUXdXa0R1N05WM0lmMUhraTd3eWxVZSs5UEJPajgvVW5EZTBQK0RtbURq?=
+ =?utf-8?B?Z3hVTmIvSlQ4OWs3SWNRdy9kQ2NYUlZXdkhuU1VaaC95TGlmZ3gvdEJ6MUph?=
+ =?utf-8?B?S0RMRVZKSW9LYlhjRmRrQmRjQ2VSRTBQNUd4L0ZDUVRoNmlmU0diVVYzUER0?=
+ =?utf-8?B?QWlFeHppK25OTnNhNFlod0FXWmQ5cWlaVEV6N2xpNlBmSWswVW1NekdDMUhv?=
+ =?utf-8?B?QkN5TVRYVWU2K2Y0WGlkL2NCNE4zdjJWeE5iOUdSYzBtSlo0VWFKYzUvelA4?=
+ =?utf-8?B?WGFaYlhQYm1jN0xoNTZIcmpWOFRzTkZBTit6dVFQZFZoMXhXY1JnQnZaSGRR?=
+ =?utf-8?B?ajRCYkl0bVBlU3BZYUNrUUJnOFJ2TVdBakpnMUtzWjdIdnFLQkdJazEvdW16?=
+ =?utf-8?B?NlBpRExONm1oaUlPV1JTUTVTN1ljdytuM25DVk82QlliaDhxMHdUcS9CcWh6?=
+ =?utf-8?B?MHYza1I1SUZjN0xHUUZ4OS9hWHB6aWRuYThNNzhCc0ZyV0hITjk0cjJpOFFr?=
+ =?utf-8?B?bnN4em9NS3poTHRGUGdMWWlHWk5oaVpBUndsZXRpRGtVbXFUUnZoSzhsRzY1?=
+ =?utf-8?B?ck10STZxUjJMOHVGa3R2WW5mVlBKK3d1K1VDdUJyc2VVTkhnQm54SzMydWFS?=
+ =?utf-8?B?MjhOZVhpZ0V0MnBGVkV0N3ZmcGdJeHpDNjArRGswd1Rjb1lMVk95b2Vldm80?=
+ =?utf-8?B?Z1RxV0NRRXJ2RnRDei85NnUyRy9PaFVYT3AwSVBmbDAwUTlPNVdKVXk0eXZ2?=
+ =?utf-8?B?RmtEL0p5RXB5WjN4UHNBdHlWTys3NWNYREhlaHdhVTZjZlZaZ0M0eHlNaElS?=
+ =?utf-8?B?enRnK0g2TllIRGY4MHBPTE1QRng2ZzhvQ1RLWTUwcVhaakx0R0JpVjViVCtN?=
+ =?utf-8?B?ZlBnZ0hNY3NnVnZTUmlaZUw2NGJwcmkxb2s0ZzJET1kyNmJUMjlmZXppNEo3?=
+ =?utf-8?B?a1FZeHExQ01ZSFhIRWpMaWFuTUY1c1pBSHRwd0FsMWMyS1FzWWdwZFJ6S3Uy?=
+ =?utf-8?B?UlNxUXRvZUpNSzNjeFk4d1ZtSHBZZ3RlT1pXcVZhWndFSFRCYWp5VEFJZDVO?=
+ =?utf-8?B?Uzh3VmUrVGt1cGRjQXRVKzNHYzVMWFcwbVl2czBRanVLL3VMdExaaXZJTTBY?=
+ =?utf-8?B?U241dEZRSGNqMW5SdFNJNGFpbkFncnJVRGlycUx1U3hJc1FoTk5zNjQzZmIz?=
+ =?utf-8?Q?u1E/eCLHR4+kk6GOvYCe+xnbH?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc1cf941-bf5e-41e8-7136-08dbcf49de90
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2023 19:47:17.8639
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p4dDZs5t1R42JKXXO4sjkp0ZNQVPfw0FpGmKPjbDv2ctbVWxnGiz7RK4fM6jMUaTe5dYM3XgaYUUqpNmN59i9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6909
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 17, 2023 at 01:22:27AM +0530, Akhil P Oommen wrote:
-> 
-> On Tue, Sep 26, 2023 at 08:24:36PM +0200, Konrad Dybcio wrote:
-> > 
-> > When opp-supported-hw is present under an OPP node, but no form of
-> > opp_set_supported_hw() has been called, that OPP is ignored by the API
-> > and marked as unsupported.
-> > 
-> > Before Commit c928a05e4415 ("drm/msm/adreno: Move speedbin mapping to
-> > device table"), an unknown speedbin would result in marking all OPPs
-> > as available, but it's better to avoid potentially overclocking the
-> > silicon - the GMU will simply refuse to power up the chip.
-> > 
-> > Currently, the Adreno speedbin code does just that (AND returns an
-> > invalid error, (int)UINT_MAX). Fix that by defaulting to speedbin 0
-> > (which is conveniently always bound to fuseval == 0).
-> 
-> Wish we documented somewhere that we should reserve BIT(0) for fuse
-> val=0 always and assume that would be the super SKU.
-Aah! I got this backward. Fuseval=0 is the supersku and it is not safe
-to fallback to that blindly. Ideally, we should fallback to the lowest
-denominator SKU, but it is difficult to predict that upfront and assign
-BIT(0).
+In the binding documentation, the compatible string is specified as
+'silvaco,i3c-master-v1', but in the driver, it is defined as
+'silvaco,i3c-master'.
 
-Anyway, I can't see a better way to handle this.
+Rename 'silvaco,i3c-master' to 'silvaco,i3c-master-v1' to ensure
+compatibility with the documentation.
 
--Akhil
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
 
-> 
-> Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> 
-> -Akhil
-> 
-> > 
-> > Fixes: c928a05e4415 ("drm/msm/adreno: Move speedbin mapping to device table")
-> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > ---
-> >  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > index d4e85e24002f..522ca7fe6762 100644
-> > --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > @@ -2237,7 +2237,7 @@ static int a6xx_set_supported_hw(struct device *dev, const struct adreno_info *i
-> >  		DRM_DEV_ERROR(dev,
-> >  			"missing support for speed-bin: %u. Some OPPs may not be supported by hardware\n",
-> >  			speedbin);
-> > -		return UINT_MAX;
-> > +		supp_hw = BIT(0); /* Default */
-> >  	}
-> >  
-> >  	ret = devm_pm_opp_set_supported_hw(dev, &supp_hw, 1);
-> > 
-> > -- 
-> > 2.42.0
-> > 
+Notes:
+    Change from v2 to v3
+    - Miquèl think drop silvaco,i3c-master totally. I grep dts tree. No
+    upstream dts use silvaco,i3c-master yet.
+      I have not add "Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>",
+    it is different solution with previous one even just one line change.
+      I think v2/v3 both is good, feel free to pick each one.
+    
+    Change from v1 to v2
+    - update driver by using compatible string silvaco,i3c-master-v1
+    
+    Change from v1 to v2
+    - update driver by using compatible string silvaco,i3c-master-v1
+
+ drivers/i3c/master/svc-i3c-master.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/master/svc-i3c-master.c
+index cf932ee056ef9..e307ba2b965e6 100644
+--- a/drivers/i3c/master/svc-i3c-master.c
++++ b/drivers/i3c/master/svc-i3c-master.c
+@@ -1650,7 +1650,7 @@ static const struct dev_pm_ops svc_i3c_pm_ops = {
+ };
+ 
+ static const struct of_device_id svc_i3c_master_of_match_tbl[] = {
+-	{ .compatible = "silvaco,i3c-master" },
++	{ .compatible = "silvaco,i3c-master-v1"},
+ 	{ /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, svc_i3c_master_of_match_tbl);
+-- 
+2.34.1
+
 
