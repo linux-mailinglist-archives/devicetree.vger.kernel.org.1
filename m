@@ -1,77 +1,55 @@
-Return-Path: <devicetree+bounces-9263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E00F7CC499
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:20:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F6D7CC4A4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 368C01C20A1E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 13:20:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20BFFB2113F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 13:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1ED9436AA;
-	Tue, 17 Oct 2023 13:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704B84368D;
+	Tue, 17 Oct 2023 13:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hTtTMYMp"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cef3hG/Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67E542C1E;
-	Tue, 17 Oct 2023 13:19:53 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACAC9198;
-	Tue, 17 Oct 2023 06:19:50 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39HCiLAE029249;
-	Tue, 17 Oct 2023 13:19:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=AlcgEQhkV+CHWGIIVMx9+hfGbBgrSjeMLC+vJ2luDV4=;
- b=hTtTMYMp2TLd/LsJrkqlcYy18gI9gDFly+1vM9OonK4kLHsTlF6H1b0dPbkdNGyG0Nf6
- soj7OsdcKxoLb/bhoy/OJGsKtbuiobQ2Cdpgk8dqN8AAHo9EVuHtVKcgOGdc2mTqQ/Zy
- 4N07/1cDfKTsQ9GYm3EytZmo35UdggUijspNLtVvJ9Rc+9+8pKwbWkEQLm0uLq0iDnLR
- 1dYQoVirWbNnU710ErIy08U5xvgKzPI0rXUEZbgM6KWM1/k3A+r+FtCE4C6WMN/JSeg5
- ZHyFUhXNK8FFiJRld0eJiZYsEGk7ua+evQPdFdyGyoHLT5BWpSnDsrLunVs7O3xXtljt 2A== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsnearqfy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 13:19:43 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39HDJffC031191
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 13:19:41 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Tue, 17 Oct 2023 06:19:37 -0700
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <quic_wcheng@quicinc.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Krishna Kurapati
-	<quic_kriskura@quicinc.com>
-Subject: [RFC 8/8] usb: dwc3: core: Skip set_mode notification if cable is disconnected
-Date: Tue, 17 Oct 2023 18:48:51 +0530
-Message-ID: <20231017131851.8299-8-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231017131851.8299-1-quic_kriskura@quicinc.com>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6104A3FB25
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 13:21:00 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65E3112;
+	Tue, 17 Oct 2023 06:20:58 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3A3B0E4;
+	Tue, 17 Oct 2023 15:20:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1697548849;
+	bh=gbgYMJvKnjhiJyMHxXBo4LnQ51qEyp8jsOGW6q/iOzE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cef3hG/QS4Dw0R8MT2q0Nyr36qgnOhh6suOT+gnLa1gByIohXk+NvvoKePAOmapNq
+	 JeAdIEtGw66a6nJGisDFvlbWF9y4TjQFte8NxrlzZiECWO4CgdN09IQ3gdFtn8M1qc
+	 GdQN6RyeaOHSryvX0f3xSSqikk/6xcxvdcx5XEGM=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v4 0/3] media: i2c: Add driver for THine THP7312 ISP
+Date: Tue, 17 Oct 2023 16:21:00 +0300
+Message-ID: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,103 +57,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nbexWgWYIv3y0j0BHEC-vxIxYccZY9hc
-X-Proofpoint-ORIG-GUID: nbexWgWYIv3y0j0BHEC-vxIxYccZY9hc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-17_02,2023-10-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- phishscore=0 impostorscore=0 malwarescore=0 spamscore=0 mlxlogscore=999
- priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310170113
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-In device mode use cases, the following sequence of actions are observed:
+Hello,
 
-1. Cable disconnect happens and clears qscratch HS_PHY_CTRL_REG properly
-2. Disconnect event is generated and "connected" flag turns false.
-3. Then the setmode notification from core goes to glue
-4. Glue will set back the qscratch HS_PHY_CTRL_REG bits again.
+This patch series adds a new driver for the THine THP7312 ISP. It has
+been tested on an OLogic Pumpkin i350, which has a Mediatek MT8365 SoC,
+with the THine THSCG101 camera module.
 
-At this point, since the cable is removed, setting qscratch bits shouldn't
-affect anything. But it is observed that after setting this bits, the
-controller generated Event-0x101 and Event-0x30601 (bus reset and suspend)
-in order. In bus reset, we set back the "connected" flag and this blocks
-suspend again.
+Technically the driver itself (and its bindings) have no dependencies,
+but to run/test this on the Pumpkin i350 with the mainline kernel, a
+number of patches are needed to support the board and the MT8365 SoC.
+Some of those patches are on their way to mainline, and some, like the
+Pumpkin i350 board device tree, will require more work. For convenience
+and reference, the needed patches are available in [1].
 
-So send set_mode call only if the cable is connected, else skip it.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git/log/?h=mtk/v6.6/pumpkin/camera
 
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
- drivers/usb/dwc3/core.c | 3 ++-
- drivers/usb/dwc3/core.h | 2 ++
- drivers/usb/dwc3/drd.c  | 6 +++++-
- 3 files changed, 9 insertions(+), 2 deletions(-)
+Example overlays for DT integration of the THP7312 are available in that
+branch, in
+arch/arm64/boot/dts/mediatek/mt8365-pumpkin-csi0-thp7312-imx258.dtso and
+arch/arm64/boot/dts/mediatek/mt8365-pumpkin-csi1-thp7312-imx258.dtso.
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index b4d1d1c98dd5..6ef1e3558384 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -137,7 +137,8 @@ static void __dwc3_set_mode(struct work_struct *work)
- 	if (!desired_dr_role)
- 		goto out;
- 
--	dwc3_notify_set_mode(dwc, desired_dr_role);
-+	if (dwc->cable_disconnected == false)
-+		dwc3_notify_set_mode(dwc, desired_dr_role);
- 
- 	if (desired_dr_role == dwc->current_dr_role)
- 		goto out;
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 5ed7fd5eb776..1b79c407a798 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1365,6 +1365,8 @@ struct dwc3 {
- 
- 	void			*glue_data;
- 	const struct dwc3_glue_ops *glue_ops;
-+
-+	bool			cable_disconnected;
- };
- 
- #define INCRX_BURST_MODE 0
-diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
-index 947faeef0e4d..b3a87c40c4f1 100644
---- a/drivers/usb/dwc3/drd.c
-+++ b/drivers/usb/dwc3/drd.c
-@@ -446,6 +446,8 @@ static int dwc3_usb_role_switch_set(struct usb_role_switch *sw,
- 	struct dwc3 *dwc = usb_role_switch_get_drvdata(sw);
- 	u32 mode;
- 
-+	dwc->cable_disconnected = false;
-+
- 	switch (role) {
- 	case USB_ROLE_HOST:
- 		mode = DWC3_GCTL_PRTCAP_HOST;
-@@ -467,8 +469,10 @@ static int dwc3_usb_role_switch_set(struct usb_role_switch *sw,
- 	 * glue needs to know that we are disconnected. It must not notify
- 	 * the change of mode to default mode.
- 	 */
--	if (role == USB_ROLE_NONE)
-+	if (role == USB_ROLE_NONE) {
-+		dwc->cable_disconnected = true;
- 		dwc3_notify_cable_disconnect(dwc);
-+	}
- 
- 	dwc3_set_mode(dwc, mode);
- 	return 0;
+Compared to v3, small fixes and improvements to the driver have found
+their way in 3/3. Please see the patch for a detailed changelog. The
+series has also been rebased on top of the latest Linux media master
+branch, and tested on v6.6-rc6.
+
+Below is the mandatory v4l2-compliance report. Careful readers may
+notice that my v4l2-utils version is three commits behind upstream, but
+that makes no practical difference as those commits are not related to
+v4l2-compliance
+
+Laurent Pinchart (1):
+  media: uapi: Add controls for the THP7312 ISP
+
+Paul Elder (2):
+  dt-bindings: media: Add bindings for THine THP7312 ISP
+  media: i2c: Add driver for THine THP7312
+
+ .../bindings/media/i2c/thine,thp7312.yaml     |  226 ++
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../userspace-api/media/drivers/thp7312.rst   |   32 +
+ MAINTAINERS                                   |   10 +
+ drivers/media/i2c/Kconfig                     |   16 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/thp7312.c                   | 2339 +++++++++++++++++
+ include/uapi/linux/thp7312.h                  |   19 +
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ 9 files changed, 2650 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/thp7312.rst
+ create mode 100644 drivers/media/i2c/thp7312.c
+ create mode 100644 include/uapi/linux/thp7312.h
+
+
+base-commit: 94e27fbeca27d8c772fc2bc807730aaee5886055
 -- 
-2.42.0
+Regards,
+
+Laurent Pinchart
 
 
