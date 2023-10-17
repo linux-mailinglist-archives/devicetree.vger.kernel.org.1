@@ -1,94 +1,151 @@
-Return-Path: <devicetree+bounces-9166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286257CBF72
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 11:31:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 964757CBF76
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 11:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 632231C209A9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 09:31:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C79511C20BED
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 09:31:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6719E3F4DC;
-	Tue, 17 Oct 2023 09:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E283FB3C;
+	Tue, 17 Oct 2023 09:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lxB2NUS9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ELddAi28"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92AAC2D8
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:31:14 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CBA1FD0;
-	Tue, 17 Oct 2023 02:31:11 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 443AF660708F;
-	Tue, 17 Oct 2023 10:31:09 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697535070;
-	bh=yclhv5bNfaPgDABNL7/yKJhsmK65OQZKd8eMmUCP7vU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lxB2NUS92oqNdrf5koDvdwu2AxCcuyyVTvYP+0hkbH4c/78+vfniPgdubc1yHR9M1
-	 nsihBQXez0ItJ+zCfBc19YQyecoWu68x8m0ZFDlxI6g14llG79/elFjJrKjXb0OFwV
-	 3Yowjhmr3a59UsiyOcfr7ht1ea+3xeHhRAcT+kA0s484pAatdI/u9IqmQxc127w6VI
-	 qAVJGCivxeqPiNh0qoPaznrBaeeejJSp4nzN1y4drcJyLOr2yEVphepxgG75ffKtCH
-	 rXNHdwA8R/Nf2x+nZ66XBLMK1kn6kNsiyxQlWlhe+6CBRMdtAGswmE1RDR4Mx3FOG5
-	 aMl9frjlLvjLQ==
-Message-ID: <4ca36dba-25a1-4494-a666-e5e57fbbbebd@collabora.com>
-Date: Tue, 17 Oct 2023 11:31:06 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BA03F4DF;
+	Tue, 17 Oct 2023 09:31:44 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E472106;
+	Tue, 17 Oct 2023 02:31:42 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99de884ad25so883617666b.3;
+        Tue, 17 Oct 2023 02:31:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697535100; x=1698139900; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xOqbqZUu//HMsDtmlOc6eburKLLaOWxAZ4a81kXORAc=;
+        b=ELddAi287gwjFMdIZNVdt6nhnCInRY0JljUlcPOy3GaxkwVqeXEhPYBG+nQax0lZPn
+         0+cKYmUfNS3p6CRr7LSx6BMPqjmH0Jyit06ATaQxwIbnMx/yFRlgJ5f3331dHM6p7/9n
+         xmEhMFCjzNdS4OqOo2wUYP2N+0cjzhS5nTJP5pSqyZdeI+uJazkb2GEQtIfOQSOeMZQg
+         aZT3qELP5Bja8FNikoHGPDYHFieMxU32pYDjiJWkV09+PRiVHAW2YRqjjJ0EZAE6gKLP
+         TgCZGuUgkF6bHJ89j+F30JU43b+b6aY9XbRFk4NagRwGY+yOF2oTvT3ovKFUks4ekUjS
+         FwWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697535100; x=1698139900;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xOqbqZUu//HMsDtmlOc6eburKLLaOWxAZ4a81kXORAc=;
+        b=kMfFL0BQGU84MTadbfbuonlI9oE5ZJ192bT7SqBp8qBSeKysO380izFKZanQhZujil
+         0WeLySd+9k3XStP4xzJLVYFM8HSKbyLn2Hs5yBzLdyDbLJkKKa3JJPAeiGqnS1KotnLQ
+         Vm+ieO3jHYvlxOQQSu8k+rPfCVbc/kCaoixRVjZkUQdDDnCBY91TUamQKepCmqZOZWaE
+         E7mbhskdljvDMmb+rg4B8dGYi8SofLp+KxaBH20exYt6Gdj8A9V8HshKybhXRdiMnLZ5
+         hw3tU6aZLjjW9xd07xs4vDR5nQo6XyxIZ0ofW5PpoA0h1dcekypSnkmw0G68U4ls6R3a
+         MmnA==
+X-Gm-Message-State: AOJu0YzgchU93iHRgHFEGhBJhaeW2A3lEJ2kje/Gmuxs3L/p6zXgjmYq
+	iNiRB0303OSDLlAy9MxdZIY=
+X-Google-Smtp-Source: AGHT+IFSxnnCjSS0wVEuM5XQp9Hu3jBfbqRIGISjtLp6IzreIJHTjvJEAgXF7CJBV5uG/P6yBdVj2A==
+X-Received: by 2002:a17:907:ea2:b0:9bf:4915:22ca with SMTP id ho34-20020a1709070ea200b009bf491522camr1303059ejc.45.1697535100453;
+        Tue, 17 Oct 2023 02:31:40 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id i18-20020a1709061cd200b009b2b9af0784sm869947ejh.110.2023.10.17.02.31.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Oct 2023 02:31:40 -0700 (PDT)
+Date: Tue, 17 Oct 2023 12:31:37 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Ante Knezic <ante.knezic@helmholz.de>, andrew@lunn.ch,
+	conor+dt@kernel.org, davem@davemloft.net,
+	devicetree@vger.kernel.org, edumazet@google.com,
+	f.fainelli@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+	kuba@kernel.org, linux-kernel@vger.kernel.org, marex@denx.de,
+	netdev@vger.kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+	woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <20231017093137.qag7xcjuklekn3ef@skbuf>
+References: <20231016103708.6ka5vxfkdatrjvdk@skbuf>
+ <20231017073548.15050-1-ante.knezic@helmholz.de>
+ <20231017-fading-retrial-7faebda79ebb@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 04/23] dt-bindings: display: mediatek: padding: Add
- MT8188
-Content-Language: en-US
-To: Hsiao Chien Sung <shawn.sung@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Fei Shao <fshao@chromium.org>,
- Sean Paul <sean@poorly.run>,
- Johnson Wang <johnson.wang@mediatek.corp-partner.google.com>,
- "Nancy . Lin" <nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>,
- "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
- Nathan Lu <nathan.lu@mediatek.com>,
- Yongqiang Niu <yongqiang.niu@mediatek.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20231016104010.3270-1-shawn.sung@mediatek.com>
- <20231016104010.3270-5-shawn.sung@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231016104010.3270-5-shawn.sung@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231017-fading-retrial-7faebda79ebb@spud>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Il 16/10/23 12:39, Hsiao Chien Sung ha scritto:
-> Padding is a new hardware module on MediaTek MT8188,
-> add dt-bindings for it.
+On Tue, Oct 17, 2023 at 08:48:27AM +0100, Conor Dooley wrote:
+> On Tue, Oct 17, 2023 at 09:35:48AM +0200, Ante Knezic wrote:
+> > > > +  microchip,rmii-clk-internal:
+> > > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > > +    description:
+> > > > +      Set if the RMII reference clock is provided internally. Otherwise
+> > > > +      reference clock should be provided externally.
+> > > > +
+> > > > +if:
+> > > > +  not:
+> > > > +    properties:
+> > > > +      compatible:
+> > > > +        enum:
+> > > > +          - microchip,ksz8863
+> > > > +          - microchip,ksz8873
+> > > > +then:
+> > > > +  not:
+> > > > +    required:
+> > > > +      - microchip,rmii-clk-internal
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> I think this bit can become the slightly simpler
+> 	then:
+> 	  properties:
+> 	     microchip,rmii-clk-internal: false
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This looks better. I don't understand how the original formulation worked
+("not: required:" when the property was never "required" in the first
+place - does that do anything?), but I understand how this one does.
 
+> > > I think that what you want to express is that microchip,rmii-clk-internal
+> > > is only defined for microchip,ksz8863 and microchip,ksz8873.
+> > > Can't you describe that as "if: properties: compatible: (...) then:
+> > > properties: microchip,rmii-clk-internal"?
+> > 
+> > If I understood you correctly you are refering to a solution like
+> > if:
+> >   properties:
+> >     compatible:
+> >       enum:
+> >         - microchip,ksz8863
+> >         - microchip,ksz8873
+> > then:
+> >   properties:
+> >     microchip,rmii-clk-internal:
+> >       $ref: /schemas/types.yaml#/definitions/flag
+> >       description:
+> >         Set if the RMII reference clock is provided internally. Otherwise
+> >         reference clock should be provided externally.
+> > 
+> > This was already suggested in v1, but was not a satisfactory solution
+> > according to Mr. Conor Dooley:
+> 
+> Yeah, we prefer not to have the property definitions inside the
+> conditionals, but rather constrain or allow/disallow them there.
+> 
+> Cheers,
+> Conor.
 
+Ok, now you know I didn't open the discussion on v1 :)
 
