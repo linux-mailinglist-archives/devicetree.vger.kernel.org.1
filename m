@@ -1,88 +1,114 @@
-Return-Path: <devicetree+bounces-9281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA88E7CC6F9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:05:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F3437CC72F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9495C281179
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:05:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FE1B1C20C88
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB884446B;
-	Tue, 17 Oct 2023 15:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C467444480;
+	Tue, 17 Oct 2023 15:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XXul8jSn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gh49EVzj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F5F1F5FA
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 15:05:47 +0000 (UTC)
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1533919BC;
-	Tue, 17 Oct 2023 08:05:46 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6bd0e1b1890so2280142b3a.3;
-        Tue, 17 Oct 2023 08:05:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB04447D;
+	Tue, 17 Oct 2023 15:14:28 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B97E8;
+	Tue, 17 Oct 2023 08:14:26 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c50ec238aeso49716511fa.0;
+        Tue, 17 Oct 2023 08:14:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697555145; x=1698159945; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fc+BeKPfjaApdVuZ2mptOISBL2EV+8avGTyYqpZGpXk=;
-        b=XXul8jSnElKAFWr77zuxxKgHVM3pz0IZPj6/FpQ8+C4jV27uH6yxhPJi5lfIuvQA9O
-         msdvn+yNOVDyENYae5tdXkquwpiyeK8mXoeT/MXofb0vAz7UEqqcBWHYh/Z0hbRHCEV/
-         69x0apS8T1CS5Qa7R3Yr+wuycUbXC8y4iK/Fj62ieAKk9CqQXvWParEGK630Erh4FgkK
-         zr6dPiTq2VnBfXM+26TbP0KLy8Sws8ggwcAZZukpCte23XFNHZ6ikMf1F0vqFf+oWq2h
-         EG5NdQMJdkIw1lNKnJe97yaOiWZuXTX+srzngs9ctg70dwTT23vQW4lkk05cDfBoXxn9
-         DRYg==
+        d=gmail.com; s=20230601; t=1697555665; x=1698160465; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LAQIUSSFEkh8UCmi8THqE2sWEJcCZDabuYYz4V23TW8=;
+        b=gh49EVzjJAMOiA15cn3qHH81WJn2Q9tYEiZPVMrP8RpyAAzuZ0VIt3OZhmuO8YrADr
+         TGcHEbmzI8QlA4BQyDgHtfN94tQSKCYr2tn87XflaQQ433UayXgNAiuFq26fshxgtMJt
+         ZAQ5xpyMLLqmaaZAJu37abtdpk6XI7HHvgDWbOKrOXHSmACSb3hJKCHFdq356MK361aJ
+         xgzaVlSU4dGsyYbGyQIVg463sFjthNsbFUEVQkqWCtc3rasZb39a3IiX7+gmKDQpvX8L
+         ZtR/tx6O8I0J+7KJfdwIrnynqwIZbTN2nXqlKPeyyeG0GveWmtA6Sl3b9QFj7NVD83Hx
+         NR/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697555145; x=1698159945;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fc+BeKPfjaApdVuZ2mptOISBL2EV+8avGTyYqpZGpXk=;
-        b=o0GInIXWBMlXZJtEb7cx7pySnGeZr/uK5RUEsXoTfeknaAoIk9/btpufbSdTvlWn+I
-         6raG0reMrR28rt501KTp/zvzH7IAhy/Z6blube97wXSBZHj9i/VG8IzS3331fJCkywqE
-         bt4eOAhjXAl/Gq+M0Dvg4sGs5c33LYy3B0/si7IeZemVIl/RXK6fkyXCmbfPrCvBtk0y
-         /iLIRBgcuQf4prZx41ZxgJVcu/teRdYFapd51d35WHCMhKCzxvXKGljqgQNAJC3YOG7d
-         lnkEl/gHNTEWn0G0XXrgWHRAcxdlbMSq1krLUnp2dKatPkYUP/e7bK0uPoQDFZm/bE78
-         hdEQ==
-X-Gm-Message-State: AOJu0YyhN814NgvlKV8vqM5scJzFG5axfIQw+AdpWO6PEwIYmW2UMjkm
-	szwfQZYMd3+I8dHegtr3X6jwehkilZXUWQqrDWg=
-X-Google-Smtp-Source: AGHT+IHRVJcqqQ05a6eUWlxAyiD4fn+eYoln4HJwNwndR9ebKz7p4uoLjo93gwRzO28tEriZtsd5k30PA+Z5wb/S43U=
-X-Received: by 2002:a05:6a20:3d01:b0:163:9f1d:b464 with SMTP id
- y1-20020a056a203d0100b001639f1db464mr2630754pzi.5.1697555145234; Tue, 17 Oct
- 2023 08:05:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697555665; x=1698160465;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LAQIUSSFEkh8UCmi8THqE2sWEJcCZDabuYYz4V23TW8=;
+        b=J8SgQ/+pUJaPeAs80gnMIyX8bhuvAGWDN3XLiOtLvlTZ5XyPqp6E7E23mQjSP+3P5Q
+         OjIGwIBNj60mN3H6OCd+Y1R03HJZ32ei1dh26xKCrk7Ym76qRcwOm/X1o5XjYzxo1m3K
+         E+9xJyz66fWKtqsaJ+rJoYMWY+3H+mH/9G2GG5M/3rVeH4X9Vt4j85lUe06+gMZjtasn
+         1Pncufe3LIY7EuJuVN0ItN5ejAYKJxrDdFm7BgYY31mmaCzBJgBatgo6+OEeorTy+xFE
+         yT2k0f26gksp1aqAQeD8NrxX/GKergwt3Adxgj/6GaVV9wThTq3hHZ5fVVmoGlFHSH2g
+         cyaw==
+X-Gm-Message-State: AOJu0YwxWqmsxdL1146EkmppD/m1vw3yMx9VkEbfLurKFoHwYXvmOhta
+	bKD9gtlFYFi2qj4J9ZTAEDQ=
+X-Google-Smtp-Source: AGHT+IGGk9+XOX5f1XNqFWNen/mWjFSeo+yOGyG3yMMSOnh8F9Yx0HDcS+QgLDHdukQU3wtBx5MZag==
+X-Received: by 2002:a2e:aa22:0:b0:2c5:31e6:e8e2 with SMTP id bf34-20020a2eaa22000000b002c531e6e8e2mr1904703ljb.25.1697555664440;
+        Tue, 17 Oct 2023 08:14:24 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id v18-20020a05600c15d200b00406447b798bsm1907790wmf.37.2023.10.17.08.14.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Oct 2023 08:14:23 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Alvin =?utf-8?B?xaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
+ =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ =?ISO-8859-1?Q?n=E7_=DCNAL?= <arinc.unal@arinc9.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ John Crispin <john@phrozen.org>,
+ Gerhard Engleder <gerhard@engleder-embedded.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+ Justin Chen <justin.chen@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com
+Subject:
+ Re: [PATCH net-next 1/8] dt-bindings: net: Add missing
+ (unevaluated|additional)Properties on child node schemas
+Date: Tue, 17 Oct 2023 17:14:21 +0200
+Message-ID: <2720928.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
+References:
+ <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org> <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org> <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
- <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org> <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
- <86wmxcejav.wl-maz@kernel.org> <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
- <86pm2ye2si.wl-maz@kernel.org> <CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
-In-Reply-To: <CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
-From: Jonas Gorski <jonas.gorski@gmail.com>
-Date: Tue, 17 Oct 2023 17:05:33 +0200
-Message-ID: <CAOiHx=mq3hw-LFerb9UzU7VSnLypnvPuo1GomCnN=p0u3xN1Ug@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Marc Zyngier <maz@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-mips@vger.kernel.org, diasyzhang@tencent.com, 
-	linux-kernel@vger.kernel.org, frowand.list@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -90,60 +116,35 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 16 Oct 2023 at 13:26, Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
->
-> Hi all:
->
-> Sorry, it's been a while since the last discussion.
->
-> Previously, Krzysztof suggested using the standard "interrupt-map"
-> attribute instead of the "loongson,parent_int_map" attribute, which I
-> tried to implement, but the downside of this approach seems to be
-> obvious.
->
-> First of all, let me explain again the interrupt routing of the
-> loongson liointc.
-> For example, the Loongson-2K1000 has 64 interrupt sources, each with
-> the following 8-bit interrupt routing registers (main regs attribute
-> in dts):
->
-> +----+-------------------------------------------------------------------+
-> | bit  | description
->             |
-> +----+-------------------------------------------------------------------+
-> | 3:0 | Processor core to route                                           |
-> | 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-> +-----+------------------------------------------------------------------+
->
-> The "loongson,parent_int_map" attribute is to describe the routed
-> interrupt pins to cpuintc.
->
-> However, the "interrupt-map" attribute is not supposed to be used for
-> interrupt controller in the normal case. Though since commit
-> 041284181226 ("of/irq: Allow matching of an interrupt-map local to an
-> interrupt controller"), the "interrupt-map" attribute can be used in
-> interrupt controller nodes. Some interrupt controllers were found not
-> to work properly later, so in commit de4adddcbcc2 ("of/irq: Add a
-> quirk for controllers with their own definition of interrupt-map"), a
-> quirk was added for these interrupt controllers. As we can see from
-> the commit message, this is a bad solution in itself.
->
-> Similarly, if we choose to use the "interrupt-map" attribute in the
-> interrupt controller, we have to use this unfriendly solution (quirk).
-> Because we hope of_irq_parse_raw() stops at the liointc level rather
-> than goto its parent level.
->
-> So, I don't think it's a good choice to use a bad solution as a replacement.
->
-> Do you have any other ideas?
+Dne ponedeljek, 16. oktober 2023 ob 23:44:20 CEST je Rob Herring napisal(a):
+> Just as unevaluatedProperties or additionalProperties are required at
+> the top level of schemas, they should (and will) also be required for
+> child node schemas. That ensures only documented properties are
+> present for any node.
+> 
+> Add unevaluatedProperties or additionalProperties as appropriate.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml     |  2 ++
 
-Assuming this is changeable at runtime, this sounds to me like this
-mapping/routing could easily be exposed as irqchip cpu affinity. Then
-userspace can apply all the performance optimizations it wants (and
-can easily update them without fiddling with the kernel/dts).
+For Allwinner:
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-And then there would be no need to hardcode/describe it in the dts(i) at all.
+Best regards,
+Jernej
 
-Best Regards,
-Jonas
+>  Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml        |  1 +
+>  Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml |  2 ++
+>  .../devicetree/bindings/net/dsa/microchip,lan937x.yaml         |  1 +
+>  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml     |  2 ++
+>  Documentation/devicetree/bindings/net/dsa/qca8k.yaml           |  1 +
+>  Documentation/devicetree/bindings/net/dsa/realtek.yaml         |  2 ++
+>  .../devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml        | 10 ++--------
+>  Documentation/devicetree/bindings/net/engleder,tsnep.yaml      |  1 +
+>  Documentation/devicetree/bindings/net/nxp,tja11xx.yaml         |  1 +
+>  10 files changed, 15 insertions(+), 8 deletions(-)
+
+
+
 
