@@ -1,171 +1,281 @@
-Return-Path: <devicetree+bounces-9225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C72C7CC2B2
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA207CC2B1
 	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:13:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32434B211B8
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04EFE2818F5
 	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 12:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2077E41E34;
-	Tue, 17 Oct 2023 12:13:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gL7WKKaD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3ED41E3C;
+	Tue, 17 Oct 2023 12:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B81B41E55
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 12:13:22 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B14E93FC
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 05:11:49 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9b1ebc80d0aso884399266b.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 05:11:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697544707; x=1698149507; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9+RRO5+xdhoEFOQXW0fMsrvrxzNDVZWLblus6RZdWE0=;
-        b=gL7WKKaDtOlBVsfNoOY6fzOJHxtFOKn+cnNMmTxIHdYrhHIpXuAucPASn23HJxVrN1
-         DjLW6oSMo4j5CA6IMVLHylUBtkEeW6r+sZeciP7W2Q/zfXCtcVQxUQwGJv4MHx4H6ocX
-         DVhR0uYtNAYP2HCw5vmHNnf8//lzUmaJwDXUpLN4b92RmKJ563KPl4aIoEB2eYWnBrbn
-         fiR8OPoQh+KtB19M/5pY3SbuEKSuPjzBlGB6vg5OZGxA6z6DXiqu5Owf7xj5/jCMYssF
-         OjcJn7sw/zPI7zt7hop6y+GwNzGMd+FnCy7yXPbuhjLnfV+62Th05EKyHFkmu9XTtqPm
-         zaig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697544707; x=1698149507;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9+RRO5+xdhoEFOQXW0fMsrvrxzNDVZWLblus6RZdWE0=;
-        b=WqU5yNEzHx5uwjiOMbpYxNtvk2+AwNCHhEqKUzLc+b+UEA93Ni2BJG+NaHye59Frn0
-         dYFz03v2Gw7qF9SBqenXAzJ3X0TCA2XdqyrNhYzLUB8wmJivU8mS0p1VXQFXCC2Pq6vJ
-         hhXiV+xdP/e1fPoNYSsjhYbYF7d6qOAQAC18p3Oiznj7CUqUr8wbvR/Aq9eOT8UkT0eV
-         113ItTbC2keuhOSzAs2iyWJwijl7joA5159RuaH27yJOeTYLYBvkCucFPWIJoVXg41IW
-         xacV3Re1FwmJrppML9IUU31wnllW/3scaQs8R1f9Wn0Ud4DzIZxekiTgwflbR1HPGJ7m
-         2nTQ==
-X-Gm-Message-State: AOJu0YwoHREgivmyuvfb6z1XpCFYxMq17g+hn8uNdv5T79hfVoFz06YJ
-	3jYXv1ItOQ783C6sJ7u7eDP3jA==
-X-Google-Smtp-Source: AGHT+IExeItdVi6buYjVxIsZA7HazT5dO2UaV9osZFpK52ARYg1kWrAnJXxFe8QUCyAgYrfGIAvUyA==
-X-Received: by 2002:a17:907:6093:b0:9b6:550c:71cb with SMTP id ht19-20020a170907609300b009b6550c71cbmr1587132ejc.52.1697544707209;
-        Tue, 17 Oct 2023 05:11:47 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id gh5-20020a170906e08500b00997d76981e0sm1130334ejb.208.2023.10.17.05.11.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 05:11:46 -0700 (PDT)
-Message-ID: <b792df57-4d93-4226-be34-a521aa716256@linaro.org>
-Date: Tue, 17 Oct 2023 14:11:45 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EBF34184
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 12:13:32 +0000 (UTC)
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5286E118
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 05:13:28 -0700 (PDT)
+Received: from i53875b5b.versanet.de ([83.135.91.91] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1qsiwt-000833-4y; Tue, 17 Oct 2023 14:13:23 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Ying Liu <victor.liu@nxp.com>
+Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "rfoss@kernel.org" <rfoss@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "Laurent.pinchart@ideasonboard.com" <Laurent.pinchart@ideasonboard.com>,
+ "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ dl-linux-imx <linux-imx@nxp.com>
+Subject:
+ Re: [PATCH 5/9] drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to
+ calculate lbcc
+Date: Tue, 17 Oct 2023 14:13:21 +0200
+Message-ID: <5979575.UjTJXf6HLC@diego>
+In-Reply-To:
+ <AM7PR04MB7046C954891C3ABEC568DC1F98D6A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+References:
+ <20230717061831.1826878-1-victor.liu@nxp.com> <1971539.CrzyxZ31qj@diego>
+ <AM7PR04MB7046C954891C3ABEC568DC1F98D6A@AM7PR04MB7046.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: mtd: cadence: convert
- cadence-nand-controller.txt to yaml
-Content-Language: en-US
-To: niravkumar.l.rabara@intel.com, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231014120436.1515339-1-niravkumar.l.rabara@intel.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231014120436.1515339-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_PASS,T_SPF_HELO_TEMPERROR autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14/10/2023 14:04, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> 
-> Convert cadence-nand-controller.txt to yaml format.
-> Update cadence-nand-controller.txt to cdns,hp-nfc.yaml in MAINTAINER file.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
+Hi,
 
-...
+Am Dienstag, 17. Oktober 2023, 12:15:11 CEST schrieb Ying Liu:
+> On Tuesday, October 17, 2023 2:15 AM, Heiko St=FCbner <heiko@sntech.de> w=
+rote:
+> > Am Montag, 17. Juli 2023, 08:18:27 CEST schrieb Liu Ying:
+> > > To get better accuration, use pixel clock rate to calculate lbcc inst=
+ead of
+> > > lane_mbps since the pixel clock rate is in KHz while lane_mbps is in =
+MHz.
+> > > Without this, distorted image can be seen on a HDMI monitor connected
+> > with
+> > > i.MX93 11x11 EVK through ADV7535 DSI to HDMI bridge in 1920x1080p@60
+> > video
+> > > mode.
+> > >
+> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >
+> > looks like I'm late to the party, but this change breaks the display ou=
+tput
+> > my px30 minievb with the xinpeng xpp055c272 dsi display [0].
+>=20
+> Hmm, I asked for a test, but anyway sorry for the breakage.
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    nand-controller@10b80000 {
-> +        compatible = "cdns,hp-nfc";
-> +        reg = <0x10b80000 0x10000>,
-> +              <0x10840000 0x10000>;
-> +        reg-names = "reg", "sdma";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&nf_clk>;
-> +        cdns,board-delay-ps = <4830>;
-> +
-> +        nand@0 {
-> +            reg = <0>;
-> +        };
-> +      };
+I'm often way behind with looking at drm-related changes, sorry about that.
 
-You still have wrong indentation here.
+So thanks a lot for taking the time to look into the problem.
 
-Best regards,
-Krzysztof
+
+> The panel driver sets MIPI_DSI_MODE_VIDEO_BURST.
+> And, it seems that rockchip dsi driver [1] only supports the burst mode,
+> because it takes 1/0.8 =3D 1.25 faster lane_mbps than "bandwidth of RGB".
+>=20
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
+ee/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c#n568
+>=20
+> >
+> > Found this commit via git bisection and added a bit of debug output to
+> > compare the value differences for the old and new calculation:
+> >
+> > [   34.810722] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 810 * 480 * 1=
+000
+> > / 8
+> > [   34.810749] dw_mipi_dsi_get_hcomponent_lbcc: new lbcc: 810 * 64000 *
+> > 24 / (4 * 8)
+> > [   34.810756] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 48600000, new
+> > lbcc: 38880000
+> > [   34.810762] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 10 * 480 * 10=
+00 /
+> > 8
+> > [   34.810767] dw_mipi_dsi_get_hcomponent_lbcc: new lbcc: 10 * 64000 * =
+24
+> > / (4 * 8)
+> > [   34.810773] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 600000, new l=
+bcc:
+> > 480000
+> > [   34.810778] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 40 * 480 * 10=
+00 /
+> > 8
+> > [   34.810783] dw_mipi_dsi_get_hcomponent_lbcc: new lbcc: 40 * 64000 * =
+24
+> > / (4 * 8)
+> > [   34.810789] dw_mipi_dsi_get_hcomponent_lbcc: old lbcc: 2400000, new
+> > lbcc: 1920000
+>=20
+> Old lbcc / new lbcc is always 1.25.
+>=20
+> The new lbcc is for non-burst modes(sync pulse/sync event), IIUC.
+> At least, it works for i.MX93 with the RM67191 panel and ADV7535 in
+> sync pulse mode.
+>=20
+> >
+> > With the new lbcc I get a blank dsi panel and just going back to the old
+> > calculation of lbcc restores the image.
+> >
+> > I don't have that much in-depth knowledge about dsi stuff and the origi=
+nal
+> > panel times also "just" came from the vendor tree, but I really would l=
+ike
+> > to keep that display working ;-) .
+> >
+> > Do you have any idea which way to go to fix this?
+>=20
+> Can you please test the below patch for your case?
+
+The patch below does fix the display on the device. After applying it
+I do get a working display again.
+
+
+> --------------------------------------------------------8<---------------=
+=2D-----------------------------------------------------
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> @@ -774,13 +774,19 @@ static u32 dw_mipi_dsi_get_hcomponent_lbcc(struct d=
+w_mipi_dsi *dsi,
+>         u32 frac, lbcc, minimum_lbcc;
+>         int bpp;
+>=20
+> -       bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
+> -       if (bpp < 0) {
+> -               dev_err(dsi->dev, "failed to get bpp\n");
+> -               return 0;
+> -       }
+> +       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
+> +               /* lbcc based on lane_mbps */
+> +               lbcc =3D hcomponent * dsi->lane_mbps * MSEC_PER_SEC / 8;
+> +       } else {
+> +               /* lbcc based on pixel clock */
+> +               bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
+> +               if (bpp < 0) {
+> +                       dev_err(dsi->dev, "failed to get bpp\n");
+> +                       return 0;
+> +               }
+>=20
+> -       lbcc =3D div_u64((u64)hcomponent * mode->clock * bpp, dsi->lanes =
+* 8);
+> +               lbcc =3D div_u64((u64)hcomponent * mode->clock * bpp, dsi=
+=2D>lanes * 8);
+> +       }
+>=20
+>         frac =3D lbcc % mode->clock;
+>         lbcc =3D lbcc / mode->clock;
+> --------------------------------------------------------8<---------------=
+=2D-----------------------------------------------------
+>=20
+> It kind of keeps the old lbcc for burst mode, except for the minimum lbcc=
+ check
+> I introduced.
+>=20
+> It seems that meson supports non-burst modes only and stm supports both
+> non-burst modes and burst mode.  With the patch, I still worry about non-=
+burst
+> modes for stm, assuming the minimum lbcc check is ok and everything works
+> for meson since I guess Neil has already tested the patch set on meson.
+>=20
+> Should we go with the above patch?  If yes, I may send it out.
+
+In my mind, definitly :-) .
+
+But maybe Neil as the other reviewer also wants to chime in.
+
+
+So again thanks for looking into the issue.
+Heiko
+
+
+> >
+> > [0]
+> > https://git.ker/
+> > nel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2F
+> > tree%2Farch%2Farm64%2Fboot%2Fdts%2Frockchip%2Fpx30-
+> > evb.dts%23n138&data=3D05%7C01%7Cvictor.liu%40nxp.com%7C8f712ad41720
+> > 4ba7411808dbce73ce63%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0
+> > %7C638330769044424464%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
+> > AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%
+> > 7C%7C&sdata=3DeffPCbPOk3GGuO8mR%2FSlcjFJfDUEZmq082simvjkux0%3D&r
+> > eserved=3D0
+> > https://git.ker/
+> > nel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2F
+> > tree%2Fdrivers%2Fgpu%2Fdrm%2Fpanel%2Fpanel-xinpeng-
+> > xpp055c272.c&data=3D05%7C01%7Cvictor.liu%40nxp.com%7C8f712ad417204b
+> > a7411808dbce73ce63%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7
+> > C638330769044424464%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw
+> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C
+> > %7C&sdata=3DbAgcLnJpIEQaYZZUI1CnUsgP7rMiNV6wKKg%2Bl8%2FlN40%3D&r
+> > eserved=3D0
+> >
+> > > ---
+> > >  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 10 +++++++++-
+> > >  1 file changed, 9 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > index c754d55f71d1..332388fd86da 100644
+> > > --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > @@ -12,6 +12,7 @@
+> > >  #include <linux/component.h>
+> > >  #include <linux/debugfs.h>
+> > >  #include <linux/iopoll.h>
+> > > +#include <linux/math64.h>
+> > >  #include <linux/media-bus-format.h>
+> > >  #include <linux/module.h>
+> > >  #include <linux/of_device.h>
+> > > @@ -762,8 +763,15 @@ static u32
+> > dw_mipi_dsi_get_hcomponent_lbcc(struct dw_mipi_dsi *dsi,
+> > >                                        u32 hcomponent)
+> > >  {
+> > >     u32 frac, lbcc;
+> > > +   int bpp;
+> > >
+> > > -   lbcc =3D hcomponent * dsi->lane_mbps * MSEC_PER_SEC / 8;
+> > > +   bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
+> > > +   if (bpp < 0) {
+> > > +           dev_err(dsi->dev, "failed to get bpp\n");
+> > > +           return 0;
+> > > +   }
+> > > +
+> > > +   lbcc =3D div_u64((u64)hcomponent * mode->clock * bpp, dsi->lanes *
+> > 8);
+> >
+> >
+> >
+>=20
+>=20
+
+
+
 
 
