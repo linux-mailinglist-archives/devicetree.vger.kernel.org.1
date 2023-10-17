@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-9230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43A47CC3D9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:59:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDF97CC3DD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:00:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 471E1281834
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 12:59:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA3C6B2103F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 13:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E348542BF2;
-	Tue, 17 Oct 2023 12:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B769442BF4;
+	Tue, 17 Oct 2023 13:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="evtJntTp"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="shA30GZ5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0415A41AB7;
-	Tue, 17 Oct 2023 12:59:53 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98C2383;
-	Tue, 17 Oct 2023 05:59:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=zPjdrkr74mlf+FJnNvMTzPhWfY7AUc/QDIF1M/76zDI=; b=evtJntTpQ/WnWp851YRxlVQ5KV
-	oa1x2BQXAch/mp8d4kVlMUgXCz0hUc5mOmlueYzEHEpTWdmUe0kE+oLGDqW9XQyCAvah9q7Yf9x/v
-	VIlp0WkVLNjVS7zJigWkHIybz8obdhTLF1JCfZr0UAaFAkoYIKEAfnhcQlNwTtGdSo5o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qsjfm-002Tox-8f; Tue, 17 Oct 2023 14:59:46 +0200
-Date: Tue, 17 Oct 2023 14:59:46 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: Ante Knezic <ante.knezic@helmholz.de>, conor+dt@kernel.org,
-	davem@davemloft.net, devicetree@vger.kernel.org,
-	edumazet@google.com, f.fainelli@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
-	olteanv@gmail.com, pabeni@redhat.com, robh+dt@kernel.org,
-	woojung.huh@microchip.com
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document
- microchip,rmii-clk-internal
-Message-ID: <8e1fb87d-b611-49f3-8091-a15b29e03659@lunn.ch>
-References: <20231012-unicorn-rambling-55dc66b78f2f@spud>
- <20231016075349.18792-1-ante.knezic@helmholz.de>
- <20231017-generous-botanical-28436c5ba13a@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1425441AB0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 13:00:28 +0000 (UTC)
+X-Greylist: delayed 9795 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 17 Oct 2023 06:00:27 PDT
+Received: from mail-40132.protonmail.ch (mail-40132.protonmail.ch [185.70.40.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD888F1
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 06:00:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1697547624; x=1697806824;
+	bh=ud8aoJQUYksiupgPEfkQsDvGulNvE1B6CwckXIHptaU=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=shA30GZ5XLfUWUS4KlbKaTu2qR8MCmOEek2rZcyPtgSGYuV+g1+D7fjcWLEqVVP8a
+	 hr2K7xTsS3sZ1qxO4FF1BOBTjMZYEseuwxToS53UgaKgN4K/cM4ZkBDcR3zz8VyIzA
+	 6QGmSdSvU5EkC3RjRHKjaID8XXe/MeTxR1wgqb7uHapcudet9ErPZULZfNEE6Kx8vs
+	 W2BRTQzINKB5Ou+M/n1iPR3Z0LoqziiGLqPaT7026mZKNiHxTRAlcpLGqPYGKVrvy8
+	 S1LCzwYPbe1kaqf2IEOmF7K8FhlKpHMWTUr+ssTzXIQ9g7SG/5p/v2bKGdCtEXUG1D
+	 AE2ySYrRbmt+A==
+Date: Tue, 17 Oct 2023 13:00:11 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Raymond Hackley <raymondhackley@protonmail.com>
+Subject: [PATCH] arm64: dts: qcom: msm8916-acer-a1-724: Add notification LED
+Message-ID: <20231017125848.84311-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231017-generous-botanical-28436c5ba13a@spud>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
 	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> The switch always provides it's own external reference, wut? Why would
-> anyone actually bother doing this instead of just using the internal
-> reference?
+Acer Iconia Talk S A1-724 uses KTD2026 LED driver. However, there is
+no blue LED on it. Add it to the device tree.
 
-I think you are getting provider and consumer mixed up.
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+---
+ .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-Lets simplify to just a MAC and a PHY. There needs to be a shared
-clock between these two. Sometimes the PHY is the provider and the MAC
-is the consumer, sometimes the MAC is the provider, and the PHY is the
-consumer. Sometimes the hardware gives you no choices, sometimes it
-does. Sometimes a third party provides the clock, and both are
-consumers.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/=
+boot/dts/qcom/msm8916-acer-a1-724.dts
+index 84723c9b73b4..b0f0f9f59cb3 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+@@ -7,6 +7,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
+=20
+ /*
+  * NOTE: The original firmware from Acer can only boot 32-bit kernels.
+@@ -83,6 +84,29 @@ magnetometer@12 {
+ =09};
+ };
+=20
++&blsp_i2c4 {
++=09status =3D "okay";
++
++=09led-controller@30 {
++=09=09compatible =3D "kinetic,ktd2026";
++=09=09reg =3D <0x30>;
++=09=09#address-cells =3D <1>;
++=09=09#size-cells =3D <0>;
++
++=09=09led@0 {
++=09=09=09reg =3D <0>;
++=09=09=09function =3D LED_FUNCTION_STATUS;
++=09=09=09color =3D <LED_COLOR_ID_RED>;
++=09=09};
++
++=09=09led@1 {
++=09=09=09reg =3D <1>;
++=09=09=09function =3D LED_FUNCTION_STATUS;
++=09=09=09color =3D <LED_COLOR_ID_GREEN>;
++=09=09};
++=09};
++};
++
+ &blsp_i2c5 {
+ =09status =3D "okay";
+=20
+--=20
+2.39.2
 
-With the KSZ, we are talking about a switch, so there are multiple
-MACs and PHYs. They can all share the same clock, so long as you have
-one provider, and the rest are consumers. Or each pair can figure out
-its provider/consumer etc.
 
-How this is described in DT has evolved over time. We don't have clean
-clock provider/consumer relationships. The PHYs and MACs are generally
-not CCF consumers/providers. They just have a property to enable the
-to output a clock, or maybe a property to disable the clock output in
-order to save power. There are a few exceptions, but that tends to be
-where the clock provider is already CCF clock, e.g. a SoC clock.
-
-      Andrew
 
