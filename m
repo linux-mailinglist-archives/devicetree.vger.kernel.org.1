@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CF97CC968
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:03:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 252EA7CC97E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 19:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1297B1C20921
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:03:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86CFB1F23426
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A957241AA5;
-	Tue, 17 Oct 2023 17:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0F043AA9;
+	Tue, 17 Oct 2023 17:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QZUZ8le1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nOBOIvvs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 258B542BFD
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:03:29 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE06B0
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:03:27 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9bf0ac97fdeso486548366b.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:03:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6573FB14
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 17:08:07 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C2EED
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:08:05 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40566f8a093so56626705e9.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 10:08:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697562206; x=1698167006; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697562484; x=1698167284; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kgy0xobdqAbjZ7PDnTLH7bL6TueBeeQA6u4OOu5zZug=;
-        b=QZUZ8le1HaPKrEVCJD/xnsVnaJmjFiryEPp4lHp97eNJAo2mWBQIqH0CYE3qyrkGe5
-         Rv7itiL5Nfz4fE8+TkTtWmsVwKfBv6dafygy9CLiYTx8852dJKo+IIoog1oL1BhLCtj+
-         5vh5IGWMOqmSHPxd0BmhUxRg+SIPdkuM61mK8yRL1XvVGo3kwyS808H1CSTcJkA3Wi34
-         oPBBmSyFWNFvcvj9+BPtviEAbhmzGF/lfBeOGYDWp615JdRFTNP9/DhAGt5I9dXVJPFx
-         gBDo2ortd/WBzusHGiwTDh/t/Q9DZL0zTCvAthLHiVRKgIatRCBgm8JEgUXWejLA94Fk
-         aK4w==
+        bh=wxLf5XyHvT0i+YFj0zy66WfQ0UBHwKFSI6ot74gg5Uw=;
+        b=nOBOIvvs3AuunwazWTHWogu+aFJa5P/nhqLTCMmMLi3J1QIKvLnBRHQPVl2AhJUITH
+         +QmRM4MNPmZjuCcDPrVl/yKLP4qAPiCes8vzIV1ez3obL+54zlnqLHPdzdQEL0PgYC6s
+         8tIEnAfMzrkEeWQSWgR6IHrl4kEjEQoMDq/vg6/byfCrq1MgVX7SL80I1Nl1cKqaAcmG
+         3iMHTHWfpoWZvKPXFRdr1lunF78g2l3zXtC56yFvc43Xm1Qrdx+X/+i+ogWQ0zVCfuly
+         FzRM5KLBRtwveifDitOojTPSaYtRvzbBT7j/kAClMHRBHDTWO9tdLd5VuJw2rHdjFDEt
+         HePg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697562206; x=1698167006;
+        d=1e100.net; s=20230601; t=1697562484; x=1698167284;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kgy0xobdqAbjZ7PDnTLH7bL6TueBeeQA6u4OOu5zZug=;
-        b=PCmTY3wgwE5ARKzWVWaMGgjbHT2f2Vww/sLw/IoSzR5rrzcWTEg+EvdeXBh14r+RRx
-         79+VQv/zyb3hYGD8sCJYcps7uFgJg5YC0NzvOcll1MBduQnlJpAHIUFxIckcfwfiU90L
-         kc2T06BaF5GDZOlaIDQ27Ju6A2eEOjG/gCIBfey+q2pm3ezleZwbgGgxCIj+FI7nHqok
-         UwV83/u0fnfpUWZF9fVSpDmF2anVmPFAtH+m1QfKiEkNM7Q0ExdU0zHm1ysybXXFWNrc
-         PJ/Ej0YApgtfAb8jQt/wwQ7vvuOno2+qcfLfxzXPE9WWWt1MeDTT5Ql96NfUC3UYqH6D
-         oMAQ==
-X-Gm-Message-State: AOJu0Yx9mY4h5hUJOm1jWRtBVs1GVYM7ZaR9mddJkpHWbmo3cKqSPQbe
-	3epUb+wxDtHLMzrz+KCEQc0N6g==
-X-Google-Smtp-Source: AGHT+IGTk9EVS6aqAErr7g6dhZbskEbYeowGHCgWBXaQ/vOTHbiUHAdtYMNHfeuzg9MS/rEUt1MEyQ==
-X-Received: by 2002:a17:906:7949:b0:9bf:39f3:f11d with SMTP id l9-20020a170906794900b009bf39f3f11dmr1824319ejo.30.1697562205938;
-        Tue, 17 Oct 2023 10:03:25 -0700 (PDT)
+        bh=wxLf5XyHvT0i+YFj0zy66WfQ0UBHwKFSI6ot74gg5Uw=;
+        b=HXDWYEtwQcVS8+wqT4iyNV9OtAZaSuEuasOTqNhgxdBQcca8LexoI02wKf+ZNAPPo2
+         lZ/ezbGnzsMMirrz6CrG+gl+wJn5ptJDtcELBh20TcpyjekAKMM/AlJX+I9mifrnB+H1
+         n9Fr8CQRxqFCh0/hAGRhqcK7DGENCa3Dbxb92lhu58TjyVAAhg2/ns/DKEjN3HkxO5AU
+         rpcijg4dZfWzI1I047pNNDdjAu4ch8ZXqmtUrpIjIWlGLyBPYgZDINY3WU4jfV3t/d3a
+         6NqtUHrAe8RfRB0erniPoF8EaXjeQvMgXTrm8yXogHZabRFH8VYjDmpWTrz/55R/cuq0
+         75Kw==
+X-Gm-Message-State: AOJu0YzzHUw1GsEVPkPcBL0EWoB8OiGndiJOE4F8YJAwLcfY1oD9rLIu
+	L/IKYPlvZc3V0Td1bW3WhZLHsg==
+X-Google-Smtp-Source: AGHT+IF+hwCCbhh2L5YcrtEDqHkl+JVInGYryubVQ89hKW56ue5tiPvEwAn+64VUbSlvYZrJRbDUOQ==
+X-Received: by 2002:a05:600c:2e16:b0:407:5b54:bb15 with SMTP id o22-20020a05600c2e1600b004075b54bb15mr2072759wmf.36.1697562484162;
+        Tue, 17 Oct 2023 10:08:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id k8-20020a170906054800b0099315454e76sm125677eja.211.2023.10.17.10.03.23
+        by smtp.gmail.com with ESMTPSA id v20-20020a05600c429400b00402d34ea099sm10213001wmc.29.2023.10.17.10.08.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 10:03:25 -0700 (PDT)
-Message-ID: <9da94b23-cfcb-4086-a080-7e6e59866d25@linaro.org>
-Date: Tue, 17 Oct 2023 19:03:22 +0200
+        Tue, 17 Oct 2023 10:08:03 -0700 (PDT)
+Message-ID: <6c7d9c92-7616-4fad-806e-44302c33b63c@linaro.org>
+Date: Tue, 17 Oct 2023 19:08:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] HID: touchscreen: Add initial support for Himax
- HID-over-SPI
+Subject: Re: [PATCH v3 0/4] HID: touchscreen: add himax hid-over-spi driver
 Content-Language: en-US
 To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
- dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
- benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
- hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
- poyu_hung@himax.corp-partner.google.com
+ Doug Anderson <dianders@chromium.org>, Tomasz Figa <tfiga@chromium.org>,
+ jingyliang@chromium.org, poyuan_chang@himax.corp-partner.google.com,
+ hbarnor@chromium.org
+Cc: jikos@kernel.org, wuxy23@lenovo.com, conor+dt@kernel.org,
+ luolm1@lenovo.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ poyu_hung@himax.corp-partner.google.com, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, benjamin.tissoires@redhat.com
 References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <20231017091900.801989-5-tylor_yang@himax.corp-partner.google.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,42 +124,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231017091900.801989-5-tylor_yang@himax.corp-partner.google.com>
+In-Reply-To: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 11:19, Tylor Yang wrote:
+On 17/10/2023 11:18, Tylor Yang wrote:
+> Hello,
+> 
+> This patch series adds the driver for Himax HID-over-SPI touchscreen ICs.
+> This driver takes a position in [1], it intends to take advantage of SPI
+> transfer speed and HID interface.
+> 
 
-...
+Dear Google/Chromium folks,
 
-> +
-> +#if defined(CONFIG_FB)
-> +int fb_notifier_callback(struct notifier_block *self,
-> +			 unsigned long event, void *data)
-> +{
-> +	const struct fb_event *evdata = data;
-> +	int *blank;
-> +	struct himax_ts_data *ts =
-> +	    container_of(self, struct himax_ts_data, fb_notif);
-> +
-> +	I("entered");
-> +
-> +	if (!ts) {
-> +		E("ts is NULL");
-> +		return -ECANCELED;
-> +	}
+As a multi-billion company I am sure you can spare some small amount of
+time/effort/money for internal review before using community for this
+purpose. I mean reviewing trivial issues, like coding style, or just
+running checkpatch. You know, the obvious things.
 
-There are so many wrong things with this.... First, tell me, how
-container of valid pointer can be NULL?
+There is no need to use expensive time of community reviewers to review
+very simple mistakes, the ones which we fixed in Linux kernel years ago
+(also with automated tools). You can and you should do it, before
+submitting drivers for community review.
 
-Second, this is not Linux coding style.
-
+Thanks in advance.
 
 Best regards,
 Krzysztof
