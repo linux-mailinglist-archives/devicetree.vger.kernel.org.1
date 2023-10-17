@@ -1,61 +1,85 @@
-Return-Path: <devicetree+bounces-9283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C381D7CC73D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:16:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3BC07CC793
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 17:36:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73491281995
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:16:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48065B20F85
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A519444480;
-	Tue, 17 Oct 2023 15:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4EF0450CB;
+	Tue, 17 Oct 2023 15:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qA4geOls"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vMWF7Wsx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887B14368F
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 15:16:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C7D1C433C7;
-	Tue, 17 Oct 2023 15:16:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697555789;
-	bh=I1YFtN9wuNunqV/8C+16JPV6zk4eRK/ldWnQjVGx8aw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qA4geOls98dkMNxYMDgCn65zpRiJmV2KO+qotVGrvE0qtEk/7fjxWi/q2HL7rKl9Z
-	 kj0JpTm+XpMrAsYD2VZoszFGYd4YQ+1LGzp2DT/XZ6LNOPe16prjFCc//75pmLImBx
-	 2uKj9yw87tdihnwbdr6lYHW1H1JtVQgVUh3KNuh+Kq1npFYHf+aaOj5AVNOl2I+xKC
-	 APt5T1LFdRfPErrRRFDD7uvRQhruXokJYQnDp48jT7z45wayjq/67WnFfzo2se94ND
-	 W1zDB4XjN/fQa5EGr+u4i5xihPbebqAKicnrGguO3rg7wHedrfv0z6Uv1Mo+D4AZJM
-	 sbnQV7nllokFg==
-Date: Tue, 17 Oct 2023 20:46:19 +0530
-From: "mani@kernel.org" <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
- unnecessary memory assignment
-Message-ID: <20231017151619.GE5274@thinkpad>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
- <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
- <CGME20231017091924eucas1p2e65759cd05340e3e5b3a1d9ab9de1320@eucas1p2.samsung.com>
- <a85158a0-858c-43c3-b64a-c09de72a50f9@samsung.com>
- <TYBPR01MB5341006D4CEAA1422B0A41F3D8D6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA05B27EC3
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 15:36:36 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25659F
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:36:31 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-32dc918d454so444313f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1697556990; x=1698161790; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qMFse6qVP0SKpr/9/PirQcPWYPKukXqLgPReMEjtkyg=;
+        b=vMWF7WsxKmrNoeM/6d/Zv3fnVITYgT0f1TU0W06gfEuGewsKCAiphEko1vFlMX38Wn
+         WDy9BdE+eW5A70lN26/1+9+efXQC2yxHHeNYd00DLMTDATv47ElopwuoA1PndsM2WXX1
+         oNSTiQFVQGRRLTcGO0lIazvnRmZ7QIt7AXf0SdLf8ovu0cMgMc30MNS41u1nclFkcLTu
+         GbhWZhbEuG8TLl9mGgkRuHghI+UYvT/VukqR1yLd5vIWZzFa0IX/3KJSgAILNFaMSIDL
+         vjhxIdh1xeejI7bLCk6BFPqG8jA3rr5XB9HLwCu/56JFMMdIxdEATm1LVpCr9L7kmDJo
+         CsLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697556990; x=1698161790;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qMFse6qVP0SKpr/9/PirQcPWYPKukXqLgPReMEjtkyg=;
+        b=Ak0N+1pUp42QsoNjTiAXL2AVJPtOX7kgDBUw8piKOZZ9hAKzL/ehJ3mkW6D+QzoEwA
+         C83RlEkzWfplLnIWcEmYDn4UdUbtObvhmP/8St6pqEeiY4KqmAgEbKAz91jEaKi3d+ld
+         +iyvFUQn6UgVnbDwxs4rANhlPAS/gYi6dTMJBqgWeRcUr6p9h5ZeZKvAgVEqeEB25tiv
+         HDBnQqzdVHvt9EsoDA3QVJnsqThxCunQAMCWma0LXkyK6TeukGUfx7ycbPcLRlDFfYeC
+         H33gTpyyQrT3uHsPy0sxQfia7zDYthif2ELz3PBUXsiBSnXosa5hwZUDKNdNWelh67SS
+         VsDg==
+X-Gm-Message-State: AOJu0YyVl069WS0OzfsG2MlZPsXuyjQD/uOkpAGkPrY046PRNNV6wBvp
+	GBqUB4S4U8ZmGkdFa99B9YPycQ==
+X-Google-Smtp-Source: AGHT+IG6qN9wBjL2Wth0TPezlyQFv7dXwIHqnQPMkZ8jhf7CGi38w5msaJWBtTzjglxTf+LTJqzB5Q==
+X-Received: by 2002:adf:e5c6:0:b0:319:72f8:7249 with SMTP id a6-20020adfe5c6000000b0031972f87249mr2399021wrn.66.1697556990016;
+        Tue, 17 Oct 2023 08:36:30 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:93d3:2aab:95bb:3a09])
+        by smtp.gmail.com with ESMTPSA id a15-20020a056000100f00b0032d9337e7d1sm40889wrx.11.2023.10.17.08.36.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Oct 2023 08:36:29 -0700 (PDT)
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
+ <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
+ <1jedhyx51m.fsf@starbuckisacylon.baylibre.com>
+ <376968a3-a0f0-3045-96fe-881c2e36be7e@amlogic.com>
+ <1jbkcxv02x.fsf@starbuckisacylon.baylibre.com>
+ <ce3b4fa4-5823-4784-b41f-397ad07df3c6@amlogic.com>
+User-agent: mu4e 1.8.13; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu <chuan.liu@amlogic.com>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V2 4/4] clk: meson: c3: add c3 clock peripherals
+ controller driver
+Date: Tue, 17 Oct 2023 17:21:36 +0200
+In-reply-to: <ce3b4fa4-5823-4784-b41f-397ad07df3c6@amlogic.com>
+Message-ID: <1jy1g1tg5e.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,162 +87,261 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYBPR01MB5341006D4CEAA1422B0A41F3D8D6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 17, 2023 at 12:05:12PM +0000, Yoshihiro Shimoda wrote:
-> Dear Marek,
-> 
-> > From: Marek Szyprowski, Sent: Tuesday, October 17, 2023 6:19 PM
-> > 
-> > Dear All,
-> > 
-> > On 11.10.2023 09:14, Yoshihiro Shimoda wrote:
-> > > According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> > > Rev.5.20a, we should disable two BARs to avoid unnecessary memory
-> > > assignment during device enumeration. Otherwise, Renesas R-Car Gen4
-> > > PCIe controllers cannot work correctly in host mode.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > 
-> > This patch landed in today's linux-next 20231017 as commit e308528cac3e
-> > ("PCI: dwc: Disable two BARs to avoid unnecessary memory assignment").
-> > Unfortunately it causes the following kernel panic on Samsung
-> > Exynos5433-based TM2e board:
-> > 
-> > exynos-pcie 15700000.pcie: host bridge /soc@0/pcie@15700000 ranges:
-> > exynos-pcie 15700000.pcie:       IO 0x000c001000..0x000c010fff ->
-> > 0x0000000000
-> > exynos-pcie 15700000.pcie:      MEM 0x000c011000..0x000ffffffe ->
-> > 0x000c011000
-> > exynos-pcie 15700000.pcie: iATU: unroll F, 3 ob, 5 ib, align 4K, limit 4G
-> > Unable to handle kernel paging request at virtual address ffff800084196010
-> > Mem abort info:
-> > ...
-> > Data abort info:
-> > ...
-> > swapper pgtable: 4k pages, 48-bit VAs, pgdp=0000000022047000
-> > [ffff800084196010] pgd=10000000df6ff003, p4d=10000000df6ff003,
-> > pud=10000000df6fe003, pmd=1000000024ad9003, pte=0000000000000000
-> > Internal error: Oops: 0000000096000047 [#1] PREEMPT SMP
-> > Modules linked in:
-> > CPU: 4 PID: 55 Comm: kworker/u18:0 Not tainted 6.6.0-rc1+ #14129
-> > Hardware name: Samsung TM2E board (DT)
-> > Workqueue: events_unbound deferred_probe_work_func
-> > pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> > pc : dw_pcie_write_dbi2+0xb8/0xc8
-> > lr : dw_pcie_setup_rc+0x30/0x4e4
-> > ...
-> > Call trace:
-> >   dw_pcie_write_dbi2+0xb8/0xc8
-> >   dw_pcie_setup_rc+0x30/0x4e4
-> >   dw_pcie_host_init+0x238/0x608
-> >   exynos_pcie_probe+0x23c/0x340
-> >   platform_probe+0x68/0xd8
-> >   really_probe+0x148/0x2b4
-> >   __driver_probe_device+0x78/0x12c
-> >   driver_probe_device+0xd8/0x160
-> >   __device_attach_driver+0xb8/0x138
-> >   bus_for_each_drv+0x84/0xe0
-> >   __device_attach+0xa8/0x1b0
-> >   device_initial_probe+0x14/0x20
-> >   bus_probe_device+0xb0/0xb4
-> >   deferred_probe_work_func+0x8c/0xc8
-> >   process_one_work+0x1ec/0x53c
-> >   worker_thread+0x298/0x408
-> >   kthread+0x124/0x128
-> >   ret_from_fork+0x10/0x20
-> > Code: d50332bf 79000023 17ffffe2 d50332bf (b9000023)
-> > ---[ end trace 0000000000000000 ]---
-> > Kernel panic - not syncing: Oops: Fatal exception
-> > SMP: stopping secondary CPUs
-> > Kernel Offset: disabled
-> > CPU features: 0x8c00020e,3c020000,0000421b
-> > Memory Limit: none
-> > ---[ end Kernel panic - not syncing: Oops: Fatal exception ]---
-> > 
-> > I've observed similar issue on Qualcomm's RB5 platform with some
-> > additional not-yet merged patches enabling PCIe support. Reverting
-> > $subject on top of linux-next fixes this issue.
-> > 
-> > Let me know if you need more information.
-> 
-> Thank you for the report. I guess that the issue is related to
-> out-of-range access of dbi2:
-> - In arch/arm64/boot/dts/exynos/exynos5433.dtsi, the dbi reg size is 0x1000
->   like below:
-> -----
->                 pcie: pcie@15700000 {
->                         compatible = "samsung,exynos5433-pcie";
->                         reg = <0x15700000 0x1000>, <0x156b0000 0x1000>,
->                               <0x0c000000 0x1000>;
->                         reg-names = "dbi", "elbi", "config";
-> ...
-> -----
-> 
-> - In drivers/pci/controller/dwc/pcie-designware.c, "dbi2" area is calculated
->   by the following if reg-names "dbi2" didn't exist:
-> -----
->                         pci->dbi_base2 = pci->dbi_base + SZ_4K;
-> -----
-> 
-> - However, this is out-of-memory on exynos5433.dtsi because the "dbi" size is
->   0x1000 only.
-> - And then, this patch always writes PCI_BASE_ADDRESS_[01] to dbi2 area.
->   So, since this is out-of-range, the kernel panic happens.
-> 
 
-I could reproduce the issue Marek reported on RB5. As you pointed out, it is due
-to not mapping dbi2 explicitly. But we were not using DBI2 on the host earlier
-and it looks to me that DBI2 may not be implemented on Qcom host platforms.
+On Tue 17 Oct 2023 at 22:59, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-Atleast on EP, I confirmed with Qcom that DBI=DBI2 as represented in the driver,
-but I couldn't confirm if it is same for host as well.
+>>>>> +
+>>>>> +static struct clk_regmap saradc =3D {
+>>>>> +     .data =3D &(struct clk_regmap_gate_data){
+>>>>> +             .offset =3D SAR_CLK_CTRL0,
+>>>>> +             .bit_idx =3D 8,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data) {
+>>>>> +             .name =3D "saradc",
+>>>>> +             .ops =3D &clk_regmap_gate_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &saradc_div.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static u32 pwm_parent_table[] =3D { 0, 2, 3 };
+>>>> What's pwm parent 1, why can't it be used ?
+>>> This 1 corresponds to gp1 pll, which is currently dedicated to emmc.
+>> Given that gp1 does not exist in your PLL controller, it is going to be
+>> hard to dedicate it to eMMC ;)
+> Because the register corresponding to gp1_pll has permission restrictions,
+> the corresponding register is read-only in the kernel (can read and write
+> in the bl31 environment), here first mask the source to solve the
+> permission problem before opening
 
-> Perhaps, we should revert this patch at first. And, add the settings into
-> my environment (pcie-rcar-gen4.c) only. I also have alternative solution which
-> modifies the "dbi2" area calculation and avoid out-of-range access somehow.
-> But, it may complicate source code...
-> 
+The PWM sel clock does not have CLK_SET_RATE_PARENT so it is not going to
+request rate change for any parent clock, it will just what is available.
 
-Yes, let's revert this patch for now and move it to rcar driver.
+Your reason does not apply here.
 
-- Mani
+Also, if gp1 registers are read-only from the kernel, you can still
+expose it with RO ops, possibly with CLK_GET_RATE_NOCACHE if the bl31
+may change at runtime.
 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > > ---
-> > >   drivers/pci/controller/dwc/pcie-designware-host.c | 8 ++++++++
-> > >   1 file changed, 8 insertions(+)
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > index a7170fd0e847..56cc7ff6d508 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > @@ -737,6 +737,14 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> > >   	u32 val, ctrl, num_ctrls;
-> > >   	int ret;
-> > >
-> > > +	/*
-> > > +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> > > +	 * Rev.5.20a, we should disable two BARs to avoid unnecessary memory
-> > > +	 * assignment during device enumeration.
-> > > +	 */
-> > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_0, 0x0);
-> > > +	dw_pcie_writel_dbi2(pci, PCI_BASE_ADDRESS_1, 0x0);
-> > > +
-> > >   	/*
-> > >   	 * Enable DBI read-only registers for writing/updating configuration.
-> > >   	 * Write permission gets disabled towards the end of this function.
-> > 
-> > Best regards
-> > --
-> > Marek Szyprowski, PhD
-> > Samsung R&D Institute Poland
-> 
+>>
+>>>>> +
+>>>>> +static const struct clk_parent_data pwm_parent_data[] =3D {
+>>>>> +     { .fw_name =3D "xtal" },
+>>>>> +     { .fw_name =3D "fclk_div4" },
+>>>>> +     { .fw_name =3D "fclk_div3" }
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap pwm_a_sel =3D {
+>>>>> +     .data =3D &(struct clk_regmap_mux_data){
+>>>>> +             .offset =3D PWM_CLK_AB_CTRL,
+>>>>> +             .mask =3D 0x3,
+>>>>> +             .shift =3D 9,
+>>>>> +             .table =3D pwm_parent_table,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "pwm_a_sel",
+>>>>> +             .ops =3D &clk_regmap_mux_ops,
+>>>>> +             .parent_data =3D pwm_parent_data,
+>>>>> +             .num_parents =3D ARRAY_SIZE(pwm_parent_data),
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap pwm_a_div =3D {
+>>>>> +     .data =3D &(struct clk_regmap_div_data){
+>>>>> +             .offset =3D PWM_CLK_AB_CTRL,
+>>>>> +             .shift =3D 0,
+>>>>> +             .width =3D 8,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "pwm_a_div",
+>>>>> +             .ops =3D &clk_regmap_divider_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &pwm_a_sel.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
 
--- 
-மணிவண்ணன் சதாசிவம்
+[...]
+
+>>>>> +
+>>>>> +static struct clk_regmap spifc =3D {
+>>>>> +     .data =3D &(struct clk_regmap_gate_data){
+>>>>> +             .offset =3D SPIFC_CLK_CTRL,
+>>>>> +             .bit_idx =3D 8,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data) {
+>>>>> +             .name =3D "spifc",
+>>>>> +             .ops =3D &clk_regmap_gate_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &spifc_div.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static u32 emmc_parent_table[] =3D { 0, 1, 2, 3, 4, 5, 7 };
+>>>> What's 6 ? why can't it be used ?
+>>>>
+>> No answer ?
+> 6 - gp1_pll,The permission reason is that the patch is submitted to open
+> after the solution is resolved
+>>
+>>>>> +
+>>>>> +static const struct clk_parent_data emmc_parent_data[] =3D {
+>>>>> +     { .fw_name =3D "xtal" },
+>>>>> +     { .fw_name =3D "fclk_div2" },
+>>>>> +     { .fw_name =3D "fclk_div3" },
+>>>>> +     { .fw_name =3D "hifi_pll" },
+>>>>> +     { .fw_name =3D "fclk_div2p5" },
+>>>>> +     { .fw_name =3D "fclk_div4" },
+>>>>> +     { .fw_name =3D "gp0_pll" }
+>>>>> +};
+>> Not seeing gp1 there ? why would you need to dedicate an GP pll for MMC
+>> ? Maybe I missing something but it seems to me the usual MMC rate are
+>> acheivable with the fclks, especially 2p5.
+> Permission reason
+
+use RO ops.
+
+>>
+>>>>> +
+>>>>> +static struct clk_regmap sd_emmc_a_sel =3D {
+>>>>> +     .data =3D &(struct clk_regmap_mux_data){
+>>>>> +             .offset =3D SD_EMMC_CLK_CTRL,
+>>>>> +             .mask =3D 0x7,
+>>>>> +             .shift =3D 9,
+>>>>> +             .table =3D emmc_parent_table,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "sd_emmc_a_sel",
+>>>>> +             .ops =3D &clk_regmap_mux_ops,
+>>>>> +             .parent_data =3D emmc_parent_data,
+>>>>> +             .num_parents =3D ARRAY_SIZE(emmc_parent_data),
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap sd_emmc_a_div =3D {
+>>>>> +     .data =3D &(struct clk_regmap_div_data){
+>>>>> +             .offset =3D SD_EMMC_CLK_CTRL,
+>>>>> +             .shift =3D 0,
+>>>>> +             .width =3D 7,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "sd_emmc_a_div",
+>>>>> +             .ops =3D &clk_regmap_divider_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &sd_emmc_a_sel.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap sd_emmc_a =3D {
+>>>>> +     .data =3D &(struct clk_regmap_gate_data){
+>>>>> +             .offset =3D SD_EMMC_CLK_CTRL,
+>>>>> +             .bit_idx =3D 7,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data) {
+>>>>> +             .name =3D "sd_emmc_a",
+>>>>> +             .ops =3D &clk_regmap_gate_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &sd_emmc_a_div.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
+
+[...]
+
+>>>>> +static u32 csi_phy_parent_table[] =3D { 0, 1, 2, 3, 4, 5, 7 };
+>>>> Same here and all following instance
+>>>>
+>>> This 1 corresponds to gp1 pll, which is currently dedicated to emmc.
+>> No it is not. Again mainline drivers are slightly different from AML
+>> fork you might be used to. No PLL is dedicated to the mmc driver.
+>> Unless you can make a strong case for it, I don't think it will happen
+>> in the near future.
+> For performance considerations, emmc needs to use a higher frequency clock
+> source (currently our emmc driver has been adapted to 1152M), so we
+> internally allocate gp1_pll to emmc.As mentioned above, the gp1_pll
+> register permission problem is masked here first=F0=9F=99=82
+
+Your GP1 is controlled by the SCP FW and RO for the kernel. That's all from
+the clock controller POV.
+
+No reason to remove it here and elsewhere AFAICT
+
+>>>>> +
+>>>>> +static const struct clk_parent_data csi_phy_parent_data[] =3D {
+>>>>> +     { .fw_name =3D "fclk_div2p5" },
+>>>>> +     { .fw_name =3D "fclk_div3" },
+>>>>> +     { .fw_name =3D "fclk_div4" },
+>>>>> +     { .fw_name =3D "fclk_div5" },
+>>>>> +     { .fw_name =3D "gp0_pll" },
+>>>>> +     { .fw_name =3D "hifi_pll" },
+>>>>> +     { .fw_name =3D "xtal" }
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap csi_phy0_sel =3D {
+>>>>> +     .data =3D &(struct clk_regmap_mux_data){
+>>>>> +             .offset =3D ISP0_CLK_CTRL,
+>>>>> +             .mask =3D 0x7,
+>>>>> +             .shift =3D 25,
+>>>>> +             .table =3D csi_phy_parent_table,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "csi_phy0_sel",
+>>>>> +             .ops =3D &clk_regmap_mux_ops,
+>>>>> +             .parent_data =3D csi_phy_parent_data,
+>>>>> +             .num_parents =3D ARRAY_SIZE(csi_phy_parent_data),
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap csi_phy0_div =3D {
+>>>>> +     .data =3D &(struct clk_regmap_div_data){
+>>>>> +             .offset =3D ISP0_CLK_CTRL,
+>>>>> +             .shift =3D 16,
+>>>>> +             .width =3D 7,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data){
+>>>>> +             .name =3D "csi_phy0_div",
+>>>>> +             .ops =3D &clk_regmap_divider_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &csi_phy0_sel.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap csi_phy0 =3D {
+>>>>> +     .data =3D &(struct clk_regmap_gate_data){
+>>>>> +             .offset =3D ISP0_CLK_CTRL,
+>>>>> +             .bit_idx =3D 24,
+>>>>> +     },
+>>>>> +     .hw.init =3D &(struct clk_init_data) {
+>>>>> +             .name =3D "csi_phy0",
+>>>>> +             .ops =3D &clk_regmap_gate_ops,
+>>>>> +             .parent_hws =3D (const struct clk_hw *[]) {
+>>>>> +                     &csi_phy0_div.hw
+>>>>> +             },
+>>>>> +             .num_parents =3D 1,
+>>>>> +             .flags =3D CLK_SET_RATE_PARENT,
+>>>>> +     },
+>>>>> +};
 
