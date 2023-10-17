@@ -1,570 +1,300 @@
-Return-Path: <devicetree+bounces-9152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581817CBD96
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 106317CBDA5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 10:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7EAC281967
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:34:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9C9C281962
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677233B792;
-	Tue, 17 Oct 2023 08:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED50381CF;
+	Tue, 17 Oct 2023 08:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OzW6Ww2C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDslOWZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96AA3D3AB;
-	Tue, 17 Oct 2023 08:34:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E154FA;
-	Tue, 17 Oct 2023 01:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697531656; x=1729067656;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MxbicM1S1FMcUtXMPUH9Edwjv0WoIkOAbw6lUC89MFI=;
-  b=OzW6Ww2CtCEFhPKDfcZSYyE03UmmfgH1aQMvw5xM0ShgmMxzU37vCKyk
-   KUeJ9rD2LOgnR5Sj8R2CPbSl52VWttn0EnbTC9mcQkC+xYlnCmXKfQbpL
-   2vdZh1i8lo+OO7X4Rlq+8ssYgcqm8B3iH+8tuSRkO283ISq6rXoOZB2O2
-   2z370RYhPMo1hnHwvDlGNFQQ0LwSqy+J0fNNHayC3nAxoGDcA7f+L+LYE
-   O2NeGNSL4mlZu/+sc3BAnVlzeZySjr9aTmemR+3EiocDhWIp+YVIMjYlL
-   yp6BkYyfIM13neVB76lX0cuUzPw1nPBbvDUk97KTxAhLGzs0qzgckuGO9
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="416812578"
-X-IronPort-AV: E=Sophos;i="6.03,231,1694761200"; 
-   d="scan'208";a="416812578"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2023 01:34:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="732632345"
-X-IronPort-AV: E=Sophos;i="6.03,231,1694761200"; 
-   d="scan'208";a="732632345"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by orsmga006.jf.intel.com with SMTP; 17 Oct 2023 01:34:10 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 17 Oct 2023 11:34:10 +0300
-Date: Tue, 17 Oct 2023 11:34:09 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] usb: typec: add support for PTN36502 redriver
-Message-ID: <ZS5HAQrUObdhHSdV@kuha.fi.intel.com>
-References: <20231013-ptn36502-v1-0-98109a430efc@fairphone.com>
- <20231013-ptn36502-v1-2-98109a430efc@fairphone.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36EE33D397
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 08:35:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7BC5C433D9;
+	Tue, 17 Oct 2023 08:35:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697531730;
+	bh=ZiOLN48Bk/c9orzQtPgN0BVZaur9hS8a8Id4oulCNvw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hDslOWZ+KNS/vAG7TmV/lTR4mLRzVUAhL81hT+IS0af1TuUxusLgHE5YAU4UtJc48
+	 +zw+tTakCAnZRcS3lVwPHDLc0o+gedzKxyRUKdkeoDzfFIdHPi3F3BckynTYgSknoy
+	 yusVnkrf0MKXHSlLm5jgfayDDn1kVHcKSWOpUQz7WwzObVKZdeP0tS1ljE2IFByQNk
+	 bqLH3X3H/rhKvxXQEwiYhAKqcmvce/BvbnDZCDa22d+DOmtB74fosteTiKULuOxHN5
+	 IR0ePZxuJfqmI6LERvwTRdzM26Fm0Ei01uwcLL4IwQbl0fblz87anbHbcEB9qBZstr
+	 vuDch3lm/K/uA==
+Message-ID: <ff2dd5d9-bf0d-403a-b399-b6ec836ad863@kernel.org>
+Date: Tue, 17 Oct 2023 17:35:25 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231013-ptn36502-v1-2-98109a430efc@fairphone.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 16/26] PM / devfreq: rockchip-dfi: Add perf support
+Content-Language: en-US
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ Heiko Stuebner <heiko@sntech.de>, Kyungmin Park <kyungmin.park@samsung.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-17-s.hauer@pengutronix.de>
+ <73ed646a-f20b-8050-2a45-c6faa5539193@kernel.org>
+ <20231016121631.GB3359458@pengutronix.de>
+From: Chanwoo Choi <chanwoo@kernel.org>
+In-Reply-To: <20231016121631.GB3359458@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On Fri, Oct 13, 2023 at 04:24:48PM +0200, Luca Weiss wrote:
-> Add a driver for the NXP PTN36502 Type-C USB 3.1 Gen 1 and DisplayPort
-> v1.2 combo redriver.
+On 23. 10. 16. 21:16, Sascha Hauer wrote:
+> On Mon, Oct 09, 2023 at 06:48:43AM +0900, Chanwoo Choi wrote:
+>> On 23. 7. 4. 18:32, Sascha Hauer wrote:
+>>> The DFI is a unit which is suitable for measuring DDR utilization, but
+>>> so far it could only be used as an event driver for the DDR frequency
+>>> scaling driver. This adds perf support to the DFI driver.
+>>>
+>>> Usage with the 'perf' tool can look like:
+>>>
+>>> perf stat -a -e rockchip_ddr/cycles/,\
+>>> 		rockchip_ddr/read-bytes/,\
+>>> 		rockchip_ddr/write-bytes/,\
+>>> 		rockchip_ddr/bytes/ sleep 1
+>>>
+>>>  Performance counter stats for 'system wide':
+>>>
+>>>         1582524826      rockchip_ddr/cycles/
+>>>            1802.25 MB   rockchip_ddr/read-bytes/
+>>>            1793.72 MB   rockchip_ddr/write-bytes/
+>>>            3595.90 MB   rockchip_ddr/bytes/
+>>>
+>>>        1.014369709 seconds time elapsed
+>>>
+>>> perf support has been tested on a RK3568 and a RK3399, the latter with
+>>> dual channel DDR.
+>>>
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>>> ---
+>>>
+>>> Notes:
+>>>     Changes since v5:
+>>>     - Add missing initialization of &dfi->last_perf_count
+>>>     
+>>>     Changes since v4:
+>>>     
+>>>     - use __stringify to ensure event type definitions and event numbers in sysfs are consistent
+>>>     - only use 64bit values in structs holding counters
+>>>     - support monitoring individual DDR channels
+>>>     - fix return value in rockchip_ddr_perf_event_init(): -EOPNOTSUPP -> -EINVAL
+>>>     - check for invalid event->attr.config values
+>>>     - start hrtimer to trigger in one second, not immediately
+>>>     - use devm_add_action_or_reset()
+>>>     - add suppress_bind_attrs
+>>>     - enable DDRMON during probe when perf is enabled
+>>>     - use a seqlock to protect perf reading the counters from the hrtimer callback modifying them
+>>>
+>>>  drivers/devfreq/event/rockchip-dfi.c | 442 ++++++++++++++++++++++++++-
+>>>  include/soc/rockchip/rk3399_grf.h    |   2 +
+>>>  include/soc/rockchip/rk3568_grf.h    |   1 +
+>>>  3 files changed, 440 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+>>> index 50e497455dc69..969b62f071b83 100644
+>>> --- a/drivers/devfreq/event/rockchip-dfi.c
+>>> +++ b/drivers/devfreq/event/rockchip-dfi.c
+>>> @@ -16,10 +16,12 @@
+>>>  #include <linux/regmap.h>
+>>>  #include <linux/slab.h>
+>>>  #include <linux/list.h>
+>>> +#include <linux/seqlock.h>
+>>>  #include <linux/of.h>
+>>>  #include <linux/of_device.h>
+>>>  #include <linux/bitfield.h>
+>>>  #include <linux/bits.h>
+>>> +#include <linux/perf_event.h>
+>>>  
+>>>  #include <soc/rockchip/rockchip_grf.h>
+>>>  #include <soc/rockchip/rk3399_grf.h>
+>>> @@ -41,19 +43,39 @@
+>>>  					 DDRMON_CTRL_LPDDR4 | \
+>>>  					 DDRMON_CTRL_LPDDR23)
+>>>  
+>>> +#define DDRMON_CH0_WR_NUM		0x20
+>>> +#define DDRMON_CH0_RD_NUM		0x24
+>>>  #define DDRMON_CH0_COUNT_NUM		0x28
+>>>  #define DDRMON_CH0_DFI_ACCESS_NUM	0x2c
+>>>  #define DDRMON_CH1_COUNT_NUM		0x3c
+>>>  #define DDRMON_CH1_DFI_ACCESS_NUM	0x40
+>>>  
+>>> +#define PERF_EVENT_CYCLES		0x0
+>>> +#define PERF_EVENT_READ_BYTES		0x1
+>>> +#define PERF_EVENT_WRITE_BYTES		0x2
+>>> +#define PERF_EVENT_READ_BYTES0		0x3
+>>> +#define PERF_EVENT_WRITE_BYTES0		0x4
+>>> +#define PERF_EVENT_READ_BYTES1		0x5
+>>> +#define PERF_EVENT_WRITE_BYTES1		0x6
+>>> +#define PERF_EVENT_READ_BYTES2		0x7
+>>> +#define PERF_EVENT_WRITE_BYTES2		0x8
+>>> +#define PERF_EVENT_READ_BYTES3		0x9
+>>> +#define PERF_EVENT_WRITE_BYTES3		0xa
+>>> +#define PERF_EVENT_BYTES		0xb
+>>> +#define PERF_ACCESS_TYPE_MAX		0xc
+>>> +
+>>>  /**
+>>>   * struct dmc_count_channel - structure to hold counter values from the DDR controller
+>>>   * @access:       Number of read and write accesses
+>>>   * @clock_cycles: DDR clock cycles
+>>> + * @read_access:  number of read accesses
+>>> + * @write_acccess: number of write accesses
+>>>   */
+>>>  struct dmc_count_channel {
+>>> -	u32 access;
+>>> -	u32 clock_cycles;
+>>> +	u64 access;
+>>> +	u64 clock_cycles;
+>>> +	u64 read_access;
+>>> +	u64 write_access;
+>>>  };
+>>>  
+>>>  struct dmc_count {
+>>> @@ -69,6 +91,11 @@ struct rockchip_dfi {
+>>>  	struct devfreq_event_dev *edev;
+>>>  	struct devfreq_event_desc desc;
+>>>  	struct dmc_count last_event_count;
+>>> +
+>>> +	struct dmc_count last_perf_count;
+>>> +	struct dmc_count total_count;
+>>> +	seqlock_t count_seqlock; /* protects last_perf_count and total_count */
+>>> +
+>>>  	struct device *dev;
+>>>  	void __iomem *regs;
+>>>  	struct regmap *regmap_pmu;
+>>> @@ -77,6 +104,14 @@ struct rockchip_dfi {
+>>>  	struct mutex mutex;
+>>>  	u32 ddr_type;
+>>>  	unsigned int channel_mask;
+>>> +	enum cpuhp_state cpuhp_state;
+>>> +	struct hlist_node node;
+>>> +	struct pmu pmu;
+>>> +	struct hrtimer timer;
+>>> +	unsigned int cpu;
+>>> +	int active_events;
+>>> +	int burst_len;
+>>> +	int buswidth[DMC_MAX_CHANNELS];
+>>>  };
+>>>  
+>>>  static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
+>>> @@ -145,7 +180,7 @@ static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
+>>>  	mutex_unlock(&dfi->mutex);
+>>>  }
+>>>  
+>>> -static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_count *count)
+>>> +static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_count *c)
+>>
+>> Actually, this change is not related to the patch's role which supports perf.
+>> Also, it is better to use 'res' argument name because rockchip_ddr_perf_counters_add()
+>> used the 'struct dmc_count *res' argument name.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-
-Looks OK to me, but couple of nitpicks below. With those fixed:
-
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
->  drivers/usb/typec/mux/Kconfig    |  10 +
->  drivers/usb/typec/mux/Makefile   |   1 +
->  drivers/usb/typec/mux/ptn36502.c | 421 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 432 insertions(+)
+> Indeed the variable rename is not required here and for consistency
+> with rockchip_ddr_perf_counters_add() 'res' would be a better name.
 > 
-> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-> index 65da61150ba7..816b9bd08355 100644
-> --- a/drivers/usb/typec/mux/Kconfig
-> +++ b/drivers/usb/typec/mux/Kconfig
-> @@ -46,4 +46,14 @@ config TYPEC_MUX_NB7VPQ904M
->  	  Say Y or M if your system has a On Semiconductor NB7VPQ904M Type-C
->  	  redriver chip found on some devices with a Type-C port.
->  
-> +config TYPEC_MUX_PTN36502
-> +	tristate "NXP PTN36502 Type-C redriver driver"
-> +	depends on I2C
-> +	depends on DRM || DRM=n
-> +	select DRM_PANEL_BRIDGE if DRM
-> +	select REGMAP_I2C
-> +	help
-> +	  Say Y or M if your system has a NXP PTN36502 Type-C redriver chip
-> +	  found on some devices with a Type-C port.
-> +
->  endmenu
-> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-> index 76196096ef41..9d6a5557b0bd 100644
-> --- a/drivers/usb/typec/mux/Makefile
-> +++ b/drivers/usb/typec/mux/Makefile
-> @@ -5,3 +5,4 @@ obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
->  obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
->  obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
->  obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
-> +obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
-> diff --git a/drivers/usb/typec/mux/ptn36502.c b/drivers/usb/typec/mux/ptn36502.c
-> new file mode 100644
-> index 000000000000..91684a856f3a
-> --- /dev/null
-> +++ b/drivers/usb/typec/mux/ptn36502.c
-> @@ -0,0 +1,421 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * NXP PTN36502 Type-C driver
-> + *
-> + * Copyright (C) 2023 Luca Weiss <luca.weiss@fairphone.com>
-> + *
-> + * Based on NB7VPQ904M driver:
-> + * Copyright (C) 2023 Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> + */
-> +
-> +#include <drm/drm_bridge.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
-> +#include <linux/usb/typec_retimer.h>
-> +
-> +#define PTN36502_CHIP_ID_REG				0x00
-> +#define PTN36502_CHIP_ID				0x02
-> +
-> +#define PTN36502_CHIP_REVISION_REG			0x01
-> +#define PTN36502_CHIP_REVISION_BASE(val)		FIELD_GET(GENMASK(7, 4), (val))
-> +#define PTN36502_CHIP_REVISION_METAL(val)		FIELD_GET(GENMASK(3, 0), (val))
-> +
-> +#define PTN36502_DP_LINK_CTRL_REG			0x06
-> +#define PTN36502_DP_LINK_CTRL_LANES_2			(2 << 2)
-> +#define PTN36502_DP_LINK_CTRL_LANES_4			(3 << 2)
-> +#define PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS		(2 << 0)
-> +
-> +/* Registers for lane 0 (0x07) to lane 3 (0x0a) have the same layout */
-> +#define PTN36502_DP_LANE_CTRL_REG(n)			(0x07 + (n))
-> +#define PTN36502_DP_LANE_CTRL_RX_GAIN_3DB		(2<<4)
-> +#define PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD		(2<<2)
-> +#define PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB	(1<<0)
-> +
-> +#define PTN36502_MODE_CTRL1_REG				0x0b
-> +#define PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE		(1<<5)
-> +#define PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON		(1<<3)
-> +#define PTN36502_MODE_CTRL1_MODE_OFF			(0<<0)
-> +#define PTN36502_MODE_CTRL1_MODE_USB_ONLY		(1<<0)
-> +#define PTN36502_MODE_CTRL1_MODE_USB_DP			(2<<0)
-> +#define PTN36502_MODE_CTRL1_MODE_DP			(3<<0)
-> +
-> +#define PTN36502_DEVICE_CTRL_REG			0x0d
-> +#define PTN36502_DEVICE_CTRL_AUX_MONITORING_EN		(1<<7)
+> Are you fine with renaming 'c' to 'res' in this patch or do you want me
+> to make a separate patch from the renaming?
+> 
+>>
+>>
+>>>  {
+>>>  	u32 i;
+>>>  	void __iomem *dfi_regs = dfi->regs;
+>>> @@ -153,13 +188,36 @@ static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_coun
+>>>  	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
+>>>  		if (!(dfi->channel_mask & BIT(i)))
+>>>  			continue;
+>>> -		count->c[i].access = readl_relaxed(dfi_regs +
+>>> +		c->c[i].read_access = readl_relaxed(dfi_regs +
+>>> +				DDRMON_CH0_RD_NUM + i * 20);
+>>> +		c->c[i].write_access = readl_relaxed(dfi_regs +
+>>> +				DDRMON_CH0_WR_NUM + i * 20);
+>>> +		c->c[i].access = readl_relaxed(dfi_regs +
+>>>  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
+>>> -		count->c[i].clock_cycles = readl_relaxed(dfi_regs +
+>>> +		c->c[i].clock_cycles = readl_relaxed(dfi_regs +
+>>>  				DDRMON_CH0_COUNT_NUM + i * 20);
+>>>  	}
+>>>  }
+>>>  
+>>> +static void rockchip_ddr_perf_counters_add(struct rockchip_dfi *dfi,
+>>> +					   const struct dmc_count *now,
+>>> +					   struct dmc_count *res)
+>>> +{
+>>> +	const struct dmc_count *last = &dfi->last_perf_count;
+>>> +	int i;
+>>> +
+>>> +	for (i = 0; i < DMC_MAX_CHANNELS; i++) {
+>>> +		res->c[i].read_access = dfi->total_count.c[i].read_access +
+>>> +			(u32)(now->c[i].read_access - last->c[i].read_access);
+>>> +		res->c[i].write_access = dfi->total_count.c[i].write_access +
+>>> +			(u32)(now->c[i].write_access - last->c[i].write_access);
+>>> +		res->c[i].access = dfi->total_count.c[i].access +
+>>> +			(u32)(now->c[i].access - last->c[i].access);
+>>> +		res->c[i].clock_cycles = dfi->total_count.c[i].clock_cycles +
+>>> +			(u32)(now->c[i].clock_cycles - last->c[i].clock_cycles);
+>>> +	}
+>>> +}
+>>> +
+>>>  static int rockchip_dfi_event_disable(struct devfreq_event_dev *edev)
+>>>  {
+>>>  	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
+>>> @@ -223,6 +281,370 @@ static const struct devfreq_event_ops rockchip_dfi_ops = {
+>>>  	.set_event = rockchip_dfi_set_event,
+>>>  };
+>>>  
+> 
+> [...]
+> 
+>>> +static u64 rockchip_ddr_perf_event_get_count(struct perf_event *event)
+>>> +{
+>>> +	struct rockchip_dfi *dfi = container_of(event->pmu, struct rockchip_dfi, pmu);
+>>> +	int blen = dfi->burst_len;
+>>> +	struct dmc_count total, now;
+>>> +	unsigned int seq;
+>>> +	u64 c = 0;
+>>
+>> Actually, it is difficult to understand the meaning of 'c' local variable name.
+>> Need to use the more clear vairable name instead of 'c'.
+> 
+> 'c' is short for 'count' as in the function name xxx_get_count(). It is
+> initialized to 0, filled with values throughout the function and
+> returned at the end. Which other name do you suggest?
 
-You have couple of different styles here. Please try to always use
-BIT() and GENMASK() macros when possible. At the very least put spaces
-around << and >>.
+If c indicats the 'count', better to use 'count' name. 
+Actually, 'c' is difficult to catch the meaning from just name.
 
-> +struct ptn36502 {
-> +	struct i2c_client *client;
-> +	struct regulator *vdd18_supply;
-> +	struct regmap *regmap;
-> +	struct typec_switch_dev *sw;
-> +	struct typec_retimer *retimer;
-> +
-> +	struct typec_switch *typec_switch;
-> +
-> +	struct drm_bridge bridge;
-> +
-> +	struct mutex lock; /* protect non-concurrent retimer & switch */
-> +
-> +	enum typec_orientation orientation;
-> +	unsigned long mode;
-> +	unsigned int svid;
-> +};
-> +
-> +static int ptn36502_set(struct ptn36502 *ptn)
-> +{
-> +	bool reverse = (ptn->orientation == TYPEC_ORIENTATION_REVERSE);
-> +	unsigned int ctrl1_val = 0;
-> +	unsigned int lane_ctrl_val = 0;
-> +	unsigned int link_ctrl_val = 0;
-> +
-> +	switch (ptn->mode) {
-> +	case TYPEC_STATE_SAFE:
-> +		/* Deep power saving state */
-> +		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG,
-> +			     PTN36502_MODE_CTRL1_MODE_OFF);
-> +		return 0;
-> +
-> +	case TYPEC_STATE_USB:
-> +		/*
-> +		 * Normal Orientation (CC1)
-> +		 * A -> USB RX
-> +		 * B -> USB TX
-> +		 * C -> X
-> +		 * D -> X
-> +		 * Flipped Orientation (CC2)
-> +		 * A -> X
-> +		 * B -> X
-> +		 * C -> USB TX
-> +		 * D -> USB RX
-> +		 */
-> +
-> +		/* USB 3.1 Gen 1 only */
-> +		ctrl1_val = PTN36502_MODE_CTRL1_MODE_USB_ONLY;
-> +		if (reverse)
-> +			ctrl1_val |= PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE;
-> +
-> +		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
-> +		return 0;
-> +
-> +	default:
-> +		if (ptn->svid != USB_TYPEC_DP_SID)
-> +			return -EINVAL;
-> +
-> +		break;
-> +	}
-> +
-> +	/* DP Altmode Setup */
-> +
-> +	switch (ptn->mode) {
-> +	case TYPEC_DP_STATE_C:
-> +	case TYPEC_DP_STATE_E:
-> +		/*
-> +		 * Normal Orientation (CC1)
-> +		 * A -> DP3
-> +		 * B -> DP2
-> +		 * C -> DP1
-> +		 * D -> DP0
-> +		 * Flipped Orientation (CC2)
-> +		 * A -> DP0
-> +		 * B -> DP1
-> +		 * C -> DP2
-> +		 * D -> DP3
-> +		 */
-> +
-> +		/* 4-lane DP */
-> +		ctrl1_val |= PTN36502_MODE_CTRL1_MODE_DP;
-> +		link_ctrl_val |= PTN36502_DP_LINK_CTRL_LANES_4;
-> +		break;
-> +
-> +	case TYPEC_DP_STATE_D:
-> +	case TYPEC_DP_STATE_F: /* State F is deprecated */
-> +		/*
-> +		 * Normal Orientation (CC1)
-> +		 * A -> USB RX
-> +		 * B -> USB TX
-> +		 * C -> DP1
-> +		 * D -> DP0
-> +		 * Flipped Orientation (CC2)
-> +		 * A -> DP0
-> +		 * B -> DP1
-> +		 * C -> USB TX
-> +		 * D -> USB RX
-> +		 */
-> +
-> +		/* USB 3.1 Gen 1 and 2-lane DP */
-> +		ctrl1_val |= PTN36502_MODE_CTRL1_MODE_USB_DP;
-> +		link_ctrl_val |= PTN36502_DP_LINK_CTRL_LANES_2;
-> +		break;
-> +
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	/* Enable AUX monitoring */
-> +	regmap_write(ptn->regmap, PTN36502_DEVICE_CTRL_REG,
-> +		     PTN36502_DEVICE_CTRL_AUX_MONITORING_EN);
-> +
-> +	/* Enable AUX switch path */
-> +	ctrl1_val |= PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON;
-> +	if (reverse)
-> +		ctrl1_val |= PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE;
-> +	regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
-> +
-> +	/* DP Link rate: 5.4 Gbps (HBR2) */
-> +	link_ctrl_val |= PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS;
-> +	regmap_write(ptn->regmap, PTN36502_DP_LINK_CTRL_REG, link_ctrl_val);
-> +
-> +	/*
-> +	 * For all lanes:
-> +	 * - Rx equivalization gain: 3 dB
-> +	 * - TX output swing control: 800 mVppd
-> +	 * - Pre-emphasis control: 3.5 dB
-> +	 */
-> +	lane_ctrl_val = PTN36502_DP_LANE_CTRL_RX_GAIN_3DB |
-> +			PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD |
-> +			PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB;
-> +	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(0), lane_ctrl_val);
-> +	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(1), lane_ctrl_val);
-> +	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(2), lane_ctrl_val);
-> +	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(3), lane_ctrl_val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ptn36502_sw_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
-> +{
-> +	struct ptn36502 *ptn = typec_switch_get_drvdata(sw);
-> +	int ret;
-> +
-> +	ret = typec_switch_set(ptn->typec_switch, orientation);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_lock(&ptn->lock);
-> +
-> +	if (ptn->orientation != orientation) {
-> +		ptn->orientation = orientation;
-> +
-> +		ret = ptn36502_set(ptn);
-> +	}
-> +
-> +	mutex_unlock(&ptn->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ptn36502_retimer_set(struct typec_retimer *retimer, struct typec_retimer_state *state)
-> +{
-> +	struct ptn36502 *ptn = typec_retimer_get_drvdata(retimer);
-> +	int ret = 0;
-> +
-> +	mutex_lock(&ptn->lock);
-> +
-> +	if (ptn->mode != state->mode) {
-> +		ptn->mode = state->mode;
-> +
-> +		if (state->alt)
-> +			ptn->svid = state->alt->svid;
-> +		else
-> +			ptn->svid = 0; // No SVID
-> +
-> +		ret = ptn36502_set(ptn);
-> +	}
-> +
-> +	mutex_unlock(&ptn->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ptn36502_detect(struct ptn36502 *ptn)
-> +{
-> +	struct device *dev = &ptn->client->dev;
-> +	unsigned int reg_val;
-> +	int ret;
-> +
-> +	ret = regmap_read(ptn->regmap, PTN36502_CHIP_ID_REG,
-> +			  &reg_val);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to read chip ID\n");
-> +
-> +	if (reg_val != PTN36502_CHIP_ID)
-> +		return dev_err_probe(dev, -ENODEV, "Unexpected chip ID: %x\n", reg_val);
-> +
-> +	ret = regmap_read(ptn->regmap, PTN36502_CHIP_REVISION_REG,
-> +			  &reg_val);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to read chip revision\n");
-> +
-> +	dev_dbg(dev, "Chip revision: base layer version %lx, metal layer version %lx\n",
-> +		PTN36502_CHIP_REVISION_BASE(reg_val),
-> +		PTN36502_CHIP_REVISION_METAL(reg_val));
-> +
-> +	return 0;
-> +}
-> +
-> +#if IS_ENABLED(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_PANEL_BRIDGE)
-> +static int ptn36502_bridge_attach(struct drm_bridge *bridge,
-> +				    enum drm_bridge_attach_flags flags)
-
-I applied this patch and realised that that's not correctly aligned.
-There are couple of extra spaces.
-
-> +{
-> +	struct ptn36502 *ptn = container_of(bridge, struct ptn36502, bridge);
-> +	struct drm_bridge *next_bridge;
-> +
-> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
-> +		return -EINVAL;
-> +
-> +	next_bridge = devm_drm_of_get_bridge(&ptn->client->dev, ptn->client->dev.of_node, 0, 0);
-> +	if (IS_ERR(next_bridge)) {
-> +		dev_err(&ptn->client->dev, "failed to acquire drm_bridge: %pe\n", next_bridge);
-> +		return PTR_ERR(next_bridge);
-> +	}
-> +
-> +	return drm_bridge_attach(bridge->encoder, next_bridge, bridge,
-> +				 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +}
-> +
-> +static const struct drm_bridge_funcs ptn36502_bridge_funcs = {
-> +	.attach	= ptn36502_bridge_attach,
-> +};
-> +
-> +static int ptn36502_register_bridge(struct ptn36502 *ptn)
-> +{
-> +	ptn->bridge.funcs = &ptn36502_bridge_funcs;
-> +	ptn->bridge.of_node = ptn->client->dev.of_node;
-> +
-> +	return devm_drm_bridge_add(&ptn->client->dev, &ptn->bridge);
-> +}
-> +#else
-> +static int ptn36502_register_bridge(struct ptn36502 *ptn)
-> +{
-> +	return 0;
-> +}
-> +#endif
-> +
-> +static const struct regmap_config ptn36502_regmap = {
-> +	.max_register = 0x0d,
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +};
-> +
-> +static int ptn36502_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct typec_switch_desc sw_desc = { };
-> +	struct typec_retimer_desc retimer_desc = { };
-> +	struct ptn36502 *ptn;
-> +	int ret;
-> +
-> +	ptn = devm_kzalloc(dev, sizeof(*ptn), GFP_KERNEL);
-> +	if (!ptn)
-> +		return -ENOMEM;
-> +
-> +	ptn->client = client;
-> +
-> +	ptn->regmap = devm_regmap_init_i2c(client, &ptn36502_regmap);
-> +	if (IS_ERR(ptn->regmap)) {
-> +		dev_err(&client->dev, "Failed to allocate register map\n");
-> +		return PTR_ERR(ptn->regmap);
-> +	}
-> +
-> +	ptn->mode = TYPEC_STATE_SAFE;
-> +	ptn->orientation = TYPEC_ORIENTATION_NONE;
-> +
-> +	mutex_init(&ptn->lock);
-> +
-> +	ptn->vdd18_supply = devm_regulator_get_optional(dev, "vdd18");
-> +	if (IS_ERR(ptn->vdd18_supply))
-> +		return PTR_ERR(ptn->vdd18_supply);
-> +
-> +	ptn->typec_switch = fwnode_typec_switch_get(dev->fwnode);
-> +	if (IS_ERR(ptn->typec_switch))
-> +		return dev_err_probe(dev, PTR_ERR(ptn->typec_switch),
-> +				     "Failed to acquire orientation-switch\n");
-> +
-> +	ret = regulator_enable(ptn->vdd18_supply);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable vdd18\n");
-> +
-> +	ret = ptn36502_detect(ptn);
-> +	if (ret)
-> +		goto err_disable_regulator;
-> +
-> +	ret = ptn36502_register_bridge(ptn);
-> +	if (ret)
-> +		goto err_disable_regulator;
-> +
-> +	sw_desc.drvdata = ptn;
-> +	sw_desc.fwnode = dev->fwnode;
-> +	sw_desc.set = ptn36502_sw_set;
-> +
-> +	ptn->sw = typec_switch_register(dev, &sw_desc);
-> +	if (IS_ERR(ptn->sw)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(ptn->sw),
-> +				    "Failed to register typec switch\n");
-> +		goto err_disable_regulator;
-> +	}
-> +
-> +	retimer_desc.drvdata = ptn;
-> +	retimer_desc.fwnode = dev->fwnode;
-> +	retimer_desc.set = ptn36502_retimer_set;
-> +
-> +	ptn->retimer = typec_retimer_register(dev, &retimer_desc);
-> +	if (IS_ERR(ptn->retimer)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(ptn->retimer),
-> +				    "Failed to register typec retimer\n");
-> +		goto err_switch_unregister;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_switch_unregister:
-> +	typec_switch_unregister(ptn->sw);
-> +
-> +err_disable_regulator:
-> +	regulator_disable(ptn->vdd18_supply);
-> +
-> +	return ret;
-> +}
-> +
-> +static void ptn36502_remove(struct i2c_client *client)
-> +{
-> +	struct ptn36502 *ptn = i2c_get_clientdata(client);
-> +
-> +	typec_retimer_unregister(ptn->retimer);
-> +	typec_switch_unregister(ptn->sw);
-> +
-> +	regulator_disable(ptn->vdd18_supply);
-> +}
-> +
-> +static const struct i2c_device_id ptn36502_table[] = {
-> +	{ "ptn36502" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ptn36502_table);
-> +
-> +static const struct of_device_id ptn36502_of_table[] = {
-> +	{ .compatible = "nxp,ptn36502" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ptn36502_of_table);
-> +
-> +static struct i2c_driver ptn36502_driver = {
-> +	.driver = {
-> +		.name = "ptn36502",
-> +		.of_match_table = ptn36502_of_table,
-> +	},
-> +	.probe		= ptn36502_probe,
-> +	.remove		= ptn36502_remove,
-> +	.id_table	= ptn36502_table,
-> +};
-> +module_i2c_driver(ptn36502_driver);
-> +
-> +MODULE_AUTHOR("Luca Weiss <luca.weiss@fairphone.com>");
-> +MODULE_DESCRIPTION("NXP PTN36502 Type-C driver");
-> +MODULE_LICENSE("GPL");
-
-thanks,
+> 
+> Sascha
+> 
 
 -- 
-heikki
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
+
 
