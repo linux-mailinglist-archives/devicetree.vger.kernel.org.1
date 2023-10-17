@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AD77CC931
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:55:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE507CC94A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 726122816D4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:55:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14D971F22C79
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFC52D05F;
-	Tue, 17 Oct 2023 16:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59B31D52B;
+	Tue, 17 Oct 2023 16:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ITveUndR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZUMkAOEe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3CF2D03A
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 16:55:28 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377D194
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:55:27 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32d9effe314so3528701f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:55:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EED2D054
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 16:58:50 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B601FED
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:58:47 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9bda758748eso671421066b.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:58:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697561725; x=1698166525; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ftpCJDEdsDB5dCJBNigeh4u2CwwsQDpIP22iPNCSJXg=;
-        b=ITveUndRVn1zepCf7A018S6Tu6IUDRWisiCSKJ87Yqb3olj/BTZhyXk3N96gkbWvYw
-         sLyNyeZxxZ7vB3MGodjNFOYj8q5sVHF0A3Q8+XzgWT5VCOw0bAKA3CL2+T2ncddoNFNJ
-         47nvuYAA+lx6MrRisNcxBGpWFTNpqyzXqTySatz2L/+AAtwxO4rm6iI3n5UYTmJaoiEC
-         Ee0OhMdKdh+HB+mpDES4ksely51qbrCWlaxc9xVMKkDPePdNxoaXDvA97its7Yl4+1eb
-         ZTaod4xDE6E9vvkHx/rFOGkDAsDwTZvvLVLMxj5kYfAz/bZ0eXf96dxEooxQBbCea3vy
-         vuLQ==
+        d=linaro.org; s=google; t=1697561926; x=1698166726; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sn8ReA+6EHyat1XVOf5lQ+OdxkKcUGO6UHfSeScub60=;
+        b=ZUMkAOEevg/vvpVW/qcy4KgOIhPK7ZxAe4o1rDC1sZQLOz1SqAoabFygqfWvkysGjO
+         GzkUdVwFSmrKwx3cW0NKDBfb08XHDQdM8uT9ZOOV/FHnKVkARmymCEjjm0nUw2PzYbIz
+         700jocec6QtfYrIP+XHQdVyTngVAzLFBWW9SgjM4wa5562XYRSXOcPVnd92lOJNHWBlR
+         v6KNpomk2ithoRbsJx8jq6Fy6wIt2oy2NgSYkRhvrRU7uGI/BII7kQlIa37BS1sVpoS0
+         f6q36LpYB9oE1GavtvIuLflQij+vw5V2vl/Ndt62GUmG8Xx6apBUe9c6CKx6ua6omy7a
+         oXow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697561725; x=1698166525;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697561926; x=1698166726;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ftpCJDEdsDB5dCJBNigeh4u2CwwsQDpIP22iPNCSJXg=;
-        b=VlIOQMEYZl3AwV43wbsKWIg8RQOj6/rWiyhEygvAweNBE3nr4nnAgOvZSwyrCXnI1j
-         kozNNjPwAQUqaffsIjwcoLM2kWMVzJKYP/JsYQsvHdv3IBK0fDhQhEFHuFJuAFW8qrL6
-         YvV1jjODVgnxmbk15E8+QMXvQlscJ6Z/NtOZ0pwl7bHe8ouJEpoBnFq9zR9wYPcnUmrI
-         EYRoRR7Tgmnv/n0IXltrJtRluLtNS7Xh7fHy3Plj4nPIz+VGBsRfvdub0NE2hoR9IsME
-         LAVREaXBw4gHeO01YLeQ8lBoEo9ZsNV6f1NqtnjaVTpgZtDkAbeHnjVIycfQi/BdpXrq
-         eX9g==
-X-Gm-Message-State: AOJu0YyOENGSmHVn5RLfE9+ogT9zoYX3LocBz396YgmtEk0TQo2cdZre
-	hkhlY2sMioGy6V9awlcg57RgIA==
-X-Google-Smtp-Source: AGHT+IHMl59Jk4YUuZjuQRK6HRmz5pn9wzYG6wEN+FOrtPk6CwGNwzicRSRoxuLJuwl2CmPJSImqHw==
-X-Received: by 2002:a05:6000:8d:b0:32d:c69b:99b8 with SMTP id m13-20020a056000008d00b0032dc69b99b8mr1481237wrx.35.1697561725621;
-        Tue, 17 Oct 2023 09:55:25 -0700 (PDT)
-Received: from [172.30.204.57] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id t1-20020a5d6a41000000b0032d9efeccd8sm164668wrw.51.2023.10.17.09.55.24
+        bh=sn8ReA+6EHyat1XVOf5lQ+OdxkKcUGO6UHfSeScub60=;
+        b=WoGVXA7K/ePZl6QyqYQgXO9J1pbWleWdjgRpLpXxLLl3oNy1dgcdrvC/3Zo94M+lwp
+         dMGihdrbUEWUk39eYjwUlJ46/EWbbNscmm21y6s2r20xnc5qQpKZqhbELi75j+25XVxk
+         kdGi+2C2j3ISPC59vpKrODz9+Jm4+LHAGi+8b5z6PBHBPyYsgW+iECKDjbYmuwe7wkTN
+         q78h6cNVjdFfdh3ZdLvjWQGUC3DRPcThBBKEqb0RJVikp0NKXMySiANqD799bASn22VL
+         2xn+wgNIvP3NIzswYylAkgXLli2ipTrGAcr6jYUEg4iXnKmDl1I3mFS94k//xTl+8qkg
+         66iQ==
+X-Gm-Message-State: AOJu0YwIf+Z/ppYGBMotFrp6rlo/7yX3D+Fy8lDSYWR6rABsqT/wCN4C
+	SPOTHye915kOl2tXNAPV8JkwmA==
+X-Google-Smtp-Source: AGHT+IEepVdMHo1jVKr5jfgrzJr65rg1MXBAc6Xm0i6CLsKDavhXSJJkwRDcT95O874DhaQcJEB1Jw==
+X-Received: by 2002:a17:907:1c07:b0:9be:d55a:81ba with SMTP id nc7-20020a1709071c0700b009bed55a81bamr2268844ejc.65.1697561926185;
+        Tue, 17 Oct 2023 09:58:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.154])
+        by smtp.gmail.com with ESMTPSA id s2-20020a170906454200b009b977bea1dcsm139967ejq.23.2023.10.17.09.58.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 09:55:25 -0700 (PDT)
-Message-ID: <2f22ed28-47b1-4a92-aae5-b625ab4ad731@linaro.org>
-Date: Tue, 17 Oct 2023 18:55:23 +0200
+        Tue, 17 Oct 2023 09:58:45 -0700 (PDT)
+Message-ID: <9fd1c6cf-ae4d-499b-bd62-e74b580cd29c@linaro.org>
+Date: Tue, 17 Oct 2023 18:58:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,56 +67,175 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq6018: use CPUFreq NVMEM
-To: Robert Marko <robimarko@gmail.com>, agross@kernel.org,
- andersson@kernel.org, ilia.lin@kernel.org, rafael@kernel.org,
- viresh.kumar@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231016175532.2081344-1-robimarko@gmail.com>
- <20231016175532.2081344-3-robimarko@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: input: Introduce Himax HID-over-SPI
+ device
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231016175532.2081344-3-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Conor Dooley <conor@kernel.org>,
+ Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
+ benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
+ hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
+ poyu_hung@himax.corp-partner.google.com
+References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
+ <20231017091900.801989-2-tylor_yang@himax.corp-partner.google.com>
+ <20231017-womb-lantern-186f16ce67af@spud>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231017-womb-lantern-186f16ce67af@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.6
-X-Spam-Level: *
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 10/16/23 19:55, Robert Marko wrote:
-> IPQ6018 comes in multiple SKU-s and some of them dont support all of the
-> OPP-s that are current set, so lets utilize CPUFreq NVMEM to allow only
-> supported OPP-s based on the SoC dynamically.
+On 17/10/2023 15:59, Conor Dooley wrote:
+> Yo,
 > 
-> As an example, IPQ6018 is generaly rated at 1.8GHz but some silicon only
-> goes up to 1.5GHz and is marked as such via an eFuse.
+> On Tue, Oct 17, 2023 at 05:18:57PM +0800, Tylor Yang wrote:
+>> The Himax HID-over-SPI framework support for Himax touchscreen ICs
+>> that report HID packet through SPI bus. The driver core need reset
+>>  pin to meet reset timing spec. of IC. An interrupt to disable
+>> and enable interrupt when suspend/resume. Two optional power control
+>>  if target board needed.
+>>
+>> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+>> ---
+>>  .../devicetree/bindings/input/himax,hid.yaml  | 123 ++++++++++++++++++
+>>  MAINTAINERS                                   |   6 +
+>>  2 files changed, 129 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/input/himax,hid.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/himax,hid.yaml b/Documentation/devicetree/bindings/input/himax,hid.yaml
+>> new file mode 100644
+>> index 000000000000..9ba86fe1b7da
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/input/himax,hid.yaml
+>> @@ -0,0 +1,123 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/input/himax,hid.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Himax TDDI devices using SPI to send HID packets
+>> +
+>> +maintainers:
+>> +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+>> +
+>> +description: |
+>> +  Support the Himax TDDI devices which using SPI interface to acquire
+>> +  HID packets from the device. The device needs to be initialized using
+>> +  Himax protocol before it start sending HID packets.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: himax,hid
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 +++++++++++++-
->   1 file changed, 13 insertions(+), 1 deletion(-)
+> This compatible seems far too generic. Why are there not device specific
+> compatibles for each TDDI device?
+
+Which was pointed out by Rob in v2, so his feedback was ignored.
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 9aec89d5e095b..49f0e6aa4b5bb 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -96,42 +96,49 @@ scm {
->   	};
->   
-[...]
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  reset:
+>> +    maxItems: 1
+>> +    description: Reset device, active low signal.
 
-> +			cpu_speed_bin: cpu_speed_bin@135 {
-underscore -> minus sign
+No, come one, read feedback from Rob.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> +
+>> +  vccd-supply:
+>> +    description:
+>> +      Optional regulator for the 1.8V voltage.
+>> +
+>> +  vcca-supply:
+>> +    description:
+>> +      Optional regulator for the analog 3.3V voltage.
+>> +
+>> +  himax,id-gpios:
+>> +    maxItems: 8
+>> +    description: GPIOs to read physical Panel ID. Optional.
+>> +
+>> +  spi-cpha: true
+>> +  spi-cpol: true
+> 
+>> +  himax,ic-det-delay-ms:
+>> +    description:
+>> +      Due to TDDI properties, the TPIC detection timing must after the
+>> +      display panel initialized. This property is used to specify the
+>> +      delay time when TPIC detection and display panel initialization
+>> +      timing are overlapped. How much milliseconds to delay before TPIC
+>> +      detection start.
+>> +
+>> +  himax,ic-resume-delay-ms:
+>> +    description:
+>> +      Due to TDDI properties, the TPIC resume timing must after the
+>> +      display panel resumed. This property is used to specify the
+>> +      delay time when TPIC resume and display panel resume
+>> +      timing are overlapped. How much milliseconds to delay before TPIC
+>> +      resume start.
+> 
 
-Konrad
+No improvements here...
+
+You must implement all feedback from v2. Not pieces of it.
+
+Best regards,
+Krzysztof
+
 
