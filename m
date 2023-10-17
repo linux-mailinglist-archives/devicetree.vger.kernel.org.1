@@ -1,54 +1,53 @@
-Return-Path: <devicetree+bounces-9269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC26E7CC4E4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 15:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E0CE7CC567
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:00:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 751F9B20FE2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 13:39:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35E47B21028
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 14:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE8F436A1;
-	Tue, 17 Oct 2023 13:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B1B43A82;
+	Tue, 17 Oct 2023 14:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pLI/hFso"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmDHg0xK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88CEAEBE;
-	Tue, 17 Oct 2023 13:39:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D906FC433C7;
-	Tue, 17 Oct 2023 13:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79223436B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 14:00:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAFF9C433C9;
+	Tue, 17 Oct 2023 14:00:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697549965;
-	bh=RoziKrsJD6E/nYyqj1Ebyaqd5eUcEo8AVJSKW+3q8Co=;
+	s=k20201202; t=1697551203;
+	bh=ogyJKWZQozXRb1pM2bJA3u5IHZ6moRSNNmWvQiTwxGQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pLI/hFsoGvWGtDNMHNjVmk8Aif9SDW8uUk/Qs3QPPnJ/83dHmSlP3iLgBU/FgFJ/e
-	 ty3sOM8v6yaPaNEW5RJF3RD99KnzalPIePCpPmhSvN4aPcHN1dQD5ku6jQps9d3oh8
-	 sDWT16mUg/KvDIbhbmn3ACgaa55WeOr+pt03CvSGLIqCKN7m3Mrz1mniPnT/68N0xb
-	 71HfYdTfP0O7c1fP0LpnIA/QvMx3QSMnEVbMrvYQjWikpypkfa1Ulu3i67GflhP8zr
-	 F72lDm4g5eDOldNW7GdDXYlKTAG7CNza+jvfvQfg6pwcU7jV36yyfy5qSsUqy7YkGG
-	 OA6N6Q51RdAVg==
-Date: Tue, 17 Oct 2023 14:39:20 +0100
+	b=DmDHg0xK9dsy8NLYVYANKT/5eKaAxXQXuVyZproHp/fyLPKkcZzhbdcN1qkrwIood
+	 394/gE9mdk1eNyjtrsOSuSwct/0Cb/8goBkFgKH6PGRoMacR4sLDmc4yWn67wLpNSa
+	 VBLUUOCaPuQw/Z0RLEdS02kQuzrEW+FaOtfroa0piPYQRbTW7fRGsLt1uGvmoEJ+Ld
+	 dX8MSpZT0UAeRXBjidGg+8A5gWP+GWJPtnaEjuqzNp1X797RsIdOFobjW0aphp5V8j
+	 QYHHrHBiXAkFjSZbNilE/dn8rz7y8HKL0yO3Cpds84w/p0HDEc/KwUPdY8l2ix/pvq
+	 As0c2hCdFUmPA==
+Date: Tue, 17 Oct 2023 14:59:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Ante Knezic <ante.knezic@helmholz.de>, conor+dt@kernel.org,
-	davem@davemloft.net, devicetree@vger.kernel.org,
-	edumazet@google.com, f.fainelli@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
-	olteanv@gmail.com, pabeni@redhat.com, robh+dt@kernel.org,
-	woojung.huh@microchip.com
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: microchip,ksz: document
- microchip,rmii-clk-internal
-Message-ID: <20231017-mocker-contort-5ea0d84e7e2d@spud>
-References: <20231012-unicorn-rambling-55dc66b78f2f@spud>
- <20231016075349.18792-1-ante.knezic@helmholz.de>
- <20231017-generous-botanical-28436c5ba13a@spud>
- <8e1fb87d-b611-49f3-8091-a15b29e03659@lunn.ch>
+To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jikos@kernel.org, benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
+	hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
+	poyu_hung@himax.corp-partner.google.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: input: Introduce Himax HID-over-SPI
+ device
+Message-ID: <20231017-womb-lantern-186f16ce67af@spud>
+References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
+ <20231017091900.801989-2-tylor_yang@himax.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,84 +55,210 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bEjA3mPhipjMVa1a"
+	protocol="application/pgp-signature"; boundary="8k9kbDByS1+37zNr"
 Content-Disposition: inline
-In-Reply-To: <8e1fb87d-b611-49f3-8091-a15b29e03659@lunn.ch>
+In-Reply-To: <20231017091900.801989-2-tylor_yang@himax.corp-partner.google.com>
 
 
---bEjA3mPhipjMVa1a
+--8k9kbDByS1+37zNr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 17, 2023 at 02:59:46PM +0200, Andrew Lunn wrote:
-> > The switch always provides it's own external reference, wut? Why would
-> > anyone actually bother doing this instead of just using the internal
-> > reference?
+Yo,
+
+On Tue, Oct 17, 2023 at 05:18:57PM +0800, Tylor Yang wrote:
+> The Himax HID-over-SPI framework support for Himax touchscreen ICs
+> that report HID packet through SPI bus. The driver core need reset
+>  pin to meet reset timing spec. of IC. An interrupt to disable
+> and enable interrupt when suspend/resume. Two optional power control
+>  if target board needed.
 >=20
-> I think you are getting provider and consumer mixed up.
-
-The comment suggested that it was acting as both, via an external
-loopback:
-> > > In both cases (external and internal), the KSZ88X3 is actually provid=
-ing the
-> > > RMII reference clock. Difference is only will the clock be routed as =
-external
-> > > copper track (pin REFCLKO -> pin REFCLKI), or will it be routed inter=
-nally.
-
-If there's another interpretation for that, it's lost on me.
-A later mail goes on to say:
-> > > The KSZ88x3 does not have to provide the reference clock, it can be p=
-rovided=20
-> > > externally, by some other device, for example the uC.
-
-So I think I was just picking up on a mistaken explanation.
-
-> Lets simplify to just a MAC and a PHY. There needs to be a shared
-> clock between these two. Sometimes the PHY is the provider and the MAC
-> is the consumer, sometimes the MAC is the provider, and the PHY is the
-> consumer. Sometimes the hardware gives you no choices, sometimes it
-> does. Sometimes a third party provides the clock, and both are
-> consumers.
+> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> ---
+>  .../devicetree/bindings/input/himax,hid.yaml  | 123 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/himax,hid.yaml
 >=20
-> With the KSZ, we are talking about a switch, so there are multiple
-> MACs and PHYs. They can all share the same clock, so long as you have
-> one provider, and the rest are consumers. Or each pair can figure out
-> its provider/consumer etc.
+> diff --git a/Documentation/devicetree/bindings/input/himax,hid.yaml b/Doc=
+umentation/devicetree/bindings/input/himax,hid.yaml
+> new file mode 100644
+> index 000000000000..9ba86fe1b7da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/himax,hid.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/himax,hid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Himax TDDI devices using SPI to send HID packets
+> +
+> +maintainers:
+> +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> +
+> +description: |
+> +  Support the Himax TDDI devices which using SPI interface to acquire
+> +  HID packets from the device. The device needs to be initialized using
+> +  Himax protocol before it start sending HID packets.
+> +
+> +properties:
+> +  compatible:
+> +    const: himax,hid
 
-Thanks for the explanation. I'm still not really sure why someone would
-want to employ external loopback, instead of the internal one though.
+This compatible seems far too generic. Why are there not device specific
+compatibles for each TDDI device?
 
-> How this is described in DT has evolved over time. We don't have clean
-> clock provider/consumer relationships. The PHYs and MACs are generally
-> not CCF consumers/providers. They just have a property to enable the
-> to output a clock, or maybe a property to disable the clock output in
-> order to save power. There are a few exceptions, but that tends to be
-> where the clock provider is already CCF clock, e.g. a SoC clock.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset:
+> +    maxItems: 1
+> +    description: Reset device, active low signal.
+> +
+> +  vccd-supply:
+> +    description:
+> +      Optional regulator for the 1.8V voltage.
+> +
+> +  vcca-supply:
+> +    description:
+> +      Optional regulator for the analog 3.3V voltage.
+> +
+> +  himax,id-gpios:
+> +    maxItems: 8
+> +    description: GPIOs to read physical Panel ID. Optional.
+> +
+> +  spi-cpha: true
+> +  spi-cpol: true
 
-Yeah, I did acknowledge that at the end of my mail (although I managed
-to typo "that ship has sailed").
-Doing ccf stuff doesn't seem viable given there's currently no required
-clocks in the binding despite there likely being some in use.
+> +  himax,ic-det-delay-ms:
+> +    description:
+> +      Due to TDDI properties, the TPIC detection timing must after the
+> +      display panel initialized. This property is used to specify the
+> +      delay time when TPIC detection and display panel initialization
+> +      timing are overlapped. How much milliseconds to delay before TPIC
+> +      detection start.
+> +
+> +  himax,ic-resume-delay-ms:
+> +    description:
+> +      Due to TDDI properties, the TPIC resume timing must after the
+> +      display panel resumed. This property is used to specify the
+> +      delay time when TPIC resume and display panel resume
+> +      timing are overlapped. How much milliseconds to delay before TPIC
+> +      resume start.
 
-I'm fine acking the binding with the change I suggested, I was just
-looking to understand why a clocks property could not be used and I
-think I have my answer to that now :)
 
-Cheers,
+> +  panel:
+> +    description:
+> +      The node of the display panel device. The driver will use this
+> +      node to get the project ID of the display panel. Optional.
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      himax,pid:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 8
+> +        items:
+> +          minimum: 0
+> +          maximum: 65535
+> +        description:
+> +          When only one value exist, represent Project ID of the device.
+> +          When multiple values exist, order in event number value repres=
+net
+> +          id value from id-gpios and odd number value represent Project =
+ID
+> +          relatives to prior id value. This is used to specify the firmw=
+are
+> +          for the device.
+
+I am sorry, but I still fail to understand why using device specific
+compatibles & firmware-name does not work here. It still seems like this
+property exists purely because you do not know what device you are
+because of a lack of specific compatibles.
+
+Thanks,
 Conor.
 
---bEjA3mPhipjMVa1a
+> +
+> +    required:
+> +      - himax,pid
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - reset
+> +
+> +unevaluatedProperties: false
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        touchscreen@0 {
+> +            compatible =3D "himax,hid";
+> +            reg =3D <0x0>;
+> +            interrupt-parent =3D <&gpio1>;
+> +            interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
+> +            pinctrl-0 =3D <&touch_pins>;
+> +            pinctrl-names =3D "default";
+> +
+> +            spi-max-frequency =3D <12500000>;
+> +            spi-cpha;
+> +            spi-cpol;
+> +
+> +            reset =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
+> +            himax,ic-det-delay-ms =3D <500>;
+> +            himax,ic-resume-delay-ms =3D <100>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7a7bd8bd80e9..883870ab316f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9340,6 +9340,12 @@ L:	linux-kernel@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/misc/hisi_hikey_usb.c
+> =20
+> +HIMAX HID OVER SPI TOUCHSCREEN SUPPORT
+> +M:	Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> +L:	linux-input@vger.kernel.org
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/input/himax,hid.yaml
+> +
+>  HIMAX HX83112B TOUCHSCREEN SUPPORT
+>  M:	Job Noorman <job@noorman.info>
+>  L:	linux-input@vger.kernel.org
+> --=20
+> 2.25.1
+>=20
+
+--8k9kbDByS1+37zNr
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS6OiAAKCRB4tDGHoIJi
-0lngAP0awQQcWcRDsKtuYoRW+xSLTyZWxTzBEKqGSpcMoFbF0QD8CHLj8FgKI1gO
-ziNYtHwUuZkjpwMVzPO85p04nsb3vwU=
-=J1bT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS6TXgAKCRB4tDGHoIJi
+0uyjAP4kfMd90YPnnCBnbn1Gdr6vm6VSF1jPM2346vOZLdXoBQD/fejsPeA8yFyB
+BtmW46Z7KRSpHjc5TD7Z5uzOFACf3gc=
+=Ewca
 -----END PGP SIGNATURE-----
 
---bEjA3mPhipjMVa1a--
+--8k9kbDByS1+37zNr--
 
