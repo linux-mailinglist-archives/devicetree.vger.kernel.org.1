@@ -1,143 +1,200 @@
-Return-Path: <devicetree+bounces-9089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE487CB949
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 05:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55FED7CB960
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 05:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76245B20EDC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 03:28:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54C7FB20E91
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 03:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A958C15;
-	Tue, 17 Oct 2023 03:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F16B8F4D;
+	Tue, 17 Oct 2023 03:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XV5VFjTg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXpZGRHF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4608BF9
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 03:28:16 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C471FE6;
-	Mon, 16 Oct 2023 20:28:14 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39H2qYUf002265;
-	Tue, 17 Oct 2023 03:28:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=fL4H8TL5+txWPFaXBE5aic9CLYqUBwi67Zhj8Tspef8=;
- b=XV5VFjTgV8spOQ+LInk6JpA/Vahe13nWaqV9/g6FhVNc6PhEOcBTOo8XgVpAot/vSTis
- WuAULixWI+m+MEzdJCbQUliGi4+C1otpx9fKi5A90lsAavwBmiEEMsGKLMlWkfTy4Ki9
- r+bb8JrahnwYZvgMIGnZPZwb7mVJjrm4BlpSBbJryLVw7lUtcaUtN5YeWIEKO6fiuDok
- mKbABageJASNJVPNVUiFXVmfNC3+uD13EZXDIRhSE3r8PAJCjFia8E5WV97dc91pkk5Q
- AY7/bmC6hjM7s4h9RNLCVKbSsraom4eLI98gU3Ry8DTfYB0eibx8PpOw6brn9k+gOSoL UA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsb3xrtuh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 03:28:12 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39H3SBLZ023500
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Oct 2023 03:28:11 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 16 Oct 2023 20:28:11 -0700
-Date: Mon, 16 Oct 2023 20:28:10 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Johan Hovold <johan@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Use the correct DP PHY
- compatible
-Message-ID: <20231017032810.GP3553829@hu-bjorande-lv.qualcomm.com>
-References: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
- <CAA8EJprXCzVyaU49qgVcVfF0-FJ3QqAfTMZj5CEZm187hoi4=g@mail.gmail.com>
- <ZSz7---IW_7Oj2Zr@hovoldconsulting.com>
- <CAA8EJpr=HQOs8Ho_s_34y0-krCHwq3MThMkUzhOkPVdOSMQ62A@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8753D8825
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 03:45:22 +0000 (UTC)
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3FF95;
+	Mon, 16 Oct 2023 20:45:20 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-4194c3cf04aso36493621cf.3;
+        Mon, 16 Oct 2023 20:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697514319; x=1698119119; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fpenc3TC1wxTiSmB6vD1Cx4tRH9i7lUBaz0u5rLStfY=;
+        b=KXpZGRHF3QZK37bSiZxvsM1m4lMQlX8KKLE9A0IBlIXJCif5hk/gdHIXpZKN/KHSa/
+         uub/0wwO85/pvbSxLKpgqU4A5w3zCpZld/jR6MBLcnsrcp9HwS9X94bDTNxwo6x4q/oD
+         2jDKBvK9am0mKYe9+Om23l08IbAyxFXH5M2SVnJGHicyL1AqsXf2tk332ApPCY6eL8bi
+         BhFQigAVa0NGnBOzH70E8KKUplTEe5URes6bW1OyQYCYfJu0RqhcAOcur8FSt2BVkKeL
+         qkvbW0MukxTrL9X1orldf7YoMnsPf/Y+guIHamLjy/RTauzSAcqSeTrB9e3Go0l76Suh
+         2PBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697514319; x=1698119119;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fpenc3TC1wxTiSmB6vD1Cx4tRH9i7lUBaz0u5rLStfY=;
+        b=GWm5C8jQAZMDb9B1gkVwlKhL7nBZckKVaqH3SGcKntzfBucWQq3dI/Fgom/uN2IuZP
+         JO3ltTkKtp6Dxlu4kD+YwHJJSSjw7qllEIMrpRBC6zHayJF4In98xWC2xGJ/gPYks7FH
+         ffqYLu3kXOlFDcDpe2a5IkAYQpOJ6hNJyG+f3geMe0yZmNQp3EmEYRFoa5RWNdh4ACmF
+         FK2fjH9dWB4HMX9Y+HChM0i3OvIwScaTIDOQvY32QQ7+eC3jDyQei9P7fWp70hST4UNU
+         EJ5+S4tUONoOrevBJyjeWEZRDx2/iAdcpy4uVsMVe4MKvqXzFUcWDcEAcHYjUsk01Bxq
+         qwOw==
+X-Gm-Message-State: AOJu0YxTJRI7zUUNMTCiZFNBNlhvA58L3L7gRnRbS29QApcHGZK/JAt1
+	7mrOSvs/zQBvjMKuCVB+M18zWbA3qJhFQA==
+X-Google-Smtp-Source: AGHT+IGRVQZCVNJEkZXf9JzXVxV+zgsZwjKw5X1hyxT7Mx63UwrODkWivGNx/S67JTJ8V0W+53S9ow==
+X-Received: by 2002:a05:622a:1b8d:b0:417:914a:104d with SMTP id bp13-20020a05622a1b8d00b00417914a104dmr1544809qtb.49.1697514319434;
+        Mon, 16 Oct 2023 20:45:19 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:628c:a92e:5b03:91a2:57c8:16f3])
+        by smtp.gmail.com with ESMTPSA id y13-20020aa793cd000000b0069305627491sm313777pff.159.2023.10.16.20.45.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 20:45:19 -0700 (PDT)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: input: bindings for Adafruit Seesaw Gamepad
+Date: Tue, 17 Oct 2023 09:13:44 +0530
+Message-ID: <20231017034356.1436677-1-anshulusr@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpr=HQOs8Ho_s_34y0-krCHwq3MThMkUzhOkPVdOSMQ62A@mail.gmail.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TaJjh2-uffEi-W6ynQ3vHC9OWJ6fFZpf
-X-Proofpoint-ORIG-GUID: TaJjh2-uffEi-W6ynQ3vHC9OWJ6fFZpf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-16_13,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 phishscore=0 mlxlogscore=989 malwarescore=0
- priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 clxscore=1011
- lowpriorityscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310170028
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 16, 2023 at 12:10:18PM +0300, Dmitry Baryshkov wrote:
-> On Mon, 16 Oct 2023 at 12:01, Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Mon, Oct 16, 2023 at 11:51:33AM +0300, Dmitry Baryshkov wrote:
-> > > On Fri, 29 Sept 2023 at 19:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > >
-> > > > The DP PHY needs different settings when an eDP display is used.
-> > > > Make sure these apply on the X13s.
-> > >
-> > > Could you please clarify, is it the same PHY type, just being
-> > > repurposed for eDP or is it a different PHY type?
-> >
-> > Same PHY, just different settings AFAIK.
-> >
-> > > If the former is the case (and the same PHY can be used for both DP
-> > > and eDP), it should carry the same compatible string and use software
-> > > mechanisms (e.g. phy_set_mode_ext()) to be programmed for the correct
-> > > operation mode.
-> >
-> > Possibly, but that's not how the current binding and implementation
-> > works:
-> >
-> >         6993c079cd58 ("dt-bindings: phy: qcom-edp: Add SC8280XP PHY compatibles")
-> >         2300d1cb24b3 ("phy: qcom: edp: Introduce support for DisplayPort")
-> >         3b7267dec445 ("phy: qcom: edp: Add SC8280XP eDP and DP PHYs")
-> >
-> >         https://lore.kernel.org/lkml/20220810040745.3582985-1-bjorn.andersson@linaro.org/
-> >
-> > And you'd still need to infer the mode from DT somehow.
-> 
-> If it is the same hardware block, it seems incorrect to have two
-> different compat entries. For example, for PCIe RC vs PCIe EP we
-> specify the PHY mode from the host controller driver.
-> I'd say, we need to fix the bindings for both DP/eDP controller and
-> the PHY.  See the `phy-mode` DT property for example.
-> 
+Adds bindings for the Adafruit Seesaw Gamepad.
 
-It is one hardware block, supporting both eDP and DP, so I like your
-suggestion of having a single compatible instead and using some other
-means of defining the configuration. I just wasn't able to find a
-better way to do so back when I wrote the binding/driver...
+The gamepad functions as an i2c device with the default address of 0x50
+and has an IRQ pin that can be enabled in the driver to allow for a rising
+edge trigger on each button press or joystick movement.
 
-Regards,
-Bjorn
+Product page:
+  https://www.adafruit.com/product/5743
+Arduino driver:
+  https://github.com/adafruit/Adafruit_Seesaw
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+---
+
+Changes for v5:
+- Added link to the datasheet
+
+Changes for v4:
+- Fixed the URI for the id field
+- Added `interrupts` property
+
+Changes for v3:
+- Updated id field to reflect updated file name from previous version
+- Added `reg` property
+
+Changes for v2:
+- Renamed file to `adafruit,seesaw-gamepad.yaml`
+- Removed quotes for `$id` and `$schema`
+- Removed "Bindings for" from the description
+- Changed node name to the generic name "joystick"
+- Changed compatible to 'adafruit,seesaw-gamepad' instead of
+  'adafruit,seesaw_gamepad'
+
+ .../input/adafruit,seesaw-gamepad.yaml        | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+new file mode 100644
+index 000000000000..3f0d1c5a3b9b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Adafruit Mini I2C Gamepad with seesaw
++
++maintainers:
++  - Anshul Dalal <anshulusr@gmail.com>
++
++description: |
++  Adafruit Mini I2C Gamepad
++
++    +-----------------------------+
++    |   ___                       |
++    |  /   \               (X)    |
++    | |  S  |  __   __  (Y)   (A) |
++    |  \___/  |ST| |SE|    (B)    |
++    |                             |
++    +-----------------------------+
++
++  S -> 10-bit percision bidirectional analog joystick
++  ST -> Start
++  SE -> Select
++  X, A, B, Y -> Digital action buttons
++
++  Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
++  Product page: https://www.adafruit.com/product/5743
++  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
++
++properties:
++  compatible:
++    const: adafruit,seesaw-gamepad
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        joystick@50 {
++            compatible = "adafruit,seesaw-gamepad";
++            reg = <0x50>;
++        };
++    };
+-- 
+2.42.0
+
 
