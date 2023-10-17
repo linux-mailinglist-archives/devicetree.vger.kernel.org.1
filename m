@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-9095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64EE7CBA7E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:03:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234C37CBA83
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 08:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97391281027
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 06:03:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7E04B20FFD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 06:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42637C8C3;
-	Tue, 17 Oct 2023 06:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D236C2D3;
+	Tue, 17 Oct 2023 06:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XqgElqdz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ppo7mwH4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FB1C2CF
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 06:03:21 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7502EE8
-	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 23:03:19 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507bd644a96so369247e87.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 23:03:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B5DC131
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 06:05:06 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5110BE8
+	for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 23:05:04 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-307d20548adso4671903f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Oct 2023 23:05:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697522598; x=1698127398; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1o4mb2iZUz1SnoRWPsXsV2zwIl1BLvqgIpgXyGVIoRo=;
-        b=XqgElqdzcmlqoWiaEqtW3TUoS7W5fS4nHEF2FYebGNsuFQALg7yNDChFcDStVKtcxz
-         cCIm3q9y5VKRio1mkixNe0Hv2dH1r2yJSU8PElB6rfp8DoEqJ7oivaVWXBPhCY1pvrMz
-         9aUC7/hjZ3kYKHnuuv9MI4HvQZUzo7WnNI+ypyEZ+JUMfcJyDIduRna7QalCzupgEmMk
-         WWYovXOXm3uYJrety2gbWTeO86GxdvQe7uiZxkPiEkQpT0LfLpTE8BuTKpj/3nZoHUOX
-         x49L9o9amr8MiWn8UPS017EcSuWMB84J/vp0gpX8D3Nw/rtkxjZIMiasJdckgrie4EMW
-         u16g==
+        d=linaro.org; s=google; t=1697522703; x=1698127503; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5M1cmW2rfWV3X44jT5kx+HhLqoh3Rz91eVWm6qY6Tz8=;
+        b=ppo7mwH4GtV8tj2/z2i1PWhrFPZpNflel68ixnbZQJ0xu3/KLKzCyfjH7PL7AjOW8J
+         QxipnTIP8uW0tsDenQdI3p0mc86fDAc8a5hkS4VTMKqlPFmK7mUwSfjVM9xOMd5nlp6i
+         JFrSEc1YNMrepiFDJJLTVDBi1ad06pI2Fhv7+x38MYIuflCdnmk4vtwDaxZxoaXnLMid
+         89l62kujCiWfuVc8G7+qP0xpGi+/iUp2B3yK5SUeHi1VSZI2eAG9B8bhYcNxp/C7QO3Q
+         WtPUDMK+849yoBIuMccvGQrJgvr/eBC+XBp9axqgey1vcxbzvTBt/sWB7s4daC2Zi4uB
+         n+Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697522598; x=1698127398;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1o4mb2iZUz1SnoRWPsXsV2zwIl1BLvqgIpgXyGVIoRo=;
-        b=UY8bmZlr4/qg9cZjlH5u+FBhQ6nLHsF0FKFhkF3+i2b7zxq4pzPbxexkALyt+OQCEw
-         a7EsVpqb0JYr6dwYWuFOtLxu2ccrJxu0TLfcEdj3QCL8Ti31PBEo9CNdyenV02GQhUub
-         6evsgA5HS3QxjQUzKqpK5C1d3j7XzCBl3jMf1fbi1mMWhmSDYbS0slsL7VIwiR33BNPB
-         gMN4PjSRE1uCR/6CAQDzfr8aUcoU4tejmUlRz6CEQ60lNsbNIp/AwFRvTrBAzCAonf1m
-         1eYTacZqDOFzTjGIRc3I7nZ3i5X8rDNLqC9/+y1dFWWZ6taj2OXx6BUJXc5CFyVL7jCn
-         /vgQ==
-X-Gm-Message-State: AOJu0Yza203waqpDnNceBYR5CnX2P4JahNuJwIzQ8pCIdg7TN8owgYY7
-	/rVqBvzuMNco+Ky087xRV9yWsg==
-X-Google-Smtp-Source: AGHT+IFSCLHHu1/7FUxXMD/LNbBo5XUyAFZD012+UIGMyHYURmW3pgD6FcsjGoNU6NRaGfwtblmpWw==
-X-Received: by 2002:ac2:5585:0:b0:507:9608:4a87 with SMTP id v5-20020ac25585000000b0050796084a87mr989223lfg.56.1697522597659;
-        Mon, 16 Oct 2023 23:03:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697522703; x=1698127503;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5M1cmW2rfWV3X44jT5kx+HhLqoh3Rz91eVWm6qY6Tz8=;
+        b=jmGSV9qzPD1PcU5UssRdyzvQaERxI+w/nPL7DiVAAqSbd/3B1qnw0wO5ub2NRXsyIy
+         yh4WrYeJuwJxGYD0NwNogjE6NhR0B5MacftLckqnr6PeNjp9IJD7p3Xa8lGrr/2VuRBW
+         hVdA18uHUahe4G7N7lLhas/35EMMYmzuE74QUTxGcHWfQeR+u454QFdRhaE2AlmRxnxS
+         W2SYdWF7YwZ6gcJBBA86ZS5ebEL/o5dbyreoflcDTmui+gexrJ19n996XZBruPTsKbqJ
+         R8M9n+Im44viNKRkC29E1b4ph8Iolso+5uvB3SQKSFl9v2MN68ZwK23J8tHvI1A6h3ix
+         Ccyw==
+X-Gm-Message-State: AOJu0YxLflqUZt5FADyv+8yD9CXPwebTF+PNLHVAtQVjmqnSCRqaoryM
+	eDIEScBKjDBTfzVL0yW1nmgKnQ==
+X-Google-Smtp-Source: AGHT+IEGS5+hhhSkRRjeifi47JrnbWhwq4Dopnqh8S6DFO0+FwU0IIxsfN0K8vHsQ3ctnKSdELYuHQ==
+X-Received: by 2002:adf:f2c2:0:b0:32d:9876:571c with SMTP id d2-20020adff2c2000000b0032d9876571cmr1251628wrp.63.1697522702635;
+        Mon, 16 Oct 2023 23:05:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id e13-20020adfef0d000000b0032d9caeab0fsm854270wro.77.2023.10.16.23.03.15
+        by smtp.gmail.com with ESMTPSA id a4-20020a5d5704000000b0032d09f7a713sm865593wrv.18.2023.10.16.23.05.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 23:03:17 -0700 (PDT)
-Message-ID: <73b39195-4a71-4f07-9072-a40bb0420343@linaro.org>
-Date: Tue, 17 Oct 2023 08:03:14 +0200
+        Mon, 16 Oct 2023 23:05:02 -0700 (PDT)
+Message-ID: <42a05ea3-4693-498a-bc39-9ff50477e4ba@linaro.org>
+Date: Tue, 17 Oct 2023 08:05:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: usb: qcom,dwc3: Add qcom,sc8180x-dwc3
+Subject: Re: [PATCH 09/12] dt-bindings: usb: qcom,dwc3: Rename to "glue"
+Content-Language: en-US
 To: Bjorn Andersson <quic_bjorande@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -83,8 +83,7 @@ Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
  Johan Hovold <johan@kernel.org>,
  Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
 References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
- <20231016-dwc3-refactor-v1-1-ab4a84165470@quicinc.com>
-Content-Language: en-US
+ <20231016-dwc3-refactor-v1-9-ab4a84165470@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,7 +129,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231016-dwc3-refactor-v1-1-ab4a84165470@quicinc.com>
+In-Reply-To: <20231016-dwc3-refactor-v1-9-ab4a84165470@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -141,16 +140,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 17/10/2023 05:11, Bjorn Andersson wrote:
-> Add the missing compatible for the SC8180X DWC3 glue binding.
+> The Qualcomm USB block consists of three intertwined parts, the XHCI,
+> the DWC3 core and the Qualcomm DWC3 glue. The exsting binding represents
+> the Qualcomm glue part, with the other two represented as in a child
+> node.
+> 
+> Rename the qcom,dwc3 binding, to represent that this is indeed only the
+> glue part, to make room for a combined binding.
+> 
+> The large "select" is included to avoid the schema to be selected for
+> validation with the upcoming flattened binding - which includes
+> snps,dwc3 in the compatible.
 > 
 > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
 
-This was already sent:
-
-https://lore.kernel.org/all/20230530162454.51708-3-vkoul@kernel.org/
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
