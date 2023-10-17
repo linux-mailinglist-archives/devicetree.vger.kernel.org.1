@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-9304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EFAD7CC927
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:54:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8AD77CC931
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 18:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37DDD2814F4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 726122816D4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 16:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190A92D05C;
-	Tue, 17 Oct 2023 16:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFC52D05F;
+	Tue, 17 Oct 2023 16:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CAV8Y+Gh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ITveUndR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EC52D03C
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 16:54:02 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3109FF
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:54:00 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9b1ebc80d0aso932421466b.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:54:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3CF2D03A
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 16:55:28 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377D194
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:55:27 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32d9effe314so3528701f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 09:55:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697561639; x=1698166439; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CcxqmurZRovtejIBarGStAVFXIqQYFcF1YdtRpOX6+U=;
-        b=CAV8Y+GhMiptb76OUcPK+jPqk2E8ovbaGdSmRWo8lUcdPLvN7OAtOFl8IsBRfwwz/S
-         MYldPfXc67857BJTrljYAWKAEv7bpgzHXVSsOLUi2XIkaWiJnV3EnHpTg7eeeBRqrdUb
-         zPsfoWJ/idYkDwRvuhwknJTtroQ7Fi1ztz7Rjd9QIp5VYU4jqL6k3qS1+QggKYG9e9gS
-         tf2yLzx+T7Y11kDIdCz3wh2gU8te20B4JNubqJd6tRA2dpXp0ieHkgMf0v3UlzA4p0oI
-         lPR0gD90CZhD3IkydZdkYcSY/nhfQeMcNk4yZuf0Z1BTUTmqwEPk0ATBrA5qMXInihaJ
-         qbhw==
+        d=linaro.org; s=google; t=1697561725; x=1698166525; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ftpCJDEdsDB5dCJBNigeh4u2CwwsQDpIP22iPNCSJXg=;
+        b=ITveUndRVn1zepCf7A018S6Tu6IUDRWisiCSKJ87Yqb3olj/BTZhyXk3N96gkbWvYw
+         sLyNyeZxxZ7vB3MGodjNFOYj8q5sVHF0A3Q8+XzgWT5VCOw0bAKA3CL2+T2ncddoNFNJ
+         47nvuYAA+lx6MrRisNcxBGpWFTNpqyzXqTySatz2L/+AAtwxO4rm6iI3n5UYTmJaoiEC
+         Ee0OhMdKdh+HB+mpDES4ksely51qbrCWlaxc9xVMKkDPePdNxoaXDvA97its7Yl4+1eb
+         ZTaod4xDE6E9vvkHx/rFOGkDAsDwTZvvLVLMxj5kYfAz/bZ0eXf96dxEooxQBbCea3vy
+         vuLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697561639; x=1698166439;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CcxqmurZRovtejIBarGStAVFXIqQYFcF1YdtRpOX6+U=;
-        b=FM13e7LOvGSIFGBgNVgBAZnrsv1cwxMgebolMbbErJX3zD7+WbYdCwja6sOAjKFMxr
-         p1pyeEhlpplXp6YPv6VYgyyyJ5LTgNOSb+gZimN+qSnVvJH89tcfhhKXYtSYO4a0EDdn
-         V7HW8mppTqTY8AdHXGosvMacb0JEAdHus/6+sqpoxvXwl3/hAIrPjjqPlJig+UHnE3i7
-         BuPpnAeLzVnmungRakTJ5Tw413qVst49HHVH35d1PQrDtfJyC4Nq592CiaMId9593+pl
-         RHI9ti1w4Kv0/u2wWfMx/ynxOor1Z17ZH5MngKHkeFzuhuXv07juZoWkl0lGwzDHaIRc
-         lzfA==
-X-Gm-Message-State: AOJu0YxwTM+Y6DRlpZ1ubwxbGXJH6FKyJqGQIog5v1MCRxCTbyd/lYBG
-	iyyI0TeVUmnxUGdJrkauJtF8lg==
-X-Google-Smtp-Source: AGHT+IGWHRcyXC/1h7iTCTDjF1dwqsF0VTdaLu1Up9dFe3fmG7G1SH0uMywyZx4cPkGMpWxV/vTf5g==
-X-Received: by 2002:a17:907:3e0d:b0:9b2:7b89:8199 with SMTP id hp13-20020a1709073e0d00b009b27b898199mr2462657ejc.53.1697561639311;
-        Tue, 17 Oct 2023 09:53:59 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id fi10-20020a170906da0a00b0098669cc16b2sm127675ejb.83.2023.10.17.09.53.58
+        d=1e100.net; s=20230601; t=1697561725; x=1698166525;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ftpCJDEdsDB5dCJBNigeh4u2CwwsQDpIP22iPNCSJXg=;
+        b=VlIOQMEYZl3AwV43wbsKWIg8RQOj6/rWiyhEygvAweNBE3nr4nnAgOvZSwyrCXnI1j
+         kozNNjPwAQUqaffsIjwcoLM2kWMVzJKYP/JsYQsvHdv3IBK0fDhQhEFHuFJuAFW8qrL6
+         YvV1jjODVgnxmbk15E8+QMXvQlscJ6Z/NtOZ0pwl7bHe8ouJEpoBnFq9zR9wYPcnUmrI
+         EYRoRR7Tgmnv/n0IXltrJtRluLtNS7Xh7fHy3Plj4nPIz+VGBsRfvdub0NE2hoR9IsME
+         LAVREaXBw4gHeO01YLeQ8lBoEo9ZsNV6f1NqtnjaVTpgZtDkAbeHnjVIycfQi/BdpXrq
+         eX9g==
+X-Gm-Message-State: AOJu0YyOENGSmHVn5RLfE9+ogT9zoYX3LocBz396YgmtEk0TQo2cdZre
+	hkhlY2sMioGy6V9awlcg57RgIA==
+X-Google-Smtp-Source: AGHT+IHMl59Jk4YUuZjuQRK6HRmz5pn9wzYG6wEN+FOrtPk6CwGNwzicRSRoxuLJuwl2CmPJSImqHw==
+X-Received: by 2002:a05:6000:8d:b0:32d:c69b:99b8 with SMTP id m13-20020a056000008d00b0032dc69b99b8mr1481237wrx.35.1697561725621;
+        Tue, 17 Oct 2023 09:55:25 -0700 (PDT)
+Received: from [172.30.204.57] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id t1-20020a5d6a41000000b0032d9efeccd8sm164668wrw.51.2023.10.17.09.55.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 09:53:58 -0700 (PDT)
-Message-ID: <04ee08a4-e804-40fe-b24e-7a56c9e24e8b@linaro.org>
-Date: Tue, 17 Oct 2023 18:53:56 +0200
+        Tue, 17 Oct 2023 09:55:25 -0700 (PDT)
+Message-ID: <2f22ed28-47b1-4a92-aae5-b625ab4ad731@linaro.org>
+Date: Tue, 17 Oct 2023 18:55:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,99 +67,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: vialab,vl817: remove reset-gpios from
- required list
-To: Jisheng Zhang <jszhang@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Anand Moon <linux.amoon@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231017160158.1065-1-jszhang@kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq6018: use CPUFreq NVMEM
+To: Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+ andersson@kernel.org, ilia.lin@kernel.org, rafael@kernel.org,
+ viresh.kumar@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231016175532.2081344-1-robimarko@gmail.com>
+ <20231016175532.2081344-3-robimarko@gmail.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231017160158.1065-1-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231016175532.2081344-3-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 18:01, Jisheng Zhang wrote:
-> The "reset-gpios" is optional in real case, for example reset pin is
-> is hard wired to "high". And this fact is also reflected by the
-> devm_gpio_get_optional() calling in driver code.
+
+
+On 10/16/23 19:55, Robert Marko wrote:
+> IPQ6018 comes in multiple SKU-s and some of them dont support all of the
+> OPP-s that are current set, so lets utilize CPUFreq NVMEM to allow only
+> supported OPP-s based on the SoC dynamically.
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> As an example, IPQ6018 is generaly rated at 1.8GHz but some silicon only
+> goes up to 1.5GHz and is marked as such via an eFuse.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
->  .../bindings/usb/thead,th1520-usb.yaml        | 42 ++++++++++---------
->  .../devicetree/bindings/usb/vialab,vl817.yaml |  1 -
->  2 files changed, 23 insertions(+), 20 deletions(-)
+>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 +++++++++++++-
+>   1 file changed, 13 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
-> index afb618eb5013..ce1cab75f0ff 100644
-> --- a/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
-> @@ -28,6 +28,10 @@ properties:
->  
->    ranges: true
->  
-> +  thead,misc-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: a phandle to the misc system register controller syscon node.
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 9aec89d5e095b..49f0e6aa4b5bb 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -96,42 +96,49 @@ scm {
+>   	};
+>   
+[...]
 
-Either you combined two unrelated changes or this should be resets from
-reset-controller.
+> +			cpu_speed_bin: cpu_speed_bin@135 {
+underscore -> minus sign
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Best regards,
-Krzysztof
-
+Konrad
 
