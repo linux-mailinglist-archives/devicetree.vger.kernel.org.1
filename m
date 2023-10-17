@@ -1,503 +1,234 @@
-Return-Path: <devicetree+bounces-9091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD6B7CB961
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 05:45:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2AB7CB9B0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 06:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1067528154B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 03:45:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59538B20EDF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Oct 2023 04:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8ED8F4D;
-	Tue, 17 Oct 2023 03:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E0DBE5C;
+	Tue, 17 Oct 2023 04:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kx+rKXR6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="r+P5ypfu";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="qcb53XuW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0F88825
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 03:45:31 +0000 (UTC)
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEE395;
-	Mon, 16 Oct 2023 20:45:29 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c620883559so3505258a34.0;
-        Mon, 16 Oct 2023 20:45:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD301747E
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 04:20:05 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C500D83;
+	Mon, 16 Oct 2023 21:19:57 -0700 (PDT)
+X-UUID: 69fd4e6c6ca411eea33bb35ae8d461a2-20231017
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=22fb0KMuuQ2+qlqSmPkS4P4iIdq0A/NwGPUSbkG1KQU=;
+	b=r+P5ypfujeOYcekTXwRF67OwZDvTniiiAzehPyAePLW2ScxkSMBONgMgWWXEHah81tobmoX+qyfRMgJRLcc2//v5fXeHPI+DCkwRbINDGFPC8G9UefBIGPGqcZGclZ1CNtbeX7TAS3LsY2Ba8Z1SxqIlV85WBBft9J//bPgrrlI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:36f67563-f28e-44b7-bb4a-f2efb59fd4af,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:f93204c0-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 69fd4e6c6ca411eea33bb35ae8d461a2-20231017
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <shawn.sung@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1133053694; Tue, 17 Oct 2023 12:19:50 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 17 Oct 2023 12:19:49 +0800
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 17 Oct 2023 12:19:49 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jm2VpsD2vDmWh5bQHWAoV4Lm6OFKQh3lrT8lwJIZgDjfwYoKqyIYTFRJtUuqv+LV4dKa7L/eyX7YYkiUly7nUz4auxUiUyAgEHYM0RbEe1agHj4JnDsyp5yO8/INc4QH5ERLJDqG7UeXeU3iuahui5ro8HY1iGiumi57BionM1wePPbms3Zy7FSx+EjM17HXEK6oHd5pDp9MOo/d98wxp1N6GodR5LPbHNd7lxdI5651uu4GbP0iL5r1804EmjuXZ8AQfBDzF4LfiuIuzdcrZCQvlW1iGqIfbaM4X51mQ4uWsVVwogi0DBorc0G0BaM+c/HaK7fW8vmXe8P5lVv1Wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=22fb0KMuuQ2+qlqSmPkS4P4iIdq0A/NwGPUSbkG1KQU=;
+ b=lNF3oLKrETfVsPRN43nN9TieP+GXqN/819Ut+Uj+p+nQ30wT+twOdKOjUH9qDz4P3GrBDg7Rr1Y4bcv4kstDUjLJ8ZO9X0Q0BDV9jmcArRP5TpUkwu2RHsSHx2y2R6IhKTqfHKtXm5D/FD3cBMUxsVeg9RHJ/4nN4UH/c0q2VBFikAKRvUd5WphFhchxoPhPSN6Wo/Yx/boDV0J3XN/LnX9inTVuSXygVreGe3DuWlhZF7GQfe8i5FIP/jHt4wKo64MPGrb0u5/FfzzZdvvKg0oIJHhdyrr5Wy04k9pMfC/UiMq0P8SpZ9mG/AVNyndDW+ijkO7azrsCm3hM3v5xdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697514329; x=1698119129; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYJgt5+b5HVwNIIrlfXEoBwZ8hfn4jjcSeUfjjs6Z20=;
-        b=kx+rKXR6E/Zpq/Fr4DSFOmcN4/Ge0T0isA7F2Wp6pCWHVwLBzOjlKSnK1ksqLwFMjZ
-         fLnL10aC+It0COGru80hNwyG6Ej9q+HsQp8howU94fF7IYPvwhHAkHXxKxJ21P/zctDr
-         0aT/Rdh3P1t2JyfZxugqmwpwU2b9i0KA8FZjk0ypKShqsDjh+lq8KQ+HoazaAu6c8cmr
-         0pIlZXexkzz1oySe+XpxHNjY3MZHH1yw/gTAiA8JgzhQc67iJHEZWVctxSjN5tXy4nnr
-         dbe7BLlh6BYd5Uv8Id51GAV26KcXzGPhMXrmoL0Wf5uqLUY4UrUBQasFXzhAHZUWRW6l
-         J4pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697514329; x=1698119129;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xYJgt5+b5HVwNIIrlfXEoBwZ8hfn4jjcSeUfjjs6Z20=;
-        b=thfnyf9GJeAxe/2s/kffCqd+3ZG+/Y4Y4A+KDCDvsGkKG9wNPJ7wXID1DSO+CTeRo1
-         SdhgHKEiNEmtWoshRl6FPX2WuOszXBZRy3z0Mlxdu51KaDVeT5EfJMXTcRqguAQNvVyr
-         BWIlVB3DYIFWz10FD3TvgJSzJhYbCw7Nx+0YoGICSV6aDJsV8HE6WrSp61VXrNgWldM9
-         1SYumGZKoo6NOxuVMP2C9DfS92CRmAy5BYElqn//yopxS8pFqQRLWHUBQLRQawM+CHlU
-         0iav9vF5EKyuQoBjCdNSr3E2Bl9tSrfcDBgyCXEQrlqp3jfMx9FOuyhE1N757yj/FPXJ
-         0iKA==
-X-Gm-Message-State: AOJu0YwwCIsUzIiqMJnz/qqv5GJ9VRXr/+kaRMV8mecYn7fM/cZUxZzt
-	2oXlbhohwSpCpwf4g/5Rm1ye/h94HZojrg==
-X-Google-Smtp-Source: AGHT+IGd5h0eR/hvzmIeetJD4HfGJWvoSL9BsCP1F3rrJaFSMUT77YeMQxH8QvNmKtl6vfRxcynrHQ==
-X-Received: by 2002:a05:6830:1e65:b0:6bc:fdc8:d600 with SMTP id m5-20020a0568301e6500b006bcfdc8d600mr1078616otr.25.1697514328668;
-        Mon, 16 Oct 2023 20:45:28 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:628c:a92e:5b03:91a2:57c8:16f3])
-        by smtp.gmail.com with ESMTPSA id y13-20020aa793cd000000b0069305627491sm313777pff.159.2023.10.16.20.45.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 20:45:28 -0700 (PDT)
-From: Anshul Dalal <anshulusr@gmail.com>
-To: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Anshul Dalal <anshulusr@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] input: joystick: driver for Adafruit Seesaw Gamepad
-Date: Tue, 17 Oct 2023 09:13:45 +0530
-Message-ID: <20231017034356.1436677-2-anshulusr@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231017034356.1436677-1-anshulusr@gmail.com>
-References: <20231017034356.1436677-1-anshulusr@gmail.com>
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=22fb0KMuuQ2+qlqSmPkS4P4iIdq0A/NwGPUSbkG1KQU=;
+ b=qcb53XuWeb61moMImCgIdzILncqTkp/hfT2uXppC1ixQPNHehLMl7RFNSbXrD7fV2z7OgOTIbcZBiFc5fuXXIpL98H7SIWklz6QQKjwla/jnIy/2/v1KnMHmJtSIqS2D30EinPnzqQ+XHwRFV0n6eeeFLqwE12KdNCjkwkTu/Fg=
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com (2603:1096:400:1f5::13)
+ by TYUPR03MB7230.apcprd03.prod.outlook.com (2603:1096:400:356::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Tue, 17 Oct
+ 2023 04:19:47 +0000
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::faa3:6316:28ab:206b]) by TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::faa3:6316:28ab:206b%4]) with mapi id 15.20.6886.034; Tue, 17 Oct 2023
+ 04:19:46 +0000
+From: =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>
+To: "daniel@fooishbar.org" <daniel@fooishbar.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	"mchehab@kernel.org" <mchehab@kernel.org>,
+	=?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v7 04/23] dt-bindings: display: mediatek: padding: Add
+ MT8188
+Thread-Topic: [PATCH v7 04/23] dt-bindings: display: mediatek: padding: Add
+ MT8188
+Thread-Index: AQHZ+Cgp187jkr0vBEqA6ERKZhPrzbBH886AgAPs+YCAAGsdgIABJh0A
+Date: Tue, 17 Oct 2023 04:19:46 +0000
+Message-ID: <cadc280e7be3c14687bd4ef4f4fe6b459120396c.camel@mediatek.com>
+References: <20231006073831.10402-1-shawn.sung@mediatek.com>
+	 <20231006073831.10402-5-shawn.sung@mediatek.com>
+	 <CAPj87rMUbP12uwzyhV=94wR7LkQK4JfTB4kEMGADq2YJOk8Vrw@mail.gmail.com>
+	 <c3fff5bcc3a7cfeffcd86d6e2c199963a720871a.camel@mediatek.com>
+	 <CAPj87rMc=3tX8Fbk4LjXmqgPfp=YX3GS64V4Sb5y84xwf3wDBw@mail.gmail.com>
+In-Reply-To: <CAPj87rMc=3tX8Fbk4LjXmqgPfp=YX3GS64V4Sb5y84xwf3wDBw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6623:EE_|TYUPR03MB7230:EE_
+x-ms-office365-filtering-correlation-id: f5cbe278-9ea9-4b5c-a38a-08dbcec84c1d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YteZ2CTJAVx9quzpSKZ2U75uaiZVR3PN7czB1eyU2Ev9mVUZFgLpx+615sS2wUZ2vW2Avbg4XzX2jnnbvVFdVm7RZMylnPxQIXFO4KORLeBVuf1WfbcnXM4TVFLwkynyxCFQDreOVK5+YYvOlwCeLGama5U2XYI+FT8o45VMViolKUjhamJCAe6ViaK7dgU3yOtBIHTN48yzK9ix+LR+EmFdbQRKtXiYGEZITu1f1Ev4TxD3wjUrCqDa45nzDIJEa8Tym/6vlt7rphqwLC0WYq78QcLZrqzIBd9JARwCngxF+M9U9mv4WXilW8KPUVKt122/kIeE1nBhRwIFqD3el20kLVHTDrfdIZWW0d38dq6CKff/0uaDPa8bC9XMF+NbKUjA0vNZRA5Pyp6qlU137PdFd9hkRKWvqsflKBshRmLLfhI2nVizRAvQvaVdT+cPC3FrxJN0oVuIDyrIrwM9teAgSP4qCZIoJUZUdW9lW0D0rXi49VNK6sSp9bD5aXR7ZqUgjoHIFdRWnQk1lkd9D5qhYy+5UOJJRwQa3qnG5A9ZGSPqxsHiJ9Ybf+FCHGHalN/3+8Kr6YJLTLe3CqNWp4ha7msaBzFAdsjtnScdBEllwamm26OcYT0KjXrYXGCewjry8ZorDuRnHQJFUer2c5BJ+4egRgBkiB7pWUJvqp4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6623.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(136003)(346002)(396003)(366004)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(2616005)(6506007)(66556008)(66446008)(6486002)(64756008)(66946007)(76116006)(478600001)(71200400001)(6916009)(66476007)(54906003)(26005)(316002)(86362001)(6512007)(36756003)(4326008)(8676002)(4001150100001)(2906002)(7416002)(8936002)(5660300002)(122000001)(85182001)(41300700001)(38070700005)(83380400001)(38100700002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NWhtYkdYeUdISU1Vd2ZscmNFU0JZeE1uRG9BNUNSajUzREhaMWYycHFob3M1?=
+ =?utf-8?B?R0NxcVFSb3BLRmN2aExOWFY1a0tOd0ZITlRsUkl4dE9sMTV4QTlhMFZkcjRZ?=
+ =?utf-8?B?ckp4d3FiQmsyR3RUWUdDREUwMXQvY2JIMG5uekxlWCt2d2xqQW5nN3pueU4z?=
+ =?utf-8?B?cHNmZnNFcXB5YTA1ZXh0SG82Z245bDJpTytjMThob3Y1YUl3UWFTZ3Vkem44?=
+ =?utf-8?B?SEhqcWg0ekk0clEycGpQUjVCNTVNMEZYcVdWbVdVVFBkWmhUM2UrS2FpVVd4?=
+ =?utf-8?B?VzZMSkljM0hlRFFDanhldzF3a25QWjdUZEdBRGJLWlVuUUF5emVORmw4aEtV?=
+ =?utf-8?B?VHBkZDJScFRrZ2w5Zkpubnk4V0RDTUhlMkxiL3pBQ2JGZ2Z6TDVXUmFkZkNh?=
+ =?utf-8?B?NWo3WEVSTjFiMmh2R3ZSQ09KaU1ZeFl5OXYyNXZYZU1YTnh1Z0NjNGw2eWdq?=
+ =?utf-8?B?bWF2VTQ4Q3dlK3dyc2xTZHpPbzdua05xenBRbCtzRXlaVDZ6WkNhcjRQM1A2?=
+ =?utf-8?B?dUNQSGhTWDRtNy9qYWdTTUN1ZGk4dm50T1VQVTh0cm50VWo5SVBSL3RZWE94?=
+ =?utf-8?B?VXA1RWk1LzZwRjd5R2NNelBwMStKbTNxclR4Y2VzZW4vVG9wTmo2UzFveStV?=
+ =?utf-8?B?YTBucDRHbkVwRVZPMURpYkpIZXBKVzIxdk5Nekw4SWxodGc0aWFjNHhObVpa?=
+ =?utf-8?B?VkgwZlgybmNHT1NOOFNMVzVZYlFhZ20wU1g3cTRYNnFpSmJWMHFPUnFqMVlY?=
+ =?utf-8?B?czRra3dqM2hlZU9wajd0Um53cW5Ra0JJeTRVcTBqVVJpdFRmb2hoQVl5RUpj?=
+ =?utf-8?B?SlFJb3VhaGpTYTd4TXZ0TW9tanM0L2hsUzJMbWxQY29YY0RQSnlSeVdUWHNQ?=
+ =?utf-8?B?SWtqT081OWMxR1o0dExqTkd6WEwyRGFHc2xxMUEzMTVnNm9XUzZvVS96TXpQ?=
+ =?utf-8?B?cVI5akk2STd0VFgwQTM4aEF0R212OFJGVkFsU2hBcUxuRnU2NXkveVRHRm9o?=
+ =?utf-8?B?ejNjT3djK0FKWC9IWGw2ZTJPQTRRNWRmcHFyd2RUQm5yQnRlaTJjNUZPbkN4?=
+ =?utf-8?B?SmJOZVlBN3p4TWsyRmh6OU1Yd3B4K1pvTlZvdXlWQno2KzdRY29MYlVKOUhu?=
+ =?utf-8?B?Vk5GajRKbnNwYzZhenlTQVE2ZTdHWUpMUkY2MDl5T1FkeTZ4bGczWGRWeVJQ?=
+ =?utf-8?B?U3EwWGtCTytGSDFPcGtqTm5DVDhENTBDMitGZ3VGTGhKdWtTRHhIWWUzb2Y0?=
+ =?utf-8?B?VEQxQlVRNEZwbHFwRTk4d2x6VkdveTA5VTYzWWJ0dTdiVG9yU2IrZzBjMEJw?=
+ =?utf-8?B?Tm85NEZtTDJpZTloakVoSFkrNnROOTRzMGJqaHBJWTNUS0xUc1ZKTzZkczZL?=
+ =?utf-8?B?Y05xQkc1V0JDL1A4SSs0SlNNSDUrWGhGNi9Cd2ZKdDRPL2FBYWpsL0dramUv?=
+ =?utf-8?B?aVRKOWpVaFY0aXEzUS8vcmxJN1RyUStIVTJMeVZlNTFPeWprOTdvU1Y4MDF1?=
+ =?utf-8?B?OXh2NXppRlI5SUREV3lwMkRvbzFBM0hHNnRETnpBTFlKU3hZOUhLT1NFdXln?=
+ =?utf-8?B?aUxtL2xJTkNWdmtxcW5NMG5QSWprak1CZTE0RmZvN1liU3VmaHY3ZlVMRTI4?=
+ =?utf-8?B?aWVjeVB1ODZSWmpVVkxWWW5PWGtWSmYyV1BFOEh5MkdoUlRZVlpJdlJTT001?=
+ =?utf-8?B?c1ZkR2dMSXc1YkR4WmFNRkV6NGlTUGRVcVpyL1VSZisvMFhmZ1RSRDE0SVVx?=
+ =?utf-8?B?K04ybFN2MSt5Y05LODdFRVhRdThPeWtxVm9kckxPWEI5M09qUHE3WHlpcHF4?=
+ =?utf-8?B?dS9UVXJiM0U3N25haFVXYUlXMGdrUHNvRGFmYi9FRWdNTDlxbnNLd2V5NkJD?=
+ =?utf-8?B?aC9reFlJVXp4NWVPV3grSVkyMERMSVQzV0I4Rnpqc2J1M0pMVzZnRXZYcUtL?=
+ =?utf-8?B?TG5kdWVzUWh0V0U2SGhQRXVQWVJKNkxscmloNzQ4VjRxL1NGeHZFSnh6ZnhF?=
+ =?utf-8?B?eHBMVUMxMHZGYllOUVB3bmpWK0UyM08zMFZaTGJnNFBST2hVRDJwUTJWWVlx?=
+ =?utf-8?B?ZmRuL3BEdURrWjR0SHFVWW05cy9nbmNqQS9DL0JsaUs1aWd3TUNmSDJNYXNF?=
+ =?utf-8?B?V3dDNzNEYWpweDBJVk1FUUttLzJ3RjI3U2szVVV4V2F6Qm1hMTFMS2E2eEtJ?=
+ =?utf-8?B?MkE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8B4ABB97F2B93344B68231CC6103DA69@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6623.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5cbe278-9ea9-4b5c-a38a-08dbcec84c1d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2023 04:19:46.8774
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PdRwGpi1KIPerNbXYXHB195fjGa0/emlAmZbWb/dnPDNrCGntF9q92Jqp8qcfXMNsuMwlSAg3Z4+/LrXVzzKdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR03MB7230
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--29.532400-8.000000
+X-TMASE-MatchedRID: UWn79NfEZzbUL3YCMmnG4t7SWiiWSV/1jLOy13Cgb4/n0eNPmPPe5KWz
+	WoIRiV9DM/Se/q/gEyf5MiS7M8c1eGmXMi7Ntyo2dnC5uaS6tb9+Mk6ACsw4JpMxNpDOG+h6Wc2
+	47K5p+pqXp4mjSj5SJIueL58aNkcQtgOLaDgvRCWng4xNY7BizTlgt2EJ9a2EQmp51f2+39ncIr
+	+Sexz1N1wJlo+DKzyHkgCx+93kt0V6kCBFqPiuW8u00lnG8+PWoUIbLcCfRuCo+b+yOP0oGAqEO
+	aaKoFK3sZZYtUp0qr5Pi1YYtiBcUxM9Fd6tjRLjjc2CQSoA3RGbKpAlY2y6SYKwF4K/wIz9L1XM
+	sf0v31qW1rCYd0kRogFIUrK6b5YLSSOWVJeuO1DSBVVc2BozSnJnzNw42kCxxEHRux+uk8jpP8t
+	MOyYmaA==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--29.532400-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	60F6019C5A7D31375A901EA14174A657830732439CFF1E9AC2AE07AEAB8685362000:8
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SPF_TEMPERROR,
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Adds a driver for a mini gamepad that communicates over i2c, the gamepad
-has bidirectional thumb stick input and six buttons.
-
-The gamepad chip utilizes the open framework from Adafruit called 'Seesaw'
-to transmit the ADC data for the joystick and digital pin state for the
-buttons. I have only implemented the functionality required to receive the
-thumb stick and button state.
-
-Steps in reading the gamepad state over i2c:
-  1. Reset the registers
-  2. Set the pin mode of the pins specified by the `BUTTON_MASK` to input
-      `BUTTON_MASK`: A bit-map for the six digital pins internally
-       connected to the joystick buttons.
-  3. Enable internal pullup resistors for the `BUTTON_MASK`
-  4. Bulk set the pin state HIGH for `BUTTON_MASK`
-  5. Poll the device for button and joystick state done by:
-      `seesaw_read_data(struct i2c_client *client, struct seesaw_data *data)`
-
-Product page:
-  https://www.adafruit.com/product/5743
-Arduino driver:
-  https://github.com/adafruit/Adafruit_Seesaw
-
-Driver tested on RPi Zero 2W
-
-Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
-Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
----
-
-Changes for v5:
-- Added link to the datasheet
-- Added debug log message when `seesaw_read_data` fails
-
-Changes for v4:
-- Changed `1UL << BUTTON_` to BIT(BUTTON_)
-- Removed `hardware_id` field from `struct seesaw_gamepad`
-- Removed redundant checks for the number of bytes written and received by
-  `i2c_master_send` and `i2c_master_recv`
-- Used `get_unaligned_be32` to instantiate `u32 result` from `read_buf`
-- Changed  `result & (1UL << BUTTON_)` to
-  `test_bit(BUTTON_, (long *)&result)`
-- Changed `KBUILD_MODNAME` in id-tables to `SEESAW_DEVICE_NAME`
-- Fixed formatting issues
-- Changed button reporting:
-    Since the gamepad had the action buttons in a non-standard layout:
-         (X)
-      (Y)   (A)
-         (B)
-    Therefore moved to using generic directional action button event codes
-    instead of BTN_[ABXY].
-
-Changes for v3:
-- no updates
-
-Changes for v2:
-adafruit-seesaw.c:
-- Renamed file from 'adafruit_seesaw.c'
-- Changed device name from 'seesaw_gamepad' to 'seesaw-gamepad'
-- Changed count parameter for receiving joystick x on line 118:
-    `2` to `sizeof(write_buf)`
-- Fixed invalid buffer size on line 123 and 126:
-    `data->y` to `sizeof(data->y)`
-- Added comment for the `mdelay(10)` on line 169
-- Changed inconsistent indentation on line 271
-Kconfig:
-- Fixed indentation for the help text
-- Updated module name
-Makefile:
-- Updated module object file name
-MAINTAINERS:
-- Updated file name for the driver and bindings
-
- MAINTAINERS                              |   7 +
- drivers/input/joystick/Kconfig           |   9 +
- drivers/input/joystick/Makefile          |   1 +
- drivers/input/joystick/adafruit-seesaw.c | 273 +++++++++++++++++++++++
- 4 files changed, 290 insertions(+)
- create mode 100644 drivers/input/joystick/adafruit-seesaw.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6c4cce45a09d..a314f9b48e21 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -441,6 +441,13 @@ W:	http://wiki.analog.com/AD7879
- W:	https://ez.analog.com/linux-software-drivers
- F:	drivers/input/touchscreen/ad7879.c
- 
-+ADAFRUIT MINI I2C GAMEPAD
-+M:	Anshul Dalal <anshulusr@gmail.com>
-+L:	linux-input@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-+F:	drivers/input/joystick/adafruit-seesaw.c
-+
- ADDRESS SPACE LAYOUT RANDOMIZATION (ASLR)
- M:	Jiri Kosina <jikos@kernel.org>
- S:	Maintained
-diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
-index ac6925ce8366..df9cd1830b29 100644
---- a/drivers/input/joystick/Kconfig
-+++ b/drivers/input/joystick/Kconfig
-@@ -412,4 +412,13 @@ config JOYSTICK_SENSEHAT
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called sensehat_joystick.
- 
-+config JOYSTICK_SEESAW
-+	tristate "Adafruit Mini I2C Gamepad with Seesaw"
-+	depends on I2C
-+	help
-+	  Say Y here if you want to use the Adafruit Mini I2C Gamepad.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called adafruit-seesaw.
-+
- endif
-diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
-index 3937535f0098..9976f596a920 100644
---- a/drivers/input/joystick/Makefile
-+++ b/drivers/input/joystick/Makefile
-@@ -28,6 +28,7 @@ obj-$(CONFIG_JOYSTICK_N64)		+= n64joy.o
- obj-$(CONFIG_JOYSTICK_PSXPAD_SPI)	+= psxpad-spi.o
- obj-$(CONFIG_JOYSTICK_PXRC)		+= pxrc.o
- obj-$(CONFIG_JOYSTICK_QWIIC)		+= qwiic-joystick.o
-+obj-$(CONFIG_JOYSTICK_SEESAW)		+= adafruit-seesaw.o
- obj-$(CONFIG_JOYSTICK_SENSEHAT)	+= sensehat-joystick.o
- obj-$(CONFIG_JOYSTICK_SIDEWINDER)	+= sidewinder.o
- obj-$(CONFIG_JOYSTICK_SPACEBALL)	+= spaceball.o
-diff --git a/drivers/input/joystick/adafruit-seesaw.c b/drivers/input/joystick/adafruit-seesaw.c
-new file mode 100644
-index 000000000000..2a1eae8d2861
---- /dev/null
-+++ b/drivers/input/joystick/adafruit-seesaw.c
-@@ -0,0 +1,273 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
-+ *
-+ * Driver for Adafruit Mini I2C Gamepad
-+ *
-+ * Based on the work of:
-+ *	Oleh Kravchenko (Sparkfun Qwiic Joystick driver)
-+ *
-+ * Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
-+ * Product page: https://www.adafruit.com/product/5743
-+ * Firmware and hardware sources: https://github.com/adafruit/Adafruit_Seesaw
-+ */
-+
-+#include <asm-generic/unaligned.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+
-+/* clang-format off */
-+#define SEESAW_DEVICE_NAME	"seesaw-gamepad"
-+
-+#define SEESAW_STATUS_BASE	0
-+#define SEESAW_GPIO_BASE	1
-+#define SEESAW_ADC_BASE		9
-+
-+#define SEESAW_GPIO_DIRCLR_BULK	3
-+#define SEESAW_GPIO_BULK	4
-+#define SEESAW_GPIO_BULK_SET	5
-+#define SEESAW_GPIO_PULLENSET	11
-+
-+#define SEESAW_STATUS_HW_ID	1
-+#define SEESAW_STATUS_SWRST	127
-+
-+#define SEESAW_ADC_OFFSET	7
-+
-+#define BUTTON_A	5
-+#define BUTTON_B	1
-+#define BUTTON_X	6
-+#define BUTTON_Y	2
-+#define BUTTON_START	16
-+#define BUTTON_SELECT	0
-+
-+#define ANALOG_X	14
-+#define ANALOG_Y	15
-+
-+#define SEESAW_JOYSTICK_MAX_AXIS	1023
-+#define SEESAW_JOYSTICK_FUZZ		2
-+#define SEESAW_JOYSTICK_FLAT		4
-+
-+#define SEESAW_GAMEPAD_POLL_INTERVAL	16
-+#define SEESAW_GAMEPAD_POLL_MIN		8
-+#define SEESAW_GAMEPAD_POLL_MAX		32
-+/* clang-format on */
-+
-+u32 BUTTON_MASK = BIT(BUTTON_A) | BIT(BUTTON_B) | BIT(BUTTON_X) |
-+		  BIT(BUTTON_Y) | BIT(BUTTON_START) | BIT(BUTTON_SELECT);
-+
-+struct seesaw_gamepad {
-+	char physical_path[32];
-+	struct input_dev *input_dev;
-+	struct i2c_client *i2c_client;
-+};
-+
-+struct seesaw_data {
-+	__be16 x;
-+	__be16 y;
-+	u8 button_a, button_b, button_x, button_y, button_start, button_select;
-+};
-+
-+static int seesaw_read_data(struct i2c_client *client, struct seesaw_data *data)
-+{
-+	int err;
-+	unsigned char write_buf[2] = { SEESAW_GPIO_BASE, SEESAW_GPIO_BULK };
-+	unsigned char read_buf[4];
-+
-+	err = i2c_master_send(client, write_buf, sizeof(write_buf));
-+	if (err < 0)
-+		return err;
-+	err = i2c_master_recv(client, read_buf, sizeof(read_buf));
-+	if (err < 0)
-+		return err;
-+
-+	u32 result = get_unaligned_be32(&read_buf);
-+
-+	data->button_a = !test_bit(BUTTON_A, (long *)&result);
-+	data->button_b = !test_bit(BUTTON_B, (long *)&result);
-+	data->button_x = !test_bit(BUTTON_X, (long *)&result);
-+	data->button_y = !test_bit(BUTTON_Y, (long *)&result);
-+	data->button_start = !test_bit(BUTTON_START, (long *)&result);
-+	data->button_select = !test_bit(BUTTON_SELECT, (long *)&result);
-+
-+	write_buf[0] = SEESAW_ADC_BASE;
-+	write_buf[1] = SEESAW_ADC_OFFSET + ANALOG_X;
-+	err = i2c_master_send(client, write_buf, sizeof(write_buf));
-+	if (err < 0)
-+		return err;
-+	err = i2c_master_recv(client, (char *)&data->x, sizeof(data->x));
-+	if (err < 0)
-+		return err;
-+	/*
-+	 * ADC reads left as max and right as 0, must be reversed since kernel
-+	 * expects reports in opposite order.
-+	 */
-+	data->x = SEESAW_JOYSTICK_MAX_AXIS - be16_to_cpu(data->x);
-+
-+	write_buf[1] = SEESAW_ADC_OFFSET + ANALOG_Y;
-+	err = i2c_master_send(client, write_buf, sizeof(write_buf));
-+	if (err < 0)
-+		return err;
-+	err = i2c_master_recv(client, (char *)&data->y, sizeof(data->y));
-+	if (err < 0)
-+		return err;
-+	data->y = be16_to_cpu(data->y);
-+
-+	return 0;
-+}
-+
-+static void seesaw_poll(struct input_dev *input)
-+{
-+	struct seesaw_gamepad *private = input_get_drvdata(input);
-+	struct seesaw_data data;
-+	int err;
-+
-+	err = seesaw_read_data(private->i2c_client, &data);
-+	if (err != 0) {
-+		dev_dbg(&input->dev, "failed to read joystick state: %d\n",
-+			err);
-+		return;
-+	}
-+
-+	input_report_abs(input, ABS_X, data.x);
-+	input_report_abs(input, ABS_Y, data.y);
-+	input_report_key(input, BTN_EAST, data.button_a);
-+	input_report_key(input, BTN_SOUTH, data.button_b);
-+	input_report_key(input, BTN_NORTH, data.button_x);
-+	input_report_key(input, BTN_WEST, data.button_y);
-+	input_report_key(input, BTN_START, data.button_start);
-+	input_report_key(input, BTN_SELECT, data.button_select);
-+	input_sync(input);
-+}
-+
-+static int seesaw_probe(struct i2c_client *client)
-+{
-+	int err;
-+	struct seesaw_gamepad *private;
-+	unsigned char register_reset[] = { SEESAW_STATUS_BASE,
-+					   SEESAW_STATUS_SWRST, 0xFF };
-+	unsigned char get_hw_id[] = { SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID };
-+
-+	err = i2c_master_send(client, register_reset, sizeof(register_reset));
-+	if (err < 0)
-+		return err;
-+
-+	/* Wait for the registers to reset before proceeding */
-+	mdelay(10);
-+
-+	private = devm_kzalloc(&client->dev, sizeof(*private), GFP_KERNEL);
-+	if (!private)
-+		return -ENOMEM;
-+
-+	err = i2c_master_send(client, get_hw_id, sizeof(get_hw_id));
-+	if (err < 0)
-+		return err;
-+
-+	unsigned char hardware_id;
-+
-+	err = i2c_master_recv(client, &hardware_id, 1);
-+	if (err < 0)
-+		return err;
-+
-+	dev_dbg(&client->dev, "Adafruit Seesaw Gamepad, Hardware ID: %02x\n",
-+		hardware_id);
-+
-+	private->i2c_client = client;
-+	scnprintf(private->physical_path, sizeof(private->physical_path),
-+		  "i2c/%s", dev_name(&client->dev));
-+	i2c_set_clientdata(client, private);
-+
-+	private->input_dev = devm_input_allocate_device(&client->dev);
-+	if (!private->input_dev)
-+		return -ENOMEM;
-+
-+	private->input_dev->id.bustype = BUS_I2C;
-+	private->input_dev->name = "Adafruit Seesaw Gamepad";
-+	private->input_dev->phys = private->physical_path;
-+	input_set_drvdata(private->input_dev, private);
-+	input_set_abs_params(private->input_dev, ABS_X, 0,
-+			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
-+			     SEESAW_JOYSTICK_FLAT);
-+	input_set_abs_params(private->input_dev, ABS_Y, 0,
-+			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
-+			     SEESAW_JOYSTICK_FLAT);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_EAST);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_SOUTH);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_NORTH);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_WEST);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_START);
-+	input_set_capability(private->input_dev, EV_KEY, BTN_SELECT);
-+
-+	err = input_setup_polling(private->input_dev, seesaw_poll);
-+	if (err) {
-+		dev_err(&client->dev, "failed to set up polling: %d\n", err);
-+		return err;
-+	}
-+
-+	input_set_poll_interval(private->input_dev,
-+				SEESAW_GAMEPAD_POLL_INTERVAL);
-+	input_set_max_poll_interval(private->input_dev,
-+				    SEESAW_GAMEPAD_POLL_MAX);
-+	input_set_min_poll_interval(private->input_dev,
-+				    SEESAW_GAMEPAD_POLL_MIN);
-+
-+	err = input_register_device(private->input_dev);
-+	if (err) {
-+		dev_err(&client->dev, "failed to register joystick: %d\n", err);
-+		return err;
-+	}
-+
-+	/* Set Pin Mode to input and enable pull-up resistors */
-+	unsigned char pin_mode[] = { SEESAW_GPIO_BASE,	SEESAW_GPIO_DIRCLR_BULK,
-+				     BUTTON_MASK >> 24, BUTTON_MASK >> 16,
-+				     BUTTON_MASK >> 8,	BUTTON_MASK };
-+	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
-+	if (err < 0)
-+		return err;
-+	pin_mode[1] = SEESAW_GPIO_PULLENSET;
-+	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
-+	if (err < 0)
-+		return err;
-+	pin_mode[1] = SEESAW_GPIO_BULK_SET;
-+	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
-+	if (err < 0)
-+		return err;
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id of_seesaw_match[] = {
-+	{
-+		.compatible = "adafruit,seesaw-gamepad",
-+	},
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_seesaw_match);
-+#endif /* CONFIG_OF */
-+
-+/* clang-format off */
-+static const struct i2c_device_id seesaw_id_table[] = {
-+	{ SEESAW_DEVICE_NAME, 0 },
-+	{ /* Sentinel */ }
-+};
-+/* clang-format on */
-+
-+MODULE_DEVICE_TABLE(i2c, seesaw_id_table);
-+
-+static struct i2c_driver seesaw_driver = {
-+	.driver = {
-+		.name = SEESAW_DEVICE_NAME,
-+		.of_match_table = of_match_ptr(of_seesaw_match),
-+	},
-+	.id_table = seesaw_id_table,
-+	.probe = seesaw_probe,
-+};
-+module_i2c_driver(seesaw_driver);
-+
-+MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
-+MODULE_DESCRIPTION("Adafruit Mini I2C Gamepad driver");
-+MODULE_LICENSE("GPL");
--- 
-2.42.0
-
+SGkgRGFuaWVsLA0KDQpPbiBNb24sIDIwMjMtMTAtMTYgYXQgMTI6NDcgKzAyMDAsIERhbmllbCBT
+dG9uZSB3cm90ZToNCj4gIAkgDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGlj
+ayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRo
+ZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+ICBIaSBTaGF3biwNCj4gDQo+IE9uIE1vbiwgMTYg
+T2N0IDIwMjMgYXQgMDY6MjMsIFNoYXduIFN1bmcgKOWui+WtneismSkgPA0KPiBTaGF3bi5TdW5n
+QG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4gT24gRnJpLCAyMDIzLTEwLTEzIGF0IDE3OjI2ICsw
+MTAwLCBEYW5pZWwgU3RvbmUgd3JvdGU6DQo+ID4gPiBJZiBJIHVuZGVyc3RhbmQgdGhlIGRyaXZl
+ciBjb3JyZWN0bHksIHBhZGRpbmcgaXMgYXV0b21hdGljYWxseQ0KPiA+ID4gYXBwbGllZA0KPiA+
+ID4gdG8gY29tcGVuc2F0ZSBmb3IgdW5hbGlnbmVkIGRpbWVuc2lvbnMuIFRoZSBmaXJzdC9sYXN0
+DQo+IHJvd3MvY29sdW1ucw0KPiA+ID4gb2YNCj4gPiA+IHRoZSBvdmVybGF5IGFyZWEgd2lsbCBi
+ZSBmaWxsZWQgd2l0aCBhIHNwZWNpZmllZCBjb2xvdXIgKGJsYWNrPykNCj4gdG8NCj4gPiA+IHBy
+ZXNlcnZlIHRoZSBhcmVhLiBUaGlzIGlzIHVuZm9ydHVuYXRlbHkgbm90IE9LIHRvIGRvDQo+IHRy
+YW5zcGFyZW50bHkuDQo+ID4gPiBVc2Vyc3BhY2UgbXVzdCBiZSBhd2FyZSBvZiB0aGlzIHBvbGlj
+eSBkZWNpc2lvbiBhbmQgc3BlY2lmaWNhbGx5DQo+ID4gPiByZXF1ZXN0IGl0LiBJZiBub3QsIHRo
+ZSBhdG9taWMgcmVxdWVzdCBjaGVjayBzaG91bGQgZmFpbCBhbmQgdGVsbA0KPiA+ID4gdXNlcnNw
+YWNlIHRoYXQgdGhlIHJlcXVlc3RlZCBjb25maWd1cmF0aW9uIGlzIG5vdCBwb3NzaWJsZSB0bw0K
+PiA+ID4gYWNoaWV2ZS4NCj4gPg0KPiA+IFllcywgUGFkZGluZyB3b3JrcyBhcyB5b3UgZGVzY3Jp
+YmVkLCB1c2VycyBjYW4gYXNzaWduIGJhY2tncm91bmQNCj4gY29sb3JzDQo+ID4gZm9yIHRoZSBm
+aWxsZWQgYXJlYSBpbiAxMGJpdCBSR0IgZm9ybWF0LCBob3dldmVyLCB0aGUgcm93cyBhbmQNCj4g
+Y29sdW1ucw0KPiA+IHRoYXQgYXJlIGZpbGxlZCBieSBQYWRkaW5nIHdpbGwgYmUgY3JvcHBlZCBi
+eSB0aGUgaGFyZHdhcmUNCj4gY29tcG9uZW50cw0KPiA+IGFmdGVyIGl0IHRvIGF2b2lkIHNpdHVh
+dGlvbnMgYXMgeW91IG1lbnRpb25lZCwgc28gdXNlcnMgc2hvdWxkIG5vdA0KPiA+IG5vdGljZSBh
+bnkgZGlmZmVyZW5jZS4NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLCBJIGhhZG4n
+dCByZWFsaXNlZCB0aGF0IHRoZSBhZGRlZCBwYWRkaW5nDQo+IGxhdGVyIGdldHMgY3JvcHBlZC4N
+Cj4gDQo+IENoZWVycywNCj4gRGFuaWVsDQoNClNpbmNlIFBhZGRpbmcgaXMgYnlwYXNzZWQgaW4g
+dGhlIGN1cnJlbnQgdmVyc2lvbiwgd2UgZGlkbid0IG1lbnRpb24gdG9vDQptYW55IGRldGFpbHMg
+YWJvdXQgaXQuIFRoYW5rIHlvdSBmb3IgY2hlY2tpbmcuDQoNCkZvciBtb3JlIGluZm9ybWF0aW9u
+LCA0LXBpeGVsIGFsaWdubWVudCBpbiB3aWR0aCBpcyBvbmx5IHJlcXVpcmVkIHdoZW4NCkhEUiBp
+cyBpbiBEb2xieSBWaXNpb24gZm9ybWF0LCBhbmQgdGhlIHBhZGRpbmdzIHdpbGwgYmUgY3JvcHBl
+ZCBieQ0KdmlkZW8gZnJvbnQtZW5kIGluIHRoZSBIRFIgbW9kdWxlLg0KDQpDaGVlcnMsDQpTaGF3
+bg0KDQoNCg==
 
