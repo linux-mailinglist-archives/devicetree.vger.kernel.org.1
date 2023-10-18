@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E0D7CDFD1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:30:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9B77CDFDF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:32:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 139371C20C5D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:30:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44A4C281CFB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4067B18C20;
-	Wed, 18 Oct 2023 14:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2BC347AF;
+	Wed, 18 Oct 2023 14:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g0sxMPeY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wb6MoHKm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6601946E
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:30:13 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA2D1FE5
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:30:09 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9b95622c620so1193686466b.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:30:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6380B37C99
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:32:11 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C5004492
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:32:09 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso64007585e9.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:32:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697639408; x=1698244208; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697639528; x=1698244328; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XQ4nAnFmi7trR3ImnXlpoFfsDRGGtRDxbKRr+uSrGKc=;
-        b=g0sxMPeYP6F11gr5WSJ2aWrwbG35Rj5g3lvGVl9aeW9mHbsjTu3+zahHKignpccxkg
-         5kULwfEsNkCvkYTqHanJBWghqV32U/9lyaahRaA66DLvjtItJ2+dt7/VK/NXulWJUZDo
-         BjVzIvphuBNwjh8X7fIgCjNb8T2Hw0T1eipzb1KxoFNVdXSfGpOknPhFNNmMwKtmiEbS
-         imlAiP0j14kkc7HQ2GQduGBGwkoKykRWRVVWp4j7CYF1XxLp3LhF5r3dNMrBW2Kz1Oqk
-         kIMzvMJ+3FndOEaCA+5QxYT7gSx4YNc72AUScKHdlk8wh/OigQMN2aN4npgZtS9r1joR
-         w2UA==
+        bh=FekunJoPYfLqYDfALvu/dwHE7ow+ZGp9oKK0I/A9G40=;
+        b=Wb6MoHKmJQnhsXRQRbkysmoVmpbqSUchSZHyyC8k2mukjo7VYmPLWuFdrO5zGq/Idl
+         ptZ2MjTt54+T1oxe37VO2S6HrwuP6OX6cBVJtxUZPQJ3CAA37WDHEss4LhGORkC0/BBv
+         JXSUTvvU8F32CdmF/z7TTbx37+P7vr7fLW8iMtwqvTDEYWNNVLsO/s/dlEZhAOByWMCm
+         4bGj6z9ovrGRYt3YPJ4J5DowusbLF++vzXRJJr5znR8QI76H2ncd4e+aLN7MB3kwN1/4
+         mQppvJL658j1s7owSuCUOLSUQK1Ph9evy2wZZSKwOWTjKFZAS5l3wwPefNwqN1uLUDo6
+         v+rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697639408; x=1698244208;
+        d=1e100.net; s=20230601; t=1697639528; x=1698244328;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XQ4nAnFmi7trR3ImnXlpoFfsDRGGtRDxbKRr+uSrGKc=;
-        b=IhxEtphOPxBFwss9qVoxJk5c0jJCOf8v0GgeokKaXyu1T+2SA8OKomZJbjg+WP4Zsm
-         ElXjFhNlVIMTens3AV9vouJTVj/GJfWm9/1V+K/g6Q+4dcKydOgv8CEc8+NoAeUhRxrB
-         kKIrsmq+RPh5fGOYNlKxZuhS8rQI5RuyiQ8elkcJUY9l90KkFZOH2vES0r3oF40QsSmb
-         R5XhyXVcb/DaJ2wIB8R2BkwnztSyDxpyDeqtWM5G0woiC57hzMqcImGAdrxmAYUtN7iu
-         sYOxPz2p9VIePiuP9VBPpcNH+t4Tv10B9lrJdiVw8etRVSxTRMTrAHCNsO3rU4tLucen
-         cd/g==
-X-Gm-Message-State: AOJu0YyqUTd9LszYgdn5aKck87AVk/ISvvt/+7vHOCEbvgB1rt/FWOPw
-	Q/ND65RXwdXSwPm1metIGLIEug==
-X-Google-Smtp-Source: AGHT+IH1QjZT9mMcarPwTqTV0RxJ5R0ozKBx0CIqvfhD1+mmAppNacfGo6K80a88usJU00TiOQ2xyg==
-X-Received: by 2002:a17:906:da8b:b0:9c2:a072:78bf with SMTP id xh11-20020a170906da8b00b009c2a07278bfmr4236692ejb.26.1697639407942;
-        Wed, 18 Oct 2023 07:30:07 -0700 (PDT)
+        bh=FekunJoPYfLqYDfALvu/dwHE7ow+ZGp9oKK0I/A9G40=;
+        b=gj42lse2xURQqLj0SXXMoIswJhOQyd9De5nctpzkk7JYVmmVdCkZ3e8UyXmX1d2Mkt
+         WajIrrAZbi7g5KENXwJokiEbNXfqcMsJMXlLttMa/rbdYlWMswEvJPga9ZTRK2ZR4AO3
+         VWsJgbkJ8XZTT076OLSYBc4sp7/0H/Sl4gZ1udDsv1IvMj3ubq+2Y+SM+Vbpd0ucZXqx
+         PEcp7RD2DWeaBMAA+lbUn419IusqUWDs47sCyCal0q4iLTIuGsA2ajmbAUXph0II3MnQ
+         l30/86wQfLDj+ASBtftzr2uWB8bsdy5KCseuRVbeBSMbJp7Lo7uP5nTnOmsOuBelGPlN
+         1AGQ==
+X-Gm-Message-State: AOJu0YzuL1gyg9sFCRplZb3oYr0t36E90Bt4/sNELtBnq4Z+7U0hUgi/
+	ojH55G4YY4jcdzzlZL5zxqXQ7w==
+X-Google-Smtp-Source: AGHT+IFfsHAWVrrf8Gott1Mh82pLqu617E05xKTDaWgoHi5hQXXCdz3m73npfLqDF5ABW7gfsEEZIw==
+X-Received: by 2002:adf:fc4a:0:b0:32d:b759:cf0e with SMTP id e10-20020adffc4a000000b0032db759cf0emr4288154wrs.20.1697639527979;
+        Wed, 18 Oct 2023 07:32:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id 7-20020a170906018700b009a5f7fb51dcsm1801920ejb.42.2023.10.18.07.30.05
+        by smtp.gmail.com with ESMTPSA id d28-20020adf9b9c000000b0031f3ad17b2csm2251410wrc.52.2023.10.18.07.32.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 07:30:07 -0700 (PDT)
-Message-ID: <da36114d-5769-466c-9218-1b5eb88343f9@linaro.org>
-Date: Wed, 18 Oct 2023 16:30:04 +0200
+        Wed, 18 Oct 2023 07:32:07 -0700 (PDT)
+Message-ID: <8bc3e567-01c2-4258-9d4a-c922539ac2be@linaro.org>
+Date: Wed, 18 Oct 2023 16:32:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] iio: adc: add smb139x bindings
+Subject: Re: [PATCH v2 5/6] dt-bindings: arm: qcom: add oneplus-lemonade(p)
+ bindings
 Content-Language: en-US
 To: Nia Espera <nespera@igalia.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -82,7 +83,7 @@ Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
  Caleb Connolly <caleb.connolly@linaro.org>,
  Luca Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
 References: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
- <20231018-nia-sm8350-for-upstream-v2-1-7b243126cb77@igalia.com>
+ <20231018-nia-sm8350-for-upstream-v2-5-7b243126cb77@igalia.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,24 +129,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231018-nia-sm8350-for-upstream-v2-1-7b243126cb77@igalia.com>
+In-Reply-To: <20231018-nia-sm8350-for-upstream-v2-5-7b243126cb77@igalia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 18/10/2023 16:25, Nia Espera wrote:
-> Bindings for a charger controller chip found on sm8350
+> Document the devicetree bindings for oneplus-lemonade and oneplus-lemonadep.
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
 > 
 > Signed-off-by: Nia Espera <nespera@igalia.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index adbfaea32343..72832ee5b876 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -974,6 +974,8 @@ properties:
+>                - qcom,sm8350-mtp
+>                - sony,pdx214-generic
+>                - sony,pdx215-generic
+> +              - oneplus,lemonade
+> +              - oneplus,lemonadep
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+Wrong order. 'o' does not go after 's'.
 
 Best regards,
 Krzysztof
