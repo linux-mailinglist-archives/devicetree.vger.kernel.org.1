@@ -1,145 +1,143 @@
-Return-Path: <devicetree+bounces-9750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 526BE7CE554
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:51:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCADE7CE595
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:58:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E6991C20A31
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:51:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F6A281B96
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6733FB3A;
-	Wed, 18 Oct 2023 17:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04293FE23;
+	Wed, 18 Oct 2023 17:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s82zJd5Y"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="Cvd7Jflp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B83B3FB2F
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:51:47 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA10311C
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:51:45 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-504a7f9204eso9476149e87.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:51:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697651503; x=1698256303; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gHJSF5X1nkWgGuo3YQxKlNnSL2Jb3AlzWdUDQa0ejrA=;
-        b=s82zJd5YurNSHwIlkxxXvaugD8+71EV9KMohp5SjSHngLsC1Rn2yM5RziwTJ7yFafC
-         BfcHav6U41G6MpSuahq5sprt+oHC3z/fVr5IolHlC1bEw5DxDEOINIBTYgapmsEb9Q51
-         v6lsV6HNDZ+vUr/HDAQ6dQsXMZdmdKf7RZp9UID09OPMyhBPLqdDf83hvQr+hi1E9an/
-         DklhOjEqat+97H32YIpZMI7U4p3fqR9ixORxITWDXaQfnmb6dZtcWlL8Web2JfjAmNlH
-         qa0KEzm9YJpAKxLLqPEkP3ebBZAeGR+a3RKgYFR0FU9pQOt49E/RWqBYI1ocx04kmdH0
-         yMvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697651503; x=1698256303;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gHJSF5X1nkWgGuo3YQxKlNnSL2Jb3AlzWdUDQa0ejrA=;
-        b=Glisg9knc7X5H4TUSN0lvo2V9B5NimaMsv/rixt1Gd+AB71hV6WXKaDJuh7NjOmyeI
-         t01qhkZTZjHMVrQPb2qMxWfhmH1GcNHcBybMzHWy0Q/HGvNw8B1rTFtFDdqHoKIFSZL2
-         u+X1fmykesgUtxPl675IxslQ6ReTnrV3VjvDvc7QCVs8U/xB8VnS1sqIX9QMdD9riJ1v
-         d90TdcpVmNbOfIM2T7yU1JJvOAEH1VrM+qZ9m6TJWTEQEAJDTp1F47uZF1rMOWPrnd3b
-         scSRHdRMt2N3TmqFNmr7eSbq7ZsY5TZbfkPknZWY6MHVNpX4qQTEPOuAxEzb7LbLFkL7
-         D8AA==
-X-Gm-Message-State: AOJu0YwzyjlIojvCj+y26GeDEZhfIOxQU5sMSZfmF/2G1vlUmG8UD83d
-	PuMY2tpdmaf1NL4DeXcWW5ZVfQ==
-X-Google-Smtp-Source: AGHT+IGp5OwXk3ooeeFdICyeMDEnuecQP80Ve5odqVSAvaMAzznXCIvH5bx9jBx+HtZf6/Le6CMARA==
-X-Received: by 2002:ac2:484c:0:b0:503:35b3:aa31 with SMTP id 12-20020ac2484c000000b0050335b3aa31mr4419418lfy.27.1697651503384;
-        Wed, 18 Oct 2023 10:51:43 -0700 (PDT)
-Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id x25-20020a19f619000000b0050797a35f8csm779407lfe.162.2023.10.18.10.51.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 10:51:43 -0700 (PDT)
-Message-ID: <b1926ed8-fbe2-4428-aa23-dc4279553417@linaro.org>
-Date: Wed, 18 Oct 2023 19:51:39 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BDF3C094
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:57:57 +0000 (UTC)
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BA01AB;
+	Wed, 18 Oct 2023 10:57:53 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39I5YN72000966;
+	Wed, 18 Oct 2023 12:57:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=q
+	eX7pmeDThbZJ5XEVeY493tQsiruFyR0Vjp7sszjW9Q=; b=Cvd7JflpwLdb72wU8
+	oDcff5R4Y9GZC/uaJSJFSdDrXOMSlIPgxOVx1M8wAgaSp4aI1PUiy1RcwsQ5FUDS
+	Toj9twH9foMgcEjpQ4F6cneOCpQLuH1zMDFZmSJtcyM/YsqWnAyqwFG4qehC9Xpn
+	NsHH/zArchjT7FmNDCe9IPLcR9FWPppqk7vsiqgxgs/zzxb9tgAM+Ajmg608QX+3
+	CAPsoMPabLUAVB7b5qhP6svQpdcBbu0HBSYSIvUR1vgUOXAB0rVk5c4pnjlHNGk/
+	a2VVzNaFbhABLpSYIZLKAkpOKcMJZ10uqqQpl8EuIama6FEVtPT+kF30oZhO9gYa
+	Zmtsg==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3tqrcw6n6p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 12:57:42 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 18 Oct
+ 2023 18:57:39 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
+ Transport; Wed, 18 Oct 2023 18:57:39 +0100
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4BE20458;
+	Wed, 18 Oct 2023 17:57:38 +0000 (UTC)
+From: James Ogletree <james.ogletree@opensource.cirrus.com>
+To: 
+CC: James Ogletree <james.ogletree@cirrus.com>,
+        Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, Fred Treven <fred.treven@cirrus.com>,
+        Ben Bright <ben.bright@cirrus.com>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/4] Add support for CS40L50
+Date: Wed, 18 Oct 2023 17:57:21 +0000
+Message-ID: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] arm64: dts: qcom: ipq5332: populate the opp table
- based on the eFuse
-Content-Language: en-US
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- rafael@kernel.org, viresh.kumar@linaro.org, ilia.lin@kernel.org,
- quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-References: <cover.1697600121.git.quic_varada@quicinc.com>
- <fbd343f731973f532496c2ccfe65e6b487a14db3.1697600121.git.quic_varada@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <fbd343f731973f532496c2ccfe65e6b487a14db3.1697600121.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: o8M-gExX3u65-0iA2utk737nFnCy12E_
+X-Proofpoint-ORIG-GUID: o8M-gExX3u65-0iA2utk737nFnCy12E_
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+From: James Ogletree <james.ogletree@cirrus.com>
 
+This patch series adds support for Cirrus Logic CS40L50, a haptic driver.
 
-On 10/18/23 11:29, Varadarajan Narayanan wrote:
-> IPQ53xx have different OPPs available for the CPU based on
-> SoC variant. This can be determined through use of an eFuse
-> register present in the silicon.
-> 
-> Add support to read the eFuse and populate the OPPs based on it.
-> 
-> 	------------------------------------------------
-> 	Frequency	BIT2	BIT1	opp-supported-hw
-> 			1.1GHz	1.5GHz
-> 	------------------------------------------------
-> 	1100000000	1	1	0xf
-BIT(0) | BIT(1) | BIT(2) is 0x7
+While I2S streaming to the device will need to be supported in the future,
+no codec driver is included in this submission and therefore this MFD
+driver has just one component. A bare bones codec driver can be created
+and included if maintainers prefer.
 
-> 	1500000000	0	1	0x3
-> 	------------------------------------------------
-> 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v2:	Fix inconsistencies in comment and move it to commit log
-> 	as suggested
-> 	Remove opp-microvolt entries as no regulator is managed by Linux
-> 	cpu_speed_bin -> cpu-speed-bin in node name
-> 	Remove "nvmem-cell-names" due to dtbs_check error
-> ---
->   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 19 ++++++++++++++++---
->   1 file changed, 16 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index 4206f05..a0dcba3 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -91,11 +91,19 @@
->   	};
->   
->   	cpu_opp_table: opp-table-cpu {
-> -		compatible = "operating-points-v2";
-> +		compatible = "operating-points-v2-kryo-cpu";
->   		opp-shared;
-> +		nvmem-cells = <&cpu_speed_bin>;
->   
-> -		opp-1488000000 {
-> -			opp-hz = /bits/ 64 <1488000000>;
-> +		opp-1100000000 {
-> +			opp-hz = /bits/ 64 <1100000000>;
-> +			opp-supported-hw = <0xF>;
-hex literals must be lowercase.
+Changes in v4:
+- Move from Input to MFD
+- Move common Cirrus haptic functions to a library
+- Incorporate runtime PM framework
+- Coding style related improvements
 
-Konrad
+Changes in v3:
+- YAML formatting corrections
+- Fix typo in MAINTAINERS
+- Use generic node name "haptic-driver"
+- Fix probe error code paths
+- Use sizeof(*)
+- Remove tree reference in MAINTAINERS
+
+Changes in v2:
+- Fix checkpatch warnings
+
+James Ogletree (4):
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  Input: cs40l50 - Add cirrus haptics base support
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+
+ .../bindings/input/cirrus,cs40l50.yaml        |  70 +++
+ MAINTAINERS                                   |  13 +
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cirrus_haptics.c           | 586 ++++++++++++++++++
+ drivers/input/misc/cs40l50-vibra.c            | 353 +++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 443 +++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  69 +++
+ drivers/mfd/cs40l50-spi.c                     |  68 ++
+ include/linux/input/cirrus_haptics.h          | 121 ++++
+ include/linux/mfd/cs40l50.h                   | 198 ++++++
+ 13 files changed, 1966 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cirrus_haptics.c
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/input/cirrus_haptics.h
+ create mode 100644 include/linux/mfd/cs40l50.h
+
+-- 
+2.25.1
+
 
