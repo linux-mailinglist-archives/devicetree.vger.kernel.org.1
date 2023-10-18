@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-9620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188127CD9E4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:58:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E047CD9E8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7BB0281C1F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:57:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A94FB21055
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9097E199D1;
-	Wed, 18 Oct 2023 10:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE9E19BAB;
+	Wed, 18 Oct 2023 10:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PW+NbAJY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OrbLMqn8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B52A18E30
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:57:55 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9540A10C7;
-	Wed, 18 Oct 2023 03:57:42 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I6q9US016294;
-	Wed, 18 Oct 2023 10:57:39 GMT
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AADE18E30
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:58:09 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D8AB0;
+	Wed, 18 Oct 2023 03:58:00 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I8AGg2019114;
+	Wed, 18 Oct 2023 10:57:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=tOxH8S0OAocwIY1sycmnBORYAkjAKoNWL/pOqTnuBCo=;
- b=PW+NbAJYP4YmG71l3WspbwvTHQTG3ayH3imkpZ/KOifjC4kUDCIgJReHqExLpwo+1AjP
- fqYWntXS9oLRJhxlKP3Md0xtXFQWupulE6PeOtk+SEJ/4j1769s3kg6KckQtuy3H7yTz
- 1PLZ9BWc6ZE9Bicp1vRNId1At1VeqVdynNwt+PJJIIXXrJHKALH6KA8UEqiez7/Oz+dd
- kporx/BsAR4H7Ph0fZ2WYOMLk3mNJnpJGzbjUSWyz9az9YK6OH7N7857CUlBaJAimM6F
- D1AyRR5TmMOdI6HhW208tewCU5SMBKNPtwEXT2ZbvPthgyRWhFuGHlsOdZjZR1dm8ubv +Q== 
+ bh=4vkQKvJML8wn2+HrI9TYl1IsbWBqKkY1/P/UoPqJVfg=;
+ b=OrbLMqn8vTBKwwVe9AX6LzJNauX/sNt0mmDZZQiI3HmZVWdgwELSIOjBhE4iiDYjEooZ
+ hDJfhMWGbZW97DKzoPIOnB4ULXvY6fQ4tUWeROPrpfZKnnxFdREL9KwMg9ljJbXimfYC
+ K0CMSEPfzRRfxSAHhHPajsnI1FAP3jvyZAnx1wSBVJ8Psi8W3oabaJkQIApBTRc+q6Gm
+ wHblQHq0GQaZ0JRl7GzUZv2vCJfq0TaNIEkEIq/m2lf49qSXH8MvxX3v+q+nDBwQzTeF
+ XfJobKMQ3MffqclogUDAfVwG6GVQ9WUM8R9j5UhcXogCIPuQ+SkKi0U6EhHqxb5nyy4+ /A== 
 Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt8xs8qcv-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt9kjrk9c-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 10:57:39 +0000
+	Wed, 18 Oct 2023 10:57:56 +0000
 Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IAvcTc003353
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IAvsjE003972
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 10:57:38 GMT
+	Wed, 18 Oct 2023 10:57:54 GMT
 Received: from [10.216.39.143] (10.80.80.8) by nasanex01a.na.qualcomm.com
  (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
- 2023 03:57:33 -0700
-Message-ID: <158cc179-3bdf-a882-942c-c9dae55bded2@quicinc.com>
-Date: Wed, 18 Oct 2023 16:27:30 +0530
+ 2023 03:57:49 -0700
+Message-ID: <97067546-784c-bb42-fe1c-14348b70e65f@quicinc.com>
+Date: Wed, 18 Oct 2023 16:27:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,41 +60,42 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
 Subject: Re: [PATCH V2 3/4] clk: qcom: Add ECPRICC driver support for QDU1000
  and QRU1000
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
+To: Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
 CC: Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
         <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
         Jagadeesh Kona <quic_jkona@quicinc.com>
 References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
  <20231011090028.1706653-4-quic_imrashai@quicinc.com>
- <3c7115dc-f9b4-42ab-8923-098d96b75e86@linaro.org>
+ <c656a6b8ac2feefda16e6d1d548a9f80.sboyd@kernel.org>
 From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <3c7115dc-f9b4-42ab-8923-098d96b75e86@linaro.org>
+In-Reply-To: <c656a6b8ac2feefda16e6d1d548a9f80.sboyd@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nasanex01a.na.qualcomm.com (10.52.223.231)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jhEJJxFyXQCiopQHWc317aMcA99V04k6
-X-Proofpoint-ORIG-GUID: jhEJJxFyXQCiopQHWc317aMcA99V04k6
+X-Proofpoint-ORIG-GUID: gEnBrIkB-tinfmWw9eSpK4V1vzp9JFgi
+X-Proofpoint-GUID: gEnBrIkB-tinfmWw9eSpK4V1vzp9JFgi
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-18_09,2023-10-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 mlxscore=0 suspectscore=0 clxscore=1015
- impostorscore=0 phishscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=787 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310180090
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 phishscore=0 mlxlogscore=665 spamscore=0 mlxscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180090
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -104,28 +105,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 
 
-On 10/11/2023 4:00 PM, Konrad Dybcio wrote:
+On 10/13/2023 1:49 AM, Stephen Boyd wrote:
+> Quoting Imran Shaik (2023-10-11 02:00:27)
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 3194c8beb06d..60a981ff2bac 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -667,6 +667,14 @@ config QDU_GCC_1000
+>>            QRU1000 devices. Say Y if you want to use peripheral
+>>            devices such as UART, SPI, I2C, USB, SD, PCIe, etc.
+>>   
+>> +config QDU_ECPRICC_1000
+>> +       tristate "QDU1000/QRU1000 ECPRI Clock Controller"
 > 
+> This needs a 'depends on ARM64 || COMPILE_TEST' type of line here.
 > 
-> On 10/11/23 11:00, Imran Shaik wrote:
->> Add ECPRI Clock Controller (ECPRICC) support for QDU1000 and QRU1000 
->> SoCs.
->>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
-> [...]
-> 
->> +static int __init ecpri_cc_qdu1000_init(void)
->> +{
->> +    return platform_driver_register(&ecpri_cc_qdu1000_driver);
->> +}
->> +subsys_initcall(ecpri_cc_qdu1000_init);
-> module_platform_driver?
-> 
-> Konrad
 
-Sure, will check and update.
+Sure, will add this in the next series.
+
+>> +       select QDU_GCC_1000
+>> +       help
+>> +         Support for the ECPRI clock controller on QDU1000 and
+>> +         QRU1000 devices. Say Y if you want to support the ECPRI
+>> +         clock controller functionality such as Ethernet.
+>> +
+>>   config SDM_GCC_845
+>>          tristate "SDM845/SDM670 Global Clock Controller"
+>>          depends on ARM64 || COMPILE_TEST
+>> diff --git a/drivers/clk/qcom/ecpricc-qdu1000.c b/drivers/clk/qcom/ecpricc-qdu1000.c
+>> new file mode 100644
+>> index 000000000000..e26912f3dd39
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/ecpricc-qdu1000.c
+>> @@ -0,0 +1,2466 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+> 
+> What is the of.h include for? Did you mean mod_devicetable.h instead of
+> of_device_id?
+> 
+
+Yes, will remove of.h and use mod_devicetable.h in the next series.
 
 Thanks,
 Imran
+
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +
 
