@@ -1,220 +1,304 @@
-Return-Path: <devicetree+bounces-9603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11027CD858
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:38:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC2D7CD89E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:53:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FD9A1C2088B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:38:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DDCA2817D9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1DB18049;
-	Wed, 18 Oct 2023 09:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTdQgE0Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F9C18636;
+	Wed, 18 Oct 2023 09:53:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C9A15E8B
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:38:24 +0000 (UTC)
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425E5FE;
-	Wed, 18 Oct 2023 02:38:22 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3b2e330033fso695347b6e.3;
-        Wed, 18 Oct 2023 02:38:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697621901; x=1698226701; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g0u5M0ZZhwkKU2GcONxNDgJGLpFlS78x5vh9a4iVf20=;
-        b=UTdQgE0Q4H9+ALZhcuXbgbiPk90FNYgDyEfm83zO1nN8v4Lv2SExlhzCTWp1Xom+EC
-         7gEXBzkZjk7gZ1cliYV5fDascYF+YVeDFKuwl3WnA1G7fFo1Haz/QuPET6PUKB7L+GX7
-         LjthbF4f7w0d9YiTTzrqseinrMdI81c+jYwV+g5dGJjVfWBnUdqszNZGVY7D0qE3ST0C
-         dUVnOkQ06XJKCV3/06TBD5MdDbOzwvY9OK3jn3pQK2TKoRmCIMFXkGRsPnc7XWfYEAH+
-         F1CRZ5PFuGTxlkD2qwRe8y6YB3FUqYONuY3pjVsz8n1HRug3gfhp6i6xZTtwHmQoIJ/K
-         gbDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697621901; x=1698226701;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g0u5M0ZZhwkKU2GcONxNDgJGLpFlS78x5vh9a4iVf20=;
-        b=P3G5C8WvqWcWTg7T9MLU31KrGeVq6Z8gk3iNoUtN/bFmeWB/F/TPokoIwnB9IbTkwm
-         bztsVrp369JvEfKHE4jtHnmMZ0SBSYAk5RMzVssOSPEIWw/ISTtjf3BXPVA9MIQKS2IL
-         Sj4w+6Ohx3RXEiXhvdGs0lTxOab/pq66SM111OLxfx8VLnbllwFkiNl6d5SE1T3nS+S8
-         8kDMJiGlKZZAwxYosvicEVF0w46nHNd9nqkwYqyY46AD6byZm5OToVvqF/9UU3YrEYXt
-         chEcNNFdFd31ZodpS58czcxPQZrdwu/ANAraRicGJ0mWUjyE25kaVHXHdDdLDHRUAY6l
-         2qgQ==
-X-Gm-Message-State: AOJu0YwJaebhE7t30KvVDobBkRRMXzu0gwOWkzjDFgEFxD5Ec4QkQI+o
-	v24VaiEQ1F/BqV8Cu1JuMDqKhbGLMRrw7FYk0Hg=
-X-Google-Smtp-Source: AGHT+IET6I6U2ZetmcYDU8PeKz3wTlsYrjNzxkrKoO78zeiACo2nJCvz8TEl23PVIF08u/xNfL1SmvquKj7To0reTAM=
-X-Received: by 2002:a05:6808:7c9:b0:3a8:29a9:e4d0 with SMTP id
- f9-20020a05680807c900b003a829a9e4d0mr5297729oij.34.1697621901480; Wed, 18 Oct
- 2023 02:38:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F1F182C6
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:53:10 +0000 (UTC)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32FCDFA;
+	Wed, 18 Oct 2023 02:53:07 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id ED4638043;
+	Wed, 18 Oct 2023 17:52:59 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
+ 2023 17:53:00 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
+ 2023 17:52:59 +0800
+Message-ID: <6f5da0fa-9c01-dab2-647e-2a3c0a50b316@starfivetech.com>
+Date: Wed, 18 Oct 2023 17:52:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org> <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org> <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
- <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org> <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
- <86wmxcejav.wl-maz@kernel.org> <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
- <86pm2ye2si.wl-maz@kernel.org> <CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
- <CAOiHx=mq3hw-LFerb9UzU7VSnLypnvPuo1GomCnN=p0u3xN1Ug@mail.gmail.com> <CAMpQs4+neiaJKp93UcemJbPPbhmf1B7WYNqKh=qx0avrbwW2cQ@mail.gmail.com>
-In-Reply-To: <CAMpQs4+neiaJKp93UcemJbPPbhmf1B7WYNqKh=qx0avrbwW2cQ@mail.gmail.com>
-From: Jonas Gorski <jonas.gorski@gmail.com>
-Date: Wed, 18 Oct 2023 11:38:09 +0200
-Message-ID: <CAOiHx==uSQrO6+Ob1qe3NaRdXoGTwLYSS8S7YYMwQ4zhSbX75g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Marc Zyngier <maz@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-mips@vger.kernel.org, diasyzhang@tencent.com, 
-	linux-kernel@vger.kernel.org, frowand.list@gmail.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>, Todor Tomov
+	<todor.too@gmail.com>, <bryan.odonoghue@linaro.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<changhuang.liang@starfivetech.com>
+References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+ <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
+ <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
+ <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
+ <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
+ <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
+From: Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 18 Oct 2023 at 08:58, Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
->
-> On Tue, Oct 17, 2023 at 9:05=E2=80=AFPM Jonas Gorski <jonas.gorski@gmail.=
-com> wrote:
-> >
-> > On Mon, 16 Oct 2023 at 13:26, Binbin Zhou <zhoubb.aaron@gmail.com> wrot=
-e:
-> > >
-> > > Hi all:
-> > >
-> > > Sorry, it's been a while since the last discussion.
-> > >
-> > > Previously, Krzysztof suggested using the standard "interrupt-map"
-> > > attribute instead of the "loongson,parent_int_map" attribute, which I
-> > > tried to implement, but the downside of this approach seems to be
-> > > obvious.
-> > >
-> > > First of all, let me explain again the interrupt routing of the
-> > > loongson liointc.
-> > > For example, the Loongson-2K1000 has 64 interrupt sources, each with
-> > > the following 8-bit interrupt routing registers (main regs attribute
-> > > in dts):
-> > >
-> > > +----+---------------------------------------------------------------=
-----+
-> > > | bit  | description
-> > >             |
-> > > +----+---------------------------------------------------------------=
-----+
-> > > | 3:0 | Processor core to route                                      =
-     |
-> > > | 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-> > > +-----+--------------------------------------------------------------=
-----+
-> > >
-> > > The "loongson,parent_int_map" attribute is to describe the routed
-> > > interrupt pins to cpuintc.
-> > >
-> > > However, the "interrupt-map" attribute is not supposed to be used for
-> > > interrupt controller in the normal case. Though since commit
-> > > 041284181226 ("of/irq: Allow matching of an interrupt-map local to an
-> > > interrupt controller"), the "interrupt-map" attribute can be used in
-> > > interrupt controller nodes. Some interrupt controllers were found not
-> > > to work properly later, so in commit de4adddcbcc2 ("of/irq: Add a
-> > > quirk for controllers with their own definition of interrupt-map"), a
-> > > quirk was added for these interrupt controllers. As we can see from
-> > > the commit message, this is a bad solution in itself.
-> > >
-> > > Similarly, if we choose to use the "interrupt-map" attribute in the
-> > > interrupt controller, we have to use this unfriendly solution (quirk)=
-.
-> > > Because we hope of_irq_parse_raw() stops at the liointc level rather
-> > > than goto its parent level.
-> > >
-> > > So, I don't think it's a good choice to use a bad solution as a repla=
-cement.
-> > >
-> > > Do you have any other ideas?
-> >
-> > Assuming this is changeable at runtime, this sounds to me like this
-> > mapping/routing could easily be exposed as irqchip cpu affinity. Then
-> > userspace can apply all the performance optimizations it wants (and
-> > can easily update them without fiddling with the kernel/dts).
-> >
-> > And then there would be no need to hardcode/describe it in the dts(i) a=
-t all.
->
-> Hi Jonas:
->
-> Thanks for your reply.
->
-> It is possible that my non-detailed explanation caused your misunderstand=
-ing.
-> Allow me to explain again about the interrupt routing register above,
-> which we know is divided into two parts:
->
-> +----+-------------------------------------------------------------------=
-+
-> | bit  | description |
-> +----+-------------------------------------------------------------------=
-+
-> | 3:0 | Processor core to route                                          =
- |
-> | 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-> +-----+------------------------------------------------------------------=
-+
->
-> The first part "processor core" will be set to "boot_cpu_id" in the
-> driver, which we assume is fixed and we don't need to care about it
-> here.
-> What we care about is the second part "mapping of device interrupts to
-> processor interrupt pins", which is what we want to describe in
-> dts(i).
->
-> Let's take the Loongson-2K1000 as an example again, it has 64
-> interrupt sources as inputs and 4 processor core interrupt pins as
-> outputs.
-> The sketch is shown below:
->
-> Device Interrupts           Interrupt Pins
->                  +-------------+
->          0---->|                |--> INT0
->         ...       | Mapping |--> INT1
->         ...       |                |--> INT2
->         63--->|                |--> INT3
->                  +-------------+
->
-> Therefore, this mapping relationship cannot be changed at runtime and
-> needs to be hardcoded/described in dts(i).
 
-But that's only a driver/description limitation, not an actual
-physical limitation, right? In theory you could reroute them as much
-as you want as long as you keep the kernel up-to-date about the
-current routing (via whatever means).
 
-Anyway, I guess you want to use the routed interrupt pin to identify
-different irq controller blocks.
+On 2023/10/18 17:31, Hans Verkuil wrote:
+> On 18/10/2023 11:25, Jack Zhu wrote:
+>> 
+>> 
+>> On 2023/10/18 16:50, Hans Verkuil wrote:
+>>> Hi Jack,
+>>>
+>>> On 18/10/2023 04:37, Jack Zhu wrote:
+>>>
+>>> <snip>
+>>>
+>>>>>> --------------------------------------------------------------------------------
+>>>>>> Compliance test for device /dev/v4l-subdev1:
+>>>>>>
+>>>>>> Driver Info:
+>>>>>> 	Driver version   : 6.6.0
+>>>>>> 	Capabilities     : 0x00000000
+>>>>>
+>>>>> But this does not appear for v4l-subdev1.
+>>>>>
+>>>>> I can't really tell why it doesn't show that. Can you debug a little bit?
+>>>>> The code is in v4l2-compliance.cpp, line 1086:
+>>>>>
+>>>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
+>>>>>
+>>>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
+>>>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
+>>>>>
+>>>>> This could well be a v4l2-compliance bug that you hit with this driver.
+>>>>>
+>>>>
+>>>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
+>>>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
+>>>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
+>>>>
+>>>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
+>>>>
+>>>
+>>> Can you try again with this v4l2-compliance patch?
+>>>
+>>> I need to dig a bit deeper as to why media0 is missing, but for now try this.
+>>>
+>>> Regards,
+>>>
+>>> 	Hans
+>>>
+>>> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
+>>> index 7169eefe..29475d6b 100644
+>>> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
+>>> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
+>>> @@ -968,7 +968,7 @@ err:
+>>>  }
+>>>
+>>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+>>> -	      unsigned frame_count, unsigned all_fmt_frame_count)
+>>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
+>>>  {
+>>>  	struct node node2;
+>>>  	struct v4l2_capability vcap = {};
+>>> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
+>>>  		memset(&vcap, 0, sizeof(vcap));
+>>>  	}
+>>>
+>>> -	if (!node.is_media())
+>>> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+>>> +	if (!node.is_media()) {
+>>> +		if (parent_media_fd >= 0)
+>>> +			media_fd = parent_media_fd;
+>>> +		else
+>>> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+>>> +	}
+>>>
+>>>  	int fd = node.is_media() ? node.g_fd() : media_fd;
+>>>  	if (fd >= 0) {
+>>> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
+>>> index 7caf254b..c47f25f5 100644
+>>> --- a/utils/v4l2-compliance/v4l2-compliance.h
+>>> +++ b/utils/v4l2-compliance/v4l2-compliance.h
+>>> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
+>>>  int check_0(const void *p, int len);
+>>>  int restoreFormat(struct node *node);
+>>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+>>> -	      unsigned frame_count, unsigned all_fmt_frame_count);
+>>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
+>>>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
+>>>
+>>>  // Media Controller ioctl tests
+>>>
+>> 
+>> From the log, there is no change.
+> 
+> Oops, my mistake. Also apply this change:
+> 
+> diff --git a/utils/v4l2-compliance/v4l2-test-media.cpp b/utils/v4l2-compliance/v4l2-test-media.cpp
+> index 0195ac58..52ab7fb8 100644
+> --- a/utils/v4l2-compliance/v4l2-test-media.cpp
+> +++ b/utils/v4l2-compliance/v4l2-test-media.cpp
+> @@ -612,7 +612,7 @@ void walkTopology(struct node &node, struct node &expbuf_node,
+>  		}
+> 
+>  		testNode(test_node, test_node, expbuf_node, type,
+> -			 frame_count, all_fmt_frame_count);
+> +			 frame_count, all_fmt_frame_count, node.g_fd());
+>  		test_node.close();
+>  	}
+>  }
+> 
 
-Can't the interrupt pin be inferred from the parent interrupt? If your
-parent (hw) irq is two, route everything to INT0 etc? Or alternatively
-use the name of the parent interrupt?
+Can see relevant Info in the log.
 
-Best Regards,
-Jonas
+test log:
+--------------------------------------------------------------------------------
+Compliance test for starfive-camss device /dev/v4l-subdev1:
+
+Driver Info:
+	Driver version   : 6.6.0
+	Capabilities     : 0x00000000
+Media Driver Info:
+	Driver name      : starfive-camss
+	Model            : Starfive Camera Subsystem
+	Serial           : 
+	Bus info         : platform:19840000.camss
+	Media version    : 6.6.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 6.6.0
+Interface Info:
+	ID               : 0x0300001e
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000018 (24)
+	Name             : imx219 6-0010
+	Function         : Camera Sensor
+	Pad 0x01000019   : 0: Source
+	  Link 0x0200001a: to remote pad 0x100000f of entity 'cdns_csi2rx.19800000.csi-bridge' (Video Interface Bridge): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev1 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(541): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+		warn: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(541): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 20 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for starfive-camss device /dev/v4l-subdev1: 51, Succeeded: 51, Failed: 0, Warnings: 2
+
+Grand Total for starfive-camss device /dev/media0: 209, Succeeded: 209, Failed: 0, Warnings: 2
+# 
+
+-- 
+Regards,
+
+Jack Zhu
 
