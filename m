@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1657CE79E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:21:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EAF87CE7A2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:23:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B83F6B20E4B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:21:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11274281C8D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8A2450C6;
-	Wed, 18 Oct 2023 19:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052D5450C6;
+	Wed, 18 Oct 2023 19:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fE9zxx+1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q37/DLs3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069D042BE3
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 19:21:32 +0000 (UTC)
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4568118
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:21:30 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so95527921fa.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:21:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E75642BE3
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 19:23:10 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B465F114
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:23:07 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9338e4695so97617661fa.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:23:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697656889; x=1698261689; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1697656986; x=1698261786; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vTJMv4S3cIv17Inu5/wjSE8xgpOucw/0NJq7NkOS1v8=;
-        b=fE9zxx+1LLD8slLI3kZXWe+dlEOvkYopAiBIUiNl7K54Hm+m59DSaeYdZowqArzn4r
-         VnBWI0RFpZkYN6lcvnSX47vp/S8gIBSpHe/c5DRqA6XIe/8WZqUPrc3qVRKlYfSne7I1
-         sPol3qwAP2GR0S0++4yCfS+XwWCxD1mfVklxhk4aLtGUvyfhvse4YvyHTNEmV9HG1BKX
-         X1wC0gplP3yzRsF56UBnDdaqZOnlprU7uPz9ZMdufbtggmeOIpAOco+KMe9OR0DO1Vbu
-         CGbOLX8THJ8ILhs8WqdR9mu1LD1JuSAQpFxSWs+wQPr+WhNDwoRzdPJMIP4M9KGYw807
-         BKSw==
+        bh=4QGqGSeYSU5AAAAtMvrAGBTAF2iAfnQPJ8RF6LbXL/4=;
+        b=q37/DLs3pI7dCjPcdPX7BswMatWBy0gRH5MnTLCjO36RqTW7bg1Xg+yyEaf2xbeUBP
+         CLe0xzTbkfOpysRl/BPRnRqNdi2Sz0jWdHH1lE1jxMvg1VnYE2UqV/63hndVcnpGgVuJ
+         xtkdpr3BtpXBsbIsJrQdtunCLNWmZlhMb2BV5tIGitfClX+dXXC6w+EkJe5Qkn5P6ah1
+         Z0QuHKVBpe/S5+mNmvZy02OTlBsH/5sV2+47mKx05Wbzk41WZPnzrfJzJLABTVXVjrOQ
+         ot/ISn/JuS6+uY8vUqHhUiN44vVbicX7RaxGHVh2S8dHS4F++ml0a1B039YcuabvtsJB
+         qfGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697656889; x=1698261689;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697656986; x=1698261786;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vTJMv4S3cIv17Inu5/wjSE8xgpOucw/0NJq7NkOS1v8=;
-        b=fzxvysxfCCLiCNZLNKL1SRa4j/uj0IoLjNqbXCpyPWkSsbXBtwTqnpoTPr+ZJsS6bS
-         w5YHXSi3y36bxpk95UuEaPYkckyAuxlaNsf+fdi7nu5scdgjI4r6BdkEnCLV4uVa7/2e
-         UBNchPYPpB3pogKF0PRvIwq4YYhvB9LJwSU0gWEBztDvBau6U3Eb4M0xAy/4TIyKSZFh
-         Gv6TEomwM/0N00PiqPx+yU94jSL03lhKw4X+yyamy99NMOeMNZOA10B66180imcsKLJk
-         HDTzGv1NsurdzfGCJ93JObihS3fP+m2B0FWsdCAzuH7seQxcTMtNARRUWQsTAznk+Kv/
-         NRZg==
-X-Gm-Message-State: AOJu0YzZfeLWKxfaLGEHEoCowkmuB/KyX0mG1oiUnDlIekv+QhMStwQx
-	bWolfcq2JfqWWrhnLhSlynR3zg==
-X-Google-Smtp-Source: AGHT+IGX1fZk90k1Xv0uW50D1cH80ATwL8ZVcAqh8P11tl7P+f5Wd5zpy5nCn4Qrjp4RUKfGWv9ShQ==
-X-Received: by 2002:a05:651c:19a6:b0:2c5:d52:a08e with SMTP id bx38-20020a05651c19a600b002c50d52a08emr5704454ljb.20.1697656888893;
-        Wed, 18 Oct 2023 12:21:28 -0700 (PDT)
+        bh=4QGqGSeYSU5AAAAtMvrAGBTAF2iAfnQPJ8RF6LbXL/4=;
+        b=YiE84y1n0WZmxw/xgPhNA9jkdTv23t4eW5i151Z68JW2k1kig1tABW2V6O6mBL/beX
+         fPRz8S7bVA7ajhusr4nRaJREYdkbkCDrdXOZQ73c4nQKMAEse2fhCPjYBEDvExap83WZ
+         LM2gwHtUrhfgWVXzalB0v+IhNG2u1Kqq1AEs9WZuzOeOd42HSJFNkMfueIe8jhIXf8fh
+         dJDbZ7PZDGOUvHXzv8YqkYRztuMrq2C0HPCzjxqxpfS5yaMx1e3nNOqVqD87C6gYfUvc
+         NiJa2Fxgk74AQgEV4hlWEZUnYR2Lb3WBuGDHAL5HtBWc86EDuiDj8BN+Ve5haxR0kUY4
+         i2Yg==
+X-Gm-Message-State: AOJu0YxxixgXaDPvjys9YQKVdUZni5mUohPldHS1oD1qg2cJJA29/YGQ
+	O1ojzz6DVfeo85ts+43ypXCgAA==
+X-Google-Smtp-Source: AGHT+IHCNI5mzstugxBm0hNPofclzBipc42huRu6dNFnV6+ucXum9Z2MGkMSZJPblFTCS0VA8Pl/VQ==
+X-Received: by 2002:a2e:730a:0:b0:2c5:1c4:9005 with SMTP id o10-20020a2e730a000000b002c501c49005mr4320757ljc.32.1697656985956;
+        Wed, 18 Oct 2023 12:23:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.49])
-        by smtp.gmail.com with ESMTPSA id o18-20020a05600c4fd200b0040472ad9a3dsm2469077wmq.14.2023.10.18.12.21.27
+        by smtp.gmail.com with ESMTPSA id o18-20020a05600c4fd200b0040472ad9a3dsm2469077wmq.14.2023.10.18.12.23.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 12:21:28 -0700 (PDT)
-Message-ID: <65cc9c43-e776-41bc-adad-1e57c3b24d7f@linaro.org>
-Date: Wed, 18 Oct 2023 21:21:26 +0200
+        Wed, 18 Oct 2023 12:23:05 -0700 (PDT)
+Message-ID: <56a8ec24-789f-42ae-88ac-cb35693df390@linaro.org>
+Date: Wed, 18 Oct 2023 21:23:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: input: cirrus,cs40l50: Add initial DT
- binding
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sa8775p-tlmm: add missing
+ wakeup-parent
 Content-Language: en-US
-To: James Ogletree <james.ogletree@opensource.cirrus.com>
-Cc: James Ogletree <james.ogletree@cirrus.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Lee Jones <lee@kernel.org>,
- Fred Treven <fred.treven@cirrus.com>, Ben Bright <ben.bright@cirrus.com>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
- <20231018175726.3879955-2-james.ogletree@opensource.cirrus.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231018145750.429385-1-krzysztof.kozlowski@linaro.org>
+ <25185346-2d5d-469c-8a88-0f0f9f02a739@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,34 +125,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231018175726.3879955-2-james.ogletree@opensource.cirrus.com>
+In-Reply-To: <25185346-2d5d-469c-8a88-0f0f9f02a739@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/10/2023 19:57, James Ogletree wrote:
-> From: James Ogletree <james.ogletree@cirrus.com>
+On 18/10/2023 19:44, Konrad Dybcio wrote:
 > 
-> The CS40L50 is a haptic driver with waveform memory,
-> integrated DSP, and closed-loop algorithms.
 > 
-> Add a YAML DT binding document for this device.
-> 
+> On 10/18/23 16:57, Krzysztof Kozlowski wrote:
+>> Add missing wakeup-parent property, already used by DTS to indicate that
+>> pins are wakeup capable:
+>>
+>>    sa8775p-ride.dtb: pinctrl@f000000: 'wakeup-parent' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+>> index e119a226a4b1..2173c5255638 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+>> @@ -28,6 +28,7 @@ properties:
+>>     gpio-controller: true
+>>     "#gpio-cells": true
+>>     gpio-ranges: true
+>> +  wakeup-parent: true
+>>   
+>>     gpio-reserved-ranges:
+>>       minItems: 1
+> All the properties visiable in this diff sound reasonable to
+> put in the common yaml, no?
 
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
+Is something missing from common?
 
 Best regards,
 Krzysztof
