@@ -1,126 +1,141 @@
-Return-Path: <devicetree+bounces-9799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CAB7CE87F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:07:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF507CE9EF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 23:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E781F2819E1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:07:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68DCF1C20B36
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576A01EB45;
-	Wed, 18 Oct 2023 20:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MhqVxXvn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8977B42933;
+	Wed, 18 Oct 2023 21:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014EC1EB3B
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:06:57 +0000 (UTC)
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E09C11D
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:06:56 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so96170531fa.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:06:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697659614; x=1698264414; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fV7fTkn3aVtTytg7FjK9RSeuS2ZwMLzGixbs5gWSolA=;
-        b=MhqVxXvnxZIYtc18dQccvzFd/4SAmWvq9iXnOtfzH42g5MtrA3i7iw96h4g5w0R8gO
-         +2H//6lG3RxNZ0ECge5KhPXsT9cVFhP7BjIr2NZ68MP29oHX5tdhMz8T4WqrZ6dW2iCL
-         hr9xIOFocT308reggY0Uo6jNkIuXUvveHa8sjIzSTowikV9eZ1RHw02TkEJrF0Ti34cr
-         oDK8o84GPFjnNZrRzSk2y/Tn3nJ3SCpWtJpYuZUeWaJuxHhnygbUJUJ26wiwMvH1gVNt
-         KDTBh+URHftLGqRvGNQaPjI9+6Ag9VPeK+EJepnKMYBd7UR1Fim1gTVVjT/UFzif4Llx
-         qDUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697659614; x=1698264414;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fV7fTkn3aVtTytg7FjK9RSeuS2ZwMLzGixbs5gWSolA=;
-        b=PZ145pqrAeHpUj8xf3J0CnwZVUB0quVOm4NUOE/TF1iKG/WT42vtaD5dp6FYDd+I3r
-         sMa62hKC5euUeqXkMyxkA56UcTwFAUB9DU5nj205mTPdErdbkwl5BUuUOtVpC07ZkqJg
-         PLS25CMVFine/OnEjM8p5vXB/Xr5JVhcJUYs72VijRdm/k6ZMG7qoO/T3RTo7aq/iYwQ
-         DeylmwqaEqDUmX+NCMcW7db8w8AIq1VTHGLWGDIKjx9b+/U2VoSK7hBKfyls39a2j3/d
-         DDNjEI0BaNHIFCxt3IVLtjhq5dqo2Ot3yFA95DtUt7bx+8O8SA63ccwP6WkUS4s/ypb3
-         B76Q==
-X-Gm-Message-State: AOJu0YzfeSETgatxG6qa9kvTWRVBy0Qvh7FVTh+QqbYK0mwliRfhxXIe
-	tTDI5EJ+YB9gyWYZoW7Bq/m8/Q==
-X-Google-Smtp-Source: AGHT+IG1Y7dg+9BY88IKn03L6i6fqmO+TD3nURIXN8mg6bV5JruPLssiJqQILJDxYCQmw9MeGFm9rg==
-X-Received: by 2002:a05:651c:4d2:b0:2c5:2103:604b with SMTP id e18-20020a05651c04d200b002c52103604bmr33279lji.2.1697659614439;
-        Wed, 18 Oct 2023 13:06:54 -0700 (PDT)
-Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id l13-20020a2e99cd000000b002bcc303bbffsm817654ljj.104.2023.10.18.13.06.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 13:06:54 -0700 (PDT)
-Message-ID: <8e57d7a7-2441-4056-848d-d8846f45156f@linaro.org>
-Date: Wed, 18 Oct 2023 22:06:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42B64292A
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 21:27:10 +0000 (UTC)
+X-Greylist: delayed 2401 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 Oct 2023 14:27:06 PDT
+Received: from 7.mo560.mail-out.ovh.net (7.mo560.mail-out.ovh.net [188.165.48.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB64EB0
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:27:06 -0700 (PDT)
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.109.156.38])
+	by mo560.mail-out.ovh.net (Postfix) with ESMTP id 5D799260A2
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:08:50 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-xgn5s (unknown [10.110.115.217])
+	by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id E30E21FD69;
+	Wed, 18 Oct 2023 20:08:48 +0000 (UTC)
+Received: from RCM-web6.webmail.mail.ovh.net ([151.80.29.20])
+	by ghost-submission-6684bf9d7b-xgn5s with ESMTPSA
+	id GCQMNlA7MGVUZwAAZkQFAA
+	(envelope-from <rafal@milecki.pl>); Wed, 18 Oct 2023 20:08:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sa8775p-tlmm: add missing
- wakeup-parent
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231018145750.429385-1-krzysztof.kozlowski@linaro.org>
- <25185346-2d5d-469c-8a88-0f0f9f02a739@linaro.org>
- <56a8ec24-789f-42ae-88ac-cb35693df390@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <56a8ec24-789f-42ae-88ac-cb35693df390@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Wed, 18 Oct 2023 22:08:48 +0200
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <zajec5@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, Hauke Mehrtens
+ <hauke@hauke-m.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear
+ R8000 CPU ports
+In-Reply-To: <5a70a1ca-8840-40e9-b598-2ce0d80cbc9e@broadcom.com>
+References: <20231013103314.10306-1-zajec5@gmail.com>
+ <20231013103314.10306-2-zajec5@gmail.com>
+ <627b78cd-7c9f-4da0-b4be-54891041580e@lunn.ch>
+ <1a6df2259fd9c3885a4a575f367a4f1a@milecki.pl>
+ <f992f02b-1ec0-4588-98df-4141594e10ff@lunn.ch>
+ <5a70a1ca-8840-40e9-b598-2ce0d80cbc9e@broadcom.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <6dcf098e93f9b49b440a500586939e5f@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 31.11.218.106
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 4274478996690348890
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrjeeggddugeefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejvdelgfeutdfhfeelheegfedtleduleeuvdfgfeefvefhvedtheetjeetfeehgeenucfkphepuddvjedrtddrtddruddpfedurdduuddrvddukedruddtiedpudehuddrkedtrddvledrvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeitddpmhhouggvpehsmhhtphhouhht
 
-
-
-On 10/18/23 21:23, Krzysztof Kozlowski wrote:
-> On 18/10/2023 19:44, Konrad Dybcio wrote:
->>
->>
->> On 10/18/23 16:57, Krzysztof Kozlowski wrote:
->>> Add missing wakeup-parent property, already used by DTS to indicate that
->>> pins are wakeup capable:
->>>
->>>     sa8775p-ride.dtb: pinctrl@f000000: 'wakeup-parent' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>    Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
->>> index e119a226a4b1..2173c5255638 100644
->>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
->>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
->>> @@ -28,6 +28,7 @@ properties:
->>>      gpio-controller: true
->>>      "#gpio-cells": true
->>>      gpio-ranges: true
->>> +  wakeup-parent: true
->>>    
->>>      gpio-reserved-ranges:
->>>        minItems: 1
->> All the properties visiable in this diff sound reasonable to
->> put in the common yaml, no?
+On 2023-10-18 20:10, Florian Fainelli wrote:
+> On 10/16/23 08:45, Andrew Lunn wrote:
+>> On Mon, Oct 16, 2023 at 05:36:24PM +0200, Rafał Miłecki wrote:
+>>> On 2023-10-14 18:50, Andrew Lunn wrote:
+>>>> On Fri, Oct 13, 2023 at 12:33:14PM +0200, Rafał Miłecki wrote:
+>>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>> 
+>>>>> While switch ports 5 and 7 are disabled (vendor designed port 8 to 
+>>>>> be
+>>>>> used for CPU traffic) they could be used strictly technically. For
+>>>>> some
+>>>>> reason however both those ports need forcing link to be usable.
+>>>> 
+>>>> This explanation is not making much sense to me.
+>>>> 
+>>>> I assume this board does not have an RJ45 for these two ports? But
+>>>> does it have a header so you can access the MII interface?
+>>> 
+>>> This PATCH as it is requires a basic familiarity with Northstar 
+>>> platform
+>>> or checking bcm-ns.dtsi.
+>>> 
+>>> All Northstar (BCM5301X) devices have 3 Ethernet interfaces. 99% of 
+>>> them
+>>> have:
+>>> 1. gmac0 connected to port 5
+>>> 2. gmac1 connected to port 7
+>>> 3. gmac2 connected to port 8
+>>> (it's described in bcm-ns.dtsi).
+>>> 
+>>> 
+>>> Some vendors decide to use gmac0 and switch port 5. They fill NVRAM 
+>>> with
+>>> MAC for gmac0.
+>>> 
+>>> Some vendors decide to use gmac2 & port 8. They set MAC for gmac2.
+>>> 
+>>> 
+>>> Netgear decided to use gmac2 & port 8 for R8000. They fill NVRAM with
+>>> MAC for gmac2.
+>>> 
+>>> If you however insist on using gmac0 you could do that. That just
+>>> requires setting up gmac0 with a custom/random MAC and forcing link 
+>>> for
+>>> switch ports as described in this PATCH.
+>> 
+>> If the ports are not used, you have them set to disabled, why do they
+>> need a fixed-link? That is what i don't understand yet.
 > 
-> Is something missing from common?
-No, I just forgot how the yaml worked and didn't notice
-we're essentially status=okaying the properties here..
+> It seems to me like the commit message could be reworded such that:
+> 
+> Even though ports 5 and 7 are disabled and the system is intended to
+> use port 8, make it possible for users to experiment with using ports
+> 5 and/or 7 if they desire so by ensuring that they have the necessary
+> 'fixed-link' properties to describe the internal connection within the
+> SoC between the switch ports and the two Ethernet controllers.
+> 
+> Rafal, does that capture the intent? If so I can amend the commit
+> message while applying.
 
-Konrad
+I believe so. You're correct that in practice it's for experimenting
+mainly. Formally it also describes hardware which DT is for.
+
+I'm sure we can find a lot of *disabled* hardware blocks in Linux's DTS
+files that are still described for the sake of documenting it.
+
+-- 
+Rafał Miłecki
 
