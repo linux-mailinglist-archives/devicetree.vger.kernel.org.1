@@ -1,201 +1,188 @@
-Return-Path: <devicetree+bounces-9617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63FF97CD9BD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:54:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2CC7CD9DD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D591F23808
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:54:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CBCF1C20B08
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994BD19440;
-	Wed, 18 Oct 2023 10:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27DFA19BD3;
+	Wed, 18 Oct 2023 10:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ptB7eWte"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SsxT3+lP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0DB11717
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:54:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CAC0C433C7;
-	Wed, 18 Oct 2023 10:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697626441;
-	bh=kPo92beMbcDHObVUx/Dna9HOyefjTTwxCVHbGGY3vZs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ptB7eWteOf6TVqYaaMwzLtLXauLOuacgxglnupzHEC+KmzweMmY6GMsfOnmSFjSW+
-	 pL/7Sng2CGb5BO4ZQ+eo0gXDs+7z/m9QsfRaW+NGsD2Ia3CTrSkHZm8Z6HkUOHF1Uc
-	 HOIyDtYHXTbdDdIwXnTSk6xDkaM9+Ep20MRBlFC2meF3vcFc6TYrRUt7th5pDQIsnv
-	 5Kl9N3fYR2f1EHoZ6caIbREGO0A7LsjU/3b7qUVu+yu+DIOVdIQHD040uabfT6Clsr
-	 QA8iSPYVLWqYVM9MUqOLKVMYH1H/DW9NWFW5S6pZuvJkf8GgAzp7oX7oGXebIzYB2U
-	 cRq9UFxkEIeMw==
-Date: Wed, 18 Oct 2023 11:53:55 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v8 13/22] PCI: microchip: Add request_event_irq()
- callback function
-Message-ID: <20231018-retainer-unclip-074b81a76767@spud>
-References: <20231011110514.107528-1-minda.chen@starfivetech.com>
- <20231011110514.107528-14-minda.chen@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F5419BAB
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:57:16 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D0F109;
+	Wed, 18 Oct 2023 03:57:09 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39IAWqe2022369;
+	Wed, 18 Oct 2023 10:57:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=D9bNJTP4bMopav6T6KtJN4NLOAcxeSrKyA4wBf/28Mc=;
+ b=SsxT3+lP2GiZWs7eAgFypvrh7L56g/u61fI22Fjh56/3NbqNc5y1neUaobNhLBXUA9T3
+ 42G+WFYMx6l8DSuoH7/MGC9Z4ee82EA3+dnF+3rFOsDvM+gMqbZ0pcAFe79xMLM89oAp
+ cMDWzo3zlnH42Cz2gtIgPTnxz5z4w0hu17TvPFuXSuRSB1o43Y/HfO9klJeRKuVz/bkG
+ qpqQOb3vQ5xX9o67nHw1LxVDSYuiuz6L9HSzuQHGj/3jRF6tMpHMpm93lNp4S42i1aEJ
+ 3v6t3RmabPAc1agAa+oXEjaRt7Au9O0j1ccYLUGHpBAzxwxzl3eXGlgCNepB9D0tmmjC cw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt9058q9s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 10:57:06 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IAv5vw002959
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 10:57:05 GMT
+Received: from [10.216.39.143] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 03:56:59 -0700
+Message-ID: <8bc65c14-7ac1-7d1f-c201-468956c560ff@quicinc.com>
+Date: Wed, 18 Oct 2023 16:26:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RkOo+3SMiOK1PVg2"
-Content-Disposition: inline
-In-Reply-To: <20231011110514.107528-14-minda.chen@starfivetech.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH V2 2/4] clk: qcom: branch: Add mem ops support for branch2
+ clocks
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
+ <20231011090028.1706653-3-quic_imrashai@quicinc.com>
+ <ac3fc5fd-b6fa-4386-aa62-f182547d1a59@linaro.org>
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <ac3fc5fd-b6fa-4386-aa62-f182547d1a59@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7OxXQ2qxO3QTHGQ5SHxKGCH7pl3gbmf6
+X-Proofpoint-ORIG-GUID: 7OxXQ2qxO3QTHGQ5SHxKGCH7pl3gbmf6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_09,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ phishscore=0 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180090
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
---RkOo+3SMiOK1PVg2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 11, 2023 at 07:05:05PM +0800, Minda Chen wrote:
-> PolarFire implements specific interrupts besides PLDA local
-> interrupt and register their interrupt symbol name.
+On 10/11/2023 3:21 PM, Konrad Dybcio wrote:
+> 
+> 
+> On 10/11/23 11:00, Imran Shaik wrote:
+>> From: Taniya Das <quic_tdas@quicinc.com>
+>>
+>> Clock CBCRs with memories need an update for memory before enable/disable
+>> of the clock, which helps retain the respective block's register 
+>> contents.
+>> Add support for the mem ops to handle this sequence.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/clk-branch.c | 37 +++++++++++++++++++++++++++++++++++
+>>   drivers/clk/qcom/clk-branch.h | 21 ++++++++++++++++++++
+>>   2 files changed, 58 insertions(+)
+>>
+>> diff --git a/drivers/clk/qcom/clk-branch.c 
+>> b/drivers/clk/qcom/clk-branch.c
+>> index fc4735f74f0f..9ac8d04b425a 100644
+>> --- a/drivers/clk/qcom/clk-branch.c
+>> +++ b/drivers/clk/qcom/clk-branch.c
+>> @@ -1,6 +1,7 @@
+>>   // SPDX-License-Identifier: GPL-2.0
+>>   /*
+>>    * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights 
+>> reserved.
+>>    */
+>>   #include <linux/kernel.h>
+>> @@ -134,6 +135,42 @@ static void clk_branch2_disable(struct clk_hw *hw)
+>>       clk_branch_toggle(hw, false, clk_branch2_check_halt);
+>>   }
+>> +static int clk_branch2_mem_enable(struct clk_hw *hw)
+>> +{
+>> +    struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
+>> +    const char *name = clk_hw_get_name(&mem_br->branch.clkr.hw);
+>> +    u32 val;
+>> +    int timeout = 200, ret;
+> Reverse-Christmas-tree, please
+> 
+> You can drop the timeout variable and pass the int literal.
+> 
 
-> (Total 28
-> interrupts while PLDA contain 13 local interrupts). and
-> interrupt to event mapping is different.
+Sure, will take care of this in the next series.
 
-Nit: drop the ()s & the first .
+>> +
+>> +    regmap_update_bits(mem_br->branch.clkr.regmap, 
+>> mem_br->mem_enable_reg,
+>> +            mem_br->mem_enable_ack_bit, mem_br->mem_enable_ack_bit);
+> This is a mask, not a bit.
+> 
 
-Daire would have to speak to why this is the case, but these commit
-message appears to better explain why the patch is needed.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Yes, will check and update.
 
-> So add a callback function to support different IRQ register
-> function.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../pci/controller/plda/pcie-microchip-host.c | 25 ++++++++++++++++---
->  drivers/pci/controller/plda/pcie-plda.h       |  5 ++++
->  2 files changed, 26 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/=
-pci/controller/plda/pcie-microchip-host.c
-> index 1799455989ac..104332603e25 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -799,6 +799,17 @@ static int mc_pcie_init_clks(struct device *dev)
->  	return 0;
->  }
-> =20
-> +static int mc_request_event_irq(struct plda_pcie_rp *plda, int event_irq,
-> +				int event)
-> +{
-> +	return devm_request_irq(plda->dev, event_irq, mc_event_handler,
-> +				0, event_cause[event].sym, plda);
-> +}
-> +
-> +static const struct plda_event mc_event =3D {
-> +	.request_event_irq      =3D mc_request_event_irq,
+>> +
+>> +    ret = regmap_read_poll_timeout(mem_br->branch.clkr.regmap, 
+>> mem_br->mem_ack_reg,
+>> +            val, val & mem_br->mem_enable_ack_bit, 0, timeout);
+> 
+> [...]
+> 
+>> +/**
+>> + * struct clk_mem_branch - gating clock which are associated with 
+>> memories
+>> + *
+>> + * @mem_enable_reg: branch clock memory gating register
+>> + * @mem_ack_reg: branch clock memory ack register
+>> + * @mem_enable_ack_bit: ANDed with @mem_ack_reg to check memory 
+>> enablement
+> @dog: woofs
+> 
+> Describe what it is instead.
+> 
+> Konrad
 
-nit: these spaces for alignment look pointless when there's just one
-element.
+Sure, will update the description in the next series.
 
-Cheers,
-Conor.
-
-> +};
-> +
->  static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
->  {
->  	struct device *dev =3D port->dev;
-> @@ -898,7 +909,9 @@ static void mc_disable_interrupts(struct mc_pcie *por=
-t)
->  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
->  }
-> =20
-> -static int plda_init_interrupts(struct platform_device *pdev, struct pld=
-a_pcie_rp *port)
-> +static int plda_init_interrupts(struct platform_device *pdev,
-> +				struct plda_pcie_rp *port,
-> +				const struct plda_event *event)
->  {
->  	struct device *dev =3D &pdev->dev;
->  	int irq;
-> @@ -922,8 +935,12 @@ static int plda_init_interrupts(struct platform_devi=
-ce *pdev, struct plda_pcie_r
->  			return -ENXIO;
->  		}
-> =20
-> -		ret =3D devm_request_irq(dev, event_irq, mc_event_handler,
-> -				       0, event_cause[i].sym, port);
-> +		if (event->request_event_irq)
-> +			ret =3D event->request_event_irq(port, event_irq, i);
-> +		else
-> +			ret =3D devm_request_irq(dev, event_irq, plda_event_handler,
-> +					       0, NULL, port);
-> +
->  		if (ret) {
->  			dev_err(dev, "failed to request IRQ %d\n", event_irq);
->  			return ret;
-> @@ -977,7 +994,7 @@ static int mc_platform_init(struct pci_config_window =
-*cfg)
->  		return ret;
-> =20
->  	/* Address translation is up; safe to enable interrupts */
-> -	ret =3D plda_init_interrupts(pdev, &port->plda);
-> +	ret =3D plda_init_interrupts(pdev, &port->plda, &mc_event);
->  	if (ret)
->  		return ret;
-> =20
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/contro=
-ller/plda/pcie-plda.h
-> index b439160448b1..907ad40f3188 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -121,6 +121,11 @@ struct plda_pcie_rp {
->  	int num_events;
->  };
-> =20
-> +struct plda_event {
-> +	int (*request_event_irq)(struct plda_pcie_rp *pcie,
-> +				 int event_irq, int event);
-> +};
-> +
->  irqreturn_t plda_event_handler(int irq, void *dev_id);
->  void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  			    phys_addr_t axi_addr, phys_addr_t pci_addr,
-> --=20
-> 2.17.1
->=20
-
---RkOo+3SMiOK1PVg2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS+5QgAKCRB4tDGHoIJi
-0o/zAQCSuM8uqzd0VAzZZCthQE4n12TT0kuF0sYDMlv9Uer9XgD/SE5oGnnsSm82
-Knu+CSUhdikuXNgt+Z0Co3f7k3Cenw4=
-=X4oS
------END PGP SIGNATURE-----
-
---RkOo+3SMiOK1PVg2--
+Thanks,
+Imran
 
