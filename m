@@ -1,166 +1,172 @@
-Return-Path: <devicetree+bounces-9599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC5A7CD815
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:31:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E14217CD846
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:36:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08AB31C20A44
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:31:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D6D4B20F50
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD6118046;
-	Wed, 18 Oct 2023 09:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB1618041;
+	Wed, 18 Oct 2023 09:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aUFqEfUg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC74418043;
-	Wed, 18 Oct 2023 09:31:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C51C433C8;
-	Wed, 18 Oct 2023 09:31:34 +0000 (UTC)
-Message-ID: <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
-Date: Wed, 18 Oct 2023 11:31:32 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D6015E8B
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:36:14 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B430CFE;
+	Wed, 18 Oct 2023 02:36:12 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I9YrWI007069;
+	Wed, 18 Oct 2023 09:36:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=2tRVbVqqyv/5OYK0Sv/nV3R0JKx7T/NSdn4hL1dFioo=;
+ b=aUFqEfUgev60Wghv1eqsfvFl6La2r0rqAPSGkbq+8+QqSWwgzPLeP007gWlsQ+OyyjAm
+ ZXTxQhGRlu0nejyN0Q6FvJUDFxIqCQGe4r1TIaAE6IlmLE2ut0tmIF84ADIk+9KlY7lv
+ XoyB7VodmmUeTU5LYCPMX3/WV7sbvLinfGDYNd/8JlHvfupoWt0S3sM8cREbs5dEibCH
+ IjXdZtbALgWtiGrg1zE9BtLXt7pqGFxMxh4tMr/F6ujpiACbIIqGhRwpl4SX4fmJ/UJQ
+ DPCxM4JXe9RWXCG27tr4WO8VuDV9edOdOST7bjzy/y7ghxp+7X0/R9e2PSyLGEx7Yj4J 8g== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttcuv0031-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 09:36:08 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39I9a7t4007443
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 09:36:07 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Wed, 18 Oct 2023 02:36:01 -0700
+Date: Wed, 18 Oct 2023 15:05:57 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <ilia.lin@kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <mturquette@baylibre.com>, <quic_kathirav@quicinc.com>,
+        <rafael@kernel.org>, <robh+dt@kernel.org>, <viresh.kumar@linaro.org>
+Subject: Re: [PATCH v2 1/8] clk: qcom: clk-alpha-pll: introduce stromer plus
+ ops
+Message-ID: <20231018093556.GB24128@varda-linux.qualcomm.com>
+References: <cover.1697101543.git.quic_varada@quicinc.com>
+ <8f578277cc015cfe9cdca06586b2c82f1a728bad.1697101543.git.quic_varada@quicinc.com>
+ <06b823d5c2ec05a940849ac341c48090.sboyd@kernel.org>
+ <20231016070256.GA24128@varda-linux.qualcomm.com>
+ <CAA8EJpoQwDaUa+-WyM6FBzQJo9gn1k2rYLmKSFBLUH00epGJ0Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
-Content-Language: en-US, nl
-To: Jack Zhu <jack.zhu@starfivetech.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- changhuang.liang@starfivetech.com
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
- <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
- <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
- <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
- <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpoQwDaUa+-WyM6FBzQJo9gn1k2rYLmKSFBLUH00epGJ0Q@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RNIja8n7oUnX2uLDxpswCe-R6tGxxWZ6
+X-Proofpoint-GUID: RNIja8n7oUnX2uLDxpswCe-R6tGxxWZ6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_07,2023-10-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ malwarescore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180081
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 18/10/2023 11:25, Jack Zhu wrote:
-> 
-> 
-> On 2023/10/18 16:50, Hans Verkuil wrote:
->> Hi Jack,
->>
->> On 18/10/2023 04:37, Jack Zhu wrote:
->>
->> <snip>
->>
->>>>> --------------------------------------------------------------------------------
->>>>> Compliance test for device /dev/v4l-subdev1:
->>>>>
->>>>> Driver Info:
->>>>> 	Driver version   : 6.6.0
->>>>> 	Capabilities     : 0x00000000
->>>>
->>>> But this does not appear for v4l-subdev1.
->>>>
->>>> I can't really tell why it doesn't show that. Can you debug a little bit?
->>>> The code is in v4l2-compliance.cpp, line 1086:
->>>>
->>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
->>>>
->>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
->>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
->>>>
->>>> This could well be a v4l2-compliance bug that you hit with this driver.
->>>>
->>>
->>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
->>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
->>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
->>>
->>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
->>>
->>
->> Can you try again with this v4l2-compliance patch?
->>
->> I need to dig a bit deeper as to why media0 is missing, but for now try this.
->>
->> Regards,
->>
->> 	Hans
->>
->> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
->> index 7169eefe..29475d6b 100644
->> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
->> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
->> @@ -968,7 +968,7 @@ err:
->>  }
->>
->>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->> -	      unsigned frame_count, unsigned all_fmt_frame_count)
->> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
->>  {
->>  	struct node node2;
->>  	struct v4l2_capability vcap = {};
->> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
->>  		memset(&vcap, 0, sizeof(vcap));
->>  	}
->>
->> -	if (!node.is_media())
->> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->> +	if (!node.is_media()) {
->> +		if (parent_media_fd >= 0)
->> +			media_fd = parent_media_fd;
->> +		else
->> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->> +	}
->>
->>  	int fd = node.is_media() ? node.g_fd() : media_fd;
->>  	if (fd >= 0) {
->> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
->> index 7caf254b..c47f25f5 100644
->> --- a/utils/v4l2-compliance/v4l2-compliance.h
->> +++ b/utils/v4l2-compliance/v4l2-compliance.h
->> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
->>  int check_0(const void *p, int len);
->>  int restoreFormat(struct node *node);
->>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->> -	      unsigned frame_count, unsigned all_fmt_frame_count);
->> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
->>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
->>
->>  // Media Controller ioctl tests
->>
-> 
-> From the log, there is no change.
+On Mon, Oct 16, 2023 at 11:46:56AM +0300, Dmitry Baryshkov wrote:
+> On Mon, 16 Oct 2023 at 10:03, Varadarajan Narayanan
+> <quic_varada@quicinc.com> wrote:
+> >
+> > On Thu, Oct 12, 2023 at 01:55:36PM -0700, Stephen Boyd wrote:
+> > > Quoting Varadarajan Narayanan (2023-10-12 02:26:17)
+> > > > Stromer plus APSS PLL does not support dynamic frequency scaling.
+> > > > To switch between frequencies, we have to shut down the PLL,
+> > > > configure the L and ALPHA values and turn on again. So introduce the
+> > > > separate set of ops for Stromer Plus PLL.
+> > >
+> > > Does this assume the PLL is always on?
+> >
+> > Yes once the PLL is configured by apss-ipq-pll driver, it is always on.
+> >
+> > > > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > ---
+> > > > v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
+> > > >         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
+> > > >         is same for both
+> > > >
+> > > >         Fix review comments
+> > > >                 udelay(50) -> usleep_range(50, 60)
+> > > >                 Remove SoC-specific from print message
+> > > > ---
+> > > >  drivers/clk/qcom/clk-alpha-pll.c | 57 ++++++++++++++++++++++++++++++++++++++++
+> > > >  drivers/clk/qcom/clk-alpha-pll.h |  1 +
+> > > >  2 files changed, 58 insertions(+)
+> > > >
+> > > > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> > > > index 4edbf77..5221b6c 100644
+> > > > --- a/drivers/clk/qcom/clk-alpha-pll.c
+> > > > +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> > > > @@ -2508,3 +2508,60 @@ const struct clk_ops clk_alpha_pll_stromer_ops = {
+> > > >         .set_rate = clk_alpha_pll_stromer_set_rate,
+> > > >  };
+> > > >  EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_ops);
+> > > > +
+> > > > +static int clk_alpha_pll_stromer_plus_set_rate(struct clk_hw *hw,
+> > > > +                                              unsigned long rate,
+> > > > +                                              unsigned long prate)
+> > > > +{
+> > > > +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> > > > +       u32 l, alpha_width = pll_alpha_width(pll);
+> > > > +       int ret;
+> > > > +       u64 a;
+> > > > +
+> > > > +       rate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
+> > > > +
+> > > > +       regmap_write(pll->clkr.regmap, PLL_MODE(pll), 0);
+> > >
+> > > There's a theoretical problem here if I understand correctly. A call to
+> > > clk_enable() can happen while clk_set_rate() is in progress or vice
+> > > versa. Probably we need some sort of spinlock for this PLL that
+> > > synchronizes any enable/disable with the rate change so that when we
+> > > restore the enable bit the clk isn't enabled when it was supposed to be
+> > > off.
+> >
+> > Since the PLL is always on, should we worry about enable/disable?
+> > If you feel it is better to synchronize with a spin lock, will
+> > add and post a new revision. Please let me know.
+>
+> Probably another option might be to change stromer PLL ops to use
+> prepare/unprepare instead of enable/disable. This way the
+> clk_prepare_lock() in clk_set_rate() will take care of locking.
 
-Oops, my mistake. Also apply this change:
+Thanks for the suggestion. Have posted v3 with this and addressing
+Stephen Boyd's other comments. Please take a look.
+(https://lore.kernel.org/linux-arm-msm/cover.1697600121.git.quic_varada@quicinc.com/)
 
-diff --git a/utils/v4l2-compliance/v4l2-test-media.cpp b/utils/v4l2-compliance/v4l2-test-media.cpp
-index 0195ac58..52ab7fb8 100644
---- a/utils/v4l2-compliance/v4l2-test-media.cpp
-+++ b/utils/v4l2-compliance/v4l2-test-media.cpp
-@@ -612,7 +612,7 @@ void walkTopology(struct node &node, struct node &expbuf_node,
- 		}
-
- 		testNode(test_node, test_node, expbuf_node, type,
--			 frame_count, all_fmt_frame_count);
-+			 frame_count, all_fmt_frame_count, node.g_fd());
- 		test_node.close();
- 	}
- }
-
-Regards,
-
-	Hans
+Thanks
+Varada
 
