@@ -1,88 +1,110 @@
-Return-Path: <devicetree+bounces-9540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83137CD5FD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:05:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5087CD606
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 633B3281A46
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:05:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 071722816C5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E46913ACD;
-	Wed, 18 Oct 2023 08:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFD61401C;
+	Wed, 18 Oct 2023 08:06:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XIzOvmtH"
+	dkim=pass (2048-bit key) header.d=kernkonzept.com header.i=@kernkonzept.com header.b="o0YoW5fI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A045241
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:05:34 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EF2EA;
-	Wed, 18 Oct 2023 01:05:32 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 514C166072ED;
-	Wed, 18 Oct 2023 09:05:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697616331;
-	bh=QqK3Qq/IcrlEdraizHHF1jjk88t7+0AEUmdS8lWGIZI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XIzOvmtHMIURYqPL5tUpTTLhyIa9K+Xx7sHyL4caNB0k2/OJnFin6Wch6XHwR2tma
-	 FdOiext+yURbhb9o97fSZu5Z9EeCejI+4vtA6WUK87rVspiR3YGzcBRX5PKO/BphnC
-	 uRHM6zf9HP7BOQJbSqtLVmtNMg5NpnQ6mwZAk38yYp2Q07jqerZkOIFIryWJz/YPD8
-	 5cv2dM1rscIVuL1mxtrByKNXnMCsrsf8Oro4vtgJbn0ejOG8Rr+2DLKsxL7mC8TIT8
-	 WXE85G/2G5/erFrqpZQjIpPzHaw2QYPvSbu7DRiF3LyRCy8ujKsOLl6BAl0o1aIo+W
-	 saADAWGoMGlWw==
-Message-ID: <44f7f491-b8f5-4ed9-b756-db485a178694@collabora.com>
-Date: Wed, 18 Oct 2023 10:05:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701B65241
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:06:17 +0000 (UTC)
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411AB101;
+	Wed, 18 Oct 2023 01:06:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kernkonzept.com; s=mx1; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:References:In-Reply-To:Reply-To:
+	Content-ID:Content-Description;
+	bh=wSnE6AHtReJkLWNCNsw2deG5mtnwk5thFtDKs+hSJYs=; b=o0YoW5fI8+ZfZjFx3X/xaPh/y3
+	r3mLLIkTjISzwpKgufg7Xo4C2xacaJkrWIDdZ75qIJ29D0NvK7k8dB+eIDDo3kNX/ER9/7j6F9OAA
+	A1IH8/6uuig++gr0I37pUrZInQDRkwvuygam54rUH09WSTF3LaPh3YR87IJTsjsv+uuZ5Yy9gKf/0
+	XzXed/knQrS7/NsQh4t6yE7UCPX+5wfBgGuaBs+Jc/epIbEBi/6PUA+7jHTYxkbdIA8VBIGg+UCZ1
+	rb9GRxByXCzyFkmafHXZSHzK9BOy9KgfpILk4wkLFJ2VrNtgGbOhpW0SXjk/Y7rfRhfTY8h4zfl2x
+	vFDOjTuQ==;
+Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
+	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
+	id 1qt1ZC-009lIU-04;
+	Wed, 18 Oct 2023 10:06:10 +0200
+From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v2 0/3] cpufreq: Add basic cpufreq scaling for Qualcomm
+ MSM8909
+Date: Wed, 18 Oct 2023 10:06:01 +0200
+Message-Id: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 18/23] drm/mediatek: Add Padding to OVL adaptor
-Content-Language: en-US
-To: Hsiao Chien Sung <shawn.sung@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Fei Shao <fshao@chromium.org>,
- Sean Paul <sean@poorly.run>,
- Johnson Wang <johnson.wang@mediatek.corp-partner.google.com>,
- "Nancy . Lin" <nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>,
- "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
- Nathan Lu <nathan.lu@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20231018043650.22532-1-shawn.sung@mediatek.com>
- <20231018043650.22532-19-shawn.sung@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231018043650.22532-19-shawn.sung@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOmRL2UC/2WN0Q6CIBhGX8X919EQDcWr3qN5kfCTzAkE5irHu
+ 0euuy7P2b7zbRAxGIzQFRsEXE00zmZghwLkeLU3JEZlBkZZRQXlZI5zK6gg0j90wDtRWrOqVSi
+ 0riCvfEBtnnvx0mceTVxceO0Ha/m1v1bJ/lprSShpeCOR8+FU18N5wmAnZ9/ol6N0M/QppQ/Sh
+ gUztAAAAA==
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Stephan Gerhold <stephan@gerhold.net>, 
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>, stable@vger.kernel.org
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Il 18/10/23 06:36, Hsiao Chien Sung ha scritto:
-> Add MT8188 Padding to OVL adaptor to probe the driver.
-> 
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+Add the necessary definitions to the qcom-cpufreq-nvmem driver to
+support basic cpufreq scaling on the Qualcomm MSM8909 SoC. In practice
+the necessary power domains vary depending on the actual PMIC the SoC
+was combined with. With PM8909 the VDD_APC power domain is shared with
+VDD_CX so the RPM firmware handles all voltage adjustments, while with
+PM8916 and PM660 Linux is responsible to do adaptive voltage scaling
+of a dedicated CPU regulator using CPR.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+---
+Changes in v2:
+- Reword commit messages based on discussion with Uffe
+- Use generic power domain name "perf" (Uffe)
+- Fix pm_runtime error handling (Uffe)
+- Add allocation cleanup patch as preparation
+- Fix ordering of qcom,msm8909 compatible (Konrad)
+- cpufreq-dt-platdev blocklist/dt-bindings patches were applied already
+- Link to v1: https://lore.kernel.org/r/20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com
 
+---
+Stephan Gerhold (3):
+      cpufreq: qcom-nvmem: Simplify driver data allocation
+      cpufreq: qcom-nvmem: Enable virtual power domain devices
+      cpufreq: qcom-nvmem: Add MSM8909
+
+ drivers/cpufreq/qcom-cpufreq-nvmem.c | 124 +++++++++++++++++++++++++----------
+ 1 file changed, 90 insertions(+), 34 deletions(-)
+---
+base-commit: 2e12b516f5e6046ceabd4d24e24297e4d130b148
+change-id: 20230906-msm8909-cpufreq-dff238de9ff3
+
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
 
