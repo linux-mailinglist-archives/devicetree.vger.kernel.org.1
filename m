@@ -1,317 +1,189 @@
-Return-Path: <devicetree+bounces-9457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F537CD2A8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 05:26:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE4B7CD2E8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52905B20FE0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 03:26:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C3B11C209D2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 04:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A9B4420;
-	Wed, 18 Oct 2023 03:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E768B430E1;
+	Wed, 18 Oct 2023 04:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R0qQdZqw"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="mlLcDPiF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850C83D90
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 03:26:28 +0000 (UTC)
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C46E3BA;
-	Tue, 17 Oct 2023 20:26:26 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1bf55a81eeaso43598565ad.0;
-        Tue, 17 Oct 2023 20:26:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697599586; x=1698204386; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PHviYvEcpPmVkvkxsXVgEvF0IjYVpOyRZvIZTPHvuAc=;
-        b=R0qQdZqwIgH9z/5NaNp0aLzqkLlX3Tr1WmKY0mW2oyg8BsqAlOpI9Wp1uUbBazaSlh
-         3bXUaAgfw2ZBMWZPQ+O/o7Q5ZkjxlxTj8v8d/Gf7zPr1PRvk7U2L3+i+xjYLVEnq8YMs
-         GcNcM0kkYYlAXRmmF7BxCWORMyejgNZDRLAcoPy9NA+mWgUI3I9Q5TSN+b6LgIkZJqYd
-         yTiutZWD/9vvdIouXB0vVbATCj/fkoXotA/ZhK/3xC6dhFzq5nOipWOFCnaa+JUyBHuk
-         HdHH6MDbOwXbyFVOgX9xc3+oYsYLIKiAdfDoDyoInYao3pZhcpNIaPJGCNnNf620VEtU
-         nijQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697599586; x=1698204386;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PHviYvEcpPmVkvkxsXVgEvF0IjYVpOyRZvIZTPHvuAc=;
-        b=gz1XqWpQT1rwfdQhndJkCxuqFrBdjLF8aQpfpkwqpVv7lyKcSn+OHtdhng5vxNgjIz
-         WqDc1CxtoDZlHisO5SlEfh+lZXtmKi+t8CCLFzvOc3oNEbpBvpYnva8ANqIvlS4LuhYH
-         GAMfX7TWy/bJafgHuJL0rWNQz2pB3YKnci0fRRq4dkAQwkAgeTCV3ZQ/dnfl0SWuuA5j
-         CSNswJvntmLBq3zs1uQhxK0UD7aB0KZkgUY+eOwGHk5q5LVffibkfTirzIjNd7WMBzie
-         kIbrps3ifJldlLYL2nQ9bBRplywJQ65HeRJYr+HNECgjWwUAuexydx/vUYxm0akYCufK
-         20rw==
-X-Gm-Message-State: AOJu0YyWsP7Ydh4Hi45gPn58LaD+kWb/Q3iFSutaSid8AXVLGZ3PfYoY
-	s1xYCreJ7yXWEWOyDdNUdLOQ/RW8QMI=
-X-Google-Smtp-Source: AGHT+IFw85MD3M6uPf/yTnwSEICiOIUnNEgW2hmGP7tvPfmUGI+pJ+r5CWuCD+qsBdx+/YR8e9yRsg==
-X-Received: by 2002:a17:902:c649:b0:1c4:4462:f1bd with SMTP id s9-20020a170902c64900b001c44462f1bdmr3340196pls.35.1697599586067;
-        Tue, 17 Oct 2023 20:26:26 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id 20-20020a170902c25400b001c9b70609e8sm2336469plg.256.2023.10.17.20.26.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 20:26:25 -0700 (PDT)
-Message-ID: <8e983479-709f-4ec8-85e2-c46a5256a2ec@gmail.com>
-Date: Wed, 18 Oct 2023 11:26:21 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F339446A9
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:37:00 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE563EA;
+	Tue, 17 Oct 2023 21:36:57 -0700 (PDT)
+X-UUID: f598414a6d6f11eea33bb35ae8d461a2-20231018
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hvgZVSIYPCds3ptt3MEwvGHqQyAcV83C0yGNYmKo2Ts=;
+	b=mlLcDPiFryFSE51KpTyR+LwkRWfE35fkfNIhb5YcCp6RtQ5i+gmAix+NE+Su4rFavsuN0VGdWCe25cozqr/nSqO0maDFtb0zuZueSYGSgjlE0goE1/ZrUF2DwOKTTYwH7z0lZ02bjG9KK6srCMd/l+N2Vb3JbV5YvIonUnTIEW4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:15a62073-915b-45a0-9009-bbee5111677e,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:8854ecf0-9a6e-4c39-b73e-f2bc08ca3dc5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: f598414a6d6f11eea33bb35ae8d461a2-20231018
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <shawn.sung@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 526962779; Wed, 18 Oct 2023 12:36:52 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 18 Oct 2023 12:36:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 18 Oct 2023 12:36:51 +0800
+From: Hsiao Chien Sung <shawn.sung@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK
+ Hu <ck.hu@mediatek.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>
+CC: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Fei Shao <fshao@chromium.org>, Sean Paul
+	<sean@poorly.run>, Johnson Wang
+	<johnson.wang@mediatek.corp-partner.google.com>, "Nancy . Lin"
+	<nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, Hsiao Chien Sung
+	<shawn.sung@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+	Nathan Lu <nathan.lu@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v9 00/23] Add display driver for MT8188 VDOSYS1
+Date: Wed, 18 Oct 2023 12:36:27 +0800
+Message-ID: <20231018043650.22532-1-shawn.sung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
- control
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20231011090510.114476-1-ychuang570808@gmail.com>
- <20231011090510.114476-3-ychuang570808@gmail.com>
- <7800b2d6-33c4-4c4f-8d0c-c11ff0e47535@linaro.org>
- <17a80031-98bf-48bf-8cea-c0ca4400f142@gmail.com>
- <254837e5-a0fa-4796-8928-277db4b98bf1@linaro.org>
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <254837e5-a0fa-4796-8928-277db4b98bf1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Dear Krzysztof,
+This series is based on mediatek-drm-next.
 
-Thank you for the review.
+Changes in v9:
+- Add a static inline function to power off the device
+- Change driver name to "mediatek-disp-padding"
+- Fix typo and kernel doc format error
 
+Changes in v8:
+- Power on/off the components with .power_on() and .power_off()
+- Remove mtk_padding_config()
+- Remove Reviewed-by tags in "drm/mediatek: Add Padding to OVL adaptor"
+  because of the modifications.
 
-On 2023/10/17 上午 03:52, Krzysztof Kozlowski wrote:
-> On 16/10/2023 06:32, Jacky Huang wrote:
->>>> +  '#size-cells':
->>>> +    const: 1
->>>> +
->>>> +  nuvoton,sys:
->>>> +    description:
->>>> +      phandle to the syscon node
->>> sys is quite generic. Description explains nothing except duplicating
->>> known information. Drop duplicated info and instead explain to what this
->>> phandle points and how it is going to be used.
-> Read comments carefully.
+Changes in v7:
+- Start/Stop the components in OVL Adaptor with function pointers
+- Refine Padding driver
+- Fix underrun when the layer is switching off
 
+Changes in v6:
+- Separate the commits into smaller ones
+- Add DPI input mode setting
+- Fix VDOSYS1 power-on issues
 
-I will update the description of 'nuvoton,sys'.
+Changes in v5:
+- Reuse .clk_enable/.clk_disable in struct mtk_ddp_comp_funcs
+  in mtk_disp_ovl_adaptor.c
+- Adjust commits order
 
->
->>>
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>> +    items:
->>>> +      maxItems: 1
->>> So just phandle, not phandle-array, unless it is defined like this in
->>> some other binding.
->> I would like to update this as:
->>
->>     nuvoton,sys:
-> Nothing improved.
+Changes in v4:
+- Add new functions in mtk_disp_ovl_adaptor.c to enable/disable
+  components and reuse them when clock enable/disable
+- Rename components in mtk_disp_ovl_adaptor.c and sort them in
+  alphabetical order
 
-Here just fix  the 'phandle-array' to 'phandle' and remove 'maxItems'.
+Changes in v3:
+- Define macro MMSYS_RST_NR in mtk-mmsys.h and update reset table
+- Fix typos (ETDHR -> ETHDR, VSNYC -> VSYNC)
+- Rebase dt-bindings on linux-next
+- Refine description of Padding
+- Squash reset bit map commits for VDO0 and VDO1 into one
 
->>       $ref: /schemas/types.yaml#/definitions/phandle
->>       description:
->>         Help pinctrl driver to access system registers by means of regmap.
-> Driver is not relevant here. Say which part of syscon are necessary for
-> pinctrl operation.
->
+Changes in v2:
+- Remove redundant compatibles of MT8188 because it shares the same
+  configuration with MT8195
+- Separate dt-bindings by modules
+- Support reset bit mapping in mmsys driver
 
-I will update description as:
+Hsiao Chien Sung (23):
+  dt-bindings: display: mediatek: ethdr: Add compatible for MT8188
+  dt-bindings: display: mediatek: mdp-rdma: Add compatible for MT8188
+  dt-bindings: display: mediatek: merge: Add compatible for MT8188
+  dt-bindings: display: mediatek: padding: Add MT8188
+  dt-bindings: arm: mediatek: Add compatible for MT8188
+  dt-bindings: reset: mt8188: Add VDOSYS reset control bits
+  soc: mediatek: Support MT8188 VDOSYS1 in mtk-mmsys
+  soc: mediatek: Support MT8188 VDOSYS1 Padding in mtk-mmsys
+  soc: mediatek: Support reset bit mapping in mmsys driver
+  soc: mediatek: Add MT8188 VDOSYS reset bit map
+  drm/mediatek: Rename OVL_ADAPTOR_TYPE_RDMA
+  drm/mediatek: Refine device table of OVL adaptor
+  drm/mediatek: Sort OVL adaptor components
+  drm/mediatek: Add component ID to component match structure
+  drm/mediatek: Manage component's clock with function pointers
+  drm/mediatek: Start/Stop components with function pointers
+  drm/mediatek: Support MT8188 Padding in display driver
+  drm/mediatek: Add Padding to OVL adaptor
+  drm/mediatek: Return error if MDP RDMA failed to enable the clock
+  drm/mediatek: Remove the redundant driver data for DPI
+  drm/mediatek: Fix underrun in VDO1 when switches off the layer
+  drm/mediatek: Power on devices in OVL adaptor when atomic enable
+  drm/mediatek: Support MT8188 VDOSYS1 in display driver
 
-   nuvoton,sys:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       The pin function control registers are located in the system
-       control register space. This phandle provides pinctrl the
-       ability to access the pin function control registers through
-       the use of regmap.
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+ .../display/mediatek/mediatek,ethdr.yaml      |   6 +-
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |   6 +-
+ .../display/mediatek/mediatek,merge.yaml      |   3 +
+ .../display/mediatek/mediatek,padding.yaml    |  81 +++++
+ drivers/gpu/drm/mediatek/Makefile             |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   8 +
+ drivers/gpu/drm/mediatek/mtk_disp_merge.c     |   2 +-
+ .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 286 +++++++++++-------
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |  16 +-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |  28 +-
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |   2 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  20 ++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   5 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  19 +-
+ drivers/gpu/drm/mediatek/mtk_padding.c        | 160 ++++++++++
+ drivers/soc/mediatek/mt8188-mmsys.h           | 210 +++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c              |  27 ++
+ drivers/soc/mediatek/mtk-mmsys.h              |  32 ++
+ drivers/soc/mediatek/mtk-mutex.c              |  51 ++++
+ include/dt-bindings/reset/mt8188-resets.h     |  75 +++++
+ include/linux/soc/mediatek/mtk-mmsys.h        |   8 +
+ 23 files changed, 897 insertions(+), 154 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_padding.c
 
-
->>
->>
->>>> +
->>>> +  ranges: true
->>>> +
->>>> +allOf:
->>>> +  - $ref: pinctrl.yaml#
->>> allOf: goes after required: block.
->> I will fix it.
->>
->>>> +
->>>> +patternProperties:
->>>> +  "gpio[a-n]@[0-9a-f]+$":
->>> ^gpio@[0-9a-f]+$":
->> I will fix this, and also fix the dtsi.
->>
->>>> +    type: object
->>>> +    additionalProperties: false
->>>> +    properties:
->>>> +
->>> Drop blank line
->> I will fix it.
->>
->>>> +      gpio-controller: true
->>>> +
->>>> +      '#gpio-cells':
->>>> +        const: 2
->>>> +
->>>> +      reg:
->>>> +        maxItems: 1
->>>> +
->>>> +      clocks:
->>>> +        maxItems: 1
->>>> +
->>>> +      interrupt-controller: true
->>>> +
->>>> +      '#interrupt-cells':
->>>> +        const: 2
->>>> +
->>>> +      interrupts:
->>>> +        description:
->>>> +          The interrupt outputs to sysirq.
->>>> +        maxItems: 1
->>>> +
->>>> +    required:
->>>> +      - reg
->>>> +      - interrupts
->>>> +      - interrupt-controller
->>>> +      - '#interrupt-cells'
->>>> +      - gpio-controller
->>>> +      - '#gpio-cells'
->>> Keep the same order as in list of properties.
->> I will fix the order.
->>
->>>> +
->>>> +  "pcfg-[a-z0-9-.]+$":
->>> Why using different naming than other Nuvoton SoCs? You also accept
->>> "foobarpcfg-1", which does not look intentional.
->>>
->> I will use '"^pin-[a-z0-9-.]+$" instead.
-> [.] is redundant... What exactly do you want to match?
-
-I want to match the name like "-1.8v" or "-3.3v".
-However, this should be specified in the property, so I will drop the "-.".
-
-
->>
->>>> +    type: object
->>>> +    description:
->>>> +      A pinctrl node should contain at least one subnodes representing the
->>>> +      pinctrl groups available on the machine. Each subnode will list the
->>>> +      pins it needs, and how they should be configured, with regard to muxer
->>>> +      configuration, pullups, drive strength, input enable/disable and input
->>>> +      schmitt.
->>>> +
->>>> +    allOf:
->>>> +      - $ref: pincfg-node.yaml#
->>> missing additional/unevaluatedProperties: false.
->> I will add unevaluatedProperties: false.
->>
->>>> +
->>>> +    properties:
->>>> +      bias-disable: true
->>> Why do you need this and other ones?
->> We expect the pin configuration to select one of ==>
->> bias-disable;
->> bias-pull-down;
->> bias-pull-up;
->>
->> This is the same as rockchip,pinctrl.yaml and renesas,rzv2m-pinctrl.yaml.
-> OK, then go with nuvoton approach. List the properties (:true) and use
-> additionalProperties: false.
-
-I got it.
-
->>>> +
->>>> +      bias-pull-down: true
->>>> +
->>>> +      bias-pull-up: true
->>>> +
->>>> +      drive-strength:
->>>> +        minimum: 0
->>> 0 mA? Is it really valid? Are you sure you used correct property?
->> We treat this value as the value to be written to the control register,
->> not as
->> a current value in mA. I will correct this mistake.
-> Instead treat it as mA. Is this possible?
-
-I will update it as:
-
-       drive-strength-microamp:
-         oneOf:
-           - enum: [ 2900, 4400, 5800, 7300, 8600, 10100, 11500, 13000 ]
-             description: 1.8V I/O driving strength
-           - enum: [ 17100, 25600, 34100, 42800, 48000, 56000, 77000, 
-82000 ]
-             description: 3.3V I/O driving strength
-
-And use a lookup table in the pinctrl driver to translate it into 
-register value.
-
-
->>>> +        maximum: 7
->>>> +
->>>> +      input-enable: true
->>>> +
->>>> +      input-schmitt-enable: true
->>>> +
->>>> +      power-source:
->>>> +        description:
->>>> +          I/O voltage in millivolt.
->>>> +        enum: [ 1800, 3300 ]
->>> Missing units in property name. power-source also does not really
->>> describe the property.
->>
->> The output voltage level of GPIO can be configured as 1.8V or 3.3V,
->> but I cannot find any suitable output properties in 'pincfg-node.yaml.'
-> There is actually power-source, but treated as actual choice of power
-> supplies.
->
->> I noticed that 'xlnx,zynq-pinctrl.yaml' and 'xlnx,zynq-pinctrl.yaml' use
->> 'power source' to specify the output voltage.  Should I follow their
->> approach or define a vendor-specific one?
-> Maybe Rob or Linus have here some recommendation, but I would suggest to
-> go either with rtd1319d-pinctrl.yaml approach or add a generic property
-> to pincfg-node expressed in real units like "io-microvolt".
-
-OK, I will update it as:
-
-       power-source:
-         description: |
-           Valid arguments are described as below:
-           0: power supply of 1.8V
-           1: power supply of 3.3V
-         enum: [0, 1]
-
-
-> Rob, Linus, any ideas for generic property replacing register-specific
-> power-source?
->
->
-> Best regards,
-> Krzysztof
->
-
-Best Regards,
-Jacky Huang
+--
+2.18.0
 
 
