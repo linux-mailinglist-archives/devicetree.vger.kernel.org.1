@@ -1,83 +1,117 @@
-Return-Path: <devicetree+bounces-9800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84E417CE88D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:09:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A547CE892
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B58A91C2084E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:09:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1699281C69
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262E71EB49;
-	Wed, 18 Oct 2023 20:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDBC1EB49;
+	Wed, 18 Oct 2023 20:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AUiux2aW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qp1Ttjd7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B961EB2C
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:09:41 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649A6B8
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:09:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=2mrggDdJ8FuE/cM+p18kP2DyIYtzF8K+Wv+yii4jub8=; b=AUiux2aWWTJxa7pFJnr7fQqFom
-	wxlneXwR5PkZDsIPlZ4HDpGu01OC/ROcH3YqhWDL39NB+Hko2ETFWEuU4XfD2gEH/o7HP36b3RYbm
-	yeqobKFsgyYYySc/96P+/gGO0DgIJXusp9f70WfAWxwkQtaarUOsrV6lp8GfgLld9rn0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qtCr0-002cRa-Po; Wed, 18 Oct 2023 22:09:18 +0200
-Date: Wed, 18 Oct 2023 22:09:18 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear
- R8000 CPU ports
-Message-ID: <e77b92d4-1564-4c05-a4ff-beb0c87aa5c6@lunn.ch>
-References: <20231013103314.10306-1-zajec5@gmail.com>
- <20231013103314.10306-2-zajec5@gmail.com>
- <627b78cd-7c9f-4da0-b4be-54891041580e@lunn.ch>
- <1a6df2259fd9c3885a4a575f367a4f1a@milecki.pl>
- <f992f02b-1ec0-4588-98df-4141594e10ff@lunn.ch>
- <e91b2d1c390f4a45dc92a99a112361eb@milecki.pl>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE241EB2C
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:10:24 +0000 (UTC)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D381112
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:10:22 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50797cf5b69so7573551e87.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697659820; x=1698264620; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vC8BSO57sX+RFvEjTRkQdrl0WXBXIli5ij6sBpRlpmY=;
+        b=qp1Ttjd7bg4NjuZFjqHRmkIOMEi5eZZT+fmctQsM9QeVK52AlHj+pQuntQyJzTHJup
+         tMocsb7Y8g1w277Flaw3inb6Ae548IXWa6+xs4PzI+k90VXTV4TEYVQeAjXCWUp0cwxB
+         Vxn9/OQonQYbSfTvUw4HauQDqZTOTEp6ir1r0d3/hYKtuaNBQNI1EQgvpZaHJPegviUI
+         eGTFP9q3l+7owQdLsOnwGVkJA5aqZviIgSU8qZZhvp3j+/36VuhH6bjn/F43sQkE+2jK
+         H5WdKDEIAPmC6d6oOBNj0fJvTz9tOm36GSbxtLRn3Ggz0rDFS8RquSQtbfM6qtaIpRqs
+         ZkuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697659820; x=1698264620;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vC8BSO57sX+RFvEjTRkQdrl0WXBXIli5ij6sBpRlpmY=;
+        b=fBuMxCVO3eCNXPXy9w61QvZ5imLMbwRA5xh0EX+iYWGcSVZ+xyl138AISa0QPrSdOn
+         a4HTXh2H0k1nVd8W8OkMJOVWpPlYRTYo/KNpLS3+J0kvUnsLnAhFPnHQB4SvYEuPxMyy
+         ztxInpLsfrjhNl00R9RTHcvTnvEW1YO9oiuBiVAz+elQpwHhdfL212l/UV824BcGHSYp
+         uP+P2P9jkD0Ip27hqib47PiCij9x3p6GmuPcBChFivf6727mJ8v1x9NrjFaSg0w+Vilz
+         LXce0PoMaNNJbt4rgdAsD37S4nV+CJC4lf+taI0RW9d1h1DMxqqNNtas4mP+W/sFzLak
+         SmFw==
+X-Gm-Message-State: AOJu0Yy91xnB/OJZDmD/8GrWwKSytQdtQfAf+bgPPYD0vL3hRvo4gLfH
+	xUUiPOrQ50f9HBSUrfinrY0SWQ==
+X-Google-Smtp-Source: AGHT+IEoV8GqxarhRZJW+0Q9BZA1W9wzW1qrmKIldTts6mlhYjR/7ldyMGUwHxDYw3kBmonbwYz5Ug==
+X-Received: by 2002:a05:6512:15b:b0:507:a984:bf40 with SMTP id m27-20020a056512015b00b00507a984bf40mr40011lfo.47.1697659820172;
+        Wed, 18 Oct 2023 13:10:20 -0700 (PDT)
+Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id v7-20020a056512048700b0050336e38735sm816806lfq.92.2023.10.18.13.10.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 13:10:19 -0700 (PDT)
+Message-ID: <5e1eacc5-721e-4ac1-a62f-ece6a1c4355c@linaro.org>
+Date: Wed, 18 Oct 2023 22:10:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e91b2d1c390f4a45dc92a99a112361eb@milecki.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: ipq9574: populate the opp table
+ based on the eFuse
+Content-Language: en-US
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ rafael@kernel.org, viresh.kumar@linaro.org, ilia.lin@kernel.org,
+ quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+References: <cover.1697600121.git.quic_varada@quicinc.com>
+ <5d1bf44de58db10a20d1b116c7fd4b073d01271e.1697600121.git.quic_varada@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <5d1bf44de58db10a20d1b116c7fd4b073d01271e.1697600121.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> So developers/hackers can use them for custom needs by just dropping
-> "disabled" bit. That's a pretty simple step compared to figuring out
-> that a fixed link is needed.
+
+
+On 10/18/23 11:29, Varadarajan Narayanan wrote:
+> IPQ95xx SoCs have different OPPs available for the CPU based on
+> SoC variant. This can be determined from an eFuse register
+> present in the silicon.
 > 
-> I can imagine advanced users using extra ports and interfaces to get
-> higher speeds. If you use a single switch port and single interface
-> you're limited to 1 Gbps. By using two you can exceed that limitation.
+> Add support to read the eFuse and populate the OPPs based on it.
 > 
-> This is clearly some corner case but I don't think it really violates
-> what DT is for. We just describe hardware more clearly. There is a fixed
-> link after all. That port just happens to be disabled.
+> Frequency	1.2GHz	1.8GHz	1.5GHz	No	opp-supported-hw
+> 					Limit
+> ------------------------------------------------------------
+> 936000000	1	1	1	1	0xf
+> 1104000000	1	1	1	1	0xf
+> 1200000000	1	1	1	1	0xf
+> 1416000000	0	1	1	1	0x7
+> 1488000000	0	1	1	1	0x7
+> 1800000000	0	1	0	1	0x5
+> 2208000000	0	0	0	1	0x1
+> -----------------------------------------------------------
+> 
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v2:	cpu_speed_bin -> cpu-speed-bin in node name
+> 	Move comment to commit log
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Please reformulate this into the commit message. Then it becomes a
-good answer to the question `Why?` which is what the commit message is
-all about.
-
-    Andrew
+Konrad
 
