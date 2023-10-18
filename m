@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-9622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957D67CD9E9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:58:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF717CDA0B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34C17B20FFE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 245D31C20A47
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED1719BAB;
-	Wed, 18 Oct 2023 10:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D361A5BA;
+	Wed, 18 Oct 2023 11:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f2j4Fpgo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NdUqHgTh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4702F18E30
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:58:18 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF847FF;
-	Wed, 18 Oct 2023 03:58:13 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I6tSue005405;
-	Wed, 18 Oct 2023 10:58:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dfIPjwCo1TPlhSqa+JpWtxJpKqFI6gMa+tmQEAaensM=;
- b=f2j4Fpgo9dOa6n4Y0tU74WWyIVffjJ/CPiiJMkOitrl7zCzlNUmFrwZ6nkSRxaUfVgp+
- hIk1v8fIJcPbif4MZbnfcwx1muyEc/+/huBS+4WTced7jsa9E8MdRG9q+wwYE3XqQerM
- rpJ6gZW+pPuV+rjHrgnA13vklNH+vpq/O0ZCyzwTDV6BSATrTeYA60YZjGMB3JeAItfo
- 9O02nh0rVXUqJi9khqWjGJbe4XDNo88LKx98kTEGPatGf3yB330P7zcqOBDP4NDlxBCg
- mYAGRs7TB1CTPvMEa9iOpB/o3EuddT/zYLHUa3LyF+XBOzN0emkFUpJmte700tnUKE8L ag== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsvxwtat6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 10:58:10 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IAwAMg029504
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 10:58:10 GMT
-Received: from [10.216.39.143] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
- 2023 03:58:04 -0700
-Message-ID: <fe60f28b-ab8e-0cb5-b08c-c02f4df865eb@quicinc.com>
-Date: Wed, 18 Oct 2023 16:28:01 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EBE1772A
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:12:00 +0000 (UTC)
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3D5111
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:11:58 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5a7db1f864bso79667177b3.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:11:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697627518; x=1698232318; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NO/PDoCfvCIQp8CUhsVVtzA3USwqbfuZSWYXmX0vX4k=;
+        b=NdUqHgThFaSS6CRiu320pMsNt8v76A9IMR56kWxn6XxfWZKQlYBE/3cmIhmnFqZa/M
+         76MExfEnETGwcB0CZMzHlF5OPx3aQBSFLiJP+hOd0CIZF33/zVS5lKNLUOxTFUA5EBnL
+         /ZJTdUdPa48bUvCxCtNHV7/hGAzJqnFqHR6vu1kRYG1BENL1opSDfpxZo5uhOkMECEE8
+         8s2bv87hCe7OQLzJ/OkGRvFh21oxtEpy72ipOzoysiIT4gU5JbkKqtiXJ/G1mv50K5IG
+         3HTeD5c8JTRgA7DJWMQZYM6UKMfWKLPxA7VhRqhz6ZL6ktiJA6REv+W3b7J55MyBuYLD
+         rS+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697627518; x=1698232318;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NO/PDoCfvCIQp8CUhsVVtzA3USwqbfuZSWYXmX0vX4k=;
+        b=VS0GYgNirX7MX4FpL3Xd5Hn9Pip2zZwX6z6yV5djBPErpX5E1muAeOikUhmX7fgRVo
+         DP4Ejf1JYQDU3E1rqDNqXRFTH26+7mYG3/ZlXayWCfh1ugsiSFYV/bn/HGDTVfQ22lBP
+         SC7LAzyuAhWgZE1iDJT2Z583GpAIGiE2f9B3iDMujjKpq0w+D6Z4jrhfjxkWuXPuEJDx
+         lYVoooRbivLv+CdV3fWobmU9whoCO29GaVzvhPF+Bko6s5IF5i64f0bsIoLf4Q+YIsu+
+         b9Q1NRLDcu4UDXBumcurwvIm2ueWpKHL7rfpZkH7UcpDqh12G3R3gpFSixjaop5xUiPM
+         AUOQ==
+X-Gm-Message-State: AOJu0YzGL792IknR8mkcD+e8OyWhbi0WFc1+ks0W5T9pNFebDnKGLllb
+	F/rENbiyrdOWqPNjqErxwm/K09ouDNvuAispCaxepw==
+X-Google-Smtp-Source: AGHT+IGTZPUv5/Bw0Oc83FUy4A9roYHlmtR56tiA4w8g5dxVWLG7VhIBIjSwO1UMnGprrSPG2GfXojIrtvGv8qyCwVA=
+X-Received: by 2002:a81:a214:0:b0:5a8:19b0:513f with SMTP id
+ w20-20020a81a214000000b005a819b0513fmr5479705ywg.14.1697627517806; Wed, 18
+ Oct 2023 04:11:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V2 0/4] Add support for Qualcomm ECPRI clock controller
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20231011090028.1706653-1-quic_imrashai@quicinc.com>
- <427980eb-3235-4d63-bb8f-3af06978a3eb@linaro.org>
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <427980eb-3235-4d63-bb8f-3af06978a3eb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0GpuOH3TlNKQgcwTDfaXcBTBUtwhOJtk
-X-Proofpoint-ORIG-GUID: 0GpuOH3TlNKQgcwTDfaXcBTBUtwhOJtk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-18_09,2023-10-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 impostorscore=0 adultscore=0 clxscore=1015 mlxscore=0
- suspectscore=0 phishscore=0 mlxlogscore=930 lowpriorityscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310180090
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org> <169762516670.391804.7528295251386913602.robh@kernel.org>
+In-Reply-To: <169762516670.391804.7528295251386913602.robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 18 Oct 2023 13:11:45 +0200
+Message-ID: <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or ethernet-ports
+To: Rob Herring <robh@kernel.org>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Russell King <linux@armlinux.org.uk>, 
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Eric Dumazet <edumazet@google.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	"David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org, 
+	Gregory Clement <gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Wed, Oct 18, 2023 at 12:32=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+> On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
 
+> > Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+> > a DSA switch node need to have a ports or ethernet-ports
+> > subnode, and that is actually required, so add requirements
+> > using oneOf.
+> >
+> > Suggested-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] wron=
+g indentation: expected 8 but found 6 (indentation)
+> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] wron=
+g indentation: expected 8 but found 6 (indentation)
 
-On 10/11/2023 3:58 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 10/11/23 11:00, Imran Shaik wrote:
->> The ECPRI clock controller support for QDU1000 and QRU1000. The clock
->> controller has a special branch which requires an additional memory to
->> be enabled/disabled before the branch ops.
->>
->> Changes since v1:
->>   - Updated the dt-bindings
->>   - Modified mem ops logic as per the review comments
->>   - Update all the hex values to lowercase
->>   - Aligned the clock entries in DT as per the review comment
->>
->> Previous series:
->> v1 - 
->> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=774092
-> That link is gone by now, as patchwork is periodically purged.
-> 
-> Please use lore links instead.
-> 
-> https://lore.kernel.org/linux-arm-msm/20230808051407.647395-1-quic_imrashai@quicinc.com/
-> 
-> Konrad
+Really?
 
-Sure, will use lore links from now.
++  oneOf:
++    - required:
++      - ports
++    - required:
++      - ethernet-ports
 
-Thanks,
-Imran
+Two spaces after the oneOf, 2 spaces after a required as usual.
+I don't get it.
+
+Yours,
+Linus Walleij
 
