@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-9491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B347CD3FD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:17:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565A57CD409
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C97F2813E4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:17:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2D571F235BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE62E1FC5;
-	Wed, 18 Oct 2023 06:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262308F6D;
+	Wed, 18 Oct 2023 06:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C738F57
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF2B8F69
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:17:49 +0000 (UTC)
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 733AC93
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:17:40 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7CF114
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:17:47 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <sha@pengutronix.de>)
-	id 1qszrs-0001a1-MR; Wed, 18 Oct 2023 08:17:20 +0200
+	id 1qszrs-0001a4-MS; Wed, 18 Oct 2023 08:17:20 +0200
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <sha@pengutronix.de>)
-	id 1qszrr-002UYf-9o; Wed, 18 Oct 2023 08:17:19 +0200
+	id 1qszrr-002UYg-C0; Wed, 18 Oct 2023 08:17:19 +0200
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <sha@pengutronix.de>)
-	id 1qszrr-00EvjS-0M;
+	id 1qszrr-00EvjW-0S;
 	Wed, 18 Oct 2023 08:17:19 +0200
 From: Sascha Hauer <s.hauer@pengutronix.de>
 To: linux-rockchip@lists.infradead.org
@@ -59,9 +59,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Conor Dooley <conor.dooley@microchip.com>,
 	Chanwoo Choi <cw00.choi@samsung.com>
-Subject: [PATCH v8 21/26] dt-bindings: devfreq: event: rockchip,dfi: Add rk3568 support
-Date: Wed, 18 Oct 2023 08:17:09 +0200
-Message-Id: <20231018061714.3553817-22-s.hauer@pengutronix.de>
+Subject: [PATCH v8 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add rk3588 support
+Date: Wed, 18 Oct 2023 08:17:10 +0200
+Message-Id: <20231018061714.3553817-23-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231018061714.3553817-1-s.hauer@pengutronix.de>
 References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
@@ -82,53 +82,50 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This adds the rockchip,rk3568-dfi compatible to the binding. Make clocks
-optional for this SoC as the RK3568 doesn't have a kernel controllable
-PCLK.
+This adds rockchip,rk3588-dfi to the list of compatibles. Unlike ealier
+SoCs the rk3588 has four interrupts (one for each channel) instead of
+only one, so increase the number of allowed interrupts to four.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- .../bindings/devfreq/event/rockchip,dfi.yaml      | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+
+Notes:
+    Changes since v4:
+     - new patch
+    
+    Changes since v5:
+     - drop interrupt-names property
+    
+    Changes since v4:
+     - new patch
+
+ .../devicetree/bindings/devfreq/event/rockchip,dfi.yaml       | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-index 7a82f6ae0701e..e8b64494ee8bd 100644
+index e8b64494ee8bd..50d3fabe958d5 100644
 --- a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
 +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-@@ -13,6 +13,7 @@ properties:
-   compatible:
+@@ -14,6 +14,7 @@ properties:
      enum:
        - rockchip,rk3399-dfi
-+      - rockchip,rk3568-dfi
+       - rockchip,rk3568-dfi
++      - rockchip,rk3588-dfi
  
    clocks:
      maxItems: 1
-@@ -34,11 +35,21 @@ properties:
+@@ -23,7 +24,8 @@ properties:
+       - const: pclk_ddr_mon
  
- required:
-   - compatible
--  - clocks
--  - clock-names
-   - interrupts
-   - reg
+   interrupts:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 4
  
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - rockchip,rk3399-dfi
-+
-+then:
-+  required:
-+    - clocks
-+    - clock-names
-+
- additionalProperties: false
- 
- examples:
+   reg:
+     maxItems: 1
 -- 
 2.39.2
 
