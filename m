@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-9678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B978F7CDF97
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDD47CDF98
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA81C1C20D41
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:26:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 926531C20E0D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD4537C84;
-	Wed, 18 Oct 2023 14:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB38237C8C;
+	Wed, 18 Oct 2023 14:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="esfKvJ6t"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="sIbMid20"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECE9374F8
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410AA358A0
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:26:15 +0000 (UTC)
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11509359E;
-	Wed, 18 Oct 2023 07:26:01 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303FE10C7;
+	Wed, 18 Oct 2023 07:26:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
 	s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4fUP0tSwnbpMdjb7K6eDxs6iBd7r7k7NIBV8eKcwP/0=; b=esfKvJ6t+VZvP1bVmag5ZIcGku
-	teGa5m40L94eryStGRZJjv+iIqknS9rlLChGCQH/xtRGNAitPmoYlOAXhZ69UwV9FUFhNbPonERl4
-	MAebZgOVEvYPOCe1481Z1BqA3JITu/4mN/EOrCvT5anPA71I4Agb0dsIypgEE/JbAkjkUVp9ql60x
-	qhDTZoOfg4DQNHl6/7tEGhAc6/nYw4EgbqAA7nHJxbNfI/47+95fgtcb6uHt5TIbHVtR4n3kohN5y
-	1VE5T4YoyeizIfjc6+kvLFaMrIyPwEOv3Gyxwo1JZwIR6Eu2nQrw8vvbAH74MVCKHH5Yo5hP0Dbuk
-	u1Z/FvHg==;
+	bh=efNuveP4VSQprhkHQkpwOHrplziHFsZy17voswzgGok=; b=sIbMid20VaYul+AKT7kDbObZs7
+	EPY6mXjJUjfl15uvhcURAWRFNOITE90SaCvOH2XnVQx0GFBo9ZTxmu4bnzOiYYT/q4wEEP/BRTEQ6
+	Oo+ny7BagahAzAvJW7jGUvp7D1xez2RxwN9UYTorVkkdk3LxbuWOFbigHA9IdulWJ5uID0kCNGvwg
+	QagfzywzmkwmLrlUZVPXtc4wGWPWavD5Klb6EFq5Ru6N5JOhdHkqz8+mWkXgZhnfc/hrX+yygdmnV
+	4LvxEA7Vbnth96uTvg9CkuBmPhB4waTne+Im/2bKV6AewNTqZI5ynESD7gK3sbahe6ArjYXq2WnC0
+	b+lTua8Q==;
 Received: from [145.18.212.154]
 	by fanzine2.igalia.com with esmtpsa 
 	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1qt7Ui-001paE-7n; Wed, 18 Oct 2023 16:25:56 +0200
+	id 1qt7Uj-001paE-9O; Wed, 18 Oct 2023 16:25:57 +0200
 From: Nia Espera <nespera@igalia.com>
-Date: Wed, 18 Oct 2023 16:25:14 +0200
-Subject: [PATCH v2 3/6] arm64: dts: qcom: pm8350k: remove hanging
- whitespace
+Date: Wed, 18 Oct 2023 16:25:15 +0200
+Subject: [PATCH v2 4/6] arm64: dts: qcom: sm8350: Fix remoteproc interrupt
+ type
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,7 +51,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231018-nia-sm8350-for-upstream-v2-3-7b243126cb77@igalia.com>
+Message-Id: <20231018-nia-sm8350-for-upstream-v2-4-7b243126cb77@igalia.com>
 References: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
 In-Reply-To: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -68,17 +68,17 @@ Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
  Luca Weiss <luca.weiss@fairphone.com>, 
  ~postmarketos/upstreaming@lists.sr.ht, Nia Espera <nespera@igalia.com>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=682; i=nespera@igalia.com;
- h=from:subject:message-id; bh=APP5garvIkYCYGoKeB/Nz7HFYVTAgEBtnOVhnK7sM6w=;
- b=owEB7QES/pANAwAIAfIkzsI3VuKtAcsmYgBlL+rqbY+CNQ4F3cGM8ql/kDdJZKUjABlDYFH80
- shH2rJJSiiJAbMEAAEIAB0WIQSBPDomug3slDJEnubyJM7CN1birQUCZS/q6gAKCRDyJM7CN1bi
- rcTmC/48bMPMbeB5pxmNctsjV+xgc26XscB37Kig/tDHgtWSmx7eMs3+oJnePffp33y/zv9DEol
- RKbqFfRtJUykLpTqDZOU11oi31OrkPJpJMBlzpEjUGswHA+uL3nhh3LgKw9PjbCzJlPepmG3aA3
- qpO5uMhrFLdehJWCknxk3QiViZBAG412RAUVCYt+zEu7zmRuCeL04AakBE9odG7yKKCSsagP6xL
- ZjSbgbP96RakT8sD6+qH1LkrIjdCeLqWJH4b0mcBsvEYlC3NmNZ2O28dolqD/NiOFTiCCqK27Dl
- koYyi8wLzmagjks+UH2iD6py9WtyBxrBldTCzIClTNGJUigT/+npxHssMta1MXeoOQHXf6zjLQd
- ZYX8+TiRWfWxcE7DzGuGyNDRqkd0EbqYTrCrzF12GmC0G6/SWNpYrJeLtTqtQAJxDLdxXAVhd2Q
- kA42cAZJaC4QTj2+pCoCby/4GmRiO8HUneOUuGbnnINExgBAJ7fj8wduLTKM/loltOs7k=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2332; i=nespera@igalia.com;
+ h=from:subject:message-id; bh=2PFXMWXBlmj0rQF2r2HKHb1q9m6vmsAuphNOSZ7iliw=;
+ b=owEB7QES/pANAwAIAfIkzsI3VuKtAcsmYgBlL+rqoMi+lT6l3oC2K//kUoPDjzNRtkqPDeteR
+ fNs+bLOflOJAbMEAAEIAB0WIQSBPDomug3slDJEnubyJM7CN1birQUCZS/q6gAKCRDyJM7CN1bi
+ rQ4yC/95ExZFTdESZ6udg5FlQz/41i7JcVGI4Cxr0kjIfB3dBhG+te87REsmjRGE00MXDGiHtV+
+ wpHVqQKNTDJcBUalUu8jOeH9ECfh9+XDVP3ebz/y8VqTkj1FZEcPfvzDE6KXP0Tu6mFaU77fzB1
+ 4sYohwYRiWlC9XYpmI0D/uJqFK+Js+xHxlG5KI/O60ohSUgcwNAwWPxV4skKLU486FM4Gym5lkv
+ tlAhJiIdt/z86U0qAXxkvUL2dtuxYlMpVz1NpFEMFrYkcwPiyhFnTGhedJMaws6ymkDaSFQp7n6
+ gjv8l7mW6BwraDdsxeFEduX7K9RbtcVRVvnprcPD7Ao8Z0R49H1lqjYHOfK1Vymd+s94u1OWdUo
+ wqGQti2gLBdrfPtPiIecYfUMag7/jzQOf4jVsMCDjrqMRzrLpgFxdup0WyteXDKCy8kQOdvnNyd
+ TKEA09am1HHsLD9Tpm02ug64JdNPD5NK+3hhegUWEarCCogMOsmA/IDl+7asRBjaHpscU=
 X-Developer-Key: i=nespera@igalia.com; a=openpgp;
  fpr=813C3A26BA0DEC9432449EE6F224CEC23756E2AD
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,27 +87,56 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-pmk8350 has a random tab character inserted, so remove it.
+In a similar vein to
+https://lore.kernel.org/lkml/20220530080842.37024-3-manivannan.sadhasivam@linaro.org/,
+the remote processors on sm8350 fail to initialize with the 'correct'
+(i.e., specified in downstream) IRQ type. Change this to EDGE_RISING.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Nia Espera <nespera@igalia.com>
 ---
- arch/arm64/boot/dts/qcom/pmk8350.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-index 1eb74017062d..f0ed15458dd7 100644
---- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-@@ -22,7 +22,7 @@ reboot-mode {
- 		mode-bootloader = <0x02>;
- 	};
- };
--	
-+
- &spmi_bus {
- 	pmk8350: pmic@PMK8350_SID {
- 		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 6d12066389fa..7d5ea338a870 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2020,7 +2020,7 @@ mpss: remoteproc@4080000 {
+ 			compatible = "qcom,sm8350-mpss-pas";
+ 			reg = <0x0 0x04080000 0x0 0x4040>;
+ 
+-			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
+@@ -2062,7 +2062,7 @@ slpi: remoteproc@5c00000 {
+ 			compatible = "qcom,sm8350-slpi-pas";
+ 			reg = <0 0x05c00000 0 0x4000>;
+ 
+-			interrupts-extended = <&pdc 9 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
+@@ -3206,7 +3206,7 @@ adsp: remoteproc@17300000 {
+ 			compatible = "qcom,sm8350-adsp-pas";
+ 			reg = <0 0x17300000 0 0x100>;
+ 
+-			interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
+@@ -3511,7 +3511,7 @@ cdsp: remoteproc@98900000 {
+ 			compatible = "qcom,sm8350-cdsp-pas";
+ 			reg = <0 0x98900000 0 0x1400000>;
+ 
+-			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
+ 					      <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
 
 -- 
 2.42.0
