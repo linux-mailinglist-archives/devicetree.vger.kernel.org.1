@@ -1,112 +1,287 @@
-Return-Path: <devicetree+bounces-9535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A947CD5CC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:57:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 674797CD5D3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D546BB20F7D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:57:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0DBFB20FD0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CCB51173D;
-	Wed, 18 Oct 2023 07:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE78125AB;
+	Wed, 18 Oct 2023 07:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c57W3SXA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HYLiztXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2552015BF
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:57:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83285C433C7;
-	Wed, 18 Oct 2023 07:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697615842;
-	bh=hHnGKBe2emsDrWB85Q2GbtTeoWz6TCrEfOKba41zLeQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c57W3SXA7Y9CMEosf1v+TYWdgEbo3PwPpebiZbvKfHrgqx9cvxX4LpkjcXA6AV0yb
-	 khr1zYLsF/vOQ9aE2zGEAav+xgOf9P7Dc4DieAsAM0W269+0E8KpGp2xgcvyeMLqRN
-	 i9sHLM/TmTdVBhFdWfFY6kbEBlDcbUDhGBkwQyMudUi8Xmx6sx3a3u2G0Q3FDEP4aV
-	 lFzwOUDwH9/7fvVr48e/NqNnOLdoCe6r5yd0zQK/dY1qeCM3HoACS5NmySFZshW0uz
-	 7X0MD2Hb6DpfJlarXpaquBhnW4ZPyelLPq7MUlrf548eTj/0ZUC3hX3ZzB4y4+fRoW
-	 PS4LcbgBddMiw==
-Date: Wed, 18 Oct 2023 08:57:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Mark Brown <broonie@kernel.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
- property
-Message-ID: <20231018-object-renewable-6e03bce41ff4@spud>
-References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
- <871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
- <20231012-storage-directory-548905001d10@spud>
- <87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
- <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
- <20231013-planner-irate-8e411cc54a48@spud>
- <874jirxul6.wl-kuninori.morimoto.gx@renesas.com>
- <20231017-darkness-jackknife-5cf32246a079@spud>
- <871qdskbuu.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CFD11C8F
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:58:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE50C6;
+	Wed, 18 Oct 2023 00:58:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697615910; x=1729151910;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7CsCblM7LOsvb1R6ZhggOe011s3+ZIIulQCoil7hgcc=;
+  b=HYLiztXMXrbs+PHqmeJU8I8r/HeeB2plcfEB8xxzZF4hYtzo+RJLtYe/
+   cvuYH8wg7kkHDfA+Au8ZmLovXD6KM5WNRj5+2MNVg07MJuwrjMubFaFjX
+   BmLfP2IC1U0wIOcKN6PoGCQBG1AiTwcKNFG1EZhqKwiGS+AkshKN7F052
+   z97pLHIZ7Vsg9XuKPbeRtnFmu24SN2hDZQtU5gLxikfCSj3KPI2JIhpSG
+   gUxgb4DxiJFCziHsfwTeXwC8SNtaHFSH/q3whjAnO351L3R/6d4mFfQso
+   sAON/AKPDsg6XZTn9Ss4CP3OmolJdBvTy4kLXq/NX0pxcVEOY1stCA1DK
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="384843681"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
+   d="scan'208";a="384843681"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 00:58:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="756467973"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
+   d="scan'208";a="756467973"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 18 Oct 2023 00:58:23 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qt1Rd-00005c-0M;
+	Wed, 18 Oct 2023 07:58:21 +0000
+Date: Wed, 18 Oct 2023 15:58:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-rockchip@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>, Chanwoo Choi <chanwoo@kernel.org>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	kernel@pengutronix.de,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Vincent Legoll <vincent.legoll@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v8 16/26] PM / devfreq: rockchip-dfi: Add perf support
+Message-ID: <202310181557.GIXGL21M-lkp@intel.com>
+References: <20231018061714.3553817-17-s.hauer@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+PVmEthYiTJgsBmG"
-Content-Disposition: inline
-In-Reply-To: <871qdskbuu.wl-kuninori.morimoto.gx@renesas.com>
-
-
---+PVmEthYiTJgsBmG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231018061714.3553817-17-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Oct 18, 2023 at 12:34:01AM +0000, Kuninori Morimoto wrote:
->=20
-> Hi Conor
->=20
-> > That seems like a very unintuitive interface. If there were 32 CPUs and
-> > 30 codecs, then it'd be very inconvenient for a human reader to grok the
-> > configuration.
->=20
-> I don't think such huge number connection will be used...
+Hi Sascha,
 
-Your binding allows for that though!
-I really don't like the number of elements inverting the meaning of the
-property.
+kernel test robot noticed the following build warnings:
 
-Also, this was not the only item in my mail. Why did you not respond to
-the other comments?
+[auto build test WARNING on linus/master]
+[also build test WARNING on v6.6-rc6]
+[cannot apply to next-20231018]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Cheers,
-Conor.
+url:    https://github.com/intel-lab-lkp/linux/commits/Sascha-Hauer/PM-devfreq-rockchip-dfi-Make-pmu-regmap-mandatory/20231018-142228
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20231018061714.3553817-17-s.hauer%40pengutronix.de
+patch subject: [PATCH v8 16/26] PM / devfreq: rockchip-dfi: Add perf support
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20231018/202310181557.GIXGL21M-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231018/202310181557.GIXGL21M-lkp@intel.com/reproduce)
 
-> Thank you for your help !!
->=20
-> Best regards
-> ---
-> Kuninori Morimoto
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310181557.GIXGL21M-lkp@intel.com/
 
---+PVmEthYiTJgsBmG
-Content-Type: application/pgp-signature; name="signature.asc"
+All warnings (new ones prefixed by >>):
 
------BEGIN PGP SIGNATURE-----
+>> drivers/devfreq/event/rockchip-dfi.c:203:13: warning: 'rockchip_ddr_perf_counters_add' defined but not used [-Wunused-function]
+     203 | static void rockchip_ddr_perf_counters_add(struct rockchip_dfi *dfi,
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+>> drivers/devfreq/event/rockchip-dfi.c:79: warning: Function parameter or member 'write_access' not described in 'dmc_count_channel'
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS+P3QAKCRB4tDGHoIJi
-0tCFAQD0V51gPF8vA/PWe7k5s+YCmPinkuodkdq5yw4ww1P4eQEAoMQ/Pu66tViV
-pp29y4YWrYzXn4I3JMz0tIdQw9rTpQ4=
-=1MPg
------END PGP SIGNATURE-----
 
---+PVmEthYiTJgsBmG--
+vim +/rockchip_ddr_perf_counters_add +203 drivers/devfreq/event/rockchip-dfi.c
+
+    66	
+    67	/**
+    68	 * struct dmc_count_channel - structure to hold counter values from the DDR controller
+    69	 * @access:       Number of read and write accesses
+    70	 * @clock_cycles: DDR clock cycles
+    71	 * @read_access:  number of read accesses
+    72	 * @write_acccess: number of write accesses
+    73	 */
+    74	struct dmc_count_channel {
+    75		u64 access;
+    76		u64 clock_cycles;
+    77		u64 read_access;
+    78		u64 write_access;
+  > 79	};
+    80	
+    81	struct dmc_count {
+    82		struct dmc_count_channel c[DMC_MAX_CHANNELS];
+    83	};
+    84	
+    85	/*
+    86	 * The dfi controller can monitor DDR load. It has an upper and lower threshold
+    87	 * for the operating points. Whenever the usage leaves these bounds an event is
+    88	 * generated to indicate the DDR frequency should be changed.
+    89	 */
+    90	struct rockchip_dfi {
+    91		struct devfreq_event_dev *edev;
+    92		struct devfreq_event_desc desc;
+    93		struct dmc_count last_event_count;
+    94	
+    95		struct dmc_count last_perf_count;
+    96		struct dmc_count total_count;
+    97		seqlock_t count_seqlock; /* protects last_perf_count and total_count */
+    98	
+    99		struct device *dev;
+   100		void __iomem *regs;
+   101		struct regmap *regmap_pmu;
+   102		struct clk *clk;
+   103		int usecount;
+   104		struct mutex mutex;
+   105		u32 ddr_type;
+   106		unsigned int channel_mask;
+   107		unsigned int max_channels;
+   108		enum cpuhp_state cpuhp_state;
+   109		struct hlist_node node;
+   110		struct pmu pmu;
+   111		struct hrtimer timer;
+   112		unsigned int cpu;
+   113		int active_events;
+   114		int burst_len;
+   115		int buswidth[DMC_MAX_CHANNELS];
+   116	};
+   117	
+   118	static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
+   119	{
+   120		void __iomem *dfi_regs = dfi->regs;
+   121		int ret = 0;
+   122	
+   123		mutex_lock(&dfi->mutex);
+   124	
+   125		dfi->usecount++;
+   126		if (dfi->usecount > 1)
+   127			goto out;
+   128	
+   129		ret = clk_prepare_enable(dfi->clk);
+   130		if (ret) {
+   131			dev_err(&dfi->edev->dev, "failed to enable dfi clk: %d\n", ret);
+   132			goto out;
+   133		}
+   134	
+   135		/* clear DDRMON_CTRL setting */
+   136		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN |
+   137			       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
+   138	
+   139		/* set ddr type to dfi */
+   140		switch (dfi->ddr_type) {
+   141		case ROCKCHIP_DDRTYPE_LPDDR2:
+   142		case ROCKCHIP_DDRTYPE_LPDDR3:
+   143			writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
+   144				       dfi_regs + DDRMON_CTRL);
+   145			break;
+   146		case ROCKCHIP_DDRTYPE_LPDDR4:
+   147		case ROCKCHIP_DDRTYPE_LPDDR4X:
+   148			writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
+   149				       dfi_regs + DDRMON_CTRL);
+   150			break;
+   151		default:
+   152			break;
+   153		}
+   154	
+   155		/* enable count, use software mode */
+   156		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
+   157			       dfi_regs + DDRMON_CTRL);
+   158	out:
+   159		mutex_unlock(&dfi->mutex);
+   160	
+   161		return ret;
+   162	}
+   163	
+   164	static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
+   165	{
+   166		void __iomem *dfi_regs = dfi->regs;
+   167	
+   168		mutex_lock(&dfi->mutex);
+   169	
+   170		dfi->usecount--;
+   171	
+   172		WARN_ON_ONCE(dfi->usecount < 0);
+   173	
+   174		if (dfi->usecount > 0)
+   175			goto out;
+   176	
+   177		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
+   178			       dfi_regs + DDRMON_CTRL);
+   179		clk_disable_unprepare(dfi->clk);
+   180	out:
+   181		mutex_unlock(&dfi->mutex);
+   182	}
+   183	
+   184	static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_count *res)
+   185	{
+   186		u32 i;
+   187		void __iomem *dfi_regs = dfi->regs;
+   188	
+   189		for (i = 0; i < dfi->max_channels; i++) {
+   190			if (!(dfi->channel_mask & BIT(i)))
+   191				continue;
+   192			res->c[i].read_access = readl_relaxed(dfi_regs +
+   193					DDRMON_CH0_RD_NUM + i * 20);
+   194			res->c[i].write_access = readl_relaxed(dfi_regs +
+   195					DDRMON_CH0_WR_NUM + i * 20);
+   196			res->c[i].access = readl_relaxed(dfi_regs +
+   197					DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
+   198			res->c[i].clock_cycles = readl_relaxed(dfi_regs +
+   199					DDRMON_CH0_COUNT_NUM + i * 20);
+   200		}
+   201	}
+   202	
+ > 203	static void rockchip_ddr_perf_counters_add(struct rockchip_dfi *dfi,
+   204						   const struct dmc_count *now,
+   205						   struct dmc_count *res)
+   206	{
+   207		const struct dmc_count *last = &dfi->last_perf_count;
+   208		int i;
+   209	
+   210		for (i = 0; i < dfi->max_channels; i++) {
+   211			res->c[i].read_access = dfi->total_count.c[i].read_access +
+   212				(u32)(now->c[i].read_access - last->c[i].read_access);
+   213			res->c[i].write_access = dfi->total_count.c[i].write_access +
+   214				(u32)(now->c[i].write_access - last->c[i].write_access);
+   215			res->c[i].access = dfi->total_count.c[i].access +
+   216				(u32)(now->c[i].access - last->c[i].access);
+   217			res->c[i].clock_cycles = dfi->total_count.c[i].clock_cycles +
+   218				(u32)(now->c[i].clock_cycles - last->c[i].clock_cycles);
+   219		}
+   220	}
+   221	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
