@@ -1,159 +1,128 @@
-Return-Path: <devicetree+bounces-9552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486E37CD6C8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:42:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66AE07CD6CB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:42:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2E0B1F23736
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:42:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0844B1F23740
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6EE14F76;
-	Wed, 18 Oct 2023 08:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AA918C0C;
+	Wed, 18 Oct 2023 08:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOnHKduT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G3dIm7Gg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD8F395;
-	Wed, 18 Oct 2023 08:42:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3488C433C7;
-	Wed, 18 Oct 2023 08:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697618540;
-	bh=OrfcLUwCJcdGJ8Ez94xY0DGx3glfePdaB3+hm47573c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lOnHKduTHXeWOJNfkUsAPfv0A6Zvl01LjA27dhPOdPo6Swu8aMEHugieJAu3zqsYG
-	 /U0Fmc+KWiYv2sXAqRYoybeG4fYYnwJ2CG1hz0e3EZ4fstYmLCjKvbeRp3PZBbr7zF
-	 eRyw9JEdBgRbKCOOlgh4ILLAnKhDz94HDAfg1RUKRTDtfDCK+o4SdyvVKQ+HV6kcZl
-	 6WuMOgo55ldYB2VNan+DN/x8/rwmWPOtUQDFj5tVJxmCR/PD6dhF71ZXdk1xoCcMJp
-	 aT8cqFFE5kDfEn+ZNUBYJGKjgdVHS8m+AqD/n0Qd4axXGOcP2zuFhlxrIVnfHYKUm1
-	 uIc33Ay9WaWJg==
-Date: Wed, 18 Oct 2023 10:42:14 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Fang Xiang <fangxiang3@xiaomi.com>
-Subject: Re: [PATCH v3 5/5] irqchip/gic-v3: Enable non-coherent
- redistributors/ITSes ACPI probing
-Message-ID: <ZS+aZnRFkGkJ+vK9@lpieralisi>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20231006125929.48591-1-lpieralisi@kernel.org>
- <20231006125929.48591-6-lpieralisi@kernel.org>
- <ZS6YAvoz3JApFtOo@lpieralisi>
- <86v8b5mc5v.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E1514F76
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:42:36 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FF8101
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:42:34 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5079f6efd64so5652925e87.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:42:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697618553; x=1698223353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=10OPZdJIcf5hY7AybgtKFxG5/1fKjVZqhVfHIM6Owj0=;
+        b=G3dIm7GgQe3RDGlGZV2uC3gzmTzERaGJWJbaudmttFWgEZXAFmjNkSelTEgesRMqui
+         FI0JPsBYqCl41STWrarBOQQCLpUHS/ft3nmXZphTjICGoX7Ex2AyOaiV3zx8OAOaBL+0
+         6buI6Kul9ZJaeWMAQElU5dODdLpnWfnZyohElywlvLLhT51RsQ3RSSPWRi8/MYDpRgoc
+         7eENPYu/b+WwJuobCPO763YaeotoTW4sOgFbeiVT0J8UQtmlNio6qkVuq1zjxmIV5Z5p
+         vaVyOF8dDRoh5P74shcbmwHUX7nK/kNyHXj4JEQqRWrXCHInpFmqhQw2mOvHcUSssypW
+         50dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697618553; x=1698223353;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=10OPZdJIcf5hY7AybgtKFxG5/1fKjVZqhVfHIM6Owj0=;
+        b=F+BlqW5d0TKmy+1UwqGDuj9/SdtqyAggd7sU7HpaGNmyfBrtdbYrURAVXOuFZX3vfD
+         lEijF8nkGaEaCstgOrHJR4jfd6HjHZiJfywF66FcXTm0w1HMGPja0+xCLxqAmWHkcDB1
+         9OXPaKjzSrpvuzX2L4RBZC7UJqe6wrCpicmx4zPUIaPSkKkyIwx0VyLfFleCzT8VfD7o
+         zXc5WEWweVtDuC36tRlM+loNJcR9vizDQQ+FENQqmVuk1JYYLB+8sTZzxGFSvxfBcHbM
+         6EsF9ZGJuypxTIB8HPgPo9mi/yNSn72NitGc+Kq1kzHx5vCkgNm4e9YVkDz17SGEzW4w
+         x5/A==
+X-Gm-Message-State: AOJu0Yyzr1424ClktVWxYLvFClDcwAvKHY0v3QZG4bzcXlq51opZ0PVA
+	3nWnnHILQCyLu2m1ZtjdX2T7/A==
+X-Google-Smtp-Source: AGHT+IEUfEjyjF0/7VMofGB08Y2b4pWlSpDzjdx6yvCvv2fAVYgWc5f8uuUJWLrh1OSXFGQKd0Bb3w==
+X-Received: by 2002:ac2:4da3:0:b0:503:3816:c42c with SMTP id h3-20020ac24da3000000b005033816c42cmr3050148lfe.41.1697618552939;
+        Wed, 18 Oct 2023 01:42:32 -0700 (PDT)
+Received: from [172.30.204.55] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id i5-20020ac25225000000b005007da9f823sm602353lfl.168.2023.10.18.01.42.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 01:42:32 -0700 (PDT)
+Message-ID: <ceed957c-0d87-4d42-aa09-d068ef97c9b6@linaro.org>
+Date: Wed, 18 Oct 2023 10:42:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86v8b5mc5v.wl-maz@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] cpufreq: qcom-nvmem: Add MSM8909
+Content-Language: en-US
+To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+ Stephan Gerhold <stephan@gerhold.net>
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-3-0962df95f654@kernkonzept.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231018-msm8909-cpufreq-v2-3-0962df95f654@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
+X-Spam-Level: *
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 17, 2023 at 05:44:28PM +0100, Marc Zyngier wrote:
-> On Tue, 17 Oct 2023 15:19:46 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > 
-> > On Fri, Oct 06, 2023 at 02:59:29PM +0200, Lorenzo Pieralisi wrote:
-> > > The GIC architecture specification defines a set of registers
-> > > for redistributors and ITSes that control the sharebility and
-> > > cacheability attributes of redistributors/ITSes initiator ports
-> > > on the interconnect (GICR_[V]PROPBASER, GICR_[V]PENDBASER,
-> > > GITS_BASER<n>).
-> > > 
-> > > Architecturally the GIC provides a means to drive shareability
-> > > and cacheability attributes signals and related IWB/OWB/ISH barriers
-> > > but it is not mandatory for designs to wire up the corresponding
-> > > interconnect signals that control the cacheability/shareability
-> > > of transactions.
-> > > 
-> > > Redistributors and ITSes interconnect ports can be connected to
-> > > non-coherent interconnects that are not able to manage the
-> > > shareability/cacheability attributes; this implicitly makes
-> > > the redistributors and ITSes non-coherent observers.
-> > > 
-> > > So far, the GIC driver on probe executes a write to "probe" for
-> > > the redistributors and ITSes registers shareability bitfields
-> > > by writing a value (ie InnerShareable - the shareability domain the
-> > > CPUs are in) and check it back to detect whether the value sticks or
-> > > not; this hinges on a GIC programming model behaviour that predates the
-> > > current specifications, that just define shareability bits as writeable
-> > > but do not guarantee that writing certain shareability values
-> > > enable the expected behaviour for the redistributors/ITSes
-> > > memory interconnect ports.
-> > > 
-> > > To enable non-coherent GIC designs on ACPI based systems, parse the MADT
-> > > GICC/GICR/ITS subtables non-coherent flags to determine whether the
-> > > respective components are non-coherent observers and force the shareability
-> > > attributes to be programmed into the redistributors and ITSes registers.
-> > > 
-> > > An ACPI global function (acpi_get_madt_revision()) is added to retrieve
-> > > the MADT revision, in that it is essential to check the MADT revision
-> > > before checking for flags that were added with MADT revision 7 so that
-> > > if the kernel is booted with ACPI tables (MADT rev < 7) it skips parsing
-> > > the newly added flags (that should be zeroed reserved values for MADT
-> > > versions < 7 but they could turn out to be buggy and should be ignored).
-> > > 
-> > > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > > Cc: Robin Murphy <robin.murphy@arm.com>
-> > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> > > Cc: Marc Zyngier <maz@kernel.org>
-> > > ---
-> > >  drivers/acpi/processor_core.c    | 21 +++++++++++++++++++++
-> > >  drivers/irqchip/irq-gic-common.h |  8 ++++++++
-> > >  drivers/irqchip/irq-gic-v3-its.c |  4 ++++
-> > >  drivers/irqchip/irq-gic-v3.c     |  9 +++++++++
-> > >  include/linux/acpi.h             |  3 +++
-> > >  5 files changed, 45 insertions(+)
-> > 
-> > Hi Marc,
-> > 
-> > just a quick note to ask if, from an ACPI binding POW
+
+
+On 10/18/23 10:06, Stephan Gerhold wrote:
+> When the MSM8909 SoC is used together with the PM8909 PMIC the primary
+> power supply for the CPU (VDD_APC) is shared with other components to
+> the SoC, namely the VDD_CX power domain typically supplied by the PM8909
+> S1 regulator. This means that all votes for necessary performance states
+> go via the RPM firmware which collects the requirements from all the
+> processors in the SoC. The RPM firmware then chooses the actual voltage
+> based on the performance states ("corners"), depending on calibration
+> values in the NVMEM and other factors.
 > 
-> I guess you mean POV. POW has an entirely different meaning... :-/
+> The MSM8909 SoC is also sometimes used with the PM8916 or PM660 PMIC.
+> In that case there is a dedicated regulator connected to VDD_APC and
+> Linux is responsible to do adaptive voltage scaling using CPR (similar
+> to the existing code for QCS404).
 > 
-> > this patch and related approach make sense to you.
-> > 
-> > If so, we can start the process to get the ACPI changes drafted
-> > in:
-> > 
-> > https://bugzilla.tianocore.org/show_bug.cgi?id=4557
-> > 
-> > and deployed in this patch into the ACPI specs, I can log
-> > an "ACK" in the tianocoreBZ entry above (we will be able to
-> > rework the code as much as we want, this is just for the
-> > bindings).
+> This difference can be described in the device tree, by either assigning
+> the CPU a power domain from RPMPD or from the CPR driver.
 > 
-> I'm OK with the overall shape of it. However, I wonder what the
-> rationale is for spreading the redistributor property all over the map
-> (in both GICC and GICR structures), while it could be set once and for
-> all in the core MADT flags (32 bits, of which only one is in use).
+> Describe this using "perf" as generic power domain name, which is also
+> used already for SCMI based platforms.
 > 
-> It is bad enough that there are two ways of getting the GICR regions.
-> Why can't the properties that apply to all of the be common?
+> Also add a simple function that reads the speedbin from a NVMEM cell
+> and sets it as-is for opp-supported-hw. The actual bit position can be
+> described in the device tree without additional driver changes.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-I don't think we are allowed to add arch specific flags to the MADT
-since those, supposedly, are cross-architecture (and the only one
-defined is quite old, though x86 specific).
-
-The reason behind spreading the property is the nature of GICC/GICR
-subtables themselves - we wanted to apply flags only in subtables
-relevant to the components in question.
-
-We could try to add a global flag to the MADT but I would not be
-surprised if the ECR would be rejected then for the reason I explained
-above.
-
-Thanks,
-Lorenzo
+Konrad
 
