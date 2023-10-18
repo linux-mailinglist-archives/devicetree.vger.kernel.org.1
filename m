@@ -1,114 +1,120 @@
-Return-Path: <devicetree+bounces-9548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E0B7CD664
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:27:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 992267CD694
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:32:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05A80B20FB9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:27:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8C2C1C209FC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557BF154AA;
-	Wed, 18 Oct 2023 08:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D15011735;
+	Wed, 18 Oct 2023 08:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GOp5F5jA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bEdhttRl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AAE0125AC;
-	Wed, 18 Oct 2023 08:27:15 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE64B6;
-	Wed, 18 Oct 2023 01:27:13 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 85E1860018;
-	Wed, 18 Oct 2023 08:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697617631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YZ6/blhVqXcitNe516+tjnjApU7Lkkx3Z1Lh/AJ/Ves=;
-	b=GOp5F5jA93HhAFPSuu7MPFLAzhDgujjWx/mfyZO/I1w83nLBLzw4KNQaYnxoKH6/6n17o/
-	qgv5cfb6o8ae8i8v0RTyKihBpK6KpsKjE5TgYbFlFwQWnHviCCWCOmceg6j6NdupCX2Yiz
-	S/meJKpvt1SDgZYSns1C9LlRuxXZ5aoqedLAPmhWzsFP+Njgmav0a/SHsnn79GAYcZnmXT
-	wKOiOCVMG+AFdC76DNkB2K84RM4EZo6nojU/HO7vtbvpONvh84SFEDQmB1dP8Kes48PvT7
-	sg5dq4y2Q87ZtCEgvt/qzVmoWxEHCmHMcDNVimnoOqvL3g+DEIHjNRi57vUnlg==
-Date: Wed, 18 Oct 2023 10:27:05 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Romain Perier <romain.perier@gmail.com>
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] Add RTC for MStar SSD20xD SoCs
-Message-ID: <20231018082705acb3df9d@mail.local>
-References: <20230913151606.69494-1-romain.perier@gmail.com>
- <169746807623.26616.11393539981836060067.b4-ty@bootlin.com>
- <CABgxDoLd7F9kZXsoXtwizPgU6N905XdviEjtoyu6-dARGbyHYw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF878156E0
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:32:34 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C95FF9
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:32:32 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507a55302e0so4760401e87.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697617950; x=1698222750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QT7FrcDEpu4yl2NICPsR7VhnQlPQr6RPzm03dF3NO8Y=;
+        b=bEdhttRlvYfHs/Pm3SNLzEy095LELKZzhztuXEGwjA5aw+vjw6uEhyLZlC1Nx0Rg78
+         QCyIln7TckoHeZn2Qi/h4zo+S650D/Sm9AZeIYK0JmGSLm8oBfojfO9xb+4nWrhgVFbe
+         /KfPBNVe1UtmbnShyFwJjhDuqSUTa0NVHXzcxEkHiC6bBP6EeI0DC5CF6YtYxy8GRyEH
+         yx/nK8Quagk0VVDr9Li9G9ftnH+xi2k0H4L7l1lu8xbCUzq93CwbTtb3gw8vfY2gtpjs
+         dIWVIIP9yjW+qRbW8/THy2kHYeUDnQBAmo14RGU8fuZUBmv2Efko1F8JDzKJKLRwznDy
+         DvBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697617950; x=1698222750;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QT7FrcDEpu4yl2NICPsR7VhnQlPQr6RPzm03dF3NO8Y=;
+        b=NYPlYCwUMR7fIbWKTt60jNSgo+enIEB/6AOI6jkB4oCvJ5K9ngPYyQlg5zwkaQYse6
+         tKrpMeSiVq2eP4TZ78/J75MaW69w9Q38zlspB8YNQo04ynnZ8gqTN2rInJ12qoZ1hDYg
+         5GyAK+w/wkn6yVtu+c6ZJfNhMLTPZTlizLkcrHZ4r8ZiJurOBb2743tJWuTaQS3YIURn
+         Wh9ZuZ6ZbawxTdlM5z124QzS3sAczkCy94THdM35YpVOPQno6rQuBpEIavuSLZPnshkq
+         QNhYlUlzli6MBRRPmSbiZvuy6U8T94A0pCMpA6dkyuQ+ST8HQUu0DW8EsGsiIP8FVE+w
+         V0tw==
+X-Gm-Message-State: AOJu0YxQm/wPqqTHjJ3gaYGki9A073y1KtdrvKzBlej8UTmM0uK6CEju
+	U+/Iq4VK77aF3MCpHziKkz65uQ==
+X-Google-Smtp-Source: AGHT+IF6n4gFncLoJDBDMzi+HL0OIP90t/LvbDcJiPonVILAGg4jFXxUKPf8y8Djp77SFQSHCfhX7Q==
+X-Received: by 2002:a19:654c:0:b0:4ff:b830:4b6b with SMTP id c12-20020a19654c000000b004ffb8304b6bmr3224287lfj.14.1697617950642;
+        Wed, 18 Oct 2023 01:32:30 -0700 (PDT)
+Received: from [172.30.204.55] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id h9-20020a197009000000b005030cef433esm605906lfc.94.2023.10.18.01.32.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 01:32:30 -0700 (PDT)
+Message-ID: <a640a6c2-5b5c-48a5-9680-bec9514bd068@linaro.org>
+Date: Wed, 18 Oct 2023 10:32:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: msm8939-longcheer-l9100: Add
+ proximity-near-level
+To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20231016-bqm5_prox-v1-1-2acdc732be9d@apitzsch.eu>
+ <3aede886-3219-4b9f-a44d-0c414979c260@linaro.org>
+ <65214451e02a38032e9fc6ac4cff185c6b2b5fc8.camel@apitzsch.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <65214451e02a38032e9fc6ac4cff185c6b2b5fc8.camel@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABgxDoLd7F9kZXsoXtwizPgU6N905XdviEjtoyu6-dARGbyHYw@mail.gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 08:09:10+0200, Romain Perier wrote:
-> Le lun. 16 oct. 2023 ‡ 16:55, Alexandre Belloni
-> <alexandre.belloni@bootlin.com> a Ècrit :
-> >
-> >
-> > On Wed, 13 Sep 2023 17:16:03 +0200, Romain Perier wrote:
-> > > This patches series adds a new driver for the RTC found in the Mstar
-> > > SSD202D SoCs. It adds a basic rtc driver, the corresponding devicetree
-> > > bindings.
-> > >
-> > > The rtctest (from selftests) has been passed on this driver, with the
-> > > following output:
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> 
-> Hi,
-> 
-> Thanks!
-> 
-> >
-> > [1/3] rtc: Add support for the SSD202D RTC
-> >       commit: ebf6255868e6141c737cacb8d62b0b347f344877
-> > [2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
-> >       commit: cfb67623ce281e045ec11e3eddb1b68b879b53a1
-> >
-> > Best regards,
-> 
-> Ah , you also merged dt-bindings, Conor (from dt maintainers) prefers
-> trivial-rtc.yaml, it makes sense with the current driver.
-> I planned to make the change for trivial-rtc in v3, so I can adapt the
-> commit and rename  mstar,ssd202d-rtc.yaml to trivial-rtc.yaml, what do
-> you think ?
-> 
 
-This is fine as-is.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On 10/17/23 22:03, Andr√© Apitzsch wrote:
+> Am Dienstag, dem 17.10.2023 um 18:25 +0200 schrieb Konrad Dybcio:
+>>
+>>
+>> On 10/16/23 22:18, Andr√© Apitzsch wrote:
+>>> Consider an object near to the sensor when their distance is about
+>>> 4 cm
+>>> or below.
+>>>
+>>> Signed-off-by: Andr√© Apitzsch <git@apitzsch.eu>
+>>> ---
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>
+>> Out of interest, what is it set to by default?
+>>
+>> Konrad
+> 
+> The default value is 0.
+That much I could guess :) I was wondering if it meant more like "it can 
+detect movement from 1km away" or "disabled"
+
+Konrad
 
