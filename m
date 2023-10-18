@@ -1,89 +1,172 @@
-Return-Path: <devicetree+bounces-9658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472F97CDD97
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:41:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5928D7CDD9A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA266B20F4A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:41:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 128EB281C39
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22570358AF;
-	Wed, 18 Oct 2023 13:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UmQ6tlud"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33349358B9;
+	Wed, 18 Oct 2023 13:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BDBE1A582;
-	Wed, 18 Oct 2023 13:41:46 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FFB583;
-	Wed, 18 Oct 2023 06:41:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=zDqGqP0hgGPFyZdflLhFMimZr0QYdjtpUZkZ94wciX0=; b=UmQ6tludkqh3RK2RKbqcZZkkc4
-	H2tBoOSSd9l9PcncpGpglVdQk0//X1NOGnDXNX0P4MEoP5j+fHv650eqdlNM03ffPGH6UqsfcHD1T
-	UE6rZ7H1V2y0RXX5X66O90ugHxN3dGq99pobd7xPk4rTMd3PFuPzwRekqQuUhSvLazLQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qt6no-002aN9-Ea; Wed, 18 Oct 2023 15:41:36 +0200
-Date: Wed, 18 Oct 2023 15:41:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 3/7] ARM: dts: marvell: Fix some common
- switch mistakes
-Message-ID: <d607f7cb-8523-4845-af13-1237f73c6b23@lunn.ch>
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-3-3ee0c67383be@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 094DA18636
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:42:02 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE82495;
+	Wed, 18 Oct 2023 06:42:01 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-59e88a28b98so59940507b3.1;
+        Wed, 18 Oct 2023 06:42:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697636521; x=1698241321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XRSKWQ2HROzQ5Hu4YaDpkSe9d9FWQW8TTlU82Fz/2Vk=;
+        b=fn+wYkkS2xU6119xwwAfbFTIlZxxOTKM6lnB+kLrLW0p0Dg3VUA41wTQaaQX8ZWBYm
+         H1FBT0Rs3tFumH32jsaIVYe8lcnh9+xtWlQUIDfmG9XtaA/rhES2q7+7W+z0mdQ6CZuk
+         3vOagE9cLcSB/ht7BWHW0rzmixfY7ZomXcXlB+YtBkqR0K5LBgJgSCQHo+yxJ2ePc1Ix
+         0fkCmiyo3O9U/s2QJwi+g8VieP10TqvDdzTU8o+wVtAztdJwB+/n9vSIN1LCt6G+drHO
+         /Y6N++Pqb/IViiVTLqKaLUyYpv3r5/RIcAPsEEqxjp/7tK1f0KrjYzcqF58rBLy0maIf
+         LFQg==
+X-Gm-Message-State: AOJu0YzIV+u/g9vQl+ODyjx0GjKzIPAJHqmj+Rj+NU9uCH6apfsgwp28
+	Ge9uwwJJ+AQfTKk416hIz9qXNxAosrUGXw==
+X-Google-Smtp-Source: AGHT+IG6I5Q7OcfPd219QYXDSosruUnAShc7YSPDiwLHjqy+TJGslNAd0SFZZs41f7Qxx3SQo1p4Dg==
+X-Received: by 2002:a81:48ce:0:b0:5a7:b3d0:82c2 with SMTP id v197-20020a8148ce000000b005a7b3d082c2mr3421945ywa.12.1697636520666;
+        Wed, 18 Oct 2023 06:42:00 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id s189-20020a8182c6000000b005a7bbd713ddsm1489633ywf.108.2023.10.18.06.42.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 06:42:00 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-59e88a28b98so59940327b3.1;
+        Wed, 18 Oct 2023 06:42:00 -0700 (PDT)
+X-Received: by 2002:a0d:e849:0:b0:5a8:11de:a7f1 with SMTP id
+ r70-20020a0de849000000b005a811dea7f1mr3797944ywe.9.1697636519827; Wed, 18 Oct
+ 2023 06:41:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231018-marvell-88e6152-wan-led-v4-3-3ee0c67383be@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1697199949.git.ysato@users.sourceforge.jp> <a911866d220f7b0945e0fb12448e0c1faa3ff346.1697199949.git.ysato@users.sourceforge.jp>
+In-Reply-To: <a911866d220f7b0945e0fb12448e0c1faa3ff346.1697199949.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Oct 2023 15:41:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUDYgnwSdUN9DYK+_sXqY_gqP2pDi-37Osbd2_An-nbGw@mail.gmail.com>
+Message-ID: <CAMuHMdUDYgnwSdUN9DYK+_sXqY_gqP2pDi-37Osbd2_An-nbGw@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 13/35] Documentation/devicetree/bindings/clock: Add
+ renesas,sh7750-cpg binding document.
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, glaubitz@physik.fu-berlin.de, 
+	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 18, 2023 at 11:03:42AM +0200, Linus Walleij wrote:
-> Fix some errors in the Marvell MV88E6xxx switch descriptions:
-> - The top node had no address size or cells.
-> - switch0@0 is not OK, should be switch@0.
-> - The ports node should have port@0 etc children, no
->   plural "ports".
-> 
-> This serves as an example of fixes needed for introducing a
-> schema for the bindings, but the patch can simply be applied.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Hi Sato-san,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Sat, Oct 14, 2023 at 4:54=E2=80=AFPM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
 
-    Andrew
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/renesas,sh7750-cpg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SH7750/7751 Clock Pulse Generator (CPG)
+> +
+> +maintainers:
+> +  - Yoshinori Sato <ysato@users.sourceforge.jp>
+> +
+> +description:
+> +  The Clock Pulse Generator (CPG) generates core clocks for the SoC.  It
+> +  includes PLLs, and variable ratio dividers.
+> +
+> +  The CPG may also provide a Clock Domain for SoC devices, in combinatio=
+n with
+> +  the CPG Module Stop (MSTP) Clocks.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,sh7750-cpg             # SH7750
+> +          - renesas,sh7750s-cpg            # SH775S
+> +          - renesas,sh7750r-cpg            # SH7750R
+> +          - renesas,sh7751-cpg             # SH7751
+> +          - renesas,sh7751r-cpg            # SH7751R
+> +      - const: renesas,sh7750-cpg
+
+As there are important differences between the CPG variants, I think
+it makes sense to drop the "renesas,sh7750-cpg", fallback, like you
+BTW already did in the example below.
+Then you can drop the "items", and just keep "enum".
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sh7750.h>
+> +    cpg: clock-controller@ffc00000 {
+> +        #clock-cells =3D <1>;
+> +        #power-domain-cells =3D <0>;
+> +        compatible =3D "renesas,sh7751r-cpg";
+> +        clocks =3D <&xtal>;
+> +        clock-names =3D "xtal";
+> +        reg =3D <0xffc00000 20>, <0xfe0a0000 16>;
+
+$ make dt_binding_check
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/clock/renesas,sh7750-cp=
+g.yaml
+Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.example.dtb:
+clock-controller@ffc00000: compatible: ['renesas,sh7751r-cpg'] is too
+short
+        from schema $id:
+http://devicetree.org/schemas/clock/renesas,sh7750-cpg.yaml#
+Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.example.dtb:
+clock-controller@ffc00000: 'reg-names' is a required property
+        from schema $id:
+http://devicetree.org/schemas/clock/renesas,sh7750-cpg.yaml#
+
+> +    };
+> --
+> 2.39.2
+>
+
+
+
+--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
