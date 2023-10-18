@@ -1,179 +1,90 @@
-Return-Path: <devicetree+bounces-9697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42DD7CE094
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:59:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4187CE0DC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:12:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 018231C20B41
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:59:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17E5DB211BC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A1E37C92;
-	Wed, 18 Oct 2023 14:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C0D38BBC;
+	Wed, 18 Oct 2023 15:12:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bgOsVzEk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y54PYHPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B828E16427
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:59:49 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17518112
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:59:48 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-991c786369cso1114832366b.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:59:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697641186; x=1698245986; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sUnVfzDQrB5fC4+6uNcrB1ojZtxtIQMczDD6WVgxqHI=;
-        b=bgOsVzEk/eRHhSkKwVJc9yhepiNwHKGxLFKPEyQDB5D/a6yRZUdWcxG1YYbuGbmedk
-         PZnHx4UKHKNF0eWBLUsvslXjl1tFtiTpE2xoAh4z2uAae1bWWhCM3lBobR2iZwcXiNOy
-         25gQ/mf/H1wxZeUexFGUqJ0ZPtQdHNOMZ/Nf2voufA29/gTLzG0KbHDNObpeCdL56jNI
-         i3GyOaZWtwjnNBwPSlTPMifphx6A3Uhs/huwZQUflVOsK/YmJx300Dyz4A1lwY9R46NV
-         XQcDzRLAyhyPMhqpjNmZ+PC2h4ouyBRpFyjOgraqrhSMhJIuL+tCmBd850S84nuVJE8v
-         KjKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697641186; x=1698245986;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sUnVfzDQrB5fC4+6uNcrB1ojZtxtIQMczDD6WVgxqHI=;
-        b=YF9RaIYPqVXWSbfx/c9Q0YYM7oDxVgDgqFwZSTE6X0XrnIdZlPaaFjQ/vz115UdFN+
-         L60jVgxykIQrnq7Fz+vPRnLOG0Ji6afVTHthnVMoQgFddLaqDwP7Ygz6Y/Q7SW/wnqJV
-         ybluGAR4XvWTPnIBxkqWu4nUjACTxkIrWwHzMN0PfV7fxqPsLIyEnJKVK6oUri4Q3tSV
-         vDMx9vRQA8ZsMyKxRYKkVmc7loIf5asjSR2xLDFyfQwtpp7B3KSKs0kGJbAXSVBqf724
-         LeSDOQH9yTZNJInm9FStmV1OXIY+RcXn/cIVcHQIGPRcNZKcI/xNnyfi6g2HvKVvB+Sv
-         HhWw==
-X-Gm-Message-State: AOJu0Yx4zkGf2i7xG57SygKMhhXNDztw2eLqOXSX5/sg1kl0yZS792zd
-	s8bonEZfHCXD95ynK9SQeRzf+w==
-X-Google-Smtp-Source: AGHT+IE5KskW1cRlcDlBdz5U5bVFrWsvTPf2ybgVFNnoAqu+PG6MRaRH8tNmJenuVJy47B/Gyw+Bmw==
-X-Received: by 2002:a17:907:d28:b0:9be:5ab2:73c0 with SMTP id gn40-20020a1709070d2800b009be5ab273c0mr5197515ejc.8.1697641186425;
-        Wed, 18 Oct 2023 07:59:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id 1-20020a170906014100b009bf7a4d591csm1894651ejh.11.2023.10.18.07.59.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 07:59:46 -0700 (PDT)
-Message-ID: <7207a4f9-5f7f-4859-be2c-bb45afc50383@linaro.org>
-Date: Wed, 18 Oct 2023 16:59:43 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2848038BB8;
+	Wed, 18 Oct 2023 15:12:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E983C433C8;
+	Wed, 18 Oct 2023 15:12:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697641955;
+	bh=fr5zaOzgWJ22rsMn0JC7sZ22BkfuCDopCtSjW7N5yHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y54PYHPhnx82rs4cdBxW3IACo8wtYtFZj8XIckJ1LFZNhwI9DMPwpuDG5JCfRI2AA
+	 oiQ8JOV/Chsam/a8AZF+yt/TSYEMChNppUd6dZbGF/zd7PXeL6mC/xHEK6W1mGG7hQ
+	 rrpzGiW4bUTwf8qHe7DfntG/0fOdFIbMtuWkh69kU+wjdbBXYSTyASgLhvcColAibY
+	 /xOSn/qmxjXsTvBEZU0AldcfXSuo0LkbA057OhTfa0jzg6iPI67BvQT05wGhPoLE4u
+	 iCQmpqgnEtpCgC0TsMlxMmo3xD49FhR+ddYTUbp8pg3psdbGVBQ8b24+oR8fMB3yMn
+	 2oC+2Ph37KUog==
+Date: Wed, 18 Oct 2023 23:00:22 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Anand Moon <linux.amoon@gmail.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: vialab,vl817: remove reset-gpios from
+ required list
+Message-ID: <ZS/zBvaWicGAeaGq@xhacker>
+References: <20231017160158.1065-1-jszhang@kernel.org>
+ <04ee08a4-e804-40fe-b24e-7a56c9e24e8b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: sm8350-lemonade(p): new devices
-Content-Language: en-US
-To: Nia Espera <nespera@igalia.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>,
- Clayton Craft <clayton@igalia.com>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
-References: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
- <20231018-nia-sm8350-for-upstream-v2-6-7b243126cb77@igalia.com>
- <4810fc83-e232-4c2f-8c82-aefa493b86fe@linaro.org>
- <a8a63e74-0966-4003-9b9a-be6d956df0d6@igalia.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a8a63e74-0966-4003-9b9a-be6d956df0d6@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <04ee08a4-e804-40fe-b24e-7a56c9e24e8b@linaro.org>
 
-On 18/10/2023 16:43, Nia Espera wrote:
+On Tue, Oct 17, 2023 at 06:53:56PM +0200, Krzysztof Kozlowski wrote:
+> On 17/10/2023 18:01, Jisheng Zhang wrote:
+> > The "reset-gpios" is optional in real case, for example reset pin is
+> > is hard wired to "high". And this fact is also reflected by the
+> > devm_gpio_get_optional() calling in driver code.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  .../bindings/usb/thead,th1520-usb.yaml        | 42 ++++++++++---------
+> >  .../devicetree/bindings/usb/vialab,vl817.yaml |  1 -
+> >  2 files changed, 23 insertions(+), 20 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > index afb618eb5013..ce1cab75f0ff 100644
+> > --- a/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > @@ -28,6 +28,10 @@ properties:
+> >  
+> >    ranges: true
+> >  
+> > +  thead,misc-syscon:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: a phandle to the misc system register controller syscon node.
 > 
-> On 10/18/23 16:34, Krzysztof Kozlowski wrote:
->> On 18/10/2023 16:25, Nia Espera wrote:
->>> Device tree files for OnePlus 9 and 9 Pro. Details of supported features
->>> mentioned in the cover letter for this patch series, but for
->>> accessibility also repeated here:
->>>
->>
->> ...
->>
->>> +	/* tp_rst_suspend pinctrl is different per device, don't specify here */
->>> +
->>> +	tp_irq_active: tp-irq-active-state {
->>> +		pins = "gpio23";
->>> +		function = "gpio";
->>> +		drive-strength = <8>;
->>> +		bias-disable;
->>> +		input-enable;
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
-> 
-> I noticed that dtbs_check was unhappy here, but I figured it's okay to 
-> ignore that since it didn't complain in other places (e.g. lines 
-> 554-555) and assumed the error was just a bug in the yaml. Sorry!
+> Either you combined two unrelated changes or this should be resets from
+> reset-controller.
 
-There are no other DTS having this property for TLMM, so you could not
-have seen this in other boards.
-
-Best regards,
-Krzysztof
-
+oops, this change isn't expected... I was working on TH1520 usb but
+add local changes step by step, but then found vl817 need to be patched.
+I forgot to reset TH1520 usb part. Sorry for noise. V2 will be sent out
+soon.
 
