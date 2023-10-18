@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-9638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073227CDAC8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:40:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B927CDACC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:40:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FA23281CB8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:40:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5F5F1C20A44
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0248347B6;
-	Wed, 18 Oct 2023 11:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5684B347DE;
+	Wed, 18 Oct 2023 11:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A65335B2
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15113335C6
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:39:41 +0000 (UTC)
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3125A114
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:39:37 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73984126
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:39:38 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qt4tP-0002JP-Pg; Wed, 18 Oct 2023 13:39:15 +0200
+	id 1qt4tP-0002JQ-Po; Wed, 18 Oct 2023 13:39:15 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qt4tO-002Xip-IG; Wed, 18 Oct 2023 13:39:14 +0200
+	id 1qt4tO-002Xit-JI; Wed, 18 Oct 2023 13:39:14 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qt4tO-00FE8I-1X;
+	id 1qt4tO-00FE8S-1a;
 	Wed, 18 Oct 2023 13:39:14 +0200
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: "David S. Miller" <davem@davemloft.net>,
@@ -57,9 +57,9 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	UNGLinuxDriver@microchip.com,
 	"Russell King (Oracle)" <linux@armlinux.org.uk>,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next v5 6/9] net: dsa: microchip: Refactor comment for ksz_switch_macaddr_get() function
-Date: Wed, 18 Oct 2023 13:39:10 +0200
-Message-Id: <20231018113913.3629151-7-o.rempel@pengutronix.de>
+Subject: [PATCH net-next v5 7/9] net: dsa: microchip: Add error handling for ksz_switch_macaddr_get()
+Date: Wed, 18 Oct 2023 13:39:11 +0200
+Message-Id: <20231018113913.3629151-8-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231018113913.3629151-1-o.rempel@pengutronix.de>
 References: <20231018113913.3629151-1-o.rempel@pengutronix.de>
@@ -80,45 +80,45 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Update the comment to follow kernel-doc format.
+Enhance the ksz_switch_macaddr_get() function to handle errors that may
+occur during the call to ksz_write8(). Specifically, this update checks
+the return value of ksz_write8(), which may fail if regmap ranges
+validation is not passed and returns the error code.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 ---
- drivers/net/dsa/microchip/ksz_common.c | 20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ drivers/net/dsa/microchip/ksz_common.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 377998966b13..7b05de6fe987 100644
+index 7b05de6fe987..79052a54880c 100644
 --- a/drivers/net/dsa/microchip/ksz_common.c
 +++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -3589,12 +3589,20 @@ static int ksz_port_set_mac_address(struct dsa_switch *ds, int port,
+@@ -3612,7 +3612,7 @@ int ksz_switch_macaddr_get(struct dsa_switch *ds, int port,
+ 	struct ksz_switch_macaddr *switch_macaddr;
+ 	struct ksz_device *dev = ds->priv;
+ 	const u16 *regs = dev->info->regs;
+-	int i;
++	int i, ret;
+ 
+ 	/* Make sure concurrent MAC address changes are blocked */
+ 	ASSERT_RTNL();
+@@ -3639,8 +3639,11 @@ int ksz_switch_macaddr_get(struct dsa_switch *ds, int port,
+ 	dev->switch_macaddr = switch_macaddr;
+ 
+ 	/* Program the switch MAC address to hardware */
+-	for (i = 0; i < ETH_ALEN; i++)
+-		ksz_write8(dev, regs[REG_SW_MAC_ADDR] + i, addr[i]);
++	for (i = 0; i < ETH_ALEN; i++) {
++		ret = ksz_write8(dev, regs[REG_SW_MAC_ADDR] + i, addr[i]);
++		if (ret)
++			return ret;
++	}
+ 
  	return 0;
  }
- 
--/* Program the switch's MAC address register with the MAC address of the
-- * requesting user port. This single address is used by the switch for multiple
-- * features, like HSR self-address filtering and WoL. Other user ports are
-- * allowed to share ownership of this address as long as their MAC address is
-- * the same. The user ports' MAC addresses must not change while they have
-- * ownership of the switch MAC address.
-+/**
-+ * ksz_switch_macaddr_get - Program the switch's MAC address register.
-+ * @ds: DSA switch instance.
-+ * @port: Port number.
-+ * @extack: Netlink extended acknowledgment.
-+ *
-+ * This function programs the switch's MAC address register with the MAC address
-+ * of the requesting user port. This single address is used by the switch for
-+ * multiple features like HSR self-address filtering and WoL. Other user ports
-+ * can share ownership of this address as long as their MAC address is the same.
-+ * The MAC addresses of user ports must not change while they have ownership of
-+ * the switch MAC address.
-+ *
-+ * Return: 0 on success, or other error codes on failure.
-  */
- int ksz_switch_macaddr_get(struct dsa_switch *ds, int port,
- 			   struct netlink_ext_ack *extack)
 -- 
 2.39.2
 
