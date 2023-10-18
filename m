@@ -1,109 +1,110 @@
-Return-Path: <devicetree+bounces-9529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0297CD54E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:11:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7BC57CD557
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:12:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891681C20A66
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:11:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641432812FE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB7D101CB;
-	Wed, 18 Oct 2023 07:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j0ZfiF21"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FB0101CC;
+	Wed, 18 Oct 2023 07:12:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00F27493;
-	Wed, 18 Oct 2023 07:10:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0D91B4;
-	Wed, 18 Oct 2023 00:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697613054; x=1729149054;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2f5KGCkoKZZ5JhVOJVIHD3+5S1y0Tlk1F+D7jYqUrJ8=;
-  b=j0ZfiF21quykqhMxRY1qotzbhVjUK/Pak7HAsfBUlUIgNXsog+aOJZVJ
-   1ERkvQAv8v0LASphIxjpB80kc+oXJiameRed7GBDnU4AhXKUj2wAmfnik
-   vp0RZ5hDXTemYAwLljaNxX2trdfnRqHI9ZOspcRFaQR1kwoUKE3HPasIO
-   CICzL/bWjDfdPdCg8nPVoHSOuehDt7O+au8MQ2sv2PJT9C+vKznD7nMYh
-   nizfXy7ODXvfE1vw6vaRBj2bMltXJt+Xywk5ahKdoHnEPL+3SiIwjUBws
-   4laElsV8poqIhLL65TDTbbfAB5PZnJzq2nIyngaUQzEWuw0vvJIWQUHR7
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="376326405"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="376326405"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 00:10:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="785775403"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="785775403"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by orsmga008.jf.intel.com with SMTP; 18 Oct 2023 00:10:48 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 18 Oct 2023 10:10:47 +0300
-Date: Wed, 18 Oct 2023 10:10:47 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] usb: typec: fsa4480: Add support to swap SBU
- orientation
-Message-ID: <ZS+E91QLqCwrhdTG@kuha.fi.intel.com>
-References: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
- <20231013-fsa4480-swap-v1-2-b877f62046cc@fairphone.com>
- <ZS5NV43MhD3YNeDX@kuha.fi.intel.com>
- <CWAMY8EP9RN1.VPH5E7Z1T7JN@fairphone.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0D98C1A;
+	Wed, 18 Oct 2023 07:12:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09F33C433C8;
+	Wed, 18 Oct 2023 07:12:16 +0000 (UTC)
+Message-ID: <61617735-c196-43e1-a4c6-539f348978e0@xs4all.nl>
+Date: Wed, 18 Oct 2023 09:12:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CWAMY8EP9RN1.VPH5E7Z1T7JN@fairphone.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US, nl
+To: Jack Zhu <jack.zhu@starfivetech.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ changhuang.liang@starfivetech.com
+References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+ <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
+ <c255e215-b1ed-7397-0534-8d6ebda86350@starfivetech.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <c255e215-b1ed-7397-0534-8d6ebda86350@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Luca,
-
-> > Shouldn't you loop through the endpoints? In any case:
-> >
-> >         ep = fwnode_graph_get_next_endpoint(dev_fwnode(&fsa->client->dev, NULL));
+On 18/10/2023 05:11, Jack Zhu wrote:
 > 
-> The docs only mention one endpoint so I'm assuming just next_endpoint is
-> fine?
+> 
+> On 2023/10/16 19:40, Hans Verkuil wrote:
+>> Hi Jack,
+>>
+>> On 08/10/2023 10:51, Jack Zhu wrote:
+>>> Hi,
+>>>
+>>> This series is the v10 series that attempts to support the Camera Subsystem
+>>> found on StarFive JH7110 SoC.
+>>>
+>>> This series is based on top of the master branch of media_stage repository,
+>>> which is tested with a v4l2-compliance compiled from the git repo
+>>> (git://linuxtv.org/v4l-utils.git).
+>>
+>> I get one smatch warning:
+>>
+>> drivers/staging/media/starfive/camss/stf-isp.c:122 isp_enum_mbus_code() warn: unsigned 'code->index' is never less than zero.
+>>
+> 
+> Could you please tell me the code check command? This way I can use it to check
+> my next commit.
 
-I'm mostly concerned about what we may have in the future. If one day
-you have more than the one connection in your graph, then you have to
-be able to identify the endpoint you are after.
+See https://repo.or.cz/smatch.git/blob/HEAD:/Documentation/smatch.txt
 
-But that may not be a problem in this case (maybe that "data-lanes"
-device property can be used to identify the correct endpoint?).
+FYI: you can use the same build scripts that I use to verify patches. It is
+described here:
 
-We can worry about it then when/if we ever have another endpoint to
-deal with.
+https://lore.kernel.org/linux-media/18989016-6392-a77b-6cf7-1223c9161def@xs4all.nl/
 
-thanks,
+See the README for detailed instructions.
 
--- 
-heikki
+Regards,
+
+	Hans
+
+> 
+>> And I also notice that there is no TODO file: staging drivers should have a
+>> TODO file explaining what needs to be done to get them out of staging.
+>>
+> 
+> OK, I'll add it to my next commit. I previously misunderstood that it was submitted
+> when moving out of staging.
+> 
+>> I'm curious to know that as well :-)
+>>
+>> It looks like there is a lot of additional development that can be done, since
+>> most of the ISP parameters appear to be hardcoded.
+>>
+> 
+> Part is the module initialization configuration. In the next stage, we will use
+> incremental development to implement 3A functions.
+> 
+
 
