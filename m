@@ -1,111 +1,178 @@
-Return-Path: <devicetree+bounces-9810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F09C07CE902
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:32:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321EF7CE909
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:33:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D629283595
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1D482835D6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4982781A;
-	Wed, 18 Oct 2023 20:32:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5252D81A;
+	Wed, 18 Oct 2023 20:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HYRGvFZR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD15D3FE42
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:32:44 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA25F137
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:32:12 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtDD1-0005Tl-TF; Wed, 18 Oct 2023 22:32:03 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtDD0-002dOC-Mr; Wed, 18 Oct 2023 22:32:02 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtDD0-001EZa-DB; Wed, 18 Oct 2023 22:32:02 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@pengutronix.de,
-	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
-Subject: [PATCH] ARM: dts: stm32: lxa-tac: drive powerboard lines as open-drain
-Date: Wed, 18 Oct 2023 22:31:55 +0200
-Message-ID: <20231018203154.1681457-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19179CA7B;
+	Wed, 18 Oct 2023 20:33:55 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A70D1AA;
+	Wed, 18 Oct 2023 13:33:43 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39IKXGjj008745;
+	Wed, 18 Oct 2023 20:33:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=D3VEipluic1dnj4xaArrQ04lPUUz9iyghjTrQJeu5aE=;
+ b=HYRGvFZRbv9ZGlNVYgJ0bbpCQaouRJDG5GUWgOJMv8bbGAA6WVtbowAcpNgL1UIXgMf/
+ y50Q2HXtqKrGtoRkoxHIGNsZg/KRUx82bSURxVn8GlnUD0hKAcef5jIg57jToidW83gF
+ /23UwY9CiDh7BiNTTijZl9a34YGWQ7NBq3xASPduJKSoMFsA5GOq1lSfQ8TxdTEIYPQn
+ cXWTcYUbJj4i8e1TttKiXXDIs5icR3UvmFXC1k1Os16QVfcmoYhq+/UkLdWcODIbv4VC
+ rZDmGV+KbdLAT5Oy0EFnJMxKBjKtJNrYMdvFh2KPyoUOMlIul2f9XJ5ladpkYnZf9jwh fg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttb7ahrvw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 20:33:26 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IKXPdM003412
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 20:33:25 GMT
+Received: from [10.110.123.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 13:33:24 -0700
+Message-ID: <09bf52fe-0234-3fc6-1911-9d0f8217d8ad@quicinc.com>
+Date: Wed, 18 Oct 2023 13:33:24 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1581; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=bXJUo/z+u9bBLY/DopIaV2gKwAAC4QUnYIlb8+3X6ZM=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlMEC6mjP3aOiWQlYYkVs8185sPrHHRxRV+WacH LXgAKdjbvuJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZTBAugAKCRCPgPtYfRL+ Tt+qCACjOC3q/D8r3OPxiaPFQOU37yCyq6KNUzn+eR5RuNkHMpvJ0yqrXZEDib+3tLVJjNw0rx8 XnRQu7OvZ56gWCMIoCScjRf2A+JArgBMJdZ0+0Z4EEOHAA8qMbNiKpTkyrlOESTgHicoa7OzgVk UUKE7QOy10emOheXcaqlzWlop1/i8O8gkZrWsT5SzCfGEwXyfElP2sQRVfl96+J+x5yNO8/9xA8 BRCe64NPvJTVz2VFZkxL3+n6V/i3yFrhW7EOWtrVkGPt3OmdHMRHhJvnchtU2uV9T61T7mJwuy5 iAoYrpHKpXF5e1sSV9a+kKlzMrAVcuKmuScPp3RvCqpYVWwS
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 21/34] ASoC: usb: Add PCM format check API for USB
+ backend
+Content-Language: en-US
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-22-quic_wcheng@quicinc.com>
+ <dbb1f64b-8112-4a2f-9138-616e04bdc53c@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <dbb1f64b-8112-4a2f-9138-616e04bdc53c@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GnQCwHKt7WkSwgc5_0rgRzLNxfyB9Hpg
+X-Proofpoint-GUID: GnQCwHKt7WkSwgc5_0rgRzLNxfyB9Hpg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_18,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 suspectscore=0 clxscore=1015 mlxlogscore=727 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180169
 
-From: Leonard Göhrs <l.goehrs@pengutronix.de>
+Hi Pierre,
 
-This results in a slight improvement in EMI performance due to the lines
-no longer being driven by the somewhat noisy VDD_IO supply of the SoM.
+On 10/17/2023 3:33 PM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 10/17/23 15:00, Wesley Cheng wrote:
+>> Introduce a check for if a particular PCM format is supported by the USB
+> 
+> Introduce a helper to check if a ...
+> 
 
-Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts | 2 +-
- arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Ack.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts b/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
-index 8a34d15e9005..4cc177031661 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
-@@ -148,7 +148,7 @@ adc@0 {
- 		compatible = "ti,lmp92064";
- 		reg = <0>;
- 
--		reset-gpios = <&gpioa 4 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpioa 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 		shunt-resistor-micro-ohms = <15000>;
- 		spi-max-frequency = <5000000>;
- 		vdd-supply = <&reg_pb_3v3>;
-diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-index f09b7c384bd9..188c9cfc7102 100644
---- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-@@ -409,7 +409,7 @@ &sdmmc2 {
- &spi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi2_pins_c>;
--	cs-gpios = <&gpiof 12 GPIO_ACTIVE_LOW>;
-+	cs-gpios = <&gpiof 12 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- };
- 
+>> audio device connected.  If the USB audio device does not have an audio
+>> profile which can support the requested format, then notify the USB
+>> backend.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   include/sound/soc-usb.h |  3 +++
+>>   sound/soc/soc-usb.c     | 13 +++++++++++++
+>>   2 files changed, 16 insertions(+)
+>>
+>> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
+>> index 58c686f4f7ba..c6ddc055c4cd 100644
+>> --- a/include/sound/soc-usb.h
+>> +++ b/include/sound/soc-usb.h
+>> @@ -37,6 +37,9 @@ struct snd_soc_usb {
+>>   	void *priv_data;
+>>   };
+>>   
+>> +int snd_soc_usb_find_format(int card_idx, struct snd_pcm_hw_params *params,
+>> +			int direction);
+>> +
+>>   int snd_soc_usb_connect(struct device *usbdev, struct snd_soc_usb_device *sdev);
+>>   int snd_soc_usb_disconnect(struct device *usbdev, struct snd_soc_usb_device *sdev);
+>>   void *snd_soc_usb_find_priv_data(struct device *usbdev);
+>> diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
+>> index 73b1bcc3b506..7407678a993e 100644
+>> --- a/sound/soc/soc-usb.c
+>> +++ b/sound/soc/soc-usb.c
+>> @@ -63,6 +63,19 @@ void *snd_soc_usb_find_priv_data(struct device *dev)
+>>   }
+>>   EXPORT_SYMBOL_GPL(snd_soc_usb_find_priv_data);
+>>   
+>> +int snd_soc_usb_find_format(int card_idx, struct snd_pcm_hw_params *params,
+>> +			int direction)
+>> +{
+>> +	struct snd_usb_stream *as;
+>> +
+>> +	as = snd_usb_find_suppported_substream(card_idx, params, direction);
+>> +	if (!as)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(snd_soc_usb_find_format);
+> 
+> Is this the right way to check for formats?
+> 
+> formats are defined within the scope of an endpoint, and those endpoints
+> are themselves defined within the scope of an interface?
+> 
+> I don't see a notion of endpoint here. Does this assume all endpoints
+> are valid, or maybe the existence of a single endpoint in a device?
+> 
+> Confused.
 
-base-commit: 4d5ab2376ec576af173e5eac3887ed0b51bd8566
--- 
-2.42.0
+At least in terms of USB and USB UAC, formats are defined within an 
+audio streaming interface descriptor, which will include multiple (up to 
+2) USB endpoints.  Those endpoints will be described w/ both an audio 
+streaming endpoint descriptor as well as a standard USB endpoint 
+descriptor.  The audio interface/format descriptors are the ones that 
+carry the information about what formats are supported by the USB 
+device.  So this API finds a possible USB AS streaming descriptor on the 
+device that matches the requested one.  Endpoints will be opened 
+subsequently when the audio stream is started, and an interface is 
+enabled by sending a SET_INTERFACE control packet on the USB bus.
 
+Thanks
+Wesley Cheng
 
