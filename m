@@ -1,131 +1,160 @@
-Return-Path: <devicetree+bounces-9786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B451B7CE771
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:12:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1657CE79E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:21:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD6BF1C20DE2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:12:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B83F6B20E4B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:21:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AE943AB0;
-	Wed, 18 Oct 2023 19:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8A2450C6;
+	Wed, 18 Oct 2023 19:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQECTrJR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fE9zxx+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781D9335CA
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 19:12:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37A86C433C9;
-	Wed, 18 Oct 2023 19:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697656370;
-	bh=zl1w7jAtrkE9RQ/JgA2S1+UojLDOveGpw0c8fBGNVWk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=dQECTrJRS0qbI53etlnCEUOI+12qccfbH8JrkVdJnIyZTAFjQATkxgA2Ap2V19NEo
-	 JjDR27HQBzylU1TWe0nThpmfMmgiZw3CSaCrvRHqwPzfLyti5/q98LuHW3CgdIEo+L
-	 PDsVHScdgANmxn24ir2hEDWhb1C2o6m9oeio/CZDYYxJJqKA4m6CHoO1QtVn0c3gmE
-	 zCqtctHKvRU4xulNqXEXD4RZZFX0rod7YESN0sDcFoh5OIcz3zdb+2+CTIZa9NASBK
-	 hacH0E8c7LSf93GRkl0vuRbPypt18sPHwQu4KToP5kkQUsSxV6ab5tIN+0k5F6q1og
-	 1A59rbWhQU1EA==
-Date: Wed, 18 Oct 2023 20:13:09 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jagath Jog J <jagathjog1996@gmail.com>
-Cc: andriy.shevchenko@linux.intel.com, u.kleine-koenig@pengutronix.de,
- lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linus.walleij@linaro.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: imu: Add driver for BMI323 IMU
-Message-ID: <20231018201309.2cf36489@jic23-huawei>
-In-Reply-To: <CAM+2EuJnrJn5QLm+yqJ_4_3NiZDXS6p9P5AhwZBjFUYm+2PMGQ@mail.gmail.com>
-References: <20231013034808.8948-1-jagathjog1996@gmail.com>
-	<20231013034808.8948-3-jagathjog1996@gmail.com>
-	<20231014174626.3c203096@jic23-huawei>
-	<CAM+2EuJnrJn5QLm+yqJ_4_3NiZDXS6p9P5AhwZBjFUYm+2PMGQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069D042BE3
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 19:21:32 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4568118
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:21:30 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so95527921fa.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 12:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697656889; x=1698261689; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vTJMv4S3cIv17Inu5/wjSE8xgpOucw/0NJq7NkOS1v8=;
+        b=fE9zxx+1LLD8slLI3kZXWe+dlEOvkYopAiBIUiNl7K54Hm+m59DSaeYdZowqArzn4r
+         VnBWI0RFpZkYN6lcvnSX47vp/S8gIBSpHe/c5DRqA6XIe/8WZqUPrc3qVRKlYfSne7I1
+         sPol3qwAP2GR0S0++4yCfS+XwWCxD1mfVklxhk4aLtGUvyfhvse4YvyHTNEmV9HG1BKX
+         X1wC0gplP3yzRsF56UBnDdaqZOnlprU7uPz9ZMdufbtggmeOIpAOco+KMe9OR0DO1Vbu
+         CGbOLX8THJ8ILhs8WqdR9mu1LD1JuSAQpFxSWs+wQPr+WhNDwoRzdPJMIP4M9KGYw807
+         BKSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697656889; x=1698261689;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vTJMv4S3cIv17Inu5/wjSE8xgpOucw/0NJq7NkOS1v8=;
+        b=fzxvysxfCCLiCNZLNKL1SRa4j/uj0IoLjNqbXCpyPWkSsbXBtwTqnpoTPr+ZJsS6bS
+         w5YHXSi3y36bxpk95UuEaPYkckyAuxlaNsf+fdi7nu5scdgjI4r6BdkEnCLV4uVa7/2e
+         UBNchPYPpB3pogKF0PRvIwq4YYhvB9LJwSU0gWEBztDvBau6U3Eb4M0xAy/4TIyKSZFh
+         Gv6TEomwM/0N00PiqPx+yU94jSL03lhKw4X+yyamy99NMOeMNZOA10B66180imcsKLJk
+         HDTzGv1NsurdzfGCJ93JObihS3fP+m2B0FWsdCAzuH7seQxcTMtNARRUWQsTAznk+Kv/
+         NRZg==
+X-Gm-Message-State: AOJu0YzZfeLWKxfaLGEHEoCowkmuB/KyX0mG1oiUnDlIekv+QhMStwQx
+	bWolfcq2JfqWWrhnLhSlynR3zg==
+X-Google-Smtp-Source: AGHT+IGX1fZk90k1Xv0uW50D1cH80ATwL8ZVcAqh8P11tl7P+f5Wd5zpy5nCn4Qrjp4RUKfGWv9ShQ==
+X-Received: by 2002:a05:651c:19a6:b0:2c5:d52:a08e with SMTP id bx38-20020a05651c19a600b002c50d52a08emr5704454ljb.20.1697656888893;
+        Wed, 18 Oct 2023 12:21:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.49])
+        by smtp.gmail.com with ESMTPSA id o18-20020a05600c4fd200b0040472ad9a3dsm2469077wmq.14.2023.10.18.12.21.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 12:21:28 -0700 (PDT)
+Message-ID: <65cc9c43-e776-41bc-adad-1e57c3b24d7f@linaro.org>
+Date: Wed, 18 Oct 2023 21:21:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: input: cirrus,cs40l50: Add initial DT
+ binding
+Content-Language: en-US
+To: James Ogletree <james.ogletree@opensource.cirrus.com>
+Cc: James Ogletree <james.ogletree@cirrus.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lee Jones <lee@kernel.org>,
+ Fred Treven <fred.treven@cirrus.com>, Ben Bright <ben.bright@cirrus.com>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
+ <20231018175726.3879955-2-james.ogletree@opensource.cirrus.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231018175726.3879955-2-james.ogletree@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Sun, 15 Oct 2023 16:00:34 +0530
-Jagath Jog J <jagathjog1996@gmail.com> wrote:
+On 18/10/2023 19:57, James Ogletree wrote:
+> From: James Ogletree <james.ogletree@cirrus.com>
+> 
+> The CS40L50 is a haptic driver with waveform memory,
+> integrated DSP, and closed-loop algorithms.
+> 
+> Add a YAML DT binding document for this device.
+> 
 
-> On Sat, Oct 14, 2023 at 10:16=E2=80=AFPM Jonathan Cameron <jic23@kernel.o=
-rg> wrote:
-> >
-> > On Fri, 13 Oct 2023 09:18:08 +0530
-> > Jagath Jog J <jagathjog1996@gmail.com> wrote:
-> > =20
-> > > The Bosch BMI323 is a 6-axis low-power IMU that provide measurements =
-for
-> > > acceleration, angular rate, and temperature. This sensor includes
-> > > motion-triggered interrupt features, such as a step counter, tap dete=
-ction,
-> > > and activity/inactivity interrupt capabilities.
-> > >
-> > > The driver supports various functionalities, including data ready, FI=
-FO
-> > > data handling, and events such as tap detection, step counting, and
-> > > activity interrupts.
-> > >
-> > > Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com> =20
-> > Hi Jagath,
-> >
-> > Nice driver.
-> >
-> > We are rapidly approaching the end of this cycle and as this is a
-> > large driver, I think it could do to remain on list at least a week
-> > before I apply it or until it picks up some tags from others if that
-> > happens sooner. Hence I'm afraid it might well sneak into next cycle. =
-=20
->=20
-> Hi Jonathan
->=20
-> Thank you for reviewing, I understand the need for additional time
-> to ensure a thorough review and to await feedback and tags from
-> other reviewers. I'm okay with your schedule.
->=20
-> > > +
-> > > +What:                /sys/.../events/in_accel_gesture_tap_wait_dur
-> > > +KernelVersion:       6.7
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             Timeout value for tap gesture confirmation. =20
-> >
-> > Units need to be specified.  Seconds? =20
->=20
-> Yes, these are in seconds. I will add units in the next series.
->=20
->=20
-> > >  source "drivers/iio/imu/bmi160/Kconfig"
-> > >  source "drivers/iio/imu/bno055/Kconfig"
-> > > +source "drivers/iio/imu/bmi323/Kconfig" =20
-> > Same on ordering. =20
->=20
-> Sure I will correct this in v3.
+This is a friendly reminder during the review process.
 
-Given they were so minor I've fixed them up whilst applying.
-I doubt this will make 6.7, but you never know if things happen to align.
-If not it can have a bit more build test exposure which will do no harm.
+It looks like you received a tag and forgot to add it.
 
-Applied to the togreg branch of iio.git and pushed out initially as
-testing for all the normal reasons.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-Thanks,
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-Jonathan
+If a tag was not added on purpose, please state why and what changed.
 
->=20
-> Regards
-> Jagath
+Best regards,
+Krzysztof
 
 
