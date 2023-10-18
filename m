@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162087CD3D9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:07:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9596F7CD3DF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F5CEB20F78
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:07:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 459B9281346
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF808F52;
-	Wed, 18 Oct 2023 06:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D849F8F57;
+	Wed, 18 Oct 2023 06:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o1k4gw0p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q8ec2Xev"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6677E63E
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:07:41 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD1C100
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:07:37 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9b96c3b4be4so1008835966b.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:07:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F8063E
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:10:00 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF73AEA
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:09:58 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99357737980so1052712266b.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:09:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697609256; x=1698214056; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697609397; x=1698214197; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=12Ki6pOs9EDEYe9sW9iaFz4JG4me1D3T1b13jqZlW2k=;
-        b=o1k4gw0ph+B3Gssb1qvgoWQ3sQYH3Y1xxxlfjSHpWwesf1I8OlUHoiIDRywLbTrzUV
-         ffDsiy+VyP7diEDfqeE6dVZ5qSB3KInJ4pORxLXQtuT3qdHLhVuDS1yeFvG0FaebCTJ/
-         r/dyqHF02EhA/bPE+qcT/ZeEV9/XZKn74Yw4X9mgL2UxF185ypaVhUeSQl13OjOd7PiK
-         HSqVoX29CsZkph4i+xGn7UkNtNjASrC8GM1H1/i5q7bLPLZ6eRep2gs9MTSLqzuPPVke
-         s9jWNClqxQkwTZyIh4aAAK+m+1Ymp0LaoH5UaiD449Q2qqjdDxNca1CmNv7BduP8i5/8
-         nBhw==
+        bh=TOSDdTKHQ6Zn18zXh4dBj8ZhMSb7NfUjm1rV0GFHp+0=;
+        b=q8ec2Xev+rEuYa9JVBFAJ6mUanuZnt94sHGayOVXF0Hmjhto0zaka3XQlq0q0Z4bAi
+         i98smxaZHMy/snHypaaoQdLCW6aczp4Bhz2Yj/WwCX47IeEzfYFvULIZsfeRu0uyNalA
+         8L7mO3NC2HFgX/ccMfmoL4VL4ufldWfGGUQKDraDvyiHdHn61/j1AJfcyExZSVl8rz+T
+         4n0oT/X6zbkq/iByV5A01SNKqh0tbfQKw/ww2U6nQIdT5I0JUwYChl1/jtYEisx3mdOV
+         e/yXUgHb+TNHeLfBVAlvkjBmAPsYfHcyxt4L4OqKJEiCzE7ay38E3Pagz9xkC4+qoFz8
+         r3pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697609256; x=1698214056;
+        d=1e100.net; s=20230601; t=1697609397; x=1698214197;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=12Ki6pOs9EDEYe9sW9iaFz4JG4me1D3T1b13jqZlW2k=;
-        b=wiTA3vJ9/A50uCCZp1MWZc5lFXUht41AEXmp26Aa6TnEN8SDYBTD0CUIZTIWJnK0qo
-         gAoNGgqnaYWAudd/yLHGV1Zm0BX4bmnLkOrIWSl2W6zYShDKL3w8QlsiS0qFxu6XD9Uw
-         LRA1Qtq7CzJO0x7nceYuppW5OgC+qvBXSryq3syViOUlF/SsuMqfdHuNUoSafXysuq+k
-         AURv9Kt3BAPIf9m/ac/42FRXxwdoQVWz5bDJM63pmN7uDm5KzFU9jBuQ/sejj37rwPbL
-         RuHxyACetruKKnuIjU6a3qxBhnnughRpaxiXL9kdwhxXLrMCgm8iqbRmN6uolCOtlMQ/
-         3lHw==
-X-Gm-Message-State: AOJu0YwEjsvAoDtTgS98KbzJ7rkjMfHVeMWfyqfi/zG18R1fL7hi8383
-	vif12T+uRxFyFtc9VnUZ5t3TGA==
-X-Google-Smtp-Source: AGHT+IEUQoC8psfKLUB/+f6hfs65fspFuxwkifskgcN24nOlUyzhwi4x3BUhbGaaEZ8CVlYT39zkZw==
-X-Received: by 2002:a17:907:320b:b0:9be:d217:40b7 with SMTP id xg11-20020a170907320b00b009bed21740b7mr3271384ejb.32.1697609255921;
-        Tue, 17 Oct 2023 23:07:35 -0700 (PDT)
+        bh=TOSDdTKHQ6Zn18zXh4dBj8ZhMSb7NfUjm1rV0GFHp+0=;
+        b=bSEglEt8mLcXL2jxHgjFskreDNsJUqvvGdpXuzaCoLqleAXhexJEK6y9cdIM8Zksoi
+         EPhVxhjcKmLj2H3yKZo4oMngoUPAnb2YUs3rS4eCkWh5Er5NZTQZxTFFKtf3vMJQhCaY
+         JzHoUewcEOX5anD20N/MKVgppqehJD5OPwCYNHMIjhIXG3t9drok1xatWXp5FL+TvB1/
+         HT64T7UWzMcDt2ojqEJjUTFfk3F/Znoys9dOLH0qXiVtbtJRCAWoNxGucaGLmpReX97U
+         0lVoyO02eMTmopFd+y6+3X3jvjWRjFThplDhJ9HrusOiOE8mldVr5mU9BvXcQXvt6wHD
+         3vhA==
+X-Gm-Message-State: AOJu0YwtxwiuQWa1jrr07fH00SCkkMAyqkyhGRM6FrXee3mh3tpvF2DN
+	eviKSR8g4JIxj0u29VG/n747MA==
+X-Google-Smtp-Source: AGHT+IFxJy7pc9qR58gBFWblDRsvoaM08c/0G6qwRhBGUOQIAkRSbEh09MIMTlEjzlwQdUZMeXgQlg==
+X-Received: by 2002:a17:907:2688:b0:9c5:2806:72e2 with SMTP id bn8-20020a170907268800b009c5280672e2mr3026227ejc.34.1697609397120;
+        Tue, 17 Oct 2023 23:09:57 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id l26-20020a170906a41a00b0099d798a6bb5sm941784ejz.67.2023.10.17.23.07.33
+        by smtp.gmail.com with ESMTPSA id j8-20020a1709064b4800b009a1a653770bsm933348ejv.87.2023.10.17.23.09.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 23:07:34 -0700 (PDT)
-Message-ID: <9e1233ce-1a6d-443d-873e-6efb3ed0207c@linaro.org>
-Date: Wed, 18 Oct 2023 08:07:32 +0200
+        Tue, 17 Oct 2023 23:09:56 -0700 (PDT)
+Message-ID: <8059e5ab-672a-4808-9159-d67309625ef0@linaro.org>
+Date: Wed, 18 Oct 2023 08:09:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] HID: touchscreen: add himax hid-over-spi driver
+Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
+ runtime
 Content-Language: en-US
-To: Doug Anderson <dianders@chromium.org>
-Cc: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
- Tomasz Figa <tfiga@chromium.org>, jingyliang@chromium.org,
- poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
- jikos@kernel.org, wuxy23@lenovo.com, conor+dt@kernel.org, luolm1@lenovo.com,
- robh+dt@kernel.org, dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, poyu_hung@himax.corp-partner.google.com,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- benjamin.tissoires@redhat.com
-References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <6c7d9c92-7616-4fad-806e-44302c33b63c@linaro.org>
- <CAD=FV=X2kZcyeyK1SBcXaViBft4F6XYtA6+JwBqJswU41V9kUQ@mail.gmail.com>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+ Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
+ Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Andersson <andersson@kernel.org>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-2-quic_kriskura@quicinc.com>
+ <a3d612a8-1917-491d-a944-22ea39879a9d@linaro.org>
+ <189be124-efb1-4843-9a47-db84942838c9@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,111 +131,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAD=FV=X2kZcyeyK1SBcXaViBft4F6XYtA6+JwBqJswU41V9kUQ@mail.gmail.com>
+In-Reply-To: <189be124-efb1-4843-9a47-db84942838c9@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 23:41, Doug Anderson wrote:
-> Hi,
+On 17/10/2023 19:46, Krishna Kurapati PSSNV wrote:
 > 
-> On Tue, Oct 17, 2023 at 10:08 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 17/10/2023 11:18, Tylor Yang wrote:
->>> Hello,
+> 
+> On 10/17/2023 10:49 PM, Krzysztof Kozlowski wrote:
+>> On 17/10/2023 15:18, Krishna Kurapati wrote:
+>>> Add enable-rt binding to let the device register vendor hooks to
+>>> core and facilitate runtime suspend and resume.
 >>>
->>> This patch series adds the driver for Himax HID-over-SPI touchscreen ICs.
->>> This driver takes a position in [1], it intends to take advantage of SPI
->>> transfer speed and HID interface.
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
+>>>   1 file changed, 5 insertions(+)
 >>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> index cb50261c6a36..788d9c510abc 100644
+>>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>>> @@ -151,6 +151,11 @@ properties:
+>>>         HS/FS/LS modes are supported.
+>>>       type: boolean
+>>>   
+>>> +  qcom,enable-rt:
+>>> +    description:
+>>> +      If present, register vendor hooks to facilitate runtime suspend/resume
 >>
->> Dear Google/Chromium folks,
+>> You described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
 >>
->> As a multi-billion company I am sure you can spare some small amount of
->> time/effort/money for internal review before using community for this
->> purpose. I mean reviewing trivial issues, like coding style, or just
->> running checkpatch. You know, the obvious things.
->>
->> There is no need to use expensive time of community reviewers to review
->> very simple mistakes, the ones which we fixed in Linux kernel years ago
->> (also with automated tools). You can and you should do it, before
->> submitting drivers for community review.
 > 
-> We can certainly talk more about this, but a quick reply is:
+> Hi Krzysztof,
 > 
-> 1. If a patch really looks super bad to you then the right thing for
-> you to do is to respond to the patch with some canned response saying
-> "you didn't even do these basic things--please read the documentation
-> and work with someone at Google to get a basic review". This seems
-> like a perfectly legit response and I don't think you should do more
-> than that.
-> 
-> 2. IMO as a general rule "internal review" should be considered
-> harmful. When you're a new submitter then absolutely you should get
-> some internal review from someone who has done this before, but making
-> "internal review" a requirement for all patches leads to frustration
-> all around. It leads to people redesigning their code in response to
-> "internal review" and then getting frustrated when external
-> maintainers tell them to do something totally different. ...then
-> upstream reviewers respond to the frustration with "Why were you
-> designing your code behind closed doors? If you had done the review in
-> the public and on the mailing lists then someone could have stopped
-> you before you changed everything".
+>   Thanks for the review. Although it sounds like its a Linux property, 
+> internally what it does is configuring qscratch registers properly when 
+> (dr_mode == OTG)
 
-No one expects forced internal review on mature contributions. We talk
-here about a first time contribution where already basic mistakes were
-made: like not using get_maintainers.pl, not using checkpatch, not using
-other tools and finally sending code which does not look like Linux
-kernel code at all.
+That's not what you wrote. You wrote "register vendor hooks". Really,
+this is nothing to do with hardware.
 
 > 
-> 3. The ChromeOS team is organized much more like the upstream
-> community than a big hierarchical corporation. Just as it's not easy
-> for you to control the behavior of other maintainers, it is not
-> trivial for one person on the team to control what others on the team
-> will do. We could make an attempt to institute rules like "all patches
-> must go through internal review before being posted", but as per #2 I
-> don't think this is a good idea. The ChromeOS team has even less
-> control over what our partners may or may not do. In general it is
-> always a struggle to get partners to even start working upstream and
-> IMO it's a win when I see a partner post a patch. We should certainly
-> help partners be successful here, but the right way to do that is by
-> offering them support.
+>   Would it be fine to rephrase the property name to 
+> "qcom,config-qscratch" and to make it dependent on dr_mode and 
+> usb-role-switch properties ? Would it be possible to make such a 
+> dependency in bindings ?
 
-I don't know who is exactly core team, who is partner. I see
-"google.com" domain, so Google folks are responsible for not wasting
-time of the community. If Google disagrees, please change the domain so
-I will understand that and not feel like Google wants to use us all. I
-am fine and I understand if small companies or individuals make such
-mistakes. It feels like a waste of our time if Google makes such
-mistakes. Google's (Alphabet's) revenue for 2022 was 282 billions USD
-and net revenue was 59 billions USD.
-
-> 
-> About the best we can do is to provide good documentation for people
-> learning how to send patches. Right now the ChromeOS kernel docs [1]
-> suggest using "patman" to send patches and I have seen many partners
-> do this. Patman will, at the very least, run checkpatch for you. Our
-> instructions also say that you should make sure you run "checkpatch"
-> yourself if you don't run patman. If people aren't following these
-> docs that we already have then there's not much we can do.
-> 
-> 
-> So I guess the tl;dr from my side:
-> 
-> a) People should absolutely be posting on mailing lists and not (as a
-> rule) doing "internal review".
-> 
-> b) If a patch looks really broken to you, don't get upset and don't
-> waste your time. Just respond and say that you'll look at it once it
-> looks better and suggest that they get a review (preferably on the
-> mailing lists!) from someone they're working with at Google.
-
+Examples are in: example-schema or my talk.
 
 Best regards,
 Krzysztof
