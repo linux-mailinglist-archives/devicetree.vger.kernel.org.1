@@ -1,133 +1,128 @@
-Return-Path: <devicetree+bounces-9608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A367CD8ED
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:14:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929AB7CD942
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 12:33:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24DC31C20925
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F15AF281C60
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FAC418B00;
-	Wed, 18 Oct 2023 10:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZC67/UyL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BE818C1E;
+	Wed, 18 Oct 2023 10:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C06015AFE
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:14:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475F695;
-	Wed, 18 Oct 2023 03:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697624079; x=1729160079;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gGMq4a5qiZYUn9Oln+qtDvu7lzpJ8vcxRcIG4w8ru0o=;
-  b=ZC67/UyLHxyshVEVrPwOrrE6FbYhKzZBvc/XOmgrVRHK409lN2OLT6LB
-   w9Hu1H4ibucLIBIKhTKBKN+SNIUrDVrqabo9NZmTgSgrV47XL8emr9b02
-   unwrlUTbSEAWEBs7G5v/nD1t8nW4xyI2Q/VPsU5UWW880wvqST4wbomDt
-   b9b/3I49IkCRU9ctwRJdfMwS/cU6WAsxQQzPzyth+dhl/i3aUnkmdEQQq
-   gUTX5yMiHwwn1Q+dXpl8OVFJk+cMqw57c1ZECoPJuhqXmJMdIZUePE30j
-   +yJucrTPJh9V9cyIxNDQqX1ejkGs05UdWGqtJeMvg4uVQCbGFBaQoTono
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="4579144"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="4579144"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 03:14:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="760171482"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="760171482"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 18 Oct 2023 03:14:33 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qt3ZO-0000Ds-37;
-	Wed, 18 Oct 2023 10:14:30 +0000
-Date: Wed, 18 Oct 2023 18:14:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
-	dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jikos@kernel.org, benjamin.tissoires@redhat.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	poyuan_chang@himax.corp-partner.google.com, jingyliang@chromium.org,
-	hbarnor@chromium.org, wuxy23@lenovo.com, luolm1@lenovo.com,
-	poyu_hung@himax.corp-partner.google.com,
-	Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-Subject: Re: [PATCH v3 2/4] HID: touchscreen: Add initial support for Himax
- HID-over-SPI
-Message-ID: <202310181806.Ne95k5nt-lkp@intel.com>
-References: <20231017091900.801989-3-tylor_yang@himax.corp-partner.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779CC19448;
+	Wed, 18 Oct 2023 10:32:54 +0000 (UTC)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907F1F7;
+	Wed, 18 Oct 2023 03:32:52 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3af5fd13004so4359907b6e.0;
+        Wed, 18 Oct 2023 03:32:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697625172; x=1698229972;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ffL5cOnfdby4i02vwL1HAXE1nQ0SpklkWcstjU+LQEE=;
+        b=PHbZ4koAS057Ai2JH9CfLJmJMp1s+TtjPzYhdvHUgB+8JR8yLT2vxuc7/WViU/HLT2
+         TtfBQdm6gEETXjL66Hv9kh3JbPK/lpEhw/LinC9uO3OyCLugT5XTCoJvJ9uQFYIIQVKK
+         icFfgcORTyYRWZePGOaUSab+kQW1NDSEicWTB8G/WQZgvfMY8sumxmTCg+Fbpcw5wRhg
+         l2ivI3dPZwXNt8vJ+vQ1eH7h88dgmBbblrteqB3gb7VK+J7eF3xIxxM2ZeBnMLNFb/cJ
+         aZRqPImnB1Wa5SpCpOZHIb3VIEQycO2E1M28s58n7DFd5BhewnHyhrOFlAQnWXtsn7gT
+         gUhw==
+X-Gm-Message-State: AOJu0YypzIboLEbomkb4YJEi9EHmeyufucCz1pUc4oqCNtWHPtFodwD0
+	2fvzuPTJ6AhcZyrZGxcF9a4JajkaoA==
+X-Google-Smtp-Source: AGHT+IFqEHF/5goPwPd6lvSq0+3YGmFTG04yYMFssF0QzDWzDsnihdCzoMPd/YHU2+ReLY0CVJJp+g==
+X-Received: by 2002:a05:6808:19a4:b0:3a7:8e05:1697 with SMTP id bj36-20020a05680819a400b003a78e051697mr5554209oib.59.1697625171742;
+        Wed, 18 Oct 2023 03:32:51 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fb4-20020a0568083a8400b003a78d196acasm607435oib.32.2023.10.18.03.32.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Oct 2023 03:32:51 -0700 (PDT)
+Received: (nullmailer pid 391919 invoked by uid 1000);
+	Wed, 18 Oct 2023 10:32:48 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231017091900.801989-3-tylor_yang@himax.corp-partner.google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Paolo Abeni <pabeni@redhat.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Gregory Clement <gregory.clement@bootlin.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, Jakub Kicinski <kuba@kernel.org>, Russell King <linux@armlinux.org.uk>, Rob Herring <robh+dt@kernel.org>, Eric Dumazet <edumazet@google.com>
+In-Reply-To: <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+Message-Id: <169762516805.391872.4190043734592153628.robh@kernel.org>
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite
+ MV88E6xxx in schema
+Date: Wed, 18 Oct 2023 05:32:48 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Tylor,
 
-kernel test robot noticed the following build warnings:
+On Wed, 18 Oct 2023 11:03:45 +0200, Linus Walleij wrote:
+> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
+> in YAML schema.
+> 
+> The current text binding says:
+>   WARNING: This binding is currently unstable. Do not program it into a
+>   FLASH never to be changed again. Once this binding is stable, this
+>   warning will be removed.
+> 
+> Well that never happened before we switched to YAML markup,
+> we can't have it like this, what about fixing the mess?
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../bindings/net/dsa/marvell,mv88e6xxx.yaml        | 225 +++++++++++++++++++++
+>  .../devicetree/bindings/net/dsa/marvell.txt        | 109 ----------
+>  MAINTAINERS                                        |   2 +-
+>  3 files changed, 226 insertions(+), 110 deletions(-)
+> 
 
-[auto build test WARNING on hid/for-next]
-[also build test WARNING on dtor-input/next dtor-input/for-linus robh/for-next linus/master v6.6-rc6 next-20231018]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tylor-Yang/dt-bindings-input-Introduce-Himax-HID-over-SPI-device/20231017-172156
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
-patch link:    https://lore.kernel.org/r/20231017091900.801989-3-tylor_yang%40himax.corp-partner.google.com
-patch subject: [PATCH v3 2/4] HID: touchscreen: Add initial support for Himax HID-over-SPI
-reproduce: (https://download.01.org/0day-ci/archive/20231018/202310181806.Ne95k5nt-lkp@intel.com/reproduce)
+yamllint warnings/errors:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310181806.Ne95k5nt-lkp@intel.com/
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
 
-versioncheck warnings: (new ones prefixed by >>)
-   INFO PATH=/opt/cross/clang/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS= -Wrestrict -Warray-bounds -Wformat-overflow -Wformat-truncation -Wstringop-overflow -Wundef -funsigned-char -Wenum-conversion -Werror=return-type W=1 --keep-going HOSTCC=gcc-12 CC=gcc-12 -j32 KBUILD_MODPOST_WARN=1 ARCH=x86_64 versioncheck
-   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
-   	-name '*.[hcS]' -type f -print | sort \
-   	| xargs perl -w ./scripts/checkversion.pl
-   ./drivers/accessibility/speakup/genmap.c: 13 linux/version.h not needed.
-   ./drivers/accessibility/speakup/makemapdata.c: 13 linux/version.h not needed.
->> ./drivers/hid/hx-hid/hx_core.h: 25 linux/version.h not needed.
-   ./drivers/staging/media/atomisp/include/linux/atomisp.h: 23 linux/version.h not needed.
-   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
-   ./samples/trace_events/trace_custom_sched.c: 11 linux/version.h not needed.
-   ./sound/soc/codecs/cs42l42.c: 14 linux/version.h not needed.
-   ./tools/lib/bpf/bpf_helpers.h: 402: need linux/version.h
-   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
-   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
+doc reference errors (make refcheckdocs):
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
