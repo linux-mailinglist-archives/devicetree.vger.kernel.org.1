@@ -1,108 +1,152 @@
-Return-Path: <devicetree+bounces-9648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5457CDAF5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:49:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B287CDB16
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F87A1C209C3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:49:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDEF3281C58
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E10831A86;
-	Wed, 18 Oct 2023 11:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF61C335B8;
+	Wed, 18 Oct 2023 11:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UzLRwX0R"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DpFlCSQX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059D72F535
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:49:14 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBE2111;
-	Wed, 18 Oct 2023 04:49:13 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D0E752B3;
-	Wed, 18 Oct 2023 13:49:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697629745;
-	bh=fJTg0p90iZsCaFDhrtNZ4cK233vjH3fuyCAW+LUdm6c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UzLRwX0Rx1eEQZdYIHxP15ldj265YRAQkCj9YC4BjMMQ7zG9GDcL+I8DtaWz6txg8
-	 e5VqL9YFaYvJRReJMXoFhLnvS3t0BJowR6bPJJmsfjO8L4o+96IyqLOrxshd2gVzZj
-	 OHVr7E8qn3q/dwyP6+aqftLRjmqYHuyWNKyibtwM=
-Date: Wed, 18 Oct 2023 14:49:19 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jack Zhu <jack.zhu@starfivetech.com>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-	bryan.odonoghue@linaro.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
-Message-ID: <20231018114919.GF11118@pendragon.ideasonboard.com>
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
- <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
- <c255e215-b1ed-7397-0534-8d6ebda86350@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D8015AD7;
+	Wed, 18 Oct 2023 11:57:52 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EF2114;
+	Wed, 18 Oct 2023 04:57:50 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I70Xa2002870;
+	Wed, 18 Oct 2023 11:57:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ysNYIQ/Zi0jfiz1sdI12w6m3V0yJAk77TlAx2uz/ZxI=;
+ b=DpFlCSQXyxNa+tDPlv5SLX6BYQu8BzItHUmuYKoQfRlYaRQNkfYZ6f/9B1YfRC+tModD
+ rHjvatR6Bffir4sT+gOas+u3HKdBz+m6nmjiuplN3VP88L8by0NDL1knnVqwFICUUp03
+ KqbQhmyaDr1nwOioO1E44ZUI+WYjQYuNX9QARrU3zshX3amkKUuZM5FMouqYwlDS+yH3
+ Ul3wMTAX8lXs7MwNYk+UbwxoItjNzNtl2XJE3xBbum9vFmvz1v0UNN5R5ZnyJ8C5/AM6
+ DWtzoNFMEju1BCFULWhiEMtUx4CKhJfBPQdtAotKTO4N3RYUG3CjzxYMBMDNfNy4n8wy GQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsv0v2nev-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 11:57:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IBvW3Q001045
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 11:57:32 GMT
+Received: from [10.216.30.229] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 04:57:26 -0700
+Message-ID: <4293617a-f6a7-444f-b6f8-ac7297d9e9b1@quicinc.com>
+Date: Wed, 18 Oct 2023 17:27:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c255e215-b1ed-7397-0534-8d6ebda86350@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 08/10] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "Wesley
+ Cheng" <quic_wcheng@quicinc.com>,
+        Johan Hovold <johan@kernel.org>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-9-quic_kriskura@quicinc.com>
+ <467dd1cc-64af-43d7-93ca-be28043e2765@linaro.org>
+ <cceab5a9-ac0f-4ecd-9aa5-0ede5615a13d@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <cceab5a9-ac0f-4ecd-9aa5-0ede5615a13d@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PMQY6-Tg_CmBeGvoPCNHn4GijJTX08sp
+X-Proofpoint-GUID: PMQY6-Tg_CmBeGvoPCNHn4GijJTX08sp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_09,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 phishscore=0 mlxscore=0 mlxlogscore=705
+ impostorscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180098
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 18, 2023 at 11:11:40AM +0800, Jack Zhu wrote:
-> On 2023/10/16 19:40, Hans Verkuil wrote:
-> > On 08/10/2023 10:51, Jack Zhu wrote:
-> >> Hi,
-> >> 
-> >> This series is the v10 series that attempts to support the Camera Subsystem
-> >> found on StarFive JH7110 SoC.
-> >> 
-> >> This series is based on top of the master branch of media_stage repository,
-> >> which is tested with a v4l2-compliance compiled from the git repo
-> >> (git://linuxtv.org/v4l-utils.git).
-> > 
-> > I get one smatch warning:
-> > 
-> > drivers/staging/media/starfive/camss/stf-isp.c:122 isp_enum_mbus_code() warn: unsigned 'code->index' is never less than zero.
-> 
-> Could you please tell me the code check command? This way I can use it to check
-> my next commit.
-> 
-> > And I also notice that there is no TODO file: staging drivers should have a
-> > TODO file explaining what needs to be done to get them out of staging.
-> 
-> OK, I'll add it to my next commit. I previously misunderstood that it was submitted
-> when moving out of staging.
-> 
-> > I'm curious to know that as well :-)
-> > 
-> > It looks like there is a lot of additional development that can be done, since
-> > most of the ISP parameters appear to be hardcoded.
-> 
-> Part is the module initialization configuration. In the next stage, we will use
-> incremental development to implement 3A functions.
 
-I'm really looking forward to that part :-)
 
--- 
+On 10/12/2023 10:32 PM, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 10/12/2023 10:10 PM, Konrad Dybcio wrote:
+>>
+>>
+>> On 10/7/23 17:48, Krishna Kurapati wrote:
+>>> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+>>> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+>>> platforms.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>> [...]
+>>
+>>> +
+>>> +            interconnects = <&aggre1_noc MASTER_USB3_MP 0 &mc_virt 
+>>> SLAVE_EBI1 0>,
+>>> +                    <&gem_noc MASTER_APPSS_PROC 0 &config_noc 
+>>> SLAVE_USB3_MP 0>;
+>> Please use QCOM_ICC_TAG_ALWAYS from 
+>> include/dt-bindings/interconnect/qcom,icc.h (like in sa8775p)
+>>
+>> With that I think it's good to go :)
+>>
+> Hi Konrad. Thanks for the review.
+> 
+> I see that the tags are used fr spi/i2c but not usb. So to maintain 
+> uniformity, wanted to keep the same here.
+> 
+
+Hi Konrad,
+
+  Even in sa8775p.dtsi, the interconnect nodes have 0 & 1 instead of 
+macros. So wouldn't it be disturbing the uniformity if we use ICC_TAG's 
+here. Let me know your thoughts on this.
+
 Regards,
-
-Laurent Pinchart
+Krishna,
 
