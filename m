@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-9708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95667CE0DB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:12:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BEE7CE111
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:21:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 642DC280F06
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:12:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D270B20CB6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F0838BB0;
-	Wed, 18 Oct 2023 15:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EAB38BDB;
+	Wed, 18 Oct 2023 15:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lc5skqHj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLnIhd9w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72B238BAB
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 15:12:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 629BFC433C8;
-	Wed, 18 Oct 2023 15:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1730738BC5
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 15:21:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECACCC433C8;
+	Wed, 18 Oct 2023 15:21:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697641950;
-	bh=FQeLVQ03xYeQQtOosvC2A7mk735Ug07ldWBeoCuDr3s=;
+	s=k20201202; t=1697642474;
+	bh=LYagyGRuLOJIx08cI88zPgXWvrkcS7iNbLmlFxrSclU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lc5skqHjb9nLqfPWMcQdGrtNQbKYW7tLWgJ7EmXjCYfOth4McrikeqUJJSx3Nk7gS
-	 PMtid+U3FzR+w7VBzky/ruQEJE5Q1n8a+QJUzZnFdjW0/Y4BsEeuNZd37cyPMQvBmf
-	 BGVWFvVYQj8Wn5+SgMBw9lc+sR6aIdHWFBMpBD+TE5CzaYwkQYdrPn8VoRh0wDjS2m
-	 IHlr9OQQKVcZvfrwQ3INzwWQIw/DYkdScfX0rRAzc1Y4BK14McX6IpQSx/dfkRk6+f
-	 cYD2Hic3sozJpE6cWTHNbSIH+ro1IknzQV/m8rd6MBsx63solU9VbxJlis/z62sqRg
-	 oTjbGS7llg3OQ==
-Message-ID: <ffcf4521-5bf0-4933-a25c-22574035f774@kernel.org>
-Date: Thu, 19 Oct 2023 00:12:26 +0900
+	b=ZLnIhd9wqi3ayfSZPlcIMGhn5cH+ssUY+jlIdiUjagca/1sntsjihy6sAyb8buY9i
+	 t4GDD9OTHBDHbhtx/M5Maf02ICkO51Fdi3uVKmLJBaBpv0pjue7vHK61ZyOnsTIIoC
+	 B12j9Szlhdcd/G5cbrOEGnML4dHSZnOY0wQUf2qbgvz8AIu6QIdCgQugSASxV+vsDv
+	 m14v6Z30satjrlNduGH3eSKZu5N+PorzNuckMElrfGxEw3OEQmkHgmVUCWPqE+eWQE
+	 73tHO5fRAQpY7Su4FJRXizzHo08si1lXn7/jH0hbEB0IGzsLhRQ2ZyrnAUtu/dQsxL
+	 6nY08XHyxiuKA==
+Message-ID: <6e43eb6d-351b-4c32-aba9-65ee5b8fd0ed@kernel.org>
+Date: Thu, 19 Oct 2023 00:21:07 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,13 +41,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 19/26] PM / devfreq: rockchip-dfi: add support for
- RK3588
+Subject: Re: [PATCH v8 00/26] Add perf support to the rockchip-dfi driver
 Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
+To: Sascha Hauer <s.hauer@pengutronix.de>,
+ linux-rockchip@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- Kyungmin Park <kyungmin.park@samsung.com>,
+ linux-pm@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>,
  MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
  Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
  Michael Riesch <michael.riesch@wolfvision.net>,
@@ -55,117 +54,86 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
+ Sebastian Reichel <sebastian.reichel@collabora.com>
 References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
- <20231018061714.3553817-20-s.hauer@pengutronix.de>
 From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20231018061714.3553817-20-s.hauer@pengutronix.de>
+In-Reply-To: <20231018061714.3553817-1-s.hauer@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23. 10. 18. 15:17, Sascha Hauer wrote:
-> Add support for the RK3588 to the driver. The RK3588 has four DDR
-> channels with a register stride of 0x4000 between the channel
-> registers, also it has a DDRMON_CTRL register per channel.
-> 
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/devfreq/event/rockchip-dfi.c | 36 +++++++++++++++++++++++++++-
->  include/soc/rockchip/rk3588_grf.h    | 18 ++++++++++++++
->  2 files changed, 53 insertions(+), 1 deletion(-)
->  create mode 100644 include/soc/rockchip/rk3588_grf.h
-> 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index bf38829a2a4af..794f36e7eebd1 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -26,8 +26,9 @@
->  #include <soc/rockchip/rockchip_grf.h>
->  #include <soc/rockchip/rk3399_grf.h>
->  #include <soc/rockchip/rk3568_grf.h>
-> +#include <soc/rockchip/rk3588_grf.h>
->  
-> -#define DMC_MAX_CHANNELS	2
-> +#define DMC_MAX_CHANNELS	4
->  
->  #define HIWORD_UPDATE(val, mask)	((val) | (mask) << 16)
->  
-> @@ -723,9 +724,42 @@ static int rk3568_dfi_init(struct rockchip_dfi *dfi)
->  	return 0;
->  };
->  
-> +static int rk3588_dfi_init(struct rockchip_dfi *dfi)
-> +{
-> +	struct regmap *regmap_pmu = dfi->regmap_pmu;
-> +	u32 reg2, reg3, reg4;
-> +
-> +	regmap_read(regmap_pmu, RK3588_PMUGRF_OS_REG2, &reg2);
-> +	regmap_read(regmap_pmu, RK3588_PMUGRF_OS_REG3, &reg3);
-> +	regmap_read(regmap_pmu, RK3588_PMUGRF_OS_REG4, &reg4);
-> +
-> +	/* lower 3 bits of the DDR type */
-> +	dfi->ddr_type = FIELD_GET(RK3588_PMUGRF_OS_REG2_DRAMTYPE_INFO, reg2);
-> +
-> +	/*
-> +	 * For version three and higher the upper two bits of the DDR type are
-> +	 * in RK3588_PMUGRF_OS_REG3
-> +	 */
-> +	if (FIELD_GET(RK3588_PMUGRF_OS_REG3_SYSREG_VERSION, reg3) >= 0x3)
-> +		dfi->ddr_type |= FIELD_GET(RK3588_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3, reg3) << 3;
-> +
-> +	dfi->buswidth[0] = FIELD_GET(RK3588_PMUGRF_OS_REG2_BW_CH0, reg2) == 0 ? 4 : 2;
-> +	dfi->buswidth[1] = FIELD_GET(RK3588_PMUGRF_OS_REG2_BW_CH1, reg2) == 0 ? 4 : 2;
-> +	dfi->buswidth[2] = FIELD_GET(RK3568_PMUGRF_OS_REG2_BW_CH0, reg4) == 0 ? 4 : 2;
-> +	dfi->buswidth[3] = FIELD_GET(RK3588_PMUGRF_OS_REG2_BW_CH1, reg4) == 0 ? 4 : 2;
-> +	dfi->channel_mask = FIELD_GET(RK3588_PMUGRF_OS_REG2_CH_INFO, reg2) |
-> +			    FIELD_GET(RK3588_PMUGRF_OS_REG2_CH_INFO, reg4) << 2;
-> +	dfi->max_channels = 4;
-> +
-> +	dfi->ddrmon_stride = 0x4000;
-> +
-> +	return 0;
-> +};
-> +
->  static const struct of_device_id rockchip_dfi_id_match[] = {
->  	{ .compatible = "rockchip,rk3399-dfi", .data = rk3399_dfi_init },
->  	{ .compatible = "rockchip,rk3568-dfi", .data = rk3568_dfi_init },
-> +	{ .compatible = "rockchip,rk3588-dfi", .data = rk3588_dfi_init },
->  	{ },
->  };
->  
-> diff --git a/include/soc/rockchip/rk3588_grf.h b/include/soc/rockchip/rk3588_grf.h
-> new file mode 100644
-> index 0000000000000..630b35a550640
-> --- /dev/null
-> +++ b/include/soc/rockchip/rk3588_grf.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +#ifndef __SOC_RK3588_GRF_H
-> +#define __SOC_RK3588_GRF_H
-> +
-> +#define RK3588_PMUGRF_OS_REG2		0x208
-> +#define RK3588_PMUGRF_OS_REG2_DRAMTYPE_INFO		GENMASK(15, 13)
-> +#define RK3588_PMUGRF_OS_REG2_BW_CH0			GENMASK(3, 2)
-> +#define RK3588_PMUGRF_OS_REG2_BW_CH1                    GENMASK(19, 18)
-> +#define RK3588_PMUGRF_OS_REG2_CH_INFO                   GENMASK(29, 28)
-> +
-> +#define RK3588_PMUGRF_OS_REG3		0x20c
-> +#define RK3588_PMUGRF_OS_REG3_DRAMTYPE_INFO_V3		GENMASK(13, 12)
-> +#define RK3588_PMUGRF_OS_REG3_SYSREG_VERSION		GENMASK(31, 28)
-> +
-> +#define RK3588_PMUGRF_OS_REG4           0x210
-> +#define RK3588_PMUGRF_OS_REG5           0x214
-> +
-> +#endif /* __SOC_RK3588_GRF_H */
+Hi Sascha and Heiko,
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+I finished the review from  01 ~ 22 patches.
+- 01-05 patches are merged.
+- 06-22 patches with acked tags.
 
--- 
+
+Some patches modifies the 'include/soc/rockchip/*' files.
+After getting the ack from rockchip maintainer (Heiko Stuebner),
+I'll merge patches from 06 ~ 22 patches to devfreq.git.
+
 Best Regards,
-Samsung Electronics
 Chanwoo Choi
+
+On 23. 10. 18. 15:16, Sascha Hauer wrote:
+> This series integrates the recent review feedback from Chanwoo Choi to
+> v7.
+> 
+> Chanwoo, I am sending the full patchset again for people to try this
+> series. You said that you applied 1-5 already, so please start picking
+> from 6/26.
+> 
+> Sascha
+> 
+> Sascha Hauer (26):
+>   PM / devfreq: rockchip-dfi: Make pmu regmap mandatory
+>   PM / devfreq: rockchip-dfi: Embed desc into private data struct
+>   PM / devfreq: rockchip-dfi: use consistent name for private data
+>     struct
+>   PM / devfreq: rockchip-dfi: Add SoC specific init function
+>   PM / devfreq: rockchip-dfi: dfi store raw values in counter struct
+>   PM / devfreq: rockchip-dfi: Use free running counter
+>   PM / devfreq: rockchip-dfi: introduce channel mask
+>   PM / devfreq: rk3399_dmc,dfi: generalize DDRTYPE defines
+>   PM / devfreq: rockchip-dfi: Clean up DDR type register defines
+>   PM / devfreq: rockchip-dfi: Add RK3568 support
+>   PM / devfreq: rockchip-dfi: Handle LPDDR2 correctly
+>   PM / devfreq: rockchip-dfi: Handle LPDDR4X
+>   PM / devfreq: rockchip-dfi: Pass private data struct to internal
+>     functions
+>   PM / devfreq: rockchip-dfi: Prepare for multiple users
+>   PM / devfreq: rockchip-dfi: give variable a better name
+>   PM / devfreq: rockchip-dfi: Add perf support
+>   PM / devfreq: rockchip-dfi: make register stride SoC specific
+>   PM / devfreq: rockchip-dfi: account for multiple DDRMON_CTRL registers
+>   PM / devfreq: rockchip-dfi: add support for RK3588
+>   dt-bindings: devfreq: event: convert Rockchip DFI binding to yaml
+>   dt-bindings: devfreq: event: rockchip,dfi: Add rk3568 support
+>   dt-bindings: devfreq: event: rockchip,dfi: Add rk3588 support
+>   dt-bindings: soc: rockchip: grf: add rockchip,rk3588-pmugrf
+>   arm64: dts: rockchip: rk3399: Enable DFI
+>   arm64: dts: rockchip: rk356x: Add DFI
+>   arm64: dts: rockchip: rk3588s: Add DFI
+> 
+>  .../bindings/devfreq/event/rockchip,dfi.yaml  |  74 ++
+>  .../bindings/devfreq/event/rockchip-dfi.txt   |  18 -
+>  .../rockchip,rk3399-dmc.yaml                  |   2 +-
+>  .../devicetree/bindings/soc/rockchip/grf.yaml |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi      |   1 -
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   7 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  16 +
+>  drivers/devfreq/event/rockchip-dfi.c          | 814 +++++++++++++++---
+>  drivers/devfreq/rk3399_dmc.c                  |  10 +-
+>  include/soc/rockchip/rk3399_grf.h             |   9 +-
+>  include/soc/rockchip/rk3568_grf.h             |  13 +
+>  include/soc/rockchip/rk3588_grf.h             |  18 +
+>  include/soc/rockchip/rockchip_grf.h           |  18 +
+>  13 files changed, 863 insertions(+), 138 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+>  create mode 100644 include/soc/rockchip/rk3568_grf.h
+>  create mode 100644 include/soc/rockchip/rk3588_grf.h
+>  create mode 100644 include/soc/rockchip/rockchip_grf.h
+> 
 
 
