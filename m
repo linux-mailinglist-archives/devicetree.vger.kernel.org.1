@@ -1,177 +1,106 @@
-Return-Path: <devicetree+bounces-9555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A180B7CD6E6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:48:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4BA7CD6EE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:50:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D24B01C20977
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:48:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDAFD281378
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75FF156C8;
-	Wed, 18 Oct 2023 08:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2CE156C8;
+	Wed, 18 Oct 2023 08:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p5f7KhhS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B63011723
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:48:33 +0000 (UTC)
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38C5B6;
-	Wed, 18 Oct 2023 01:48:31 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id C481B24E269;
-	Wed, 18 Oct 2023 16:48:27 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
- 2023 16:48:28 +0800
-Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
- 2023 16:48:27 +0800
-Message-ID: <d4df5c0a-07b1-449c-3c08-aa57da7fb3d7@starfivetech.com>
-Date: Wed, 18 Oct 2023 16:48:26 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A86125CB
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:50:12 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54338EA
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:50:10 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507bd64814fso2273254e87.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 01:50:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697619008; x=1698223808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VY8V074ZaWHR3uxPsaqqpbxmTtftcDfFzH7Dssm9LII=;
+        b=p5f7KhhSc7cBaTlx5VdOHiZxPxaZbsYhD5lw4ZBavMdgIgM/Vb6zaSFd6hl3orzys3
+         p9qKMeHQFkcQF4RrD7+t27oYC3f9U5jSzRAv3bIpWcITG/8D74GyWOREX3yGcmZXiO7b
+         a8Nb7uIgIgNJKTkHrz6P9Z9VLntIh4Vj72C5RC5IsCHfTiKdBPIhtlIW5l3d3triwBfI
+         RodFmm7ucL6GIWiY8wmtTPr07rhHDXOnvSoGj1aR9THKp8Of8ZTYwjHFcF3Q/r+CKmvL
+         aO7VFWJSJB3vzAZfi66DdWSTJukO9UziAZTuSyR5oFTV3MOtko17/iWfEXB61KosHiK7
+         Eouw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697619008; x=1698223808;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VY8V074ZaWHR3uxPsaqqpbxmTtftcDfFzH7Dssm9LII=;
+        b=WaFFW91Z7JHanv2KGFF08bIsKpTXCdSWNP4L05H8unoe/FhNTSLyETzROM4Zoo6+Z5
+         BGd4jg1fE2MWNprcMM0x+UHZ4a9Jn+8f5lT8lSsWwOqclE9X92jE9T2kpbGL6HGUpf9v
+         TQz60f4iRqLreXdN7+E4RPIVypxU7y5+SH6ezIykMStWHmnLIe5T2ZkKhWCtMc/RD6Gr
+         avVz4nvFvqan/xbDx5N2RMpD6RAev4cgL+0uPHo9vP9XCG2cov3Oa9DbKDe2H4JH9K6J
+         BTykia8Yj2NvIh65b0scNpBkjnJUnfsAvoASdRHTW+BqAVOHyeHiwFclhq5dJrnRUWjJ
+         baDg==
+X-Gm-Message-State: AOJu0YzPxb7r9Z7TGPomEvD+4vGbNui6aFVP9H7CAr4ZgvzyBrmpofMq
+	VV+cD4Z5O6PLqsAW9s7GtvAmVw==
+X-Google-Smtp-Source: AGHT+IF5XWZCdhFd+sdr7SW9sr+WDumaME1Zk8oICpesr0u85VtPi3laTpJVUkx0QZ0bIQz0st1WIg==
+X-Received: by 2002:ac2:5586:0:b0:500:95f7:c416 with SMTP id v6-20020ac25586000000b0050095f7c416mr2891199lfg.7.1697619008563;
+        Wed, 18 Oct 2023 01:50:08 -0700 (PDT)
+Received: from [172.30.204.55] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id x20-20020a056512079400b00507a3b8b007sm615700lfr.110.2023.10.18.01.50.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 01:50:08 -0700 (PDT)
+Message-ID: <6b4c544b-5325-42cc-9479-bd4db7250687@linaro.org>
+Date: Wed, 18 Oct 2023 10:50:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8916-longcheer-l8910: Enable RGB
+ LED
 Content-Language: en-US
-From: Jack Zhu <jack.zhu@starfivetech.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>, Todor Tomov
-	<todor.too@gmail.com>, <bryan.odonoghue@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>
-CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-	<changhuang.liang@starfivetech.com>
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
- <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
- <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
-In-Reply-To: <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Stephan Gerhold <stephan@gerhold.net>
+References: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
+ <20231013-bq_leds-v1-1-cc374369fc56@apitzsch.eu>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231013-bq_leds-v1-1-cc374369fc56@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
-On 2023/10/18 10:37, Jack Zhu wrote:
-> Hi Hans,
+On 10/13/23 22:51, André Apitzsch wrote:
+> l8910 uses KTD2026 LED driver. Add it to the device tree.
 > 
-> Thank you for your comments.
-> 
-> On 2023/10/16 19:40, Hans Verkuil wrote:
->> Hi Jack,
->> 
->> On 08/10/2023 10:51, Jack Zhu wrote:
->>> Hi,
->>> 
->>> This series is the v10 series that attempts to support the Camera Subsystem
->>> found on StarFive JH7110 SoC.
->>> 
->>> This series is based on top of the master branch of media_stage repository,
->>> which is tested with a v4l2-compliance compiled from the git repo
->>> (git://linuxtv.org/v4l-utils.git).
->> 
->> I get one smatch warning:
->> 
->> drivers/staging/media/starfive/camss/stf-isp.c:122 isp_enum_mbus_code() warn: unsigned 'code->index' is never less than zero.
->> 
->> And I also notice that there is no TODO file: staging drivers should have a
->> TODO file explaining what needs to be done to get them out of staging.
->> 
->> I'm curious to know that as well :-)
->> 
->> It looks like there is a lot of additional development that can be done, since
->> most of the ISP parameters appear to be hardcoded.
->> 
->> I also notice something weird in the compliance test output for v4l-subdev0 vs
->> v4l-subdev1:
->> 
->>> Compliance test for starfive-camss device /dev/v4l-subdev0:
->>> 
->>> Driver Info:
->>> 	Driver version   : 6.6.0
->>> 	Capabilities     : 0x00000000
->>> Media Driver Info:
->>> 	Driver name      : starfive-camss
->>> 	Model            : Starfive Camera Subsystem
->>> 	Serial           : 
->>> 	Bus info         : platform:19840000.camss
->>> 	Media version    : 6.6.0
->>> 	Hardware revision: 0x00000000 (0)
->>> 	Driver version   : 6.6.0
->>> Interface Info:
->>> 	ID               : 0x0300001c
->>> 	Type             : V4L Sub-Device
->>> Entity Info:
->>> 	ID               : 0x00000001 (1)
->>> 	Name             : stf_isp
->>> 	Function         : Image Signal Processor
->>> 	Pad 0x01000002   : 0: Sink
->>> 	  Link 0x02000014: from remote pad 0x1000010 of entity 'cdns_csi2rx.19800000.csi-bridge' (Video Interface Bridge): Data, Enabled
->>> 	Pad 0x01000003   : 1: Source
->>> 	  Link 0x0200000c: to remote pad 0x1000009 of entity 'capture_yuv' (V4L2 I/O): Data, Enabled
->> 
->> Here it shows the Media Driver Info for v4l-subdev0.
->> 
->> <snip>
->> 
->>> --------------------------------------------------------------------------------
->>> Compliance test for device /dev/v4l-subdev1:
->>> 
->>> Driver Info:
->>> 	Driver version   : 6.6.0
->>> 	Capabilities     : 0x00000000
->> 
->> But this does not appear for v4l-subdev1.
->> 
->> I can't really tell why it doesn't show that. Can you debug a little bit?
->> The code is in v4l2-compliance.cpp, line 1086:
->> 
->> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
->> 
->> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
->> and that fails for some reason. It could be that media_fd is invalid (would be weird).
->> 
->> This could well be a v4l2-compliance bug that you hit with this driver.
->> 
-> 
-> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
-> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
-> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
-> 
-> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
-> 
+> Tested-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Hi Hans,
-
-Could you please comment on this issue? imx219 directly uses the driver file in the
-media_stage repository.
-
-Thank you for your time!
-
--- 
-Regards,
-
-Jack Zhu
+Konrad
 
