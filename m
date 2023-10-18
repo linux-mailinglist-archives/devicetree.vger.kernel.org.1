@@ -1,254 +1,126 @@
-Return-Path: <devicetree+bounces-9693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E537C7CE082
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3182F7CE087
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A4401C20C5E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:58:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 631361C20955
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B98F374FF;
-	Wed, 18 Oct 2023 14:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BEC37C84;
+	Wed, 18 Oct 2023 14:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OClBTbVI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kFVGTW+r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE9116427
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:58:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B1C0C433C7;
-	Wed, 18 Oct 2023 14:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697641091;
-	bh=oON56p+SlehrIDMoT8ql+1sFP3jroX/v1hAIFl+OSLo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OClBTbVISFPOhxalCQ95Y/r15vhVG87qNTc96xZGLo9QVJe4h8k5OoXpod82FVh3e
-	 LwhFjujSdwhS51FNPq9H2h2yVf7uHnYftQv8mBiHRU0zK43QPq0Pfo6FhdGY3VS/Vy
-	 A2ScolHoUUnBtVAMJHwLtqLlnY0fKhQRvDr/bVTvV8syR3SiNl/z1XvWGUuWNziq0F
-	 otfoHXjQmVbfkEC/wjqXVtzKVTXP0UcmXBzS7g93mzSpLvJYFkdPeapPc655I4lyWq
-	 +XigI9ZECcvg6XBfFTeYeDg8EnCkI48gFZJugION51WyW45N0N/mqck+9hf5xBV7Hq
-	 oGnPXW8iCf3UA==
-Message-ID: <c89e0fa8-e51e-47f1-9857-f01bd3e79bab@kernel.org>
-Date: Wed, 18 Oct 2023 23:58:05 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8F716427
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:58:29 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C3E10F;
+	Wed, 18 Oct 2023 07:58:27 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39IEwKr0085053;
+	Wed, 18 Oct 2023 09:58:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697641100;
+	bh=fJ5ZF51QXn8i2PZQhi2CdyDiD2fW2kt2/JH2j2Zonac=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=kFVGTW+rhpoIFe+SM8RCWgSyTXmrkfwuWtcDEZpoKJiMQPtxdBefOLg5HO10gWdhj
+	 YzsaF4xaHf8zHwpW73pEgEDntDY6KuGkAg1ptIXlB+Kb+/ldexL3g/CHhcnpyX4HD/
+	 DmuMdDM7ufl49aTtxrOg/4rwsoiPl60KevnPEvT0=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39IEwKRJ121999
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 18 Oct 2023 09:58:20 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 18
+ Oct 2023 09:58:19 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 18 Oct 2023 09:58:19 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39IEwGuw026244;
+	Wed, 18 Oct 2023 09:58:17 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] arm64: dts: ti: Use simple-bus wherever possible
+Date: Wed, 18 Oct 2023 20:28:15 +0530
+Message-ID: <169764101784.299606.7410332060176644485.b4-ty@ti.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231005151302.1290363-1-vigneshr@ti.com>
+References: <20231005151302.1290363-1-vigneshr@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 03/26] PM / devfreq: rockchip-dfi: use consistent name
- for private data struct
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Robin Murphy <robin.murphy@arm.com>,
- Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
- <20231018061714.3553817-4-s.hauer@pengutronix.de>
-From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20231018061714.3553817-4-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 23. 10. 18. 15:16, Sascha Hauer wrote:
-> The variable name for the private data struct is 'info' in some
-> functions and 'data' in others. Both names do not give a clue what
-> type the variable has, so consistently use 'dfi'.
+Hi Vignesh Raghavendra,
+
+On Thu, 05 Oct 2023 20:43:00 +0530, Vignesh Raghavendra wrote:
+> This series coverts simple-mfd to simple-bus for segments housing Data
+> movement related IPs (DMASS on AM64/AM62 and AM62A), NAVSS on the rest)
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/devfreq/event/rockchip-dfi.c | 72 ++++++++++++++--------------
->  1 file changed, 36 insertions(+), 36 deletions(-)
+> Boot tested on all K3 SoCs. excerised DMA by using ethernet and OSPI for
+> sanity.
 > 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 467f9f42d38f7..e19e5acaa362c 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -59,13 +59,13 @@ struct rockchip_dfi {
->  
->  static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> -	void __iomem *dfi_regs = info->regs;
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> +	void __iomem *dfi_regs = dfi->regs;
->  	u32 val;
->  	u32 ddr_type;
->  
->  	/* get ddr type */
-> -	regmap_read(info->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
-> +	regmap_read(dfi->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
->  	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
->  		    RK3399_PMUGRF_DDRTYPE_MASK;
->  
-> @@ -84,28 +84,28 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
->  
->  static void rockchip_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> -	void __iomem *dfi_regs = info->regs;
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> +	void __iomem *dfi_regs = dfi->regs;
->  
->  	writel_relaxed(SOFTWARE_DIS, dfi_regs + DDRMON_CTRL);
->  }
->  
->  static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	u32 tmp, max = 0;
->  	u32 i, busier_ch = 0;
-> -	void __iomem *dfi_regs = info->regs;
-> +	void __iomem *dfi_regs = dfi->regs;
->  
->  	rockchip_dfi_stop_hardware_counter(edev);
->  
->  	/* Find out which channel is busier */
->  	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> -		info->ch_usage[i].access = readl_relaxed(dfi_regs +
-> +		dfi->ch_usage[i].access = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20) * 4;
-> -		info->ch_usage[i].total = readl_relaxed(dfi_regs +
-> +		dfi->ch_usage[i].total = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_COUNT_NUM + i * 20);
-> -		tmp = info->ch_usage[i].access;
-> +		tmp = dfi->ch_usage[i].access;
->  		if (tmp > max) {
->  			busier_ch = i;
->  			max = tmp;
-> @@ -118,20 +118,20 @@ static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
->  
->  static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  
->  	rockchip_dfi_stop_hardware_counter(edev);
-> -	clk_disable_unprepare(info->clk);
-> +	clk_disable_unprepare(dfi->clk);
->  
->  	return 0;
->  }
->  
->  static int rockchip_dfi_enable(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	int ret;
->  
-> -	ret = clk_prepare_enable(info->clk);
-> +	ret = clk_prepare_enable(dfi->clk);
->  	if (ret) {
->  		dev_err(&edev->dev, "failed to enable dfi clk: %d\n", ret);
->  		return ret;
-> @@ -149,13 +149,13 @@ static int rockchip_dfi_set_event(struct devfreq_event_dev *edev)
->  static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
->  				  struct devfreq_event_data *edata)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	int busier_ch;
->  
->  	busier_ch = rockchip_dfi_get_busier_ch(edev);
->  
-> -	edata->load_count = info->ch_usage[busier_ch].access;
-> -	edata->total_count = info->ch_usage[busier_ch].total;
-> +	edata->load_count = dfi->ch_usage[busier_ch].access;
-> +	edata->total_count = dfi->ch_usage[busier_ch].total;
->  
->  	return 0;
->  }
-> @@ -176,47 +176,47 @@ MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
->  static int rockchip_dfi_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> -	struct rockchip_dfi *data;
-> +	struct rockchip_dfi *dfi;
->  	struct devfreq_event_desc *desc;
->  	struct device_node *np = pdev->dev.of_node, *node;
->  
-> -	data = devm_kzalloc(dev, sizeof(struct rockchip_dfi), GFP_KERNEL);
-> -	if (!data)
-> +	dfi = devm_kzalloc(dev, sizeof(*dfi), GFP_KERNEL);
-> +	if (!dfi)
->  		return -ENOMEM;
->  
-> -	data->regs = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(data->regs))
-> -		return PTR_ERR(data->regs);
-> +	dfi->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dfi->regs))
-> +		return PTR_ERR(dfi->regs);
->  
-> -	data->clk = devm_clk_get(dev, "pclk_ddr_mon");
-> -	if (IS_ERR(data->clk))
-> -		return dev_err_probe(dev, PTR_ERR(data->clk),
-> +	dfi->clk = devm_clk_get(dev, "pclk_ddr_mon");
-> +	if (IS_ERR(dfi->clk))
-> +		return dev_err_probe(dev, PTR_ERR(dfi->clk),
->  				     "Cannot get the clk pclk_ddr_mon\n");
->  
->  	node = of_parse_phandle(np, "rockchip,pmu", 0);
->  	if (!node)
->  		return dev_err_probe(&pdev->dev, -ENODEV, "Can't find pmu_grf registers\n");
->  
-> -	data->regmap_pmu = syscon_node_to_regmap(node);
-> +	dfi->regmap_pmu = syscon_node_to_regmap(node);
->  	of_node_put(node);
-> -	if (IS_ERR(data->regmap_pmu))
-> -		return PTR_ERR(data->regmap_pmu);
-> +	if (IS_ERR(dfi->regmap_pmu))
-> +		return PTR_ERR(dfi->regmap_pmu);
->  
-> -	data->dev = dev;
-> +	dfi->dev = dev;
->  
-> -	desc = &data->desc;
-> +	desc = &dfi->desc;
->  	desc->ops = &rockchip_dfi_ops;
-> -	desc->driver_data = data;
-> +	desc->driver_data = dfi;
->  	desc->name = np->name;
->  
-> -	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
-> -	if (IS_ERR(data->edev)) {
-> +	dfi->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
-> +	if (IS_ERR(dfi->edev)) {
->  		dev_err(&pdev->dev,
->  			"failed to add devfreq-event device\n");
-> -		return PTR_ERR(data->edev);
-> +		return PTR_ERR(dfi->edev);
->  	}
->  
-> -	platform_set_drvdata(pdev, data);
-> +	platform_set_drvdata(pdev, dfi);
->  
->  	return 0;
->  }
+> Vignesh Raghavendra (2):
+>   arm64: dts: ti: k3-*: Convert DMSS to simple-bus
+>   arm64: dts: ti: k3-*: Convert NAVSS to simple-bus
+> 
+> [...]
 
-Already applied it on v7.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+[1/2] arm64: dts: ti: k3-*: Convert DMSS to simple-bus
+      commit: 6ff2e5bb81895247f0414ff6b129c8e025b99a17
+[2/2] arm64: dts: ti: k3-*: Convert NAVSS to simple-bus
+      commit: 6507bfa7e0cde01c5feecdbc163b392021d15cbb
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
 
