@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A547CE892
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:10:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF65E7CE89B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:17:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1699281C69
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:10:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCA5C1C209C3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDBC1EB49;
-	Wed, 18 Oct 2023 20:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB7A1EB4E;
+	Wed, 18 Oct 2023 20:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qp1Ttjd7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DWWHs8Ue"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE241EB2C
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:10:24 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D381112
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:10:22 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50797cf5b69so7573551e87.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:10:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A710F1EB2C
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:17:23 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840BC122
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:17:21 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507cd62472dso82159e87.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:17:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697659820; x=1698264620; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1697660240; x=1698265040; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vC8BSO57sX+RFvEjTRkQdrl0WXBXIli5ij6sBpRlpmY=;
-        b=qp1Ttjd7bg4NjuZFjqHRmkIOMEi5eZZT+fmctQsM9QeVK52AlHj+pQuntQyJzTHJup
-         tMocsb7Y8g1w277Flaw3inb6Ae548IXWa6+xs4PzI+k90VXTV4TEYVQeAjXCWUp0cwxB
-         Vxn9/OQonQYbSfTvUw4HauQDqZTOTEp6ir1r0d3/hYKtuaNBQNI1EQgvpZaHJPegviUI
-         eGTFP9q3l+7owQdLsOnwGVkJA5aqZviIgSU8qZZhvp3j+/36VuhH6bjn/F43sQkE+2jK
-         H5WdKDEIAPmC6d6oOBNj0fJvTz9tOm36GSbxtLRn3Ggz0rDFS8RquSQtbfM6qtaIpRqs
-         ZkuA==
+        bh=SJ3NJUMrDjBU3byV16K9U0/VADUEPkW9PWtdnemsvPE=;
+        b=DWWHs8UeEPUZmyWWrVZRmEhcEV8WkTlvwE1OLr6Z63Vh2H/WyBXscJZN5XQruxjis9
+         eayECUFYTPHiFv6pAoTzZ1qiw0O5nYHQli/GTCVM8tTSJfedb43sMxMKNBUzmuA/lAll
+         SATXX2qand7o+q0LHPrjpUqUNZI2TesX+C5ujfmwxDvFcGQm4OihPB70pdwoDSYE641R
+         wQMeotc9he7+roPqU+rl+qrVKlqqsVMaSyqiAk7HONxcBYJV/2/dSVgX8grr/Y7kd8bV
+         /KQCFHwRBinwSeKKHsmPw9vXx9ZGkL44Qj3EYAsLmOff5ubvrhoP8dfSCFrVASuf9fc/
+         c4mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697659820; x=1698264620;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20230601; t=1697660240; x=1698265040;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vC8BSO57sX+RFvEjTRkQdrl0WXBXIli5ij6sBpRlpmY=;
-        b=fBuMxCVO3eCNXPXy9w61QvZ5imLMbwRA5xh0EX+iYWGcSVZ+xyl138AISa0QPrSdOn
-         a4HTXh2H0k1nVd8W8OkMJOVWpPlYRTYo/KNpLS3+J0kvUnsLnAhFPnHQB4SvYEuPxMyy
-         ztxInpLsfrjhNl00R9RTHcvTnvEW1YO9oiuBiVAz+elQpwHhdfL212l/UV824BcGHSYp
-         uP+P2P9jkD0Ip27hqib47PiCij9x3p6GmuPcBChFivf6727mJ8v1x9NrjFaSg0w+Vilz
-         LXce0PoMaNNJbt4rgdAsD37S4nV+CJC4lf+taI0RW9d1h1DMxqqNNtas4mP+W/sFzLak
-         SmFw==
-X-Gm-Message-State: AOJu0Yy91xnB/OJZDmD/8GrWwKSytQdtQfAf+bgPPYD0vL3hRvo4gLfH
-	xUUiPOrQ50f9HBSUrfinrY0SWQ==
-X-Google-Smtp-Source: AGHT+IEoV8GqxarhRZJW+0Q9BZA1W9wzW1qrmKIldTts6mlhYjR/7ldyMGUwHxDYw3kBmonbwYz5Ug==
-X-Received: by 2002:a05:6512:15b:b0:507:a984:bf40 with SMTP id m27-20020a056512015b00b00507a984bf40mr40011lfo.47.1697659820172;
-        Wed, 18 Oct 2023 13:10:20 -0700 (PDT)
+        bh=SJ3NJUMrDjBU3byV16K9U0/VADUEPkW9PWtdnemsvPE=;
+        b=VijXdDQGWJOkOQZnIdWck5Jzp5mPWyacgL1yzzwbYpIYntR+GBTt6SS5lrLe74Agvy
+         Nz7lU8CdRRS8o4/z7JxYx0Di04onOT5RpwoYp64Ghaq7Ed3TPdj+gkrs3g+GRpbZ/ifA
+         FA1BjgS7weZN8DPYg0xgAWONlSvFqbpWR61nrc8FW6sSiJwtV9cZbMOiNh2MTG9sItat
+         X+xcCqqnPbWwLy1strtCwTuPrFUepMSJ4LPTyxrcUz8aWUCK9/AzoTgTVjYsGs89JDmV
+         QX9mWL8srTfzlpfY1E1PphW9a9+TY7c0F+EPYTviZWQw4apc57PgpihKGW+K+2t0FYoQ
+         9wIg==
+X-Gm-Message-State: AOJu0Yx+2ZQssvOt7MGIgnCpKzYXR1vHZBfDcIQmlt81bLiIMtA1gmR/
+	3mAwdmzatkT/Zu0y01m2LdTKDg==
+X-Google-Smtp-Source: AGHT+IHZdpeLyJD4QGbEa/SXZTiImOc1XIVZW9/SWzkUvsh1PU5KK/ZjOgGRaY8L8um6sUiDmzbVyA==
+X-Received: by 2002:a05:6512:ba9:b0:507:cd54:e93e with SMTP id b41-20020a0565120ba900b00507cd54e93emr143176lfv.2.1697660239552;
+        Wed, 18 Oct 2023 13:17:19 -0700 (PDT)
 Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id v7-20020a056512048700b0050336e38735sm816806lfq.92.2023.10.18.13.10.17
+        by smtp.gmail.com with ESMTPSA id d13-20020ac25ecd000000b0050799f689ddsm831295lfq.200.2023.10.18.13.17.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 13:10:19 -0700 (PDT)
-Message-ID: <5e1eacc5-721e-4ac1-a62f-ece6a1c4355c@linaro.org>
-Date: Wed, 18 Oct 2023 22:10:16 +0200
+        Wed, 18 Oct 2023 13:17:19 -0700 (PDT)
+Message-ID: <6ac842b8-5fcb-4094-8488-4d6e250bf102@linaro.org>
+Date: Wed, 18 Oct 2023 22:17:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,51 +67,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: ipq9574: populate the opp table
- based on the eFuse
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sm8350: Fix remoteproc interrupt
+ type
 Content-Language: en-US
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- rafael@kernel.org, viresh.kumar@linaro.org, ilia.lin@kernel.org,
- quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-References: <cover.1697600121.git.quic_varada@quicinc.com>
- <5d1bf44de58db10a20d1b116c7fd4b073d01271e.1697600121.git.quic_varada@quicinc.com>
+To: Nia Espera <nespera@igalia.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Vinod Koul <vkoul@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>,
+ Clayton Craft <clayton@igalia.com>,
+ Caleb Connolly <caleb.connolly@linaro.org>,
+ Luca Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
+References: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
+ <20231018-nia-sm8350-for-upstream-v2-4-7b243126cb77@igalia.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <5d1bf44de58db10a20d1b116c7fd4b073d01271e.1697600121.git.quic_varada@quicinc.com>
+In-Reply-To: <20231018-nia-sm8350-for-upstream-v2-4-7b243126cb77@igalia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 10/18/23 11:29, Varadarajan Narayanan wrote:
-> IPQ95xx SoCs have different OPPs available for the CPU based on
-> SoC variant. This can be determined from an eFuse register
-> present in the silicon.
+On 10/18/23 16:25, Nia Espera wrote:
+> In a similar vein to
+> https://lore.kernel.org/lkml/20220530080842.37024-3-manivannan.sadhasivam@linaro.org/,
+> the remote processors on sm8350 fail to initialize with the 'correct'
+> (i.e., specified in downstream) IRQ type. Change this to EDGE_RISING.
 > 
-> Add support to read the eFuse and populate the OPPs based on it.
-> 
-> Frequency	1.2GHz	1.8GHz	1.5GHz	No	opp-supported-hw
-> 					Limit
-> ------------------------------------------------------------
-> 936000000	1	1	1	1	0xf
-> 1104000000	1	1	1	1	0xf
-> 1200000000	1	1	1	1	0xf
-> 1416000000	0	1	1	1	0x7
-> 1488000000	0	1	1	1	0x7
-> 1800000000	0	1	0	1	0x5
-> 2208000000	0	0	0	1	0x1
-> -----------------------------------------------------------
-> 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Nia Espera <nespera@igalia.com>
 > ---
-> v2:	cpu_speed_bin -> cpu-speed-bin in node name
-> 	Move comment to commit log
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hm, apparently 8250 and 7180 have the same thing.
+
+Mani, could you elaborate on this?
 
 Konrad
 
