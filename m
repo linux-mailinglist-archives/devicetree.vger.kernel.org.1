@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9596F7CD3DF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:10:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDAA7CD3E7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:14:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 459B9281346
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:10:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4247281390
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D849F8F57;
-	Wed, 18 Oct 2023 06:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474FD8F57;
+	Wed, 18 Oct 2023 06:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q8ec2Xev"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jtQvk1dX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F8063E
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:10:00 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF73AEA
-	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:09:58 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99357737980so1052712266b.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:09:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDC28F45
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:13:56 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C64EEC4
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:13:54 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40806e40fccso9889825e9.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697609397; x=1698214197; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697609633; x=1698214433; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TOSDdTKHQ6Zn18zXh4dBj8ZhMSb7NfUjm1rV0GFHp+0=;
-        b=q8ec2Xev+rEuYa9JVBFAJ6mUanuZnt94sHGayOVXF0Hmjhto0zaka3XQlq0q0Z4bAi
-         i98smxaZHMy/snHypaaoQdLCW6aczp4Bhz2Yj/WwCX47IeEzfYFvULIZsfeRu0uyNalA
-         8L7mO3NC2HFgX/ccMfmoL4VL4ufldWfGGUQKDraDvyiHdHn61/j1AJfcyExZSVl8rz+T
-         4n0oT/X6zbkq/iByV5A01SNKqh0tbfQKw/ww2U6nQIdT5I0JUwYChl1/jtYEisx3mdOV
-         e/yXUgHb+TNHeLfBVAlvkjBmAPsYfHcyxt4L4OqKJEiCzE7ay38E3Pagz9xkC4+qoFz8
-         r3pg==
+        bh=LMOz3a+HIg55KsLnQCDsI6FQjGiosRx/E8Py52k2qlE=;
+        b=jtQvk1dXYB7Ft8nbte/CPgLJr6fX0hDL51P7R9HmD8HVa+GEA1StuC9q4OT/tnguDz
+         DlvlvigPUlJpuk/QW9ztruSa1EJJB2BDtdzj8mhRJjeO6O1qQbeOZ/yfbKKQ5c6LSPbe
+         5aKTIL6bEnqNjdYW2pU+N8WbgmiuQNgpbz3btgkeVY64k0rWA58QGz6LyP0jdLyfGgAO
+         4Gd/3KaojFHgHydUA2TUi1tCHlqmR9ovOhvVDyy87UKLcGERH2twQS16YtQLvEDWZQte
+         MMR9ULGDIBKMEKf0RW1qpe6WdnlTJoXTame8BxEZtcw4cTqu/q8d3Q/cY7A/S/vYDN3v
+         Ugjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697609397; x=1698214197;
+        d=1e100.net; s=20230601; t=1697609633; x=1698214433;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TOSDdTKHQ6Zn18zXh4dBj8ZhMSb7NfUjm1rV0GFHp+0=;
-        b=bSEglEt8mLcXL2jxHgjFskreDNsJUqvvGdpXuzaCoLqleAXhexJEK6y9cdIM8Zksoi
-         EPhVxhjcKmLj2H3yKZo4oMngoUPAnb2YUs3rS4eCkWh5Er5NZTQZxTFFKtf3vMJQhCaY
-         JzHoUewcEOX5anD20N/MKVgppqehJD5OPwCYNHMIjhIXG3t9drok1xatWXp5FL+TvB1/
-         HT64T7UWzMcDt2ojqEJjUTFfk3F/Znoys9dOLH0qXiVtbtJRCAWoNxGucaGLmpReX97U
-         0lVoyO02eMTmopFd+y6+3X3jvjWRjFThplDhJ9HrusOiOE8mldVr5mU9BvXcQXvt6wHD
-         3vhA==
-X-Gm-Message-State: AOJu0YwtxwiuQWa1jrr07fH00SCkkMAyqkyhGRM6FrXee3mh3tpvF2DN
-	eviKSR8g4JIxj0u29VG/n747MA==
-X-Google-Smtp-Source: AGHT+IFxJy7pc9qR58gBFWblDRsvoaM08c/0G6qwRhBGUOQIAkRSbEh09MIMTlEjzlwQdUZMeXgQlg==
-X-Received: by 2002:a17:907:2688:b0:9c5:2806:72e2 with SMTP id bn8-20020a170907268800b009c5280672e2mr3026227ejc.34.1697609397120;
-        Tue, 17 Oct 2023 23:09:57 -0700 (PDT)
+        bh=LMOz3a+HIg55KsLnQCDsI6FQjGiosRx/E8Py52k2qlE=;
+        b=gvD0xNjviPSZauoUsMY4GbAkvt5pz0PwTWxATMY7KJSzugsW5N386XJBI63y3O013B
+         bJbpwHiSnA8lxS0gdJJynbMxRhwjBb4oTv+WbHb0mxuauchKwhH8qv6/jMOZbIaG65jK
+         l0jQTbRChySPQD+llHC5PuOlurgh3KztYkoFBzSSFMiyyazvSWoJDueY1/1gScdLf1W5
+         qwfLjHBDTyddcb4YODbZZhwvEuM3lI0/zohoyz2D7ray1WHh2PJR4k3+2blreDgAeFkQ
+         /deFTiaFdxyYdXvyW4PGgpQx9qE37mCAx8RjD2i0vuGIVwLcJ4VGikjp/Ek0jiXgeeO6
+         DgRg==
+X-Gm-Message-State: AOJu0Yz2E1hN3VTJkKXERZ6ts/RsRz89f08RRyoNj7FaecHhfz5tjcDQ
+	BK52jCUPO4zC5bIMmG8CMizMXg==
+X-Google-Smtp-Source: AGHT+IE+SjgCIjdnHrkNqRZEPEXij+6enOPAuv2dzsjlEQaQ496mReeuCnQIADgtDz5hvQ0FPXlxDQ==
+X-Received: by 2002:a05:600c:4744:b0:406:61c6:30b8 with SMTP id w4-20020a05600c474400b0040661c630b8mr3362406wmo.22.1697609633234;
+        Tue, 17 Oct 2023 23:13:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.154])
-        by smtp.gmail.com with ESMTPSA id j8-20020a1709064b4800b009a1a653770bsm933348ejv.87.2023.10.17.23.09.54
+        by smtp.gmail.com with ESMTPSA id 26-20020a05600c229a00b00407460234f9sm743023wmf.21.2023.10.17.23.13.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Oct 2023 23:09:56 -0700 (PDT)
-Message-ID: <8059e5ab-672a-4808-9159-d67309625ef0@linaro.org>
-Date: Wed, 18 Oct 2023 08:09:54 +0200
+        Tue, 17 Oct 2023 23:13:52 -0700 (PDT)
+Message-ID: <588ee1b8-7d95-4cf7-b1c0-191482651dc2@linaro.org>
+Date: Wed, 18 Oct 2023 08:13:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
- runtime
+Subject: Re: [PATCH v7 2/3] dt-bindings: usb: ci-hdrc-usb2: add npcm750 and
+ npcm845 compatible
 Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
- Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com,
- Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Bjorn Andersson <andersson@kernel.org>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-2-quic_kriskura@quicinc.com>
- <a3d612a8-1917-491d-a944-22ea39879a9d@linaro.org>
- <189be124-efb1-4843-9a47-db84942838c9@quicinc.com>
+To: Tomer Maimon <tmaimon77@gmail.com>, peter.chen@kernel.org,
+ gregkh@linuxfoundation.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com,
+ avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ j.neuschaefer@gmx.net
+Cc: openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231017195903.1665260-1-tmaimon77@gmail.com>
+ <20231017195903.1665260-3-tmaimon77@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,62 +125,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <189be124-efb1-4843-9a47-db84942838c9@quicinc.com>
+In-Reply-To: <20231017195903.1665260-3-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/10/2023 19:46, Krishna Kurapati PSSNV wrote:
+On 17/10/2023 21:59, Tomer Maimon wrote:
+> Add a compatible string for Nuvoton BMC NPCM750 and Nuvoton BMC NPCM845.
 > 
-> 
-> On 10/17/2023 10:49 PM, Krzysztof Kozlowski wrote:
->> On 17/10/2023 15:18, Krishna Kurapati wrote:
->>> Add enable-rt binding to let the device register vendor hooks to
->>> core and facilitate runtime suspend and resume.
->>>
->>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>> ---
->>>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
->>> index cb50261c6a36..788d9c510abc 100644
->>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
->>> @@ -151,6 +151,11 @@ properties:
->>>         HS/FS/LS modes are supported.
->>>       type: boolean
->>>   
->>> +  qcom,enable-rt:
->>> +    description:
->>> +      If present, register vendor hooks to facilitate runtime suspend/resume
->>
->> You described the desired Linux feature or behavior, not the actual
->> hardware. The bindings are about the latter, so instead you need to
->> rephrase the property and its description to match actual hardware
->> capabilities/features/configuration etc.
->>
-> 
-> Hi Krzysztof,
-> 
->   Thanks for the review. Although it sounds like its a Linux property, 
-> internally what it does is configuring qscratch registers properly when 
-> (dr_mode == OTG)
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-That's not what you wrote. You wrote "register vendor hooks". Really,
-this is nothing to do with hardware.
-
-> 
->   Would it be fine to rephrase the property name to 
-> "qcom,config-qscratch" and to make it dependent on dr_mode and 
-> usb-role-switch properties ? Would it be possible to make such a 
-> dependency in bindings ?
-
-Examples are in: example-schema or my talk.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
