@@ -1,197 +1,166 @@
-Return-Path: <devicetree+bounces-9596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976FD7CD812
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:31:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC5A7CD815
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5278C2814CB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:31:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08AB31C20A44
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7C2179B6;
-	Wed, 18 Oct 2023 09:31:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NzvRc23z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD6118046;
+	Wed, 18 Oct 2023 09:31:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9766618037
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:31:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20001996;
-	Wed, 18 Oct 2023 02:31:12 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I58Vu6013865;
-	Wed, 18 Oct 2023 09:31:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=Q39nesa3iokJWBjY0DCM/z0AaNrX5/NIO6hWDZsdE/o=;
- b=NzvRc23zPVSMfaBzsPLMylVgPC885YC+eM34GHUflSA6GoMtFvmpK4KA9kW3wXFWLGYh
- 4K0urSDkp+bN1k+L9hCVy3d0YIPq1mWg7BGgZJeLwnNz2G68sKc9zW9wABBjBBNKeFQg
- mVql52Mcm48alS4ncQPKKGsoBfDFDCVp/W8TStqpblvPVpq4BePxxfDCGDgocro9Qw/8
- E7SdRuGfNbnccdxmVeT8mAjmPB+FZeppivYZFlLPa5r9WJRaYykiF3B08BM4r+gSxsLS
- f+bmC0hp0SY+1O8tM9PXefi0hnCy29FZR3sSSBCCDXJPDNzai6wiLqI64IPKPEzZQ3pD cQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt8xs8hm0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 09:31:09 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39I9V8PG019004
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 09:31:08 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Wed, 18 Oct 2023 02:31:02 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
-        <quic_kathirav@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v3 8/8] arm64: dts: qcom: ipq9574: populate the opp table based on the eFuse
-Date: Wed, 18 Oct 2023 14:59:21 +0530
-Message-ID: <5d1bf44de58db10a20d1b116c7fd4b073d01271e.1697600121.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1697600121.git.quic_varada@quicinc.com>
-References: <cover.1697600121.git.quic_varada@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC74418043;
+	Wed, 18 Oct 2023 09:31:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C51C433C8;
+	Wed, 18 Oct 2023 09:31:34 +0000 (UTC)
+Message-ID: <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
+Date: Wed, 18 Oct 2023 11:31:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vFowdpO-XE0_bRX19b5wnuQfH8no5yPv
-X-Proofpoint-ORIG-GUID: vFowdpO-XE0_bRX19b5wnuQfH8no5yPv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-18_07,2023-10-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 mlxscore=0 suspectscore=0 clxscore=1015
- impostorscore=0 phishscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=924 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310180080
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US, nl
+To: Jack Zhu <jack.zhu@starfivetech.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ changhuang.liang@starfivetech.com
+References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+ <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
+ <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
+ <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
+ <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-IPQ95xx SoCs have different OPPs available for the CPU based on
-SoC variant. This can be determined from an eFuse register
-present in the silicon.
+On 18/10/2023 11:25, Jack Zhu wrote:
+> 
+> 
+> On 2023/10/18 16:50, Hans Verkuil wrote:
+>> Hi Jack,
+>>
+>> On 18/10/2023 04:37, Jack Zhu wrote:
+>>
+>> <snip>
+>>
+>>>>> --------------------------------------------------------------------------------
+>>>>> Compliance test for device /dev/v4l-subdev1:
+>>>>>
+>>>>> Driver Info:
+>>>>> 	Driver version   : 6.6.0
+>>>>> 	Capabilities     : 0x00000000
+>>>>
+>>>> But this does not appear for v4l-subdev1.
+>>>>
+>>>> I can't really tell why it doesn't show that. Can you debug a little bit?
+>>>> The code is in v4l2-compliance.cpp, line 1086:
+>>>>
+>>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
+>>>>
+>>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
+>>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
+>>>>
+>>>> This could well be a v4l2-compliance bug that you hit with this driver.
+>>>>
+>>>
+>>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
+>>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
+>>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
+>>>
+>>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
+>>>
+>>
+>> Can you try again with this v4l2-compliance patch?
+>>
+>> I need to dig a bit deeper as to why media0 is missing, but for now try this.
+>>
+>> Regards,
+>>
+>> 	Hans
+>>
+>> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
+>> index 7169eefe..29475d6b 100644
+>> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
+>> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
+>> @@ -968,7 +968,7 @@ err:
+>>  }
+>>
+>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+>> -	      unsigned frame_count, unsigned all_fmt_frame_count)
+>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
+>>  {
+>>  	struct node node2;
+>>  	struct v4l2_capability vcap = {};
+>> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
+>>  		memset(&vcap, 0, sizeof(vcap));
+>>  	}
+>>
+>> -	if (!node.is_media())
+>> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+>> +	if (!node.is_media()) {
+>> +		if (parent_media_fd >= 0)
+>> +			media_fd = parent_media_fd;
+>> +		else
+>> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+>> +	}
+>>
+>>  	int fd = node.is_media() ? node.g_fd() : media_fd;
+>>  	if (fd >= 0) {
+>> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
+>> index 7caf254b..c47f25f5 100644
+>> --- a/utils/v4l2-compliance/v4l2-compliance.h
+>> +++ b/utils/v4l2-compliance/v4l2-compliance.h
+>> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
+>>  int check_0(const void *p, int len);
+>>  int restoreFormat(struct node *node);
+>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+>> -	      unsigned frame_count, unsigned all_fmt_frame_count);
+>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
+>>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
+>>
+>>  // Media Controller ioctl tests
+>>
+> 
+> From the log, there is no change.
 
-Add support to read the eFuse and populate the OPPs based on it.
+Oops, my mistake. Also apply this change:
 
-Frequency	1.2GHz	1.8GHz	1.5GHz	No	opp-supported-hw
-					Limit
-------------------------------------------------------------
-936000000	1	1	1	1	0xf
-1104000000	1	1	1	1	0xf
-1200000000	1	1	1	1	0xf
-1416000000	0	1	1	1	0x7
-1488000000	0	1	1	1	0x7
-1800000000	0	1	0	1	0x5
-2208000000	0	0	0	1	0x1
------------------------------------------------------------
+diff --git a/utils/v4l2-compliance/v4l2-test-media.cpp b/utils/v4l2-compliance/v4l2-test-media.cpp
+index 0195ac58..52ab7fb8 100644
+--- a/utils/v4l2-compliance/v4l2-test-media.cpp
++++ b/utils/v4l2-compliance/v4l2-test-media.cpp
+@@ -612,7 +612,7 @@ void walkTopology(struct node &node, struct node &expbuf_node,
+ 		}
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-v2:	cpu_speed_bin -> cpu-speed-bin in node name
-	Move comment to commit log
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ 		testNode(test_node, test_node, expbuf_node, type,
+-			 frame_count, all_fmt_frame_count);
++			 frame_count, all_fmt_frame_count, node.g_fd());
+ 		test_node.close();
+ 	}
+ }
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index cc84f25..5f83ee4 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -106,42 +106,56 @@
- 	};
- 
- 	cpu_opp_table: opp-table-cpu {
--		compatible = "operating-points-v2";
-+		compatible = "operating-points-v2-kryo-cpu";
- 		opp-shared;
-+		nvmem-cells = <&cpu_speed_bin>;
- 
- 		opp-936000000 {
- 			opp-hz = /bits/ 64 <936000000>;
- 			opp-microvolt = <725000>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1104000000 {
- 			opp-hz = /bits/ 64 <1104000000>;
- 			opp-microvolt = <787500>;
-+			opp-supported-hw = <0xf>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <862500>;
-+			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1416000000 {
- 			opp-hz = /bits/ 64 <1416000000>;
- 			opp-microvolt = <862500>;
-+			opp-supported-hw = <0x7>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1488000000 {
- 			opp-hz = /bits/ 64 <1488000000>;
- 			opp-microvolt = <925000>;
-+			opp-supported-hw = <0x7>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-1800000000 {
- 			opp-hz = /bits/ 64 <1800000000>;
- 			opp-microvolt = <987500>;
-+			opp-supported-hw = <0x5>;
- 			clock-latency-ns = <200000>;
- 		};
- 
- 		opp-2208000000 {
- 			opp-hz = /bits/ 64 <2208000000>;
- 			opp-microvolt = <1062500>;
-+			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
- 		};
- 	};
-@@ -223,6 +237,11 @@
- 			reg = <0x000a4000 0x5a1>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			cpu_speed_bin: cpu-speed-bin@15 {
-+				reg = <0x15 0x2>;
-+				bits = <7 2>;
-+			};
- 		};
- 
- 		cryptobam: dma-controller@704000 {
--- 
-2.7.4
+Regards,
 
+	Hans
 
