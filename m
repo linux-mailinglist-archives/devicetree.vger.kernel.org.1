@@ -1,295 +1,148 @@
-Return-Path: <devicetree+bounces-9726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33DB67CE296
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 18:19:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5767CE2C8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 18:29:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7893B2130D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:19:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2676B20D7D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DA13C091;
-	Wed, 18 Oct 2023 16:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369D33C080;
+	Wed, 18 Oct 2023 16:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nWau1rRo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IGrXPFmD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4D33C088
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 16:19:00 +0000 (UTC)
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD6298;
-	Wed, 18 Oct 2023 09:18:58 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-3ae35773a04so4488371b6e.0;
-        Wed, 18 Oct 2023 09:18:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A9D3C06C
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 16:29:36 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0D9BD
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:29:34 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40836ea8cbaso13463055e9.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:29:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697645938; x=1698250738; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cncp6Vqz2tNKyeMpBE+MzO1YFnQJcaDwVPsn6h2VtJs=;
-        b=nWau1rRo29sYzee4I9AntZ3wUjm4OpQn1NHzmVrJyq3xH2Q1jjTKZh9D6pSUL+jqCi
-         Upe6RnmW0vff/+uVAoAMoacqlihnUq5Nzh3gAZZ+Sg6e4b9P5E4Zig0P7IckmoYkn5R8
-         avhplsxbZkY+96fX5T5JuX/mYEl7YbJ8qElL0HTM3YaQxMS4BZld7x4Ytz6FIh0cCKG/
-         xecFIqrkvrCDgLl2ZXDtDWTPGSnsBeEMlGgkzDsz2C2XvBpmx9MqLQEMlxL+hE1yCchZ
-         WUKSl4uPJj5WO2/NOuVLQ9tQQwa64sjh0NcjQqzzATpFlLf+xYwVJYeWoMef/ow7YQcP
-         dQ4g==
+        d=linaro.org; s=google; t=1697646573; x=1698251373; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fOxskDfC7UdA36cNfLZwzB1EBzu5Hisy2kWvdoViG+M=;
+        b=IGrXPFmD55pH+pR/RxPHu403PGZO+5zzgRcdVyNI7KJeJij92YZoWXeoqSNI2rNX/z
+         /sM7aZX50h/dasWqrQuNA3HRyNsFgdOO7ID2tJOpFpvnB6mS0wEc664zuW20u5pc+iC4
+         X1cgF0PsmmSDBaBKU+5O83LPB03VeCu29QGgV7FIuQfGwxsUXlhemTFKMCMzDLGMzCMS
+         yHH5BbDdOWYVI+4M9B1kT9km47flMJpa6Xyltyqzeo7SFk839Feq2+NrZd3z2HY8OpsN
+         BaEvAN9FjoUEMQnS8pfvn8rHtkgCqKYtTJubTMZ6JU6mw0386xviqEVhiiMv74Ml29So
+         /Fiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697645938; x=1698250738;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cncp6Vqz2tNKyeMpBE+MzO1YFnQJcaDwVPsn6h2VtJs=;
-        b=wyZNoQSahxYFiaPvAtiSV2sM9qBGGj1p5SY/wQkC57PkwK7SaTnreh2IC9NqMJlL2H
-         C2hDzVL8WHxJWl1rz/4vB5znNGaNa4IodgarEfq46KX7pk+vfiJDEf/GExYXZ5n4Armv
-         ZmGSkyc8pQNHzawVncM21L+YZuGUKAzLQQddiMtp1a9MS6snIeNecXN9D+s2odYCFTIO
-         u+eAr7z71DNXMHckOKoRwgsCOKbowh5qXWmnXgdZEQoq94WRO6fQVKyph0mXyFNzKKDY
-         EK4nmn7kqfHJx7v/e4AyhWD7SrTRsCjIMQYH8eFVGsCpMgXBDq+OY24fd5+rbvJ6n+Pp
-         1aBw==
-X-Gm-Message-State: AOJu0YweJf4PCJ6eKwJoLcd9wDX/tVq/GYmbDgVOECxG5w3RNVzm4RqD
-	mFdNVk5mdSQr/zfvMylqbnk=
-X-Google-Smtp-Source: AGHT+IE/YzedQcbGDsoYXAmqsp/sqSQwZYk7tpz3fGbIapByB8nFBl2o/e0043FsZ2iRLZAQsAXZaQ==
-X-Received: by 2002:aca:1112:0:b0:3af:983a:8129 with SMTP id 18-20020aca1112000000b003af983a8129mr6150694oir.53.1697645938112;
-        Wed, 18 Oct 2023 09:18:58 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id db14-20020a056808408e00b003afe584ed4fsm697390oib.42.2023.10.18.09.18.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Oct 2023 09:18:57 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	sboyd@kernel.org,
-	mturquette@baylibre.com,
-	daniel@ffwll.ch,
-	airlied@gmail.com,
-	sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 5/5] arm64: dts: rockchip: add Powkiddy RK2023
-Date: Wed, 18 Oct 2023 11:18:48 -0500
-Message-Id: <20231018161848.346947-6-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231018161848.346947-1-macroalpha82@gmail.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
+        d=1e100.net; s=20230601; t=1697646573; x=1698251373;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fOxskDfC7UdA36cNfLZwzB1EBzu5Hisy2kWvdoViG+M=;
+        b=OwRl8APFiEAPqCoXVAoJYvRZqyIL118sF/Sn4uqcLtyTawXvr0G2IVxUfLl0spCJIB
+         wp/BIjOK1FsTStC/+c2EK1/ZHSuh+C3/M8t/TR0o9Q4Ug+XaJriaCkP3sCNVOrlzYdqr
+         hNybnGOiGWoKPJkrQTfKV1Y/ILyM98ncaluRXYGH7FVL71H53dZN8NCqqZrEDMxPQgW4
+         4TRIYPnLden15jhEL1p5fX+V69jAubXLVx2dj+mylW5vmaoJkXoET/WZD7zXjUoPLJsQ
+         w+KuX2K/f1JwJEok60yCpv4SOKq64wo1HvAViszcVkP5Y1s7rUf392llUQoVkqAw/IUr
+         T+3g==
+X-Gm-Message-State: AOJu0Yyr+LWXTbSgi3l2ZjrViwP6Lw8iUAGEEyRKlRgym9djXQaaaz7t
+	f/BTMETqTr1iECSzMtH3wvgeDg==
+X-Google-Smtp-Source: AGHT+IHlbC88Biwr7o4WQnFHw/cwAm5/kJ04aqB5iPYwY5HsICEStH+VlgSjG7uqaR0zaLdpP43TFA==
+X-Received: by 2002:a05:600c:1912:b0:401:bd2e:49fc with SMTP id j18-20020a05600c191200b00401bd2e49fcmr4202862wmq.24.1697646573072;
+        Wed, 18 Oct 2023 09:29:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.154])
+        by smtp.gmail.com with ESMTPSA id f19-20020adfb613000000b003232380ffd7sm2424163wre.102.2023.10.18.09.29.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 09:29:32 -0700 (PDT)
+Message-ID: <f87f480d-6775-44c9-8a2b-05d47bb0dc5d@linaro.org>
+Date: Wed, 18 Oct 2023 18:29:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V15 0/4] Add PWM support for IPQ chipsets
+Content-Language: en-US
+To: Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, ndesaulniers@google.com, trix@redhat.com,
+ baruch@tkos.co.il, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ llvm@lists.linux.dev
+Cc: linux-pwm@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+ nathan@kernel.org
+References: <20231005160550.2423075-1-quic_devipriy@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231005160550.2423075-1-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On 05/10/2023 18:05, Devi Priya wrote:
+> Add PWM driver and binding support for IPQ chipsets.
+> Also, add support for pwm node in ipq6018.
+> 
 
-Add support for the Powkiddy RK2023. The Powkiddy RK2023 is a handheld
-gaming device with a 3.5 inch screen powered by the Rockchip RK3566
-SoC. The device is almost identical to the Anbernic RG353P except it
-lacks eMMC, a function button, a touch screen, no UART headers on the
-board, and the panel has slightly different timings.
+You need to clearly mark dependencies. Next is now broken because of
+this patchset.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3566-powkiddy-rk2023.dts   | 161 ++++++++++++++++++
- 2 files changed, 162 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 3f01b429a3aa..9ef64cfb8392 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rk2023.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-radxa-cm3-io.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-new file mode 100644
-index 000000000000..5740412f6b2b
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-@@ -0,0 +1,161 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3566-anbernic-rg353x.dtsi"
-+
-+/ {
-+	model = "RK2023";
-+	compatible = "powkiddy,rk2023", "rockchip,rk3566";
-+
-+	aliases {
-+		mmc1 = &sdmmc0;
-+		mmc2 = &sdmmc1;
-+		mmc3 = &sdmmc2;
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3151000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <2000000>;
-+		constant-charge-voltage-max-microvolt = <4250000>;
-+		factory-internal-resistance-micro-ohms = <117000>;
-+		voltage-max-design-microvolt = <4172000>;
-+		voltage-min-design-microvolt = <3400000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =  <4172000 100>, <4092000 95>, <4035000 90>, <3990000 85>,
-+					<3939000 80>, <3895000 75>, <3852000 70>, <3807000 65>,
-+					<3762000 60>, <3713000 55>, <3672000 50>, <3647000 45>,
-+					<3629000 40>, <3613000 35>, <3598000 30>, <3578000 25>,
-+					<3550000 20>, <3519000 15>, <3479000 10>, <3438000 5>,
-+					<3400000 0>;
-+	};
-+
-+	/* Channels reversed for headphones. */
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "rk817_int";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,widgets =
-+			"Microphone", "Mic Jack",
-+			"Headphone", "Headphones",
-+			"Speaker", "Internal Speakers";
-+		simple-audio-card,routing =
-+			"MICL", "Mic Jack",
-+			"Headphones", "HPOL",
-+			"Headphones", "HPOR",
-+			"Internal Speakers", "SPKO";
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&rk817>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s1_8ch>;
-+		};
-+	};
-+
-+};
-+
-+/delete-node/ &adc_keys;
-+
-+&chosen {
-+	/delete-property/ stdout-path;
-+};
-+
-+&cru {
-+	assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>,
-+			  <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
-+	assigned-clock-rates = <32768>, <1200000000>,
-+			  <200000000>, <115200000>;
-+};
-+
-+&gpio_keys_control {
-+	button-r1 {
-+		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+		label = "TR";
-+		linux,code = <BTN_TR>;
-+	};
-+
-+	button-r2 {
-+		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-+		label = "TR2";
-+		linux,code = <BTN_TR2>;
-+	};
-+};
-+
-+/delete-node/ &{/i2c@fdd40000/regulator@40};
-+
-+&i2c0 {
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1390000>;
-+		regulator-name = "vdd_cpu";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+/*
-+ * Device has 2 controllable LEDs (a red and a green) along with a red
-+ * LED that cannot be controlled and is always on when device is
-+ * powered.
-+ */
-+
-+/delete-node/ &{/pwm-leds/led-2};
-+
-+&leds {
-+	green_led: led-0 {
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_STATUS;
-+		max-brightness = <255>;
-+		pwms = <&pwm6 0 25000 0>;
-+	};
-+
-+	red_led: led-1 {
-+		color = <LED_COLOR_ID_RED>;
-+		function = LED_FUNCTION_CHARGING;
-+		max-brightness = <255>;
-+		pwms = <&pwm7 0 25000 0>;
-+	};
-+
-+};
-+
-+&panel {
-+	compatible = "powkiddy,rk2023-panel", "newvision,nv3051d";
-+};
-+
-+&pwm5 {
-+	status = "disabled";
-+};
-+
-+&rk817 {
-+	rk817_charger: charger {
-+		monitored-battery = <&battery>;
-+		rockchip,resistor-sense-micro-ohms = <10000>;
-+		rockchip,sleep-enter-current-microamp = <300000>;
-+		rockchip,sleep-filter-current-microamp = <100000>;
-+	};
-+};
-+
-+/* There is no UART header visible on the board for this device. */
-+&uart2 {
-+	status = "disabled";
-+};
-+
-+/delete-node/ &vibrator;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
