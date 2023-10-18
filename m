@@ -1,181 +1,102 @@
-Return-Path: <devicetree+bounces-9606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91237CD8AE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:56:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD5257CD8B3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2662C1C204F8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:56:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE5251C208E5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D638018649;
-	Wed, 18 Oct 2023 09:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE811864A;
+	Wed, 18 Oct 2023 09:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MgI4PatR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F0F182C6;
-	Wed, 18 Oct 2023 09:56:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BB26C433C7;
-	Wed, 18 Oct 2023 09:56:10 +0000 (UTC)
-Message-ID: <ed3e726e-4a33-4597-9617-5c380d767fbe@xs4all.nl>
-Date: Wed, 18 Oct 2023 11:56:08 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF718182C6
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:57:27 +0000 (UTC)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A74FA
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 02:57:24 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1e10507a4d6so4614212fac.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 02:57:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1697623044; x=1698227844; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7BiiFcmmCiNj3LecX6OCrxhnQVAh1Ic9WQCeBx3SSIM=;
+        b=MgI4PatRPBKA+BV6TtjvlZW95jOzTD0xTPpweUnYhlxK9oRpUWqFfk+vWrPF0gt7h0
+         Thz3p9t2MpbddeXjttVi70daxziWR3pUV4Wem5A8d/xX/xOptgY0tkjceuCpdjI0bbV2
+         cR3gYMgS6EMxeKQaqvLZUzk6sDkomz6bKn3QQykZuBm31GfqgLppXfgiaL/AeJp8wxCm
+         HsshWKwcqsS5oP88aiAxOkWAlNaXRc72W9sMGW9NVL2AT1J1Ctr0HdmNuJo0veK6sIuo
+         BDFUS4Ynzd2PBBagzZmc18/hbIlxyH3iA22rDReJHW/7D+l6sV1jstEu+SMPjJlWfr2B
+         HcHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697623044; x=1698227844;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7BiiFcmmCiNj3LecX6OCrxhnQVAh1Ic9WQCeBx3SSIM=;
+        b=l0DpWMQsxZrYh6Vapquuncv2WVJuMnp1JylUGEQPVQHkrolPvdNv/20ENlfxufHsOB
+         1HelpK1z0HAVDKTYBPA4QA91vmKGRBT19SvN2shY2+spBNUD9YFA43WSllIlukVARS1n
+         IqxG3HbFUCyJaDSc39lxsJxyE3HYyB62nfc/xYFA61x8XVc0WfrN5EmneY4cXtXxNSVE
+         DTywiaDW31SikKLCgiyI3m6WUOSM8UIflwEa8pq8hvGjopPE6IP24prDEyr18VcRLR9F
+         quRkq3SW/W6XrwUdb0thP7xEemwhK8sRpP8xv4AQQURTgPHDVltI3gnYu2bINs64Kduk
+         /GDA==
+X-Gm-Message-State: AOJu0Yze106xG19+L7uWxNp6xcPObololYOyZ0AoUCmLehdWOjc8Uxps
+	16ebR7CzPfCTt2NN7TbYR7l13wE3cjjA+r7nTif4Vw==
+X-Google-Smtp-Source: AGHT+IGgvTbYU5kAQ82x1eFJVsu/1pPvWmCD2rUCbOzwMrNjpSgu4ojXK1qUS7A/ozCqhTWYWn/CkMe98pIFz+h8TFQ=
+X-Received: by 2002:a05:6870:179a:b0:1d5:8d8b:dcc with SMTP id
+ r26-20020a056870179a00b001d58d8b0dccmr4682983oae.18.1697623043809; Wed, 18
+ Oct 2023 02:57:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
-Content-Language: en-US, nl
-To: Jack Zhu <jack.zhu@starfivetech.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- changhuang.liang@starfivetech.com
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
- <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
- <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
- <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
- <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
- <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
- <6f5da0fa-9c01-dab2-647e-2a3c0a50b316@starfivetech.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <6f5da0fa-9c01-dab2-647e-2a3c0a50b316@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231017190545.157282-1-bero@baylibre.com> <CAGXv+5FwkBU3wfyZWWaiOgzLACfMVs4Bnu2KM4oSCUa28SzXVw@mail.gmail.com>
+In-Reply-To: <CAGXv+5FwkBU3wfyZWWaiOgzLACfMVs4Bnu2KM4oSCUa28SzXVw@mail.gmail.com>
+From: =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+Date: Wed, 18 Oct 2023 11:57:12 +0200
+Message-ID: <CAP2ifjN-z9R=HS06RYPnTrMYondrtobkoPOJDR6js=r8astKJQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/5] Add LVTS support for mt8192
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com, 
+	rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com, 
+	matthias.bgg@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	dunlap@infradead.org, e.xingchen@zte.com.cn, p.zabel@pengutronix.de, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, ames.lo@mediatek.com, rex-bc.chen@mediatek.com, 
+	nfraprado@collabora.com, abailon@baylibre.com, amergnat@baylibre.com, 
+	khilman@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 18/10/2023 11:52, Jack Zhu wrote:
-> 
-> 
-> On 2023/10/18 17:31, Hans Verkuil wrote:
->> On 18/10/2023 11:25, Jack Zhu wrote:
->>>
->>>
->>> On 2023/10/18 16:50, Hans Verkuil wrote:
->>>> Hi Jack,
->>>>
->>>> On 18/10/2023 04:37, Jack Zhu wrote:
->>>>
->>>> <snip>
->>>>
->>>>>>> --------------------------------------------------------------------------------
->>>>>>> Compliance test for device /dev/v4l-subdev1:
->>>>>>>
->>>>>>> Driver Info:
->>>>>>> 	Driver version   : 6.6.0
->>>>>>> 	Capabilities     : 0x00000000
->>>>>>
->>>>>> But this does not appear for v4l-subdev1.
->>>>>>
->>>>>> I can't really tell why it doesn't show that. Can you debug a little bit?
->>>>>> The code is in v4l2-compliance.cpp, line 1086:
->>>>>>
->>>>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
->>>>>>
->>>>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
->>>>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
->>>>>>
->>>>>> This could well be a v4l2-compliance bug that you hit with this driver.
->>>>>>
->>>>>
->>>>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
->>>>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
->>>>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
->>>>>
->>>>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
->>>>>
->>>>
->>>> Can you try again with this v4l2-compliance patch?
->>>>
->>>> I need to dig a bit deeper as to why media0 is missing, but for now try this.
->>>>
->>>> Regards,
->>>>
->>>> 	Hans
->>>>
->>>> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
->>>> index 7169eefe..29475d6b 100644
->>>> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
->>>> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
->>>> @@ -968,7 +968,7 @@ err:
->>>>  }
->>>>
->>>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->>>> -	      unsigned frame_count, unsigned all_fmt_frame_count)
->>>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
->>>>  {
->>>>  	struct node node2;
->>>>  	struct v4l2_capability vcap = {};
->>>> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
->>>>  		memset(&vcap, 0, sizeof(vcap));
->>>>  	}
->>>>
->>>> -	if (!node.is_media())
->>>> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->>>> +	if (!node.is_media()) {
->>>> +		if (parent_media_fd >= 0)
->>>> +			media_fd = parent_media_fd;
->>>> +		else
->>>> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->>>> +	}
->>>>
->>>>  	int fd = node.is_media() ? node.g_fd() : media_fd;
->>>>  	if (fd >= 0) {
->>>> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
->>>> index 7caf254b..c47f25f5 100644
->>>> --- a/utils/v4l2-compliance/v4l2-compliance.h
->>>> +++ b/utils/v4l2-compliance/v4l2-compliance.h
->>>> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
->>>>  int check_0(const void *p, int len);
->>>>  int restoreFormat(struct node *node);
->>>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->>>> -	      unsigned frame_count, unsigned all_fmt_frame_count);
->>>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
->>>>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
->>>>
->>>>  // Media Controller ioctl tests
->>>>
->>>
->>> From the log, there is no change.
->>
->> Oops, my mistake. Also apply this change:
->>
->> diff --git a/utils/v4l2-compliance/v4l2-test-media.cpp b/utils/v4l2-compliance/v4l2-test-media.cpp
->> index 0195ac58..52ab7fb8 100644
->> --- a/utils/v4l2-compliance/v4l2-test-media.cpp
->> +++ b/utils/v4l2-compliance/v4l2-test-media.cpp
->> @@ -612,7 +612,7 @@ void walkTopology(struct node &node, struct node &expbuf_node,
->>  		}
->>
->>  		testNode(test_node, test_node, expbuf_node, type,
->> -			 frame_count, all_fmt_frame_count);
->> +			 frame_count, all_fmt_frame_count, node.g_fd());
->>  		test_node.close();
->>  	}
->>  }
->>
-> 
-> Can see relevant Info in the log.
+Hi,
 
-Great! Can you do one more thing? Please run 'v4l2-compliance -m /dev/media0 --verbose'
-and mail the output to me. It's pretty big, so just email it to me, without CCs.
+On Wed, 18 Oct 2023 at 02:07, Chen-Yu Tsai <wenst@chromium.org> wrote:
+>
+> I see two series in my inbox and on the mailing list. Which one is the
+> correct one?
 
-I want to take a closer look at the output to see why this patch is needed.
+They're identical except I accidentally sent them out using my private
+email (that happens to be on a mail server hosted on my DSL line, so a
+number of MLs drop it because of dialup blacklists) first. I resent it
+using my work email when the error messages about that started
+flooding my inbox. Sorry about the confusion - but code wise it
+doesn't matter, v5 is v5.
 
-Regards,
-
-	Hans
-
+ttyl
+bero
 
