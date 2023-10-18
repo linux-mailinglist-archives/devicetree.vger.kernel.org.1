@@ -1,304 +1,182 @@
-Return-Path: <devicetree+bounces-9604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC2D7CD89E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:53:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6F07CD8A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DDCA2817D9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:53:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F7E9B20F4A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F9C18636;
-	Wed, 18 Oct 2023 09:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88FC118637;
+	Wed, 18 Oct 2023 09:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mf6NgDbQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F1F182C6
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:53:10 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32FCDFA;
-	Wed, 18 Oct 2023 02:53:07 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id ED4638043;
-	Wed, 18 Oct 2023 17:52:59 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
- 2023 17:53:00 +0800
-Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
- 2023 17:52:59 +0800
-Message-ID: <6f5da0fa-9c01-dab2-647e-2a3c0a50b316@starfivetech.com>
-Date: Wed, 18 Oct 2023 17:52:59 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DADA182C6
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:53:57 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506F4100
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 02:53:55 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c503dbe50dso79071481fa.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 02:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697622833; x=1698227633; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hwAj4cQ1OeYj0R5+oJwHiaOKZB8J8HDi3IYHSNa2xUA=;
+        b=Mf6NgDbQ3SAd1GqS04jCvgO/JA7Ah4uG9YSjzE/YIcgfru6UHp+qlTzdBzki8BcoUB
+         A4lZp90kQ0LOBx4TyWof56ImPdDOlhtz4nmNhsPGKJqNeXO4XcJrM1Xqgfp4at0FpemJ
+         DQTNywvFjoM4KrSpRJGmE5TPdx1sK7WR9I4vDClivvQhw3zN5K9xX323SpkT5AeBHTo7
+         WWTKhQm94dP5nP3w3bRx24YsJfzvXoedZoe8PjFtWoaXm6eGkLBrmHAH47l05FMHDNsg
+         VNtAQausIZHsDaajk4AFEK4vSvAxuG8bOoLPqntK/sFPtfI4E/jn4LP7vUCLjMsCPHrJ
+         drwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697622833; x=1698227633;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hwAj4cQ1OeYj0R5+oJwHiaOKZB8J8HDi3IYHSNa2xUA=;
+        b=jqIeRY31enUjA/VvVyyEe58oVFJcvipT2HktRJoZG/KFJcjq4yEcaGs4np/2gpJBd1
+         oxIw0DiZXNgBb65rISKfXo9b1BEhvdTJq9u6F2yZ2pE4Xs7MEiwNRSE2vjwFxF/heqMC
+         ns1IBdc+6tgj0LGQMqiwbWJwgk/pI0isr64u7BgqCpKmEC77RnOJF5ERVHLzbUg/sD7M
+         vdcVmVw/S02bnjg24ftpLLz/1EA600JVE7Xah9eAhMxx20O3DDVwGXB+sLz0VAnOTxB0
+         dKmEa06Bm8q7EW06r+8qX1oocpRj66dM6iKGUzRpT1PHMMsx+B6aaJm+Hav0GfCNXOhI
+         4qVw==
+X-Gm-Message-State: AOJu0Yz3ZQVofcH2HZ9aNEW/qtrNsNbOX9a7YPkfYtHWD6mM+2xB96Jf
+	lTuNBeqgDYpz+aAKkCoACLzRkF0+kvZGnhJ937U=
+X-Google-Smtp-Source: AGHT+IGMNr1uB0tkEZ/7dcgrguEvRszKGSqyHEDEvY95X/wvptcP5MJC1KAal7GY9Ybp3SXTz2iatg==
+X-Received: by 2002:a2e:b8d4:0:b0:2c0:d21:39de with SMTP id s20-20020a2eb8d4000000b002c00d2139demr4027709ljp.42.1697622833506;
+        Wed, 18 Oct 2023 02:53:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.154])
+        by smtp.gmail.com with ESMTPSA id l16-20020a7bc450000000b003fee6e170f9sm1206385wmi.45.2023.10.18.02.53.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 02:53:53 -0700 (PDT)
+Message-ID: <4ca28f03-eb05-4cd7-ace5-8cbc0d108b6c@linaro.org>
+Date: Wed, 18 Oct 2023 11:53:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
+ control
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20231011090510.114476-1-ychuang570808@gmail.com>
+ <20231011090510.114476-3-ychuang570808@gmail.com>
+ <7800b2d6-33c4-4c4f-8d0c-c11ff0e47535@linaro.org>
+ <17a80031-98bf-48bf-8cea-c0ca4400f142@gmail.com>
+ <254837e5-a0fa-4796-8928-277db4b98bf1@linaro.org>
+ <CACRpkdaiihOex19SavWwC+S8o5qp=F=XMNm9+UXh=q2nVbOFkA@mail.gmail.com>
 Content-Language: en-US
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>, Todor Tomov
-	<todor.too@gmail.com>, <bryan.odonoghue@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>
-CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-	<changhuang.liang@starfivetech.com>
-References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
- <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
- <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
- <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
- <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
- <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
-From: Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <56a09e21-5f43-4d0d-b603-777bbfd1885f@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CACRpkdaiihOex19SavWwC+S8o5qp=F=XMNm9+UXh=q2nVbOFkA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 2023/10/18 17:31, Hans Verkuil wrote:
-> On 18/10/2023 11:25, Jack Zhu wrote:
->> 
->> 
->> On 2023/10/18 16:50, Hans Verkuil wrote:
->>> Hi Jack,
->>>
->>> On 18/10/2023 04:37, Jack Zhu wrote:
->>>
->>> <snip>
->>>
->>>>>> --------------------------------------------------------------------------------
->>>>>> Compliance test for device /dev/v4l-subdev1:
->>>>>>
->>>>>> Driver Info:
->>>>>> 	Driver version   : 6.6.0
->>>>>> 	Capabilities     : 0x00000000
->>>>>
->>>>> But this does not appear for v4l-subdev1.
->>>>>
->>>>> I can't really tell why it doesn't show that. Can you debug a little bit?
->>>>> The code is in v4l2-compliance.cpp, line 1086:
->>>>>
->>>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
->>>>>
->>>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
->>>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
->>>>>
->>>>> This could well be a v4l2-compliance bug that you hit with this driver.
->>>>>
->>>>
->>>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
->>>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
->>>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
->>>>
->>>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
->>>>
->>>
->>> Can you try again with this v4l2-compliance patch?
->>>
->>> I need to dig a bit deeper as to why media0 is missing, but for now try this.
->>>
->>> Regards,
->>>
->>> 	Hans
->>>
->>> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
->>> index 7169eefe..29475d6b 100644
->>> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
->>> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
->>> @@ -968,7 +968,7 @@ err:
->>>  }
->>>
->>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->>> -	      unsigned frame_count, unsigned all_fmt_frame_count)
->>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
->>>  {
->>>  	struct node node2;
->>>  	struct v4l2_capability vcap = {};
->>> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
->>>  		memset(&vcap, 0, sizeof(vcap));
->>>  	}
->>>
->>> -	if (!node.is_media())
->>> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->>> +	if (!node.is_media()) {
->>> +		if (parent_media_fd >= 0)
->>> +			media_fd = parent_media_fd;
->>> +		else
->>> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
->>> +	}
->>>
->>>  	int fd = node.is_media() ? node.g_fd() : media_fd;
->>>  	if (fd >= 0) {
->>> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
->>> index 7caf254b..c47f25f5 100644
->>> --- a/utils/v4l2-compliance/v4l2-compliance.h
->>> +++ b/utils/v4l2-compliance/v4l2-compliance.h
->>> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
->>>  int check_0(const void *p, int len);
->>>  int restoreFormat(struct node *node);
->>>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
->>> -	      unsigned frame_count, unsigned all_fmt_frame_count);
->>> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
->>>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
->>>
->>>  // Media Controller ioctl tests
->>>
->> 
->> From the log, there is no change.
+On 18/10/2023 10:18, Linus Walleij wrote:
+> On Mon, Oct 16, 2023 at 9:52 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Oops, my mistake. Also apply this change:
+>>> I noticed that 'xlnx,zynq-pinctrl.yaml' and 'xlnx,zynq-pinctrl.yaml' use
+>>> 'power source' to specify the output voltage.  Should I follow their
+>>> approach or define a vendor-specific one?
+>>
+>> Maybe Rob or Linus have here some recommendation, but I would suggest to
+>> go either with rtd1319d-pinctrl.yaml approach or add a generic property
+>> to pincfg-node expressed in real units like "io-microvolt".
+>>
+>> Rob, Linus, any ideas for generic property replacing register-specific
+>> power-source?
 > 
-> diff --git a/utils/v4l2-compliance/v4l2-test-media.cpp b/utils/v4l2-compliance/v4l2-test-media.cpp
-> index 0195ac58..52ab7fb8 100644
-> --- a/utils/v4l2-compliance/v4l2-test-media.cpp
-> +++ b/utils/v4l2-compliance/v4l2-test-media.cpp
-> @@ -612,7 +612,7 @@ void walkTopology(struct node &node, struct node &expbuf_node,
->  		}
+> The existing power-source is generally used to select between (usually
+> two) different chip-internal power rails, such as 1.8V and 3.3V.
+> The format is a driver-specific enumerator.
 > 
->  		testNode(test_node, test_node, expbuf_node, type,
-> -			 frame_count, all_fmt_frame_count);
-> +			 frame_count, all_fmt_frame_count, node.g_fd());
->  		test_node.close();
->  	}
->  }
+> We *could* just patch the documentation for power-source to
+> say that microvolts is the preferred format but legacy users may
+> be using a custom enumerator.
 > 
+> io-microvolt seems like a more long-term viable option if a wider
+> range of voltages are to be supported so I'm happy with that if the
+> DT folks think it's nicer. However notice that the power-source
+> property is already being hard-coded into things such as SCMI
+> and ACPI so it's not like it will ever be replaced by io-microvolt
+> and phased out as far as Linux is concerned. Not the next 50
+> years at least.
 
-Can see relevant Info in the log.
+This I understand.
 
-test log:
---------------------------------------------------------------------------------
-Compliance test for starfive-camss device /dev/v4l-subdev1:
+I think It is better in general if generic properties use units (e.g.
+drive-strength-microamp, output-impedance-ohms), so it could be here
+"io-microvolt". At least for the new bindings.
 
-Driver Info:
-	Driver version   : 6.6.0
-	Capabilities     : 0x00000000
-Media Driver Info:
-	Driver name      : starfive-camss
-	Model            : Starfive Camera Subsystem
-	Serial           : 
-	Bus info         : platform:19840000.camss
-	Media version    : 6.6.0
-	Hardware revision: 0x00000000 (0)
-	Driver version   : 6.6.0
-Interface Info:
-	ID               : 0x0300001e
-	Type             : V4L Sub-Device
-Entity Info:
-	ID               : 0x00000018 (24)
-	Name             : imx219 6-0010
-	Function         : Camera Sensor
-	Pad 0x01000019   : 0: Source
-	  Link 0x0200001a: to remote pad 0x100000f of entity 'cdns_csi2rx.19800000.csi-bridge' (Video Interface Bridge): Data, Enabled, Immutable
+Best regards,
+Krzysztof
 
-Required ioctls:
-	test MC information (see 'Media Driver Info' above): OK
-	test VIDIOC_SUDBEV_QUERYCAP: OK
-	test invalid ioctls: OK
-
-Allow for multiple opens:
-	test second /dev/v4l-subdev1 open: OK
-	test VIDIOC_SUBDEV_QUERYCAP: OK
-	test for unlimited opens: OK
-
-Debug ioctls:
-	test VIDIOC_LOG_STATUS: OK (Not Supported)
-
-Input ioctls:
-	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-	Inputs: 0 Audio Inputs: 0 Tuners: 0
-
-Output ioctls:
-	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-	Outputs: 0 Audio Outputs: 0 Modulators: 0
-
-Input/Output configuration ioctls:
-	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-	test VIDIOC_G/S_EDID: OK (Not Supported)
-
-Sub-Device ioctls (Source Pad 0):
-	Try Stream 0
-	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
-	test Try VIDIOC_SUBDEV_G/S_FMT: OK
-		warn: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(541): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
-	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
-	Active Stream 0
-	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
-	test Active VIDIOC_SUBDEV_G/S_FMT: OK
-		warn: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(541): VIDIOC_SUBDEV_G_SELECTION is supported for target 0 but not VIDIOC_SUBDEV_S_SELECTION
-	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
-	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
-
-Control ioctls:
-	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-	test VIDIOC_QUERYCTRL: OK
-	test VIDIOC_G/S_CTRL: OK
-	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-	Standard Controls: 20 Private Controls: 0
-
-Format ioctls:
-	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
-	test VIDIOC_G/S_PARM: OK (Not Supported)
-	test VIDIOC_G_FBUF: OK (Not Supported)
-	test VIDIOC_G_FMT: OK (Not Supported)
-	test VIDIOC_TRY_FMT: OK (Not Supported)
-	test VIDIOC_S_FMT: OK (Not Supported)
-	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-	test Cropping: OK (Not Supported)
-	test Composing: OK (Not Supported)
-	test Scaling: OK (Not Supported)
-
-Codec ioctls:
-	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-
-Buffer ioctls:
-	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
-	test VIDIOC_EXPBUF: OK (Not Supported)
-	test Requests: OK (Not Supported)
-
-Total for starfive-camss device /dev/v4l-subdev1: 51, Succeeded: 51, Failed: 0, Warnings: 2
-
-Grand Total for starfive-camss device /dev/media0: 209, Succeeded: 209, Failed: 0, Warnings: 2
-# 
-
--- 
-Regards,
-
-Jack Zhu
 
