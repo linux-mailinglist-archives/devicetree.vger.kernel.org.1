@@ -1,116 +1,129 @@
-Return-Path: <devicetree+bounces-9689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD317CE061
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:51:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 678F17CE079
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 16:56:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C25E2B20EC9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:51:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98C841C20AD3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 14:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB98334185;
-	Wed, 18 Oct 2023 14:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7DD374C5;
+	Wed, 18 Oct 2023 14:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S878NAwu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JSWhCqXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDA511C80
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:51:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E825AC433C8;
-	Wed, 18 Oct 2023 14:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697640692;
-	bh=BbvjjIBqrx4LLuoNVbrW9S9bLaMwRPFS7lIkl7RjLWU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S878NAwuhe2zWCeS5/FbNtl7dgxsCsVjrg5yCoP67+b2sQKUEsx7TASUDFsIy7jnc
-	 NTba6lHdDtNv/X70utYTiM4x7Gp4do6IB8UZLeR0DH9Do7Eqvvt6ZnICWTosJ83zZL
-	 WQehJ1HCylF2JMYylUqxv5BnFXcGcCRH7kOAtqVcQOd6224wkOKxp6iqHEkGd3cnAM
-	 McITwjuuNDBognSWXeNRwBqN4B5WFfKMAILEAwK7RHMjb171/Hv10pUr3m1Vrf626V
-	 htgH5+bmJEF5cAo2TuXM93k/MVH7ZUAR0HH9FXDlxbgfna2E9YfvQDoOOCLE8NV05X
-	 x2r8+Vp4D5BOw==
-Message-ID: <39e1f40f-647a-4c3a-b070-0e504d7d3389@kernel.org>
-Date: Wed, 18 Oct 2023 23:51:27 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3827916427
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 14:56:53 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C4694;
+	Wed, 18 Oct 2023 07:56:51 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39IEuZk3084757;
+	Wed, 18 Oct 2023 09:56:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697640995;
+	bh=CaUGr/SqVLiuQktYdevT1SsMh913EJz5Ua6xquJgvYI=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=JSWhCqXWSgFhQqUVrr4zuDcnE3fR2/upXRmn7nmHK+9qb+KplUAAlDrvhjtGGedkQ
+	 lUHnCUMxjQAg+onHA/F1PlkxiDNwXSpd9jH3SFihnRVCp28rWT6jVmIQQlvZ/NcvJq
+	 IjmFFdR0cCNHBNZvRodl66kVo7aMmfTNVyhHA3wE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39IEuZtj077864
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 18 Oct 2023 09:56:35 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 18
+ Oct 2023 09:56:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 18 Oct 2023 09:56:34 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39IEuTth012015;
+	Wed, 18 Oct 2023 09:56:30 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Jai
+ Luthra <j-luthra@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <a-bhatia1@ti.com>,
+        Jayesh
+ Choudhary <j-choudhary@ti.com>,
+        Julien Panis <jpanis@baylibre.com>,
+        Esteban
+ Blanc <eblanc@baylibre.com>
+Subject: Re: (subset) [PATCH v3 0/6] arm64: ti: Enable audio on AM62A
+Date: Wed, 18 Oct 2023 20:26:05 +0530
+Message-ID: <169764092458.296431.7774477701043594499.b4-ty@ti.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231003-mcasp_am62a-v3-0-2b631ff319ca@ti.com>
+References: <20231003-mcasp_am62a-v3-0-2b631ff319ca@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/26] PM / devfreq: rockchip-dfi: Embed desc into
- private data struct
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Robin Murphy <robin.murphy@arm.com>,
- Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
- <20231018061714.3553817-3-s.hauer@pengutronix.de>
-From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20231018061714.3553817-3-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 23. 10. 18. 15:16, Sascha Hauer wrote:
-> No need for an extra allocation, just embed the struct
-> devfreq_event_desc into the private data struct.
+Hi Jai Luthra,
+
+On Tue, 03 Oct 2023 14:41:29 +0530, Jai Luthra wrote:
+> This patch series adds support for audio via headphone jack on
+> SK-AM62A-LP. The jack is wired to TLV320AIC3106 (codec), which is
+> connected to McASP1 (serializer) on the SoC.
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/devfreq/event/rockchip-dfi.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+> The TRRS 3.5mm jack can be used for simultaneous playback and recording.
 > 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 74893c06aa087..467f9f42d38f7 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -49,7 +49,7 @@ struct dmc_usage {
->   */
->  struct rockchip_dfi {
->  	struct devfreq_event_dev *edev;
-> -	struct devfreq_event_desc *desc;
-> +	struct devfreq_event_desc desc;
->  	struct dmc_usage ch_usage[RK3399_DMC_NUM_CH];
->  	struct device *dev;
->  	void __iomem *regs;
-> @@ -204,14 +204,10 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
->  
->  	data->dev = dev;
->  
-> -	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
-> -	if (!desc)
-> -		return -ENOMEM;
-> -
-> +	desc = &data->desc;
->  	desc->ops = &rockchip_dfi_ops;
->  	desc->driver_data = data;
->  	desc->name = np->name;
-> -	data->desc = desc;
->  
->  	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
->  	if (IS_ERR(data->edev)) {
+> 
+> [...]
 
-Already applied it on v7.
+I have applied the following to branch ti-k3-config-next on [1].
+Thank you!
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+[6/6] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+      commit: f9010eb938beb9a58c640b50d2fe65e4187c1fde
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
 
