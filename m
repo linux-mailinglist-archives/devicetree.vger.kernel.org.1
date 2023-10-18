@@ -1,280 +1,285 @@
-Return-Path: <devicetree+bounces-9446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A427CD126
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 02:11:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009147CD143
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 02:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 888A31C208D0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 00:11:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B599D280D2B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 00:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913BEECC;
-	Wed, 18 Oct 2023 00:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1B3631;
+	Wed, 18 Oct 2023 00:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="MvaY9yjH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IcG+bLna"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6AAEC3
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 00:11:42 +0000 (UTC)
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2107.outbound.protection.outlook.com [40.107.113.107])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D76C4;
-	Tue, 17 Oct 2023 17:11:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RbmZgvWxMRniYyfvThliY6Zqp5WeefjhNMRNqBhpVhKMK4Y07eIRG36RHTf9OcruMOsvqL90JzKIJi5QgOXedMYdkGzOILolOgwyJyyb5qLgS756uiQDbfC4Du8NCHffeZY6vACoWTS4h1oa2hDKSd7QfpKJf/LIqyheIJxRdRxhfJXJ320I5UG2lhTRf4YpcyFqqXcl454vZ3wm2plz9mJWxXuvuqjaTczgR8F28HViUbjefphIMAhfXXqg3mLptThvyUyYEOfWc/xIJrl1U72zdpHRw0C2S9olLxlaMYIVijSOnqxlr9REWF82iJtgaYK5J9y1iI8lMzWCH78fqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eq78UcYqoFhN18j/iNC65mJobbuYeMs6cuP2Y7SihIQ=;
- b=EjhRYyRGHY2cO/cUQGd3r8y6bAOIcXpapG8MUgSgfBHCTqhwxrAauuGBAw+VJYVTu8yH6a9osD7ifseaPc/Gt5eUMarUZvMUzOTWAjijfG8rPbm7wZ/OVdjvl0UXg56pq+c3oGSWWT4WqnxeilZq3opNoNZb3fIGLXHgT/BSlssnOloyMpN/mSgu+ZsNT9pE46vedgvOKWkzxIyYmB7Lz6jyeswqRiDomTo6lVSdS1Gil/4wzgBuzrLVtH/dh8rMwkvHOxaUONrqMOHKIkS93yAuojitEPklKA85xV0ZUHSUgX6aFFR1ie/KRnkZFcmS3o60jiGoIRezDkALZcJ3Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eq78UcYqoFhN18j/iNC65mJobbuYeMs6cuP2Y7SihIQ=;
- b=MvaY9yjHXGwNhgigfJarlyaLb4ktfNUp0i7pzFu/R2TRzmbPJQ9ZyXHg8OFAbo0LooggfxBlkCBEU9ev2weMWanq10axIzEKY5TGy1DdXcjTdw8gu2HczgDrHZzFRtsKPqCyN6YIzTY+emXoVX8dGGeLz3IY5L/sU67JrXeWgWs=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYVPR01MB10638.jpnprd01.prod.outlook.com
- (2603:1096:400:29b::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Wed, 18 Oct
- 2023 00:11:35 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::a188:9424:be62:e5fb]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::a188:9424:be62:e5fb%6]) with mapi id 15.20.6907.021; Wed, 18 Oct 2023
- 00:11:35 +0000
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: "mani@kernel.org" <mani@kernel.org>
-CC: Marek Szyprowski <m.szyprowski@samsung.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
-	<robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "jingoohan1@gmail.com"
-	<jingoohan1@gmail.com>, "gustavo.pimentel@synopsys.com"
-	<gustavo.pimentel@synopsys.com>, =?utf-8?B?S3J6eXN6dG9mIFdpbGN6ecWEc2tp?=
-	<kwilczynski@kernel.org>, "marek.vasut+renesas@gmail.com"
-	<marek.vasut+renesas@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid unnecessary
- memory assignment
-Thread-Topic: [PATCH v24 08/16] PCI: dwc: Disable two BARs to avoid
- unnecessary memory assignment
-Thread-Index: AQHZ/BKVrluFe2vL8EK2EaoOE81Q27BNveCAgAAopfCAADsYgIAAlTSw
-Date: Wed, 18 Oct 2023 00:11:35 +0000
-Message-ID:
- <TYBPR01MB53415A74F7ABB79410D61CA7D8D5A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com>
- <20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com>
- <CGME20231017091924eucas1p2e65759cd05340e3e5b3a1d9ab9de1320@eucas1p2.samsung.com>
- <a85158a0-858c-43c3-b64a-c09de72a50f9@samsung.com>
- <TYBPR01MB5341006D4CEAA1422B0A41F3D8D6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20231017151619.GE5274@thinkpad>
-In-Reply-To: <20231017151619.GE5274@thinkpad>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYVPR01MB10638:EE_
-x-ms-office365-filtering-correlation-id: 40ae4b7f-960b-43f9-74f6-08dbcf6eca5e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- D+krrCQTAujJU/mbVB06dNoPio7y1WDYIkECNOgz82BexyAPQIkXyRkSIP6RBr3PPpNGa8c+g4D5xcV7lNUkv0mMQnL0cUugLScaqhRfh00MGJ6MBKZICK4M4Y0BzIFDmDGtJAU9n6w63ZkjTTKJTJNAMcFwVVuKe4gVli32MyZr7sa4FUunzXs8Mh6taOs0u14cX7fnW54rUHhH5sckW70pmmGnqeURYE7+T5PNsZ9RIH3hKrIc9PFpzXDuxQ7DH6iSpZ8GnVdSD2HnmN7LmWzXCDrspmNbuAwPxlIja/vQ9l39tQEpVbQiKU/sNOLAsYRfROilBl5Sq5Tp/55Yh2fbspGslPfwtsJATd33oa53DoyjdI6zuScZUVlEx7ZHynkbmzBbDXC0VOLwCfRqo6rB38agbRi9mC7qNVe8HIlSES0Prng9or+xeDasx7+/Z45T7CYJnECYowQlFtTtlFZ0jnItSu/rWkmQ48d8vshRqCfblInJKmF45B01ZngH+dKSiwMekg9mB2FkqHdakqDX1z7JC90OKhKSLhE9vSCXkaPlHmVm5IJ4oUXrMzzoOZ3tVDdIMxtPcMc8VaNCtOgxBJdt3OVtU2hXN+boab0R6ke0UOMa50AC0wJ2Amgj
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(38100700002)(478600001)(53546011)(7696005)(9686003)(6506007)(76116006)(66946007)(83380400001)(71200400001)(38070700005)(45080400002)(54906003)(122000001)(66556008)(66446008)(6916009)(66476007)(64756008)(316002)(8676002)(4326008)(5660300002)(8936002)(55016003)(7416002)(41300700001)(52536014)(33656002)(2906002)(86362001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?eWsxZGJ6UG5CTVJUc1lDcmpDS0xsczd1dTBrSnAzNXhiLzMySHZ1MWtJTmht?=
- =?utf-8?B?TzdOMEtza3BDRG9PZEVxMUVrakY3TTJPMmdJcXlNTE5xTUpKclQzT2ZuQXhm?=
- =?utf-8?B?QmFheG52YklBbElXVStHTVZWK3RFK2QvMm5Fa2Y5NVljLzdYdzl2czFMYkp5?=
- =?utf-8?B?S0FnSDNrM3lHQ1Zmd0hxK3VqVW42V3JvbzFTTVRLcWcvQlhmYXZDeXpwYTgw?=
- =?utf-8?B?WVFWZCtZTFZ4WVpqbEU0b09sSHVOb2c4UWVhdHpkOHp5M3BMRmN1QVVGbmF1?=
- =?utf-8?B?YTV0Q055NXNwcEFIWFZhS2t3R2JFWFVyUGU5K2YwT3BwZStLa1dhVm9iK3dn?=
- =?utf-8?B?VVFzK1QzWlNwckM2SjBqTTRZb2hhZTFPRVZBK0tiVHBYMloyZzgzbWdZTWJa?=
- =?utf-8?B?QmFuVVN1c1RwZEs2VWN5SW9odjJVSnBrUDUyZ0VFa2NQeGFmM3ZkTFg5Zm9u?=
- =?utf-8?B?L3dWanMxbXYxTzV6MnM2WmFMOWxUMjBoajNZcVBhOGxLVjJiaG02WHVrZENa?=
- =?utf-8?B?ck9MNjU5eGdoRktOQWNZTExnL2pweTJDVURFNWxxcks3eG1HYzlqbXVnOUFZ?=
- =?utf-8?B?KzQ4bkpKRFlDNHl5MFRmS1JYd1Z2a21DL1dYZGUzY25PMkRFeGpWZlB4YTEz?=
- =?utf-8?B?eFdBdFhuOVNwcitLNHRVUVpFRDl0WTJNY3Jtc09peDhOZkhzQ0J0QmNTMFBj?=
- =?utf-8?B?UVJxdWlZN2YxSjM2cTBxQnRXWW1WUkgrekpZdUN6Yk5sdU1yK1ZGd3lzQUdj?=
- =?utf-8?B?OTVYNmFJMGlFb0pqR2x6bk9zMVhhSTA3aVZwMkt0ekZpOUU2TWV5OFdmNjZY?=
- =?utf-8?B?WDJoSFl3aGs0NXkrbnJJMGpGenR3cmFaN013cmlKV3l6YTJoeFdDaXA5aGZW?=
- =?utf-8?B?QXVSbkFabDAra3JHZVBFV0RXNlVRVFB5d1lRV0VXcUZFMXA4ZTBoNkNzVUhW?=
- =?utf-8?B?bGUwV3NDZ0VmWGJCdCtBeG9xNkZvNG5hZTFtd3ZDR0pJQkJFQWhoeUh6NEhx?=
- =?utf-8?B?N29JaUtjNTBpWW9LcW1hNjRKK1d6ZWpndksrK2dGNFdSNThUZ3ZsUHZZZVJF?=
- =?utf-8?B?Mm03VGJhTzhBZENMYzN4NnU1M2xRaC9xOXJZZzlWNzFlTUc5WFBnd0tPMmVT?=
- =?utf-8?B?U1Nna0ttb0IzU3BUUmpUTi8yQmF6NXZFV0p0bHkyb1duOEtYME50Tk5wMlpn?=
- =?utf-8?B?SHBOQzNVa3lNUGwxS2wvaStEUW43V3MyVnpISUM0NFhaN2swR01jQVJoUGhK?=
- =?utf-8?B?dUF5N2lRangwQmVWT1R3Rm91MERFWkJGT05rN1k3TU5mTFpaTUtYZnVBYmox?=
- =?utf-8?B?TEZuTGRNZFRtTUJFdEhTRnhYZXMvWGtwVS8zQWd0eEl5Um44ZTUzWHZ1M1c4?=
- =?utf-8?B?dDF2RjJzcHQzWG5GK2lmL2pNSS9Pc1JYM2xRZzdPbXhBd3dnMHZ3dDJGTEN2?=
- =?utf-8?B?eHNoZURiYWNVcjF0TTlzandXRTRFajJuNzNjeUh3WHU3Z1l0Mzhzalh4aUpB?=
- =?utf-8?B?cmlONFVraDZRNDVuRGU5K0cvcXdGbHhTK3RyUkltaWxXZVV0bFFoTVVpMkFq?=
- =?utf-8?B?VWlCVi9sdGo4N0JId3JFeDluL00yeWlJVHpubDdmNFdRc25DUWdMOG90RDEy?=
- =?utf-8?B?TG5QWm1iVnVzS1NvbmF3dU1GSFNVeExCdTJPYk5UVlZWRlZCdDVKREJmdy85?=
- =?utf-8?B?M1Nma05hQXpMbkxPSmxQRHRsUnM3Tm1QS2hEdm9mbFNMK1BrNnBmNXRkWXJi?=
- =?utf-8?B?R1Ftbks0bHNBUGMyTnNtNUszYTNpZWN5SjNpYUNDQW1pRzc2RTIwem5sZEls?=
- =?utf-8?B?RER3em5PeU5FWWJneFNiRUZIY0x1eGpPWFNNQzA1dVFvQVI3dmtKQmQ5djc3?=
- =?utf-8?B?dE55WGI0MXpDOFdtaGh2TTJxSXI2aVgxSURJTWZOQnU4RXFXbER1dW84bmtX?=
- =?utf-8?B?ZldUL0EyVEd6aTR3c3d1elJLcVZGTzFKclpjVXh4di9IYXgvaGlzbzNyVTVq?=
- =?utf-8?B?T1gvUHY4VUN5Q2VJc05oTTBiMVU1emVtbnZPUnNLQitJcVF2ZlJDeGR6aVJZ?=
- =?utf-8?B?RGFEVW5jTFd6S29mc1J3NldBMFFNald2MWtHU2h2QXFyWDN6elJnSzIvUkVs?=
- =?utf-8?B?Yit1N1BRS1lmVld3TzFyTElJcjBVUE5SSnJRSlM3TVYxb2NNb1ZoR2ZzZ0xx?=
- =?utf-8?B?bGhpTitzbktVNVlvMHplYkI4SjZsSG9vQmFpc2FscHBKUGNia1B4L09ENk1o?=
- =?utf-8?B?WVRVejNVemRhbTliU2V1S0hNcXN3PT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C557139B;
+	Wed, 18 Oct 2023 00:26:16 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACD9DA4;
+	Tue, 17 Oct 2023 17:26:14 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39HNO5P7026973;
+	Wed, 18 Oct 2023 00:25:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=15RYQdT6m7iWcWeSsv90aUlOyCZ517t+tMdVefgstE8=;
+ b=IcG+bLna/+YaL/0UE5HxdYsa15Xv7+DhS2TRhKFhvwPI3KTZdlGL3nCsMkEk8vko1taV
+ JABsmS+bsRUA1N7spOqYoM1IhmO1QaA+KTcs+40u+95vKPUeJgo+pIXyGI+koigz9xNr
+ ow/QN/hVDq9X16P0KSk3vZeDuMcUSiGfHRiQhlLK/UgIG3GaUvPSZU56+n/Ua3VirGo7
+ Mj8j+SU/+u1iV7t743cvP4tRy86u0HWB/UJtehEMC3fnjMsDRFPnAkGChEYGLCSbLDaf
+ LTAL2l1ejfGrkfp0ghFp1FIha0rmYf9u4NHrjDqOoj7Ogsp85HPX5dsUjaNVlf/ug8Tv +g== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tsr7c1r9c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 00:25:55 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39I0PsdZ012718
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 00:25:54 GMT
+Received: from [10.71.115.127] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 17 Oct
+ 2023 17:25:53 -0700
+Message-ID: <366d50fa-500f-e884-d48a-197e65bb2fb7@quicinc.com>
+Date: Tue, 17 Oct 2023 17:25:47 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40ae4b7f-960b-43f9-74f6-08dbcf6eca5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2023 00:11:35.1382
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mxfl2G9uU5ni1XTEwC14iwiDr7elL/ExoK8V3eMN+Rh07k53/gsyJmMEBnYgGkYLGfBU52GfQ3NJ+8sxdpCJ4TE155W13GzmXVDNhUovSOIESxj+xBXxUuq28WdJabS7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYVPR01MB10638
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 00/34] Introduce QC USB SND audio offloading support
+Content-Language: en-US
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <9942bb93-31ea-4574-940f-98d87a2fc127@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <9942bb93-31ea-4574-940f-98d87a2fc127@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: taLlUA-GgwY8lg2uCsRZXu6Wnb8EXH4V
+X-Proofpoint-GUID: taLlUA-GgwY8lg2uCsRZXu6Wnb8EXH4V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-17_07,2023-10-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 spamscore=0 clxscore=1011 bulkscore=0 adultscore=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180000
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-PiBGcm9tOiBtYW5pQGtlcm5lbC5vcmcsIFNlbnQ6IFdlZG5lc2RheSwgT2N0b2JlciAxOCwgMjAy
-MyAxMjoxNiBBTQ0KPiANCj4gT24gVHVlLCBPY3QgMTcsIDIwMjMgYXQgMTI6MDU6MTJQTSArMDAw
-MCwgWW9zaGloaXJvIFNoaW1vZGEgd3JvdGU6DQo+ID4gRGVhciBNYXJlaywNCj4gPg0KPiA+ID4g
-RnJvbTogTWFyZWsgU3p5cHJvd3NraSwgU2VudDogVHVlc2RheSwgT2N0b2JlciAxNywgMjAyMyA2
-OjE5IFBNDQo+ID4gPg0KPiA+ID4gRGVhciBBbGwsDQo+ID4gPg0KPiA+ID4gT24gMTEuMTAuMjAy
-MyAwOToxNCwgWW9zaGloaXJvIFNoaW1vZGEgd3JvdGU6DQo+ID4gPiA+IEFjY29yZGluZyB0byB0
-aGUgc2VjdGlvbiAzLjUuNy4yICJSQyBNb2RlIiBpbiBEV0MgUENJZSBEdWFsIE1vZGUNCj4gPiA+
-ID4gUmV2LjUuMjBhLCB3ZSBzaG91bGQgZGlzYWJsZSB0d28gQkFScyB0byBhdm9pZCB1bm5lY2Vz
-c2FyeSBtZW1vcnkNCj4gPiA+ID4gYXNzaWdubWVudCBkdXJpbmcgZGV2aWNlIGVudW1lcmF0aW9u
-LiBPdGhlcndpc2UsIFJlbmVzYXMgUi1DYXIgR2VuNA0KPiA+ID4gPiBQQ0llIGNvbnRyb2xsZXJz
-IGNhbm5vdCB3b3JrIGNvcnJlY3RseSBpbiBob3N0IG1vZGUuDQo+ID4gPiA+DQo+ID4gPiA+IFNp
-Z25lZC1vZmYtYnk6IFlvc2hpaGlybyBTaGltb2RhIDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5l
-c2FzLmNvbT4NCj4gPiA+DQo+ID4gPiBUaGlzIHBhdGNoIGxhbmRlZCBpbiB0b2RheSdzIGxpbnV4
-LW5leHQgMjAyMzEwMTcgYXMgY29tbWl0IGUzMDg1MjhjYWMzZQ0KPiA+ID4gKCJQQ0k6IGR3Yzog
-RGlzYWJsZSB0d28gQkFScyB0byBhdm9pZCB1bm5lY2Vzc2FyeSBtZW1vcnkgYXNzaWdubWVudCIp
-Lg0KPiA+ID4gVW5mb3J0dW5hdGVseSBpdCBjYXVzZXMgdGhlIGZvbGxvd2luZyBrZXJuZWwgcGFu
-aWMgb24gU2Ftc3VuZw0KPiA+ID4gRXh5bm9zNTQzMy1iYXNlZCBUTTJlIGJvYXJkOg0KPiA+ID4N
-Cj4gPiA+IGV4eW5vcy1wY2llIDE1NzAwMDAwLnBjaWU6IGhvc3QgYnJpZGdlIC9zb2NAMC9wY2ll
-QDE1NzAwMDAwIHJhbmdlczoNCj4gPiA+IGV4eW5vcy1wY2llIDE1NzAwMDAwLnBjaWU6wqDCoMKg
-wqDCoMKgIElPIDB4MDAwYzAwMTAwMC4uMHgwMDBjMDEwZmZmIC0+DQo+ID4gPiAweDAwMDAwMDAw
-MDANCj4gPiA+IGV4eW5vcy1wY2llIDE1NzAwMDAwLnBjaWU6wqDCoMKgwqDCoCBNRU0gMHgwMDBj
-MDExMDAwLi4weDAwMGZmZmZmZmUgLT4NCj4gPiA+IDB4MDAwYzAxMTAwMA0KPiA+ID4gZXh5bm9z
-LXBjaWUgMTU3MDAwMDAucGNpZTogaUFUVTogdW5yb2xsIEYsIDMgb2IsIDUgaWIsIGFsaWduIDRL
-LCBsaW1pdCA0Rw0KPiA+ID4gVW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgcGFnaW5nIHJlcXVlc3Qg
-YXQgdmlydHVhbCBhZGRyZXNzIGZmZmY4MDAwODQxOTYwMTANCj4gPiA+IE1lbSBhYm9ydCBpbmZv
-Og0KPiA+ID4gLi4uDQo+ID4gPiBEYXRhIGFib3J0IGluZm86DQo+ID4gPiAuLi4NCj4gPiA+IHN3
-YXBwZXIgcGd0YWJsZTogNGsgcGFnZXMsIDQ4LWJpdCBWQXMsIHBnZHA9MDAwMDAwMDAyMjA0NzAw
-MA0KPiA+ID4gW2ZmZmY4MDAwODQxOTYwMTBdIHBnZD0xMDAwMDAwMGRmNmZmMDAzLCBwNGQ9MTAw
-MDAwMDBkZjZmZjAwMywNCj4gPiA+IHB1ZD0xMDAwMDAwMGRmNmZlMDAzLCBwbWQ9MTAwMDAwMDAy
-NGFkOTAwMywgcHRlPTAwMDAwMDAwMDAwMDAwMDANCj4gPiA+IEludGVybmFsIGVycm9yOiBPb3Bz
-OiAwMDAwMDAwMDk2MDAwMDQ3IFsjMV0gUFJFRU1QVCBTTVANCj4gPiA+IE1vZHVsZXMgbGlua2Vk
-IGluOg0KPiA+ID4gQ1BVOiA0IFBJRDogNTUgQ29tbToga3dvcmtlci91MTg6MCBOb3QgdGFpbnRl
-ZCA2LjYuMC1yYzErICMxNDEyOQ0KPiA+ID4gSGFyZHdhcmUgbmFtZTogU2Ftc3VuZyBUTTJFIGJv
-YXJkIChEVCkNCj4gPiA+IFdvcmtxdWV1ZTogZXZlbnRzX3VuYm91bmQgZGVmZXJyZWRfcHJvYmVf
-d29ya19mdW5jDQo+ID4gPiBwc3RhdGU6IDYwMDAwMDA1IChuWkN2IGRhaWYgLVBBTiAtVUFPIC1U
-Q08gLURJVCAtU1NCUyBCVFlQRT0tLSkNCj4gPiA+IHBjIDogZHdfcGNpZV93cml0ZV9kYmkyKzB4
-YjgvMHhjOA0KPiA+ID4gbHIgOiBkd19wY2llX3NldHVwX3JjKzB4MzAvMHg0ZTQNCj4gPiA+IC4u
-Lg0KPiA+ID4gQ2FsbCB0cmFjZToNCj4gPiA+ICDCoGR3X3BjaWVfd3JpdGVfZGJpMisweGI4LzB4
-YzgNCj4gPiA+ICDCoGR3X3BjaWVfc2V0dXBfcmMrMHgzMC8weDRlNA0KPiA+ID4gIMKgZHdfcGNp
-ZV9ob3N0X2luaXQrMHgyMzgvMHg2MDgNCj4gPiA+ICDCoGV4eW5vc19wY2llX3Byb2JlKzB4MjNj
-LzB4MzQwDQo+ID4gPiAgwqBwbGF0Zm9ybV9wcm9iZSsweDY4LzB4ZDgNCj4gPiA+ICDCoHJlYWxs
-eV9wcm9iZSsweDE0OC8weDJiNA0KPiA+ID4gIMKgX19kcml2ZXJfcHJvYmVfZGV2aWNlKzB4Nzgv
-MHgxMmMNCj4gPiA+ICDCoGRyaXZlcl9wcm9iZV9kZXZpY2UrMHhkOC8weDE2MA0KPiA+ID4gIMKg
-X19kZXZpY2VfYXR0YWNoX2RyaXZlcisweGI4LzB4MTM4DQo+ID4gPiAgwqBidXNfZm9yX2VhY2hf
-ZHJ2KzB4ODQvMHhlMA0KPiA+ID4gIMKgX19kZXZpY2VfYXR0YWNoKzB4YTgvMHgxYjANCj4gPiA+
-ICDCoGRldmljZV9pbml0aWFsX3Byb2JlKzB4MTQvMHgyMA0KPiA+ID4gIMKgYnVzX3Byb2JlX2Rl
-dmljZSsweGIwLzB4YjQNCj4gPiA+ICDCoGRlZmVycmVkX3Byb2JlX3dvcmtfZnVuYysweDhjLzB4
-YzgNCj4gPiA+ICDCoHByb2Nlc3Nfb25lX3dvcmsrMHgxZWMvMHg1M2MNCj4gPiA+ICDCoHdvcmtl
-cl90aHJlYWQrMHgyOTgvMHg0MDgNCj4gPiA+ICDCoGt0aHJlYWQrMHgxMjQvMHgxMjgNCj4gPiA+
-ICDCoHJldF9mcm9tX2ZvcmsrMHgxMC8weDIwDQo+ID4gPiBDb2RlOiBkNTAzMzJiZiA3OTAwMDAy
-MyAxN2ZmZmZlMiBkNTAzMzJiZiAoYjkwMDAwMjMpDQo+ID4gPiAtLS1bIGVuZCB0cmFjZSAwMDAw
-MDAwMDAwMDAwMDAwIF0tLS0NCj4gPiA+IEtlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5nOiBPb3Bz
-OiBGYXRhbCBleGNlcHRpb24NCj4gPiA+IFNNUDogc3RvcHBpbmcgc2Vjb25kYXJ5IENQVXMNCj4g
-PiA+IEtlcm5lbCBPZmZzZXQ6IGRpc2FibGVkDQo+ID4gPiBDUFUgZmVhdHVyZXM6IDB4OGMwMDAy
-MGUsM2MwMjAwMDAsMDAwMDQyMWINCj4gPiA+IE1lbW9yeSBMaW1pdDogbm9uZQ0KPiA+ID4gLS0t
-WyBlbmQgS2VybmVsIHBhbmljIC0gbm90IHN5bmNpbmc6IE9vcHM6IEZhdGFsIGV4Y2VwdGlvbiBd
-LS0tDQo+ID4gPg0KPiA+ID4gSSd2ZSBvYnNlcnZlZCBzaW1pbGFyIGlzc3VlIG9uIFF1YWxjb21t
-J3MgUkI1IHBsYXRmb3JtIHdpdGggc29tZQ0KPiA+ID4gYWRkaXRpb25hbCBub3QteWV0IG1lcmdl
-ZCBwYXRjaGVzIGVuYWJsaW5nIFBDSWUgc3VwcG9ydC4gUmV2ZXJ0aW5nDQo+ID4gPiAkc3ViamVj
-dCBvbiB0b3Agb2YgbGludXgtbmV4dCBmaXhlcyB0aGlzIGlzc3VlLg0KPiA+ID4NCj4gPiA+IExl
-dCBtZSBrbm93IGlmIHlvdSBuZWVkIG1vcmUgaW5mb3JtYXRpb24uDQo+ID4NCj4gPiBUaGFuayB5
-b3UgZm9yIHRoZSByZXBvcnQuIEkgZ3Vlc3MgdGhhdCB0aGUgaXNzdWUgaXMgcmVsYXRlZCB0bw0K
-PiA+IG91dC1vZi1yYW5nZSBhY2Nlc3Mgb2YgZGJpMjoNCj4gPiAtIEluIGFyY2gvYXJtNjQvYm9v
-dC9kdHMvZXh5bm9zL2V4eW5vczU0MzMuZHRzaSwgdGhlIGRiaSByZWcgc2l6ZSBpcyAweDEwMDAN
-Cj4gPiAgIGxpa2UgYmVsb3c6DQo+ID4gLS0tLS0NCj4gPiAgICAgICAgICAgICAgICAgcGNpZTog
-cGNpZUAxNTcwMDAwMCB7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9
-ICJzYW1zdW5nLGV4eW5vczU0MzMtcGNpZSI7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
-cmVnID0gPDB4MTU3MDAwMDAgMHgxMDAwPiwgPDB4MTU2YjAwMDAgMHgxMDAwPiwNCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICA8MHgwYzAwMDAwMCAweDEwMDA+Ow0KPiA+ICAgICAg
-ICAgICAgICAgICAgICAgICAgIHJlZy1uYW1lcyA9ICJkYmkiLCAiZWxiaSIsICJjb25maWciOw0K
-PiA+IC4uLg0KPiA+IC0tLS0tDQo+ID4NCj4gPiAtIEluIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIv
-ZHdjL3BjaWUtZGVzaWdud2FyZS5jLCAiZGJpMiIgYXJlYSBpcyBjYWxjdWxhdGVkDQo+ID4gICBi
-eSB0aGUgZm9sbG93aW5nIGlmIHJlZy1uYW1lcyAiZGJpMiIgZGlkbid0IGV4aXN0Og0KPiA+IC0t
-LS0tDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgcGNpLT5kYmlfYmFzZTIgPSBwY2ktPmRi
-aV9iYXNlICsgU1pfNEs7DQo+ID4gLS0tLS0NCj4gPg0KPiA+IC0gSG93ZXZlciwgdGhpcyBpcyBv
-dXQtb2YtbWVtb3J5IG9uIGV4eW5vczU0MzMuZHRzaSBiZWNhdXNlIHRoZSAiZGJpIiBzaXplIGlz
-DQo+ID4gICAweDEwMDAgb25seS4NCj4gPiAtIEFuZCB0aGVuLCB0aGlzIHBhdGNoIGFsd2F5cyB3
-cml0ZXMgUENJX0JBU0VfQUREUkVTU19bMDFdIHRvIGRiaTIgYXJlYS4NCj4gPiAgIFNvLCBzaW5j
-ZSB0aGlzIGlzIG91dC1vZi1yYW5nZSwgdGhlIGtlcm5lbCBwYW5pYyBoYXBwZW5zLg0KPiA+DQo+
-IA0KPiBJIGNvdWxkIHJlcHJvZHVjZSB0aGUgaXNzdWUgTWFyZWsgcmVwb3J0ZWQgb24gUkI1LiBB
-cyB5b3UgcG9pbnRlZCBvdXQsIGl0IGlzIGR1ZQ0KPiB0byBub3QgbWFwcGluZyBkYmkyIGV4cGxp
-Y2l0bHkuIEJ1dCB3ZSB3ZXJlIG5vdCB1c2luZyBEQkkyIG9uIHRoZSBob3N0IGVhcmxpZXINCj4g
-YW5kIGl0IGxvb2tzIHRvIG1lIHRoYXQgREJJMiBtYXkgbm90IGJlIGltcGxlbWVudGVkIG9uIFFj
-b20gaG9zdCBwbGF0Zm9ybXMuDQo+IA0KPiBBdGxlYXN0IG9uIEVQLCBJIGNvbmZpcm1lZCB3aXRo
-IFFjb20gdGhhdCBEQkk9REJJMiBhcyByZXByZXNlbnRlZCBpbiB0aGUgZHJpdmVyLA0KPiBidXQg
-SSBjb3VsZG4ndCBjb25maXJtIGlmIGl0IGlzIHNhbWUgZm9yIGhvc3QgYXMgd2VsbC4NCg0KVGhh
-bmsgeW91IGZvciB0aGUgY29uZmlybWF0aW9uLiBJIHVuZGVyc3Rvb2QgaXQuDQoNCj4gPiBQZXJo
-YXBzLCB3ZSBzaG91bGQgcmV2ZXJ0IHRoaXMgcGF0Y2ggYXQgZmlyc3QuIEFuZCwgYWRkIHRoZSBz
-ZXR0aW5ncyBpbnRvDQo+ID4gbXkgZW52aXJvbm1lbnQgKHBjaWUtcmNhci1nZW40LmMpIG9ubHku
-IEkgYWxzbyBoYXZlIGFsdGVybmF0aXZlIHNvbHV0aW9uIHdoaWNoDQo+ID4gbW9kaWZpZXMgdGhl
-ICJkYmkyIiBhcmVhIGNhbGN1bGF0aW9uIGFuZCBhdm9pZCBvdXQtb2YtcmFuZ2UgYWNjZXNzIHNv
-bWVob3cuDQo+ID4gQnV0LCBpdCBtYXkgY29tcGxpY2F0ZSBzb3VyY2UgY29kZS4uLg0KPiA+DQo+
-IA0KPiBZZXMsIGxldCdzIHJldmVydCB0aGlzIHBhdGNoIGZvciBub3cgYW5kIG1vdmUgaXQgdG8g
-cmNhciBkcml2ZXIuDQoNCkkgZ290IGl0Lg0KDQpCZXN0IHJlZ2FyZHMsDQpZb3NoaWhpcm8gU2hp
-bW9kYQ0KDQo+IC0gTWFuaQ0KPiANCj4gPiBCZXN0IHJlZ2FyZHMsDQo+ID4gWW9zaGloaXJvIFNo
-aW1vZGENCj4gPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gICBkcml2ZXJzL3BjaS9jb250cm9sbGVy
-L2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jIHwgOCArKysrKysrKw0KPiA+ID4gPiAgIDEgZmls
-ZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKykNCj4gPiA+ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1ob3N0LmMgYi9kcml2
-ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jDQo+ID4gPiA+IGlu
-ZGV4IGE3MTcwZmQwZTg0Ny4uNTZjYzdmZjZkNTA4IDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2
-ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jDQo+ID4gPiA+ICsr
-KyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1ob3N0LmMNCj4g
-PiA+ID4gQEAgLTczNyw2ICs3MzcsMTQgQEAgaW50IGR3X3BjaWVfc2V0dXBfcmMoc3RydWN0IGR3
-X3BjaWVfcnAgKnBwKQ0KPiA+ID4gPiAgIAl1MzIgdmFsLCBjdHJsLCBudW1fY3RybHM7DQo+ID4g
-PiA+ICAgCWludCByZXQ7DQo+ID4gPiA+DQo+ID4gPiA+ICsJLyoNCj4gPiA+ID4gKwkgKiBBY2Nv
-cmRpbmcgdG8gdGhlIHNlY3Rpb24gMy41LjcuMiAiUkMgTW9kZSIgaW4gRFdDIFBDSWUgRHVhbCBN
-b2RlDQo+ID4gPiA+ICsJICogUmV2LjUuMjBhLCB3ZSBzaG91bGQgZGlzYWJsZSB0d28gQkFScyB0
-byBhdm9pZCB1bm5lY2Vzc2FyeSBtZW1vcnkNCj4gPiA+ID4gKwkgKiBhc3NpZ25tZW50IGR1cmlu
-ZyBkZXZpY2UgZW51bWVyYXRpb24uDQo+ID4gPiA+ICsJICovDQo+ID4gPiA+ICsJZHdfcGNpZV93
-cml0ZWxfZGJpMihwY2ksIFBDSV9CQVNFX0FERFJFU1NfMCwgMHgwKTsNCj4gPiA+ID4gKwlkd19w
-Y2llX3dyaXRlbF9kYmkyKHBjaSwgUENJX0JBU0VfQUREUkVTU18xLCAweDApOw0KPiA+ID4gPiAr
-DQo+ID4gPiA+ICAgCS8qDQo+ID4gPiA+ICAgCSAqIEVuYWJsZSBEQkkgcmVhZC1vbmx5IHJlZ2lz
-dGVycyBmb3Igd3JpdGluZy91cGRhdGluZyBjb25maWd1cmF0aW9uLg0KPiA+ID4gPiAgIAkgKiBX
-cml0ZSBwZXJtaXNzaW9uIGdldHMgZGlzYWJsZWQgdG93YXJkcyB0aGUgZW5kIG9mIHRoaXMgZnVu
-Y3Rpb24uDQo+ID4gPg0KPiA+ID4gQmVzdCByZWdhcmRzDQo+ID4gPiAtLQ0KPiA+ID4gTWFyZWsg
-U3p5cHJvd3NraSwgUGhEDQo+ID4gPiBTYW1zdW5nIFImRCBJbnN0aXR1dGUgUG9sYW5kDQo+ID4N
-Cj4gDQo+IC0tDQo+IOCuruCuo+Cuv+CuteCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprgrr/g
-rrXgrq7gr40NCg==
+Hi Pierre,
+
+On 10/17/2023 1:58 PM, Pierre-Louis Bossart wrote:
+> It's been a very long time since I reviewed earlier versions, and I am
+> still lost on terminology and concepts. The explanations below should
+> really be added as a .rst file in Documentation for reference, not just
+> as a cover letter.
+> 
+
+Thanks for the review!
+
+Sure, maybe I can write a more comprehensive documentation that saves 
+these details somewhere.  Will add a RST documentation for material 
+where necessary.
+
+>> Several Qualcomm based chipsets can support USB audio offloading to a
+>> dedicated audio DSP, which can take over issuing transfers to the USB
+>> host controller.  The intention is to reduce the load on the main
+>> processors in the SoC, and allow them to be placed into lower power modes.
+>> There are several parts to this design:
+>>    1. Adding ASoC binding layer
+>>    2. Create a USB backend for Q6DSP
+> 
+> "backend" is a loaded terms for ASoC. Can you clarify which part of the
+> ascii art below is a 'backend'?
+> 
+
+This would be the Q6USB entity which is the DPCM backend for this 
+particular audio path.
+
+>>    3. Introduce XHCI interrupter support
+>>    4. Create vendor ops for the USB SND driver
+>>
+>>        USB                          |            ASoC
+>> --------------------------------------------------------------------
+>>                                     |  _________________________
+>>                                     | |sm8250 platform card     |
+>>                                     | |_________________________|
+>>                                     |         |           |
+>>                                     |      ___V____   ____V____
+>>                                     |     |Q6USB   | |Q6AFE    |
+>>                                     |     |"codec" | |"cpu"    |
+>>                                     |     |________| |_________|
+>>                                     |         ^  ^        ^
+>>                                     |         |  |________|
+>>                                     |      ___V____    |
+>>                                     |     |SOC-USB |   |
+>>     ________       ________               |        |   |
+>>    |USB SND |<--->|QC offld|<------------>|________|   |
+>>    |(card.c)|     |        |<----------                |
+>>    |________|     |________|___     | |                |
+>>        ^               ^       |    | |    ____________V_________
+>>        |               |       |    | |   |APR/GLINK             |
+>>     __ V_______________V_____  |    | |   |______________________|
+>>    |USB SND (endpoint.c)     | |    | |              ^
+>>    |_________________________| |    | |              |
+>>                ^               |    | |   ___________V___________
+>>                |               |    | |->|audio DSP              |
+>>     ___________V_____________  |    |    |_______________________|
+>>    |XHCI HCD                 |<-    |
+>>    |_________________________|      |
+>>
+>>
+>> Adding ASoC binding layer:
+>> soc-usb: Intention is to treat a USB port similar to a headphone jack.
+> 
+> What is a 'port'? USB refers to "interfaces" and "endpoints". Is a
+> "port" a 1:1 mapping to "endpoint"?
+> 
+> Below I read "AFE port" so not sure what concepts refer to what.
+> 
+
+"Port" in this explanation refers to the USB port.  So the audio device 
+connected.  You are right that a USB device can enumerate w/ multiple 
+interfaces (ie UAC + HID + ...) so the closest relation to "port" is 
+"interface."  It is not a 1:1 mapping w/ the number of endpoints exposed 
+by a device.
+
+"AFE port" is just something that has been termed from the audio DSP 
+end, so that concept of port is not related to the port where USB 
+devices are connected to.  This is something that is defined within the 
+audio DSP.
+
+>> The port is always present on the device, but cable/pin status can be
+>> enabled/disabled.  Expose mechanisms for USB backend ASoC drivers to
+>> communicate with USB SND.
+>>
+>> Create a USB backend for Q6DSP:
+>> q6usb: Basic backend driver that will be responsible for maintaining the
+> 
+> The asciiart above suggests that q6usb exposes a codec DAI - but the
+> backend dailink is created by the platform card?
+> 
+
+That is my understanding, at least.  The machine driver (sm8250.c) has 
+an API that parses our DT node for the DAI relationships 
+(qcom_snd_parse_of()), and seems to also create the dailinks.
+
+>> resources needed to initiate a playback stream using the Q6DSP.  Will
+> 
+> is capture supported? there's explicit references to "num_capture" in
+> following patches.
+> 
+
+We (QCOM) do not support capture at the moment, but the num_capture was 
+added to the soc-usb driver, which is platform independent.  This is in 
+case other vendors want to add this support, but have capture included 
+as well.
+
+>> be the entity that checks to make sure the connected USB audio device
+>> supports the requested PCM format.  If it does not, the PCM open call will
+>> fail, and userpsace ALSA can take action accordingly.
+>>
+>> Introduce XHCI interrupter support:
+>> XHCI HCD supports multiple interrupters, which allows for events to be routed
+>> to different event rings.  This is determined by "Interrupter Target" field
+>> specified in Section "6.4.1.1 Normal TRB" of the XHCI specification.
+>>
+>> Events in the offloading case will be routed to an event ring that is assigned
+>> to the audio DSP.
+>>
+>> Create vendor ops for the USB SND driver:
+>> qc_audio_offload: This particular driver has several components associated
+>> with it:
+>> - QMI stream request handler
+>> - XHCI interrupter and resource management
+>> - audio DSP memory management
+>>
+>> When the audio DSP wants to enable a playback stream, the request is first
+>> received by the ASoC platform sound card.  Depending on the selected route,
+>> ASoC will bring up the individual DAIs in the path.  The Q6USB backend DAI
+>> will send an AFE port start command (with enabling the USB playback path), and
+>> the audio DSP will handle the request accordingly.
+> 
+> what about capture, e.g. for a headset?
+> 
+
+Not supported yet at the moment.
+
+>> Part of the AFE USB port start handling will have an exchange of control
+>> messages using the QMI protocol.  The qc_audio_offload driver will populate the
+>> buffer information:
+>> - Event ring base address
+>> - EP transfer ring base address
+>>
+>> and pass it along to the audio DSP.  All endpoint management will now be handed
+>> over to the DSP, and the main processor is not involved in transfers.
+>>
+>> Overall, implementing this feature will still expose separate sound card and PCM
+>> devices for both the platorm card and USB audio device:
+> 
+> typo: platform
+> 
+
+Thanks, will fix this.
+
+>>   0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+>>                        SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+> 
+> How do you plan on exposing the USB PCM device?
+> 
+> The lines above are really cryptic, and with no USB reference in any of
+> the short/long card names it's not obvious that this card is different
+> from the no-offload case, is it?
+> 
+
+In the end, since the offload case is handled by the audio DSP, it would 
+have to go through the platform/machine sound card.  That is the sm8250 
+device above.
+
+>>   1 [Audio          ]: USB-Audio - USB Audio
+>>                        Generic USB Audio at usb-xhci-hcd.1.auto-1.4, high speed
+> 
+> likewise some sort of qualifier would be useful to show that card 0 and
+> card 1 can target the same USB endpoints.
+> 
+
+Do userspace entities look at this card string?  Assuming there is only 
+one platform card, there are situations where maybe multiple USB audio 
+devices are connected to the same USB root hub, so offloading can happen 
+on any one of them (not at the same time).
+
+Thanks
+Wesley Cheng
 
