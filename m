@@ -1,203 +1,218 @@
-Return-Path: <devicetree+bounces-9521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438F97CD4B7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3960D7CD4BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF5512819A6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E340A2819CD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8FE8486;
-	Wed, 18 Oct 2023 06:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA418486;
+	Wed, 18 Oct 2023 07:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YkcPy1I4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yi/XMZl9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EFF71FC5
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:58:08 +0000 (UTC)
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFE3B0;
-	Tue, 17 Oct 2023 23:58:06 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5a7c95b8d14so82809827b3.3;
-        Tue, 17 Oct 2023 23:58:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46271FC5
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:01:13 +0000 (UTC)
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA30EA;
+	Wed, 18 Oct 2023 00:01:12 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id 5614622812f47-3af64a4c97eso3541161b6e.2;
+        Wed, 18 Oct 2023 00:01:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697612286; x=1698217086; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kwC4vINsKq9AZoCiHY7v2qaBARUu3Ce9v82O1PQj3I8=;
-        b=YkcPy1I42u2qAWk/UMix0vDl8hSdVc25OHbDbszY7lMTuzdETKKoD9SOJHuzyMlFZI
-         jWYDEN5ZeJLNmFMbnDJryxJcDY2FZAaEdHsTMQd12rRIwU2t5Vfh4QLncREQf1OgshwB
-         sl7QyVlN60dAdhIkailca/lmeux4FhlHJ/WNjVBg+OnzZ5amEm0gTO3UdQGhAPF/ly0S
-         YC1WbzflWA9DGd8nHhvoBY2zVajeD/GXXAgKJj24VjSzsmxEWwEdA1at+pghOpVJOm4K
-         SwfphGgS0ksLEylGSJPkjJbAh6ZnH90M8EieeyzH/1XRh0JX1IzdVQCcxDtu8U6KxKJi
-         5B8w==
+        d=gmail.com; s=20230601; t=1697612471; x=1698217271; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tov+DeHbMDyFN68SZwsGVOS2MZy5FzMU6m+ne5E245U=;
+        b=Yi/XMZl99IiN5bZ2LcG4J1OEsY2viC3Oiyp+UldAl2t0A5eE6IeUZ6JPLM7xN030NA
+         NwtUFMvM557yqUVtbcS4sW93HLtV6c9V1tOrbfhsMCj0zBJZGxtyEhw5VxQO5HhKLc1P
+         bOtm5q3GX5MDJiRpLUWi/BWmzkk2bAYQ3AjF+G6/ixoqGyHne16QHRujJzdAOYt6WF91
+         D2GEJhgXK+PqU0ipNzvO3XoIVUFuoQzmSqaN8W1MLPzswpegVAJ0rBTowYXsAU3opO5C
+         Gne1lOlLo3xnKAEK2MA7Gs9rMXj41qKm8jf92caLB/z8DXPMxLchFpUIj7A9RlVvJVmy
+         L/nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697612286; x=1698217086;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kwC4vINsKq9AZoCiHY7v2qaBARUu3Ce9v82O1PQj3I8=;
-        b=SBlSWq2XjVhT4DJDwQ48uVkU5YMW6Wkm33+hS0+8Vy3pDtZOmmzrY8v5gTFTP9dZ0B
-         32SNExtNubCUbGHL/LkoxUi3/lkOQT7Ajk0OHom69CFQ7w6q3Pq+MVAVV83Yp6Stubx1
-         LOvrEZhxOqi3vNWicP1Pgku3okjbcdoadbyBSDKMBsnrbtprJHSmGlkXLxvA8YJIamyt
-         602+XcC0hxuW6OLOrD/pH8Dk2px113nneD4rShfhKQMuBPs1NuObNCBp3tpL6sWbWJrg
-         S5eIBb+SUGJ5ZvLyGdO5DUMYZo1yWLjDhtpzYjBW8KmLSjb4Z/QzFrU9HbhtCAtFLa+Y
-         eeqg==
-X-Gm-Message-State: AOJu0Yx5XaESVnYr5GT2Uiz6ILNWMLSIF7T+HpToVHUqRspsIwikqmy4
-	UwOKZkWC72DEl23AeJQzE/LRB9g+KFyW7+6VfeU=
-X-Google-Smtp-Source: AGHT+IE6HbcHtJGJ8vsAFILw76rUp7kVer/XFcoWhaAjgYaag/14z9b9gNxOtypzAhjLZ9R641Sfqma1OaIo29kRNNo=
-X-Received: by 2002:a25:8042:0:b0:d9a:baa8:30a2 with SMTP id
- a2-20020a258042000000b00d9abaa830a2mr4263564ybn.8.1697612286050; Tue, 17 Oct
- 2023 23:58:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697612471; x=1698217271;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tov+DeHbMDyFN68SZwsGVOS2MZy5FzMU6m+ne5E245U=;
+        b=FHesfya3eGD84jB6U2wJ+Ke9GIbf+HpnNN36pm1WuWiAZwWFwkQH00AaUCwmRX9TGf
+         JYAUQI57d5MpIvkS0Ddj6iKGG+TnHBbxSB6jIuQhj6jgIN8uTgSrihqnWpyO6Y+p6BYE
+         A8//wZOkjH1NZ/4vCFsPKtYRYpNhO/+NZ1b2AXWR1g4QUJ50Uk5imOMsy1PoMOa62aww
+         AXW49wnl6LVTXd8C490FWU3tAickiOnKYWoFjRj376ztMCYMT5FyGNEr8yQUIeyidc0j
+         ZfTT23PFTQuyqf+6NDn3cQBydiRqNGEe3E7ZBk9LWyYNYyndIJCSAvisGJy46c77i/kU
+         9FQQ==
+X-Gm-Message-State: AOJu0YzIiB2JJHwJpji1RDiM4Re/ZoLCsAWO7wPM1iu+pF3smM7eEgxi
+	dOUzq0nuAS8MzBsOvfwGp10=
+X-Google-Smtp-Source: AGHT+IHuFPGzG5oAjQAaVoMsTLGtwkHHQikVV0uYP5h0bMdQO8i1S2N/GDe9xxq//owE/NrzK42asQ==
+X-Received: by 2002:aca:1717:0:b0:3a7:4161:44ee with SMTP id j23-20020aca1717000000b003a7416144eemr4142855oii.6.1697612471317;
+        Wed, 18 Oct 2023 00:01:11 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id n5-20020a654cc5000000b00565e96d9874sm850346pgt.89.2023.10.18.00.01.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 00:01:10 -0700 (PDT)
+Message-ID: <c6394168-97a3-46c7-839a-ec0928ffb3b5@gmail.com>
+Date: Wed, 18 Oct 2023 15:01:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org> <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org> <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
- <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org> <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
- <86wmxcejav.wl-maz@kernel.org> <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
- <86pm2ye2si.wl-maz@kernel.org> <CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
- <CAOiHx=mq3hw-LFerb9UzU7VSnLypnvPuo1GomCnN=p0u3xN1Ug@mail.gmail.com>
-In-Reply-To: <CAOiHx=mq3hw-LFerb9UzU7VSnLypnvPuo1GomCnN=p0u3xN1Ug@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 18 Oct 2023 12:57:53 +0600
-Message-ID: <CAMpQs4+neiaJKp93UcemJbPPbhmf1B7WYNqKh=qx0avrbwW2cQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To: Jonas Gorski <jonas.gorski@gmail.com>
-Cc: Marc Zyngier <maz@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-mips@vger.kernel.org, diasyzhang@tencent.com, 
-	linux-kernel@vger.kernel.org, frowand.list@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
+ control
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20231011090510.114476-1-ychuang570808@gmail.com>
+ <20231011090510.114476-3-ychuang570808@gmail.com>
+ <7800b2d6-33c4-4c4f-8d0c-c11ff0e47535@linaro.org>
+ <17a80031-98bf-48bf-8cea-c0ca4400f142@gmail.com>
+ <254837e5-a0fa-4796-8928-277db4b98bf1@linaro.org>
+ <8e983479-709f-4ec8-85e2-c46a5256a2ec@gmail.com>
+ <6c8a3ed2-879c-4423-b6e7-80f8b127a1c1@linaro.org>
+From: Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <6c8a3ed2-879c-4423-b6e7-80f8b127a1c1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 17, 2023 at 9:05=E2=80=AFPM Jonas Gorski <jonas.gorski@gmail.co=
-m> wrote:
+
+Dear Krzysztof,
+
+Thank you for the review.
+
+
+On 2023/10/18 下午 01:58, Krzysztof Kozlowski wrote:
+> On 18/10/2023 05:26, Jacky Huang wrote:
+>> Dear Krzysztof,
+>>
+>> Thank you for the review.
+>>
+>>
+>> On 2023/10/17 上午 03:52, Krzysztof Kozlowski wrote:
+>>> On 16/10/2023 06:32, Jacky Huang wrote:
+>>>>>> +  '#size-cells':
+>>>>>> +    const: 1
+>>>>>> +
+>>>>>> +  nuvoton,sys:
+>>>>>> +    description:
+>>>>>> +      phandle to the syscon node
+>>>>> sys is quite generic. Description explains nothing except duplicating
+>>>>> known information. Drop duplicated info and instead explain to what this
+>>>>> phandle points and how it is going to be used.
+>>> Read comments carefully.
+>>
+>> I will update the description of 'nuvoton,sys'.
+> What is the full name of destination block?
+
+
+The full name is 'system-management'. From:
+
+         sys: system-management@40460000 {
+             compatible = "nuvoton,ma35d1-reset", "syscon";
+             reg = <0x0 0x40460000 0x0 0x200>;
+             #reset-cells = <1>;
+         };
+
+
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>>>> +    items:
+>>>>>> +      maxItems: 1
+>>>>> So just phandle, not phandle-array, unless it is defined like this in
+>>>>> some other binding.
+>>>> I would like to update this as:
+>>>>
+>>>>      nuvoton,sys:
+>>> Nothing improved.
+>> Here just fix  the 'phandle-array' to 'phandle' and remove 'maxItems'.
+>>
+>>>>        $ref: /schemas/types.yaml#/definitions/phandle
+>>>>        description:
+>>>>          Help pinctrl driver to access system registers by means of regmap.
+>>> Driver is not relevant here. Say which part of syscon are necessary for
+>>> pinctrl operation.
+>>>
+>> I will update description as:
+>>
+>>     nuvoton,sys:
+>>       $ref: /schemas/types.yaml#/definitions/phandle
+>>       description:
+>>         The pin function control registers are located in the system
+>>         control register space. This phandle provides pinctrl the
+>>         ability to access the pin function control registers through
+>>         the use of regmap.
+> regmap is unrelated to the bindings.
+
+So, I will just update the description as:
+
+phandle of the system-management node.
+
+
+>>>>>> +        maximum: 7
+>>>>>> +
+>>>>>> +      input-enable: true
+>>>>>> +
+>>>>>> +      input-schmitt-enable: true
+>>>>>> +
+>>>>>> +      power-source:
+>>>>>> +        description:
+>>>>>> +          I/O voltage in millivolt.
+>>>>>> +        enum: [ 1800, 3300 ]
+>>>>> Missing units in property name. power-source also does not really
+>>>>> describe the property.
+>>>> The output voltage level of GPIO can be configured as 1.8V or 3.3V,
+>>>> but I cannot find any suitable output properties in 'pincfg-node.yaml.'
+>>> There is actually power-source, but treated as actual choice of power
+>>> supplies.
+>>>
+>>>> I noticed that 'xlnx,zynq-pinctrl.yaml' and 'xlnx,zynq-pinctrl.yaml' use
+>>>> 'power source' to specify the output voltage.  Should I follow their
+>>>> approach or define a vendor-specific one?
+>>> Maybe Rob or Linus have here some recommendation, but I would suggest to
+>>> go either with rtd1319d-pinctrl.yaml approach or add a generic property
+>>> to pincfg-node expressed in real units like "io-microvolt".
+>> OK, I will update it as:
+>>
+>>         power-source:
+>>           description: |
+>>             Valid arguments are described as below:
+>>             0: power supply of 1.8V
+>>             1: power supply of 3.3V
+>>           enum: [0, 1]
+>>
+>>
+>>> Rob, Linus, any ideas for generic property replacing register-specific
+>>> power-source?
+> I proposed io-microvolt
 >
-> On Mon, 16 Oct 2023 at 13:26, Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
-> >
-> > Hi all:
-> >
-> > Sorry, it's been a while since the last discussion.
-> >
-> > Previously, Krzysztof suggested using the standard "interrupt-map"
-> > attribute instead of the "loongson,parent_int_map" attribute, which I
-> > tried to implement, but the downside of this approach seems to be
-> > obvious.
-> >
-> > First of all, let me explain again the interrupt routing of the
-> > loongson liointc.
-> > For example, the Loongson-2K1000 has 64 interrupt sources, each with
-> > the following 8-bit interrupt routing registers (main regs attribute
-> > in dts):
-> >
-> > +----+-----------------------------------------------------------------=
---+
-> > | bit  | description
-> >             |
-> > +----+-----------------------------------------------------------------=
---+
-> > | 3:0 | Processor core to route                                        =
-   |
-> > | 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-> > +-----+----------------------------------------------------------------=
---+
-> >
-> > The "loongson,parent_int_map" attribute is to describe the routed
-> > interrupt pins to cpuintc.
-> >
-> > However, the "interrupt-map" attribute is not supposed to be used for
-> > interrupt controller in the normal case. Though since commit
-> > 041284181226 ("of/irq: Allow matching of an interrupt-map local to an
-> > interrupt controller"), the "interrupt-map" attribute can be used in
-> > interrupt controller nodes. Some interrupt controllers were found not
-> > to work properly later, so in commit de4adddcbcc2 ("of/irq: Add a
-> > quirk for controllers with their own definition of interrupt-map"), a
-> > quirk was added for these interrupt controllers. As we can see from
-> > the commit message, this is a bad solution in itself.
-> >
-> > Similarly, if we choose to use the "interrupt-map" attribute in the
-> > interrupt controller, we have to use this unfriendly solution (quirk).
-> > Because we hope of_irq_parse_raw() stops at the liointc level rather
-> > than goto its parent level.
-> >
-> > So, I don't think it's a good choice to use a bad solution as a replace=
-ment.
-> >
-> > Do you have any other ideas?
+> Best regards,
+> Krzysztof
 >
-> Assuming this is changeable at runtime, this sounds to me like this
-> mapping/routing could easily be exposed as irqchip cpu affinity. Then
-> userspace can apply all the performance optimizations it wants (and
-> can easily update them without fiddling with the kernel/dts).
->
-> And then there would be no need to hardcode/describe it in the dts(i) at =
-all.
 
-Hi Jonas:
+I will use 'io-microvolt' once it is available.
 
-Thanks for your reply.
 
-It is possible that my non-detailed explanation caused your misunderstandin=
-g.
-Allow me to explain again about the interrupt routing register above,
-which we know is divided into two parts:
 
-+----+-------------------------------------------------------------------+
-| bit  | description |
-+----+-------------------------------------------------------------------+
-| 3:0 | Processor core to route                                           |
-| 7:4 | Routed processor core interrupt pins (INT0--INT3) |
-+-----+------------------------------------------------------------------+
+Best Regards,
+Jacky Huang
 
-The first part "processor core" will be set to "boot_cpu_id" in the
-driver, which we assume is fixed and we don't need to care about it
-here.
-What we care about is the second part "mapping of device interrupts to
-processor interrupt pins", which is what we want to describe in
-dts(i).
-
-Let's take the Loongson-2K1000 as an example again, it has 64
-interrupt sources as inputs and 4 processor core interrupt pins as
-outputs.
-The sketch is shown below:
-
-Device Interrupts           Interrupt Pins
-                 +-------------+
-         0---->|                |--> INT0
-        ...       | Mapping |--> INT1
-        ...       |                |--> INT2
-        63--->|                |--> INT3
-                 +-------------+
-
-Therefore, this mapping relationship cannot be changed at runtime and
-needs to be hardcoded/described in dts(i).
-
-Thanks.
-Binbin
->
-> Best Regards,
-> Jonas
 
