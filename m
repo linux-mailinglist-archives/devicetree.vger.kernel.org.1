@@ -1,213 +1,155 @@
-Return-Path: <devicetree+bounces-9668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDAD7CDE08
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:57:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247D97CDDF8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80279281E45
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:57:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D45D9281CB7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BE037151;
-	Wed, 18 Oct 2023 13:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EEA836B00;
+	Wed, 18 Oct 2023 13:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J1lPNlt4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C7/HpwWu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066C536B10;
-	Wed, 18 Oct 2023 13:57:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A2F109;
-	Wed, 18 Oct 2023 06:57:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697637436; x=1729173436;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=WicXwt7zgwB0kjyvct5P6tuXn0cpYntJoR2pWn1NKFg=;
-  b=J1lPNlt4OescISxmlrr7cDzK8OYBkljeL2H6PUz2A35toDL4maZCKbm2
-   OnADgStwRMlL7T0IdbLcBY+I3gks9XsxGhLj7CKZsTF5Z41cANSF8758l
-   8Mz6ttm5kW2xlD+LU2f2mC25UDfRy176eeD1mHLh0cIZexaq0WO/Mdp6m
-   63fBsr5jtNhmOtesINuQrYLKgCZhhdaiKYcZtVovWR49X2zpvl+BjDLlJ
-   zkP7Lsk8pPVn71TnugCAUArwIc+C1LinQQr5LgPH3NTWrC8sPx3HxJ0M3
-   K4Ff1RoLmPK+zzTcQV5npy0uqlH1CLI6iRGmjU2pywlhr13HNb+eTX8/4
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="472242459"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="472242459"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 06:57:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="930209927"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="930209927"
-Received: from dmangels-mobl.amr.corp.intel.com (HELO [10.209.187.130]) ([10.209.187.130])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 06:57:14 -0700
-Message-ID: <925d7c03-c288-49a4-8bcd-395b32810d75@linux.intel.com>
-Date: Wed, 18 Oct 2023 08:54:35 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1048A199B3
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:55:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7D4C433C8;
+	Wed, 18 Oct 2023 13:55:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697637307;
+	bh=/Sv0eOvNr/HwW00lGx+jhbfIdcv4vyyP3U54Xc2eXGc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C7/HpwWuR4SUo4Y+qVg8AU2FaI9eKet4JwUXb4Nb+u3Ia0b3nz1SZjgDpY8aQzP18
+	 iOljF7cN5/etmdf/tyWNy9jqWgBotLys3J1eOQR0qBX6IiETzPXq9nK7eIZ3uJgsqq
+	 N+mkSsJ8etXHEV3+tkplGEo1F2gr2bALs2UCEHTZWvNg3vRLZEn7xeVig51Q0163HJ
+	 4mi0mqgqsogxasuDjsRbrNnpHQbyxTSLjJ1QOrwPftuqmYBLhqMQS2wNXK4YFkojon
+	 XArbX7TJqUY1a5ZWRxgckNPhACmx3KSanpvdVuSf8Vsx9JMpJc+V+f6pyQDa/D/2rr
+	 QnZGZwuURbgRA==
+Date: Wed, 18 Oct 2023 14:55:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	sboyd@kernel.org, abelvesa@kernel.org, kernel@pengutronix.de,
+	estevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, inux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: support i.MX93 Anatop
+Message-ID: <20231018-promenade-budding-3e228f241eb7@spud>
+References: <20231018084414.1950241-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 00/34] Introduce QC USB SND audio offloading support
-Content-Language: en-US
-To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
- gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
- Thinh.Nguyen@synopsys.com
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
- <9942bb93-31ea-4574-940f-98d87a2fc127@linux.intel.com>
- <366d50fa-500f-e884-d48a-197e65bb2fb7@quicinc.com>
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <366d50fa-500f-e884-d48a-197e65bb2fb7@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="utsPIamuwMyoE1mp"
+Content-Disposition: inline
+In-Reply-To: <20231018084414.1950241-1-peng.fan@oss.nxp.com>
 
 
+--utsPIamuwMyoE1mp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/17/23 19:25, Wesley Cheng wrote:
-> Hi Pierre,
-> 
-> On 10/17/2023 1:58 PM, Pierre-Louis Bossart wrote:
->> It's been a very long time since I reviewed earlier versions, and I am
->> still lost on terminology and concepts. The explanations below should
->> really be added as a .rst file in Documentation for reference, not just
->> as a cover letter.
->>
-> 
-> Thanks for the review!
-> 
-> Sure, maybe I can write a more comprehensive documentation that saves
-> these details somewhere.  Will add a RST documentation for material
-> where necessary.
-> 
->>> Several Qualcomm based chipsets can support USB audio offloading to a
->>> dedicated audio DSP, which can take over issuing transfers to the USB
->>> host controller.  The intention is to reduce the load on the main
->>> processors in the SoC, and allow them to be placed into lower power
->>> modes.
->>> There are several parts to this design:
->>>    1. Adding ASoC binding layer
->>>    2. Create a USB backend for Q6DSP
->>
->> "backend" is a loaded terms for ASoC. Can you clarify which part of the
->> ascii art below is a 'backend'?
->>
-> 
-> This would be the Q6USB entity which is the DPCM backend for this
-> particular audio path.
+On Wed, Oct 18, 2023 at 04:44:13PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Support i.MX93 Anatop which generates PLL and feeds into CCM.
 
-DPCM is about dailinks. Technically the q6usb entity is a codec dai
-which is part of a DPCM backend dailink.
-> 
->>>    3. Introduce XHCI interrupter support
->>>    4. Create vendor ops for the USB SND driver
->>>
->>>        USB                          |            ASoC
->>> --------------------------------------------------------------------
->>>                                     |  _________________________
->>>                                     | |sm8250 platform card     |
->>>                                     | |_________________________|
->>>                                     |         |           |
->>>                                     |      ___V____   ____V____
->>>                                     |     |Q6USB   | |Q6AFE    |
->>>                                     |     |"codec" | |"cpu"    |
->>>                                     |     |________| |_________|
->>>                                     |         ^  ^        ^
->>>                                     |         |  |________|
->>>                                     |      ___V____    |
->>>                                     |     |SOC-USB |   |
->>>     ________       ________               |        |   |
->>>    |USB SND |<--->|QC offld|<------------>|________|   |
->>>    |(card.c)|     |        |<----------                |
->>>    |________|     |________|___     | |                |
->>>        ^               ^       |    | |    ____________V_________
->>>        |               |       |    | |   |APR/GLINK             |
->>>     __ V_______________V_____  |    | |   |______________________|
->>>    |USB SND (endpoint.c)     | |    | |              ^
->>>    |_________________________| |    | |              |
->>>                ^               |    | |   ___________V___________
->>>                |               |    | |->|audio DSP              |
->>>     ___________V_____________  |    |    |_______________________|
->>>    |XHCI HCD                 |<-    |
->>>    |_________________________|      |
->>>
->>>
->>> Adding ASoC binding layer:
->>> soc-usb: Intention is to treat a USB port similar to a headphone jack.
->>
->> What is a 'port'? USB refers to "interfaces" and "endpoints". Is a
->> "port" a 1:1 mapping to "endpoint"?
->>
->> Below I read "AFE port" so not sure what concepts refer to what.
->>
-> 
-> "Port" in this explanation refers to the USB port.  So the audio device
-> connected.  You are right that a USB device can enumerate w/ multiple
-> interfaces (ie UAC + HID + ...) so the closest relation to "port" is
-> "interface."  It is not a 1:1 mapping w/ the number of endpoints exposed
-> by a device.
-> 
-> "AFE port" is just something that has been termed from the audio DSP
-> end, so that concept of port is not related to the port where USB
-> devices are connected to.  This is something that is defined within the
-> audio DSP.
+What is "CCM". How do you "generate" a PLL?
 
-Wow. So there's a "USB port" and "AFE port". I would recommend avoiding
-the same term for completely different concepts. Why not use "USB device"?
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/clock/fsl,imx93-anatop.yaml      | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx93-ana=
+top.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yam=
+l b/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml
+> new file mode 100644
+> index 000000000000..9585c9e4ee40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/fsl,imx93-anatop.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX93 Anatop Module
 
->>>   0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
->>>                        SM8250-MTP-WCD9380-WSA8810-VA-DMIC
->>
->> How do you plan on exposing the USB PCM device?
->>
->> The lines above are really cryptic, and with no USB reference in any of
->> the short/long card names it's not obvious that this card is different
->> from the no-offload case, is it?
->>
-> 
-> In the end, since the offload case is handled by the audio DSP, it would
-> have to go through the platform/machine sound card.  That is the sm8250
-> device above.
-> 
->>>   1 [Audio          ]: USB-Audio - USB Audio
->>>                        Generic USB Audio at usb-xhci-hcd.1.auto-1.4,
->>> high speed
->>
->> likewise some sort of qualifier would be useful to show that card 0 and
->> card 1 can target the same USB endpoints.
->>
-> 
-> Do userspace entities look at this card string?  Assuming there is only
-> one platform card, there are situations where maybe multiple USB audio
-> devices are connected to the same USB root hub, so offloading can happen
-> on any one of them (not at the same time).
+I see there are also "anatop regulators" on some imx SoCs, just calling
+this "anatop module" does not seem sufficiently descriptive.
 
-Jaroslav cares, as measured by the changes over the years to make the
-card names more self-explanatory.
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +description: |
 
-I really don't see anything in the SM8250MTPWCD938 card name that would
-hint at the support of USB. If it's not in the card string, maybe this
-can be added in the component string as well (amixer -Dhw:0 info). The
-point is that userspace should not have to maintain an 'accept-list' of
-card names but have the means to check the USB offload capability with a
-vendor-neutral convention.
+Drop the |, you don't need it.
+
+> +  NXP i.MX93 anatop PLL module which generates PLL to CCM root.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: fsl,imx93-anatop
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    anatop: clock-controller@44480000 {
+
+and the label is is not used, so should be dropped.
+
+Thanks,
+Conor.
+
+> +        compatible =3D "fsl,imx93-anatop";
+> +        reg =3D <0x44480000 0x2000>;
+> +        #clock-cells =3D <1>;
+> +    };
+> +
+> +...
+> --=20
+> 2.37.1
+>=20
+
+--utsPIamuwMyoE1mp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS/jtQAKCRB4tDGHoIJi
+0gjQAQDR/e8JMHulwKwep/g8KgC1ksjYbzITwnhCg+8FjTPRgwEAu1ipzVFf5SvR
+81hSDfFx6Iok+3TePZ0lXLB3+V5KawU=
+=bigl
+-----END PGP SIGNATURE-----
+
+--utsPIamuwMyoE1mp--
 
