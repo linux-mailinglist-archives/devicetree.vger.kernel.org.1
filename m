@@ -1,218 +1,118 @@
-Return-Path: <devicetree+bounces-9522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3960D7CD4BD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:01:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6D97CD4D2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E340A2819CD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:01:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A08E6281B64
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA418486;
-	Wed, 18 Oct 2023 07:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEA8D2FF;
+	Wed, 18 Oct 2023 07:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yi/XMZl9"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PqnDSTjE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46271FC5
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:01:13 +0000 (UTC)
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA30EA;
-	Wed, 18 Oct 2023 00:01:12 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id 5614622812f47-3af64a4c97eso3541161b6e.2;
-        Wed, 18 Oct 2023 00:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697612471; x=1698217271; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tov+DeHbMDyFN68SZwsGVOS2MZy5FzMU6m+ne5E245U=;
-        b=Yi/XMZl99IiN5bZ2LcG4J1OEsY2viC3Oiyp+UldAl2t0A5eE6IeUZ6JPLM7xN030NA
-         NwtUFMvM557yqUVtbcS4sW93HLtV6c9V1tOrbfhsMCj0zBJZGxtyEhw5VxQO5HhKLc1P
-         bOtm5q3GX5MDJiRpLUWi/BWmzkk2bAYQ3AjF+G6/ixoqGyHne16QHRujJzdAOYt6WF91
-         D2GEJhgXK+PqU0ipNzvO3XoIVUFuoQzmSqaN8W1MLPzswpegVAJ0rBTowYXsAU3opO5C
-         Gne1lOlLo3xnKAEK2MA7Gs9rMXj41qKm8jf92caLB/z8DXPMxLchFpUIj7A9RlVvJVmy
-         L/nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697612471; x=1698217271;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tov+DeHbMDyFN68SZwsGVOS2MZy5FzMU6m+ne5E245U=;
-        b=FHesfya3eGD84jB6U2wJ+Ke9GIbf+HpnNN36pm1WuWiAZwWFwkQH00AaUCwmRX9TGf
-         JYAUQI57d5MpIvkS0Ddj6iKGG+TnHBbxSB6jIuQhj6jgIN8uTgSrihqnWpyO6Y+p6BYE
-         A8//wZOkjH1NZ/4vCFsPKtYRYpNhO/+NZ1b2AXWR1g4QUJ50Uk5imOMsy1PoMOa62aww
-         AXW49wnl6LVTXd8C490FWU3tAickiOnKYWoFjRj376ztMCYMT5FyGNEr8yQUIeyidc0j
-         ZfTT23PFTQuyqf+6NDn3cQBydiRqNGEe3E7ZBk9LWyYNYyndIJCSAvisGJy46c77i/kU
-         9FQQ==
-X-Gm-Message-State: AOJu0YzIiB2JJHwJpji1RDiM4Re/ZoLCsAWO7wPM1iu+pF3smM7eEgxi
-	dOUzq0nuAS8MzBsOvfwGp10=
-X-Google-Smtp-Source: AGHT+IHuFPGzG5oAjQAaVoMsTLGtwkHHQikVV0uYP5h0bMdQO8i1S2N/GDe9xxq//owE/NrzK42asQ==
-X-Received: by 2002:aca:1717:0:b0:3a7:4161:44ee with SMTP id j23-20020aca1717000000b003a7416144eemr4142855oii.6.1697612471317;
-        Wed, 18 Oct 2023 00:01:11 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id n5-20020a654cc5000000b00565e96d9874sm850346pgt.89.2023.10.18.00.01.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 00:01:10 -0700 (PDT)
-Message-ID: <c6394168-97a3-46c7-839a-ec0928ffb3b5@gmail.com>
-Date: Wed, 18 Oct 2023 15:01:08 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1325F8F7D
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:02:37 +0000 (UTC)
+Received: from mail-m12745.qiye.163.com (mail-m12745.qiye.163.com [115.236.127.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8D3F9;
+	Wed, 18 Oct 2023 00:02:34 -0700 (PDT)
+DKIM-Signature: a=rsa-sha256;
+	b=PqnDSTjEVgAV3ugi3OFPf+K//Oc6d56UrpHgE7O6kKHags2/XV44CuY8eY+FAH+u/7nmhfHeWwoig9t0pdCCiw/AQCKFmldjPPVbz1BeTqnd6Qt+tOSO32rf5rGIz/IduoFjf1RzEP4MtLvtDeKygh3TpY8+nV+DHlCeNghcYj8=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=MfW+hAvvxxP57SvyJjVH6FJ64ZxMcz0jfmtv7snxtus=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id 7CC5C40027E;
+	Wed, 18 Oct 2023 15:01:50 +0800 (CST)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	kever.yang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com
+Subject: [PATCH v4 0/4] rockchip: add GATE_LINK
+Date: Wed, 18 Oct 2023 15:01:40 +0800
+Message-Id: <20231018070144.8512-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk5MHlYZTBlDTx5NGUNLThlVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8b419736c22eb3kusn7cc5c40027e
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OjY6ASo5Mzw#CEsoNipNGgE9
+	AjEaCg5VSlVKTUJMTUpJTkpKT0JKVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlDSE03Bg++
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: Document nuvoton ma35d1 pin
- control
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20231011090510.114476-1-ychuang570808@gmail.com>
- <20231011090510.114476-3-ychuang570808@gmail.com>
- <7800b2d6-33c4-4c4f-8d0c-c11ff0e47535@linaro.org>
- <17a80031-98bf-48bf-8cea-c0ca4400f142@gmail.com>
- <254837e5-a0fa-4796-8928-277db4b98bf1@linaro.org>
- <8e983479-709f-4ec8-85e2-c46a5256a2ec@gmail.com>
- <6c8a3ed2-879c-4423-b6e7-80f8b127a1c1@linaro.org>
-From: Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <6c8a3ed2-879c-4423-b6e7-80f8b127a1c1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
+Recent Rockchip SoCs have a new hardware block called Native Interface
+Unit (NIU), which gates clocks to devices behind them. These effectively
+need two parent clocks.
+Use GATE_LINK to handle this.
 
-Dear Krzysztof,
+change in v4:
+[PATCH v4 1/4]: No change
+[PATCH v4 2/4]: No change
+[PATCH v4 3/4]: dropping CLK_NR_CLKS,reword commit message
+[PATCH v4 4/4]: No change
 
-Thank you for the review.
+change in V3:
+[PATCH v3 1/4]: new, export clk_gate_endisable for PATCH2.
+[PATCH v3 2/4]: reuse clk_gate_endisable and clk_gate_is_enabled.
+                add prepare and unprepare ops.
+[PATCH v3 3/4]: No change
+[PATCH v3 4/4]: reword commit message
 
+change in V2:
+[PATCH v2 1/3]: fix reported warnings
+[PATCH v2 2/3]: Bindings submit independent patches
+[PATCH v2 3/3]: fix reported warnings
 
-On 2023/10/18 下午 01:58, Krzysztof Kozlowski wrote:
-> On 18/10/2023 05:26, Jacky Huang wrote:
->> Dear Krzysztof,
->>
->> Thank you for the review.
->>
->>
->> On 2023/10/17 上午 03:52, Krzysztof Kozlowski wrote:
->>> On 16/10/2023 06:32, Jacky Huang wrote:
->>>>>> +  '#size-cells':
->>>>>> +    const: 1
->>>>>> +
->>>>>> +  nuvoton,sys:
->>>>>> +    description:
->>>>>> +      phandle to the syscon node
->>>>> sys is quite generic. Description explains nothing except duplicating
->>>>> known information. Drop duplicated info and instead explain to what this
->>>>> phandle points and how it is going to be used.
->>> Read comments carefully.
->>
->> I will update the description of 'nuvoton,sys'.
-> What is the full name of destination block?
+Elaine Zhang (4):
+  clk: gate: export clk_gate_endisable
+  clk: rockchip: add support for gate link
+  dt-bindings: clock: rk3588: export PCLK_VO1GRF clk id
+  clk: rockchip: rk3588: Adjust the GATE_LINK parameter
 
+ drivers/clk/clk-gate.c                        |   3 +-
+ drivers/clk/rockchip/Makefile                 |   1 +
+ drivers/clk/rockchip/clk-gate-link.c          | 120 ++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3588.c             | 110 ++++++++--------
+ drivers/clk/rockchip/clk.c                    |   7 +
+ drivers/clk/rockchip/clk.h                    |  22 ++++
+ .../dt-bindings/clock/rockchip,rk3588-cru.h   |   2 +-
+ include/linux/clk-provider.h                  |   1 +
+ 8 files changed, 213 insertions(+), 53 deletions(-)
+ create mode 100644 drivers/clk/rockchip/clk-gate-link.c
 
-The full name is 'system-management'. From:
-
-         sys: system-management@40460000 {
-             compatible = "nuvoton,ma35d1-reset", "syscon";
-             reg = <0x0 0x40460000 0x0 0x200>;
-             #reset-cells = <1>;
-         };
-
-
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>>> +    items:
->>>>>> +      maxItems: 1
->>>>> So just phandle, not phandle-array, unless it is defined like this in
->>>>> some other binding.
->>>> I would like to update this as:
->>>>
->>>>      nuvoton,sys:
->>> Nothing improved.
->> Here just fix  the 'phandle-array' to 'phandle' and remove 'maxItems'.
->>
->>>>        $ref: /schemas/types.yaml#/definitions/phandle
->>>>        description:
->>>>          Help pinctrl driver to access system registers by means of regmap.
->>> Driver is not relevant here. Say which part of syscon are necessary for
->>> pinctrl operation.
->>>
->> I will update description as:
->>
->>     nuvoton,sys:
->>       $ref: /schemas/types.yaml#/definitions/phandle
->>       description:
->>         The pin function control registers are located in the system
->>         control register space. This phandle provides pinctrl the
->>         ability to access the pin function control registers through
->>         the use of regmap.
-> regmap is unrelated to the bindings.
-
-So, I will just update the description as:
-
-phandle of the system-management node.
-
-
->>>>>> +        maximum: 7
->>>>>> +
->>>>>> +      input-enable: true
->>>>>> +
->>>>>> +      input-schmitt-enable: true
->>>>>> +
->>>>>> +      power-source:
->>>>>> +        description:
->>>>>> +          I/O voltage in millivolt.
->>>>>> +        enum: [ 1800, 3300 ]
->>>>> Missing units in property name. power-source also does not really
->>>>> describe the property.
->>>> The output voltage level of GPIO can be configured as 1.8V or 3.3V,
->>>> but I cannot find any suitable output properties in 'pincfg-node.yaml.'
->>> There is actually power-source, but treated as actual choice of power
->>> supplies.
->>>
->>>> I noticed that 'xlnx,zynq-pinctrl.yaml' and 'xlnx,zynq-pinctrl.yaml' use
->>>> 'power source' to specify the output voltage.  Should I follow their
->>>> approach or define a vendor-specific one?
->>> Maybe Rob or Linus have here some recommendation, but I would suggest to
->>> go either with rtd1319d-pinctrl.yaml approach or add a generic property
->>> to pincfg-node expressed in real units like "io-microvolt".
->> OK, I will update it as:
->>
->>         power-source:
->>           description: |
->>             Valid arguments are described as below:
->>             0: power supply of 1.8V
->>             1: power supply of 3.3V
->>           enum: [0, 1]
->>
->>
->>> Rob, Linus, any ideas for generic property replacing register-specific
->>> power-source?
-> I proposed io-microvolt
->
-> Best regards,
-> Krzysztof
->
-
-I will use 'io-microvolt' once it is available.
-
-
-
-Best Regards,
-Jacky Huang
+-- 
+2.17.1
 
 
