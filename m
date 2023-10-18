@@ -1,120 +1,174 @@
-Return-Path: <devicetree+bounces-9830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7C67CEB65
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 00:37:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C420D7CEBD2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 01:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 063F3281D83
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:37:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E68861C20B90
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 23:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A024539844;
-	Wed, 18 Oct 2023 22:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA691863F;
+	Wed, 18 Oct 2023 23:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uu7qKZO9"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="LiiqZuy6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA99039854
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 22:37:28 +0000 (UTC)
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA31A118
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 15:37:26 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d9a398f411fso8372364276.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 15:37:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697668646; x=1698273446; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3sVJFVpPwshmtNesSZYpLdeu3AKCPAN5fOk/AE0DGUc=;
-        b=uu7qKZO9fW/V52UMWo3os3UxIMUH9+AcUa+7z202HbsLfolO0r15qt5YAVIgx7pi1d
-         M/T5S/U3x+TVKtJiMpa7+PoxbvcXoz8FQMtWZ8OZlFI6lEQ27REdKsUSaCHopLJ3Dpgz
-         GZKPFMH6A7CxX3Tc60KDoTHawa/Jepq/tbpMhWD9eugU878M2wvbol5WP8hEdgLuxkns
-         bXVUHfj94hL0hQuyeL4iApYDom/WFNUTdF9IeDhVVaofVp8mtu9idhvnySsDKapg6Y6o
-         WAMMVzJxvVkkyAnazoaa3bn3rYB8VpOaJMWUXZTcTE/cvIndcNhHL0S0SBYGircUMAiX
-         lvgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697668646; x=1698273446;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3sVJFVpPwshmtNesSZYpLdeu3AKCPAN5fOk/AE0DGUc=;
-        b=TwRc4gc10B+dbCQD02EDAh1ppHyEOTm2pc2cu9UdZDOEvujfvJ8Wv5HYqG99RKh28B
-         nS7c5MnnIxpvaAR4/zSLddD+cizzvbrvMKR5IGoMlRErzVkh3nrtRlI3uDTHNPnZniH/
-         ziLxWaCEszuV8q6DmWgdbgJhpn5fevbVM+fOPOHK8hbAMsyPy0NfLkS8LyQzXdnQaMTM
-         WyEv1nU219NSWWSMs37QO1oY1WJzIUpLVevdyMSbPdgouQurvep/aJnHGUitVF5qtghC
-         KPgUjM+n63Rlt3hlKTl8eAY0v/UgbkDKqPHnGJjzjT9Ay8yPZeVnZ+CPHW4KSrowfE3A
-         R7jA==
-X-Gm-Message-State: AOJu0YzYzk8jrNwz7KyomS8Pt3xaOe+X3xF7koW1qZzAN59hUxInwNLt
-	5h2igxi9YGU9fglCrkH5ChwTBmfaBIkpREq21+RGxQ==
-X-Google-Smtp-Source: AGHT+IGQlkbNBVD/SIMZRooMGJ4PHAVW/C3q1NKNDnZ+FMwhI+gT6LA3YI3WJjxYOKCV9tBBzi3ChIxzhBVUQseyZQo=
-X-Received: by 2002:a25:c8c6:0:b0:d9a:f897:f9b4 with SMTP id
- y189-20020a25c8c6000000b00d9af897f9b4mr616222ybf.65.1697668646025; Wed, 18
- Oct 2023 15:37:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1190B3986C
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 23:18:55 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11olkn2020.outbound.protection.outlook.com [40.92.18.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20B073269;
+	Wed, 18 Oct 2023 16:18:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FI++m/pd45HSRGeJTJ6H0GR4AdS52Lk5m5fc3lh7eLtByH3Xlg8tj9kMS/TAphp9pF8XbFiUnDnGGg4XSazOxzK3TdhNXWEtn8q2wvI9FDSsxHAYVOU/ptY5EYPXkGs3/FVw5nNptL2WhijCfePjVjLp75IaIQX6sQV3Qch0qSRgvAhWbxus5V+X551lY7EAB98MLiYDOmTCDq4QyfPXlwmwvGSKChK2SG1oZUWPTSwcl47ZGNxqSl0urlDXJxaAPuBhT6YhK7vzyCmV0cyxLTuxuB+aUXIG9N+ZGyrrnmAiqvT8iTYXFqabuzWpoyMtEGCaFV0+M0lidMwi7XfRpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=582MOPMCWjoYtgrFOW2pgtTVA6nxyUTk0c8+lCoD1WM=;
+ b=KXP2PKmKTrdAHNXur3GnBAYUde6hixh1kiNedONXA/Cow0WKi14NN3A6f44cxnAseGdK6n3HvalmzcEaVqmkAJKJPWE43BtYn1SpGOU5CvKNoLhiYg5bNNFM+HDjrsXTGvYhPIg7WiUrCn4bZ87hty2lRsONGVDj2ge6wPhpB9pRhU97QLSxJoprCiYG4liKHRxmGBAXegq4eTc51NiKb5PoD/Dujf+Nl1agBOK29HmYaYTc4mKr1wm9NeDpSNZ2MO59zZpnwU1pLoVAn+V8Sdm7NCHMcup1uZn+bbXr8RPDutV3rUN0V1HWk0BX6//ZKOsaNFbSgcraPhlB/7qWJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=582MOPMCWjoYtgrFOW2pgtTVA6nxyUTk0c8+lCoD1WM=;
+ b=LiiqZuy6z3+xHVb7/A5ubC5yazwm3cXLH8onvzSh5/BCzj8zlkEnal153EyUDEKD3IgngeykzdOlEd05SBzeFNBEOTUoeczA3Rp1VI5wPU376MDCqriFIXtGTisaR/EREaIULD92dEjPqCynXd7w4qbkI3YjWykd3rhBji/lgDRfvA2Z0qp09Ox5ft/nQ5LCMjn3iApGwBSFULjZ7MUoxWBLM5U486s09k0onUMpSoFznIMhUfYwW9sYKLBP8rjDN+RHduNCyLyAfYsXkgumGT0lBxF/C0HVqHxK8/KywNTS2KGc0m2y8lvWHbFF8B5xngoIB9MM475knrlSFr5Yjw==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by CO6PR20MB3649.namprd20.prod.outlook.com (2603:10b6:5:345::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Wed, 18 Oct
+ 2023 23:17:44 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6907.021; Wed, 18 Oct 2023
+ 23:17:44 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Anup Patel <anup@brainfault.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/7] Add Huashan Pi board support
+Date: Thu, 19 Oct 2023 07:18:00 +0800
+Message-ID:
+ <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [Y3YjBzVCFMw78wGdKqQMphN2eLy9DK4LEq8kVZmYKyA=]
+X-ClientProxiedBy: TYCP286CA0044.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:29d::17) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231018231803.28262-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231014133823.14088-1-otto.pflueger@abscue.de>
-In-Reply-To: <20231014133823.14088-1-otto.pflueger@abscue.de>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 19 Oct 2023 00:36:49 +0200
-Message-ID: <CAPDyKFoq-7FL=e_ACDeSamoKSmoewK=eSEzzaL1xRQwX_jf_LA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] pmdomain: qcom: rpmpd: Add MSM8917 and similar SoCs
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
-	linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CO6PR20MB3649:EE_
+X-MS-Office365-Filtering-Correlation-Id: 991da175-f9cc-4805-65a5-08dbd0306ee2
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	c84eTu+LEa+VE6Q0J0s7MXYB60waJHeDpO+3gO46o7f6HohRw5LZJbhW064lfTp5LFpiK+TELZJoCZSh+DIXo/QkoPHrtbt13VRm0t8xCgx0MIF1tpc9zomHlrqBQm9JrGkZf5IRnwuQEoOL8AatWsfr3so30czak2d6ic9UWUi3itlg84ZejTsRstMN/UQGz3fbXLxbrR+Tw0CzRfIAjL4czKTtfwtkDEU3PCVMWozruKoFMmhI98UgeoaewZI8wyoyNNOsMMjS7uo4eGBHeYRkjS6W/behASX7kS+r6l2pqIYBEak3Sr/Bolw1ID+0n44sMmjSN/3UfS7qWYaNOYTsgk1VdSCXerBt52SBxLDw38oxnoy7ZbdRMef7WnllajHQ2RfDSbAC0mg8yxoAi5YVn174gSSJtHWRpCycSz/1ApFBBr8wbJO7xuqc/IM98JfTZwmTf30sNIgmUNJDrGBIxn9bFY73noDxusLyMuzL3t/Y7DemOuW1IafVHpGSKjpewqZ0/lluQY7fGYuRx69eLiMy3OLb6HILk8UMRGkFOzdoKzX4voigcYcpluH5slJzTaKq7SOrjacyTe+idswie9alkwl3LrAVV6pdH4OE62umYi+HZyQ3nhgkIpRka8cEcSMnAuZG2BIWKJVUpHjBBUXcN7kibiHya2C6mN4=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?seen2FLAB13wPcglgTkRmY1Q99XE8vCOyBO/m38DskFbxwz12FFKP+ewFoew?=
+ =?us-ascii?Q?MRZJ6wgXtebs3XpRbO9KwyyIrGtaBBL+aWraTOqMDyLkOvqPJ5LekZW9RC3i?=
+ =?us-ascii?Q?YECv0v4Ab7ReMRoYwF8cVNv9yg+IV7CD03/JJ05wDZtVkIHA5JSRj3vCm3Bl?=
+ =?us-ascii?Q?IYLyYeZOHgUQ9xv3V2tToEvww5vBTinEnz+RsLX81Zg1fOlZnP7QIw0LtTQf?=
+ =?us-ascii?Q?IsqrLNeirFeS9qJSqXo/DmaVs1L2dUDyyKSj0D13Iw6wC6piwsFmcATIMvZm?=
+ =?us-ascii?Q?VXB/wVgVHmT0yhYHsux2JXE8SWB6suN+ccYnxkUapcuzow4e2BOciO89nXWa?=
+ =?us-ascii?Q?EhwraXP9Pp71LlY6ok+j5KMHFvdFJ+soXalR/mqLhz52xqOv0mMhFv/OE/vY?=
+ =?us-ascii?Q?9ydhejRzFMIbDS7mTreuIkM+a1wMdUan9la/tQdO+uu++U8ZudVvdupQQUts?=
+ =?us-ascii?Q?/RZYVRYZd2q+tsAk7JawZZGpG88NHK8O//gz3scyaoLsj8MDaSEG8yltQO/f?=
+ =?us-ascii?Q?fFDlVzqyTlLoQ0I66ycktJAQoD5aUkvqU0sCACjLxvShvXlErds4ZWCANJmt?=
+ =?us-ascii?Q?w7El6QtPDcDXuLBTLXIxFMQff/f2xrRHYxr4tgmMIDWogAoT87tHZCTaxVUg?=
+ =?us-ascii?Q?/C8QazPjFYMWRh6cBho9NoOzH/1viXQE1CVeCMmdMV/1VjDhniFXDHtvfK87?=
+ =?us-ascii?Q?e4XDkz6rxxK6cL8/2UOcP3xHh8IxqwSVyxBAWO1SeS+4MjAv8N78ht7mkJsi?=
+ =?us-ascii?Q?HnxJsfum7KvwG42jCIJkzknViU8esQIldEKBP/utye0oDXqpXwZqtwELknwc?=
+ =?us-ascii?Q?0nyWvEEXB52Wpq0BG4OueSMEWDlCru5Nrb5PqBOMdnRJq98kLiPZuQTBnPm6?=
+ =?us-ascii?Q?coK6+Gwu6DdPt/JRcCcLFPrfnfQOn9JajuPC/1m54wc/88YN6ZRg9IRe446l?=
+ =?us-ascii?Q?emrADVbwWgwUiHIUgBKq3+rUS6wV9en3iR8J+7w8jswMcYLfzzdaW/TloRJ6?=
+ =?us-ascii?Q?BrNx0AtH3kBYbfsmbf+4J3/0AXSjWKoOY8nyWpKnFcNRX3PRTdj1twLi0LDv?=
+ =?us-ascii?Q?sPyRZ94aSEtbr4nGZUyZHo6ioPZCAzJK/0tgaAX18oUben8L0Y/izS7/9btM?=
+ =?us-ascii?Q?gtdDSUvhS4nsx5lArbTQEm0Nj2APpOT6NvLWTCP63XO4N7EjirgRy3c6La1Q?=
+ =?us-ascii?Q?BJdLppZiyWIoSffHOlCRpMMYKpuYe+UkgmemQyNzkBsWz2CvYSSRRfAxo24?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 991da175-f9cc-4805-65a5-08dbd0306ee2
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 23:17:44.5925
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR20MB3649
 
-On Sat, 14 Oct 2023 at 15:38, Otto Pfl=C3=BCger <otto.pflueger@abscue.de> w=
-rote:
->
-> Add RPM power domain definitions for the Qualcomm MSM8917, MSM8937 and
-> QM215 SoCs. These SoCs all have the same power domains (VDDCX and VDDMX
-> in voltage level mode), but different regulators are needed for QM215
-> because it is used with a PM8916 PMIC instead of a PM8937 PMIC.
->
-> ---
-> Changes in v4:
-> - Rebase on latest next as of 2023-10-14 with new SM7150 compatible
-> - Add missing Reviewed-by (if there were no changes to rebase on, I
->   would have simply resent the patch)
-> Changes in v3:
-> - Sort compatibles in device tree binding documentation (suggested by
->   Krzysztof)
-> - Rebase on latest next with genpd subsystem renamed to pmdomain
-> Changes in v2:
-> - Fix typo in patch description: VDDMD -> VDDMX
-> - Split MSM8917 and QM215 changes (suggested by Konrad)
-> - Remove redundant qcom,msm8937-rpmpd entry from rpmpd_match_table
->   and use a fallback compatible instead (suggested by Konrad)
->
-> Otto Pfl=C3=BCger (3):
->   dt-bindings: power: rpmpd: Add MSM8917, MSM8937 and QM215
->   pmdomain: qcom: rpmpd: Add MSM8917 power domains
->   pmdomain: qcom: rpmpd: Add QM215 power domains
->
->  .../devicetree/bindings/power/qcom,rpmpd.yaml | 81 +++++++++--------
->  drivers/pmdomain/qcom/rpmpd.c                 | 91 +++++++++++++++++++
->  include/dt-bindings/power/qcom-rpmpd.h        | 21 +++++
->  3 files changed, 156 insertions(+), 37 deletions(-)
+Huashan Pi board is an embedded development platform based on the
+CV1812H chip. Add minimal device tree files for this board.
+Currently, it can boot to a basic shell.
 
-Konrad, Bjorn - it's getting late for v6.7, but not too late yet,
-hence I am pinging you about this.
+NOTE: this series is based on the Jisheng's Milk-V Duo patch.
 
-Can we get an ack from some of you for this series or there is still
-something to improve for Otto?
+Link: https://en.sophgo.com/product/introduce/huashan.html
+Link: https://en.sophgo.com/product/introduce/cv181xH.html
+Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
 
-Kind regards
-Uffe
+Changed from v3:
+1. merge the patch 4 and 5 of v2 to preserve bisectability.
+
+Changed from v2:
+1. use dt override to save code.
+2. code cleanup.
+
+Changed from v1:
+1. split the patch into several patch and refactor them.
+
+Inochi Amaoto (7):
+  dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
+  dt-bindings: timer: Add SOPHGO CV1812H clint
+  dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
+  riscv: dts: sophgo: Separate compatible specific for CV1800B soc
+  riscv: dts: sophgo: cv18xx: Add gpio devices
+  riscv: dts: sophgo: add initial CV1812H SoC device tree
+  riscv: dts: sophgo: add Huashan Pi board device tree
+
+ .../sifive,plic-1.0.0.yaml                    |   1 +
+ .../devicetree/bindings/riscv/sophgo.yaml     |   4 +
+ .../bindings/timer/sifive,clint.yaml          |   1 +
+ arch/riscv/boot/dts/sophgo/Makefile           |   1 +
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 119 +----------
+ .../boot/dts/sophgo/cv1812h-huashan-pi.dts    |  48 +++++
+ arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |  24 +++
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi        | 193 ++++++++++++++++++
+ 8 files changed, 279 insertions(+), 112 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+ create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+ create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+
+--
+2.42.0
+
 
