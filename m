@@ -1,62 +1,72 @@
-Return-Path: <devicetree+bounces-9528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC20E7CD53A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:08:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0297CD54E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:11:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BC43B20FAC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:08:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891681C20A66
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 07:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8BAD2FF;
-	Wed, 18 Oct 2023 07:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB7D101CB;
+	Wed, 18 Oct 2023 07:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j0ZfiF21"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743D6CA74
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 07:08:36 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A06101
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 00:08:34 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qt0fP-0007OP-SW; Wed, 18 Oct 2023 09:08:31 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qt0fO-002Uki-2j; Wed, 18 Oct 2023 09:08:30 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qt0fN-00F2o1-Vu; Wed, 18 Oct 2023 09:08:30 +0200
-Date: Wed, 18 Oct 2023 09:08:29 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, Mark Rutland <mark.rutland@arm.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00F27493;
+	Wed, 18 Oct 2023 07:10:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0D91B4;
+	Wed, 18 Oct 2023 00:10:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697613054; x=1729149054;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2f5KGCkoKZZ5JhVOJVIHD3+5S1y0Tlk1F+D7jYqUrJ8=;
+  b=j0ZfiF21quykqhMxRY1qotzbhVjUK/Pak7HAsfBUlUIgNXsog+aOJZVJ
+   1ERkvQAv8v0LASphIxjpB80kc+oXJiameRed7GBDnU4AhXKUj2wAmfnik
+   vp0RZ5hDXTemYAwLljaNxX2trdfnRqHI9ZOspcRFaQR1kwoUKE3HPasIO
+   CICzL/bWjDfdPdCg8nPVoHSOuehDt7O+au8MQ2sv2PJT9C+vKznD7nMYh
+   nizfXy7ODXvfE1vw6vaRBj2bMltXJt+Xywk5ahKdoHnEPL+3SiIwjUBws
+   4laElsV8poqIhLL65TDTbbfAB5PZnJzq2nIyngaUQzEWuw0vvJIWQUHR7
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="376326405"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
+   d="scan'208";a="376326405"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 00:10:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="785775403"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
+   d="scan'208";a="785775403"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by orsmga008.jf.intel.com with SMTP; 18 Oct 2023 00:10:48 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 18 Oct 2023 10:10:47 +0300
+Date: Wed, 18 Oct 2023 10:10:47 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-pm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Chanwoo Choi <chanwoo@kernel.org>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Will Deacon <will@kernel.org>, kernel@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 08/26] PM / devfreq: rk3399_dmc, dfi: generalize
- DDRTYPE defines
-Message-ID: <20231018070829.GH3359458@pengutronix.de>
-References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
- <20231018061714.3553817-9-s.hauer@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] usb: typec: fsa4480: Add support to swap SBU
+ orientation
+Message-ID: <ZS+E91QLqCwrhdTG@kuha.fi.intel.com>
+References: <20231013-fsa4480-swap-v1-0-b877f62046cc@fairphone.com>
+ <20231013-fsa4480-swap-v1-2-b877f62046cc@fairphone.com>
+ <ZS5NV43MhD3YNeDX@kuha.fi.intel.com>
+ <CWAMY8EP9RN1.VPH5E7Z1T7JN@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,168 +75,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231018061714.3553817-9-s.hauer@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <CWAMY8EP9RN1.VPH5E7Z1T7JN@fairphone.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Heiko,
+Hi Luca,
 
-Could you provide your Ack for this patch?
+> > Shouldn't you loop through the endpoints? In any case:
+> >
+> >         ep = fwnode_graph_get_next_endpoint(dev_fwnode(&fsa->client->dev, NULL));
+> 
+> The docs only mention one endpoint so I'm assuming just next_endpoint is
+> fine?
 
-Thanks
- Sascha
+I'm mostly concerned about what we may have in the future. If one day
+you have more than the one connection in your graph, then you have to
+be able to identify the endpoint you are after.
 
-On Wed, Oct 18, 2023 at 08:16:56AM +0200, Sascha Hauer wrote:
-> The DDRTYPE defines are named to be RK3399 specific, but they can be
-> used for other Rockchip SoCs as well, so replace the RK3399_PMUGRF_
-> prefix with ROCKCHIP_. They are defined in a SoC specific header
-> file, so when generalizing the prefix also move the new defines to
-> a SoC agnostic header file. While at it use GENMASK to define the
-> DDRTYPE bitfield and give it a name including the full register name.
-> 
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/devfreq/event/rockchip-dfi.c |  9 +++++----
->  drivers/devfreq/rk3399_dmc.c         | 10 +++++-----
->  include/soc/rockchip/rk3399_grf.h    |  7 +------
->  include/soc/rockchip/rockchip_grf.h  | 17 +++++++++++++++++
->  4 files changed, 28 insertions(+), 15 deletions(-)
->  create mode 100644 include/soc/rockchip/rockchip_grf.h
-> 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 28c18bbf6baa5..82d18c60538a5 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -18,8 +18,10 @@
->  #include <linux/list.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/bitfield.h>
->  #include <linux/bits.h>
->  
-> +#include <soc/rockchip/rockchip_grf.h>
->  #include <soc/rockchip/rk3399_grf.h>
->  
->  #define DMC_MAX_CHANNELS	2
-> @@ -75,9 +77,9 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
->  	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
->  
->  	/* set ddr type to dfi */
-> -	if (dfi->ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR3)
-> +	if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR3)
->  		writel_relaxed(LPDDR3_EN, dfi_regs + DDRMON_CTRL);
-> -	else if (dfi->ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR4)
-> +	else if (dfi->ddr_type == ROCKCHIP_DDRTYPE_LPDDR4)
->  		writel_relaxed(LPDDR4_EN, dfi_regs + DDRMON_CTRL);
->  
->  	/* enable count, use software mode */
-> @@ -192,8 +194,7 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
->  
->  	/* get ddr type */
->  	regmap_read(regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
-> -	dfi->ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
-> -			RK3399_PMUGRF_DDRTYPE_MASK;
-> +	dfi->ddr_type = FIELD_GET(RK3399_PMUGRF_OS_REG2_DDRTYPE, val);
->  
->  	dfi->channel_mask = GENMASK(1, 0);
->  	dfi->max_channels = 2;
-> diff --git a/drivers/devfreq/rk3399_dmc.c b/drivers/devfreq/rk3399_dmc.c
-> index daff407026157..fd2c5ffedf41e 100644
-> --- a/drivers/devfreq/rk3399_dmc.c
-> +++ b/drivers/devfreq/rk3399_dmc.c
-> @@ -22,6 +22,7 @@
->  #include <linux/suspend.h>
->  
->  #include <soc/rockchip/pm_domains.h>
-> +#include <soc/rockchip/rockchip_grf.h>
->  #include <soc/rockchip/rk3399_grf.h>
->  #include <soc/rockchip/rockchip_sip.h>
->  
-> @@ -381,17 +382,16 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
->  	}
->  
->  	regmap_read(data->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
-> -	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
-> -		    RK3399_PMUGRF_DDRTYPE_MASK;
-> +	ddr_type = FIELD_GET(RK3399_PMUGRF_OS_REG2_DDRTYPE, val);
->  
->  	switch (ddr_type) {
-> -	case RK3399_PMUGRF_DDRTYPE_DDR3:
-> +	case ROCKCHIP_DDRTYPE_DDR3:
->  		data->odt_dis_freq = data->ddr3_odt_dis_freq;
->  		break;
-> -	case RK3399_PMUGRF_DDRTYPE_LPDDR3:
-> +	case ROCKCHIP_DDRTYPE_LPDDR3:
->  		data->odt_dis_freq = data->lpddr3_odt_dis_freq;
->  		break;
-> -	case RK3399_PMUGRF_DDRTYPE_LPDDR4:
-> +	case ROCKCHIP_DDRTYPE_LPDDR4:
->  		data->odt_dis_freq = data->lpddr4_odt_dis_freq;
->  		break;
->  	default:
-> diff --git a/include/soc/rockchip/rk3399_grf.h b/include/soc/rockchip/rk3399_grf.h
-> index 3eebabcb28123..775f8444bea8d 100644
-> --- a/include/soc/rockchip/rk3399_grf.h
-> +++ b/include/soc/rockchip/rk3399_grf.h
-> @@ -11,11 +11,6 @@
->  
->  /* PMU GRF Registers */
->  #define RK3399_PMUGRF_OS_REG2		0x308
-> -#define RK3399_PMUGRF_DDRTYPE_SHIFT	13
-> -#define RK3399_PMUGRF_DDRTYPE_MASK	7
-> -#define RK3399_PMUGRF_DDRTYPE_DDR3	3
-> -#define RK3399_PMUGRF_DDRTYPE_LPDDR2	5
-> -#define RK3399_PMUGRF_DDRTYPE_LPDDR3	6
-> -#define RK3399_PMUGRF_DDRTYPE_LPDDR4	7
-> +#define RK3399_PMUGRF_OS_REG2_DDRTYPE		GENMASK(15, 13)
->  
->  #endif
-> diff --git a/include/soc/rockchip/rockchip_grf.h b/include/soc/rockchip/rockchip_grf.h
-> new file mode 100644
-> index 0000000000000..dde1a9796ccb5
-> --- /dev/null
-> +++ b/include/soc/rockchip/rockchip_grf.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * Rockchip General Register Files definitions
-> + */
-> +
-> +#ifndef __SOC_ROCKCHIP_GRF_H
-> +#define __SOC_ROCKCHIP_GRF_H
-> +
-> +/* Rockchip DDRTYPE defines */
-> +enum {
-> +	ROCKCHIP_DDRTYPE_DDR3	= 3,
-> +	ROCKCHIP_DDRTYPE_LPDDR2	= 5,
-> +	ROCKCHIP_DDRTYPE_LPDDR3	= 6,
-> +	ROCKCHIP_DDRTYPE_LPDDR4	= 7,
-> +};
-> +
-> +#endif /* __SOC_ROCKCHIP_GRF_H */
-> -- 
-> 2.39.2
-> 
-> 
-> 
+But that may not be a problem in this case (maybe that "data-lanes"
+device property can be used to identify the correct endpoint?).
+
+We can worry about it then when/if we ever have another endpoint to
+deal with.
+
+thanks,
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+heikki
 
