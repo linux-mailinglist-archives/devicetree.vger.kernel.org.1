@@ -1,108 +1,242 @@
-Return-Path: <devicetree+bounces-9803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF65E7CE89B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:17:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B627CE8A8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 22:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCA5C1C209C3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:17:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27D9F281C22
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 20:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB7A1EB4E;
-	Wed, 18 Oct 2023 20:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968861EB51;
+	Wed, 18 Oct 2023 20:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DWWHs8Ue"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RIHjq226"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A710F1EB2C
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 20:17:23 +0000 (UTC)
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840BC122
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:17:21 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507cd62472dso82159e87.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 13:17:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697660240; x=1698265040; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SJ3NJUMrDjBU3byV16K9U0/VADUEPkW9PWtdnemsvPE=;
-        b=DWWHs8UeEPUZmyWWrVZRmEhcEV8WkTlvwE1OLr6Z63Vh2H/WyBXscJZN5XQruxjis9
-         eayECUFYTPHiFv6pAoTzZ1qiw0O5nYHQli/GTCVM8tTSJfedb43sMxMKNBUzmuA/lAll
-         SATXX2qand7o+q0LHPrjpUqUNZI2TesX+C5ujfmwxDvFcGQm4OihPB70pdwoDSYE641R
-         wQMeotc9he7+roPqU+rl+qrVKlqqsVMaSyqiAk7HONxcBYJV/2/dSVgX8grr/Y7kd8bV
-         /KQCFHwRBinwSeKKHsmPw9vXx9ZGkL44Qj3EYAsLmOff5ubvrhoP8dfSCFrVASuf9fc/
-         c4mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697660240; x=1698265040;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SJ3NJUMrDjBU3byV16K9U0/VADUEPkW9PWtdnemsvPE=;
-        b=VijXdDQGWJOkOQZnIdWck5Jzp5mPWyacgL1yzzwbYpIYntR+GBTt6SS5lrLe74Agvy
-         Nz7lU8CdRRS8o4/z7JxYx0Di04onOT5RpwoYp64Ghaq7Ed3TPdj+gkrs3g+GRpbZ/ifA
-         FA1BjgS7weZN8DPYg0xgAWONlSvFqbpWR61nrc8FW6sSiJwtV9cZbMOiNh2MTG9sItat
-         X+xcCqqnPbWwLy1strtCwTuPrFUepMSJ4LPTyxrcUz8aWUCK9/AzoTgTVjYsGs89JDmV
-         QX9mWL8srTfzlpfY1E1PphW9a9+TY7c0F+EPYTviZWQw4apc57PgpihKGW+K+2t0FYoQ
-         9wIg==
-X-Gm-Message-State: AOJu0Yx+2ZQssvOt7MGIgnCpKzYXR1vHZBfDcIQmlt81bLiIMtA1gmR/
-	3mAwdmzatkT/Zu0y01m2LdTKDg==
-X-Google-Smtp-Source: AGHT+IHZdpeLyJD4QGbEa/SXZTiImOc1XIVZW9/SWzkUvsh1PU5KK/ZjOgGRaY8L8um6sUiDmzbVyA==
-X-Received: by 2002:a05:6512:ba9:b0:507:cd54:e93e with SMTP id b41-20020a0565120ba900b00507cd54e93emr143176lfv.2.1697660239552;
-        Wed, 18 Oct 2023 13:17:19 -0700 (PDT)
-Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id d13-20020ac25ecd000000b0050799f689ddsm831295lfq.200.2023.10.18.13.17.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 13:17:19 -0700 (PDT)
-Message-ID: <6ac842b8-5fcb-4094-8488-4d6e250bf102@linaro.org>
-Date: Wed, 18 Oct 2023 22:17:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6071EB43;
+	Wed, 18 Oct 2023 20:21:00 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D69F7;
+	Wed, 18 Oct 2023 13:20:57 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39IK7lTF014408;
+	Wed, 18 Oct 2023 20:20:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6mx90AgWVz5rukU5siQWHeg1KcldoQGyXo4/+bNJvWY=;
+ b=RIHjq2269e3KqHnH7MR2OoKSX3GmuFpFPV6jXAVf6oXUX6rvcmkRMFNlE0ugit1O9c6f
+ fwSRX77a1Dzrm4xgseyVTC+k+k10CS+oeSL5mu6oQAdrnZczDYm4DzO0WAGRLy4+axfR
+ sU/0fjb4w3hiT8lRvGX6Eg1I5qPhSoOEn2sK3+hUIbsw+HkivRp74IK8jsjquSWnBhil
+ myBlQ+ltlGAL+V2EzkkiehL4AfBGjWCRRl/AZeT46FKw6iH4QEdePmODhIXCUG54zjvQ
+ L2edJ00zWJw8TtrA62SjNJZuZUMuRzdzQJ5fdWwUSosfKnZUZyPA83h7x+ScKTWbAJK5 1g== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt5v827du-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 20:20:21 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39IKKKhg009064
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Oct 2023 20:20:20 GMT
+Received: from [10.110.123.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 13:20:19 -0700
+Message-ID: <3c3bb8d3-694c-cd65-e15f-7c9e7b4eaf0e@quicinc.com>
+Date: Wed, 18 Oct 2023 13:20:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sm8350: Fix remoteproc interrupt
- type
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 00/34] Introduce QC USB SND audio offloading support
 Content-Language: en-US
-To: Nia Espera <nespera@igalia.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Vinod Koul <vkoul@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>,
- Clayton Craft <clayton@igalia.com>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>, ~postmarketos/upstreaming@lists.sr.ht
-References: <20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com>
- <20231018-nia-sm8350-for-upstream-v2-4-7b243126cb77@igalia.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231018-nia-sm8350-for-upstream-v2-4-7b243126cb77@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <9942bb93-31ea-4574-940f-98d87a2fc127@linux.intel.com>
+ <366d50fa-500f-e884-d48a-197e65bb2fb7@quicinc.com>
+ <925d7c03-c288-49a4-8bcd-395b32810d75@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <925d7c03-c288-49a4-8bcd-395b32810d75@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OPOdJVawoVqDVhG49WrZpmQGkzmOHbKL
+X-Proofpoint-ORIG-GUID: OPOdJVawoVqDVhG49WrZpmQGkzmOHbKL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_18,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=616 lowpriorityscore=0 phishscore=0 impostorscore=0
+ suspectscore=0 mlxscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310180167
 
+Hi Pierre,
 
-
-On 10/18/23 16:25, Nia Espera wrote:
-> In a similar vein to
-> https://lore.kernel.org/lkml/20220530080842.37024-3-manivannan.sadhasivam@linaro.org/,
-> the remote processors on sm8350 fail to initialize with the 'correct'
-> (i.e., specified in downstream) IRQ type. Change this to EDGE_RISING.
+On 10/18/2023 6:54 AM, Pierre-Louis Bossart wrote:
 > 
-> Signed-off-by: Nia Espera <nespera@igalia.com>
-> ---
-Hm, apparently 8250 and 7180 have the same thing.
+> 
+> On 10/17/23 19:25, Wesley Cheng wrote:
+>> Hi Pierre,
+>>
+>> On 10/17/2023 1:58 PM, Pierre-Louis Bossart wrote:
+>>> It's been a very long time since I reviewed earlier versions, and I am
+>>> still lost on terminology and concepts. The explanations below should
+>>> really be added as a .rst file in Documentation for reference, not just
+>>> as a cover letter.
+>>>
+>>
+>> Thanks for the review!
+>>
+>> Sure, maybe I can write a more comprehensive documentation that saves
+>> these details somewhere.  Will add a RST documentation for material
+>> where necessary.
+>>
+>>>> Several Qualcomm based chipsets can support USB audio offloading to a
+>>>> dedicated audio DSP, which can take over issuing transfers to the USB
+>>>> host controller.  The intention is to reduce the load on the main
+>>>> processors in the SoC, and allow them to be placed into lower power
+>>>> modes.
+>>>> There are several parts to this design:
+>>>>     1. Adding ASoC binding layer
+>>>>     2. Create a USB backend for Q6DSP
+>>>
+>>> "backend" is a loaded terms for ASoC. Can you clarify which part of the
+>>> ascii art below is a 'backend'?
+>>>
+>>
+>> This would be the Q6USB entity which is the DPCM backend for this
+>> particular audio path.
+> 
+> DPCM is about dailinks. Technically the q6usb entity is a codec dai
+> which is part of a DPCM backend dailink.
+>>
+>>>>     3. Introduce XHCI interrupter support
+>>>>     4. Create vendor ops for the USB SND driver
+>>>>
+>>>>         USB                          |            ASoC
+>>>> --------------------------------------------------------------------
+>>>>                                      |  _________________________
+>>>>                                      | |sm8250 platform card     |
+>>>>                                      | |_________________________|
+>>>>                                      |         |           |
+>>>>                                      |      ___V____   ____V____
+>>>>                                      |     |Q6USB   | |Q6AFE    |
+>>>>                                      |     |"codec" | |"cpu"    |
+>>>>                                      |     |________| |_________|
+>>>>                                      |         ^  ^        ^
+>>>>                                      |         |  |________|
+>>>>                                      |      ___V____    |
+>>>>                                      |     |SOC-USB |   |
+>>>>      ________       ________               |        |   |
+>>>>     |USB SND |<--->|QC offld|<------------>|________|   |
+>>>>     |(card.c)|     |        |<----------                |
+>>>>     |________|     |________|___     | |                |
+>>>>         ^               ^       |    | |    ____________V_________
+>>>>         |               |       |    | |   |APR/GLINK             |
+>>>>      __ V_______________V_____  |    | |   |______________________|
+>>>>     |USB SND (endpoint.c)     | |    | |              ^
+>>>>     |_________________________| |    | |              |
+>>>>                 ^               |    | |   ___________V___________
+>>>>                 |               |    | |->|audio DSP              |
+>>>>      ___________V_____________  |    |    |_______________________|
+>>>>     |XHCI HCD                 |<-    |
+>>>>     |_________________________|      |
+>>>>
+>>>>
+>>>> Adding ASoC binding layer:
+>>>> soc-usb: Intention is to treat a USB port similar to a headphone jack.
+>>>
+>>> What is a 'port'? USB refers to "interfaces" and "endpoints". Is a
+>>> "port" a 1:1 mapping to "endpoint"?
+>>>
+>>> Below I read "AFE port" so not sure what concepts refer to what.
+>>>
+>>
+>> "Port" in this explanation refers to the USB port.  So the audio device
+>> connected.  You are right that a USB device can enumerate w/ multiple
+>> interfaces (ie UAC + HID + ...) so the closest relation to "port" is
+>> "interface."  It is not a 1:1 mapping w/ the number of endpoints exposed
+>> by a device.
+>>
+>> "AFE port" is just something that has been termed from the audio DSP
+>> end, so that concept of port is not related to the port where USB
+>> devices are connected to.  This is something that is defined within the
+>> audio DSP.
+> 
+> Wow. So there's a "USB port" and "AFE port". I would recommend avoiding
+> the same term for completely different concepts. Why not use "USB device"?
+> 
 
-Mani, could you elaborate on this?
+I think maybe USB interface is probably the most acceptable, since even 
+at the USB snd level, they work based on usb_interface, not on the udev 
+(USB device) itself.
 
-Konrad
+>>>>    0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+>>>>                         SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+>>>
+>>> How do you plan on exposing the USB PCM device?
+>>>
+>>> The lines above are really cryptic, and with no USB reference in any of
+>>> the short/long card names it's not obvious that this card is different
+>>> from the no-offload case, is it?
+>>>
+>>
+>> In the end, since the offload case is handled by the audio DSP, it would
+>> have to go through the platform/machine sound card.  That is the sm8250
+>> device above.
+>>
+>>>>    1 [Audio          ]: USB-Audio - USB Audio
+>>>>                         Generic USB Audio at usb-xhci-hcd.1.auto-1.4,
+>>>> high speed
+>>>
+>>> likewise some sort of qualifier would be useful to show that card 0 and
+>>> card 1 can target the same USB endpoints.
+>>>
+>>
+>> Do userspace entities look at this card string?  Assuming there is only
+>> one platform card, there are situations where maybe multiple USB audio
+>> devices are connected to the same USB root hub, so offloading can happen
+>> on any one of them (not at the same time).
+> 
+> Jaroslav cares, as measured by the changes over the years to make the
+> card names more self-explanatory.
+> 
+> I really don't see anything in the SM8250MTPWCD938 card name that would
+> hint at the support of USB. If it's not in the card string, maybe this
+> can be added in the component string as well (amixer -Dhw:0 info). The
+> point is that userspace should not have to maintain an 'accept-list' of
+> card names but have the means to check the USB offload capability with a
+> vendor-neutral convention.
+
+I'll take a look at adding it into the components string.  At least in 
+that case, we'd be able to dynamically modify to say if USB offload is 
+supported or not based on the child entries/paths that are defined in 
+the DT node.
+
+Thanks
+Wesley Cheng
 
