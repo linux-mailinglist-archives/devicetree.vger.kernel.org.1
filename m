@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-9735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E5A7CE46D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:28:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028127CE46F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 19:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50523B20EAE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:28:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 326311C20925
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 17:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347923E481;
-	Wed, 18 Oct 2023 17:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B963E484;
+	Wed, 18 Oct 2023 17:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="prlSQ1zM"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="J91YWiTp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F2A3D98F
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:28:19 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD914494
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:28:15 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a936f4a9so5189322e87.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:28:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18E83D965
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:28:41 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1D94497
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:28:40 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c50ec238aeso68686071fa.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 10:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697650094; x=1698254894; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697650118; x=1698254918; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LrEh3D+kI7ficihoTElbPnijf/y0H7CK010e9QE4avk=;
-        b=prlSQ1zM5d2qNbRBOIJZ2EcigyeJonZjBFEeHaiJ+wAaIC6dN1zwoz7Tn0QvSrLJup
-         BR6xp3HLh2Urg7Y782m3EMtmr/7AZZ1nqp0zmjuUUrVJvNMfeihRTngx8eA7ZblHZDmR
-         I+mT7F5tykRePFoD/t0pEonYDOfb94leKDocrU3o7yL5nayiLfDCRLVwAsndsQ+M5sex
-         wMmct2LZdSduwJveERuLzBOXe1ybLqYrgtK/llpI4txKoNKt4UtYjyqJzNBbBbO/KlYT
-         okUcLQXFyS3Zn1DB74G4Rd5ahvGVYXfAlm76gKvDDKrb7T4ckQuxP9Fdat0VYg0FIyPH
-         GMgQ==
+        bh=1aOTkmKT0/VEUJ6dJSIOtEOBOATm/C2zJujpXbSsYL4=;
+        b=J91YWiTpOUljVB0NDiQmiEDOXThof4ceXwip6WNzLVeZp/5HavbZz/+HQfvgcr+doD
+         oRjHM/dSSnCZ8WOOn4BsH/inNo8Ot1EbXEAM3D3zg18KLEbOukvKewA4wXez2Iiw56SD
+         ciuMaCly+a//9EdYbcUFC+jLQDT4bFwWj43ARCAa5/C5wfqwbo27AGFM+Dv4R3NDOrzv
+         h41oCnUUCZDuQmmhEet3f0RVrX63zswaFU+yLKcrrd9gIx7kN/SrV0i7WNRU8RaGF/By
+         36P3NBACANBC+bGiEb0q6ggvJ6NH4RIXE+fxCd0fbYbBrCabTTQCnxWdhEBazQSdW/83
+         FHhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697650094; x=1698254894;
+        d=1e100.net; s=20230601; t=1697650118; x=1698254918;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LrEh3D+kI7ficihoTElbPnijf/y0H7CK010e9QE4avk=;
-        b=A827EPrupUg3o7G8V++/m9n02briiBCRRo+Zj2VZbyxA1K1LV799GFtGMRaHxarhrs
-         2OaWpvOQ5C/x0Tr4twQIdPQ76FVyFnL3hHbJnaym9Swi6bCez+IeGXkck6utEHwdNS4J
-         Wu3j3/zcwUn17WLe/Yy027JFfLOmiOCm6TBao+NQjuyStNEYj7Np8VSmgdonGpbx6ysD
-         rz+rdWFplqZoY1UQkfg0ryqcSv9F5UDyYAZzQuUnBqUkUirU//gKBU2xd7LVJXgAcvot
-         2hLvn+hsBXsqb53ZetTAg4BSRaurtd+OEW17iAonIyDMne2DsNwViwhIkKH8sPIF3i3t
-         FXzQ==
-X-Gm-Message-State: AOJu0Yx+1KpCgpyBX7PQnmcZ2IQw6lvKuM3xgs1jkSD/oUFLo/oFu9Qc
-	7YvaKt/OL6gxU0wU3DiecCCn5WgpbodMs+RIfK9NcA==
-X-Google-Smtp-Source: AGHT+IGxURJL+uaaxpc+DcFmneehkFpVo2DZ+kcpkWCrSxLf8LioRAC7Aw8ZZqtta+v5ZKsd1Py4IEcwvCF/w36lIAw=
-X-Received: by 2002:a19:2d4c:0:b0:504:7f58:6dfd with SMTP id
- t12-20020a192d4c000000b005047f586dfdmr4318597lft.2.1697650094002; Wed, 18 Oct
- 2023 10:28:14 -0700 (PDT)
+        bh=1aOTkmKT0/VEUJ6dJSIOtEOBOATm/C2zJujpXbSsYL4=;
+        b=nkzLP/bpjXjmCkAB1SggqKdVo8pxaHko0t0LrKQVc+LQiikXc7jgOe0p7jnutTSXLr
+         s8zUgKxMKEe/4NMP0cI4N67IPkNbq063hPMCDRfyZeNd5RolgBRiEmK8ObdG+0Z1LCxB
+         OffAtL4i/s7US0e5vTHWoYatOWnM6wFnupNAIZ3zur7yzPEPrDGApKGUM77EgvV6//bO
+         JQ7TOI3s+q21FUKmsylRRa+ai1BKiG/Qv+lHBl0vnDlVKDAZgL7sqK981xeQqUIh8PG+
+         DMshNhpVcM+JEjDG3B851JMH0PazWlG9txB5CE5KcgLiUoEkviPbDjxDs5J86JO3Upuq
+         +UAg==
+X-Gm-Message-State: AOJu0Yz9gC28k1RAZpUPgfvYwCXoyIFy48eSPtQ8eKBQOfbW/N1yrRDl
+	pGCcQB4NVZhGATkR77s1tIszVX8/pKNKwEa+9jNtuA==
+X-Google-Smtp-Source: AGHT+IEH/Te0HHRqLHxWdsHtRpbFbaOYrfrcIubs163vkWTt94hU44lu3W5dGfsp7LfIsZLKmD3tbWcSjooB4Tzx2jI=
+X-Received: by 2002:a2e:9916:0:b0:2b9:e831:f16a with SMTP id
+ v22-20020a2e9916000000b002b9e831f16amr4058294lji.26.1697650118136; Wed, 18
+ Oct 2023 10:28:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231017131456.2053396-1-cleger@rivosinc.com> <20231017131456.2053396-7-cleger@rivosinc.com>
-In-Reply-To: <20231017131456.2053396-7-cleger@rivosinc.com>
+References: <20231017131456.2053396-1-cleger@rivosinc.com> <20231017131456.2053396-9-cleger@rivosinc.com>
+In-Reply-To: <20231017131456.2053396-9-cleger@rivosinc.com>
 From: Evan Green <evan@rivosinc.com>
-Date: Wed, 18 Oct 2023 10:27:38 -0700
-Message-ID: <CALs-HsvCGmo9N+cNUJwZmiHdd2N95nFFCxMfWRaOkWVg7v74Mw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/19] riscv: hwprobe: export vector crypto ISA extensions
+Date: Wed, 18 Oct 2023 10:28:02 -0700
+Message-ID: <CALs-HsvDtceutbdNXuBKtnTTKy_qZgzjKAi-XvwbYCYoLVRTxQ@mail.gmail.com>
+Subject: Re: [PATCH v2 08/19] riscv: add ISA extension parsing for Zfh/Zfhmin
 To: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
 Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
@@ -86,27 +86,9 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 On Tue, Oct 17, 2023 at 6:15=E2=80=AFAM Cl=C3=A9ment L=C3=A9ger <cleger@riv=
 osinc.com> wrote:
 >
-> Export Zv* vector crypto ISA extensions that were added in "RISC-V
-> Cryptography Extensions Volume II" specification[1] through hwprobe.
-> This adds support for the following instructions:
->
-> - Zvbb: Vector Basic Bit-manipulation
-> - Zvbc: Vector Carryless Multiplication
-> - Zvkb: Vector Cryptography Bit-manipulation
-> - Zvkg: Vector GCM/GMAC.
-> - Zvkned: NIST Suite: Vector AES Block Cipher
-> - Zvknh[ab]: NIST Suite: Vector SHA-2 Secure Hash
-> - Zvksed: ShangMi Suite: SM4 Block Cipher
-> - Zvksh: ShangMi Suite: SM3 Secure Hash
-> - Zvknc: NIST Algorithm Suite with carryless multiply
-> - Zvkng: NIST Algorithm Suite with GCM.
-> - Zvksc: ShangMi Algorithm Suite with carryless multiplication
-> - Zvksg: ShangMi Algorithm Suite with GCM.
-> - Zvkt: Vector Data-Independent Execution Latency.
->
-> Zvkn and Zvks are ommited since they are a superset of other extensions.
+> Add parsing for Zvfh/Zfhmin ISA extensions[1].
 
-s/ommited/omitted/, other than that:
+Typo: s/Zvfh/Zfh/. Other than that:
 
 Reviewed-by: Evan Green <evan@rivosinc.com>
 
