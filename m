@@ -1,128 +1,203 @@
-Return-Path: <devicetree+bounces-9623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF717CDA0B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:12:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6097CDA4A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:27:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 245D31C20A47
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:12:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B2181C209C1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D361A5BA;
-	Wed, 18 Oct 2023 11:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BAA1DA4D;
+	Wed, 18 Oct 2023 11:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NdUqHgTh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWFJEp+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EBE1772A
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:12:00 +0000 (UTC)
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3D5111
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:11:58 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5a7db1f864bso79667177b3.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 04:11:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697627518; x=1698232318; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NO/PDoCfvCIQp8CUhsVVtzA3USwqbfuZSWYXmX0vX4k=;
-        b=NdUqHgThFaSS6CRiu320pMsNt8v76A9IMR56kWxn6XxfWZKQlYBE/3cmIhmnFqZa/M
-         76MExfEnETGwcB0CZMzHlF5OPx3aQBSFLiJP+hOd0CIZF33/zVS5lKNLUOxTFUA5EBnL
-         /ZJTdUdPa48bUvCxCtNHV7/hGAzJqnFqHR6vu1kRYG1BENL1opSDfpxZo5uhOkMECEE8
-         8s2bv87hCe7OQLzJ/OkGRvFh21oxtEpy72ipOzoysiIT4gU5JbkKqtiXJ/G1mv50K5IG
-         3HTeD5c8JTRgA7DJWMQZYM6UKMfWKLPxA7VhRqhz6ZL6ktiJA6REv+W3b7J55MyBuYLD
-         rS+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697627518; x=1698232318;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NO/PDoCfvCIQp8CUhsVVtzA3USwqbfuZSWYXmX0vX4k=;
-        b=VS0GYgNirX7MX4FpL3Xd5Hn9Pip2zZwX6z6yV5djBPErpX5E1muAeOikUhmX7fgRVo
-         DP4Ejf1JYQDU3E1rqDNqXRFTH26+7mYG3/ZlXayWCfh1ugsiSFYV/bn/HGDTVfQ22lBP
-         SC7LAzyuAhWgZE1iDJT2Z583GpAIGiE2f9B3iDMujjKpq0w+D6Z4jrhfjxkWuXPuEJDx
-         lYVoooRbivLv+CdV3fWobmU9whoCO29GaVzvhPF+Bko6s5IF5i64f0bsIoLf4Q+YIsu+
-         b9Q1NRLDcu4UDXBumcurwvIm2ueWpKHL7rfpZkH7UcpDqh12G3R3gpFSixjaop5xUiPM
-         AUOQ==
-X-Gm-Message-State: AOJu0YzGL792IknR8mkcD+e8OyWhbi0WFc1+ks0W5T9pNFebDnKGLllb
-	F/rENbiyrdOWqPNjqErxwm/K09ouDNvuAispCaxepw==
-X-Google-Smtp-Source: AGHT+IGTZPUv5/Bw0Oc83FUy4A9roYHlmtR56tiA4w8g5dxVWLG7VhIBIjSwO1UMnGprrSPG2GfXojIrtvGv8qyCwVA=
-X-Received: by 2002:a81:a214:0:b0:5a8:19b0:513f with SMTP id
- w20-20020a81a214000000b005a819b0513fmr5479705ywg.14.1697627517806; Wed, 18
- Oct 2023 04:11:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D600916427
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 11:27:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFC50C433C8;
+	Wed, 18 Oct 2023 11:27:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697628438;
+	bh=zlW+WXJ03AHaq8TEskzb4g7xW6mVxN5qwb3rME6hGQQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JWFJEp+Xmwvqe1PFdvZVgupKgddtwchKLguWXYSy2opIYYHnnucRppdNIOI8hvmOL
+	 8tn8h6rrY3/6hNMSC9Ysudo5/+2jx6i0aLDx4yyJH5hfKHiEc27hB9D2zHvtIIHiWo
+	 lkE1MjpbhdqG/iMyT1Xi7ubTqK32DQT9kwnF9VINOU4CBWL+YbMGpVoUDepNe5pvtv
+	 LK1xOym53SCRV8VbCl3ahcq8ZQgZc7wv9A6KboruZTX7Tng5vAnmOfJGXNDaeKTWBH
+	 iegx8qrA/LBME+Sc2Vll002vBDr/hTKxEqqdjSvgqOb4GmZX+7KOkUxbqsIT9bTzXY
+	 LRAsSME3qYBjQ==
+Date: Wed, 18 Oct 2023 12:27:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v8 15/22] PCI: microchip: Add get_events() callback
+ function
+Message-ID: <20231018-landed-sampling-2fcec42943c8@spud>
+References: <20231011110514.107528-1-minda.chen@starfivetech.com>
+ <20231011110514.107528-16-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org> <169762516670.391804.7528295251386913602.robh@kernel.org>
-In-Reply-To: <169762516670.391804.7528295251386913602.robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 18 Oct 2023 13:11:45 +0200
-Message-ID: <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or ethernet-ports
-To: Rob Herring <robh@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Russell King <linux@armlinux.org.uk>, 
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Eric Dumazet <edumazet@google.com>, 
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	"David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r6ZiTasWF0vb64gL"
+Content-Disposition: inline
+In-Reply-To: <20231011110514.107528-16-minda.chen@starfivetech.com>
+
+
+--r6ZiTasWF0vb64gL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Wed, Oct 18, 2023 at 12:32=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
-> On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
+On Wed, Oct 11, 2023 at 07:05:07PM +0800, Minda Chen wrote:
 
-> > Bindings using dsa.yaml#/$defs/ethernet-ports specify that
-> > a DSA switch node need to have a ports or ethernet-ports
-> > subnode, and that is actually required, so add requirements
-> > using oneOf.
-> >
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] wron=
-g indentation: expected 8 but found 6 (indentation)
-> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] wron=
-g indentation: expected 8 but found 6 (indentation)
 
-Really?
+> For different interrupts to event num mapping function,
+> add get_events() function pointer.
+> For extenting event ops in the fucture, Add struct
+> plda_event_ops data structure.
 
-+  oneOf:
-+    - required:
-+      - ports
-+    - required:
-+      - ethernet-ports
+I still think these commit messages are a bit weak and should point out
+the reasons why these are needed, rather than handwaving about future
+users.
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Two spaces after the oneOf, 2 spaces after a required as usual.
-I don't get it.
+Thanks,
+Conor.
 
-Yours,
-Linus Walleij
+>=20
+> plda_handle_events() will call the get_events() callback
+> function pointer directly. For the robustness of codes,
+> add checking in plda_init_interrupts().
+>=20
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  drivers/pci/controller/plda/pcie-microchip-host.c | 14 +++++++++++++-
+>  drivers/pci/controller/plda/pcie-plda.h           |  8 ++++++++
+>  2 files changed, 21 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/=
+pci/controller/plda/pcie-microchip-host.c
+> index e99498b5b563..fca1520d56c9 100644
+> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> @@ -647,7 +647,7 @@ static void plda_handle_event(struct irq_desc *desc)
+> =20
+>  	chained_irq_enter(chip, desc);
+> =20
+> -	events =3D mc_get_events(port);
+> +	events =3D port->event_ops->get_events(port);
+> =20
+>  	for_each_set_bit(bit, &events, port->num_events)
+>  		generic_handle_domain_irq(port->event_domain, bit);
+> @@ -806,7 +806,12 @@ static int mc_request_event_irq(struct plda_pcie_rp =
+*plda, int event_irq,
+>  				0, event_cause[event].sym, plda);
+>  }
+> =20
+> +static const struct plda_event_ops mc_event_ops =3D {
+> +	.get_events =3D mc_get_events,
+> +};
+> +
+>  static const struct plda_event mc_event =3D {
+> +	.event_ops              =3D &mc_event_ops,
+>  	.request_event_irq      =3D mc_request_event_irq,
+>  	.intx_event             =3D EVENT_LOCAL_PM_MSI_INT_INTX,
+>  	.msi_event              =3D EVENT_LOCAL_PM_MSI_INT_MSI,
+> @@ -920,6 +925,11 @@ static int plda_init_interrupts(struct platform_devi=
+ce *pdev,
+>  	int i, intx_irq, msi_irq, event_irq;
+>  	int ret;
+> =20
+> +	if (!event->event_ops || !event->event_ops->get_events) {
+> +		dev_err(dev, "no get events ops\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	ret =3D plda_pcie_init_irq_domains(port);
+>  	if (ret) {
+>  		dev_err(dev, "failed creating IRQ domains\n");
+> @@ -930,6 +940,8 @@ static int plda_init_interrupts(struct platform_devic=
+e *pdev,
+>  	if (irq < 0)
+>  		return -ENODEV;
+> =20
+> +	port->event_ops =3D event->event_ops;
+> +
+>  	for (i =3D 0; i < port->num_events; i++) {
+>  		event_irq =3D irq_create_mapping(port->event_domain, i);
+>  		if (!event_irq) {
+> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/contro=
+ller/plda/pcie-plda.h
+> index 5ad1b81c0086..6571a4befac9 100644
+> --- a/drivers/pci/controller/plda/pcie-plda.h
+> +++ b/drivers/pci/controller/plda/pcie-plda.h
+> @@ -102,6 +102,12 @@
+>  #define EVENT_PM_MSI_INT_SYS_ERR		12
+>  #define NUM_PLDA_EVENTS				13
+> =20
+> +struct plda_pcie_rp;
+> +
+> +struct plda_event_ops {
+> +	u32 (*get_events)(struct plda_pcie_rp *pcie);
+> +};
+> +
+>  struct plda_msi {
+>  	struct mutex lock;		/* Protect used bitmap */
+>  	struct irq_domain *msi_domain;
+> @@ -117,11 +123,13 @@ struct plda_pcie_rp {
+>  	struct irq_domain *event_domain;
+>  	raw_spinlock_t lock;
+>  	struct plda_msi msi;
+> +	const struct plda_event_ops *event_ops;
+>  	void __iomem *bridge_addr;
+>  	int num_events;
+>  };
+> =20
+>  struct plda_event {
+> +	const struct plda_event_ops *event_ops;
+>  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
+>  				 int event_irq, int event);
+>  	int intx_event;
+> --=20
+> 2.17.1
+>=20
+
+--r6ZiTasWF0vb64gL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZS/BEAAKCRB4tDGHoIJi
+0m/cAQCOrCJ2bYXCB7wvpZnWAUAeEFiNVKT5N+U+TgJyh1aYPgEA5fNtx3R0qwom
+tjpc0UtKhVAbjP8MwJIzQFwaIgq+ig8=
+=OugO
+-----END PGP SIGNATURE-----
+
+--r6ZiTasWF0vb64gL--
 
