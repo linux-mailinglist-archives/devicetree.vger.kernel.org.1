@@ -1,145 +1,248 @@
-Return-Path: <devicetree+bounces-9587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF577CD7D7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:24:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196F87CD7E4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 11:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC90D281D34
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:24:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C791B20F4A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 09:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CB41803C;
-	Wed, 18 Oct 2023 09:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="DbizTzTH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE3217989;
+	Wed, 18 Oct 2023 09:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C326217989
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:24:26 +0000 (UTC)
-Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D08FD101
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 02:24:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=P208vLuzeC8YOSU91aWKUZeFeNNRc/LChYsdSyHcihw=; b=DbizTzTHxEq6QnjO3POZXaRAUG
-	JzpvbT2+A8b/BahSr1jUiSnMmX/nfcRa48e5HhWwJOMDjR9KW2WP6CsIlu9pyLQBskrhkaL+hlN1v
-	gX4XqkdTxru1XwHVOhMbRY0ejXDICWzzxOyYO9bl/1WXoj93mYj5+ZiU+YAQKQr+xu0eZYrQ7VHIl
-	UVJfbcts5dagonxzaD2IXGgn+IBgdpzOgZ7Ijgp3N39igos1BfvNPEt5Ni3nUWAhknnOm6i228+wr
-	qCpqXxVCWWxj8Pd107RR7tSqvWytT/q/IHBhoNe+pS5axATprxbPufU+wp8uTzdnlaHSDpFWc6H4r
-	qfUUPzsA==;
-Received: from [192.168.1.4] (port=59019 helo=SH-EX2013.helmholz.local)
-	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Ante.Knezic@helmholz.de>)
-	id 1qt2mq-0003Ed-2S;
-	Wed, 18 Oct 2023 11:24:20 +0200
-Received: from linuxdev.helmholz.local (192.168.6.7) by
- SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Wed, 18 Oct 2023 11:24:20 +0200
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: <netdev@vger.kernel.org>
-CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<UNGLinuxDriver@microchip.com>, Ante Knezic <ante.knezic@helmholz.de>
-Subject: [PATCH net-next v3 2/2] net:dsa:microchip: add property to select internal RMII reference clock
-Date: Wed, 18 Oct 2023 11:24:14 +0200
-Message-ID: <893a3ad19b28c6bb1bf5ea18dee2fa5855f0c207.1697620929.git.ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <351f7993397a496bf7d6d79b9096079a41157919.1697620929.git.ante.knezic@helmholz.de>
-References: <351f7993397a496bf7d6d79b9096079a41157919.1697620929.git.ante.knezic@helmholz.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2AC18031
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 09:25:44 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117A7F7;
+	Wed, 18 Oct 2023 02:25:42 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 8A3F024E314;
+	Wed, 18 Oct 2023 17:25:40 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
+ 2023 17:25:40 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Oct
+ 2023 17:25:39 +0800
+Message-ID: <687a4c58-3666-1c7b-fcfd-d586c28dea35@starfivetech.com>
+Date: Wed, 18 Oct 2023 17:25:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.6.7]
-X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
- SH-EX2013.helmholz.local (192.168.1.4)
-X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v10 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>, Todor Tomov
+	<todor.too@gmail.com>, <bryan.odonoghue@linaro.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<changhuang.liang@starfivetech.com>
+References: <20231008085154.6757-1-jack.zhu@starfivetech.com>
+ <98297bfc-ab81-4bb5-acc3-619fdf879276@xs4all.nl>
+ <bb5b776c-f1dd-f53e-079c-8048af2e73f1@starfivetech.com>
+ <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
+From: Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <4a74a40c-ee3c-4563-87d1-27e859eb6982@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Microchip KSZ8863/KSZ8873 have the ability to select between internal
-and external RMII reference clock. By default, reference clock
-needs to be provided via REFCLKI_3 pin. If required, device can be
-setup to provide RMII clock internally so that REFCLKI_3 pin can be
-left unconnected.
-Add a new "microchip,rmii-clk-internal" property which will set
-RMII clock reference to internal. If property is not set, reference
-clock needs to be provided externally.
 
-Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
----
- drivers/net/dsa/microchip/ksz8795.c     | 10 +++++++++-
- drivers/net/dsa/microchip/ksz8795_reg.h |  3 +++
- drivers/net/dsa/microchip/ksz_common.h  |  1 +
- 3 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
-index 91aba470fb2f..b50ad9552c65 100644
---- a/drivers/net/dsa/microchip/ksz8795.c
-+++ b/drivers/net/dsa/microchip/ksz8795.c
-@@ -1312,8 +1312,16 @@ void ksz8_port_setup(struct ksz_device *dev, int port, bool cpu_port)
- 	ksz_port_cfg(dev, port, P_PRIO_CTRL, PORT_802_1P_ENABLE, true);
- 
- 	if (cpu_port) {
--		if (!ksz_is_ksz88x3(dev))
-+		if (!ksz_is_ksz88x3(dev)) {
- 			ksz8795_cpu_interface_select(dev, port);
-+		} else {
-+			dev->rmii_clk_internal = of_property_read_bool(dev->dev->of_node,
-+								       "microchip,rmii-clk-internal");
-+
-+			ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
-+				KSZ88X3_PORT3_RMII_CLK_INTERNAL,
-+				dev->rmii_clk_internal);
-+		}
- 
- 		member = dsa_user_ports(ds);
- 	} else {
-diff --git a/drivers/net/dsa/microchip/ksz8795_reg.h b/drivers/net/dsa/microchip/ksz8795_reg.h
-index 3c9dae53e4d8..beca974e0171 100644
---- a/drivers/net/dsa/microchip/ksz8795_reg.h
-+++ b/drivers/net/dsa/microchip/ksz8795_reg.h
-@@ -22,6 +22,9 @@
- #define KSZ8863_GLOBAL_SOFTWARE_RESET	BIT(4)
- #define KSZ8863_PCS_RESET		BIT(0)
- 
-+#define KSZ88X3_REG_FVID_AND_HOST_MODE  0xC6
-+#define KSZ88X3_PORT3_RMII_CLK_INTERNAL BIT(3)
-+
- #define REG_SW_CTRL_0			0x02
- 
- #define SW_NEW_BACKOFF			BIT(7)
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 8842efca0871..e5b0445fe2ca 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -163,6 +163,7 @@ struct ksz_device {
- 	phy_interface_t compat_interface;
- 	bool synclko_125;
- 	bool synclko_disable;
-+	bool rmii_clk_internal;
- 
- 	struct vlan_table *vlan_cache;
- 
+On 2023/10/18 16:50, Hans Verkuil wrote:
+> Hi Jack,
+> 
+> On 18/10/2023 04:37, Jack Zhu wrote:
+> 
+> <snip>
+> 
+>>>> --------------------------------------------------------------------------------
+>>>> Compliance test for device /dev/v4l-subdev1:
+>>>>
+>>>> Driver Info:
+>>>> 	Driver version   : 6.6.0
+>>>> 	Capabilities     : 0x00000000
+>>>
+>>> But this does not appear for v4l-subdev1.
+>>>
+>>> I can't really tell why it doesn't show that. Can you debug a little bit?
+>>> The code is in v4l2-compliance.cpp, line 1086:
+>>>
+>>> ent_id = mi_media_info_for_fd(media_fd, node.g_fd(), &is_invalid, &node.function);
+>>>
+>>> The mi_media_info_for_fd() function calls ioctl(media_fd, MEDIA_IOC_DEVICE_INFO, &mdinfo),
+>>> and that fails for some reason. It could be that media_fd is invalid (would be weird).
+>>>
+>>> This could well be a v4l2-compliance bug that you hit with this driver.
+>>>
+>> 
+>> On the test board, /dev/v4l-subdev1 is imx219, and the corresponding directory is
+>> /sys/dev/char/81:3/device. Media0 does not exist in this directory. Therefore, the media_fd
+>> obtained through mi_get_media_fd(node.g_fd(), node.bus_info) is invalid.
+>> 
+>> I don't know why media0 does not exist in /sys/dev/char/81:3/device?
+>> 
+> 
+> Can you try again with this v4l2-compliance patch?
+> 
+> I need to dig a bit deeper as to why media0 is missing, but for now try this.
+> 
+> Regards,
+> 
+> 	Hans
+> 
+> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp b/utils/v4l2-compliance/v4l2-compliance.cpp
+> index 7169eefe..29475d6b 100644
+> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
+> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
+> @@ -968,7 +968,7 @@ err:
+>  }
+> 
+>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+> -	      unsigned frame_count, unsigned all_fmt_frame_count)
+> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd)
+>  {
+>  	struct node node2;
+>  	struct v4l2_capability vcap = {};
+> @@ -997,8 +997,12 @@ void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_
+>  		memset(&vcap, 0, sizeof(vcap));
+>  	}
+> 
+> -	if (!node.is_media())
+> -		media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+> +	if (!node.is_media()) {
+> +		if (parent_media_fd >= 0)
+> +			media_fd = parent_media_fd;
+> +		else
+> +			media_fd = mi_get_media_fd(node.g_fd(), node.bus_info);
+> +	}
+> 
+>  	int fd = node.is_media() ? node.g_fd() : media_fd;
+>  	if (fd >= 0) {
+> diff --git a/utils/v4l2-compliance/v4l2-compliance.h b/utils/v4l2-compliance/v4l2-compliance.h
+> index 7caf254b..c47f25f5 100644
+> --- a/utils/v4l2-compliance/v4l2-compliance.h
+> +++ b/utils/v4l2-compliance/v4l2-compliance.h
+> @@ -308,7 +308,7 @@ int check_ustring(const __u8 *s, int len);
+>  int check_0(const void *p, int len);
+>  int restoreFormat(struct node *node);
+>  void testNode(struct node &node, struct node &node_m2m_cap, struct node &expbuf_node, media_type type,
+> -	      unsigned frame_count, unsigned all_fmt_frame_count);
+> +	      unsigned frame_count, unsigned all_fmt_frame_count, int parent_media_fd = -1);
+>  std::string stream_from(const std::string &pixelformat, bool &use_hdr);
+> 
+>  // Media Controller ioctl tests
+> 
+
+From the log, there is no change.
+
+test log:
+--------------------------------------------------------------------------------
+Compliance test for device /dev/v4l-subdev1:
+
+Driver Info:
+	Driver version   : 6.6.0
+	Capabilities     : 0x00000000
+
+Required ioctls:
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev1 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 20 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev1: 43, Succeeded: 43, Failed: 0, Warnings: 0
+
+Grand Total for starfive-camss device /dev/media0: 201, Succeeded: 201, Failed: 0, Warnings: 0
+# 
+
 -- 
-2.11.0
+Regards,
 
+Jack Zhu
 
