@@ -1,33 +1,33 @@
-Return-Path: <devicetree+bounces-9570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92867CD745
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:57:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE247CD747
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 10:57:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5AAA281ECD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:57:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A254D281E5F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF83168A4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C461772B;
 	Wed, 18 Oct 2023 08:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D17168D3
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:57:07 +0000 (UTC)
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C1719102;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339EB168D7
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 08:57:08 +0000 (UTC)
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18610FD;
 	Wed, 18 Oct 2023 01:57:04 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="6.03,234,1694703600"; 
-   d="scan'208";a="179708491"
+   d="scan'208";a="183503693"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 18 Oct 2023 17:57:01 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 18 Oct 2023 17:57:02 +0900
 Received: from localhost.localdomain (unknown [10.166.15.32])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9A0F940116A7;
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id C1BEF40116BA;
 	Wed, 18 Oct 2023 17:57:01 +0900 (JST)
 From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 To: lpieralisi@kernel.org,
@@ -47,9 +47,9 @@ Cc: marek.vasut+renesas@gmail.com,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Serge Semin <fancer.lancer@gmail.com>,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v25 10/15] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
-Date: Wed, 18 Oct 2023 17:56:26 +0900
-Message-Id: <20231018085631.1121289-11-yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v25 11/15] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+Date: Wed, 18 Oct 2023 17:56:27 +0900
+Message-Id: <20231018085631.1121289-12-yoshihiro.shimoda.uh@renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231018085631.1121289-1-yoshihiro.shimoda.uh@renesas.com>
 References: <20231018085631.1121289-1-yoshihiro.shimoda.uh@renesas.com>
@@ -60,50 +60,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-PCIe host module.
+PCIe endpoint module.
 
 Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
 ---
- .../bindings/pci/rcar-gen4-pci-host.yaml      | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        | 115 ++++++++++++++++++
+ 1 file changed, 115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
 new file mode 100644
-index 000000000000..ffb34339b637
+index 000000000000..fe38f62da066
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-@@ -0,0 +1,127 @@
++++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+@@ -0,0 +1,115 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +# Copyright (C) 2022-2023 Renesas Electronics Corp.
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pci/rcar-gen4-pci-host.yaml#
++$id: http://devicetree.org/schemas/pci/rcar-gen4-pci-ep.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Renesas R-Car Gen4 PCIe Host
++title: Renesas R-Car Gen4 PCIe Endpoint
 +
 +maintainers:
 +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 +
 +allOf:
-+  - $ref: snps,dw-pcie.yaml#
++  - $ref: snps,dw-pcie-ep.yaml#
 +
 +properties:
 +  compatible:
 +    items:
-+      - const: renesas,r8a779f0-pcie   # R-Car S4-8
-+      - const: renesas,rcar-gen4-pcie  # R-Car Gen4
++      - const: renesas,r8a779f0-pcie-ep   # R-Car S4-8
++      - const: renesas,rcar-gen4-pcie-ep  # R-Car Gen4
 +
 +  reg:
 +    maxItems: 7
@@ -116,14 +118,13 @@ index 000000000000..ffb34339b637
 +      - const: dma
 +      - const: app
 +      - const: phy
-+      - const: config
++      - const: addr_space
 +
 +  interrupts:
-+    maxItems: 4
++    maxItems: 3
 +
 +  interrupt-names:
 +    items:
-+      - const: msi
 +      - const: dma
 +      - const: sft_ce
 +      - const: app
@@ -152,6 +153,9 @@ index 000000000000..ffb34339b637
 +  num-lanes:
 +    maximum: 4
 +
++  max-functions:
++    maximum: 2
++
 +required:
 +  - compatible
 +  - reg
@@ -176,18 +180,17 @@ index 000000000000..ffb34339b637
 +        #address-cells = <2>;
 +        #size-cells = <2>;
 +
-+        pcie: pcie@e65d0000 {
-+            compatible = "renesas,r8a779f0-pcie", "renesas,rcar-gen4-pcie";
-+            reg = <0 0xe65d0000 0 0x1000>, <0 0xe65d2000 0 0x0800>,
++        pcie0_ep: pcie-ep@e65d0000 {
++            compatible = "renesas,r8a779f0-pcie-ep", "renesas,rcar-gen4-pcie-ep";
++            reg = <0 0xe65d0000 0 0x2000>, <0 0xe65d2000 0 0x1000>,
 +                  <0 0xe65d3000 0 0x2000>, <0 0xe65d5000 0 0x1200>,
 +                  <0 0xe65d6200 0 0x0e00>, <0 0xe65d7000 0 0x0400>,
 +                  <0 0xfe000000 0 0x400000>;
-+            reg-names = "dbi", "dbi2", "atu", "dma", "app", "phy", "config";
-+            interrupts = <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
++            reg-names = "dbi", "dbi2", "atu", "dma", "app", "phy", "addr_space";
++            interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
 +                         <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
 +                         <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "msi", "dma", "sft_ce", "app";
++            interrupt-names = "dma", "sft_ce", "app";
 +            clocks = <&cpg CPG_MOD 624>, <&pcie0_clkref>;
 +            clock-names = "core", "ref";
 +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
@@ -195,20 +198,7 @@ index 000000000000..ffb34339b637
 +            reset-names = "pwr";
 +            max-link-speed = <4>;
 +            num-lanes = <2>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            bus-range = <0x00 0xff>;
-+            device_type = "pci";
-+            ranges = <0x01000000 0 0x00000000 0 0xfe000000 0 0x00400000>,
-+                     <0x02000000 0 0x30000000 0 0x30000000 0 0x10000000>;
-+            dma-ranges = <0x42000000 0 0x00000000 0 0x00000000 1 0x00000000>;
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 7>;
-+            interrupt-map = <0 0 0 1 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 2 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 3 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 4 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>;
-+            snps,enable-cdm-check;
++            max-functions = /bits/ 8 <2>;
 +        };
 +    };
 -- 
