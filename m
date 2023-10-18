@@ -1,128 +1,93 @@
-Return-Path: <devicetree+bounces-9667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201057CDE06
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:57:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F09B57CDDC6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 15:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7BCC281CE8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:57:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 782B9B20F84
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 13:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0591E36B0F;
-	Wed, 18 Oct 2023 13:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8EA36AE3;
+	Wed, 18 Oct 2023 13:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gIuFcSgx"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="N4huznYF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183C4BA33;
-	Wed, 18 Oct 2023 13:57:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DAC0115;
-	Wed, 18 Oct 2023 06:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697637435; x=1729173435;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=5AeLSEWrRP+H5Fb6/38V6XWZBDN12WIWs+JsApoQgvk=;
-  b=gIuFcSgxsUhqDqyBq9S/VGO8JDa0jd+iMqgNUAIBIy552eXuCkKGXjJO
-   NOy8un5Mp26kTaL4ewZ8VUhpK8A4bLnQ1eQ1CfZafgjIDVVSnwt7/m5tH
-   WQXVKrRJMhZQvDqRv0Zy7A9MlXjzcP9zzUPYlSd398qOJ2xJbl5U63J3A
-   FiFbMYAZPnwrtyQr4HzdLsgx8A5YtFNA1HbFO7C6Te9VBZjzupFSZgrxU
-   //5hD8CSvTW9JwHQJ8qFOQQi9lfBeLoyMmszxi+J/BpklGfc0tJRppzDc
-   u0dCKZSDoKSFSKOtrvarm794X5vnU1JowAD0blCpyNrRFX3lTr53odO3t
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="472242447"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="472242447"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 06:57:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="930209923"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="930209923"
-Received: from dmangels-mobl.amr.corp.intel.com (HELO [10.209.187.130]) ([10.209.187.130])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2023 06:57:13 -0700
-Message-ID: <2f05708e-3ee8-472e-a24f-6f3eb118133c@linux.intel.com>
-Date: Wed, 18 Oct 2023 08:47:40 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467C8335C2;
+	Wed, 18 Oct 2023 13:48:27 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382FE83;
+	Wed, 18 Oct 2023 06:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fpdyGd0f2Bs1xie0YcO0YGgxaND1RV5OpA+0H/R80Bs=; b=N4huznYFF2dAUJr7TzsQ/mVcPm
+	htjayYZu5Qe+DwIP/rQiFySMDmo5aLzpZQ2cls2A3vynXD3ti5eeeNN5ww7CHVuqgEbY13OGO+udb
+	dHDJ9iztRS+DgNA1PX2fx7F++A6EMhUsyoUx+tKweiezbqgAqs2WXuGpVhfwqcrDI9UU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qt6uH-002aRr-Jc; Wed, 18 Oct 2023 15:48:17 +0200
+Date: Wed, 18 Oct 2023 15:48:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <c93c7f41-2f95-41e2-a609-0a6b4225a3bb@lunn.ch>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 09/34] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
- gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
- Thinh.Nguyen@synopsys.com
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
- <20231017200109.11407-10-quic_wcheng@quicinc.com>
- <7aa4ea87-9d1f-400a-bcc5-b56e5b4500c6@linux.intel.com>
- <c72bcf47-af0b-8819-1c30-06b51358381e@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <c72bcf47-af0b-8819-1c30-06b51358381e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
->>> Specifically, the QC ADSP can support all potential endpoints that are
->>> exposed by the audio data interface.  This includes, feedback endpoints
->>> (both implicit and explicit) as well as the isochronous (data)
->>> endpoints.
->>
->> implicit feedback means support for capture. This is confusing...
->>
+On Wed, Oct 18, 2023 at 11:03:45AM +0200, Linus Walleij wrote:
+> This is an attempt to rewrite the Marvell MV88E6xxx switch bindings
+> in YAML schema.
 > 
-> I mean, a USB device can expose a capture path, but as of now, we won't
-> enable the offloading to the audio DSP for it.  However, if we're
-> executing playback, and device does support implicit feedback, we will
-> pass that along to the audio DSP to utilize.
-
-Not following. Implicit feedback means a capture stream *SHALL* be
-started. Are you saying this capture stream is hidden and handled at the
-DSP level only? If yes, what prevents you from exposing the capture
-stream to userspace as well?
-
-I must be missing something.
-
->>>   +static const struct snd_soc_dai_ops q6usb_ops = {
->>> +    .probe        = msm_dai_q6_dai_probe,
->>> +    .prepare    = q6afe_dai_prepare,
->>> +    .hw_params    = q6usb_hw_params,
->>
->> this is rather confusing with two different layers used for hw_params
->> and prepare? Additional comments or explanations wouldn't hurt.
->>
+> The current text binding says:
+>   WARNING: This binding is currently unstable. Do not program it into a
+>   FLASH never to be changed again. Once this binding is stable, this
+>   warning will be removed.
 > 
-> I thought this was how the ASoC design was.  Each DAI defined for a
-> particular path has it own set of callbacks implemented to bring up any
-> required resources for that entity.  So in this case, it initializes the
-> "cpu" DAI, which is the main component that handles communication with
-> the audio DSP.
+> Well that never happened before we switched to YAML markup,
+> we can't have it like this, what about fixing the mess?
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-Usually prepare and hw_params rely on the type of DAI callbacks, but
-here you are mixing "q6afe" and "q6usb" which are shown in your Patch0
-diagram as "cpu" and "codec" dais respectively. I don't think it's
-correct to tie the two, it's a clear layering violation IMHO. The codec
-dai .prepare should not invoke something that modifies the state of the
-CPU dai, which should have its own .prepare callback.
+For the text describing the properties:
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
