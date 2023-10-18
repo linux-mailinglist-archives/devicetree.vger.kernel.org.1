@@ -1,201 +1,210 @@
-Return-Path: <devicetree+bounces-9821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517877CEA30
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 23:44:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894737CEA68
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 23:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9CA2B20F4F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:44:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD1031C20DE7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 21:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D68B38DEE;
-	Wed, 18 Oct 2023 21:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B20942BF7;
+	Wed, 18 Oct 2023 21:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="QmwkAfFx";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="HuVk773M"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="SzNGTq7/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9DE1A5B6
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 21:44:41 +0000 (UTC)
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD11FE;
-	Wed, 18 Oct 2023 14:44:40 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39IKNlpP004867;
-	Wed, 18 Oct 2023 16:44:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	from:to:cc:subject:date:message-id:references:in-reply-to
-	:content-type:content-id:content-transfer-encoding:mime-version;
-	 s=PODMain02222019; bh=wxzOFJfVkumZPj/hJ6ifd6B2jXmtxzbOcm0Sd0thg
-	Dk=; b=QmwkAfFxYrSzht9w2ngLdmMdCaRZ6lE+zc105gnELRVZ+YviC6nBULKkE
-	Mj4yDH2IdJv3HT7ij7wvLT+llltzJr7PYrbDlr9bBT397FEl0A30BekPsZ27pTXR
-	DsM8PfXOvPkmopYBOlqTSlqfMqobwauEfVTTL/kFKQXz6ow0fZfMAeFXht73k00S
-	Y/B/XNcU0KF/dvr/bHN9X0AC/0Fk0+BYWlioA+i//Ql/39wV2UUfnu63xFy0cW3u
-	3B9xdJvUSRHek8V9l1ePDiT915NL3ePh/iW2Ms/n2PhbLHNRcqVBWaWPQUAM9tPs
-	E4Bn7JLG2En41lqoOR/T16tfNNEzw==
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2101.outbound.protection.outlook.com [104.47.55.101])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3tqrcw6ybu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Oct 2023 16:44:34 -0500 (CDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030FD81A;
+	Wed, 18 Oct 2023 21:58:33 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2078.outbound.protection.outlook.com [40.107.21.78])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DFE5B6;
+	Wed, 18 Oct 2023 14:58:32 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lzlE7O4Q9jNByKtYKPX4Yi3rzjc4R+BFsgbBn6NEK1zKNks+/tCMQXZTW2dHXPsbbhaHG8hBNMnWyDTS+Uc5s5aY11RUnqMCqisurBsNKuZ69H8664WxN1IOi9Hksf3RJvezzYcx+OO+QidYI6q5/R4240n5hoqgixQOHTXzaTJsjJqz/GW95AtbqNY2iEQJ22kESNPWjVcfWrCLWhhWg7QMXst2Qal3+6Is+UtyHINvBiD6EOtnagSSKZEDfsTVwpsswQjByZpcnFF1DUo3iNvwnLc4ZoliXfWbJ1QQKEQ+6bRYbsv7ohAOH7zJUp84N9bS+/Z2/u4Qi/Y9e4Nblw==
+ b=lRXKeHJctBEVEUU8aR0It3qfAc8aZ34VoY/xvun/MPNBjFIwG54hagxxJvGpHs5db6k4QSbU1da2rgjmEL36YxgC9TL0Dry9bHXyQRuq5Bzl7yOFt7a7UYL/mv+N+Lunqu1VBV6zTYfeSnbCRyqhQY4QApUbNM6fR7bkX5vfhjTxd6izbcG6/xIKfAaiWUqKPTNW9zkjBLfXN2a3I2Apbeyrgm1dqrcFAWXb2GF3K63WtIhDLlGWvmIqFkKTTIDowB7LvHaj3+rRSKIjUgEBaioMAAbTJhnRiwiFzC3K/0iLiJjIbswjVU7b3e3qZubLHrN6vPn/mm0pg8ujIO509w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wxzOFJfVkumZPj/hJ6ifd6B2jXmtxzbOcm0Sd0thgDk=;
- b=YpIPuMZJSpXmOwd1Bd+PENdUQh82BpTzL9wfasm0t5Xyxj4kp6xz+PHwCZY0C0Xt4hk/zobF/cu/n++JKmnUkrAI3y+rfn6aRwk35sCOfh0Q4vLb5bUExAF9TWsVMLkat1C6vu19UMAB+NnVmeZKAj8Swyw9HLfIml6NeMTBfgq4jSOzT7pZjN85+czDbQ7jWvei6EwATPgdBq5IVe5p0YGiKU+PMfwkiikUsYbzegAnbflK2XcB6jn7tCEqJuCtGM70qYmDs3f7g9JdD8bdDra8/foR4fCqojhAgf9HIzjJ5m58v083kF+p8sr72v68nt8Ga7uFMU/++5tsN+m7cg==
+ bh=Al89GYN+eGXpUE5h903F768lF0xpfuhJAQu2vm0WI6w=;
+ b=c0bDhBSz77CZbodEMwRtlJ+eoEDXgvLhK2b1raEPf+A5BpJtbzN1FodiqUMzgori5FtwnnjJeU9eAmyUl5Q0/GMtcz0JuSQAxgDyZqTmjlJsqm+bHHvZDFLSCRd92VgUklXb9HBtHggAe4k+WLoFDbHjq9GOUYFFg37KNiJ45L6Wnn5cM26sS0aL9NX/oXQBMc3TNQRYwc+uyka8mfm4IxZP5Z4ZWK64ye/D8XLha5Wm8e+QWw9M1GXPcuhPJrawPxyt8LDbFmVk+1iwDX8CK1KIbvX0Sjp/tzhI+9o1gP2WLxpGCosOa9GdmzKtiNxR099TOSjwFRVBP+tgLkzG4g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cirrus.com; dmarc=pass action=none header.from=cirrus.com;
- dkim=pass header.d=cirrus.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wxzOFJfVkumZPj/hJ6ifd6B2jXmtxzbOcm0Sd0thgDk=;
- b=HuVk773MzmYj+k7zp4Nw2ASWS6xAxjUpbFqvciKMVNtPJ875lL64rm2uegzWZejl26om4eKdE9Epn9A+5XoNG7ib8e/8VAYzIiWp4xoVezKceLzi7P5iOZbfmexYCaE+oYznu5iRR/JNmC/q8CeThDWLATIXsHkzx1mScWwm9HY=
-Received: from BN8PR19MB3057.namprd19.prod.outlook.com (2603:10b6:408:95::13)
- by LV2PR19MB5837.namprd19.prod.outlook.com (2603:10b6:408:175::16) with
+ bh=Al89GYN+eGXpUE5h903F768lF0xpfuhJAQu2vm0WI6w=;
+ b=SzNGTq7/iMIKcWChPBkX71gxeHDhn/rpjmY7B5fa+DiiqJoROUl4Mzx4/67Z6XIlwbiSKjEEqwSaAt1acJfCp3i8ATCo4+kr+aVfcl/xYEXgbVaqlGQigX1PDgj6e+L3wB+N7+KAhapd00XpSjnKx/4f9KINQtQ5fzoq8gIt3bQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by DB9PR04MB9750.eurprd04.prod.outlook.com (2603:10a6:10:4c5::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Wed, 18 Oct
- 2023 21:44:30 +0000
-Received: from BN8PR19MB3057.namprd19.prod.outlook.com
- ([fe80::8a74:6925:435d:19a5]) by BN8PR19MB3057.namprd19.prod.outlook.com
- ([fe80::8a74:6925:435d:19a5%6]) with mapi id 15.20.6886.034; Wed, 18 Oct 2023
- 21:44:27 +0000
-From: James Ogletree <James.Ogletree@cirrus.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: James Ogletree <james.ogletree@opensource.cirrus.com>,
-        Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Fred Treven <Fred.Treven@cirrus.com>,
-        Ben Bright <Ben.Bright@cirrus.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: input: cirrus,cs40l50: Add initial DT
- binding
-Thread-Topic: [PATCH v4 1/4] dt-bindings: input: cirrus,cs40l50: Add initial
- DT binding
-Thread-Index: AQHaAeybXKq5Yljy8kunuOewT9MXjbBP7LoAgAAn6AA=
-Date: Wed, 18 Oct 2023 21:44:27 +0000
-Message-ID: <E1BF54AA-9573-4CDA-8DBA-42E2F8B05491@cirrus.com>
-References: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
- <20231018175726.3879955-2-james.ogletree@opensource.cirrus.com>
- <65cc9c43-e776-41bc-adad-1e57c3b24d7f@linaro.org>
-In-Reply-To: <65cc9c43-e776-41bc-adad-1e57c3b24d7f@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN8PR19MB3057:EE_|LV2PR19MB5837:EE_
-x-ms-office365-filtering-correlation-id: 187b8cfd-213d-4f82-3297-08dbd023671c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- WKgCgAItPg6iueXmy9mvajQUdXwp72zchWnNrIE9Tl4++yWVFsd5SKCSew5/v0qvkO9gLzRGDW7yhdf0/Rfgj+qFsJwS/PWWQJKZ0tDXo+XtJaLQMn5um0GJtUGwJI3BGLW/eYVKaXR3PWnbG0FDylOEtyhTQJlY4/CGnqLH/oEDhGl5eBEjziWKxKfTLHM5XueKhW7YG2bI0K/iOtYmc1jmybpzzYnIBAHb+roYORG+k/6AyuMfOIQimSLOi42/oFXptrWBNozoYgH1UWES6JzwtOwMZSYekEJxHZqSmUajs+oAxWrNWxOM9DXvZuwdNrgSCSjO3pPvHhZxFGIr53xgMNokTUbhZw7Cyrlgx/MhdRUKh2n0Jvo/w/JYREZVDLhfTG6M4ld9WC4aAPBNmtIaUawiE6tjwksNSjMRO6ib6MfH0GHllmvOf4qHVYeOgoL2i6om8HLqVrt13zPj2nUhF6roTBJCex+HcxbfE6qIX8V+j2+2bOaMWcrj9mmMD8WAvrCox3t1DSsuhRaeYA1yA4xp7k/cCq5r5Da8CU2P5AMOijNW19I7LUwaE0x03UtiJeCHkZFhA47BCRDKS0B0yhfivzPOccEJjrfvawcuP8JQQL1LbQur/B4Xd079eltx7FmyNv4HpIq/ZXvJMw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR19MB3057.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(396003)(39850400004)(366004)(376002)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(86362001)(36756003)(33656002)(66476007)(41300700001)(66556008)(5660300002)(4326008)(91956017)(6916009)(8676002)(64756008)(54906003)(2906002)(316002)(83380400001)(66946007)(76116006)(66446008)(6506007)(6512007)(478600001)(53546011)(2616005)(26005)(71200400001)(6486002)(8936002)(966005)(38070700005)(122000001)(38100700002)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?bqRiNFfr0xRHfpyDzhuUF9tCvUVPaAPj2YdxY8sqltsW7lc4TbTzx9AaxH8L?=
- =?us-ascii?Q?8eFF655geXYcABWAhSF+frWoAbQecgcbxKj36U5QXdAQmrgoe8XiNNfAsLtu?=
- =?us-ascii?Q?OUktREdOUjSiRR+lBL8aAGjVi1NUxih63RwfD2Z6S9Zu9ifvscmafu2cMMo/?=
- =?us-ascii?Q?tGqsXynGYThA9iZ2cg9dMG8LuJ5wpRoTGakKj6X3s3i0eScxieAUFWvwNj/7?=
- =?us-ascii?Q?a+QOXjbRowVCRVr3+ZyOTYT61cYSZ+0CtGyZBTBv4DqqCjM4ZyWImHQumO12?=
- =?us-ascii?Q?aegjjKlwqwrGlKoBBtV/5Fj0x15QmadC18GfXCU2DXRtRgU6x5E/YmMeHeRw?=
- =?us-ascii?Q?RCTziU7E2nVSHB5iHg/baUoqyDplmwOOplEq2qbc/iM+vdwnvjhAJuDYkMxS?=
- =?us-ascii?Q?hsFj66uguYC365EsPIsTh7PSPxbEkD5A0vWcgF9CeD3/gEuYuTOSTvY7lIlJ?=
- =?us-ascii?Q?wFklBZ1tG4dQLrNo7XVvqURHxKPetqR2g+lXrym3KlN3hh4qbR8DRcsJRgLi?=
- =?us-ascii?Q?aQ61qRXz1kJlUuHZR+qK0GR2b+UvLB49MW5gwYn3ozPeFXefIPrNTSqPQsmM?=
- =?us-ascii?Q?WfliV++O7Y+IAR6sLuXbSIMQG9LjfsmhxbTRGIBd0QCcud8vbE2jtyRAFrJ2?=
- =?us-ascii?Q?0wR19A3PAREFcrdc5UQwCUlIfeIoylinDRkcqLSb0DvzpoquA0QSbXbO9xcI?=
- =?us-ascii?Q?phPvXRBgwwQ7jMlhdJtUfUT5mhryWco1/dvnjuXIKp3TzB7c99kP3iD1mQ/L?=
- =?us-ascii?Q?cnToPkfsszJhFAo5S1MveNzJub4G7U5epMEqYKeOuNXK+hlioOe8VH3hJZqa?=
- =?us-ascii?Q?2LBrbxlyTdQd1jIpCLuBGoY2pnz+EZIGG+5Tb+2F6GkKPR77/u8+tqLKkxL5?=
- =?us-ascii?Q?7jPRIuHDqsmTHYhJRU728nJkrxdfLD3pC8YjJI6JX+fPDR9/ZXIkmt82cefz?=
- =?us-ascii?Q?ripC77QePXpHB9GTRyFq6mkymGjjoaM6rdRrQ07A9NaPjH2JwasoZQG46ASH?=
- =?us-ascii?Q?FuJFWpholY4JtT4Vc3tu8jaBK3R9SpkT9FDqd++hJFt3y3kSlsDs/3e/LnTd?=
- =?us-ascii?Q?h4sK1g8CBZEr1myQlAfq8lo/tVCK+sLpok3mnElNG9mTwGA21D37zANtwZWC?=
- =?us-ascii?Q?nRfjsqN0bCczkrU1d+x4wa6z5I+ArnKBo5Ax4CWeivdzp+zjiStqRE3mZ082?=
- =?us-ascii?Q?THJA75EvFIOxh7HMkHmCYGnKazcf0ESpm1Wm0rpDNmDuB6LxiVaAUBH+/ynr?=
- =?us-ascii?Q?nMJadVTRtHZ++fPrHX431z1L6bEk+W/O6SMCe6zuqNDNzuv2opTNIDsDqoHO?=
- =?us-ascii?Q?Pg7pKc5fbEDz+awjt0G1t04zZVJU19t3T1aY3YzI9DldkTJyh6TAnvYpcRuX?=
- =?us-ascii?Q?hygU4yEg3rOOflyl77uGmGn78341s6hkCYeFkxEk8e1oDd6ynW5gjMNU9kPe?=
- =?us-ascii?Q?ikjW5KcrMDkXa//16th3jRVuNPzIp9gsTPNMsZLO8CoA6zkOuCy7DbuJfH4l?=
- =?us-ascii?Q?fLKOKuspWciq3O5M9gkcw4l6dI8ZYJDlei3sCDlfdednZGN/ziV4LwCa+f+L?=
- =?us-ascii?Q?uONeQDnS3AsuCx5UMLYo6OPwqrhgVmh4bw9E0uCkB1oh9efT8/L7E85nJ/Ja?=
- =?us-ascii?Q?zQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <98420FC96FB36A44AADF593CDBD489AB@namprd19.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.25; Wed, 18 Oct
+ 2023 21:58:29 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6907.022; Wed, 18 Oct 2023
+ 21:58:29 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: miquel.raynal@bootlin.com,
+	conor.culhane@silvaco.com,
+	alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	joe@perches.com,
+	Frank.Li@nxp.com,
+	linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: gregkh@linuxfoundation.org,
+	imx@lists.linux.dev,
+	jirislaby@kernel.org,
+	linux-serial@vger.kernel.org
+Subject: [PATCH 0/5] I3C slave mode support
+Date: Wed, 18 Oct 2023 17:58:04 -0400
+Message-Id: <20231018215809.3477437-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0225.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::20) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: cirrus.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|DB9PR04MB9750:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d1e612d-0454-45c1-4ed0-08dbd0255c7c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	vbXJw5c3fmmjr8mj/YXHbR6ui7blod5m9vOdYhGhWNSdyJq7/vLQbEDu52IyppinPGYhiuoh8gFgF0oQ2py4VSccyrsZMCKjwWC7HUuSCueBR2trQQNr5oqn5mfbEowvzqDMg9BzT9IeIO23Hy/QOjGeYYb/pDnys3zyEYfq7tM7A40SZZNCgBL/FZl2ryqI8OMV9mh+swRYv1fAaXrIqyKDhfosZV3fjMQ83SDNZ382GC6JAaYUntrgxTil5GaPoCt7woG1mzIz0KadQW/HYWKP9+5PJgpH0xmIZ507nAp0P7Wc1wsv+O57Xb/EBCF8LWNaG4E9yX443zH9A6mH4IDolwHcRU8fPngY4/vv3/+e1cNbtzEikzTJ2JWUWAPaz37wKeh1yN6lfy0sME1x3VberxtyMYFe+ET4lWnFzpp20nDMav9qMV65bO6+6G40345Ck1ozy6fwkN/+2hIabfmSvcWCfzSOUrYQmZfq25SnkXZkBRQE4qaXlJurZZ7DWC+gMSr7589DR5D4OsAFKXmPCR+PwL9ObPGBxUXeUcenaEjD7C2M6eJbMUqw88gMZ2yz3tNdyA9fpnqwN8YKWyeBR+YvK15nQFRF3w+hSxzPSGroYGDzQ3WvD0PASnSV
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(396003)(39860400002)(136003)(366004)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(66946007)(66556008)(66476007)(316002)(6666004)(478600001)(6486002)(966005)(8936002)(8676002)(36756003)(5660300002)(41300700001)(4326008)(2906002)(86362001)(7416002)(38100700002)(2616005)(52116002)(6512007)(1076003)(83380400001)(6506007)(26005)(921005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gZaZ8HbKVDUrWzMGK6J/yWFbbO/UETRj9Ux7NtKDpv2sGd2ukxIbhvZLde4g?=
+ =?us-ascii?Q?H8rvQh3NKJxI67mIWmFnRCoAizUiF1eZmgQnEN7rws1Jb04B6fEy2QKzFiSF?=
+ =?us-ascii?Q?/c14hXaVfs0d0dL4c496tUs1t7ERZ5VTZ8kGK/DQANG5Ey6fbBvdvFgzMuHg?=
+ =?us-ascii?Q?hAdCnn7Obg4v+ry08yD/3AzTlDYLOsevcpcsgeznI2KN5ZgLHrv2JHpCIlZG?=
+ =?us-ascii?Q?OS5iaKdGhr09EgtpwrdOd4qgHGnGhFsLDShSYNFbybgWyWMJ69PasE2sfYnB?=
+ =?us-ascii?Q?obsRRysEaU1xPibUG647nzkprySzKqPDZJdMPqpckNtLA+1lJrGkdzlSSjT4?=
+ =?us-ascii?Q?5WyzceWFvso5Mli2Y+xp6VYpZEmoFGIp80zUk7dpLkzOjniDq/LW3fw7H90p?=
+ =?us-ascii?Q?vPGQK4epkXuoCLzXp21AaaUjsgTX042kg+WUfkvkK3+19vHqy+6hvhP+4JUt?=
+ =?us-ascii?Q?Kc3o50czOI/qVqboG5rt+NA5XMKRkvaqqWpf/vVEAgiK7CvUCYAyTRTZ8gak?=
+ =?us-ascii?Q?kvTgNP13TdYRgzznwRLq+GhizOa36od6spVaA1glm1m0DdhiTW+l9hca+ONh?=
+ =?us-ascii?Q?RweE0igF4cm7UmdjsGtaKFrhV3XRazibG1oIGKfZHkY3EzdFS+gPKWx/MhHh?=
+ =?us-ascii?Q?SkvWMItHzrSXguwj6kpxqgld8kZdCnqh2jx1Cw8U9K7tBsObvahzx0KQLf1F?=
+ =?us-ascii?Q?XfyDN51xObE2VS+izAxOQE9cJjDWkSi+uxTdE0ZTtnzKXgeiDjoCeQhx+ARc?=
+ =?us-ascii?Q?ira90NPlsGE5u6oxvXGmJaiKYQ6uR+FjnYFrjyTGcxLRm1nkQ8K9NSxgD50i?=
+ =?us-ascii?Q?B7aFj1iPH8RYFF7TsD5TkNCtYw8g0moAMmDBtiD4IcnJmgcNIlTbQCHn2t39?=
+ =?us-ascii?Q?xO1MGTmfqsAHKJjQTL/VCSgKHTzG2rVzAC2siQBkViIFncFxIf+Bgn4SsR+6?=
+ =?us-ascii?Q?nUbRciVezQGtwdcaisxMdmSoURYuqLZZ+thKd6a347rm92/NEmUiWOqPFeMw?=
+ =?us-ascii?Q?VV2xJnGx5Cn0TRdS8zQhtCp3WlLn1N+1HqODLmPl29QmPJ8xj6TP5n/wXw4o?=
+ =?us-ascii?Q?x04XYcFFShg/VbYv1Nw1HGi6b9xy8hlsjqTED8q9P8p/cbTE8qg8QTy3Z2/H?=
+ =?us-ascii?Q?ovtTY7kWH2i6pkxb5DWsIlifO+YNAnDYCw1ACxe8jr3uQtzKB48c/QvWQMzZ?=
+ =?us-ascii?Q?nFhOIZaJi9q20sslovLhJPTJkwH5wXJ0emk/ps4KID8FkUJKN29GozFDjkDj?=
+ =?us-ascii?Q?O+Q/BPKCPYIppCSaTWCpT+iJbT4kFv30JNwaLmYYLtvgwPMQPnN1ReNHFgE8?=
+ =?us-ascii?Q?dtF8Vi2twC4ULTe4MKa+31BAn/Q6xTwg2jQ1ydOupKRgJrOhKBTrx9jbM/o5?=
+ =?us-ascii?Q?69zWLccO5/YwDw0lXBtIzvAFJyTyeEjqeYQYKJUarwuU7J/zoJRvfyLEe8zj?=
+ =?us-ascii?Q?x1aNfks18aHaY09F9Tf7EvFGmptGux5YjaL80tTkHvZOrRtgHe88MN1K/Qmb?=
+ =?us-ascii?Q?OuiHYhBIKF67sM3TQfIXDQ13Xe7KX0exCZYdHHsemE+/V4EYZAdv3iiS0X2u?=
+ =?us-ascii?Q?tmWeeJrscH9sgWCwiGZ/FMDz1SRBTuzI7yzxySNG?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1e612d-0454-45c1-4ed0-08dbd0255c7c
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR19MB3057.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 187b8cfd-213d-4f82-3297-08dbd023671c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2023 21:44:27.4876
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 21:58:28.9153
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: bec09025-e5bc-40d1-a355-8e955c307de8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m4AfkoOpWtMjs+ryzCg3MKNEeksKWqK2mpNexVIaPvJLCixdH2KfYuOPWcUMK8fEZeD5PSyuUg24iUdCXRCa/Tle81c8NVgr9sBAsBnMEuc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR19MB5837
-X-Proofpoint-GUID: 7yvK5X1nk3VedVxlfg-hJSWJsUj3CkqY
-X-Proofpoint-ORIG-GUID: 7yvK5X1nk3VedVxlfg-hJSWJsUj3CkqY
-X-Proofpoint-Spam-Reason: safe
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xupsPAD27W2tAML6BLhf3v27Sp6HkYGvuhmgD8+Y/V7vdXu3PFTmtq6TVpKI9TEzWpJlboz0rR4x6TxrJK9SVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9750
 
+This  patch introduces support for I3C slave mode, which is referenced
+with a PCIe Endpoint system. It also establishes a configuration framework
+(configfs) for the I3C slave controller driver and the I3C slave function
+driver
 
+Typic usage as
 
-> On Oct 18, 2023, at 2:21 PM, Krzysztof Kozlowski <krzysztof.kozlowski@lin=
-aro.org> wrote:
->=20
-> On 18/10/2023 19:57, James Ogletree wrote:
->> From: James Ogletree <james.ogletree@cirrus.com>
->>=20
->> The CS40L50 is a haptic driver with waveform memory,
->> integrated DSP, and closed-loop algorithms.
->>=20
->> Add a YAML DT binding document for this device.
->>=20
->=20
-> This is a friendly reminder during the review process.
->=20
-> It looks like you received a tag and forgot to add it.
->=20
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
->=20
-> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v6.5-rc3/sou=
-rce/Documentation/process/submitting-patches.rst*L577__;Iw!!DQ3KfwI!1EWk9UB=
-nRfBQy30s9CXXIfiyzRiXLDvIiZsri22s9tJuRYN-X0PHPgMwZsqkKEq2hSBTrsP1Rj0hTWa4ws=
-8u42Em84kK3mI$=20
->=20
-> If a tag was not added on purpose, please state why and what changed.
->=20
-> Best regards,
-> Krzysztof
+The user can configure the i3c-slave-tty device using configfs entry. In
+order to change the vendorid, the following commands can be used
 
-Noted for the future. This was an accidental leave-out.
+        # echo 0x011b > functions/tty/func1/vendor_id
+        # echo 0x1000 > functions/tty/func1/part_id
+        # echo 0x6 > functions/tty/t/bcr
 
-Best,
-James
+Binding i3c-slave-tty Device to slave Controller
+------------------------------------------------
+
+In order for the slave function device to be useful, it has to be bound to
+a I3C slave controller driver. Use the configfs to bind the function
+device to one of the controller driver present in the system::
+
+        # ln -s functions/pci_epf_test/func1 controllers/44330000.i3c-slave/
+
+Host side:
+        cat /dev/ttyI3C0
+Slave side:
+        echo abc >/dev/ttyI3C0
+
+Master side patch:
+https://lore.kernel.org/imx/20231018211111.3437929-1-Frank.Li@nxp.com/T/#u
+
+Frank Li (5):
+  i3c: add slave mode support
+  dt-bindings: i3c: svc: add compatible string i3c: silvaco,i3c-slave
+  i3c: slave: add svc slave controller support
+  i3c: slave: func: add tty driver
+  Documentation: i3c: Add I3C slave mode controller and function
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |   8 +-
+ Documentation/driver-api/i3c/index.rst        |   1 +
+ .../driver-api/i3c/slave/i3c-slave-cfs.rst    | 109 +++
+ .../driver-api/i3c/slave/i3c-slave.rst        | 189 +++++
+ .../driver-api/i3c/slave/i3c-tty-function.rst | 103 +++
+ .../driver-api/i3c/slave/i3c-tty-howto.rst    | 109 +++
+ Documentation/driver-api/i3c/slave/index.rst  |  13 +
+ drivers/i3c/Kconfig                           |  30 +
+ drivers/i3c/Makefile                          |   4 +
+ drivers/i3c/func/Kconfig                      |   9 +
+ drivers/i3c/func/Makefile                     |   3 +
+ drivers/i3c/func/tty.c                        | 548 ++++++++++++
+ drivers/i3c/i3c-cfs.c                         | 389 +++++++++
+ drivers/i3c/slave.c                           | 453 ++++++++++
+ drivers/i3c/slave/Kconfig                     |   9 +
+ drivers/i3c/slave/Makefile                    |   4 +
+ drivers/i3c/slave/svc-i3c-slave.c             | 795 ++++++++++++++++++
+ include/linux/i3c/slave.h                     | 503 +++++++++++
+ 18 files changed, 3276 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/driver-api/i3c/slave/i3c-slave-cfs.rst
+ create mode 100644 Documentation/driver-api/i3c/slave/i3c-slave.rst
+ create mode 100644 Documentation/driver-api/i3c/slave/i3c-tty-function.rst
+ create mode 100644 Documentation/driver-api/i3c/slave/i3c-tty-howto.rst
+ create mode 100644 Documentation/driver-api/i3c/slave/index.rst
+ create mode 100644 drivers/i3c/func/Kconfig
+ create mode 100644 drivers/i3c/func/Makefile
+ create mode 100644 drivers/i3c/func/tty.c
+ create mode 100644 drivers/i3c/i3c-cfs.c
+ create mode 100644 drivers/i3c/slave.c
+ create mode 100644 drivers/i3c/slave/Kconfig
+ create mode 100644 drivers/i3c/slave/Makefile
+ create mode 100644 drivers/i3c/slave/svc-i3c-slave.c
+ create mode 100644 include/linux/i3c/slave.h
+
+-- 
+2.34.1
 
 
