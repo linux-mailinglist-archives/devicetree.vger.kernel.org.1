@@ -1,97 +1,117 @@
-Return-Path: <devicetree+bounces-9517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C547CD45F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:22:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800E97CD469
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 08:24:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31FAB1C2098F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:22:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE3611C2098F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Oct 2023 06:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89ECA8F55;
-	Wed, 18 Oct 2023 06:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757F78F6F;
+	Wed, 18 Oct 2023 06:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FLck6fm3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115924421
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:22:25 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B072718;
-	Tue, 17 Oct 2023 23:21:59 -0700 (PDT)
-Received: from p200300ccff145f001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff14:5f00:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qszw7-00580I-U3; Wed, 18 Oct 2023 08:21:44 +0200
-Date: Wed, 18 Oct 2023 08:21:42 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tony Lindgren <tony@atomide.com>
-Cc: =?UTF-8?B?UMOpdGVy?= Ujfalusi <peter.ujfalusi@gmail.com>,
- bcousson@baylibre.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
- fck_src
-Message-ID: <20231018082142.5b7d3ad5@aktux>
-In-Reply-To: <20231018052345.GK34982@atomide.com>
-References: <20230705190324.355282-1-andreas@kemnade.info>
-	<20230705190324.355282-2-andreas@kemnade.info>
-	<7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
-	<20230920063353.GQ5285@atomide.com>
-	<dac768d2-2c66-4d6b-b3d3-d1ef69103c76@gmail.com>
-	<20230921121626.GT5285@atomide.com>
-	<20231006102348.GK34982@atomide.com>
-	<20231006213003.0fbac87a@aktux>
-	<20231007062518.GM34982@atomide.com>
-	<20231015234815.637f5c14@aktux>
-	<20231018052345.GK34982@atomide.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1852EBE5D
+	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 06:24:11 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29783123
+	for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:24:10 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so6336220a12.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Oct 2023 23:24:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697610248; x=1698215048; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h0LSTDW6faOOZtWiReUGEV1kCZbo9a6/NHU8SOiXxrc=;
+        b=FLck6fm3Q50JXB/FT7td+1zfeI+Pj4RhU0M8Dt//vNxC6vtJw93rxQc6VSyEGKz1Tp
+         FOZan8trl2/3xGDNeX7Y/0qxJqIqCr50BIHBZOGf8iDwK+mZiwRGMYKMxmSJXoqC2XaO
+         ZnF/o1KGSZ/gn3Jj6V5YDJyw8vRrvwIGGIAnnTdx1r1w5n3N3cFJ/aNybbfETGPK6RD4
+         3uEHOajYE9VeDSwafuEC5eIAdsxqiEMB1KUKT60ZLyGdZf7iXgFf8xdPyJXYfppozTMJ
+         1P2o0VGytDp54t5YPwWsBmLKMZZa5mOEg2OTQ7723PQEx/6GKS8Y+GPs4knFTVHMWITH
+         xs1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697610248; x=1698215048;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h0LSTDW6faOOZtWiReUGEV1kCZbo9a6/NHU8SOiXxrc=;
+        b=fVbizYhZwUARvSuLPut6/84CG0A9PQAqig1S8IUplNJ+QaWp+vOG+42ZS9UqCJjUlz
+         uREGhWr44MUTd1Uaf4uIxeYYkqNe0zQAlsc1z88MBxG0rYEHs+vpghNo9HaPuYd/ccbk
+         6eVQ+p8lMV5SUJ5txM5diYrmmNzTKTus3thx1j6t5XeeAQoY892OLgkzFuacHcVo+4XO
+         D0nFbq5trQSKZDthigML0v0Av8LPoH+10eXsWob+0LM870/MstdFfgFBtLTGmJxOVywO
+         izKUfTHjlBSIALjvLSJeemm2f+k4WjGFivGUBldcpEA4fsDAivx138U/1XURBlEzSKoy
+         Pa1A==
+X-Gm-Message-State: AOJu0YwOE85agfrYgRfesk9ZHF5y35SL/vqFxEKKx8j/7KnUvnR0K/A0
+	Mwpi3SjLBlfH19Fk4NAb0OsZ5g==
+X-Google-Smtp-Source: AGHT+IFkxm1MnB5ryqx/bxdOF9swb/7TUQl4dvCNn74j4MyU/6anDE4hDdxSnnwnnJXSJnG7ob0naA==
+X-Received: by 2002:a05:6402:4314:b0:53e:1b:15f5 with SMTP id m20-20020a056402431400b0053e001b15f5mr3286742edc.39.1697610248609;
+        Tue, 17 Oct 2023 23:24:08 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.154])
+        by smtp.gmail.com with ESMTPSA id h15-20020a0564020e0f00b00530a9488623sm2242277edh.46.2023.10.17.23.24.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Oct 2023 23:24:08 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: linux-kernel@vger.kernel.org,
+	Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 0/2] ARM: dts: samsung: exynos4412-midas: fix key-ok and use Linux event codes
+Date: Wed, 18 Oct 2023 08:24:04 +0200
+Message-Id: <169761020952.14892.6591419387867673696.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231017101402.62740-1-raymondhackley@protonmail.com>
+References: <20231017101402.62740-1-raymondhackley@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 18 Oct 2023 08:23:45 +0300
-Tony Lindgren <tony@atomide.com> wrote:
 
-> * Andreas Kemnade <andreas@kemnade.info> [231015 21:48]:
-> > On Sat, 7 Oct 2023 09:25:18 +0300
-> > Tony Lindgren <tony@atomide.com> wrote:  
-> > > If so then the following might be a fix, not familiar with runtime PM
-> > > done by ASoC though and not sure if some kind of locking would be
-> > > needed here.
-> > >   
-> > just checked: that one fixes the regression. runtime suspends again.  
+On Tue, 17 Oct 2023 10:16:37 +0000, Raymond Hackley wrote:
+> Input event code 139 stands for KEY_MENU, instead of KEY_OK as node name
+> key-ok inplies. Fix it with correct event code 0x160.
 > 
-> OK good to hear. So is there some fixes tag for this one or where did this
-> start happening? I'm not quite following how the dropping of platform data
-> could have affected this, maybe it just hid the problem because of
-> returning early?
+> Use event codes with linux-event-codes.h included for input keys on midas
+> in addition.
 > 
-yes I think so. From a perspective of OMAP[45] mith McBSP in master mode,
-applying  "clk: ti: Fix missing omap4 mcbsp functional clock and aliases"
-on top of "ASoC: ti: omap-mcbsp: Ignore errors for getting  fck_src"
-is a regression. For everyone else not. So 
-"clk: ti: Fix missing omap4 mcbsp functional clock and aliases"
-did uncover a hidden problem, but of course it is the right step
-forward.
 
-Regards
-Andreas
+Applied, thanks!
+
+It is however very late in the cycle, so there is a chance this will miss the
+merge window. If this happens, I will keep it for the next cycle (no need for
+resending).
+
+[1/2] ARM: dts: samsung: exynos4412-midas: fix key-ok event code
+      https://git.kernel.org/krzk/linux/c/25e20eedc1d63dcdf6f781588e8dbc37cd0aad16
+[2/2] ARM: dts: samsung: exynos4412-midas: use Linux event codes for input keys
+      https://git.kernel.org/krzk/linux/c/4a48fa417abc5b86da393c93ab63a9160076a248
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
