@@ -1,156 +1,110 @@
-Return-Path: <devicetree+bounces-10212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AE27D020C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:49:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92AD27D024F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F66D28230D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 18:49:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A53BB2123C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45DD8321A1;
-	Thu, 19 Oct 2023 18:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF5E34183;
+	Thu, 19 Oct 2023 19:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ERrh52VT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a3v6+yjR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F535225BD
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 18:49:33 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C95B712A;
-	Thu, 19 Oct 2023 11:49:31 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JHLgmO009932;
-	Thu, 19 Oct 2023 18:49:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=SVRe8/19wuG8oL4B6r8uT37Q9MdZfQVs0NdeZstSINM=;
- b=ERrh52VT+P5NC8QwmvzXZLv3tvU2NH7tZur+IrGIHnZ14uzI3jHKX58xGMkqOusmdKKM
- n4dnHBSDCaodXR8BrerEsOxnFGrxt+AcPUnGBBEQEZDLqSXS9cvprIaRj+2ethkUyoIe
- NJs94CrWMbefqWj0IUArM0xHWcwJKXpH2frtvJvOCwRBsuoTwNsN+UsIw0F8YpN8GyjO
- m3iTDjWqTU2kDiI7eFsCXaimSe5NK8OofyAMhJAcBPLYUKzbybWNuW5meFuHC6T9uUuc
- CZEsz2EaTayv6we2GqrMttmusu/uoRc5S1B8y6ofq21qFGaUnoKcO85i28/AKh41guom xQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu67jrnng-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 18:49:23 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JInNXW004105
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 18:49:23 GMT
-Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Thu, 19 Oct 2023 11:49:20 -0700
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-To: <catalin.marinas@arm.com>, <will@kernel.org>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Subject: [RFC PATCH 3/3] of: reserved_mem: Make MAX_RESERVED_REGIONS a config option
-Date: Thu, 19 Oct 2023 11:48:25 -0700
-Message-ID: <20231019184825.9712-4-quic_obabatun@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231019184825.9712-1-quic_obabatun@quicinc.com>
-References: <20231019184825.9712-1-quic_obabatun@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB1732C64
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:13:48 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A01124;
+	Thu, 19 Oct 2023 12:13:45 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39JJDaF5013875;
+	Thu, 19 Oct 2023 14:13:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697742816;
+	bh=ZbBS1GRXEwVY9BHCt4xJ1C0GnK6nUcaz0/Y+bfNkICU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=a3v6+yjRcOWrRBkTOZNdizp2qPGUa7r6swo0LX0gt4egryGMgk9Sdf/1RE77R18EG
+	 zA/dqIPArfB6ae0tD7DVOJNXVgM289P3wtmoiN+7GZQCCAqsXPZA2MNme5yCbeK7xU
+	 jjbbvgjuz4K40BFVe+niPW2CVfLG+0RcPCqdAfYE=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39JJDavT063994
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 19 Oct 2023 14:13:36 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 19
+ Oct 2023 14:13:34 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 19 Oct 2023 14:13:34 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39JJDYF8019474;
+	Thu, 19 Oct 2023 14:13:34 -0500
+Date: Thu, 19 Oct 2023 14:13:34 -0500
+From: reidt <reidt@ti.com>
+To: Vaishnav Achath <vaishnav.a@ti.com>
+CC: <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <u-kumar1@ti.com>
+Subject: Re: [PATCH v4 1/2] arm64: dts: ti: k3-j7200-mcu-wakeup: Switch
+ mcu_syscon to ti,j721e-system-controller
+Message-ID: <20231019191334.m7h6rlkzzywqrabx@reidt-HP-Z2>
+References: <20231009082452.30684-1-vaishnav.a@ti.com>
+ <20231009082452.30684-2-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 73rSnwFUhcqArvYxVm75W5hE4LFPPWHw
-X-Proofpoint-ORIG-GUID: 73rSnwFUhcqArvYxVm75W5hE4LFPPWHw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-19_17,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=748 impostorscore=0 mlxscore=0 malwarescore=0
- phishscore=0 spamscore=0 priorityscore=1501 bulkscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310190160
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231009082452.30684-2-vaishnav.a@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add code to make the size of reserved_mem_array a config option which
-can be modified based on user requirements.
-The reserved_mem_array is required during device bootup to store the
-information of the reserved memory regions that need to be dynamically
-allocated. After some time, this information is transferred to another
-array which is used to store all reserved memory regions, after which
-the reserved_mem_array will no longer be needed.
+On 13:54-20231009, Vaishnav Achath wrote:
+> From: Nishanth Menon <nm@ti.com>
+> 
+> Use ti,j721e-system-controller to be explicit about the syscon node we
+> are using.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> ---
+> 
+> No changes since V1.
+> 
+>  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 6ffaf85fa63f..2ee6215e38a6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -165,7 +165,7 @@
+>  	};
+>  
+>  	mcu_conf: syscon@40f00000 {
+> -		compatible = "syscon", "simple-mfd";
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+>  		reg = <0x00 0x40f00000 0x00 0x20000>;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> -- 
+> 2.17.1
+> 
+>
 
-Since the size required for the reserved_mem_array can vary and there
-is currently no way to free the memory afterwards, make the size of the
-array configurable in an attempt to save some memory.
-
-Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
----
- drivers/of/Kconfig           | 13 +++++++++++++
- drivers/of/of_reserved_mem.c |  9 ++++-----
- 2 files changed, 17 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-index da9826accb1b..3cb2ec4993b5 100644
---- a/drivers/of/Kconfig
-+++ b/drivers/of/Kconfig
-@@ -102,4 +102,17 @@ config OF_OVERLAY
- config OF_NUMA
- 	bool
- 
-+config OF_MAX_RESERVED_REGIONS
-+	int "OF resvered_mem array size"
-+	default "64"
-+	range 1 64
-+	help
-+	  The reserved_mem_array is used to store information about the dynamically
-+	  placed reserved memory regions before we are able to allocate the memory
-+	  needed to store all the reserved memory regions defined in the DT.
-+	  Because the amount of memory needed initially for this array could vary,
-+	  make the size of the reserved_mem_array configurable in an attempt to
-+	  save some memory when possible.
-+	  if unsure, leave as default value.
-+
- endif # OF
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 203828ca118e..f408dce762e1 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -26,11 +26,10 @@
- 
- #include "of_private.h"
- 
--#define MAX_RESERVED_REGIONS	64
--static struct reserved_mem reserved_mem_array[MAX_RESERVED_REGIONS];
--static struct reserved_mem *reserved_mem __refdata = reserved_mem_array;
-+static struct reserved_mem reserved_mem_array[CONFIG_OF_MAX_RESERVED_REGIONS];
-+static struct reserved_mem *reserved_mem = reserved_mem_array;
- 
--static int total_reserved_mem_cnt = MAX_RESERVED_REGIONS;
-+static int total_reserved_mem_cnt = CONFIG_OF_MAX_RESERVED_REGIONS;
- static int reserved_mem_count;
- 
- static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
-@@ -93,7 +92,7 @@ static int alloc_reserved_mem_array(void)
- 
- overlow_err:
- 	memblock_free(new_array, alloc_size);
--	total_reserved_mem_cnt = MAX_RESERVED_REGIONS;
-+	total_reserved_mem_cnt = CONFIG_OF_MAX_RESERVED_REGIONS;
- 	return -1;
- }
- 
--- 
-2.17.1
+Reviewed-by: Reid tonking <reidt@ti.com>
 
 
