@@ -1,130 +1,155 @@
-Return-Path: <devicetree+bounces-10217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA387D0279
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:26:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EF87D0297
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F636280AA7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:26:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07463282031
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7509039850;
-	Thu, 19 Oct 2023 19:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39F93985C;
+	Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="md0+6fSV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIOTf/85"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1912FE0F;
-	Thu, 19 Oct 2023 19:25:59 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E016126;
-	Thu, 19 Oct 2023 12:25:57 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JHS4wG021989;
-	Thu, 19 Oct 2023 19:25:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=7nZlr836Z1yRwKSJGkQXZps55FXeuMStkqXPcw7VZbM=;
- b=md0+6fSVejV8AMgpKlPvnBLl4J3FgpVtckN9oWAateqmPfpdkPBiI86G6LuaSblLw6UL
- r8DyTGz9RV+c/V2HTw5AesWtqrxjTxwXfgB8mxMm0UFqbmrO3fMq07cmq4yj7FdYmfyH
- 8nrCTTZ6DL4nMFLP0NMMqU7pEI+ZZeXUzmql10dl+Nyz4OVUqdo4wNitnAFjlrtWIb8f
- DHe3yjPLyUFi2UBC1FoDOQgopgqP4HP/AXmrN0ls7nkxL0c3vRNo+JYD30clGBtGHLoX
- LOBd1TafidfkchfJfwD8eAUYCeuCD75TfJ/GkGhyP4gTfve0uhE2RsLSzyrE9EJcWk9l ew== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu14csexk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 19:25:37 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JJPZKQ008993
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 19:25:35 GMT
-Received: from [10.110.99.208] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 19 Oct
- 2023 12:25:35 -0700
-Message-ID: <2e300bef-3722-8b00-2bdf-e9386796f38f@quicinc.com>
-Date: Thu, 19 Oct 2023 12:25:34 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05BD36AE2
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 528E7C433CB;
+	Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697744056;
+	bh=U4uvieOMjkf+PFUrgjolzRXzsKujYoPFvUARZuVi93g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=XIOTf/856ZdqwalZjvSzQ8fSJO1n4KiWsacm/1Df7JYiUp4JB9+Te46XnHn37YMh6
+	 DmDC6p3CZwBQ9TNRluPc5gDxlMifNmNfCynXNl7w77U8SU5X/2cl6Bh40IHYohVL9V
+	 QFqX91wAJ6EwJv39lI18MJr4yik6jMcvOZmUaQNmIgh1WGbV3TXiF/9kar9VpiLyIa
+	 8rg2ohTES4fShSu/LyTDgVEGa2jyonSjwsiuaeHhgbvOiABJuvPpBaanXnP9Gk/T4z
+	 jtFPG6S8YHnhpTfXlxYvqQL+rrke88jZtd/WUlrGbCqkDIn1Nko5Hpb10PIKK2bvr4
+	 R41si6gdULx6g==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-507c8316abcso9210e87.1;
+        Thu, 19 Oct 2023 12:34:16 -0700 (PDT)
+X-Gm-Message-State: AOJu0Ywe5PT97BFNi+5/HuL7SCaAs2Vk4eOjxtYchmwPrkvZlHwJAkZG
+	iEwDLl0VYgCE1hAqXAXVykQFu1WPCTIo/FVGPQ==
+X-Google-Smtp-Source: AGHT+IGMT9Lrdbp7434FU0vSJTcnDLj9QZz+YqqqKURgtaUGGFvehHaTryvXAxTMKsvBGBRehz5HOHtRRNA6CFuynY8=
+X-Received: by 2002:a05:6512:20d2:b0:507:a701:3206 with SMTP id
+ u18-20020a05651220d200b00507a7013206mr2071442lfr.49.1697744054489; Thu, 19
+ Oct 2023 12:34:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v9 30/34] ASoC: qcom: qdsp6: Add SND kcontrol for fetching
- offload status
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
- <20231017200109.11407-31-quic_wcheng@quicinc.com>
- <92971bbf-b890-4e41-8ef1-9213e15d81b2@linux.intel.com>
- <c9c5f13f-b3e7-6591-f277-cd86162152e4@quicinc.com>
-In-Reply-To: <c9c5f13f-b3e7-6591-f277-cd86162152e4@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: szZLkW7qgmVniayGieMMDVKlAabQiICH
-X-Proofpoint-ORIG-GUID: szZLkW7qgmVniayGieMMDVKlAabQiICH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-19_18,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=459 clxscore=1015 suspectscore=0 impostorscore=0 adultscore=0
- bulkscore=0 mlxscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310190164
+References: <20230531111038.6302-1-francesco@dolcini.it> <CAMuHMdUkPiA=o_QLyuwsTYW7y1ksCjHAqyNSHFx2QZ-dP-HGsQ@mail.gmail.com>
+ <ZTFFp8Yr7lq6HIab@francesco-nb.int.toradex.com> <CAMuHMdXtA3LNL6UkWyz6oytfNpSv77EShfF-uQvnPJktMUr40A@mail.gmail.com>
+ <ZTFNNudzuvDtSn4J@francesco-nb.int.toradex.com>
+In-Reply-To: <ZTFNNudzuvDtSn4J@francesco-nb.int.toradex.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 19 Oct 2023 14:34:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKQrkeFmdtvdrscDMTTO6TfUZvJejCNGgC+osC3KjwE8Q@mail.gmail.com>
+Message-ID: <CAL_JsqKQrkeFmdtvdrscDMTTO6TfUZvJejCNGgC+osC3KjwE8Q@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: serial: 8250_omap: add rs485-rts-active-high
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	Francesco Dolcini <francesco.dolcini@toradex.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Pierre,
+On Thu, Oct 19, 2023 at 10:37=E2=80=AFAM Francesco Dolcini <francesco@dolci=
+ni.it> wrote:
+>
+> On Thu, Oct 19, 2023 at 05:13:01PM +0200, Geert Uytterhoeven wrote:
+> > Hi Franceso,
+> >
+> > On Thu, Oct 19, 2023 at 5:05=E2=80=AFPM Francesco Dolcini <francesco@do=
+lcini.it> wrote:
+> > > On Thu, Oct 19, 2023 at 12:09:06PM +0200, Geert Uytterhoeven wrote:
+> > > > On Wed, May 31, 2023 at 1:14=E2=80=AFPM Francesco Dolcini <francesc=
+o@dolcini.it> wrote:
+> > > > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > > >
+> > > > > Add rs485-rts-active-high property, this was removed by mistake.
+> > > > > In general we just use rs485-rts-active-low property, however the=
+ OMAP
+> > > > > UART for legacy reason uses the -high one.
+> > > > >
+> > > > > Fixes: 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485 =
+properties")
+> > > > > Closes: https://lore.kernel.org/all/ZGefR4mTHHo1iQ7H@francesco-nb=
+.int.toradex.com/
+> > > > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > > > ---
+> > > > > v2: removed reported-by
+> > > >
+> > > > Thanks for your patch, which is now commit 403e97d6ab2cb6fd
+> > > > ("dt-bindings: serial: 8250_omap: add rs485-rts-active-high")
+> > > > in v6.4-rc5.
+> > > >
+> > > > > --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > > > > @@ -70,6 +70,7 @@ properties:
+> > > > >    dsr-gpios: true
+> > > > >    rng-gpios: true
+> > > > >    dcd-gpios: true
+> > > > > +  rs485-rts-active-high: true
+> > > >
+> > > > make dt_binding_check complains:
+> > > >
+> > > >     Documentation/devicetree/bindings/serial/8250_omap.yaml:
+> > > > rs485-rts-active-high: missing type definition
+> > >
+> > > For some reasons it works for me (and worked when I did send the patc=
+h)
+> > >
+> > > $ make dt_binding_check DT_SCHEMA_FILES=3D8250_omap.yaml
+> > > ...
+> > >   HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
+> > >   HOSTCC  scripts/dtc/fdtoverlay.o
+> > >   HOSTLD  scripts/dtc/fdtoverlay
+> > >   LINT    Documentation/devicetree/bindings
+> > > invalid config: unknown option "required" for rule "quoted-strings"
+> > > xargs: /usr/bin/yamllint: exited with status 255; aborting
+> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
+gs/phy/qcom,usb-snps-femto-v2.yaml: ignoring, error in schema: properties: =
+qcom,ls-fs-output-impedance-bp
+> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
+gs/arm/vexpress-sysreg.yaml: ignoring, error in schema: properties: gpio-co=
+ntroller
+> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
+gs/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProp=
+erties: ^thermistor@: properties: adi,excitation-current-nanoamp
+> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
+gs/iio/adc/adi,ad4130.yaml: ignoring, error in schema: patternProperties: ^=
+channel@([0-9a-f])$: properties: adi,burnout-current-nanoamp
+> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
+gs/iio/addac/adi,ad74115.yaml: ignoring, error in schema: properties: adi,e=
+xt2-burnout-current-nanoamp
+> > >   DTEX    Documentation/devicetree/bindings/serial/8250_omap.example.=
+dts
+> > >   DTC_CHK Documentation/devicetree/bindings/serial/8250_omap.example.=
+dtb
+> > >
+> > >
+> > > any idea on what could be different between us?
+> >
+> > Are you using the latest dt-schema?
 
-On 10/18/2023 6:41 PM, Wesley Cheng wrote:
-> Hi Pierre,
-> 
-> On 10/17/2023 3:53 PM, Pierre-Louis Bossart wrote:
->>
->>
->> On 10/17/23 15:01, Wesley Cheng wrote:
->>> Add a kcontrol to the platform sound card to fetch the current offload
->>> status.  This can allow for userspace to ensure/check which USB SND
->>> resources are actually busy versus having to attempt opening the USB SND
->>> devices, which will result in an error if offloading is active.
->>
->> I think I mentioned this a while back, but why not add the status in the
->> USB card itself? That's a generic component that all userspace agent
->> could query. Having a QCOM-specific control doesn't make the life of
->> userspace easier IMHO.
->>
->>
-> 
-> Will take a look at this based on the comments you had in the other 
-> kcontrol patch.  Seeing if we can move it to a more generic layer.
-> 
+Indeed, it is a new check.
 
-I think it would make more sense to see if we can keep all the offload 
-kcontrols under the sound card exposed by the platform.  Especially, if 
-we are going to modify the components string of the card to signify that 
-it supports USB offload.
+> Nope, and I tried to update it and now everything fails in a miserable
+> way.
 
-Thanks
-Wesley Cheng
+Do you have more details?
+
+Rob
 
