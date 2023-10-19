@@ -1,114 +1,162 @@
-Return-Path: <devicetree+bounces-9953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FCA7CF2BD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:37:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB4017CF2DC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 824301C204E8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:37:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B430B20C83
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E25D51C;
-	Thu, 19 Oct 2023 08:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80847156DB;
+	Thu, 19 Oct 2023 08:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g99AoHz9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Im+CPsSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896138F64
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:37:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB51DC433C9;
-	Thu, 19 Oct 2023 08:37:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697704635;
-	bh=JiPNNgrjBECZwV7Y41hs/uNTObKyCCpK7ADnbCSAHfE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=g99AoHz9se+ybdS2uYK5ZWykPZwQohb/GpZDuoK+jIlKB3dO0wkfmdUsruQ9uxfa6
-	 fjj0XUJNLdXJFDUicOxeO6VPK0cH7AUEUiCPgdKAgFag1DrQY7oEzDtd6wXKD9z3Cg
-	 uHdWE75C9/T90lRKVXmOUnABClbQ0I8SedCExHjljJCOKAxRG+bsufa004kCKIBwg4
-	 ZCw54hIw2dgveVOSrQ7UPkyIxRrhp919AnJ2dq7+mgYU8PcBkfklqxsb97Xo7RuFFi
-	 Ra1s6R9z7rMdV36KtVeFVwcK2+k5rqZIRdfaxdmFjn9S8T00oZ0YS0XyrlK0+S9MIC
-	 Y0rfmrNsYNytw==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so1104387a12.1;
-        Thu, 19 Oct 2023 01:37:14 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwAA+W7w1I5tg/0zSrYH+TFDZg8/PEymgkv2SqOsUrR8xJS30xe
-	XgcpJCYGVl7zNx0X60x6elb22Lu+7Ssrywk/fMU=
-X-Google-Smtp-Source: AGHT+IFE8SPujeMGxsN/7/AxLK5l9xARaEwY/dEF9MzBT6K6SFkjre6r11SbkHuEdtS3YOTy5xs38AL4+I6A7H3C5jc=
-X-Received: by 2002:a17:907:d312:b0:9a9:9d19:b250 with SMTP id
- vg18-20020a170907d31200b009a99d19b250mr899792ejc.17.1697704633410; Thu, 19
- Oct 2023 01:37:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A49156C1
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:41:33 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E41E12F;
+	Thu, 19 Oct 2023 01:41:32 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39J7sYWF031717;
+	Thu, 19 Oct 2023 08:40:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=5nq85dacz/FT/KDtbSNEQek159G2NxW0RwewWC/0M3A=;
+ b=Im+CPsSeIkBrBl+5muEz2poNcdn0mh4Wthsa7prnAfICWjdPHJWmN1Qk6YsVfCfDYkzJ
+ e+f37evjATFjEspkdCGuuIuSrZylx0h0+UpMq3iIUhJ/emeIwy0snPRXB8FoSdxpBstl
+ m5wJFz4L83eKTdsSOTu+eXYPOrEoyXIH0CSVKyEQvQaPzpSRkxI9l9CTOLSnNjnU2xd+
+ o28/qzQZOj+SkZoqx/I9isA3j14mJXBhiefYac3DktFJ6ylDmJx8kRttDbVUZtYZVGyj
+ vdC3UsyAuYcnJU1554XMr8uSaSUk6t157jvM4ncWkgy1OkoyEgLQUIvUWndU+3zrB/+3 2Q== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttnnah9r7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 08:40:56 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39J8euhP018028
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 08:40:56 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Thu, 19 Oct 2023 01:40:50 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
+        <sivaprak@codeaurora.org>, <quic_kathirav@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v4 0/9] Enable cpufreq for IPQ5332 & IPQ9574
+Date: Thu, 19 Oct 2023 14:10:34 +0530
+Message-ID: <cover.1697694811.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231017-th1520-mmc-v2-0-4678c8cc4048@baylibre.com> <20231017-th1520-mmc-v2-4-4678c8cc4048@baylibre.com>
-In-Reply-To: <20231017-th1520-mmc-v2-4-4678c8cc4048@baylibre.com>
-From: Guo Ren <guoren@kernel.org>
-Date: Thu, 19 Oct 2023 16:37:02 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQ_sa8pu9G1chP-ZbsCAba_a5yriuEu-0rKR==b24KUnQ@mail.gmail.com>
-Message-ID: <CAJF2gTQ_sa8pu9G1chP-ZbsCAba_a5yriuEu-0rKR==b24KUnQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/7] riscv: defconfig: Enable mmc and dma drivers for
- T-Head TH1520
-To: Drew Fustini <dfustini@baylibre.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
-	Robert Nelson <robertcnelson@beagleboard.org>, Jason Kridner <jkridner@beagleboard.org>, 
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: l_mvUwQr8Z_aqSFnuoselBA5hGrldM5P
+X-Proofpoint-ORIG-GUID: l_mvUwQr8Z_aqSFnuoselBA5hGrldM5P
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_06,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ phishscore=0 adultscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ clxscore=1011 mlxlogscore=905 impostorscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190072
 
-On Wed, Oct 18, 2023 at 4:45=E2=80=AFAM Drew Fustini <dfustini@baylibre.com=
-> wrote:
->
-> Enable the mmc controller driver and dma controller driver needed for
-> T-Head TH1520 based boards, like the LicheePi 4A and BeagleV-Ahead, to
-> boot from eMMC storage.
-Yes, it's necessary to add this config for th1520.
+Depends On:
+https://lore.kernel.org/lkml/20230913-gpll_cleanup-v2-6-c8ceb1a37680@quicinc.com/T/
 
-Reviewed-by: Guo Ren <guoren@kernel.org>
+This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
+For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
+source switch is needed before cpu freq can be enabled.
 
->
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
->  arch/riscv/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index ab86ec3b9eab..c5a8583236d0 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -168,12 +168,14 @@ CONFIG_MMC=3Dy
->  CONFIG_MMC_SDHCI=3Dy
->  CONFIG_MMC_SDHCI_PLTFM=3Dy
->  CONFIG_MMC_SDHCI_CADENCE=3Dy
-> +CONFIG_MMC_SDHCI_OF_DWCMSHC=3Dy
->  CONFIG_MMC_SPI=3Dy
->  CONFIG_MMC_SUNXI=3Dy
->  CONFIG_RTC_CLASS=3Dy
->  CONFIG_RTC_DRV_SUN6I=3Dy
->  CONFIG_DMADEVICES=3Dy
->  CONFIG_DMA_SUN6I=3Dm
-> +CONFIG_DW_AXI_DMAC=3Dy
->  CONFIG_VIRTIO_PCI=3Dy
->  CONFIG_VIRTIO_BALLOON=3Dy
->  CONFIG_VIRTIO_INPUT=3Dy
->
-> --
-> 2.34.1
->
+These are also included in this series. Posting this as a single
+series. Please let me know if this is not correct, will split in
+the subsequent revisions.
 
+Passed the following DT related validations
+make W=1 ARCH=arm64 -j16 DT_CHECKER_FLAGS='-v -m' dt_binding_check DT_SCHEMA_FILES=qcom
+make W=1 ARCH=arm64 -j16 CHECK_DTBS=y DT_SCHEMA_FILES=qcom dtbs_check
 
---=20
-Best Regards
- Guo Ren
+For IPQ5332:
+~~~~~~~~~~~
+	* This patch series introduces stromer plus ops which
+	  builds on stromer ops and implements a different
+	  set_rate and determine_rate.
+
+	  A different set_rate is needed since stromer plus PLLs
+	  do not support dynamic frequency scaling. To switch
+	  between frequencies, we have to shut down the PLL,
+	  configure the L and ALPHA values and turn on again. So
+	  introduce the separate set of ops for Stromer Plus PLL.
+
+	* Update ipq_pll_stromer_plus to use clk_alpha_pll_stromer_plus_ops
+	  instead of clk_alpha_pll_stromer_ops.
+
+	* Set 'l' value to a value that is supported on all SKUs.
+
+	* Provide safe source switch for a53pll
+
+	* Include IPQ5332 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+For IPQ9574:
+~~~~~~~~~~~
+	* Include IPQ9574 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+Removed 2 patches from V1 as they have been merged
+	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ5332
+	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ9574
+
+v4:	Included a patch to fix 'kernel test robot' build error --
+	https://lore.kernel.org/r/202310181650.g8THtfsm-lkp@intel.com/
+
+Varadarajan Narayanan (9):
+  clk: qcom: config IPQ_APSS_6018 should depend on QCOM_SMEM
+  clk: qcom: clk-alpha-pll: introduce stromer plus ops
+  clk: qcom: apss-ipq-pll: Use stromer plus ops for stromer plus pll
+  clk: qcom: apss-ipq-pll: Fix 'l' value for ipq5332_pll_config
+  clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
+  cpufreq: qti: Enable cpufreq for ipq53xx
+  arm64: dts: qcom: ipq5332: populate the opp table based on the eFuse
+  cpufreq: qti: Introduce cpufreq for ipq95xx
+  arm64: dts: qcom: ipq9574: populate the opp table based on the eFuse
+
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi | 19 +++++++++--
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi | 21 +++++++++++-
+ drivers/clk/qcom/Kconfig              |  1 +
+ drivers/clk/qcom/apss-ipq-pll.c       |  4 +--
+ drivers/clk/qcom/apss-ipq6018.c       | 58 +++++++++++++++++++++++++++++++-
+ drivers/clk/qcom/clk-alpha-pll.c      | 63 +++++++++++++++++++++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.h      |  1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c  |  2 ++
+ drivers/cpufreq/qcom-cpufreq-nvmem.c  | 16 +++++++++
+ 9 files changed, 178 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
+
 
