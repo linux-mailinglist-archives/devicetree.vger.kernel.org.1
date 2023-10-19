@@ -1,137 +1,140 @@
-Return-Path: <devicetree+bounces-9916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265D37CEFC3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:01:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2181C7CEFD4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:07:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4489280FC3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 06:01:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2314FB20ECC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 06:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2874E46699;
-	Thu, 19 Oct 2023 06:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA5546699;
+	Thu, 19 Oct 2023 06:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="SQcFSLKz"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="5hfgz3At"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3883C17C2
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:00:59 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32701A7;
-	Wed, 18 Oct 2023 23:00:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1697695256; x=1729231256;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=730YXzJM/veidNKheQX/2/WJuZLbsKNszAfJOtRDQjk=;
-  b=SQcFSLKzIHJEDOA7F/XPFFQheHAtN443vno+gcCPT2tC1ksc25Bw9kda
-   vLOUsgouUKKxSgcyb4JMVk6Q6YOGIn1uiuqv9rSx3vMKLGaMRrWz+kAYD
-   6ybPYi5yhFxKSe1EDXZa15/mZ5Uj2lxoJDfoG7A3ApoJEruEVXSz2x76G
-   D7jA2uynUuhoWPAhy5QBhQ18RaLPUdGVBs6N15gpQ0oJ6LcN/+STYwdYd
-   bNhUWP53yaYU0qYf3Sgx+vms9BB03B+vEdTy1T1lvNwJ1gXG+tjMctIUD
-   xO8rWmDFc46aG3bW46mKPK3JtG91bZtPKVXaBnpIePbF0up/giFKAMju/
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.03,236,1694728800"; 
-   d="scan'208";a="33540707"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 19 Oct 2023 08:00:51 +0200
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A3141280082;
-	Thu, 19 Oct 2023 08:00:51 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: l.stach@pengutronix.de, aford@beaconembedded.com, Adam Ford <aford173@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Adam Ford <aford173@gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: Add NPU Node
-Date: Thu, 19 Oct 2023 08:00:53 +0200
-Message-ID: <4261115.mogB4TqSGs@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231019022300.1588041-1-aford173@gmail.com>
-References: <20231019022300.1588041-1-aford173@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495C564F
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:07:27 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2074.outbound.protection.outlook.com [40.107.92.74])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B95212D;
+	Wed, 18 Oct 2023 23:07:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TDoMR7myCgBIDJNMU4mXQFc1NZWwolc2Ir4bfpGu9sT2UWM0A+sdoJZBcI5woQ91KOHZaO2TV8mV/hQkyrhIrAuQwYSA1dXRkil1xQQGvrH+hsucisVvojY8QVL9fo8vMCstUyZCYVjXkMvb9tqlL4PTKaqqqPMP4+gc4jwgEWNoxUNe5HYCnEbQT1gwvdjOnDQQb7kT69wo57vpRvvWNdhedihQfC1izqfSeBil+RqOx6hIyNo+/hY5RcvM68j1xlDCGWx2f7EscOYsxZhcFOECeEvIvNOwrsJmeO416zarKemdJRPuQFzFPwEMzyfisfGuK47fRzRelmxQSTubzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L/5k9hNy0feuj1WgnI9PSTSCTzRzRCjd++wt5Yq2a9Y=;
+ b=DzxFB9B52xFHm+8uiMc3HSkuK0LBoTNX9GxW5TZmeoNhoYRaVnOgClXTHx7r1RR+FuJ95BiiMxlWuK4NCddm88wzJYAzboIspck1GVCvHJu5KBNY90brv1r40quX+fVoz/yQkmn3Q3Kbcx5rX+Y4zGuzkrorFcHhwyvCM4U6Jk5+tpE7htbqJK8naCWSJAo85VryBqHDRZPSKWiXkFsansiHkT96GdjX1DFU9iKItDaF5vLUoBIb0OdMol9A/V66r56C8NYLKhlUtH4GL15p/MZecvOWBGXOWWETEguz2VuD4lG+A/tXFp3Xu7ifQ647Agl57Netax3vtMaWTGlLBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L/5k9hNy0feuj1WgnI9PSTSCTzRzRCjd++wt5Yq2a9Y=;
+ b=5hfgz3AtwzDjDtoZWMjssTW3WgDzEwF7Ze6RB0pT3180HooXV5Tkh3HDetNHlEh8bEW5dXTkZ3m0+KNoXHkeGGGwjV6CJnSz3VI6Rb8RfG5HcXlPa2t+j60Hihzcx0pQbFNdPhV1xOFfdBTRRuOCMjgzBckIp2o+TvdHJLi6d74=
+Received: from CH2PR19CA0017.namprd19.prod.outlook.com (2603:10b6:610:4d::27)
+ by MW3PR12MB4428.namprd12.prod.outlook.com (2603:10b6:303:57::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Thu, 19 Oct
+ 2023 06:07:20 +0000
+Received: from DS3PEPF000099D6.namprd04.prod.outlook.com
+ (2603:10b6:610:4d:cafe::a7) by CH2PR19CA0017.outlook.office365.com
+ (2603:10b6:610:4d::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.37 via Frontend
+ Transport; Thu, 19 Oct 2023 06:07:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099D6.mail.protection.outlook.com (10.167.17.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6907.20 via Frontend Transport; Thu, 19 Oct 2023 06:07:20 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 19 Oct
+ 2023 01:07:17 -0500
+Received: from xhdharshah40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Thu, 19 Oct 2023 01:07:15 -0500
+From: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+To: <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <praveent@amd.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: <linux-kernel@vger.kernel.org>
+Subject: [PATCH V2 0/5] Add ZynqMP efuse access support
+Date: Thu, 19 Oct 2023 11:36:46 +0530
+Message-ID: <20231019060651.23341-1-praveen.teja.kundanala@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D6:EE_|MW3PR12MB4428:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8fcec08-bdcd-42bc-c628-08dbd069a791
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ILHqAuz/27PKjHjT6DgsIHPYkGxvOGrKxjRL+KrWhDexNGdq9F5OKGRjKmq2NMZ6aTCvBHDnbM/lXcTqZ8FfcjGasZZNhaFjHFx2GcfP7ixMZ6IcYP9ZvjIE/jzqf+DSmO6w+EChsf+OeERaJ8Ijc7hNEJPvS+9V1IfM9uAcKZepYYHnqK79kzyABu7zFd5uTX4CfaG6zfq7QVuSzlNJAht9uCK7PYnG350Zt2wq+tHSm5leOQ3QZgUR3nd+aW/RxNZK/BVBWxctHjS6/Wrl1BMnI01Y3itGDLTb01Us9yVxT4cPPw1chuNFfhlivPn4DhwaBBfQcW8bjimxyuFbJyKgeFS4AQbrKxBzSpuQtXvG3uEWKPD0SMjg8C3eg3h+2zpwiw+pT+aitU7Quig4vK4lOgFR/CaOLTdTtr8GHFD4EGPUJ99FMy1tpXWqAZeBeASiRc83dDH9F1hHKdk7e2J+fxlP3vAd/1GyxMCbZvLPv4o6wXNwaXys/QaPAWOdUsEfrJMrgteVsquN5WWMmAhXTKuaeAS9DiPCb18AV3Z08XccYYOyAX3xA7L56iTGVh2l/+tSoA9jmCjYgSj9eT8hv+YjoGmjVt2H/LqVgOfU0QftUs+kG5YyfQC+zX+Yx6x4EBDeKjEqrI+S2DvIGiyXo3uKLQ1hPN85N5KcMPOvE4G7v8qaGFoZS1ODiErrrJeSEZeZXt1QyE2zNey8L6Lk6utKewhVo97lH6qnLfkUZEfq/A9OAf1TLFJiUl3ZTex6jFa80baAT688uhbYOA==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(230922051799003)(64100799003)(451199024)(186009)(82310400011)(1800799009)(40470700004)(46966006)(36840700001)(40460700003)(1076003)(2616005)(426003)(336012)(6666004)(83380400001)(2906002)(47076005)(8936002)(8676002)(4326008)(5660300002)(41300700001)(478600001)(70586007)(110136005)(70206006)(316002)(356005)(81166007)(82740400003)(86362001)(26005)(40480700001)(36756003)(103116003)(36860700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 06:07:20.3611
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8fcec08-bdcd-42bc-c628-08dbd069a791
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS3PEPF000099D6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4428
+X-Spam-Level: *
 
-Hi Adam,
+Add following support
+ - ZynqMP efuse firmware API for efuse access
+ - Convert txt to yaml file
+ - Add nodes for ZynqMP efuses in yaml file
+ - Add device tree(DT) nodes for nvmem access
+ - Update driver to provide support to
+    read/write ZynqMP efuse memory
+ - Add maintainer list for ZynqMP NVMEM driver
 
-thanks for the patch I tried a similar one.
+Praveen Teja Kundanala (5):
+  firmware: xilinx: Add ZynqMP efuse access API
+  dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt to yaml
+  arm64: zynqmp: Add ZynqnMP nvmem nodes
+  nvmem: zynqmp_nvmem: Add support to access efuse
+  MAINTAINERS: Add maintainers for ZynqMP NVMEM driver
 
-Am Donnerstag, 19. Oktober 2023, 04:23:00 CEST schrieb Adam Ford:
-> The NPU is based on the Vivante GC8000 and it enumerates as
->=20
->  etnaviv-gpu 38500000.npu: model: GC8000, revision: 8002
->=20
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> c9a610ba4836..1ef8d17726ac 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -2012,6 +2012,25 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
->  			interconnect-names =3D "g1", "g2", "vc8000e";
->  		};
->=20
-> +		npu: npu@38500000 {
-> +			compatible =3D "vivante,gc";
-> +			reg =3D <0x38500000 0x20000>;
+ .../bindings/nvmem/xlnx,zynqmp-nvmem.txt      |  46 ----
+ .../bindings/nvmem/xlnx,zynqmp-nvmem.yaml     |  40 ++++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  59 ++++-
+ drivers/firmware/xilinx/zynqmp.c              |  25 ++
+ drivers/nvmem/zynqmp_nvmem.c                  | 218 +++++++++++++++---
+ include/linux/firmware/xlnx-zynqmp.h          |   8 +
+ 7 files changed, 324 insertions(+), 80 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+ create mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
 
-Do you have some more information about the actual memory range? RM says 2M=
-iB,=20
-but NPU memory map lists up to 0x664.
-
-> +			interrupts =3D <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk IMX8MP_CLK_NPU_ROOT>,
-> +				 <&clk IMX8MP_CLK_NPU_ROOT>,
-> +				 <&clk IMX8MP_CLK_ML_AXI>,
-> +				 <&clk IMX8MP_CLK_ML_AHB>;
-> +			clock-names =3D "core", "shader", "bus", "reg";
-> +			assigned-clocks =3D <&clk IMX8MP_CLK_ML_CORE>,
-> +				  <&clk IMX8MP_CLK_ML_AXI>,
-> +				  <&clk IMX8MP_CLK_ML_AHB>;
-> +			assigned-clock-parents =3D <&clk=20
-IMX8MP_SYS_PLL2_1000M>,
-> +					 <&clk=20
-IMX8MP_SYS_PLL1_800M>,
-> +					 <&clk=20
-IMX8MP_SYS_PLL1_800M>;
-> +			assigned-clock-rates =3D <1000000000>,=20
-<800000000>, <400000000>;
-
-1GHz for ML_CLK_ROOT is only available in overdrive mode, 800MHz in nominal=
-=20
-mode. See datasheet IMX8MPIEC Rev 2.1. I don't think it's a good idea to=20
-configure for overdrive mode by default.
-Same goes for CLK_ML_AHB regarding 400 vs. 300 MHz.
-
-Best regards,
-Alexander
-
-> +			power-domains =3D <&pgc_mlmix>;
-> +		};
-> +
->  		gic: interrupt-controller@38800000 {
->  			compatible =3D "arm,gic-v3";
->  			reg =3D <0x38800000 0x10000>,
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+2.36.1
 
 
