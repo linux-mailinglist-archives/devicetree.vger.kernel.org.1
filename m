@@ -1,56 +1,59 @@
-Return-Path: <devicetree+bounces-9969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61107CF357
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:54:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8429D7CF354
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 852ADB20CE9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:54:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FBD9281F73
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5484416404;
-	Thu, 19 Oct 2023 08:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4AD15AF5;
+	Thu, 19 Oct 2023 08:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FB416420
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B036616401
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:54:37 +0000 (UTC)
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5884B12A;
-	Thu, 19 Oct 2023 01:54:38 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475CFC0;
+	Thu, 19 Oct 2023 01:54:33 -0700 (PDT)
 Received: from i5e861907.versanet.de ([94.134.25.7] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1qtOnR-0001vg-Dr; Thu, 19 Oct 2023 10:54:25 +0200
+	id 1qtOnS-0001vg-AY; Thu, 19 Oct 2023 10:54:26 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Chris Morgan <macroalpha82@gmail.com>,
+To: Sascha Hauer <s.hauer@pengutronix.de>,
 	linux-rockchip@lists.infradead.org
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	dri-devel@lists.freedesktop.org,
-	airlied@gmail.com,
-	robh+dt@kernel.org,
+	Mark Rutland <mark.rutland@arm.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	kernel@pengutronix.de,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Will Deacon <will@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	mturquette@baylibre.com,
-	Chris Morgan <macromorgan@hotmail.com>,
-	neil.armstrong@linaro.org,
-	sebastian.reichel@collabora.com,
-	daniel@ffwll.ch,
-	linux-clk@vger.kernel.org,
-	sboyd@kernel.org,
-	sam@ravnborg.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: Re: (subset) [PATCH 0/5] rockchip: Add Powkiddy RK2023
-Date: Thu, 19 Oct 2023 10:54:21 +0200
-Message-Id: <169770556939.1297560.13095304413651630727.b4-ty@sntech.de>
+	Vincent Legoll <vincent.legoll@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Chanwoo Choi <chanwoo@kernel.org>
+Subject: Re: (subset) [PATCH v8 00/26] Add perf support to the rockchip-dfi driver
+Date: Thu, 19 Oct 2023 10:54:22 +0200
+Message-Id: <169770556942.1297560.17058655935098736515.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231018161848.346947-1-macroalpha82@gmail.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
+In-Reply-To: <20231018061714.3553817-1-s.hauer@pengutronix.de>
+References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,29 +63,24 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Wed, 18 Oct 2023 11:18:43 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, 18 Oct 2023 08:16:48 +0200, Sascha Hauer wrote:
+> This series integrates the recent review feedback from Chanwoo Choi to
+> v7.
 > 
-> Add support for the Powkiddy RK2023, which is extremely similar to
-> existing devices from Anbernic.
-> 
-> Chris Morgan (5):
->   dt-bindings: display: panel: Update NewVision NV3051D compatibles
->   drm/panel: nv3051d: Add Powkiddy RK2023 Panel Support
->   clk: rockchip: rk3568: Add PLL rate for 115.2MHz
->   dt-bindings: arm: rockchip: Add Powkiddy RK2023
->   arm64: dts: rockchip: add Powkiddy RK2023
+> Chanwoo, I am sending the full patchset again for people to try this
+> series. You said that you applied 1-5 already, so please start picking
+> from 6/26.
 > 
 > [...]
 
 Applied, thanks!
 
-[3/5] clk: rockchip: rk3568: Add PLL rate for 115.2MHz
-      commit: ccf59682a0287b81015dc1939203fac70b818c6b
+[23/26] dt-bindings: soc: rockchip: grf: add rockchip,rk3588-pmugrf
+        commit: 3bd1c0c62bad8ea7f9cc6662e754f77ec8baa46e
 
-I've gone forward and grabbed the PLL rate already, so it
-can go together with the other rate addition from the fixes
-series.
+I've grabbed the pmugrf compatible addition for now, so I can send
+out the pull request for my "drivers" branch.
+
 
 Best regards,
 -- 
