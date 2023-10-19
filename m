@@ -1,152 +1,139 @@
-Return-Path: <devicetree+bounces-10150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE3E7CFCFD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CBBA7CFD01
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:40:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B7CE28216E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:39:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD521282000
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4BC046692;
-	Thu, 19 Oct 2023 14:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6625E1C29;
+	Thu, 19 Oct 2023 14:40:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ORihGNpl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Znm28M5/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A212FE08
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:39:45 +0000 (UTC)
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2058.outbound.protection.outlook.com [40.107.95.58])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B492119;
-	Thu, 19 Oct 2023 07:39:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MPrNMPC+M+k+G1rZ4ggEVy7i34z1W8vNV/vSK1qMf4D17FUE2kKh3cM9eHLPBh+Mxjl5E5w26FSTBfc08CxBtIR/rgQwGUKR1pW1JFbaIsqULehV2w7twpy1LucrvygzOXJaumH/I0cXDXyEIGl0OIIUsjCPocUoMrrmFVK3I6b3Y+75Odh07iLL3IlYeyiGgKXiBgf83c/W/V0h9MqjQu+pmDD3DZqAL9i+sfNWybZQtFaZu+JFsSU3wAV7F0mXnL5+T+Yw3vkKT0eQ/0rX2Q7t2NKyZ5liRqHu6iwJb2cpQosuYoWjC6EqDW/EBz8yi+jaZqXKh3aSHr4D8ED5oQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j6MWxtWYUdrRiOFIXGBotUQVd0GUrxxxpNL30rwxyME=;
- b=L4/BPmztulpXiZR9KYq8eqa142Z5/s6KI5/lJncC4vd4K5xJlp1hlLpf19vZukgqBOEczevN8Dt21ZGSjaa8hEIgZEM0bDGhAMZM0axAXhR58qxeKBB4q1ITXzwjF1TsuJVJyPazlVpmXs2kH87c6+pUDZrlSGeDAPEJHR2tRKXql7aYf6nczm0V3ENWb5Yq5js4g6RtLBW88pk67+3Q7f+G5/LxriOzwvytn2My7uPcmXUXEowe+onW+SLfPQXmS1EZtlwZx/GNQyJjO3dlw11deXOwacUAaYIvHWT14wbyh9fljYj6H9+kkgLC4OdtTj1sDrncRHdEc/fVLsVz3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j6MWxtWYUdrRiOFIXGBotUQVd0GUrxxxpNL30rwxyME=;
- b=ORihGNplh70RdJ3owXhAq5XqCQbJ4Ip9V/W5EZLjlrTasPEgqU3kGK0xq8Fc8+gYQLi1P1ahWh9K+BAnx3FwtTp2BK7bxxVRRqlAxuQz6ZfMw+KDAQpJVfdfvw7jboPVhqyTd8EsRnSigq1dZRT3P8v2+iOGemHC7QVB5yx7n+M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3407.namprd12.prod.outlook.com (2603:10b6:208:c5::18)
- by CY8PR12MB7436.namprd12.prod.outlook.com (2603:10b6:930:50::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.21; Thu, 19 Oct
- 2023 14:39:41 +0000
-Received: from MN2PR12MB3407.namprd12.prod.outlook.com
- ([fe80::3008:be4:e9a4:2a98]) by MN2PR12MB3407.namprd12.prod.outlook.com
- ([fe80::3008:be4:e9a4:2a98%7]) with mapi id 15.20.6907.022; Thu, 19 Oct 2023
- 14:39:40 +0000
-Message-ID: <c6d8b03a-ebc3-46a8-9262-d95a278ecd03@amd.com>
-Date: Thu, 19 Oct 2023 15:39:35 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI w1
- host and MAINTAINERS entry
-Content-Language: en-GB
-To: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>
-Cc: thomas.delev@amd.com, krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, git@amd.com
-References: <20231013093109.37165-1-kris.chaplin@amd.com>
- <20231019142526.10592-1-kris.chaplin@amd.com>
- <20231019142526.10592-2-kris.chaplin@amd.com>
- <20231019-expand-supreme-ba8c17d05eb4@spud>
- <9f0be064-c857-4310-8ca0-27c16b8c5757@amd.com>
-From: Kris Chaplin <kris.chaplin@amd.com>
-In-Reply-To: <9f0be064-c857-4310-8ca0-27c16b8c5757@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0146.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:98::7) To MN2PR12MB3407.namprd12.prod.outlook.com
- (2603:10b6:208:c5::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C76A2FE0D
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:40:11 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A15DB134;
+	Thu, 19 Oct 2023 07:40:08 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C5BFFC0003;
+	Thu, 19 Oct 2023 14:40:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1697726407;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Pmm8Q07dkPahTgNLJtB+xWmt+V5zpMFGkuu9DbCNKbA=;
+	b=Znm28M5/V7eKHrQ5JvZIOYpojF07AS8pLeHES7wDRVCPnm6dp+BBsV/c6Tzd9+K2fv4lfZ
+	CSfA3zrU+aH/MqGxqE3wY+q/a+oB2nTmDaSnzALEkazmxlFrV7AAvnxJY9l4plVs9gabHs
+	aH6TVJGKRyXHhDkYCaspv5nYWuv5p2ObO3o4STFACudCkDnVIKpjL6NT+SATrhfJtZavnC
+	gv/hJycHILV9ICwxYmcmGqGlhyhaZ9DXRoUylDupp3V3yIGNy0mrHUh/z2PEb+R5G65yOb
+	W9FSqaYSIJXp5jwJswx6MDuTlEGtf5aGEvoh6RcPmwvYKBP8tcRU6E1NxFlI0A==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ andi.shyti@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ pierre.gondois@arm.com
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Chris Packham
+ <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v2 2/3] arm64: dts: marvell: AC5: use I2C unstuck function
+In-Reply-To: <20231006003321.2100016-3-chris.packham@alliedtelesis.co.nz>
+References: <20231006003321.2100016-1-chris.packham@alliedtelesis.co.nz>
+ <20231006003321.2100016-3-chris.packham@alliedtelesis.co.nz>
+Date: Thu, 19 Oct 2023 16:40:05 +0200
+Message-ID: <87a5sead6i.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3407:EE_|CY8PR12MB7436:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d510f20-ccba-4159-945f-08dbd0b13a2a
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6hLQcNhrK3mCxrs9dz0drevJwgtfMoRcx3GsOIOrQt4LyF423UqqLuNL2zMfYjmSjdyMBL4CTymWpOIwastwGu2qPbr6WJk9DPa10Ib0D6hGtLA/a6QtKlxd6pnVeTZhQFzODSC0kuU4gUigQQwPjvi8ld/7DVMDXSVXAbFuD8u0C9OnFBiMkgglSE1kbHy1QCCR7LL0xtDSd9tiB8v5cUXsS2PlOBAY4ZMjqNGdben9N4ojlAx2Y/sKdKp1Jta90hkq+W92ivj9DmcvlEAivPq4TG42Y6RY6EiU4aBVWTyJ/ib0EVA9kXfog6ct5AIP6uLSb4SJSB9c+S8ucck16i6zVoyvbOtbY8W3c8nXzIiJ5qkwoYHG2weyOrJfoJWAugtG+s6Ute/P4tVyYDtLa60Bs/Zndt/T1zyWJJIBwMpzekpWgY28xJGVd1h2zgujUx7wjdGkzC94psOZTd/z8inoC/7QicTPkYsw149XxGDG6x71d7CiqMGqCWoS67OIk5CyqPIGgqIGmRAtH98pDANSMtEI9/NuagJbzfnFidQs7LnlgxvHJJB5ddTIe0HVz4HulfjJUMDqO3TSgvFmJ5BJ7qDFZuSF67tN++HL82S03acc+uFsl9Om7QxPngf2Mw5KPrIYpgy8aGl0oRs1eg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3407.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(136003)(396003)(346002)(376002)(230922051799003)(1800799009)(64100799003)(451199024)(186009)(4744005)(316002)(110136005)(31696002)(66556008)(2906002)(86362001)(5660300002)(44832011)(8936002)(4326008)(8676002)(66476007)(36756003)(41300700001)(66946007)(2616005)(31686004)(38100700002)(6486002)(478600001)(6506007)(6666004)(6512007)(83380400001)(26005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cnY5NVN0dUZXWDdnOWZ0OFNLZzE4b3dQZFFvOW1FdHREZklFZVd1NlVUSXdy?=
- =?utf-8?B?TmtLQVRqeFZERU42WEpGYVZqMmJuckVZQ01Tblg4cnNzd2dHUGFYcmFSL3FP?=
- =?utf-8?B?YjZ6OEs2dWM2YnVBeExPYUJmeGV5VXAwejlzMjVVdEliZzE5cUhnQ3Zqc2po?=
- =?utf-8?B?Ymw1UEw3dDkzTzlyRVdPVzFXL3hLQVR3MENyNzlMZTVINUZPUVJOVjEzSFZN?=
- =?utf-8?B?VzhLUWtYSm9iRGdWQUdLalNYSjRkeTUraGhQYWNCR1FWa2RqSFNIOXoyMzM4?=
- =?utf-8?B?L1hFazYweFJQMWg0Z0o3ejRiQytIYUMvY2ZJeGdTNmJDc3VKc3c4SHM5aFFx?=
- =?utf-8?B?ZUhlb1Z4UDBqeTFxTllqSm80OVJiaWlCV2kzV0hDaDZ3cFBmU2l0b3FzdzRl?=
- =?utf-8?B?ck5NeFRNL29KaG5ZNHB5RmJlR3p4TW5ieER5SnRObGEwSk9QK1I3OElHWHJC?=
- =?utf-8?B?UzVKK3lTWnBlTFlicUxtRjZkRFBsNzFhbHlObHdIbHF5bE5GY2liMmM5dUJJ?=
- =?utf-8?B?MFVvSG14NnRhUS96dGhqSGl6RHMydldlR0I4cVdHZXBrV1VUYXh5eUNrQkZr?=
- =?utf-8?B?QVBEWS81V01XWHdBQnJrRVYxZkdJTTZDWHFGN3RBcXJFOUJEelNKc2s4Wk1i?=
- =?utf-8?B?VFZyaU5FNktXWVdtc2VVaDJWTHZneHpqWHY1RkF1eHJiQWxWR2wzMHIwcXZ5?=
- =?utf-8?B?SEV2dSs0cWp4MEVFeXYrSTBpMUVJS25pMmt3SmlsQ0NESW1SV0gyaFVmT09H?=
- =?utf-8?B?allhaFg4L296UWxnb2lEVjlpeis5ejBOd0g2WUwzWHNEOU1KaFVOeEhMb2VM?=
- =?utf-8?B?RkxBRDhvMXkvZEticFhIcnJZS1RsYmNoR2ZjdlZ5SndmWnlSS3pnWGVBcy81?=
- =?utf-8?B?dFlkWjFHK0djUnRBL0diWGtkUHY0UzgwZUcrUFhuS1dkYm1pa2Z4ZXJJVEFF?=
- =?utf-8?B?SXRuU3kvU3RWRW5zRHAwejZZTmJZTllLekg4MGdVM0s1NVJ2UGk4Z0JrSFNk?=
- =?utf-8?B?b2M2UHhtU2I4ajlYYjN1ZTRWWG51UHg2dE1CRFVIbG82V1FiSERUNDFQaDZo?=
- =?utf-8?B?WUZDaWtBdnQrSmQwZWhSTTVLUVJ6YlRjanlnek9FNkVmZERReUs4aXpJOWdQ?=
- =?utf-8?B?cGx4bXJaajBVVEtvTlJLVkVlYm0rcG90b0VEQUdPQlNYUk41OTBRTW1pcWMw?=
- =?utf-8?B?RXNnRDVJOGJneUl5bWdBeDdjcEZwWG1VNit3Q2JzOG14Y2g2ZWZtUm1VQ0k2?=
- =?utf-8?B?Y2lMaVJpa3NQcVBHZi91MmFPU2Y2RWxkb2Q2R2xmbHArQVRMamtOa0FUNjI3?=
- =?utf-8?B?M1U3aU10Rktua1VOeTU3a0grL1RiQmdyWlRueWZZTXRta2dnd1E2bXN6cmsy?=
- =?utf-8?B?Lyt5VEVvQ0ptYXl2NjliUSttRjNDMWFEV0RaTDFkTkdpNUxIRFBEU2ZIOEtt?=
- =?utf-8?B?OEdKb0VIbVh2WHB5R0dvamdFMVlPeFNQekxZTDNJYklJRVZGSm51dzEvNnBV?=
- =?utf-8?B?WFUxVFJ2ak1SZXArQVVLcitzQ1c1WmFFbExkbjlNQzdZdng1SmlBK3ZlREdu?=
- =?utf-8?B?dVdwODZBTWhCT2lic2xEVFpESW0wVEtmckdyeUw5Uk0yc1lpQ1pmeDRCVXNJ?=
- =?utf-8?B?Y0RSMTBJNkZWOFg3UVVEemZsNmJqbk9OalJZRU8ySkV0VTRBNXFCVTE5dml1?=
- =?utf-8?B?VDlqK3lrcTBRUGZWOUx5cElpMDFSSG1PblNHaXZxNUNPaU5oZ0JjUlBGdlo5?=
- =?utf-8?B?eWRiMnlVbVF1Y2dtM2ErbUVTaExvWkVqWWdrYUhXcTl0MFdMd29TSitjMFN2?=
- =?utf-8?B?STRLVWh6Zm5IZnlKQTdONzJIdlhLQ0JCd00yZjJpOGo4Z3ZsNTcvUVo2RDhh?=
- =?utf-8?B?bDNPY1U4UFdEbUw1ZUtWN0RwMS83cklBT2pqcWw4cHNjTURxa29WaEhJWHA1?=
- =?utf-8?B?VS9wYS93cDdSbWNUendFYm1vWkZpaGtFYSt2K2gvcm1BSFFOcHZRaTBHcFdT?=
- =?utf-8?B?UWRGNVNXOWh3Y2tTdk4zU3U5TWNiRjJUVnI4K25RT1d3MEpCOVFUdHhVTW1X?=
- =?utf-8?B?NStUN0xCdSt2a2xTUWtsOFo5TTl0MzBkR0tuTGxBR1paci9YSHFOZmxRS3NN?=
- =?utf-8?Q?7xrU=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d510f20-ccba-4159-945f-08dbd0b13a2a
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3407.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 14:39:40.8634
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5D+ReSHYGOwqcfAkoaO1b848dvsp0Mualb5j/fKTwN/Gj7ky1nJsQY74YopuBaVt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7436
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-Thank you Connor and Michal,
->> I was happy with it before, and still am I guess, given that there is an
->> IP version register that can be used to determine which version of the
->> IP is in use.
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Hello Chris,
+
+> The AC5 SoC supports using a controller based I2C unstuck function for
+> recovery. Use this instead of the generic GPIO recovery.
 >
-> I think we discussed that already that identification register should 
-> be described as the part of commit message to make this clear.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 14 ++++----------
+>  1 file changed, 4 insertions(+), 10 deletions(-)
 >
-Yes we did - thanks for the reminder, and my bad for the omission.
+> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> index c9ce1010c415..e52d3c3496d5 100644
+> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> @@ -137,7 +137,7 @@ mdio: mdio@22004 {
+>  
+>  			i2c0: i2c@11000{
+>  				compatible = "marvell,mv78230-i2c";
+> -				reg = <0x11000 0x20>;
+> +				reg = <0x11000 0x20>, <0x110a0 0x4>;
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+>  
+> @@ -146,17 +146,14 @@ i2c0: i2c@11000{
+>  				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+>  				clock-frequency=<100000>;
+>  
+> -				pinctrl-names = "default", "gpio";
+> +				pinctrl-names = "default";
+>  				pinctrl-0 = <&i2c0_pins>;
+> -				pinctrl-1 = <&i2c0_gpio>;
+> -				scl-gpios = <&gpio0 26 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> -				sda-gpios = <&gpio0 27 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+
+By doing this then older kernel won't be able to do recovery, while if
+you keep it, the new kernels will still use new way to support recovery
+thanks to the new reg filed added and old kernels will continue to work.
+
+However, what we try to maintain is running new kernel on old dtb not
+the opposite which is just a nice to have. At the end it is up to you,
+if you really want to remove this chunk I will apply it once the driver
+part of the series will be accepted.
+
+Gregory
 
 
+>  				status = "disabled";
+>  			};
+>  
+>  			i2c1: i2c@11100{
+>  				compatible = "marvell,mv78230-i2c";
+> -				reg = <0x11100 0x20>;
+> +				reg = <0x11100 0x20>, <0x110a4 0x4>;
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+>  
+> @@ -165,11 +162,8 @@ i2c1: i2c@11100{
+>  				interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
+>  				clock-frequency=<100000>;
+>  
+> -				pinctrl-names = "default", "gpio";
+> +				pinctrl-names = "default";
+>  				pinctrl-0 = <&i2c1_pins>;
+> -				pinctrl-1 = <&i2c1_gpio>;
+> -				scl-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> -				sda-gpios = <&gpio0 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  				status = "disabled";
+>  			};
+>  
+> -- 
+> 2.42.0
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
