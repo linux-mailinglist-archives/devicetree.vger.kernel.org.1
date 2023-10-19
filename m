@@ -1,236 +1,192 @@
-Return-Path: <devicetree+bounces-10009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB087CF575
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:36:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001F57CF5CD
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:51:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5F62B21106
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:35:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C2DAB20CF6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C22182BE;
-	Thu, 19 Oct 2023 10:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE8514F85;
+	Thu, 19 Oct 2023 10:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="eOpcmu14"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MeFM5FbI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A4819449
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:35:53 +0000 (UTC)
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2046.outbound.protection.outlook.com [40.107.95.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D0011F;
-	Thu, 19 Oct 2023 03:35:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i130iI1Z+r5f1T2dAwlxR5qKWDRf8AJBw7Wga7kKHcoe7/VNr3TkbreRTVEZgmvkk30VX4VjkTbuqs97EV+xKqG5LvbA5sDJUUVmctMQ3+hN+Zfc8GAkkqEIuEHFkhEEUUBMkXLrptHfJj201fkrHtHUUl+0eqSiv+3MvjX+4KBe3ARaAdufrdk7u84aZPcDlf60JyXCBbUzLKxaQqRSphfyTvf80/Zr63Iyy4Wm7vALvu6MqXdoNS+znw/H3fghCxBb8kfllHNPpry6gx7Tw8eRVHSWjQhKTOP4B1sO5XhujOgJMvdNW3Rp/5K5hQVwMRPd47kevj7BKg7cKOCY9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=36opOIJYwITzYF2tJLhaDapxVhGUNt/oJQquQlUlrho=;
- b=ERK+eeTM36tudoZ1a04SqNnjfu37nUOTgQ4KqOljYHg+B7R4kC9e19YekIMQofqYCzxeuMpQEuiHYJM/4MYHr79XPzHzWJl7UiDhsFRqI8r9bDVO0ZOungV2L206eWvzHWuIBHnGh2HRp77E5jZEaloTTxp2J936ABs9xavKeZ2zLFrP5gBCUpEGFdePxAaTdacvtJ8t082qnER46TZFMIZOg7Sa4mRLtEBhIh3DzQwWJM9v5bKa0C1GsSiPS/Zg8njfZCDGUEO8npZ+Q2BUlfos+pXSkuO9r1hPJMWa8CfCtvIbKZjVRtSgwITF1gjss8hkjOQEqLNFq2DPGoDl0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=36opOIJYwITzYF2tJLhaDapxVhGUNt/oJQquQlUlrho=;
- b=eOpcmu14dktKYWDnxI8bFUZEYRLHVx9afLO5XwEMnuPSsqBzewEpzAXoyPUdp1q8wSds6pgFiHBl9snlD/Gc9iuNy+YIjiOUYV4OJjfChKWuCiOCOipp/+dMnPj5SHBOkNWAI8aXnisSbaxypqrnbrAzf9sJJ889URhBrqAJ5y4=
-Received: from BYAPR12MB3207.namprd12.prod.outlook.com (2603:10b6:a03:135::10)
- by DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Thu, 19 Oct
- 2023 10:35:49 +0000
-Received: from BYAPR12MB3207.namprd12.prod.outlook.com
- ([fe80::7898:321:2239:77b9]) by BYAPR12MB3207.namprd12.prod.outlook.com
- ([fe80::7898:321:2239:77b9%2]) with mapi id 15.20.6886.034; Thu, 19 Oct 2023
- 10:35:49 +0000
-From: "Kundanala, Praveen Teja" <praveen.teja.kundanala@amd.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	"srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Simek, Michal"
-	<michal.simek@amd.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V2 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt
- to yaml
-Thread-Topic: [PATCH V2 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt
- to yaml
-Thread-Index: AQHaAlKPkRTsPUGct0eXlmbW/JBa+7BQ2CyAgAASlCA=
-Date: Thu, 19 Oct 2023 10:35:49 +0000
-Message-ID:
- <BYAPR12MB3207AF897D31347BE69FD7B2CBD4A@BYAPR12MB3207.namprd12.prod.outlook.com>
-References: <20231019060651.23341-1-praveen.teja.kundanala@amd.com>
- <20231019060651.23341-3-praveen.teja.kundanala@amd.com>
- <aac1b716-c4f6-46e8-88f6-e5aad5bca870@linaro.org>
-In-Reply-To: <aac1b716-c4f6-46e8-88f6-e5aad5bca870@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=b54704dc-0718-42f4-9197-0882a8be7ff0;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-10-19T10:33:28Z;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR12MB3207:EE_|DM4PR12MB5278:EE_
-x-ms-office365-filtering-correlation-id: 1b334797-b68d-48bd-ed9a-08dbd08f295b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- g+pTMzDsZEs8JhJeNFqD2pl3g5cCud+RrMi+q5vfjeSO+2D/CL8jV3UBuCSFNN0DDFu/jbUTm5sK/WTTOfjgyIxX7xNhGW3EEDxKj5ZOSWcuFUIBkPYcAg+Kdl/M58GdsjMAtqaV5EFVBmP2ZS9RJieC5DnIQ34y6Ljx727LMvjMownYT4KztfhdUlMElURkoCxc73gkUtFRlfzCYlKQ2t73MU01f/e73egDGKOLL/v+nd3fjYAjeM2Xs1YAqNb4hsqO4FcgtmjkE/gozO6J/ek9cYSnHvv/Kk0B87YugUzmtb7ipiBGtfLazBbcDJIgmWOStOc2y1O8UFKLZohYpDa6IpFWkkOwrWzEKQk+29gbmeKVQkHWLq5o9qtZ4863AHvHLmFMdU6vQuV8K6tqBSfV1Xm/Brjksbun9Sex7TqncTk/GXd+UE0haH9ex2ZlTqZR74GMiiHQqc7KbZGUouMaY8RL4RQDrxR3qkGR0f0v9T7BOPePzBI6rzteRTuQs/VsJo23Z9NSRfIkD31L9Vsb3Peg3y6sJolwZADh0my+n/vY8plb1iOI2dkxXvRTDbrXwVlVFexp9Fg6P9gpD3rX1uDSSvv0kY4uAXUQvVp0UJ55FFSsAgGmQ/PYzd7s3lZcP9V3SuEgFzvAP31Zwg==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB3207.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(396003)(376002)(346002)(366004)(230922051799003)(64100799003)(1800799009)(451199024)(186009)(86362001)(55016003)(66476007)(66946007)(66446008)(110136005)(76116006)(66556008)(64756008)(316002)(71200400001)(966005)(478600001)(8936002)(8676002)(33656002)(5660300002)(41300700001)(52536014)(4326008)(7696005)(2906002)(6506007)(38100700002)(38070700005)(53546011)(83380400001)(26005)(122000001)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?LzZhZVBBTG1aR1hRMFVCKzlLUHZWT2VDdnJIMCtQbnA1THNFWDNGbGMzL3Vm?=
- =?utf-8?B?TWVOT3hOc21nVERZR0oyZlFxLyt1d2wrRlNRNjRyY3FDc0ZTNVRBNGtUc3JI?=
- =?utf-8?B?U3hnbDdzUlcxL1FaaS9lYlpKdjBrL3JzRTlUajdlUE5XVUNkWllyc2FxMWJI?=
- =?utf-8?B?VER6Q0E1OUF1TVNmNVZhOGswYmtsZEFJUmtFZC8zQVYxQVMrOEpWN05Ca1Z6?=
- =?utf-8?B?Z2hkR0VLL3JMdVBoekg3SWUyOC9rdW5JOHBVbUFEcGlRZE5pNDRFaVJrditt?=
- =?utf-8?B?V2JKZkIzemRPUWduL05BQlpWT2QwS1BYU0xKeXFCZzM1R3ZhQUIrd04zR3lC?=
- =?utf-8?B?S2F4ai80M3NmaGxobGVnRi8walZFRVpSampFMElwcDUxZmw0TmtvbGxLNCts?=
- =?utf-8?B?TFZLd29RODN5eitGci9ENHFnMU5laWlER0FVLzJCRDhSZGR1dHU4K3VJN1FM?=
- =?utf-8?B?akpRa0NJQUdVT0dGcWNHZjZnN3VsSi9Ic3R5NE40c1FXdTdCKytVSDdMVUg5?=
- =?utf-8?B?bGdFQVI2aVY2OGEvd3Y0c2RiVTVwZ1hRQXlqSWZJMGFhTExHVFI3akZxZ3NT?=
- =?utf-8?B?VTBRU3RnSGpUcEFpRmIwaGxpOEFHKzB4Q3hkWW9tMkJJQ0c2YldOZk9mUTQr?=
- =?utf-8?B?dGNreCtIL2ZtVEJrNWRucS9CdUlCM2t6RE5rZXp2ZkZQeFJBZGQyN2kyVE5x?=
- =?utf-8?B?c1RNMWI5Zkl0NW41cGZ0czgvVGF4N000c0k3OW13RlpMN056cWJKQlc1eVph?=
- =?utf-8?B?SGowR0FTTWY4L2Q2OEJ5dWpKR2h5ZTdDV2ZRbm12c045aU5YRHVTcDFJYjRa?=
- =?utf-8?B?NzVCYjE2T1NTbnJ5Q1ZsLy96Tk1Db0M5UHQ0ay9ubjBsY1dBWm8xY2JXU0dH?=
- =?utf-8?B?NUN2anRSYzN2ZGUwVDBBalRuS2NWYTNBM09QbXVwZENFMDdYeVJsTkN0aEhv?=
- =?utf-8?B?L1JFRkRPM1ZkUGUyTmlpWUl6MDg5MUdtZmdVcVZaczRadXBwOEpWQ2ZJMS8y?=
- =?utf-8?B?ZmpsNVhVQm1JdGEyWFlnL2oxUHVTRlpJeDB5ejU4dmpQUTRDZVIra2tyeUpz?=
- =?utf-8?B?b2xJYkVSVmtpa1JmRlcwVi9kZ0dwa3ZXSUFvUU1MQVdFbDByTHdtUU8xUFB2?=
- =?utf-8?B?L1VER3ZuZ1RnMW5vUndycVZDdm5uZXFLLzZpUE5tNXRKTExid3QvL3FjNTM3?=
- =?utf-8?B?ZEVVV3BnckdDYVgvT2NUS2J2TDU0a3BCYlNST3ByZ3E2N0l6c21LblhzNjJI?=
- =?utf-8?B?RVZ5NkV5NklkSFhwZVhkZVlHdDZZWGNQTFdlVDloTDhSVmNvYVVEVVVhdjIr?=
- =?utf-8?B?WW9la1JzaUFSOVkwK3ZDS0JyVGpHZGtWeGZkMWlJMjVDZlFJNVZ0cWZlVjlj?=
- =?utf-8?B?UUpnQnQ2R0ZnNFZ2NmdkWTNzeDJWR3lhQ0lmZjBQOXUyWDZ6bXNKL1RZSzhz?=
- =?utf-8?B?MkFOWlBNcmFmU3VZb2dlSWF0OUVxaUk1YWhKVFFSRkYrNElmUUk2cnc5cEF4?=
- =?utf-8?B?VmFJejNWd0xSN1AxQnJoSmRld296Rm01bjZjY3pCcktJYzVVUzcxT3JUTEVT?=
- =?utf-8?B?Y2pUcmEycDgrRVpIOUF4SzMwMStTSXpRQk1TbGYycVB1UzdOSmtUVVNkVDRI?=
- =?utf-8?B?dmZKQjlFWVRoRFAwN2tiVzcyYW9qODdIdWJKbkVpT05tSnk5WXpUektlWEJv?=
- =?utf-8?B?TUdJRXZlQVBKcnh2OCtqUTdlN1JRdGR0a1lpaEwwaWdIOFVNVHRzckg2anRj?=
- =?utf-8?B?b1lhbDd0cTgrT2VJUGNoRVh4bDA4SDVZajJqSkQ0WkhzRnBqVVQzWmc4Tk5u?=
- =?utf-8?B?T0h2WlI3VStURjlSY0pKYUFtUk9uZDVuaUJFdkwyRVFZTDRHcllVcm9OTDNF?=
- =?utf-8?B?TDVzRWNBMzBHVHdZRU1KdTVhY3RpcGVGcUtzc3pacXluM0JkSjNncnBDUVZ1?=
- =?utf-8?B?VGYxRGNiK1lxcWxlL3Q1RWR0WjJSREgxbnRSeWorNFRyMEFsMC9Jay9xMXM2?=
- =?utf-8?B?UTdyUms3OTAycWNRYisrR3FTL2F3cXQrREhUcXB0MG8yV0dmWjR4Z3c3alJ0?=
- =?utf-8?B?MnZyM0c2c25SOTRncjYzMWFSK2EvaCtuNnJzVTc5TERwSS95OGpBUmZ3UXAw?=
- =?utf-8?Q?lLEM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC2523B0
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:50:54 +0000 (UTC)
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B5AD5F
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:50:41 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-d9ac31cb051so8514350276.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697712640; x=1698317440; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=W7s/8+3r7RFx6yWj1hujuMRvbCyWrWX9uW8mMRBRCYM=;
+        b=MeFM5FbIGVnkoFTob4eJMR+iSEl5tnE7VuhJsz/BOv2m5udYpHZosn7KqFp9HkdxYJ
+         4QsGduPPzcKJ3QdHDVjIgNNDqVE7h7RM3tXrZzbp0m8qZuuvokt9Tmqsj2k51HJbtfYS
+         3XHw6wnKZ/0CydW1EkHDGUy1kxJG4sPSHvpiWGoPlaQnq4vky00N0UOfGrdSwAWPCdkq
+         vBN1tAHGnFgdj8uWA6GkPuilA+KIZ9ih0LFVg3GGXdJIcWyH266vBAp5yl0uAGfAW6QG
+         WYy47wbp3r0zsfw2Qc1reXj74gFWYbA5lB0shVZ3fK2z0smZ+2kKkItPPDZRjC3euQeU
+         ZOYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697712640; x=1698317440;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W7s/8+3r7RFx6yWj1hujuMRvbCyWrWX9uW8mMRBRCYM=;
+        b=ckt2Gfhs/bJCa6UUPiPeIGlx3QP3tFpxZFJL23lDG9ITa0/BcyAgS8SfYD00pV2WW/
+         +jOlXDUoytxHbhH/M7Wm1tDEE4+TYuAMiXRzIFpfo8ormciN3Crvuk376zlNP47goC8k
+         54yV4i4wa90b67FS6/TKL2KnAUeH13b/+S+rYZLFTIu1ZjlvmNxZi3QqjetdcpFFsy9a
+         XxOSHTPcdnsUzEDF5EOnyMxlIcHYjKx1oGq2euygnEB84G+hpy4VJ+1H/4PR7zeAOXu9
+         YfgcRvE/earQeQAKsVtl3hRyc4B0V/dDW8k5Fc/aO3hrbEls9m+mwsuQ4KroTG3WLkuH
+         z9rA==
+X-Gm-Message-State: AOJu0Yw+aTo5StKRxU9KjExQ0ytXwLaMbzDjqZfhjf0rKjsTKKcU7wgs
+	968RMFPjuD07no4jElMjo981P82sS6FOe77vN/gc/p9mFJSrOujNHdQ=
+X-Google-Smtp-Source: AGHT+IFPxBdsxnQPRHzd8OSMsox5Do9D+FzcetAm0MgZTfWyC44uvU469gyS3vnZSEqmbuBz23jJ3l8V1DLvv2UpspM=
+X-Received: by 2002:a25:5d0b:0:b0:d9a:cc6b:70fc with SMTP id
+ r11-20020a255d0b000000b00d9acc6b70fcmr1899433ybb.3.1697712639886; Thu, 19 Oct
+ 2023 03:50:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3207.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b334797-b68d-48bd-ed9a-08dbd08f295b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2023 10:35:49.5376
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nfwPJNqGN/x1LOl4UgalhS0TwIzjf/4zIzO5jwxtoyuJipdv7cH+oUYPWgjFKbOyg35ZqNppR/2RFuzpwG9QTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5278
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com> <20231018-msm8909-cpufreq-v2-3-0962df95f654@kernkonzept.com>
+In-Reply-To: <20231018-msm8909-cpufreq-v2-3-0962df95f654@kernkonzept.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 19 Oct 2023 12:50:03 +0200
+Message-ID: <CAPDyKFruPQhkRyWURkEcMbt_EKdGAqr0j+zYZS-+3-taE+y0+g@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] cpufreq: qcom-nvmem: Add MSM8909
+To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEdlbmVyYWxdDQoNCkhpIEtvemxvd3NraSwNCg0KPiAt
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxr
-cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+IFNlbnQ6IFRodXJzZGF5LCBPY3RvYmVy
-IDE5LCAyMDIzIDI6NTcgUE0NCj4gVG86IEt1bmRhbmFsYSwgUHJhdmVlbiBUZWphIDxwcmF2ZWVu
-LnRlamEua3VuZGFuYWxhQGFtZC5jb20+Ow0KPiBzcmluaXZhcy5rYW5kYWdhdGxhQGxpbmFyby5v
-cmc7IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8u
-b3JnOyBjb25vcitkdEBrZXJuZWwub3JnOyBTaW1laywgTWljaGFsDQo+IDxtaWNoYWwuc2ltZWtA
-YW1kLmNvbT47IEt1bmRhbmFsYSwgUHJhdmVlbiBUZWphDQo+IDxwcmF2ZWVuLnRlamEua3VuZGFu
-YWxhQGFtZC5jb20+OyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXJtLQ0KPiBr
-ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBDYzogbGludXgta2VybmVsQHZnZXIua2VybmVs
-Lm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIFYyIDIvNV0gZHQtYmluZGluZ3M6IG52bWVtOiBD
-b252ZXJ0IHhsbngsenlucW1wLQ0KPiBudm1lbS50eHQgdG8geWFtbA0KPg0KPiBDYXV0aW9uOiBU
-aGlzIG1lc3NhZ2Ugb3JpZ2luYXRlZCBmcm9tIGFuIEV4dGVybmFsIFNvdXJjZS4gVXNlIHByb3Bl
-ciBjYXV0aW9uDQo+IHdoZW4gb3BlbmluZyBhdHRhY2htZW50cywgY2xpY2tpbmcgbGlua3MsIG9y
-IHJlc3BvbmRpbmcuDQo+DQo+DQo+IE9uIDE5LzEwLzIwMjMgMDg6MDYsIFByYXZlZW4gVGVqYSBL
-dW5kYW5hbGEgd3JvdGU6DQo+ID4gQ29udmVydCB0aGUgeGxueCx6eW5xbXAtbnZtZW0udHh0IHRv
-IHlhbWwuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBQcmF2ZWVuIFRlamEgS3VuZGFuYWxhIDxw
-cmF2ZWVuLnRlamEua3VuZGFuYWxhQGFtZC5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5n
-cy9udm1lbS94bG54LHp5bnFtcC1udm1lbS50eHQgICAgICB8IDQ2IC0tLS0tLS0tLS0tLS0tLS0t
-LS0NCj4gPiAgLi4uL2JpbmRpbmdzL252bWVtL3hsbngsenlucW1wLW52bWVtLnlhbWwgICAgIHwg
-NDAgKysrKysrKysrKysrKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDQwIGluc2VydGlvbnMo
-KyksIDQ2IGRlbGV0aW9ucygtKSAgZGVsZXRlIG1vZGUNCj4gPiAxMDA2NDQgRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL3hsbngsenlucW1wLQ0KPiBudm1lbS50eHQNCj4g
-PiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL252bWVtL3hsbngsenlucW1wLW52bWVtLnlhbWwNCj4gPg0KPiA+IGRpZmYgLS1naXQNCj4g
-PiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS94bG54LHp5bnFtcC1u
-dm1lbS50eHQNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS94
-bG54LHp5bnFtcC1udm1lbS50eHQNCj4gPiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBp
-bmRleCA0ODgxNTYxYjNhMDIuLjAwMDAwMDAwMDAwMA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS94bG54LHp5bnFtcC1udm1lbS50eHQNCj4gPiArKysg
-L2Rldi9udWxsDQo+ID4gQEAgLTEsNDYgKzAsMCBAQA0KPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAt
-LS0tLSAtPSAgWnlucSBVbHRyYVNjYWxlKyBNUFNvQyBudm1lbSBmaXJtd2FyZSBkcml2ZXIgYmlu
-ZGluZyA9DQo+ID4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+IC0tLS0tIC1UaGUgbnZtZW1fZmlybXdhcmUg
-bm9kZSBwcm92aWRlcyBhY2Nlc3MgdG8gdGhlIGhhcmR3YXJlIHJlbGF0ZWQNCj4gPiBkYXRhIC1s
-aWtlIHNvYyByZXZpc2lvbiwgSURDT0RFLi4uIGV0YywgQnkgdXNpbmcgdGhlIGZpcm13YXJlDQo+
-ID4gaW50ZXJmYWNlLg0KPiA+IC0NCj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBj
-b21wYXRpYmxlOiBzaG91bGQgYmUgInhsbngsenlucW1wLW52bWVtLWZ3Ig0KPiA+IC0NCj4gPiAt
-PSBEYXRhIGNlbGxzID0NCj4gPiAtQXJlIGNoaWxkIG5vZGVzIG9mIHNpbGljb24gaWQsIGJpbmRp
-bmdzIG9mIHdoaWNoIGFzIGRlc2NyaWJlZCBpbg0KPiA+IC1iaW5kaW5ncy9udm1lbS9udm1lbS50
-eHQNCj4gPiAtDQo+ID4gLS0tLS0tLS0NCj4gPiAtIEV4YW1wbGUNCj4gPiAtLS0tLS0tLQ0KPiA+
-IC1maXJtd2FyZSB7DQo+ID4gLSAgICAgenlucW1wX2Zpcm13YXJlOiB6eW5xbXAtZmlybXdhcmUg
-ew0KPiA+IC0gICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJ4bG54LHp5bnFtcC1maXJtd2FyZSI7
-DQo+ID4gLSAgICAgICAgICAgICBtZXRob2QgPSAic21jIjsNCj4gPiAtDQo+ID4gLSAgICAgICAg
-ICAgICBudm1lbV9maXJtd2FyZSB7DQo+ID4gLSAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGli
-bGUgPSAieGxueCx6eW5xbXAtbnZtZW0tZnciOw0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAj
-YWRkcmVzcy1jZWxscyA9IDwxPjsNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgI3NpemUtY2Vs
-bHMgPSA8MT47DQo+ID4gLQ0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAvKiBEYXRhIGNlbGxz
-ICovDQo+ID4gLSAgICAgICAgICAgICAgICAgICAgIHNvY19yZXZpc2lvbjogc29jX3JldmlzaW9u
-IHsNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwIDB4ND47DQo+
-ID4gLSAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gLSAgICAgICAgICAgICB9Ow0KPiA+IC0g
-ICAgIH07DQo+ID4gLX07DQo+ID4gLQ0KPiA+IC09IERhdGEgY29uc3VtZXJzID0NCj4gPiAtQXJl
-IGRldmljZSBub2RlcyB3aGljaCBjb25zdW1lIG52bWVtIGRhdGEgY2VsbHMuDQo+ID4gLQ0KPiA+
-IC1Gb3IgZXhhbXBsZToNCj4gPiAtICAgICBwY2FwIHsNCj4gPiAtICAgICAgICAgICAgIC4uLg0K
-PiA+IC0NCj4gPiAtICAgICAgICAgICAgIG52bWVtLWNlbGxzID0gPCZzb2NfcmV2aXNpb24+Ow0K
-PiA+IC0gICAgICAgICAgICAgbnZtZW0tY2VsbC1uYW1lcyA9ICJzb2NfcmV2aXNpb24iOw0KPiA+
-IC0NCj4gPiAtICAgICAgICAgICAgIC4uLg0KPiA+IC0gICAgIH07DQo+ID4gZGlmZiAtLWdpdA0K
-PiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL3hsbngsenlucW1w
-LW52bWVtLnlhbWwNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1l
-bS94bG54LHp5bnFtcC1udm1lbS55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBp
-bmRleCAwMDAwMDAwMDAwMDAuLjVkMjAzNjJhMDYxNQ0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiAr
-KysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0veGxueCx6eW5xbXAt
-DQo+IG52bWVtLnlhbWwNCj4gPiBAQCAtMCwwICsxLDQwIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKSAlWUFNTCAxLjINCj4g
-PiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvbnZtZW0veGxu
-eCx6eW5xbXAtbnZtZW0ueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3Jn
-L21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogWnlucSBVbHRyYVNj
-YWxlKyBNUFNvQyBOb24gVm9sYXRpbGUgTWVtb3J5IGludGVyZmFjZQ0KPiA+ICsNCj4gPiArZGVz
-Y3JpcHRpb246IHwNCj4gPiArICAgIFRoZSBaeW5xTVAgTVBTb0MgcHJvdmlkZXMgYWNjZXNzIHRv
-IHRoZSBoYXJkd2FyZSByZWxhdGVkIGRhdGENCj4gPiArICAgIGxpa2UgU09DIHJldmlzaW9uLCBJ
-RENPREUgYW5kIHNwZWNpZmljIHB1cnBvc2UgZWZ1c2VzLg0KPiA+ICsNCj4gPiArbWFpbnRhaW5l
-cnM6DQo+ID4gKyAgLSBLYWx5YW5pIEFrdWxhIDxrYWx5YW5pLmFrdWxhQGFtZC5jb20+DQo+ID4g
-KyAgLSBQcmF2ZWVuIFRlamEgS3VuZGFuYWxhIDxwcmF2ZWVuLnRlamEua3VuZGFuYWxhQGFtZC5j
-b20+DQo+ID4gKw0KPiA+ICthbGxPZjoNCj4gPiArICAtICRyZWY6IG52bWVtLnlhbWwjDQo+ID4g
-Kw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBjb25zdDog
-eGxueCx6eW5xbXAtbnZtZW0tZncNCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29t
-cGF0aWJsZQ0KPg0KPiBUZXN0IHlvdXIgYmluZGluZ3MgYmVmb3JlIHNlbmRpbmcuIEkgYW0gbm90
-IGEgZnJlZSB0ZXN0ZXIgb2YgeW91ciBjb2RlLi4uIEl0J3MgeW91cg0KPiBkdXR5Lg0KW0t1bmRh
-bmFsYSwgUHJhdmVlbiBUZWphXSBNaXNzZWQgaXQgd2lsbCBzZW5kIFYzIGFmdGVyIHRlc3Rpbmcu
-DQo+DQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+
-ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgIG52bWVtLWZpcm13YXJlIHsNCj4NCj4g
-Tm9kZSBuYW1lcyBzaG91bGQgYmUgZ2VuZXJpYywgc28gIm52bWVtIi4gU2VlIGFsc28gYW4gZXhw
-bGFuYXRpb24gYW5kIGxpc3Qgb2YNCj4gZXhhbXBsZXMgKG5vdCBleGhhdXN0aXZlKSBpbiBEVCBz
-cGVjaWZpY2F0aW9uOg0KPiBodHRwczovL2RldmljZXRyZWUtc3BlY2lmaWNhdGlvbi5yZWFkdGhl
-ZG9jcy5pby9lbi9sYXRlc3QvY2hhcHRlcjItZGV2aWNldHJlZS0NCj4gYmFzaWNzLmh0bWwjZ2Vu
-ZXJpYy1uYW1lcy1yZWNvbW1lbmRhdGlvbg0KPg0KPiBJIGFscmVhZHkgYXNrZWQgZm9yIHRoaXMu
-DQpbS3VuZGFuYWxhLCBQcmF2ZWVuIFRlamFdIFdpbGwgcmVmZXIgYW5kIHVwZGF0ZSBpdC4NCg0K
-UmVnYXJkcywNClByYXZlZW4NCj4NCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
+On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+<stephan.gerhold@kernkonzept.com> wrote:
+>
+> When the MSM8909 SoC is used together with the PM8909 PMIC the primary
+> power supply for the CPU (VDD_APC) is shared with other components to
+> the SoC, namely the VDD_CX power domain typically supplied by the PM8909
+> S1 regulator. This means that all votes for necessary performance states
+> go via the RPM firmware which collects the requirements from all the
+> processors in the SoC. The RPM firmware then chooses the actual voltage
+> based on the performance states ("corners"), depending on calibration
+> values in the NVMEM and other factors.
+>
+> The MSM8909 SoC is also sometimes used with the PM8916 or PM660 PMIC.
+> In that case there is a dedicated regulator connected to VDD_APC and
+> Linux is responsible to do adaptive voltage scaling using CPR (similar
+> to the existing code for QCS404).
+>
+> This difference can be described in the device tree, by either assigning
+> the CPU a power domain from RPMPD or from the CPR driver.
+>
+> Describe this using "perf" as generic power domain name, which is also
+> used already for SCMI based platforms.
+>
+> Also add a simple function that reads the speedbin from a NVMEM cell
+> and sets it as-is for opp-supported-hw. The actual bit position can be
+> described in the device tree without additional driver changes.
+>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>
+> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> index 3794390089b0..e52031863350 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> @@ -59,6 +59,24 @@ struct qcom_cpufreq_drv {
+>
+>  static struct platform_device *cpufreq_dt_pdev, *cpufreq_pdev;
+>
+> +static int qcom_cpufreq_simple_get_version(struct device *cpu_dev,
+> +                                          struct nvmem_cell *speedbin_nvmem,
+> +                                          char **pvs_name,
+> +                                          struct qcom_cpufreq_drv *drv)
+> +{
+> +       u8 *speedbin;
+> +
+> +       *pvs_name = NULL;
+> +       speedbin = nvmem_cell_read(speedbin_nvmem, NULL);
+> +       if (IS_ERR(speedbin))
+> +               return PTR_ERR(speedbin);
+> +
+> +       dev_dbg(cpu_dev, "speedbin: %d\n", *speedbin);
+> +       drv->versions = 1 << *speedbin;
+> +       kfree(speedbin);
+> +       return 0;
+> +}
+> +
+>  static void get_krait_bin_format_a(struct device *cpu_dev,
+>                                           int *speed, int *pvs, int *pvs_ver,
+>                                           u8 *buf)
+> @@ -252,6 +270,8 @@ static int qcom_cpufreq_ipq8074_name_version(struct device *cpu_dev,
+>         return 0;
+>  }
+>
+> +static const char *generic_genpd_names[] = { "perf", NULL };
+> +
+
+As discussed, using "perf" as a generic name for a performance domain
+for CPUs makes perfect sense to me. However, we need to update the DT
+doc bindings for this too. At least we should update
+Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml as a
+part of $subject series.
+
+At a later step, we should have a look at updating the description for
+the power-domain-names in the common
+Documentation/devicetree/bindings/arm/cpus.yaml, I think.
+
+>  static const struct qcom_cpufreq_match_data match_data_kryo = {
+>         .get_version = qcom_cpufreq_kryo_name_version,
+>  };
+> @@ -260,6 +280,11 @@ static const struct qcom_cpufreq_match_data match_data_krait = {
+>         .get_version = qcom_cpufreq_krait_name_version,
+>  };
+>
+> +static const struct qcom_cpufreq_match_data match_data_msm8909 = {
+> +       .get_version = qcom_cpufreq_simple_get_version,
+> +       .genpd_names = generic_genpd_names,
+> +};
+> +
+>  static const char *qcs404_genpd_names[] = { "cpr", NULL };
+>
+>  static const struct qcom_cpufreq_match_data match_data_qcs404 = {
+> @@ -434,6 +459,7 @@ static struct platform_driver qcom_cpufreq_driver = {
+>
+>  static const struct of_device_id qcom_cpufreq_match_list[] __initconst = {
+>         { .compatible = "qcom,apq8096", .data = &match_data_kryo },
+> +       { .compatible = "qcom,msm8909", .data = &match_data_msm8909 },
+>         { .compatible = "qcom,msm8996", .data = &match_data_kryo },
+>         { .compatible = "qcom,qcs404", .data = &match_data_qcs404 },
+>         { .compatible = "qcom,ipq8064", .data = &match_data_krait },
+>
+> --
+> 2.39.2
+>
+
+Other than the above, feel free to add:
+
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+
+Kind regards
+Uffe
 
