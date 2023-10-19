@@ -1,104 +1,113 @@
-Return-Path: <devicetree+bounces-10375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19DC87D0F41
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:58:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF577D1077
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45F521C20F21
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:58:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F39B1F23D4D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF448199CD;
-	Fri, 20 Oct 2023 11:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7588F1B28B;
+	Fri, 20 Oct 2023 13:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lJfbIk+b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Qmk8fTcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92133199C9
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:58:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D424FC433C8;
-	Fri, 20 Oct 2023 11:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697803103;
-	bh=hgzML6+OkKEZo9orZ2B4XMz4xyPZIW1HsH8NObcq26Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lJfbIk+bODkAScfSGDHEq+PLNjXPWWSsU+m/xUitudtsy5RhTn38Y403l0mmABOQ7
-	 aktFocybnTVSYyGpsCX0JqQtQU97Djc3QILHLLCMvO844SodK5UfHPEYTzNMsMP9wL
-	 7HaEm+i48Acl+5fbosR8Ag9paz2Od7QKAQBYuQZtDL8Mdk3q4gz9iTLR2o3BIq2ebm
-	 Xmcvcyvn20O5Bo84NGFE1Awj7lG54eVFa6eWE1bBrgTalLeVb9joOHzU/x52BCXcP8
-	 dSt9Fc+5IrRaORbgozVFunhDsjvrxacYtP6lTzHrXGIFfbVcdFSjL4yq3NXVNO91X2
-	 IxUCJneVxvayA==
-Date: Fri, 20 Oct 2023 12:58:17 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps
- property
-Message-ID: <ad696b38-3bca-4cc9-8e9d-81dce9686de4@sirena.org.uk>
-References: <20231012-storage-directory-548905001d10@spud>
- <87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
- <ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
- <20231013-planner-irate-8e411cc54a48@spud>
- <874jirxul6.wl-kuninori.morimoto.gx@renesas.com>
- <20231017-darkness-jackknife-5cf32246a079@spud>
- <871qdskbuu.wl-kuninori.morimoto.gx@renesas.com>
- <20231018-object-renewable-6e03bce41ff4@spud>
- <77d3d1e5-7120-4a5b-99c0-c34407f63d5b@sirena.org.uk>
- <878r7yqeo4.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE178F5A;
+	Fri, 20 Oct 2023 13:24:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E29D1A4;
+	Fri, 20 Oct 2023 06:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697808279; x=1729344279;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=n9FPj37TUa187KHzBLooUs4gDeQupW8sJoyGo3Mm6Yw=;
+  b=Qmk8fTcmjSTcbH4EFYwbONXXjDCTedR0dul8UCdtq5mBcz1kGOoj/Gnq
+   BKXyA0EZaHgGHhZMq7s4l/csWCAY2+5B/8Pj9Y27m4vSdce5Jplqk0gGx
+   Yq8R1t8KaDbUKj4y0KymajqcmFVtnPz1KeGrtl9UBnOS++WmPyf/MStTn
+   ClhlzWEmOTW+MtE83KTBiRhDfZGLJ2dEyHY3hdpOtsFB/UGoUkShfg46r
+   VR81AY4UlXeO22T01IniXHOtS/8f/I071r6x64BKs2169hiG6iRarH4RD
+   WTKq0VJlNGnqY81sfHKHIStlZHY4IFVIlD3von5FaoYOTYvYp2/MSE1OK
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="385372627"
+X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
+   d="scan'208";a="385372627"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2023 06:24:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="881083831"
+X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
+   d="scan'208";a="881083831"
+Received: from mtadesse-mobl.amr.corp.intel.com (HELO [10.209.140.77]) ([10.209.140.77])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2023 06:24:37 -0700
+Message-ID: <1840ba70-279b-499a-ad42-e7659a9a6ad1@linux.intel.com>
+Date: Thu, 19 Oct 2023 15:39:26 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="esXYev3zreSbHTkV"
-Content-Disposition: inline
-In-Reply-To: <878r7yqeo4.wl-kuninori.morimoto.gx@renesas.com>
-X-Cookie: teamwork, n.:
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 30/34] ASoC: qcom: qdsp6: Add SND kcontrol for fetching
+ offload status
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
+ gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+ perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+ Thinh.Nguyen@synopsys.com
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-31-quic_wcheng@quicinc.com>
+ <92971bbf-b890-4e41-8ef1-9213e15d81b2@linux.intel.com>
+ <c9c5f13f-b3e7-6591-f277-cd86162152e4@quicinc.com>
+ <2e300bef-3722-8b00-2bdf-e9386796f38f@quicinc.com>
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <2e300bef-3722-8b00-2bdf-e9386796f38f@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---esXYev3zreSbHTkV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>>>> Add a kcontrol to the platform sound card to fetch the current offload
+>>>> status.  This can allow for userspace to ensure/check which USB SND
+>>>> resources are actually busy versus having to attempt opening the USB
+>>>> SND
+>>>> devices, which will result in an error if offloading is active.
+>>>
+>>> I think I mentioned this a while back, but why not add the status in the
+>>> USB card itself? That's a generic component that all userspace agent
+>>> could query. Having a QCOM-specific control doesn't make the life of
+>>> userspace easier IMHO.
+>>>
+>>>
+>>
+>> Will take a look at this based on the comments you had in the other
+>> kcontrol patch.  Seeing if we can move it to a more generic layer.
+>>
+> 
+> I think it would make more sense to see if we can keep all the offload
+> kcontrols under the sound card exposed by the platform.  Especially, if
+> we are going to modify the components string of the card to signify that
+> it supports USB offload.
 
-On Fri, Oct 20, 2023 at 01:13:31AM +0000, Kuninori Morimoto wrote:
+A two-way relationship would be ideal, i.e.
+- the USB card has an indicator that it's currently bound with another
+"platform" card that offers optimized offloaded capabilities.
+- the platform card has a indicator that it exposes one or more PCM
+devices routed to the USB card endpoint.
 
-> DT
-> 		(A)						(B)
-> 		<- port ->   <- port ->       <- port ->      <- port ->
-> 			          ax(ep) <--> (ep)bx
-> 	map=<0>	cpu0(ep) <--> (ep)a0		  b0(ep) <--> (ep)codec0  map=<0>
-> 	map=<1>	cpu1(ep) <--> (ep)a1		  b1(ep) <--> (ep)codec1  map=<1 2>
-> 	map=<2>	cpu2(ep) <--> (ep)a2					  ~~~~~~~~~
-
-I think that looks like what I was thinking of, yes.  Might be
-misreading it though!
-
---esXYev3zreSbHTkV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUya1kACgkQJNaLcl1U
-h9BN8gf/f/SHp+53AbjL9/at/+jwsiphdCM3VMOemva8S7CsKEpjdSFr9MfZtRVR
-78obwdoyzDD+ZZn58KUnuPC+Uh0092rLKx+CG8SzvMCLpD+BWZysK98dmP5AYk8F
-ZjvZpX/z4MhTtkDBPaHfLDQ0T8itq7FwlsGYnvl/fXHDc2wqPV22gkcYLBFoOEtl
-e81NELusQ0eCvAWn22Efqnmu5bYY7gvd2FjV8W0AOqW1Mq7wictoL+DnXP5blTHY
-w6Uow+hZRH9jdIBxyFU/vePaW5iswWze5lGcWXSi2cDUT/cosaaLQ0S8GKcWhR5l
-qRUJeioHr1FsTkUs3+S8Vn3kRS6t5w==
-=X52B
------END PGP SIGNATURE-----
-
---esXYev3zreSbHTkV--
+Android/HAL would typically start with the latter while other more
+generic solutions would start from the former.
 
