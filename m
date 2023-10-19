@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE98A7CF3F5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:22:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19FFA7CF409
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A46AB20D14
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:22:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C260E281EEA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33651171C1;
-	Thu, 19 Oct 2023 09:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE03171C7;
+	Thu, 19 Oct 2023 09:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VglUWAlw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cY6eHllk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B430515AF5
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:22:24 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF2C98
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:22:23 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40651a726acso67388835e9.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:22:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F09417723
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:27:05 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084D2189
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:27:03 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso13525753a12.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697707341; x=1698312141; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697707621; x=1698312421; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ic2g+m7HOOL78ghtdW2686g2sSZe6K2KnAhqlhmzomY=;
-        b=VglUWAlwLulNnzDqL1PndEJdfIPgdlxMPusVt32LxpoFI4cZPWSv0+DgkMX9rC7iHL
-         L/ktZ2SWo+uLQMY2rlLA94FkcwOw1QaJ1OFKP3Rcz9bl85HkLvNccfZ3vs4sELO7iVLC
-         N/W7XwgFecnoX89ljzSB73UNsKQdzAdx07AqGEQhCN2Lx9fNu1cQ4S5ZZF2pZgUmZFbz
-         ia2UF87WT793Knd8LPBx+3K+g0z09bZsKzoqBUT0JNCtAF0+6wGbEY7oYlf0krg7epy/
-         Q6uRfQ+suJuqGhyh7DvG6JNm3kIYdrT8yy0ty4sKNFF9lsKm8+THn4TUPdOxveLAFUYZ
-         mDmg==
+        bh=Oz0CrCWpEFv7X1wnxM+8TRRbLdRXVk3t64umKMM+ndM=;
+        b=cY6eHllk3Kk4BezELCIWLGgexZ8/H95MPiF3Y37/q0KVtdy83voykW/fBEwYJNE1N/
+         xYiF1pIKOo2RXf1UJzKAvs59luCz18ygIM6wqXewnFxU29wS8ZDF+rvQ/yt8DbaI7Afa
+         u6gjawdipG9r75iiFMfpKfYqq5xGa7nPpRp+JIyEYCA/NWuPbzqdmbDuJ34u2tNfSsVs
+         /SfpUHH5Q3e46mn6c3n4dcItODSgF5q29+n1AFqPIjcU9+GuxuCFhiXMaKcUrImd3ex4
+         /XTYkJ+sGps+MVRwTBBZeJQCCt4EtoLqq+ILK1ec09iChKZ9ppYhUUe9TFGUUXgEd34/
+         9FjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697707341; x=1698312141;
+        d=1e100.net; s=20230601; t=1697707621; x=1698312421;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ic2g+m7HOOL78ghtdW2686g2sSZe6K2KnAhqlhmzomY=;
-        b=iLsPb9Kw+AJAncoGqnhdBCrbIMKGwSqet8l0Zh8GQINTY5vHUlldPze22zglq2NEFt
-         gXDwo5fw+Yug79OfPwOEVzf1v+vCb+wAKVDPSUte41wCFuKo8hifxgAMq+TSWIqasxaq
-         4Rvf8sxYXu36cStmmEwwKIkcEfEK6RmKVeO+z/+DtD0O/ZgIfh1+srojDvkbYB4LPu0s
-         L4kZIMUr8KrlJ7mQaDmgXyAvqAogHLEsBVRUfwKzDaUQHzGFJqObUTWDSZ4MNxd9IJ90
-         YEdjiYkJuVFlIOdiHBu+J1jsh/o7/cp+fHoRaBrjO9jvV66K7b6hz14CGXUcjYSmw+2J
-         SLfw==
-X-Gm-Message-State: AOJu0YyzJxxtwkiyn2/iIGRxuGWLaEU1LDOLhZpEk0mm5wQbwqOT1NFY
-	AYGb/sqBsvPQB24LgSPwPgPjnQ==
-X-Google-Smtp-Source: AGHT+IHNZjUVfg3XmjgHME2EfthcfcD3exzkWraKwyJzB1eQzA5d4Y+aR5ilYQDy0QgEmRZPhgQlGg==
-X-Received: by 2002:a05:600c:4fcb:b0:407:7ea1:e9a4 with SMTP id o11-20020a05600c4fcb00b004077ea1e9a4mr1215758wmq.5.1697707341552;
-        Thu, 19 Oct 2023 02:22:21 -0700 (PDT)
+        bh=Oz0CrCWpEFv7X1wnxM+8TRRbLdRXVk3t64umKMM+ndM=;
+        b=kIfY4CTeDboVv9yzs8Zq3JIxsIb+lOhsrvrT+gCKDA2vkS76ibk1NSeirmS6ufEUVP
+         wq118eRlqbrAGZGc/yI8u4mQLstgBP+LkEZybQsTCNMYWPKclmSIzaaujxDqaF+K5M8y
+         J4/DwutOLhCqFHDPqurELE56xXZz87DajivurqJO8ed2A0+s6OgV/e9A7qEF4GnojO2S
+         nqchEDL/AZbtmrGJMAktApTvON/oWfhWm5cEWdR+phukNOlRqGK8QSaT8BuAPqtKSMbt
+         1NSy/I+FuAKsJzq5KLL0LDCA1X8hQsnhSlX2MRgEdvvAKAm6iAt3ebN+LGuhzQEDYcsO
+         ehhw==
+X-Gm-Message-State: AOJu0YytSuQBjKauXWBFw5yudTE7je9Y45gDjfVbDPiXY6nfDvqzwBZR
+	5l4lQoj4l8NxUkwRHV93e0Y5Lw==
+X-Google-Smtp-Source: AGHT+IERlZM9uDgTZNxcnj+tHgxqq19iz4dKwsnDpGSHoSiTQHWkXEBrAssm9zXxNxuiU3mRIBw8Ig==
+X-Received: by 2002:a17:907:96a2:b0:9b2:c583:cd71 with SMTP id hd34-20020a17090796a200b009b2c583cd71mr1593721ejc.50.1697707621440;
+        Thu, 19 Oct 2023 02:27:01 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id f13-20020a1c6a0d000000b003fe23b10fdfsm3850668wmc.36.2023.10.19.02.22.20
+        by smtp.gmail.com with ESMTPSA id l24-20020a170906231800b009c764341f74sm94223eja.71.2023.10.19.02.27.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 02:22:21 -0700 (PDT)
-Message-ID: <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
-Date: Thu, 19 Oct 2023 11:22:19 +0200
+        Thu, 19 Oct 2023 02:27:01 -0700 (PDT)
+Message-ID: <aac1b716-c4f6-46e8-88f6-e5aad5bca870@linaro.org>
+Date: Thu, 19 Oct 2023 11:26:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: Update NewVision NV3051D
- compatibles
+Subject: Re: [PATCH V2 2/5] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt
+ to yaml
 Content-Language: en-US
-To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
-Cc: linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- sboyd@kernel.org, mturquette@baylibre.com, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
- heiko@sntech.de, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <20231018161848.346947-2-macroalpha82@gmail.com>
+To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, praveent@amd.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+References: <20231019060651.23341-1-praveen.teja.kundanala@amd.com>
+ <20231019060651.23341-3-praveen.teja.kundanala@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,23 +123,120 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231018161848.346947-2-macroalpha82@gmail.com>
+In-Reply-To: <20231019060651.23341-3-praveen.teja.kundanala@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/10/2023 18:18, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 19/10/2023 08:06, Praveen Teja Kundanala wrote:
+> Convert the xlnx,zynqmp-nvmem.txt to yaml.
 > 
-> Update the NewVision NV3051D compatible strings by adding a new panel,
-> the powkiddy,rk2023-panel, and removing another entry, the
-> anbernic,rg353v-panel. The rg353v-panel is exactly identical to the
-> rg353p-panel and is not currently in use by any existing device tree.
-> The rk2023-panel is similar to the rg353p-panel but has slightly
-> different timings.
+> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> ---
+>  .../bindings/nvmem/xlnx,zynqmp-nvmem.txt      | 46 -------------------
+>  .../bindings/nvmem/xlnx,zynqmp-nvmem.yaml     | 40 ++++++++++++++++
+>  2 files changed, 40 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+> deleted file mode 100644
+> index 4881561b3a02..000000000000
+> --- a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.txt
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> ---------------------------------------------------------------------------
+> -=  Zynq UltraScale+ MPSoC nvmem firmware driver binding =
+> ---------------------------------------------------------------------------
+> -The nvmem_firmware node provides access to the hardware related data
+> -like soc revision, IDCODE... etc, By using the firmware interface.
+> -
+> -Required properties:
+> -- compatible: should be "xlnx,zynqmp-nvmem-fw"
+> -
+> -= Data cells =
+> -Are child nodes of silicon id, bindings of which as described in
+> -bindings/nvmem/nvmem.txt
+> -
+> --------
+> - Example
+> --------
+> -firmware {
+> -	zynqmp_firmware: zynqmp-firmware {
+> -		compatible = "xlnx,zynqmp-firmware";
+> -		method = "smc";
+> -
+> -		nvmem_firmware {
+> -			compatible = "xlnx,zynqmp-nvmem-fw";
+> -			#address-cells = <1>;
+> -			#size-cells = <1>;
+> -
+> -			/* Data cells */
+> -			soc_revision: soc_revision {
+> -				reg = <0x0 0x4>;
+> -			};
+> -		};
+> -	};
+> -};
+> -
+> -= Data consumers =
+> -Are device nodes which consume nvmem data cells.
+> -
+> -For example:
+> -	pcap {
+> -		...
+> -
+> -		nvmem-cells = <&soc_revision>;
+> -		nvmem-cell-names = "soc_revision";
+> -
+> -		...
+> -	};
+> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> new file mode 100644
+> index 000000000000..5d20362a0615
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/xlnx,zynqmp-nvmem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Zynq UltraScale+ MPSoC Non Volatile Memory interface
+> +
+> +description: |
+> +    The ZynqMP MPSoC provides access to the hardware related data
+> +    like SOC revision, IDCODE and specific purpose efuses.
+> +
+> +maintainers:
+> +  - Kalyani Akula <kalyani.akula@amd.com>
+> +  - Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynqmp-nvmem-fw
+> +
+> +required:
+> +  - compatible
 
-This still does not explain me why do you want to remove old panel.
+Test your bindings before sending. I am not a free tester of your
+code... It's your duty.
 
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    nvmem-firmware {
 
+Node names should be generic, so "nvmem". See also an explanation and
+list of examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+I already asked for this.
 
 Best regards,
 Krzysztof
