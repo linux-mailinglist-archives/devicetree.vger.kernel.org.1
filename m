@@ -1,244 +1,83 @@
-Return-Path: <devicetree+bounces-10005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257947CF521
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:25:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203B67CF552
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 906D9B20CF6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:25:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 502D21C20B28
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11067182BF;
-	Thu, 19 Oct 2023 10:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38531863C;
+	Thu, 19 Oct 2023 10:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rREWxOlM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iXzj+37h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425F117985
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:25:00 +0000 (UTC)
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40526131
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:24:58 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d9ac9573274so8665117276.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:24:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697711097; x=1698315897; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gUZeb0jKJJtlyWUIyBlImNnt+JsfVfhEYz3giXl9GK4=;
-        b=rREWxOlM9g3ay2zIZ3oLts2zMVCD3kO7bBZ9nMPrTAvDojb5XYZMHKZbbFekI5nUwI
-         6c7Ok3nnuAfXgC2xIK8pDwADsjQYhI0OWlD8LA+IVYdOFIF5dLZwh5/+9AXRHVjsbDrt
-         IockE7zLQhxYTZ939YteA4NamOdOOBRrKLWKfxVSoAZqEjTNgagIERBajAbhLLuElFZC
-         No05RNG02PKwKO3xoOho3C/Ih3ffHL9TxtExz49MwXFabcP9DHjrpp95XpSOX7Rh7cP8
-         Xf68LKlCXE/cfb8kFEri+DOATQ7p2Uf7ZRWdfGIdX7NGv3ZjTtuMPEfv3u0q2SubN0p3
-         paaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697711097; x=1698315897;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gUZeb0jKJJtlyWUIyBlImNnt+JsfVfhEYz3giXl9GK4=;
-        b=IH5PI9HWQGV6YoHmJ+/5nlSgRkd7QIuFb1eeepgskxQBEGfGvLi83dco7S6v/MNXQb
-         Yv6TxJGFGs4tqazukup/Izb7kXxIMAbXouTcdvoa4MGYNUo+wKKvvziWazq+7uuHo1Vz
-         cVkgbo5VsxpO6NKnGbC7f5vnbbLv5c5GFuWQhjvVOHkkB9a7nSHTQRJA/N6O8oni67r7
-         97EshMFQkQwXjJvQ5PGcjjCZhUORfaZjgWHsMscab6Kuv6bmUUWuj82FYg66agvjXA/e
-         i/SdRQGqiBz4m/O0ld2s1K55yJAvjhlIc9HFBxVrzso/8Pz+B8afpk54jfrV2idMgvk7
-         2b5w==
-X-Gm-Message-State: AOJu0YwQsKEbbeMCFz4+S7AF49OHQ6mMRej60RL6DQpDT+wJJEwHm37J
-	otc24zkaJihrEnGlo3/OQHfVKD6ynS6bH7X99ooHvg==
-X-Google-Smtp-Source: AGHT+IG3U91pn35gIMk/Vq4gvaPipHWqVQVRkkFkCZcPQu2WHiqMSphaji7MC775+JS3hurbXo66wbnl/P6oFsyG/oU=
-X-Received: by 2002:a25:ac1c:0:b0:d9a:c4cf:a066 with SMTP id
- w28-20020a25ac1c000000b00d9ac4cfa066mr2011553ybi.34.1697711097377; Thu, 19
- Oct 2023 03:24:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A644668D
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:29:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3197FC433C8;
+	Thu, 19 Oct 2023 10:29:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697711390;
+	bh=yqtfTXin7HKdqdcd8Cdk8vhzxiHzQgV3bZzfYAgIZDA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iXzj+37hOTHesLIU0vdPIKRzAbhnzkSeiB99HJjfqqjx//t7aQxRMjK/KovjwYceR
+	 A31TmG7RV77PXJ9wPx1m3lpMKoeYUeJVgHJiJ55TrcUj7SMjkYmsvjBYp/jB8f2nel
+	 HggyhUgNmzufjA9ORfsGrG6rW7MVe2JtVoo3+2O027Ff2v7+eva3oOzV+fU/m3WKgy
+	 vb3ADHqVViGDFDc5lB4G8bQIRlpCfGmup5g1AIQHiYAh7cHC4Krj2KFl7nVBZpO9Ez
+	 FGbP67j5ou2K846SN5+DWY2DgIbXrE9VRJUpTsRHmnjB41boFHbvOmrGQKbkpZDPCi
+	 PVddKvtzgs89A==
+Date: Thu, 19 Oct 2023 11:29:45 +0100
+From: Lee Jones <lee@kernel.org>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: rk8xx: Deprecate
+ rockchip,system-power-controller
+Message-ID: <20231019102945.GA2424087@google.com>
+References: <20231010174138.1888396-1-megi@xff.cz>
+ <20231010174138.1888396-2-megi@xff.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com> <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
-In-Reply-To: <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 19 Oct 2023 12:24:21 +0200
-Message-ID: <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain devices
-To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Stephan Gerhold <stephan@gerhold.net>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231010174138.1888396-2-megi@xff.cz>
 
-On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
-<stephan.gerhold@kernkonzept.com> wrote:
->
-> The genpd core caches performance state votes from devices that are
-> runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
-> runtime PM performance state handling"). They get applied once the
-> device becomes active again.
->
-> To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
-> calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
-> devices that use runtime PM only to control the enable and performance
-> state for the attached power domain.
->
-> However, at the moment nothing ever resumes the virtual devices created
-> for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
-> means that performance state votes made during cpufreq scaling get
-> always cached and never applied to the hardware.
->
-> Fix this by enabling the devices after attaching them and use
-> dev_pm_syscore_device() to ensure the power domains also stay on when
-> going to suspend. Since it supplies the CPU we can never turn it off
-> from Linux. There are other mechanisms to turn it off when needed,
-> usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+On Tue, 10 Oct 2023, Ondřej Jirman wrote:
 
-I believe we discussed using dev_pm_syscore_device() for the previous
-version. It's not intended to be used for things like the above.
-
-Moreover, I was under the impression that it wasn't really needed. In
-fact, I would think that this actually breaks things for system
-suspend/resume, as in this case the cpr driver's genpd
-->power_on|off() callbacks are no longer getting called due this,
-which means that the cpr state machine isn't going to be restored
-properly. Or did I get this wrong?
-
-Kind regards
-Uffe
-
->
-> Without this fix performance states votes are silently ignored, and the
-> CPU/CPR voltage is never adjusted. This has been broken since 5.14 but
-> for some reason no one noticed this on QCS404 so far.
->
-> Cc: stable@vger.kernel.org
-> Fixes: 1cb8339ca225 ("cpufreq: qcom: Add support for qcs404 on nvmem driver")
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> From: Ondrej Jirman <megi@xff.cz>
+> 
+> Deprecate support for this property in favor of standard
+> system-power-controller one.
+> 
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
 > ---
->  drivers/cpufreq/qcom-cpufreq-nvmem.c | 49 +++++++++++++++++++++++++++++++++---
->  1 file changed, 46 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> index 82a244f3fa52..3794390089b0 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> @@ -25,6 +25,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
->  #include <linux/pm_opp.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/slab.h>
->  #include <linux/soc/qcom/smem.h>
->
-> @@ -47,6 +48,7 @@ struct qcom_cpufreq_match_data {
->
->  struct qcom_cpufreq_drv_cpu {
->         int opp_token;
-> +       struct device **virt_devs;
->  };
->
->  struct qcom_cpufreq_drv {
-> @@ -268,6 +270,18 @@ static const struct qcom_cpufreq_match_data match_data_ipq8074 = {
->         .get_version = qcom_cpufreq_ipq8074_name_version,
->  };
->
-> +static void qcom_cpufreq_put_virt_devs(struct qcom_cpufreq_drv *drv, unsigned cpu)
-> +{
-> +       const char * const *name = drv->data->genpd_names;
-> +       int i;
-> +
-> +       if (!drv->cpus[cpu].virt_devs)
-> +               return;
-> +
-> +       for (i = 0; *name; i++, name++)
-> +               pm_runtime_put(drv->cpus[cpu].virt_devs[i]);
-> +}
-> +
->  static int qcom_cpufreq_probe(struct platform_device *pdev)
->  {
->         struct qcom_cpufreq_drv *drv;
-> @@ -321,6 +335,7 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
->         of_node_put(np);
->
->         for_each_possible_cpu(cpu) {
-> +               struct device **virt_devs = NULL;
->                 struct dev_pm_opp_config config = {
->                         .supported_hw = NULL,
->                 };
-> @@ -341,7 +356,7 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
->
->                 if (drv->data->genpd_names) {
->                         config.genpd_names = drv->data->genpd_names;
-> -                       config.virt_devs = NULL;
-> +                       config.virt_devs = &virt_devs;
->                 }
->
->                 if (config.supported_hw || config.genpd_names) {
-> @@ -352,6 +367,30 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
->                                 goto free_opp;
->                         }
->                 }
-> +
-> +               if (virt_devs) {
-> +                       const char * const *name = config.genpd_names;
-> +                       int i, j;
-> +
-> +                       for (i = 0; *name; i++, name++) {
-> +                               ret = pm_runtime_resume_and_get(virt_devs[i]);
-> +                               if (ret) {
-> +                                       dev_err(cpu_dev, "failed to resume %s: %d\n",
-> +                                               *name, ret);
-> +
-> +                                       /* Rollback previous PM runtime calls */
-> +                                       name = config.genpd_names;
-> +                                       for (j = 0; *name && j < i; j++, name++)
-> +                                               pm_runtime_put(virt_devs[j]);
-> +
-> +                                       goto free_opp;
-> +                               }
-> +
-> +                               /* Keep CPU power domain always-on */
-> +                               dev_pm_syscore_device(virt_devs[i], true);
-> +                       }
-> +                       drv->cpus[cpu].virt_devs = virt_devs;
-> +               }
->         }
->
->         cpufreq_dt_pdev = platform_device_register_simple("cpufreq-dt", -1,
-> @@ -365,8 +404,10 @@ static int qcom_cpufreq_probe(struct platform_device *pdev)
->         dev_err(cpu_dev, "Failed to register platform device\n");
->
->  free_opp:
-> -       for_each_possible_cpu(cpu)
-> +       for_each_possible_cpu(cpu) {
-> +               qcom_cpufreq_put_virt_devs(drv, cpu);
->                 dev_pm_opp_clear_config(drv->cpus[cpu].opp_token);
-> +       }
->         return ret;
->  }
->
-> @@ -377,8 +418,10 @@ static void qcom_cpufreq_remove(struct platform_device *pdev)
->
->         platform_device_unregister(cpufreq_dt_pdev);
->
-> -       for_each_possible_cpu(cpu)
-> +       for_each_possible_cpu(cpu) {
-> +               qcom_cpufreq_put_virt_devs(drv, cpu);
->                 dev_pm_opp_clear_config(drv->cpus[cpu].opp_token);
-> +       }
->  }
->
->  static struct platform_driver qcom_cpufreq_driver = {
->
-> --
-> 2.39.2
->
+>  Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml | 3 +++
+>  Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml | 3 +++
+>  Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml | 3 +++
+>  Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml | 3 +++
+>  Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml | 3 +++
+>  5 files changed, 15 insertions(+)
+
+I don't see anything wrong with it.
+
+It would be nice to have a DT Ack though.
+
+-- 
+Lee Jones [李琼斯]
 
