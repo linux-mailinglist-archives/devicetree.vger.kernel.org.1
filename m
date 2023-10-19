@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-10230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04077D0433
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 23:50:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D33D47D0438
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 23:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40FA51C20EDB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:50:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73779B20C2B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4CB3E470;
-	Thu, 19 Oct 2023 21:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04F53FB0C;
+	Thu, 19 Oct 2023 21:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="C1lIs82p"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XKecxZw+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947A93E012
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 21:50:31 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC0212F
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:50:29 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso24813066b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:50:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EF93E00E
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 21:51:06 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419F6115
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:04 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so28076266b.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1697752225; x=1698357025; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1697752262; x=1698357062; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NvYs4y8luRIIMWCMTq8xHgd9BsFfOMy25z0twVyGFoo=;
-        b=C1lIs82pdWMWB99RtIOu5mXirjYP/FPF9sHzCqplxai/dP8sOAIgnIk9FFf+vE8IaU
-         mGLQJ17jgJFHxpiFZ5a+5uG2r9BVB71TCtrPyL78yl0GWGr+QypVYV9v+tZ0l1rBDD4q
-         uFq1aGp5tjKnZz6Y35g+HnfnZy+mTbjH8PSTs=
+        bh=0XF9t5trmYV2tU8uP1V1uGs3giS+nQ6cAeAndNsOA6c=;
+        b=XKecxZw+9atQoxLFNJghavdtLoqts/seGMjs7GX8Rp7rkZsrcfjdOyhEAZlUpwqxLU
+         deghHUr0FsyExxgrh0eCsMZiyWxu3mWrCG64udsMkLRFNp0SZARLPLbt0KOX7Z2jzpcm
+         1YxOK595hbZ7HGAJOqlG0aaExxx1oQLGlgnBo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697752225; x=1698357025;
+        d=1e100.net; s=20230601; t=1697752262; x=1698357062;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NvYs4y8luRIIMWCMTq8xHgd9BsFfOMy25z0twVyGFoo=;
-        b=kix4kI+Soln2gh2JKNhW2dUhUty0lFZThTNV6wpu2xG1JrGJ0Ij7n7pnjeHq3I8/OU
-         hr9Ny9b7S33gqxWa8zqGoJ8aGz6XcnAbCdplofMuXXLmpQva9nyVTjn5UHfkxCzKSO9n
-         JwLj1qpzQrT1UWQiD2FmkC5D2an2z8/Po2CR0gTdY3qI2vo7YFcy7y/mnPVK6GJ3v42/
-         P4oSjeX7qfNlGtZm/r6fPQY2sou7dYFZ/3d1YGRErEubPQor2BuMnXoPUxHF0TW9zSAz
-         VeaSyXnyCC1agEfOaV/zFbtDGtPeBJTPezOgwp7LxtuxCrTOWS208mue0t9RaEja5SoY
-         nVIA==
-X-Gm-Message-State: AOJu0Yy88oGFOoEDgViVTboCOci/Nlo4j5vvc7jlSXvZFA9pkjZTTy3Q
-	IdWwWbea/cfrJv2gjSyzVH7WwPZ12LmpgS91FT1WAQ==
-X-Google-Smtp-Source: AGHT+IG3ssJDUgtJ7p8dnwQEJ0dYkgei2bwzW1cimawUDmAfevdGGIRyFPTq5eT2oFwMjXVvQlqyCg==
-X-Received: by 2002:a17:907:784:b0:9be:23a0:68b7 with SMTP id xd4-20020a170907078400b009be23a068b7mr2338036ejb.73.1697752225704;
-        Thu, 19 Oct 2023 14:50:25 -0700 (PDT)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
-        by smtp.gmail.com with ESMTPSA id n27-20020a170906119b00b009929d998abcsm223866eja.209.2023.10.19.14.50.24
+        bh=0XF9t5trmYV2tU8uP1V1uGs3giS+nQ6cAeAndNsOA6c=;
+        b=Kc8T/uMt2W/w8+SWzTOzk8NQj1TQ8b9FV4k/0HotT9SHieBP9jGqrRj6OfN2pnkzWU
+         fb8lfQ2kNpsYh54oJCHE61vVESmZfJIgaum9jVQC4toS0tYIColAH/4FoERHmvzxXvRG
+         RJTF18jlupkvIutJKl4YksUhO8Dkb7Rv/Jby0nz/GqZq8z2/k3bEzGcdLuHME5/ZtNiX
+         RQd0gf0pWibZqSNraR8UZI5nQn9xIlI7M7DsCjBBiXNXCP7zsWpNAua1DjaEQ0Szz1G6
+         sP8veKT0mXq2X/g+1539Lwc2xy3/EDmbE1R4GxytLowhDTTWNo6BtOJ960u1z1d1Ywn6
+         Ybyg==
+X-Gm-Message-State: AOJu0YzH27wp5b0jSoa0JKn5Ghw1mxfan+/RM3wrqhuoMiPnAMESKUom
+	ECeYu2lt96FzqvnSbaFD/v4J2WeffD/IzngxltjAzgP8
+X-Google-Smtp-Source: AGHT+IGz05D4iQE1h/7rACYkh85/mSwL0Lh+uJ/uJrZ4rokTA+Mot6tgjLZDDO57tQtp6Gc9cK1hyg==
+X-Received: by 2002:a17:907:3f10:b0:9c0:1d65:68d9 with SMTP id hq16-20020a1709073f1000b009c01d6568d9mr3058406ejc.7.1697752262323;
+        Thu, 19 Oct 2023 14:51:02 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com. [209.85.208.45])
+        by smtp.gmail.com with ESMTPSA id c25-20020a170906695900b009ae3d711fd9sm240260ejs.69.2023.10.19.14.51.01
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 14:50:25 -0700 (PDT)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40662119cd0so11385e9.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:50:24 -0700 (PDT)
-X-Received: by 2002:a05:600c:3b1d:b0:3f7:3e85:36a with SMTP id
- m29-20020a05600c3b1d00b003f73e85036amr31430wms.7.1697752224208; Thu, 19 Oct
- 2023 14:50:24 -0700 (PDT)
+        Thu, 19 Oct 2023 14:51:01 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-53eeb28e8e5so1633a12.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:01 -0700 (PDT)
+X-Received: by 2002:a50:8d59:0:b0:53e:7ad7:6d47 with SMTP id
+ t25-20020a508d59000000b0053e7ad76d47mr25591edt.5.1697752261284; Thu, 19 Oct
+ 2023 14:51:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231013091844.804310-1-yangcong5@huaqin.corp-partner.google.com>
- <20231013091844.804310-3-yangcong5@huaqin.corp-partner.google.com> <CAD=FV=UVP22ANJD5xEB6MRHCDjXN6SZhQWQshPxwhi51YRkEjQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=UVP22ANJD5xEB6MRHCDjXN6SZhQWQshPxwhi51YRkEjQ@mail.gmail.com>
+References: <20231013091844.804310-1-yangcong5@huaqin.corp-partner.google.com> <20231013091844.804310-4-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20231013091844.804310-4-yangcong5@huaqin.corp-partner.google.com>
 From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 19 Oct 2023 14:50:12 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UV_yX=wBDMY1LhENfMYSbcZ=8xiCnQ6P3NXWdCHbn+zw@mail.gmail.com>
-Message-ID: <CAD=FV=UV_yX=wBDMY1LhENfMYSbcZ=8xiCnQ6P3NXWdCHbn+zw@mail.gmail.com>
-Subject: Re: [v4 2/3] drm/panel: ili9882t: Avoid blurred screen from fast sleep
+Date: Thu, 19 Oct 2023 14:50:49 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U8fDO7q3k8DmXHPnX0XrryzY1-zcuU6N1ZmDo=O3anLw@mail.gmail.com>
+Message-ID: <CAD=FV=U8fDO7q3k8DmXHPnX0XrryzY1-zcuU6N1ZmDo=O3anLw@mail.gmail.com>
+Subject: Re: [v4 3/3] arm64: defconfig: Enable ILITEK_ILI9882T panel
 To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
 	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
@@ -84,52 +83,22 @@ Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi
 
-On Fri, Oct 13, 2023 at 2:43=E2=80=AFPM Doug Anderson <dianders@google.com>=
- wrote:
+On Fri, Oct 13, 2023 at 2:19=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
 >
-> Hi,
->
-> On Fri, Oct 13, 2023 at 2:19=E2=80=AFAM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > At present, we have found that there may be a problem of blurred
-> > screen during fast sleep/resume. The direct cause of the blurred
-> > screen is that the IC does not receive 0x28/0x10. Because of the
-> > particularity of the IC, before the panel enters sleep hid must
-> > stop scanning, as i2c_hid_core_suspend before ili9882t_disable.
-> > If move the ili9882t_enter_sleep_mode function to ili9882t_unprepare,
-> > touch reset will pull low before panel entersleep, which does not meet
-> > the timing requirements.. So in order to solve this problem, the IC
-> > can handle it through the exception mechanism when it cannot receive
-> > 0x28/0x10 command. Handling exceptions requires a reset 50ms delay.
-> > Refer to vendor detailed analysis [1].
-> >
-> > Ilitek vendor also suggested switching the page before entering sleep t=
-o
-> > avoid panel IC not receiving 0x28/0x10 command.
-> >
-> > Note: 0x28 is display off, 0x10 is sleep in.
-> >
-> > [1]: https://github.com/ILITEK-LoganLin/Document/tree/main/ILITEK_Power=
-_Sequence
-> >
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > ---
-> >  drivers/gpu/drm/panel/panel-ilitek-ili9882t.c | 22 ++++++++++++++++++-
-> >  1 file changed, 21 insertions(+), 1 deletion(-)
->
-> As talked about in response to the previous version [1], we can work
-> to see if we can improve the sequencing. However, for now this seems
-> fine.
+> DRM_PANEL_ILITEK_ILI9882T is being split out from
+> DRM_PANEL_BOE_TV101WUM_NL6. Since the arm64 defconfig had the BOE
+> panel driver enabled, let's also enable the Ilitek driver.
 >
 > Reviewed-by: Douglas Anderson <dianders@chromium.org>
->
-> [1] https://lore.kernel.org/r/CAD=3DFV=3DW_LT9mPYKjaKP3OvUDeNpsZxkhVN9NP_=
-hQ+Es6Fe3dVw@mail.gmail.com
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 
 Pushed to drm-misc-next:
 
-5820a1932ce8 drm/panel: ili9882t: Avoid blurred screen from fast sleep
+c2635c0ec8b4 arm64: defconfig: Enable ILITEK_ILI9882T panel
 
