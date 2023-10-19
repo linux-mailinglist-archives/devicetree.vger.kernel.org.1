@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5E77CF40C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:27:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CEBD7CF422
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E501DB20D81
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:27:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C533C281EEF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A239A171D3;
-	Thu, 19 Oct 2023 09:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8141772D;
+	Thu, 19 Oct 2023 09:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gID3zvNb"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fGHHpUGC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EFB171C7
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:27:47 +0000 (UTC)
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B417A98
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:27:45 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso13527146a12.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:27:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4664171C7
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:36:05 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5072CB8
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:36:02 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c506d1798eso16731741fa.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:36:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697707664; x=1698312464; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697708160; x=1698312960; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GDIPDxRfymMUryd6JQm5BlwZrAikeNXoTsdv1H/0wTQ=;
-        b=gID3zvNbLnm9XvEM52UoMnuEWbNF7L2yPdkqQ5VrKx0CTs2fgXaNfGoqMfxNBazBYU
-         HFRcCiDwCQyuo//s0xh71pWeYbbGsU7tzRaKeTY9l7caDeV97bAag2ERFi5tTrYU+gq4
-         Ya9YQhHTWzzih6BbQyQ1eaPcr+vvYcj/RDB8PT3TLAttTMtdPPommUrdkpwz1LaBirvK
-         VSA5odIxf2ps4GuUdTkJYUvslHh0LoE15Uf7lNlROADpJHADhM9G4VBrzksDQHVBxpqJ
-         8Ty54KtDkvBnj0ORmISln2caMJeVUw4tob1V+3GGaXnFG7EQtpF8sbNqMiIgxicLMohL
-         70bg==
+        bh=ZXtOjy9+9/ljOELmDfLKz1lWgHdhVIaF8pXBW5zYs/s=;
+        b=fGHHpUGCavFnoE3Sm4ehaIlkegTwdbsvhCalmbslRLok8hdjljMM9BE4ccgVZYhuXi
+         Rt25cofgf0XYhFLpsJIEeKfHKvg6kEs/oj24TIAPA8mfwA489gaiXo36Zvw/ReUwgCzQ
+         Fou0la4IOQJ+K5ikPIhuwTxFRsdLaAHODZKcxdhU47Hii4YWHgAgMgQq0AYCgjRJvHKP
+         bDO2cq9Zv/tdVlk1L0sml6fKa0q0kIAI226MsxGeLiP0V0pTpTsYRGAjF+/jHOh4reUs
+         nJ4zSEDc1mYCGDqSSIaNC9cN2FtvAP2U3X6AV7orjHOuowKcLTS5FWPiov2qGM/yyvom
+         c+6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697707664; x=1698312464;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697708160; x=1698312960;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GDIPDxRfymMUryd6JQm5BlwZrAikeNXoTsdv1H/0wTQ=;
-        b=btpr5DsTsRoMornKqwWQVp7f7eGPqfh5jeKY/JHM7BG9u2UpJbhC/kb/qnBjU4fWb/
-         T6d+BW6AeDBjir1A+uQ/ktHHrP2rlLK9HRQUIhIKuYufnCAWQ3veAZtB4EiPHgGPumTv
-         Oabk3w55x/pc7XR5vL6L+sj9mTz9HCPuN2wGH+ZFshnqjxAXrnWhIce/zPzacjTPAKPj
-         WI2VtrKpkdYDegAWlhyAfNKGKx7BtCvNsMEtVl1847px0Rl4RYf06OEBBTT62sQTwbws
-         /ndUuraCfQHZkhx/GtAZ590Rv5gjyvEgJK3HQW1ze/+CmMOTHtEJD8n7iG/1362QK7gl
-         j6fw==
-X-Gm-Message-State: AOJu0YzKJ4I/EiaKvrFyjFj6rm1xmnHMMThZCtCGwN9kf7hDO+o7JStk
-	zKdjW2dg+HN6P+PFSD/pyj1aJQ==
-X-Google-Smtp-Source: AGHT+IGckBf6eYw0LmFo5R2wnv7V9VgbA7jJ7GGaKWGc9ciQq6IGYZe9/DUFEuWfZ1I8HhIZuPe68A==
-X-Received: by 2002:a17:907:31c6:b0:9bf:f20:8772 with SMTP id xf6-20020a17090731c600b009bf0f208772mr1431351ejb.26.1697707664281;
-        Thu, 19 Oct 2023 02:27:44 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id l24-20020a170906231800b009c764341f74sm94223eja.71.2023.10.19.02.27.42
+        bh=ZXtOjy9+9/ljOELmDfLKz1lWgHdhVIaF8pXBW5zYs/s=;
+        b=w0q3DUHLAOlLqXkqYxZWeTeBK5UtPEVtXgZrP8na9xREZAsyIRkW1iNkKkHUk+CS6f
+         nPj0sOefjPIzeriIiXx/uRAd7uZxCEBWI6JwYUNdLjmpT1GxAu7GZ9O/uhrSi/JooPQl
+         Vt49DZj6W+9hV3fG8T791SdkO99KXmTi9s5l7p6+U+neX6Xof7EbZxgTVtDIOAzDqxh2
+         cZ9SeTO6zsUClAVN4mmARtDI4AFQAeN8P86tEuzHtDqI/PXXi+v2aDvNwzwLaN2Fnk1D
+         i9x7HwOCK/y1Jc/3VLBNrvONgbw3okeIffCvZSBztWD8Mx9la/pKEeuaIpIVeET9aPUj
+         StYA==
+X-Gm-Message-State: AOJu0Yyv7tHil2ZF29Kf7NNiNMjIuf3vy+IXFjVwPjMK+EAgjaBvxciN
+	7D/dqTNwrVSLsRPBFnJesqLgpA==
+X-Google-Smtp-Source: AGHT+IHnVJ8IiqADjeQ3LxKx1Ukua4jK0Ptqq3ZvF/WqcvhbLHTG8YG8di0DRwfklBmQFqYLZG0FEA==
+X-Received: by 2002:a2e:8909:0:b0:2c5:d49:ee9f with SMTP id d9-20020a2e8909000000b002c50d49ee9fmr1049022lji.1.1697708160439;
+        Thu, 19 Oct 2023 02:36:00 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:6933:1fe3:b858:3dde? ([2a01:e0a:999:a3a0:6933:1fe3:b858:3dde])
+        by smtp.gmail.com with ESMTPSA id g11-20020a05600c310b00b003fe1fe56202sm4024816wmo.33.2023.10.19.02.35.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 02:27:42 -0700 (PDT)
-Message-ID: <1fa867b2-3930-4ff3-90cd-022d855036c7@linaro.org>
-Date: Thu, 19 Oct 2023 11:27:41 +0200
+        Thu, 19 Oct 2023 02:35:59 -0700 (PDT)
+Message-ID: <7626f978-e9ea-4f8f-b814-aeac02bd3712@rivosinc.com>
+Date: Thu, 19 Oct 2023 11:35:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,109 +67,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/5] arm64: zynqmp: Add ZynqnMP nvmem nodes
+Subject: Re: [PATCH v2 05/19] riscv: add ISA extension parsing for vector
+ crypto extensions
 Content-Language: en-US
-To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
- srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, praveent@amd.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-References: <20231019060651.23341-1-praveen.teja.kundanala@amd.com>
- <20231019060651.23341-4-praveen.teja.kundanala@amd.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231019060651.23341-4-praveen.teja.kundanala@amd.com>
+To: Evan Green <evan@rivosinc.com>
+Cc: Jerry Shih <jerry.shih@sifive.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+ Andrew Jones <ajones@ventanamicro.com>, Conor Dooley <conor@kernel.org>,
+ Samuel Ortiz <sameo@rivosinc.com>
+References: <20231017131456.2053396-1-cleger@rivosinc.com>
+ <20231017131456.2053396-6-cleger@rivosinc.com>
+ <DA8B4610-D514-4733-B875-C247FFCCC7AA@sifive.com>
+ <af785f0f-9de7-4548-9cdb-f392cde1cc2b@rivosinc.com>
+ <CALs-HstEBt-ntCcETa9YwS6On3nGyoEc2p7R-gaBLG9+aFJL5w@mail.gmail.com>
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <CALs-HstEBt-ntCcETa9YwS6On3nGyoEc2p7R-gaBLG9+aFJL5w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/10/2023 08:06, Praveen Teja Kundanala wrote:
-> Add nvmem DT nodes for ZynqMP SOC
+
+
+On 18/10/2023 19:26, Evan Green wrote:
+> On Wed, Oct 18, 2023 at 5:53 AM Clément Léger <cleger@rivosinc.com> wrote:
+>>
+>>
+>>
+>> On 18/10/2023 03:45, Jerry Shih wrote:
+>>> On Oct 17, 2023, at 21:14, Clément Léger <cleger@rivosinc.com> wrote:
+>>>> @@ -221,6 +261,22 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>>>>      __RISCV_ISA_EXT_DATA(zkt, RISCV_ISA_EXT_ZKT),
+>>>>      __RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
+>>>>      __RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
+>>>> +    __RISCV_ISA_EXT_DATA(zvbb, RISCV_ISA_EXT_ZVBB),
+>>>> +    __RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
+>>>> +    __RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
+>>>
+>>> The `Zvkb` is the subset of `Zvbb`[1]. So, the `Zvkb` should be bundled with `Zvbb`.
+>>
+>> Hi Jerry,
+>>
+>> Thanks for catching this, I think some other extensions will fall in
+>> this category as well then (Zvknha/Zvknhb). I will verify that.
 > 
-> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
-> ---
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 59 +++++++++++++++++++++++++-
->  1 file changed, 57 insertions(+), 2 deletions(-)
+> The bundling mechanism works well when an extension is a pure lasso
+> around other extensions. We'd have to tweak that code if we wanted to
+> support cases like this, where the extension is a superset of others,
+> but also contains loose change not present anywhere else (and
+> therefore also needs to stand as a separate bit).
+
+For Zvbb and Zvknhb, I used the following code:
+
+static const unsigned int riscv_zvbb_bundled_exts[] = {
+	RISCV_ISA_EXT_ZVKB,
+	RISCV_ISA_EXT_ZVBB
+};
+
+static const unsigned int riscv_zvknhb_bundled_exts[] = {
+	RISCV_ISA_EXT_ZVKNHA,
+	RISCV_ISA_EXT_ZVKNHB
+};
+
+Which correctly results in both extension (superset + base set) being
+enabled when only one is set. Is there something that I'm missing ?
+
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index b61fc99cd911..b7433e6b9d6c 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -194,14 +194,69 @@ zynqmp_power: zynqmp-power {
->  				mbox-names = "tx", "rx";
->  			};
->  
-> -			nvmem_firmware {
-> +			nvmem-firmware {
+> IMO, decomposing "pure" bundles makes sense since otherwise usermode
+> would have to query multiple distinct bitmaps that meant the same
+> thing (eg check the Zk bit, or maybe check the Zkn/Zkr/Zkt bits, or
+> maybe check the Zbkb/Zbkc... bits, and they're all equivalent). But
+> when an extension is a superset that also contains loose change, there
+> really aren't two equivalent bitmasks, each bit adds something new.
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Agreed but if a system only report ZVBB for instance and the user wants
+ZVKB, then it is clear that ZVKB should be reported as well I guess. So
+in the end, it works much like "bundle" extension, just that the bundle
+is actually a "real" ISA extension by itself.
 
+Clément
 
->  				compatible = "xlnx,zynqmp-nvmem-fw";
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
->  				#address-cells = <1>;
->  				#size-cells = <1>;
->  
-> -				soc_revision: soc_revision@0 {
-> +				soc_revision: soc-revision@0 {
->  					reg = <0x0 0x4>;
->  				};
-
-Wasn't this fixed already by Michal?
-
-
-Best regards,
-Krzysztof
-
+> 
+> There's an argument to be made for still turning on the containing
+> extensions to cover for silly ISA strings (eg ISA strings that
+> advertise the superset but fail to advertise the containing
+> extensions). We can decide if we want to work that hard to cover
+> hypothetical broken ISA strings now, or wait until they show up.
+> Personally I would wait until something broken shows up. But others
+> may feel differently.
+> 
+> -Evan
 
