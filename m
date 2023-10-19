@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CEBD7CF422
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:36:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2407CF44F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:47:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C533C281EEF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:36:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEC5C1C20BB4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8141772D;
-	Thu, 19 Oct 2023 09:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487DE171DE;
+	Thu, 19 Oct 2023 09:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fGHHpUGC"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="HxG9jh2Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4664171C7
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:36:05 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5072CB8
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:36:02 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c506d1798eso16731741fa.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:36:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97FDD17733
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:46:58 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F1012F
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:46:54 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4053e6e8ca7so23464445e9.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:46:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697708160; x=1698312960; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697708813; x=1698313613; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZXtOjy9+9/ljOELmDfLKz1lWgHdhVIaF8pXBW5zYs/s=;
-        b=fGHHpUGCavFnoE3Sm4ehaIlkegTwdbsvhCalmbslRLok8hdjljMM9BE4ccgVZYhuXi
-         Rt25cofgf0XYhFLpsJIEeKfHKvg6kEs/oj24TIAPA8mfwA489gaiXo36Zvw/ReUwgCzQ
-         Fou0la4IOQJ+K5ikPIhuwTxFRsdLaAHODZKcxdhU47Hii4YWHgAgMgQq0AYCgjRJvHKP
-         bDO2cq9Zv/tdVlk1L0sml6fKa0q0kIAI226MsxGeLiP0V0pTpTsYRGAjF+/jHOh4reUs
-         nJ4zSEDc1mYCGDqSSIaNC9cN2FtvAP2U3X6AV7orjHOuowKcLTS5FWPiov2qGM/yyvom
-         c+6g==
+        bh=8gSJI0J4GVtq5z4H+Knjyf89xMlTd2iwihqRslO1XxI=;
+        b=HxG9jh2YSbKcrYpvYPgdTAzTrkF7JRmMMryd7TPOvEH7gNU6VZ2fwEcZSguRMNKXNL
+         Mc4TsHhgYllcUdLUH7fKsPK52cBe/wfg0PCeFdPgcaNGnUdAKtYwa6DaHdtX5JZ4DBXA
+         E14nLlG8K/nthYjtGYJY6xxFaJpKnfDqVB8W70hfj1L1RgtDjQhZzBEojX4lHyXqBaCv
+         gPNFTl1mk6S7drqYZ/G7uyNn6aw/MofWF5ZEzUkk/y6imTje4++0qZETnFhxEg/GR5zG
+         2lbk4fn0NnN2j0y6qnGJtyaj9tPeWBS6NYKYS5v2GsY/hEwtlwVUNdxhWXAd7YafbLy8
+         8DAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697708160; x=1698312960;
+        d=1e100.net; s=20230601; t=1697708813; x=1698313613;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZXtOjy9+9/ljOELmDfLKz1lWgHdhVIaF8pXBW5zYs/s=;
-        b=w0q3DUHLAOlLqXkqYxZWeTeBK5UtPEVtXgZrP8na9xREZAsyIRkW1iNkKkHUk+CS6f
-         nPj0sOefjPIzeriIiXx/uRAd7uZxCEBWI6JwYUNdLjmpT1GxAu7GZ9O/uhrSi/JooPQl
-         Vt49DZj6W+9hV3fG8T791SdkO99KXmTi9s5l7p6+U+neX6Xof7EbZxgTVtDIOAzDqxh2
-         cZ9SeTO6zsUClAVN4mmARtDI4AFQAeN8P86tEuzHtDqI/PXXi+v2aDvNwzwLaN2Fnk1D
-         i9x7HwOCK/y1Jc/3VLBNrvONgbw3okeIffCvZSBztWD8Mx9la/pKEeuaIpIVeET9aPUj
-         StYA==
-X-Gm-Message-State: AOJu0Yyv7tHil2ZF29Kf7NNiNMjIuf3vy+IXFjVwPjMK+EAgjaBvxciN
-	7D/dqTNwrVSLsRPBFnJesqLgpA==
-X-Google-Smtp-Source: AGHT+IHnVJ8IiqADjeQ3LxKx1Ukua4jK0Ptqq3ZvF/WqcvhbLHTG8YG8di0DRwfklBmQFqYLZG0FEA==
-X-Received: by 2002:a2e:8909:0:b0:2c5:d49:ee9f with SMTP id d9-20020a2e8909000000b002c50d49ee9fmr1049022lji.1.1697708160439;
-        Thu, 19 Oct 2023 02:36:00 -0700 (PDT)
+        bh=8gSJI0J4GVtq5z4H+Knjyf89xMlTd2iwihqRslO1XxI=;
+        b=qcFLdnBnx5uu5/kS4z+3D9sy4j19xza+l3/YNADEHnxGpnsSiBeN7uaBCgFvKqk+bY
+         Imawjkh3D+2ANlj6s1Gq4uz2ddIiWDzigDPpayFhzW7QdQwQCNdvGZ8uvlKQf7zb2xV1
+         YKIxaAPF0yZ2X+witlQlTqQBurZNCgy+p5h8UG1VmXqudbLtef7IEtxqEE+bt4pt/mFf
+         3Vzk06PGCkZ8ClRIJLWl1898WESTxOO7ZOw0Wzg3/T/nStWkM+Gy6h+7omJVmHzEi9K2
+         Yr+DH7NwZnv4edoOSpG5cdRFlJJAAEq4b8pWKWzNft+a5NFe8FHr4OlY1CAcjGTYfCCw
+         Ki1g==
+X-Gm-Message-State: AOJu0YwGBzHdkjGBXxxfYi2kVDmlPRRmYM5J83LEsHTjTPxg1MIllhdL
+	wvqHNOrhpwCBOGNyXRrfyzXQnA==
+X-Google-Smtp-Source: AGHT+IEp9cwDS7FugsmOGBik6CpcSD683Pjyk9iGSH5JgL5wJaPC9ldFPHVkXXRlgk5VZqa1+0FRyg==
+X-Received: by 2002:a5d:5956:0:b0:32d:d8ea:47ac with SMTP id e22-20020a5d5956000000b0032dd8ea47acmr1140369wri.0.1697708812764;
+        Thu, 19 Oct 2023 02:46:52 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:999:a3a0:6933:1fe3:b858:3dde? ([2a01:e0a:999:a3a0:6933:1fe3:b858:3dde])
-        by smtp.gmail.com with ESMTPSA id g11-20020a05600c310b00b003fe1fe56202sm4024816wmo.33.2023.10.19.02.35.59
+        by smtp.gmail.com with ESMTPSA id z3-20020adfe543000000b0031f82743e25sm4053835wrm.67.2023.10.19.02.46.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 02:35:59 -0700 (PDT)
-Message-ID: <7626f978-e9ea-4f8f-b814-aeac02bd3712@rivosinc.com>
-Date: Thu, 19 Oct 2023 11:35:59 +0200
+        Thu, 19 Oct 2023 02:46:51 -0700 (PDT)
+Message-ID: <0b2cbc89-7892-4c43-898c-03757eaaf3b7@rivosinc.com>
+Date: Thu, 19 Oct 2023 11:46:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,96 +67,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/19] riscv: add ISA extension parsing for vector
- crypto extensions
+Subject: Re: [PATCH v2 01/19] riscv: hwprobe: factorize hwprobe ISA extension
+ reporting
 Content-Language: en-US
-To: Evan Green <evan@rivosinc.com>
-Cc: Jerry Shih <jerry.shih@sifive.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+To: Evan Green <evan@rivosinc.com>, Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Palmer Dabbelt <palmer@rivosinc.com>,
  Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
- Andrew Jones <ajones@ventanamicro.com>, Conor Dooley <conor@kernel.org>,
- Samuel Ortiz <sameo@rivosinc.com>
+ Andrew Jones <ajones@ventanamicro.com>, Samuel Ortiz <sameo@rivosinc.com>
 References: <20231017131456.2053396-1-cleger@rivosinc.com>
- <20231017131456.2053396-6-cleger@rivosinc.com>
- <DA8B4610-D514-4733-B875-C247FFCCC7AA@sifive.com>
- <af785f0f-9de7-4548-9cdb-f392cde1cc2b@rivosinc.com>
- <CALs-HstEBt-ntCcETa9YwS6On3nGyoEc2p7R-gaBLG9+aFJL5w@mail.gmail.com>
+ <20231017131456.2053396-2-cleger@rivosinc.com>
+ <CALs-HssL=wNwj9nRuZwpZhy1CB9p9-X=OqgwBw9zvgA7hA4fEg@mail.gmail.com>
+ <20231018-scrap-bankable-a0f321d97a46@spud>
+ <20231018-flagpole-footpad-07a6228485f3@spud>
+ <CALs-HsteDO0PvAKKQje7wU0f4z8w2V3f7WiHh5+LvQeVaSua1w@mail.gmail.com>
 From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <CALs-HstEBt-ntCcETa9YwS6On3nGyoEc2p7R-gaBLG9+aFJL5w@mail.gmail.com>
+In-Reply-To: <CALs-HsteDO0PvAKKQje7wU0f4z8w2V3f7WiHh5+LvQeVaSua1w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 
 
-On 18/10/2023 19:26, Evan Green wrote:
-> On Wed, Oct 18, 2023 at 5:53 AM Clément Léger <cleger@rivosinc.com> wrote:
+On 18/10/2023 19:45, Evan Green wrote:
+> On Wed, Oct 18, 2023 at 10:37 AM Conor Dooley <conor@kernel.org> wrote:
 >>
->>
->>
->> On 18/10/2023 03:45, Jerry Shih wrote:
->>> On Oct 17, 2023, at 21:14, Clément Léger <cleger@rivosinc.com> wrote:
->>>> @@ -221,6 +261,22 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->>>>      __RISCV_ISA_EXT_DATA(zkt, RISCV_ISA_EXT_ZKT),
->>>>      __RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
->>>>      __RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
->>>> +    __RISCV_ISA_EXT_DATA(zvbb, RISCV_ISA_EXT_ZVBB),
->>>> +    __RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
->>>> +    __RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
+>> On Wed, Oct 18, 2023 at 06:33:34PM +0100, Conor Dooley wrote:
+>>> On Wed, Oct 18, 2023 at 10:24:15AM -0700, Evan Green wrote:
+>>>> On Tue, Oct 17, 2023 at 6:15 AM Clément Léger <cleger@rivosinc.com> wrote:
+>>>>>
+>>>>> Factorize ISA extension reporting by using a macro rather than
+>>>>> copy/pasting extension names. This will allow adding new extensions more
+>>>>> easily.
+>>>>>
+>>>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>>>>> ---
+>>>>>  arch/riscv/kernel/sys_riscv.c | 32 ++++++++++++++++++--------------
+>>>>>  1 file changed, 18 insertions(+), 14 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
+>>>>> index 473159b5f303..e207874e686e 100644
+>>>>> --- a/arch/riscv/kernel/sys_riscv.c
+>>>>> +++ b/arch/riscv/kernel/sys_riscv.c
+>>>>> @@ -145,20 +145,24 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+>>>>>         for_each_cpu(cpu, cpus) {
+>>>>>                 struct riscv_isainfo *isainfo = &hart_isa[cpu];
+>>>>>
+>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBA))
+>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBA;
+>>>>> -               else
+>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBA;
+>>>>> -
+>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBB))
+>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBB;
+>>>>> -               else
+>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBB;
+>>>>> -
+>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBS))
+>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBS;
+>>>>> -               else
+>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBS;
+>>>>> +#define CHECK_ISA_EXT(__ext)                                                   \
+>>>>> +               do {                                                            \
+>>>>> +                       if (riscv_isa_extension_available(isainfo->isa, __ext)) \
+>>>>> +                               pair->value |= RISCV_HWPROBE_EXT_##__ext;       \
+>>>>> +                       else                                                    \
+>>>>> +                               missing |= RISCV_HWPROBE_EXT_##__ext;           \
+>>>>> +               } while (false)
+>>>>> +
+>>>>> +               /*
+>>>>> +                * Only use CHECK_ISA_EXT() for extensions which can be exposed
+>>>>> +                * to userspace, regardless of the kernel's configuration, as no
+>>>>> +                * other checks, besides presence in the hart_isa bitmap, are
+>>>>> +                * made.
+>>>>
+>>>> This comment alludes to a dangerous trap, but I'm having trouble
+>>>> understanding what it is.
 >>>
->>> The `Zvkb` is the subset of `Zvbb`[1]. So, the `Zvkb` should be bundled with `Zvbb`.
+>>> You cannot, for example, use this for communicating the presence of F or
+>>> D, since they require a config option to be set before their use is
+>>> safe.
 >>
->> Hi Jerry,
->>
->> Thanks for catching this, I think some other extensions will fall in
->> this category as well then (Zvknha/Zvknhb). I will verify that.
+>> Funnily enough, this comment is immediately contradicted by the vector
+>> subset extensions, where these CHECK_ISA_EXT() macros are used wrapped
+>> in has_vector(). The code looks valid to me, since has_vector() contains
+>> the Kconfig check, but does fly in the face of this comment.
 > 
-> The bundling mechanism works well when an extension is a pure lasso
-> around other extensions. We'd have to tweak that code if we wanted to
-> support cases like this, where the extension is a superset of others,
-> but also contains loose change not present anywhere else (and
-> therefore also needs to stand as a separate bit).
-
-For Zvbb and Zvknhb, I used the following code:
-
-static const unsigned int riscv_zvbb_bundled_exts[] = {
-	RISCV_ISA_EXT_ZVKB,
-	RISCV_ISA_EXT_ZVBB
-};
-
-static const unsigned int riscv_zvknhb_bundled_exts[] = {
-	RISCV_ISA_EXT_ZVKNHA,
-	RISCV_ISA_EXT_ZVKNHB
-};
-
-Which correctly results in both extension (superset + base set) being
-enabled when only one is set. Is there something that I'm missing ?
-
 > 
-> IMO, decomposing "pure" bundles makes sense since otherwise usermode
-> would have to query multiple distinct bitmaps that meant the same
-> thing (eg check the Zk bit, or maybe check the Zkn/Zkr/Zkt bits, or
-> maybe check the Zbkb/Zbkc... bits, and they're all equivalent). But
-> when an extension is a superset that also contains loose change, there
-> really aren't two equivalent bitmasks, each bit adds something new.
+> Ohh, got it. The word "can" is doing a lot of heavy lifting in that
+> comment. So maybe something like: "This macro performs little in the
+> way of extension-specific kernel readiness checks. It's assumed other
+> gating factors like required Kconfig settings have already been
+> confirmed to support exposing the given extension to usermode". ...
+> But, you know, make it sparkle.
 
-Agreed but if a system only report ZVBB for instance and the user wants
-ZVKB, then it is clear that ZVKB should be reported as well I guess. So
-in the end, it works much like "bundle" extension, just that the bundle
-is actually a "real" ISA extension by itself.
+Hi Even,
+
+Indeed the comment was a bit misleading, is this more clear ?
+
+/*
+ * Only use CHECK_ISA_EXT() for extensions which are usable by
+ * userspace with respect to the kernel current configuration.
+ * For instance, ISA extensions that uses float operations
+ * should not be exposed when CONFIG_FPU is not set.
+ */
 
 Clément
 
-> 
-> There's an argument to be made for still turning on the containing
-> extensions to cover for silly ISA strings (eg ISA strings that
-> advertise the superset but fail to advertise the containing
-> extensions). We can decide if we want to work that hard to cover
-> hypothetical broken ISA strings now, or wait until they show up.
-> Personally I would wait until something broken shows up. But others
-> may feel differently.
 > 
 > -Evan
 
