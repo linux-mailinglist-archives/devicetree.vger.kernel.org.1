@@ -1,236 +1,118 @@
-Return-Path: <devicetree+bounces-10055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453C77CF7E8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:02:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EE17CFA46
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:03:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE041281FBE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:02:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F901C20C5D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372C31DFE2;
-	Thu, 19 Oct 2023 12:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC07225C3;
+	Thu, 19 Oct 2023 13:03:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lZ4nuCWe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J59Fvaoj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93981DFE0
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:02:27 +0000 (UTC)
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2054.outbound.protection.outlook.com [40.92.103.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3837B198;
-	Thu, 19 Oct 2023 05:02:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G30Monmj6n9ov1cA0xG1FrgI3iKwd8m0MUStIrWzTbJLy4VuWwGwsBCPcblBbiJSeexQ7c2Ko5vqOYfNrwJ4UdLVDqjctl+3PjUnSkqGf10ZQHbcgmAcXeWdVbnQjfmNu1vPV1MlvoJYoq+YZ+OPYKcI871pcQ79cDdUJfr84hZBUxSfnFb5hOPXy+/sobjYVoCb61jwPCMkbMfM0PoT2DEGiJ7Zje44LkPvTUqOhHigZtvUhfEMONzw5FYToisOALptECJukulWu/lANgYwMEBVqZ0s8wZDaDgzO1Pd1SV2X5FGN6ZKys7xhjH7Cg+/WA20jWSSsW9zJEPtmAdLAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F6XOFQJPiLxuy13QHpCKBgOlZ/hyk3g/YfLEhZjDFZE=;
- b=avv7UXsMDneaMDP3MePTUpV74Rj7RiIg0gBsEiC8EPEbHJ+gINuwoABYh5ZH6/cFXHNma3m3J5e+R1LVXSvhkNBP1rTJ12qA0XhE00BTYvv3uSYQetCnn4LDLRY0LpRONrFnEl3p0kAT3DCWpq7ee+51L/loY5JPGDTfLWhDWe2ObZkhEmxkoIKqLKir4D64QOYI9pYVZKMSQT3BXge3EvEXTOkYFyu+3NZM8+UP0Sa2WwBlNBRMM/hzcHn+2BdfGY44IE1ndUmUAb0lnvaWqfg04ty7SMJ9+mkTi7tG8BEzn5c+b7gXZNfsce1TkI1IW1Jw2YIkPVsgReGui6do/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F6XOFQJPiLxuy13QHpCKBgOlZ/hyk3g/YfLEhZjDFZE=;
- b=lZ4nuCWeHfiqIk2hbhk0IQOGC9K1DTUB4tUN2t0rL6M23fVozCzjcMykwE2dL3nluJmy627SUv+HGgRvpreDNL5WIQZnRYUkRY5uHfmx9aJv6IV+CV3TnLqBCZ+esL1HorwjFb6BuX26y6qNBco3Vqhjs+qnl1hu10qn7XsCKzFNYYYQvgFtPL3hd4YjOgxoe+rIfyXN+C+F99y+G8UscQgjB3wP5sDZ47pP+q9y9Hms+eWlyszvpUmTRFr6dhF3ezyxmbufuxqQOFl1TbsityEAEm3/5RkeJ7C/tK2A42QITET6CPJ4CnoTfy1Qc+Ij9oRDB/fCQmEZiEiOp6T4uw==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN2P287MB0739.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:fa::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6907.24; Thu, 19 Oct 2023 12:02:19 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b66:61a1:8ed:cc6a]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b66:61a1:8ed:cc6a%6]) with mapi id 15.20.6907.025; Thu, 19 Oct 2023
- 12:02:19 +0000
-Message-ID:
- <MA0P287MB033232F5C170767F51198EC4FED4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 19 Oct 2023 20:02:16 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] riscv: dts: sophgo: cv18xx: Add gpio devices
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953C1E5F9EAA3699EA1D3DDBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB4953C1E5F9EAA3699EA1D3DDBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [fOxk78Ghb30hptZywXd4ak6Z6A/ZKpOu]
-X-ClientProxiedBy: SI1PR02CA0042.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::17) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <bb58eafb-0271-4f56-8dde-0dac4cbc5c1f@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339DB2033E;
+	Thu, 19 Oct 2023 13:03:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4002181;
+	Thu, 19 Oct 2023 06:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697720588; x=1729256588;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=VgSvxH67qt9LKjm5+c5G2G8wQo6a1gXmEAilB1I2dfg=;
+  b=J59FvaojU1bLb52ZkemRWNSr2TKWEa6heGKHIxtRL7pWr497hF41kZ02
+   zX/nm8+i662p0+nI+A64m9GY28SrghRQhW1TEHFTHir8lrlsBAgOcCnRD
+   mfylpcFwUjdw1lN7iKMDogrbOsBTBXUvC7anSeHyahCWQa7aM8MCmr7bz
+   QJYWs8ra9nkm7LCYNHou7Ued6Ob4JMDHS3Q/ks/ahhleQsuSGwQ3orX5f
+   9dfq7JI8qwNsGo4feX+NJKAfP0HiRJziRrvI0fIXYziRznmTerMtRJI99
+   CLwXU5hO2RU9HQqI18amuJVd995IVSCZihfdt0oIhkA3kIKf6E0PU12KP
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="385115720"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
+   d="scan'208";a="385115720"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 06:01:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="757014468"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
+   d="scan'208";a="757014468"
+Received: from mttran4-mobl2.amr.corp.intel.com (HELO [10.213.160.204]) ([10.213.160.204])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 06:01:45 -0700
+Message-ID: <ec25bb67-6c83-430b-bc79-234c03801250@linux.intel.com>
+Date: Wed, 18 Oct 2023 20:00:00 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN2P287MB0739:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f7fc00d-427d-416d-6482-08dbd09b3e3e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9CH59cMKqDk/I3uyAXGarV99hO/iA7c7pARrxkPCDrdfY37y7Q2OK0Z5jsRqyEh6HZc/O/60ECT6J6r4GSX4y5rFdTWq8+X6htQzhiigrHO7+uiN1gznHVhPSSaKEw6/HWLsPB6txYPaIn8AqDgVtAYQ7+GUSDZZGOfOZaj/PoO8A+sQD5ZzFDY+nhrlAJDgFLXH8yka5183pQRCMpsGkbdJu3WO+VG7CPE/YnDonUQvWEQz8EzqLz9CzRchvcVnVpiRxBA/CejpIbjolV9jz7wtx+AGMhk9LJcfXZQeHldTnJ3GCnjOunDbVIcjqkrg2dp4AxPXNga1pi1HqJafMiudn3yvNeY4MUD22WTc50BUho+EkFUyWeiUuiaNGW24Qb54KRl6FKupYqPnkEKUlh6TmPJuFNWxfI4M3rWoIOztkzOZUvA9uWP4Y6v8wcYvr1Hx8Kd7asgIJl3K0yhejwGDwwDG/5y0lmOJqJqwXkEwA25YBfFMa3mUft4TPxYhxCeslmr10A7z06Oj8BwnreLGvY3OtW5qpMwPkGf0/ERlW75X2S9rszE4rVAlVUzV
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QW81d3JBNnB6VkhrK2F5V292cUNKSkNONXdoalZ3d2FCdmJ3RUZYT3hNUUtV?=
- =?utf-8?B?RXprdHZDU0NrR2NUS25yemxaMUpYSUxvM0JXV0dieXk5Y0RXaUJVTHlQS0Jo?=
- =?utf-8?B?RVo5bmozdzJHNmpEZzNkenhnZzNpdWJYTVpLU2xPVElLWitvU2sydTUyTE1R?=
- =?utf-8?B?anQ2ZVpOdno3WGxEbkVJdFN4SlNQU3lzVVVHNjdlMG9EYTcrUkZEUk9kNGRQ?=
- =?utf-8?B?MzVQVldqajNEcjdOWHJWU0Z0cTdjYXljNS92SkVDWDRta0dka0Noa3oxSnFP?=
- =?utf-8?B?cmhDdmx3T05UTGMxd0ZUU2o5QnQ5UlZEWHVpN01EUjUwK1ZsQWZlME9wbnB0?=
- =?utf-8?B?b0NVQzRla3VVWTFtdlBBM1lnT3VNWmVKMlVpK25DdEhadTlrVFc5dDNWdUtK?=
- =?utf-8?B?ekNBYXd4cm9EdklaZmcxdjRCbE1iTWsrWi9iaEZJTjVDRlRiQXMwaUxqSEF0?=
- =?utf-8?B?N2FJUkR4ZjJaUXFjKzRhZVY3aW54anhmYzB3WUcxWE51WEFGQjY3bnBLNWVO?=
- =?utf-8?B?cFZIdXdSWHdUK0xwa2piQU9jUExZdlJ6bXRlWnFsQ2lERVBKZjNibGlHZEpp?=
- =?utf-8?B?UVlib2FyMzJPWUpmQzRyMmZhWVo1QWtVNVlpKzR3K094R21Bc1FiNGVnLzhF?=
- =?utf-8?B?b1hTZFdsNUF2N2NmdXB2YUhWdHNzSXRIa0tpNllhdUZZMzNOczhkYWxzQmpI?=
- =?utf-8?B?MGhqY1BFVGFXTVRHU05hNEExZlI1QkhjcWhyY3gzYk4rZnZpSXd0Qmo4c1V2?=
- =?utf-8?B?MlR2aG5PTk1LUlk1MDZMSkFSMjRmbktQVDNiaWRrWnFuRmI1RytVSEwydUlp?=
- =?utf-8?B?VENLM2JNRWdTckdPdGNoY0RlY2dDN1hVZk0waUMwRktGeUh4TmxtTldzQm9V?=
- =?utf-8?B?enlQUlgwM3h0Um80S2pIN1VIbHhlUHQzREc3TWFkWCtoREZoVGtNcmgwYW0x?=
- =?utf-8?B?bkVVYVJyTktxa2IzSlNsUitZbmx5eVk5VEczM0p0V09EODlTRC9SdGZLQ01K?=
- =?utf-8?B?dzdhbE84T2hpSlc5bCs1Y0Q4RUFmNWh6akxHOFBFTjJhbWhRaXVGREw1T3cy?=
- =?utf-8?B?U3RiQnhJY1k3R2lXUHQyZEFqNjg0TWVTOEIwTlBMbk1jTTBDZUZWSTJUMTJB?=
- =?utf-8?B?OWlRRjN5L012WEN5UGQyVE9WMlgxUVFoTHRxNEs2citlOEhScWQvSnhxbFIv?=
- =?utf-8?B?eGpJZE5vbGRQZUpBakxTQUFtcWYyNWM2eEZtcW9QVnNkbGxGQU1LTDFOYmM2?=
- =?utf-8?B?M2R1VXNnK1hwaHp4Sjl4MXV6Q2k2RVREZm5yY3ptYWYwNE1ac1RUb2N1SEhQ?=
- =?utf-8?B?Tmk1UXN6WTFYMDRGbTg1dmNjaXdnUXpwcWgrdGJsTnFHSTVyUkQ2YXlXY3pI?=
- =?utf-8?B?THdoNmxubGpCR0VQL1UyYnlESDBFZWt1Nm05UTBlSWE0cjYxekJ1cjJOY2Yy?=
- =?utf-8?B?TzZiRjRQZVR3T0ZpSisxRWZNWjBMRWtPMmhqSUc1Sk43Z1lPVVlndHI0UStD?=
- =?utf-8?B?RytJU0VVZXA3TmcvSG0wa2lRcW5DMFlGNW1rOHFFRGNkaDl1SEovaU1mUERw?=
- =?utf-8?B?VFRTUEFIUmtJQ0FvcGxZaDc0Sm5udmRVTGZjTWdORkhYTDRKZ3pLQ254dWgz?=
- =?utf-8?Q?bLZjoIdNYZ6MKo8iZ++BKoFZOhk++qrr/TZUtA9GhJnY=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f7fc00d-427d-416d-6482-08dbd09b3e3e
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 12:02:18.9966
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0739
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 09/34] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
+ gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+ perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+ Thinh.Nguyen@synopsys.com
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-10-quic_wcheng@quicinc.com>
+ <7aa4ea87-9d1f-400a-bcc5-b56e5b4500c6@linux.intel.com>
+ <c72bcf47-af0b-8819-1c30-06b51358381e@quicinc.com>
+ <2f05708e-3ee8-472e-a24f-6f3eb118133c@linux.intel.com>
+ <fcaa93ba-3ca4-5a18-d3bd-afebe8def327@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <fcaa93ba-3ca4-5a18-d3bd-afebe8def327@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-On 2023/10/19 7:18, Inochi Amaoto wrote:
-> Add common GPIO devices for the CV180x and CV181x soc.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
 
-LGTM.
+>>>>> Specifically, the QC ADSP can support all potential endpoints that are
+>>>>> exposed by the audio data interface.  This includes, feedback
+>>>>> endpoints
+>>>>> (both implicit and explicit) as well as the isochronous (data)
+>>>>> endpoints.
+>>>>
+>>>> implicit feedback means support for capture. This is confusing...
+>>>>
+>>>
+>>> I mean, a USB device can expose a capture path, but as of now, we won't
+>>> enable the offloading to the audio DSP for it.  However, if we're
+>>> executing playback, and device does support implicit feedback, we will
+>>> pass that along to the audio DSP to utilize.
+>>
+>> Not following. Implicit feedback means a capture stream *SHALL* be
+>> started. Are you saying this capture stream is hidden and handled at the
+>> DSP level only? If yes, what prevents you from exposing the capture
+>> stream to userspace as well?
+>>
+>> I must be missing something.
+>>
+> 
+> My understanding is that with implicit feedback endpoints, it allows for
+> another data endpoint in the opposite direction to be utilized as a
+> feedback endpoint (versus having to expose another EP, such as in the
+> case of explicit feedback).  For example, if we are enabling the
+> playback path (and the device does have a capture data ep) then the data
+> ep used for the capture path can be used.
 
-Acked-by: Chen Wang <unicorn_wang@outlook.com>
+That's right, so all the plumbing is enabled for the capture path...
+Making a decision to discard the data is very odd, all the work has
+already been done at lower levels, so why not expose the captured data?
 
-> ---
->   arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 73 ++++++++++++++++++++++++++
->   1 file changed, 73 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> index 55d4bc84faa0..d415cc758def 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> @@ -1,6 +1,7 @@
->   // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->   /*
->    * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
->    */
->
->   #include <dt-bindings/interrupt-controller/irq.h>
-> @@ -53,6 +54,78 @@ soc {
->   		dma-noncoherent;
->   		ranges;
->
-> +		gpio0: gpio@3020000 {
-> +			compatible = "snps,dw-apb-gpio";
-> +			reg = <0x3020000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			porta: gpio-controller@0 {
-> +				compatible = "snps,dw-apb-gpio-port";
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				ngpios = <32>;
-> +				reg = <0>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +				interrupts = <60 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
-> +		gpio1: gpio@3021000 {
-> +			compatible = "snps,dw-apb-gpio";
-> +			reg = <0x3021000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			portb: gpio-controller@0 {
-> +				compatible = "snps,dw-apb-gpio-port";
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				ngpios = <32>;
-> +				reg = <0>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +				interrupts = <61 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
-> +		gpio2: gpio@3022000 {
-> +			compatible = "snps,dw-apb-gpio";
-> +			reg = <0x3022000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			portc: gpio-controller@0 {
-> +				compatible = "snps,dw-apb-gpio-port";
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				ngpios = <32>;
-> +				reg = <0>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +				interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
-> +		gpio3: gpio@3023000 {
-> +			compatible = "snps,dw-apb-gpio";
-> +			reg = <0x3023000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			portd: gpio-controller@0 {
-> +				compatible = "snps,dw-apb-gpio-port";
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				ngpios = <32>;
-> +				reg = <0>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +				interrupts = <63 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
->   		uart0: serial@4140000 {
->   			compatible = "snps,dw-apb-uart";
->   			reg = <0x04140000 0x100>;
-> --
-> 2.42.0
->
 
