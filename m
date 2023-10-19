@@ -1,107 +1,166 @@
-Return-Path: <devicetree+bounces-9846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C011F7CECEA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 02:45:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C89B07CED07
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 02:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1CD21C209C2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 00:45:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28B0B281D07
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 00:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3842138D;
-	Thu, 19 Oct 2023 00:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C2B390;
+	Thu, 19 Oct 2023 00:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yvbehv31"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NrXB02W0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBB638C
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:44:59 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B574124
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:44:57 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40836ea8cbaso16533165e9.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 17:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697676296; x=1698281096; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jqMmbDT+DUxZelBUqzkYFvCgJc6iT9B6fZUcTJM+gGk=;
-        b=yvbehv31tXdJ5/vjKEukVSeLAK7oMUULjkKurcjsDiBcDlcJ3YSbfXVyPqQ5ysPysb
-         TcdgXfXSpZ/GVXtgX7JTqMd2yNzyJ5JUhQcYZuhMddGgFV7kuXhDkKkgkVYFNyVxJ6HV
-         WdmUy/bU11Ep569HcBvcRzwlaaywYMrK3uCxHR6TOy51tze56DiF3/vjS+FnOLOVR5Yq
-         +sI03dr9J6q+J4PJ1IAeNYwXVTJsWvrWqqM8fvBN5ehrGjvOEQ38M4lc77ErEmkQ/jr7
-         3ZT4zO0b67ej4LgGSWE6yvWQtL9VKjXOQcnYk91e0So4J8kJ2JeDJxR9HUPuWQ+LKjFL
-         Tgaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697676296; x=1698281096;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jqMmbDT+DUxZelBUqzkYFvCgJc6iT9B6fZUcTJM+gGk=;
-        b=Ei+OnMqMf3fmdlXmV2eQhMpcyFJ/9lxzsUQopZM9znnywoPsHFpwfD/Al0ATw7cXtZ
-         Qx0l45AgQMjhz0Gv9Kbm+2yHPR+SLzidAOtPheua8QEpZbU8H16OqCQwcYU3pL8jvUjJ
-         Gnnmf33rb//kKH73iBGMOMoZUkFQipPEylBGqOsQ0cKy/45n8demQoMHWoKgsYNaBC2u
-         RRVUoia4Pho9k1XdEv1jXRmWvqwjVj9E1uuXGTPB8C5x/S6DlOEkBuarmErY31ewAmKg
-         +Jqlimk77mhbsde22699PFPsNhPEJdl1JOCsw1xIqh+PY/c3l+8OrcQFTVacY7eem9sQ
-         qwXQ==
-X-Gm-Message-State: AOJu0YwkiwCkt9KvmAByyuUpNZPdL2oEebXaJFltnOZxrJ3OnfynIQyT
-	Dp8JXOI5tis/N4S0pAtLV/UX4g==
-X-Google-Smtp-Source: AGHT+IHUpjP1fIZk/icMCfXuumPUX2ZnGdbVENpHqgXkoRfa/UzehhHFAMC9Rqok2c4BqwR4/sPJMg==
-X-Received: by 2002:a05:600c:35cc:b0:3fa:934c:8356 with SMTP id r12-20020a05600c35cc00b003fa934c8356mr595689wmq.10.1697676295769;
-        Wed, 18 Oct 2023 17:44:55 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:6dcf:7c4b:2bce:3cb2? ([2a05:6e02:1041:c10:6dcf:7c4b:2bce:3cb2])
-        by smtp.googlemail.com with ESMTPSA id fm12-20020a05600c0c0c00b004030e8ff964sm2985879wmb.34.2023.10.18.17.44.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 17:44:55 -0700 (PDT)
-Message-ID: <608614fa-20f8-472c-8e38-916ff7d80e4d@linaro.org>
-Date: Thu, 19 Oct 2023 02:44:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63BE738C;
+	Thu, 19 Oct 2023 00:59:37 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75E2113;
+	Wed, 18 Oct 2023 17:59:35 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39J0DwaD031587;
+	Thu, 19 Oct 2023 00:59:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=WHUvugpr6KLorkTcxKPRCIoYWT6kKL93ofu2ItgFQks=;
+ b=NrXB02W0ztp9xUNXaiBgX2Mm+irAuZaa8/86sekmPoP7PyyKgAJHSQl4jc8z2PBPxaNc
+ WdK/N/8aFLrSoji40fKBG6pan7yhVi9bj/G9bm13qgcledi1oLh+Yinffz3bClS3o3Fn
+ JbztouNhI5xYHZAwGH1AQUgXL9nxNot/2rPehkzmY5gIDJjJjV5MsHIpMd9CPwytmFRe
+ F2ZjYJyOeMWDVMw+7i49wiL/+WVkKNTonTN/gNNRCeBUKC8vT0huYRRXBKjyN3k/uL70
+ 0ZmL+mzv3sGYkXfHKOBc5kcdwYvu0wTX4QuZuwvzIWChvuFoYhZKvMcuWmDeHxkjPYnG rQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tt9kjt9be-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 00:59:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39J0xHfL013726
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 00:59:17 GMT
+Received: from [10.110.123.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 17:59:16 -0700
+Message-ID: <9deea5fb-f94b-a525-59f5-4390f9286ed6@quicinc.com>
+Date: Wed, 18 Oct 2023 17:59:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add LVTS support for mt8192
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 27/34] ALSA: usb-audio: qcom: Populate PCM and USB chip
+ information
 Content-Language: en-US
-To: =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- angelogioacchino.delregno@collabora.com, rafael@kernel.org,
- amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dunlap@infradead.org,
- e.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, wenst@chromium.org, ames.lo@mediatek.com,
- rex-bc.chen@mediatek.com, nfraprado@collabora.com, abailon@baylibre.com,
- amergnat@baylibre.com, khilman@baylibre.com
-References: <20231017190545.157282-1-bero@baylibre.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231017190545.157282-1-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-28-quic_wcheng@quicinc.com>
+ <d188fcef-2cc4-43b7-b296-7091e5d1a973@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <d188fcef-2cc4-43b7-b296-7091e5d1a973@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4neIZfdXtQw7b_eEd_Y_2yQC5ED7Bb8q
+X-Proofpoint-GUID: 4neIZfdXtQw7b_eEd_Y_2yQC5ED7Bb8q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-18_19,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 phishscore=0 mlxlogscore=682 spamscore=0 mlxscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190005
 
-On 17/10/2023 21:05, Bernhard Rosenkränzer wrote:
-> Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
-> Also, add Suspend and Resume support to LVTS Driver (all SoCs),
-> and update the documentation that describes the Calibration Data Offsets.
+Hi Pierre,
 
-Applied patches 1,2,3 and 5, letting the patch 4 to go through the 
-Mediatek tree
+On 10/17/2023 3:41 PM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 10/17/23 15:01, Wesley Cheng wrote:
+>> Currently, only the index to the USB SND card array is passed to the USB
+>> backend.  Pass through more information, specifically the USB SND card
+>> number and the number of PCM devices available.  This allows for the DPCM
+>> backend to determine what USB resources are available during situations,
+>> such as USB audio offloading.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   sound/usb/qcom/qc_audio_offload.c | 21 ++++++++++++++++++---
+>>   1 file changed, 18 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
+>> index bd6b84f72c74..ae74098b41f5 100644
+>> --- a/sound/usb/qcom/qc_audio_offload.c
+>> +++ b/sound/usb/qcom/qc_audio_offload.c
+>> @@ -173,6 +173,21 @@ enum usb_qmi_audio_format {
+>>   	USB_QMI_PCM_FORMAT_U32_BE,
+>>   };
+>>   
+>> +static int usb_qmi_get_pcm_num(struct snd_usb_audio *chip, int direction)
+>> +{
+>> +	struct snd_usb_substream *subs = NULL;
+>> +	struct snd_usb_stream *as;
+>> +	int count = 0;
+>> +
+>> +	list_for_each_entry(as, &chip->pcm_list, list) {
+>> +		subs = &as->substream[direction];
+>> +		if (subs->ep_num)
+>> +			count++;
+>> +	}
+>> +
+>> +	return count;
+>> +}
+>> +
+>>   static enum usb_qmi_audio_device_speed_enum_v01
+>>   get_speed_info(enum usb_device_speed udev_speed)
+>>   {
+>> @@ -1592,6 +1607,8 @@ static void qc_usb_audio_offload_probe(struct snd_usb_audio *chip)
+>>   
+>>   	sdev->card_idx = chip->card->number;
+>>   	sdev->chip_idx = chip->index;
+>> +	sdev->num_playback = usb_qmi_get_pcm_num(chip, 0);
+>> +	sdev->num_capture = usb_qmi_get_pcm_num(chip, 1);
+>>   	uadev[chip->card->number].sdev = sdev;
+>>   
+>>   	uaudio_qdev->last_card_num = chip->card->number;
+>> @@ -1706,10 +1723,8 @@ static void qc_usb_audio_offload_disconnect(struct snd_usb_audio *chip)
+>>   	mutex_unlock(&chip->mutex);
+>>   
+>>   	atomic_dec(&uaudio_qdev->qdev_in_use);
+>> -	if (!atomic_read(&uaudio_qdev->qdev_in_use)) {
+>> -		snd_soc_usb_disconnect(usb_get_usb_backend(udev));
+> 
+> this also feels like a patch split issue, removing this
+> snd_soc_usb_disconnect() has nothing to do with the "populate PCM and
+> USB chip information" ?
+> 
+
+Will fix this.
 
 Thanks
-
-   -- Daniel
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Wesley Cheng
 
 
