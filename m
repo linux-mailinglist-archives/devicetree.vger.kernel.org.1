@@ -1,156 +1,186 @@
-Return-Path: <devicetree+bounces-9997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F3B7CF4D9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:13:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838D67CF4EB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE24B281F25
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:13:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AF4FB20CED
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED393179AA;
-	Thu, 19 Oct 2023 10:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757D5179AC;
+	Thu, 19 Oct 2023 10:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ttpn6UU4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DF11798C
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:13:25 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9F8FAB;
-	Thu, 19 Oct 2023 03:13:24 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5a84204e7aeso65014587b3.0;
-        Thu, 19 Oct 2023 03:13:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697710404; x=1698315204;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ueVyERLupOWZhKoj+SNssW24wTSLCgkYTKYz8h4y1RM=;
-        b=YnOCKMQiD9C/Sel+jbYLet+aQK3GhU58LTfeboSleJeiAbNaZEkgiA6UdkBGsVQwLh
-         ZU4qwGMxaJF2SvjRMl+8nzcZV9uLzqn2wLwvXaxmky/Mi0arvySpkeIFjwvZeGzcCEYL
-         HxkPWhxNJTSVwSycZDpb8feVHE1AIXHQbZirM4F+OiVTYU6v1jQayLvMvQC0OJ5HkBEc
-         5KHsnHI2+Ow7HwJ0s8RTq27XIFrauSi2tvMVm8qWEyF6p6Es8zPTWtOm086K+cny5pDv
-         oxHEAvsAT7W75bfQRlz4o8zZMAgQaRsRog1wwn2gv2jdztocVggKdlSgBzdSuVWU8KOv
-         6JMg==
-X-Gm-Message-State: AOJu0YxuMQ0vvLWRC5Fp1mb2NRUeRJMqx0qPjC5cMR84jBYbrs3OclmM
-	ewLB1JGIuYFM4w69q7p8AFFE8cvhyhpUSw==
-X-Google-Smtp-Source: AGHT+IG9PLqA1Eo4NcE78tIWBOofiVo6xqgWFcEzka+pJQ8yHbhjef1YhW25nooaN1vznww+fP333g==
-X-Received: by 2002:a05:690c:f0f:b0:5a7:fcae:f3e2 with SMTP id dc15-20020a05690c0f0f00b005a7fcaef3e2mr2516003ywb.43.1697710403897;
-        Thu, 19 Oct 2023 03:13:23 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id i83-20020a819156000000b005a7bf9749c8sm2326246ywg.4.2023.10.19.03.13.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 03:13:23 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5a7c93507d5so93135847b3.2;
-        Thu, 19 Oct 2023 03:13:23 -0700 (PDT)
-X-Received: by 2002:a81:4948:0:b0:5a8:d86b:7469 with SMTP id
- w69-20020a814948000000b005a8d86b7469mr2016094ywa.8.1697710401858; Thu, 19 Oct
- 2023 03:13:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB54A18027
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:17:18 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D7311D;
+	Thu, 19 Oct 2023 03:17:17 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id B35136607322;
+	Thu, 19 Oct 2023 11:17:14 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697710635;
+	bh=0P71wcdmZeNDRgq2k3g+efA5oDtGoggSn0l1TpQZ17k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ttpn6UU4pcVlAK9qmpH2/G52og116jTuzlfzkXrQlp+kr/iFMn+jZ7pj3wdRYK4Uk
+	 DGRUSWSidFaLwUL7IObs7lYi43ktQUdnUwE8/L63vPmpT6TYRg7Z9dlf5AbyGus2fs
+	 abwR9bFieb8jZpsER4FUP1W3sck4RS53F0T2jrobMfN5BY+JAyS/s2kFWN9d5J5t3u
+	 z6KAbfY6K8NNxU11N7LqnGC0T03FhbnfaE0lYNeN2dWW672oOPcpFtgzCqFDdFGmQK
+	 5FDEeeXbRAsIuHfLUOAjhLUbLscwsaa24tySuE1e2ajXuZcBSI5tYd/9QE9TCpqskn
+	 Zqtu4MHWRPdFw==
+Message-ID: <0fd83158-5f7c-4f0b-95ff-5857668ab9e8@collabora.com>
+Date: Thu, 19 Oct 2023 12:17:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230619122212.304962-1-tomi.valkeinen@ideasonboard.com> <20230619122212.304962-6-tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230619122212.304962-6-tomi.valkeinen@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 19 Oct 2023 12:13:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV9aRup14BwD9Do2hpiu=m2tjy14-VwVbSe1ckAbQQ-kw@mail.gmail.com>
-Message-ID: <CAMuHMdV9aRup14BwD9Do2hpiu=m2tjy14-VwVbSe1ckAbQQ-kw@mail.gmail.com>
-Subject: Re: [PATCH v15 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link III Deserializer
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Michael Tretter <m.tretter@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Mike Pagano <mpagano@gentoo.org>, =?UTF-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>, 
-	Marek Vasut <marex@denx.de>, Satish Nagireddy <satish.nagireddy@getcruise.com>, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 15/24] drm/mediatek: Remove ineffectual power
+ management codes
+Content-Language: en-US
+To: =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+ =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+ =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?TmF0aGFuIEx1ICjlkYLmnbHpnJYp?= <Nathan.Lu@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "sean@poorly.run"
+ <sean@poorly.run>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "fshao@chromium.org" <fshao@chromium.org>,
+ "johnson.wang@mediatek.corp-partner.google.com"
+ <johnson.wang@mediatek.corp-partner.google.com>
+References: <20231019055619.19358-1-shawn.sung@mediatek.com>
+ <20231019055619.19358-16-shawn.sung@mediatek.com>
+ <5a059ca0-fcb7-4730-a0d8-29103fb71d54@collabora.com>
+ <2313a4b08f57ab24b48a13a31845eed7e0ab042d.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <2313a4b08f57ab24b48a13a31845eed7e0ab042d.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Tomi,
+Il 19/10/23 11:52, Shawn Sung (宋孝謙) ha scritto:
+> Hi Angelo,
+> 
+> On Thu, 2023-10-19 at 11:07 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 19/10/23 07:56, Hsiao Chien Sung ha scritto:
+>>> Display modules will be powered on when .atomic_enable(),
+>>> there is no need to do it again in mtk_crtc_ddp_hw_init().
+>>> Besides, the DRM devices are created manually when mtk-mmsys
+>>> is probed and there is no power domain linked to it.
+>>>
+>>> Fixes: 119f5173628a ("drm/mediatek: Add DRM Driver for Mediatek SoC
+>>> MT8173.")
+>>>
+>>> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+>>> ---
+>>>    drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 18 +++---------------
+>>>    1 file changed, 3 insertions(+), 15 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+>>> b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+>>> index bc4cc75cca18..c7edd80be428 100644
+>>> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+>>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+>>> @@ -6,7 +6,6 @@
+>>>    #include <linux/clk.h>
+>>>    #include <linux/dma-mapping.h>
+>>>    #include <linux/mailbox_controller.h>
+>>> -#include <linux/pm_runtime.h>
+>>>    #include <linux/soc/mediatek/mtk-cmdq.h>
+>>>    #include <linux/soc/mediatek/mtk-mmsys.h>
+>>>    #include <linux/soc/mediatek/mtk-mutex.h>
+>>> @@ -362,22 +361,16 @@ static int mtk_crtc_ddp_hw_init(struct
+>>> mtk_drm_crtc *mtk_crtc, struct drm_atomic
+>>>    		drm_connector_list_iter_end(&conn_iter);
+>>>    	}
+>>>    
+>>> -	ret = pm_runtime_resume_and_get(crtc->dev->dev);
+>>> -	if (ret < 0) {
+>>> -		DRM_ERROR("Failed to enable power domain: %d\n", ret);
+>>> -		return ret;
+>>> -	}
+>>> -
+>>
+>> Are you really sure that writes to DISP_REG_OVL_xxx and others in
+>> other modules,
+>> called by the .layer_config() callback, can be successfully done on
+>> an unpowered
+>> and/or unclocked module, on all MediaTek SoCs?
+>> This looks a bit odd.
+> 
+> Not sure if I get your point correctly. We removed this PM API because:
+> 
+> 1. mtk_crtc_ddp_hw_init() is called by mtk_drm_crtc_atomic_enable(),
+> and the new inline function mtk_ddp_comp_power_on() is called before hw
+> init, we can make sure the power is on before configuring the hardware.
+> 
+> 2. The device "crtc->dev->dev" here is assigned by the probe function
+> of mtk-mmsys, which will be look like "mediatek-drm.auto.13", and this
+> device is not linked to any power domain.
+> 
 
-On Mon, Jun 19, 2023 at 2:27=E2=80=AFPM Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
-> Add DT bindings for TI DS90UB960 FPD-Link III Deserializer.
->
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Thanks for the clarification. In this case:
 
-Thanks for your patch, which is now commit 313e8b32c6166853 ("media:
-dt-bindings: media: add TI DS90UB960 FPD-Link III Deserializer")
-in v6.6-rc1.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-
-> +  i2c-alias-pool:
-> +    minItems: 1
-> +    maxItems: 32
-> +
-> +  links:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      ti,manual-strobe:
-> +        type: boolean
-> +        description:
-> +          Enable manual strobe position and EQ level
-> +
-> +    patternProperties:
-> +      '^link@[0-3]$':
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          reg:
-> +            description: The link number
-> +            maxItems: 1
-> +
-> +          i2c-alias:
-> +            description:
-> +              The I2C address used for the serializer. Transactions to t=
-his
-> +              address on the I2C bus where the deserializer resides are
-> +              forwarded to the serializer.
-
-make dt_binding_check:
-
-Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml:
-i2c-alias: missing type definition
+>>
+>>>    	ret = mtk_mutex_prepare(mtk_crtc->mutex);
+>>>    	if (ret < 0) {
+>>>    		DRM_ERROR("Failed to enable mutex clock: %d\n", ret);
+>>> -		goto err_pm_runtime_put;
+>>> +		goto error;
+>>>    	}
+>>>    
+>>>    	ret = mtk_crtc_ddp_clk_enable(mtk_crtc);
+>>>    	if (ret < 0) {
+>>>    		DRM_ERROR("Failed to enable component clocks: %d\n",
+>>> ret);
+>>> -		goto err_mutex_unprepare;
+>>> +		goto error;
+>>>    	}
+>>>    
+>>>    	for (i = 0; i < mtk_crtc->ddp_comp_nr - 1; i++) {
+>>> @@ -426,16 +419,13 @@ static int mtk_crtc_ddp_hw_init(struct
+>>> mtk_drm_crtc *mtk_crtc, struct drm_atomic
+>>>    
+>>
+>> ...because you could otherwise just call pm_runtime_put() here,
+>> instead of removing
+>> the pm_runtime_resume_and_get() call, which is something I would
+>> advise to do.
+>>
+>> Regards,
+>> Angelo
+>>
+> 
+> Thanks,
+> Shawn
 
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
