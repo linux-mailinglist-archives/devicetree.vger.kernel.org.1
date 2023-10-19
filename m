@@ -1,396 +1,239 @@
-Return-Path: <devicetree+bounces-9990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5397CF46B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:51:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF3F7CF476
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 315C9280F03
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:51:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54D061C209C3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1509B1772D;
-	Thu, 19 Oct 2023 09:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237AA17734;
+	Thu, 19 Oct 2023 09:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ACJKXqmV"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Uw081Tji";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="uQpUUj0Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1099B1400B
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:51:03 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0DBAB8
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1697709060;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=opD4K+lhLgpQnt4PMFVWJ2GlfEpmbjN6nDHAsiU0UgE=;
-	b=ACJKXqmVX56nohJD4fgwClRdKbgrYhx8HyQDz1Mis5H91wgVFa3cchSPsLlk/VzoASQCfD
-	0OgbeRs/fhLqpqTwtwLk9xtnNmNJNTc2IuNtEJC2RlfRy/iV9QhGR5OkBl2V/6p5UBA439
-	NPbgEH24iUchRwfI+YBDz3Dly5ZEwXE=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-194-8OVZSDMPM1ew65AfReHscw-1; Thu, 19 Oct 2023 05:50:59 -0400
-X-MC-Unique: 8OVZSDMPM1ew65AfReHscw-1
-Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-51e535b143fso883229a12.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:50:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697709058; x=1698313858;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=opD4K+lhLgpQnt4PMFVWJ2GlfEpmbjN6nDHAsiU0UgE=;
-        b=Bj/nKHXyAo45oXcKf8N95MvxFAZj1HZa62jCYX5TURy5CHcD9gqB4tXKpjfn+TePXn
-         0WE8q7spCrV7X7LTv7uPdUWdB06doXgCmatCE7sMIOXFP30wxS/67OtzHVT36AjlUEZA
-         5BSRrsAUEbox7VMrZjeLjxMZIiU7msFJostuHztUJH4FtuUVg1+RHzxAuNI/WDhGGeR5
-         4Gr8m8tpjCCiUpPSPk3agdT49R0Md0Gg7swm8yukM6BK0u75i3SabBpmrdXh1ITpvArs
-         6Thk0urAjxJtuJTfmjc14U2ogZE5+zFpx9jNvGnpobxaKqrI9N+TxsEkxSnB8LFTUx0n
-         iPvQ==
-X-Gm-Message-State: AOJu0YzQro8XwnjT2dFPkZsw0vKk+87I62c+KssN9RaymG6QrCFziqzT
-	SA6NyKbCcypxRjZKhHPgl8QnK3TkEs94b3Zb+EuYMv++g0NBk6R3INxygqzhVn4qSvujw8eZAKY
-	vgs3duLvktONEnknIgE8dUg==
-X-Received: by 2002:aa7:df99:0:b0:53f:9311:6002 with SMTP id b25-20020aa7df99000000b0053f93116002mr898100edy.2.1697709058194;
-        Thu, 19 Oct 2023 02:50:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IERzrf2nVVATjtrHBX9UQAFHkPln439uEI+PP2ld4u3vfRp9uKaiPbReASQjl8OZKwsITQdrQ==
-X-Received: by 2002:aa7:df99:0:b0:53f:9311:6002 with SMTP id b25-20020aa7df99000000b0053f93116002mr898089edy.2.1697709057816;
-        Thu, 19 Oct 2023 02:50:57 -0700 (PDT)
-Received: from gerbillo.redhat.com (146-241-237-142.dyn.eolo.it. [146.241.237.142])
-        by smtp.gmail.com with ESMTPSA id ck25-20020a0564021c1900b0053dab756073sm4117338edb.84.2023.10.19.02.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 02:50:57 -0700 (PDT)
-Message-ID: <582ccc0600aea90e32e4c6416d40d0a8047f9eae.camel@redhat.com>
-Subject: Re: [PATCH net-next v8 3/3] net: axienet: Introduce dmaengine
- support
-From: Paolo Abeni <pabeni@redhat.com>
-To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, davem@davemloft.net, 
- edumazet@google.com, kuba@kernel.org, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com,  linux@armlinux.org.uk, f.fainelli@gmail.com
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- git@amd.com
-Date: Thu, 19 Oct 2023 11:50:55 +0200
-In-Reply-To: <1697570274-798170-4-git-send-email-radhey.shyam.pandey@amd.com>
-References: <1697570274-798170-1-git-send-email-radhey.shyam.pandey@amd.com>
-	 <1697570274-798170-4-git-send-email-radhey.shyam.pandey@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5669214F90
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:52:25 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2267E115;
+	Thu, 19 Oct 2023 02:52:16 -0700 (PDT)
+X-UUID: 2c4a17866e6511eea33bb35ae8d461a2-20231019
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=w0Fu7oE8TgeWvbgjXO+OC6Ig3zgCZ2bXu2n+6sbJ/6U=;
+	b=Uw081TjiKEBDi3uUkvXwx+JMnXmd6AwnvRganpKNO3R8VfEPJgl1Sk7gkCE6b/bs4h6zMrojRHlITKhgMK85YM+5cEgA66Jc0DiQThf4/aEHCXMy1feYT7olBeHfUMXfEDile6Yimu829St46dENvf3qvaYezQ4xH7Bgylu3JP4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:759c53bb-090c-43c8-ba1b-67914e45cff2,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:e9381fc0-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+	NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 2c4a17866e6511eea33bb35ae8d461a2-20231019
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <shawn.sung@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 923967830; Thu, 19 Oct 2023 17:52:10 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 19 Oct 2023 17:52:09 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 19 Oct 2023 17:52:09 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U3V4HdbXDWCV3mKLBq/Ma3NooZJQLn4EnKy5UMJGzjCbpiWlBrsitEs+MweqpdYhq/lEOJqQwFOf7VcuSUTRDG+RddVQBiLhbkp/qRBDBN1s5LcnZd1h/EIkKCCf1lsZU23w3OnE+Gt3u7J0XiHeMZsaq9aaqrSs0w94OusHv33BzkHRPQo0UElKj0XT1+GZ3/GYHofjuiltI2ZXoGyme0/YBZWxEM8wcdVnKaS0F7LTUi7Nbaf5QxI6v7YppgytEr8l5SbzDkaLlZeZ7eETejfOY583Z32ceK+tfPIgfV0H72xYa5t1byl5CJA10G7SivuuecplSAd/+tK8ZcwBvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w0Fu7oE8TgeWvbgjXO+OC6Ig3zgCZ2bXu2n+6sbJ/6U=;
+ b=MRlxNj3FN5nDrg4pI0esOvGIfuFbh58j18j2mJZxN5yZ/PZa2q0mR0TFCXErqkj4rpQVknHIL3fG2qVtlD0UWMqOFNIaUWq92gS/GIHeGdeb5GZFyMFOcikLbTna1XNTW5fR9EnHzNTjHHL2iSAKyioJ6sSPEahk/j8lHH5gBSXPhxXlgNGZm0SMHyT8B3ym9JM6cTPUBKPnt0vn7WEI35y4gxfBtctfraa4QyPR18zYbsKt6d+vcIDsON0EFT2g/nI+CIN2cVXgmGZm+g8dq490SMtILCvt+XQTQ2EP6Hj5NeW++1YxYfy1rGnVUSyayc2RcR0L/ZaZrxWFlQ8lOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w0Fu7oE8TgeWvbgjXO+OC6Ig3zgCZ2bXu2n+6sbJ/6U=;
+ b=uQpUUj0QvFxoGVTWIB9lCOCzP5LYjYUQTLJ8A4ueQLK2GGu0gSmM4SF0djwOGmtcRdBJxdgXyhPg8RjrVdcQfYO1VLotWmQHbqrYeDVJnYLCUlLkid2uUAqHH07OrJzEsCzJ3iyGW0jxK4YMwm1e7G6tHPKl3R5nJB8YtmrolxU=
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com (2603:1096:400:1f5::13)
+ by TYZPR03MB7347.apcprd03.prod.outlook.com (2603:1096:400:423::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Thu, 19 Oct
+ 2023 09:52:07 +0000
+Received: from TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::faa3:6316:28ab:206b]) by TYZPR03MB6623.apcprd03.prod.outlook.com
+ ([fe80::faa3:6316:28ab:206b%4]) with mapi id 15.20.6907.022; Thu, 19 Oct 2023
+ 09:52:07 +0000
+From: =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>
+To: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	=?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, =?utf-8?B?TmF0aGFuIEx1ICjlkYLmnbHpnJYp?=
+	<Nathan.Lu@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>,
+	"sean@poorly.run" <sean@poorly.run>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "fshao@chromium.org"
+	<fshao@chromium.org>, "johnson.wang@mediatek.corp-partner.google.com"
+	<johnson.wang@mediatek.corp-partner.google.com>
+Subject: Re: [PATCH v10 15/24] drm/mediatek: Remove ineffectual power
+ management codes
+Thread-Topic: [PATCH v10 15/24] drm/mediatek: Remove ineffectual power
+ management codes
+Thread-Index: AQHaAlEpjCqpdSIYNkmXJD+uq8dQA7BQ0swAgAAMZwA=
+Date: Thu, 19 Oct 2023 09:52:07 +0000
+Message-ID: <2313a4b08f57ab24b48a13a31845eed7e0ab042d.camel@mediatek.com>
+References: <20231019055619.19358-1-shawn.sung@mediatek.com>
+	 <20231019055619.19358-16-shawn.sung@mediatek.com>
+	 <5a059ca0-fcb7-4730-a0d8-29103fb71d54@collabora.com>
+In-Reply-To: <5a059ca0-fcb7-4730-a0d8-29103fb71d54@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6623:EE_|TYZPR03MB7347:EE_
+x-ms-office365-filtering-correlation-id: 895d9846-9b87-40ce-d83e-08dbd0890e54
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wI5x0giA+/XlQh9XBAJadTk1t7hShsJSwYVh4ULUcLcUdLmPvDF/cQKYsH0phOV9p+vALSJmplb4whBLqeez/DzT8IHvC37ZPbSYKAK1Pt5EW4o9gWpt0hKyb+snt7gWY/opXaTcmu6D7ZR9B/+LZkDdf0xddDh1cqG5NJ5xn4mB/OQ8/tvg+aA9sPZxYk7fFrXTs+cokIotWLEBI3d3dA1Nfb3ZlX+dF76dssC+dpPe5YvIWzjekoX10uc9FV5sSys9KfCdwKtoaDHeayOgdseslWfklfBnoNENeMyuC0CdgPW7W+y2wpFmUGMZg79MthbBdJnu/mi0QayM5yLhECGmgmf8gGxEpWD9+kJOXZnuuqgqDduCN7Pl7pBGvMvIX1wjl1wma5bNbYfGJw1aWLf5EW1rg/8dLjwtWvxajLeBcVkNOxEIKg0mAc6OZ3wndbDB32SZQBNYdVtXsowThu0jJAXC8xsWNlJl4lgaWhfNr7Vuj3kFegXdhlkF4bSjDEhkgu1iiVIxHego18hdF5ptYmbohnlcLtUofLM2+Pd26n/i5FuB8YuPjfXrBlIe/CvgCXylCCl1NIizoO53VopFdBK+DjgLyBJaqcsnW2TglxyJ7WZkhN2HAGl42n1Xq4jrZ8Bp7kZ202tm3DxWdHaCCdouJYJcperR+TwbtOJVm7IcxEgy/Oxo12oxFmmG
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6623.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(346002)(39860400002)(366004)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(478600001)(7416002)(4001150100001)(2906002)(6512007)(86362001)(2616005)(6506007)(110136005)(64756008)(76116006)(66556008)(71200400001)(91956017)(66446008)(6486002)(54906003)(66476007)(83380400001)(122000001)(66946007)(26005)(38070700005)(316002)(38100700002)(41300700001)(8936002)(36756003)(4326008)(5660300002)(85182001)(8676002)(21314003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZnRnemVIRkxZSlhwR05OVzNQbDlXc2dQTUxEOXJIWGkyLzBiUjZGcjc0cmNZ?=
+ =?utf-8?B?REYvZ0lka05iTW5HZ3VpQTZJUUtqR1ltVS9pWWJnQ0JPZXJVcVhlUEdZQ3RU?=
+ =?utf-8?B?dVFoSmJ3bTFBeUwwZkhtVGRiRnREb0F0NGFsbEsyY2MxTnRweVhiTFI2aWov?=
+ =?utf-8?B?eVM5aXpZVWEwb1RuelBsNTlEazNEaUU5UUNBRXdOUW8wNDRSdkxDWUJwK01u?=
+ =?utf-8?B?YVoyK01JdWJGV2owV09leFhNUVBJeWJXeVB4OTM3d0cwZzNKbjR4SzR4WDA2?=
+ =?utf-8?B?ejkyMEs3aXJlNncxSGgzKzRhOTgrSzRqakUvOTE4b2kwMG5DdjA1QmxqQ2Vu?=
+ =?utf-8?B?aFJEZzJwNDFpek12QzdqMmJkUmlkS25GUlRuWjhFS0UrTkd3VUVydUErK0dE?=
+ =?utf-8?B?aHVzTmdud0VyMmtncDZBZW8xNnJzWFhaQkVURHBnc3daRnhHWjEwTWJaU0hl?=
+ =?utf-8?B?ZTM4M1B2RzN0bUhUN0Q3SVNoSTdHUlJzT3NoNm5QTGg3K0ZzTUhubkM0Wk9x?=
+ =?utf-8?B?TFFUQUtCZ3M4ZmoyUjVmb3VhV05QYlhJNitCTWtCVlpvYmFJKzVGaEZUNytR?=
+ =?utf-8?B?WTRDRmtvcUJWL2lUa3JFQTNIb0t1RHIzbmNNV1EwUFZIeDRZaTNCYmh1WUVx?=
+ =?utf-8?B?UzhaUm13bUhhNE9heTZoQzU4cUpZTjB6TVdjcm0xR1lYTEt5K1RWYStpOTlG?=
+ =?utf-8?B?S3puM1FtS042bVNmb1dheVNhdkQ4MUZybUZtdy9kSzRnNjRiWUcweWpLNlBK?=
+ =?utf-8?B?VmdTSVZNR0JhdTJaSHQyRTYxKzVsSVNHWDBtQjg4NzRJMHI5cUFKWkdRS2tp?=
+ =?utf-8?B?MmtlcTZ2VzVuT1lHQVdreU5pd08zZ1QxQm1mc0FVTlJraWhNOFIvcVRQUEE0?=
+ =?utf-8?B?R3JMVldlOVMyd084dzVCbE56SjU3cnpMMkpxeHRUM2k1b3U2bGtISHVZWGti?=
+ =?utf-8?B?SFcvUVcyRFFKQ29TVlRmVmQzMmdiQTlkeWs2OGNZM1h0SnEvblFZYTFQZlBS?=
+ =?utf-8?B?ejAzbk5PS04wbTNTbEs4b0NwUGJGRDlEYkUwQkVScGlRNE1UTjRUWmJBYnVo?=
+ =?utf-8?B?MWlwTHRieG1pYmJqeFR4Um1lRlNZTzlUanBwbkVKaW1CcFR1OXVzSHhKOHBq?=
+ =?utf-8?B?NEhxRHhxZnovY3U2S2p0czlYai92ZmRWSThxeGxFUDVFaTd0RFRTRFA3bk84?=
+ =?utf-8?B?Qy82aGl1aEcrekwxK1BZVXp2TC8vNi9Mc1hwUWVMRVhXZENBWTh3QVVtYkt2?=
+ =?utf-8?B?UlUrdWFKR0dkM2t1K2FRV3owRmc1dGxYYy9GTHhDcFlMRjZFbDYweUNaYTdC?=
+ =?utf-8?B?SDYvei9GcnlhQitVdUZyNENKc0t2eWYvaXQ3VkV3UkFoZHdhZ1UrcHhnaDFV?=
+ =?utf-8?B?ZzVsTjJOTUdhTXlHRlZTZnNPcVQ4RXNKNVZPZElIUHJjVEljcHBxNWhYMW5G?=
+ =?utf-8?B?T1lYVzkyalh6RjgreEpLSTZkUFhvbWZjUDFUcWRnVDgwWTdXUW9nOHpFbVhF?=
+ =?utf-8?B?dTVNVEY1bG9YMGdVdmc3eXAybUNVR1dacmpIN0dpT1FGbnRacnZFd2NuTlhQ?=
+ =?utf-8?B?US9pblJwZDVSTjN0Q2N2NWdkSER6b285Q3lvMTdRYzhOeVYxcEZWN0tsM0kz?=
+ =?utf-8?B?anQ5OC9sVEM5aHRRTVpHZ3kyT0pIaG9oMi80MDZNb1R0b3kzS0tPNnlMbWF5?=
+ =?utf-8?B?VW91VlRRRHd3S3Mzdi92VytGVXJISFNlUUYrOE0zbVNPWGNSdVlPRjlrS09I?=
+ =?utf-8?B?WXlMbWZ6bUl5cDNyQ3ZNQzZSWmJuc0lKTERRWThNZU8za3E2cU1VT0toeEhM?=
+ =?utf-8?B?SGxYbkdBK3ozdTk1am1zSFJKQ0RMNE1mZ1Y0eXFENnFjV0dMTHdqVXNKclJS?=
+ =?utf-8?B?TTZjQ1p3RlY5d1RaS1FFbHIvbEVycUFSRkgyQ0lqZkMrRWU2MzRlSko1c2Zu?=
+ =?utf-8?B?TGdjcHIzdUtJeWVxT1lmYjlueW1aQjBwdkNmbEQ1YlZMTU5MTXpXcDJPTEhD?=
+ =?utf-8?B?dENRV05mcndKaWxQTUticzAxSms5a2pJcmZ4RWRzME9IcktnZ2VKRWx2bmhJ?=
+ =?utf-8?B?Q2V5VXRhZkxvVjZMUWgwZGZDb1RUVFRFNGtsS0h1V2tlWjlCbGZpV1BwSXF0?=
+ =?utf-8?B?MkxpdFRWSGYxdmpFSlRCcGFxTEdGOVJvTFdDRU4wOXJWR241aFJxZVNrRjE0?=
+ =?utf-8?B?QWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <222B7A64405E0E438C229103152B8DDB@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6623.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 895d9846-9b87-40ce-d83e-08dbd0890e54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2023 09:52:07.2536
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j86Xlhg6/55a2ecfsbuZ9FOP3B6IX5lLWKM/kQQ9gQadL3BzmnNPeOgtcYDbd6xAXKZQakS/4n65Ghik7BlX0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7347
 
-On Wed, 2023-10-18 at 00:47 +0530, Radhey Shyam Pandey wrote:
-[...]
-> @@ -727,6 +746,122 @@ static inline int axienet_check_tx_bd_space(struct =
-axienet_local *lp,
->  	return 0;
->  }
-> =20
-> +/**
-> + * axienet_dma_tx_cb - DMA engine callback for TX channel.
-> + * @data:       Pointer to the axienet_local structure.
-> + * @result:     error reporting through dmaengine_result.
-> + * This function is called by dmaengine driver for TX channel to notify
-> + * that the transmit is done.
-> + */
-> +static void axienet_dma_tx_cb(void *data, const struct dmaengine_result =
-*result)
-> +{
-> +	struct axienet_local *lp =3D data;
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-
-Minor nit: please use the reverse x-mas tree order
-
-> +
-> +	skbuf_dma =3D axienet_get_tx_desc(lp, lp->tx_ring_tail++);
-> +	u64_stats_update_begin(&lp->tx_stat_sync);
-> +	u64_stats_add(&lp->tx_bytes, skbuf_dma->skb->len);
-> +	u64_stats_add(&lp->tx_packets, 1);
-> +	u64_stats_update_end(&lp->tx_stat_sync);
-> +	dma_unmap_sg(lp->dev, skbuf_dma->sgl, skbuf_dma->sg_len, DMA_TO_DEVICE)=
-;
-> +	dev_consume_skb_any(skbuf_dma->skb);
-> +	if (CIRC_SPACE(lp->tx_ring_head, lp->tx_ring_tail, TX_BD_NUM_MAX) > MAX=
-_SKB_FRAGS + 1)
-> +		netif_wake_queue(lp->ndev);
-> +}
-> +
-> +/**
-> + * axienet_start_xmit_dmaengine - Starts the transmission.
-> + * @skb:        sk_buff pointer that contains data to be Txed.
-> + * @ndev:       Pointer to net_device structure.
-> + *
-> + * Return: NETDEV_TX_OK on success or any non space errors.
-> + *         NETDEV_TX_BUSY when free element in TX skb ring buffer
-> + *         is not available.
-> + *
-> + * This function is invoked to initiate transmission. The
-> + * function sets the skbs, register dma callback API and submit
-> + * the dma transaction.
-> + * Additionally if checksum offloading is supported,
-> + * it populates AXI Stream Control fields with appropriate values.
-> + */
-> +static netdev_tx_t
-> +axienet_start_xmit_dmaengine(struct sk_buff *skb, struct net_device *nde=
-v)
-> +{
-> +	struct dma_async_tx_descriptor *dma_tx_desc =3D NULL;
-> +	struct axienet_local *lp =3D netdev_priv(ndev);
-> +	u32 app_metadata[DMA_NUM_APP_WORDS] =3D {0};
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-> +	struct dma_device *dma_dev;
-> +	u32 csum_start_off;
-> +	u32 csum_index_off;
-> +	int sg_len;
-> +	int ret;
-> +
-> +	dma_dev =3D lp->tx_chan->device;
-> +	sg_len =3D skb_shinfo(skb)->nr_frags + 1;
-> +	if (CIRC_SPACE(lp->tx_ring_head, lp->tx_ring_tail, TX_BD_NUM_MAX) <=3D =
-sg_len) {
-> +		netif_stop_queue(ndev);
-> +		if (net_ratelimit())
-> +			netdev_warn(ndev, "TX ring unexpectedly full\n");
-> +		return NETDEV_TX_BUSY;
-> +	}
-> +
-> +	skbuf_dma =3D axienet_get_tx_desc(lp, lp->tx_ring_head);
-> +	if (!skbuf_dma) {
-> +		dev_kfree_skb_any(skb);
-> +		return NETDEV_TX_OK;
-
-You can avoid some duplicate code with:
-		goto drop_skb;
-
-and adding at the bottom of this function:
-
-drop_skb:
-	dev_kfree_skb_any(skb);
-	return NETDEV_TX_OK;
-
-> +	}
-> +
-> +	lp->tx_ring_head++;
-> +	sg_init_table(skbuf_dma->sgl, sg_len);
-> +	ret =3D skb_to_sgvec(skb, skbuf_dma->sgl, 0, skb->len);
-> +	if (ret < 0) {
-> +		dev_kfree_skb_any(skb);
-> +		return NETDEV_TX_OK;
-
-Same here and below.
-
-> +	}
-> +
-> +	ret =3D dma_map_sg(lp->dev, skbuf_dma->sgl, sg_len, DMA_TO_DEVICE);
-> +	if (!ret) {
-> +		dev_kfree_skb_any(skb);
-> +		return NETDEV_TX_OK;
-> +	}
-> +
-> +	/* Fill up app fields for checksum */
-> +	if (skb->ip_summed =3D=3D CHECKSUM_PARTIAL) {
-> +		if (lp->features & XAE_FEATURE_FULL_TX_CSUM) {
-> +			/* Tx Full Checksum Offload Enabled */
-> +			app_metadata[0] |=3D 2;
-> +		} else if (lp->features & XAE_FEATURE_PARTIAL_TX_CSUM) {
-> +			csum_start_off =3D skb_transport_offset(skb);
-> +			csum_index_off =3D csum_start_off + skb->csum_offset;
-> +			/* Tx Partial Checksum Offload Enabled */
-> +			app_metadata[0] |=3D 1;
-> +			app_metadata[1] =3D (csum_start_off << 16) | csum_index_off;
-> +		}
-> +	} else if (skb->ip_summed =3D=3D CHECKSUM_UNNECESSARY) {
-> +		app_metadata[0] |=3D 2; /* Tx Full Checksum Offload Enabled */
-> +	}
-> +
-> +	dma_tx_desc =3D dma_dev->device_prep_slave_sg(lp->tx_chan, skbuf_dma->s=
-gl,
-> +			sg_len, DMA_MEM_TO_DEV,
-> +			DMA_PREP_INTERRUPT, (void *)app_metadata);
-> +	if (!dma_tx_desc)
-> +		goto xmit_error_unmap_sg;
-
-Are you leaking an skb here?
-
-You forgot to add the netif_txq_maybe_stop() call, as suggested by
-Jakub in the previous revision.
-
-> +
-> +	skbuf_dma->skb =3D skb;
-> +	skbuf_dma->sg_len =3D sg_len;
-> +	dma_tx_desc->callback_param =3D lp;
-> +	dma_tx_desc->callback_result =3D axienet_dma_tx_cb;
-> +	dmaengine_submit(dma_tx_desc);
-> +	dma_async_issue_pending(lp->tx_chan);
-> +
-> +	return NETDEV_TX_OK;
-> +
-> +xmit_error_unmap_sg:
-> +	dma_unmap_sg(lp->dev, skbuf_dma->sgl, sg_len, DMA_TO_DEVICE);
-
-If you need to drop the skb (as I suspect), you can reuse the drop_skb
-label here:
-
-drop_skb:
-	dev_kfree_skb_any(skb);
-> +	return NETDEV_TX_OK;
-> +}
-> +
->  /**
->   * axienet_tx_poll - Invoked once a transmit is completed by the
->   * Axi DMA Tx channel.
-> @@ -893,6 +1028,42 @@ axienet_start_xmit(struct sk_buff *skb, struct net_=
-device *ndev)
->  	return NETDEV_TX_OK;
->  }
-> =20
-> +/**
-> + * axienet_dma_rx_cb - DMA engine callback for RX channel.
-> + * @data:       Pointer to the skbuf_dma_descriptor structure.
-> + * @result:     error reporting through dmaengine_result.
-> + * This function is called by dmaengine driver for RX channel to notify
-> + * that the packet is received.
-> + */
-> +static void axienet_dma_rx_cb(void *data, const struct dmaengine_result =
-*result)
-> +{
-> +	struct axienet_local *lp =3D data;
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-> +	size_t meta_len, meta_max_len, rx_len;
-> +	struct sk_buff *skb;
-> +	u32 *app_metadata;
-
-Minor nit: please respect the reverse x-mas tree order
-
-> +
-> +	skbuf_dma =3D axienet_get_rx_desc(lp, lp->rx_ring_tail++);
-> +	skb =3D skbuf_dma->skb;
-> +	app_metadata =3D dmaengine_desc_get_metadata_ptr(skbuf_dma->desc, &meta=
-_len,
-> +						       &meta_max_len);
-> +	dma_unmap_single(lp->dev, skbuf_dma->dma_address, lp->max_frm_size,
-> +			 DMA_FROM_DEVICE);
-> +	/* TODO: Derive app word index programmatically */
-> +	rx_len =3D (app_metadata[LEN_APP] & 0xFFFF);
-> +	skb_put(skb, rx_len);
-> +	skb->protocol =3D eth_type_trans(skb, lp->ndev);
-> +	skb->ip_summed =3D CHECKSUM_NONE;
-> +
-> +	__netif_rx(skb);
-
-It's a pity you can't leverage NAPI here.
-
-I think that could be doable as a follow-up, but I'm unsure if that
-would fit the DMA engine model: in this callback you could cache the
-ready dma index (a single range should suffice) and schedule the napi
-instance. The actual dma processing will be done in napi poll.
-
-Another possible follow-up could be introducing a "bulk" RX callback in
-the DMA engine, to mitigate the indirect call overhead on a burst of RX
-DMA completion - assuming the DMA engine actually generates such burst.
-
-> +	u64_stats_update_begin(&lp->rx_stat_sync);
-> +	u64_stats_add(&lp->rx_packets, 1);
-> +	u64_stats_add(&lp->rx_bytes, rx_len);
-> +	u64_stats_update_end(&lp->rx_stat_sync);
-> +	axienet_rx_submit_desc(lp->ndev);
-> +	dma_async_issue_pending(lp->rx_chan);
-> +}
-> +
->  /**
->   * axienet_rx_poll - Triggered by RX ISR to complete the BD processing.
->   * @napi:	Pointer to NAPI structure.
-> @@ -1126,6 +1297,150 @@ static irqreturn_t axienet_eth_irq(int irq, void =
-*_ndev)
-> =20
->  static void axienet_dma_err_handler(struct work_struct *work);
-> =20
-> +/**
-> + * axienet_rx_submit_desc - Submit the rx descriptors to dmaengine.
-> + * allocate skbuff, map the scatterlist and obtain a descriptor
-> + * and then add the callback information and submit descriptor.
-> + *
-> + * @ndev:	net_device pointer
-> + *
-> + *Return: 0, on success.
-> + *          non-zero error value on failure
-> + */
-> +static int axienet_rx_submit_desc(struct net_device *ndev)
-> +{
-> +	struct dma_async_tx_descriptor *dma_rx_desc =3D NULL;
-> +	struct axienet_local *lp =3D netdev_priv(ndev);
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-> +	struct sk_buff *skb;
-> +	dma_addr_t addr;
-> +	int ret;
-> +
-> +	skbuf_dma =3D axienet_get_rx_desc(lp, lp->rx_ring_head);
-> +	if (!skbuf_dma)
-> +		return -ENOMEM;
-
-Minor nit: here a newline would make the core more readable
-
-> +	lp->rx_ring_head++;
-> +	skb =3D netdev_alloc_skb(ndev, lp->max_frm_size);
-> +	if (!skb)
-> +		return -ENOMEM;
-
-Another possible follow-up: usually the skb header is allocated just
-before sending it to the network stack (e.g. just before the
-__netif_rx() call) to be cache friendly. Here you could allocate just
-the data part and later use e.g. build_skb_around()
-
-> +
-> +	sg_init_table(skbuf_dma->sgl, 1);
-> +	addr =3D dma_map_single(lp->dev, skb->data, lp->max_frm_size, DMA_FROM_=
-DEVICE);
-> +	if (unlikely(dma_mapping_error(lp->dev, addr))) {
-> +		if (net_ratelimit())
-> +			netdev_err(ndev, "DMA mapping error\n");
-> +		ret =3D -ENOMEM;
-> +		goto rx_submit_err_free_skb;
-> +	}
-> +	sg_dma_address(skbuf_dma->sgl) =3D addr;
-> +	sg_dma_len(skbuf_dma->sgl) =3D lp->max_frm_size;
-> +	dma_rx_desc =3D dmaengine_prep_slave_sg(lp->rx_chan, skbuf_dma->sgl,
-> +					      1, DMA_DEV_TO_MEM,
-> +					      DMA_PREP_INTERRUPT);
-> +	if (!dma_rx_desc) {
-> +		ret =3D -EINVAL;
-> +		goto rx_submit_err_unmap_skb;
-> +	}
-> +
-> +	skbuf_dma->skb =3D skb;
-> +	skbuf_dma->dma_address =3D sg_dma_address(skbuf_dma->sgl);
-> +	skbuf_dma->desc =3D dma_rx_desc;
-> +	dma_rx_desc->callback_param =3D lp;
-> +	dma_rx_desc->callback_result =3D axienet_dma_rx_cb;
-> +	dmaengine_submit(dma_rx_desc);
-> +
-> +	return 0;
-> +
-> +rx_submit_err_unmap_skb:
-> +	dma_unmap_single(lp->dev, addr, lp->max_frm_size, DMA_FROM_DEVICE);
-> +rx_submit_err_free_skb:
-> +	dev_kfree_skb(skb);
-> +	return ret;
-
-It looks like the error code is ignored by the caller. Possibly you can
-change this to a 'void' function.
-
-
-Cheers,
-
-Paolo
-
+SGkgQW5nZWxvLA0KDQpPbiBUaHUsIDIwMjMtMTAtMTkgYXQgMTE6MDcgKzAyMDAsIEFuZ2Vsb0dp
+b2FjY2hpbm8gRGVsIFJlZ25vIHdyb3RlOg0KPiBJbCAxOS8xMC8yMyAwNzo1NiwgSHNpYW8gQ2hp
+ZW4gU3VuZyBoYSBzY3JpdHRvOg0KPiA+IERpc3BsYXkgbW9kdWxlcyB3aWxsIGJlIHBvd2VyZWQg
+b24gd2hlbiAuYXRvbWljX2VuYWJsZSgpLA0KPiA+IHRoZXJlIGlzIG5vIG5lZWQgdG8gZG8gaXQg
+YWdhaW4gaW4gbXRrX2NydGNfZGRwX2h3X2luaXQoKS4NCj4gPiBCZXNpZGVzLCB0aGUgRFJNIGRl
+dmljZXMgYXJlIGNyZWF0ZWQgbWFudWFsbHkgd2hlbiBtdGstbW1zeXMNCj4gPiBpcyBwcm9iZWQg
+YW5kIHRoZXJlIGlzIG5vIHBvd2VyIGRvbWFpbiBsaW5rZWQgdG8gaXQuDQo+ID4gDQo+ID4gRml4
+ZXM6IDExOWY1MTczNjI4YSAoImRybS9tZWRpYXRlazogQWRkIERSTSBEcml2ZXIgZm9yIE1lZGlh
+dGVrIFNvQw0KPiA+IE1UODE3My4iKQ0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEhzaWFvIENo
+aWVuIFN1bmcgPHNoYXduLnN1bmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAgZHJpdmVy
+cy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fY3J0Yy5jIHwgMTggKysrLS0tLS0tLS0tLS0tLS0t
+DQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkN
+Cj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1f
+Y3J0Yy5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMNCj4g
+PiBpbmRleCBiYzRjYzc1Y2NhMTguLmM3ZWRkODBiZTQyOCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMNCj4gPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMNCj4gPiBAQCAtNiw3ICs2LDYgQEANCj4gPiAg
+ICNpbmNsdWRlIDxsaW51eC9jbGsuaD4NCj4gPiAgICNpbmNsdWRlIDxsaW51eC9kbWEtbWFwcGlu
+Zy5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L21haWxib3hfY29udHJvbGxlci5oPg0KPiA+IC0j
+aW5jbHVkZSA8bGludXgvcG1fcnVudGltZS5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L3NvYy9t
+ZWRpYXRlay9tdGstY21kcS5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L3NvYy9tZWRpYXRlay9t
+dGstbW1zeXMuaD4NCj4gPiAgICNpbmNsdWRlIDxsaW51eC9zb2MvbWVkaWF0ZWsvbXRrLW11dGV4
+Lmg+DQo+ID4gQEAgLTM2MiwyMiArMzYxLDE2IEBAIHN0YXRpYyBpbnQgbXRrX2NydGNfZGRwX2h3
+X2luaXQoc3RydWN0DQo+ID4gbXRrX2RybV9jcnRjICptdGtfY3J0Yywgc3RydWN0IGRybV9hdG9t
+aWMNCj4gPiAgIAkJZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfZW5kKCZjb25uX2l0ZXIpOw0KPiA+
+ICAgCX0NCj4gPiAgIA0KPiA+IC0JcmV0ID0gcG1fcnVudGltZV9yZXN1bWVfYW5kX2dldChjcnRj
+LT5kZXYtPmRldik7DQo+ID4gLQlpZiAocmV0IDwgMCkgew0KPiA+IC0JCURSTV9FUlJPUigiRmFp
+bGVkIHRvIGVuYWJsZSBwb3dlciBkb21haW46ICVkXG4iLCByZXQpOw0KPiA+IC0JCXJldHVybiBy
+ZXQ7DQo+ID4gLQl9DQo+ID4gLQ0KPiANCj4gQXJlIHlvdSByZWFsbHkgc3VyZSB0aGF0IHdyaXRl
+cyB0byBESVNQX1JFR19PVkxfeHh4IGFuZCBvdGhlcnMgaW4NCj4gb3RoZXIgbW9kdWxlcywNCj4g
+Y2FsbGVkIGJ5IHRoZSAubGF5ZXJfY29uZmlnKCkgY2FsbGJhY2ssIGNhbiBiZSBzdWNjZXNzZnVs
+bHkgZG9uZSBvbg0KPiBhbiB1bnBvd2VyZWQNCj4gYW5kL29yIHVuY2xvY2tlZCBtb2R1bGUsIG9u
+IGFsbCBNZWRpYVRlayBTb0NzPw0KPiBUaGlzIGxvb2tzIGEgYml0IG9kZC4NCg0KTm90IHN1cmUg
+aWYgSSBnZXQgeW91ciBwb2ludCBjb3JyZWN0bHkuIFdlIHJlbW92ZWQgdGhpcyBQTSBBUEkgYmVj
+YXVzZToNCg0KMS4gbXRrX2NydGNfZGRwX2h3X2luaXQoKSBpcyBjYWxsZWQgYnkgbXRrX2RybV9j
+cnRjX2F0b21pY19lbmFibGUoKSwNCmFuZCB0aGUgbmV3IGlubGluZSBmdW5jdGlvbiBtdGtfZGRw
+X2NvbXBfcG93ZXJfb24oKSBpcyBjYWxsZWQgYmVmb3JlIGh3DQppbml0LCB3ZSBjYW4gbWFrZSBz
+dXJlIHRoZSBwb3dlciBpcyBvbiBiZWZvcmUgY29uZmlndXJpbmcgdGhlIGhhcmR3YXJlLg0KDQoy
+LiBUaGUgZGV2aWNlICJjcnRjLT5kZXYtPmRldiIgaGVyZSBpcyBhc3NpZ25lZCBieSB0aGUgcHJv
+YmUgZnVuY3Rpb24NCm9mIG10ay1tbXN5cywgd2hpY2ggd2lsbCBiZSBsb29rIGxpa2UgIm1lZGlh
+dGVrLWRybS5hdXRvLjEzIiwgYW5kIHRoaXMNCmRldmljZSBpcyBub3QgbGlua2VkIHRvIGFueSBw
+b3dlciBkb21haW4uDQoNCj4gDQo+ID4gICAJcmV0ID0gbXRrX211dGV4X3ByZXBhcmUobXRrX2Ny
+dGMtPm11dGV4KTsNCj4gPiAgIAlpZiAocmV0IDwgMCkgew0KPiA+ICAgCQlEUk1fRVJST1IoIkZh
+aWxlZCB0byBlbmFibGUgbXV0ZXggY2xvY2s6ICVkXG4iLCByZXQpOw0KPiA+IC0JCWdvdG8gZXJy
+X3BtX3J1bnRpbWVfcHV0Ow0KPiA+ICsJCWdvdG8gZXJyb3I7DQo+ID4gICAJfQ0KPiA+ICAgDQo+
+ID4gICAJcmV0ID0gbXRrX2NydGNfZGRwX2Nsa19lbmFibGUobXRrX2NydGMpOw0KPiA+ICAgCWlm
+IChyZXQgPCAwKSB7DQo+ID4gICAJCURSTV9FUlJPUigiRmFpbGVkIHRvIGVuYWJsZSBjb21wb25l
+bnQgY2xvY2tzOiAlZFxuIiwNCj4gPiByZXQpOw0KPiA+IC0JCWdvdG8gZXJyX211dGV4X3VucHJl
+cGFyZTsNCj4gPiArCQlnb3RvIGVycm9yOw0KPiA+ICAgCX0NCj4gPiAgIA0KPiA+ICAgCWZvciAo
+aSA9IDA7IGkgPCBtdGtfY3J0Yy0+ZGRwX2NvbXBfbnIgLSAxOyBpKyspIHsNCj4gPiBAQCAtNDI2
+LDE2ICs0MTksMTMgQEAgc3RhdGljIGludCBtdGtfY3J0Y19kZHBfaHdfaW5pdChzdHJ1Y3QNCj4g
+PiBtdGtfZHJtX2NydGMgKm10a19jcnRjLCBzdHJ1Y3QgZHJtX2F0b21pYw0KPiA+ICAgDQo+IA0K
+PiAuLi5iZWNhdXNlIHlvdSBjb3VsZCBvdGhlcndpc2UganVzdCBjYWxsIHBtX3J1bnRpbWVfcHV0
+KCkgaGVyZSwNCj4gaW5zdGVhZCBvZiByZW1vdmluZw0KPiB0aGUgcG1fcnVudGltZV9yZXN1bWVf
+YW5kX2dldCgpIGNhbGwsIHdoaWNoIGlzIHNvbWV0aGluZyBJIHdvdWxkDQo+IGFkdmlzZSB0byBk
+by4NCj4gDQo+IFJlZ2FyZHMsDQo+IEFuZ2Vsbw0KPiANCg0KVGhhbmtzLA0KU2hhd24NCg==
 
