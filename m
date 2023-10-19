@@ -1,54 +1,63 @@
-Return-Path: <devicetree+bounces-10116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06647CFB7B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:43:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B497CFB81
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73277282071
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:43:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8185BB20E12
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C2F2746E;
-	Thu, 19 Oct 2023 13:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnP8+wBb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640D327474;
+	Thu, 19 Oct 2023 13:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41BDDDA6
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:43:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3421C433C7;
-	Thu, 19 Oct 2023 13:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697723001;
-	bh=fNfzoqPWnxpHpfpwgiuXewdIuM9DFInylMJTHvvmILo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=gnP8+wBbAkOCOyn5Cg5KbPb8++KjWQ/7lQ8rMIHckwlmX3FAW8KMQ2GTkslW8Al6/
-	 mmftTT6QyTe6Mjvc6xY6mrGooWm7sMVOQPZZCY5kuoW2yCsPjlS7krk1kygXEyjaXb
-	 S8oBOu+WISWZ+MQqb8+9fvujWdfgAiKfFr11gGqK4cSCWF/u0pkuHVszXHiBfRqhHN
-	 AtTEl6DdBvJC5vJn8aV+CyLDKQIG7ZueP/60QBRmneObNlEjVhAECF8e3NOoTEWbCG
-	 AXHggYFB9W9q81QusyURho5DJ5I/l3MQcc+ItbdFzGERTmDLY2hH0tbzgG/B/YxVuo
-	 KFtHBZjP8X8Gw==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Atish Patra <atishp@atishpatra.org>, Andrew Jones
- <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
- Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: Re: [PATCH v10 00/15] Linux RISC-V AIA Support
-In-Reply-To: <20231003044403.1974628-1-apatel@ventanamicro.com>
-References: <20231003044403.1974628-1-apatel@ventanamicro.com>
-Date: Thu, 19 Oct 2023 15:43:18 +0200
-Message-ID: <87o7gu7mo9.fsf@all.your.base.are.belong.to.us>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40EEDDA6;
+	Thu, 19 Oct 2023 13:45:18 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DB8811F;
+	Thu, 19 Oct 2023 06:45:17 -0700 (PDT)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-581d4f9a2c5so1613020eaf.0;
+        Thu, 19 Oct 2023 06:45:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697723116; x=1698327916;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DSXRmER3WgAhRNug88ev6LstRhcib4oUMzRNImQ+1AU=;
+        b=PwouMT6IXzgUlLN6a6W6u6XZU//B/W4yZZkPG5Z70VOzAU+ek4q8VlC4pNVQsx0x4G
+         YwwA0IHpzIB8XEHIDd/fQ5Dta6EV1AqhD1zrsXetiN241/L0CWWJtPSsSnoqNKZ5yflo
+         WEnzt1vv/i8f+Fzg5Vy2ooeA/n7UXzLVEQLHqZhPZh/AHxwqNVSRwlgiji2ET65HWXXu
+         4LImbKNGi/6RnCo8wVllZoJHzybKaN5uFE2SRiKuxefw+VAXSG4Y448EasYbAxM+aGqQ
+         aCMAhIdmyg1OAl9yEZLe3b/Wi/j6bx3Iymu/nAkKUdnUCmsxoi322+CXUdu1Ezp+vtWm
+         /yhw==
+X-Gm-Message-State: AOJu0YyK6zaoef5R5U9C6LlAUNQgUSyO9GRuM4YtRyUTPYRUtg8eiBb0
+	OrHIIbv7Sqy4y22tTR1klw==
+X-Google-Smtp-Source: AGHT+IG32dAaJ1o7CB4NsqboA8jJm+qAlsHz5yLXkF6WKvRAnU+FUYyc+kE9102jX/09adNZSXXWsg==
+X-Received: by 2002:a4a:e9b0:0:b0:581:e750:9995 with SMTP id t16-20020a4ae9b0000000b00581e7509995mr2227050ood.3.1697723115777;
+        Thu, 19 Oct 2023 06:45:15 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y9-20020a0568301d8900b006ce2e464a45sm97418oti.29.2023.10.19.06.45.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Oct 2023 06:45:15 -0700 (PDT)
+Received: (nullmailer pid 198509 invoked by uid 1000);
+	Thu, 19 Oct 2023 13:45:14 -0000
+Date: Thu, 19 Oct 2023 08:45:14 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>, netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next v4 2/7] dt-bindings: net: mvusb: Fix up DSA
+ example
+Message-ID: <20231019134514.GA193647-robh@kernel.org>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-2-3ee0c67383be@linaro.org>
+ <169762516741.391849.18342287891015837205.robh@kernel.org>
+ <CACRpkdZff9fbeJdxqudCtjad=FVKTKQtvo_=GiEBOvnw5xQapw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,81 +65,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZff9fbeJdxqudCtjad=FVKTKQtvo_=GiEBOvnw5xQapw@mail.gmail.com>
 
-Hi Anup,
+On Wed, Oct 18, 2023 at 01:37:10PM +0200, Linus Walleij wrote:
+> On Wed, Oct 18, 2023 at 12:32 PM Rob Herring <robh@kernel.org> wrote:
+> 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: /example-0/usb/mdio@1/ethernet-switch@0: failed to match any schema with compatible: ['marvell,mv88e6190']
+> 
+> Isn't that just because the bindings now come last in the series.
+> Which is in response to a review comment, hence this warning
+> didn't appear before.
 
-Anup Patel <apatel@ventanamicro.com> writes:
+Yes. The only option that avoids this is squashing the 2 patches. I 
+think it is fine to leave this as-is.
 
-> The RISC-V AIA specification is ratified as-per the RISC-V international
-> process. The latest ratified AIA specifcation can be found at:
-> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts=
--1.0.pdf
->
-> At a high-level, the AIA specification adds three things:
-> 1) AIA CSRs
->    - Improved local interrupt support
-> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
->    - Per-HART MSI controller
->    - Support MSI virtualization
->    - Support IPI along with virtualization
-> 3) Advanced Platform-Level Interrupt Controller (APLIC)
->    - Wired interrupt controller
->    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
->    - In Direct-mode, injects external interrupts directly into HARTs
-
-Thanks for working on the AIA support! I had a look at the series, and
-have some concerns about interrupt ID abstraction.
-
-A bit of background, for readers not familiar with the AIA details.
-
-IMSIC allows for 2047 unique MSI ("msi-irq") sources per hart, and
-each MSI is dedicated to a certain hart. The series takes the approach
-to say that there are, e.g., 2047 interrupts ("lnx-irq") globally.
-Each lnx-irq consists of #harts * msi-irq -- a slice -- and in the
-slice only *one* msi-irq is acutally used.
-
-This scheme makes affinity changes more robust, because the interrupt
-sources on "other" harts are pre-allocated. On the other hand it
-requires to propagate irq masking to other harts via IPIs (this is
-mostly done up setup/tear down). It's also wasteful, because msi-irqs
-are hogged, and cannot be used.
-
-Contemporary storage/networking drivers usually uses queues per core
-(or a sub-set of cores). The current scheme wastes a lot of msi-irqs.
-If we instead used a scheme where "msi-irq =3D=3D lnx-irq", instead of
-"lnq-irq =3D {hart 0;msi-irq x , ... hart N;msi-irq x}", there would be
-a lot MSIs for other users. 1-1 vs 1-N. E.g., if a storage device
-would like to use 5 queues (5 cores) on a 128 core system, the current
-scheme would consume 5 * 128 MSIs, instead of just 5.
-
-On the plus side:
-* Changing interrupts affinity will never fail, because the interrupts
-  on each hart is pre-allocated.
-
-On the negative side:
-* Wasteful interrupt usage, and a system can potientially "run out" of
-  interrupts. Especially for many core systems.
-* Interrupt masking need to proagate to harts via IPIs (there's no
-  broadcast csr in IMSIC), and a more complex locking scheme IMSIC
-
-Summary:
-The current series caps the number of global interrupts to maximum
-2047 MSIs for all cores (whole system). A better scheme, IMO, would be
-to expose 2047 * #harts unique MSIs.
-
-I think this could simplify/remove(?) the locking as well.
-
-I realize that the series in v10, and coming with a change like this
-now might be a bit of a pain...
-
-Finally, another question related to APLIC/IMSIC. AFAIU the memory map
-of the IMSIC regions are constrained by the APLIC, which requires a
-certain layout for MSI forwarding (group/hart/guest bits). Say that a
-system doesn't have an APLIC, couldn't the layout requirement be
-simplified?
-
-
-Again, thanks for the hard work!
-Bj=C3=B6rn
+Rob
 
