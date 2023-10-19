@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A497CF3EE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:21:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF89D7CF3F2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:22:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF7F4B20B7D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:21:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 895FE280F17
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850CB171BC;
-	Thu, 19 Oct 2023 09:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D882F171BE;
+	Thu, 19 Oct 2023 09:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gfmK15sd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D91ZHMSv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E208B16413
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:20:55 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CBD116
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:20:53 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40790b0a224so22927805e9.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:20:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2C015AF5
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 09:21:57 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E653B8
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:21:51 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c50906f941so91413961fa.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697707251; x=1698312051; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697707310; x=1698312110; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TSlsagBKkgJ+2a+MiKZlopa82SyFbytA+9bZGE9UX8o=;
-        b=gfmK15sddpvPwD2n8E7S9mlIO5u+HBiy2wp8xJawfuZ0aqpJkgnrJt/Ff3ZUGycFkQ
-         ++eigCaRm2ypsjPPWmZNWHZtU59gFcLp3TqmLqzoQd4Apt7wcNfxd50EWbYTfOZr5yOB
-         pEPuUIMd4UX1hpQg7pvT5ee/NPJr1/Za2HesZow7HiCSVNeWdz0S9t43GJA8dDAkkIaE
-         TV1zve1X9G3smFtDW93Ht6Ra3sU18Rs4gnIsrcLCLcr/IXf21n6kFvJe2Q/RnehbbeHZ
-         A4NizTFU9X9CAOq7mjCSywQuDomSXtYM1NjAAcvX886cUe0cfWijG/6m0SauQuTZ+uNb
-         +r+A==
+        bh=yXjT8p0w2WOajyEpbpgr/2SPJ8/jTEv8hAwGe2hZCqc=;
+        b=D91ZHMSvYyDNq+BRv/ZmNT3Pg5Oon7Zbj+fyPm7WnE8Hhwd2mtNsbUMPLCp98jQFeJ
+         A1vWNTYeMGUBF6Gv2c2kymUbkkOO0G9O/+phTfw13s88fyHSVkLepvgsT20s5a5EeQ3/
+         w2E22EqmRv0Chmc7PkhyGA+0B3ncKYSHbUnLVsp3yOJcqrn1bhzCX7/d0ddGfy/yAYs0
+         NKl3ChzG51sMWtReUH31SyzdASGH/kT6/RR5DwKPgJZ2fF9L7w0SR9VYlUrQ1+MHgaCj
+         mQDtNlgUP2S0LSZfrYCL1+KFq78rNHXYWI7SUjre+fjHoaJk2WEXRiM73zNx7Zk9jX+i
+         gCAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697707251; x=1698312051;
+        d=1e100.net; s=20230601; t=1697707310; x=1698312110;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TSlsagBKkgJ+2a+MiKZlopa82SyFbytA+9bZGE9UX8o=;
-        b=G9CSxLXPQaCtQHE5tWmGY/klj5BDUZDZDcj9SgPlq7IVndtYEvf5W+aKgJ+UDZumxQ
-         w7OTTap8RkaIN6hfAsyNLfHUR4YTZo84Sd2GwOYXYwZMv77AP8FhYC6QYHOYmrIYwWbw
-         8zwDpxIQ28LFiWvbYZobqo5JNL802UN5krQUW/0oQRk9Jy9MXfwxXbUi+O0T8zrqvVWO
-         G0lMVu60iJJXtaQSZK1zqD8Hc0NaXbbeb3zrypSpJTP9Yznp0jKTXLhGNjT3wJWfvmal
-         66XC/5yi8OkeI0w5LvkOROwd9PcYOllwPQtI+EZOX8PG744porahon8IMuwrJQqewCvA
-         t2Bg==
-X-Gm-Message-State: AOJu0YzdaLC2+vNEmpHP14NaHfrTbcZBCMYgnpFLcRZpJLPIRHjZd6qU
-	jNa8dJRoqNOuUD10QMFvoclelg==
-X-Google-Smtp-Source: AGHT+IEE0s9F102bpcIi450J9v5xUWWU+eXtKlLCzDqJYZNRPJfOCkrrWJ4faOUi+qRam2YQy4FCmw==
-X-Received: by 2002:a05:600c:138f:b0:3fe:dcd0:2e32 with SMTP id u15-20020a05600c138f00b003fedcd02e32mr1405657wmf.19.1697707251438;
-        Thu, 19 Oct 2023 02:20:51 -0700 (PDT)
+        bh=yXjT8p0w2WOajyEpbpgr/2SPJ8/jTEv8hAwGe2hZCqc=;
+        b=SldAhC4ea3UKFv6uHirqc4HwyyLJzwKc9U+Btiw9NckgaEPOU/E5T2fWSvGbLPs24F
+         G+tsURm1tW583WKEhNjUDJKRlgsnvgm2tf26afD6Wt+9fbeYnjBJm5pF1ty+40Dc3qFG
+         uHTQWm+hAmmi+KVUDjd21GIpFhvoghWGEVfuZLK71pH2cS73GLX1pJXDV45DbQiT1ZTS
+         vA4S9MXG6eNYcjGmx8j7iSMQDozlaC7hZfNZkhh6rZ/d1sWohHOKwyQXK7eyZWPMZl1R
+         b+aFSffn9yp6NB07MnnDERYErOfefK3tWxkopicxW9AYvrEjbmAZ2UYr8waL1IJGBvG1
+         HPuw==
+X-Gm-Message-State: AOJu0YwxUOKRgwmBVcc0JRl1/zx48UC2hDzAHtD9IQG6wpo9xpF2r/UF
+	edeT2JcqmIWtzyp6GZoioybCow==
+X-Google-Smtp-Source: AGHT+IGuxtMdWdK0zIKfDvAo02KGHVuPKg6EGMQFQPvL+iESuudFCKhTS13DZsoaYuTTcxcl5+uYAQ==
+X-Received: by 2002:a05:6512:604:b0:500:c534:3e4e with SMTP id b4-20020a056512060400b00500c5343e4emr1156636lfe.60.1697707309793;
+        Thu, 19 Oct 2023 02:21:49 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id f13-20020a1c6a0d000000b003fe23b10fdfsm3850668wmc.36.2023.10.19.02.20.50
+        by smtp.gmail.com with ESMTPSA id f13-20020a1c6a0d000000b003fe23b10fdfsm3850668wmc.36.2023.10.19.02.21.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 02:20:51 -0700 (PDT)
-Message-ID: <472aa31d-7d6c-41df-86e6-d17f05998256@linaro.org>
-Date: Thu, 19 Oct 2023 11:20:49 +0200
+        Thu, 19 Oct 2023 02:21:49 -0700 (PDT)
+Message-ID: <df3c067f-8732-46bf-aa93-852f41e9e4e9@linaro.org>
+Date: Thu, 19 Oct 2023 11:21:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
- schemas
+Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add Powkiddy RK2023
 Content-Language: en-US
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Matt Ranostay <matt.ranostay@konsulko.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
+To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
+Cc: linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ sboyd@kernel.org, mturquette@baylibre.com, daniel@ffwll.ch,
+ airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
+ heiko@sntech.de, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+References: <20231018161848.346947-1-macroalpha82@gmail.com>
+ <20231018161848.346947-5-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,107 +123,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231018161848.346947-5-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/10/2023 10:04, Subhajit Ghosh wrote:
-> Squashing Avago (Broadcom) APDS9300 and APDS9960 schemas into one
-> file and removing the other.
-
-Please answer: why?
-
-> Link: https://lore.kernel.org/all/4e785d2e-d310-4592-a75a-13549938dcef@linaro.org/
+On 18/10/2023 18:18, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> The Powkiddy RK2023 is a handheld gaming device made by Powkiddy and
+> powered by the Rockchip RK3566 SoC.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/iio/light/avago,apds9300.yaml    | 35 ++++++++++++---
->  .../bindings/iio/light/avago,apds9960.yaml    | 44 -------------------
->  2 files changed, 29 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> index 206af44f2c43..7826a1749fcd 100644
-> --- a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> @@ -4,17 +4,26 @@
->  $id: http://devicetree.org/schemas/iio/light/avago,apds9300.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index a349bf4da6bc..a6612185a7ff 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -674,6 +674,11 @@ properties:
+>            - const: powkiddy,rgb30
+>            - const: rockchip,rk3566
 >  
-> -title: Avago APDS9300 ambient light sensor
-> +title: Avago Gesture, RGB, ALS and Proximity sensors
->  
->  maintainers:
->    - Jonathan Cameron <jic23@kernel.org>
-> +  - Matt Ranostay <matt.ranostay@konsulko.com>
->  
->  description: |
-> -  Datasheet at https://www.avagotech.com/docs/AV02-1077EN
-> +  Avago (Broadcom) optical and proximity sensors with I2C interfaces.
-> +  Datasheet at https://docs.broadcom.com/doc/AV02-1077EN
-> +  Datasheet at https://docs.broadcom.com/doc/AV02-4191EN
->  
->  properties:
->    compatible:
-> -    const: avago,apds9300
-> +    oneOf:
-> +      - items:
-> +          - const: avago,apds9300
-> +          - const: avago,apds9960
+> +      - description: Powkiddy RK2023
+> +        items:
+> +          - const: powkiddy,rk2023
+
+This cuold be just enum in previous entry :/ but I remember we talked
+about this once with Heiko.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> +          - const: rockchip,rk3566
 
 
-Why? Commit msg does not explain this.
-
-> +      - enum:
-> +          - avago,apds9300
-> +          - avago,apds9960
->  
->    reg:
->      maxItems: 1
-> @@ -22,14 +31,28 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> -additionalProperties: false
-> -
->  required:
->    - compatible
->    - reg
->  
-> +allOf:
-> +  - $ref: ../common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - avago,apds9960
-> +    then:
-> +      required:
-> +        - interrupts
-
-Why? This wasn't in original binding.
-
-> +
-> +additionalProperties: false
-> +
->  examples:
->    - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> @@ -38,7 +61,7 @@ examples:
->              compatible = "avago,apds9300";
->              reg = <0x39>;
->              interrupt-parent = <&gpio2>;
-> -            interrupts = <29 8>;
-> +            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-
-Separate patch please.
-
-You are doing way too many unexpected and not explained changes.
 
 Best regards,
 Krzysztof
