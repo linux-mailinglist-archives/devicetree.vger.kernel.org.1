@@ -1,126 +1,208 @@
-Return-Path: <devicetree+bounces-10108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35DD7CFACC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1EE7CFAD6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:22:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 325A728203D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:21:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCC4F28201C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E0F27444;
-	Thu, 19 Oct 2023 13:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A777427444;
+	Thu, 19 Oct 2023 13:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JW2EdFx3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y2EbQdSu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0877F2375D;
-	Thu, 19 Oct 2023 13:21:30 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7C498;
-	Thu, 19 Oct 2023 06:21:28 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53dd3f169d8so13380204a12.3;
-        Thu, 19 Oct 2023 06:21:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4AD2F32
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:22:10 +0000 (UTC)
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A2D131
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:22:07 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5a7c7262d5eso99983867b3.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:22:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697721687; x=1698326487; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FgxKa8AO9ndn9A10MY0AzoFh3nJur0uCTmMfy39Eot8=;
-        b=JW2EdFx3QJ/7jxW2xpcnJYEN8HSXL8Vk0zF8lEfzK/9PRouUWJlGlxxsZmpJnGeKOG
-         aurGBoh6Hzgij4mF6vE2LWAOYSlCkY8DILHKy7sOkAHbLp0OiBOhyhkMg7u5xhWKkTJ2
-         vaTVMlU+CYEqwV4pvBY4GkooueLy3YBtVFVa1HQEaIQq8oivV8r1XO19dgM823JSdPTj
-         jN8BWKD850e0enJAlOL+uGa1zwjI4vLUDvBGpZ5iiQOoiDS+IlejRBmJ/czHTPc/Zxbo
-         S3kYOCd+k7/Q6956nQACvFcZ5Ts1BXAnnV2BBffHZIbjHZqJNliFtS3jTAM+qkFJUxJp
-         rkgQ==
+        d=linaro.org; s=google; t=1697721726; x=1698326526; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LK/A8QLl6mmZsiIVExfW0sdngxXHRyvJR8+2rskOKXw=;
+        b=y2EbQdSuBPfoN7iHvMzb7Eehk+7o1FyEgcUZGm3n4YjsSBbqvyuGTQjwulKDSIst3g
+         VEufAFVA4Oq+ACDcflmvrFUc7RGdRAwXl1/Qmc7c26S1YDHznIt+9A542K42kRAycz97
+         JNoOJ9TkP5bh4kEhvcnO6rqA3E268DPOgmqpoRTnY6NyljsweBQGOmmsrKwEmy3K+pua
+         seGiEfihIEHmrZtNqJHNzNPymzbFmWd15AnOUOgY+dpr2lSpgqFIBZiY+6154Rz+MhDv
+         0Qre5tLtGJU3DnXWJBTtSYk0n1GTsk9A70udMS8XSiAvx55Sz7bN7f7dt+ZGb9HPxv6l
+         ibig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697721687; x=1698326487;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FgxKa8AO9ndn9A10MY0AzoFh3nJur0uCTmMfy39Eot8=;
-        b=PYRG5xKuPtldafesFA0iAVmMVnITS3mvFck700f5NeSgSM85+ysDtMyZQA7BEF8wwY
-         kRvIvC+yrI0Lx+N7FNBEFUdZ7wEJ3m2F0l651+/x4PnPc34HQzONKpPAYRi9pxrzd2Sw
-         l6hWc0oaXHfcXWRvDJwGC8WQUtWVVwd47Iq6ITvk8m1O1d5mpfoJj7ZM/UDs7U+yekPa
-         ugNAcH5SfM4huCNaFxqQfBbTGF0zVmrozE9NQFFVaEwd1jVb5fE++fzteTmjvZ43TDZ8
-         gCHASE4Bk0y3RUOj/HkSCc7XrzKuB+gPXk0/D0SXr4+SkwbKcPEmeW8EZONWoaIRTQGM
-         qvEA==
-X-Gm-Message-State: AOJu0YymFGuuwOoLHaS/Js/d5XeiLBZBVVVoJia6OOnx3Db8fGYkkebj
-	6sTTWai3dbzh8gFqEtmjvTM=
-X-Google-Smtp-Source: AGHT+IGPYVxFFY4V5wJ9ZKXaFEG0/Ul9BCX45nfhQeyJcBnICEDGph1b8CwndVzz+OMYm+48TScO8w==
-X-Received: by 2002:a05:6402:2813:b0:53d:f358:202c with SMTP id h19-20020a056402281300b0053df358202cmr1823338ede.5.1697721687185;
-        Thu, 19 Oct 2023 06:21:27 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id s10-20020a508dca000000b005340d9d042bsm4358136edh.40.2023.10.19.06.21.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 06:21:26 -0700 (PDT)
-Date: Thu, 19 Oct 2023 16:21:23 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	John Crispin <john@phrozen.org>,
-	Gerhard Engleder <gerhard@engleder-embedded.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-	Justin Chen <justin.chen@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Grygorii Strashko <grygorii.strashko@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH net-next 3/8] dt-bindings: net: dsa/switch: Make
- 'ethernet-port' node addresses hex
-Message-ID: <20231019132123.3jcyky3ruxfgstoi@skbuf>
-References: <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-3-a525a090b444@kernel.org>
+        d=1e100.net; s=20230601; t=1697721726; x=1698326526;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LK/A8QLl6mmZsiIVExfW0sdngxXHRyvJR8+2rskOKXw=;
+        b=ukeskKSETyQdVXEyyf/HC2mpiLE/JFOUzypjI29+qcnJ7VrKu+IAWaprpJM7tIqgtg
+         Jfoyb+MjWzT44g/uoQDucoWLFfGWWZzRVij6MLjPV0HhoyokkvR5fC0z7tiY4LP84Coo
+         EzPCut04wgOh2RARLCauVIJ9ZZbyC2S53w/d4Qh8BEMb1rOvrLzLotEDtb9KThq3V6x/
+         2jw0y7AfY704R1Vmm2oYYxM7P+hM6XABHjYPG9Y+uDe49nj+I3W2+4KgJmPsuR6veQpl
+         o92taJzmJD7Izc0jCnHGS6Yd5zmJVrrcbvZNG8EaPhDr1jfZii6yooMik8i6OEEMi6rq
+         RJjQ==
+X-Gm-Message-State: AOJu0Yzp7ZfNoG2y5Vxig9DirsDMzaZ74SLWB8RH+tarOPZByYRFyc92
+	RrfQZrLL5zbaIoQcVgVsh11ji+JuAva23LEUMrhNjQ==
+X-Google-Smtp-Source: AGHT+IGO7zgweMP4Ggy580FnIWlG2Q2goG3FWkhovjhI5E63Yz0JUSyXj4xiRJEQZJSqvTzyffCd0vqYP5Uz4i/JMOA=
+X-Received: by 2002:a0d:d8cc:0:b0:5a7:afc9:3579 with SMTP id
+ a195-20020a0dd8cc000000b005a7afc93579mr2270939ywe.18.1697721726120; Thu, 19
+ Oct 2023 06:22:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231016-dt-net-cleanups-v1-3-a525a090b444@kernel.org>
+References: <cover.1697694811.git.quic_varada@quicinc.com> <9ebae0e9780745091274562a2b9afd856241dbdc.1697694811.git.quic_varada@quicinc.com>
+In-Reply-To: <9ebae0e9780745091274562a2b9afd856241dbdc.1697694811.git.quic_varada@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 19 Oct 2023 16:21:55 +0300
+Message-ID: <CAA8EJpo3-dZmYZ40FCGBBHRAHPmSAYJLPuwdGy8eY9-NwDYMhA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] clk: qcom: apss-ipq6018: ipq5332: add safe source
+ switch for a53pll
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, rafael@kernel.org, 
+	viresh.kumar@linaro.org, ilia.lin@kernel.org, sivaprak@codeaurora.org, 
+	quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Oct 16, 2023 at 04:44:22PM -0500, Rob Herring wrote:
-> 'ethernet-port' node unit-addresses should be in hexadecimal. Some
-> instances have it correct, but fix the ones that don't.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Thu, 19 Oct 2023 at 11:42, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> Stromer Plus PLL found on IPQ53xx doesn't support dynamic
+> frequency scaling. To achieve the same, we need to park the APPS
+> PLL source to GPLL0, re configure the PLL and then switch the
+> source to APSS_PLL_EARLY.
+>
+> To support this, register a clock notifier to get the PRE_RATE
+> and POST_RATE notification. Change the APSS PLL source to GPLL0
+> when PRE_RATE notification is received, then configure the PLL
+> and then change back the source to APSS_PLL_EARLY.
+>
+> Additionally, not all SKUs of IPQ53xx support scaling. Hence,
+> do the above to the SKUs that support scaling.
+>
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
+> v3:     devm_kzalloc for cpu_clk_notifier instead of global static
+> v2:     Handle ABORT_RATE_CHANGE
+>         Use local variable for apcs_alias0_clk_src.clkr.hw
+>         Use single line comment instead of multi line style
+> ---
+>  drivers/clk/qcom/apss-ipq6018.c | 58 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 57 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
+> index 4e13a08..db65b0d 100644
+> --- a/drivers/clk/qcom/apss-ipq6018.c
+> +++ b/drivers/clk/qcom/apss-ipq6018.c
+> @@ -9,8 +9,11 @@
+>  #include <linux/clk-provider.h>
+>  #include <linux/regmap.h>
+>  #include <linux/module.h>
+> +#include <linux/clk.h>
+> +#include <linux/soc/qcom/smem.h>
+>
+>  #include <dt-bindings/clock/qcom,apss-ipq.h>
+> +#include <dt-bindings/arm/qcom,ids.h>
+>
+>  #include "common.h"
+>  #include "clk-regmap.h"
+> @@ -84,15 +87,68 @@ static const struct qcom_cc_desc apss_ipq6018_desc = {
+>         .num_clks = ARRAY_SIZE(apss_ipq6018_clks),
+>  };
+>
+> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
+> +                               void *data)
+> +{
+> +       struct clk_hw *hw;
+> +       u8 index;
+> +       int err;
+> +
+> +       if (action == PRE_RATE_CHANGE)
+> +               index = P_GPLL0;
+> +       else if (action == POST_RATE_CHANGE || action == ABORT_RATE_CHANGE)
+> +               index = P_APSS_PLL_EARLY;
+> +       else
+> +               return NOTIFY_OK;
+> +
+> +       hw = &apcs_alias0_clk_src.clkr.hw;
+> +       err = clk_rcg2_mux_closest_ops.set_parent(hw, index);
+> +
+> +       return notifier_from_errno(err);
+> +}
+> +
+>  static int apss_ipq6018_probe(struct platform_device *pdev)
+>  {
+> +       struct notifier_block *cpu_clk_notifier;
+>         struct regmap *regmap;
+> +       u32 soc_id;
+> +       int ret;
+> +
+> +       ret = qcom_smem_get_soc_id(&soc_id);
+> +       if (ret)
+> +               return ret;
+>
+>         regmap = dev_get_regmap(pdev->dev.parent, NULL);
+>         if (!regmap)
+>                 return -ENODEV;
+>
+> -       return qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
+> +       ret = qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
+> +       if (ret)
+> +               return ret;
+> +
+> +       switch (soc_id) {
+> +       /* Only below variants of IPQ53xx support scaling */
+> +       case QCOM_ID_IPQ5332:
+> +       case QCOM_ID_IPQ5322:
+> +       case QCOM_ID_IPQ5300:
+> +               cpu_clk_notifier = devm_kzalloc(&pdev->dev,
+> +                                               sizeof(*cpu_clk_notifier),
+> +                                               GFP_KERNEL);
+> +               if (!cpu_clk_notifier)
+> +                       return -ENOMEM;
+> +
+> +               cpu_clk_notifier->notifier_call = cpu_clk_notifier_fn;
+> +
+> +               ret = clk_notifier_register(apcs_alias0_clk_src.clkr.hw.clk,
+> +                                           cpu_clk_notifier);
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+devm_clk_notifier_register sounds more future-proof.
+
+Other than that:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> +               if (ret)
+> +                       return ret;
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+>  }
+>
+>  static struct platform_driver apss_ipq6018_driver = {
+> --
+> 2.7.4
+>
+
+
+-- 
+With best wishes
+Dmitry
 
