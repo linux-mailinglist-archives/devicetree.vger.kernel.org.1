@@ -1,112 +1,73 @@
-Return-Path: <devicetree+bounces-10106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943F07CFAC0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:18:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB4E7CFAC7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:20:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54871C20E6A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:18:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74E5BB21207
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403EF250F8;
-	Thu, 19 Oct 2023 13:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437C427441;
+	Thu, 19 Oct 2023 13:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TlmrLvUL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="euF/Oe30"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FF52F32;
-	Thu, 19 Oct 2023 13:18:13 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344EC9F;
-	Thu, 19 Oct 2023 06:18:12 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so13664191a12.3;
-        Thu, 19 Oct 2023 06:18:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697721490; x=1698326290; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dOMFQ4KhhgNN9uiVFnKX2Q/Idi24XPkIW6kBXq+OOHE=;
-        b=TlmrLvULlTB+gpOGgRWxIu72f6iPqOEm44A4k/wIZMeqBmvifechdif/eT3IPvwdVN
-         k2FENZI0u+CzJNFgBHf/ZMMIZ4BaG1hvJjim7kRzAssOV1lV+ELhoc+t4cnLpI8ppKFV
-         Dm1MDOlPT2po/Qm2pu4pToKCi9SNeDnWMMuA+Tp/Nc7l0C/rBuul2s0bt4b/MX1PLSRJ
-         PYKGKhrMuxb2nafmFdXjDGzHWTf9DsaUcYAEdvv4QQdnu/VmkNSuKO21IR+ItcMh0Sfy
-         GjFlHNjoDGtvjHN8oi9leUEBEirJ6Wrf4mMw7VpZWo8V7fKW2w5tgk8YDPaMblyQiiDN
-         bi1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697721490; x=1698326290;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dOMFQ4KhhgNN9uiVFnKX2Q/Idi24XPkIW6kBXq+OOHE=;
-        b=Oyx5UoFfxKqQbSef7q0y7pQbRPBUqJ0o7KbOI5mdeQNDluNTJhs8iR9KqrvQMQ6g6A
-         RrXfeIwbskrkA9V0+s9199lycWSQOp+S3TiWqZU8kmT/rKca8jQG5YT8SIy4+VbpypNu
-         kLymyQbtTo6xcR4wL/Grfx6/s9+taY4HOkPA+uq2alntSCqn4jC3HwNFGJsnTSMsQJ5j
-         uZh4B/2fYIFzRIw14Kd8NeCV87fEU01ueNds0F6PabVlyRUhMH/Eum/IJCk5j9lN+cOI
-         FPneJ2XTMqfqxVYPVMzLDmE3ZNIGucVzH5VqwKftw60iI1CmpIYH5YHJzOjzGCknSoUU
-         l2jA==
-X-Gm-Message-State: AOJu0YxuiTgzCjWO7F+9xPG6s2nk+cbxTAbuzBtFU2AzfAxBDsVlkj4a
-	09vXnKtwMO5wpg+yApsdY+w=
-X-Google-Smtp-Source: AGHT+IGeV/PAyeS5ZcSZyKizUQ5u38iNo53UbAIyLr9nNzHgjNSBIjErmYPUXpk3hLMaNF1I+onEEQ==
-X-Received: by 2002:a17:907:97d0:b0:9aa:63d:9ede with SMTP id js16-20020a17090797d000b009aa063d9edemr2084080ejc.9.1697721490291;
-        Thu, 19 Oct 2023 06:18:10 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id qt16-20020a170906ecf000b0099c53c44083sm3596979ejb.79.2023.10.19.06.18.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 06:18:09 -0700 (PDT)
-Date: Thu, 19 Oct 2023 16:18:06 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DFBE2375D;
+	Thu, 19 Oct 2023 13:20:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F99CC433C8;
+	Thu, 19 Oct 2023 13:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697721621;
+	bh=VOgijqnTNDtnP5vZfW0kZXy9HzFMq1AfoLyH43H+9QI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=euF/Oe30adccYRG1D2KqAdsZH6ES5G29fc3GYvg3jyHVY6vFkobKVbn1riBtcOn5q
+	 Z4c1wx3MgCigZGA1EBi2YEoesdyEQKqxjFYLdFhGllTOteXp5i16TUIcRNH4rgW41X
+	 cA0Le25PTRec0HIh52GVsWwxcL7z1HbJL6sXB3xyOiT6d9PBj/u11teLTqk7PWiZN2
+	 QlvaedlZNZi3tBCzyes9RLtV1cDjE0oSccwDCzEulImuyl5KBhLqQwZ3uSSona6TeQ
+	 U+lxWMPNCdk9aiwpYGGLNLLwD10Qa+C8SLKzcANg+Xvv5rbJiV/TOJJOKUskxqbezW
+	 ZcLwZdq7m2A7Q==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qtSwq-0003YF-1G;
+	Thu, 19 Oct 2023 15:20:24 +0200
+Date: Thu, 19 Oct 2023 15:20:24 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	John Crispin <john@phrozen.org>,
-	Gerhard Engleder <gerhard@engleder-embedded.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-	Justin Chen <justin.chen@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Grygorii Strashko <grygorii.strashko@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH net-next 1/8] dt-bindings: net: Add missing
- (unevaluated|additional)Properties on child node schemas
-Message-ID: <20231019131806.lbzydoplodybvb62@skbuf>
-References: <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
+	"quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
+	"quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
+	"quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
+	"ahalaney@redhat.com" <ahalaney@redhat.com>,
+	"quic_shazhuss@quicinc.com" <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH v9 05/10] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+Message-ID: <ZTEtGIerwI90P6aA@hovoldconsulting.com>
+References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
+ <20230621043628.21485-6-quic_kriskura@quicinc.com>
+ <ZJrRe7HtMs0KbsCy@hovoldconsulting.com>
+ <e3e0c4c8-1e91-caf1-c1c4-86203a7ecba0@quicinc.com>
+ <ZLo6MwbuKNL5xtPE@hovoldconsulting.com>
+ <20230801013031.ft3zpoatiyfegmh6@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,49 +76,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
- <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
+In-Reply-To: <20230801013031.ft3zpoatiyfegmh6@synopsys.com>
 
-Hi Rob,
+[ Digging through some old mails. ]
 
-On Mon, Oct 16, 2023 at 04:44:20PM -0500, Rob Herring wrote:
-> Just as unevaluatedProperties or additionalProperties are required at
-> the top level of schemas, they should (and will) also be required for
-> child node schemas. That ensures only documented properties are
-> present for any node.
+On Tue, Aug 01, 2023 at 01:30:36AM +0000, Thinh Nguyen wrote:
+> On Fri, Jul 21, 2023, Johan Hovold wrote:
+> > On Mon, Jul 03, 2023 at 12:26:26AM +0530, Krishna Kurapati PSSNV wrote:
+  
+> > > >> +/* Number of ports supported by a multiport controller */
+> > > >> +#define DWC3_MAX_PORTS 4
+> > > > 
+> > > > You did not answer my question about whether this was an arbitrary
+> > > > implementation limit (i.e. just reflecting the only currently supported
+> > > > multiport controller)?
+> > > > 
+> > > I mentioned in commit text that it is limited to 4. Are you referring to 
+> > > state the reason why I chose the value 4 ?
+> > 
+> > Yes, and to clarify whether this was an arbitrary limit you chose
+> > because it was all that was needed for the hw you care about, or if it's
+> > a more general limitation.
+> > 
 > 
-> Add unevaluatedProperties or additionalProperties as appropriate.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> index 833d2f68daa1..ea285ef3e64f 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> @@ -61,17 +61,11 @@ properties:
->  
->    ethernet-ports:
->      type: object
-> -    properties:
-> -      '#address-cells':
-> -        const: 1
-> -      '#size-cells':
-> -        const: 0
-> -
-> +    additionalProperties: true
->      patternProperties:
->        "^(ethernet-)?port@[0-4]$":
->          type: object
-> -        description: Ethernet switch ports
-> -
-> +        additionalProperties: true
->          properties:
->            pcs-handle:
->              maxItems: 1
+> Note: We can support many, but we set the current limit to 4 usb3 ports
+> and up to 15 usb2 ports.
 
-For my edification, this patch removes #address-cells and #size-cells
-at the same time, because "additionalProperties: true" (which was also
-implied before) doesn't care if they aren't defined in this sub-schema,
-and they are defined through $ref: dsa.yaml#/$defs/ethernet-ports,
-right?
+Thanks for clarifying.
+
+Johan
 
