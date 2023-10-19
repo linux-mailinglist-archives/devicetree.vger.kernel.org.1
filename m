@@ -1,65 +1,40 @@
-Return-Path: <devicetree+bounces-9939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B017CF12F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC677CF175
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:39:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B37E1C20B3F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:26:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A74A11C208E5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19EAD295;
-	Thu, 19 Oct 2023 07:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ALgjGUGV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0313D2F2;
+	Thu, 19 Oct 2023 07:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A13D8F64
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 07:26:46 +0000 (UTC)
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5569B9F
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:26:44 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6bcbfecf314so1040843b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:26:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697700404; x=1698305204; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wgTcFnd2WuQ3b93x6mtXxA5MmL51CRaK2ux9aDnBicU=;
-        b=ALgjGUGVojPdKw06M7V19ORNMHqFpjA1hO9W+3LMyeQym7l7C94maxnHf2Z7AoB4/Q
-         O2cHH3+hGhxUecr0INsYtr2w7u/f9lPLywibkhBH8WlaAGBp4TBy/pK6JLZf1JPzbTRH
-         kLb1o5T0fErCDrFFnBdfwlLYb20q1qVMczrxHzjQtFDnRdlqyogygvyGOS9PFcesXU4U
-         MZHX+ZBRvP7VFTXFyL6NRf9ZwlEPJO1i9SEwnFdQpIeClYhdaLRD6JvHQVuP/h3sqywf
-         4fIu8+0DRMFDjVxxySHqhGMaukYuUMj8iFV+WPVUHAMe/GqaBEqDgQI05jO5xr3RLT1G
-         cj/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697700404; x=1698305204;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wgTcFnd2WuQ3b93x6mtXxA5MmL51CRaK2ux9aDnBicU=;
-        b=DzYf04aZbhMq3r+ekNWDTvI+OBCwYHKTGalfqVLCf1jmoRnmeWwtFWlugPfdOsHBCI
-         R++L1ChOUuSyh464v4/wRc8tNc4M5KfKhPG0jsdyp6pClr9NfbO0AHNEkKpbBYInEiil
-         YD1ca0eMZwql6wLM5LmJILQv4uAwfQULeMr9j9FGLuWhMosNrsKxv2uJt7itBn0GXFmr
-         RPWN4zj82aYBdfzLSUbSRP+8nMSWXZKSPcGbNk5gYPF9xvDkFX21jQFdPhz8M07tooN6
-         czhAR/FnHvnX5BvQ6wLfrruYu3YecK6p2tNZfBPtPWg5lSoCJPZol71VWfBgGhdVw/Rq
-         eMpg==
-X-Gm-Message-State: AOJu0YwYkrzzw18pYFQ2VoGJtsOY9Up6zZyIKchSS4NYFERNEn33336a
-	HSX9YzgZ585O7AiHFjTD0M6jPQ==
-X-Google-Smtp-Source: AGHT+IHBolW3gGracNxmsGlk+qzVRPdVEtKUfRfRdsaXZ4nG07zJsUHKMW68cjsZuxWvQXGUOxGzrQ==
-X-Received: by 2002:a62:b613:0:b0:6bc:67ca:671d with SMTP id j19-20020a62b613000000b006bc67ca671dmr1233298pff.1.1697700403743;
-        Thu, 19 Oct 2023 00:26:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:6933:1fe3:b858:3dde? ([2a01:e0a:999:a3a0:6933:1fe3:b858:3dde])
-        by smtp.gmail.com with ESMTPSA id g7-20020aa79f07000000b00693411c6c3csm4455829pfr.39.2023.10.19.00.26.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 00:26:43 -0700 (PDT)
-Message-ID: <844f6f35-3125-4014-852c-9ad7aee19ddc@rivosinc.com>
-Date: Thu, 19 Oct 2023 09:26:31 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DD7ED26D
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 07:39:48 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28B513A;
+	Thu, 19 Oct 2023 00:39:45 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id BFBBE24E2A5;
+	Thu, 19 Oct 2023 15:39:42 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 19 Oct
+ 2023 15:39:41 +0800
+Received: from [192.168.125.85] (183.27.99.123) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 19 Oct
+ 2023 15:39:40 +0800
+Message-ID: <f80c685e-4513-4962-9b47-d6c85d632dd2@starfivetech.com>
+Date: Thu, 19 Oct 2023 15:39:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,107 +42,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/19] riscv: hwprobe: factorize hwprobe ISA extension
- reporting
+Subject: Re: [PATCH v8 16/22] PCI: microchip: Add event IRQ domain ops to
+ struct plda_event
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Evan Green <evan@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Palmer Dabbelt <palmer@rivosinc.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
- Andrew Jones <ajones@ventanamicro.com>, Samuel Ortiz <sameo@rivosinc.com>
-References: <20231017131456.2053396-1-cleger@rivosinc.com>
- <20231017131456.2053396-2-cleger@rivosinc.com>
- <CALs-HssL=wNwj9nRuZwpZhy1CB9p9-X=OqgwBw9zvgA7hA4fEg@mail.gmail.com>
- <20231018-scrap-bankable-a0f321d97a46@spud>
- <20231018-flagpole-footpad-07a6228485f3@spud>
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20231018-flagpole-footpad-07a6228485f3@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Conor Dooley <conor@kernel.org>
+CC: =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring
+	<robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
+ Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231011110514.107528-1-minda.chen@starfivetech.com>
+ <20231011110514.107528-17-minda.chen@starfivetech.com>
+ <20231018-worrier-sizably-b13023f54b36@spud>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20231018-worrier-sizably-b13023f54b36@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.99.123]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
 
 
-On 18/10/2023 19:36, Conor Dooley wrote:
-> On Wed, Oct 18, 2023 at 06:33:34PM +0100, Conor Dooley wrote:
->> On Wed, Oct 18, 2023 at 10:24:15AM -0700, Evan Green wrote:
->>> On Tue, Oct 17, 2023 at 6:15 AM Clément Léger <cleger@rivosinc.com> wrote:
->>>>
->>>> Factorize ISA extension reporting by using a macro rather than
->>>> copy/pasting extension names. This will allow adding new extensions more
->>>> easily.
->>>>
->>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
->>>> ---
->>>>  arch/riscv/kernel/sys_riscv.c | 32 ++++++++++++++++++--------------
->>>>  1 file changed, 18 insertions(+), 14 deletions(-)
->>>>
->>>> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
->>>> index 473159b5f303..e207874e686e 100644
->>>> --- a/arch/riscv/kernel/sys_riscv.c
->>>> +++ b/arch/riscv/kernel/sys_riscv.c
->>>> @@ -145,20 +145,24 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
->>>>         for_each_cpu(cpu, cpus) {
->>>>                 struct riscv_isainfo *isainfo = &hart_isa[cpu];
->>>>
->>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBA))
->>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBA;
->>>> -               else
->>>> -                       missing |= RISCV_HWPROBE_EXT_ZBA;
->>>> -
->>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBB))
->>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBB;
->>>> -               else
->>>> -                       missing |= RISCV_HWPROBE_EXT_ZBB;
->>>> -
->>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBS))
->>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBS;
->>>> -               else
->>>> -                       missing |= RISCV_HWPROBE_EXT_ZBS;
->>>> +#define CHECK_ISA_EXT(__ext)                                                   \
->>>> +               do {                                                            \
->>>> +                       if (riscv_isa_extension_available(isainfo->isa, __ext)) \
->>>> +                               pair->value |= RISCV_HWPROBE_EXT_##__ext;       \
->>>> +                       else                                                    \
->>>> +                               missing |= RISCV_HWPROBE_EXT_##__ext;           \
->>>> +               } while (false)
->>>> +
->>>> +               /*
->>>> +                * Only use CHECK_ISA_EXT() for extensions which can be exposed
->>>> +                * to userspace, regardless of the kernel's configuration, as no
->>>> +                * other checks, besides presence in the hart_isa bitmap, are
->>>> +                * made.
->>>
->>> This comment alludes to a dangerous trap, but I'm having trouble
->>> understanding what it is.
->>
->> You cannot, for example, use this for communicating the presence of F or
->> D, since they require a config option to be set before their use is
->> safe.
+On 2023/10/18 19:30, Conor Dooley wrote:
+> On Wed, Oct 11, 2023 at 07:05:08PM +0800, Minda Chen wrote:
+>> PolarFire Implements none-PLDA event interrupts. So the whole event
+>> domain ops can not be re-used.
 > 
-> Funnily enough, this comment is immediately contradicted by the vector
-> subset extensions, where these CHECK_ISA_EXT() macros are used wrapped
-> in has_vector(). The code looks valid to me, since has_vector() contains
-> the Kconfig check, but does fly in the face of this comment.
-
-Yes, the KConfig checks are already done by the headers, adding #ifdef
-would be redundant even if more coherent with the comment. BTW, wouldn't
-it make more sense to get rid out of the unsupported extensions directly
-at ISA string parsing ? ie, if kernel is compiled without V support,
-then do not set the bits corresponding to these in the riscv_isa_ext[]
-array ? But the initial intent was probably to be able to report the
-full string through cpuinfo.
-
-Clément
-
+> IIRC, the reason things are like this is to work around the lack of an
+> msi controller and are not as a result of changes made to the PLDA IP
+> by us.
 > 
->>
->>> Perhaps some rewording to more explicitly
->>> state the danger would be appropriate. Other than that:
->>>
->>> Reviewed-by: Evan Green <evan@rivosinc.com>
+Oh.  For this reason that new added interrupts have to add to 
+global events field, not the MSI. I will add this to commit messages.
+Thanks
+
+>> PLDA event domain ops instances will be implemented
+>> in later patch.
 > 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
+> Thanks,
+> Conor.
+> 
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> ---
+>>  drivers/pci/controller/plda/pcie-microchip-host.c | 9 ++++++---
+>>  drivers/pci/controller/plda/pcie-plda.h           | 1 +
+>>  2 files changed, 7 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> index fca1520d56c9..2825c1f5563d 100644
+>> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+>> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> @@ -811,13 +811,15 @@ static const struct plda_event_ops mc_event_ops = {
+>>  };
+>>  
+>>  static const struct plda_event mc_event = {
+>> +	.domain_ops             = &mc_event_domain_ops,
+>>  	.event_ops              = &mc_event_ops,
+>>  	.request_event_irq      = mc_request_event_irq,
+>>  	.intx_event             = EVENT_LOCAL_PM_MSI_INT_INTX,
+>>  	.msi_event              = EVENT_LOCAL_PM_MSI_INT_MSI,
+>>  };
+>>  
+>> -static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
+>> +static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
+>> +				      const struct irq_domain_ops *ops)
+>>  {
+>>  	struct device *dev = port->dev;
+>>  	struct device_node *node = dev->of_node;
+>> @@ -831,7 +833,8 @@ static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
+>>  	}
+>>  
+>>  	port->event_domain = irq_domain_add_linear(pcie_intc_node, port->num_events,
+>> -						   &mc_event_domain_ops, port);
+>> +						   ops, port);
+>> +
+>>  	if (!port->event_domain) {
+>>  		dev_err(dev, "failed to get event domain\n");
+>>  		of_node_put(pcie_intc_node);
+>> @@ -930,7 +933,7 @@ static int plda_init_interrupts(struct platform_device *pdev,
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	ret = plda_pcie_init_irq_domains(port);
+>> +	ret = plda_pcie_init_irq_domains(port, event->domain_ops);
+>>  	if (ret) {
+>>  		dev_err(dev, "failed creating IRQ domains\n");
+>>  		return ret;
+>> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+>> index 6571a4befac9..080932cbe8c4 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda.h
+>> +++ b/drivers/pci/controller/plda/pcie-plda.h
+>> @@ -129,6 +129,7 @@ struct plda_pcie_rp {
+>>  };
+>>  
+>>  struct plda_event {
+>> +	const struct irq_domain_ops *domain_ops;
+>>  	const struct plda_event_ops *event_ops;
+>>  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
+>>  				 int event_irq, int event);
+>> -- 
+>> 2.17.1
+>> 
 
