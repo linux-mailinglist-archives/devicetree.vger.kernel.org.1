@@ -1,181 +1,85 @@
-Return-Path: <devicetree+bounces-9869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58107CEE39
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 04:48:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EB37CEE53
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 05:10:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75636281E2A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 02:48:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5421A1C209CF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 03:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A980D18E;
-	Thu, 19 Oct 2023 02:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35AF81E;
+	Thu, 19 Oct 2023 03:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="Rl053gx+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLlhSJG+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28872EDC
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:48:43 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2040.outbound.protection.outlook.com [40.107.22.40])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EF2193;
-	Wed, 18 Oct 2023 19:48:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KXAU2Xd9wutNj01XC6RB364kzfd182KmKdVjsaxq/rxKi9hAxjZjrGP69azfIKxewwOGhp+RL+nnca5MC5W7nRjJMOMBra/d5DgkOIB0jyNOfYwwPdzFR9seK1Y4wCyzE4klvxd2uvaPdKz9XLLXekrcyPW6tjDrZwKncIjDZOcW7q7TgXvifEe1VAf4G+cyCLXHkgUHIjCyavJtO05BMPlcMB1KdpoJX6wAf/pzf6ZCuG240D5jq8iAmJ7yHQz+ubqmtBeFDUIMa+YgGRoW4cw8EKG99p8LxB+w3Lwfwlup7EjSF8yiANnQvtSmgOxzGwqWwjXhAxmTQ8fL2bMDwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gEWFVWZKinvQdrxYcIrxatj85NQhW7EW8uxc7yEPn2Y=;
- b=S1s3/B6OdN4MOmaSBPF6IJ6uVIzMdQYKut4yP3i/vns1JldOOQ5U3gqcNIR8WRydeMkCHZag00P+1aBNe+fRH0RaIKjNOhqmze+7Gn8c+OADgC213xLIgiles6bPrMzyBhvCNlIQgcpH7836rW24AkXi4PaMKzHLmI/GfGlRfJHk+cu7unWKbNg8fNJrd+/uEJa0ESTy8cVkK7it/YI6bO01x/Pu7avARrTTiCfUIh+z7ZzkKmjDagQTAvQE1ygvXPzVH3bJKTREtm0QHCKzaqdlWqFkcGU9QMTK7U45yn5z2ri27VHVosD9KsgB0R7RjqDatx267T0VtoZNaGuL8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gEWFVWZKinvQdrxYcIrxatj85NQhW7EW8uxc7yEPn2Y=;
- b=Rl053gx+1W87jVOf0uNrjg5GgC3z5ksBTwEYv4x3WjG3aawmvLnqtNAJWWAznzSs/qmWX136kp/hHcNxA472pVuuU0lIVGwFGWLVdJX0VcxYzXckr2hgWWXf5nRtr6SHPbaSWHkkkaDi7Bs7hhM3FOvqFk03VvbZogvUERDwkF8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AS5PR04MB10000.eurprd04.prod.outlook.com (2603:10a6:20b:682::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.46; Thu, 19 Oct
- 2023 02:48:38 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6e53:39fc:f010:30d5]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6e53:39fc:f010:30d5%4]) with mapi id 15.20.6907.021; Thu, 19 Oct 2023
- 02:48:38 +0000
-From: "Ming Qian (OSS)" <ming.qian@oss.nxp.com>
-To: mirela.rabulea@oss.nxp.com,
-	robh+dt@kernel.org,
-	shawnguo@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	mchehab@kernel.org,
-	hverkuil-cisco@xs4all.nl,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	xiahong.bao@nxp.com,
-	eagle.zhou@nxp.com,
-	tao.jiang_2@nxp.com,
-	ming.qian@nxp.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 3/3] media: imx-jpeg: Add vendor prefix in slot property
-Date: Thu, 19 Oct 2023 10:48:02 +0800
-Message-Id: <be1f8907582ea344f8826f7888b277534859e0c4.1697597713.git.ming.qian@nxp.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <cover.1697597713.git.ming.qian@nxp.com>
-References: <cover.1697597713.git.ming.qian@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0168.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::24) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E86396
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:10:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE343C433C8;
+	Thu, 19 Oct 2023 03:10:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697685045;
+	bh=U0+ivHJ2WS4HBD8gV/eAfFBE2jB5E3jN09d0Z0lakMQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=kLlhSJG+jBc5Jbr/diXdt08iKb3O8zW/SnBVtwV6TgQ59f97A7AxJw5WYFtPCK5Vt
+	 4nFYmL0RbVzAFMlOulnbYHFq53iQuw2GSJEp3kBwJuITh5KBhi3+Rt17AEvBRUyCTJ
+	 0EPTqhNjY8ljKiFp2rGjl6oieHi+eNc2pOYbLD/q2jj+5SsfsyNdtoXQTGpff+f2tx
+	 IMhb46+wU/1H8FOyQ7FNnViE3mVWce0f696vQxp2JVfj/8V5afDrt4IS7AMESgbF2W
+	 qZfq5b+LKlRb0cbuVRQCsx06BQxiK+e18d2LWcawtjvBBVYonTJYf08eh1c5M2sL0V
+	 DfLcz9rUQ2CNA==
+Date: Wed, 18 Oct 2023 22:10:42 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, mani@kernel.org,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v25 00/15] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ support
+Message-ID: <20231019031042.GA1385745@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|AS5PR04MB10000:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3400576c-bb36-414f-1f05-08dbd04de53d
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	laW823mHqSxU+aq8ctS78uwJloTjbBZO4xCWew5AqduA2+1K97SwBELiJkPfv3xhfzXZeRuByX0LAhkPxpSBj1EcCnQ+fjBFAT4dwmRtx4aZZOFNr6+7qrso4vHMB5P8CDuMmkhunojju6WDQASFMlGF4/aBden7CODynCAkW9IuWvlG4aavbxv1zMTMgN5g/+pKmacDNdwbDR74sS8tw4FIDUn/w8xSNSrt9tTk5NLcT6LwCfCg7iUuYwUqsAOsAs4JZq3ly+g7N1EpPbsIeGoupvdh0BbCKupLFQmXwdZFGAShBDfzIKByknfA6MAa7X4kEA+75PE2V7qWA9RDMfYZeylJqO+NrcqfD3jd/kIyKLBFyCOf/RDhddkrkERi7/Wm21x0M9E4+F6MjUULaBh9N8/M+HF3WppZnj2cXSPEko72/eYOF5fclhVeUubAO7629X/vhoPLF4FAiYLrzf+Cb66DD55/kqeBdpVi90oLKrUBiNCZbb9eQEnQk17b1qfFVNiYC/ErRTV4ODwFDKmkaP6hOp0Wt75m6K/6Je/Mor/E7zLvmLYCFPy9YrN0lA+uN3l3FS5CkAPrWlt//BCos4Pqlj4iYZ+4d+YfW1eG+GhUxYLdGbgtcskZsYBi
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(376002)(136003)(366004)(396003)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(38350700005)(6512007)(86362001)(36756003)(9686003)(8676002)(66476007)(66946007)(38100700002)(316002)(83380400001)(52116002)(6506007)(6666004)(66556008)(41300700001)(6486002)(478600001)(8936002)(7416002)(5660300002)(4326008)(2906002)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Qv/PK6Osxi/z4zpK7ghbD+EWV3da5u81+PCUC/gVNdODbCHdw1VHBdi2lHWh?=
- =?us-ascii?Q?YeUADxI/tbbn2OJ+oURhAwavHEHrjB8l9ew3L2gutABYNWWcOznVrWSmxAAp?=
- =?us-ascii?Q?lKge7GVBweiaf7IjCPAGiMejjwYm6XQBMZuA0sK2lOU5aIT6Aq+k2MQJa3CT?=
- =?us-ascii?Q?kMYDY5CA3K0gutvvEouugrxhkhDwiw2A86PvFo2zyeHCeyaxvEfp+UXyEKI5?=
- =?us-ascii?Q?ZuINHF7lMTc37GF9+gTlpAmuii9VfgOH5tMCEjPHoNxmTGL/jGS84DnJ2ktC?=
- =?us-ascii?Q?3/D8sG126cek+l9fw6mTU/C8Wzc/sP5vsTe00BI55b7xhyPDrV3o0Qi28B9o?=
- =?us-ascii?Q?ibOkXyVspp/MT2hLTS3Sj9OW3rK3oRcLw70Ks7JCLp5DRDK7lqz/m7rcnnbu?=
- =?us-ascii?Q?n6O0kaLa2V5G+jBL6ELFQBMPIwvobU1TwHHfLQxLCfaz/XjqEB5zvMlmyyKJ?=
- =?us-ascii?Q?y7rdQtylKYZBztfC6LBipx68AMABMbSfMAghG7Ihg9nyf0mxrwjgh2my5+bf?=
- =?us-ascii?Q?cDT56LbT2QxnYoT8v+hdlr7P4S54/kYKI82+a//I8sNZ0tK66Ryczj9a0nuh?=
- =?us-ascii?Q?SzjXjTBlZcXVqeTIpjv0pdFR3gh/Gosmpgr6JJygA1aMaXzXBnn4DXsaR89Y?=
- =?us-ascii?Q?bZFNXxvpKlJxDXMh6AqNUmxNDXX0gqWc4K6tOeWag3HJnT+kDlvKmagY1KeN?=
- =?us-ascii?Q?UNv2sPt/+K+OLrOvf7ZtuohbBh5dMg/Ss/j4gIhk4L0cHQ1aroakG4HeWK8C?=
- =?us-ascii?Q?fZyF5ihfYuNVWkQSDExF+rQLvMtPaMtw+Yj1yOSufwhtnHl4MZjrRCir6A6t?=
- =?us-ascii?Q?5USFunAk0xwoBvtMDOlF7bSYB1PH5+1CkGIVMI0GlJcnRUxlRiyZkbZ91T0S?=
- =?us-ascii?Q?g7SFsTr+KbkEVwXwzF14GEugua9gLcXBD1oLZuId10dPGCdcge7dhzWHBmoR?=
- =?us-ascii?Q?EiQ9ujScrZgFiGv6D5/smMEKEZg35WKXMaozF60jMh6g3PGZlXRoLlVc4gr5?=
- =?us-ascii?Q?eQ+2+xLuvRfNlZPzWqeTO8Czn3uU+x9dzHbqnqb9Mr/j+aWLV4A7c5C12+mR?=
- =?us-ascii?Q?YRpp5sIatcY8EjwuYRqwJJTAT506bCe+OMw+jLe5fFotWWeLOZQddacUJ0iI?=
- =?us-ascii?Q?CG9WHQzhBX3kALWn9acH3JjHwtqC7KSi7NK2WTNLv/g1MKU0mdZPKOTXFhX4?=
- =?us-ascii?Q?XYieS8OJs6hEOEgYPbupVUWyISmiE3vXHE1mzUPYqwQd/KCDUBeJXXx5ewJ0?=
- =?us-ascii?Q?E/3PECGWqJmgh0dWr68ufShd9r8sJqsDnzgxxop/VR3qwxqtB7/eYhdFi2go?=
- =?us-ascii?Q?zHOZ0Ln8e6H+X6kR8ofIkn0Raws7yy6u/syYSgClgFE0AsgYBBCe8dRNmXSi?=
- =?us-ascii?Q?al36EN2BopE7C/xMg7eBPeXRsF/dqk8sezvkAiRZcC1b68XTVVEdSsjvH3mu?=
- =?us-ascii?Q?HgnEeIIj8t/fjbb/VQrf4cTwCChMfZVWVUWOk/4CNBvjwRAZWDq3B7xkYcp/?=
- =?us-ascii?Q?PcDKybVFGw1ltjwavdTxRQTAd1nq1J/D1s9RHLXCH4cMIuOOV38mqaH67Q9S?=
- =?us-ascii?Q?A6uGVZiAPwUnNp1sjWu/XMrIboeVlvu8SIwjLoch?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3400576c-bb36-414f-1f05-08dbd04de53d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 02:48:38.1451
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CbR3gqLD+7IZjDaOU0O4BPvqO9+DXI4/nplvyqh50TC0x4PTK1sATMBWpwEsdtofO6+WqAU6lkeEXOOM6Ks54A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB10000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231018085631.1121289-1-yoshihiro.shimoda.uh@renesas.com>
 
-From: Ming Qian <ming.qian@nxp.com>
+On Wed, Oct 18, 2023 at 05:56:16PM +0900, Yoshihiro Shimoda wrote:
+> Add R-Car S4-8 (R-Car Gen4) PCIe controller for both host and endpoint modes.
+> To support them, modify PCIe DesignWare common codes.
+> 
+> Changes from v24:
+> https://lore.kernel.org/linux-pci/20231011071423.249458-1-yoshihiro.shimoda.uh@renesas.com/
+>  - Based on the latest pci.git / next branch.
+>  - Reordering the patches. (This is suggested by Bjorn.)
+>  - Drop "PCI: dwc: Disable two BARs to avoid unnecessary memory assignment"
+>    because break other platforms.
 
-The slot property isn't generic property, add vendor prefix. Change the
-property name to nxp,slot.
+Does R-Car Gen4 still work without this patch?
 
-Fixes: 53ebeea50599 ("media: imx-jpeg: Support to assign slot for encoder/decoder")
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
-v5
-- add vender prefix, change property slot to nxp,slot
+The previous commit log said host mode didn't work:
 
-v4
-- nothing changed here, just modify the bindings and dts
+  PCI: dwc: Disable two BARs to avoid unnecessary memory assignment
 
-v3
-- nothing changed here, just modify the bindings and dts
+  According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
+  Rev.5.20a, we should disable two BARs to avoid unnecessary memory
+  assignment during device enumeration. Otherwise, Renesas R-Car Gen4
+  PCIe controllers cannot work correctly in host mode.
 
-v2
-- nothing changed here, just modify the bindings and dts
+(from
+https://lore.kernel.org/r/20231011071423.249458-9-yoshihiro.shimoda.uh@renesas.com)
 
- drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I don't think we want to merge the driver unless it actually works.
 
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-index 64112b63298c..f8b99a292ad1 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-@@ -2762,7 +2762,7 @@ static int mxc_jpeg_probe(struct platform_device *pdev)
- 	if (IS_ERR(jpeg->base_reg))
- 		return PTR_ERR(jpeg->base_reg);
- 
--	ret = of_property_read_u32_index(pdev->dev.of_node, "slot", 0, &jpeg->slot_data.slot);
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "nxp,slot", 0, &jpeg->slot_data.slot);
- 	if (ret)
- 		jpeg->slot_data.slot = 0;
- 	dev_info(&pdev->dev, "choose slot %d\n", jpeg->slot_data.slot);
--- 
-2.38.1
-
+Bjorn
 
