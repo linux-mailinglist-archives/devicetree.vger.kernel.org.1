@@ -1,89 +1,147 @@
-Return-Path: <devicetree+bounces-10207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6301D7D0162
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:26:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0947D01F8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:42:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 561DEB21270
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 18:26:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A55F1C20E73
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 18:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF83E38DE5;
-	Thu, 19 Oct 2023 18:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345011DFD2;
+	Thu, 19 Oct 2023 18:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nT+MmY2W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C7D225B5
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 18:26:18 +0000 (UTC)
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DF6AB;
-	Thu, 19 Oct 2023 11:26:14 -0700 (PDT)
-Received: from i5e861907.versanet.de ([94.134.25.7] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qtXim-0006n2-UV; Thu, 19 Oct 2023 20:26:13 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Sam Edwards <cfsworks@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sam Edwards <CFSworks@gmail.com>,
-	Lokesh Poovaragan <loki@gimmeapis.com>,
-	linux-rockchip@lists.infradead.org,
-	=?UTF-8?q?Daniel=20Kukie=C5=82a?= <daniel@kukiela.pl>,
-	Sven Rademakers <sven.rademakers@gmail.com>
-Subject: Re: [PATCH v2 0/3] Add initial devicetree for Turing RK1
-Date: Thu, 19 Oct 2023 20:26:11 +0200
-Message-Id: <169773987935.1461852.15123065300008221603.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231011225823.2542262-1-CFSworks@gmail.com>
-References: <20231011225823.2542262-1-CFSworks@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFF039852;
+	Thu, 19 Oct 2023 18:42:55 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656B9126;
+	Thu, 19 Oct 2023 11:42:53 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JHLeYc017772;
+	Thu, 19 Oct 2023 18:42:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=+WYtO5cbSnOWSh4A3pWMM/G3dupE15Bp2QKlH1BzWsI=;
+ b=nT+MmY2WzSPKW196i552YTH0gwyJZGiZFYXUqprsFbil4DZFgftzvGeEKVvtUYaJAuGA
+ huN0YQQjWNiQxTBRtKOTZeBhCEfRJ1tMhBBBn7ly5a3/CJTqGGw6q0F0Nu/bhogk/eCj
+ dfhBZz7M3gqqWRzcleJk5qT2TAhsNipbDp/VXxkTMsMcD29Los9LHhRUmivk5de8tn8V
+ yUDhfQI/UejhX4nCJS0olgOh9OQ2mlPz/qjuiigwRt3EuzxQQlq0Bvaq6drtH1jC7Olb
+ TiTHgqy7GkJ4x4/67NmIiTiOQHtSafjQysNEJEmO3wUiaO/dksSr0JLXefRGG4iasLzO IQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttg82ums4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 18:42:24 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JIgNob007271
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 18:42:23 GMT
+Received: from [10.110.99.208] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 19 Oct
+ 2023 11:42:22 -0700
+Message-ID: <c39df4c7-ea78-0505-a8d9-db41119fc977@quicinc.com>
+Date: Thu, 19 Oct 2023 11:42:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 09/34] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+Content-Language: en-US
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-10-quic_wcheng@quicinc.com>
+ <7aa4ea87-9d1f-400a-bcc5-b56e5b4500c6@linux.intel.com>
+ <c72bcf47-af0b-8819-1c30-06b51358381e@quicinc.com>
+ <2f05708e-3ee8-472e-a24f-6f3eb118133c@linux.intel.com>
+ <fcaa93ba-3ca4-5a18-d3bd-afebe8def327@quicinc.com>
+ <ec25bb67-6c83-430b-bc79-234c03801250@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <ec25bb67-6c83-430b-bc79-234c03801250@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: k5nkufEfbNCtKUCx8FQH5sYfnPcPKmKk
+X-Proofpoint-ORIG-GUID: k5nkufEfbNCtKUCx8FQH5sYfnPcPKmKk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_17,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_spam policy=outbound score=65 clxscore=1015 impostorscore=0
+ mlxlogscore=-26 spamscore=65 priorityscore=1501 adultscore=0 bulkscore=0
+ mlxscore=65 suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310190159
 
-On Wed, 11 Oct 2023 16:58:20 -0600, Sam Edwards wrote:
-> This is the second version of my patch to bring in support for the RK3588-based
-> Turing RK1 SoM. In my previous cover letter, I perhaps should have specified
-> that the RK1 is a little bit unusual in that, though it *is* a true SoM, it is
-> targeted toward home-hosting/edge users directly as a compute node, and as a
-> result the vast majority of users will be seeing it more like a
-> micro-bladeserver, rather than an off-the-shelf part meant to power a larger
-> system. This was my rationale for previously sending this as a single .dts,
-> targeting that use case.
+Hi Pierre,
+
+On 10/18/2023 6:00 PM, Pierre-Louis Bossart wrote:
 > 
-> [...]
+> 
+>>>>>> Specifically, the QC ADSP can support all potential endpoints that are
+>>>>>> exposed by the audio data interface.  This includes, feedback
+>>>>>> endpoints
+>>>>>> (both implicit and explicit) as well as the isochronous (data)
+>>>>>> endpoints.
+>>>>>
+>>>>> implicit feedback means support for capture. This is confusing...
+>>>>>
+>>>>
+>>>> I mean, a USB device can expose a capture path, but as of now, we won't
+>>>> enable the offloading to the audio DSP for it.  However, if we're
+>>>> executing playback, and device does support implicit feedback, we will
+>>>> pass that along to the audio DSP to utilize.
+>>>
+>>> Not following. Implicit feedback means a capture stream *SHALL* be
+>>> started. Are you saying this capture stream is hidden and handled at the
+>>> DSP level only? If yes, what prevents you from exposing the capture
+>>> stream to userspace as well?
+>>>
+>>> I must be missing something.
+>>>
+>>
+>> My understanding is that with implicit feedback endpoints, it allows for
+>> another data endpoint in the opposite direction to be utilized as a
+>> feedback endpoint (versus having to expose another EP, such as in the
+>> case of explicit feedback).  For example, if we are enabling the
+>> playback path (and the device does have a capture data ep) then the data
+>> ep used for the capture path can be used.
+> 
+> That's right, so all the plumbing is enabled for the capture path...
+> Making a decision to discard the data is very odd, all the work has
+> already been done at lower levels, so why not expose the captured data?
+> 
 
-Applied, thanks!
+So that would be at the USB level, but from the audio DSP end, there are 
+still things that need to be enabled to route the data properly.  For 
+feedback endpoints, the data we're actually sending won't involve the 
+audio streaming side of things on the DSP.
 
-[1/3] dt-bindings: vendor-prefixes: add turing
-      commit: 817bacc3a648cc55a0b07a699c03ecc70309ae50
-[2/3] dt-bindings: arm: rockchip: Add Turing RK1
-      commit: e30ecfcbe4ed3706af67dff5aa1418fba6ba2c29
-[3/3] arm64: dts: rockchip: Add Turing RK1 SoM support
-      commit: 2806a69f3fef61d7353ea8206add8ffb15064b51
-
-I've dropped the mem-supply references from the cpu nodes.
-I think some at Collabora is working on upstreaming the
-cpufreq driver that will utilize those.
-
-Until then they are not part of the binding, so please add
-them via a new patch once the cpufreq support has landed.
-
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Thanks
+Wesley Cheng
 
