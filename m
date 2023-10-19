@@ -1,111 +1,104 @@
-Return-Path: <devicetree+bounces-10058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065DF7CF856
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:07:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7017CF86F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9961FB21255
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:07:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1907C1C20C91
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6560F1EB27;
-	Thu, 19 Oct 2023 12:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9071EB44;
+	Thu, 19 Oct 2023 12:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="d8UyzsFm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D841DFFC;
-	Thu, 19 Oct 2023 12:07:36 +0000 (UTC)
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16FF10E5;
-	Thu, 19 Oct 2023 05:07:12 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6cd0a8bc6dcso826900a34.2;
-        Thu, 19 Oct 2023 05:07:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1001120333
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:10:59 +0000 (UTC)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCC110DB
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:10:58 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-6b87c1edfd5so4603276b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1697717457; x=1698322257; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b7TOTIKoWImuAkDVVYCBVqPy3Cdis5b4Vo38tYuQrdI=;
+        b=d8UyzsFmlR5wEaODr/yL3J9LGIQEMJWnmNN2KVJDKAwmTsS7vPJqW6T2Pb/TpU/4oN
+         eDm1JO7Ypv6w7iBPbWFmEXK7erhcKYeXH1vUvJGEBxxW/uqCdbSQmDNjifIhsRf4BmxH
+         fSJdkTYfCF1qN9E6Hmkj4aQ7k1BcjP0i/X4Q7U4Ia7IU1H5eZ/gFzrhZAeHDBIqJMHh6
+         ddqy4kEaDYHgInK1QKQwXA9NqlxJaNUH5rOKo6q8VdboUeWJn+p6QYW7FOA55ygVM6+Y
+         szzglpOeHpVauLc8I2+wDUZrbOQTkLmJd69MqsdoFQz01Q7WBSLJ9g3zvkxbeAYrbmzE
+         Ru3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697717232; x=1698322032;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wFRRjT0zTXmC6p8qcDVTA0QbXQCr167IFLosJYeNDXo=;
-        b=prf/oksbjLM3iv73MFwm65sL63gCESPsv7lKDDbW7uD9MMJafKWzsmsM2vAKd0j6QH
-         pbQ2l3Q87KOM+50e/+wFE6f3wHHCn5DMLxAVKIkQbndDYmWaEsocvV9a05gJSUBjYqcg
-         Q7PcWT+eSZhXf/6YrNwLafZbQSXThmSZh66bCIlC5KoBfOQpuTCPl4G9npKZ7p3ct+a1
-         kXTIhmTypVfKLGKSlZgoW11aN+X2dmRnqykUeENIshwSVN2EwoucykadFqrtQAFOVJX2
-         fLfykCaOfERK94mmBL+4yzBpM1w03LU2ke4Bjt4waQSaedz7I7N90hCaY222djpaImNN
-         UVlw==
-X-Gm-Message-State: AOJu0YyHp7u0MF8nZ6JDkOasaE/D+9dThr85J3g+AESzhPEVHnOMZGi+
-	0n/kpgBlp4CWDhge/J9VZw==
-X-Google-Smtp-Source: AGHT+IEfITQC2V/bgA2b+RHY/6I/+aBRIkh/P1bJ3rw0OSLx58gTCW38pQSGxGPP+yMClqzepIgtvw==
-X-Received: by 2002:a05:6830:2010:b0:6cd:bc23:4b55 with SMTP id e16-20020a056830201000b006cdbc234b55mr2070985otp.13.1697717231931;
-        Thu, 19 Oct 2023 05:07:11 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m3-20020a4abc83000000b0057377b1c1c8sm994141oop.24.2023.10.19.05.07.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 05:07:11 -0700 (PDT)
-Received: (nullmailer pid 549233 invoked by uid 1000);
-	Thu, 19 Oct 2023 12:07:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1697717457; x=1698322257;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7TOTIKoWImuAkDVVYCBVqPy3Cdis5b4Vo38tYuQrdI=;
+        b=Eaw+5WkBGLFn9p6oW5ojyyNCYK0pG+5B9DBpdnxDJ9R+CF5HeNg6GAveEHddeHjHhj
+         TGt0iAAtVppXPVcS+H8h4BGbIkFqR3FoZFfugnbXSKCjejt+BBXUrUcKW1Jb6N280Siv
+         EZJVLHLuvm/TqPIAPJ24+A5M06NIKahvIwWTsQppdgQL8ijk4Y7mfaGOfjTUv1+Cvwf8
+         1ONpVrYzuLQS4yiHGSfeXMFvH8LwxFBWFhmM8SZpCmQB7Mv9RUQgqWHpwTpluUAU3D8i
+         bJ6voXC+4/z98SuksCxdPISLeJ0vOckf044OXDtdNRDaX4DsG8otv1iUzVhHtvL5hzfu
+         Ph1g==
+X-Gm-Message-State: AOJu0Yw0zWMXyxGiJ83h3xgsYKSaNYcDZHwNqB+zVcUTpLR0TJWaCtK3
+	Ys024PCxpgONKa66Y+L3hPH38g==
+X-Google-Smtp-Source: AGHT+IGyjJ5achfYpuzb0OcmwqIHdD90ognp6JgCUWc4UnEvDk50gbaB0ggnIRhz4omdqkMNYXqe2Q==
+X-Received: by 2002:a05:6a21:3e0d:b0:17a:dc55:4dc4 with SMTP id bk13-20020a056a213e0d00b0017adc554dc4mr1725217pzc.26.1697717457492;
+        Thu, 19 Oct 2023 05:10:57 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:43ac:2324:cc6e:9fa5? (2403-580d-82f4-0-43ac-2324-cc6e-9fa5.ip6.aussiebb.net. [2403:580d:82f4:0:43ac:2324:cc6e:9fa5])
+        by smtp.gmail.com with ESMTPSA id a186-20020a6390c3000000b005898a3619c7sm3262535pge.48.2023.10.19.05.10.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Oct 2023 05:10:56 -0700 (PDT)
+Message-ID: <5a7d1ff3-8ac4-cdd1-028a-84b9fc240201@tweaklogic.com>
+Date: Thu, 19 Oct 2023 22:40:50 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: gregkh@linuxfoundation.org, linux-doc@vger.kernel.org, conor.culhane@silvaco.com, conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, alexandre.belloni@bootlin.com, imx@lists.linux.dev, linux-i3c@lists.infradead.org, jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org, miquel.raynal@bootlin.com, linux-serial@vger.kernel.org, robh+dt@kernel.org, corbet@lwn.net, joe@perches.com
-In-Reply-To: <20231018215809.3477437-3-Frank.Li@nxp.com>
-References: <20231018215809.3477437-1-Frank.Li@nxp.com>
- <20231018215809.3477437-3-Frank.Li@nxp.com>
-Message-Id: <169771723040.549216.11346182362736118901.robh@kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-slave
-Date: Thu, 19 Oct 2023 07:07:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
+ schemas
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
+ <20231019-rematch-ethically-9d482ca4607e@spud>
+ <6b856b0d-4f69-70ac-59a7-237fd21d1a92@tweaklogic.com>
+ <20231019-hurry-eagle-0ffa95b1a026@spud>
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231019-hurry-eagle-0ffa95b1a026@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 18 Oct 2023 17:58:06 -0400, Frank Li wrote:
-> Add compatible string 'silvaco,i3c-slave' for slave mode.
+>> Sorry, I should have put a longer description and a longer commit message.
+>> That patch series adds a new driver - apds9306 which is separate to this
+>> patch. As per Krzysztof's comments, first operation is to merge the existing
+>> apds9300 and apds9960 schemas. This patch is the first operation.
+>>
+>> Second operation will be to add apds9306 support on top of that. I will
+>> explain more on Krzysztof's comments. Thank you for reviewing.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/i3c/silvaco,i3c-master.yaml       | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
+> Ahh apologies then. The best course of action would likely be to include
+> the patch merging the two bindings in your series adding the third user.
+No worries. Sure. You can reject this patch then. I will add my changes in the
+main apds9306 patch series.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml: properties:compatible:const: {'enum': ['silvaco,i3c-master-v1', 'silvaco,i3c-slave-v1']} is not of type 'integer', 'string'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml: properties:compatible:const: {'enum': ['silvaco,i3c-master-v1', 'silvaco,i3c-slave-v1']} is not of type 'string'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.example.dtb: i3c-master@a0000000: compatible: {'enum': ['silvaco,i3c-master-v1', 'silvaco,i3c-slave-v1']} was expected
-	from schema $id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.example.dtb: i3c-master@a0000000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231018215809.3477437-3-Frank.Li@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Regards,
+Subhajit Ghosh
 
