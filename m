@@ -1,140 +1,116 @@
-Return-Path: <devicetree+bounces-10205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6977D013E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 205EE7D014D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65302282242
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 18:17:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D6128212E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 18:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6347232C6B;
-	Thu, 19 Oct 2023 18:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90F138DD5;
+	Thu, 19 Oct 2023 18:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="YkSHs/c6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EF8Lv/M2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A0338DD3;
-	Thu, 19 Oct 2023 18:17:51 +0000 (UTC)
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E730121;
-	Thu, 19 Oct 2023 11:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=uxwGnWen6+9j+YrnXgkstw0OS38g943IHLCh1byhVXQ=; b=YkSHs/c6vw0CI2h0ml3QB50utc
-	KZ/evPEkt1PQ0DcvCfPoqbqzZWcz5sRY/XQ7IWqN6c6TDLE2HlovDg/Gsh91OYA/znrvzCBlmldsv
-	CoRtxHDccp+vF75IMLCl+pQSJlNca7p9iLJxD1KM/5hN4tL3FgLzwZ+iJ2bzf4l/0FIZ95vvBIGkQ
-	pk2qm2LMWhjbndq/NXPt53vI6BAedGUDi8yAXHKPbQEpAbND5O7uO6iPTxwM3QufJ0rMrGkUHwsDP
-	eoetCQKUb2bBOMNdE3m81R87zukgw3fen/Dh7OxY2JrIqAXUyyNRP5lV7ZZZTgbK2wtRRbOTHx2rC
-	VE58zs7w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40222)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1qtXaO-0007gD-1r;
-	Thu, 19 Oct 2023 19:17:32 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1qtXaO-0000f1-Bm; Thu, 19 Oct 2023 19:17:32 +0100
-Date: Thu, 19 Oct 2023 19:17:32 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>, Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v6 5/9] net: dsa: microchip: ksz9477: Add Wake
- on Magic Packet support
-Message-ID: <ZTFyvDLgmaTy2Csx@shell.armlinux.org.uk>
-References: <20231019122850.1199821-1-o.rempel@pengutronix.de>
- <20231019122850.1199821-1-o.rempel@pengutronix.de>
- <20231019122850.1199821-6-o.rempel@pengutronix.de>
- <20231019122850.1199821-6-o.rempel@pengutronix.de>
- <20231019172953.ajqtmnnthohnlek7@skbuf>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2347832C6B
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 18:22:56 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FF311D;
+	Thu, 19 Oct 2023 11:22:54 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-533d31a8523so13938764a12.1;
+        Thu, 19 Oct 2023 11:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697739773; x=1698344573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VjcaQ2SsohbH6V1ewmIrwtpHM+xAbZ0UEUlXxqdKqQA=;
+        b=EF8Lv/M2gcM0WmQSITAxy3fWv2cKghGl1/VZ/Vbsi1/zyokBHwcxbRZUNKVNU7UcoI
+         OOYc225gvn5W0dZO1OyNwo1wZwte7dtcMj5eBhVWUrl9seOSRjz/cpRxbNoawTKoWUg5
+         udfa79oZQc99D3O7BElY6/AB4CVXHIDaOSyXQU6vE+QwdjGq6U5sD2it+FkVcuDOqgb+
+         5dAbuWe6nVuiv5yR5f70hY19rk0bThvNkGbTRhugWNG4QJkmO6z/REfvmnPVvRdopvy7
+         SYgiBy5Hko2sO3u+Qp50tO/SgWIqyGRkr/nF9pHZeGICrViyDiauHJKYNhoi2Z7fPx0g
+         hmHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697739773; x=1698344573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VjcaQ2SsohbH6V1ewmIrwtpHM+xAbZ0UEUlXxqdKqQA=;
+        b=QynUSNwqQnDheiWhpnlRw6/46a3ff6rhg7xoTerqQCegeD3nEBSUglLGRQ1WXHGCFm
+         5yUERNnKSWkLplGvCZOcVua3HquDCFWq8rW8Z853d7doQTxS28ymYBuNo35E16x4EWr+
+         cf3LvsecvGEml8ZJFlzkO4adzAw7aC1MBz2Wegy6b0drW3X3Erq6YQRxT/dvX9tD7crp
+         cyFVfLbyaxLm511ApXldkSqk0qpZeCzii66sutBF1T+Umvkq0cw8jSKTZE0RAwIu/yOs
+         8P1TErJJ6lrzSPYWdq+VkJW+Wg32sl9pBVulrWVfezumyKfaUncCoGU3zD3erCiKgIPI
+         t7Zw==
+X-Gm-Message-State: AOJu0YyqCPNPJlRFWZxr5GbDloy3BkibDrLbemqe8MSLkFs32w3SBYM4
+	QGsWU5/DBbDFC5e6KULoNmnZmuHb52/x3h5BYLM=
+X-Google-Smtp-Source: AGHT+IHqwHhLyjNZC5loIIeF2K2AmHXAH26/6ZSfSJlnR7rkooZocPBQIQn6wo6Xz9BGC42AR48uO4R1Lgk2BoNj1Ik=
+X-Received: by 2002:a50:d494:0:b0:53f:ba1a:800d with SMTP id
+ s20-20020a50d494000000b0053fba1a800dmr513561edi.14.1697739772781; Thu, 19 Oct
+ 2023 11:22:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231019172953.ajqtmnnthohnlek7@skbuf>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20231013034808.8948-1-jagathjog1996@gmail.com>
+ <20231013034808.8948-3-jagathjog1996@gmail.com> <20231014174626.3c203096@jic23-huawei>
+ <CAM+2EuJnrJn5QLm+yqJ_4_3NiZDXS6p9P5AhwZBjFUYm+2PMGQ@mail.gmail.com> <20231018201309.2cf36489@jic23-huawei>
+In-Reply-To: <20231018201309.2cf36489@jic23-huawei>
+From: Jagath Jog J <jagathjog1996@gmail.com>
+Date: Thu, 19 Oct 2023 23:52:40 +0530
+Message-ID: <CAM+2EuJLiHfqP3sY_c79ziJCkNvBhcKZ4B4=V6coUhJc5W6U3w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: imu: Add driver for BMI323 IMU
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: andriy.shevchenko@linux.intel.com, u.kleine-koenig@pengutronix.de, 
+	lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linus.walleij@linaro.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 19, 2023 at 08:29:53PM +0300, Vladimir Oltean wrote:
-> On Thu, Oct 19, 2023 at 02:28:46PM +0200, Oleksij Rempel wrote:
-> > Introduce Wake on Magic Packet (WoL) functionality to the ksz9477
-> > driver.
-> > 
-> > Major changes include:
-> > 
-> > 1. Extending the `ksz9477_handle_wake_reason` function to identify Magic
-> >    Packet wake events alongside existing wake reasons.
-> > 
-> > 2. Updating the `ksz9477_get_wol` and `ksz9477_set_wol` functions to
-> >    handle WAKE_MAGIC alongside the existing WAKE_PHY option, and to
-> >    program the switch's MAC address register accordingly when Magic
-> >    Packet wake-up is enabled. This change will prevent WAKE_MAGIC
-> >    activation if the related port has a different MAC address compared
-> >    to a MAC address already used by HSR or an already active WAKE_MAGIC
-> >    on another port.
-> > 
-> > 3. Adding a restriction in `ksz_port_set_mac_address` to prevent MAC
-> >    address changes on ports with active Wake on Magic Packet, as the
-> >    switch's MAC address register is utilized for this feature.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  drivers/net/dsa/microchip/ksz9477.c    | 60 ++++++++++++++++++++++++--
-> >  drivers/net/dsa/microchip/ksz_common.c | 15 +++++--
-> >  drivers/net/dsa/microchip/ksz_common.h |  3 ++
-> >  3 files changed, 71 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-> > index b9419d4b5e7b..bcc8863951ca 100644
-> > --- a/drivers/net/dsa/microchip/ksz9477.c
-> > +++ b/drivers/net/dsa/microchip/ksz9477.c
-> > @@ -81,7 +81,8 @@ static int ksz9477_handle_wake_reason(struct ksz_device *dev, int port)
-> >  	if (!pme_status)
-> >  		return 0;
-> >  
-> > -	dev_dbg(dev->dev, "Wake event on port %d due to: %s %s\n", port,
-> > +	dev_dbg(dev->dev, "Wake event on port %d due to: %s %s %s\n", port,
-> > +		pme_status & PME_WOL_MAGICPKT ? "\"Magic Packet\"" : "",
-> >  		pme_status & PME_WOL_LINKUP ? "\"Link Up\"" : "",
-> >  		pme_status & PME_WOL_ENERGY ? "\"Enery detect\"" : "");
-> 
-> Trivial: if you format the printf string as %s%s%s and the arguments as
-> "\"Magic Packet\" " : "", then the printed line won't have a trailing
-> space at the end.
+Hi Jonathan, Andy and Krzysztof
 
-Sadly, it still will. The best solution is to prepend the space
-character to each entry in the "list" and remove the space characters
-after the : in the format string thusly:
+On Thu, Oct 19, 2023 at 12:42=E2=80=AFAM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+>
+> On Sun, 15 Oct 2023 16:00:34 +0530
+> Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> > On Sat, Oct 14, 2023 at 10:16=E2=80=AFPM Jonathan Cameron <jic23@kernel=
+.org> wrote:
+> > >
+> > > On Fri, 13 Oct 2023 09:18:08 +0530
+> > > Jagath Jog J <jagathjog1996@gmail.com> wrote:
+> > >
+> > > > The Bosch BMI323 is a 6-axis low-power IMU that provide measurement=
+s for
+> > > > acceleration, angular rate, and temperature. This sensor includes
+> > > > motion-triggered interrupt features, such as a step counter, tap de=
+tection,
+> > > > and activity/inactivity interrupt capabilities.
+> > > >
+...
+> Given they were so minor I've fixed them up whilst applying.
+> I doubt this will make 6.7, but you never know if things happen to align.
+> If not it can have a bit more build test exposure which will do no harm.
+>
+> Applied to the togreg branch of iio.git and pushed out initially as
+> testing for all the normal reasons.
+>
 
-	dev_dbg(dev->dev, "Wake event on port %d due to:%s%s%s\n", port,
-		pme_status & PME_WOL_MAGICPKT ? " \"Magic Packet\"" : "",
-		pme_status & PME_WOL_LINKUP ? " \"Link Up\"" : "",
-		pme_status & PME_WOL_ENERGY ? " \"Enery detect\"" : "");
+I greatly appreciate all the reviews and suggestions.
+Thank you for accepting the series.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Regards
+
+Jagath
 
