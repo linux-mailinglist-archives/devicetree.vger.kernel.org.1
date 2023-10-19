@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-10121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424057CFB9F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:49:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB487CFBA8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5D91B211D7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:49:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 700371C20A5B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525A329CE0;
-	Thu, 19 Oct 2023 13:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFE129CE1;
+	Thu, 19 Oct 2023 13:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFF8kYkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6661E27479;
-	Thu, 19 Oct 2023 13:49:07 +0000 (UTC)
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D75131;
-	Thu, 19 Oct 2023 06:49:06 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ce322b62aeso36480a34.3;
-        Thu, 19 Oct 2023 06:49:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697723345; x=1698328145;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yIV3i/HNvLNPgakCfPrtUZcxVqXEXL+6MGsHZ5K0R4c=;
-        b=lbux8vF8nb38xutkF1CdRga1j26YSU09LD94x1AJGNs49rELLtYm4QN91+UM3u97Rs
-         ve/R+fmcV0Bsbg26rK/dSso04sq8bh3bu/rfNc4Dacuw3xhR6MwEjuJms7FtqiJy+DoW
-         3Wqq0AJIDCtNi/KBkJwLhLKHvtGE2P03VbnIcSTdndglx8qA9V/qRobxs+RizxDYl4iE
-         YzIn9CS00emL33C0hv1bIfmI3kPtPPECT3Ecwxd4WOqJbeafUjZtfXnv1qyZphnr9CJL
-         1vxgL8TsqPVz0OmIZJQ+Lfwp+8djOT82wFVAiFVHjzdYCn30vbtO0psEDwTou7TEI7dv
-         9Y+A==
-X-Gm-Message-State: AOJu0YxhL61fi4h8xo2AcG/k/irpK8LY1PRCSdkPFxgkPcTlsjl9a9y7
-	wSeBbnYUmSlQdoYhVZ6JBQ==
-X-Google-Smtp-Source: AGHT+IHaI9B2fdB9P1qbAVcNfrBoo52VF4jz72k0QyakB+AzmRV/J8sHTzlfshedfS+sXMw3Y6J4+g==
-X-Received: by 2002:a9d:6f19:0:b0:6b9:8357:61e6 with SMTP id n25-20020a9d6f19000000b006b9835761e6mr2027067otq.35.1697723345302;
-        Thu, 19 Oct 2023 06:49:05 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bt55-20020a05683039f700b006ce2dd80f3csm107382otb.17.2023.10.19.06.49.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 06:49:04 -0700 (PDT)
-Received: (nullmailer pid 203372 invoked by uid 1000);
-	Thu, 19 Oct 2023 13:49:02 -0000
-Date: Thu, 19 Oct 2023 08:49:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Paolo Abeni <pabeni@redhat.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Gregory Clement <gregory.clement@bootlin.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, Jakub Kicinski <kuba@kernel.org>, Russell King <linux@armlinux.org.uk>, Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
- in schema
-Message-ID: <20231019134902.GB193647-robh@kernel.org>
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
- <169762516805.391872.4190043734592153628.robh@kernel.org>
- <CACRpkdZz_+WAt7GG4Chm_xRiBNBP=pin2dx39z27Nx0PuyVN7w@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213F727479
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:50:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD39AC433C7;
+	Thu, 19 Oct 2023 13:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697723437;
+	bh=oy5VzoMhN6wZ1Vzq3Eg71Tf23vyezgeMhkqlIYLuizA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KFF8kYkzoGiHfBO8gNfdHBGk9gOgif60Km8M2iB03XtUdc6uHtDmf5vch03FprWdc
+	 yhVh/N+yb+Pm0KNYibkrM6iaSM2u+TrYGIz6KNUJxjhFptHdUebiyy/0Xhjos7K3D1
+	 JMvrWlF+/h5bXX3zcZtPwYYqRJgUmCrMPlRkl6DWlRnFS30Dr6oFJbcLUTbPx7cwng
+	 w4xcUZEnmyyJO9eZ2T/oJcLM2kRaFoK+q4hhiREhKHhMSmbVoMLYZHiR1TajPCh9Da
+	 Z9FJmAwdAuQUbXoKMscFYa8eHOfishbBQxbev7NGteePpsFG7NgP+d3ioEEZ8Wi7wU
+	 giqLMnCi0bZhw==
+Date: Thu, 19 Oct 2023 14:50:32 +0100
+From: Lee Jones <lee@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: rk8xx: Deprecate
+ rockchip,system-power-controller
+Message-ID: <20231019135032.GD2424087@google.com>
+References: <20231010174138.1888396-1-megi@xff.cz>
+ <20231010174138.1888396-2-megi@xff.cz>
+ <20231019102945.GA2424087@google.com>
+ <a7b6115e-9490-47cf-8054-ac616dea62fd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,27 +59,35 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZz_+WAt7GG4Chm_xRiBNBP=pin2dx39z27Nx0PuyVN7w@mail.gmail.com>
+In-Reply-To: <a7b6115e-9490-47cf-8054-ac616dea62fd@linaro.org>
 
-On Wed, Oct 18, 2023 at 01:39:45PM +0200, Linus Walleij wrote:
-> On Wed, Oct 18, 2023 at 12:32 PM Rob Herring <robh@kernel.org> wrote:
+On Thu, 19 Oct 2023, Krzysztof Kozlowski wrote:
+
+> On 19/10/2023 12:29, Lee Jones wrote:
+> > On Tue, 10 Oct 2023, Ondřej Jirman wrote:
+> > 
+> >> From: Ondrej Jirman <megi@xff.cz>
+> >>
+> >> Deprecate support for this property in favor of standard
+> >> system-power-controller one.
+> >>
+> >> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> >> ---
+> >>  Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml | 3 +++
+> >>  Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml | 3 +++
+> >>  Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml | 3 +++
+> >>  Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml | 3 +++
+> >>  Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml | 3 +++
+> >>  5 files changed, 15 insertions(+)
+> > 
+> > I don't see anything wrong with it.
+> > 
+> > It would be nice to have a DT Ack though.
 > 
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a required property
-> >         from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a required property
-> >         from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a required property
-> >         from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a required property
-> >         from schema $id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
-> 
-> Fixed in patch 2/7?
+> Rob gave review on 12th Oct.
 
-Yes. If one patch has errors we drop it. I should probably just give up 
-on the rest of the series instead.
+This new version was submitted on the 10th Oct.
 
-Rob
+-- 
+Lee Jones [李琼斯]
 
