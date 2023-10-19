@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-10053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BA57CF7D8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:01:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 515A27CF7E0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0DE5281FF7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:01:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02F67281FD7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCDB1DFE6;
-	Thu, 19 Oct 2023 12:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED77F1DFEE;
+	Thu, 19 Oct 2023 12:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ic8xWZ12"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="GnPRyEmJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2F31DFE4
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:01:00 +0000 (UTC)
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2105.outbound.protection.outlook.com [40.92.102.105])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02709BE;
-	Thu, 19 Oct 2023 05:00:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E68F1DFEC
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:01:53 +0000 (UTC)
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2085.outbound.protection.outlook.com [40.92.103.85])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A28012D;
+	Thu, 19 Oct 2023 05:01:51 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NbZGxWg9+iuz6P+q7JCCoVbot1T3pqTlmbc11LoERjODqlISxKlxAaykWaGZZ6MO3H0w3vCrXRYGh4CRMKVKC70AmZeGetD5ZZU6HTrZA2DJ/bDzghfguaBruDbgn8FUCJD/njHpyTkg3hPFG3UEnMlypKozDSt4CI8MRPpu6xczTAvDPqxKtsBCNmStzudyW7ldTabDjMrpci7oDvA+GEVmvXUU8eWs2NCYo0tiHkQnF585++3aKTeWR0C2DUup0xjEMmvDmDgc85BToEX+5FtJxPSjpCyIqUuGQ8q3lExB+4RQ7tlGADrGlsf3chHimbqTc+SLEtYnzj4j36Bl0w==
+ b=izCtOXRD5QJlPRUmdayL3zIRU8vBb9oxoBCfZfQT9cVjk9aaNmqr3+8G14WU+2fUoL8mdDDS1SKij4gYzpiOMiIeOpdZ687pmuQtuxIuqWNlLQuyZ1HQaas+IdfOW/g3+5GAniRBZ8SqDBviM4W76VzGa1HB6wh/miYne7AXy+Imw7n8buX4jICO5SipWS74luzQ4kbS9CSULbdOyHzCdehl3Rnr/5nPNcLXu3Ons22S0DBsgaKJoKaNlfMlfGmWBSxwne1UMgFLhylcE2Us0p6SEDByngudk0vAHUZV1o1VSxaQk5A5/H9C+pgiKfe2LN+jr7wlFAopVnGECn7OfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hlzDjtdQVb+01Z78jPa66i6sQbaOtTLhQ2SHhg9QmrI=;
- b=SQc67bn4cOU0+/HoRkyMMTYJjFr0GdW0DQo3/24i3Pp5UhdruZiFCddW5IfzSisjMvBByboAc5IyQ6UMBVX/X4nn5ViU+U4fqCzyGSJtcigOncbD9PAQvfNl/ve0pVMb8WHBTLX2BgFIui+jo7UAnfa9+dhYzyGZMpnxXsdGAri4wG4x/Gs+9a5QF+iLbGwSDsn/jT2uokAuk0AM0MDdddhUxFQd2WG9hRW8oEorrqJFMxL9NBxBUofQx5yHSqbL8dpmwckC7X6qtITjRyBqUKA2HBucqJHaaCDVcVbippyALeqh7ItocJ/kl9HVu4OSsalg7N+bvJxgQl275SgRLA==
+ bh=HO1rjDYRUXrU0VtrZQe8G5ivZOyVkSv/hBq/HCLcPIs=;
+ b=bB04iEg5N9qTriJL29kalOQ1Da46fzeqy4pKz0JdqXhdvaZUUzjj7EX75QS6Mul26foY5y06oyPAzqAOeCOy3NTK7uO7S9tFONAkpeXUBpe8G6Xlsb/TGc15B6jqmKUN3RblNpeDLEqobmNUTYSW2x96Z8It76xnoQZaNUHucPNldqhDrGq07Yvc+wToQR0WIVlScv9kRxLhGerAhv2CPzAX0OogSsZ3ZPRGu5yXPtDeD8Q8GKs/pcr6MNeZ68j/27ZfAh2jsQd7FLdmRP33fc1f22dObghPGX3oKIUHiWrsZsv9LRuLL2s9z/JMsh8WyGe1FHCM7/74vvtFCXOSKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hlzDjtdQVb+01Z78jPa66i6sQbaOtTLhQ2SHhg9QmrI=;
- b=ic8xWZ126WsHTiKnPkUILFMijiAq/IgeLO8CHDxoMwBGXb7JNqdh+aITMCGZlEG0VpunFHmz1sUfHEd6Jkv7ANYOUb2a/o/C0rLjsvgXKL5b/6NRp26IbPw25O4U7q72H3dJTIyICt9YcFGzWrakCVOMUqIpZ/wmU1EEI8c3X7geaG9kmp1Z5VLHLufAjOFdiTlXy7WG47/aGZBhDhGon7aDenPfajrDv7bvsQyBiGej96hw1ClExIzZ92Mr9xFRMQQ0ks0iwpVs93N4QGsMETW1aIOp8xA/Qap+DZ6gMs3Wf6cPVGGX3CwBEypxRcTADcF/7H6CRT8TNEYBSjKQ1g==
+ bh=HO1rjDYRUXrU0VtrZQe8G5ivZOyVkSv/hBq/HCLcPIs=;
+ b=GnPRyEmJ81mODbOirtkX88fCeA5qrPudIJ8t0Vfs/PJleERJ6GuKrxdY6CoFDgUAuxE1Ue0BPpmxLMYoNPARUMkL9Og7MOK3nf8Eb3LB9PvSzqVwb3oBg76aAxygEXIywgRkAJnw18wACbZhDfl+n6iSI9L/SXOd+P3SbunQogmtTPxr0Jgxji2p0nnVerzsVoBa7ysRO37uQxjn/RtMo7lJLjIHf0UNxSlh8hgesipaoVzciN3kwaCWwTD+xVSlZjvc8VOFPifCvA0B7c8ZK4K47Wapo82OG+Gtv68gXazd/M24TOQY6hDP2zMhtLMKj5zhH3MpAPhK2sNCId34Ug==
 Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB1233.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:196::8) with Microsoft
+ PN2P287MB0739.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:fa::8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6907.24; Thu, 19 Oct 2023 12:00:52 +0000
+ 15.20.6907.24; Thu, 19 Oct 2023 12:01:44 +0000
 Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
  ([fe80::b66:61a1:8ed:cc6a]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
  ([fe80::b66:61a1:8ed:cc6a%6]) with mapi id 15.20.6907.025; Thu, 19 Oct 2023
- 12:00:52 +0000
+ 12:01:44 +0000
 Message-ID:
- <MA0P287MB0332DA4D8F57D0B15E8B9E10FED4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 19 Oct 2023 20:00:45 +0800
+ <MA0P287MB03328EA5D4579341ED0AF0A5FED4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 19 Oct 2023 20:01:41 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/7] riscv: dts: sophgo: add Huashan Pi board device
+Subject: Re: [PATCH v4 6/7] riscv: dts: sophgo: add initial CV1812H SoC device
  tree
 To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB49539882B957DF39AD77E539BBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB49537B6A093A491116442709BBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49539882B957DF39AD77E539BBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <IA1PR20MB49537B6A093A491116442709BBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-TMN: [O61rarMArjJoywS/KcHN7cUD9ZRNcKLf]
+X-TMN: [WeZlCATfSE44mrQ+nqHL65pB8sLZAhWN]
 X-ClientProxiedBy: SI1PR02CA0042.apcprd02.prod.outlook.com
  (2603:1096:4:1f6::17) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
  (2603:1096:a01:ab::5)
 X-Microsoft-Original-Message-ID:
- <c6655bcb-bbe0-400c-b9ef-ee16874d0bf4@outlook.com>
+ <e2fc2fab-edee-4252-88c4-acad264b0904@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,139 +78,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB1233:EE_
-X-MS-Office365-Filtering-Correlation-Id: c40c5b50-2c00-4599-e2d2-08dbd09b09a1
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN2P287MB0739:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1d83c64-99a9-473a-cb43-08dbd09b2974
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	TErgvkGQVqXEcyuhiSezTOfFQGzlNrFDUrMUCC44yPA+HXfFx3p7kD20uabJxaExOduTtSh4+1hzhl+bXCI5nZ9b4VoK6MFwGzRNiDIpTlR0NC8HO767gDp70eO2BLCM5vvycfwdqk2jtBh4jN2rg9v3zTMsuOBAcENfEY7epfltCVYc4iEcIO2MwrGTgoa8+M/RnVIY6Q4fPvgPIPLMl04sTo9Rkka9NDR8w0qr9ERslGcZd8R4u4CV9wNFej2MLQCz3h0DeZuj9aK6nTgaf/aQZFeLpA0b+P5M3Y26jvOM/W6WLIJ6gCZ2x+PNrnmVQwZKQ0QaLHI2NbKJ8XEZEpx8RdseclnIOr75C+/hGrxea9fEdqLvl+BnRKGyH4YPn3bU/dbtwoCd1S14VoCe1h+vsbQKYfi+ouXyg2y5QrDjXYXFbYJ9u9nLvo/aLdCK4ebBFNlmk/vL1eiO+nBOi7HanbdLM9qC9h93dEt5mPT9w0lGEc4gk+ZiEEiPhBoqr7MCVpfW26bjJcoCkIkHYmbNYR00LM6vts3xBdgYMHZn/tT9UxmDGLrmfjtnwSDGOIowmuaCqJw7Ucv2ZLXwsUsrpjSGLj+2dPPzcKlzdx54uily3ew2qpGTQwIDbQX8gIJjfaCrMQVP8TUbj99AIQ==
+	hmIZHKaonqo2HxgPvyzExGjgbkmxlz5R+uQqj0NAuVMghv0INdA8eq0/qImIia6C5mp+66cQFujh2xZfu6BKeS6MqgzywCgOAD9FWD+iAvM0eWITKULEfTaDc2TOAfDgb3FnCE1hQcYYRs80qDJnog9yZ7xq0bWY2xhetFAqmug/8iGTdbc8+hPXLfwO9o2CNR6xtmMMNFKaS4bxzaJObuBcsuZhRylYgQ1kcSU9a4+Ly0hBO1Xe+ru6yaNflrdnDCDbKbkxp/OFbkqVDtI3t0/TL8mtZzpkjcww98s69H7o3hYkjEwM3E370tG7/7v6tSbjscf2Z6vUqsNiIRx5hiuRzwZkSnFY5wNVhPjGFtqCpH+PZXV9poW5RsGGSzkrHZFyROBmFsAeeFJ30kamsaq9IHCu6LHIlpt2Gro+lZiLsRQPRBZisUeVt+JgtqHn+hSrlYGM3o9o3jkN93Z8YfGNn8nDF+tgdWIMG15NTPxd/v2F7J9E2Rz2bs0F/Y729+ayH4nPELAmBzzPhGVh1xxN8i5CQtinq1jX34hqZXJUlLNB3ITcXvy5OkGM3USV
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OVBwUWx3dS9CZ2MxRnA3Z1BKdU5lRVhURnFYTFByZTUrblJJRERRNnNOd2JO?=
- =?utf-8?B?cmNMRUNqRi84aFZKdTBkU3NhMjlZek5HS0tpNUZCV3ppOGtPSGVpSWFUeXZo?=
- =?utf-8?B?S0VZSXVlakdIdHNickdiOWpSbkxVdk91ZVphTUc4QzUvMnk1T3Nnc2RSZnFz?=
- =?utf-8?B?eFFnVUs5dFFPaFdRK01jdC9YSmVNL3BweFJHS2ZxaVdmQjZ5Vit6Z1hTbjNy?=
- =?utf-8?B?SElaNFJiVlhTWHVjcUI1OURVTnI0R1BKNGo1R2JMSWYveWc3V1Axc0lwUWRq?=
- =?utf-8?B?WlVBYW55dWFwcXNPODJoMFQ0b0ZicVJqRTh3SFlOTkdKT25TclRKUmQraGhZ?=
- =?utf-8?B?UHdCSVhCYjkrVFgyQVYvQzBRNmlLbkM3VkZSTkhNcGNlTDVONCtwMWVNWUdD?=
- =?utf-8?B?cGRybXhsWWkwSSs1Nmo3UWJDZndCWEdzNHNKdVA2QlBVa2x6UnZOZWxyQ3VD?=
- =?utf-8?B?SDY4V2VBa0F4ZnNha0FiMFU2L3NHOTRYMGZHYUhZYzB2V0wxcXpiTDU0SVlM?=
- =?utf-8?B?TGV1YVU1NXQybGwzUUlsa3g3YUdES01oRk1Hek15Sm5oRzRpY245QXI0eEpK?=
- =?utf-8?B?dVl4eHFPM1ZxUFRqRXY1QlA1b2tuZzhjZk1DUDFOa240Mk4xc1FLeUtXWDh1?=
- =?utf-8?B?Z0hOZis5OE9henpxVWl2cUpEeGdIL3JDNTlEMGc4WE5hUkJIam03VFZRQjZJ?=
- =?utf-8?B?bXRsb2Rwa3VPaW1XTGNMTHgrdDZvNmRoS05qNG9ML0MrV1FlYW1zd1l5akZI?=
- =?utf-8?B?TGpqN0FHUTZXQSs4ck1hcEFaNW54YmdudjhkaHd0SW9lckljdHhKOStkTEVJ?=
- =?utf-8?B?N3UyNlh0djJmNUN6NEo2N3ZONU9ENDdhYWl3dUR3TjFMOVNkRUFKTzNjSFJI?=
- =?utf-8?B?QXRoblVjSUhMMHB6K1IvLzczZmtUMHNJTzIwd3pBdDVKK3VFY0dHTUVnVmpt?=
- =?utf-8?B?d2ZwRTFlYkdmZHpUVTFLVnZ1S3l0RUpPM0lpTWJ2SjdlYTNMazcrQTZnajVN?=
- =?utf-8?B?SHlqKzZMcTNtZHBoRmdPc3JmS1BVTXZic0lqZUF6NXZqQVVJbW9vaHM3Q0o0?=
- =?utf-8?B?V291UDZDTXdGTFZDRUJhNDk0NmVTc3ZiaDZHVWZFOUhzYWNPR1FRQUluS0pR?=
- =?utf-8?B?bm4ybEFEbmJnb0kvK0x6RUtsWmM3WDR5SHpuK1RKQyt2QmVhdmpIZzBTY1RM?=
- =?utf-8?B?NVB0Uk1tT2FsTkpIS0FETWJ1Z2dwOGlaYU04NXJUOEFBQTNpOUdIZXdDK0RP?=
- =?utf-8?B?NHoralFwT3QrbWdabm5NUXhpdnQrenZyRmJQWC9DeWNNSHkxZXphZG85d1M0?=
- =?utf-8?B?aGlqKzl0bzVjOVhwK2dQRk9KRXp5dCtPRXFGYVNRU3JTRVV0dmRNVVpCWWFv?=
- =?utf-8?B?U3JxajdVVFpXa2hMM05BWE5qUzRlckFSS0VZRE42RTNGeU1yeHV6RVU4NUZD?=
- =?utf-8?B?SzR2SEJLbmpZNkxKMSt4c1NQeWpZYlcrcjJMTEtsTlRWRUk0MjFKQm11eGRK?=
- =?utf-8?B?bWZaOHp5SjRRb08vdXNNaUVQeW0yRllSWTBqTUZiVlBkUDZFUk9mMWw3Zlhz?=
- =?utf-8?B?VWNoREpCZDBYb1l1NEN3UkxVQzVYM0paUk5yVCtWdjZpUnM1V3p0MDVmc1lQ?=
- =?utf-8?Q?Naf3f1UMfFNHNaAkb/c4P1D1JDgjFozHcPyTCzk5tJGM=3D?=
+	=?utf-8?B?Z3RiOCs4ZDdKdnBuSjZBK0RObUlSV2pLRG9HejA4UXhUVU5wWUU5dVVNandT?=
+ =?utf-8?B?Rm0vU0NCTE12SnRsMDNOTVRTSUZqYTh2K1RySGpTcDkva2Z6SW0yM0xwVFhn?=
+ =?utf-8?B?eWJnaml5MW42SmZZR0p4R01UNFdOTGpYMkNYSjJJMU5qUE9IYVNmR2UrWjZo?=
+ =?utf-8?B?aDBENGJjeSs1amZ5elFETU9EN0U4RXkxZkdKekZ4R05OSmhVT3g0NkJkTnho?=
+ =?utf-8?B?MU0wdjNsSWRXVm0xVUNjTFhvQllyNkcyUGxiTzRjaFA5cmxVZUJNaXBmYVF4?=
+ =?utf-8?B?WVBqcFZ4MEpJdXhzM2U0Tlc3S2kyRG8raGpNNjZpOWNKSlJhTWdsRDIxN2ds?=
+ =?utf-8?B?RC8rc3JhVVpDeWlaYmpNdzh0Vkhtc3oxVXFMTXJUaWJiRytDdnNISisvSFFt?=
+ =?utf-8?B?MXVHaWVoMkhqS2ZOcW1Fdnd6d2JNUG9zYmRtS0EzYnhHRU1ZMHFzZ3hrcGE3?=
+ =?utf-8?B?MEdEZDVnNmhHWVdzU3JqMnFWQzZzMklXS1NXa0lrZXZaS0dJTGlOSXVyallo?=
+ =?utf-8?B?WHBBR290TmorOFZFaXFHTDlYb3ZOU2toeVY2djBEQXJrUzcvNUdTOWRNVXJ2?=
+ =?utf-8?B?ZHh2eEE3MFlIZW5ZenpnQnMwOTRnaGVuNnJhWDBLWHo3cDIwOUFKNVdsT1RF?=
+ =?utf-8?B?eXRxR21mL3F4dSt5M1RmRjJrbWlzOS9rQXR5Q2l6TGMzYXlmN0d4d0Y4OEhx?=
+ =?utf-8?B?YnJoSGcwUzFHT3hTUFYyYXY0cWtwUmFyWjFGMDhJc3JkbXFsWWZ0ODVtMVN3?=
+ =?utf-8?B?MHRsTUEvenJGNG01dWE0MFNDN0UvZUVkNFRsTGRlWHZNZ1hvMVUyNUVNOGls?=
+ =?utf-8?B?aVI1TXNZWDV3U0d3UEw2bVlCTmlRTE0wZWtqTnNoa3NqcXhmWlFhTHNRelpP?=
+ =?utf-8?B?cXcvN3IzRTIwa2htZlkrdGgvZDdTVC9TVC9WamZ2SGg1amgrQlUzWDFDODl1?=
+ =?utf-8?B?VmRMUTU0TFFhMUdNYkJ3aTc1NUVJZXROU0ZOWFdMSnA2WHJqWnFqM1F4TTYw?=
+ =?utf-8?B?eGYxZ3hLVWxFb2E2ekh4WU1xaVhDeGYxazFmcmJwenNtZE9VMXJVdExlZmV0?=
+ =?utf-8?B?N1JkNGFLTHdMNCthd3VUaGUrZTVHR0Q2MjBWOHVKZEtYRWFmQ3ZhK0laaU14?=
+ =?utf-8?B?WmxQUTYzMC9DV1ZQbktYcTBkSSs0cExBd0R5TWt5ZHYwOVVYVzBhTkpVRGNh?=
+ =?utf-8?B?YjcyZWNWNUdhakZxYWFoOUc3dEVDT0pNRHJMczBrb0NSTkd4SEwvaWUva2Ez?=
+ =?utf-8?B?M05Sakx1NjVRd0U4ZlZZVmpoaTFueXNzZGpVdnhqYklvNWpVaWc0SlMyK0lU?=
+ =?utf-8?B?TFM4UzNtOWxQcVNkcW13dEd4NTA1TjRBc1B1eWp6aHo3d25KV2JoU3FVN0w1?=
+ =?utf-8?B?QzZodk1BZXV1c3ZzTDk4M2puOVlhTDI2NlFmNWgvZEdvUGYwaUx6ZUwrdno3?=
+ =?utf-8?B?djhsVHFQeHZwVHF4WENVSkFNMVp6bE1VbWc4Y2VCL0Z6YzRTajB1T3NVVHIv?=
+ =?utf-8?B?U2s1ZnA0aHRnRjBBZXhmSmorT1JrNXVadEVRekFPaysyemEreFVOOUpHdjY5?=
+ =?utf-8?B?VE1oQ1IvdzI1NUcyU1dKZFpYSzNaZWpZbUdhL1ZiMk5hR2VIUDlXdW9JRCtk?=
+ =?utf-8?Q?C4XoNO3tHRnwdLrhPC0KXB7s/0mAghzL63qpEgrdphCc=3D?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c40c5b50-2c00-4599-e2d2-08dbd09b09a1
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1d83c64-99a9-473a-cb43-08dbd09b2974
 X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 12:00:52.2565
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 12:01:44.0931
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1233
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0739
 
 
 On 2023/10/19 7:18, Inochi Amaoto wrote:
-> Add initial device tree files for the Huashan Pi board.
->
-> Note: The boot of CV1812H chip needs a rtos firmware for coprocessor to
-> function properly. To make the soc happy, reserved the last 2M memory
-> for the rtos firmware.
+> Add initial device tree for the CV1812H RISC-V SoC by SOPHGO.
 >
 > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Link: https://en.sophgo.com/product/introduce/huashan.html
-> Link: https://en.sophgo.com/product/introduce/cv181xH.html
-> Link: https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/build/boards/cv181x/cv1812h_wevb_0007a_emmc_huashan/memmap.py#L15
-> Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
 
 LGTM.
 
 Acked-by: Chen Wang <unicorn_wang@outlook.com>
 
 > ---
->   arch/riscv/boot/dts/sophgo/Makefile           |  1 +
->   .../boot/dts/sophgo/cv1812h-huashan-pi.dts    | 48 +++++++++++++++++++
->   2 files changed, 49 insertions(+)
->   create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+>   arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+>   create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
 >
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-> index 3fb65512c631..57ad82a61ea6 100644
-> --- a/arch/riscv/boot/dts/sophgo/Makefile
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> @@ -1,3 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
 > new file mode 100644
-> index 000000000000..aa361f3a86bb
+> index 000000000000..3e7a942f5c1a
 > --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-> @@ -0,0 +1,48 @@
+> +++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+> @@ -0,0 +1,24 @@
 > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > +/*
 > + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
 > + */
 > +
-> +/dts-v1/;
-> +
-> +#include "cv1812h.dtsi"
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "cv18xx.dtsi"
 > +
 > +/ {
-> +	model = "Huashan Pi";
-> +	compatible = "sophgo,huashan-pi", "sophgo,cv1812h";
+> +	compatible = "sophgo,cv1812h";
 > +
-> +	aliases {
-> +		gpio0 = &gpio0;
-> +		gpio1 = &gpio1;
-> +		gpio2 = &gpio2;
-> +		gpio3 = &gpio3;
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		coprocessor_rtos: region@8fe00000 {
-> +			reg = <0x8fe00000 0x200000>;
-> +			no-map;
-> +		};
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x10000000>;
 > +	};
 > +};
 > +
-> +&osc {
-> +	clock-frequency = <25000000>;
+> +&plic {
+> +	compatible = "sophgo,cv1812h-plic", "thead,c900-plic";
 > +};
 > +
-> +&uart0 {
-> +	status = "okay";
+> +&clint {
+> +	compatible = "sophgo,cv1812h-clint", "thead,c900-clint";
 > +};
 > --
 > 2.42.0
