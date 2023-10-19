@@ -1,67 +1,71 @@
-Return-Path: <devicetree+bounces-10021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0A37CF612
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:04:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13C87CF616
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:05:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7E31281EA1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:04:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98EC5281EF0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C88D18B0D;
-	Thu, 19 Oct 2023 11:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765D818B16;
+	Thu, 19 Oct 2023 11:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dty7tVuW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="BhzRE6qs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD73318AF4
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 11:04:22 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE0D119;
-	Thu, 19 Oct 2023 04:04:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697713460; x=1729249460;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zD1Nbo0e2j9JFXzrsBuYue3Ao3OZSe9Wd/XfAWure3M=;
-  b=dty7tVuWl1I/Wmy7bYTbIkqUCrxcq3ids4M/HdvS4IUlYIkvlmNeLr7X
-   ea9vKqtPT8Oz8EevCxXd7JRUMcbSuIJ0PV282VFg2LWWdxJopO7hkBghB
-   JRyTY2vFeyl/Cgqw2CjoNcU0DvN9gydVDnBYtrfWll9/sjESy0VjribK6
-   2+GNRpv/cwEcx+1pnOBfd/RgBNHqKqwRXNwkCf0+2dj1bD6ATDhG3abDY
-   AvmdJa/B08w+H1AWvQQs1jtMHEcDbU5e0/wOvjpHMUJP0XRAa70QDre0a
-   2rntuDnazqzyekE93ck0t8dBVIpbV7/SUobz7dAJeEXwahcnR46BpAkGn
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="450443926"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
-   d="scan'208";a="450443926"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 04:04:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
-   d="scan'208";a="4922323"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 19 Oct 2023 04:04:10 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qtQov-00022e-1g;
-	Thu, 19 Oct 2023 11:04:05 +0000
-Date: Thu, 19 Oct 2023 19:03:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tanmay Shah <tanmay.shah@amd.com>, andersson@kernel.org,
-	mathieu.poirier@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] remoteproc: zynqmp: parse TCM from device tree
-Message-ID: <202310191806.NjLsejwM-lkp@intel.com>
-References: <20231013042229.3954527-5-tanmay.shah@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E778618AF4;
+	Thu, 19 Oct 2023 11:04:58 +0000 (UTC)
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78175FA;
+	Thu, 19 Oct 2023 04:04:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dSpnoWoyzHFpOJL9PnetAQWeHzMWff297XoDSrg60Zc=; b=BhzRE6qsmqaX8pszyropkuq61m
+	7Y5n0pzIhJ/emvomv/AaaOf5lApDlZuV3+PjzeZn0eyWnZmkjvZbVNyGlov1v2OKxcFpWdl1oj+xZ
+	nXqpUKBFnd94saAoLwyMJqah7HIBvorZnG42J6TuZtCPcAapm1RN8RaXc3CAGzYki40UGnGz78X8H
+	OXBLjVUiNGg+1IV0gipULCwYlx3nXgbQiWKZWwyan8JgtPgKN90eqYRmn2t2yQ0buNRXY+LgdhE9M
+	n+L6o/IrkhHqoLwZVAYKP6PTNRY0OdTdqnDsp12McXbCFI7X1Qc6M5pDAvB71k3Y78tUIkUOVgVH4
+	L6VlDlfQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39610)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1qtQpZ-0006qY-1r;
+	Thu, 19 Oct 2023 12:04:45 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1qtQpa-0000Nl-Fm; Thu, 19 Oct 2023 12:04:46 +0100
+Date: Thu, 19 Oct 2023 12:04:46 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/7] ARM: dts: marvell: Fix some common
+ switch mistakes
+Message-ID: <ZTENTqAMf/6ZWX2i@shell.armlinux.org.uk>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-3-3ee0c67383be@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,164 +74,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231013042229.3954527-5-tanmay.shah@amd.com>
+In-Reply-To: <20231018-marvell-88e6152-wan-led-v4-3-3ee0c67383be@linaro.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Tanmay,
+On Wed, Oct 18, 2023 at 11:03:42AM +0200, Linus Walleij wrote:
+> Fix some errors in the Marvell MV88E6xxx switch descriptions:
+> - The top node had no address size or cells.
+> - switch0@0 is not OK, should be switch@0.
+> - The ports node should have port@0 etc children, no
+>   plural "ports".
+> 
+> This serves as an example of fixes needed for introducing a
+> schema for the bindings, but the patch can simply be applied.
 
-kernel test robot noticed the following build warnings:
+In patch 2, you mention that things should be named ethernet-switch and
+ethernet-port. As you're renaming the nodes in this patch, wouldn't it
+make sense to use those names instead now, rather than at some point in
+the future a patch that converts to these names?
 
-[auto build test WARNING on a7d272979d3a89b117ca2c547dc8a465c4f28635]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tanmay-Shah/dt-bindings-remoteproc-add-Tightly-Coupled-Memory-TCM-bindings/20231017-120805
-base:   a7d272979d3a89b117ca2c547dc8a465c4f28635
-patch link:    https://lore.kernel.org/r/20231013042229.3954527-5-tanmay.shah%40amd.com
-patch subject: [PATCH v6 4/4] remoteproc: zynqmp: parse TCM from device tree
-config: arm64-randconfig-002-20231019 (https://download.01.org/0day-ci/archive/20231019/202310191806.NjLsejwM-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231019/202310191806.NjLsejwM-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310191806.NjLsejwM-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/remoteproc/xlnx_r5_remoteproc.c: In function 'zynqmp_r5_get_tcm_node_from_dt':
->> drivers/remoteproc/xlnx_r5_remoteproc.c:1162:28: warning: array subscript 'struct mem_bank_data[0]' is partly outside array bounds of 'unsigned char[8]' [-Warray-bounds=]
-    1162 |                         tcm->da = (u32)abs_addr;
-         |                            ^~
-   In file included from include/linux/dma-mapping.h:8,
-                    from drivers/remoteproc/xlnx_r5_remoteproc.c:8:
-   In function 'devm_kzalloc',
-       inlined from 'zynqmp_r5_get_tcm_node_from_dt' at drivers/remoteproc/xlnx_r5_remoteproc.c:1143:10:
-   include/linux/device.h:314:16: note: object of size 8 allocated by 'devm_kmalloc'
-     314 |         return devm_kmalloc(dev, size, gfp | __GFP_ZERO);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/remoteproc/xlnx_r5_remoteproc.c: In function 'zynqmp_r5_get_tcm_node_from_dt':
-   drivers/remoteproc/xlnx_r5_remoteproc.c:1163:28: warning: array subscript 'struct mem_bank_data[0]' is partly outside array bounds of 'unsigned char[8]' [-Warray-bounds=]
-    1163 |                         tcm->size = (u32)size;
-         |                            ^~
-   In function 'devm_kzalloc',
-       inlined from 'zynqmp_r5_get_tcm_node_from_dt' at drivers/remoteproc/xlnx_r5_remoteproc.c:1143:10:
-   include/linux/device.h:314:16: note: object of size 8 allocated by 'devm_kmalloc'
-     314 |         return devm_kmalloc(dev, size, gfp | __GFP_ZERO);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/remoteproc/xlnx_r5_remoteproc.c: In function 'zynqmp_r5_get_tcm_node_from_dt':
-   drivers/remoteproc/xlnx_r5_remoteproc.c:1172:28: warning: array subscript 'struct mem_bank_data[0]' is partly outside array bounds of 'unsigned char[8]' [-Warray-bounds=]
-    1172 |                         tcm->addr = (u32)res->start;
-         |                            ^~
-   In function 'devm_kzalloc',
-       inlined from 'zynqmp_r5_get_tcm_node_from_dt' at drivers/remoteproc/xlnx_r5_remoteproc.c:1143:10:
-   include/linux/device.h:314:16: note: object of size 8 allocated by 'devm_kmalloc'
-     314 |         return devm_kmalloc(dev, size, gfp | __GFP_ZERO);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/remoteproc/xlnx_r5_remoteproc.c: In function 'zynqmp_r5_get_tcm_node_from_dt':
-   drivers/remoteproc/xlnx_r5_remoteproc.c:1173:28: warning: array subscript 'struct mem_bank_data[0]' is partly outside array bounds of 'unsigned char[8]' [-Warray-bounds=]
-    1173 |                         tcm->bank_name = (char *)res->name;
-         |                            ^~
-   In function 'devm_kzalloc',
-       inlined from 'zynqmp_r5_get_tcm_node_from_dt' at drivers/remoteproc/xlnx_r5_remoteproc.c:1143:10:
-   include/linux/device.h:314:16: note: object of size 8 allocated by 'devm_kmalloc'
-     314 |         return devm_kmalloc(dev, size, gfp | __GFP_ZERO);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from include/linux/device.h:17:
-   drivers/remoteproc/xlnx_r5_remoteproc.c: In function 'zynqmp_r5_get_tcm_node_from_dt':
-   drivers/remoteproc/xlnx_r5_remoteproc.c:1174:74: warning: array subscript 'struct mem_bank_data[0]' is partly outside array bounds of 'unsigned char[8]' [-Warray-bounds=]
-    1174 |                         res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-         |                                                                          ^~
-   include/linux/ioport.h:306:63: note: in definition of macro 'devm_request_mem_region'
-     306 |         __devm_request_region(dev, &iomem_resource, (start), (n), (name))
-         |                                                               ^
-   In function 'devm_kzalloc',
-       inlined from 'zynqmp_r5_get_tcm_node_from_dt' at drivers/remoteproc/xlnx_r5_remoteproc.c:1143:10:
-   include/linux/device.h:314:16: note: object of size 8 allocated by 'devm_kmalloc'
-     314 |         return devm_kmalloc(dev, size, gfp | __GFP_ZERO);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +1162 drivers/remoteproc/xlnx_r5_remoteproc.c
-
-  1108	
-  1109	static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
-  1110	{
-  1111		struct zynqmp_r5_core *r5_core;
-  1112		int i, j, tcm_bank_count, ret;
-  1113		struct platform_device *cpdev;
-  1114		struct mem_bank_data *tcm;
-  1115		struct device_node *np;
-  1116		struct resource *res;
-  1117		u64 abs_addr, size;
-  1118		struct device *dev;
-  1119	
-  1120		for (i = 0; i < cluster->core_count; i++) {
-  1121			r5_core = cluster->r5_cores[i];
-  1122			dev = r5_core->dev;
-  1123			np = dev_of_node(dev);
-  1124	
-  1125			/* we have address cell 2 and size cell as 2 */
-  1126			ret = of_property_count_elems_of_size(np, "reg",
-  1127							      4 * sizeof(u32));
-  1128			if (ret <= 0) {
-  1129				dev_err(dev, "can't get reg property err %d\n", ret);
-  1130				return -EINVAL;
-  1131			}
-  1132	
-  1133			tcm_bank_count = ret;
-  1134	
-  1135			r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
-  1136							  sizeof(struct mem_bank_data *),
-  1137							  GFP_KERNEL);
-  1138			if (!r5_core->tcm_banks)
-  1139				ret = -ENOMEM;
-  1140	
-  1141			r5_core->tcm_bank_count = tcm_bank_count;
-  1142			for (j = 0; j < tcm_bank_count; j++) {
-  1143				tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data *),
-  1144						   GFP_KERNEL);
-  1145				if (!tcm)
-  1146					return -ENOMEM;
-  1147	
-  1148				r5_core->tcm_banks[j] = tcm;
-  1149	
-  1150				/* get tcm address without translation */
-  1151				ret = of_property_read_reg(np, j, &abs_addr, &size);
-  1152				if (ret) {
-  1153					dev_err(dev, "failed to get reg property\n");
-  1154					return ret;
-  1155				}
-  1156	
-  1157				/*
-  1158				 * remote processor can address only 32 bits
-  1159				 * so convert 64-bits into 32-bits. This will discard
-  1160				 * any unwanted upper 32-bits.
-  1161				 */
-> 1162				tcm->da = (u32)abs_addr;
-  1163				tcm->size = (u32)size;
-  1164	
-  1165				cpdev = to_platform_device(dev);
-  1166				res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
-  1167				if (!res) {
-  1168					dev_err(dev, "failed to get tcm resource\n");
-  1169					return -EINVAL;
-  1170				}
-  1171	
-  1172				tcm->addr = (u32)res->start;
-  1173				tcm->bank_name = (char *)res->name;
-  1174				res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-  1175							      tcm->bank_name);
-  1176				if (!res) {
-  1177					dev_err(dev, "failed to request tcm resource\n");
-  1178					return -EINVAL;
-  1179				}
-  1180			}
-  1181		}
-  1182	
-  1183		return 0;
-  1184	}
-  1185	
+Thanks.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
