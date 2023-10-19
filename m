@@ -1,211 +1,126 @@
-Return-Path: <devicetree+bounces-9861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4B57CEDF7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 04:20:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96C3D7CEE07
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 04:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 262F2281D66
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 02:20:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFDAAB20E11
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 02:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF278808;
-	Thu, 19 Oct 2023 02:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63B737FD;
+	Thu, 19 Oct 2023 02:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aQe3C/EG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dezZrkqL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7B981E
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:20:12 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6193F115;
-	Wed, 18 Oct 2023 19:20:09 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39J0cvQf010860;
-	Thu, 19 Oct 2023 02:19:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=hVpwWArKFOR7iz/8pIy9T+LqI/8KFcddg3fb+bntAOY=;
- b=aQe3C/EGNZ4GkEVikvxAPw7Z7j2D0Izrkq/GuNJStzy98l1UQxea4KqsvJG2FuHPBY7+
- skYhKgZUz8J2Bd/cdAINvH38p2PznN/l52l/W2NplT1kQp2Ua3gbpAO+7DrRNlM3LOft
- 9cPGYTE6HXgZDSNpgdbzpTdGVmT5J7Gs6NVr9gJ+Q73Ykw89F+GBWaVHvxZllq8huYZX
- yXPvQL/xNItkgixarSo5XsjVM47vHLdIwvU/oZn+h5IlKrGT8vJ040vyWUkbPkcZa1vk
- 3nbCMMrkLvKLRzbIIuxWhkLWFhC20nudHuJrLVDr5Qtj3+O962MxlTeBSmmrQrNn7q2O 8g== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttg82shh4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 02:19:44 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39J2Jhse005334
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 02:19:43 GMT
-Received: from hu-c-gdjako-lv.qualcomm.com (10.49.16.6) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Wed, 18 Oct 2023 19:19:42 -0700
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>
-CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-Subject: [PATCH 6/6] arm64: dts: qcom: sdm845: Add DT nodes for the TBUs
-Date: Wed, 18 Oct 2023 19:19:23 -0700
-Message-ID: <20231019021923.13939-7-quic_c_gdjako@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
-References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057327F0
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 02:23:20 +0000 (UTC)
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EAC59B;
+	Wed, 18 Oct 2023 19:23:18 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id d75a77b69052e-419787a43ebso47763561cf.1;
+        Wed, 18 Oct 2023 19:23:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697682197; x=1698286997; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dimg1l+YMRLp1DFCSJLkXMuU0P+ufAjg83AOKIFzRrw=;
+        b=dezZrkqLJj+pBhm8MW8RKBAAHTDD7Ei/1NG2B7p6NT8IZmBT0JGx/eSvmrN+hCGBUm
+         3fRtdcNR65Gu7qH/lP9+l233S1a2BRtgAMdn8POYtZTIrRLJJVYxT4T7AH3phHBi7240
+         cRLwQDkOYaGZ6aBk31S5y3sR1Miwu5FCR/Abtb9NoFwzFuhhnTQ6DX0hnGqGsSP+h1q4
+         meXggAXasHSeczUfaZpf4DlJTT4XXV58R5l/3+zNwAgAGOWOBveqWjAoM6vP7PD4huhi
+         rSXgHX4N6U68W0vQwSVK/XcClCeljIo/JBxSLMW035UrQ6EfbpwC/0AlMicKya7zj14L
+         befg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697682197; x=1698286997;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dimg1l+YMRLp1DFCSJLkXMuU0P+ufAjg83AOKIFzRrw=;
+        b=JOdgC3KjbH515w1FuahwRyIT+robOn7ZO07gusddSbCOOxYqA1ebNb6FdbuHNeXbwW
+         Wf5NJHfcoZrxN5tcvcn9TeUm+rS3u1vCT6SxKNhyI1TD/yDQvN+tkhnxTQrIUrkkwY9e
+         gc0HwR0FfC1zxKkFcP0Ss6dOolIXclnD3J1Dkn3BKaTSCKtWljh0iVSJy+pBZG8c2mye
+         3e7Cz2kMPquLgJeYg8pVy2ewoOqahqjPAkfedpYhC277NlYu3//SBuok1QyRJzTorsj4
+         ZvQaP2EDtbuUdOxbwjq8xz0Zt1IjPHJraloc6/sjsW3iOYp9LswIWruOaoLWTdVscSjX
+         hTQw==
+X-Gm-Message-State: AOJu0YyLNqVecLB0/yarYkLqi+C7AP3xgv8xcgLrAdzwAM2VZA6WDZfl
+	KkVzncgyN7bVwap4clNkVE4=
+X-Google-Smtp-Source: AGHT+IFtBGeoiy3MCLbcZKi8dHYnpcKWxNyVsIueWbslKVXXGLB4mmBVa9IPLrvRbiuhs1y/wTjn5Q==
+X-Received: by 2002:a05:622a:1910:b0:412:14a8:24c8 with SMTP id w16-20020a05622a191000b0041214a824c8mr1212595qtc.8.1697682197359;
+        Wed, 18 Oct 2023 19:23:17 -0700 (PDT)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:be33:c8cc:260b:4a5e])
+        by smtp.gmail.com with ESMTPSA id jz14-20020a05622a81ce00b0041cbf113c28sm414336qtb.40.2023.10.18.19.23.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Oct 2023 19:23:16 -0700 (PDT)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: l.stach@pengutronix.de,
+	aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Add NPU Node
+Date: Wed, 18 Oct 2023 21:23:00 -0500
+Message-Id: <20231019022300.1588041-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LMf3AF4b5XfNVZ8yZNzvowV4dXUxx1u4
-X-Proofpoint-ORIG-GUID: LMf3AF4b5XfNVZ8yZNzvowV4dXUxx1u4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-19_02,2023-10-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- mlxlogscore=984 spamscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- mlxscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310190017
+Content-Transfer-Encoding: 8bit
 
-Add the device-tree nodes for the TBUs (translation buffer units) that
-are present on the sdm845 platforms. The TBUs can be used debug the
-kernel and provide additional information when a context faults occur.
+The NPU is based on the Vivante GC8000 and it enumerates as
 
-Describe the all registers, clocks, interconnects and power-domain
-resources that are needed for each of the TBUs.
+ etnaviv-gpu 38500000.npu: model: GC8000, revision: 8002
 
-Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 85 ++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 055ca80c0075..984770be5e08 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -15,6 +15,7 @@
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sdm845.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -5030,6 +5031,7 @@ pil-reloc@94c {
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sdm845-smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x80000>;
-+			ranges;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <1>;
- 			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
-@@ -5097,6 +5099,89 @@ apps_smmu: iommu@15000000 {
- 				     <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+
-+			anoc_1_tbu: tbu@150c5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150c5000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_TBU1_GDSC>;
-+				qcom,stream-id-range = <0x0 0x400>;
-+			};
-+
-+			anoc_2_tbu: tbu@150c9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150c9000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_TBU2_GDSC>;
-+				qcom,stream-id-range = <0x400 0x400>;
-+			};
-+
-+			mnoc_hf_0_tbu: tbu@150cd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150cd000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_HF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC>;
-+				qcom,stream-id-range = <0x800 0x400>;
-+			};
-+
-+			mnoc_hf_1_tbu: tbu@150d1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d1000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_HF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC>;
-+				qcom,stream-id-range = <0xc00 0x400>;
-+			};
-+
-+			mnoc_sf_0_tbu: tbu@150d5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d5000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mmss_noc SLAVE_MNOC_SF_MEM_NOC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_SF_GDSC>;
-+				qcom,stream-id-range = <0x1000 0x400>;
-+			};
-+
-+			compute_dsp_tbu: tbu@150d9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150d9000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				qcom,stream-id-range = <0x1400 0x400>;
-+			};
-+
-+			adsp_tbu: tbu@150dd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150dd000 0x0 0x1000>;
-+				reg-names = "base";
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_AUDIO_TBU_GDSC>;
-+				qcom,stream-id-range = <0x1800 0x400>;
-+			};
-+
-+			anoc_1_pcie_tbu: tbu@150e1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x150e1000 0x0 0x1000>;
-+				reg-names = "base";
-+				clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
-+				interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
-+				qcom,stream-id-range = <0x1c00 0x400>;
-+			};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index c9a610ba4836..1ef8d17726ac 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -2012,6 +2012,25 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
+ 			interconnect-names = "g1", "g2", "vc8000e";
  		};
  
- 		lpasscc: clock-controller@17014000 {
++		npu: npu@38500000 {
++			compatible = "vivante,gc";
++			reg = <0x38500000 0x20000>;
++			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8MP_CLK_NPU_ROOT>,
++				 <&clk IMX8MP_CLK_NPU_ROOT>,
++				 <&clk IMX8MP_CLK_ML_AXI>,
++				 <&clk IMX8MP_CLK_ML_AHB>;
++			clock-names = "core", "shader", "bus", "reg";
++			assigned-clocks = <&clk IMX8MP_CLK_ML_CORE>,
++				  <&clk IMX8MP_CLK_ML_AXI>,
++				  <&clk IMX8MP_CLK_ML_AHB>;
++			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
++					 <&clk IMX8MP_SYS_PLL1_800M>,
++					 <&clk IMX8MP_SYS_PLL1_800M>;
++			assigned-clock-rates = <1000000000>, <800000000>, <400000000>;
++			power-domains = <&pgc_mlmix>;
++		};
++
+ 		gic: interrupt-controller@38800000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x38800000 0x10000>,
+-- 
+2.40.1
+
 
