@@ -1,155 +1,141 @@
-Return-Path: <devicetree+bounces-10218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EF87D0297
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:34:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36AB7D02A6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07463282031
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:34:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD189B20F48
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39F93985C;
-	Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7328A3C087;
+	Thu, 19 Oct 2023 19:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIOTf/85"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="lTPRrjGF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05BD36AE2
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 528E7C433CB;
-	Thu, 19 Oct 2023 19:34:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697744056;
-	bh=U4uvieOMjkf+PFUrgjolzRXzsKujYoPFvUARZuVi93g=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=XIOTf/856ZdqwalZjvSzQ8fSJO1n4KiWsacm/1Df7JYiUp4JB9+Te46XnHn37YMh6
-	 DmDC6p3CZwBQ9TNRluPc5gDxlMifNmNfCynXNl7w77U8SU5X/2cl6Bh40IHYohVL9V
-	 QFqX91wAJ6EwJv39lI18MJr4yik6jMcvOZmUaQNmIgh1WGbV3TXiF/9kar9VpiLyIa
-	 8rg2ohTES4fShSu/LyTDgVEGa2jyonSjwsiuaeHhgbvOiABJuvPpBaanXnP9Gk/T4z
-	 jtFPG6S8YHnhpTfXlxYvqQL+rrke88jZtd/WUlrGbCqkDIn1Nko5Hpb10PIKK2bvr4
-	 R41si6gdULx6g==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-507c8316abcso9210e87.1;
-        Thu, 19 Oct 2023 12:34:16 -0700 (PDT)
-X-Gm-Message-State: AOJu0Ywe5PT97BFNi+5/HuL7SCaAs2Vk4eOjxtYchmwPrkvZlHwJAkZG
-	iEwDLl0VYgCE1hAqXAXVykQFu1WPCTIo/FVGPQ==
-X-Google-Smtp-Source: AGHT+IGMT9Lrdbp7434FU0vSJTcnDLj9QZz+YqqqKURgtaUGGFvehHaTryvXAxTMKsvBGBRehz5HOHtRRNA6CFuynY8=
-X-Received: by 2002:a05:6512:20d2:b0:507:a701:3206 with SMTP id
- u18-20020a05651220d200b00507a7013206mr2071442lfr.49.1697744054489; Thu, 19
- Oct 2023 12:34:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D0D3C06D
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:41:31 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4FFFA
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:41:29 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4C0C02C0733;
+	Fri, 20 Oct 2023 08:41:27 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1697744487;
+	bh=k9X51xVsFNHIlzccLEHxrW4VGA/3GPxE2dX7wBCdsFk=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=lTPRrjGFgbvHx0c1+n1KjoMogHxJYg0pe0G4Qrtoq/zhFeDQPQd2nIMrCJhaSLCL7
+	 K/9fP9pZ4fEfGxkBhYCZa4Q+gF9BDI5QJZv58DFtA4iUXHdWVO9SRksAg3LM2Q4CSO
+	 9OzUxkXF6IzqSzuZVQWw5nNtlHxOlwRBDHah/wtuY+wzM+f15UjSyIaAnkcMaEgyg6
+	 Raf7dX32t2edISCMndzMNlPWf5Tzk7GWlLzQSspWam6nP1faWPYXJPeQXX3ZrPMdjV
+	 HebKq7wJ5MAUPoTmzEycjjWSgX0n3CPQs1gXSe+6lzLUOcGBSvCkHadOxzxnPDgTmy
+	 44mM126HgFcww==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B653186670001>; Fri, 20 Oct 2023 08:41:27 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.37; Fri, 20 Oct 2023 08:41:27 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.037; Fri, 20 Oct 2023 08:41:26 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, "andi.shyti@kernel.org"
+	<andi.shyti@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "pierre.gondois@arm.com"
+	<pierre.gondois@arm.com>
+CC: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: marvell: AC5: use I2C unstuck function
+Thread-Topic: [PATCH v2 2/3] arm64: dts: marvell: AC5: use I2C unstuck
+ function
+Thread-Index: AQHZ9+y534keUpgCdEywg20EPufKTLBQaoWAgABUMgA=
+Date: Thu, 19 Oct 2023 19:41:26 +0000
+Message-ID: <1d43b7be-94f4-4d29-a4b0-b5b651c4b70a@alliedtelesis.co.nz>
+References: <20231006003321.2100016-1-chris.packham@alliedtelesis.co.nz>
+ <20231006003321.2100016-3-chris.packham@alliedtelesis.co.nz>
+ <87a5sead6i.fsf@BL-laptop>
+In-Reply-To: <87a5sead6i.fsf@BL-laptop>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [10.33.22.30]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A8420570C3E11340A693E430DD2182B9@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230531111038.6302-1-francesco@dolcini.it> <CAMuHMdUkPiA=o_QLyuwsTYW7y1ksCjHAqyNSHFx2QZ-dP-HGsQ@mail.gmail.com>
- <ZTFFp8Yr7lq6HIab@francesco-nb.int.toradex.com> <CAMuHMdXtA3LNL6UkWyz6oytfNpSv77EShfF-uQvnPJktMUr40A@mail.gmail.com>
- <ZTFNNudzuvDtSn4J@francesco-nb.int.toradex.com>
-In-Reply-To: <ZTFNNudzuvDtSn4J@francesco-nb.int.toradex.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 19 Oct 2023 14:34:02 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKQrkeFmdtvdrscDMTTO6TfUZvJejCNGgC+osC3KjwE8Q@mail.gmail.com>
-Message-ID: <CAL_JsqKQrkeFmdtvdrscDMTTO6TfUZvJejCNGgC+osC3KjwE8Q@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: 8250_omap: add rs485-rts-active-high
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=SQ9JNEmy3hBT6fU4eLAA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-On Thu, Oct 19, 2023 at 10:37=E2=80=AFAM Francesco Dolcini <francesco@dolci=
-ni.it> wrote:
->
-> On Thu, Oct 19, 2023 at 05:13:01PM +0200, Geert Uytterhoeven wrote:
-> > Hi Franceso,
-> >
-> > On Thu, Oct 19, 2023 at 5:05=E2=80=AFPM Francesco Dolcini <francesco@do=
-lcini.it> wrote:
-> > > On Thu, Oct 19, 2023 at 12:09:06PM +0200, Geert Uytterhoeven wrote:
-> > > > On Wed, May 31, 2023 at 1:14=E2=80=AFPM Francesco Dolcini <francesc=
-o@dolcini.it> wrote:
-> > > > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > > >
-> > > > > Add rs485-rts-active-high property, this was removed by mistake.
-> > > > > In general we just use rs485-rts-active-low property, however the=
- OMAP
-> > > > > UART for legacy reason uses the -high one.
-> > > > >
-> > > > > Fixes: 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485 =
-properties")
-> > > > > Closes: https://lore.kernel.org/all/ZGefR4mTHHo1iQ7H@francesco-nb=
-.int.toradex.com/
-> > > > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > > > ---
-> > > > > v2: removed reported-by
-> > > >
-> > > > Thanks for your patch, which is now commit 403e97d6ab2cb6fd
-> > > > ("dt-bindings: serial: 8250_omap: add rs485-rts-active-high")
-> > > > in v6.4-rc5.
-> > > >
-> > > > > --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> > > > > @@ -70,6 +70,7 @@ properties:
-> > > > >    dsr-gpios: true
-> > > > >    rng-gpios: true
-> > > > >    dcd-gpios: true
-> > > > > +  rs485-rts-active-high: true
-> > > >
-> > > > make dt_binding_check complains:
-> > > >
-> > > >     Documentation/devicetree/bindings/serial/8250_omap.yaml:
-> > > > rs485-rts-active-high: missing type definition
-> > >
-> > > For some reasons it works for me (and worked when I did send the patc=
-h)
-> > >
-> > > $ make dt_binding_check DT_SCHEMA_FILES=3D8250_omap.yaml
-> > > ...
-> > >   HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
-> > >   HOSTCC  scripts/dtc/fdtoverlay.o
-> > >   HOSTLD  scripts/dtc/fdtoverlay
-> > >   LINT    Documentation/devicetree/bindings
-> > > invalid config: unknown option "required" for rule "quoted-strings"
-> > > xargs: /usr/bin/yamllint: exited with status 255; aborting
-> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
-gs/phy/qcom,usb-snps-femto-v2.yaml: ignoring, error in schema: properties: =
-qcom,ls-fs-output-impedance-bp
-> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
-gs/arm/vexpress-sysreg.yaml: ignoring, error in schema: properties: gpio-co=
-ntroller
-> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
-gs/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProp=
-erties: ^thermistor@: properties: adi,excitation-current-nanoamp
-> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
-gs/iio/adc/adi,ad4130.yaml: ignoring, error in schema: patternProperties: ^=
-channel@([0-9a-f])$: properties: adi,burnout-current-nanoamp
-> > > /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindin=
-gs/iio/addac/adi,ad74115.yaml: ignoring, error in schema: properties: adi,e=
-xt2-burnout-current-nanoamp
-> > >   DTEX    Documentation/devicetree/bindings/serial/8250_omap.example.=
-dts
-> > >   DTC_CHK Documentation/devicetree/bindings/serial/8250_omap.example.=
-dtb
-> > >
-> > >
-> > > any idea on what could be different between us?
-> >
-> > Are you using the latest dt-schema?
-
-Indeed, it is a new check.
-
-> Nope, and I tried to update it and now everything fails in a miserable
-> way.
-
-Do you have more details?
-
-Rob
+DQpPbiAyMC8xMC8yMyAwMzo0MCwgR3JlZ29yeSBDTEVNRU5UIHdyb3RlOg0KPiBIZWxsbyBDaHJp
+cywNCj4NCj4+IFRoZSBBQzUgU29DIHN1cHBvcnRzIHVzaW5nIGEgY29udHJvbGxlciBiYXNlZCBJ
+MkMgdW5zdHVjayBmdW5jdGlvbiBmb3INCj4+IHJlY292ZXJ5LiBVc2UgdGhpcyBpbnN0ZWFkIG9m
+IHRoZSBnZW5lcmljIEdQSU8gcmVjb3ZlcnkuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMg
+UGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56Pg0KPj4gLS0tDQo+PiAg
+IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hYzUtOThkeDI1eHguZHRzaSB8IDE0ICsrKyst
+LS0tLS0tLS0tDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEwIGRlbGV0
+aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwv
+YWM1LTk4ZHgyNXh4LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgy
+NXh4LmR0c2kNCj4+IGluZGV4IGM5Y2UxMDEwYzQxNS4uZTUyZDNjMzQ5NmQ1IDEwMDY0NA0KPj4g
+LS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpDQo+PiAr
+KysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4+IEBA
+IC0xMzcsNyArMTM3LDcgQEAgbWRpbzogbWRpb0AyMjAwNCB7DQo+PiAgIA0KPj4gICAJCQlpMmMw
+OiBpMmNAMTEwMDB7DQo+PiAgIAkJCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY3ODIzMC1pMmMi
+Ow0KPj4gLQkJCQlyZWcgPSA8MHgxMTAwMCAweDIwPjsNCj4+ICsJCQkJcmVnID0gPDB4MTEwMDAg
+MHgyMD4sIDwweDExMGEwIDB4ND47DQo+PiAgIAkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+
+ICAgCQkJCSNzaXplLWNlbGxzID0gPDA+Ow0KPj4gICANCj4+IEBAIC0xNDYsMTcgKzE0NiwxNCBA
+QCBpMmMwOiBpMmNAMTEwMDB7DQo+PiAgIAkJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgODcgSVJR
+X1RZUEVfTEVWRUxfSElHSD47DQo+PiAgIAkJCQljbG9jay1mcmVxdWVuY3k9PDEwMDAwMD47DQo+
+PiAgIA0KPj4gLQkJCQlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiZ3BpbyI7DQo+PiArCQkJ
+CXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+PiAgIAkJCQlwaW5jdHJsLTAgPSA8JmkyYzBf
+cGlucz47DQo+PiAtCQkJCXBpbmN0cmwtMSA9IDwmaTJjMF9ncGlvPjsNCj4+IC0JCQkJc2NsLWdw
+aW9zID0gPCZncGlvMCAyNiAoR1BJT19BQ1RJVkVfSElHSCB8IEdQSU9fT1BFTl9EUkFJTik+Ow0K
+Pj4gLQkJCQlzZGEtZ3Bpb3MgPSA8JmdwaW8wIDI3IChHUElPX0FDVElWRV9ISUdIIHwgR1BJT19P
+UEVOX0RSQUlOKT47DQo+IEJ5IGRvaW5nIHRoaXMgdGhlbiBvbGRlciBrZXJuZWwgd29uJ3QgYmUg
+YWJsZSB0byBkbyByZWNvdmVyeSwgd2hpbGUgaWYNCj4geW91IGtlZXAgaXQsIHRoZSBuZXcga2Vy
+bmVscyB3aWxsIHN0aWxsIHVzZSBuZXcgd2F5IHRvIHN1cHBvcnQgcmVjb3ZlcnkNCj4gdGhhbmtz
+IHRvIHRoZSBuZXcgcmVnIGZpbGVkIGFkZGVkIGFuZCBvbGQga2VybmVscyB3aWxsIGNvbnRpbnVl
+IHRvIHdvcmsuDQo+DQo+IEhvd2V2ZXIsIHdoYXQgd2UgdHJ5IHRvIG1haW50YWluIGlzIHJ1bm5p
+bmcgbmV3IGtlcm5lbCBvbiBvbGQgZHRiIG5vdA0KPiB0aGUgb3Bwb3NpdGUgd2hpY2ggaXMganVz
+dCBhIG5pY2UgdG8gaGF2ZS4gQXQgdGhlIGVuZCBpdCBpcyB1cCB0byB5b3UsDQo+IGlmIHlvdSBy
+ZWFsbHkgd2FudCB0byByZW1vdmUgdGhpcyBjaHVuayBJIHdpbGwgYXBwbHkgaXQgb25jZSB0aGUg
+ZHJpdmVyDQo+IHBhcnQgb2YgdGhlIHNlcmllcyB3aWxsIGJlIGFjY2VwdGVkLg0KDQpUaGUgR1BJ
+TyByZWNvdmVyeSB0cmlnZ2VycyBhbiBFcnJhdHVtIHdoZXJlIHRoZSBTb0MgbG9ja3MgdXAgc28g
+SSdkIA0KcHJlZmVyIHRvIHNlZSBpdCBnb25lIChiYXNpY2FsbHkgYSB2ZXJzaW9uIG9mIHRoYXQg
+b2ZmbG9hZCBFcnJhdHVtIGZyb20gDQp0aGUgZWFybHkgQXJtYWRhLVhQcykuDQoNCkkgdGhpbmsg
+aXQncyBhbGwgYWNhZGVtaWMgYmVjYXVzZSBJJ20gcHJldHR5IHN1cmUgSSdtIHRoZSBvbmx5IG9u
+ZSANCmFjdHVhbGx5IHJ1bm5pbmcgYW4gdXBzdHJlYW0ga2VybmVsIG9uIHRoZSBBQzVYLiBNYXJ2
+ZWxsIHN0aWxsIHNoaXAgYSANCmhvcnJpYmx5IG91dCBvZiBkYXRlIGZvcmsgaW4gdGhlaXIgb2Zm
+aWNpYWwgU0RLLg0KDQo+DQo+IEdyZWdvcnkNCj4NCj4NCj4+ICAgCQkJCXN0YXR1cyA9ICJkaXNh
+YmxlZCI7DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gICAJCQlpMmMxOiBpMmNAMTExMDB7DQo+PiAg
+IAkJCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY3ODIzMC1pMmMiOw0KPj4gLQkJCQlyZWcgPSA8
+MHgxMTEwMCAweDIwPjsNCj4+ICsJCQkJcmVnID0gPDB4MTExMDAgMHgyMD4sIDwweDExMGE0IDB4
+ND47DQo+PiAgIAkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICAgCQkJCSNzaXplLWNlbGxz
+ID0gPDA+Ow0KPj4gICANCj4+IEBAIC0xNjUsMTEgKzE2Miw4IEBAIGkyYzE6IGkyY0AxMTEwMHsN
+Cj4+ICAgCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA4OCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
+Cj4+ICAgCQkJCWNsb2NrLWZyZXF1ZW5jeT08MTAwMDAwPjsNCj4+ICAgDQo+PiAtCQkJCXBpbmN0
+cmwtbmFtZXMgPSAiZGVmYXVsdCIsICJncGlvIjsNCj4+ICsJCQkJcGluY3RybC1uYW1lcyA9ICJk
+ZWZhdWx0IjsNCj4+ICAgCQkJCXBpbmN0cmwtMCA9IDwmaTJjMV9waW5zPjsNCj4+IC0JCQkJcGlu
+Y3RybC0xID0gPCZpMmMxX2dwaW8+Ow0KPj4gLQkJCQlzY2wtZ3Bpb3MgPSA8JmdwaW8wIDIwIChH
+UElPX0FDVElWRV9ISUdIIHwgR1BJT19PUEVOX0RSQUlOKT47DQo+PiAtCQkJCXNkYS1ncGlvcyA9
+IDwmZ3BpbzAgMjEgKEdQSU9fQUNUSVZFX0hJR0ggfCBHUElPX09QRU5fRFJBSU4pPjsNCj4+ICAg
+CQkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLS0gDQo+PiAy
+LjQyLjANCj4+
 
