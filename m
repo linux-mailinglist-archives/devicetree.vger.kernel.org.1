@@ -1,207 +1,191 @@
-Return-Path: <devicetree+bounces-10078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93AC7CF8DF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A2D7CF8E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84308282153
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:29:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8009C2820E7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32ABA27477;
-	Thu, 19 Oct 2023 12:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778FB225C9;
+	Thu, 19 Oct 2023 12:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hsm+NgS2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7822225AB
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:29:23 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22191198
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:29:22 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qtS8y-0006L0-D6; Thu, 19 Oct 2023 14:28:52 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qtS8x-002mry-NY; Thu, 19 Oct 2023 14:28:51 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qtS8x-0052A2-20;
-	Thu, 19 Oct 2023 14:28:51 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: "David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org
-Subject: [PATCH net-next v6 9/9] net: dsa: microchip: Ensure Stable PME Pin State for Wake-on-LAN
-Date: Thu, 19 Oct 2023 14:28:50 +0200
-Message-Id: <20231019122850.1199821-10-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231019122850.1199821-1-o.rempel@pengutronix.de>
-References: <20231019122850.1199821-1-o.rempel@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAC7225C0
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:30:02 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3CDD53
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:29:56 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c52407516bso9359431fa.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:29:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697718594; x=1698323394; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nPQidXa+OYvo5Cuog4USzNI+/Xa6NAbmqLzTVYeaaGI=;
+        b=hsm+NgS2yLAar//ppYO0VkxpBnkq8TSc6tnuRl7T6GUofmZPCnZjWTje/1bxR5XHlj
+         ZkBHJJEDe8IPHMFhEugPVQPlBv3beRKtjpnU0qxTdGqAEPAN9zMTzOjzjbbCPqsTMDhr
+         XbPwN1Z0S9n0DEG9ZWXdL6DMSn3a2bMQTNk6Md0tq/spBhcCe7DskF+L5z7HfgndNLEr
+         VK0LmzRPemoIsd1FPPLE+xuIk2yGJ7ltS/5TGf7rJwqB3WEuzlRhD9QmbH7yg4WMiy8D
+         aU29IQAbBEi7djprTVQAG4XOiJlgsYm3Nqh77kajAbHkA/xT2ujGrrIEsT6gQF6oDyvT
+         PC6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697718594; x=1698323394;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nPQidXa+OYvo5Cuog4USzNI+/Xa6NAbmqLzTVYeaaGI=;
+        b=q5R2l1yASRAWB+MUu/mv2cyUtA82qb8dARkdf32erz/S4wXuwftjyl6tXTvGOaCvPH
+         4KLj0lbXei4uTgnRu/Rqutb4/XYBBx+Wu9XVabDKBRSECTs/X6mSK4JaYhARfCDxO44z
+         7OPcaAprwPbmaN0GVMWmxos5fts+GuXZFS7TnA0hBBOQ307QOSB5d9Ohv1/7HueoFRwN
+         VzGcpNK0ltq173duVgOb2jZRNetV94VdTyPBOEUMA2EFSfzo0EI3y37jJCyEYSSmcmZJ
+         Naskns25FMr7D5W598zIgRm1VkAmHo/HR0x5+puXgG9E+lEmn9R/+ilxT+DHkEG83k7a
+         Opng==
+X-Gm-Message-State: AOJu0YwF1l6/5iHb4/EhIPPH3jtTP1JqSUQTj7YQhKTjrTBeHu1hSR8h
+	iMV01cLk1swm0lLhFckMWv0Xo0CMPtLOITgCgX2/DA==
+X-Google-Smtp-Source: AGHT+IHg7eVr9Vk42wp0GedexaXWPTTyyGtHpNE6XUvTGWZvO8GRkwynRbYeb/jJvG9OO4I66LWpjA==
+X-Received: by 2002:a2e:870a:0:b0:2c5:6ab:b817 with SMTP id m10-20020a2e870a000000b002c506abb817mr1417727lji.5.1697718593993;
+        Thu, 19 Oct 2023 05:29:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:6933:1fe3:b858:3dde? ([2a01:e0a:999:a3a0:6933:1fe3:b858:3dde])
+        by smtp.gmail.com with ESMTPSA id l10-20020a1c790a000000b004063cced50bsm4266895wme.23.2023.10.19.05.29.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Oct 2023 05:29:53 -0700 (PDT)
+Message-ID: <acd4c737-49ee-4038-890b-b2eba29f6460@rivosinc.com>
+Date: Thu, 19 Oct 2023 14:29:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/19] riscv: hwprobe: factorize hwprobe ISA extension
+ reporting
+To: Conor Dooley <conor@kernel.org>
+Cc: Evan Green <evan@rivosinc.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+ Andrew Jones <ajones@ventanamicro.com>, Samuel Ortiz <sameo@rivosinc.com>
+References: <20231017131456.2053396-1-cleger@rivosinc.com>
+ <20231017131456.2053396-2-cleger@rivosinc.com>
+ <CALs-HssL=wNwj9nRuZwpZhy1CB9p9-X=OqgwBw9zvgA7hA4fEg@mail.gmail.com>
+ <20231018-scrap-bankable-a0f321d97a46@spud>
+ <20231018-flagpole-footpad-07a6228485f3@spud>
+ <844f6f35-3125-4014-852c-9ad7aee19ddc@rivosinc.com>
+ <20231019-flatten-showbiz-127b2e917a7a@spud>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20231019-flatten-showbiz-127b2e917a7a@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Ensures a stable PME (Power Management Event) pin state by disabling PME
-on system start and enabling it on shutdown only if WoL (Wake-on-LAN) is
-configured. This is needed to avoid issues with some PMICs (Power
-Management ICs).
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- drivers/net/dsa/microchip/ksz9477.c    | 46 ++++++++++++++++++++++++++
- drivers/net/dsa/microchip/ksz9477.h    |  1 +
- drivers/net/dsa/microchip/ksz_common.c |  8 ++++-
- drivers/net/dsa/microchip/ksz_common.h |  1 +
- 4 files changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-index bcc8863951ca..d893dfd68815 100644
---- a/drivers/net/dsa/microchip/ksz9477.c
-+++ b/drivers/net/dsa/microchip/ksz9477.c
-@@ -200,6 +200,46 @@ int ksz9477_set_wol(struct ksz_device *dev, int port,
- 	return 0;
- }
- 
-+/**
-+ * ksz9477_wol_pre_shutdown - Prepares the switch device for shutdown while
-+ *                            considering Wake-on-LAN (WoL) settings.
-+ * @dev: The switch device structure.
-+ * @wol_enabled: Pointer to a boolean which will be set to true if WoL is
-+ *               enabled on any port.
-+ *
-+ * This function prepares the switch device for a safe shutdown while taking
-+ * into account the Wake-on-LAN (WoL) settings on the user ports. It updates
-+ * the wol_enabled flag accordingly to reflect whether WoL is active on any
-+ * port.
-+ */
-+void ksz9477_wol_pre_shutdown(struct ksz_device *dev, bool *wol_enabled)
-+{
-+	struct dsa_port *dp;
-+	int ret;
-+
-+	*wol_enabled = false;
-+
-+	if (!dev->wakeup_source)
-+		return;
-+
-+	dsa_switch_for_each_user_port(dp, dev->ds) {
-+		u8 pme_ctrl = 0;
-+
-+		ret = ksz_pread8(dev, dp->index, REG_PORT_PME_CTRL, &pme_ctrl);
-+		if (!ret && pme_ctrl)
-+			*wol_enabled = true;
-+
-+		/* make sure there are no pending wake events which would
-+		 * prevent the device from going to sleep/shutdown.
-+		 */
-+		ksz9477_handle_wake_reason(dev, dp->index);
-+	}
-+
-+	/* Now we are save to enable PME pin. */
-+	if (*wol_enabled)
-+		ksz_write8(dev, REG_SW_PME_CTRL, PME_ENABLE);
-+}
-+
- static int ksz9477_wait_vlan_ctrl_ready(struct ksz_device *dev)
- {
- 	unsigned int val;
-@@ -1280,6 +1320,12 @@ int ksz9477_setup(struct dsa_switch *ds)
- 	/* enable global MIB counter freeze function */
- 	ksz_cfg(dev, REG_SW_MAC_CTRL_6, SW_MIB_COUNTER_FREEZE, true);
- 
-+	/* Make sure PME (WoL) is not enabled. If requested, it will be
-+	 * enabled by ksz9477_wol_pre_shutdown(). Otherwise, some PMICs do not
-+	 * like PME events changes before shutdown.
-+	 */
-+	ksz_write8(dev, REG_SW_PME_CTRL, 0);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/net/dsa/microchip/ksz9477.h b/drivers/net/dsa/microchip/ksz9477.h
-index fa8d0318b437..9e6f1e4b57b7 100644
---- a/drivers/net/dsa/microchip/ksz9477.h
-+++ b/drivers/net/dsa/microchip/ksz9477.h
-@@ -62,6 +62,7 @@ void ksz9477_get_wol(struct ksz_device *dev, int port,
- 		     struct ethtool_wolinfo *wol);
- int ksz9477_set_wol(struct ksz_device *dev, int port,
- 		    struct ethtool_wolinfo *wol);
-+void ksz9477_wol_pre_shutdown(struct ksz_device *dev, bool *wol_is_on);
- 
- int ksz9477_port_acl_init(struct ksz_device *dev, int port);
- void ksz9477_port_acl_free(struct ksz_device *dev, int port);
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 08556b1dc452..6945ea4febd0 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -321,6 +321,7 @@ static const struct ksz_dev_ops ksz9477_dev_ops = {
- 	.phylink_mac_link_up = ksz9477_phylink_mac_link_up,
- 	.get_wol = ksz9477_get_wol,
- 	.set_wol = ksz9477_set_wol,
-+	.wol_pre_shutdown = ksz9477_wol_pre_shutdown,
- 	.config_cpu_port = ksz9477_config_cpu_port,
- 	.tc_cbs_set_cinc = ksz9477_tc_cbs_set_cinc,
- 	.enable_stp_addr = ksz9477_enable_stp_addr,
-@@ -3822,7 +3823,12 @@ EXPORT_SYMBOL(ksz_switch_alloc);
-  */
- void ksz_switch_shutdown(struct ksz_device *dev)
- {
--	if (dev->dev_ops->reset)
-+	bool wol_enabled = false;
-+
-+	if (dev->dev_ops->wol_pre_shutdown)
-+		dev->dev_ops->wol_pre_shutdown(dev, &wol_enabled);
-+
-+	if (dev->dev_ops->reset && !wol_enabled)
- 		dev->dev_ops->reset(dev);
- 
- 	dsa_switch_shutdown(dev->ds);
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 34a8e9784cca..41917de15ba3 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -378,6 +378,7 @@ struct ksz_dev_ops {
- 			struct ethtool_wolinfo *wol);
- 	int (*set_wol)(struct ksz_device *dev, int port,
- 		       struct ethtool_wolinfo *wol);
-+	void (*wol_pre_shutdown)(struct ksz_device *dev, bool *wol_enabled);
- 	void (*config_cpu_port)(struct dsa_switch *ds);
- 	int (*enable_stp_addr)(struct ksz_device *dev);
- 	int (*reset)(struct ksz_device *dev);
--- 
-2.39.2
+On 19/10/2023 12:22, Conor Dooley wrote:
+> On Thu, Oct 19, 2023 at 09:26:31AM +0200, Clément Léger wrote:
+>>
+>>
+>> On 18/10/2023 19:36, Conor Dooley wrote:
+>>> On Wed, Oct 18, 2023 at 06:33:34PM +0100, Conor Dooley wrote:
+>>>> On Wed, Oct 18, 2023 at 10:24:15AM -0700, Evan Green wrote:
+>>>>> On Tue, Oct 17, 2023 at 6:15 AM Clément Léger <cleger@rivosinc.com> wrote:
+>>>>>>
+>>>>>> Factorize ISA extension reporting by using a macro rather than
+>>>>>> copy/pasting extension names. This will allow adding new extensions more
+>>>>>> easily.
+>>>>>>
+>>>>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>>>>>> ---
+>>>>>>  arch/riscv/kernel/sys_riscv.c | 32 ++++++++++++++++++--------------
+>>>>>>  1 file changed, 18 insertions(+), 14 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
+>>>>>> index 473159b5f303..e207874e686e 100644
+>>>>>> --- a/arch/riscv/kernel/sys_riscv.c
+>>>>>> +++ b/arch/riscv/kernel/sys_riscv.c
+>>>>>> @@ -145,20 +145,24 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+>>>>>>         for_each_cpu(cpu, cpus) {
+>>>>>>                 struct riscv_isainfo *isainfo = &hart_isa[cpu];
+>>>>>>
+>>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBA))
+>>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBA;
+>>>>>> -               else
+>>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBA;
+>>>>>> -
+>>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBB))
+>>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBB;
+>>>>>> -               else
+>>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBB;
+>>>>>> -
+>>>>>> -               if (riscv_isa_extension_available(isainfo->isa, ZBS))
+>>>>>> -                       pair->value |= RISCV_HWPROBE_EXT_ZBS;
+>>>>>> -               else
+>>>>>> -                       missing |= RISCV_HWPROBE_EXT_ZBS;
+>>>>>> +#define CHECK_ISA_EXT(__ext)                                                   \
+>>>>>> +               do {                                                            \
+>>>>>> +                       if (riscv_isa_extension_available(isainfo->isa, __ext)) \
+>>>>>> +                               pair->value |= RISCV_HWPROBE_EXT_##__ext;       \
+>>>>>> +                       else                                                    \
+>>>>>> +                               missing |= RISCV_HWPROBE_EXT_##__ext;           \
+>>>>>> +               } while (false)
+>>>>>> +
+>>>>>> +               /*
+>>>>>> +                * Only use CHECK_ISA_EXT() for extensions which can be exposed
+>>>>>> +                * to userspace, regardless of the kernel's configuration, as no
+>>>>>> +                * other checks, besides presence in the hart_isa bitmap, are
+>>>>>> +                * made.
+>>>>>
+>>>>> This comment alludes to a dangerous trap, but I'm having trouble
+>>>>> understanding what it is.
+>>>>
+>>>> You cannot, for example, use this for communicating the presence of F or
+>>>> D, since they require a config option to be set before their use is
+>>>> safe.
+>>>
+>>> Funnily enough, this comment is immediately contradicted by the vector
+>>> subset extensions, where these CHECK_ISA_EXT() macros are used wrapped
+>>> in has_vector(). The code looks valid to me, since has_vector() contains
+>>> the Kconfig check, but does fly in the face of this comment.
+> 
+>> Yes, the KConfig checks are already done by the headers, adding #ifdef
+>> would be redundant even if more coherent with the comment
+> 
+> I don't really understand what the first part of this means, or why using
+> avoidable ifdeffery here would be desirable.
 
+Sorry, I was not clear enough. What I meant is that the has_fpu() and
+has_vector() functions are already ifdef'd in headers based on the
+KConfig options for their support (CONFIG_FPU/CONFIG_RISCV_ISA_V) So in
+the end, using ifdef here in hwprobe_isa_ext0() would be redundant.
+
+> 
+>> BTW, wouldn't
+>> it make more sense to get rid out of the unsupported extensions directly
+>> at ISA string parsing ? ie, if kernel is compiled without V support,
+>> then do not set the bits corresponding to these in the riscv_isa_ext[]
+>> array ? But the initial intent was probably to be able to report the
+>> full string through cpuinfo.
+> 
+> Yeah, hysterical raisins I guess, it's always been that way. I don't
+> think anyone originally thought about such configurations and that is
+> how the cpuinfo stuff behaves. I strongly dislike the
+> riscv_isa_extension_available() interface, but one of Drew's patches
+> does at least improve things a bit. Kinda waiting for some of the
+> patches in flight to settle down before deciding if I want to refactor
+> stuff to be less of a potential for shooting oneself in the foot.
+
+Make sense.
+
+Clément
 
