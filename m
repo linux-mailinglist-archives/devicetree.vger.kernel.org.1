@@ -1,104 +1,253 @@
-Return-Path: <devicetree+bounces-10059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD7017CF86F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:11:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FE77CF87A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1907C1C20C91
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:11:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60C1128208F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9071EB44;
-	Thu, 19 Oct 2023 12:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="d8UyzsFm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E511EB51;
+	Thu, 19 Oct 2023 12:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1001120333
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:10:59 +0000 (UTC)
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCC110DB
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:10:58 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-6b87c1edfd5so4603276b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:10:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1697717457; x=1698322257; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b7TOTIKoWImuAkDVVYCBVqPy3Cdis5b4Vo38tYuQrdI=;
-        b=d8UyzsFmlR5wEaODr/yL3J9LGIQEMJWnmNN2KVJDKAwmTsS7vPJqW6T2Pb/TpU/4oN
-         eDm1JO7Ypv6w7iBPbWFmEXK7erhcKYeXH1vUvJGEBxxW/uqCdbSQmDNjifIhsRf4BmxH
-         fSJdkTYfCF1qN9E6Hmkj4aQ7k1BcjP0i/X4Q7U4Ia7IU1H5eZ/gFzrhZAeHDBIqJMHh6
-         ddqy4kEaDYHgInK1QKQwXA9NqlxJaNUH5rOKo6q8VdboUeWJn+p6QYW7FOA55ygVM6+Y
-         szzglpOeHpVauLc8I2+wDUZrbOQTkLmJd69MqsdoFQz01Q7WBSLJ9g3zvkxbeAYrbmzE
-         Ru3A==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C381EB44
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:14:12 +0000 (UTC)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B781CA3;
+	Thu, 19 Oct 2023 05:14:10 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a82c2eb50cso78048217b3.2;
+        Thu, 19 Oct 2023 05:14:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697717457; x=1698322257;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b7TOTIKoWImuAkDVVYCBVqPy3Cdis5b4Vo38tYuQrdI=;
-        b=Eaw+5WkBGLFn9p6oW5ojyyNCYK0pG+5B9DBpdnxDJ9R+CF5HeNg6GAveEHddeHjHhj
-         TGt0iAAtVppXPVcS+H8h4BGbIkFqR3FoZFfugnbXSKCjejt+BBXUrUcKW1Jb6N280Siv
-         EZJVLHLuvm/TqPIAPJ24+A5M06NIKahvIwWTsQppdgQL8ijk4Y7mfaGOfjTUv1+Cvwf8
-         1ONpVrYzuLQS4yiHGSfeXMFvH8LwxFBWFhmM8SZpCmQB7Mv9RUQgqWHpwTpluUAU3D8i
-         bJ6voXC+4/z98SuksCxdPISLeJ0vOckf044OXDtdNRDaX4DsG8otv1iUzVhHtvL5hzfu
-         Ph1g==
-X-Gm-Message-State: AOJu0Yw0zWMXyxGiJ83h3xgsYKSaNYcDZHwNqB+zVcUTpLR0TJWaCtK3
-	Ys024PCxpgONKa66Y+L3hPH38g==
-X-Google-Smtp-Source: AGHT+IGyjJ5achfYpuzb0OcmwqIHdD90ognp6JgCUWc4UnEvDk50gbaB0ggnIRhz4omdqkMNYXqe2Q==
-X-Received: by 2002:a05:6a21:3e0d:b0:17a:dc55:4dc4 with SMTP id bk13-20020a056a213e0d00b0017adc554dc4mr1725217pzc.26.1697717457492;
-        Thu, 19 Oct 2023 05:10:57 -0700 (PDT)
-Received: from ?IPV6:2403:580d:82f4:0:43ac:2324:cc6e:9fa5? (2403-580d-82f4-0-43ac-2324-cc6e-9fa5.ip6.aussiebb.net. [2403:580d:82f4:0:43ac:2324:cc6e:9fa5])
-        by smtp.gmail.com with ESMTPSA id a186-20020a6390c3000000b005898a3619c7sm3262535pge.48.2023.10.19.05.10.53
+        d=1e100.net; s=20230601; t=1697717649; x=1698322449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6WqAqmbndJXP2lrJcNZQi+DLgp/pZpxR+7VJXPDF4bI=;
+        b=U1s3nBOvlB5EOUher6fFhNQ4RQ+JE2LvCt1tCz3mR1KDZ0S7JXac1AsvC2stvNW0H8
+         1DVbQ8pbIVw1jtYA3EjG3Hg2l+r5GtnnmiOx3dSXqW6docgtH23KobWAa9xX+2b+jaRZ
+         aBmhRsdbcCuUZZawDmi6EZiE2IPCDm51N0ybR3n/9wivwmMf4haztyhewMEatjfc4uFr
+         DOQA806WhpmBqots3hBi4uK9dZz5IYDopFuEQZ3wnZve6ax3dCTSjqiOE3LS0Ha+LlF2
+         sT7pBSv5G5LZzjG6Drh/rKy52QBt9WTLS6F860nik6lW/BY+FyQbci6rkLh+xhdqHY15
+         ygjg==
+X-Gm-Message-State: AOJu0Yw13rZG3kdZBsltx1ia5dcZuFBBMYBYifpRpY0pKEPnHs17Lscy
+	rxtQKv9+8zDPilhNXNun11CGqlDzNXmQFQ==
+X-Google-Smtp-Source: AGHT+IESFqwAL2u+Hzirth8Pb7wc7vID0ThqGp2ZGgudhOOSgDoqDE+DDigaPN14dSNpK5UKGnr2MA==
+X-Received: by 2002:a05:690c:fcb:b0:5a7:b797:d1e4 with SMTP id dg11-20020a05690c0fcb00b005a7b797d1e4mr2217702ywb.21.1697717649515;
+        Thu, 19 Oct 2023 05:14:09 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id u10-20020a81470a000000b0057a44e20fb8sm2375905ywa.73.2023.10.19.05.14.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 05:10:56 -0700 (PDT)
-Message-ID: <5a7d1ff3-8ac4-cdd1-028a-84b9fc240201@tweaklogic.com>
-Date: Thu, 19 Oct 2023 22:40:50 +1030
+        Thu, 19 Oct 2023 05:14:09 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5a7fb84f6ceso97332667b3.1;
+        Thu, 19 Oct 2023 05:14:09 -0700 (PDT)
+X-Received: by 2002:a81:498b:0:b0:5a8:2d2b:ca9c with SMTP id
+ w133-20020a81498b000000b005a82d2bca9cmr2237532ywa.32.1697717648872; Thu, 19
+ Oct 2023 05:14:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
- schemas
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
- <20231019-rematch-ethically-9d482ca4607e@spud>
- <6b856b0d-4f69-70ac-59a7-237fd21d1a92@tweaklogic.com>
- <20231019-hurry-eagle-0ffa95b1a026@spud>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20231019-hurry-eagle-0ffa95b1a026@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1697199949.git.ysato@users.sourceforge.jp> <bde5805e90c9e1338becba6f922c23d1b2e4fb21.1697199949.git.ysato@users.sourceforge.jp>
+In-Reply-To: <bde5805e90c9e1338becba6f922c23d1b2e4fb21.1697199949.git.ysato@users.sourceforge.jp>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 19 Oct 2023 14:13:57 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVmczSNVrkLD1yYjg5qdyDZYj66FjE+9r8THE7gkFHzCA@mail.gmail.com>
+Message-ID: <CAMuHMdVmczSNVrkLD1yYjg5qdyDZYj66FjE+9r8THE7gkFHzCA@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 30/35] arch/sh/boot/dts: RTS7751R2D Plus DeviceTree.
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, glaubitz@physik.fu-berlin.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->> Sorry, I should have put a longer description and a longer commit message.
->> That patch series adds a new driver - apds9306 which is separate to this
->> patch. As per Krzysztof's comments, first operation is to merge the existing
->> apds9300 and apds9960 schemas. This patch is the first operation.
->>
->> Second operation will be to add apds9306 support on top of that. I will
->> explain more on Krzysztof's comments. Thank you for reviewing.
-> 
-> Ahh apologies then. The best course of action would likely be to include
-> the patch merging the two bindings in your series adding the third user.
-No worries. Sure. You can reject this patch then. I will add my changes in the
-main apds9306 patch series.
+Hi Sato-san,
 
-Regards,
-Subhajit Ghosh
+On Sat, Oct 14, 2023 at 4:54=E2=80=AFPM Yoshinori Sato
+<ysato@users.sourceforge.jp> wrote:
+> Renesas RTS7751R2D Plus devicetree.
+>
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/sh/boot/dts/rts7751r2dplus.dts
+
+> +       oscillator {
+> +               clock-frequency =3D <22222222>;
+> +       };
+
+When adding or overriding properties to/in existing device nodes,
+please refer to the nodes using symbolic labels.  I.e. please add
+
+    &xtal {
+                clock-frequency =3D <22222222>;
+     };
+
+at the bottom of this file instead.
+
+> +       display@1,0 {
+> +               compatible =3D "smi,sm501";
+> +               reg =3D <0x10000000 0x03e00000
+> +                      0x13e00000 0x00200000>;
+> +               interrupt-parent =3D <&r2dintc>;
+> +               interrupts =3D <4>;
+> +               mode =3D "640x480-16@60";
+> +               little-endian;
+> +               smi,devices =3D "usb-host","uart0";
+> +               interrupt-name =3D "sm501";
+> +               route =3D "own";
+> +               swap-fb-endian;
+> +
+> +               crt {
+> +                       flags =3D "use_init_mode",
+> +                               "use_hwcursor",
+> +                               "use_hwaccel",
+> +                               "disable_at_exit";
+
+"make dtbs_check" does not like flags being non-integer.
+Might be an artefact of having only plain text bindings in
+Documentation/devicetree/bindings/display/sm501fb.txt
+
+> +               };
+> +
+> +               panel {
+> +                       bpp =3D <16>;
+> +                       edid =3D [00 ff ff ff ff ff ff 00 00 00 00 00 00 =
+00 00 00
+> +                               00 00 01 04 00 00 00 00 00 00 00 00 00 00=
+ 00 00
+> +                               00 00 00 00 00 00 00 00 00 00 00 00 00 00=
+ 00 00
+> +                               00 00 00 00 00 00 f0 0a 80 fb 20 e0 25 10=
+ 32 60
+> +                               02 00 00 00 00 00 00 06 00 00 00 00 00 00=
+ 00 00
+> +                               00 00 00 00 00 00 00 00 00 00 00 00 00 00=
+ 00 00
+> +                               00 00 00 00 00 00 00 00 00 00 00 00 00 00=
+ 00 00
+> +                               00 00 00 00 00 00 00 00 00 00 00 00 00 00=
+ 00 bd];
+> +                       flags =3D "use_init_mode",
+> +                               "use_hwcursor",
+> +                               "use_hwaccel",
+> +                               "disable_at_exit";
+
+Likewise.
+
+> +               };
+> +       };
+> +
+> +       compact-flash@b4001000 {
+> +               compatible =3D "renesas,rts7751r2d-ata", "ata-generic";
+> +               reg =3D <0xb4001000 0x0e>, <0xb400080c 2>;
+> +               reg-shift =3D <1>;
+> +               interrupt-parent =3D <&r2dintc>;
+> +               interrupts =3D <1>;
+> +       };
+> +
+> +       flash@0 {
+> +               compatible =3D "cfi-flash";
+> +               reg =3D <0x00000000 0x02000000>;
+> +               device-width =3D <2>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+> +
+> +               partition@0 {
+> +                       label =3D "U-Boot";
+> +                       reg =3D <0x00000000 0x00040000>;
+> +               };
+> +
+> +               partition@1 {
+> +                       label =3D "Environemt";
+
+Environment
+
+> +                       reg =3D <0x00040000 0x00040000>;
+> +               };
+> +
+> +               partition@2 {
+> +                       label =3D "Kernel";
+> +                       reg =3D <0x00080000 0x001c0000>;
+> +               };
+> +
+> +               partition@3 {
+> +                       label =3D "Flash_FS";
+> +                       reg =3D <0x00240000 0x00dc0000>;
+> +               };
+> +       };
+> +
+> +       soc {
+> +               clock-controller@ffc00000 {
+> +                       renesas,mode =3D <5>;
+> +               };
+
+    &cpg {
+                renesas,mode =3D <5>;
+    };
+
+At the bottom of this file.
+
+> +
+> +               pci@fe200000 {
+
+Likewise, "&pcic { ... };" at the bottom of this file.
+
+> +                       compatible =3D "renesas,pci-sh7751";
+
+No need to override the compatible property, it is already set in
+sh7751.dtsi.
+
+> +                       interrupt-parent =3D <&r2dintc>;
+> +                       renesas,bcr1 =3D <0x40080000>;
+> +                       renesas,intm =3D <0x0000c3ff>;
+> +                       renesas,aintm =3D <0x0000380f>;
+> +                       renesas,config =3D <1 0xfb900047>, <4 0xab000001>=
+;
+> +                       renesas,mcrmask =3D <0x40000004>;
+> +
+> +                       interrupt-map =3D <0x0000 0 0 1 &r2dintc 9>,
+> +                                       <0x0000 0 0 2 &r2dintc 10>,
+> +                                       <0x0000 0 0 3 &r2dintc 3>,
+> +                                       <0x0000 0 0 4 &r2dintc 0>,
+> +                                       <0x0800 0 0 1 &r2dintc 10>,
+> +                                       <0x0800 0 0 2 &r2dintc 3>,
+> +                                       <0x0800 0 0 3 &r2dintc 0>,
+> +                                       <0x0800 0 0 4 &r2dintc 9>,
+> +                                       <0x1000 0 0 1 &r2dintc 3>,
+> +                                       <0x1000 0 0 2 &r2dintc 0>,
+> +                                       <0x1000 0 0 3 &r2dintc 9>,
+> +                                       <0x1000 0 0 4 &r2dintc 10>;
+> +                       interrupt-map-mask =3D <0x1800 0 0 7>;
+> +               };
+> +       };
+> +};
+
+Some of my comments apply to landisk.dts and usl-5p.dts, too.
+And please run "make dtbs_check" ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
