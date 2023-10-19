@@ -1,171 +1,270 @@
-Return-Path: <devicetree+bounces-10153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A467CFD28
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:44:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 380E27CFD35
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:49:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F63A1C20A40
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:44:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6925828200E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A9A182BE;
-	Thu, 19 Oct 2023 14:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FE2199A6;
+	Thu, 19 Oct 2023 14:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="qKMpT8cs"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="bzAmkUvD";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="gXO+qnKO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE2F4419
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:44:03 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2024.outbound.protection.outlook.com [40.92.22.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E58112;
-	Thu, 19 Oct 2023 07:44:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nzo9qPamj+VI/SC/jKERhVaPhS0oqN9iRgpWtxksAwh1NtGLX9Y4BttYLPNPLfLu17HyUqZ+4zJ83NS5LtUB7TJWxJsguyYPbjCu1LJh0u7vHlOrhc4yWzXaUlXurC2IXcFffXGvshk+xHl5UW2WqMryPkdkT76x32kzU/KzIk2Lu5LNJHN/LLTsuS8fkTlpCcGduN3szUL+Tsps2Aoanm0zaYaWSKs5RAbIBywNkGSIf9htQ96tEX1DJMiB8KNL00CENIMi2g9GwALg1pFt+Z4w0ELBTcG/ovLnTKv4yxV13wOaj2VXoMiffZOfReILSKoqtL3ArTdnl1CCOBkhEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2y+EIp0nXZk1mFv0SDz3jwWYWJlSi4ihm0X9ovHYPfE=;
- b=mFE4JUDmL49h3ZytD5Tu7dBGJwWTp/LapIvC2Hy84PARVvChwOm06dlRJ+l0jUIdrjLrQw2UD+77Z/NgP1iMPz47qCe3Gt5gwQd1pmbe+fI4HEiB5//R0Fv/Ft3QOnSHhRp4+aNi9MFqiKisB2pIzTPH3xSXBtHupJu7GcIdjrqBukyZ+cbm4wzGme6X3EERZrhRPY8M9oxqTC4GsiAmthFptYJxvvpPZ9jzhpetf9e9yHG3tJ1e3mKsKvhxCp21wYagqJyaWdyBC6yMtuQpC4Yfd8rHZeH/v5uj/DPQN86uev0DEu902Rpc86Ykp0+SlBnxugLQvjl8QTRBts3bTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2y+EIp0nXZk1mFv0SDz3jwWYWJlSi4ihm0X9ovHYPfE=;
- b=qKMpT8cs+NKJ/bEmDcJ7GH6E05/I6J23tiI/GdFGXTOU6ePuTU1+O2KtJzpucZnHwa6gBjtZ9/ZJft/gMoHIQhwQ8XqaIlIA/7JkTTECZa8OL2hRf13D2iHYlY4HvBMTccjo1edFAGZvKilJ2e6N8rARO/zMMNryJyTAReemA1GMT5pZXLk1hSwR+woRWe1ioACYO0F5k7UEU+6b8xxnbCF0TnGbvd/iapcCPpV1RelFhkKVvA9wnjgXpX1QAs45fg+gx1uH0NCwYmr65/8BOIcamJw+YaIuBJakyBHXdqMI6nVAycyK2tauUGOCMGq/Nwtk4VWatFhNiaMD6s4a2A==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by CO6PR06MB7475.namprd06.prod.outlook.com (2603:10b6:303:b1::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Thu, 19 Oct
- 2023 14:43:59 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Thu, 19 Oct 2023
- 14:43:59 +0000
-Date: Thu, 19 Oct 2023 09:43:56 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com, sboyd@kernel.org,
-	mturquette@baylibre.com, daniel@ffwll.ch, airlied@gmail.com,
-	sam@ravnborg.org, neil.armstrong@linaro.org, heiko@sntech.de,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add Powkiddy RK2023
-Message-ID:
- <SN6PR06MB534289953F0A72345D679A7EA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <20231018161848.346947-5-macroalpha82@gmail.com>
- <df3c067f-8732-46bf-aa93-852f41e9e4e9@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <df3c067f-8732-46bf-aa93-852f41e9e4e9@linaro.org>
-X-TMN: [OoKevhk96AX8dEsf6OpRCmsBS4n5LRBC]
-X-ClientProxiedBy: SA1PR04CA0014.namprd04.prod.outlook.com
- (2603:10b6:806:2ce::20) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZTFArLbO58mDLC6l@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B99225BE
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:48:58 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFE3114;
+	Thu, 19 Oct 2023 07:48:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1697726933; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=FN9OpOocMTgJiz/Lo2ho4Xcff50OoGOqTC7RCDLu72EqgEE6ydz69eINTOF4f0Vz3j
+    vpQJjVlF61TJGlPtJ0XKlfsJQuAtm5jgalVPUDdgKfjCXwlmn8/2UxFeJ/kFlyPeFmya
+    6zMdcCq71+jlg7PPS4mpYaPhaAOKQpf5NoHiou8NyJT5JU5u5rK/qWsZSca62zt9xDdC
+    9z9PLmxU/AJ73z7WrQfIP/DmggOcLLo1xJeGb5zgWGhfr1nhno0VZ3L1MZmxDNikd0Wj
+    vu1PAtGgj958vIdDlXxUb5iYfZF+XHYa0oLCKgVIRh0mrNB16XWMshIACGv+1n8xLYQU
+    6Sxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1697726933;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7cuD1QOpe7Y7Z0gNct5qHlFiCYXpc9cJzhz/dPK12RM=;
+    b=OPpaKVeoThjHhKC+6IqWZrlOs47B/afs9wb4Jvby3nQp/ieIVpZUqwV27Ghd399HqS
+    LSgmEqnY9JwQuMuY54NXE25i1sUp51FQ2vB59wzt6wE5TCbS+vQzUVKtg++8crHIN10V
+    VOtwocuafExzdj0VVxI4H5BXhzrE9efMD5bw9o47a3rJrgoHLct3VGNAobYBnly9O+VZ
+    5m5yYJsiBNP4jdP6uafPiqls7tOtEzmqHZU1ZhlwcMzbnfGy6akP8VJCyFhBsnJnj7Qt
+    JmvYTV8FKezobhP0E1A+H+MQFi/S7LuT+IVv20jlimIRHXAWJXRm+e4RliFKKuk4rSOd
+    cWxg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1697726933;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7cuD1QOpe7Y7Z0gNct5qHlFiCYXpc9cJzhz/dPK12RM=;
+    b=bzAmkUvDoHIXo9AIg0D+wMfnSEqg4e0qRra25EbaRbwGzYg0tHQf28A3Hrv1VBDCcL
+    9RmeUP32UNKDJQ6JDm31RKosW0EKULpH3gHebNCA5/SNvySgGNrr6uZ1PXiYEXVSxaFh
+    mrNHVSox/F6m45uWQU5HmOmhcAUEzRXRxhBKLDRgZw+EbD6hgptbBeQ4mU0/xc0ArVO2
+    gMNSjJVn60GnB/b808iXQ7m41PxrHSykqm+joQkVMw7a1Veut7hMMvNKOyDwh8MP5Won
+    NVmeCki+AwrAMJyuUF7EIJTJ/MVcGw1DVSM0svLbJOPsmDZMZwwa1V/9gVU4zq5pf2fN
+    Xb+g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1697726932;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7cuD1QOpe7Y7Z0gNct5qHlFiCYXpc9cJzhz/dPK12RM=;
+    b=gXO+qnKOAFEgRc8tWyDjUEoMxLBLb7JyEEV4vg+xVNH0qKV1OamKOPV2AeH3Ls9Vvp
+    EXhnGmv4A7f8wSG4tdDQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA95vh"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
+    with ESMTPSA id j34a49z9JEmqE5Z
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 19 Oct 2023 16:48:52 +0200 (CEST)
+Date: Thu, 19 Oct 2023 16:48:46 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ilia Lin <ilia.lin@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain
+ devices
+Message-ID: <ZTFBzjLAaaUHux4O@gerhold.net>
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
+ <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
+ <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
+ <ZTEph19CAvbgbN_E@gerhold.net>
+ <CAPDyKFo1PVZYsdW_=92EtMmTT9hmkm-mBR69N_WvPh4f-Hw=NA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|CO6PR06MB7475:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4eed62be-d70e-46e0-af22-08dbd0b1d401
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Cl6wbuAwDyplp0PSnmhuLlRZUUCK3ntapSo/LzPOBiMdUNy5aPJkWVXfwwjPWEF3vxOyHh1xV81BFZvJRAoncJ0xvcvsVJtoVW26WGnrD5b5hOHywsq71+ZvtgIDH+Z4dvTiIhqncrUCDz2HGXEOGKgbJ84t6i+/X4KeLgFAPOB59E8qbjeF0KyIUW4EJMQuti2f/3FoyWzc5Xvo96Zo0MWdq09y9/u3cI2ujShYG0uEE0Xrvh9cf+7JNGhgKm5K9tWE/l1mlFIRqGPjCjSMmGIxpqYTEDyeMZt8YAi0frEMQYly95rpsSoHME/m7WxfKJSa3je2ifM1J6j2Ps6l3q1r+I9haXPwlTIkDpa1vX+hgjP8QbOuIhL2J+xxjZnVtMrJ1xnrODxoORyWgLpXcOH7avbpFdB6eao0rjgon2LiXNKVueA5Oz9hZQ2mOXFWt6X2VQtK+MzSs7+/5AUwGc3ojyGI94jt2J3aVe+48t3yvKNFLPvtZOu5fY3uNLtfJTHW3RSEvK0ZrmLRbWejFjmQKj9hpt+dX1GmzXe/5OnPQ21a52NijyIrFpjb1tKR
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?wMsOr+fcYGOMaPXt6At+iKDJy57jktg78fKFCOCFwgNDLer8+arMQ1qttAvp?=
- =?us-ascii?Q?WBBuAH4DnRSn1LWMzYb0W/jYckrwVGAy1qmmWjE89xL0atcKE/CyGrRaFdTj?=
- =?us-ascii?Q?zUXqDr+wopty9DfXhNDYJzF6ONNCvtscTuXlbVP/coan+ilNUXbkfFRcwltE?=
- =?us-ascii?Q?iGs+0X1ybBkLq6nDfIjGX97jQi1eYhyxwCxyGymQBwJtJFGsNLLaelvUbAqN?=
- =?us-ascii?Q?3K8NedisvlMs4UXY4VcoFejE/CP8oxER6Ska3MiyOWIWIi1lMziOe9jPqPEM?=
- =?us-ascii?Q?ouGib9B675d52esjRTE7Z2APj/+Hh+q8u8HZE3yeyf2MDzPa6b+2XF62f0Nv?=
- =?us-ascii?Q?+zW8JAy202uDmPP3rnFFUiw9IqCuQJpLRunT4weCFZNGuanmSXnTNfVRrSrc?=
- =?us-ascii?Q?oE1/TratyySTW2JpaMdsOr3mfJPZznrX6KhoipG+bJe4C8W1PJS3cFSm6x2r?=
- =?us-ascii?Q?DNpqLPgFqODCtYUXxRbEnPr5BcY7Knessz05MRJeyxgavWrFFsHS1AUGXmrI?=
- =?us-ascii?Q?YsnEa0LZZd4/3928IY0BA6aasPsVm5Eq3KiSqKmHZ7Zgou1dVUoTMOUaeHJC?=
- =?us-ascii?Q?693Q+v7Ojp6bnCLWgFx0fPcwvyO4Ytqji20c6rgVEjojz3hKEDgSsBanGZYD?=
- =?us-ascii?Q?PPsz24sfyI/5vZJ029W7cipg26ro4mTLy/mrthLtfe4Zy0kJ5nlHlXAmWdn1?=
- =?us-ascii?Q?zo0w2pEVwxkUJ0r0EstpsKbp+aflIljMTCTQ/N3sKUoy7qwdk7MsHtKXBGZm?=
- =?us-ascii?Q?JOuup8Rz5jnFlBpcGB9LLxqsm1Xj/RLGHmZ+9jQJmDZxqttiBqu14WlOPmpW?=
- =?us-ascii?Q?7ZUePj2YeK9K3arRzO395SPFu2ZdfU2Bjq5W6FseW17NFKmBTE8HbTtbWFlG?=
- =?us-ascii?Q?udRi23hjT4XoNmr0toB0ZaRlhc/ik8nDdysrPOh+K3Scw9BqzSB6i4E7vA97?=
- =?us-ascii?Q?5Uye+7iYWUSWS44H+E1C3+xc83a5nM8pPnFjGKHUyYxh0n81BjzkSbM0DoYn?=
- =?us-ascii?Q?KOinFJ3XtDmsftP9SvVPRUPAEI5zRnFPHH7SIIG097/lZwSo8/3HPtnNg+mW?=
- =?us-ascii?Q?itPWqo1d+wXtCnaMSAy8SHr5d521+hcX/YCDDBzGD+NSeqf1BfVYQ4m8j8cl?=
- =?us-ascii?Q?IvovawCO+2/ds3HJoj8UuIys4qfdgjGjndXvRU6lTNRXvU7QD1EO55kbPilb?=
- =?us-ascii?Q?+nCq0gDwef+IUedkiEZ6327RFy8/X5YTnEKP5OpnKnzDbRKaGvqqgG5r+ZI?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4eed62be-d70e-46e0-af22-08dbd0b1d401
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 14:43:59.8080
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR06MB7475
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFo1PVZYsdW_=92EtMmTT9hmkm-mBR69N_WvPh4f-Hw=NA@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 19, 2023 at 11:21:47AM +0200, Krzysztof Kozlowski wrote:
-> On 18/10/2023 18:18, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > The Powkiddy RK2023 is a handheld gaming device made by Powkiddy and
-> > powered by the Rockchip RK3566 SoC.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > index a349bf4da6bc..a6612185a7ff 100644
-> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > @@ -674,6 +674,11 @@ properties:
-> >            - const: powkiddy,rgb30
-> >            - const: rockchip,rk3566
-> >  
-> > +      - description: Powkiddy RK2023
-> > +        items:
-> > +          - const: powkiddy,rk2023
+On Thu, Oct 19, 2023 at 04:12:56PM +0200, Ulf Hansson wrote:
+> On Thu, 19 Oct 2023 at 15:05, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
+> > > On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+> > > > <stephan.gerhold@kernkonzept.com> wrote:
+> > > > >
+> > > > > The genpd core caches performance state votes from devices that are
+> > > > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
+> > > > > runtime PM performance state handling"). They get applied once the
+> > > > > device becomes active again.
+> > > > >
+> > > > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
+> > > > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
+> > > > > devices that use runtime PM only to control the enable and performance
+> > > > > state for the attached power domain.
+> > > > >
+> > > > > However, at the moment nothing ever resumes the virtual devices created
+> > > > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
+> > > > > means that performance state votes made during cpufreq scaling get
+> > > > > always cached and never applied to the hardware.
+> > > > >
+> > > > > Fix this by enabling the devices after attaching them and use
+> > > > > dev_pm_syscore_device() to ensure the power domains also stay on when
+> > > > > going to suspend. Since it supplies the CPU we can never turn it off
+> > > > > from Linux. There are other mechanisms to turn it off when needed,
+> > > > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+> > > >
+> > > > I believe we discussed using dev_pm_syscore_device() for the previous
+> > > > version. It's not intended to be used for things like the above.
+> > > >
+> >
+> > Sorry, looks like we still had a misunderstanding in the conclusion of
+> > the previous discussion. :')
+> >
+> > > > Moreover, I was under the impression that it wasn't really needed. In
+> > > > fact, I would think that this actually breaks things for system
+> > > > suspend/resume, as in this case the cpr driver's genpd
+> > > > ->power_on|off() callbacks are no longer getting called due this,
+> > > > which means that the cpr state machine isn't going to be restored
+> > > > properly. Or did I get this wrong?
+> > >
+> >
+> > We strictly need the RPMPDs to be always-on, also across system suspend
+> > [1]. The RPM firmware will drop the votes internally as soon as the
+> > CPU(s) have entered deep cpuidle. We can't do this from Linux, because
+> > we need the CPU to continue running until it was shut down cleanly.
+> >
+> > For CPR, we strictly need the backing regulator to be always-on, also
+> > across system suspend. Typically the hardware will turn off the
+> > regulator as soon as the CPU(s) enter deep cpuidle. Similarly, we can't
+> > do this from Linux, because we need the CPU to continue running until it
+> > was shut down cleanly.
+> >
+> > My understanding was that we're going to pause the CPR state machine
+> > using the system suspend/resume callbacks on the driver, instead of
+> > using the genpd->power_on|off() callbacks [2]. I can submit a separate
+> > patch for this.
 > 
-> This cuold be just enum in previous entry :/ but I remember we talked
-> about this once with Heiko.
+> If we are going to do 1) as described below, this looks to me that
+> it's going to be needed.
+> 
 
-For hardware that requires a different device tree, is that possible?
-While most of the devices I've worked on for the RK3566 series are very
-similar for the moment only 1 is identical (the RG353P and the RG353M)
-and can use the same device tree.
+Yep.
 
-Also I have one more Powkiddy device to send probably in the next week
-or two, then I'll be breaking for a while from new devices. :-)
+> How will otherwise the cpr state machine be saved/restored during
+> system suspend/resume? Note that, beyond 1), the genpd's
+> ->power_on|off() callbacks are no longer going to be called during
+> system suspend/resume.
+> 
 
-Thank you,
-Chris
+(Side note: I think "save/restore" might be the wrong words for
+ suspend/resume of CPR. Looking at the code most of the configuration
+ appears to be preserved across suspend/resume. Nothing is saved, it
+ literally just disables the state machine during suspend and re-enables
+ it during resume.
+
+ I'm not entirely sure what's the reason for doing this. Perhaps the
+ main goal is just to prevent the CPR state machine from getting stuck
+ or sending pointless IRQs that won't be handled while Linux is
+ suspended.)
+
+> In a way this also means that the cpr genpd provider might as well
+> also have GENPD_FLAG_ALWAYS_ON set for it.
+
+Conceptually I would consider CPR to be a generic power domain provider
+that could supply any kind of device. I know at least of CPUs and GPUs.
+We need "always-on" only for the CPU, but not necessarily for other
+devices.
+
+For a GPU, the Linux driver (running on the CPU) can stop the GPU, wait
+for completion and then invoke the ->power_off() callback of CPR. In
+that case it is also safe to disable the backing regulator from Linux.
+(I briefly mentioned this already in the previous discussion I think.)
+
+We could set GENPD_FLAG_ALWAYS_ON for the CPR compatibles where we know
+that they are only used to supply CPUs, but if we're going to do (1)
+anyway there might not be much of an advantage for the extra complexity.
 
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> > I didn't prioritize this because QCS404 (as the only current user of
+> > CPR) doesn't have proper deep cpuidle/power management set up yet. It's
+> > not entirely clear to me if there is any advantage (or perhaps even
+> > disadvantage) if we pause the CPR state machine while the shared L2
+> > cache is still being actively powered by the CPR power rail during
+> > system suspend. I suspect this is a configuration that was never
+> > considered in the hardware design.
 > 
-> > +          - const: rockchip,rk3566
+> I see.
 > 
+> >
+> > Given the strict requirement for the RPMPDs, I only see two options:
+> >
+> >  1. Have an always-on consumer that prevents the power domains to be
+> >     powered off during system suspend. This is what this patch tries to
+> >     achieve.
+> >
+> > Or:
+> >
+> >  2. Come up with a way to register the RPMPDs used by the CPU with
+> >     GENPD_FLAG_ALWAYS_ON. This would also be doable, but isn't as
+> >     straightfoward as "regulator-always-on" in the DT because the rpmpd
+> >     DT node represents multiple genpds in a single DT node [3].
 > 
+> Yes, it sounds like it may be easier to do 1).
 > 
-> Best regards,
-> Krzysztof
+> >
+> > What do you think? Do you see some other solution perhaps? I hope we can
+> > clear up the misunderstanding. :-)
 > 
+> Yes, thanks!
+> 
+> >
+> > [1]: https://lore.kernel.org/linux-arm-msm/ZQGqfMigCFZP_HLA@gerhold.net/
+> > [2]: https://lore.kernel.org/linux-arm-msm/CAPDyKFoiup8KNv=1LFGKDdDLA1pHsdJUgTTWMdgxnikEmReXzg@mail.gmail.com/
+> > [3]: https://lore.kernel.org/linux-arm-msm/ZSg-XtwMxg3_fWxc@gerhold.net/
+> >
+> > > BTW, if you really need something like the above, the proper way to do
+> > > it would instead be to call device_set_awake_path() for the device.
+> > >
+> > > This informs genpd that the device needs to stay powered-on during
+> > > system suspend (assuming that GENPD_FLAG_ACTIVE_WAKEUP has been set
+> > > for it), hence it will keep the corresponding PM domain powered-on
+> > > too.
+> > >
+> >
+> > Thanks, I can try if this works as alternative to the
+> > dev_pm_syscore_device()!
+> 
+> Yes, please. We don't want to abuse the dev_pm_syscore_device() thingy.
+> 
+
+Could you clarify the idea behind GENPD_FLAG_ACTIVE_WAKEUP? Would I set
+it conditionally for all RPMPDs or just the ones consumed by the CPU?
+How does the genpd *provider* know if one of its *consumer* devices
+needs to have its power domain kept on for wakeup?
+
+Thanks!
+Stephan
 
