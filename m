@@ -1,174 +1,191 @@
-Return-Path: <devicetree+bounces-9890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624C97CEF59
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:53:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 576947CEF87
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:56:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFFE0281E37
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 05:53:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AA691C20E41
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 05:56:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEA946698;
-	Thu, 19 Oct 2023 05:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A9E9454;
+	Thu, 19 Oct 2023 05:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWLlOD+Z"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OBvr/vie"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0402E17C2
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:53:47 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE59B6;
-	Wed, 18 Oct 2023 22:53:46 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so82482091fa.0;
-        Wed, 18 Oct 2023 22:53:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697694824; x=1698299624; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XObVuaWXr/rmZ3JntkdvlKmSVs/dr+MV+e6w2yjEeN0=;
-        b=iWLlOD+ZFhg7GXu2M8lbBlZCsoYupI2z7tOq2I5xpfLBYizKIfyc8YjPvrDa63xzDv
-         Tb+3kfuCcY5pwxZIVkDSDos0zqGpzQDYVlqMes2klr7ULYUlnx+ugB4woAoyK32Cxnrg
-         qisB/nuZESzE63C+8iMtJP0ftDVZrm3NQueGJqI+L0Mwc+E40yTP4uIhMxVijjJUSyhw
-         eNq/z5O3a4fv3I5o8NB0WoJzSV125dqfi+cjS6Blarko9fVRWi4pbKOWpG2TFEwVeeqO
-         pgsJkN8JskIRZ4ldeJunpp0O3uR5sRzYSSW/v2uDqTsTGkrv73FvXi0sXJudIzbKmYqg
-         v28Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697694824; x=1698299624;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XObVuaWXr/rmZ3JntkdvlKmSVs/dr+MV+e6w2yjEeN0=;
-        b=h8XLRidEr8BmbWkbjwl44f/0pHNLljLhE/VzmUJv/rmlaXba0NT1j9hChLVpjlA0ub
-         FDloQDYWb3JfSDoemsE6hQtHXRm+2DcmkQ5jw2ETR0WDYg5A42w2lfUWmJI/Fq00uMfW
-         WfApRCgIzhBuP/4palZKXK3jTio823/SpjBOFhdwq5pUCdk7ti7p8BQcR16ZIFDEoJdT
-         +hfu/j736rNPATXeeTTPOlWtQ+cpLMNMgmbvEbL8yX7WnZe7U8H2499hyyLnSsJGtqTz
-         nx7rHVuvMWkvjmUiEw4uS4ds2K13bDjw34h1MzbbBwEe5SMIKKHa0t6eKlXEMCIa4pO8
-         zvLw==
-X-Gm-Message-State: AOJu0YxW03YS1TV8qN5CfHSqZIW7T2065yo/vjT4MFWTBzfQ6KNSCoF9
-	a7wwXe76w/+n518/trg3cfE=
-X-Google-Smtp-Source: AGHT+IE46NqU53DsPQM/Jpuj/PKokomausjxbvM15qvRe0+1GoBDjUvz6vOTpHtJ6S3NqLd3RRjJxQ==
-X-Received: by 2002:a05:651c:1058:b0:2c5:13e8:d54e with SMTP id x24-20020a05651c105800b002c513e8d54emr648637ljm.38.1697694823867;
-        Wed, 18 Oct 2023 22:53:43 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::7? (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
-        by smtp.gmail.com with ESMTPSA id z16-20020a2e8e90000000b002c0414c3b6csm966928ljk.121.2023.10.18.22.53.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Oct 2023 22:53:42 -0700 (PDT)
-Message-ID: <ceaf7033-d86b-4d63-b8e0-bc7445cf0df0@gmail.com>
-Date: Thu, 19 Oct 2023 08:53:31 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B5D63CF
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:56:37 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D15D12F;
+	Wed, 18 Oct 2023 22:56:34 -0700 (PDT)
+X-UUID: 3a70d73a6e4411ee8051498923ad61e6-20231019
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hvEopTbQPgbeMG690XRwL0NDv7LUQkNAzw+G6eKIaHA=;
+	b=OBvr/vieTI6/d/TFd/ezO0bFn3tFSS183a6am98qqt3Jmt9pz8OiOVIFGh/uxMWSbOB9wBU+/903JFK2g5DeprIpL1w6Hy8h8AG9nag4LsdEYj6AlBaAO88eJXgA1ppUW3KQiVaD6mRieFhkuiHsHkoOobOinxGpRSUGwaF2eGU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:439dc539-0540-4758-a7d2-af1c437a6c02,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:aaa44dc4-1e57-4345-9d31-31ad9818b39f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 3a70d73a6e4411ee8051498923ad61e6-20231019
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <shawn.sung@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 528609320; Thu, 19 Oct 2023 13:56:21 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 19 Oct 2023 13:56:20 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 19 Oct 2023 13:56:20 +0800
+From: Hsiao Chien Sung <shawn.sung@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK
+ Hu <ck.hu@mediatek.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>
+CC: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Fei Shao <fshao@chromium.org>, Sean Paul
+	<sean@poorly.run>, Johnson Wang
+	<johnson.wang@mediatek.corp-partner.google.com>, "Nancy . Lin"
+	<nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, Hsiao Chien Sung
+	<shawn.sung@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+	Nathan Lu <nathan.lu@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v10 00/24] Add display driver for MT8188 VDOSYS1
+Date: Thu, 19 Oct 2023 13:55:55 +0800
+Message-ID: <20231019055619.19358-1-shawn.sung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-To: Jonathan Cameron <jic23@kernel.org>,
- Jagath Jog J <jagathjog1996@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Dmitry Rokosov <DDRokosov@sberdevices.ru>,
- Cosmin Tanislav <demonsingur@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Mehdi Djait <mehdi.djait.k@gmail.com>
-References: <cover.1666614295.git.mazziesaccount@gmail.com>
- <758b00d6aea0a6431a5a3a78d557d449c113b21e.1666614295.git.mazziesaccount@gmail.com>
- <CAM+2Eu+Xp6j1ppLd+zHMTu6jfc6DQKBShfe-nAyokVi0MUmoSA@mail.gmail.com>
- <20231018203423.06f20a6c@jic23-huawei>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20231018203423.06f20a6c@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 10/18/23 22:34, Jonathan Cameron wrote:
-> On Wed, 18 Oct 2023 01:37:12 +0530
-> Jagath Jog J <jagathjog1996@gmail.com> wrote:
+This series is based on mediatek-drm-next.
 
-Hi Jagath - and thanks!
+Changes in v10:
+- Remove "Reviewed-by" tags of the following commits:
+    - drm/mediatek: Power on/off devices with function pointers
+    - drm/mediatek: Manage component's clock with function pointers
+- Separate the commit into smaller ones
+    - (new) drm/mediatek: Remove the redundant driver data for DPI
 
->> Hi Matti,
->>
->> On Mon, Oct 24, 2022 at 6:10 PM Matti Vaittinen
->> <mazziesaccount@gmail.com> wrote:
->>>
->>> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
->>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
->>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
->>> ranges (2, 4, 8 and 16g), and probably some other cool features.
->>
->> This is a nice driver, and I found it very helpful as a reference.
->> One question regarding scale please see below.
->>
->>> + * range is typically +-2G/4G/8G/16G, distributed over the amount of bits.
->>> + * The scale table can be calculated using
->>> + *     (range / 2^bits) * g = (range / 2^bits) * 9.80665 m/s^2
->>> + *     => KX022A uses 16 bit (HiRes mode - assume the low 8 bits are zeroed
->>> + *     in low-power mode(?) )
->>> + *     => +/-2G  => 4 / 2^16 * 9,80665 * 10^6 (to scale to micro)
->>> + *     => +/-2G  - 598.550415
->>> + *        +/-4G  - 1197.10083
->>> + *        +/-8G  - 2394.20166
->>> + *        +/-16G - 4788.40332
->>> + */
->>> +static const int kx022a_scale_table[][2] = {
->>> +       { 598, 550415 },
->>> +       { 1197, 100830 },
->>> +       { 2394, 201660 },
->>> +       { 4788, 403320 },
->>> +};
->>
->> Given that the integer part is non-zero, and
->> IIO_VAL_INT_PLUS_MICRO is returned for read_scale,
->> As raw value will never be fractional how does this
->> correspond to a reading of 9.8 m/s² for the Z-axis?
-> 
-> Definitely suspicious as should be in m/s^2 for an acceleration and
-> it should be
-> 
-> 9.8*16/2^bits
-> 
-> So I think these are out by a factor of 10^6
-I think you are right. Looks like I misinterpreted the meaning of 
-IIO_VAL_INT_PLUS_MICRO when I took my first tour in the IIO with this 
-driver. The comment above the scale table does support that assumption 
-... 10^6 would match such a brainfart. (This is my first thought. I will 
-take better look at this later today and see if I can come up with a fix 
-if no-one else has sent a patch already).
+Changes in v9:
+- Add a static inline function to power off the device
+- Change driver name to "mediatek-disp-padding"
+- Fix typo and kernel doc format error
 
-I CC'd Mehdi who has also been working on this driver.
+Changes in v8:
+- Power on/off the components with .power_on() and .power_off()
+- Remove mtk_padding_config()
+- Remove "Reviewed-by" tags in "drm/mediatek: Add Padding to OVL adaptor"
+  because of the modifications.
 
-Regarding the KX022A - I am not aware of upstream users of this IC 
-(yet). May be you're the first lucky one :) Hence, I am tempted to just 
-fixing the driver - but it's Jonathan who will take the splatters when 
-**** hits the fan - so it's his call to decide whether we can still fix 
-this. _If_ there are users who have adapted to this buggy scale (users I 
-am not aware of) then fix will break their apps. Mehdi, do you know any 
-users of this upstream driver?
+Changes in v7:
+- Start/Stop the components in OVL Adaptor with function pointers
+- Refine Padding driver
+- Fix underrun when the layer is switching off
 
-I will ping the HQ guy who has contacts to those who might be using the 
-driver in a downstream repository and ask him to inform potential users.
+Changes in v6:
+- Separate the commits into smaller ones
+- Add DPI input mode setting
+- Fix VDOSYS1 power-on issues
 
-It'd be very nice to get this fixed.
+Changes in v5:
+- Reuse .clk_enable/.clk_disable in struct mtk_ddp_comp_funcs
+  in mtk_disp_ovl_adaptor.c
+- Adjust commits order
 
-Sorry and thanks!
+Changes in v4:
+- Add new functions in mtk_disp_ovl_adaptor.c to enable/disable
+  components and reuse them when clock enable/disable
+- Rename components in mtk_disp_ovl_adaptor.c and sort them in
+  alphabetical order
 
-Yours,
-	-- Matti
+Changes in v3:
+- Define macro MMSYS_RST_NR in mtk-mmsys.h and update reset table
+- Fix typos (ETDHR -> ETHDR, VSNYC -> VSYNC)
+- Rebase dt-bindings on linux-next
+- Refine description of Padding
+- Squash reset bit map commits for VDO0 and VDO1 into one
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Changes in v2:
+- Remove redundant compatibles of MT8188 because it shares the same
+  configuration with MT8195
+- Separate dt-bindings by modules
+- Support reset bit mapping in mmsys driver
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Hsiao Chien Sung (24):
+  dt-bindings: display: mediatek: ethdr: Add compatible for MT8188
+  dt-bindings: display: mediatek: mdp-rdma: Add compatible for MT8188
+  dt-bindings: display: mediatek: merge: Add compatible for MT8188
+  dt-bindings: display: mediatek: padding: Add MT8188
+  dt-bindings: arm: mediatek: Add compatible for MT8188
+  dt-bindings: reset: mt8188: Add VDOSYS reset control bits
+  soc: mediatek: Support MT8188 VDOSYS1 in mtk-mmsys
+  soc: mediatek: Support MT8188 VDOSYS1 Padding in mtk-mmsys
+  soc: mediatek: Support reset bit mapping in mmsys driver
+  soc: mediatek: Add MT8188 VDOSYS reset bit map
+  drm/mediatek: Rename OVL_ADAPTOR_TYPE_RDMA
+  drm/mediatek: Add component ID to component match structure
+  drm/mediatek: Manage component's clock with function pointers
+  drm/mediatek: Power on/off devices with function pointers
+  drm/mediatek: Remove ineffectual power management codes
+  drm/mediatek: Start/Stop components with function pointers
+  drm/mediatek: Sort OVL adaptor components
+  drm/mediatek: Refine device table of OVL adaptor
+  drm/mediatek: Support MT8188 Padding in display driver
+  drm/mediatek: Add Padding to OVL adaptor
+  drm/mediatek: Return error if MDP RDMA failed to enable the clock
+  drm/mediatek: Remove the redundant driver data for DPI
+  drm/mediatek: Fix underrun in VDO1 when switches off the layer
+  drm/mediatek: Support MT8188 VDOSYS1 in display driver
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+ .../display/mediatek/mediatek,ethdr.yaml      |   6 +-
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |   6 +-
+ .../display/mediatek/mediatek,merge.yaml      |   3 +
+ .../display/mediatek/mediatek,padding.yaml    |  81 ++++++
+ drivers/gpu/drm/mediatek/Makefile             |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   8 +
+ drivers/gpu/drm/mediatek/mtk_disp_merge.c     |   2 +-
+ .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 274 +++++++++++-------
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |  16 +-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |  28 +-
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |   2 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  20 ++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   5 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  19 +-
+ drivers/gpu/drm/mediatek/mtk_padding.c        | 160 ++++++++++
+ drivers/soc/mediatek/mt8188-mmsys.h           | 210 ++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c              |  27 ++
+ drivers/soc/mediatek/mtk-mmsys.h              |  32 ++
+ drivers/soc/mediatek/mtk-mutex.c              |  51 ++++
+ include/dt-bindings/reset/mt8188-resets.h     |  75 +++++
+ include/linux/soc/mediatek/mtk-mmsys.h        |   8 +
+ 23 files changed, 893 insertions(+), 146 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_padding.c
+
+--
+2.18.0
 
 
