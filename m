@@ -1,102 +1,126 @@
-Return-Path: <devicetree+bounces-10201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60ED7D00D5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:45:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8E37D0108
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0452282205
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:45:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E72D1C20E24
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B5B35502;
-	Thu, 19 Oct 2023 17:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC2537143;
+	Thu, 19 Oct 2023 17:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="xdjCSwh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 017F8354E5
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 17:45:28 +0000 (UTC)
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59CD106;
-	Thu, 19 Oct 2023 10:45:24 -0700 (PDT)
-Received: from i5e861907.versanet.de ([94.134.25.7] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qtX5C-0006Vb-V4; Thu, 19 Oct 2023 19:45:19 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chris Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- sboyd@kernel.org, mturquette@baylibre.com, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add Powkiddy RK2023
-Date: Thu, 19 Oct 2023 19:45:17 +0200
-Message-ID: <3083498.U7HbjWM52l@diego>
-In-Reply-To:
- <SN6PR06MB534289953F0A72345D679A7EA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References:
- <20231018161848.346947-1-macroalpha82@gmail.com>
- <df3c067f-8732-46bf-aa93-852f41e9e4e9@linaro.org>
- <SN6PR06MB534289953F0A72345D679A7EA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B10936B17
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 17:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2BB8C433C8;
+	Thu, 19 Oct 2023 17:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1697738226;
+	bh=8mcVIkh+ilUfV+/qwx1svrvpt+dMNpngwLshc/nC9SU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=xdjCSwh/wyoz/GXl8HyjGJpFGWmGj53WFlchZPoHrYGth53m8d94v0VxMg0WsttU/
+	 Z53FtVFfS2lEt4o3Q4kYcrCN2ahp2l81zsfORezV+5CzQougLcoJB8QGIHYwqb8anw
+	 cAWviGhTinR7jKDUQ9QMXDPqgUa2o3ibZ+MDQDGk=
+Date: Thu, 19 Oct 2023 19:57:02 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Eliza Balas <eliza.balas@analog.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
+Message-ID: <2023101917-cork-numeric-dab8@gregkh>
+References: <20231019125646.14236-1-eliza.balas@analog.com>
+ <20231019125646.14236-3-eliza.balas@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231019125646.14236-3-eliza.balas@analog.com>
 
-Hey Chris,
+On Thu, Oct 19, 2023 at 03:56:46PM +0300, Eliza Balas wrote:
+> +config ADI_AXI_TDD
+> +	tristate "Analog Devices TDD Engine support"
+> +	depends on HAS_IOMEM
+> +	select REGMAP_MMIO
+> +	help
+> +	  The ADI AXI TDD core is the reworked and generic TDD engine which
+> +	  was developed for general use in Analog Devices HDL projects. Unlike
+> +	  the previous TDD engine, this core can only be used standalone mode,
+> +	  and is not embedded into other devices.
 
-Am Donnerstag, 19. Oktober 2023, 16:43:56 CEST schrieb Chris Morgan:
-> On Thu, Oct 19, 2023 at 11:21:47AM +0200, Krzysztof Kozlowski wrote:
-> > On 18/10/2023 18:18, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > 
-> > > The Powkiddy RK2023 is a handheld gaming device made by Powkiddy and
-> > > powered by the Rockchip RK3566 SoC.
-> > > 
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > index a349bf4da6bc..a6612185a7ff 100644
-> > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > @@ -674,6 +674,11 @@ properties:
-> > >            - const: powkiddy,rgb30
-> > >            - const: rockchip,rk3566
-> > >  
-> > > +      - description: Powkiddy RK2023
-> > > +        items:
-> > > +          - const: powkiddy,rk2023
-> > 
-> > This cuold be just enum in previous entry :/ but I remember we talked
-> > about this once with Heiko.
-> 
-> For hardware that requires a different device tree, is that possible?
-> While most of the devices I've worked on for the RK3566 series are very
-> similar for the moment only 1 is identical (the RG353P and the RG353M)
-> and can use the same device tree.
+What does "previous" mean here?  That's not relevant for a kernel help
+text, is it?
 
-In my reply I pointed to the Rock PI 4A/4A+/B/B+/C family, which also has
-different devicetrees but is part of the same family of device designs.
-
-So similar Powkiddy RK3568 based gaming handhelds also sound like
-a nice family name in the description ;-) .
+Also, what is the module name?  Why would someone enable this?  What
+userspace tools use it?
 
 
-Heiko
+> +
+>  config DUMMY_IRQ
+>  	tristate "Dummy IRQ handler"
+>  	help
 
+Why put your entry in this specific location in the file?
 
+> +static int adi_axi_tdd_parse_ms(struct adi_axi_tdd_state *st,
+> +				const char *buf,
+> +				u64 *res)
+> +{
+> +	u64 clk_rate = READ_ONCE(st->clk.rate);
+> +	char *orig_str, *modf_str, *int_part, frac_part[7];
+> +	long ival, frac;
+> +	int ret;
+> +
+> +	orig_str = kstrdup(buf, GFP_KERNEL);
+> +	int_part = strsep(&orig_str, ".");
+
+Why are we parsing floating point in the kernel?  Please just keep the
+api simple so that we don't have to try to do any type of parsing other
+than turning a single text number into a value.
+
+> +	ret = kstrtol(int_part, 10, &ival);
+> +	if (ret || ival < 0)
+> +		return -EINVAL;
+
+You leaked memory :(
+
+Use the new logic in completion.h to make this simpler?
+
+> +	modf_str = strsep(&orig_str, ".");
+> +	if (modf_str) {
+> +		snprintf(frac_part, 7, "%s00000", modf_str);
+> +		ret = kstrtol(frac_part, 10, &frac);
+> +		if (ret)
+> +			return -EINVAL;
+
+You leaked memory :(
+
+> +	} else {
+> +		frac = 0;
+> +	}
+> +
+> +	*res = DIV_ROUND_CLOSEST_ULL((u64)ival * clk_rate, 1000)
+> +		+ DIV_ROUND_CLOSEST_ULL((u64)frac * clk_rate, 1000000000);
+
+Why isn't userspace doing this calculation?
+
+I stopped reviewing here, sorry.
+
+greg k-h
 
