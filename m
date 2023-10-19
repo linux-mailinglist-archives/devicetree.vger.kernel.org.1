@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-10039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2715D7CF70B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:37:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9185D7CF706
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D14C0281F07
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:37:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A6B1B20DA5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 266821DFC1;
-	Thu, 19 Oct 2023 11:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24DA0199BB;
+	Thu, 19 Oct 2023 11:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iXg51tIF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S6odld5T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE46C1A290
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE40E199AE
 	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 11:37:34 +0000 (UTC)
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA06184;
-	Thu, 19 Oct 2023 04:37:31 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JAM3To010649;
-	Thu, 19 Oct 2023 11:37:19 GMT
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D17B12D;
+	Thu, 19 Oct 2023 04:37:33 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JBYwfH006766;
+	Thu, 19 Oct 2023 11:37:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=WyuMaCDg3QiXBWvWdK7Mjh2MeC5eNz2FJXCvei2+xE8=;
- b=iXg51tIFVzekTwWNcHH0c09K+YoDZ4MVw+cJR8+lzxbE/q06E5RDBlmQAA25fy+U6wZX
- A8pharW1T3kV7Se5dhzCgi/4fgcRT40BmJt1WmDa5Go5Qy3mAMUAksvP8x+lGFH7w85H
- 8vwcG3EILBC7wQTqdAikUTUA283027NWYl2dJ+5YW3C16nZMLSzG7+tpqAykoUdfhEQU
- 1aEXe1Bo2rzELmRju28cf8x8kVotrdEbX1TEScoKRuJ3FcCX+6b4ra17u7oot+RFek5K
- r6sWtSPpgX6Kwqx9jjySFjg9I99Wb+6/21d1nJylOXo7WRweNSlFNekb8cESzo9llteK Vw== 
+ bh=2Q9HjEzRR/GmbC8AcvgJEm1dxBPfj+Or52izE3r/NJs=;
+ b=S6odld5T5NFqY2y9EiyGSpX1rf5vyE5T0Hg5bQAirD7o7CoaO6weNMUpI4CvKqyK2SPU
+ k0xmMfRXoxgPu7eMOVYCSH+ROeFiFd/zCwKqIWLdrnq98OUZHQ/TA6wd3zjuFKuPMdHx
+ 2ifWgNG9RcWHdIR4NiwJ/F/ETJWtfXS5tpNkmTMQWYdm7ElXEXEkao6uLZwzuXgQp/IQ
+ Db/6UUL7yYQvn3v7y9wAqr1ffOlVeG8PRLGGKHcCoGIOwxIgaG9ZzwgLzzwZ9uEcTZTg
+ 2T0bSq5tm0CJ2gpdgfI+E3fk0gngaym6N6NeSZ/rL9PEunshmwj3Yn6/fcKrZQodb5KQ qg== 
 Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu1t6r9r5-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu3pj0074-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 11:37:18 +0000
+	Thu, 19 Oct 2023 11:37:20 +0000
 Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39JBbFqu000816;
-	Thu, 19 Oct 2023 11:37:15 GMT
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39JBbGi6000828;
+	Thu, 19 Oct 2023 11:37:16 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3tqm2mcs35-1;
-	Thu, 19 Oct 2023 11:37:15 +0000
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3tqm2mcs3b-1;
+	Thu, 19 Oct 2023 11:37:16 +0000
 Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39JBbF4V000808;
-	Thu, 19 Oct 2023 11:37:15 GMT
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39JBbEdZ000782;
+	Thu, 19 Oct 2023 11:37:16 GMT
 Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 39JBbEHK000802;
-	Thu, 19 Oct 2023 11:37:15 +0000
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 39JBbG1L000821;
+	Thu, 19 Oct 2023 11:37:16 +0000
 Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id 50E71441C; Thu, 19 Oct 2023 17:07:14 +0530 (+0530)
+	id 9D313441C; Thu, 19 Oct 2023 17:07:15 +0530 (+0530)
 From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 To: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
@@ -68,9 +68,9 @@ Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
         linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
         linux-phy@lists.infradead.org
-Subject: [PATCH v3 1/5] dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC
-Date: Thu, 19 Oct 2023 17:07:06 +0530
-Message-Id: <1697715430-30820-2-git-send-email-quic_msarkar@quicinc.com>
+Subject: [PATCH v3 2/5] PCI: qcom-ep: Add support for SA8775P SOC
+Date: Thu, 19 Oct 2023 17:07:07 +0530
+Message-Id: <1697715430-30820-3-git-send-email-quic_msarkar@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
 References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
@@ -78,135 +78,43 @@ X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rsxy7JNCUrzt2awcqdoAM9muT0jmp5Mr
-X-Proofpoint-ORIG-GUID: rsxy7JNCUrzt2awcqdoAM9muT0jmp5Mr
+X-Proofpoint-GUID: HHwgv0NEUCxfrPb0GIGZD12RG2iGALqd
+X-Proofpoint-ORIG-GUID: HHwgv0NEUCxfrPb0GIGZD12RG2iGALqd
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-19_09,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 suspectscore=0
- adultscore=0 malwarescore=0 mlxlogscore=941 phishscore=0 spamscore=0
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2310190099
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
+ spamscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0
+ impostorscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190099
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-Add devicetree bindings support for SA8775P SoC. It has DMA register
-space and dma interrupt to support HDMA.
+Add support for SA8775P SoC to the Qualcomm PCIe Endpoint Controller
+driver. There will be some change specific to SA8775P so adding new
+compatible string.
 
 Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 ---
- .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 44 +++++++++++++++++++++-
- 1 file changed, 42 insertions(+), 2 deletions(-)
+ drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-index a223ce0..7485248 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-@@ -13,6 +13,7 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - qcom,sa8775p-pcie-ep
-           - qcom,sdx55-pcie-ep
-           - qcom,sm8450-pcie-ep
-       - items:
-@@ -20,6 +21,7 @@ properties:
-           - const: qcom,sdx55-pcie-ep
+diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+index 32c8d9e..4c01c34 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
++++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+@@ -858,6 +858,7 @@ static void qcom_pcie_ep_remove(struct platform_device *pdev)
+ }
  
-   reg:
-+    minItems: 6
-     items:
-       - description: Qualcomm-specific PARF configuration registers
-       - description: DesignWare PCIe registers
-@@ -27,8 +29,10 @@ properties:
-       - description: Address Translation Unit (ATU) registers
-       - description: Memory region used to map remote RC address space
-       - description: BAR memory region
-+      - description: DMA register space
- 
-   reg-names:
-+    minItems: 6
-     items:
-       - const: parf
-       - const: dbi
-@@ -36,13 +40,14 @@ properties:
-       - const: atu
-       - const: addr_space
-       - const: mmio
-+      - const: dma
- 
-   clocks:
--    minItems: 7
-+    minItems: 5
-     maxItems: 8
- 
-   clock-names:
--    minItems: 7
-+    minItems: 5
-     maxItems: 8
- 
-   qcom,perst-regs:
-@@ -57,14 +62,18 @@ properties:
-           - description: Perst separation enable offset
- 
-   interrupts:
-+    minItems: 2
-     items:
-       - description: PCIe Global interrupt
-       - description: PCIe Doorbell interrupt
-+      - description: DMA interrupt
- 
-   interrupt-names:
-+    minItems: 2
-     items:
-       - const: global
-       - const: doorbell
-+      - const: dma
- 
-   reset-gpios:
-     description: GPIO used as PERST# input signal
-@@ -173,6 +182,37 @@ allOf:
-             - const: ddrss_sf_tbu
-             - const: aggre_noc_axi
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sa8775p-pcie-ep
-+    then:
-+      properties:
-+        reg:
-+          minItems: 7
-+        reg-names:
-+          minItems: 7
-+        clocks:
-+          items:
-+            - description: PCIe Auxiliary clock
-+            - description: PCIe CFG AHB clock
-+            - description: PCIe Master AXI clock
-+            - description: PCIe Slave AXI clock
-+            - description: PCIe Slave Q2A AXI clock
-+        clock-names:
-+          items:
-+            - const: aux
-+            - const: cfg
-+            - const: bus_master
-+            - const: bus_slave
-+            - const: slave_q2a
-+        interrupts:
-+          minItems: 3
-+        interrupt-names:
-+          minItems: 3
-+
- unevaluatedProperties: false
- 
- examples:
+ static const struct of_device_id qcom_pcie_ep_match[] = {
++	{ .compatible = "qcom,sa8775p-pcie-ep", },
+ 	{ .compatible = "qcom,sdx55-pcie-ep", },
+ 	{ .compatible = "qcom,sm8450-pcie-ep", },
+ 	{ }
 -- 
 2.7.4
 
