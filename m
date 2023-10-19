@@ -1,360 +1,174 @@
-Return-Path: <devicetree+bounces-9887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4E67CEF23
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:40:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624C97CEF59
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B12141C20A50
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 05:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFFE0281E37
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 05:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A0846695;
-	Thu, 19 Oct 2023 05:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEA946698;
+	Thu, 19 Oct 2023 05:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yqY6CULt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWLlOD+Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE0420FD
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:40:43 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C64FA130;
-	Wed, 18 Oct 2023 22:40:40 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39J5eYeQ089725;
-	Thu, 19 Oct 2023 00:40:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697694034;
-	bh=OJwJczYEBzzPpNVwb8s8CngqmcOB5tHxnM+BVrR1Dqk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=yqY6CULtb9LXw7Qa6vjfxQh3Pcgs7oiCTPqYWVWF2G8QxO99/HMNDzGTfwerKTyJe
-	 TvS13LCChSWJGN3BmVXZvx+C56bBoM6wLNO9guCh8DTWUnv0B5rG+cK82daoYVoBIi
-	 lBZhpl7EXle1lTmBeYTX+8L7tnCzmrIT7Lra0v/8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39J5eYwi083628
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 19 Oct 2023 00:40:34 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 19
- Oct 2023 00:40:33 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 19 Oct 2023 00:40:34 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39J5eXCk020430;
-	Thu, 19 Oct 2023 00:40:33 -0500
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <vigneshr@ti.com>, <nm@ti.com>, <a-bhatia1@ti.com>, <rogerq@kernel.org>
-CC: <afd@ti.com>, <s-vadapalli@ti.com>, <conor+dt@kernel.org>,
-        <r-ravikumar@ti.com>, <sabiya.d@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
-Subject: [PATCH v12 5/5] arm64: dts: ti: k3-am69-sk: Add DP and HDMI support
-Date: Thu, 19 Oct 2023 11:10:22 +0530
-Message-ID: <20231019054022.175163-6-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231019054022.175163-1-j-choudhary@ti.com>
-References: <20231019054022.175163-1-j-choudhary@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0402E17C2
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:53:47 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE59B6;
+	Wed, 18 Oct 2023 22:53:46 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so82482091fa.0;
+        Wed, 18 Oct 2023 22:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697694824; x=1698299624; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XObVuaWXr/rmZ3JntkdvlKmSVs/dr+MV+e6w2yjEeN0=;
+        b=iWLlOD+ZFhg7GXu2M8lbBlZCsoYupI2z7tOq2I5xpfLBYizKIfyc8YjPvrDa63xzDv
+         Tb+3kfuCcY5pwxZIVkDSDos0zqGpzQDYVlqMes2klr7ULYUlnx+ugB4woAoyK32Cxnrg
+         qisB/nuZESzE63C+8iMtJP0ftDVZrm3NQueGJqI+L0Mwc+E40yTP4uIhMxVijjJUSyhw
+         eNq/z5O3a4fv3I5o8NB0WoJzSV125dqfi+cjS6Blarko9fVRWi4pbKOWpG2TFEwVeeqO
+         pgsJkN8JskIRZ4ldeJunpp0O3uR5sRzYSSW/v2uDqTsTGkrv73FvXi0sXJudIzbKmYqg
+         v28Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697694824; x=1698299624;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XObVuaWXr/rmZ3JntkdvlKmSVs/dr+MV+e6w2yjEeN0=;
+        b=h8XLRidEr8BmbWkbjwl44f/0pHNLljLhE/VzmUJv/rmlaXba0NT1j9hChLVpjlA0ub
+         FDloQDYWb3JfSDoemsE6hQtHXRm+2DcmkQ5jw2ETR0WDYg5A42w2lfUWmJI/Fq00uMfW
+         WfApRCgIzhBuP/4palZKXK3jTio823/SpjBOFhdwq5pUCdk7ti7p8BQcR16ZIFDEoJdT
+         +hfu/j736rNPATXeeTTPOlWtQ+cpLMNMgmbvEbL8yX7WnZe7U8H2499hyyLnSsJGtqTz
+         nx7rHVuvMWkvjmUiEw4uS4ds2K13bDjw34h1MzbbBwEe5SMIKKHa0t6eKlXEMCIa4pO8
+         zvLw==
+X-Gm-Message-State: AOJu0YxW03YS1TV8qN5CfHSqZIW7T2065yo/vjT4MFWTBzfQ6KNSCoF9
+	a7wwXe76w/+n518/trg3cfE=
+X-Google-Smtp-Source: AGHT+IE46NqU53DsPQM/Jpuj/PKokomausjxbvM15qvRe0+1GoBDjUvz6vOTpHtJ6S3NqLd3RRjJxQ==
+X-Received: by 2002:a05:651c:1058:b0:2c5:13e8:d54e with SMTP id x24-20020a05651c105800b002c513e8d54emr648637ljm.38.1697694823867;
+        Wed, 18 Oct 2023 22:53:43 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::7? (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
+        by smtp.gmail.com with ESMTPSA id z16-20020a2e8e90000000b002c0414c3b6csm966928ljk.121.2023.10.18.22.53.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Oct 2023 22:53:42 -0700 (PDT)
+Message-ID: <ceaf7033-d86b-4d63-b8e0-bc7445cf0df0@gmail.com>
+Date: Thu, 19 Oct 2023 08:53:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+To: Jonathan Cameron <jic23@kernel.org>,
+ Jagath Jog J <jagathjog1996@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+ Cosmin Tanislav <demonsingur@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mehdi Djait <mehdi.djait.k@gmail.com>
+References: <cover.1666614295.git.mazziesaccount@gmail.com>
+ <758b00d6aea0a6431a5a3a78d557d449c113b21e.1666614295.git.mazziesaccount@gmail.com>
+ <CAM+2Eu+Xp6j1ppLd+zHMTu6jfc6DQKBShfe-nAyokVi0MUmoSA@mail.gmail.com>
+ <20231018203423.06f20a6c@jic23-huawei>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20231018203423.06f20a6c@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Dasnavis Sabiya <sabiya.d@ti.com>
+On 10/18/23 22:34, Jonathan Cameron wrote:
+> On Wed, 18 Oct 2023 01:37:12 +0530
+> Jagath Jog J <jagathjog1996@gmail.com> wrote:
 
-AM69 starter kit features an HDMI port and an eDP port.
+Hi Jagath - and thanks!
 
-Add assigned clocks for DSS, DT node for DisplayPort PHY,
-pinmux for HDMI hotplug and power down, mcu_i2c1 and dss_vout
-for HDMI.
-Also enable Serdes4 settings for DP display.
+>> Hi Matti,
+>>
+>> On Mon, Oct 24, 2022 at 6:10 PM Matti Vaittinen
+>> <mazziesaccount@gmail.com> wrote:
+>>>
+>>> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+>>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+>>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+>>> ranges (2, 4, 8 and 16g), and probably some other cool features.
+>>
+>> This is a nice driver, and I found it very helpful as a reference.
+>> One question regarding scale please see below.
+>>
+>>> + * range is typically +-2G/4G/8G/16G, distributed over the amount of bits.
+>>> + * The scale table can be calculated using
+>>> + *     (range / 2^bits) * g = (range / 2^bits) * 9.80665 m/s^2
+>>> + *     => KX022A uses 16 bit (HiRes mode - assume the low 8 bits are zeroed
+>>> + *     in low-power mode(?) )
+>>> + *     => +/-2G  => 4 / 2^16 * 9,80665 * 10^6 (to scale to micro)
+>>> + *     => +/-2G  - 598.550415
+>>> + *        +/-4G  - 1197.10083
+>>> + *        +/-8G  - 2394.20166
+>>> + *        +/-16G - 4788.40332
+>>> + */
+>>> +static const int kx022a_scale_table[][2] = {
+>>> +       { 598, 550415 },
+>>> +       { 1197, 100830 },
+>>> +       { 2394, 201660 },
+>>> +       { 4788, 403320 },
+>>> +};
+>>
+>> Given that the integer part is non-zero, and
+>> IIO_VAL_INT_PLUS_MICRO is returned for read_scale,
+>> As raw value will never be fractional how does this
+>> correspond to a reading of 9.8 m/s² for the Z-axis?
+> 
+> Definitely suspicious as should be in m/s^2 for an acceleration and
+> it should be
+> 
+> 9.8*16/2^bits
+> 
+> So I think these are out by a factor of 10^6
+I think you are right. Looks like I misinterpreted the meaning of 
+IIO_VAL_INT_PLUS_MICRO when I took my first tour in the IIO with this 
+driver. The comment above the scale table does support that assumption 
+... 10^6 would match such a brainfart. (This is my first thought. I will 
+take better look at this later today and see if I can come up with a fix 
+if no-one else has sent a patch already).
 
-Add the endpoint nodes to describe connection from:
-DSS => MHDP => DisplayPort connector
-DSS => TI TFP410 DPI-to-DVI Bridge => HDMI connector
+I CC'd Mehdi who has also been working on this driver.
 
-Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-[j-choudhary@ti.com: Fix dvi-bridge, dss, mhdp and serdes-refclk]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 232 ++++++++++++++++++++++++++
- 1 file changed, 232 insertions(+)
+Regarding the KX022A - I am not aware of upstream users of this IC 
+(yet). May be you're the first lucky one :) Hence, I am tempted to just 
+fixing the driver - but it's Jonathan who will take the splatters when 
+**** hits the fan - so it's his call to decide whether we can still fix 
+this. _If_ there are users who have adapted to this buggy scale (users I 
+am not aware of) then fix will break their apps. Mehdi, do you know any 
+users of this upstream driver?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index bc1d21ff6d03..9868c7049bfb 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -251,6 +251,76 @@ vdd_sd_dv: regulator-tlv71033 {
- 		states = <1800000 0x0>,
- 			 <3300000 0x1>;
- 	};
-+
-+	dp0_pwr_3v3: regulator-dp0-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dp0-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&dp_pwr_en_pins_default>;
-+		gpio = <&main_gpio0 4 0>;	/* DP0_3V3 _EN */
-+		enable-active-high;
-+	};
-+
-+	dp0: connector-dp0 {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp0_pwr_3v3>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
-+
-+	connector-hdmi {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_hpd_pins_default>;
-+		ddc-i2c-bus = <&mcu_i2c1>;
-+		hpd-gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;	/* HDMI_HPD */
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&tfp410_out>;
-+			};
-+		};
-+	};
-+
-+	bridge-dvi {
-+		compatible = "ti,tfp410";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_pdn_pins_default>;
-+		powerdown-gpios = <&wkup_gpio0 14 GPIO_ACTIVE_LOW>;	/* HDMI_PDn */
-+		ti,deskew = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				tfp410_in: endpoint {
-+					remote-endpoint = <&dpi1_out0>;
-+					pclk-sample = <1>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				tfp410_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -308,6 +378,57 @@ J784S4_IOPAD(0x008, PIN_INPUT, 7) /* (AJ33) MCAN12_RX.GPIO0_2 */
- 			J784S4_IOPAD(0x004, PIN_INPUT, 7) /* (AG36) MCAN12_TX.GPIO0_1 */
- 		>;
- 	};
-+
-+	dp0_pins_default: dp0-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x014, PIN_INPUT, 13) /* (AG33) MCAN14_TX.DP0_HPD */
-+		>;
-+	};
-+
-+	dp_pwr_en_pins_default: dp-pwr-en-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x010, PIN_INPUT, 7) /* (AH33) MCAN13_RX.GPIO0_4 */
-+		>;
-+	};
-+
-+	dss_vout0_pins_default: dss-vout0-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x074, PIN_OUTPUT, 2) /* (AC33) MCAN2_TX.VOUT0_DATA0 */
-+			J784S4_IOPAD(0x070, PIN_OUTPUT, 2) /* (AH38) MCAN1_RX.VOUT0_DATA1 */
-+			J784S4_IOPAD(0x07c, PIN_OUTPUT, 2) /* (AJ38) MCASP0_AXR3.VOUT0_DATA2 */
-+			J784S4_IOPAD(0x068, PIN_OUTPUT, 2) /* (AE38) MCAN0_RX.VOUT0_DATA3 */
-+			J784S4_IOPAD(0x064, PIN_OUTPUT, 2) /* (AF38) MCAN0_TX.VOUT0_DATA4 */
-+			J784S4_IOPAD(0x060, PIN_OUTPUT, 2) /* (AE36) MCASP2_AXR1.VOUT0_DATA5 */
-+			J784S4_IOPAD(0x05c, PIN_OUTPUT, 2) /* (AC36) MCASP2_AXR0.VOUT0_DATA6 */
-+			J784S4_IOPAD(0x058, PIN_OUTPUT, 2) /* (AE37) MCASP2_AFSX.VOUT0_DATA7 */
-+			J784S4_IOPAD(0x054, PIN_OUTPUT, 2) /* (AD37) MCASP2_ACLKX.VOUT0_DATA8 */
-+			J784S4_IOPAD(0x050, PIN_OUTPUT, 2) /* (AC37) MCASP1_AXR2.VOUT0_DATA9 */
-+			J784S4_IOPAD(0x04c, PIN_OUTPUT, 2) /* (AC32) MCASP1_AXR1.VOUT0_DATA10 */
-+			J784S4_IOPAD(0x048, PIN_OUTPUT, 2) /* (AK33) MCASP0_AXR2.VOUT0_DATA11 */
-+			J784S4_IOPAD(0x044, PIN_OUTPUT, 2) /* (AG37) MCASP0_AXR1.VOUT0_DATA12 */
-+			J784S4_IOPAD(0x040, PIN_OUTPUT, 2) /* (AF37) MCASP0_AXR0.VOUT0_DATA13 */
-+			J784S4_IOPAD(0x03c, PIN_OUTPUT, 2) /* (AK38) MCASP0_AFSX.VOUT0_DATA14 */
-+			J784S4_IOPAD(0x038, PIN_OUTPUT, 2) /* (AK35) MCASP0_ACLKX.VOUT0_DATA15 */
-+			J784S4_IOPAD(0x0c8, PIN_OUTPUT, 2) /* (AJ32) EXT_REFCLK1.VOUT0_DATA16 */
-+			J784S4_IOPAD(0x030, PIN_OUTPUT, 2) /* (AK37) GPIO0_12.VOUT0_DATA17 */
-+			J784S4_IOPAD(0x02c, PIN_OUTPUT, 2) /* (AL32) GPIO0_11.VOUT0_DATA18 */
-+			J784S4_IOPAD(0x028, PIN_OUTPUT, 2) /* (AE33) MCAN16_RX.VOUT0_DATA19 */
-+			J784S4_IOPAD(0x024, PIN_OUTPUT, 2) /* (AH34) MCAN16_TX.VOUT0_DATA20 */
-+			J784S4_IOPAD(0x020, PIN_OUTPUT, 2) /* (AJ35) MCAN15_RX.VOUT0_DATA21 */
-+			J784S4_IOPAD(0x01c, PIN_OUTPUT, 2) /* (AG34) MCAN15_TX.VOUT0_DATA22 */
-+			J784S4_IOPAD(0x018, PIN_OUTPUT, 2) /* (AK36) MCAN14_RX.VOUT0_DATA23 */
-+			J784S4_IOPAD(0x084, PIN_OUTPUT, 2) /* (AG38) MCASP0_AXR5.VOUT0_DE */
-+			J784S4_IOPAD(0x080, PIN_OUTPUT, 2) /* (AK34) MCASP0_AXR4.VOUT0_HSYNC */
-+			J784S4_IOPAD(0x078, PIN_OUTPUT, 2) /* (AH37) MCAN2_RX.VOUT0_PCLK */
-+			J784S4_IOPAD(0x088, PIN_OUTPUT, 2) /* (AF36) MCASP0_AXR6.VOUT0_VSYNC */
-+		>;
-+	};
-+
-+	hdmi_hpd_pins_default: hdmi-hpd-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x000, PIN_INPUT, 7) /* (AN35) EXTINTN.GPIO0_0 */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -382,6 +503,21 @@ J784S4_WKUP_IOPAD(0x064, PIN_INPUT, 7) /* (J36) WKUP_GPIO0_3 */
- 			J784S4_WKUP_IOPAD(0x11c, PIN_INPUT, 7) /* (M34) WKUP_GPIO0_67 */
- 		>;
- 	};
-+
-+	mcu_i2c1_pins_default: mcu-i2c1-default-pins {
-+		pinctrl-single,pins = <
-+			/* (L35) WKUP_GPIO0_8.MCU_I2C1_SCL */
-+			J784S4_WKUP_IOPAD(0x078, PIN_INPUT_PULLUP, 0)
-+			/* (L34) WKUP_GPIO0_9.MCU_I2C1_SDA */
-+			J784S4_WKUP_IOPAD(0x07c, PIN_INPUT_PULLUP, 0)
-+		>;
-+	};
-+
-+	hdmi_pdn_pins_default: hdmi-pdn-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 7) /* (H37) WKUP_GPIO0_14 */
-+		>;
-+	};
- };
- 
- &wkup_pmx3 {
-@@ -666,3 +802,99 @@ &c71_3 {
- 	memory-region = <&c71_3_dma_memory_region>,
- 			<&c71_3_memory_region>;
- };
-+
-+&wkup_gpio_intr {
-+	status = "okay";
-+};
-+
-+&mcu_i2c1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c1_pins_default>;
-+	clock-frequency = <100000>;
-+};
-+
-+&serdes_refclk {
-+	status = "okay";
-+	clock-frequency = <100000000>;
-+};
-+
-+&dss {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dss_vout0_pins_default>;
-+	assigned-clocks = <&k3_clks 218 2>,
-+			  <&k3_clks 218 5>,
-+			  <&k3_clks 218 14>,
-+			  <&k3_clks 218 18>;
-+	assigned-clock-parents = <&k3_clks 218 3>,
-+				 <&k3_clks 218 7>,
-+				 <&k3_clks 218 16>,
-+				 <&k3_clks 218 22>;
-+};
-+
-+&serdes_wiz4 {
-+	status = "okay";
-+};
-+
-+&serdes4 {
-+	status = "okay";
-+	serdes4_dp_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <4>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_DP>;
-+		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
-+			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
-+	};
-+};
-+
-+&mhdp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
-+	phys = <&serdes4_dp_link>;
-+	phy-names = "dpphy";
-+};
-+
-+&dss_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* DP */
-+	port@0 {
-+		reg = <0>;
-+
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+
-+	/* HDMI */
-+	port@1 {
-+		reg = <1>;
-+
-+		dpi1_out0: endpoint {
-+			remote-endpoint = <&tfp410_in>;
-+		};
-+	};
-+};
-+
-+&dp0_ports {
-+
-+	port@0 {
-+		reg = <0>;
-+
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp0_connector_in>;
-+		};
-+	};
-+};
+I will ping the HQ guy who has contacts to those who might be using the 
+driver in a downstream repository and ask him to inform potential users.
+
+It'd be very nice to get this fixed.
+
+Sorry and thanks!
+
+Yours,
+	-- Matti
+
 -- 
-2.25.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
