@@ -1,166 +1,179 @@
-Return-Path: <devicetree+bounces-10156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC05B7CFD4E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:50:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB117CFD57
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1937281F72
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:50:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC1931C203BE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71D11EB25;
-	Thu, 19 Oct 2023 14:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A486820339;
+	Thu, 19 Oct 2023 14:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="GmJ8icQ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJcwURv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3234419
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:50:44 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2062.outbound.protection.outlook.com [40.92.21.62])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACFDC2;
-	Thu, 19 Oct 2023 07:50:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FuGD60ROio8VGWA7kdrfRMCF73A2UBi69JQnUpap93hW8dksO7xF/DNgJeGfdhMjeQMMDE980DZsbwkx0zoMsTPA6qyPLNernTTk379TBEn4548f4yzobcLm+/62RluB4AdN3guw/P48KYKod+r2bI+Ihfi5y32hzwxCjiZozkVmUd1+IjVSaGtUvXT4CtTCtjX/rAjm4NHtQP9IUki5C3+SoQaLXmdzr6XNXZPjJ9Hm8D1z0CPpr5ihOQEasb1mYivzqgH/DAZSmpxpo0zDWxvxJCjTZb63BwPDd1CG/QhMdNR4TlQp92MOFImi27dZ+Fzh6k/UGCbc1Y3geBD1FQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1I4ZZkoqhjSuOARM339cgVz4z+/KI3kg7BtPs7E/RGM=;
- b=Pxy1kn/RB3a38mVpwwYIsp0A6smcHQvgDkaVHQ9wtTa5ODSKuRFReghxw46Z9Z5aU5o8tKKByG+sWgNzeyTaHxngXmtTjPkZJ8WGfwmF9Kyymn8FdMq7Mwi+JaeVV7UyO9cv5RNT9d0wK3qYaT2gW4kY1o8bzaq1qh/7zW3DY6Nbueu9qHnKiXb+dIRkBU68WWPl6/C38Cg+Tt2uSJkKlEp6aTOzWQZ+U1K6fVgiPOFtM//f7X4qxTv8zfeqsU8eQ1RQG5krttGRIwjNpCEwepPvFic7W1jH+Hd0b7aUknkhoJT85eKK+Oi8meaYBBplgXjFJvSm+fr4FGax431HZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1I4ZZkoqhjSuOARM339cgVz4z+/KI3kg7BtPs7E/RGM=;
- b=GmJ8icQ/zz3HwUZF1CiNP+Nx6wCUCVRvazVPrGEjgJz/oeYk9C9Q7hACtzVkpA6SmTx4g/gEKA1xvGmTnjd0iyXh1e+OBV6k/RoW+6LWFt2TSoyc43mi0l0m3bC1VKMzcHSXPk6qOt5ooKhjvtdKLsnBMKw1DBglL5QdI9NTCardEaLNJknIzgaiwOvww7Si4ZkNjsDeEpvz1JB+vxCkwCmvNuY4AaS5ka/4xZBe1TZ9XaJZZGcTJNZ8slroCbJvXsQZZAoMHG9I6t19Ctb/vhoFzL3kQsx3A7o8H9FRN2C08i+fhUHGOj/Cox53+51gbaOFxG4MvuZUhgLKMgKW1Q==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by DS7PR06MB6855.namprd06.prod.outlook.com (2603:10b6:5:2c6::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Thu, 19 Oct
- 2023 14:50:41 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Thu, 19 Oct 2023
- 14:50:41 +0000
-Date: Thu, 19 Oct 2023 09:50:38 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com, sboyd@kernel.org,
-	mturquette@baylibre.com, daniel@ffwll.ch, airlied@gmail.com,
-	sam@ravnborg.org, neil.armstrong@linaro.org, heiko@sntech.de,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: Update NewVision
- NV3051D compatibles
-Message-ID:
- <SN6PR06MB534271680DB8A3A3F0A1A31CA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <20231018161848.346947-2-macroalpha82@gmail.com>
- <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
-X-TMN: [6kSOxYNG+c2QUq5xdZxnXtJwuxNNPM4j]
-X-ClientProxiedBy: SN1PR12CA0095.namprd12.prod.outlook.com
- (2603:10b6:802:21::30) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZTFCPiR4Jbmjrq2E@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8198B4419;
+	Thu, 19 Oct 2023 14:51:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8BBC433C7;
+	Thu, 19 Oct 2023 14:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697727116;
+	bh=NLXuVTxIYxsa/iNx+oFYMWnnV3rxtlfwRq/TCg68Hog=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mJcwURv7bUT66qaosnRpmPUeZs/qsuhbSYH1pZPEfzccsoVwfjkzbsHFwp3kIPm9b
+	 T+dvPXCXWS9avMEgJIlCo0xAUIugAJr3WEfA+uSFQzj/+/KnQpMT7DNFmAVyl+oscw
+	 hFFHz72MNI1MYA4CmRq/hsJeZa8+LRvEFqVb/T7Jl0w8FFHfI2+3IGcG5r8amAae54
+	 T8nWI8OGGXMWCBuPxg+OqbaQuyzUX9IkIcdC+zCoBllZ/Eg80CFE3O9I0nBXSwBD9A
+	 6mrqGubSKjRT3sHe5itcIKRv+8AuuUtCNdwSVTqj/S1nGzG0OvOmTGM8lhzvwabApA
+	 qojK9byQnyM0A==
+Date: Thu, 19 Oct 2023 15:51:50 +0100
+From: Will Deacon <will@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank.li@nxp.com, corbet@lwn.net, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, mark.rutland@arm.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	festevam@gmail.com, conor+dt@kernel.org, linux-imx@nxp.com,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] perf: fsl_imx8_ddr: Add AXI ID PORT CHANNEL
+ filter support
+Message-ID: <20231019145150.GB19567@willie-the-truck>
+References: <20231011060838.3413621-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|DS7PR06MB6855:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e912031-acf8-442b-fdbd-08dbd0b2c377
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	GKcqmupYMxW/zjBY2VTtwT2SqNTCzo3FEI8Zk/kMbO1arH51W0oLCkhJo6RHah2NyDSCrUngUfFpy/lxCpJ06T8PTN96yGmfTzoi5AoA5/ETOls0dkOcuIUz+nrI6qWjSfLZvnBg8aYqTnT2/Q6jKKKxN3oET0BY09G0cZxwGxtzIAlIPSPYafAg0LYpdV9+6fxVbCRJx+NAh7l9ExibdZ5RJ1TMK9SkgOm7JlCyAUqhtMEA/MkZf/jE509dGtZg9+hWLXsH/0IxdRriHs2I4BWwyJNWu0jwflOomPKLXEwd7DygEmkH1RBYIB7LcD7IUa0OICMHVN0Envhi9zF/T1j8G+kqbEleEbFhOIF+n/F+fP0X0+qMH2Tf2xMwQg7+pFdXZU3R93ed4VGrwz4FjYmfNYBxV/Gx/raFOK6dz3gRJfiG6VTzybzBVDGnEKqn79S/QRd0CAQxx/lI8D0UvmFCbDwARJAgOc8GsfGRKLfYi63Mo9+o0LjuCdTVdGxPt3XG8A2m00j6AA+awSPZGxb0YEr2/5W24s2F4Q2p2DIZ8w80lB4YMULEM83PJ9RA
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?X/dDOkNZifF4L7VjVs4ea57uBuY2twV5Eg//F/V2m4ie9wXtBH2wMvjuKX0B?=
- =?us-ascii?Q?om8fpUp9CqwGUl7eG/oK2CwWrUX/7u/lwYfU1/MGFgSRjfrOHfMA6FLrHYtT?=
- =?us-ascii?Q?WvizjgOH3lj6ujCQs9qY6lfFBQrTLTeX4xvb+G/VWC2Rk8Pq6ZL/YPZ4UMo1?=
- =?us-ascii?Q?EfrZKOba964RksJ8PFub9UZfZv3JaoyugGHomNzl6WXLtS2yQvYzbkX1mFfQ?=
- =?us-ascii?Q?eLhkUfZZfMSZ7GqpZ9GPPiiYSxQ8afjm3t33ZbBYdlGKq1R4UQfslqW0uyW8?=
- =?us-ascii?Q?wR7x1AA63nJ8QlSVJ0lHPxbnfZm3iuU2H3X5fNjfnVdg2CpKS3M0EkoyMS2Z?=
- =?us-ascii?Q?sVReYUqNg7BTyigBwIYsQHuQZh0+UuoY58H8If0cccccuen0/YbKr9Zn8eey?=
- =?us-ascii?Q?SaHDYCZEzjvqZKRzq3FdgfzUuLPcHvDQS3wtnjkD+L9f3kCzrGizYxVeD8P2?=
- =?us-ascii?Q?hDhWMk6c8XydkLEsxwIoIGnrlCUMz0QhBNtFLYI6tNB0s7IdGABHjsg9/bxr?=
- =?us-ascii?Q?VnD2nCQHv+bWsMrQmcg1N+bp6qxEWqiGom4ZQxWNJ+zBX51LFoQ72xy+uDgX?=
- =?us-ascii?Q?N+6W+6XtuYl8tvl+RQdLAK+G/JBKTzNtlJsJVERT5+aNMupKsut7Dzh6/6Am?=
- =?us-ascii?Q?nZxl2euxz0bvHaGuCbILw12iUQ3+5fOn77ua0tgeLGqOwxrat1yKacjcOswO?=
- =?us-ascii?Q?m8WjYnkb9l1wZRX/RzdAuPwgboDydH8kN9UhY3DnyOgaAAQGY+Uc0W2uDqWs?=
- =?us-ascii?Q?uzYDjZ6XUx4J3EgvrQ8fOKn/vK9m/d+WGNm4II/M0Pb9DABewJuF3NQlB3oy?=
- =?us-ascii?Q?a4HY+XwBAMMWqSknWRQsWdpH9L/ED2ZLZKzRoD04AGzLjXtVdtxHhCKxkwAS?=
- =?us-ascii?Q?iwJIk3AWAaK+HbDbAJbh+XiVwgUfIVwJRsSVVOWoFrH8J5J3CiXDsosZoaPg?=
- =?us-ascii?Q?r2BlL6RcG6RdgowMlyJ1PiVb5UNSFEGh1qNuwI9ucg74FtJ160tTrx9APHCM?=
- =?us-ascii?Q?c4fCWyjOVDfo8RBVZAO28SYM1yHXB14HJGGH03mYZu0YnAJaVGhTDtenXjRs?=
- =?us-ascii?Q?f9Z9YygigHnVVu/k/aPukdIwE01uLh+0WCRqwqk2+V+UmPf6sj8vBPGFTNO2?=
- =?us-ascii?Q?4MUrSdPt9h3Qtq6PeHM2OrftQhNba3E6KaqtLLICqJHllcdagnDUX4qosBul?=
- =?us-ascii?Q?En19lR47ydSEolGLznAtleoTURzUUSI2O1twm/wSLaviMptyW+tRtr4NOVY?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e912031-acf8-442b-fdbd-08dbd0b2c377
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 14:50:41.1239
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR06MB6855
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231011060838.3413621-1-xu.yang_2@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Thu, Oct 19, 2023 at 11:22:19AM +0200, Krzysztof Kozlowski wrote:
-> On 18/10/2023 18:18, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Update the NewVision NV3051D compatible strings by adding a new panel,
-> > the powkiddy,rk2023-panel, and removing another entry, the
-> > anbernic,rg353v-panel. The rg353v-panel is exactly identical to the
-> > rg353p-panel and is not currently in use by any existing device tree.
-> > The rk2023-panel is similar to the rg353p-panel but has slightly
-> > different timings.
+On Wed, Oct 11, 2023 at 02:08:34PM +0800, Xu Yang wrote:
+> This is the extension of AXI ID filter.
 > 
-> This still does not explain me why do you want to remove old panel.
+> Filter is defined with 2 configuration registers per counter 1-3 (counter
+> 0 is not used for filtering and lacks these registers).
+> * Counter N MASK COMP register - AXI_ID and AXI_MASKING.
+> * Counter N MUX CNTL register - AXI CHANNEL and AXI PORT.
+>   -- 0: address channel
+>   -- 1: data channel
+> 
+> This filter is exposed to userspace as an additional (channel, port) pair.
+> The definition of axi_channel is inverted in userspace, and it will be
+> reverted in driver automatically.
+> 
+> AXI filter of Perf Monitor in DDR Subsystem, only a single port0 exist, so
+> axi_port is reserved which should be 0.
+> 
+> e.g.
+> perf stat -a -e imx8_ddr0/axid-read,axi_mask=0xMMMM,axi_id=0xDDDD,axi_channel=0xH/ cmd
+> perf stat -a -e imx8_ddr0/axid-write,axi_mask=0xMMMM,axi_id=0xDDDD,axi_channel=0xH/ cmd
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> Changes since v2:
+>  - no changes
+> ---
+>  drivers/perf/fsl_imx8_ddr_perf.c | 39 ++++++++++++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/drivers/perf/fsl_imx8_ddr_perf.c b/drivers/perf/fsl_imx8_ddr_perf.c
+> index 92611c98120f..d0eae2d7e64b 100644
+> --- a/drivers/perf/fsl_imx8_ddr_perf.c
+> +++ b/drivers/perf/fsl_imx8_ddr_perf.c
+> @@ -19,6 +19,8 @@
+>  #define COUNTER_READ		0x20
+>  
+>  #define COUNTER_DPCR1		0x30
+> +#define COUNTER_MUX_CNTL	0x50
+> +#define COUNTER_MASK_COMP	0x54
+>  
+>  #define CNTL_OVER		0x1
+>  #define CNTL_CLEAR		0x2
+> @@ -32,6 +34,13 @@
+>  #define CNTL_CSV_SHIFT		24
+>  #define CNTL_CSV_MASK		(0xFFU << CNTL_CSV_SHIFT)
+>  
+> +#define READ_PORT_SHIFT		0
+> +#define READ_PORT_MASK		(0x7 << READ_PORT_SHIFT)
+> +#define READ_CHANNEL_REVERT	0x00000008	/* bit 3 for read channel select */
+> +#define WRITE_PORT_SHIFT	8
+> +#define WRITE_PORT_MASK		(0x7 << WRITE_PORT_SHIFT)
+> +#define WRITE_CHANNEL_REVERT	0x00000800	/* bit 11 for write channel select */
+> +
+>  #define EVENT_CYCLES_ID		0
+>  #define EVENT_CYCLES_COUNTER	0
+>  #define NUM_COUNTERS		4
+> @@ -50,6 +59,7 @@ static DEFINE_IDA(ddr_ida);
+>  /* DDR Perf hardware feature */
+>  #define DDR_CAP_AXI_ID_FILTER			0x1     /* support AXI ID filter */
+>  #define DDR_CAP_AXI_ID_FILTER_ENHANCED		0x3     /* support enhanced AXI ID filter */
+> +#define DDR_CAP_AXI_ID_PORT_CHANNEL_FILTER	0x4	/* support AXI ID PORT CHANNEL filter */
+>  
+>  struct fsl_ddr_devtype_data {
+>  	unsigned int quirks;    /* quirks needed for different DDR Perf core */
+> @@ -144,6 +154,7 @@ static const struct attribute_group ddr_perf_identifier_attr_group = {
+>  enum ddr_perf_filter_capabilities {
+>  	PERF_CAP_AXI_ID_FILTER = 0,
+>  	PERF_CAP_AXI_ID_FILTER_ENHANCED,
+> +	PERF_CAP_AXI_ID_PORT_CHANNEL_FILTER,
+>  	PERF_CAP_AXI_ID_FEAT_MAX,
+>  };
+>  
+> @@ -157,6 +168,8 @@ static u32 ddr_perf_filter_cap_get(struct ddr_pmu *pmu, int cap)
+>  	case PERF_CAP_AXI_ID_FILTER_ENHANCED:
+>  		quirks &= DDR_CAP_AXI_ID_FILTER_ENHANCED;
+>  		return quirks == DDR_CAP_AXI_ID_FILTER_ENHANCED;
+> +	case PERF_CAP_AXI_ID_PORT_CHANNEL_FILTER:
+> +		return !!(quirks & DDR_CAP_AXI_ID_PORT_CHANNEL_FILTER);
+>  	default:
+>  		WARN(1, "unknown filter cap %d\n", cap);
+>  	}
+> @@ -187,6 +200,7 @@ static ssize_t ddr_perf_filter_cap_show(struct device *dev,
+>  static struct attribute *ddr_perf_filter_cap_attr[] = {
+>  	PERF_FILTER_EXT_ATTR_ENTRY(filter, PERF_CAP_AXI_ID_FILTER),
+>  	PERF_FILTER_EXT_ATTR_ENTRY(enhanced_filter, PERF_CAP_AXI_ID_FILTER_ENHANCED),
+> +	PERF_FILTER_EXT_ATTR_ENTRY(super_filter, PERF_CAP_AXI_ID_PORT_CHANNEL_FILTER),
+>  	NULL,
+>  };
+>  
+> @@ -272,11 +286,15 @@ static const struct attribute_group ddr_perf_events_attr_group = {
+>  PMU_FORMAT_ATTR(event, "config:0-7");
+>  PMU_FORMAT_ATTR(axi_id, "config1:0-15");
+>  PMU_FORMAT_ATTR(axi_mask, "config1:16-31");
+> +PMU_FORMAT_ATTR(axi_port, "config2:0-2");
+> +PMU_FORMAT_ATTR(axi_channel, "config2:3-3");
 
-When I originally wrote the driver I only had one piece of hardware
-and I set the compatible string in the driver as newvision,nv3051d.
-Unfortunately since then I've found 2 more devices in use that are
-*just* different enough to require the driver to do things a bit
-differently. In the case of the anbernic,rg351v-panel I need to
-enable a new DSI flag; in the case of the powkiddy,rk2023-panel I need
-to decrease the vertical back porch and drop the higher frequency
-timings.
+Any specific reason to allocate from config2, rather than the upper 32
+bits of config1?
 
-The best way to accomplish this was to change the strategy from having
-a single binding in the driver of newvision,nv3051d to a binding for
-each distinct hardware where the differences apply. Note that I've
-looked at querying the DSI panel ID, but for each device the value
-is identical (so it can't be used to differentiate the hardware sadly).
-So the driver now has 3 different compatible strings. I could in this
-case add a 4th compatible string of anbernic,rg353v-panel but it would
-be identical to anbernic,rg353p-panel. For the moment we are using
-anbernic,rg353p-panel everywhere (including the rg353v), so it makes
-sense to drop this unused value while we can, at least to me.
+> @@ -553,6 +572,26 @@ static int ddr_perf_event_add(struct perf_event *event, int flags)
+>  		return -EOPNOTSUPP;
+>  	}
+>  
+> +	if (pmu->devtype_data->quirks & DDR_CAP_AXI_ID_PORT_CHANNEL_FILTER) {
+> +		if (ddr_perf_is_filtered(event)) {
+> +			/* revert axi id masking(axi_mask) value */
+> +			cfg1 ^= AXI_MASKING_REVERT;
+> +			writel(cfg1, pmu->base + COUNTER_MASK_COMP + ((counter - 1) << 4));
 
-Let me know if you have any more questions, thank you.
-Chris
+Please can you explain what this "reverting" is doing? It looks like a
+user-visible change in behaviour to me, or are you saying that the driver
+currently does the wrong thing on hardware that supports the new filter?
 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> +
+> +			if (cfg == 0x41) {
+
+What is this 0x41 for?
+
+Will
 
