@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-10088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7F37CF933
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:41:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 636B67CF936
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BC1D1F234F3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:41:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9496E1C20B28
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69D115E9B;
-	Thu, 19 Oct 2023 12:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8F717723;
+	Thu, 19 Oct 2023 12:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AAYAiBrp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UTpjsv53"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D8D225B9
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:41:15 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCCCCF
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:41:14 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso1352780166b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:41:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D731225AF
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:41:33 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C308F7
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:41:30 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99c1c66876aso1287910566b.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:41:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697719273; x=1698324073; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vOtyl4QJoNrO7WydaEXmYKfB6hE2a/NTyD/frZ4jsPY=;
-        b=AAYAiBrpNHj/iJBO5bfnkLIDiJ1AGZVyH5ZxzxLI8VA3hQinIYw0Klk4ziuDkTw48x
-         IsJM4MrEqEQM7Sg1eKt7i4w6lgcOe6eHkv5kKVsCsqwDgBXRkSNnVSKW6DKVoQfFUQyN
-         izOBhtYroc+4ZG+efw+tXe5QW3x3iFb1QNbG/eWDX6bXo63LK/WUJ3yAxppET4li12Pr
-         9+pfLNNuWgOBY5HJgBRj+f3u/d197jIVxXlajelCIB5KwLFplelSTkZiSC0UpzgbPE/A
-         2jqRwcisoXYLiymaaBEioRAQlYBnTmzxmf7TrAz/Z1ghEGOEHkcakZiPVKVZHQgfEBlR
-         TTpA==
+        d=linaro.org; s=google; t=1697719288; x=1698324088; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=G650F9QH0oY82kdqJAhgTeaC76x+lLeq1g1XxXlMvLw=;
+        b=UTpjsv53sh1v78DGcHLRjn3QmyvXTdCAltxVnPgzZr5meg0MbUbkoTLtMOCcsmOvKO
+         D8kDBwwCpFZPU/TDKjvoZS9cWkyPJXEmGucQZehXqgpRwdDE4Vl5viPdPOSqgrKPeL07
+         VURcBNQhDRpvYC60tEHPGOCPfxbDweXY4QYi9eBGYrNLPPq3Xm5IVWXP+iYUCx+3Nv+0
+         Ksw9M4xUu0wKzuGUnv1qx8cpPj4QwNwJxq0hSqdgLivgmcGVpG4p4jMmnnv3Yk5ylxpY
+         gec9WWwINkHNUVqhDlJFj6ogfCLUFjWYMeroYUtzIXTtADIsdbBCFBMjN/6xTkSA9wYu
+         SWEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697719273; x=1698324073;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vOtyl4QJoNrO7WydaEXmYKfB6hE2a/NTyD/frZ4jsPY=;
-        b=An7nnECY8v2ooCxJKYY0ZK5IdLQ1wWd8YmkzsIgNcKRaux3nz9m9vMMFye1oCX93We
-         gaTrX43yO+JRS8UXOupNRMyjEBxm+Hsmb3moSN3HBx51Y3l/EgRxHQDJlKtn7OzJLpiJ
-         3zcHvX6QMBONRaXci+UC50YnJ7yXzL3y0W0RRiIeaSCOg/plK1xYsOEqtRlDE4pGxiyk
-         Dx0pUsESrAdWFvmHClyZKVB96uT39C3sneDxVo8QSvyOVF45mxfIdg22DRnArOPGhBXx
-         DX33L5IsPlA7rwlUt+RuiHrwiFzBERxD28C9gaRpV0VvW5e8umKbBKcvrhlkU0+JlKVK
-         uZuw==
-X-Gm-Message-State: AOJu0YyEGuU+df2XWOwdlFC7YwMSVhxTagXSlSl8pnuLjk/Zu3vHEAJZ
-	efTJ3WRjE+m9rOaXk1skgUGgMA==
-X-Google-Smtp-Source: AGHT+IFpRTpF5IE5aoNMh4JyfNEHepUm2xsqyfu8HQfUAZPeCQTGo8cd6RakPS7ojT5UHRlUh2PhuA==
-X-Received: by 2002:a17:907:7254:b0:9be:ca44:87b6 with SMTP id ds20-20020a170907725400b009beca4487b6mr1642416ejc.3.1697719273190;
-        Thu, 19 Oct 2023 05:41:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697719288; x=1698324088;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G650F9QH0oY82kdqJAhgTeaC76x+lLeq1g1XxXlMvLw=;
+        b=ipHxH1Q9qKNxw+F24mLHhfeR+/63ODtYyGzbOpghRYullk3W329pEfYwGLePYu3Cb1
+         oYBUqGbijNKUPufDYovVIsSaLemYzAkTQZ6fEWc5+ArXnVYr6PUeDV3Q/xRgsF15MukW
+         wQ3IiQD90eueBdkNf6r1hziTsxOuPTsWi4LVzrgBxa1U7MoWL+X4k+YwOEo9CO1c+Xhu
+         5DZjKwprvxspiL6L76qSvz5/1ykiwdD0xZpMtiKfHfMzazq5D/Z1AQQt760fe0vjJtQo
+         RFet0NPzXLkIbOaE4NEwONa1LYTC4rY4h8fVgMVICOiffG0PnsAomeft5LdMENC4Lt/P
+         r9AA==
+X-Gm-Message-State: AOJu0YwQKKmZLWpWphOlVNSqdJyEKamV/g0TrVS+eH+l9btz6VXutzbH
+	VIDUF66fCfwREMti2mKAMAimxw==
+X-Google-Smtp-Source: AGHT+IE2ThnpMMj6O5zVmOIYrxzdrSVvgyZ9ngLX+u9y4Fw/3rmnSk6eBeVTBFWZdMYe6B+nXNANGQ==
+X-Received: by 2002:a17:906:4fc7:b0:9be:30c2:b8ff with SMTP id i7-20020a1709064fc700b009be30c2b8ffmr1699113ejw.61.1697719288612;
+        Thu, 19 Oct 2023 05:41:28 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id i22-20020a1709064ed600b00992f2befcbcsm3566491ejv.180.2023.10.19.05.41.11
+        by smtp.gmail.com with ESMTPSA id i22-20020a1709064ed600b00992f2befcbcsm3566491ejv.180.2023.10.19.05.41.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 05:41:12 -0700 (PDT)
-Message-ID: <1759a6c8-03a8-424e-b9ef-09d38eed108b@linaro.org>
-Date: Thu, 19 Oct 2023 14:41:09 +0200
+        Thu, 19 Oct 2023 05:41:28 -0700 (PDT)
+Message-ID: <390f903e-fc5a-480a-887e-4d13f0d6407c@linaro.org>
+Date: Thu, 19 Oct 2023 14:41:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,8 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] tty: serial: samsung: drop earlycon support for
- unsupported platforms
+Subject: Re: [PATCH 2/2] dt-bindings: serial: drop unsupported samsung
+ bindings
+Content-Language: en-US
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
  linux-kernel@vger.kernel.org
 Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org,
@@ -78,7 +78,7 @@ Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org
 References: <20231019100639.4026283-1-andre.draszik@linaro.org>
-Content-Language: en-US
+ <20231019100639.4026283-2-andre.draszik@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,21 +124,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231019100639.4026283-1-andre.draszik@linaro.org>
+In-Reply-To: <20231019100639.4026283-2-andre.draszik@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 19/10/2023 12:06, André Draszik wrote:
-> Commit 1ea35b355722 ("ARM: s3c: remove s3c24xx specific hacks") removed
-> support here for several old platforms, but kept support for earlycon
-> for those same platforms.
+> Now that no implementation exists anymore for
+> samsung,s3c24(1[02]|40)-uart, remove those bindings from here as well.
 > 
-> As earlycon support for otherwise unsupported platforms doesn't seem to
-> be useful, just drop it as well.
-> 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
