@@ -1,141 +1,122 @@
-Return-Path: <devicetree+bounces-10219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36AB7D02A6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D07CD7D02B7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD189B20F48
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:41:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AC1EB20FA6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7328A3C087;
-	Thu, 19 Oct 2023 19:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ACA3C697;
+	Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="lTPRrjGF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDFWVqRH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D0D3C06D
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:41:31 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4FFFA
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:41:29 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4C0C02C0733;
-	Fri, 20 Oct 2023 08:41:27 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1697744487;
-	bh=k9X51xVsFNHIlzccLEHxrW4VGA/3GPxE2dX7wBCdsFk=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=lTPRrjGFgbvHx0c1+n1KjoMogHxJYg0pe0G4Qrtoq/zhFeDQPQd2nIMrCJhaSLCL7
-	 K/9fP9pZ4fEfGxkBhYCZa4Q+gF9BDI5QJZv58DFtA4iUXHdWVO9SRksAg3LM2Q4CSO
-	 9OzUxkXF6IzqSzuZVQWw5nNtlHxOlwRBDHah/wtuY+wzM+f15UjSyIaAnkcMaEgyg6
-	 Raf7dX32t2edISCMndzMNlPWf5Tzk7GWlLzQSspWam6nP1faWPYXJPeQXX3ZrPMdjV
-	 HebKq7wJ5MAUPoTmzEycjjWSgX0n3CPQs1gXSe+6lzLUOcGBSvCkHadOxzxnPDgTmy
-	 44mM126HgFcww==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B653186670001>; Fri, 20 Oct 2023 08:41:27 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.37; Fri, 20 Oct 2023 08:41:27 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.037; Fri, 20 Oct 2023 08:41:26 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, "andi.shyti@kernel.org"
-	<andi.shyti@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "pierre.gondois@arm.com"
-	<pierre.gondois@arm.com>
-CC: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] arm64: dts: marvell: AC5: use I2C unstuck function
-Thread-Topic: [PATCH v2 2/3] arm64: dts: marvell: AC5: use I2C unstuck
- function
-Thread-Index: AQHZ9+y534keUpgCdEywg20EPufKTLBQaoWAgABUMgA=
-Date: Thu, 19 Oct 2023 19:41:26 +0000
-Message-ID: <1d43b7be-94f4-4d29-a4b0-b5b651c4b70a@alliedtelesis.co.nz>
-References: <20231006003321.2100016-1-chris.packham@alliedtelesis.co.nz>
- <20231006003321.2100016-3-chris.packham@alliedtelesis.co.nz>
- <87a5sead6i.fsf@BL-laptop>
-In-Reply-To: <87a5sead6i.fsf@BL-laptop>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A8420570C3E11340A693E430DD2182B9@atlnz.lc>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C916E39853
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C58FC433CA;
+	Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697744820;
+	bh=kJyJ53sEdpPJK6eagpUQpoxGIQ2v4UNjTrtx9ncWMjI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=nDFWVqRHy/C2zMBklJ2uAXHxqdaqyNK8XEpcMD3XPazOM4a+k7fcBDHTcyt7zP87m
+	 BRoGBXdMVFnsreuu6oAkhuB84Hn7yaCb6NtgFo0JYvA3ethDF4zLq0EODdip5BHnJE
+	 uNajNGFKDO4kgMYHhw53oYyl0Y8B9iYX9dY4q9AYVwM0z/6HkDJFlFodgiHOLguqIM
+	 a6jWNYdB5MF1p3tiZZDjPIJs5Zj0f+gmi17m+01RO3fzNFX16MtotBWDwfdaIdUI5t
+	 NHh9LOeIDN2aqzeZcgTB2Pb3Wzp5dC9gE8fUCg38u0sOYm+9uWfgvpKULSivuohuFX
+	 KhFVy1K+yKSeQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-507adc3381cso14464e87.3;
+        Thu, 19 Oct 2023 12:47:00 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwoZWO2y+cBuFpssxAWespnrakCz4ZBLqydAWh3Cu/VhFbPTc3z
+	VAA+tcySJUJGYt97go9z05tA7p6kBMEUz+bHpQ==
+X-Google-Smtp-Source: AGHT+IEv0Yxf1FOVuXFGWen4jDWLp5PE11XXP+QWf6ZcfW0Lwd4xFfWSkOUQ2pkinfmyVX+ucqLtX8D9FLXWah8BxeU=
+X-Received: by 2002:ac2:5328:0:b0:500:b74b:e53 with SMTP id
+ f8-20020ac25328000000b00500b74b0e53mr2215352lfh.46.1697744818512; Thu, 19 Oct
+ 2023 12:46:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=SQ9JNEmy3hBT6fU4eLAA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+References: <20231019184825.9712-1-quic_obabatun@quicinc.com> <20231019184825.9712-2-quic_obabatun@quicinc.com>
+In-Reply-To: <20231019184825.9712-2-quic_obabatun@quicinc.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 19 Oct 2023 14:46:46 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
+Message-ID: <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] of: reserved_mem: Change the order that
+ reserved_mem regions are stored
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: catalin.marinas@arm.com, will@kernel.org, frowand.list@gmail.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DQpPbiAyMC8xMC8yMyAwMzo0MCwgR3JlZ29yeSBDTEVNRU5UIHdyb3RlOg0KPiBIZWxsbyBDaHJp
-cywNCj4NCj4+IFRoZSBBQzUgU29DIHN1cHBvcnRzIHVzaW5nIGEgY29udHJvbGxlciBiYXNlZCBJ
-MkMgdW5zdHVjayBmdW5jdGlvbiBmb3INCj4+IHJlY292ZXJ5LiBVc2UgdGhpcyBpbnN0ZWFkIG9m
-IHRoZSBnZW5lcmljIEdQSU8gcmVjb3ZlcnkuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMg
-UGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56Pg0KPj4gLS0tDQo+PiAg
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hYzUtOThkeDI1eHguZHRzaSB8IDE0ICsrKyst
-LS0tLS0tLS0tDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEwIGRlbGV0
-aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwv
-YWM1LTk4ZHgyNXh4LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgy
-NXh4LmR0c2kNCj4+IGluZGV4IGM5Y2UxMDEwYzQxNS4uZTUyZDNjMzQ5NmQ1IDEwMDY0NA0KPj4g
-LS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpDQo+PiAr
-KysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4+IEBA
-IC0xMzcsNyArMTM3LDcgQEAgbWRpbzogbWRpb0AyMjAwNCB7DQo+PiAgIA0KPj4gICAJCQlpMmMw
-OiBpMmNAMTEwMDB7DQo+PiAgIAkJCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY3ODIzMC1pMmMi
-Ow0KPj4gLQkJCQlyZWcgPSA8MHgxMTAwMCAweDIwPjsNCj4+ICsJCQkJcmVnID0gPDB4MTEwMDAg
-MHgyMD4sIDwweDExMGEwIDB4ND47DQo+PiAgIAkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+
-ICAgCQkJCSNzaXplLWNlbGxzID0gPDA+Ow0KPj4gICANCj4+IEBAIC0xNDYsMTcgKzE0NiwxNCBA
-QCBpMmMwOiBpMmNAMTEwMDB7DQo+PiAgIAkJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgODcgSVJR
-X1RZUEVfTEVWRUxfSElHSD47DQo+PiAgIAkJCQljbG9jay1mcmVxdWVuY3k9PDEwMDAwMD47DQo+
-PiAgIA0KPj4gLQkJCQlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiZ3BpbyI7DQo+PiArCQkJ
-CXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+PiAgIAkJCQlwaW5jdHJsLTAgPSA8JmkyYzBf
-cGlucz47DQo+PiAtCQkJCXBpbmN0cmwtMSA9IDwmaTJjMF9ncGlvPjsNCj4+IC0JCQkJc2NsLWdw
-aW9zID0gPCZncGlvMCAyNiAoR1BJT19BQ1RJVkVfSElHSCB8IEdQSU9fT1BFTl9EUkFJTik+Ow0K
-Pj4gLQkJCQlzZGEtZ3Bpb3MgPSA8JmdwaW8wIDI3IChHUElPX0FDVElWRV9ISUdIIHwgR1BJT19P
-UEVOX0RSQUlOKT47DQo+IEJ5IGRvaW5nIHRoaXMgdGhlbiBvbGRlciBrZXJuZWwgd29uJ3QgYmUg
-YWJsZSB0byBkbyByZWNvdmVyeSwgd2hpbGUgaWYNCj4geW91IGtlZXAgaXQsIHRoZSBuZXcga2Vy
-bmVscyB3aWxsIHN0aWxsIHVzZSBuZXcgd2F5IHRvIHN1cHBvcnQgcmVjb3ZlcnkNCj4gdGhhbmtz
-IHRvIHRoZSBuZXcgcmVnIGZpbGVkIGFkZGVkIGFuZCBvbGQga2VybmVscyB3aWxsIGNvbnRpbnVl
-IHRvIHdvcmsuDQo+DQo+IEhvd2V2ZXIsIHdoYXQgd2UgdHJ5IHRvIG1haW50YWluIGlzIHJ1bm5p
-bmcgbmV3IGtlcm5lbCBvbiBvbGQgZHRiIG5vdA0KPiB0aGUgb3Bwb3NpdGUgd2hpY2ggaXMganVz
-dCBhIG5pY2UgdG8gaGF2ZS4gQXQgdGhlIGVuZCBpdCBpcyB1cCB0byB5b3UsDQo+IGlmIHlvdSBy
-ZWFsbHkgd2FudCB0byByZW1vdmUgdGhpcyBjaHVuayBJIHdpbGwgYXBwbHkgaXQgb25jZSB0aGUg
-ZHJpdmVyDQo+IHBhcnQgb2YgdGhlIHNlcmllcyB3aWxsIGJlIGFjY2VwdGVkLg0KDQpUaGUgR1BJ
-TyByZWNvdmVyeSB0cmlnZ2VycyBhbiBFcnJhdHVtIHdoZXJlIHRoZSBTb0MgbG9ja3MgdXAgc28g
-SSdkIA0KcHJlZmVyIHRvIHNlZSBpdCBnb25lIChiYXNpY2FsbHkgYSB2ZXJzaW9uIG9mIHRoYXQg
-b2ZmbG9hZCBFcnJhdHVtIGZyb20gDQp0aGUgZWFybHkgQXJtYWRhLVhQcykuDQoNCkkgdGhpbmsg
-aXQncyBhbGwgYWNhZGVtaWMgYmVjYXVzZSBJJ20gcHJldHR5IHN1cmUgSSdtIHRoZSBvbmx5IG9u
-ZSANCmFjdHVhbGx5IHJ1bm5pbmcgYW4gdXBzdHJlYW0ga2VybmVsIG9uIHRoZSBBQzVYLiBNYXJ2
-ZWxsIHN0aWxsIHNoaXAgYSANCmhvcnJpYmx5IG91dCBvZiBkYXRlIGZvcmsgaW4gdGhlaXIgb2Zm
-aWNpYWwgU0RLLg0KDQo+DQo+IEdyZWdvcnkNCj4NCj4NCj4+ICAgCQkJCXN0YXR1cyA9ICJkaXNh
-YmxlZCI7DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gICAJCQlpMmMxOiBpMmNAMTExMDB7DQo+PiAg
-IAkJCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY3ODIzMC1pMmMiOw0KPj4gLQkJCQlyZWcgPSA8
-MHgxMTEwMCAweDIwPjsNCj4+ICsJCQkJcmVnID0gPDB4MTExMDAgMHgyMD4sIDwweDExMGE0IDB4
-ND47DQo+PiAgIAkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICAgCQkJCSNzaXplLWNlbGxz
-ID0gPDA+Ow0KPj4gICANCj4+IEBAIC0xNjUsMTEgKzE2Miw4IEBAIGkyYzE6IGkyY0AxMTEwMHsN
-Cj4+ICAgCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA4OCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
-Cj4+ICAgCQkJCWNsb2NrLWZyZXF1ZW5jeT08MTAwMDAwPjsNCj4+ICAgDQo+PiAtCQkJCXBpbmN0
-cmwtbmFtZXMgPSAiZGVmYXVsdCIsICJncGlvIjsNCj4+ICsJCQkJcGluY3RybC1uYW1lcyA9ICJk
-ZWZhdWx0IjsNCj4+ICAgCQkJCXBpbmN0cmwtMCA9IDwmaTJjMV9waW5zPjsNCj4+IC0JCQkJcGlu
-Y3RybC0xID0gPCZpMmMxX2dwaW8+Ow0KPj4gLQkJCQlzY2wtZ3Bpb3MgPSA8JmdwaW8wIDIwIChH
-UElPX0FDVElWRV9ISUdIIHwgR1BJT19PUEVOX0RSQUlOKT47DQo+PiAtCQkJCXNkYS1ncGlvcyA9
-IDwmZ3BpbzAgMjEgKEdQSU9fQUNUSVZFX0hJR0ggfCBHUElPX09QRU5fRFJBSU4pPjsNCj4+ICAg
-CQkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLS0gDQo+PiAy
-LjQyLjANCj4+
+On Thu, Oct 19, 2023 at 1:49=E2=80=AFPM Oreoluwa Babatunde
+<quic_obabatun@quicinc.com> wrote:
+>
+> The dynamic allocation of the reserved_mem array needs to be done after
+> paging_init() is called because memory allocated using memblock_alloc()
+> is not writeable before that.
+>
+> Nodes that already have their starting address specified in the DT
+> (i.e. nodes that are defined using the "reg" property) can wait until
+> after paging_init() to be stored in the array.
+> But nodes that are dynamically placed need to be reserved and saved in
+> the array before paging_init() so that page table entries are not
+> created for these regions.
+>
+> Hence, change the code to:
+> 1. Before paging_init(), allocate and store information for the
+>    dynamically placed reserved memory regions.
+> 2. After paging_init(), store the rest of the reserved memory regions
+>    which are defined with the "reg" property.
+>
+> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+> ---
+>  arch/arm64/kernel/setup.c       |  4 +++
+>  drivers/of/fdt.c                | 56 ++++++++++++++++++++++++++-------
+>  drivers/of/of_private.h         |  1 -
+>  drivers/of/of_reserved_mem.c    | 54 ++++++++++++++-----------------
+>  include/linux/of_fdt.h          |  1 +
+>  include/linux/of_reserved_mem.h |  9 ++++++
+>  6 files changed, 83 insertions(+), 42 deletions(-)
+>
+> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> index 417a8a86b2db..6002d3ad0b19 100644
+> --- a/arch/arm64/kernel/setup.c
+> +++ b/arch/arm64/kernel/setup.c
+> @@ -27,6 +27,8 @@
+>  #include <linux/proc_fs.h>
+>  #include <linux/memblock.h>
+>  #include <linux/of_fdt.h>
+> +#include <linux/of_reserved_mem.h>
+> +
+>  #include <linux/efi.h>
+>  #include <linux/psci.h>
+>  #include <linux/sched/task.h>
+> @@ -346,6 +348,8 @@ void __init __no_sanitize_address setup_arch(char **c=
+mdline_p)
+>
+>         paging_init();
+>
+> +       fdt_init_reserved_mem();
+> +
+
+You removed this call from the common code and add it to arm64 arch
+code, doesn't that break every other arch?
+
+The very next thing done here is unflattening the DT. So another call
+from the arch code to the DT code isn't needed either.
+
+Rob
 
