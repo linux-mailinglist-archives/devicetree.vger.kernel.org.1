@@ -1,153 +1,64 @@
-Return-Path: <devicetree+bounces-10233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336A37D050C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 00:53:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2847D0579
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 01:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FB0EB20F45
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 22:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE0FE281F72
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 23:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6391E4293B;
-	Thu, 19 Oct 2023 22:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C707450DC;
+	Thu, 19 Oct 2023 23:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jrdiF//h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/J+mknH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24FE321AA
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 22:53:44 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8294134;
-	Thu, 19 Oct 2023 15:45:59 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JMWR8n012269;
-	Thu, 19 Oct 2023 22:45:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=HGh5RIhqjkjYPosV8+pUioVK+MKtfbrBwhNPit3GNXU=;
- b=jrdiF//huxYBB5lmGOtZFKARb45SdOBUHpTj9WVdwB+mn9ME3fauwEzXRyIB0YYjtseD
- DGh0gWk55tK1UVWUorn+qgWVD35DtC5dkiT3gebnLrq5qr/DlvbfI341kaq8qWDsoK8n
- m2ndDPySi3igjsSVwI3ampRwEQR/z7mSOdKeNSo0ISTJlxr63mhl8rqQYXhpF7sVdDR3
- zkK9cvkaYSdmMa6hiPQEEkh3XSEFU9V0VaVC20KyDH2n3SjFFxI3L4U41xr37lpvueGr
- GFRNuxMGZPFuKPm3jhpvLdSbcZoikk3O53X8Zg7mkdhwVEz6AT1EvvVe0qEUuTnsFBbv bg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tubwr068f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 22:45:48 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JMjmdr015028
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Oct 2023 22:45:48 GMT
-Received: from [10.71.110.214] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 19 Oct
- 2023 15:45:45 -0700
-Message-ID: <7e6ddffc-81a5-4183-9e59-7060776c936a@quicinc.com>
-Date: Thu, 19 Oct 2023 15:45:37 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A49D38F88
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:43:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6121C433C7;
+	Thu, 19 Oct 2023 23:43:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697759000;
+	bh=fggoXZ8ybZvMC7HbEMQdngXXOLUAC2C2LgXwXWkInjM=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=u/J+mknHI+BtbrJX38Z4d6fYnNfHjcNPstGgoOMEGc4wsOiYCPiGlZG4ZsA+Uy0uG
+	 PotHuJy1eBlPUNoFXkNbsssnEzHblf80T7gRPH5OR6KOgGwR9750Mgn4Z6i0sfwhug
+	 mJ40NRqtsF3OWuCyoBplZfjPV20MKYc+P2MfjvAIxdrSRdBs/hIf0ZkjyUcHuNA11N
+	 X64DIszkTAWLEI0jRYerSyhaT0peo/2USECCiEBtHIbEnnZw7GdazR3g51zKTCPKNM
+	 6Y568M1s8hkDORBxL5bt89BofpzLEHv2A8qnc7aom+bIpxfQMotulkQzRdhF3hX4TL
+	 JyNYHCsji6ekg==
+Message-ID: <bae818c0f067fd7ef9a7c7fdb15a2022.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] of: reserved_mem: Change the order that
- reserved_mem regions are stored
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <frowand.list@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20231019184825.9712-1-quic_obabatun@quicinc.com>
- <20231019184825.9712-2-quic_obabatun@quicinc.com>
- <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: C-h5FgffPKD3GbcCCAXzGuMC5Jn6tkiM
-X-Proofpoint-ORIG-GUID: C-h5FgffPKD3GbcCCAXzGuMC5Jn6tkiM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-19_21,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 impostorscore=0
- adultscore=0 mlxscore=0 clxscore=1015 phishscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2310170001 definitions=main-2310190193
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230916100515.1650336-5-andreas@kemnade.info>
+References: <20230916100515.1650336-1-andreas@kemnade.info> <20230916100515.1650336-5-andreas@kemnade.info>
+Subject: Re: [PATCH v4 4/5] clk: twl: add clock driver for TWL6032
+From: Stephen Boyd <sboyd@kernel.org>
+To: andreas@kemnade.info, bcousson@baylibre.com, conor+dt@kernel.org, devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, linux-clk@vger.kernel.org, linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, mturquette@baylibre.com, robh+dt@kernel.org, tony@atomide.com
+Date: Thu, 19 Oct 2023 16:43:18 -0700
+User-Agent: alot/0.10
 
+Quoting Andreas Kemnade (2023-09-16 03:05:14)
+> The TWL6032 has some clock outputs which are controlled like
+> fixed-voltage regulators, in some drivers for these chips
+> found in the wild, just the regulator api is abused for controlling
+> them, so simply use something similar to the regulator functions.
+> Due to a lack of hardware available for testing, leave out the
+> TWL6030-specific part of those functions.
+>=20
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
 
-On 10/19/2023 12:46 PM, Rob Herring wrote:
-> On Thu, Oct 19, 2023 at 1:49 PM Oreoluwa Babatunde
-> <quic_obabatun@quicinc.com> wrote:
->> The dynamic allocation of the reserved_mem array needs to be done after
->> paging_init() is called because memory allocated using memblock_alloc()
->> is not writeable before that.
->>
->> Nodes that already have their starting address specified in the DT
->> (i.e. nodes that are defined using the "reg" property) can wait until
->> after paging_init() to be stored in the array.
->> But nodes that are dynamically placed need to be reserved and saved in
->> the array before paging_init() so that page table entries are not
->> created for these regions.
->>
->> Hence, change the code to:
->> 1. Before paging_init(), allocate and store information for the
->>    dynamically placed reserved memory regions.
->> 2. After paging_init(), store the rest of the reserved memory regions
->>    which are defined with the "reg" property.
->>
->> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
->> ---
->>  arch/arm64/kernel/setup.c       |  4 +++
->>  drivers/of/fdt.c                | 56 ++++++++++++++++++++++++++-------
->>  drivers/of/of_private.h         |  1 -
->>  drivers/of/of_reserved_mem.c    | 54 ++++++++++++++-----------------
->>  include/linux/of_fdt.h          |  1 +
->>  include/linux/of_reserved_mem.h |  9 ++++++
->>  6 files changed, 83 insertions(+), 42 deletions(-)
->>
->> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
->> index 417a8a86b2db..6002d3ad0b19 100644
->> --- a/arch/arm64/kernel/setup.c
->> +++ b/arch/arm64/kernel/setup.c
->> @@ -27,6 +27,8 @@
->>  #include <linux/proc_fs.h>
->>  #include <linux/memblock.h>
->>  #include <linux/of_fdt.h>
->> +#include <linux/of_reserved_mem.h>
->> +
->>  #include <linux/efi.h>
->>  #include <linux/psci.h>
->>  #include <linux/sched/task.h>
->> @@ -346,6 +348,8 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
->>
->>         paging_init();
->>
->> +       fdt_init_reserved_mem();
->> +
-> You removed this call from the common code and add it to arm64 arch
-> code, doesn't that break every other arch?
-Yes, the same changes will be needed for every other arch. I was hoping to
-get some feedback on the RFC before implementing this on other archs which
-is why the change is currently only in arm64.
-> The very next thing done here is unflattening the DT. So another call
-> from the arch code to the DT code isn't needed either.
-Yes, I see that unflatten_device_tree() is being called right after here.
-Just to clarify, are you suggesting to move fdt_init_reserved_mem() into the
-unflatten_device_tree() call?
-
-
-Thanks, Oreoluwa
+Applied to clk-next
 
