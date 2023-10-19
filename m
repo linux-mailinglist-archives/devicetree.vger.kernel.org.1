@@ -1,122 +1,113 @@
-Return-Path: <devicetree+bounces-10220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07CD7D02B7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:47:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0367E7D02EF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 22:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AC1EB20FA6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 19:47:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9874E282132
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 20:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ACA3C697;
-	Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567B13D382;
+	Thu, 19 Oct 2023 20:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDFWVqRH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RiedKH/Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C916E39853
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C58FC433CA;
-	Thu, 19 Oct 2023 19:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314DE38F9E;
+	Thu, 19 Oct 2023 20:02:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C358C433C8;
+	Thu, 19 Oct 2023 20:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697744820;
-	bh=kJyJ53sEdpPJK6eagpUQpoxGIQ2v4UNjTrtx9ncWMjI=;
+	s=k20201202; t=1697745773;
+	bh=2MggdwhgnildvMk7NTDjOnoS6Jg5jQXkqNkqB0aYHMA=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=nDFWVqRHy/C2zMBklJ2uAXHxqdaqyNK8XEpcMD3XPazOM4a+k7fcBDHTcyt7zP87m
-	 BRoGBXdMVFnsreuu6oAkhuB84Hn7yaCb6NtgFo0JYvA3ethDF4zLq0EODdip5BHnJE
-	 uNajNGFKDO4kgMYHhw53oYyl0Y8B9iYX9dY4q9AYVwM0z/6HkDJFlFodgiHOLguqIM
-	 a6jWNYdB5MF1p3tiZZDjPIJs5Zj0f+gmi17m+01RO3fzNFX16MtotBWDwfdaIdUI5t
-	 NHh9LOeIDN2aqzeZcgTB2Pb3Wzp5dC9gE8fUCg38u0sOYm+9uWfgvpKULSivuohuFX
-	 KhFVy1K+yKSeQ==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-507adc3381cso14464e87.3;
-        Thu, 19 Oct 2023 12:47:00 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwoZWO2y+cBuFpssxAWespnrakCz4ZBLqydAWh3Cu/VhFbPTc3z
-	VAA+tcySJUJGYt97go9z05tA7p6kBMEUz+bHpQ==
-X-Google-Smtp-Source: AGHT+IEv0Yxf1FOVuXFGWen4jDWLp5PE11XXP+QWf6ZcfW0Lwd4xFfWSkOUQ2pkinfmyVX+ucqLtX8D9FLXWah8BxeU=
-X-Received: by 2002:ac2:5328:0:b0:500:b74b:e53 with SMTP id
- f8-20020ac25328000000b00500b74b0e53mr2215352lfh.46.1697744818512; Thu, 19 Oct
- 2023 12:46:58 -0700 (PDT)
+	b=RiedKH/Y9dbYa6ubDlG7uoC+WUOghwhKS6eWHt3VkrGMdKiVpXgjr3wa1Syt8GXzb
+	 aSB+8hDbY/HNr9zWPmh72fzVc8GWH6W+XurEWZqjj3vVuJBbCPtrrW/G/J1v2DaTpA
+	 ZsbVxpeds1O29uH8kEZLDd9zKF+bkYcUw34+b2WjZNQHf/KTADVgYG04uGSniuLo33
+	 Fo+oLOfnmd9qbPJ5MdS3C5zbsyiNyTJq3NAGDbqj4j6DslvZ/IYJqV+KYeiy76VqQJ
+	 Hlyp8sUZp8E3iRaOCKosL3bacUhMlLBYdcV78uPcq/PwPb+8a0xG4neCLulkJzM5pO
+	 /nbDUji07J9oQ==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5079eed8bfbso50783e87.1;
+        Thu, 19 Oct 2023 13:02:53 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwKZGhiaRU7dSDQiRJDADsL8AtWjbqaob/EHCWVsn3mZYf5LWrz
+	vbQm1kQbyWln1yZe/YIcnH/72IjY+1aclfxTJA==
+X-Google-Smtp-Source: AGHT+IHnua5COj4QgtXUHQNJd1cUfAW0WlEMmymFNUywVpcrDbobt71n9JgwhpVYyWQmFIz6kp8EPizyDSqyxeaxEtQ=
+X-Received: by 2002:ac2:54af:0:b0:502:9fce:b6cc with SMTP id
+ w15-20020ac254af000000b005029fceb6ccmr2235339lfk.11.1697745771855; Thu, 19
+ Oct 2023 13:02:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231019184825.9712-1-quic_obabatun@quicinc.com> <20231019184825.9712-2-quic_obabatun@quicinc.com>
-In-Reply-To: <20231019184825.9712-2-quic_obabatun@quicinc.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 19 Oct 2023 14:46:46 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
-Message-ID: <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] of: reserved_mem: Change the order that
- reserved_mem regions are stored
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Cc: catalin.marinas@arm.com, will@kernel.org, frowand.list@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, kernel@quicinc.com
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+ <169762516805.391872.4190043734592153628.robh@kernel.org> <CACRpkdZz_+WAt7GG4Chm_xRiBNBP=pin2dx39z27Nx0PuyVN7w@mail.gmail.com>
+ <20231019134902.GB193647-robh@kernel.org>
+In-Reply-To: <20231019134902.GB193647-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 19 Oct 2023 15:02:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKSex0o_jPV=MNsF7oUnaLx97FpiqJXPhUZH=kv7JZM0w@mail.gmail.com>
+Message-ID: <CAL_JsqKSex0o_jPV=MNsF7oUnaLx97FpiqJXPhUZH=kv7JZM0w@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Paolo Abeni <pabeni@redhat.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Christian Marangi <ansuelsmth@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Gregory Clement <gregory.clement@bootlin.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org, 
+	"David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, 
+	Florian Fainelli <f.fainelli@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Eric Dumazet <edumazet@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 19, 2023 at 1:49=E2=80=AFPM Oreoluwa Babatunde
-<quic_obabatun@quicinc.com> wrote:
+On Thu, Oct 19, 2023 at 8:49=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> The dynamic allocation of the reserved_mem array needs to be done after
-> paging_init() is called because memory allocated using memblock_alloc()
-> is not writeable before that.
+> On Wed, Oct 18, 2023 at 01:39:45PM +0200, Linus Walleij wrote:
+> > On Wed, Oct 18, 2023 at 12:32=E2=80=AFPM Rob Herring <robh@kernel.org> =
+wrote:
+> >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a re=
+quired property
+> > >         from schema $id: http://devicetree.org/schemas/net/dsa/marvel=
+l,mv88e6xxx.yaml#
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a requi=
+red property
+> > >         from schema $id: http://devicetree.org/schemas/net/dsa/marvel=
+l,mv88e6xxx.yaml#
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/net/marvell,mvusb.example.dtb: switch@0: ports: '#address-cells' is a re=
+quired property
+> > >         from schema $id: http://devicetree.org/schemas/net/dsa/marvel=
+l,mv88e6xxx.yaml#
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/net/marvell,mvusb.example.dtb: switch@0: ports: '#size-cells' is a requi=
+red property
+> > >         from schema $id: http://devicetree.org/schemas/net/dsa/marvel=
+l,mv88e6xxx.yaml#
+> >
+> > Fixed in patch 2/7?
 >
-> Nodes that already have their starting address specified in the DT
-> (i.e. nodes that are defined using the "reg" property) can wait until
-> after paging_init() to be stored in the array.
-> But nodes that are dynamically placed need to be reserved and saved in
-> the array before paging_init() so that page table entries are not
-> created for these regions.
->
-> Hence, change the code to:
-> 1. Before paging_init(), allocate and store information for the
->    dynamically placed reserved memory regions.
-> 2. After paging_init(), store the rest of the reserved memory regions
->    which are defined with the "reg" property.
->
-> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-> ---
->  arch/arm64/kernel/setup.c       |  4 +++
->  drivers/of/fdt.c                | 56 ++++++++++++++++++++++++++-------
->  drivers/of/of_private.h         |  1 -
->  drivers/of/of_reserved_mem.c    | 54 ++++++++++++++-----------------
->  include/linux/of_fdt.h          |  1 +
->  include/linux/of_reserved_mem.h |  9 ++++++
->  6 files changed, 83 insertions(+), 42 deletions(-)
->
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index 417a8a86b2db..6002d3ad0b19 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -27,6 +27,8 @@
->  #include <linux/proc_fs.h>
->  #include <linux/memblock.h>
->  #include <linux/of_fdt.h>
-> +#include <linux/of_reserved_mem.h>
-> +
->  #include <linux/efi.h>
->  #include <linux/psci.h>
->  #include <linux/sched/task.h>
-> @@ -346,6 +348,8 @@ void __init __no_sanitize_address setup_arch(char **c=
-mdline_p)
->
->         paging_init();
->
-> +       fdt_init_reserved_mem();
-> +
+> Yes. If one patch has errors we drop it. I should probably just give up
+> on the rest of the series instead.
 
-You removed this call from the common code and add it to arm64 arch
-code, doesn't that break every other arch?
-
-The very next thing done here is unflattening the DT. So another call
-from the arch code to the DT code isn't needed either.
+The bot should work better now not dropping patches when there are
+warnings. It will give incremental new warnings with each patch.
 
 Rob
 
