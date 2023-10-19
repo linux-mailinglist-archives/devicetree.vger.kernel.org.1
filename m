@@ -1,104 +1,132 @@
-Return-Path: <devicetree+bounces-10231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33D47D0438
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 23:51:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 954117D04A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 00:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73779B20C2B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 21:51:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C7C42822D9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 22:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04F53FB0C;
-	Thu, 19 Oct 2023 21:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F86C42914;
+	Thu, 19 Oct 2023 22:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XKecxZw+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qCC/P6Z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EF93E00E
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 21:51:06 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419F6115
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:04 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so28076266b.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1697752262; x=1698357062; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0XF9t5trmYV2tU8uP1V1uGs3giS+nQ6cAeAndNsOA6c=;
-        b=XKecxZw+9atQoxLFNJghavdtLoqts/seGMjs7GX8Rp7rkZsrcfjdOyhEAZlUpwqxLU
-         deghHUr0FsyExxgrh0eCsMZiyWxu3mWrCG64udsMkLRFNp0SZARLPLbt0KOX7Z2jzpcm
-         1YxOK595hbZ7HGAJOqlG0aaExxx1oQLGlgnBo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697752262; x=1698357062;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0XF9t5trmYV2tU8uP1V1uGs3giS+nQ6cAeAndNsOA6c=;
-        b=Kc8T/uMt2W/w8+SWzTOzk8NQj1TQ8b9FV4k/0HotT9SHieBP9jGqrRj6OfN2pnkzWU
-         fb8lfQ2kNpsYh54oJCHE61vVESmZfJIgaum9jVQC4toS0tYIColAH/4FoERHmvzxXvRG
-         RJTF18jlupkvIutJKl4YksUhO8Dkb7Rv/Jby0nz/GqZq8z2/k3bEzGcdLuHME5/ZtNiX
-         RQd0gf0pWibZqSNraR8UZI5nQn9xIlI7M7DsCjBBiXNXCP7zsWpNAua1DjaEQ0Szz1G6
-         sP8veKT0mXq2X/g+1539Lwc2xy3/EDmbE1R4GxytLowhDTTWNo6BtOJ960u1z1d1Ywn6
-         Ybyg==
-X-Gm-Message-State: AOJu0YzH27wp5b0jSoa0JKn5Ghw1mxfan+/RM3wrqhuoMiPnAMESKUom
-	ECeYu2lt96FzqvnSbaFD/v4J2WeffD/IzngxltjAzgP8
-X-Google-Smtp-Source: AGHT+IGz05D4iQE1h/7rACYkh85/mSwL0Lh+uJ/uJrZ4rokTA+Mot6tgjLZDDO57tQtp6Gc9cK1hyg==
-X-Received: by 2002:a17:907:3f10:b0:9c0:1d65:68d9 with SMTP id hq16-20020a1709073f1000b009c01d6568d9mr3058406ejc.7.1697752262323;
-        Thu, 19 Oct 2023 14:51:02 -0700 (PDT)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com. [209.85.208.45])
-        by smtp.gmail.com with ESMTPSA id c25-20020a170906695900b009ae3d711fd9sm240260ejs.69.2023.10.19.14.51.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 14:51:01 -0700 (PDT)
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-53eeb28e8e5so1633a12.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:51:01 -0700 (PDT)
-X-Received: by 2002:a50:8d59:0:b0:53e:7ad7:6d47 with SMTP id
- t25-20020a508d59000000b0053e7ad76d47mr25591edt.5.1697752261284; Thu, 19 Oct
- 2023 14:51:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F0D42909
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 22:08:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7149C433C7;
+	Thu, 19 Oct 2023 22:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697753323;
+	bh=0xUExZaCnpOZe09w1IymOILE+jJMJDYlYAh9fZjofMw=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=qCC/P6Z7UE87jxBHLuDwBwT+KgZtuqPAHBmCFVYxig53subGe5m/UnXrOlQ1Kttxa
+	 jHQ9vw1yma/irMtt9GBQsWafuxPEoxiRWnA0GU7VmuaxbveT4JBxu/b3ck3oQljMbu
+	 J+rIs5mj40Ud/DefXs1Jzmu6Frp/rEI/BujGJIChvpy4PcE4+izgmrkMSHyUtVIG3Z
+	 Xka4WoIrLTURuZrBfnFMC1SN/ijke3yG0jWrNymZ1tbywZ4jprIOCnnS5Wg6KUOxLr
+	 J5f9qRyKtnqNXVlVSsS6DJ0jQxSBipUNP1vQCFrMYW5/mLuoBOOAi2Twt2xDZT9wuH
+	 9WvO+5K4DSVMg==
+Message-ID: <4f4803d538c6727990cda8f2e4fd7397.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231013091844.804310-1-yangcong5@huaqin.corp-partner.google.com> <20231013091844.804310-4-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20231013091844.804310-4-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 19 Oct 2023 14:50:49 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U8fDO7q3k8DmXHPnX0XrryzY1-zcuU6N1ZmDo=O3anLw@mail.gmail.com>
-Message-ID: <CAD=FV=U8fDO7q3k8DmXHPnX0XrryzY1-zcuU6N1ZmDo=O3anLw@mail.gmail.com>
-Subject: Re: [v4 3/3] arm64: defconfig: Enable ILITEK_ILI9882T panel
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, linus.walleij@linaro.org, swboyd@chromium.org, 
-	airlied@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <76b652c8-041c-49d6-9804-2781fe2ccfe3@linaro.org>
+References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com> <20230913-gpll_cleanup-v2-1-c8ceb1a37680@quicinc.com> <76f3bc23-8677-42bd-a3a5-43b17cbe552e@linaro.org> <c3dfeecf5cde513cf675b2f1a382f7a4.sboyd@kernel.org> <76b652c8-041c-49d6-9804-2781fe2ccfe3@linaro.org>
+Subject: Re: [PATCH v2 01/11] clk: qcom: ipq8074: drop the CLK_SET_RATE_PARENT flag from PLL clocks
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, stable@vger.kernel.org
+To: Andy Gross <agross@kernel.org>, Anusha Rao <quic_anusha@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Devi Priya <quic_devipriy@quicinc.com>, Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>, Jassi Brar <jassisinghbrar@gmail.com>, Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Sricharan Ramabadhran <quic_srichara@quicinc.com>, Varadarajan Narayanan <quic_varada@quicinc.com>
+Date: Thu, 19 Oct 2023 15:08:41 -0700
+User-Agent: alot/0.10
 
-Hi
+Quoting Konrad Dybcio (2023-10-19 04:22:33)
+>=20
+>=20
+> On 10/19/23 02:16, Stephen Boyd wrote:
+> > Quoting Konrad Dybcio (2023-09-15 05:19:56)
+> >> On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
+> >>> GPLL, NSS crypto PLL clock rates are fixed and shouldn't be scaled ba=
+sed
+> >>> on the request from dependent clocks. Doing so will result in the
+> >>> unexpected behaviour. So drop the CLK_SET_RATE_PARENT flag from the P=
+LL
+> >>> clocks.
+> >>>
+> >>> Cc: stable@vger.kernel.org
+> >>> Fixes: b8e7e519625f ("clk: qcom: ipq8074: add remaining PLL=E2=80=99s=
+")
+> >>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> >>> ---
+> >> Stephen, do you think there should be some sort of error
+> >> or at least warning thrown when SET_RATE_PARENT is used with
+> >> RO ops?
+> >>
+> >=20
+> > Sure? How would that be implemented?
+> drivers/clk/clk.c : static void clk_change_rate()
+>=20
+> if (!skip_set_rate && core->ops->set_rate)
+>         core->ops->set_rate(core->hw, core->new_rate, best_parent_rate);
+>=20
+> ->
+>=20
+> if (!skip_set_rate) {
+>         if (core->ops->set_rate)
+>                 core->ops->set_rate(core->hw, core->new_rate,
+>                                     best_parent_rate);
+>         else
+>                 pr_err("bad idea");
+> }
+>=20
 
-On Fri, Oct 13, 2023 at 2:19=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> DRM_PANEL_ILITEK_ILI9882T is being split out from
-> DRM_PANEL_BOE_TV101WUM_NL6. Since the arm64 defconfig had the BOE
-> panel driver enabled, let's also enable the Ilitek driver.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+CLK_SET_RATE_PARENT means that "calling clk_set_rate() on this clk will
+propagate up to the parent". Changing the rate of the parent could
+change the rate of this clk to be the same frequency as the parent if
+this clk doesn't have a set_rate clk op, or it could be that this clk
+has a fixed divider so during the determine_rate() callback it
+calculated what rate the parent should be to achieve the requested rate
+in clk_set_rate().
 
-Pushed to drm-misc-next:
+It really matters what determine_rate() returns for a clk and if after
+changing rates that rate is actually achieved. I suppose if the
+determine_rate() callback returns some rate, and then we recalc rates
+and notice that the rate determined earlier doesn't match we're
+concerned. So far in the last decade we've never cared about this though
+and I'm hesitant to start adding that check. I believe some qcom clk
+drivers take a shortcut and round the rate in frequency tables so
+whatever is returned in determine_rate() doesn't match what
+recalc_rate() calculates.
 
-c2635c0ec8b4 arm64: defconfig: Enable ILITEK_ILI9882T panel
+It would be interesting to get rid of the CLK_SET_RATE_PARENT check in
+clk_calc_new_rates() and simply always call clk_calc_new_rates() on the
+parent if the parent->rate doesn't match what determine_rate thought it
+should be. The framework currently calls the rounding clk op for a clk
+and gets back the parent rate that the clk requires to achieve that rate
+and then it blindly trusts that the parent rate is going to be achieved.
+If the CLK_SET_RATE_PARENT flag is set it calls clk_calc_new_rates()
+recursively on the parent, but then it doesn't check that the parent
+rate is what was requested. That's mostly there to figure out if the
+parent also needs to change rate, i.e. calculating the 'top' clk in a
+rate change. Note that this also calls determine_rate again on the
+parent, once from the child clk's determine_rate clk op and once from
+the framework.
+
+I wouldn't be surprised if some driver is relying on this behavior where
+the rate isn't checked after being set. Maybe when we extend struct
+clk_rate_request to have a linked list that allows a clk to build up a
+chain of rate requests we can also enforce more things like matching
+rates on recalc. Then any drivers that are relying on this behavior will
+have to opt in to a different method of changing rates and notice that
+things aren't working.
 
