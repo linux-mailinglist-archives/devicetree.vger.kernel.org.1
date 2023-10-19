@@ -1,218 +1,164 @@
-Return-Path: <devicetree+bounces-10070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B04C7CF8BD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:28:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C65A37CF8C1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8B91C20AAB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:28:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F3E42820A5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4173E21354;
-	Thu, 19 Oct 2023 12:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596B22136B;
+	Thu, 19 Oct 2023 12:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EDuPrpos"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="kCo5OFMF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F7B1DFC3
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:27:59 +0000 (UTC)
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7426139
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:27:57 -0700 (PDT)
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20231019122756epoutp03ec939abc3a7e111092bab1b3e165d7e4~PgfWR7wma1428814288epoutp03W
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:27:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20231019122756epoutp03ec939abc3a7e111092bab1b3e165d7e4~PgfWR7wma1428814288epoutp03W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1697718476;
-	bh=688aE9Nws9c3dOqWnubX6ii4EGimkiuoUkLhVlItdCw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=EDuPrposR5Fsn5z1Be4bmR5cMG3M3eB2wUr0S2nFO02721uH9DR9eat97uE0LQVNV
-	 2yeyMq28PiwxYCZqhailFMoHQSZMRV93yBU97xPdg3TMNju6IQ8lbkm7ehzrvlvglq
-	 SoD7Ep9rYqjISEvgox9UpR9NTX7oC2YxmoCQgkls=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-	20231019122755epcas1p462d597be8e20db6a99da22334ea5b2e6~PgfVqx5_Y0183701837epcas1p4U;
-	Thu, 19 Oct 2023 12:27:55 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.38.237]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4SB6SB1cPyz4x9Q4; Thu, 19 Oct
-	2023 12:27:54 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-	epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-	33.A4.10025.AC021356; Thu, 19 Oct 2023 21:27:54 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231019122753epcas1p47b1f94030df303ec4c8671843e7ef2a6~PgfTjGt_10389603896epcas1p4L;
-	Thu, 19 Oct 2023 12:27:53 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231019122753epsmtrp2cfb01ee11788989ab379d9a2d7f0136f~PgfTg7yGD2736227362epsmtrp23;
-	Thu, 19 Oct 2023 12:27:53 +0000 (GMT)
-X-AuditID: b6c32a39-c2bf870000002729-79-653120cae5d4
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	DF.F9.07368.9C021356; Thu, 19 Oct 2023 21:27:53 +0900 (KST)
-Received: from cw00choi03 (unknown [10.113.111.106]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231019122752epsmtip2d637103c556584527077c54b09501bc7~PgfTJWNdP2311623116epsmtip2y;
-	Thu, 19 Oct 2023 12:27:52 +0000 (GMT)
-From: "Chanwoo Choi" <cw00.choi@samsung.com>
-To: "'Sascha Hauer'" <s.hauer@pengutronix.de>,
-	<linux-rockchip@lists.infradead.org>
-Cc: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, "'Heiko Stuebner'" <heiko@sntech.de>, "'Chanwoo
- Choi'" <chanwoo@kernel.org>, "'Kyungmin Park'" <kyungmin.park@samsung.com>,
-	"'MyungJoo	Ham'" <myungjoo.ham@samsung.com>, "'Will Deacon'"
-	<will@kernel.org>, "'Mark Rutland'" <mark.rutland@arm.com>,
-	<kernel@pengutronix.de>, "'Michael Riesch'" <michael.riesch@wolfvision.net>,
-	"'Robin Murphy'" <robin.murphy@arm.com>, "'Vincent Legoll'"
-	<vincent.legoll@gmail.com>, "'Rob Herring'" <robh+dt@kernel.org>,
-	"'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>, "'Conor
-	Dooley'" <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, "'Sebastian
-	Reichel'" <sebastian.reichel@collabora.com>, "'Conor Dooley'"
- <conor.dooley@microchip.com>
-In-Reply-To: <20231018061714.3553817-23-s.hauer@pengutronix.de>
-Subject: RE: [PATCH v8 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add
- rk3588 support
-Date: Thu, 19 Oct 2023 21:27:52 +0900
-Message-ID: <003001da0287$ae6b2970$0b417c50$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DF21DFC3;
+	Thu, 19 Oct 2023 12:28:34 +0000 (UTC)
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB16EBE;
+	Thu, 19 Oct 2023 05:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KAdaUAiW/PLAxqjMWUUOBL8HfrZqlFhYhyfomShrMW8=; b=kCo5OFMFje7kyh0bUXC/x92Ir2
+	b1s87iw/epDqvYES790GOuPO0fku4ZA8VcFd/q5/2PjYxHXU1Ai0byK90naR/9nbinCMPs+rxjLLL
+	ohkIsXUyngQfbwQrdzHMeh1liHmWBCp2V8W4GeGrDBZJt2YqYqfQ1GtJwiZJD+OiUUqOGdXdUtwP5
+	mlhpCvrfF9QB3BxEoh+VyI+bbRtfnrMZ1u4mM/gGwkzmJDw3qcMl99vQWqFQ+IWLvCbwMwEa5RYhq
+	SYDSgu8Bszfm/TotWw2Qj9tlyeLsWXg6U5gaoF/LQrotd1OAervoSh54XryDf9JNrPpNGeT8+CLVp
+	S+oLYSog==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57908)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1qtS8Y-00072G-24;
+	Thu, 19 Oct 2023 13:28:26 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1qtS8Z-0000Rd-Tt; Thu, 19 Oct 2023 13:28:27 +0100
+Date: Thu, 19 Oct 2023 13:28:27 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-kernel@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or
+ ethernet-ports
+Message-ID: <ZTEg62nZtYXW2Uid@shell.armlinux.org.uk>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org>
+ <169762516670.391804.7528295251386913602.robh@kernel.org>
+ <20231019-repacking-scrunch-f2435c2fd7e8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: ko
-Thread-Index: AQFYMiMsP3soeW2GlDsie1R9CxInBwLNIYk4A0SM3OyxJB2SoA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Tf0xTVxjd7WtfC676hoBXnLM8ZhaMYKstXBA2I8he1DgWAsscGzb02RKg
-	7fpjE+didYC2QQSZUysoTDtdV0ZWEApbJQIRcROHP8o2wDCFxVJpGI0KOsJaHm78d873ne9+
-	59yby8NCZvAIXp5SR2uU0gISD2Y3d0YLY64LRLSw1sRDlb/dYSObs5eFvrQ7uOhsVy8Hzd73
-	cJD1eCsblT/8E0M3Dj7iIvsDFwfdbqvGke9IF0CTw7MYsvT3sdCVutfRwIGLOCpxdnHRlYkR
-	DpppsbPRkGcH6q7/C0fFg5JNYZTtjA1QjqHzgGo1D3Epu9WIU4Oun3Cq8fx+anDKAqijM0Kq
-	vMkKqBbXGYzy2V+jzj5/ANJf3pmfpKClMlojoJW5KlmeUp5MbsvIScmRxAlFMaIEFE8KlNJC
-	OplM3Z4ek5ZX4I9KCj6RFuj9pXSpVkuuezNJo9LraIFCpdUlk7RaVqCWqGO10kKtXimPVdK6
-	RJFQuF7iF+7KVwzYuoH6ROie0aYBrgFcJUwgiAcJMez2GFgmEMwLIRwAflX7xTyZ9JPLjYAh
-	TwAc6fKxX4yYTjVgTMMJYFfbJQ5D3ADeb6jjmgCPhxNrYe1UZmAglMiER6855o7FiAs4/Ofw
-	SVagEUS8BW/eG8YCeCnxIbxlOTxXZxOr4dhUHzeA+UQC7HC6OQx+BfacGplzgRGrYMt4NcY4
-	EsDp0W84TD0UnjaWYszizdBcdpnFaL4LgvbpNAanwnMVbsDgpXCsu4nL4Ajo8zrxgFFIVAHY
-	5/FgDGkA8Idvi+e3bYDtlipWICVGRMOGtnVMORK2Pq8BjInF0Pu4jBOQQIIPD5eGMJIoeHt4
-	aN7PcnjukBGvAKR5QTTzgmjmBXHM/y+rBWwrCKfV2kI5rRWpJf89d66q0A7m/sGaBAc4MT4R
-	2wFYPNABIA8jQ/mrKSEdwpdJi/bSGlWORl9AazuAxH/ZlVhEWK7K/5GUuhyROEEojlu/QYxE
-	cSJyGb93/IgshJBLdXQ+TatpzYs5Fi8owsCq0hcW8Z17Nt090Jqd70uK6FTs3pa4xLwq6uFN
-	W+RKo9eebvDGPxXkTMftX3Q8bK3lkfyZwbe3ovPkMn09/dnWyBsxyRn41L3Td6811it4WVFj
-	P5f5at5/FxvZEq/cOL0vxfQeKXpW43S+Qeq/li2K/r2n4cdJY5s7zB2+L8tjxsM+7i+NefWP
-	p5+3B/fccVlfYt26ZHM9vvBB2TuV7WnOjd4lzbssrkQpX7wy7QkNhqpXfMraEl70/d+LBzT6
-	8UODNVeX1w03Jjs6dl6MWvHrLxkZYzP9qaQo3LA7250yKs/OR9c3u3eMbLe+PYEyi7eWlDfT
-	JUmzWR8dFHtzj+kFPLeRZGsVUtEaTKOV/gt/B+BbkAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTcRjlt/vYdWhcN62fGimrkYktVym/nmph3EikPzIoIx16ceZr7Wpm
-	JNlDw0dalprz1csea2ZNa1Oz0Gm1sIdY5mtmqVlpGUVgxTTniPzvcM75znc++ChMOIK7UjEJ
-	SawqQR4nJgX4PaPYfbnJQ8b6FLXz0ZnuVzjSNj3noXM6Ax9Vtj4n0PT7MQJpCutxlPfxHYae
-	HRvnI91QF4E6G8pI9ONUK0DfB6cxVPWmg4eaLy5BfUevkyijqZWPmr8NE8ii1+HIPBaCHld/
-	INGJft8AZ0ZboQWMwXwFMPVqM5/RabJIpr/rPsnUXjnC9E9WASbf4sPk1WkAo++qwJgfukVM
-	5Z8hsN1+t2B9FBsXc4BVrdgYIVD0aR8DZbHTwZG6Pn46eERnAzsK0qthdkkNlg0ElJBuBDCj
-	4CthE1xgUUfbjEDNYBE0GjmbZxTA2jw9YeVJ2htemAy12p3oUJj/xMCzejD6LgkLjD+BbaAF
-	wKleM2l12dH+8MXAIGbFIjoMVlUPz/I4LYGfJzv4VuxAr4EtTZ8IG3aEppJh3LoMo6Uw8w6w
-	0hjtDvVfyjBbTw/4a+QqYeOdYGlWJmYrtAmqcx/wTgORek6S+n+Sek6Ses70BYBrgAur5OKj
-	4yNlSlkCmyLl5PFcckK0NDIxXgdmP8HL0wAGKqekLYBHgZkTKUzs5CBhfFihQ5Q89RCrSgxX
-	JcexXAtwo3DxAgfZ+dIoIR0tT2JjWVbJqv6pPMrONZ0XnMMl3Y5UOd9wEXo91dS1R7+OLHKr
-	fXM5GD971G8LWih41asIu5UmsrT/Htzz7I55+Vr/kZTx8MINQ/u4L7HCFDsPSZAlaE/uxjHv
-	zd65zrWoMvahQrDSz81xMJN08yh0jzh2N3QiZAHYMDEaSBxeFX78pd9JfGLnuh6d/qvOX51k
-	NpLZlrSYrd6+kpzi9xY8tiCL3/T9pmbdkLCuQJkaLmnwL7vsueznwMr0MNOubeXl466dHUGL
-	/+w19FpMnX3XTpnkrGOKfeM47upYc7YtbWlPmjb57aWa4ttk6v6eA/YRosCgxOD13fkT86XQ
-	r97eU6JXB8yjp3fsq5aMFinEOKeQy7wwFSf/C4n2qKR4AwAA
-X-CMS-MailID: 20231019122753epcas1p47b1f94030df303ec4c8671843e7ef2a6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231018063745epcas1p4de8a7797491a4c207f9cfbf8f1182f6a
-References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
-	<CGME20231018063745epcas1p4de8a7797491a4c207f9cfbf8f1182f6a@epcas1p4.samsung.com>
-	<20231018061714.3553817-23-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231019-repacking-scrunch-f2435c2fd7e8@spud>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Thu, Oct 19, 2023 at 01:03:41PM +0100, Conor Dooley wrote:
+> On Wed, Oct 18, 2023 at 05:32:48AM -0500, Rob Herring wrote:
+> > 
+> > On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
+> > > Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+> > > a DSA switch node need to have a ports or ethernet-ports
+> > > subnode, and that is actually required, so add requirements
+> > > using oneOf.
+> > > 
+> > > Suggested-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+> > ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+> > 
+> > dtschema/dtc warnings/errors:
+> > Traceback (most recent call last):
+> >   File "/usr/local/bin/dt-doc-validate", line 64, in <module>
+> >     ret |= check_doc(f)
+> >            ^^^^^^^^^^^^
+> >   File "/usr/local/bin/dt-doc-validate", line 32, in check_doc
+> >     for error in sorted(dtsch.iter_errors(), key=lambda e: e.linecol):
+> >                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> >   File "/usr/local/lib/python3.11/dist-packages/dtschema/schema.py", line 125, in iter_errors
+> >     self.annotate_error(scherr, meta_schema, scherr.schema_path)
+> >   File "/usr/local/lib/python3.11/dist-packages/dtschema/schema.py", line 104, in annotate_error
+> >     schema = schema[p]
+> >              ~~~~~~^^^
+> > KeyError: 'type'
+> 
+> Locally, on an older version of dt-schema, I see
+> /stuff/linux-dt/Documentation/devicetree/bindings/net/dsa/dsa.yaml: $defs: 'oneOf' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
+> 	hint: A json-schema keyword was found in $defs key.
+> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> /stuff/linux-dt/Documentation/devicetree/bindings/net/dsa/dsa.yaml: $defs:oneOf: [{'required': ['ports']}, {'required': ['ethernet-ports']}] is not of type 'object'
+> 	hint: $defs entries must contain schemas
+> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> 
+> On the latest version I see the error from the bot.
+> 
+> Doing 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index bd6948e4fd9e..25e5950d51ae 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -55,10 +55,10 @@ $defs:
+>              $ref: dsa-port.yaml#
+>              unevaluatedProperties: false
+>  
+> -  oneOf:
+> -    - required:
+> -      - ports
+> -    - required:
+> -      - ethernet-ports
+> +oneOf:
+> +  - required:
+> +    - ports
+> +  - required:
+> +    - ethernet-ports
+>  
+>  ...
+> 
+> resolves both issues, but the older version of dt-schema definitely had
+> better error reporting in this case!
 
+And now I'm even more confused... your example in your other reply had
+six spaces before "- ports" and "- ethernet-ports" but here you're
+using four spaces.
 
-> -----Original Message-----
-> From: Sascha Hauer <s.hauer@pengutronix.de>
-> Sent: Wednesday, October 18, 2023 3:17 PM
-> To: linux-rockchip@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> linux-pm@vger.kernel.org; Heiko Stuebner <heiko@sntech.de>; Chanwoo Choi
-> <chanwoo@kernel.org>; Kyungmin Park <kyungmin.park@samsung.com>; MyungJoo
-> Ham <myungjoo.ham@samsung.com>; Will Deacon <will@kernel.org>; Mark
-> Rutland <mark.rutland@arm.com>; kernel@pengutronix.de; Michael Riesch
-> <michael.riesch@wolfvision.net>; Robin Murphy <robin.murphy@arm.com>;
-> Vincent Legoll <vincent.legoll@gmail.com>; Rob Herring
-> <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
-> devicetree@vger.kernel.org; Sebastian Reichel
-> <sebastian.reichel@collabora.com>; Sascha Hauer <s.hauer@pengutronix.de>;
-> Conor Dooley <conor.dooley@microchip.com>; Chanwoo Choi
-> <cw00.choi@samsung.com>
-> Subject: [PATCH v8 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add
-> rk3588 support
-> 
-> This adds rockchip,rk3588-dfi to the list of compatibles. Unlike ealier
-> SoCs the rk3588 has four interrupts (one for each channel) instead of only
-> one, so increase the number of allowed interrupts to four.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> 
-> Notes:
->     Changes since v4:
->      - new patch
-> 
->     Changes since v5:
->      - drop interrupt-names property
-> 
->     Changes since v4:
->      - new patch
-> 
->  .../devicetree/bindings/devfreq/event/rockchip,dfi.yaml       | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git
-> a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> index e8b64494ee8bd..50d3fabe958d5 100644
-> --- a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> @@ -14,6 +14,7 @@ properties:
->      enum:
->        - rockchip,rk3399-dfi
->        - rockchip,rk3568-dfi
-> +      - rockchip,rk3588-dfi
-> 
->    clocks:
->      maxItems: 1
-> @@ -23,7 +24,8 @@ properties:
->        - const: pclk_ddr_mon
-> 
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
-> 
->    reg:
->      maxItems: 1
-> --
-> 2.39.2
-
-
-Applied it. Thanks
-
-Best Regards,
-Chanwoo Choi
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
