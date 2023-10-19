@@ -1,95 +1,114 @@
-Return-Path: <devicetree+bounces-10102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0382E7CFA81
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:11:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EE927CFA8C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:12:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B05EF281FD9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:11:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F2B0B213AA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D69B225D6;
-	Thu, 19 Oct 2023 13:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C2827440;
+	Thu, 19 Oct 2023 13:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XaPSNc/E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uZx+XKR4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648C21A290
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:11:23 +0000 (UTC)
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BF4112
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:11:19 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5a7af52ee31so96973447b3.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:11:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31D224201
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:12:38 +0000 (UTC)
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC55F114
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:12:36 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5a87ac9d245so55009797b3.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:12:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697721078; x=1698325878; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697721156; x=1698325956; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mKyigxz0xjpNw4M9S8MD6bISZmwbP5guXuL2FXnbjpY=;
-        b=XaPSNc/EkHrq7X9uxr8/IsBI0imoaNWGdEVTDqy98z4Hd72So2ByBCBgYbYFeLLnjl
-         GA7PZHBCFJx35lN8m6UPkIjGWhv60ncQQs/dP27hF56JFjYN+Z8hIazsPYjoBVbatj0u
-         /v8nUTf8ZFj1ldHumvx5VzrhiQOyhb4ftYH/s4eTmV1k3jsyohq9GID0lsQF6HLtNvbd
-         4izlaMasNvY56v/WK7zM+CZ7hNe3/oOxxijppHrOVlWwkK9Rcb7B86K1H1WJBWbzC7Lt
-         eKR9iIXcKBKR5CUTL2qSEvvdgpTTU5gV4Jl1JXBWy/Ra+9WcusznqEqgJXZggaZR1nYt
-         GAEA==
+        bh=ihyEfw6d/6Ye9dRz+5lKF9uUOsex/9mwcXLcDYm3qJ8=;
+        b=uZx+XKR4SwV03LW4nZMWDzMLO6y4Ppe3CWxFgc79j+XtZ3gdsozWBNUYw2Cm06O1jl
+         L2sBcz0Mdr/P/9lq4c7GEkqMoNvyqccshGWIJ+QqQvF0AMzov+wG1XdNsfh7HMePokXj
+         k3R/mTtGgGf+YH9Ji8fW9XtYz+EXOxQnHIroQOqbzdpHAUOfuSAT3pH5LS22pmM0qrKd
+         F+7370s5J7mmxhgok25mdbKd4gf7/1932ydQyLvTroz4GjO1yRRSBxFdtU0xMPGlHvAv
+         I8APdq1sMYo66SDl4bZCgmRqzfLSMBVT5/qsVfwmjCQWBCnFrZICO5PWjSmI8CNOhbwN
+         ccYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697721078; x=1698325878;
+        d=1e100.net; s=20230601; t=1697721156; x=1698325956;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mKyigxz0xjpNw4M9S8MD6bISZmwbP5guXuL2FXnbjpY=;
-        b=mU9XV7gsMGteIUmLD7zqEUmw67oS97de0t4lPeYlj/VznPXltRurTVvPCS1/zWi9NG
-         tVXPhrdpHXDla5dMkfEB/vqudsA9LDf22QtFs41W6NR8+oaD7sEMhVP8mnIxLUm9YR5A
-         2gN3fJrHIYGpfV4hBSS1qtJ6523x5c+opbrNkV1++VAiQ6fNgx9B6h3PgxfHm2pSF5DV
-         LDoq92vlkBktG9QkbCX0PmLAgobRSs8DND1Tr9ZrVDRYllLV3dw3wOTVaUi62ct+uubc
-         vIwdU27Q13erloGITW4qPpc5fIGzxyfsSIgGpqwM+wRlenOvd0ATzmlQO1l/boCJOq8I
-         +Y6A==
-X-Gm-Message-State: AOJu0YxdR1DopbtNhTTLx/NlbREJWTyRMrkLoHPmd4js+y6qN/qZr5uW
-	Smla0vAGWSrn5g1ps2On50XbNxCWVhQ/TV/4qbmX0g==
-X-Google-Smtp-Source: AGHT+IFTDmViD4G59KbU+RTJg6WzdOrllTZxG71eprBWbjW7yf0Y2TxoOzGTmJh67kNKv4S5EHKdAM9I6+sYql2eQS4=
-X-Received: by 2002:a0d:c1c2:0:b0:5a8:1058:5d97 with SMTP id
- c185-20020a0dc1c2000000b005a810585d97mr2524844ywd.45.1697721078519; Thu, 19
- Oct 2023 06:11:18 -0700 (PDT)
+        bh=ihyEfw6d/6Ye9dRz+5lKF9uUOsex/9mwcXLcDYm3qJ8=;
+        b=ICp0nDQV0OO+h+c38uynt8ve60hn2Gp5UwevfQ9G2RxH/mumrLf9SpZN0z48EXSysf
+         ZQ8RpVaKdTLyEHowxY0asS38ezFW5KpBQygwf8GTwbtyQhIRlJKRXX5aohbImaaXpupL
+         P3iAl4CBnyAWpep11bYrDd+VFAgAm8Uh5gA8Bolr3kgKuE0yWX8/NwZDXaIbjyAOdbj/
+         Q+BwhBag7sdGp6HACGSR5CEV87zwgvbzHGwJIBsuvOm4iH0MHZ35vdDiPGEGjUb8vbgf
+         ChVA5S2vKNCLmZCpP7skSCicsATmvxySmCJ3sdh6HLhiaHRLDhuB+zKazINshHcFIM/4
+         4iIw==
+X-Gm-Message-State: AOJu0YyBnZY8v9mm1w8oXqwmGkvdM7pgtsOebGQT0QtV4UpxANn1akqY
+	n7niqDvtJXWRHs7U1BGBMyOR0bkDvcI7RvPQPXziMQ==
+X-Google-Smtp-Source: AGHT+IFlSkOYgC7bYQ65kZNyfSVr6WVa+b6gqEq58/U4wY+1heInRHuynGjWtLgpzZLHn7tzOvDltfRKStG3dFI+yvI=
+X-Received: by 2002:a81:5247:0:b0:5a7:af89:c4a0 with SMTP id
+ g68-20020a815247000000b005a7af89c4a0mr2416296ywb.23.1697721155836; Thu, 19
+ Oct 2023 06:12:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com> <1697715430-30820-4-git-send-email-quic_msarkar@quicinc.com>
-In-Reply-To: <1697715430-30820-4-git-send-email-quic_msarkar@quicinc.com>
+References: <cover.1697694811.git.quic_varada@quicinc.com> <9796f8e752c4de94b0939e4512bc646a5e72fc32.1697694811.git.quic_varada@quicinc.com>
+In-Reply-To: <9796f8e752c4de94b0939e4512bc646a5e72fc32.1697694811.git.quic_varada@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 19 Oct 2023 16:11:07 +0300
-Message-ID: <CAA8EJpoAQbTT6KZWeD4_PSxDCG0tZ_PvGmUXxpAfHxrK5CAUcg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] phy: qcom-qmp-pcie: add endpoint support for sa8775p
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org, 
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com, 
-	quic_nayiluri@quicinc.com, robh@kernel.org, quic_krichai@quicinc.com, 
-	quic_vbadigan@quicinc.com, quic_parass@quicinc.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mhi@lists.linux.dev, 
-	linux-phy@lists.infradead.org
+Date: Thu, 19 Oct 2023 16:12:25 +0300
+Message-ID: <CAA8EJprLvQ6Mzo-JLetNDESftRaJGDe46UtWChWx+BQRu1aJQA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/9] clk: qcom: config IPQ_APSS_6018 should depend on QCOM_SMEM
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, rafael@kernel.org, 
+	viresh.kumar@linaro.org, ilia.lin@kernel.org, sivaprak@codeaurora.org, 
+	quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 19 Oct 2023 at 14:37, Mrinmay Sarkar <quic_msarkar@quicinc.com> wrote:
+On Thu, 19 Oct 2023 at 11:42, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
 >
-> Add support for dual lane end point mode PHY found on sa8755p platform.
->
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 37 +++++++++++++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5_20.h |  2 ++
->  2 files changed, 39 insertions(+)
+> The config IPQ_APSS_6018 should depend on QCOM_SMEM, to
+> avoid the following error.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Which error?
+
+>
+> Fixes: 5e77b4ef1b19 ("clk: qcom: Add ipq6018 apss clock controller")
+> Reported-by: kernel test robot <yujie.liu@intel.com>
+> Closes: https://lore.kernel.org/r/202310181650.g8THtfsm-lkp@intel.com/
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 3194c8b..ad1acd9 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -131,6 +131,7 @@ config IPQ_APSS_6018
+>         tristate "IPQ APSS Clock Controller"
+>         select IPQ_APSS_PLL
+>         depends on QCOM_APCS_IPC || COMPILE_TEST
+> +       depends on QCOM_SMEM
+>         help
+>           Support for APSS clock controller on IPQ platforms. The
+>           APSS clock controller manages the Mux and enable block that feeds the
+> --
+> 2.7.4
+>
+
 
 -- 
 With best wishes
