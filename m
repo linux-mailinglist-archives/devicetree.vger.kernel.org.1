@@ -1,160 +1,140 @@
-Return-Path: <devicetree+bounces-10164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A457CFDCF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:27:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620C77CFDE0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8332B1C20E63
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:26:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01DA4B20D2D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B5F2FE39;
-	Thu, 19 Oct 2023 15:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562192FE13;
+	Thu, 19 Oct 2023 15:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qkfFqJqR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mj1MynCf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6652747A;
-	Thu, 19 Oct 2023 15:26:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7418DC433C9;
-	Thu, 19 Oct 2023 15:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697729217;
-	bh=gJBYevQ+y1P+nfW5qqXc8AdSviknrFQ4+3Gq6tjeXvw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qkfFqJqRqFTNMtJGgufHNXok8NJKVDKJ0XzXyr3io3sQ+4lM/JrK/Pm6tEZS7xJvc
-	 dzZ03b8zs4yvDkY6BZYdPuwsvraWX6LbcqojqOhHz4+JCrw6DPRbPDCF4QV80jSa1Z
-	 koiEsxRDsgLNsQgud6nj1LBZYOpQM+9UKsmyKh4MSxXE/oja5x+73gqWXw5svWnfPs
-	 W3JwFqJ+mhZ7l0DwqeAztTUB+9Ya3D5T6l1R2LK9R0bcDGBZtYqNmetCcCNS41FtQs
-	 tXfH2nNfI6qCG2CmTscApEv/KIEczMf0A55eO4AmuNahX/oVu/ROVuf7f8uougufB8
-	 i8+3GpNZ3sN8w==
-Date: Thu, 19 Oct 2023 17:26:49 +0200
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth
- <sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Florian
- Fainelli <f.fainelli@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Christian Marangi <ansuelsmth@gmail.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 5/7] ARM64: dts: marvell: Fix some common
- switch mistakes
-Message-ID: <20231019172649.784a60d4@dellmb>
-In-Reply-To: <20231019144935.3wrnqyipiq3vkxb7@skbuf>
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
-	<20231018-marvell-88e6152-wan-led-v4-5-3ee0c67383be@linaro.org>
-	<20231019144021.ksymhjpvawv42vhj@skbuf>
-	<20231019144935.3wrnqyipiq3vkxb7@skbuf>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971DE31581
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 15:32:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FD112A
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697729534; x=1729265534;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=lAXEsiNfFv5qCpsZ+UzdFKERp6Sg56PDkraULpTuRe0=;
+  b=mj1MynCfAUdECbpXS0MRtz3e+8N7YfO2cJSVv5bbhx9sLwM/UHBIV/H4
+   0Byj8GRP6WdQ1L57q9bUvxzMpyzmdmFjOS0kZEB85xCnJbh3ZaU3fDjo5
+   tdsU/ZLGfuzSsOZmef6yu8cCRQeUdjxFtw9MB1xyk60Ryb5C6KCWLaOb5
+   2huacfyS5qyL0cpwBXljNAVpa1gUpKR0eiltITe+le3rSfq3ZsF2IbiRt
+   fGCmmYysT9ojAtdDKUghZ6FQKPfZ+bWuSk8Bi4470pJ4M/OMVA4yI4D7R
+   0Z77ru1aLzaEjeNXcB4EWH2a2rGmk2FNZksDNoZHHJtlLCVCaMsVeaHZT
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="365630927"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
+   d="scan'208";a="365630927"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 08:32:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="847729709"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
+   d="scan'208";a="847729709"
+Received: from mttran4-mobl2.amr.corp.intel.com (HELO [10.213.160.204]) ([10.213.160.204])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 08:32:13 -0700
+Message-ID: <246c670b-1d98-454e-b0d3-0fa40f7c5e03@linux.intel.com>
+Date: Thu, 19 Oct 2023 10:32:12 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH][TEST-REQUEST] ASoC: makes CPU/Codec channel connection
+ map more generic
+Content-Language: en-US
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com
+Cc: Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+References: <87zg0jwdnz.wl-kuninori.morimoto.gx@renesas.com>
+ <87y1g3wdng.wl-kuninori.morimoto.gx@renesas.com>
+ <d3c97c54-d149-4bed-9013-3f07bc6a7f52@linux.intel.com>
+ <874jiokg1r.wl-kuninori.morimoto.gx@renesas.com>
+ <5667241d-6976-4b44-8edd-79ee426415eb@linux.intel.com>
+ <8734y8kd1a.wl-kuninori.morimoto.gx@renesas.com>
+ <87y1fzpdxe.wl-kuninori.morimoto.gx@renesas.com>
+ <87wmvjpdut.wl-kuninori.morimoto.gx@renesas.com>
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <87wmvjpdut.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 19 Oct 2023 17:49:35 +0300
-Vladimir Oltean <olteanv@gmail.com> wrote:
 
-> On Thu, Oct 19, 2023 at 05:40:22PM +0300, Vladimir Oltean wrote:
-> > +Marek
-> > 
-> > On Wed, Oct 18, 2023 at 11:03:44AM +0200, Linus Walleij wrote:  
-> > > Fix some errors in the Marvell MV88E6xxx switch descriptions:
-> > > - The top node had no address size or cells.
-> > > - switch0@0 is not OK, should be switch@0.
-> > > 
-> > > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > > ---
-> > > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > > index 9eab2bb22134..c69cb4e191e5 100644
-> > > --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > > +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > > @@ -305,7 +305,7 @@ phy1: ethernet-phy@1 {
-> > >  	};
-> > >  
-> > >  	/* switch nodes are enabled by U-Boot if modules are present */
-> > > -	switch0@10 {
-> > > +	switch@10 {  
-> > 
-> > As the comment says: U-Boot
-> > (https://elixir.bootlin.com/u-boot/latest/source/board/CZ.NIC/turris_mox/turris_mox.c#L728)
-> > sets up status = "okay" for these nodes depending on the MOXTET
-> > configuration. It doesn't look as if it's doing that by alias, just by
-> > path ("%s/switch%i@%x").
-> > 
-> > I have a Turris MOX, please allow me some time to test if the node name
-> > change is going to be significant and cause regressions. I expect the
-> > answer to be yes (sadly).  
-> 
-> Yeah, it's bad.
-> 
-> U-Boot 2018.11 (Dec 16 2018 - 12:50:19 +0000), Build: jenkins-turris-os-packages-kittens-mox-90
-> 
-> DRAM:  1 GiB
-> Enabling Armada 3720 wComphy-0: SGMII1        3.125 Gbps
-> Comphy-1: PEX0          5 Gbps
-> Comphy-2: USB3_HOST0    5 Gbps
-> MMC:   sdhci@d8000: 0
-> Loading Environment from SPI Flash... SF: Detected w25q64dw with page size 256 Bytes, erase size 4 KiB, total 8 MiB
-> OK
-> Model: CZ.NIC Turris Mox Board
-> Net:   eth0: neta@30000
-> Turris Mox:
->   Board version: 22
->   RAM size: 1024 MiB
->   SD/eMMC version: SD
-> Module Topology:
->    1: Peridot Switch Module (8-port)
->    2: Peridot Switch Module (8-port)
->    3: Peridot Switch Module (8-port)
->    4: SFP Module
-> 
-> Hit any key to stop autoboot:  0
-> => run sd_tftp_boot  
-> neta@30000 Waiting for PHY auto negotiation to complete....... done
-> BOOTP broadcast 1
-> BOOTP broadcast 2
-> DHCP client bound to address 10.0.0.117 (254 ms)
-> Using neta@30000 device
-> TFTP from server 10.0.0.1; our IP address is 10.0.0.117
-> Filename 'mox/armada-3720-turris-mox.dtb'.
-> Load address: 0x4f00000
-> Loading: ####
->          1.5 MiB/s
-> done
-> Bytes transferred = 19479 (4c17 hex)
-> Using neta@30000 device
-> TFTP from server 10.0.0.1; our IP address is 10.0.0.117
-> Filename 'mox/Image'.
-> Load address: 0x5000000
-> Loading: #################################################################
->          ##########################################
->          6 MiB/s
-> done
-> Bytes transferred = 54069760 (3390a00 hex)
-> ## Flattened Device Tree blob at 04f00000
->    Booting using the fdt blob at 0x4f00000
->    Loading Device Tree to 000000003bf16000, end 000000003bf1dc16 ... OK
-> ERROR: board-specific fdt fixup failed: FDT_ERR_NOTFOUND
->  - must RESET the board to recover.
-> 
-> FDT creation failed! hanging...### ERROR ### Please RESET the board ###
 
-Yes, unfortunately changing that node name will break booting.
+On 10/18/23 21:04, Kuninori Morimoto wrote:
+> Current ASoC CPU:Codec = N:M connection is using connection mapping idea,
+> but it is used for CPU < Codec case only. We want to use it for any case.
+> 
+> By this patch, not only N:M connection, but all existing connection
+> (1:1, 1:N, N:N) will use same connection mapping.
+> Because it will use default mapping, no conversion patch is needed
+> to exising CPU/Codec drivers.
+> 
+> More over, CPU:Codec = M:N (M > N) also supported in the same time.
+> 
+> Link: https://lore.kernel.org/r/87fs6wuszr.wl-kuninori.morimoto.gx@renesas.com
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Maybe we could add a comment into the DTS to describe this unfortunate
-state of things? :)
+No issues detected with this patch by the Intel CI (other than the usual
+suspend-resume timeouts that have nothing to do with this patch), see
+https://github.com/thesofproject/linux/pull/4632
 
-Marek
+Tested-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+
+Thanks Morimoto-san!
+
+
+> +				if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_PLAYBACK) &&
+> +				    snd_soc_dai_stream_valid(cpu_dai,   cpu_playback))
+> +					has_playback = 1;
+> +				if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_CAPTURE) &&
+> +				    snd_soc_dai_stream_valid(cpu_dai,   cpu_capture))
+> +					has_capture = 1;
+>  			}
+> +		}
+> +		/* .ch_map is from Codec */
+> +		else {
+> +			for_each_rtd_codec_dais(rtd, i, codec_dai) {
+> +				cpu_dai = snd_soc_rtd_to_cpu(rtd, dai_link->ch_maps[i].connected_node);
+> +
+> +				if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_PLAYBACK) &&
+> +				    snd_soc_dai_stream_valid(cpu_dai,   cpu_playback))
+> +					has_playback = 1;
+> +				if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_CAPTURE) &&
+> +				    snd_soc_dai_stream_valid(cpu_dai,   cpu_capture))
+
+while we're at it, can we also clean-up the weird extra spaces - unless
+they were intentional?
+
+> +					has_capture = 1;
+>  
+> -			if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_PLAYBACK) &&
+> -			    snd_soc_dai_stream_valid(cpu_dai,   cpu_playback))
+> -				has_playback = 1;
+> -			if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_CAPTURE) &&
+> -			    snd_soc_dai_stream_valid(cpu_dai,   cpu_capture))
+> -				has_capture = 1;
+> +			}
+>  		}
+>  	}
+>  
 
