@@ -1,140 +1,88 @@
-Return-Path: <devicetree+bounces-10127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605887CFBF7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:04:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555A67CFC06
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:06:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 890881C20B28
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:04:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FBE92811A3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED2629CFA;
-	Thu, 19 Oct 2023 14:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggAbf4wp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A1529CFB;
+	Thu, 19 Oct 2023 14:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F62027477
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:04:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3D3CC433C7;
-	Thu, 19 Oct 2023 14:04:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697724288;
-	bh=xtme3jJusxVUa9FbYH1+EvMXHDNXjJxBF7Z86EuaCY4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ggAbf4wp3vSh5284kcig1pPPsSidHG15qglwc71EcbD47XdClE1fuh5T6bGJWQym0
-	 nV78AjAWd5j3cKm3rSV6aIE2+p/6c3n2QvwqCK/dFGWBjle+tmv4nZOS78m1cY04NC
-	 RsTNfYd7mU3vr32pqTAW5cgsVLc9lG0vxi/6stMX0+cZtd5TYVQSew8LZACHTK4C5d
-	 vWqkW899KSwASIC66uivQTu8GDuICN627eekP4A3A0gIXmtK48SFfCJFKSYiJ663ar
-	 O0tHBqkCwZ6xD8zHT1f9m3VGmjoIUzFxS+4kr8d1QPdJ65GxurgBx1Q6pX4XSP5HU2
-	 DZM+fsLGTyclg==
-Date: Thu, 19 Oct 2023 15:04:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4570F27477
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:05:53 +0000 (UTC)
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4151130;
+	Thu, 19 Oct 2023 07:05:49 -0700 (PDT)
+Received: from i5e861907.versanet.de ([94.134.25.7] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1qtTef-0004bU-GJ; Thu, 19 Oct 2023 16:05:41 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Heiko Stuebner <heiko@sntech.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-pm@vger.kernel.org,
+	kernel@pengutronix.de,
+	Vincent Legoll <vincent.legoll@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
-Message-ID: <20231019-amused-agonize-bcb8787c6f6f@spud>
-References: <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+	Rob Herring <robh+dt@kernel.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Chanwoo Choi <chanwoo@kernel.org>,
+	devicetree@vger.kernel.org,
+	Robin Murphy <robin.murphy@arm.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Will Deacon <will@kernel.org>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>
+Subject: Re: (subset) [PATCH v8 00/26] Add perf support to the rockchip-dfi driver
+Date: Thu, 19 Oct 2023 16:05:39 +0200
+Message-Id: <169772432936.1425163.10520107144640249546.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231018061714.3553817-1-s.hauer@pengutronix.de>
+References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tVeLnAzB+nEjs8bs"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Wed, 18 Oct 2023 08:16:48 +0200, Sascha Hauer wrote:
+> This series integrates the recent review feedback from Chanwoo Choi to
+> v7.
+> 
+> Chanwoo, I am sending the full patchset again for people to try this
+> series. You said that you applied 1-5 already, so please start picking
+> from 6/26.
+> 
+> [...]
 
---tVeLnAzB+nEjs8bs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks!
 
-Hey,
+[24/26] arm64: dts: rockchip: rk3399: Enable DFI
+        commit: f57ef11ec63c17201b27569fbfb58801c227137d
+[25/26] arm64: dts: rockchip: rk356x: Add DFI
+        commit: 085be8875ca8a087e3cc102893f384894962c87e
+[26/26] arm64: dts: rockchip: rk3588s: Add DFI
+        commit: 5a6976b1040a2f99ab84eddbfa7cd072ac5d10fc
 
-On Thu, Oct 19, 2023 at 07:18:00AM +0800, Inochi Amaoto wrote:
-> Huashan Pi board is an embedded development platform based on the
-> CV1812H chip. Add minimal device tree files for this board.
-> Currently, it can boot to a basic shell.
-
-Just pointing out that this series is too late for v6.7, so you probably
-won't hear anything from me until v6.7-rc1 has been tagged.
-
-Cheers,
-Conor.
-
->=20
-> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
->=20
-> Link: https://en.sophgo.com/product/introduce/huashan.html
-> Link: https://en.sophgo.com/product/introduce/cv181xH.html
-> Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@ke=
-rnel.org/
->=20
-> Changed from v3:
-> 1. merge the patch 4 and 5 of v2 to preserve bisectability.
->=20
-> Changed from v2:
-> 1. use dt override to save code.
-> 2. code cleanup.
->=20
-> Changed from v1:
-> 1. split the patch into several patch and refactor them.
->=20
-> Inochi Amaoto (7):
->   dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
->   dt-bindings: timer: Add SOPHGO CV1812H clint
->   dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
->   riscv: dts: sophgo: Separate compatible specific for CV1800B soc
->   riscv: dts: sophgo: cv18xx: Add gpio devices
->   riscv: dts: sophgo: add initial CV1812H SoC device tree
->   riscv: dts: sophgo: add Huashan Pi board device tree
->=20
->  .../sifive,plic-1.0.0.yaml                    |   1 +
->  .../devicetree/bindings/riscv/sophgo.yaml     |   4 +
->  .../bindings/timer/sifive,clint.yaml          |   1 +
->  arch/riscv/boot/dts/sophgo/Makefile           |   1 +
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 119 +----------
->  .../boot/dts/sophgo/cv1812h-huashan-pi.dts    |  48 +++++
->  arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |  24 +++
->  arch/riscv/boot/dts/sophgo/cv18xx.dtsi        | 193 ++++++++++++++++++
->  8 files changed, 279 insertions(+), 112 deletions(-)
->  create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
->  create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h.dtsi
->  create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx.dtsi
->=20
-> --
-> 2.42.0
->=20
-
---tVeLnAzB+nEjs8bs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTE3egAKCRB4tDGHoIJi
-0n41APwMeOxLjPmDl9G45xdD40nzpk/P7fEfNvMDqL6OV9fjfwD9H+4j5zSNJa5V
-vAl9NCqwS1HSCxO8bydUCObAQsUjZww=
-=+zw9
------END PGP SIGNATURE-----
-
---tVeLnAzB+nEjs8bs--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
