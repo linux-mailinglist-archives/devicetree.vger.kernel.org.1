@@ -1,162 +1,265 @@
-Return-Path: <devicetree+bounces-10162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F77C7CFD9E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:13:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7617CFDB4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 17:20:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B19CE1C20D2C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:13:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87F35B20F3D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4D52FE19;
-	Thu, 19 Oct 2023 15:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7E02FE1E;
+	Thu, 19 Oct 2023 15:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xo2wMcj8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7338F49
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 15:13:18 +0000 (UTC)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDDD11B;
-	Thu, 19 Oct 2023 08:13:16 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5a82f176860so77674617b3.1;
-        Thu, 19 Oct 2023 08:13:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8184D2FE1D
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 15:20:32 +0000 (UTC)
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF1E132
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:20:30 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-d9c1989509bso796079276.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 08:20:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697728829; x=1698333629; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UzuYGgMfB2IgWrd3JwAlKJRMS7S7gxXt4VNaKRPI+4c=;
+        b=Xo2wMcj8QD+bl4VrwjB91/Y2C0ZxMO3I8l4MCmCc0ZErUV7GovJg/LcsghTu56ZlDW
+         hU5OkzcYNXgXmu3HSyLp7hUrkEf9fPpEC5EP0n+k0/W9z77xSMLgMbPZV2xjOM1b3v95
+         qhA4xXntYA3wdrl57jkNo3i+rOEuHSqzBp6wj2TecnDLampUM9+ZwUXtCSj/M/xCUfzU
+         IoFfYH+4E9sbizTjT6y7OJmzbGWKYbiAKmaA+jg5QYvp+/cZgdttfitbyuNr3JztiSA+
+         yh80o4ZjsiBF5clgX+BbOo9HRmvPSKKapxInUjlnGPJxyZ/wdWA2chJTrcgPtLUthhGE
+         CWVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697728396; x=1698333196;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RAUS/Zsfe7KDG2Vf3z9LFXu6s1gB7Lx5yORTguT/oaE=;
-        b=CkRj6mRKYpkaxSbVRaWNbGPCJI1zXt+xExD9xi6M6Ju4jfDKDtA8OFtkRLYkcziP3E
-         8zHctaE5wqoxLA0Iy/qAyaI9c9O9+AMybrLzpdMWgkbdW+X5l83gd3QwZJxKED328dsg
-         GVHzBLOd76/0+W9IMXwb0GMESFOwm6pdjOvehrvL9jzIDUiz6e6UQxSWPEIvqIUEtHBo
-         2E6l4b+gzYlGd4TS9e5NzoCkIfyKmB5XP6Lk33mPBVhoLy+NH/DzNLgqIQgvELMePoTM
-         XfiT4skyeKOFlcioYtOzt6oiLqHevbgkyokVEpY5nAiy1U0BVD7PCxo1ZwhW0udR7cVY
-         fKGQ==
-X-Gm-Message-State: AOJu0YwiKNTpcn9+0j3Wk+7s2+0IJTsMuB9IlA91pUgN5mN86hORqyQr
-	QoEq5SICdVkTwhUa68Ym4EsepMVVeY2+dQ==
-X-Google-Smtp-Source: AGHT+IGzNdbw1CC/Xk9MNJ9SNpIpBKJ2zSm8OuozagBHU3G8UeBUF7fmOPGSx8OOg4P8oOVKKJDR4w==
-X-Received: by 2002:a25:37c4:0:b0:d9a:d7a5:e445 with SMTP id e187-20020a2537c4000000b00d9ad7a5e445mr2489019yba.49.1697728395770;
-        Thu, 19 Oct 2023 08:13:15 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id z4-20020a25ad84000000b00d815cb9accbsm2114553ybi.32.2023.10.19.08.13.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 08:13:15 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5a7e5dc8573so99518267b3.0;
-        Thu, 19 Oct 2023 08:13:15 -0700 (PDT)
-X-Received: by 2002:a0d:ea95:0:b0:59b:54b5:7d66 with SMTP id
- t143-20020a0dea95000000b0059b54b57d66mr2731653ywe.34.1697728395073; Thu, 19
- Oct 2023 08:13:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697728829; x=1698333629;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UzuYGgMfB2IgWrd3JwAlKJRMS7S7gxXt4VNaKRPI+4c=;
+        b=qtyH/i79rySSMTNKrxGLPks53E66yTo4mawOKkaZo1F3GIc5/P50y2BI2qSpFFz3zc
+         0weH8S8vFDHGPXhrvE/6KXZiuQFNSkztFMbPQq/27noDTUQucNUib1wWVYTEy+Fywbn6
+         YGUphVzYXkXSRWIn4V4FuuZiJxrC50irQ88qwIN3RQNu5fnUUjgHv+nWer/a0IzqPkYd
+         UD1pztPKnznfMkD4HIUKPS54V/vw0MdoL0GY4xOW2ZoHdqecvXQzkY3rL4UsowHwHBHy
+         X5g80yuhiHpdYsApcaHt+t1IpRpWKgVMSNrmBj9WlMX9diJCLVfXtpzSDWzs9qHeeghr
+         MW3A==
+X-Gm-Message-State: AOJu0YzCjTCFU+K+0hVjczW7veoiNH76z4j3TA2dqeOTWp2wI9Nu9w4u
+	vMVduv+BGIbLroMWDnLkmOMKrHnk+GdYbU3ipGGghg==
+X-Google-Smtp-Source: AGHT+IGKbBoO/lWa/SG+c0KZzQWamY/96muNTJtMojdvtqQZPMShMcdRxDx8yzNIvpa501Ncxd01tIwIdamKiVS0ogc=
+X-Received: by 2002:a25:8e08:0:b0:d81:91b2:62ea with SMTP id
+ p8-20020a258e08000000b00d8191b262eamr1909318ybl.1.1697728829022; Thu, 19 Oct
+ 2023 08:20:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230531111038.6302-1-francesco@dolcini.it> <CAMuHMdUkPiA=o_QLyuwsTYW7y1ksCjHAqyNSHFx2QZ-dP-HGsQ@mail.gmail.com>
- <ZTFFp8Yr7lq6HIab@francesco-nb.int.toradex.com>
-In-Reply-To: <ZTFFp8Yr7lq6HIab@francesco-nb.int.toradex.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 19 Oct 2023 17:13:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXtA3LNL6UkWyz6oytfNpSv77EShfF-uQvnPJktMUr40A@mail.gmail.com>
-Message-ID: <CAMuHMdXtA3LNL6UkWyz6oytfNpSv77EShfF-uQvnPJktMUr40A@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: 8250_omap: add rs485-rts-active-high
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
+ <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
+ <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
+ <ZTEph19CAvbgbN_E@gerhold.net> <CAPDyKFo1PVZYsdW_=92EtMmTT9hmkm-mBR69N_WvPh4f-Hw=NA@mail.gmail.com>
+ <ZTFBzjLAaaUHux4O@gerhold.net>
+In-Reply-To: <ZTFBzjLAaaUHux4O@gerhold.net>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 19 Oct 2023 17:19:53 +0200
+Message-ID: <CAPDyKFruYqngQoW21Ra+hm4ybjS7LoD4casYbo8bP4J+hLUnaA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain devices
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, linux-kernel@vger.kernel.org
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Franceso,
-
-On Thu, Oct 19, 2023 at 5:05=E2=80=AFPM Francesco Dolcini <francesco@dolcin=
-i.it> wrote:
-> On Thu, Oct 19, 2023 at 12:09:06PM +0200, Geert Uytterhoeven wrote:
-> > On Wed, May 31, 2023 at 1:14=E2=80=AFPM Francesco Dolcini <francesco@do=
-lcini.it> wrote:
-> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Thu, 19 Oct 2023 at 16:49, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> On Thu, Oct 19, 2023 at 04:12:56PM +0200, Ulf Hansson wrote:
+> > On Thu, 19 Oct 2023 at 15:05, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
+> > > > On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+> > > > > <stephan.gerhold@kernkonzept.com> wrote:
+> > > > > >
+> > > > > > The genpd core caches performance state votes from devices that are
+> > > > > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
+> > > > > > runtime PM performance state handling"). They get applied once the
+> > > > > > device becomes active again.
+> > > > > >
+> > > > > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
+> > > > > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
+> > > > > > devices that use runtime PM only to control the enable and performance
+> > > > > > state for the attached power domain.
+> > > > > >
+> > > > > > However, at the moment nothing ever resumes the virtual devices created
+> > > > > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
+> > > > > > means that performance state votes made during cpufreq scaling get
+> > > > > > always cached and never applied to the hardware.
+> > > > > >
+> > > > > > Fix this by enabling the devices after attaching them and use
+> > > > > > dev_pm_syscore_device() to ensure the power domains also stay on when
+> > > > > > going to suspend. Since it supplies the CPU we can never turn it off
+> > > > > > from Linux. There are other mechanisms to turn it off when needed,
+> > > > > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+> > > > >
+> > > > > I believe we discussed using dev_pm_syscore_device() for the previous
+> > > > > version. It's not intended to be used for things like the above.
+> > > > >
 > > >
-> > > Add rs485-rts-active-high property, this was removed by mistake.
-> > > In general we just use rs485-rts-active-low property, however the OMA=
-P
-> > > UART for legacy reason uses the -high one.
+> > > Sorry, looks like we still had a misunderstanding in the conclusion of
+> > > the previous discussion. :')
 > > >
-> > > Fixes: 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485 prop=
-erties")
-> > > Closes: https://lore.kernel.org/all/ZGefR4mTHHo1iQ7H@francesco-nb.int=
-.toradex.com/
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > ---
-> > > v2: removed reported-by
+> > > > > Moreover, I was under the impression that it wasn't really needed. In
+> > > > > fact, I would think that this actually breaks things for system
+> > > > > suspend/resume, as in this case the cpr driver's genpd
+> > > > > ->power_on|off() callbacks are no longer getting called due this,
+> > > > > which means that the cpr state machine isn't going to be restored
+> > > > > properly. Or did I get this wrong?
+> > > >
+> > >
+> > > We strictly need the RPMPDs to be always-on, also across system suspend
+> > > [1]. The RPM firmware will drop the votes internally as soon as the
+> > > CPU(s) have entered deep cpuidle. We can't do this from Linux, because
+> > > we need the CPU to continue running until it was shut down cleanly.
+> > >
+> > > For CPR, we strictly need the backing regulator to be always-on, also
+> > > across system suspend. Typically the hardware will turn off the
+> > > regulator as soon as the CPU(s) enter deep cpuidle. Similarly, we can't
+> > > do this from Linux, because we need the CPU to continue running until it
+> > > was shut down cleanly.
+> > >
+> > > My understanding was that we're going to pause the CPR state machine
+> > > using the system suspend/resume callbacks on the driver, instead of
+> > > using the genpd->power_on|off() callbacks [2]. I can submit a separate
+> > > patch for this.
 > >
-> > Thanks for your patch, which is now commit 403e97d6ab2cb6fd
-> > ("dt-bindings: serial: 8250_omap: add rs485-rts-active-high")
-> > in v6.4-rc5.
+> > If we are going to do 1) as described below, this looks to me that
+> > it's going to be needed.
 > >
-> > > --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> > > +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> > > @@ -70,6 +70,7 @@ properties:
-> > >    dsr-gpios: true
-> > >    rng-gpios: true
-> > >    dcd-gpios: true
-> > > +  rs485-rts-active-high: true
+>
+> Yep.
+>
+> > How will otherwise the cpr state machine be saved/restored during
+> > system suspend/resume? Note that, beyond 1), the genpd's
+> > ->power_on|off() callbacks are no longer going to be called during
+> > system suspend/resume.
 > >
-> > make dt_binding_check complains:
+>
+> (Side note: I think "save/restore" might be the wrong words for
+>  suspend/resume of CPR. Looking at the code most of the configuration
+>  appears to be preserved across suspend/resume. Nothing is saved, it
+>  literally just disables the state machine during suspend and re-enables
+>  it during resume.
+>
+>  I'm not entirely sure what's the reason for doing this. Perhaps the
+>  main goal is just to prevent the CPR state machine from getting stuck
+>  or sending pointless IRQs that won't be handled while Linux is
+>  suspended.)
+
+If only the latter, that is a very good reason too. Drivers should
+take care of their devices to make sure they are not triggering
+spurious irqs during system suspend.
+
+>
+> > In a way this also means that the cpr genpd provider might as well
+> > also have GENPD_FLAG_ALWAYS_ON set for it.
+>
+> Conceptually I would consider CPR to be a generic power domain provider
+> that could supply any kind of device. I know at least of CPUs and GPUs.
+> We need "always-on" only for the CPU, but not necessarily for other
+> devices.
+>
+> For a GPU, the Linux driver (running on the CPU) can stop the GPU, wait
+> for completion and then invoke the ->power_off() callback of CPR. In
+> that case it is also safe to disable the backing regulator from Linux.
+> (I briefly mentioned this already in the previous discussion I think.)
+>
+> We could set GENPD_FLAG_ALWAYS_ON for the CPR compatibles where we know
+> that they are only used to supply CPUs, but if we're going to do (1)
+> anyway there might not be much of an advantage for the extra complexity.
+
+Okay, fair enough. Let's just stick with 1) and skip using
+GENPD_FLAG_ALWAYS_ON bit for the cpr genpd provider.
+
+>
 > >
-> >     Documentation/devicetree/bindings/serial/8250_omap.yaml:
-> > rs485-rts-active-high: missing type definition
+> > >
+> > > I didn't prioritize this because QCS404 (as the only current user of
+> > > CPR) doesn't have proper deep cpuidle/power management set up yet. It's
+> > > not entirely clear to me if there is any advantage (or perhaps even
+> > > disadvantage) if we pause the CPR state machine while the shared L2
+> > > cache is still being actively powered by the CPR power rail during
+> > > system suspend. I suspect this is a configuration that was never
+> > > considered in the hardware design.
+> >
+> > I see.
+> >
+> > >
+> > > Given the strict requirement for the RPMPDs, I only see two options:
+> > >
+> > >  1. Have an always-on consumer that prevents the power domains to be
+> > >     powered off during system suspend. This is what this patch tries to
+> > >     achieve.
+> > >
+> > > Or:
+> > >
+> > >  2. Come up with a way to register the RPMPDs used by the CPU with
+> > >     GENPD_FLAG_ALWAYS_ON. This would also be doable, but isn't as
+> > >     straightfoward as "regulator-always-on" in the DT because the rpmpd
+> > >     DT node represents multiple genpds in a single DT node [3].
+> >
+> > Yes, it sounds like it may be easier to do 1).
+> >
+> > >
+> > > What do you think? Do you see some other solution perhaps? I hope we can
+> > > clear up the misunderstanding. :-)
+> >
+> > Yes, thanks!
+> >
+> > >
+> > > [1]: https://lore.kernel.org/linux-arm-msm/ZQGqfMigCFZP_HLA@gerhold.net/
+> > > [2]: https://lore.kernel.org/linux-arm-msm/CAPDyKFoiup8KNv=1LFGKDdDLA1pHsdJUgTTWMdgxnikEmReXzg@mail.gmail.com/
+> > > [3]: https://lore.kernel.org/linux-arm-msm/ZSg-XtwMxg3_fWxc@gerhold.net/
+> > >
+> > > > BTW, if you really need something like the above, the proper way to do
+> > > > it would instead be to call device_set_awake_path() for the device.
+> > > >
+> > > > This informs genpd that the device needs to stay powered-on during
+> > > > system suspend (assuming that GENPD_FLAG_ACTIVE_WAKEUP has been set
+> > > > for it), hence it will keep the corresponding PM domain powered-on
+> > > > too.
+> > > >
+> > >
+> > > Thanks, I can try if this works as alternative to the
+> > > dev_pm_syscore_device()!
+> >
+> > Yes, please. We don't want to abuse the dev_pm_syscore_device() thingy.
+> >
 >
-> For some reasons it works for me (and worked when I did send the patch)
->
-> $ make dt_binding_check DT_SCHEMA_FILES=3D8250_omap.yaml
-> ...
->   HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
->   HOSTCC  scripts/dtc/fdtoverlay.o
->   HOSTLD  scripts/dtc/fdtoverlay
->   LINT    Documentation/devicetree/bindings
-> invalid config: unknown option "required" for rule "quoted-strings"
-> xargs: /usr/bin/yamllint: exited with status 255; aborting
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindings/p=
-hy/qcom,usb-snps-femto-v2.yaml: ignoring, error in schema: properties: qcom=
-,ls-fs-output-impedance-bp
-> /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindings/a=
-rm/vexpress-sysreg.yaml: ignoring, error in schema: properties: gpio-contro=
-ller
-> /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindings/i=
-io/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperti=
-es: ^thermistor@: properties: adi,excitation-current-nanoamp
-> /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindings/i=
-io/adc/adi,ad4130.yaml: ignoring, error in schema: patternProperties: ^chan=
-nel@([0-9a-f])$: properties: adi,burnout-current-nanoamp
-> /home/francesco/Toradex/sources/linux/Documentation/devicetree/bindings/i=
-io/addac/adi,ad74115.yaml: ignoring, error in schema: properties: adi,ext2-=
-burnout-current-nanoamp
->   DTEX    Documentation/devicetree/bindings/serial/8250_omap.example.dts
->   DTC_CHK Documentation/devicetree/bindings/serial/8250_omap.example.dtb
->
->
-> any idea on what could be different between us?
+> Could you clarify the idea behind GENPD_FLAG_ACTIVE_WAKEUP? Would I set
+> it conditionally for all RPMPDs or just the ones consumed by the CPU?
+> How does the genpd *provider* know if one of its *consumer* devices
+> needs to have its power domain kept on for wakeup?
 
-Are you using the latest dt-schema?
+We are thinking of the GENPD_FLAG_ACTIVE_WAKEUP as a platform
+configuration type of flag for the genpd in question. The consumer
+driver shouldn't need to know about the details of what is happening
+on the PM domain level - only whether it needs its device to remain
+powered-on during system suspend or not.
 
-Gr{oetje,eeting}s,
+I suspect that the GENPD_FLAG_ACTIVE_WAKEUP is probably okay to set
+for most genpds, but there may be some exceptions.
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Kind regards
+Uffe
 
