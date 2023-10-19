@@ -1,129 +1,111 @@
-Return-Path: <devicetree+bounces-9996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3372F7CF4BE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:09:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45397CF5F0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:55:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91C70B20BD7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:09:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C821C208E5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307A1179A9;
-	Thu, 19 Oct 2023 10:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE97015EBC;
+	Thu, 19 Oct 2023 10:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="HCQW8Coc";
+	dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="cQcj9EEE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C6D71798C
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:09:26 +0000 (UTC)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0A5129;
-	Thu, 19 Oct 2023 03:09:24 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5a7cc03dee5so95440137b3.3;
-        Thu, 19 Oct 2023 03:09:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697710162; x=1698314962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xakoCHP0UqUBxiXAUCeloI+dGQZ3rFKCf0jLKLTYknY=;
-        b=r10Cqd1rU6cy3CfWvgYlt4c5KqO7f2L5pgZ05tB2a+/xD95enaWLRIppRLqGb2f70X
-         0NFcgT/zLTI5fTnmTokjhYtsumfjTjKYWS5a0/2+THHau95LAOX69AifnpldqIEMman1
-         724dUJea9uWwy8wdHVA4nVkMDxVUEfVi1BsYTWOeucYHwfxzew/L7Wlww7u8cszneN+W
-         ZnNgfVZiwhCULmmlrTCE+RkqPWLD8Y8qdigtf0zYl1j53e0ZVvih3KvPsLnZ1LGb3yhq
-         K4Rbf8nLtwIbtNE6xYPMjsg/Hp4XSU2j+NKfqjw229AzcHslMg5ZuDgB+1TQdtCwFUb7
-         3AKw==
-X-Gm-Message-State: AOJu0YwCzTYwT2nnynssvWdHWefu36k+KEzrqlWiAEQdd8To3VIgV9Uo
-	eZsfih+dbtkg8KLOpDXM9500JcgKqxy0yw==
-X-Google-Smtp-Source: AGHT+IHzalEo6s11B+/Y2UPEZbUxPhiu3b5Nn9ALWSn4awdd7VH2o9e6IFYct4pz4pYf2eHLoJQRKw==
-X-Received: by 2002:a25:37ca:0:b0:d9a:ccdf:3873 with SMTP id e193-20020a2537ca000000b00d9accdf3873mr1741281yba.48.1697710161656;
-        Thu, 19 Oct 2023 03:09:21 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id y33-20020a25ad21000000b00d7ba4c5e31fsm1956073ybi.39.2023.10.19.03.09.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 03:09:21 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5a7eef0b931so95806917b3.0;
-        Thu, 19 Oct 2023 03:09:20 -0700 (PDT)
-X-Received: by 2002:a81:8486:0:b0:5a7:a838:3fa with SMTP id
- u128-20020a818486000000b005a7a83803famr1994997ywf.3.1697710160501; Thu, 19
- Oct 2023 03:09:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE451863A;
+	Thu, 19 Oct 2023 10:54:55 +0000 (UTC)
+X-Greylist: delayed 2503 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 19 Oct 2023 03:54:51 PDT
+Received: from fallback16.i.mail.ru (fallback16.i.mail.ru [79.137.243.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3AFFA;
+	Thu, 19 Oct 2023 03:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=FZ2wLAmbsoxzhZt475ZmnVNLNU8vs3pxdLVPs7AlSqE=;
+	t=1697712891;x=1697802891; 
+	b=HCQW8CocSQqbiWjvXs+VDgEMVApB7qmxQ3066fM/EvrvXP6GFP5mhqZpZ585Gb7N8FPUlyRqqvNC0YHKfjFFZ/3kcR5ND2lEJd8H1rDoBw9TNryNK6C3wRyCAN4X+cWyJzDCArgYJozefpeP8O+HaTVs8uqMZNvF6nFw6eOhg77mYPf3bNBb6RJBYFZrrrFJiSC5acm+r7er4spqj9wMc/rYg/s80ynGmbH4KXyHwAR/6S+ffBM0ExlmVypI7IBtdL7C6NfaARHxy4vsTzQliYJdH+nLmY4k8IlBi7WqWtOe97ox91ig7XLAlmLaUAe7EqHpCyg2cqyD+2QqMM4nUA==;
+Received: from [10.161.100.15] (port=33406 helo=smtpng3.i.mail.ru)
+	by fallback16.i.mail.ru with esmtp (envelope-from <fido_max@inbox.ru>)
+	id 1qtQ1Y-006NBm-Pd; Thu, 19 Oct 2023 13:13:04 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=FZ2wLAmbsoxzhZt475ZmnVNLNU8vs3pxdLVPs7AlSqE=;
+	t=1697710384;x=1697800384; 
+	b=cQcj9EEEduh0BMXw9xGQgQJlt01H9+9dDQVcnnThP37qITi9JY+c6SbStKz8fkFp12PwthjfMsCdQjtTZMnelH31BV7cDWBiacvmUV4JvjFIb0yCFzFOpg9uWYNYWVEyjQny7pxx8UXkHO8tJGY9dKJxB4DjPTIi2l1M+RL7JECXlAJD6gMwP3EIlt35MBjsd1Y/mL1dPY9x7S4A9atYxTm5PyVQc0+tHfQQA80VbV6l3v1hSRduioN7ch4eHNwr7lIbLoT6ssnBjEdMVg0hbHtWuEgg+fAGzSsxyj1y9SEU/c09bwJuSDJKFp9xa92HKNdt/AfN/tnEgI6jA61F6g==;
+Received: by smtpng3.m.smailru.net with esmtpa (envelope-from <fido_max@inbox.ru>)
+	id 1qtQ1J-0004wp-2q; Thu, 19 Oct 2023 13:12:50 +0300
+Message-ID: <cafc11b1-93d1-468d-88c7-b8b6f8b27547@inbox.ru>
+Date: Thu, 19 Oct 2023 13:12:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230531111038.6302-1-francesco@dolcini.it>
-In-Reply-To: <20230531111038.6302-1-francesco@dolcini.it>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 19 Oct 2023 12:09:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUkPiA=o_QLyuwsTYW7y1ksCjHAqyNSHFx2QZ-dP-HGsQ@mail.gmail.com>
-Message-ID: <CAMuHMdUkPiA=o_QLyuwsTYW7y1ksCjHAqyNSHFx2QZ-dP-HGsQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: 8250_omap: add rs485-rts-active-high
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 00/20] Imagination Technologies PowerVR DRM driver
+Content-Language: en-US
+To: Sarah Walker <sarah.walker@imgtec.com>, dri-devel@lists.freedesktop.org
+Cc: frank.binns@imgtec.com, donald.robson@imgtec.com,
+ boris.brezillon@collabora.com, faith.ekstrand@collabora.com,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
+ matthew.brost@intel.com, christian.koenig@amd.com, luben.tuikov@amd.com,
+ dakr@redhat.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org
+References: <20231010133738.35274-1-sarah.walker@imgtec.com>
+From: Maxim Kochetkov <fido_max@inbox.ru>
+In-Reply-To: <20231010133738.35274-1-sarah.walker@imgtec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailru-Src: smtp
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD978AFEFB3096932CF067259BE5129BC25732DC641AEA930A1182A05F538085040C2605E2AA15CDF10C8211401740B4A1042FA361644404DB74B3DF5AEA29833D3
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7F9D3BE5B596754B8C2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE77BF46084C0059042EA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38BE5CCB53A13BC8DBA2A091836E1F265D70D9CA0D510A8EFC420879F7C8C5043D14489FFFB0AA5F4BF176DF2183F8FC7C0DCF4F0DC832992758941B15DA834481FA18204E546F3947CC2B5EEE3591E0D35F6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F790063793270F7220657A0A389733CBF5DBD5E9B5C8C57E37DE458B9E9CE733340B9D5F3BBE47FD9DD3FB595F5C1EE8F4F765FC47272755C61AA17BE2021AF6380DFAD18AA50765F790063735872C767BF85DA227C277FBC8AE2E8B08F9A42B2210255C75ECD9A6C639B01B4E70A05D1297E1BBCB5012B2E24CD356
+X-87b9d050: 1
+X-C1DE0DAB: 0D63561A33F958A565C7086EBC9D473415F279ACDF478F5F36B452A93AEDFACFF87CCE6106E1FC07E67D4AC08A07B9B062B3BD3CC35DA588CB5012B2E24CD356
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFE4DF0D63EE383A79F6A7B273E03F895FE821FCB66D0705176AA8BBBFD371D3C1F33D08354E2B7C925BB39EF8E370AEADE6846D863085C6BD9C8927945BE056F997B0E0F2C360C7964C41F94D744909CEE921556F0E976A29E6EC0772259F8F8F8815B87D7EC76CB9
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojI+3ahDCNcVZh0S32k8UNjA==
+X-Mailru-Sender: 689FA8AB762F73930F533AC2B33E986BEF3E50AE3CB2F22C9B48DA2DDD9459B498CC072019C18A892CA7F8C7C9492E1F2F5E575105D0B01ADBE2EF17B331888EEAB4BC95F72C04283CDA0F3B3F5B9367
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B4DEDBBC46D76EB2520ED4F58DABF9B69510FDFA31A9459BA5049FFFDB7839CE9E7E8A997835E85111036EDD732F8361FA021E1609F3BBD6F772F92D7DB10D2B09
+X-7FA49CB5: 0D63561A33F958A59E62A8CF8988D5AAB01B3FA4BD27B0D0E9EE173060FDDE11CACD7DF95DA8FC8BD5E8D9A59859A8B6C9FB9FFC76A8E93C
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFdVi+mls5yutoGB9YG2MJkzg==
+X-Mailru-MI: C000000000000800
+X-Mras: Ok
 
-Hi Francesco,
 
-On Wed, May 31, 2023 at 1:14=E2=80=AFPM Francesco Dolcini <francesco@dolcin=
-i.it> wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->
-> Add rs485-rts-active-high property, this was removed by mistake.
-> In general we just use rs485-rts-active-low property, however the OMAP
-> UART for legacy reason uses the -high one.
->
-> Fixes: 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485 properti=
-es")
-> Closes: https://lore.kernel.org/all/ZGefR4mTHHo1iQ7H@francesco-nb.int.tor=
-adex.com/
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
-> v2: removed reported-by
 
-Thanks for your patch, which is now commit 403e97d6ab2cb6fd
-("dt-bindings: serial: 8250_omap: add rs485-rts-active-high")
-in v6.4-rc5.
+On 10.10.2023 16:37, Sarah Walker wrote:
+> This patch series adds the initial DRM driver for Imagination Technologies PowerVR
+> GPUs, starting with those based on our Rogue architecture. It's worth pointing
+> out that this is a new driver, written from the ground up, rather than a
+> refactored version of our existing downstream driver (pvrsrvkm).
+> 
+> This new DRM driver supports:
+> - GEM shmem allocations
+> - dma-buf / PRIME
+> - Per-context userspace managed virtual address space
+> - DRM sync objects (binary and timeline)
+> - Power management suspend / resume
+> - GPU job submission (geometry, fragment, compute, transfer)
+> - META firmware processor
+> - MIPS firmware processor
+> - GPU hang detection and recovery
+> 
+> Currently our main focus is on the AXE-1-16M GPU. Testing so far has been done
+> using a TI SK-AM62 board (AXE-1-16M GPU). Firmware for the AXE-1-16M can be
+> found here:
+> https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/powervr
 
-> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> @@ -70,6 +70,7 @@ properties:
->    dsr-gpios: true
->    rng-gpios: true
->    dcd-gpios: true
-> +  rs485-rts-active-high: true
-
-make dt_binding_check complains:
-
-    Documentation/devicetree/bindings/serial/8250_omap.yaml:
-rs485-rts-active-high: missing type definition
-
-This property should have been added to
-Documentation/devicetree/bindings/serial/serial.yaml first.
-
->    rts-gpio: true
->    power-domains: true
->    clock-frequency: true
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+And what about another PowerVR (rogue-based) GPU? There are a lot of 
+different models of rogue GPU in existed SoCs. New driver uses v3 
+firmware, but vendors uses v1/v2 firmwares. Who will provide 
+firmware/source code v3 for all the others models?
 
