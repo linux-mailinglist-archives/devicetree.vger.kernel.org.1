@@ -1,276 +1,128 @@
-Return-Path: <devicetree+bounces-10095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6547CF951
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:48:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460D77CFA24
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:00:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54A9C282040
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:48:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CB6D281FD9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD701DFEF;
-	Thu, 19 Oct 2023 12:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rXVceXsF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3517225B8;
+	Thu, 19 Oct 2023 13:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0931A290
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 12:48:25 +0000 (UTC)
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB5D119
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:48:23 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-32dbbf3c782so446626f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 05:48:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697719701; x=1698324501; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qFQDquaYrxbOhnZ4aFn7nGgZNpCtXxCsyNZ4tebC/bw=;
-        b=rXVceXsF4zOdZv6GwsAskDLofgzX3cXaF8Vk4zVTCpLIN8ZWXMJH8gSPcqe5yunAHg
-         2jsS/QSZBDKLuiwpS32GMMtdRN9/Y969qy0QWtyPFjPNfhbP+Yb6NSdKcfh2R0fYh2rS
-         tHocg+MDVsXMAAHz/+oIB7RrdHsx2DikpepTDfvAFmfducGgn4ehyjDr3KmZ//LOyMvK
-         JiRT67BgtoXcC9bzc1W0Xb2OmCUgkXI4q31ljK1vMq7aYvRsPfvOEoURp00iqRPhOjuc
-         HJw/eFd5tu+aQbSF5O+ecSyiL8yXolw1aZDubdG0LOa+ap4MFjn430/8n/EItvEsyE30
-         ZKqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697719701; x=1698324501;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qFQDquaYrxbOhnZ4aFn7nGgZNpCtXxCsyNZ4tebC/bw=;
-        b=dyDW1w5oskMywX/zTsOcXrk6+xnmCTMgIV5EwPV2Z+JVPvfqUiq0FLwN+Iav33aSvW
-         ge1NjGexS/x6eSOyaSlUXWHCE6EGtbZQdEEbDwJIDvf3iK85d0R5TTuaTtSCbKcJYveD
-         Ea9F3p7hY8CkMndPersGlsPqfMT+4skxDaNrTezz+H60fY35AcgW5V7Yi3/5QKBtPHZa
-         KBR66RYn0GVPaf1sarMjLHVrGvFL+FC2IqtJpNNDvjjg8G7aKakuv0B98g7GuLavrodd
-         4rNqnI9zNfAQXdXgl8zZ7dkIczic3CEhjnjmARd9iKSMMHtesjaTxfQNkMwtOW90adWj
-         kLGA==
-X-Gm-Message-State: AOJu0YzifwnI1RGZIRBsUnHXdRVfSBhwIthmKUccmpe9rlc0jg9NnYdJ
-	YcieVaW/DFuLY7stPShHsjivNQ==
-X-Google-Smtp-Source: AGHT+IFIlFfsK60mBGVm1Umc72MF15R9tIcGFrq3luoIFWuxu+G5Q4MXudqqKlcV9P4gLpkIT/4meQ==
-X-Received: by 2002:adf:c685:0:b0:32d:c850:b4ba with SMTP id j5-20020adfc685000000b0032dc850b4bamr1570646wrg.31.1697719701354;
-        Thu, 19 Oct 2023 05:48:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id l10-20020a1c790a000000b004063cced50bsm4304072wme.23.2023.10.19.05.48.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 05:48:20 -0700 (PDT)
-Message-ID: <1917c764-9356-4f6e-94d6-1c8a92f4d6a5@linaro.org>
-Date: Thu, 19 Oct 2023 14:48:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24E620EB
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:00:46 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E2FCD61;
+	Thu, 19 Oct 2023 06:00:18 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39JAt1kL029094;
+	Thu, 19 Oct 2023 08:58:19 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3ts56a6xn2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 08:58:18 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 39JCwHqf035654
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 19 Oct 2023 08:58:17 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 19 Oct 2023 08:58:16 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 19 Oct 2023 08:58:16 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 19 Oct 2023 08:58:16 -0400
+Received: from ubuntu20.04.ad.analog.com ([10.32.226.241])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39JCw2nS004952;
+	Thu, 19 Oct 2023 08:58:05 -0400
+From: Eliza Balas <eliza.balas@analog.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Eliza Balas <eliza.balas@analog.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic
+	<dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>
+Subject: [PATCH v3 0/2] Add support for ADI TDD Engine
+Date: Thu, 19 Oct 2023 15:56:44 +0300
+Message-ID: <20231019125646.14236-1-eliza.balas@analog.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: PCI: qcom-ep: Add support for SA8775P
- SoC
-Content-Language: en-US
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
- quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
- dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
- quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mhi@lists.linux.dev, linux-phy@lists.infradead.org
-References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
- <1697715430-30820-2-git-send-email-quic_msarkar@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1697715430-30820-2-git-send-email-quic_msarkar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: kVsjbM3ritvDNdrfYiitzuSz8kMQVgj6
+X-Proofpoint-ORIG-GUID: kVsjbM3ritvDNdrfYiitzuSz8kMQVgj6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_11,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ spamscore=0 phishscore=0 bulkscore=0 clxscore=1011 mlxscore=0
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2309180000 definitions=main-2310190111
 
-On 19/10/2023 13:37, Mrinmay Sarkar wrote:
-> Add devicetree bindings support for SA8775P SoC. It has DMA register
-> space and dma interrupt to support HDMA.
-> 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 44 +++++++++++++++++++++-
->  1 file changed, 42 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index a223ce0..7485248 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -13,6 +13,7 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - qcom,sa8775p-pcie-ep
->            - qcom,sdx55-pcie-ep
->            - qcom,sm8450-pcie-ep
->        - items:
-> @@ -20,6 +21,7 @@ properties:
->            - const: qcom,sdx55-pcie-ep
->  
->    reg:
-> +    minItems: 6
->      items:
->        - description: Qualcomm-specific PARF configuration registers
->        - description: DesignWare PCIe registers
-> @@ -27,8 +29,10 @@ properties:
->        - description: Address Translation Unit (ATU) registers
->        - description: Memory region used to map remote RC address space
->        - description: BAR memory region
-> +      - description: DMA register space
+Add support for Analog Devices TDD Engine.
+This driver is created for a specific FPGA Core named=0D
+TDD Controller (Time-Division Duplex).=0D
+We choose the sysfs interface so that the users can access the device regis=
+ters=0D
+directly, in an easy way, without using a complex interface. If there will =
+be=0D
+other future revisions of the TDD FPGA Core, the register space will remain=
+=0D
+compatible, so we don't break the current functionality of the driver.=0D
+=0D
+Even though the device attributes might resamble a bit with the ones from=0D
+the iio subsystem, the device also contains a lot of attributes which are n=
+ot=0D
+part of the iio subsystem.=0D
+We do not want to confuse this device with an IIO device, so we concluded t=
+hat=0D
+the driver should reside in the misc subsystem.=0D
+=0D
+V2 -> V3:=0D
+- change from dual-license to single license driver=0D
+- remove version number from the compatible string=0D
+- the driver should reside in the misc subsystem
 
-You need to constrain IO space in all other variants.
+Eliza Balas (2):
+  dt-bindings: misc: adi,axi-tdd: Add device-tree binding for TDD engine
+  drivers: misc: adi-axi-tdd: Add TDD engine
 
->  
->    reg-names:
-> +    minItems: 6
->      items:
->        - const: parf
->        - const: dbi
-> @@ -36,13 +40,14 @@ properties:
->        - const: atu
->        - const: addr_space
->        - const: mmio
-> +      - const: dma
->  
->    clocks:
-> -    minItems: 7
-> +    minItems: 5
->      maxItems: 8
->  
->    clock-names:
-> -    minItems: 7
-> +    minItems: 5
->      maxItems: 8
->  
->    qcom,perst-regs:
-> @@ -57,14 +62,18 @@ properties:
->            - description: Perst separation enable offset
->  
->    interrupts:
-> +    minItems: 2
->      items:
->        - description: PCIe Global interrupt
->        - description: PCIe Doorbell interrupt
-> +      - description: DMA interrupt
->  
->    interrupt-names:
-> +    minItems: 2
->      items:
->        - const: global
->        - const: doorbell
-> +      - const: dma
+ .../sysfs-bus-platform-drivers-adi-axi-tdd    | 156 ++++
+ .../devicetree/bindings/misc/adi,axi-tdd.yaml |  65 ++
+ MAINTAINERS                                   |   9 +
+ drivers/misc/Kconfig                          |  10 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/adi-axi-tdd.c                    | 780 ++++++++++++++++++
+ 6 files changed, 1021 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-drivers-ad=
+i-axi-tdd
+ create mode 100644 Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
+ create mode 100644 drivers/misc/adi-axi-tdd.c
 
-You need to constrain interrupts in all other variants.
-
->  
->    reset-gpios:
->      description: GPIO used as PERST# input signal
-> @@ -173,6 +182,37 @@ allOf:
->              - const: ddrss_sf_tbu
->              - const: aggre_noc_axi
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sa8775p-pcie-ep
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 7
-
-As well:
-maxItems: 7
-Otherwise any future update will for sure miss this and relax the reg.
-
-> +        reg-names:
-> +          minItems: 7
-
-Ditto
-
-> +        clocks:
-> +          items:
-> +            - description: PCIe Auxiliary clock
-> +            - description: PCIe CFG AHB clock
-> +            - description: PCIe Master AXI clock
-> +            - description: PCIe Slave AXI clock
-> +            - description: PCIe Slave Q2A AXI clock
-> +        clock-names:
-> +          items:
-> +            - const: aux
-> +            - const: cfg
-> +            - const: bus_master
-> +            - const: bus_slave
-> +            - const: slave_q2a
-> +        interrupts:
-> +          minItems: 3
-
-Ditto
-
-> +        interrupt-names:
-> +          minItems: 3
-
-Ditto
-
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-Best regards,
-Krzysztof
+--=20
+2.25.1
 
 
