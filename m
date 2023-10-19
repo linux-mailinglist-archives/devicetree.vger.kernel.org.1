@@ -1,114 +1,131 @@
-Return-Path: <devicetree+bounces-10010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F5077CF5B5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:50:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7326A7CF5E7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20559281401
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:50:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98E531C208E5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 10:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3308D518;
-	Thu, 19 Oct 2023 10:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2B814F85;
+	Thu, 19 Oct 2023 10:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="FyMqDZwR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dMz2uwuS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A4223B0
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:50:20 +0000 (UTC)
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BC2FA
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:50:18 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1c87a85332bso68033645ad.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 03:50:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5057182BE
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 10:53:05 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506A2121;
+	Thu, 19 Oct 2023 03:53:04 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c501bd6ff1so95111741fa.3;
+        Thu, 19 Oct 2023 03:53:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1697712618; x=1698317418; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F+23JhXChJ2upiI1yweoZc95DCKyTZufxmMJiUGUuS4=;
-        b=FyMqDZwRb+QEk92GcepdsEvKfOmyKRHRB3D1MaTgocUSqfGef/GfErWJXR7t3zOndR
-         zOdICYYevKX7yHX3w0aWoGU3SPcC8tyofNq0f2Dcd72l5XnLgdHdMTRmIMFHxGoqbU47
-         gCu6IGzqBG/8y4fXFeo8/f8K8RnyKk/e9orHe16wmFrM2+UKmpiufti/bv73hFbrWRHb
-         fx4dKUVkjP+QY5OxBer1h3DDuB1T/Sy/h/iW4LFsBNt4vDS1fklk/B1fJ5+39U18ItZ2
-         p4jhVPUUoMz2jp9y6notl3kSdBk/tGhfRQ1a/z4AHTb9ZjIqDrb/gqfnWb+3MroMlSie
-         wgtg==
+        d=gmail.com; s=20230601; t=1697712782; x=1698317582; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=a2iJFIQZU3dMWJmF9fQqJT6sOJuhpG2IbdIzEIIeAV0=;
+        b=dMz2uwuSU7lYXT/hKRJL5HQ3W8Td6np6Idc0NASEawoS/cOZNPXZUZ70fPb0EkSMY3
+         /4nLqK4ym4DzImgE1lATwjbumLMqzZv1iTht9+HtDJb7XpNjQuX52HVsPvYLklOgo9/Y
+         VksStneetXYJSbyqPa1+ZPH1vyyHa6zXLZkKuAklvGvkmknT5YQHVTynKEK2eGQtES1z
+         62qNgWuJedYkJa2PlCPrkx8XQ6gzctVYIrpvxUdgb5eGOa0R2mD6CoSpta+ELwhVKj5J
+         OIkQZxU6ysIdJyAsuea+NBMKEcmcDTyVvYDPU169IfxvTzOvlrKiir/Nnr+1Q8uvscv2
+         f1DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697712618; x=1698317418;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+23JhXChJ2upiI1yweoZc95DCKyTZufxmMJiUGUuS4=;
-        b=nsWNUgJg0oDZ3oAJZU2ejqzrfHl0b+2DO6wMW2zaqebuZWABJ5okRAVOIrfc2tXm14
-         KnXT1ygSWFxaXxKGjC4bDLfvAG68dw2eAnLFPO5n2BwvVHFuh5m2INDeNXEDs9GjWBVx
-         vfoG5Nwiv/VNB1csWAK8rQ900wAbodtFiexje53hV2Bbx8dDG+hetwJERcsCscNfxmGj
-         SCkxrZrb7kcXakP0uKwZLzMdm9Lomu6uC5ScPq7WkjN3tWtwYSmN1P1VJd7AV8QpH7t2
-         7yAsFD0W0kqnvd7pBSE1UFgkl/rCLfwklK0XG3i5cAW+DXW3nDgNWuUs5SGXST+YpEUr
-         ruxQ==
-X-Gm-Message-State: AOJu0Yy2e3757lRdE6JWQp0ahL9vRf2smv2mhranMo3XZKWNqGMbU7og
-	VvJf3EMWR23C+7+OgUg2mp35Lg==
-X-Google-Smtp-Source: AGHT+IFCyfxJyRzphA3v3M3Qp58I614V6//BnX9R0uapcsA82NS8ukmHZJFgqxcRKdAYmP2SozoV8A==
-X-Received: by 2002:a17:902:d48f:b0:1c9:cf1e:f907 with SMTP id c15-20020a170902d48f00b001c9cf1ef907mr2142794plg.57.1697712618416;
-        Thu, 19 Oct 2023 03:50:18 -0700 (PDT)
-Received: from ?IPV6:2403:580d:82f4:0:43ac:2324:cc6e:9fa5? (2403-580d-82f4-0-43ac-2324-cc6e-9fa5.ip6.aussiebb.net. [2403:580d:82f4:0:43ac:2324:cc6e:9fa5])
-        by smtp.gmail.com with ESMTPSA id f18-20020a170902ce9200b001bc18e579aesm1612043plg.101.2023.10.19.03.50.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 03:50:18 -0700 (PDT)
-Message-ID: <6b856b0d-4f69-70ac-59a7-237fd21d1a92@tweaklogic.com>
-Date: Thu, 19 Oct 2023 21:20:12 +1030
+        d=1e100.net; s=20230601; t=1697712782; x=1698317582;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a2iJFIQZU3dMWJmF9fQqJT6sOJuhpG2IbdIzEIIeAV0=;
+        b=iqxGzS8Ha1W2i0SREbYt6KLDaZ4lSOdSLwAuy7oSAsolVTqHFFsHNl0qVyqbdY+c8U
+         2VPNXT+bzrEBsDCxad2bq0Fy15838jwdsV+RU8BZ/N/Ox2SDrHB7fwjn59bZIXxMjCjK
+         bYhhNYgeKHeujj1p+2H+y/2CSMgvBe4BvGzVM7fS7Lc2z5JtOGkHQ62J00qU9rpsi1cs
+         G98lqH611mt7mArPM1KpPlMCs/gxUIInaXYfxh7QSCXyxJYmaJIJNFH1s1ulMZki1PcA
+         bi+d6ZQfjZt1WIc/uOP1fK7TkgGeZs/fV/eZ5881jcb8A0vIgGVz7Vgdurp/gp3aJpcr
+         1gKg==
+X-Gm-Message-State: AOJu0YxDpRQ91ZH6fmGQlZYimEUOBXUor4lHosqIWyEg3Sg4vTDxgSDb
+	AMzj61w2aGI/HNvZqoHSWl8=
+X-Google-Smtp-Source: AGHT+IGzZ6w/a2I2t2hj+OoCFUEN+jp/x1/0jBQjv+5/Krw0aEMmBE8FvF+3HQVEJYZ7RYhQGJX34g==
+X-Received: by 2002:ac2:5194:0:b0:503:9eb:47f0 with SMTP id u20-20020ac25194000000b0050309eb47f0mr1122559lfi.59.1697712782192;
+        Thu, 19 Oct 2023 03:53:02 -0700 (PDT)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id fb21-20020a056512125500b005031641b40asm1043740lfb.159.2023.10.19.03.52.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Oct 2023 03:53:01 -0700 (PDT)
+Message-ID: <65310a8d.050a0220.28bdd.4114@mx.google.com>
+X-Google-Original-Message-ID: <ZTEKiUCiP/fMJUdl@Ansuel-xps.>
+Date: Thu, 19 Oct 2023 12:52:57 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/4] cpufreq: qcom-nvmem: add support for ipq806x
+References: <20231013173854.7399-1-ansuelsmth@gmail.com>
+ <20231019064653.feqpjdmblm7mmsug@vireshk-i7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
- schemas
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
- <20231019-rematch-ethically-9d482ca4607e@spud>
-Content-Language: en-US
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20231019-rematch-ethically-9d482ca4607e@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231019064653.feqpjdmblm7mmsug@vireshk-i7>
 
-On 19/10/23 19:21, Conor Dooley wrote:
-> On Thu, Oct 19, 2023 at 06:34:37PM +1030, Subhajit Ghosh wrote:
->> Squashing Avago (Broadcom) APDS9300 and APDS9960 schemas into one
->> file and removing the other.
+On Thu, Oct 19, 2023 at 12:16:53PM +0530, Viresh Kumar wrote:
+> On 13-10-23, 19:38, Christian Marangi wrote:
+> > The first patch of this series was split to a separate series as it
+> > doesn't depend on [1] and can be applied right away,
+> > [1] introduced some breaking change to function that ipq806x, ipq807x
+> > patch was dropped to permit an easier rebase and merge of both.
+> > 
+> > This small series adds support for ipq806x qcom-cpufreq-nvmem driver.
+> > Special function are required to make use of the opp-supported-hw
+> > binding by hardcoding custom bits based on the qcom SoC ID.
+> > 
+> > The qcom-cpufreq-nvmem driver had recent changes to also improve
+> > support for apq8064. Because of this, this series depends on a
+> > just merged series.
+> > 
+> > Depends on [1].
+> > 
+> > [1] https://lore.kernel.org/linux-pm/20231010063235.rj2ehxugtjr5x2xr@vireshk-i7/T/#t
+> > 
+> > Christian Marangi (4):
+> >   dt-bindings: cpufreq: qcom-cpufreq-nvmem: Document krait-cpu
+> >   dt-bindings: opp: opp-v2-kryo-cpu: Document named opp-microvolt
+> >     property
 > 
->> Link: https://lore.kernel.org/all/4e785d2e-d310-4592-a75a-13549938dcef@linaro.org/
+> Applied above two. Thanks.
 > 
-> "Yes, they look similar. I will combine them all in a single yaml file in
-> the next revision. Thank you Krzysztof."
+> >   cpufreq: qcom-nvmem: add support for IPQ8064
 > 
-> Yet this is a follow-up patch, not a version 2. The original patches
-> seem to not have been applied, so I am not sure why you didn't send a
-> v2?
-> 
-> Cheers,
-> Conor.
+> This doesn't apply/build anymore.
+>
 
-Sorry, I should have put a longer description and a longer commit message.
-That patch series adds a new driver - apds9306 which is separate to this
-patch. As per Krzysztof's comments, first operation is to merge the existing
-apds9300 and apds9960 schemas. This patch is the first operation.
+Hi, I sent v7 that fix the conflict problem. I dropped from the series
+the 2 applied patch and added the 2 dependent patch since it seems
+fixing the problem in the series might take longer times.
 
-Second operation will be to add apds9306 support on top of that. I will
-explain more on Krzysztof's comments. Thank you for reviewing.
+Can you check? Thanks a lot for the help in accepting this series.
 
-Regards,
-Subhajit Ghosh
+> >   ARM: dts: qcom: ipq8064: Add CPU OPP table
+> 
+
+-- 
+	Ansuel
 
