@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-9936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C017CF0FD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:19:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 457087CF111
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D72421C209AC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:19:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00FEB281EB5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E70CA7A;
-	Thu, 19 Oct 2023 07:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA9AD295;
+	Thu, 19 Oct 2023 07:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rregEQjI"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="oFt4Fz7A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CC146684
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 07:19:16 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC144123
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:19:14 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-407da05f05aso19817665e9.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:19:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F52D262
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 07:21:22 +0000 (UTC)
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F85B12F
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:21:20 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6c61dd1c229so1279566a34.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:21:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697699953; x=1698304753; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1697700079; x=1698304879; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oMk48fNPeMbwiPT4mA/TH80iCg6Ebj3s0QIfDkvnauE=;
-        b=rregEQjI6w88i14szei2X1wO719KaM6zQQxiw3NH/zDgQxHbt38LeKjF3I+p1URybQ
-         VVyVrQ5nCqqeJ+tcqO2iQ5xEL/yA/pbKn2hrPLMqj1RVG0YrHEHsjy3spyyAwfDAFxBK
-         wQ/md2esX+gwA5NVM4iiTQjWowPM9S7bLOePNpq372TYJsYQXKUiTLPJ1YbSE0ip87zC
-         WjVJSCdqtk9LG5thTRxTB2aE3QQWuqK/P2V2geRQtPsBOZUmKFFt7eDqgFlut1qB8/44
-         oMKrBiPhBMoiyodhGW2Hwx2YdERwa5VFERDQA5F0BKKhOIXQAyBpjwykoK9cU6qDi6+Y
-         eloQ==
+        bh=/caEF9HzcleOEHwneLp6tiCcjo0T3AFNH3jEPiF4Apg=;
+        b=oFt4Fz7AxAw5X4nvPL0AaK2Axx+CD5s6OUpo+sG8NR4YJgtLItfKYVd+Hz3UEK0/6p
+         rU1f9V44aYtwk4888xqtdqrEkwmmbOT42ZYxOtD6qA3Dpu081BTnN+RZvPXNIXbHYlft
+         DsDqqY8DMSiOCwSY7KTmnU3XG4+Daa9WtiGLr/KfwbfwWy2hosF6kLkOpgQYDje2bYwh
+         hjZWLOoK84DeOvUENZZTFqF7hgdrkPO5B9W8Hn3JvszJ/Yb/zgP3WULkt8/AQVW5t6fy
+         oFUCV8dxVGpmFmSyanyBoaRDh1wqFFT1A6z7xnPg2qXH5utsZ2VvxmB3G0ZI59S9dF8P
+         cLeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697699953; x=1698304753;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697700079; x=1698304879;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oMk48fNPeMbwiPT4mA/TH80iCg6Ebj3s0QIfDkvnauE=;
-        b=m1lQmSvbaIJaBldB5acFwhKs3JuREPZK/+7plVkTViC8vNi2X6uspqt5e3B4M+Rn4c
-         UzMUoWFPjEuwp9BJWgYvQ+nOxldzuozf3PyOFOrO1qdZuDPg2oqi/cxodxkN+Qurobb5
-         AHPwxett9icyRFqM/rbYxX8bGYb5BMH282APeba/vhuVCQQA0Y3wlb3qYbuwh+2pFN05
-         o10UnwlgT5XX/9HRFdU5Bz7fk3fTJ5PuRI3szUSUef+FiquhVqGVja4DdO2PAwdpj7QL
-         UgbeEt1Hl1Fq9SjuW9BeNPHL+ZVNTSEVRDaqJ7bZgvvkYy9gTWA9oQLxOBHd7D3Ui/Lw
-         9XkQ==
-X-Gm-Message-State: AOJu0YwSq4v1MbyAwXLCWVCNnnZNPw6kMkoXsevNdEcp6KUtolULZkqA
-	x/+N9q8uUawbbCC/7O3SbF8o+Q==
-X-Google-Smtp-Source: AGHT+IH22H7cf3TKJw7PfKcUyvqMF1SQ8wGA+P4mbnIzVYBkIArA77tzRFNnMvM3wv80vuC9ESCtYw==
-X-Received: by 2002:a05:600c:4f02:b0:405:3885:490a with SMTP id l2-20020a05600c4f0200b004053885490amr1177060wmq.0.1697699953215;
-        Thu, 19 Oct 2023 00:19:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.49])
-        by smtp.gmail.com with ESMTPSA id o30-20020a05600c511e00b004063cd8105csm3683692wms.22.2023.10.19.00.19.11
+        bh=/caEF9HzcleOEHwneLp6tiCcjo0T3AFNH3jEPiF4Apg=;
+        b=o+TBsZO8sK2e4CR/JWsh77SB5vHO5oDEj7bfL0CrOeko3cdlk0faZ0hMVsjUmKZzoF
+         n8kyCKVsYKgPftXlb/KqNmfXAFDUJIuZXqN+T6cmMNdcelEMWgLHKKNTjHhXdIsC7xMV
+         4VgBrrLR1bFmDy9h4CvexlWk3CfAF9cUCOlMrt6fIhYr3u8kjNCqq1kzcRkbaf5JwgjZ
+         rd2zyBuCwGoXgRBR6E+TkKTB0EdNOSh0shES2aL0OrRPzLGRbfugOCFr1owqYiCgiTk1
+         WL223zYLR2zz/QadeFvr04UT1D6Z9tozENbAj1VyZQ920h4C5XfjyAWz4icXonA/IHAs
+         yyNg==
+X-Gm-Message-State: AOJu0Yz9M9WcjaJFwqnT1h1LfiG7mpTxabd5DPPfCV4mt+xqdGagDRzB
+	WjptOOO95uMr2ozBMvXz4maMxw==
+X-Google-Smtp-Source: AGHT+IEFXAbxxObWsDg43i5JytX4bz0tF34qGuIzEM5TAcp0MRy/O+CrNP01uiR3b1KPRaXNmbiEQQ==
+X-Received: by 2002:a05:6870:b14:b0:1e9:adec:bf5e with SMTP id lh20-20020a0568700b1400b001e9adecbf5emr1951115oab.2.1697700079549;
+        Thu, 19 Oct 2023 00:21:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:6933:1fe3:b858:3dde? ([2a01:e0a:999:a3a0:6933:1fe3:b858:3dde])
+        by smtp.gmail.com with ESMTPSA id k4-20020a63ba04000000b0057412d84d25sm2436010pgf.4.2023.10.19.00.21.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 00:19:12 -0700 (PDT)
-Message-ID: <d640f5c2-8af5-4402-a981-0e962d4f2aca@linaro.org>
-Date: Thu, 19 Oct 2023 09:19:09 +0200
+        Thu, 19 Oct 2023 00:21:18 -0700 (PDT)
+Message-ID: <be86086b-7b1e-48b5-98e1-e1cd077cf3bb@rivosinc.com>
+Date: Thu, 19 Oct 2023 09:21:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,158 +67,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: media: imx-jpeg: Assign slot for imx
- jpeg encoder/decoder
+Subject: Re: [PATCH v2 03/19] riscv: hwprobe: add support for scalar crypto
+ ISA extensions
+To: Evan Green <evan@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Palmer Dabbelt <palmer@rivosinc.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+ Andrew Jones <ajones@ventanamicro.com>, Conor Dooley <conor@kernel.org>,
+ Samuel Ortiz <sameo@rivosinc.com>
+References: <20231017131456.2053396-1-cleger@rivosinc.com>
+ <20231017131456.2053396-4-cleger@rivosinc.com>
+ <CALs-HssE=denuwBqH4KtCr1QqTzPb9rELW1ZXR5Cr-nqQQWQoA@mail.gmail.com>
 Content-Language: en-US
-To: "Ming Qian (OSS)" <ming.qian@oss.nxp.com>, mirela.rabulea@oss.nxp.com,
- robh+dt@kernel.org, shawnguo@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mchehab@kernel.org, hverkuil-cisco@xs4all.nl, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, xiahong.bao@nxp.com,
- eagle.zhou@nxp.com, tao.jiang_2@nxp.com, ming.qian@nxp.com,
- linux-imx@nxp.com, devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1697597713.git.ming.qian@nxp.com>
- <c7995af1f91733626ff4e86f0575dea5d2ff0bb8.1697597713.git.ming.qian@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c7995af1f91733626ff4e86f0575dea5d2ff0bb8.1697597713.git.ming.qian@nxp.com>
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <CALs-HssE=denuwBqH4KtCr1QqTzPb9rELW1ZXR5Cr-nqQQWQoA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 19/10/2023 04:48, Ming Qian (OSS) wrote:
-> From: Ming Qian <ming.qian@nxp.com>
-> 
-> This IP includes a jpeg wrapper and a jpeg engine, the wrapper is
-> working on descriptor based manner. It supports up to 4 slots, each slot
-> can have its own chained descriptors. Host won't configure the engine
-> directly, but fill some descriptors to encode or decode one jpeg
-> picture. Then configure the descriptors to certain slot register. The
-> jpeg wrapper will schedule between different slots. When some slot is
-> finished, the slot interrupt will be triggered. The purpose of slot is
-> that engine can be shared across multiple VMS and os.
-> 
-> Currently, power domains and interrupts are enabled for all 4 slots, but
-> only one slot is used. There is no benefit in using more that one slot
-> from within the same OS, as the slots are scheduled in round-robin
-> manner and not executed in parallel.
-> 
-> Use the property "nxp,slot" to assign a single slot, and just expose the
-> parts of the h/w for the assigned slot. For example, only put slot 1's
-> power-domains entry in the DT when slot 1 is assigned. If not specified,
-> 0 is used by default.
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> ---
-> v5
-> - improve commit message
-> - improve property description
-> 
-> v4
-> - improve commit message
-> - drop line making the property required, to avoid ABI break
-> 
-> v3
-> - add vender prefix, change property slot to nxp,slot
-> - add type for property slot
-> 
-> v2
-> - add a new property in bindings document
-> 
->  .../bindings/media/nxp,imx8-jpeg.yaml         | 46 +++++++++----------
->  1 file changed, 22 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> index 3d9d1db37040..0961856bdcab 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> @@ -32,19 +32,27 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> -    description: |
-> -      There are 4 slots available in the IP, which the driver may use
-> -      If a certain slot is used, it should have an associated interrupt
-> -      The interrupt with index i is assumed to be for slot i
-> -    minItems: 1               # At least one slot is needed by the driver
-> -    maxItems: 4               # The IP has 4 slots available for use
-> +    description:
-> +      Interrupt number for slot
-> +    maxItems: 1
-
-The device still has four interrupts, so we should allow up to four of
-them. One given OS might want to use two or all four slots.
-
-
->  
->    power-domains:
->      description:
->        List of phandle and PM domain specifier as documented in
->        Documentation/devicetree/bindings/power/power_domain.txt
-> -    minItems: 2               # Wrapper and 1 slot
-> -    maxItems: 5               # Wrapper and 4 slots
-> +    minItems: 1               # Mixed power domain
-> +    maxItems: 2               # Wrapper and 1 slot
-> +
-> +  nxp,slot:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Integer number of slot index used. This IP includes a jpeg wrapper, the
-> +      wrapper is working on descriptor based manner. It supports up to 4 slots,
-> +      each slot can have its own chained descriptors. The purpose is to share
-> +      the jpeg engine across multiple VMS and os. We use this property to
-> +      assign a single slot. If not specified, 0 is used by default.
-> +    minimum: 0
-> +    maximum: 3
-
-default: 0
+Content-Transfer-Encoding: 8bit
 
 
 
-Best regards,
-Krzysztof
+On 18/10/2023 19:24, Evan Green wrote:
+> On Tue, Oct 17, 2023 at 6:15 AM Clément Léger <cleger@rivosinc.com> wrote:
+>>
+>> Export the following scalar crypto extensions through hwprobe:
+>>
+>> - Zbkb
+>> - Zbkc
+>> - Zbkx
+>> - Zknd
+>> - Zkne
+>> - Zknh
+>> - Zksed
+>> - Zksh
+>> - Zkt
+>>
+>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>> ---
+>>  Documentation/riscv/hwprobe.rst       | 30 +++++++++++++++++++++++++++
+>>  arch/riscv/include/uapi/asm/hwprobe.h | 10 +++++++++
+>>  arch/riscv/kernel/sys_riscv.c         | 10 +++++++++
+>>  3 files changed, 50 insertions(+)
+>>
+>> diff --git a/Documentation/riscv/hwprobe.rst b/Documentation/riscv/hwprobe.rst
+>> index a52996b22f75..968895562d42 100644
+>> --- a/Documentation/riscv/hwprobe.rst
+>> +++ b/Documentation/riscv/hwprobe.rst
+>> @@ -77,6 +77,36 @@ The following keys are defined:
+>>    * :c:macro:`RISCV_HWPROBE_EXT_ZBS`: The Zbs extension is supported, as defined
+>>         in version 1.0 of the Bit-Manipulation ISA extensions.
+>>
+>> +  * :c:macro:`RISCV_HWPROBE_EXT_ZBC` The Zbc extension is supported, as defined
+>> +       in version 1.0 of the Scalar Crypto ISA extensions.
+> 
+> At least in my v1.0.1 version of the crypto scalar spec, I don't see
+> Zbc. That seems to be defined in the bit manipulation extensions.
 
+Thanks for catching this, this should be same than the previous line. I
+will actually move the ZBC on another patch since it is not scalar crypto.
+
+Clément
 
