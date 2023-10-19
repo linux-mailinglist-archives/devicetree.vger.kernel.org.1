@@ -1,263 +1,131 @@
-Return-Path: <devicetree+bounces-10041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6CDD7CF719
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:38:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 550A47CF721
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:39:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6DF1C20AD9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:38:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 117AF281F6A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 11:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB21F199BB;
-	Thu, 19 Oct 2023 11:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZiW2IPIF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280A21A290;
+	Thu, 19 Oct 2023 11:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7EC199A5
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 11:38:02 +0000 (UTC)
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBD8D79
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 04:37:48 -0700 (PDT)
-Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231019113746epoutp04942899efcaadaff233a86929a6766ba7~PfzjEhyjL2370223702epoutp04V
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 11:37:46 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231019113746epoutp04942899efcaadaff233a86929a6766ba7~PfzjEhyjL2370223702epoutp04V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1697715466;
-	bh=nA9NwooCLV1zRj115RojQInqhJTyoYBvk5U5nWxx+Sc=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=ZiW2IPIFeaZAn/OSqk7hHFZaE6UiW7meRQx6mAiWqBm1LYBF5y8CPES/7aMMFCD3R
-	 1Qybw4XOXFx0O54yxM7yERAE8gQHRsBCtYkajV04CILo1atEoVvR5Lth0qi4IFm6kI
-	 P8ur/i62ueCni1FhBI0m/7M/Ny9mEu8aRdPDZidE=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-	20231019113745epcas1p3e9baa3975a2bc96bdab7704e03ed25aa~PfziUipUX0720707207epcas1p3C;
-	Thu, 19 Oct 2023 11:37:45 +0000 (GMT)
-Received: from epsmgec1p1.samsung.com (unknown [182.195.36.135]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4SB5LJ4KyCz4x9Py; Thu, 19 Oct
-	2023 11:37:44 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-	epsmgec1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	DC.9C.08572.80511356; Thu, 19 Oct 2023 20:37:44 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20231019113744epcas1p136981f23fda1dd74a2de41039abf2969~Pfzg8tD3K2437624376epcas1p1i;
-	Thu, 19 Oct 2023 11:37:44 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231019113744epsmtrp193f39fcb03dc5d2018b82b7311a3f339~Pfzg7oIVb1064910649epsmtrp10;
-	Thu, 19 Oct 2023 11:37:44 +0000 (GMT)
-X-AuditID: b6c32a33-cefff7000000217c-83-653115089472
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	69.48.07368.70511356; Thu, 19 Oct 2023 20:37:43 +0900 (KST)
-Received: from cw00choi03 (unknown [10.113.111.106]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231019113743epsmtip2346a2fa7640bfb4c7701712e8f457493~PfzgkeIAT2788827888epsmtip2D;
-	Thu, 19 Oct 2023 11:37:43 +0000 (GMT)
-From: "Chanwoo Choi" <cw00.choi@samsung.com>
-To: "'Chanwoo Choi'" <chanwoo@kernel.org>, "'Sascha Hauer'"
-	<s.hauer@pengutronix.de>, <linux-rockchip@lists.infradead.org>
-Cc: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, "'Heiko Stuebner'" <heiko@sntech.de>, "'Kyungmin
- Park'" <kyungmin.park@samsung.com>, "'MyungJoo Ham'"
-	<myungjoo.ham@samsung.com>, "'Will	Deacon'" <will@kernel.org>, "'Mark
- Rutland'" <mark.rutland@arm.com>, <kernel@pengutronix.de>, "'Michael
-	Riesch'" <michael.riesch@wolfvision.net>, "'Robin	Murphy'"
- <robin.murphy@arm.com>, "'Vincent Legoll'" <vincent.legoll@gmail.com>, "'Rob
-	Herring'" <robh+dt@kernel.org>, "'Krzysztof Kozlowski'"
- <krzysztof.kozlowski+dt@linaro.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
- <devicetree@vger.kernel.org>, "'Sebastian Reichel'"
- <sebastian.reichel@collabora.com>
-In-Reply-To: <99477a81-08d1-4e5d-8b20-22da58921041@kernel.org>
-Subject: RE: [PATCH v8 07/26] PM / devfreq: rockchip-dfi: introduce channel
- mask
-Date: Thu, 19 Oct 2023 20:37:43 +0900
-Message-ID: <000e01da0280$acc3e640$064bb2c0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4900D199A5
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 11:39:09 +0000 (UTC)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E832D13D;
+	Thu, 19 Oct 2023 04:38:46 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5a81ab75f21so80152697b3.2;
+        Thu, 19 Oct 2023 04:38:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697715526; x=1698320326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tEmcuppiYe9/vGVMnE/yydfS69UfeiisZ86D9IEml3c=;
+        b=s/gbeLOsEbiP/tI5/Ji8OiKumoX1Q94FzsnI0nC+yrJkb6jlnWa5k6E3OQTqeHP+iO
+         lKmVeGKlMx6ftovBBjDryxPZRY1n6NndI6QNHbgmbLbRErpgMASC754pxXDX3INsfwYE
+         nMvaVAjLcr2ORCjABYKPEm4PFRUq4KI4lcR9MpQiAUh7v84dBOV0wclfSerkQrcjYpT0
+         PbFZZ1ingKKUv/Fc7aIwfDvMpluFFfhTLobgmWgBpw5x+IofHKvXZVSVv1XeETfC3MhE
+         koZUTQ073x7kUoUjr+zpMxV0X69OVZvgdnQFk3l/958AhHn6ylHjKj6JVNm4W00zzTOQ
+         StXw==
+X-Gm-Message-State: AOJu0Yws7/1m50cMDSzeCWbpdZrJngB4dSPnltY/Y5uFK/n0xi9DwG9V
+	ehNuCcy2WCp8rVvDOjMb5FooYhvrlmsoug==
+X-Google-Smtp-Source: AGHT+IHTWaIaU94N1svppKvIPZVBV84TAu1XQUkmZ+ueg9ZP+2cL0CrmgkpHtox84xBzULKHBETEgA==
+X-Received: by 2002:a81:a0d5:0:b0:59b:d3cd:ffb6 with SMTP id x204-20020a81a0d5000000b0059bd3cdffb6mr2011656ywg.33.1697715525694;
+        Thu, 19 Oct 2023 04:38:45 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id h185-20020a0df7c2000000b005869cf151ebsm2336476ywf.144.2023.10.19.04.38.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Oct 2023 04:38:45 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d9ad67058fcso8392040276.1;
+        Thu, 19 Oct 2023 04:38:45 -0700 (PDT)
+X-Received: by 2002:a25:e057:0:b0:d9a:4b0f:402b with SMTP id
+ x84-20020a25e057000000b00d9a4b0f402bmr2023488ybg.38.1697715525219; Thu, 19
+ Oct 2023 04:38:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: ko
-Thread-Index: AQFYMiMsP3soeW2GlDsie1R9CxInBwIEdyp7AhkPerkB0r+rhbElGsDw
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrEJsWRmVeSWpSXmKPExsWy7bCmri6HqGGqQesXeYuJN66wWKzZe47J
-	Yv6Rc6wW/x+9ZrVYNXUni0Xfi4fMFmeb3rBbbHp8jdXi8q45bBafe48wWnx68J/ZYun1i0wW
-	BxeqWNxuXMFm0br3CLvFwQ9PWC3+bt/EYnH3tZ/F8bXP2Cxa7pg6iHismbeG0WPH3SWMHjtn
-	3WX32LSqk83jzrU9bB6bl9R79P818OjbsorRY/u1ecwenzfJecz//ZgxgDsq2yYjNTEltUgh
-	NS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6EElhbLEnFKgUEBicbGS
-	vp1NUX5pSapCRn5xia1SakFKToFpgV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbG2TdzmQo+KlRs
-	vfeJtYFxn1QXIyeHhICJxJxN85m6GLk4hAR2MEqcv3KAFSQhJPCJUWJ5fxFE4hujRNuH18ww
-	HRMWXmGFSOxllOi9vBCq/SWjxJqdUxi7GDk42AR0JBb8CAVpEBGokXjefR+sgVngPKvEwjcL
-	wVZwCthJXF71kRHEFhYIkpj8cB6YzSKgKnG2Yzo7iM0rYCnxYcZnKFtQ4uTMJywgNrOAvMT2
-	t3OgLlKQ+Pl0GStEXERidmcbM8RiN4lbXReZIGrmc0rMeWAHYbtIdM14CdUrLPHq+BZ2CFtK
-	4mV/GzvIoRICkxklLr4GeRnEWc8osXFlC1SHscT+pZOZQL5kFtCUWL9LHyKsKLHz91xGiCP4
-	JN597WEFKZEQ4JXoaBOCKFGWuPzgLtQ9khKL2zvZJjAqzULy2iwkr81C8s4shGULGFlWMYql
-	FhTnpqcmGxYYwmM7OT93EyM48WsZ72C8PP+f3iFGJg7GQ4wSHMxKIryqHgapQrwpiZVVqUX5
-	8UWlOanFhxhNgYE9kVlKNDkfmHvySuINTSwNTMyMjE0sDM0MlcR5FSfMThESSE8sSc1OTS1I
-	LYLpY+LglGpgSg7Vf1juWnr+i3yL5SGruaf2PTAv6C8of+XIU/Nu2a2ul2nCO4qOvJOcLPIr
-	QvWYNLeP07P5q2fV8sTY5n90n/pQlMvTMDOSwavMKnbvHLPbPapX/95ulFjw7W0Bd2GZnbnB
-	NzXny+9r/PUiK5plpRzn151yU9kbsiDxYOkT27CradOtuK/HPP+5h+ndHf80DtPyLS5sYqnz
-	nq/b2vW58KStZ3btrzy9f3tknjEK/9iaWZ3xt/JiKbt6ybGyQ/6v7A15tv54mHkl7GErD5NV
-	Kn/eec3NfBnXP51MPWkmI3N33kTlbS9kjhbzV5p9rlhr8nHZXflgxvtSKq4P3LrP18sG/e+1
-	j6m3tDVxr1RiKc5INNRiLipOBADB/VFKhQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLIsWRmVeSWpSXmKPExsWy7bCSvC67qGGqwdmzphYTb1xhsViz9xyT
-	xfwj51gt/j96zWqxaupOFou+Fw+ZLc42vWG32PT4GqvF5V1z2Cw+9x5htPj04D+zxdLrF5ks
-	Di5UsbjduILNonXvEXaLgx+esFr83b6JxeLuaz+L42ufsVm03DF1EPFYM28No8eOu0sYPXbO
-	usvusWlVJ5vHnWt72Dw2L6n36P9r4NG3ZRWjx/Zr85g9Pm+S85j/+zFjAHcUl01Kak5mWWqR
-	vl0CV8bZN3OZCj4qVGy994m1gXGfVBcjJ4eEgInEhIVXWLsYuTiEBHYzSky8/pMJIiEpMe3i
-	UeYuRg4gW1ji8OFiiJrnjBLPT65iA4mzCehILPgRClIuIlAnMbl7FxtIDbPAbVaJhdN/MUM0
-	fGaUWNdxgxmkilPATuLyqo+MILawQIDEyk0/wWwWAVWJsx3T2UFsXgFLiQ8zPkPZghInZz5h
-	AbGZBbQlnt58CmXLS2x/O4cZ4lAFiZ9Pl7FCxEUkZne2MUNc5CZxq+si0wRG4VlIRs1CMmoW
-	klGzkLQvYGRZxSiZWlCcm56bbFhgmJdarlecmFtcmpeul5yfu4kRnAK0NHYw3pv/T+8QIxMH
-	4yFGCQ5mJRFeVQ+DVCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8hjNmpwgJpCeWpGanphakFsFk
-	mTg4pRqYjI7Ubmta2X+wb+Kx/U/+qF74YRMnpbRz0az5WzbwH1dibZ6YsKzkwIma7rfKh0vT
-	bq56dCvudjD38Zcb1ByL96/QOKeYvcM/0vv4rlZla87kP/vVD5Tt+fwkjf/n+gtPfA52qPWd
-	2hP9tWdf9LS1jYs3NOg8Mf6/iG2ZVI9JorH2fLHDjVtbf5U/eRsvF5Yg80e0tSkjoCOvan3C
-	L43Or4euBN9eIMsn+clZ9+T6Sxob9ue1zT3GtzkzzmbHp9ha/bTAdb1bDghnSv6aULbn7lGB
-	l//f+ApFJhx3O3lw+4HzrXNX1MfNeDnx+pPg1x23bXpO8p2sKpqjruneL3T9eIxppKFAcF6z
-	4qdTu4VCRJRYijMSDbWYi4oTAb6Ih4ZwAwAA
-X-CMS-MailID: 20231019113744epcas1p136981f23fda1dd74a2de41039abf2969
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231018150545epcas1p1894352c75255fabd2377593bd09fc9af
-References: <20231018061714.3553817-1-s.hauer@pengutronix.de>
-	<20231018061714.3553817-8-s.hauer@pengutronix.de>
-	<CGME20231018150545epcas1p1894352c75255fabd2377593bd09fc9af@epcas1p1.samsung.com>
-	<99477a81-08d1-4e5d-8b20-22da58921041@kernel.org>
+References: <cover.1697199949.git.ysato@users.sourceforge.jp>
+ <eee98f679a9e86180ce047de319edcd30ac38d8b.1697199949.git.ysato@users.sourceforge.jp>
+ <CAMuHMdXFuXKDKu7EAtECtMhOZb+Mzjfz7KWQVTSeTNo5G7xqrg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXFuXKDKu7EAtECtMhOZb+Mzjfz7KWQVTSeTNo5G7xqrg@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 19 Oct 2023 13:38:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUyzGvDt-XvOwwuc-sDknx1z+kbEHe+HhT_2yi-vx-v7w@mail.gmail.com>
+Message-ID: <CAMuHMdUyzGvDt-XvOwwuc-sDknx1z+kbEHe+HhT_2yi-vx-v7w@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 15/35] Documentation/devicetree/bindings/interrupt-controller:
+ Add renesas,sh7751-intc.yaml
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, glaubitz@physik.fu-berlin.de, tglx@linutronix.de, 
+	maz@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Sato-san,
 
-
-> -----Original Message-----
-> From: Chanwoo Choi <chanwoo@kernel.org>
-> Sent: Thursday, October 19, 2023 12:06 AM
-> To: Sascha Hauer <s.hauer@pengutronix.de>; linux-
-> rockchip@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> linux-pm@vger.kernel.org; Heiko Stuebner <heiko@sntech.de>; Kyungmin Park
-> <kyungmin.park@samsung.com>; MyungJoo Ham <myungjoo.ham@samsung.com>; Will
-> Deacon <will@kernel.org>; Mark Rutland <mark.rutland@arm.com>;
-> kernel@pengutronix.de; Michael Riesch <michael.riesch@wolfvision.net>;
-> Robin Murphy <robin.murphy@arm.com>; Vincent Legoll
-> <vincent.legoll@gmail.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; devicetree@vger.kernel.org; Sebastian Reichel
-> <sebastian.reichel@collabora.com>
-> Subject: Re: [PATCH v8 07/26] PM / devfreq: rockchip-dfi: introduce
-> channel mask
-> 
-> On 23. 10. 18. 15:16, Sascha Hauer wrote:
-> > Different Rockchip SoC variants have a different number of channels.
-> > Introduce a channel mask to make the number of channels configurable
-> > from SoC initialization code.
+On Thu, Oct 19, 2023 at 1:29=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Sat, Oct 14, 2023 at 4:54=E2=80=AFPM Yoshinori Sato
+> <ysato@users.sourceforge.jp> wrote:
+> > SH7751 interrupt controller binding definition.
 > >
-> > Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >
-> > Notes:
-> >     Changes since v7:
-> >      - Loop only over channels present on a SoC
-> >
-> >  drivers/devfreq/event/rockchip-dfi.c | 25 +++++++++++++++++++------
-> >  1 file changed, 19 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/devfreq/event/rockchip-dfi.c
-> > b/drivers/devfreq/event/rockchip-dfi.c
-> > index 126bb744645b6..28c18bbf6baa5 100644
-> > --- a/drivers/devfreq/event/rockchip-dfi.c
-> > +++ b/drivers/devfreq/event/rockchip-dfi.c
-> > @@ -18,10 +18,11 @@
-> >  #include <linux/list.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_device.h>
-> > +#include <linux/bits.h>
-> >
-> >  #include <soc/rockchip/rk3399_grf.h>
-> >
-> > -#define RK3399_DMC_NUM_CH	2
-> > +#define DMC_MAX_CHANNELS	2
-> >
-> >  /* DDRMON_CTRL */
-> >  #define DDRMON_CTRL	0x04
-> > @@ -44,7 +45,7 @@ struct dmc_count_channel {  };
-> >
-> >  struct dmc_count {
-> > -	struct dmc_count_channel c[RK3399_DMC_NUM_CH];
-> > +	struct dmc_count_channel c[DMC_MAX_CHANNELS];
-> >  };
-> >
-> >  /*
-> > @@ -61,6 +62,8 @@ struct rockchip_dfi {
-> >  	struct regmap *regmap_pmu;
-> >  	struct clk *clk;
-> >  	u32 ddr_type;
-> > +	unsigned int channel_mask;
-> > +	unsigned int max_channels;
-> >  };
-> >
-> >  static void rockchip_dfi_start_hardware_counter(struct
-> > devfreq_event_dev *edev) @@ -95,7 +98,9 @@ static void
-> rockchip_dfi_read_counters(struct devfreq_event_dev *edev, struct dm
-> >  	u32 i;
-> >  	void __iomem *dfi_regs = dfi->regs;
-> >
-> > -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> > +	for (i = 0; i < dfi->max_channels; i++) {
-> > +		if (!(dfi->channel_mask & BIT(i)))
-> > +			continue;
-> >  		count->c[i].access = readl_relaxed(dfi_regs +
-> >  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
-> >  		count->c[i].total = readl_relaxed(dfi_regs + @@ -145,9
-> +150,14 @@
-> > static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
-> >  	rockchip_dfi_read_counters(edev, &count);
-> >
-> >  	/* We can only report one channel, so find the busiest one */
-> > -	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> > -		u32 a = count.c[i].access - last->c[i].access;
-> > -		u32 t = count.c[i].total - last->c[i].total;
-> > +	for (i = 0; i < dfi->max_channels; i++) {
-> > +		u32 a, t;
+> > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+>
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,sh=
+7751-intc.yaml
+> > @@ -0,0 +1,102 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,sh7751=
+-intc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +		if (!(dfi->channel_mask & BIT(i)))
-> > +			continue;
+> > +title: Renesas SH7751 Interrupt Controller
 > > +
-> > +		a = count.c[i].access - last->c[i].access;
-> > +		t = count.c[i].total - last->c[i].total;
-> >
-> >  		if (a > access) {
-> >  			access = a;
-> > @@ -185,6 +195,9 @@ static int rk3399_dfi_init(struct rockchip_dfi *dfi)
-> >  	dfi->ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
-> >  			RK3399_PMUGRF_DDRTYPE_MASK;
-> >
-> > +	dfi->channel_mask = GENMASK(1, 0);
-> > +	dfi->max_channels = 2;
+> > +maintainers:
+> > +  - Yoshinori Sato <ysato@users.sourceforge.jp>
 > > +
-> >  	return 0;
-> >  };
-> >
-> 
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> 
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: renesas,sh7751-intc
+> > +
+> > +  '#interrupt-cells':
+> > +    # an interrupt index and flags, as defined in interrupts.txt in
+> > +    # this directory
+>
+> I think you can drop this comment.
+>
+> > +    const: 2
 
+And given the second cell is always zero, and the driver uses
+irq_domain_xlate_onecell, I guess this should be one instead?
 
-Applied it. Thanks.
+Gr{oetje,eeting}s,
 
-Best Regards,
-Chanwoo Choi
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
