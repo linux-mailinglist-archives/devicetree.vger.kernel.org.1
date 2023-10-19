@@ -1,118 +1,172 @@
-Return-Path: <devicetree+bounces-10099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49EE17CFA46
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:03:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881387CF7FF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F901C20C5D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:03:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D538282000
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 12:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC07225C3;
-	Thu, 19 Oct 2023 13:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE10B1DFF2;
+	Thu, 19 Oct 2023 12:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J59Fvaoj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jSqk6R0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339DB2033E;
-	Thu, 19 Oct 2023 13:03:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4002181;
-	Thu, 19 Oct 2023 06:03:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697720588; x=1729256588;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=VgSvxH67qt9LKjm5+c5G2G8wQo6a1gXmEAilB1I2dfg=;
-  b=J59FvaojU1bLb52ZkemRWNSr2TKWEa6heGKHIxtRL7pWr497hF41kZ02
-   zX/nm8+i662p0+nI+A64m9GY28SrghRQhW1TEHFTHir8lrlsBAgOcCnRD
-   mfylpcFwUjdw1lN7iKMDogrbOsBTBXUvC7anSeHyahCWQa7aM8MCmr7bz
-   QJYWs8ra9nkm7LCYNHou7Ued6Ob4JMDHS3Q/ks/ahhleQsuSGwQ3orX5f
-   9dfq7JI8qwNsGo4feX+NJKAfP0HiRJziRrvI0fIXYziRznmTerMtRJI99
-   CLwXU5hO2RU9HQqI18amuJVd995IVSCZihfdt0oIhkA3kIKf6E0PU12KP
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="385115720"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
-   d="scan'208";a="385115720"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 06:01:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="757014468"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; 
-   d="scan'208";a="757014468"
-Received: from mttran4-mobl2.amr.corp.intel.com (HELO [10.213.160.204]) ([10.213.160.204])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 06:01:45 -0700
-Message-ID: <ec25bb67-6c83-430b-bc79-234c03801250@linux.intel.com>
-Date: Wed, 18 Oct 2023 20:00:00 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A94F1DFDA;
+	Thu, 19 Oct 2023 12:03:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 537CBC433C7;
+	Thu, 19 Oct 2023 12:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697717028;
+	bh=7RwRDPja+BFl9I42gPB9G48QdL9q0Wc22SuWBEjhfrw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jSqk6R0t7Y2nETGpH7m/j95dxlR5uEG7sj/AkGv0RjujwZtpE5racGJ6z03J+Ivyp
+	 FRyYqp9SN62PNV427KXcQ9l64TMw1qFrMGnVqCW+j1R2Oztqtc3FOB1Dnd9TIGvkn1
+	 iyMzYLXDKIjaxWLsER1xm3fznuDSSxfrglKoxoo7pc16hpyJFJWrlvOHn6e0Y4Mr4x
+	 WoE7d6F0VMne7e9R2NGZV7OTGAvYm5H7uK5PuPsSeDaQNMoAgvVWdh/1gqHUVLPEWv
+	 xuY8kShvwVrXUmjPj1a38GUjK40tBgfCDHEY5f3sA6sqWrUD9Ur51LKxrEQilI70S+
+	 HcpQM1c2Sp65Q==
+Date: Thu, 19 Oct 2023 13:03:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-kernel@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or
+ ethernet-ports
+Message-ID: <20231019-repacking-scrunch-f2435c2fd7e8@spud>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org>
+ <169762516670.391804.7528295251386913602.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 09/34] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
- gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
- Thinh.Nguyen@synopsys.com
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
- <20231017200109.11407-10-quic_wcheng@quicinc.com>
- <7aa4ea87-9d1f-400a-bcc5-b56e5b4500c6@linux.intel.com>
- <c72bcf47-af0b-8819-1c30-06b51358381e@quicinc.com>
- <2f05708e-3ee8-472e-a24f-6f3eb118133c@linux.intel.com>
- <fcaa93ba-3ca4-5a18-d3bd-afebe8def327@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <fcaa93ba-3ca4-5a18-d3bd-afebe8def327@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KPoA9a73TBHTsk2t"
+Content-Disposition: inline
+In-Reply-To: <169762516670.391804.7528295251386913602.robh@kernel.org>
 
 
+--KPoA9a73TBHTsk2t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>>>> Specifically, the QC ADSP can support all potential endpoints that are
->>>>> exposed by the audio data interface.  This includes, feedback
->>>>> endpoints
->>>>> (both implicit and explicit) as well as the isochronous (data)
->>>>> endpoints.
->>>>
->>>> implicit feedback means support for capture. This is confusing...
->>>>
->>>
->>> I mean, a USB device can expose a capture path, but as of now, we won't
->>> enable the offloading to the audio DSP for it.  However, if we're
->>> executing playback, and device does support implicit feedback, we will
->>> pass that along to the audio DSP to utilize.
->>
->> Not following. Implicit feedback means a capture stream *SHALL* be
->> started. Are you saying this capture stream is hidden and handled at the
->> DSP level only? If yes, what prevents you from exposing the capture
->> stream to userspace as well?
->>
->> I must be missing something.
->>
-> 
-> My understanding is that with implicit feedback endpoints, it allows for
-> another data endpoint in the opposite direction to be utilized as a
-> feedback endpoint (versus having to expose another EP, such as in the
-> case of explicit feedback).  For example, if we are enabling the
-> playback path (and the device does have a capture data ep) then the data
-> ep used for the capture path can be used.
+On Wed, Oct 18, 2023 at 05:32:48AM -0500, Rob Herring wrote:
+>=20
+> On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
+> > Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+> > a DSA switch node need to have a ports or ethernet-ports
+> > subnode, and that is actually required, so add requirements
+> > using oneOf.
+> >=20
+> > Suggested-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] wron=
+g indentation: expected 8 but found 6 (indentation)
+> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] wron=
+g indentation: expected 8 but found 6 (indentation)
+>=20
+> dtschema/dtc warnings/errors:
+> Traceback (most recent call last):
+>   File "/usr/local/bin/dt-doc-validate", line 64, in <module>
+>     ret |=3D check_doc(f)
+>            ^^^^^^^^^^^^
+>   File "/usr/local/bin/dt-doc-validate", line 32, in check_doc
+>     for error in sorted(dtsch.iter_errors(), key=3Dlambda e: e.linecol):
+>                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.11/dist-packages/dtschema/schema.py", line=
+ 125, in iter_errors
+>     self.annotate_error(scherr, meta_schema, scherr.schema_path)
+>   File "/usr/local/lib/python3.11/dist-packages/dtschema/schema.py", line=
+ 104, in annotate_error
+>     schema =3D schema[p]
+>              ~~~~~~^^^
+> KeyError: 'type'
 
-That's right, so all the plumbing is enabled for the capture path...
-Making a decision to discard the data is very odd, all the work has
-already been done at lower levels, so why not expose the captured data?
+Locally, on an older version of dt-schema, I see
+/stuff/linux-dt/Documentation/devicetree/bindings/net/dsa/dsa.yaml: $defs: =
+'oneOf' should not be valid under {'$ref': '#/definitions/json-schema-prop-=
+names'}
+	hint: A json-schema keyword was found in $defs key.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/stuff/linux-dt/Documentation/devicetree/bindings/net/dsa/dsa.yaml: $defs:o=
+neOf: [{'required': ['ports']}, {'required': ['ethernet-ports']}] is not of=
+ type 'object'
+	hint: $defs entries must contain schemas
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
 
+On the latest version I see the error from the bot.
+
+Doing=20
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documenta=
+tion/devicetree/bindings/net/dsa/dsa.yaml
+index bd6948e4fd9e..25e5950d51ae 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -55,10 +55,10 @@ $defs:
+             $ref: dsa-port.yaml#
+             unevaluatedProperties: false
+=20
+-  oneOf:
+-    - required:
+-      - ports
+-    - required:
+-      - ethernet-ports
++oneOf:
++  - required:
++    - ports
++  - required:
++    - ethernet-ports
+=20
+ ...
+
+resolves both issues, but the older version of dt-schema definitely had
+better error reporting in this case!
+
+
+--KPoA9a73TBHTsk2t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTEbHQAKCRB4tDGHoIJi
+0pEpAQCU4hd9BQ874qBY0UwVcMAKHvyY/RN4cl/j41XZ9MKAEgD+MkLFIYAED1qk
+QbcQNLASFWw6gdEZTkwIvwbJAoBlsA4=
+=DneM
+-----END PGP SIGNATURE-----
+
+--KPoA9a73TBHTsk2t--
 
