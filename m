@@ -1,178 +1,166 @@
-Return-Path: <devicetree+bounces-10155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5307CFD44
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:49:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC05B7CFD4E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 16:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BBE8B20E73
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:49:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1937281F72
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 14:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E001DFF0;
-	Thu, 19 Oct 2023 14:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71D11EB25;
+	Thu, 19 Oct 2023 14:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f6sa1O59"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="GmJ8icQ/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7465C199A6;
-	Thu, 19 Oct 2023 14:49:42 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5979F130;
-	Thu, 19 Oct 2023 07:49:40 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9bdf5829000so983465466b.0;
-        Thu, 19 Oct 2023 07:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697726979; x=1698331779; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1UrROzncfUZarmm/TSy/yEjSWVF3nSkzcxEecGv20ms=;
-        b=f6sa1O596y9G4NoMsoUsq+3d2n7oKBD37gAJkBHhtY0qhHsweUkFp2xrm8cO73dSE2
-         7FyCmT7a0Ho8OZg3gwV02nevLTPakkjGq98knA6PSfjRcGeYqZUn9BPCbf/6XDqZcsEX
-         wUIVb8RFbDa4VN15V5PvE+xkynHX0pLOhI/Ywza2nRdfUs5EcymCy17bFLpBi4MOANnw
-         NA9ytRIzGcTRW23FjmiLb9o67nRu/j0SgesxiETq9YM9QDdAmIl9lMGxSz6DqtfRoV4b
-         ETxNkKD6ZrGdylS3oFmV8bxO6z+abmkxFgo6LqAbHEwPtW5DREUUp40M6L5oc+J4YPkR
-         m0Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697726979; x=1698331779;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1UrROzncfUZarmm/TSy/yEjSWVF3nSkzcxEecGv20ms=;
-        b=QfgLkCXlSQsvHIHP/95EgBnmEtxBa0+4K2WVndKcKTq9ZACkJ1N12j0L1yCfTBszJV
-         oG9S3dww0wgYqJ8r8p0HdZVyiEzvFzXhQ9U3YhKFo4zDZDtrJT3NC79Afs2CmGp5PejP
-         Zi1J8rdJ8ecJ15XDXdu6WELFXcSYxJmD7lr0tFTC/KKA3LPEoEQ2UaFjV6okaTNJBL6G
-         cfO3zUsstSAfGIeIbRSqyCpFeQLWOT23+Zt/k98a8kfDgcQVeohqV+7cQiLAuDB+Srfw
-         uWBjrGpf9w4YoAlfIBP2amPWHga6pPXhCLm/b+wvtWHG/GyvDdk1D3p7hA0fda5OS1O6
-         23OA==
-X-Gm-Message-State: AOJu0YwuhpVL67MtYN0KYeh9Jk6+Euhc1gaFQmQNdGbCDAla8Nmre1td
-	yqD7kZS0nn0sGCJI+/mQgp8=
-X-Google-Smtp-Source: AGHT+IEikpJiGCrfEciG/A1zcBBKrzN+hrLe/h7mhbzpCNe9XJuqFeUVwUwqnJukEn/D2p0KFDhUNg==
-X-Received: by 2002:a17:907:6eac:b0:9bf:792:d696 with SMTP id sh44-20020a1709076eac00b009bf0792d696mr2261658ejc.46.1697726977896;
-        Thu, 19 Oct 2023 07:49:37 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id h3-20020a1709063b4300b009b9aa8fffdasm3654934ejf.131.2023.10.19.07.49.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 07:49:37 -0700 (PDT)
-Date: Thu, 19 Oct 2023 17:49:35 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 5/7] ARM64: dts: marvell: Fix some common
- switch mistakes
-Message-ID: <20231019144935.3wrnqyipiq3vkxb7@skbuf>
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-5-3ee0c67383be@linaro.org>
- <20231019144021.ksymhjpvawv42vhj@skbuf>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3234419
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 14:50:44 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2062.outbound.protection.outlook.com [40.92.21.62])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACFDC2;
+	Thu, 19 Oct 2023 07:50:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FuGD60ROio8VGWA7kdrfRMCF73A2UBi69JQnUpap93hW8dksO7xF/DNgJeGfdhMjeQMMDE980DZsbwkx0zoMsTPA6qyPLNernTTk379TBEn4548f4yzobcLm+/62RluB4AdN3guw/P48KYKod+r2bI+Ihfi5y32hzwxCjiZozkVmUd1+IjVSaGtUvXT4CtTCtjX/rAjm4NHtQP9IUki5C3+SoQaLXmdzr6XNXZPjJ9Hm8D1z0CPpr5ihOQEasb1mYivzqgH/DAZSmpxpo0zDWxvxJCjTZb63BwPDd1CG/QhMdNR4TlQp92MOFImi27dZ+Fzh6k/UGCbc1Y3geBD1FQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1I4ZZkoqhjSuOARM339cgVz4z+/KI3kg7BtPs7E/RGM=;
+ b=Pxy1kn/RB3a38mVpwwYIsp0A6smcHQvgDkaVHQ9wtTa5ODSKuRFReghxw46Z9Z5aU5o8tKKByG+sWgNzeyTaHxngXmtTjPkZJ8WGfwmF9Kyymn8FdMq7Mwi+JaeVV7UyO9cv5RNT9d0wK3qYaT2gW4kY1o8bzaq1qh/7zW3DY6Nbueu9qHnKiXb+dIRkBU68WWPl6/C38Cg+Tt2uSJkKlEp6aTOzWQZ+U1K6fVgiPOFtM//f7X4qxTv8zfeqsU8eQ1RQG5krttGRIwjNpCEwepPvFic7W1jH+Hd0b7aUknkhoJT85eKK+Oi8meaYBBplgXjFJvSm+fr4FGax431HZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1I4ZZkoqhjSuOARM339cgVz4z+/KI3kg7BtPs7E/RGM=;
+ b=GmJ8icQ/zz3HwUZF1CiNP+Nx6wCUCVRvazVPrGEjgJz/oeYk9C9Q7hACtzVkpA6SmTx4g/gEKA1xvGmTnjd0iyXh1e+OBV6k/RoW+6LWFt2TSoyc43mi0l0m3bC1VKMzcHSXPk6qOt5ooKhjvtdKLsnBMKw1DBglL5QdI9NTCardEaLNJknIzgaiwOvww7Si4ZkNjsDeEpvz1JB+vxCkwCmvNuY4AaS5ka/4xZBe1TZ9XaJZZGcTJNZ8slroCbJvXsQZZAoMHG9I6t19Ctb/vhoFzL3kQsx3A7o8H9FRN2C08i+fhUHGOj/Cox53+51gbaOFxG4MvuZUhgLKMgKW1Q==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by DS7PR06MB6855.namprd06.prod.outlook.com (2603:10b6:5:2c6::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Thu, 19 Oct
+ 2023 14:50:41 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Thu, 19 Oct 2023
+ 14:50:41 +0000
+Date: Thu, 19 Oct 2023 09:50:38 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Chris Morgan <macroalpha82@gmail.com>,
+	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com, sboyd@kernel.org,
+	mturquette@baylibre.com, daniel@ffwll.ch, airlied@gmail.com,
+	sam@ravnborg.org, neil.armstrong@linaro.org, heiko@sntech.de,
+	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: display: panel: Update NewVision
+ NV3051D compatibles
+Message-ID:
+ <SN6PR06MB534271680DB8A3A3F0A1A31CA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20231018161848.346947-1-macroalpha82@gmail.com>
+ <20231018161848.346947-2-macroalpha82@gmail.com>
+ <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
+X-TMN: [6kSOxYNG+c2QUq5xdZxnXtJwuxNNPM4j]
+X-ClientProxiedBy: SN1PR12CA0095.namprd12.prod.outlook.com
+ (2603:10b6:802:21::30) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZTFCPiR4Jbmjrq2E@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231019144021.ksymhjpvawv42vhj@skbuf>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|DS7PR06MB6855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e912031-acf8-442b-fdbd-08dbd0b2c377
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	GKcqmupYMxW/zjBY2VTtwT2SqNTCzo3FEI8Zk/kMbO1arH51W0oLCkhJo6RHah2NyDSCrUngUfFpy/lxCpJ06T8PTN96yGmfTzoi5AoA5/ETOls0dkOcuIUz+nrI6qWjSfLZvnBg8aYqTnT2/Q6jKKKxN3oET0BY09G0cZxwGxtzIAlIPSPYafAg0LYpdV9+6fxVbCRJx+NAh7l9ExibdZ5RJ1TMK9SkgOm7JlCyAUqhtMEA/MkZf/jE509dGtZg9+hWLXsH/0IxdRriHs2I4BWwyJNWu0jwflOomPKLXEwd7DygEmkH1RBYIB7LcD7IUa0OICMHVN0Envhi9zF/T1j8G+kqbEleEbFhOIF+n/F+fP0X0+qMH2Tf2xMwQg7+pFdXZU3R93ed4VGrwz4FjYmfNYBxV/Gx/raFOK6dz3gRJfiG6VTzybzBVDGnEKqn79S/QRd0CAQxx/lI8D0UvmFCbDwARJAgOc8GsfGRKLfYi63Mo9+o0LjuCdTVdGxPt3XG8A2m00j6AA+awSPZGxb0YEr2/5W24s2F4Q2p2DIZ8w80lB4YMULEM83PJ9RA
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?X/dDOkNZifF4L7VjVs4ea57uBuY2twV5Eg//F/V2m4ie9wXtBH2wMvjuKX0B?=
+ =?us-ascii?Q?om8fpUp9CqwGUl7eG/oK2CwWrUX/7u/lwYfU1/MGFgSRjfrOHfMA6FLrHYtT?=
+ =?us-ascii?Q?WvizjgOH3lj6ujCQs9qY6lfFBQrTLTeX4xvb+G/VWC2Rk8Pq6ZL/YPZ4UMo1?=
+ =?us-ascii?Q?EfrZKOba964RksJ8PFub9UZfZv3JaoyugGHomNzl6WXLtS2yQvYzbkX1mFfQ?=
+ =?us-ascii?Q?eLhkUfZZfMSZ7GqpZ9GPPiiYSxQ8afjm3t33ZbBYdlGKq1R4UQfslqW0uyW8?=
+ =?us-ascii?Q?wR7x1AA63nJ8QlSVJ0lHPxbnfZm3iuU2H3X5fNjfnVdg2CpKS3M0EkoyMS2Z?=
+ =?us-ascii?Q?sVReYUqNg7BTyigBwIYsQHuQZh0+UuoY58H8If0cccccuen0/YbKr9Zn8eey?=
+ =?us-ascii?Q?SaHDYCZEzjvqZKRzq3FdgfzUuLPcHvDQS3wtnjkD+L9f3kCzrGizYxVeD8P2?=
+ =?us-ascii?Q?hDhWMk6c8XydkLEsxwIoIGnrlCUMz0QhBNtFLYI6tNB0s7IdGABHjsg9/bxr?=
+ =?us-ascii?Q?VnD2nCQHv+bWsMrQmcg1N+bp6qxEWqiGom4ZQxWNJ+zBX51LFoQ72xy+uDgX?=
+ =?us-ascii?Q?N+6W+6XtuYl8tvl+RQdLAK+G/JBKTzNtlJsJVERT5+aNMupKsut7Dzh6/6Am?=
+ =?us-ascii?Q?nZxl2euxz0bvHaGuCbILw12iUQ3+5fOn77ua0tgeLGqOwxrat1yKacjcOswO?=
+ =?us-ascii?Q?m8WjYnkb9l1wZRX/RzdAuPwgboDydH8kN9UhY3DnyOgaAAQGY+Uc0W2uDqWs?=
+ =?us-ascii?Q?uzYDjZ6XUx4J3EgvrQ8fOKn/vK9m/d+WGNm4II/M0Pb9DABewJuF3NQlB3oy?=
+ =?us-ascii?Q?a4HY+XwBAMMWqSknWRQsWdpH9L/ED2ZLZKzRoD04AGzLjXtVdtxHhCKxkwAS?=
+ =?us-ascii?Q?iwJIk3AWAaK+HbDbAJbh+XiVwgUfIVwJRsSVVOWoFrH8J5J3CiXDsosZoaPg?=
+ =?us-ascii?Q?r2BlL6RcG6RdgowMlyJ1PiVb5UNSFEGh1qNuwI9ucg74FtJ160tTrx9APHCM?=
+ =?us-ascii?Q?c4fCWyjOVDfo8RBVZAO28SYM1yHXB14HJGGH03mYZu0YnAJaVGhTDtenXjRs?=
+ =?us-ascii?Q?f9Z9YygigHnVVu/k/aPukdIwE01uLh+0WCRqwqk2+V+UmPf6sj8vBPGFTNO2?=
+ =?us-ascii?Q?4MUrSdPt9h3Qtq6PeHM2OrftQhNba3E6KaqtLLICqJHllcdagnDUX4qosBul?=
+ =?us-ascii?Q?En19lR47ydSEolGLznAtleoTURzUUSI2O1twm/wSLaviMptyW+tRtr4NOVY?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e912031-acf8-442b-fdbd-08dbd0b2c377
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 14:50:41.1239
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR06MB6855
 
-On Thu, Oct 19, 2023 at 05:40:22PM +0300, Vladimir Oltean wrote:
-> +Marek
-> 
-> On Wed, Oct 18, 2023 at 11:03:44AM +0200, Linus Walleij wrote:
-> > Fix some errors in the Marvell MV88E6xxx switch descriptions:
-> > - The top node had no address size or cells.
-> > - switch0@0 is not OK, should be switch@0.
+On Thu, Oct 19, 2023 at 11:22:19AM +0200, Krzysztof Kozlowski wrote:
+> On 18/10/2023 18:18, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
 > > 
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > index 9eab2bb22134..c69cb4e191e5 100644
-> > --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> > @@ -305,7 +305,7 @@ phy1: ethernet-phy@1 {
-> >  	};
-> >  
-> >  	/* switch nodes are enabled by U-Boot if modules are present */
-> > -	switch0@10 {
-> > +	switch@10 {
+> > Update the NewVision NV3051D compatible strings by adding a new panel,
+> > the powkiddy,rk2023-panel, and removing another entry, the
+> > anbernic,rg353v-panel. The rg353v-panel is exactly identical to the
+> > rg353p-panel and is not currently in use by any existing device tree.
+> > The rk2023-panel is similar to the rg353p-panel but has slightly
+> > different timings.
 > 
-> As the comment says: U-Boot
-> (https://elixir.bootlin.com/u-boot/latest/source/board/CZ.NIC/turris_mox/turris_mox.c#L728)
-> sets up status = "okay" for these nodes depending on the MOXTET
-> configuration. It doesn't look as if it's doing that by alias, just by
-> path ("%s/switch%i@%x").
+> This still does not explain me why do you want to remove old panel.
+
+When I originally wrote the driver I only had one piece of hardware
+and I set the compatible string in the driver as newvision,nv3051d.
+Unfortunately since then I've found 2 more devices in use that are
+*just* different enough to require the driver to do things a bit
+differently. In the case of the anbernic,rg351v-panel I need to
+enable a new DSI flag; in the case of the powkiddy,rk2023-panel I need
+to decrease the vertical back porch and drop the higher frequency
+timings.
+
+The best way to accomplish this was to change the strategy from having
+a single binding in the driver of newvision,nv3051d to a binding for
+each distinct hardware where the differences apply. Note that I've
+looked at querying the DSI panel ID, but for each device the value
+is identical (so it can't be used to differentiate the hardware sadly).
+So the driver now has 3 different compatible strings. I could in this
+case add a 4th compatible string of anbernic,rg353v-panel but it would
+be identical to anbernic,rg353p-panel. For the moment we are using
+anbernic,rg353p-panel everywhere (including the rg353v), so it makes
+sense to drop this unused value while we can, at least to me.
+
+Let me know if you have any more questions, thank you.
+Chris
+
 > 
-> I have a Turris MOX, please allow me some time to test if the node name
-> change is going to be significant and cause regressions. I expect the
-> answer to be yes (sadly).
-
-Yeah, it's bad.
-
-U-Boot 2018.11 (Dec 16 2018 - 12:50:19 +0000), Build: jenkins-turris-os-packages-kittens-mox-90
-
-DRAM:  1 GiB
-Enabling Armada 3720 wComphy-0: SGMII1        3.125 Gbps
-Comphy-1: PEX0          5 Gbps
-Comphy-2: USB3_HOST0    5 Gbps
-MMC:   sdhci@d8000: 0
-Loading Environment from SPI Flash... SF: Detected w25q64dw with page size 256 Bytes, erase size 4 KiB, total 8 MiB
-OK
-Model: CZ.NIC Turris Mox Board
-Net:   eth0: neta@30000
-Turris Mox:
-  Board version: 22
-  RAM size: 1024 MiB
-  SD/eMMC version: SD
-Module Topology:
-   1: Peridot Switch Module (8-port)
-   2: Peridot Switch Module (8-port)
-   3: Peridot Switch Module (8-port)
-   4: SFP Module
-
-Hit any key to stop autoboot:  0
-=> run sd_tftp_boot
-neta@30000 Waiting for PHY auto negotiation to complete....... done
-BOOTP broadcast 1
-BOOTP broadcast 2
-DHCP client bound to address 10.0.0.117 (254 ms)
-Using neta@30000 device
-TFTP from server 10.0.0.1; our IP address is 10.0.0.117
-Filename 'mox/armada-3720-turris-mox.dtb'.
-Load address: 0x4f00000
-Loading: ####
-         1.5 MiB/s
-done
-Bytes transferred = 19479 (4c17 hex)
-Using neta@30000 device
-TFTP from server 10.0.0.1; our IP address is 10.0.0.117
-Filename 'mox/Image'.
-Load address: 0x5000000
-Loading: #################################################################
-         ##########################################
-         6 MiB/s
-done
-Bytes transferred = 54069760 (3390a00 hex)
-## Flattened Device Tree blob at 04f00000
-   Booting using the fdt blob at 0x4f00000
-   Loading Device Tree to 000000003bf16000, end 000000003bf1dc16 ... OK
-ERROR: board-specific fdt fixup failed: FDT_ERR_NOTFOUND
- - must RESET the board to recover.
-
-FDT creation failed! hanging...### ERROR ### Please RESET the board ###
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
