@@ -1,109 +1,163 @@
-Return-Path: <devicetree+bounces-10105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8457CFA9E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 943F07CFAC0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 15:18:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E26D1C20B0B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:13:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54871C20E6A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 13:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F49E225DF;
-	Thu, 19 Oct 2023 13:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403EF250F8;
+	Thu, 19 Oct 2023 13:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dFG1cjb+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TlmrLvUL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1C0179B1
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 13:13:48 +0000 (UTC)
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0FB187
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:13:46 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5a2536adaf3so106440397b3.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:13:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FF52F32;
+	Thu, 19 Oct 2023 13:18:13 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344EC9F;
+	Thu, 19 Oct 2023 06:18:12 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so13664191a12.3;
+        Thu, 19 Oct 2023 06:18:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697721225; x=1698326025; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=u5ChxAd/tAofPv7khr4Z6g73hAZNzmOJAjL/O4rF+Kk=;
-        b=dFG1cjb+9/V16wKOVwYPMCamWFW3GTEW/Woju68SieEcec0+vf279DTCU4xqrGIf2z
-         KG45eTcGp95GaOSFNK4kpMY7lKCEsSEL/M5hf8ovvz8NJ+Po2BShUlLXvluMOIQwieXi
-         AVNXwUbTsWs5DPr/gaHUcCnnTNfblslxPd6IK0TCrGkdGhiiIJ5ngzWz85EP0++1Q0oQ
-         MXH68ZGKNrlOiQA8gCcO+o9kwR8iwIZ9K6Gs6hw8mhNciDm56i1bLbu2tynWDyYPXKWX
-         YRjJSD1qGLd32mb+0vyYXltFcJp8m3B2SVwkE7uxubY93to+g0/FbG3OjaD6E+OXWbfX
-         B1Yg==
+        d=gmail.com; s=20230601; t=1697721490; x=1698326290; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dOMFQ4KhhgNN9uiVFnKX2Q/Idi24XPkIW6kBXq+OOHE=;
+        b=TlmrLvULlTB+gpOGgRWxIu72f6iPqOEm44A4k/wIZMeqBmvifechdif/eT3IPvwdVN
+         k2FENZI0u+CzJNFgBHf/ZMMIZ4BaG1hvJjim7kRzAssOV1lV+ELhoc+t4cnLpI8ppKFV
+         Dm1MDOlPT2po/Qm2pu4pToKCi9SNeDnWMMuA+Tp/Nc7l0C/rBuul2s0bt4b/MX1PLSRJ
+         PYKGKhrMuxb2nafmFdXjDGzHWTf9DsaUcYAEdvv4QQdnu/VmkNSuKO21IR+ItcMh0Sfy
+         GjFlHNjoDGtvjHN8oi9leUEBEirJ6Wrf4mMw7VpZWo8V7fKW2w5tgk8YDPaMblyQiiDN
+         bi1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697721225; x=1698326025;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u5ChxAd/tAofPv7khr4Z6g73hAZNzmOJAjL/O4rF+Kk=;
-        b=nTkc+nsHz1zmq81dgSC/pcKDjUuGJY702XxRswV1IatZss1RdxQwav1ehysjpk7B0O
-         gT6GrJb1+HaGfzyGE52YQoP8EvC1VpvelEt+1lsk1QwM2fdC1hfEy5aBnLs3ZDJt69CI
-         CF7O18f5wnJYeo+MY2+OAxIV8rwDlJksppOsV9k5/JtI9IkswmsN25Mno26l8sSuZcix
-         rx9RGoHhEtHnLGUru3q8nuKaN/VdUZaIxkneTEjquWVTdqSkdZGtgwfN1THoywDmuJnb
-         0jdxbqoCREVXcAwxGd71Labp6er0sSQoECilp4Wxjpjfgy2T4lozW/xlBwDNjBxDLj/X
-         905g==
-X-Gm-Message-State: AOJu0YwbTMe+QLDiYQZgLtgFlWGNMB/qBX9hPlr2wjaPdIYMFX6tel8P
-	IuRqwa0adQWvjOQZTusLHqb/krqesSt4DYpQRuzsSA==
-X-Google-Smtp-Source: AGHT+IHHv5diCJ9edZeJViOL3pSd2253dXP9+SzRMkkAG2TKUPLe4GDcEKLsBUj2IrUb1nL3nyd6h1S4hyQu5T850po=
-X-Received: by 2002:a0d:f281:0:b0:589:f995:eb9f with SMTP id
- b123-20020a0df281000000b00589f995eb9fmr2396557ywf.45.1697721225666; Thu, 19
- Oct 2023 06:13:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697721490; x=1698326290;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dOMFQ4KhhgNN9uiVFnKX2Q/Idi24XPkIW6kBXq+OOHE=;
+        b=Oyx5UoFfxKqQbSef7q0y7pQbRPBUqJ0o7KbOI5mdeQNDluNTJhs8iR9KqrvQMQ6g6A
+         RrXfeIwbskrkA9V0+s9199lycWSQOp+S3TiWqZU8kmT/rKca8jQG5YT8SIy4+VbpypNu
+         kLymyQbtTo6xcR4wL/Grfx6/s9+taY4HOkPA+uq2alntSCqn4jC3HwNFGJsnTSMsQJ5j
+         uZh4B/2fYIFzRIw14Kd8NeCV87fEU01ueNds0F6PabVlyRUhMH/Eum/IJCk5j9lN+cOI
+         FPneJ2XTMqfqxVYPVMzLDmE3ZNIGucVzH5VqwKftw60iI1CmpIYH5YHJzOjzGCknSoUU
+         l2jA==
+X-Gm-Message-State: AOJu0YxuiTgzCjWO7F+9xPG6s2nk+cbxTAbuzBtFU2AzfAxBDsVlkj4a
+	09vXnKtwMO5wpg+yApsdY+w=
+X-Google-Smtp-Source: AGHT+IGeV/PAyeS5ZcSZyKizUQ5u38iNo53UbAIyLr9nNzHgjNSBIjErmYPUXpk3hLMaNF1I+onEEQ==
+X-Received: by 2002:a17:907:97d0:b0:9aa:63d:9ede with SMTP id js16-20020a17090797d000b009aa063d9edemr2084080ejc.9.1697721490291;
+        Thu, 19 Oct 2023 06:18:10 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id qt16-20020a170906ecf000b0099c53c44083sm3596979ejb.79.2023.10.19.06.18.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Oct 2023 06:18:09 -0700 (PDT)
+Date: Thu, 19 Oct 2023 16:18:06 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	=?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	John Crispin <john@phrozen.org>,
+	Gerhard Engleder <gerhard@engleder-embedded.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+	Justin Chen <justin.chen@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH net-next 1/8] dt-bindings: net: Add missing
+ (unevaluated|additional)Properties on child node schemas
+Message-ID: <20231019131806.lbzydoplodybvb62@skbuf>
+References: <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-0-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1697694811.git.quic_varada@quicinc.com> <5e1c2ff9522dd29e69f286dbbe1c867433763629.1697694811.git.quic_varada@quicinc.com>
-In-Reply-To: <5e1c2ff9522dd29e69f286dbbe1c867433763629.1697694811.git.quic_varada@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 19 Oct 2023 16:13:34 +0300
-Message-ID: <CAA8EJpp64kdRbGYSqP302FikKuP2MYmRGePN0zKMygShPsCjKQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/9] clk: qcom: clk-alpha-pll: introduce stromer plus ops
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, rafael@kernel.org, 
-	viresh.kumar@linaro.org, ilia.lin@kernel.org, sivaprak@codeaurora.org, 
-	quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
+ <20231016-dt-net-cleanups-v1-1-a525a090b444@kernel.org>
 
-On Thu, 19 Oct 2023 at 11:42, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> Stromer plus APSS PLL does not support dynamic frequency scaling.
-> To switch between frequencies, we have to shut down the PLL,
-> configure the L and ALPHA values and turn on again. So introduce the
-> separate set of ops for Stromer Plus PLL.
->
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+Hi Rob,
+
+On Mon, Oct 16, 2023 at 04:44:20PM -0500, Rob Herring wrote:
+> Just as unevaluatedProperties or additionalProperties are required at
+> the top level of schemas, they should (and will) also be required for
+> child node schemas. That ensures only documented properties are
+> present for any node.
+> 
+> Add unevaluatedProperties or additionalProperties as appropriate.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> v4:     Ensure PLL is enabled before re-enabling
-> v3:     Use prepare/unprepare instead of disable/enable in clk_alpha_pll_stromer_plus_ops
-> v2:     Use clk_alpha_pll_stromer_determine_rate, instead of adding new
->         clk_alpha_pll_stromer_plus_determine_rate as the alpha pll width
->         is same for both
->
->         Fix review comments
->                 udelay(50) -> usleep_range(50, 60)
->                 Remove SoC-specific from print message
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 63 ++++++++++++++++++++++++++++++++++++++++
->  drivers/clk/qcom/clk-alpha-pll.h |  1 +
->  2 files changed, 64 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> index 833d2f68daa1..ea285ef3e64f 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> @@ -61,17 +61,11 @@ properties:
+>  
+>    ethernet-ports:
+>      type: object
+> -    properties:
+> -      '#address-cells':
+> -        const: 1
+> -      '#size-cells':
+> -        const: 0
+> -
+> +    additionalProperties: true
+>      patternProperties:
+>        "^(ethernet-)?port@[0-4]$":
+>          type: object
+> -        description: Ethernet switch ports
+> -
+> +        additionalProperties: true
+>          properties:
+>            pcs-handle:
+>              maxItems: 1
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
+For my edification, this patch removes #address-cells and #size-cells
+at the same time, because "additionalProperties: true" (which was also
+implied before) doesn't care if they aren't defined in this sub-schema,
+and they are defined through $ref: dsa.yaml#/$defs/ethernet-ports,
+right?
 
