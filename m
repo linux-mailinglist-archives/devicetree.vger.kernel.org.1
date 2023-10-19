@@ -1,62 +1,197 @@
-Return-Path: <devicetree+bounces-9853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4C07CED8C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 03:22:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7B07CED9F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 03:39:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FC22B2107A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 01:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9743F1C209BD
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 01:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C57394;
-	Thu, 19 Oct 2023 01:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF3F164F;
+	Thu, 19 Oct 2023 01:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JwMG1wmr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iq2kN6e6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2E138C
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 01:22:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23AF1C433C9;
-	Thu, 19 Oct 2023 01:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697678551;
-	bh=Grh3jo+7tkGoKyq9Pq7yYPS6tSBALvJgRtmJP6V1Iu8=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=JwMG1wmrC/cc9FNHjmFS+Sv9KsxizyEok7Pr8LSdngNEXOwMIkC3O63f7TjdBiN8/
-	 Jo+qi496X+6y5sSPKi/n7HJiBA3kXQrXSWPqaJ5hhNfOGv0l06r+bvzvoeALDLaUC5
-	 XK6A43GLPVKvBYeYwIn3reofyflNfoeiqfN9DGA2uKTvCTZw8PSsuoeu0vAw0+GiPo
-	 xpktZV7NYlcX8ywaDgg8NWutk23au3qzwip9dyWavroVjmguH99z/jjtr9wD/8poFU
-	 3PBNqcAzwFcF+lPGSJmvxSsa6swNHVI2dKtp+9JeIkn0XOkm0i7Df+3NFx1eP+KlvJ
-	 C1OITYZbcaWIw==
-Message-ID: <79d055616b57e661ef35ccc166cae697.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEB8642;
+	Thu, 19 Oct 2023 01:39:45 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C979F;
+	Wed, 18 Oct 2023 18:39:43 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39J0fwvC016015;
+	Thu, 19 Oct 2023 01:39:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=RFlXQZL0GJrOfdJ6F4mLGhNhvWTNn3ZBCbC8IEXKLm8=;
+ b=iq2kN6e6SPT4AxACP3T0IWzWC2felSJrrJw76Id655m6Uk6vTZK1788SLphMznZKrj+V
+ ToaISwRzDTFk4h9QC8qzhmk26lDiL/a4bbDJcS3jpO49nv+s3BXa0Afkokzf02g4n4IJ
+ JvTO/DFnRtDw06bT0w3THm+SR+xdgbTLI9iKX7GR9p8l20pFadPsfctFfwEcEkia04Y/
+ T0KJQRxcJe08+Qn3XrZ8x/YNEmAA9F1VZA2T3YMA/W/G26uqmJGtHL0fepF6zku3vfql
+ GX4ZRM4NN4Jgk9n/Hr150bgauCcpeUSTVD+1LshOZ38sY+vD87cT7ZCSAmQ5LwMPKmUb Sg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ttnnagjgf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 01:39:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39J1dH7m025544
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 01:39:17 GMT
+Received: from [10.110.123.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 18 Oct
+ 2023 18:39:16 -0700
+Message-ID: <8e08fd5e-91b8-c73e-1d97-7cf4d98573d4@quicinc.com>
+Date: Wed, 18 Oct 2023 18:39:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230916100515.1650336-3-andreas@kemnade.info>
-References: <20230916100515.1650336-1-andreas@kemnade.info> <20230916100515.1650336-3-andreas@kemnade.info>
-Subject: Re: [PATCH v4 2/5] dt-bindings: mfd: ti,twl: Add clock provider properties
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>
-To: andreas@kemnade.info, bcousson@baylibre.com, conor+dt@kernel.org, devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, linux-clk@vger.kernel.org, linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, mturquette@baylibre.com, robh+dt@kernel.org, tony@atomide.com
-Date: Wed, 18 Oct 2023 18:22:28 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v9 29/34] ASoC: qcom: qdsp6: Add SND kcontrol to select
+ offload device
+Content-Language: en-US
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
+ <20231017200109.11407-30-quic_wcheng@quicinc.com>
+ <d218b8e2-d7b9-40a3-bfb3-da6a90404a8c@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <d218b8e2-d7b9-40a3-bfb3-da6a90404a8c@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ScvzUo-ubiID8YuRcoK0RmZmXn3qUkAw
+X-Proofpoint-ORIG-GUID: ScvzUo-ubiID8YuRcoK0RmZmXn3qUkAw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_02,2023-10-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ phishscore=0 adultscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ clxscore=1015 mlxlogscore=999 impostorscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190011
 
-Quoting Andreas Kemnade (2023-09-16 03:05:12)
-> Since these devices provide clock outputs, add the corresponding
-> property.
->=20
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
+Hi Pierre,
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+On 10/17/2023 3:50 PM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 10/17/23 15:01, Wesley Cheng wrote:
+>> Expose a kcontrol on the platform sound card, which will allow for
+>> userspace to determine which USB card number and PCM device to offload.
+>> This allows for userspace to potentially tag an alternate path for a
+>> specific USB SND card and PCM device.  Previously, control was absent, and
+>> the offload path would be enabled on the last USB SND device which was
+>> connected.  This logic will continue to be applicable if no mixer input is
+>> received for specific device selection.
+>>
+>> An example to configure the offload device using tinymix:
+>> tinymix -D 0 set 'Q6USB offload SND device select' 1 0
+>>
+>> The above will set the Q6AFE device token to choose offload on card#1 and
+>> pcm#0.  Device selection is made possible by setting the Q6AFE device
+>> token.  The audio DSP utilizes this parameter, and will pass this field
+>> back to the USB offload driver within the QMI stream requests.
+> 
+> This still begs the question on how userspace would figure what the
+> card1 is and which endpoint is used when PCM0 is opened?
+> 
+
+Assuming we have something maybe in the component string for card1, then 
+maybe that will help in this case as you mentioned earlier.  Again, I 
+think my understanding of "endpoint" here is referring to the USB 
+endpoint.  However, that isn't normally how we should think about it. 
+ From the USB sound perspective, it would be the USB interface that is 
+selected, and the USB endpoints that that interface descriptor includes 
+(up to 2 usb eps).
+
+> Ideally userpace would not have to know anything about "Q6USB".
+> Presumably when other vendors expose their USB offload solution, we
+> would want a generic control name, no?
+> 
+
+Hmm...initially I was keeping the sound kcontrol implementation based on 
+a vendor specific approach.  Although, it might be good to standardize 
+it a bit.  I could see if we can add this to within soc-usb so whenever 
+we just create a soc usb device, it would also create and initialize the 
+kcontrols as well?
+
+> Jaroslav should chime in on this one :-)
+> 
+> 
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   sound/soc/qcom/qdsp6/q6usb.c | 125 ++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 122 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/sound/soc/qcom/qdsp6/q6usb.c b/sound/soc/qcom/qdsp6/q6usb.c
+>> index d697cbe7f184..a95276b7d91d 100644
+>> --- a/sound/soc/qcom/qdsp6/q6usb.c
+>> +++ b/sound/soc/qcom/qdsp6/q6usb.c
+>> @@ -14,6 +14,7 @@
+>>   #include <linux/dma-map-ops.h>
+>>   
+>>   #include <sound/pcm.h>
+>> +#include <sound/control.h>
+>>   #include <sound/soc.h>
+>>   #include <sound/soc-usb.h>
+>>   #include <sound/pcm_params.h>
+>> @@ -35,9 +36,12 @@ struct q6usb_port_data {
+>>   	struct q6afe_usb_cfg usb_cfg;
+>>   	struct snd_soc_usb *usb;
+>>   	struct q6usb_offload priv;
+>> +	struct mutex mutex;
+> 
+> missing comment on what this protects. "mutex" is really a poor
+> choice/name if I am honest.
+> 
+>>   	unsigned long available_card_slot;
+>>   	struct q6usb_status status[SNDRV_CARDS];
+>> -	int active_idx;
+>> +	bool idx_valid;
+>> +	int sel_card_idx;
+>> +	int sel_pcm_idx;
+>>   };
+> 
+>> +/* Build a mixer control for a UAC connector control (jack-detect) */
+>> +static void q6usb_connector_control_init(struct snd_soc_component *component)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = snd_ctl_add(component->card->snd_card,
+>> +				snd_ctl_new1(&q6usb_offload_dev_ctrl, component));
+>> +	if (ret < 0)
+>> +		return;
+> 
+> that error handling does not seem terribly useful...
+> 
+
+Based on your earlier comment, this might change :)
+
+Thanks
+Wesley Cheng
+
 
