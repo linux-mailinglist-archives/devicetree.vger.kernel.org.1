@@ -1,301 +1,176 @@
-Return-Path: <devicetree+bounces-9930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-9931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B9B7CF075
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 08:53:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0467CF08F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 09:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40EE2281CAB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 06:53:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BEA62814AB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Oct 2023 07:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D7A63DF;
-	Thu, 19 Oct 2023 06:53:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3556963DF;
+	Thu, 19 Oct 2023 07:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tJtOa+Bz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B94F46684
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 06:53:07 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0301611B
-	for <devicetree@vger.kernel.org>; Wed, 18 Oct 2023 23:53:06 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qtMtZ-0008N8-0Z; Thu, 19 Oct 2023 08:52:37 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qtMtX-002jMJ-SI; Thu, 19 Oct 2023 08:52:35 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qtMtX-00FE1j-Nd; Thu, 19 Oct 2023 08:52:35 +0200
-Date: Thu, 19 Oct 2023 08:52:35 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Chanwoo Choi <chanwoo@kernel.org>
-Cc: kernel test robot <lkp@intel.com>, linux-rockchip@lists.infradead.org,
-	oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	kernel@pengutronix.de,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vincent Legoll <vincent.legoll@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v8 16/26] PM / devfreq: rockchip-dfi: Add perf support
-Message-ID: <20231019065235.GL3359458@pengutronix.de>
-References: <20231018061714.3553817-17-s.hauer@pengutronix.de>
- <202310181557.GIXGL21M-lkp@intel.com>
- <f5ce51a4-d47d-4074-9498-8632b09791e6@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8678F62
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 07:00:12 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B50122
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:00:09 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40790b0a224so21955955e9.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 00:00:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697698807; x=1698303607; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=phdopUGhFu1uVNeMVEBY+BMFdVXiqLRcCSRDiN1kr/w=;
+        b=tJtOa+Bz/Xr1FHC2DmzY7G3PUS+bKCq6l3/eQ1Qw32nQLrQDIKFc8uKwNAobL4+GH4
+         JLfcuUFlifoQr4075xISSNy4iTe0OShnNY/3+3Cw3U7d4mRpqlHctZgu8vIMjILk7tYY
+         m9X/8atTE2yHc2xtCb1LhzbI5rKGOO8tCC7WOw+lYAGrXWKJ98mkOv2cRKmrM+7uTs+T
+         5ArxX4B0A/RNAn1grpiYATl/6yfqAsFbuHjxHGelZgdsgTOsrNJ1xiNLAYyMGjZ5skPp
+         uUTk8J9PnhcdVM6kxf9tE72Es+PJ4JEHBpvyFe7h7iefxNYwFvGNu6thM3H7ldmm6v3p
+         dpCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697698807; x=1698303607;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=phdopUGhFu1uVNeMVEBY+BMFdVXiqLRcCSRDiN1kr/w=;
+        b=W6jbQeJ0R49bDLsMo8C13mmHCu1DDlR0zHLw5KTjU51yj8LNlgucu3aIgQ1jGsZ47Z
+         wulDigARrxztIeuJzF88uNHHR9naM4HRcRsxhE7GGlrVlQlxd30e14KeeP9tCGMT12r3
+         G+/dJE9DFpffqAvq92lZWFgh31+ayr6Td0Zu6ytU1ZOcqFFg3B9/yUCCcI2jIEi2UHTT
+         lzS/b7m3NqPGtB7eNa1RxkTs1Z41tq29q5V2kvGIUvaNK9MnIx1Qf92rhL0OW/iHXnhP
+         ZMazEm5ExuYr5mlDlySdLpaQKKhEKCNw+mH4bokYkfK7gymGp+p+Kw3erOpTnZPq2bYt
+         tRQA==
+X-Gm-Message-State: AOJu0YxyuGRvjxYwRcnWtalGbSy+woa/GwNTQDuiVrCqlsQ0vBkpLRUT
+	iufvyu/KRIoqzfzn3EYZd6uNGQ==
+X-Google-Smtp-Source: AGHT+IGrb+9TA3G20GqE0KVDUSKCpdd4MuCybi2jrStkzxattFRPwFRE2nZ4Fwjil2NOlUTSbOgIpA==
+X-Received: by 2002:a05:600c:350f:b0:405:75f0:fd31 with SMTP id h15-20020a05600c350f00b0040575f0fd31mr1051854wmq.31.1697698807613;
+        Thu, 19 Oct 2023 00:00:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.49])
+        by smtp.gmail.com with ESMTPSA id bh9-20020a05600c3d0900b003feae747ff2sm3612213wmb.35.2023.10.19.00.00.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Oct 2023 00:00:07 -0700 (PDT)
+Message-ID: <dd06c2d3-e273-4356-835b-42619543dfab@linaro.org>
+Date: Thu, 19 Oct 2023 09:00:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f5ce51a4-d47d-4074-9498-8632b09791e6@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] i3c: add slave mode support
+To: Frank Li <Frank.Li@nxp.com>, miquel.raynal@bootlin.com,
+ conor.culhane@silvaco.com, alexandre.belloni@bootlin.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ corbet@lwn.net, joe@perches.com, linux-i3c@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: gregkh@linuxfoundation.org, imx@lists.linux.dev, jirislaby@kernel.org,
+ linux-serial@vger.kernel.org
+References: <20231018215809.3477437-1-Frank.Li@nxp.com>
+ <20231018215809.3477437-2-Frank.Li@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231018215809.3477437-2-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Chanwoo,
-
-On Thu, Oct 19, 2023 at 12:11:14AM +0900, Chanwoo Choi wrote:
-> Hi Sascha, 
+On 18/10/2023 23:58, Frank Li wrote:
+> Introduce a new slave core layer in order to support slave functions in
+> linux kernel. This comprises the controller library and function library.
+> Controller library implements functions specific to an slave controller
+> and function library implements functions specific to an slave function.
 > 
-> Could you plesae fix the following kernel build report?
-
-Just did that as a reply to the original patch. I moved
-rockchip_ddr_perf_counters_add() inside the #ifdef CONFIG_PERF_EVENTS
-
-Thanks for reviewing this series and for bringing it forward.
-
-Sascha
-
+> Introduce a new configfs entry to configure the slave function configuring
+> and bind the slave function with slave controller.
 > 
-> On 23. 10. 18. 16:58, kernel test robot wrote:
-> > Hi Sascha,
-> > 
-> > kernel test robot noticed the following build warnings:
-> > 
-> > [auto build test WARNING on linus/master]
-> > [also build test WARNING on v6.6-rc6]
-> > [cannot apply to next-20231018]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > 
-> > url:    https://github.com/intel-lab-lkp/linux/commits/Sascha-Hauer/PM-devfreq-rockchip-dfi-Make-pmu-regmap-mandatory/20231018-142228
-> > base:   linus/master
-> > patch link:    https://lore.kernel.org/r/20231018061714.3553817-17-s.hauer%40pengutronix.de
-> > patch subject: [PATCH v8 16/26] PM / devfreq: rockchip-dfi: Add perf support
-> > config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20231018/202310181557.GIXGL21M-lkp@intel.com/config)
-> > compiler: m68k-linux-gcc (GCC) 13.2.0
-> > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231018/202310181557.GIXGL21M-lkp@intel.com/reproduce)
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes: https://lore.kernel.org/oe-kbuild-all/202310181557.GIXGL21M-lkp@intel.com/
-> > 
-> > All warnings (new ones prefixed by >>):
-> > 
-> >>> drivers/devfreq/event/rockchip-dfi.c:203:13: warning: 'rockchip_ddr_perf_counters_add' defined but not used [-Wunused-function]
-> >      203 | static void rockchip_ddr_perf_counters_add(struct rockchip_dfi *dfi,
-> >          |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > --
-> >>> drivers/devfreq/event/rockchip-dfi.c:79: warning: Function parameter or member 'write_access' not described in 'dmc_count_channel'
-> > 
-> > 
-> > vim +/rockchip_ddr_perf_counters_add +203 drivers/devfreq/event/rockchip-dfi.c
-> > 
-> >     66	
-> >     67	/**
-> >     68	 * struct dmc_count_channel - structure to hold counter values from the DDR controller
-> >     69	 * @access:       Number of read and write accesses
-> >     70	 * @clock_cycles: DDR clock cycles
-> >     71	 * @read_access:  number of read accesses
-> >     72	 * @write_acccess: number of write accesses
-> >     73	 */
-> >     74	struct dmc_count_channel {
-> >     75		u64 access;
-> >     76		u64 clock_cycles;
-> >     77		u64 read_access;
-> >     78		u64 write_access;
-> >   > 79	};
-> >     80	
-> >     81	struct dmc_count {
-> >     82		struct dmc_count_channel c[DMC_MAX_CHANNELS];
-> >     83	};
-> >     84	
-> >     85	/*
-> >     86	 * The dfi controller can monitor DDR load. It has an upper and lower threshold
-> >     87	 * for the operating points. Whenever the usage leaves these bounds an event is
-> >     88	 * generated to indicate the DDR frequency should be changed.
-> >     89	 */
-> >     90	struct rockchip_dfi {
-> >     91		struct devfreq_event_dev *edev;
-> >     92		struct devfreq_event_desc desc;
-> >     93		struct dmc_count last_event_count;
-> >     94	
-> >     95		struct dmc_count last_perf_count;
-> >     96		struct dmc_count total_count;
-> >     97		seqlock_t count_seqlock; /* protects last_perf_count and total_count */
-> >     98	
-> >     99		struct device *dev;
-> >    100		void __iomem *regs;
-> >    101		struct regmap *regmap_pmu;
-> >    102		struct clk *clk;
-> >    103		int usecount;
-> >    104		struct mutex mutex;
-> >    105		u32 ddr_type;
-> >    106		unsigned int channel_mask;
-> >    107		unsigned int max_channels;
-> >    108		enum cpuhp_state cpuhp_state;
-> >    109		struct hlist_node node;
-> >    110		struct pmu pmu;
-> >    111		struct hrtimer timer;
-> >    112		unsigned int cpu;
-> >    113		int active_events;
-> >    114		int burst_len;
-> >    115		int buswidth[DMC_MAX_CHANNELS];
-> >    116	};
-> >    117	
-> >    118	static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
-> >    119	{
-> >    120		void __iomem *dfi_regs = dfi->regs;
-> >    121		int ret = 0;
-> >    122	
-> >    123		mutex_lock(&dfi->mutex);
-> >    124	
-> >    125		dfi->usecount++;
-> >    126		if (dfi->usecount > 1)
-> >    127			goto out;
-> >    128	
-> >    129		ret = clk_prepare_enable(dfi->clk);
-> >    130		if (ret) {
-> >    131			dev_err(&dfi->edev->dev, "failed to enable dfi clk: %d\n", ret);
-> >    132			goto out;
-> >    133		}
-> >    134	
-> >    135		/* clear DDRMON_CTRL setting */
-> >    136		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_TIMER_CNT_EN | DDRMON_CTRL_SOFTWARE_EN |
-> >    137			       DDRMON_CTRL_HARDWARE_EN), dfi_regs + DDRMON_CTRL);
-> >    138	
-> >    139		/* set ddr type to dfi */
-> >    140		switch (dfi->ddr_type) {
-> >    141		case ROCKCHIP_DDRTYPE_LPDDR2:
-> >    142		case ROCKCHIP_DDRTYPE_LPDDR3:
-> >    143			writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR23, DDRMON_CTRL_DDR_TYPE_MASK),
-> >    144				       dfi_regs + DDRMON_CTRL);
-> >    145			break;
-> >    146		case ROCKCHIP_DDRTYPE_LPDDR4:
-> >    147		case ROCKCHIP_DDRTYPE_LPDDR4X:
-> >    148			writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_LPDDR4, DDRMON_CTRL_DDR_TYPE_MASK),
-> >    149				       dfi_regs + DDRMON_CTRL);
-> >    150			break;
-> >    151		default:
-> >    152			break;
-> >    153		}
-> >    154	
-> >    155		/* enable count, use software mode */
-> >    156		writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
-> >    157			       dfi_regs + DDRMON_CTRL);
-> >    158	out:
-> >    159		mutex_unlock(&dfi->mutex);
-> >    160	
-> >    161		return ret;
-> >    162	}
-> >    163	
-> >    164	static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
-> >    165	{
-> >    166		void __iomem *dfi_regs = dfi->regs;
-> >    167	
-> >    168		mutex_lock(&dfi->mutex);
-> >    169	
-> >    170		dfi->usecount--;
-> >    171	
-> >    172		WARN_ON_ONCE(dfi->usecount < 0);
-> >    173	
-> >    174		if (dfi->usecount > 0)
-> >    175			goto out;
-> >    176	
-> >    177		writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
-> >    178			       dfi_regs + DDRMON_CTRL);
-> >    179		clk_disable_unprepare(dfi->clk);
-> >    180	out:
-> >    181		mutex_unlock(&dfi->mutex);
-> >    182	}
-> >    183	
-> >    184	static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_count *res)
-> >    185	{
-> >    186		u32 i;
-> >    187		void __iomem *dfi_regs = dfi->regs;
-> >    188	
-> >    189		for (i = 0; i < dfi->max_channels; i++) {
-> >    190			if (!(dfi->channel_mask & BIT(i)))
-> >    191				continue;
-> >    192			res->c[i].read_access = readl_relaxed(dfi_regs +
-> >    193					DDRMON_CH0_RD_NUM + i * 20);
-> >    194			res->c[i].write_access = readl_relaxed(dfi_regs +
-> >    195					DDRMON_CH0_WR_NUM + i * 20);
-> >    196			res->c[i].access = readl_relaxed(dfi_regs +
-> >    197					DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
-> >    198			res->c[i].clock_cycles = readl_relaxed(dfi_regs +
-> >    199					DDRMON_CH0_COUNT_NUM + i * 20);
-> >    200		}
-> >    201	}
-> >    202	
-> >  > 203	static void rockchip_ddr_perf_counters_add(struct rockchip_dfi *dfi,
-> >    204						   const struct dmc_count *now,
-> >    205						   struct dmc_count *res)
-> >    206	{
-> >    207		const struct dmc_count *last = &dfi->last_perf_count;
-> >    208		int i;
-> >    209	
-> >    210		for (i = 0; i < dfi->max_channels; i++) {
-> >    211			res->c[i].read_access = dfi->total_count.c[i].read_access +
-> >    212				(u32)(now->c[i].read_access - last->c[i].read_access);
-> >    213			res->c[i].write_access = dfi->total_count.c[i].write_access +
-> >    214				(u32)(now->c[i].write_access - last->c[i].write_access);
-> >    215			res->c[i].access = dfi->total_count.c[i].access +
-> >    216				(u32)(now->c[i].access - last->c[i].access);
-> >    217			res->c[i].clock_cycles = dfi->total_count.c[i].clock_cycles +
-> >    218				(u32)(now->c[i].clock_cycles - last->c[i].clock_cycles);
-> >    219		}
-> >    220	}
-> >    221	
-> > 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/i3c/Kconfig       |  26 ++
+>  drivers/i3c/Makefile      |   2 +
+>  drivers/i3c/i3c-cfs.c     | 389 +++++++++++++++++++++++++++++
+>  drivers/i3c/slave.c       | 453 ++++++++++++++++++++++++++++++++++
+>  include/linux/i3c/slave.h | 503 ++++++++++++++++++++++++++++++++++++++
+>  5 files changed, 1373 insertions(+)
+>  create mode 100644 drivers/i3c/i3c-cfs.c
+>  create mode 100644 drivers/i3c/slave.c
+>  create mode 100644 include/linux/i3c/slave.h
 > 
-> -- 
-> Best Regards,
-> Samsung Electronics
-> Chanwoo Choi
-> 
-> 
+> diff --git a/drivers/i3c/Kconfig b/drivers/i3c/Kconfig
+> index 30a441506f61c..d5f5ca7cd6a56 100644
+> --- a/drivers/i3c/Kconfig
+> +++ b/drivers/i3c/Kconfig
+> @@ -22,3 +22,29 @@ menuconfig I3C
+>  if I3C
+>  source "drivers/i3c/master/Kconfig"
+>  endif # I3C
+> +
+> +config I3C_SLAVE
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+It doesn't look like you follow Kernel naming convention (see coding style).
+
+> +	bool "I3C Slave Support"
+> +	help
+> +	  Support I3C Slave Mode.
+> +
+
+
+
+Best regards,
+Krzysztof
+
 
