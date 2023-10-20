@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901517D08D3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:52:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0EED7D08E4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:55:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B35211C20A63
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 06:52:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC3101C20AAB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 06:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88370CA6E;
-	Fri, 20 Oct 2023 06:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC45CA5C;
+	Fri, 20 Oct 2023 06:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ui+fY0kG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U3nPCMWN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062E4CA6B
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 06:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3980CA46
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 06:55:39 +0000 (UTC)
 Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35521B8
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:52:13 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9c603e2354fso104611166b.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:52:13 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9051A8
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:55:37 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9adca291f99so68222766b.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:55:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697784731; x=1698389531; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697784936; x=1698389736; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W1NxU3Z+wEweywp/h8q+/eqGOQVPdUA2vlYW6Z/StSc=;
-        b=Ui+fY0kG0FVUBYVv9vZCWp3pgQQneXD84/6Vdw2p1t+1lUB3x9xfGk71VYrdho+GI+
-         tfo9H5rO7pI4/0PZAVLzxNcpF5bwM7fFB0lxXZcjQ2R30BNEQO6u5gtFtzyNTVth8tA5
-         0h/29v2rjtUc6PftWn5AfO/mKwE/4/B0Ziaz0eI/b/HyQmTfyL4BKLzNman2gVVTjmRS
-         ayJ4K2DOT72dPG1jF/2NecKVt81vvxvdI5jNCa3emNMKsKyKRHzy2BxNlNAkgLey26+g
-         EMpd7MuH5P0XFr1oKHkATIj9d2hzBp+iFX+bESO463yTybwIq7qnxDBdZ/kmyxWKwfKL
-         N88Q==
+        bh=oGqMY4K+B2HVw5c3OjyxezXqrQcTf69apDs4YWp1xms=;
+        b=U3nPCMWN0a/B3bPIDPh9W8MagBsG6fyk391O/ojAMUy2tpwTY0pR3HwKjzlQcqKYKM
+         /qklWuOolWLkVQ4CTyDNRHgYsRPfW2cbCpTACX07Jc+2K5eQSyjzKnYQtrSZZomd8VYt
+         d0VBlWnSY3GVNYt3FU86oWE1Zlrwee+BxeVCI8vRJOq/fqQyjKQNWAv3AodMh4hsvjnQ
+         MZXpPajxrM3UnK7dWfbHohPDeNmIq8biqJeE9sWXv6w9lMgdLhxf3ebhgjDlmz8BQRoG
+         iR+8OlrUMVZhzNxylykKJa7SFLwq4EJWnGPTenWwqBpm40P/3qniiuHNusmFfjtuAxBW
+         y/XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697784731; x=1698389531;
+        d=1e100.net; s=20230601; t=1697784936; x=1698389736;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W1NxU3Z+wEweywp/h8q+/eqGOQVPdUA2vlYW6Z/StSc=;
-        b=oxFGCvnTaTZo6zu92m37bf3NzTy+Ig8JjFK8BmahbrXoWfqm//ZZbzW5sYOboaGLtH
-         /J86TBbnnQFqw9mLvFAUSaX+DGA3y7pEAXtqWJtYVvOIsRBuKboqnearH8T1A4SgWIGr
-         38WcOu2uicyvTDeZKsxErVIDKapyYDZeo78yzu9et5Wz/PYtXR80VlsqNzoiKQI8SRZH
-         KEwTgTFAVEaycR65SqLP7dRi46bJoYRNDpa3jQHm/gbpLUziQqHbasWZZFSWLm1sIYVE
-         20gDRq4ZyUJeNNSGUEqRK8EsiWVQA8H5AUUdmM4phtDtHyeLrYk7XreDAZfqmJO1aKwQ
-         1GEQ==
-X-Gm-Message-State: AOJu0Yz5av6Y+2hF91Lmk0XU6uq7MuU6rODaCqeUTT2/KkWFLepoE0U1
-	x5I/9RoWTd961ecq9kv1dRRB1A==
-X-Google-Smtp-Source: AGHT+IHa4Ac2P1hDCrYbytDpcVEc53kPqDeGroHF2JTDiSUR0BD7fHPxsFPjhTetoUTD2w4wj2YuFA==
-X-Received: by 2002:a17:907:ea7:b0:9ae:699d:8a31 with SMTP id ho39-20020a1709070ea700b009ae699d8a31mr776884ejc.33.1697784731490;
-        Thu, 19 Oct 2023 23:52:11 -0700 (PDT)
+        bh=oGqMY4K+B2HVw5c3OjyxezXqrQcTf69apDs4YWp1xms=;
+        b=S7q8bZRvV7SALkG1+L6uj5ftrbFKdrZUXJi0an4ypraAt5EMR12IbPEOeZwlAbdUAT
+         WRNnAzDkanr1Szd+LLPU9mkICDiQVYvkZ45a3ZLTCsVUakDe6k/ZqQWjVYBjrfrmeYGC
+         ljBn+E9GoF6/edi2JJ1vU+tj67jsCzXWRaeuBPLxB+TD+hSjUM2k+et3nxkjN178ZWKj
+         OemBOQhwf47wAmR3mTX/UhrpeUOMz8KlkJdVq/4292LBxwpw4PrgsY5Mp8qBYEDtiOMw
+         j9O68anMT1e38Cycy0AN/MxGFB9VmcjRpMWzf+dbAS7Nnddw/s9krh6CQv7moVBjgf+X
+         8AlA==
+X-Gm-Message-State: AOJu0Yxt/t/eGiGAvEGUk9s01pBYtOG0gUybqMR8hl+xIO8Vg0/Ut34e
+	dAbOzE8++GjN3KFy+htUWVWSdw==
+X-Google-Smtp-Source: AGHT+IGlpICr8L7mdq/Z2N2UKdNXuFCQQvBgNMgpOU5pY4hqAhBsQeg8LrJ3nDUPIlJhvswGpoQLAQ==
+X-Received: by 2002:a17:907:a45:b0:9bd:f902:9a62 with SMTP id be5-20020a1709070a4500b009bdf9029a62mr637240ejc.33.1697784935880;
+        Thu, 19 Oct 2023 23:55:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id n13-20020a17090673cd00b009b65a834dd6sm861901ejl.215.2023.10.19.23.52.10
+        by smtp.gmail.com with ESMTPSA id m2-20020a17090607c200b009c6a4a5ac80sm866581ejc.169.2023.10.19.23.55.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 23:52:11 -0700 (PDT)
-Message-ID: <57d4a38c-580b-4a16-bdca-0ee9b2bb7031@linaro.org>
-Date: Fri, 20 Oct 2023 08:52:09 +0200
+        Thu, 19 Oct 2023 23:55:35 -0700 (PDT)
+Message-ID: <07ef7cf2-c5dc-4248-b72b-bad913f4508d@linaro.org>
+Date: Fri, 20 Oct 2023 08:55:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: rs485: Add rs485-rts-active-high
+Subject: Re: [PATCH] coresight-tpdm: Correct the property name of MSR number
 Content-Language: en-US
-To: Francesco Dolcini <francesco@dolcini.it>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231019154834.41721-1-francesco@dolcini.it>
+To: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Hao Zhang <quic_hazha@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1697770311-15392-1-git-send-email-quic_taozha@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,23 +129,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231019154834.41721-1-francesco@dolcini.it>
+In-Reply-To: <1697770311-15392-1-git-send-email-quic_taozha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/10/2023 17:48, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> Add rs485-rts-active-high property, this is a legacy property
-> used by 8250_omap.
-> 
-> This fixes the following make dt_binding_check warning:
-> 
-> Documentation/devicetree/bindings/serial/8250_omap.yaml:
-> rs485-rts-active-high: missing type definition
-> 
+On 20/10/2023 04:51, Tao Zhang wrote:
+> Correct the property name of the DSB MSR number that needs to be
+> read in TPDM driver. The right property name is
+> "qcom,dsb-msrs-num".
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Missing Fixes tag.
+
+> 
+> This patch depends on patch series "Add support to configure TPDM DSB
+> subunit"
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=788353
+
+This is not suitable for commit msg. Dependencies are noted under ---.
+
+And how is this depending on that patch? Your buggy code was applied
+long time ago!
+
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>  drivers/hwtracing/coresight/coresight-tpdm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index b25284e..97654aa 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -892,7 +892,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+>  
+>  	if (drvdata && tpdm_has_dsb_dataset(drvdata))
+>  		of_property_read_u32(drvdata->dev->of_node,
+> -			   "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
+> +			   "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
+
+So you never tested your DTS... We can keep asking about this but still
+testing does not happen :/
 
 Best regards,
 Krzysztof
