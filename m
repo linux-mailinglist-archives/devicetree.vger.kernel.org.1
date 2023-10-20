@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62A2B7D0E13
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:04:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F057D0E29
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:10:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2909B21333
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:04:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6022281221
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4B3182CA;
-	Fri, 20 Oct 2023 11:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E1118C11;
+	Fri, 20 Oct 2023 11:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WjTBYK0+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nCQaw9sR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF78E18B04
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:04:11 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12720E8
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:04:10 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32dc918d454so476290f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:04:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770EE18029
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:10:49 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0E8126
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:10:46 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-53e3e7e478bso1006359a12.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697799848; x=1698404648; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697800245; x=1698405045; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sN3sjFfzHqesOB5SHANZC6LXIF9auqa0w7LdJW2M1Xw=;
-        b=WjTBYK0++5k9UedKR/Oef3ToYBCoCD1v2cxuCpidyPQQM5z0xtJeIJq1wVyJUnDT0i
-         Kt1MZ3EXx8HYQYY1ifMyXS5T39DsD+zHr8SZJtN3Bc+H8ccAd8T0scaB1mKjH1f9jT+/
-         XfjNQCDELDjTg1rW5RUkdvjnbKJNtI2pmEV+UZ2vG2wvqF1slPUbs6lMJwpOwdSRcGfu
-         8PM94m9beieHRQjflBjDHGTf63/LqaiNQeCEiLWf6ge5x5YKtW5nkntVP4WCQ53ePH8R
-         9UX0C9ZszLGqSelCdm7RqNA8GRihgjGfvisVnWMLEMCUjNHeWE1g4+AhntFkgPlsGone
-         aw5A==
+        bh=UG+PVmid3Mo6+0CvXodjlEjuponhPh1fREwsE8Af67A=;
+        b=nCQaw9sRzKTFrvvDVmzq2rI9yAJm4Ufd9xziuKUHWeeileOUrd0Nr1RdB4aW0/JwsP
+         M6c2+V64ubiIncKQrTKYL4JBmswJMun8ctADOFKUvsh+Y8PiYH4WbnNuy0Vr/HTxMxBC
+         xz5AaBCZ6abqlvfRGnO+7rxF1/GB0R9/fCuX4VgrUuBhGKbH+4yPg6mk+od5J59IbgDs
+         I26yAguv3nFyxm1lxLpLpiQgjWeH/488feSsw7N/TqAiyGmlGarxgngqYycEg/o9ZT5l
+         8F7fHW02lag+jK3MHDB9zWIeGcxUGZ7bCW5bdGctLJw4Du9UJj0tGV0EbyWYHM2ObjMP
+         w4iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697799848; x=1698404648;
+        d=1e100.net; s=20230601; t=1697800245; x=1698405045;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sN3sjFfzHqesOB5SHANZC6LXIF9auqa0w7LdJW2M1Xw=;
-        b=W7cSI2bhbeH7iRFfiTXXIPDMb2+7zQz9kVs7QJVPccliut9R9Y+WFVUmcUCxM/88BX
-         Mu2au0+h8sbMKscPH2PQ1ZfZ/t3miXEDwlomZCO3CpTl+SjW1arB0kXmaTkHfusJbO0j
-         BhAo+Mo5+ALYzjkGowmaSCcNd9Hgu0SMNTd1pNaGDcqLZVQinSZ2CcWEPFMllMloqoqV
-         GlIDTroh9KcNCRhWq1hdqsaFuUydBcK2WbrRSHTWrYlJrwoDQsQ+0FC7q9Vn2vThTruh
-         GtGJZXMT9K5018v34OI+4sQYa1te5fvTYa/1xA7zwgQZYOlu5XqxtQ+ki/orKOvEllB+
-         MOSA==
-X-Gm-Message-State: AOJu0YyAx5jzRcLJsQrr5AEIOkLflpOlhw/tQNZZzjhRtQ6gs6LTKa92
-	64J/Tc9C7iyhb6GRy16Aln6Z3w6sJPsWpf4z1yM=
-X-Google-Smtp-Source: AGHT+IH+Zr8JmAeDS/JPN/46ytmfgsM9SpIQFdeujrQKUGDMULQkgsxQxOl7BH43B+rnMmsxvxOGJQ==
-X-Received: by 2002:a5d:4692:0:b0:32d:9395:dec6 with SMTP id u18-20020a5d4692000000b0032d9395dec6mr1111771wrq.67.1697799848393;
-        Fri, 20 Oct 2023 04:04:08 -0700 (PDT)
+        bh=UG+PVmid3Mo6+0CvXodjlEjuponhPh1fREwsE8Af67A=;
+        b=QxdhodOaO9c4fpNXz1Ot9JXIo2wvFFdDi41WXG6z4UKlFqiMzn30nan0OMpSMkscTF
+         zZ0Jt64lXEDxl8eL4A++Jc94BysVPvT4FddSV1uiqui4u+GDINmFCnnVg1TvrApyFVOy
+         8pR9E6aEEkyTrKVEJS7gCU1u3ds3Vac17Z5Ah+FTt6t8fBmtN5hZrhSGj3OB8Wp2yBQ6
+         1vCZtb+iWF4sLa13v1AifPXivJu/2TqJPaN3yM0GyEuy+MkJztg+XktyeTJ7vCmBbsqI
+         YD2hMcHCl/VMAgjJnBxMuikGVGiK43ZaBxSxIvCLFvn+CSENXZyxzbigLWUz/o3qeJAz
+         P3Eg==
+X-Gm-Message-State: AOJu0YzoMUZn+JvJrsXuYw2P0hX6c+/qfkIsNO63o5jqNe3yU4eA9vI5
+	+jaq9Xe2HKaNYoJHilQsRDQHZw==
+X-Google-Smtp-Source: AGHT+IFsLSySwKPr+GKVj6cvW2IJBj5IgvG55nmvngR8Oj4tLEiHODHLCNnKDxbvwRCF35UlKlYi5g==
+X-Received: by 2002:a05:6402:1d48:b0:53d:d8ad:4d46 with SMTP id dz8-20020a0564021d4800b0053dd8ad4d46mr1763127edb.36.1697800245047;
+        Fri, 20 Oct 2023 04:10:45 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v3-20020adff683000000b0032d9523de65sm1437072wrp.48.2023.10.20.04.04.06
+        by smtp.gmail.com with ESMTPSA id a16-20020aa7cf10000000b0053ecef8786asm1230075edy.75.2023.10.20.04.10.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Oct 2023 04:04:07 -0700 (PDT)
-Message-ID: <8ced1915-7b94-4abc-bd8b-cb4bf027fa01@linaro.org>
-Date: Fri, 20 Oct 2023 13:04:05 +0200
+        Fri, 20 Oct 2023 04:10:44 -0700 (PDT)
+Message-ID: <cfc0375e-50eb-4772-9104-3b1a95b7ca4a@linaro.org>
+Date: Fri, 20 Oct 2023 13:10:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,26 +67,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 01/20] dt-bindings: PCI: Add PLDA XpressRICH PCIe host
- common properties
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or
+ ethernet-ports
 Content-Language: en-US
-To: Minda Chen <minda.chen@starfivetech.com>, Conor Dooley
- <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mason Huo <mason.huo@starfivetech.com>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>,
- Kevin Xie <kevin.xie@starfivetech.com>
-References: <20231020104341.63157-1-minda.chen@starfivetech.com>
- <20231020104341.63157-2-minda.chen@starfivetech.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Eric Dumazet <edumazet@google.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org,
+ Gregory Clement <gregory.clement@bootlin.com>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org>
+ <169762516670.391804.7528295251386913602.robh@kernel.org>
+ <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,25 +132,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020104341.63157-2-minda.chen@starfivetech.com>
+In-Reply-To: <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/10/2023 12:43, Minda Chen wrote:
-> Add PLDA XpressRICH PCIe host common properties dt-binding doc.
-> Microchip PolarFire PCIe host using PLDA IP.
-> Move common properties from Microchip PolarFire PCIe host
-> to PLDA files.
+On 18/10/2023 13:11, Linus Walleij wrote:
+> On Wed, Oct 18, 2023 at 12:32 PM Rob Herring <robh@kernel.org> wrote:
+>> On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/pci/microchip,pcie-host.yaml     | 55 +-------------
->  .../pci/plda,xpressrich3-axi-common.yaml      | 75 +++++++++++++++++++
+>>> Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+>>> a DSA switch node need to have a ports or ethernet-ports
+>>> subnode, and that is actually required, so add requirements
+>>> using oneOf.
+>>>
+>>> Suggested-by: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+>> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+> 
+> Really?
+> 
+> +  oneOf:
+> +    - required:
+> +      - ports
 
-Where was this patch reviewed?
+.........^ here
+
+> +    - required:
+> +      - ethernet-ports
+> 
+> Two spaces after the oneOf, 2 spaces after a required as usual.
+> I don't get it.
+
+Although YAML accepts your indentation, yamllint does not and we always,
+always, expected yamllint flavor of syntax.
+
 
 Best regards,
 Krzysztof
