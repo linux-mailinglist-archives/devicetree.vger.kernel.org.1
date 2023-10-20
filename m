@@ -1,136 +1,111 @@
-Return-Path: <devicetree+bounces-10440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7760B7D12CE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:31:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D84FF7D12DF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32D57282547
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 672972825B9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7FB1DDD5;
-	Fri, 20 Oct 2023 15:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05BF1DDE6;
+	Fri, 20 Oct 2023 15:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QeFS+w9G"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="YnVp5gJt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC3881DDCB
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:31:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D87110C7;
-	Fri, 20 Oct 2023 08:31:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697815890; x=1729351890;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=d8WfxPaOzLW8AWmNf+EMLv4pLoLyObaSU2ANMkPjryc=;
-  b=QeFS+w9GFm2fP845g8ugdDxm1yVn3R83EuVoCz2DmpU99GFTFN95ljAp
-   7fpYcPCN3bgCqSeTf85ffQ6mUTtkbWkZgzvM/KDG0xZSA1yqJKiKMV+Jm
-   +cU4mFfAp2n9KnZcbm+MuMnb6odMym9M7oWXzhjNdNKnug24YfKjSH79s
-   baWQccS8hVUmTgg5mDl00f4iUTKL/Yw5bf4/7m1mbuFbzSuH4LLlTf3Fq
-   DQyslOebcc8d7G3gwl/br0/gLQJZNotef0RJN7FkbnnOMO02d6w5AUarp
-   geUJ6YPRPHBYcjs5MfcsYZ+7cQ3ODzcnmm0jtXaHSfVhBFeAw32De5h2T
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="385401514"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
-   d="scan'208";a="385401514"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2023 08:31:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="761084863"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
-   d="scan'208";a="761084863"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 20 Oct 2023 08:31:15 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qtrSz-0003fh-0M;
-	Fri, 20 Oct 2023 15:31:13 +0000
-Date: Fri, 20 Oct 2023 23:30:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: James Ogletree <james.ogletree@opensource.cirrus.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	James Ogletree <james.ogletree@cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
-	Fred Treven <fred.treven@cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] Input: cs40l50 - Add support for the CS40L50
- haptic driver
-Message-ID: <202310202344.LreohGFP-lkp@intel.com>
-References: <20231018175726.3879955-5-james.ogletree@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21FF01DDD8
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:34:33 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743BCB3;
+	Fri, 20 Oct 2023 08:34:32 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 18D4040541;
+	Fri, 20 Oct 2023 20:34:10 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1697816051; bh=qRQqOpHEja4+bOVE0+RE+KlNzc3wVdpb5/j4pLNNEf0=;
+	h=From:Subject:Date:To:Cc:From;
+	b=YnVp5gJtdwMX8ZMIaaDoSKDwjqJQvXXgxFshemOzI6ssvK8imq0f2jHehF8s02o+x
+	 6NGZ1TvMAk5o+7eR7uq/vT7ksA6B+wl6irU+dIhUPh3msdagOUudzfv7Vl90VWBB4i
+	 OMQY2GiQL/uYXK1IfT2VvprDGjejRSHWXgPhv1hJpxO6pcrNjDsG9QOxpUa1Q6y/aN
+	 crB1K61TFsLQmVZdiDV4wyRf1/QZw4IIIHxLFHHXFDGTtsjungB2LYF6hgcOgIhQPI
+	 /tIAllZyUlXmCjqtWZY28YcIwuQwelwJ0hu1p6ib9fTzshhpxcg0FLMFTBB/D+iF2g
+	 mccbBzgZqcqTw==
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/2] sc7180: Add qdsp baked soundcard
+Date: Fri, 20 Oct 2023 20:33:45 +0500
+Message-Id: <20231020-sc7180-qdsp-sndcard-v1-0-157706b7d06f@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231018175726.3879955-5-james.ogletree@opensource.cirrus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANmdMmUC/x3MMQqAMAxA0atIZgNpFSteRRxqGzVL1QZEEO9uc
+ XzD/w8oZ2GFoXog8yUqeyowdQVh82lllFgMlmxjyBJqcKYnPKMeqCkGnyNyT50j43huA5TyyLz
+ I/V/H6X0/NZpha2UAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: jenneron@postmarketos.org, linux-arm-msm@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1022; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=qRQqOpHEja4+bOVE0+RE+KlNzc3wVdpb5/j4pLNNEf0=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBlMp3uUQVyPi1hr+wNx22OyJ94FaggsSQx/aHpO
+ pCkc2BBfUKJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZTKd7gAKCRBDHOzuKBm/
+ deraD/44ZNzmfdkYDMy8y/DufJVaMHVQHxfIRanM6yiVCm0bQr+6bXRsPMrzxNhBAmU0xDEd69V
+ Tzd4/2b/Z8oAceWzPe+YzANtsN3BUL6W+sVKHv7h9FJoMazFdpVWk1UOhfNqSG5ycJMlylGyOLB
+ 1i96s/Fu2EGO5dc0eB48TWfDtPyxfnXPindRby3GFfy7xhOLDN3ix8UzaLlBpOT/FidRbWetzGO
+ liQOzYRC0laCjulrI/+88i2nGbdyELjoBAz2dNPRkDs81rbIjmRdpQCSHQLCUwhUHqKX3/veR46
+ LDouuaExRO5PUMhX2JDiIIgHT0f2lc25b3F/Od1RT7uP6BvdMXnQ5bGSu/jlg3uD4nXvrBxPuVJ
+ a4cU1OLcQY63zy1pGGfmBufxWxzNsiiArH159YfllUasvo6I7+TQCKX6XLNgZ4Gg6IkzpGL7ubo
+ Zo3WfntQNX3sXdmgatQwrzJxXpBG2MPhFGD59b1T21KVeT//Hzf65WLUVI6Bl3VXQrG6s7sES0z
+ Ncg7SDR4Sq4LhZq6RBu90R9G3taZNiaZiKccYwEd/rrQfn0XxfBT/dXRyAzwT0TiKjim7/xafY6
+ U3kcPXfVtq5ngscsz98JVMDs21XIk9pg3CcKHaaIR50ODYs5gmcQVPULZ6aMNSNyu1Jc6c1z9/9
+ 7IuV3DdXwpv7qdA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hi James,
+Some devices, such as Acer Aspire 1, can't use lpass dirrectly, but
+instead must use adsp core to play sound. Since otherwise the hardware
+is, usually, very similar across the devices on the same platform, it
+makes sense to reuse the same boardfile.
 
-kernel test robot noticed the following build warnings:
+This series refactors the sc7180.c slightly and adds the functions to
+control clocks via adsp instead of controlling the hardware directly.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus lee-mfd/for-mfd-next robh/for-next linus/master lee-mfd/for-mfd-fixes v6.6-rc6 next-20231020]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Existing google devices should experience no change.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/James-Ogletree/dt-bindings-input-cirrus-cs40l50-Add-initial-DT-binding/20231019-015950
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231018175726.3879955-5-james.ogletree%40opensource.cirrus.com
-patch subject: [PATCH v4 4/4] Input: cs40l50 - Add support for the CS40L50 haptic driver
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20231020/202310202344.LreohGFP-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231020/202310202344.LreohGFP-lkp@intel.com/reproduce)
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Nikita Travkin (2):
+      ASoC: dt-bindings: qcom,sm8250: Add sc7180-qdsp6-sndcard
+      ASoC: qcom: sc7180: Add support for qdsp6 baked sound
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310202344.LreohGFP-lkp@intel.com/
+ .../devicetree/bindings/sound/qcom,sm8250.yaml     |   1 +
+ sound/soc/qcom/sc7180.c                            | 195 ++++++++++++++++++---
+ 2 files changed, 174 insertions(+), 22 deletions(-)
+---
+base-commit: 2030579113a1b1b5bfd7ff24c0852847836d8fd1
+change-id: 20231020-sc7180-qdsp-sndcard-e8067017eb4c
 
-All warnings (new ones prefixed by >>):
-
-   drivers/input/misc/cs40l50-vibra.c: In function 'cs40l50_vibra_remove':
->> drivers/input/misc/cs40l50-vibra.c:329:13: warning: the comparison will always evaluate as 'true' for the address of 'dsp' will never be NULL [-Waddress]
-     329 |         if (&cs40l50->dsp)
-         |             ^
-   In file included from drivers/input/misc/cs40l50-vibra.c:11:
-   include/linux/mfd/cs40l50.h:180:23: note: 'dsp' declared here
-     180 |         struct cs_dsp dsp;
-         |                       ^~~
-
-
-vim +329 drivers/input/misc/cs40l50-vibra.c
-
-   319	
-   320	static int cs40l50_vibra_remove(struct platform_device *pdev)
-   321	{
-   322		struct cs40l50_private *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-   323	
-   324		input_unregister_device(cs40l50->input);
-   325		cs_hap_remove(&cs40l50->haptics);
-   326	
-   327		if (cs40l50->dsp.booted)
-   328			cs_dsp_power_down(&cs40l50->dsp);
- > 329		if (&cs40l50->dsp)
-   330			cs_dsp_remove(&cs40l50->dsp);
-   331	
-   332		return 0;
-   333	}
-   334	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Nikita Travkin <nikita@trvn.ru>
+
 
