@@ -1,252 +1,114 @@
-Return-Path: <devicetree+bounces-10245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5FF57D0733
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 05:51:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16BE7D0770
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 06:51:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D2C12821DE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 03:51:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 901EF1F228FA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 04:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B48E2101;
-	Fri, 20 Oct 2023 03:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C7739A;
+	Fri, 20 Oct 2023 04:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BPaBT+q+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A27520FB
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 03:51:31 +0000 (UTC)
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A165181;
-	Thu, 19 Oct 2023 20:51:28 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 39K3nXGi93723204, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.93/5.92) with ESMTPS id 39K3nXGi93723204
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 20 Oct 2023 11:49:33 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Fri, 20 Oct 2023 11:49:33 +0800
-Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
- RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Fri, 20 Oct 2023 11:49:33 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
- 15.1.2507.17 via Frontend Transport; Fri, 20 Oct 2023 11:49:33 +0800
-From: Jyan Chou <jyanchou@realtek.com>
-To: <adrian.hunter@intel.com>, <jh80.chung@samsung.com>,
-        <ulf.hansson@linaro.org>
-CC: <riteshh@codeaurora.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <asutoshd@codeaurora.org>, <p.zabel@pengutronix.de>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <arnd@arndb.de>,
-        <briannorris@chromium.org>, <doug@schmorgal.com>,
-        <tonyhuang.sunplus@gmail.com>, <abel.vesa@linaro.org>,
-        <william.qiu@starfivetech.com>, <jyanchou@realtek.com>
-Subject: [PATCH V3][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc driver
-Date: Fri, 20 Oct 2023 11:49:21 +0800
-Message-ID: <20231020034921.1179-5-jyanchou@realtek.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231020034921.1179-1-jyanchou@realtek.com>
-References: <20231020034921.1179-1-jyanchou@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C181E1C02
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:51:38 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F9FD5B;
+	Thu, 19 Oct 2023 21:51:36 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39K4pOMc012511;
+	Thu, 19 Oct 2023 23:51:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1697777484;
+	bh=T4d4FQKRT37iCD3D4hdv+cgb70K74rfgzoKjp7ZVVX0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BPaBT+q+xV54SuNN46CLP7IrbSb7r+zT8FuFpSJ2QS6x/u6y9lgGV64KB7csOcQ1p
+	 hXOlQmM/ztiRg6/OifX6l3PfKATG7ErthZdsDddblIuVOp2kH5CT8ZfMadccNTPqk3
+	 A6D5+pM0yosi68RJ0DP3TRBMZFGOYk5oIyPpjeRE=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39K4pOcC011350
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 19 Oct 2023 23:51:24 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 19
+ Oct 2023 23:51:24 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 19 Oct 2023 23:51:24 -0500
+Received: from [172.24.227.83] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39K4pKHR064185;
+	Thu, 19 Oct 2023 23:51:21 -0500
+Message-ID: <2c22999d-be7b-fad4-d13c-4e978d971749@ti.com>
+Date: Fri, 20 Oct 2023 10:21:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-KSE-ServerInfo: RTEXMBS04.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Add alias for MCU
+ CPSW2G
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20231019102043.3044295-1-s-vadapalli@ti.com>
+Content-Language: en-US
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20231019102043.3044295-1-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Document the device-tree bindings for Realtek SoCs mmc driver.
 
-Signed-off-by: Jyan Chou <jyanchou@realtek.com>
 
----
-v2 -> v3:
-- Modify dt-bindings' content and description.
-- Fix coding style.
-- Update the list of maintainers.
+On 10/19/23 3:50 PM, Siddharth Vadapalli wrote:
+> Add alias for the MCU CPSW2G port to enable Linux to fetch MAC Address
+> for the port directly from U-Boot.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+> Hello,
+> 
+> This patch is based on linux-next tagged next-20231019. I hope that the
+> patch can be reviewed so that I can post it again when the merge window
+> opens implementing any feedback received and collecting the tags if any.
+> 
+> Regards,
+> Siddharth.
+> 
+>  arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> index 1e1a82f9d2b8..d0cfdeac21fb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> @@ -31,6 +31,7 @@ aliases {
+>  		can1 = &mcu_mcan1;
+>  		can2 = &main_mcan6;
+>  		can3 = &main_mcan7;
+> +		ethernet0 = &cpsw_port1;
+>  	};
+>  
+>  	vusb_main: regulator-vusb-main5v0 {
 
-v0 -> v2:
-- Add dt-bindings.
----
----
- .../bindings/mmc/realtek-dw-mshc.yaml         | 150 ++++++++++++++++++
- 1 file changed, 150 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml
+Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
-diff --git a/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml
-new file mode 100644
-index 000000000000..b1e37fb37be9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml
-@@ -0,0 +1,150 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/realtek-dw-mshc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek designware mobile storage host controller
-+
-+description:
-+  Realtek uses the Synopsys designware mobile storage host controller
-+  to interface a SoC with storage medium. This file documents the Realtek
-+  specific extensions.
-+
-+allOf:
-+  - $ref: synopsys-dw-mshc-common.yaml#
-+
-+maintainers:
-+  - Jyan Chou <jyanchou@realtek.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rtd-dw-cqe-emmc
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  cqe:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 4
-+
-+  clock-names:
-+    minItems: 2
-+    maxItems: 4
-+
-+  clock-freq-min-max:
-+    description:
-+      Clk frequency should be in the interval.
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: reset
-+
-+  speed-step:
-+    maxItems: 1
-+
-+  pinctrl-0:
-+    description:
-+      should contain default/high speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-1:
-+    description:
-+      should contain sdr50 mode pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-2:
-+    description:
-+      should contain ddr50 mode pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-3:
-+    description:
-+      should contain hs200 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-4:
-+    description:
-+      should contain hs400 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-5:
-+    description:
-+      should contain tune0 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-6:
-+    description:
-+      should contain tune1 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-7:
-+    description:
-+      should contain tune2 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-8:
-+    description:
-+      should contain tune3 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-9:
-+    description:
-+      should contain tune4 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    maxItems: 10
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - pinctrl-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    emmc: mmc@12000 {
-+        compatible = "realtek,rtd-dw-cqe-emmc";
-+        reg = <0x00012000 0x00600>,
-+              <0x00012180 0x00060>;
-+        reg-names = "emmc", "cqhci";
-+        interrupts = <0 42 4>;
-+        clocks = <&cc 22>, <&cc 26>, <&cc 121>, <&cc 122>;
-+        clock-names = "biu", "ciu", "vp0", "vp1";
-+        clock-freq-min-max = <300000 400000000>;
-+        clock-frequency = <400000>;
-+        vmmc-supply = <&reg_vcc1v8>;
-+        resets = <&rst 20>;
-+        reset-names = "reset";
-+        speed-step = <3>;
-+        cqe = <1>;
-+        pinctrl-names = "default", "sdr50", "ddr50", "hs200", "hs400",
-+                        "tune0", "tune1", "tune2", "tune3", "tune4";
-+        pinctrl-0 = <&emmc_pins_sdr50>;
-+        pinctrl-1 = <&emmc_pins_sdr50>;
-+        pinctrl-2 = <&emmc_pins_ddr50>;
-+        pinctrl-3 = <&emmc_pins_hs200>;
-+        pinctrl-4 = <&emmc_pins_hs400>;
-+        pinctrl-5 = <&emmc_pins_tune0>;
-+        pinctrl-6 = <&emmc_pins_tune1>;
-+        pinctrl-7 = <&emmc_pins_tune2>;
-+        pinctrl-8 = <&emmc_pins_tune3>;
-+        pinctrl-9 = <&emmc_pins_tune4>;
-+        };
 -- 
-2.42.0
-
+Regards,
+Ravi
 
