@@ -1,213 +1,324 @@
-Return-Path: <devicetree+bounces-10470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0827D1565
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 20:04:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30517D1577
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 20:07:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72BD282694
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:04:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C98A7B21408
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9EF219FE;
-	Fri, 20 Oct 2023 18:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEE120B37;
+	Fri, 20 Oct 2023 18:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BOaO6fAs"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="RedjjzEX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A330208AA
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 18:04:28 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937B6D51
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:04:26 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40806e40fccso8277585e9.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:04:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697825065; x=1698429865; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jrYybwUMXMQDct16/KSDb1AL83UYfzbsLKEmVGzNrmk=;
-        b=BOaO6fAsSS1BYv2zeHRsxNEG3DxCKyKtjwv0YQj+nFr5iLN3iJeBCG0+XKJbAImB2x
-         07TgIbjBKwHa4xngbu0FZiN8fMoyHRsF0BoUKD4Gg4DfbhaPQnBEisr7/1UGcYrDd3MC
-         OstJdO+z3fPqpoPHL2apG3oepMrgWEr/xA65VWSu00KJuWwGGuOA3tlK+Xqpgj1firR+
-         BhNrwXcc5a2fgEkKlEpl1o2jkaM25sljOBPTs4EpNyP3geDB/bWunnj7MkJt8NrGmh1g
-         9IODW4g242DSBHomcatmGNsd3KNAA/HjflAk21yS+U8qTNQ5DfNUICNeuuMLpaNuAi+q
-         JVxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697825065; x=1698429865;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrYybwUMXMQDct16/KSDb1AL83UYfzbsLKEmVGzNrmk=;
-        b=bez++uNkL7eqdC4dPD8um3hfgE+5bTE1vHM3QX4+YVedHIJdF1S8Q7sx+/BhYU7V3R
-         iBJPqOngR/mSpkVa4dNa/UxzhMNW6Wqk4u+OrA/MtCmJLeLjJ1s5wrB6Zn2BBWOOTsY0
-         VOQ3fOALG8s8k635+plnsyp48iWIQm8RzKpbFINXLGnEycyFxBxIWXSyYn9gQwaHjWv2
-         Yad0NFMc8TMJPr0E2GrKOSJS38+1UBxL/6KTvn7LauYCRlQ/MBncj1jIm3t6c2Kab9KZ
-         hL8w+J4r2MV3xEmfo5rrNXQIG7EKrdiG2iVO5PVKRfHy9O5HZaJlUqa0zV8ye9ntS5Qt
-         jsxQ==
-X-Gm-Message-State: AOJu0YwE9d9oPAq4QG4X6ypGEbShs8Y1tstNn5bcLgvSXThPsUNCcF+g
-	clVmLT4E4OXdkJ0D6Cvq4os0xQ==
-X-Google-Smtp-Source: AGHT+IGAQcB/OoprNSPgK5yZLGsiVkKqJvmE66/NqlSJUrxMppe2XNIXq95JTC4Fb2lqnycn9cH6tw==
-X-Received: by 2002:adf:e5c8:0:b0:32d:6891:f819 with SMTP id a8-20020adfe5c8000000b0032d6891f819mr2224887wrn.41.1697825064975;
-        Fri, 20 Oct 2023 11:04:24 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id o7-20020a056000010700b0032da6f17ffdsm2162312wrx.38.2023.10.20.11.04.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Oct 2023 11:04:24 -0700 (PDT)
-Message-ID: <b0247572-607d-48e9-92ef-a3e0a8fe17f9@linaro.org>
-Date: Fri, 20 Oct 2023 20:04:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD0C2032B
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 18:07:16 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2053.outbound.protection.outlook.com [40.107.20.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07BF4D55;
+	Fri, 20 Oct 2023 11:07:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lZSEPasjWStYQGD/2ebHKey4HpwSGapIHaKkd8VhJ4uDydR06XNgjwezHLsHJOjNFQXz+iUTCuRIzY2pR547dB+tqvETNB2EHJhlVv7S8KcQ6FiQxSLC0cSTVCpiGaE6f9uE+VTov7L9ZVNwL1g9ryCZGWmdbWDIuwzhZq34lcKng+zMEITY0y/8Kk7XNd099QZe2HzJM7D12p2xGyHg69olVBUc/mHyACSRtxN6/sPUgSE/XjQ8VRGhrxaADSj5YGmZFJDLj/eK/nmfFnK/+NQr6Ow0Ja8FnS/lBhso/dUPbp4Ukb/bU4gvvUugPxYEds/kvZwvDq2R1MdOVyti1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U+Tb430DUqMq2dqUXX7UUIMkGDZWLbNdqgMJvB/K3Uo=;
+ b=BP0HioeKXmI4qhq0MmT4GA+x5cPmKYC72Ul1c38dq6ALASOKMaUsicchSWOiVMeFqy3rE6xHrUuz5e9Nf0ath/vWwLp6vomfWdxAreVXXPLj3xLVScfqRA2nCN+tehMA1+62uImmfAijMxv2np1dlURWYfxHnuNFiIEErMD+5D6wjcDXrVosNoZ9ol94CJGYgmiZhNBs2BEaI7CnihkX2CNuD4dHcaYL23EicZlav5M/QtB+/OJyTJwxQeNQa4XUzF0Hsp8x4r0AzOJxv13TOLU8sSXm+ZXMT+P1RM3Cgnz2Ovr8/QCEesIzVEtNUV18LGJG4pgaJT6Ap/PVImqc0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U+Tb430DUqMq2dqUXX7UUIMkGDZWLbNdqgMJvB/K3Uo=;
+ b=RedjjzEXdHENl/tbPRCXkyVQ6OTmjrdigxtqvWCusziIzkmPuR3mhXumjP47zapODJQ1MpEbpPd/0pwhHXLtktD2HpMPZJXDrzpdCWvHeWayoLrvhuIR3q5ApnzTltC9Nm5xergVMuBofu49ht/ZA0iZOYNXbNf8jjsAPddVXMU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by AM8PR04MB7729.eurprd04.prod.outlook.com (2603:10a6:20b:24c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.10; Fri, 20 Oct
+ 2023 18:07:12 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6907.022; Fri, 20 Oct 2023
+ 18:07:11 +0000
+Date: Fri, 20 Oct 2023 14:07:02 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: manivannan.sadhasivam@linaro.org, aisheng.dong@nxp.com,
+	bhelgaas@google.com, devicetree@vger.kernel.org, festevam@gmail.com,
+	imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+	kishon@kernel.org, kw@linux.com,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v2 4/5] misc: pci_endpoint_test: Add doorbell test case
+Message-ID: <ZTLBxvM/qNGw/FLd@lizhi-Precision-Tower-5810>
+References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+ <20230911220920.1817033-5-Frank.Li@nxp.com>
+ <20231020175304.GC46191@thinkpad>
+ <20231020180139.GE46191@thinkpad>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231020180139.GE46191@thinkpad>
+X-ClientProxiedBy: SJ0PR05CA0066.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::11) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/4] dt-bindings: pwm: Add OpenCores PWM module
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>,
- William Qiu <william.qiu@starfivetech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Hal Feng <hal.feng@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-References: <20231020103741.557735-1-william.qiu@starfivetech.com>
- <20231020103741.557735-2-william.qiu@starfivetech.com>
- <20231020-barley-rosy-92c3688cd515@spud>
- <20231020-giddy-fidgety-f070ef121ff2@spud>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020-giddy-fidgety-f070ef121ff2@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM8PR04MB7729:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc2bc133-4d72-4d3a-0822-08dbd19761ea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	nmyfmsZUtBp6VQvvbC1a8xVspif4b++ZSZ04PkHWsRNnXuSyCxDvn0JfgRU4AWCnHpFlKV2AOYS7kILszjZi7DV0aaFTV87n7K1rLck2wFlAA8yqhMmm12trbRH4Y8dehMyH08AOmS+aYXmoLn0Yeb0THqYNnJFUxIYbKt37BxFHMcZDA5bsBSfwulqNPxaooeTWRRcWMXiBETFKX/I4NJoMsNP9z+iWy6w25fDplCSqIS1orfj7HpDStK9C/hSjEnMguJfeDMdcGBylxxqvPchlcWXc5hnerKwRgQm95NpKLRanAETAS4yhn8SzuxVSJ9hMBH5mcyWUjb+jxWFIoVPN4v2wG9IWGYPiimkX2kJr/cWJCvtH1SQ9lsOaZIgf3OQGcsoiJWjWllsZZ92XcYCcCnnApkNsYUI76MfnkjvwZLCkbj+TlbVohIQi8aoxeWZPV80PSAfzbu3397pP6HJtmQdq4pnNwzZvPdzSNbobqKfhHC8Un4JKpJyLEllLAIgjtyoXbgpogzBomeCngwRPXfXrW3dEk73RoEk/w6MwMq4nRFY67ZFOaLePVuO0KtsYH7pnPmc8V+d8BQDUs9Z06Ux9qCPMdB22C2ELHuozrCTKbUpYlHjPfLy7+Xn5
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(366004)(39860400002)(136003)(376002)(396003)(230922051799003)(451199024)(1800799009)(64100799003)(186009)(33716001)(4326008)(86362001)(5660300002)(8936002)(8676002)(52116002)(6506007)(6512007)(9686003)(7416002)(2906002)(26005)(6666004)(38100700002)(316002)(66476007)(66946007)(66556008)(6916009)(478600001)(6486002)(38350700005)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z29OYTBkZkJYRjkwTDhYdzlhdVVWQVUzdkcwQ1dYdWFQbC9lZnd4OWgzNFpk?=
+ =?utf-8?B?RXpoMVlTSVYwWnJva2tlU3pSR2hwQzdvY0d0T2pXand5c0l5Z3JGZjJ1RDFT?=
+ =?utf-8?B?YnhaOWZZelRDMStVclZkd3k1WEpPZ0lVdEI0bmhnUVVBNWJIVnA4NzBuaDBT?=
+ =?utf-8?B?TjJIclExRGtiWVJPcEJyY3Z6cDlNUjF5Rk1URC9Dc0FZUGdHalJXMkhTbXJz?=
+ =?utf-8?B?UU42VmRwMmlQR0p4eUJ6SEZrUnJJUFoyczI0K3pLeUVhVHlwTkdFS3NkTGZY?=
+ =?utf-8?B?WlkyWWxsRkpwcS9SdGJjWC9IS3lOSUU0UC9BZm9BYmJ1bjJSTE0xZ0F3Vytp?=
+ =?utf-8?B?L0NBVHlhd2RzSlBBTkFRZzVaVTJDOTU0L1RvMDJLdEhrQnB1ekF6STlrdDFq?=
+ =?utf-8?B?YVVIMGRDYVVUVkFaZmg4M0ZkcWM1NU5KWUlzSWhtZHhvOWlWZmNhb3lMWjQy?=
+ =?utf-8?B?WEdYZTUvS3NxTGVRVlNpMlM5MHRXMjB1K0ZPVEJKUEY2ZWIxM3VxUWp6K1dR?=
+ =?utf-8?B?MU5yOGpCMVpHVWoxcDVMSW5vSXgwSTFMQnJJNEs5eDR1SlBrRWJBRElSY3pQ?=
+ =?utf-8?B?amlmS3JUaEYzQU52azVyZ0llTlJrdzk3Vk9GN25DK3hDdG5Dd3FPcU10SWU3?=
+ =?utf-8?B?RHIwY1pwSWFuVU9TSGVWWHNycmFlcGpSWjlaNUlzYUl2ZnAvZkUvTTBmTUpq?=
+ =?utf-8?B?ZWxpNHY3RzAxZkZNNFFuRlk3U2Q3d1lQNzUxOUdTaUQ4MlN3R2NsT2ZreGJ3?=
+ =?utf-8?B?bzd0aEg3MkcxM1dDSW80Q1lPQ3BXeTRwNnhRMVBlRi8yNkJTQkFRK2pJaEpy?=
+ =?utf-8?B?TjJRZ21zSkxmZTdPZmhiZ2ZYcjVRaGVNZmdFd3ZUaDcyeDlqQWtCUjl4Wk5X?=
+ =?utf-8?B?cHNlb29KNmo5UC9ld0g1VHAzQWpMbGJBYXF1Um9uM2dHOVBZWXM4eUlzZS9J?=
+ =?utf-8?B?VUdmNWJZV3ZuNHZEUHNaMmt3S0ZVOENwdFBoODVCUGNueE1VNGFVYzdqdXda?=
+ =?utf-8?B?ZHVGZndlUGRkeU1lSlZMMFpyaWVTMXo5QjQzRnZjSjNyUkVZV1JxMk9odzY2?=
+ =?utf-8?B?NUJrelAzYUF5NjVQd0lPWExCc3krU1ZOSWhiNnJjcW1aNlNvc0M3TWdKd0x6?=
+ =?utf-8?B?dGNYVzJlK1NmdE9GbG9JMDl6MW5ZcUZVZEVLUFovbitFQjF5V3NmTkUvMzhr?=
+ =?utf-8?B?aytlZnBuamdMRGI3eGJ6UlluQ1QyYTQvYmMrMFdkbkpHSzh4WGFnZTBRUjEv?=
+ =?utf-8?B?Sy9oc1gzRkVtN1U4K1V6RVM4WkZmVFc2SGZaNGpZdlpPaERVQTR1L2Zjd3h4?=
+ =?utf-8?B?TExTTkpWNFpiSmd2SkVRZHFPdDB6dGZGM1FTVDBKL2M4cFRMVWdCL3R4TUQ3?=
+ =?utf-8?B?MzhvSjdlWkFuNUZlby9MMkwycjZ4T21iVUFhYW9ockRGYklTbmd4bmd1M2ZS?=
+ =?utf-8?B?b0hGTkxlUXZkelNsWFJkbU93bldaaTFaajRyKzFUb3JadnNPTEZLVGFrcG5h?=
+ =?utf-8?B?Uk9TWXUwMURVR3ZXU1BKeWMreDdZaThPUlpaUVpkK1VHTVE5VmxUSFYwWjZR?=
+ =?utf-8?B?RmdsVGpHM1FuMjVyNTdpanJBTlFPTmVSUWZEcmpKVCtLNmlOdDUrSDRNRkwy?=
+ =?utf-8?B?TXhHbDVVVVdXYXRuNUZWcFpHUHRkbHBQdFBIZXJWb2JBNGlDOHU0eENKanE5?=
+ =?utf-8?B?c1dGaTlCL2M5NmcvNlNRdmJscDlXdzlLMWpvenNDanpORjc4TWMwQ1lkVUE4?=
+ =?utf-8?B?RTZVSUY2SlQ3Zm9SMkxMWTZTcVllaXg3bVBpNkVEVFJFKzV2VjNCT282UTRM?=
+ =?utf-8?B?REdDK0E1MmxFN1ZPYzZEdzlMeElOSy9DMmRpRjJvZXFIMlllanNhRHVYMnNP?=
+ =?utf-8?B?bFl0TlllOTdnN1lxTC96eldyTDh2OTk0RVJGMjE1cUFuRVh1YUF2VDBHempl?=
+ =?utf-8?B?bHRzS2RacXN0YlNXYTBXTVBVZkpjcndrTlBYUGlIS3MzNDFKYnpodmI0UjRT?=
+ =?utf-8?B?YmpLMGI3NnhyRVJwYXVhelhrbnYzL1kvMFFqajJyWEdhU0lKQk85ZFlIaXZK?=
+ =?utf-8?B?RkhORGs4d0ZLcTNKQjhIdTFZSUlVcUJGQjMzVG9yZDY2VmR2OVphejRUTXR0?=
+ =?utf-8?Q?y903sefs3PQqox0R5lF0QQips?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc2bc133-4d72-4d3a-0822-08dbd19761ea
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 18:07:11.9151
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ERt1NdPLQIqqKNgJXHBsM+AiGnfh746pdKyxc5FJgGKQW2FAMxjsoYuBaE3OigKjEWnRXsukRkYp5WmyedRcJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7729
 
-On 20/10/2023 16:22, Conor Dooley wrote:
-> On Fri, Oct 20, 2023 at 03:21:15PM +0100, Conor Dooley wrote:
->> Krzysztof, William,
->>
->> On Fri, Oct 20, 2023 at 06:37:38PM +0800, William Qiu wrote:
->>> Add documentation to describe OpenCores Pulse Width Modulation
->>> controller driver.
->>>
->>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->>> ---
->>>  .../bindings/pwm/opencores,pwm-ocores.yaml    | 53 +++++++++++++++++++
->>>  1 file changed, 53 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml b/Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml
->>> new file mode 100644
->>> index 000000000000..0f6a3434f155
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml
->>> @@ -0,0 +1,53 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pwm/opencores,pwm-ocores.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: OpenCores PWM controller
->>> +
->>> +maintainers:
->>> +  - William Qiu <william.qiu@starfivetech.com>
->>> +
->>> +description:
->>> +  OpenCores PTC ip core contains a PWM controller. When operating in PWM mode, the PTC core
->>> +  generates binary signal with user-programmable low and high periods. All PTC counters and
->>> +  registers are 32-bit.
->>> +
->>> +allOf:
->>> +  - $ref: pwm.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - opencores,pwm-ocores
->>
->> What does the extra "ocores" suffix add, when it just repeats the vendor
->> prefix?
->>
->>> +      - starfive,jh71x0-pwm
->>
->> Krzysztof, did you approve this generic compatible?
-
-Patch was quite different than reviewed by me. This obviously does not
-make any sense. Thanks for spotting.
-
-I guess carrying tags should not be trusted.
-
->>
->> And the whole thing looks like it should really be something like
->>
->> items:
->>   - enum:
->>       - starfive,jh7100-pwm
->>       - starfive,jh7110-pwm
->>   - const: opencores,pwm
+On Fri, Oct 20, 2023 at 11:31:39PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Oct 20, 2023 at 11:23:04PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Sep 11, 2023 at 06:09:19PM -0400, Frank Li wrote:
+> > > Using bit 0..7 of magic as version number in pci_endpoint_test struct to
+> > > support older driver versions. Save to 'version' field of struct
+> > > pci_endpoint_test to prevent reading non-existent address.
+> > > 
+> > 
+> > Since both drivers are in the kernel, I don't see a necessity to maintain
+> > compatibility. Does it make sense to load drivers of previous kernel revision
+> > with a new kernel?
+> > 
 > 
-> (assuming that the opencores,pwm compatible represents a subset of what
-> is implemented on the jh7100 series)
+> Shoot... Sorry, I completely forgot that one is EP and another is host. Yes, we
+> do need to maintain compatibility.
+> 
+> But can't we use the doorbell register contents to determine that?
 
+Doorbell register is not exist at old EP driver. If old EP driver register
+size is 64Byte,  doorbell register is 64 - 68.
 
+Read unexisted, or unmapped space will cause kernel dump or other side
+effects.
 
-Best regards,
-Krzysztof
+Frank
 
+> 
+> - Mani
+> 
+> > > Add three registers: PCIE_ENDPOINT_TEST_DB_BAR, PCIE_ENDPOINT_TEST_DB_ADDR,
+> > > PCIE_ENDPOINT_TEST_DB_DATA.
+> > > 
+> > 
+> > This patch is not adding these registers and not this driver also. So this
+> > statement is wrong.
+> > 
+> > > Write data from PCI_ENDPOINT_TEST_DB_DATA to address from
+> > > PCI_ENDPOINT_TEST_DB_ADDR to trigger doorbell and wait for endpoint
+> > > feedback.
+> > > 
+> > 
+> > You can reuse a part of the commit description I suggested for previous patch.
+> > 
+> > Rest looks good to me.
+> > 
+> > - Mani
+> > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  drivers/misc/pci_endpoint_test.c | 48 ++++++++++++++++++++++++++++++++
+> > >  include/uapi/linux/pcitest.h     |  1 +
+> > >  2 files changed, 49 insertions(+)
+> > > 
+> > > diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
+> > > index ed4d0ef5e5c31..ed0b025132d17 100644
+> > > --- a/drivers/misc/pci_endpoint_test.c
+> > > +++ b/drivers/misc/pci_endpoint_test.c
+> > > @@ -33,6 +33,8 @@
+> > >  #define IRQ_TYPE_MSIX				2
+> > >  
+> > >  #define PCI_ENDPOINT_TEST_MAGIC			0x0
+> > > +#define PCI_MAGIC_VERSION_MASK			GENMASK(7, 0)
+> > > +#define PCI_ENDPOINT_TEST_V1			0x1
+> > >  
+> > >  #define PCI_ENDPOINT_TEST_COMMAND		0x4
+> > >  #define COMMAND_RAISE_LEGACY_IRQ		BIT(0)
+> > > @@ -52,6 +54,7 @@
+> > >  #define STATUS_IRQ_RAISED			BIT(6)
+> > >  #define STATUS_SRC_ADDR_INVALID			BIT(7)
+> > >  #define STATUS_DST_ADDR_INVALID			BIT(8)
+> > > +#define STATUS_DOORBELL_SUCCESS			BIT(9)
+> > >  
+> > >  #define PCI_ENDPOINT_TEST_LOWER_SRC_ADDR	0x0c
+> > >  #define PCI_ENDPOINT_TEST_UPPER_SRC_ADDR	0x10
+> > > @@ -66,7 +69,12 @@
+> > >  #define PCI_ENDPOINT_TEST_IRQ_NUMBER		0x28
+> > >  
+> > >  #define PCI_ENDPOINT_TEST_FLAGS			0x2c
+> > > +#define PCI_ENDPOINT_TEST_DB_BAR		0x30
+> > > +#define PCI_ENDPOINT_TEST_DB_ADDR		0x34
+> > > +#define PCI_ENDPOINT_TEST_DB_DATA		0x38
+> > > +
+> > >  #define FLAG_USE_DMA				BIT(0)
+> > > +#define FLAG_SUPPORT_DOORBELL			BIT(1)
+> > >  
+> > >  #define PCI_DEVICE_ID_TI_AM654			0xb00c
+> > >  #define PCI_DEVICE_ID_TI_J7200			0xb00f
+> > > @@ -102,6 +110,7 @@ enum pci_barno {
+> > >  	BAR_3,
+> > >  	BAR_4,
+> > >  	BAR_5,
+> > > +	NO_BAR = -1,
+> > >  };
+> > >  
+> > >  struct pci_endpoint_test {
+> > > @@ -118,6 +127,7 @@ struct pci_endpoint_test {
+> > >  	enum pci_barno test_reg_bar;
+> > >  	size_t alignment;
+> > >  	const char *name;
+> > > +	u8 version;
+> > >  };
+> > >  
+> > >  struct pci_endpoint_test_data {
+> > > @@ -713,6 +723,38 @@ static bool pci_endpoint_test_set_irq(struct pci_endpoint_test *test,
+> > >  	return false;
+> > >  }
+> > >  
+> > > +static bool pci_endpoint_test_doorbell(struct pci_endpoint_test *test)
+> > > +{
+> > > +	enum pci_barno bar;
+> > > +	u32 data, status;
+> > > +	u32 addr;
+> > > +
+> > > +	if (test->version < PCI_ENDPOINT_TEST_V1)
+> > > +		return false;
+> > > +
+> > > +	bar = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_BAR);
+> > > +	if (bar == NO_BAR)
+> > > +		return false;
+> > > +
+> > > +	data = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_DATA);
+> > > +	addr = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_ADDR);
+> > > +	bar = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_BAR);
+> > > +
+> > > +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_TYPE, irq_type);
+> > > +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_NUMBER, 1);
+> > > +
+> > > +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_STATUS, 0);
+> > > +	pci_endpoint_test_bar_writel(test, bar, addr, data);
+> > > +
+> > > +	wait_for_completion_timeout(&test->irq_raised, msecs_to_jiffies(1000));
+> > > +
+> > > +	status = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_STATUS);
+> > > +	if (status & STATUS_DOORBELL_SUCCESS)
+> > > +		return true;
+> > > +
+> > > +	return false;
+> > > +}
+> > > +
+> > >  static long pci_endpoint_test_ioctl(struct file *file, unsigned int cmd,
+> > >  				    unsigned long arg)
+> > >  {
+> > > @@ -760,6 +802,9 @@ static long pci_endpoint_test_ioctl(struct file *file, unsigned int cmd,
+> > >  	case PCITEST_CLEAR_IRQ:
+> > >  		ret = pci_endpoint_test_clear_irq(test);
+> > >  		break;
+> > > +	case PCITEST_DOORBELL:
+> > > +		ret = pci_endpoint_test_doorbell(test);
+> > > +		break;
+> > >  	}
+> > >  
+> > >  ret:
+> > > @@ -887,6 +932,9 @@ static int pci_endpoint_test_probe(struct pci_dev *pdev,
+> > >  	misc_device->parent = &pdev->dev;
+> > >  	misc_device->fops = &pci_endpoint_test_fops;
+> > >  
+> > > +	test->version = FIELD_GET(PCI_MAGIC_VERSION_MASK,
+> > > +				  pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_MAGIC));
+> > > +
+> > >  	err = misc_register(misc_device);
+> > >  	if (err) {
+> > >  		dev_err(dev, "Failed to register device\n");
+> > > diff --git a/include/uapi/linux/pcitest.h b/include/uapi/linux/pcitest.h
+> > > index f9c1af8d141b4..479ca1aa3ae0b 100644
+> > > --- a/include/uapi/linux/pcitest.h
+> > > +++ b/include/uapi/linux/pcitest.h
+> > > @@ -20,6 +20,7 @@
+> > >  #define PCITEST_SET_IRQTYPE	_IOW('P', 0x8, int)
+> > >  #define PCITEST_GET_IRQTYPE	_IO('P', 0x9)
+> > >  #define PCITEST_CLEAR_IRQ	_IO('P', 0x10)
+> > > +#define PCITEST_DOORBELL	_IO('P', 0x11)
+> > >  
+> > >  #define PCITEST_FLAGS_USE_DMA	0x00000001
+> > >  
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
