@@ -1,163 +1,148 @@
-Return-Path: <devicetree+bounces-10367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BFF7D0E73
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:33:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DED757D0E7D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:34:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2BA6B21444
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:32:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D6F282493
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349B318E3C;
-	Fri, 20 Oct 2023 11:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD0419440;
+	Fri, 20 Oct 2023 11:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MEcYDgCg"
+	dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b="B5HxzUyX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD2318E26
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:32:54 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758131A8;
-	Fri, 20 Oct 2023 04:32:52 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39KBWYGQ125728;
-	Fri, 20 Oct 2023 06:32:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697801554;
-	bh=s57fYIhfS20rjWlQ12aa02xnwrQND13J5l/63Zr09yQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MEcYDgCguKYg5iwJhyIBLrc9OnGgoBc3fHSJmKD63ndKR8RxFjzupONLCeljLdzCh
-	 3Fduwq4jBu5YmdxedECa9LmN6qzhd69HM32YLxXLEb/HUyTjhePJJstl5NPkpaOQRJ
-	 I29aZmx6FHHymo4G5T9dbpP+Hb+NRszWcEAYMH9c=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39KBWYGk121769
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 20 Oct 2023 06:32:34 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 20
- Oct 2023 06:32:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 20 Oct 2023 06:32:34 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39KBWMTX076525;
-	Fri, 20 Oct 2023 06:32:31 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721s2-evm: Add overlay for PCIE1 Endpoint Mode
-Date: Fri, 20 Oct 2023 17:02:22 +0530
-Message-ID: <20231020113222.3161829-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231020113222.3161829-1-s-vadapalli@ti.com>
-References: <20231020113222.3161829-1-s-vadapalli@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9518DD51E
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:34:30 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D711A8
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:34:26 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9936b3d0286so111957866b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:34:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pqrs.dk; s=google; t=1697801665; x=1698406465; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o/lwy8WHjVXC6iZ/BJfjFekCT6EMOppAC3IWeHaAw3M=;
+        b=B5HxzUyX0e7cUREKt4T5c16c+pnDkb2FQ7ELlc+pLDarGoIgrKrVQG6D31bm6cV00g
+         bj3duNFg2cPrp68by4ThHBq1MxoJXfmbjBSl1agAy59Gguixj1fJxBy8dS0f1dF/NRro
+         HM5TAGIq6+d6QckEOVsrmELVXnFa+rY+UZtCyfFtHStZdT52xaAycvyDSzfpr5lAqRFd
+         0CSs1uEHnf68pmmGeVhtuJehicK4YQQ/A2JOypTE9hU8Td7wb+LWgcypzCMvoetWrOky
+         9jLW8kKnoaTl6jxC39WIWsHPcS1Eg36yPcj1kU5OtBmbQ9TwLeiCsalP8RLJiq1MnLuI
+         E0Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697801665; x=1698406465;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o/lwy8WHjVXC6iZ/BJfjFekCT6EMOppAC3IWeHaAw3M=;
+        b=UiogsFGrJXF6D3IOCuXhAqlph1B/ZDTPi1kRPDSIi+UV+daMm62NmT77OzT98dgp0o
+         fJGaZKVF2t1h9JSpyLNeuj1IsDlEoYxIP677FynC4Cm3EwY4ktjYzWKjUxqAH6cilAkV
+         d3BbgcrtVT/asERlukg0yGRS+KHOgwOfrYlKvWgOrvOEKo16wC/TPrT6pVcexc1CH1jV
+         58GYcOp4CiEnwoSfBaPymsNFVWZuZKRTCMLFZdPs/MVlkE8PU2XNF4swFfXKrUfkPzAN
+         nlnnYwdNetCDLpbN+E2ddsWxrVbyz8lM2pBFbjFc0zmHNsQ90DO0DUAyqt3sq1Hg0eyW
+         qaBw==
+X-Gm-Message-State: AOJu0YzKTcY0k8fPuSjtIdafkaKch3u/5+rQFrrB+4bLUzmChZjfV9V6
+	oixATEghzUCytHGpQMJHbWaChA==
+X-Google-Smtp-Source: AGHT+IEc8GT5EtFnLsJhmGBlj0etNMKoCfBRUju6KuKZeg3Dj2iO+BlaE7KYpMmCTiCevtHie4gT5g==
+X-Received: by 2002:a17:907:d388:b0:9bf:4915:22ca with SMTP id vh8-20020a170907d38800b009bf491522camr1032497ejc.45.1697801664707;
+        Fri, 20 Oct 2023 04:34:24 -0700 (PDT)
+Received: from capella.localdomain ([193.89.194.60])
+        by smtp.gmail.com with ESMTPSA id ce10-20020a170906b24a00b009b654751c14sm1300320ejb.47.2023.10.20.04.34.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 04:34:24 -0700 (PDT)
+From: =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Subject: [PATCH v5 0/3] clk: si5351: add option to adjust PLL without
+ glitches
+Date: Fri, 20 Oct 2023 13:34:13 +0200
+Message-Id: <20231020-alvin-clk-si5351-no-pll-reset-v5-0-f0c1ba537f88@bang-olufsen.dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-B4-Tracking: v=1; b=H4sIALVlMmUC/4WPyw7CIBBFf8WwdpqBMr5W/Q/jAulUiYRWUKIx/
+ XdpdeHO5bnJPXfmJRJHx0nsFi8RObvk+lCAlgthzyacGFxbWChUtUSpwfjsAlh/geSoJgmhh8F
+ 7iJz4Bmw7Y9GsiNCK4hgid+4x+/eHwmeXbn18znNZTunXjBspZa10RRtFWwL5GWqGa0xVexFTO
+ eufwt9TsgYEU9NqjUojrtvmWP6B3t+7xGF2juP4BqsNVZQBAQAA
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rabeeh Khoury <rabeeh@solid-run.com>, 
+ Jacob Siverskog <jacob@teenage.engineering>, 
+ Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.12.3
 
-Add overlay to enable the PCIE1 instance of PCIe on J721S2-EVM in
-Endpoint mode of operation.
+This series intends to address a problem I had when using the Si5351A as
+a runtime adjustable audio bit clock. The basic issue is that the driver
+in its current form unconditionally resets the PLL whenever adjusting
+its rate. But this reset causes an unwanted ~1.4 ms LOW signal glitch in
+the clock output.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+As a remedy, a new property is added to control the reset behaviour of
+the PLLs more precisely. In the process I also converted the bindings to
+YAML.
+
+Changes:
+
+v4 -> v5:
+- address Rob's comments:
+    - min/maxItems on top-level clocks:
+    - remove unnecessary else:
+    - remove spurious |
+
+v3 -> v4:
+
+- remove spurious | per Rob's suggestion
+- simplify conditional clocks/clock-names per Rob's suggestion
+- remove mention of clkout[0-7] still being admissible in the commit
+  body of patch 1 - while the Linux driver still tolerates this, the
+  new dt-bindings do not
+
+v2 -> v3:
+
+- address further comments from Rob:
+  - drop unnecessary refs and minItems
+  - simplify if conditions for chip variants
+  - ignore his comment about dropping '|', as line would be >80 columns
+  - move additionalProperties: false close to type: object
+  - define clocks/clock-names at top-level
+- drop patch to dove-cubox dts per Krzysztof's comment - will send
+  separately
+- collect Sebastian's Acked-by
+
+v1 -> v2:
+
+- address Rob's comments on the two dt-bindings patches
+- new patch to correct the clock node names in the only upstream device
+  tree using si5351
+
 ---
- arch/arm64/boot/dts/ti/Makefile               |  3 ++
- .../boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso   | 53 +++++++++++++++++++
- 2 files changed, 56 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
+Alvin Šipraga (3):
+      dt-bindings: clock: si5351: convert to yaml
+      dt-bindings: clock: si5351: add PLL reset mode property
+      clk: si5351: allow PLLs to be adjusted without reset
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 8d57ea89bf87..dc7e79e79a91 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -73,6 +73,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
-+k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-evm.dtb k3-j721s2-evm-pcie1-ep.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtb
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -85,3 +87,4 @@ DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
- DTC_FLAGS_k3-j721e-common-proc-board += -@
- DTC_FLAGS_k3-j721e-evm += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
-+DTC_FLAGS_k3-j721s2-evm += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
-new file mode 100644
-index 000000000000..43568eb67d93
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for enabling PCIE1 instance in Endpoint Configuration with the
-+ * J7 common processor board.
-+ *
-+ * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/soc/ti,sci_pm_domain.h>
-+
-+#include "k3-pinctrl.h"
-+
-+/*
-+ * Since Root Complex and Endpoint modes are mutually exclusive
-+ * disable Root Complex mode.
-+ */
-+&pcie1_rc {
-+	status = "disabled";
-+};
-+
-+&cbass_main {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	interrupt-parent = <&gic500>;
-+
-+	pcie1_ep: pcie-ep@2910000 {
-+		compatible = "ti,j7200-pcie-ep", "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
-+		max-link-speed = <3>;
-+		num-lanes = <1>;
-+		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 276 41>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		phys = <&serdes0_pcie_link>;
-+		phy-names = "pcie-phy";
-+	};
-+};
--- 
-2.34.1
+ .../devicetree/bindings/clock/silabs,si5351.txt    | 126 ----------
+ .../devicetree/bindings/clock/silabs,si5351.yaml   | 265 +++++++++++++++++++++
+ drivers/clk/clk-si5351.c                           |  47 +++-
+ include/linux/platform_data/si5351.h               |   2 +
+ 4 files changed, 311 insertions(+), 129 deletions(-)
+---
+base-commit: f6abdcb2444f6ebe06e19cd9eee767c7c46612ae
+change-id: 20231014-alvin-clk-si5351-no-pll-reset-ecfac0a6550c
 
 
