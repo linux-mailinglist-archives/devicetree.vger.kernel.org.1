@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108437D0E30
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:12:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256867D0E3C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:14:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 305DC1C20ABB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:12:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00D41B2141D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A07E18C11;
-	Fri, 20 Oct 2023 11:12:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DFA18C21;
+	Fri, 20 Oct 2023 11:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fag+g+NS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RcKoMa2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0FF18B04
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:12:44 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EA0124
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:12:42 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9bf0ac97fdeso105529666b.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:12:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507B418B04
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:14:35 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC261A8
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:14:33 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9c53e8b7cf4so106669666b.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:14:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697800361; x=1698405161; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697800472; x=1698405272; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XEBGGyKO8RHAPJmuoIXlQ68kuaAcW55Fq/A86p30nIE=;
-        b=Fag+g+NStePrevTE2u0TQqhVC/1QfNq2pRYShznPIQsgwriP4zs3KH8mGVlcZPsWik
-         V7Oo1Zqyw8s79A8AWnbLj6sd029vtkPpIhD/ThZj9MePpNU9AiAl7hUMb6UlqvX1TgWS
-         YHqljOkHDbJdBL1sFskUGCX0FIIzVjqAK7kexT+zFaPWxBqAcUp013eUK0wNRtHHtkTY
-         +gCbW/t3rHSUegZIsqqTQcx/Rma3fQtKSyXINcggKkCw1Qv/YCzvwM71I7mgyRurUjW6
-         kzzJAX1GAd+KetLX8h5Z6oK+/3puXG2gx9CTuNIlMfaQ5t3uIrU29TWUnrzb+jePQxdx
-         7v4g==
+        bh=qGsAA3n4bcgGN3etGa/Qvpv0Fnu8UXB8L4QIbODAi7Y=;
+        b=RcKoMa2FF59QKP8R0R1gr8nHBdvM2DfLO8l3ASpluUjPtH4s+aj8U9BJqEbJEWsRUh
+         q2y9FPQEd6NSr/9jjcVADBbk4A59TyCaNLAWIK7lcDMoHQVqmGujEOOTgICfgwy2j6bh
+         knr1mll6zJa4CEgoe2ovaKAYJPgE3P9ukvH27djEnbsx0TvGrXy5RMsgTtiXRseBSN5x
+         FaegQTLQVMc8YYIrLKVWvuukMQmxPj0AMylo/2TNwBsL6PWV0Z1UXxAPsaD0Av6PMnY4
+         uPU6cdeE1yRQwtqULL0bXKAhmknDDoay6h7gpLF5Md2dkAmz1/uQ50T9xXWlblheVyHc
+         CzzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697800361; x=1698405161;
+        d=1e100.net; s=20230601; t=1697800472; x=1698405272;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XEBGGyKO8RHAPJmuoIXlQ68kuaAcW55Fq/A86p30nIE=;
-        b=ARB2AZM01cXEw+Y34HNWgBSZchAe5hSDQ9kiBVZix1e5IqPeLoQCfQ3tjUHUlJpq3H
-         r206Nhd6N3RdrI2NsCF2t3EYpVHNg22iPGCMd6IQ+2DyALrNtBeelHWIZx1Um4uannNu
-         Fo4xFMZsR8hc3z0nSubJKX58PsHctpZRhe2GSU81QzEUM6veYlnnfp6u6aNVGJ3099YB
-         DBWW3nnRYpiQVC1ZAVJ4/b8Q+R56e64zDHl6O8vYD2J5lE7oFA8Yi+QshKZ3dtdvwTFg
-         dMpKjHMiPpNiSDjzl3M+MrylZyYODdWlXn3xnhFhI5XW+tzeP7FmUa6nhOYoT6C63jlt
-         Z7AA==
-X-Gm-Message-State: AOJu0YxUDhWg8n54AC0obne1o1SLm2B5+G3GOB8g4fQnWT9xpt32eubG
-	OpVToiJdst+XlSvdaClm2tbYyA==
-X-Google-Smtp-Source: AGHT+IG6By+Xtmz2NmFC2Q8inQxNV30V2NOMFbqMd0P1TrR/6Ff+0Qzj94U96NAWopW3360niBWvcQ==
-X-Received: by 2002:a17:907:da0:b0:9bd:a73a:7a0d with SMTP id go32-20020a1709070da000b009bda73a7a0dmr1003840ejc.13.1697800360752;
-        Fri, 20 Oct 2023 04:12:40 -0700 (PDT)
+        bh=qGsAA3n4bcgGN3etGa/Qvpv0Fnu8UXB8L4QIbODAi7Y=;
+        b=rEW8GEZA4OjDHmDGklU2+dm9XgvmRXhnBOTzY1CV++PR002QmWs3p8Ou5fSRNpskS7
+         2Mq+61K8hGT2lmxyHii6DnoFculiVng3OYvmHt4OoETf33uip2LGDsfXum1FxgQaeuN2
+         pF5EiQoTZnE4YKPRzvUR5hc7uYBXLCUeiX6RZtj8b+o4hDBxgFTO/N+2ZeCYHOP7wD8N
+         KbnosvFlFr9yH185l5e9ZANBVc4wegXRff8JYBipVsz2iLQlg9CzQS6HYjZV6Cql7Fzd
+         rKNp3bLAv2ir22sBbwpF79hc/BIJ+fiREUHD8aYzmLUH99QNr2PFsUQGjdFaWs6ACVU1
+         xjiQ==
+X-Gm-Message-State: AOJu0YwzXkN8/2dHOLGP3k8YxfSwdMDsAi5DN4RbgLNiqQd0H9Wx9b0x
+	NIRrAdKtkRPMlhIdBUH5vtcKgw==
+X-Google-Smtp-Source: AGHT+IF/ttqE0K6OGs6Ny/RdJ1s78fppeWFqZulXJro8SoHTWRW2rogRKIpafCmDhsEAaOWO8Qd64w==
+X-Received: by 2002:a17:907:3f93:b0:9ae:673a:88c8 with SMTP id hr19-20020a1709073f9300b009ae673a88c8mr1219746ejc.21.1697800471603;
+        Fri, 20 Oct 2023 04:14:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906218a00b009c0c511bd62sm1261685eju.197.2023.10.20.04.12.38
+        by smtp.gmail.com with ESMTPSA id j14-20020a1709064b4e00b009ad778a68c5sm1298142ejv.60.2023.10.20.04.14.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Oct 2023 04:12:40 -0700 (PDT)
-Message-ID: <c869b3a0-1986-4507-8466-ea1b5f93e2c0@linaro.org>
-Date: Fri, 20 Oct 2023 13:12:38 +0200
+        Fri, 20 Oct 2023 04:14:31 -0700 (PDT)
+Message-ID: <8ce3e155-8787-4a2f-b58e-237afa73fa55@linaro.org>
+Date: Fri, 20 Oct 2023 13:14:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] media: imx-jpeg: Add vendor prefix in slot
- property
+Subject: Re: [PATCH v5 1/3] dt-bindings: media: imx-jpeg: Assign slot for imx
+ jpeg encoder/decoder
 Content-Language: en-US
 To: ming qian <ming.qian@oss.nxp.com>, mirela.rabulea@oss.nxp.com,
  robh+dt@kernel.org, shawnguo@kernel.org
@@ -79,9 +79,10 @@ Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  linux-imx@nxp.com, devicetree@vger.kernel.org, linux-media@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <cover.1697597713.git.ming.qian@nxp.com>
- <be1f8907582ea344f8826f7888b277534859e0c4.1697597713.git.ming.qian@nxp.com>
- <9b853b5f-b3e6-4aea-b99a-51a490a29f9d@linaro.org>
- <41efe9cd-7574-4827-85c3-845cb3dd3d65@oss.nxp.com>
+ <c7995af1f91733626ff4e86f0575dea5d2ff0bb8.1697597713.git.ming.qian@nxp.com>
+ <d640f5c2-8af5-4402-a981-0e962d4f2aca@linaro.org>
+ <c2eb3a37-eadb-4ec6-a6c1-075d71127ac2@oss.nxp.com>
+ <46f5f4ce-5033-44f1-bd4b-aef87535e4e3@oss.nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,36 +128,102 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <41efe9cd-7574-4827-85c3-845cb3dd3d65@oss.nxp.com>
+In-Reply-To: <46f5f4ce-5033-44f1-bd4b-aef87535e4e3@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 19/10/2023 09:41, ming qian wrote:
->>> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> index 64112b63298c..f8b99a292ad1 100644
->>> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> @@ -2762,7 +2762,7 @@ static int mxc_jpeg_probe(struct platform_device *pdev)
->>>   	if (IS_ERR(jpeg->base_reg))
->>>   		return PTR_ERR(jpeg->base_reg);
->>>   
->>> -	ret = of_property_read_u32_index(pdev->dev.of_node, "slot", 0, &jpeg->slot_data.slot);
+On 20/10/2023 07:38, ming qian wrote:
+> Hi Krzysztof,
+> 
 >>
->> How did it appear in the code and in the DTS without bindings...
->>
->> Best regards,
->> Krzysztof
+>>>> From: Ming Qian <ming.qian@nxp.com>
+>>>>
+>>>> This IP includes a jpeg wrapper and a jpeg engine, the wrapper is
+>>>> working on descriptor based manner. It supports up to 4 slots, each slot
+>>>> can have its own chained descriptors. Host won't configure the engine
+>>>> directly, but fill some descriptors to encode or decode one jpeg
+>>>> picture. Then configure the descriptors to certain slot register. The
+>>>> jpeg wrapper will schedule between different slots. When some slot is
+>>>> finished, the slot interrupt will be triggered. The purpose of slot is
+>>>> that engine can be shared across multiple VMS and os.
+>>>>
+>>>> Currently, power domains and interrupts are enabled for all 4 slots, but
+>>>> only one slot is used. There is no benefit in using more that one slot
+>>>> from within the same OS, as the slots are scheduled in round-robin
+>>>> manner and not executed in parallel.
+>>>>
+>>>> Use the property "nxp,slot" to assign a single slot, and just expose the
+>>>> parts of the h/w for the assigned slot. For example, only put slot 1's
+>>>> power-domains entry in the DT when slot 1 is assigned. If not specified,
+>>>> 0 is used by default.
+>>>>
+>>>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+>>>> ---
+>>>> v5
+>>>> - improve commit message
+>>>> - improve property description
+>>>>
+>>>> v4
+>>>> - improve commit message
+>>>> - drop line making the property required, to avoid ABI break
+>>>>
+>>>> v3
+>>>> - add vender prefix, change property slot to nxp,slot
+>>>> - add type for property slot
+>>>>
+>>>> v2
+>>>> - add a new property in bindings document
+>>>>
+>>>>   .../bindings/media/nxp,imx8-jpeg.yaml         | 46 +++++++++----------
+>>>>   1 file changed, 22 insertions(+), 24 deletions(-)
+>>>>
+>>>> diff --git 
+>>>> a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml 
+>>>> b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+>>>> index 3d9d1db37040..0961856bdcab 100644
+>>>> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+>>>> @@ -32,19 +32,27 @@ properties:
+>>>>       maxItems: 1
+>>>>     interrupts:
+>>>> -    description: |
+>>>> -      There are 4 slots available in the IP, which the driver may use
+>>>> -      If a certain slot is used, it should have an associated interrupt
+>>>> -      The interrupt with index i is assumed to be for slot i
+>>>> -    minItems: 1               # At least one slot is needed by the 
+>>>> driver
+>>>> -    maxItems: 4               # The IP has 4 slots available for use
+>>>> +    description:
+>>>> +      Interrupt number for slot
+>>>> +    maxItems: 1
+>>>
+>>> The device still has four interrupts, so we should allow up to four of
+>>> them. One given OS might want to use two or all four slots.
+>>>
+>>>
+>> Got it, I will fix it in v6 patch.
 >>
 > 
-> In the beginning, I only made the patch set of code and dts, the code
-> patch can work without dts patch due to the default value. The code
-> patch is merged to media_tree, but mark the dts patch as ´Not
-> Applicable´. After that, I sent the dts patch again, but maintainer
-> reminds me that I need to change the binding too. So I made this patch
-> set. And I guess the dts patch was merged by mistake.
+> We made an internal discussion about this, current approach of the
 
-The code was merged by mistake. You cannot add of_property() ABI to the
-Linux without documenting it via bindings. Don't send such patches.
+How does it help me? Why private discussion should matter to us?
+
+> bindings implies that one dts node is for one slot only, and the slot
+> property is integer, not a list of slots. Whoever wants to use 2 or more
+> slots, should put more nodes in the dts, one for each slot. Therefor,
+
+Really? Under the same IO address? Please show how it works and then run
+`dtbs_check W=1`..
+
+> there is no point in allowing more than one interrupt in one node. Or,
+> if we do, for the sake of allowing one OS to use more slots within the
+> same dts node, we must also allow more power domains, in any case, we do
+
+power-domains, interrupts, everything.
+
+> not have multiple slots functionality in the driver anymore.
+
+Why your driver should limit bindings? My driver supports multiple slots...
 
 Best regards,
 Krzysztof
