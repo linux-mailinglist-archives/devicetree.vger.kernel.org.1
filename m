@@ -1,333 +1,104 @@
-Return-Path: <devicetree+bounces-10416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23707D117C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:24:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9A27D1187
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 861EF1F24282
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:24:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15969282555
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D461D546;
-	Fri, 20 Oct 2023 14:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA03A1D6A7;
+	Fri, 20 Oct 2023 14:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="LcKfAfEI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6F91A29D
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 14:24:18 +0000 (UTC)
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50436D5F;
-	Fri, 20 Oct 2023 07:24:16 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6c4a25f6390so582065a34.2;
-        Fri, 20 Oct 2023 07:24:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697811855; x=1698416655;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cpyuqb3nsHDmCv8YtSUWMqqdvrrwmI8tv0H9WE8n+t0=;
-        b=Lzh2OSmoamk2ccKRNw+qXOySO0jo3RTJurKtWOBAN3q42zgNSTNfIbuh4NH85hNjB/
-         FycPUVishWES6qF65/Ob5VIDpx8adLEiT/bHuwpKwgQ9iMnFq8C6G8+vDwDAmrFOmo++
-         vt1uH7gVmKiE+vDxiTb2jR/nUDF3N2MF0JX0HXN179RFd2EPLNp9ZPHx7Xv5VM26wkoz
-         Qmm08RPeejYaSKVKMFXV+VTB62KGOUBaX6hfh7pV/GGPpvKiAirIAzefWErUjRoy/y94
-         u6MdWI2XnBm14PrFdJBDmMG5lWAh0TD177L/GPE6DmQDM7oePz3NpXot5cRrm3f50dMJ
-         oi3Q==
-X-Gm-Message-State: AOJu0YwWVIudJD5oMNayBGprd3K2su05bdlQCqGCoK/dSmZNN1diC0eH
-	AzrBGR67kRqNSYILc6HJhw==
-X-Google-Smtp-Source: AGHT+IF5BVhuATH3mF8LocwWD5gHZPV7Pevsya0HXGJBddt6M2u5C2JAdl1zDyilQz/jN1XvUiV2UQ==
-X-Received: by 2002:a05:6830:92a:b0:6c6:3ea5:cdbe with SMTP id v42-20020a056830092a00b006c63ea5cdbemr2158742ott.18.1697811855458;
-        Fri, 20 Oct 2023 07:24:15 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d13-20020a056830138d00b006b89dafb721sm330177otq.78.2023.10.20.07.24.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Oct 2023 07:24:14 -0700 (PDT)
-Received: (nullmailer pid 3115824 invoked by uid 1000);
-	Fri, 20 Oct 2023 14:24:13 -0000
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: [RESEND PATCH v2] dt-bindings: mfd: armltd: Move Arm board syscon's to separate schema
-Date: Fri, 20 Oct 2023 09:22:51 -0500
-Message-ID: <20231020142252.3113716-2-robh@kernel.org>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BC11D69D
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 14:25:25 +0000 (UTC)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D3DD60
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 07:25:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=nTOFZc7bq733wtuIoZXUDDS7Bub00zC+a3meUxD2d+g=; b=LcKfAfEIGJQN03zNzSTlt2QhXi
+	eksZWe9n2oH8ug/xKPYE9zonOdUl06+MFCn/hBAOaA8UiZQnjUXUilileDodAHS4yUHibVhpwFcTE
+	v6Ckh6mcvwhtSMq4Ojpku0bJBDNE6NGo8pOyyKhZRXmTbVr1Jr3y2wBqUi80kmSVpEGh86VE7B3X/
+	2gv6Qc01QnfcHDJTzkAaWymWk+Jh7ku89mbIBn6SmriI73KaxUXJPQqViBK2TAQHjLlDA9DwvFkIP
+	uBh9fCcaLqNtya5Rkp3tKjsdxO0PjHxyUdwUoR5N1ON3gMYJlak9OJNyG/WZ+Id3LA4ReFrJacdee
+	nj/oKWiA==;
+Received: from [192.168.1.4] (port=55465 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1qtqR3-000769-1u;
+	Fri, 20 Oct 2023 16:25:09 +0200
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Fri, 20 Oct 2023 16:25:08 +0200
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <netdev@vger.kernel.org>
+CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
+	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<UNGLinuxDriver@microchip.com>, <o.rempel@pengutronix.de>, Ante Knezic
+	<ante.knezic@helmholz.de>
+Subject: [PATCH net-next v4 0/2] net: dsa: microchip: enable setting rmii reference
+Date: Fri, 20 Oct 2023 16:25:02 +0200
+Message-ID: <cover.1697811160.git.ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.6.7]
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
 
-The Arm Ltd board bindings are a bit unusual in that they define child
-nodes for various syscon's. The schemas are also incomplete as they lack
-constraints on having additional properties and some properties are
-missing. As the bindings for the different platforms only vary by
-compatibles, combine them into a single schema doc.
+KSZ88X3 devices can select between internal and external RMII reference clock.
+This patch series introduces new device tree property for setting reference
+clock to internal.
 
-Add the "arm,im-pd1-syscon" compatible which was not documented. Add
-"ranges", "#address-cells", and "#size-cells properties which were
-missing.
-
-With this, fix the error exposed in the register-bit-led binding.
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/arm/arm,integrator.yaml          | 39 -----------
- .../devicetree/bindings/arm/arm,realview.yaml | 37 ----------
- .../bindings/arm/arm,versatile.yaml           | 40 +++--------
- .../bindings/leds/register-bit-led.yaml       |  2 +-
- .../mfd/arm,dev-platforms-syscon.yaml         | 67 +++++++++++++++++++
- 5 files changed, 76 insertions(+), 109 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
+V4:
+  - remove rmii_clk_internal from ksz_device, as its not needed any more
+  - move rmii clk config as well as ksz8795_cpu_interface_select to 
+    ksz8_config_cpu_port
+V3: 
+  - move ksz_cfg from global switch config to port config as suggested by Vladimir
+    Oltean
+  - reverse patch order as suggested by Vladimir Oltean
+  - adapt dt schema as suggested by Conor Dooley
+V2: 
+  - don't rely on default register settings - enforce set/clear property as
+    suggested by Andrew Lunn
+  - enforce dt schema as suggested by Conor Dooley
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,integrator.yaml b/Documentation/devicetree/bindings/arm/arm,integrator.yaml
-index 98ff5698ae1f..1bdbd1b7ee38 100644
---- a/Documentation/devicetree/bindings/arm/arm,integrator.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,integrator.yaml
-@@ -40,45 +40,6 @@ properties:
-         items:
-           - const: arm,integrator-sp
- 
--  core-module@10000000:
--    type: object
--    description: the root node in the Integrator platforms must contain
--      a core module child node. They are always at physical address
--      0x10000000 in all the Integrator variants.
--    properties:
--      compatible:
--        items:
--          - const: arm,core-module-integrator
--          - const: syscon
--          - const: simple-mfd
--      reg:
--        maxItems: 1
--
--    required:
--      - compatible
--      - reg
--
--patternProperties:
--  "^syscon@[0-9a-f]+$":
--    description: All Integrator boards must provide a system controller as a
--      node in the root of the device tree.
--    type: object
--    properties:
--      compatible:
--        items:
--          - enum:
--              - arm,integrator-ap-syscon
--              - arm,integrator-cp-syscon
--              - arm,integrator-sp-syscon
--          - const: syscon
--      reg:
--        maxItems: 1
--
--    required:
--      - compatible
--      - reg
--
--
- required:
-   - compatible
-   - core-module@10000000
-diff --git a/Documentation/devicetree/bindings/arm/arm,realview.yaml b/Documentation/devicetree/bindings/arm/arm,realview.yaml
-index 8d3ed2e4ed31..d1bdee98f9af 100644
---- a/Documentation/devicetree/bindings/arm/arm,realview.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,realview.yaml
-@@ -75,43 +75,6 @@ properties:
-         type: object
-         description: All RealView boards must provide a syscon system controller
-           node inside the soc node.
--        properties:
--          compatible:
--            oneOf:
--              - items:
--                  - const: arm,realview-eb11mp-revb-syscon
--                  - const: arm,realview-eb-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-eb11mp-revc-syscon
--                  - const: arm,realview-eb-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-eb-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-pb1176-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-pb11mp-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-pba8-syscon
--                  - const: syscon
--                  - const: simple-mfd
--              - items:
--                  - const: arm,realview-pbx-syscon
--                  - const: syscon
--                  - const: simple-mfd
--
--        required:
--          - compatible
--          - reg
- 
-     required:
-       - compatible
-diff --git a/Documentation/devicetree/bindings/arm/arm,versatile.yaml b/Documentation/devicetree/bindings/arm/arm,versatile.yaml
-index 13e52ba92060..7a3caf6af200 100644
---- a/Documentation/devicetree/bindings/arm/arm,versatile.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,versatile.yaml
-@@ -14,6 +14,14 @@ description: |+
-   with various pluggable interface boards, in essence the Versatile PB version
-   is a superset of the Versatile AB version.
- 
-+  The root node in the Versatile platforms must contain a core module child
-+  node. They are always at physical address 0x10000000 in all the Versatile
-+  variants.
-+
-+  When fitted with the IB2 Interface Board, the Versatile AB will present an
-+  optional system controller node which controls the extra peripherals on the
-+  interface board.
-+
- properties:
-   $nodename:
-     const: '/'
-@@ -32,38 +40,6 @@ properties:
-         items:
-           - const: arm,versatile-pb
- 
--  core-module@10000000:
--    type: object
--    description: the root node in the Versatile platforms must contain
--      a core module child node. They are always at physical address
--      0x10000000 in all the Versatile variants.
--    properties:
--      compatible:
--        items:
--          - const: arm,core-module-versatile
--          - const: syscon
--          - const: simple-mfd
--      reg:
--        maxItems: 1
--
--    required:
--      - compatible
--      - reg
--
--patternProperties:
--  "^syscon@[0-9a-f]+$":
--    type: object
--    description: When fitted with the IB2 Interface Board, the Versatile
--      AB will present an optional system controller node which controls the
--      extra peripherals on the interface board.
--    properties:
--      compatible:
--        contains:
--          const: arm,versatile-ib2-syscon
--    required:
--      - compatible
--      - reg
--
- required:
-   - compatible
-   - core-module@10000000
-diff --git a/Documentation/devicetree/bindings/leds/register-bit-led.yaml b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-index ed26ec19ecbd..20930d327ae9 100644
---- a/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-+++ b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-@@ -60,7 +60,7 @@ examples:
-   - |
- 
-     syscon@10000000 {
--        compatible = "arm,realview-pb1176-syscon", "syscon";
-+        compatible = "arm,realview-pb1176-syscon", "syscon", "simple-mfd";
-         reg = <0x10000000 0x1000>;
-         #address-cells = <1>;
-         #size-cells = <1>;
-diff --git a/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml b/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
-new file mode 100644
-index 000000000000..46b164ae0831
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/arm,dev-platforms-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm Ltd Developer Platforms System Controllers
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  The Arm Ltd Integrator, Realview, and Versatile families of developer
-+  platforms are contain various system controller blocks. Often these blocks
-+  are part of a daughterboard or motherboard module.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - arm,integrator-ap-syscon
-+              - arm,integrator-cp-syscon
-+              - arm,integrator-sp-syscon
-+              - arm,im-pd1-syscon
-+          - const: syscon
-+      - items:
-+          - enum:
-+              - arm,core-module-integrator
-+              - arm,integrator-ap-syscon
-+              - arm,integrator-cp-syscon
-+              - arm,integrator-sp-syscon
-+              - arm,realview-eb-syscon
-+              - arm,realview-pb1176-syscon
-+              - arm,realview-pb11mp-syscon
-+              - arm,realview-pba8-syscon
-+              - arm,realview-pbx-syscon
-+              - arm,versatile-ib2-syscon
-+          - const: syscon
-+          - const: simple-mfd
-+      - items:
-+          - enum:
-+              - arm,realview-eb11mp-revb-syscon
-+              - arm,realview-eb11mp-revc-syscon
-+          - const: arm,realview-eb-syscon
-+          - const: syscon
-+          - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties:
-+  type: object
-+
-+...
+Ante Knezic (2):
+  dt-bindings: net: microchip,ksz: document microchip,rmii-clk-internal
+  net: dsa: microchip: add property to select internal RMII reference
+    clock
+
+ .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 17 +++++++++++++
+ drivers/net/dsa/microchip/ksz8795.c                | 28 +++++++++++++++++-----
+ drivers/net/dsa/microchip/ksz8795_reg.h            |  3 +++
+ 3 files changed, 42 insertions(+), 6 deletions(-)
+
 -- 
-2.42.0
+2.11.0
 
 
