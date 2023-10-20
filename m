@@ -1,113 +1,111 @@
-Return-Path: <devicetree+bounces-10380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7071B7D0F84
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:18:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178457D0F87
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E99A0B21302
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:18:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 488AD1C20E3B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69BE19BB9;
-	Fri, 20 Oct 2023 12:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FWNNqq8/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075EF19BA8;
+	Fri, 20 Oct 2023 12:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A16419BB1
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 12:18:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F306FC433C8;
-	Fri, 20 Oct 2023 12:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697804288;
-	bh=zYBV4aL2PGlKEIZZ+fVjoI9sDilQIzbC8CX3x96/7fM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FWNNqq8/Wfv5ehjcaQsbnbLSsbKy/lJREqnNXfrcrq76Zc0S0LTeecCzLMwqPO9jw
-	 s1BrJyXbvyllNzmidrKi1qWk1peH2M+RKO/fS2gAlHFDn9EoKrIlgHjbimhxk12VQQ
-	 JTZmj4VgQAZ6OYVyxnggue+thHaAheiDU39CGspYacoI0i3eBSAQLM2FudgFRbAare
-	 wvkQGGDc8ilZespShIbx1CUGrJk9y6TiKPdDJ0huUHO/xt9wtrKOLlO4vQKB7eGDc0
-	 v9lHjDSw4cT4+D/xGSVOofw/2q5X1k+7VnG6UJwOuWGL7WxVasAOAvc5DSKVqEOPgN
-	 +rSN+uJuf1+/g==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1qtoS5-00674m-Fj;
-	Fri, 20 Oct 2023 13:18:05 +0100
-Date: Fri, 20 Oct 2023 13:18:04 +0100
-Message-ID: <87wmvh5vyb.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Jonas Gorski <jonas.gorski@gmail.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
-	devicetree@vger.kernel.org,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mips@vger.kernel.org,
-	diasyzhang@tencent.com,
-	linux-kernel@vger.kernel.org,
-	frowand.list@gmail.com
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc: Fix warnings about liointc-2.0
-In-Reply-To: <CAMpQs4Kug8dOWHD+nqAbGkmqkWU=y=k6+VwojETn8PEwf+MSPA@mail.gmail.com>
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
-	<e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
-	<CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
-	<6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
-	<CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
-	<d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org>
-	<a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
-	<86wmxcejav.wl-maz@kernel.org>
-	<c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
-	<86pm2ye2si.wl-maz@kernel.org>
-	<CAMpQs4LjePLy5RFMz2S=1sa9Zme_UrJmKKRog0LAg_ZhA07TMA@mail.gmail.com>
-	<CAOiHx=mq3hw-LFerb9UzU7VSnLypnvPuo1GomCnN=p0u3xN1Ug@mail.gmail.com>
-	<CAMpQs4+neiaJKp93UcemJbPPbhmf1B7WYNqKh=qx0avrbwW2cQ@mail.gmail.com>
-	<CAOiHx==uSQrO6+Ob1qe3NaRdXoGTwLYSS8S7YYMwQ4zhSbX75g@mail.gmail.com>
-	<CAAhV-H4yZ7DKx865M1RN+0L8CZjua=wBMsuXT0ekNANRN+RWAg@mail.gmail.com>
-	<CAMpQs4Kug8dOWHD+nqAbGkmqkWU=y=k6+VwojETn8PEwf+MSPA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A821199D3
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 12:18:37 +0000 (UTC)
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0ADD51;
+	Fri, 20 Oct 2023 05:18:36 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-57b9231e91dso399222eaf.2;
+        Fri, 20 Oct 2023 05:18:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697804315; x=1698409115;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LOd3jXTL+M+StLbmAilt2rEYhlA6akOm0aYnH1E7pkU=;
+        b=MHYn9QCnG0QB+eUwpsOI1+F2CudOvsTXfoSHDVrvSTto678muk6pFYrR9VOST+REsi
+         dWxu6i4MgzV3x84qYvWBr74v5MhUJ5tUvHkWOhKnqQR1iclRzpEnK3Xu0ndF532PqN2v
+         v5LPL/iqvchRCJKpjlf5qoiZOG6GevRMnGh6hNNlItkj/KWOdJuCp5fabM7xPCM6miz/
+         hVrevOr6Fip2+styQMNXNjdHtDMcti2g+h2ziV8kx9T/4lARUEypGA1rT4rTxwwVJkn4
+         ZGRApDzd8NswXsivJe3/VbUZWt5mItUENVV9dR4hu6rVn1507YqMJO/akvz7pAED12lM
+         cE9A==
+X-Gm-Message-State: AOJu0YyejUlB3ahDNWOBN5Jt305qZxhDeIu8nslSpkO7zqaaXk3OwQ6H
+	T12YQboiMOZXrjFynK4qi9Q=
+X-Google-Smtp-Source: AGHT+IHTSyBsNNSIaIF8AemW48jF99AIEURyoBpH1MuM0LgLklqcC2bp7f5ubM/5X+N5yQmhtDThuQ==
+X-Received: by 2002:a05:6358:d091:b0:168:bc76:9a2d with SMTP id jc17-20020a056358d09100b00168bc769a2dmr324768rwb.7.1697804315418;
+        Fri, 20 Oct 2023 05:18:35 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id f23-20020aa79697000000b0068fb783d0c6sm1444598pfk.141.2023.10.20.05.18.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 05:18:34 -0700 (PDT)
+Date: Fri, 20 Oct 2023 21:18:33 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+	mani@kernel.org, marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v25 00/15] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ support
+Message-ID: <20231020121833.GA298533@rocinante>
+References: <20231018085631.1121289-1-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: zhoubb.aaron@gmail.com, chenhuacai@kernel.org, jonas.gorski@gmail.com, jiaxun.yang@flygoat.com, krzysztof.kozlowski@linaro.org, zhoubinbin@loongson.cn, chenhuacai@loongson.cn, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org, tsbogend@alpha.franken.de, linux-mips@vger.kernel.org, diasyzhang@tencent.com, linux-kernel@vger.kernel.org, frowand.list@gmail.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231018085631.1121289-1-yoshihiro.shimoda.uh@renesas.com>
 
-On Fri, 20 Oct 2023 10:51:35 +0100,
-Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
-> 
-> Hi Krzysztof & Marc:
-> 
-> Sorry for the interruption.
-> As said before, we tried to use the 'interrupt-map attribute' in our
-> Loongson liointc dts(i), but there are some unfriendly points.
-> Do you have any other different suggestions?
+Hello,
 
-I don't have any suggestion, but if you are still thinking of adding
-some extra crap to the of_irq_imap_abusers[] array, the answer is a
-firm 'NO'.
+> Add R-Car S4-8 (R-Car Gen4) PCIe controller for both host and endpoint modes.
+> To support them, modify PCIe DesignWare common codes.
+[...]
 
-	M.
+Applied to controller/rcar, thank you!
 
--- 
-Without deviation from the norm, progress is not possible.
+[01/15] PCI: Add T_PVPERL macro
+        https://git.kernel.org/pci/pci/c/164f66be0c25
+[02/15] PCI: dwc: Add dw_pcie_link_set_max_link_width()
+        https://git.kernel.org/pci/pci/c/a9a1bcba9025
+[03/15] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
+        https://git.kernel.org/pci/pci/c/89db0793c9f2
+[04/15] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
+        https://git.kernel.org/pci/pci/c/1a9745476cae
+[05/15] PCI: dwc: endpoint: Add multiple PFs support for dbi2
+        https://git.kernel.org/pci/pci/c/7873b49b41b9
+[06/15] PCI: dwc: Add EDMA_UNROLL capability flag
+        https://git.kernel.org/pci/pci/c/1896d17f9168
+[07/15] PCI: dwc: Expose dw_pcie_ep_exit() to module
+        https://git.kernel.org/pci/pci/c/2066b41a2ef8
+[08/15] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+        https://git.kernel.org/pci/pci/c/52b4edbc304c
+[09/15] dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+        https://git.kernel.org/pci/pci/c/7e8fcf83c48a
+[10/15] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+        https://git.kernel.org/pci/pci/c/e8858cc55f62
+[11/15] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+        https://git.kernel.org/pci/pci/c/5df0306d03c9
+[12/15] PCI: rcar-gen4: Add R-Car Gen4 PCIe controller support for host mode
+        https://git.kernel.org/pci/pci/c/8227bf7a81e6
+[13/15] PCI: rcar-gen4: Add endpoint mode support
+        https://git.kernel.org/pci/pci/c/d3c54d8ba855
+[14/15] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+        https://git.kernel.org/pci/pci/c/2c1cca77c894
+[15/15] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
+        https://git.kernel.org/pci/pci/c/a21169341a16
+
+	Krzysztof
 
