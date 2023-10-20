@@ -1,178 +1,180 @@
-Return-Path: <devicetree+bounces-10433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF027D1222
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:03:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F77F7D1250
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44E90B2142D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:03:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54EBF2824F4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2A961DA35;
-	Fri, 20 Oct 2023 15:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCAC1DA49;
+	Fri, 20 Oct 2023 15:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="qFW08pwz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hRQ0+ABG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3339E199BE
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:03:16 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2070.outbound.protection.outlook.com [40.92.21.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA9AD5D;
-	Fri, 20 Oct 2023 08:03:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VHwa+nEPG3M82kPoiRYj+wyabrT7erjIrNJ8rWe6pb3miolZjc/xWK23JHOhOzKfDRn6ZGmsLZgibOQlyLwh8B0JIIcKrJqWIjVi2kiUCDNNgne2zkKB0WgR590RCNbqq2aFJ6BREutQmdyo94CdbkqThGCfKLYlPIyFXX9iOWStP2GFYWcuxB3Vqi0rVYJRE0FVV4XPhTiAX6p0h/StB7e3qUug4FfjbEjYmNIG/pFas0oNV31/8YbOTwMdV/g8l6j7g+fDLAIBhs5Z3QlxeUpeiyVKTdsm0VSMZGphShM/rAz5/xvyJXjLt7UjMfUJe6+9uvxWJhrzT3CXmzbbMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3Puiq7iX+dPTRN5eSVbIKzBd24MB8P/DYwXvjFFOJR0=;
- b=TdO+1F74mYThqnyMkH5oPXBHgq132dTD5+Wo/nRjx3M4qG3U3dHi8iGK10ez9IyYEtQehbasBLBQyJnrpf5T86ly1RA0L6SrGTsGchg8IJZ3MIu/yYjVRnP2/sTrBf3oFQAezMT4+hg2/TThSOgCGBf/XFe5pO+6op1UTPNP1WRy2y/rdrpBmGBfJT+LRp4/REktlY0eOK2wtXKUp3kX7/bSAlCgXvWmr2JwH+cVL2+a8fG+JQ7LAuNqza7IG2jGmbEzYg1lqIL1PLD3ivGg3jywMnnsGGPQ8+dPX5AdnLB99sEGO/+OLaxEyYSThHCvtCapSgLy/E697vQy9tfZWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3Puiq7iX+dPTRN5eSVbIKzBd24MB8P/DYwXvjFFOJR0=;
- b=qFW08pwzMd5HB8W2hd5a2psnE8F6Z9UbRrT3qxvDzPDEHaYL+fUixm/5m2U47O05KL7ws7oElzaX6gFWePGiaOcGpRTKRlewJoJ6ka/IjL9GqB+3pv4jX6jDwhfTT3/0/GAcNy06dFNClttIE8QhZ+JFQvgYDF6r2uPdDE/gC/6N8Dkdsz4jTH709GAlROyDuvffWbpKAYbbgWtjmhyBsxIaTSCejuvcx2nrPkAxViCSmvNWjXkfrsEcv+1U+NZMhwhI9uNRRCyXCGQqFjkI7s7STP0TaMFadD4Es5UB5DnBFGdQt8o8EnO6jS886NEAeDwxTBrZI7AVeb5IKbKFKA==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA1PR06MB8241.namprd06.prod.outlook.com (2603:10b6:806:1c4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Fri, 20 Oct
- 2023 15:03:12 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Fri, 20 Oct 2023
- 15:03:11 +0000
-Date: Fri, 20 Oct 2023 10:03:08 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com, sboyd@kernel.org,
-	mturquette@baylibre.com, daniel@ffwll.ch, airlied@gmail.com,
-	sam@ravnborg.org, neil.armstrong@linaro.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add Powkiddy RK2023
-Message-ID:
- <SN6PR06MB534206AB35C00B3D003765AAA5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <df3c067f-8732-46bf-aa93-852f41e9e4e9@linaro.org>
- <SN6PR06MB534289953F0A72345D679A7EA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
- <3083498.U7HbjWM52l@diego>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3083498.U7HbjWM52l@diego>
-X-TMN: [YAcPVPsMtNKLmyCDpoXP40ic1TkBJoG7]
-X-ClientProxiedBy: SA9PR13CA0058.namprd13.prod.outlook.com
- (2603:10b6:806:22::33) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZTKWrOmdtMwmG+Lr@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3EC1DA43;
+	Fri, 20 Oct 2023 15:12:47 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEE8FA;
+	Fri, 20 Oct 2023 08:12:44 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso145722466b.2;
+        Fri, 20 Oct 2023 08:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697814763; x=1698419563; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZU5hBj8/e4oDuCRh8BssYew0LlrPlrgUCeK6Uhar2WQ=;
+        b=hRQ0+ABGvWBkF2Q1fXlM+GQl2LcHIPMLpchIFGBPlahA/NP40FKcgNofnqbNVStStt
+         GWKGrXX1v9lqCIUn7L/HibwqF5d8UzDvc+8tSxa7KDOvPoTiJ+SUSplPxeU6nXwzv8zm
+         2+81Z8jfeZQrS3As3q4cllMz5n8p7S8FRVOoJlWfqJdC/mDyIM22aXr9K9Sh/7thNAG+
+         E4lsLyvzdnIWV6Nt1pDqCjU0xP6uIlfU/Uul/PjYLq8/YN6/Mb75RcyLJa6C5hLBt915
+         kRobuu8P/RmPGvF83ZnEGci04CblVclAuYAXJKrAhYtyrV7ovp5ikC8iH8Ij2YKxXbr1
+         dtcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697814763; x=1698419563;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZU5hBj8/e4oDuCRh8BssYew0LlrPlrgUCeK6Uhar2WQ=;
+        b=uD2g8aseqaxe3b79Odjs14hDLxhsf4Eehg85f5MWRtX/VZfpGJuhMherqo9i7u9sfx
+         5iKR/fYD4B0WsLhfMxBDmYrqo0tmIp3Dk1ed00lMtGsrc4zUx2o/UP5ZBYSg5RpVw3/V
+         f/Qi2HkjBcAjBQ4kkM65m15S4rAt5/4pA5NMeBzJJxfqtsYvqnw0zlytEN/9jG8QFX+G
+         iB13aYX3jgvuQPY1PNAL0QTfzv5FMyg/KYewSqGU+8clu5xf4fmjYOUQDYjv+DIVURMu
+         Wy3T371Xg3a44HEN29azAu6s/jLoha64xGwPkl3fTR7QwuPx1MIH9gfd3SBeuHV5dCmu
+         /GJg==
+X-Gm-Message-State: AOJu0Yx9gQbHsftQrEgqhNIm7FBL2eh8ssONNnq0IyO2LS9ej14uqpME
+	OTGVFs6T/au2k0uoAFdz27I=
+X-Google-Smtp-Source: AGHT+IHpR9r/JHxcLJl5Vxxatg7b/wgqRKDdY/W5Fw63VB9oSzgnCKlz5RaNbTQa568EZAW9WyPbsA==
+X-Received: by 2002:a17:907:3f22:b0:9bd:a063:39d2 with SMTP id hq34-20020a1709073f2200b009bda06339d2mr2130957ejc.16.1697814762995;
+        Fri, 20 Oct 2023 08:12:42 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id d13-20020a1709064c4d00b009a5f1d15642sm1650051ejw.158.2023.10.20.08.12.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 08:12:42 -0700 (PDT)
+Date: Fri, 20 Oct 2023 18:12:40 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <20231020151240.3gdcftg2aaz7bnal@skbuf>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+ <20231019153552.nndysafvblrkl2zn@skbuf>
+ <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA1PR06MB8241:EE_
-X-MS-Office365-Filtering-Correlation-Id: 96b01782-bfb4-4e64-ddb5-08dbd17dace5
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	X0q4CuYbN6MS6KWtZmbE7A8YBqYoacsx1d/Y4+Vxo6cQbk5GYfgXYKV/9DD01R3tP/ioBvFTJyJRomTCSMiRBrEveCSczEaoWULhWziFAvmw6msNbCoZK7jojigmVs8Q4qvngYwmkrdGZgX/kxUPKLjiQnB7GOC+6o9rbspJ9apb1VyN3xYu7Jvc0zD3w1yWNewZ7imkPxzkbn1VGF81B7obzNMuFXpoOMhjzPXMD37SKbokqiiMxpop7X6bSZRNv8h0XcQOkavcpHJCxk7+6zMpAo6XY9+o1xrR6pCkgRtws7jdakOYeg3MdX8dihMk1qyG/RW2LXJPKYAwKdyk3b4UT9HjqeBCIjghtdZG5Y4cxN2EM/jODLbbQvYjoAX0EK3FBmUECaHx4HR1tXN6IZGb+9b0tGBqZHymxHw7HeNxfZP0o6ozQ05g75b/dnd84h1UMF5/d0oEH1+MJpa7V+/j5bhtNd5RdOG1z1uMqp5iUTva9mUSGGWEZtEi1y/xRtBuEeJAhrf2123ceXJUG6aFLm2ZxZue97lOw2bNb6/Io3f+r2pPcUf5SxoxTPni
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?/uT4Ay0sW0tG5wHhbg0e4iTmd20Q5BMc3mAKp0jg7PPpK29jEjlhGlStkG?=
- =?iso-8859-1?Q?DNtxhyOg16oBiCS45hjRZucAlz7r1vFUq1s3mHroeIE0VOnYm3GT+4U3fk?=
- =?iso-8859-1?Q?txWd9M5WzKAa5uuaDbwdnLLh3cNWqrpHtbbYtiUbBsxrZFQLZRVw5ptxgc?=
- =?iso-8859-1?Q?NnCmOxqRp9cafQdwVcsqkDIXzfYpxO8QGYf7+P85BN/Lnh2WG4EyqBcabY?=
- =?iso-8859-1?Q?gnc0IQAOwJLtgAs493diwNF+2xiAT5eA4Bp2Zb3NL2xqm6FnzT6a9QvHIj?=
- =?iso-8859-1?Q?ABlXWKzX0ckZRTXujS1aLbwkd7ZktHY8jXhRdJSz+hie6bnMUEa3SyPFcm?=
- =?iso-8859-1?Q?XcS5OYxHUn4CDmBHdX0en57KvWbh2nziuHR5Gl9hFFBBO1/NzzFHnqCifJ?=
- =?iso-8859-1?Q?GVLqelch2mUl+Gqg/70bBNfxW8MugJAlLJfzOYaBxk4OoV++o5vE0OXj48?=
- =?iso-8859-1?Q?pRDGHSLLNeW47cD/i4hsPnaHnL6g7ii0N3L15hubMNu7mMuve/vHIuHSlg?=
- =?iso-8859-1?Q?t0M/f+Xhvw+s7aRwz7wsDZ0CtPX1f6Jhp4CpMitsJgrtFE5+v7xsk0/wHZ?=
- =?iso-8859-1?Q?bQu6JZmnvxbMykFCrcZl/kXw7NMq/cqf0/kxkaeO4qvKMjmAnvI81q7rBd?=
- =?iso-8859-1?Q?gkoW0R9XAdIM1ZEp3Nw/6ifetesj9FcPGnonumJaJpYf0ZVbohsKp/v8xI?=
- =?iso-8859-1?Q?XQY4yjKR59g9v7PDrom0B+FCGOYk3ACJWwUm4zWTWZw3gKgmu6Eue8aIy3?=
- =?iso-8859-1?Q?7fGfQhmCBglPtGsAvmL19qNErDDWzNZ+jeK1NuwFy401oxp57RfeGlg7+b?=
- =?iso-8859-1?Q?MjZTLm+JwT7gCUwf3c0SCmkNhUrkwMB6TQgH6wdMmObLKaImg5XFzUCpvm?=
- =?iso-8859-1?Q?upvvHnGYbhWAgh0/KpL579HONt6vWAVuUE6dtwLcQKbwptXWFUMsTRR+cb?=
- =?iso-8859-1?Q?aPcQXrZq3smBMryvM5ECuIuLS1w8R+2iVPT6S8mi6kZZr467tvkneXxI7N?=
- =?iso-8859-1?Q?IBt8OMRJRVorD2QqtN9bHLm3Pqa05Kwo9VHXarI5VpFJAFnGOCBk/WpIZj?=
- =?iso-8859-1?Q?8Ongjix3fxJJuvdEowQEGV2qKJ79vdxGTdJ0BR+x0lOg/kvucG64XVWkuX?=
- =?iso-8859-1?Q?cx2qaUru6l9q8YIjXXRx0qfhOtZxH1LWLm1fx+DQ0s1wcLNOu2Z+fAGNWd?=
- =?iso-8859-1?Q?NqAvtG/ab34Hw1HREuHYAT+/1t4Mnqcw3qiSaALzI3LKLdTPdOw4hScyFM?=
- =?iso-8859-1?Q?136EiRATsHDgmIl3wwAEbN4NgBBJfrOEFVBQVaJTE=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96b01782-bfb4-4e64-ddb5-08dbd17dace5
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 15:03:11.0497
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR06MB8241
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
 
-On Thu, Oct 19, 2023 at 07:45:17PM +0200, Heiko Stübner wrote:
-> Hey Chris,
+On Fri, Oct 20, 2023 at 02:47:20PM +0200, Linus Walleij wrote:
+> On Thu, Oct 19, 2023 at 5:35â€¯PM Vladimir Oltean <olteanv@gmail.com> wrote:
 > 
-> Am Donnerstag, 19. Oktober 2023, 16:43:56 CEST schrieb Chris Morgan:
-> > On Thu, Oct 19, 2023 at 11:21:47AM +0200, Krzysztof Kozlowski wrote:
-> > > On 18/10/2023 18:18, Chris Morgan wrote:
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > 
-> > > > The Powkiddy RK2023 is a handheld gaming device made by Powkiddy and
-> > > > powered by the Rockchip RK3566 SoC.
-> > > > 
-> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
-> > > >  1 file changed, 5 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > > index a349bf4da6bc..a6612185a7ff 100644
-> > > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > > @@ -674,6 +674,11 @@ properties:
-> > > >            - const: powkiddy,rgb30
-> > > >            - const: rockchip,rk3566
-> > > >  
-> > > > +      - description: Powkiddy RK2023
-> > > > +        items:
-> > > > +          - const: powkiddy,rk2023
-> > > 
-> > > This cuold be just enum in previous entry :/ but I remember we talked
-> > > about this once with Heiko.
-> > 
-> > For hardware that requires a different device tree, is that possible?
-> > While most of the devices I've worked on for the RK3566 series are very
-> > similar for the moment only 1 is identical (the RG353P and the RG353M)
-> > and can use the same device tree.
+> > Yikes, both these examples are actually broken,
 > 
-> In my reply I pointed to the Rock PI 4A/4A+/B/B+/C family, which also has
-> different devicetrees but is part of the same family of device designs.
+> As you can see from the patch, they are just carried over from
+> Documentation/devicetree/bindings/net/dsa/marvell.txt
 > 
-> So similar Powkiddy RK3568 based gaming handhelds also sound like
-> a nice family name in the description ;-) .
+> +/- fixes to make them pass schema checks.
 
-Gotcha, I can do that. Would you like for me to go back and do the same
-for the Anbernic devices as well? I can do it as part of a seperate
-patch series.
+(...)
 
-Thank you.
+> These examples are already in the kernel. Migrating them
+> from marvell.txt to marvell,mv88e6xxx.yaml doesn't make
+> the situation worse, it's not like people magically start trusting
+> the examples more because they are in YAML than in .txt.
+> 
+> But sure let's try to put in better examples!
 
+You are not correct here. The examples from
+Documentation/devicetree/bindings/net/dsa/marvell.txt don't have ports,
+and the way in which you added the ports is wrong (at least relative to
+the way in which you kept the mdio node).
+
+> > What you have now is exactly what won't work, i.e. an OF-based
+> > slave_mii_bus with a non-OF-based phy_connect().
 > 
+> Yeah when I run check_dtbs I get a few (not many) warnings
+> like this on aarch64 and armv7_multi:
 > 
-> Heiko
+> arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dtb: switch@0: ports:port@4:
+> 'phy-mode' is a required property
+>     from schema $id:
+> http://devicetree.org/schemas/net/dsa/marvell,mv88e6xxx.yaml#
+
+Ok, the warning is valid, but I don't know what phy-mode to put there.
+It is unrelated anyway. Some warnings will be expected after the schema
+conversion, and they are not all mechanical to fix. When we put schema
+validation in place for checking that CPU ports have valid link
+descriptions that phylink can use, we decided to be lax in the kernel,
+but strict in the dt-schema. Hmm, not sure what were we thinking.
+We didn't have a schema for Marvell, so we weren't even seeing many of
+the validation errors that you're now uncovering.
+
+> Isn't there some in-kernel DTS file with a *good* example of how
+> a Marvell mv88e6xxx switch is supposed to look I can just
+> copy instead? We shouldn't conjure synthetic examples.
+
+(...)
+
+> I'm game. Point out the DTS file and I will take that.
+
+You can use https://elixir.bootlin.com/u-boot/latest/source/arch/arm/dts/imx6qdl-gw5904.dtsi#L211
+(optionally renaming switch to ethernet-switch, and ports to ethernet-ports).
+That uses the subset of the mv88e6xxx kernel bindings that U-Boot also
+understands, so taking a U-Boot example is actually preferable.
+
+> > One other thing I see as a deal breaker for this schema conversion is
+> > that $nodename for Marvell needs to allow basically anything (invalidating
+> > the constraint from ethernet-switch.yaml), because we can't change node
+> > names in the case of some boards, otherwise we risk breaking them
+> > (see MOX). If the schema starts emitting warnings for those node names,
+> > then it's inevitable that some pixie in the future will eventually break
+> > them by "fixing" the node name.
 > 
+> I already did a bit of hippo-in-china-porcelain store in the patches
+> in this series mostly renaming things like "switch0@0" to "switch@0"
+> (yeah that's all).
 > 
+> Is this part of the problem or something else?
+
+Yes, for most of the switches, renaming their OF nodes should not be a problem.
+
+For Marvell, I'd exercise extra caution and only rename those OF nodes
+where I can confirm that doing so won't break anything. Marvell is one
+of the oldest DSA drivers, and you can tell that the bindings have gone
+through a lot before becoming more or less uniform.
+
+Anyway, for the $nodename constraint, it _looks_ all mechanical and trivial
+to fix (unlike the missing phy-mode that you point to, above), so someone
+will jump to fix it. I would like to avoid that, because boot testing
+will be key, and a board is not always available.
 
