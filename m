@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8637D7D0B01
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:59:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA29E7D0B38
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:13:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74D11F238F2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:59:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B94DB2138B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CC610A0D;
-	Fri, 20 Oct 2023 08:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A2B10A20;
+	Fri, 20 Oct 2023 09:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="grpTpOTa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQJE5Cyu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DA810955
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:59:40 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB514D46
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 01:59:38 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9bf0ac97fdeso87259066b.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 01:59:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C38110A14
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 09:12:55 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A1AD53
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 02:12:53 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32d9d8284abso408690f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 02:12:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697792377; x=1698397177; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697793171; x=1698397971; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cvAmJdm1L/4rW9zueL82ns0p9a2/AM1y8/kSiRhGWNs=;
-        b=grpTpOTaVlvfzQUDG9HofMaueUjrGqiEEkfLq2F4OdyLR7rZxVPUZlIEG0mr/anooY
-         GaYt9qWTwf6do6+gkosiHEMfDLI34bhpm6MqZf96yElzIYqxXMqEh6RQjfji3M3x9oZ8
-         efysu6mHcIuTc5NbyaC2h6hNxWpViJHgEDFrv7FMN1s9FTE18v9AOZiUz49/+f8diIxF
-         Ed6rGaJjQankOQKBFWYOHShr2jy8vBjmyNfsDpD9oWBeF1j1D9uwd/fx+waUdK88xU9B
-         ytvkZmYzqoAKTIgGKyur/13l2tFJkWTP8hREqZvLmy4GkIqMTcZtsCjvhfQpq7eADRZB
-         1Jww==
+        bh=HN2I5nh+oC2ndVXRmDeD0vH83PJI24dhJj907LkvOWw=;
+        b=uQJE5CyuTG7m/Hspv6ds6MdKFf1z2dND8vLE3nxTZhF/UyGc+hdgWmZ/wg+agHsQRh
+         n/MSIu1rejmaXkvUfnP3bkd7uUju02mTL5t5S1WZ4QiOBzJd/sHzhWQc09HkbVAbgbC/
+         1Uhshq1x7fZIrmpz5cipDF3F6CnfEZRaHDq1TvzFv6UhqQGZhF4c87P2L9sw3xUzH7U6
+         QmRtIyjpFHZG8BKnhd0S+we4OrIRD09HD5vQ5/rZZLhvrZ9LqqpS02v0pS3bztED+6BZ
+         JAHu4ZtHkvC7rSwVZLUReakhnec5CvmXNT3/39dJLRK7vBx/lgTSTwo7RY83ZHowPJ0o
+         FrNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697792377; x=1698397177;
+        d=1e100.net; s=20230601; t=1697793171; x=1698397971;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cvAmJdm1L/4rW9zueL82ns0p9a2/AM1y8/kSiRhGWNs=;
-        b=qMWwhALMPtj0j8xNk8PUI5Mim3uEUykUKKa0sA8NdinIAC6vzrQ2QN4Ef4qCgGi7Zj
-         vFnH8ltG9zd8rcQwg50o7v47S5M+1K6xHP9jD4MWExiY3fdY64ab07gWy5HEKqQ73cF2
-         KU7b7z3bFro71HW3AHlVqeD6gmfVGELoxGlVtj4lQ/HVOEnp4dM77lbO4wjasmLXwEaP
-         ZX6XCVuiRSoFaKZ9/QviUl9gZ944gP1YrWUfAax4grBGwZSbdkA+KeCAOyRwaq2tNbnX
-         gyXMw9d+vCt9sfLxAorLK6zcRlp6TZ1j1RTcFXyVXBBDFVbpBBGADaDXOJ49jhHGXHyD
-         qqIQ==
-X-Gm-Message-State: AOJu0YxjQS2vSS5Ieku48rWZ1LkQxOH77BgxNqvD00F0q3fk6y/ym+Lv
-	kHyG6rmvSs78WTtaiciCKZcigA==
-X-Google-Smtp-Source: AGHT+IExC8vevp0pndVAS1fIUdM8itmafKqC/1iLT5pWYt2ekKMsHxRecc1mgqSNbscHdmg7If2BgQ==
-X-Received: by 2002:a17:907:1c9e:b0:9ae:69ff:bcdb with SMTP id nb30-20020a1709071c9e00b009ae69ffbcdbmr966887ejc.31.1697792377182;
-        Fri, 20 Oct 2023 01:59:37 -0700 (PDT)
+        bh=HN2I5nh+oC2ndVXRmDeD0vH83PJI24dhJj907LkvOWw=;
+        b=xTU2j6HcLHlbnYL8JA+7tM8fAh107kaylV45Wn2DiA1ThZEwx4xxDHhJeA4T/o5pCt
+         Vou7snl8M3sNP4URCPYIFk26cDL+XEhmE+5WtWFk2wljTmSrWgYwp8aIouLjYWLQuQWM
+         LplbGItAE76gMgmXEuY24aaJ33VyYGoCCdUaCDrFzRtDQliiTEpVxdUf2Qdj2ZoPKqdR
+         l+JEcEGI20FF4iwg6TmlbrEyg9iGhAuwY+6p0rWaz8flHFq9sQXBnvrUhOF/DDew2nDa
+         wPN40d6SeB86VmkY9d+GdXPcYs+snU6NVZ9k8VOUoJMl0PjlN5tRJsD+wZsQexHoKsha
+         L/8g==
+X-Gm-Message-State: AOJu0YxX/5yf9W1TlzfEodlt0CnFiuLCdrb+39d8lTmK/1YMhxYqxdj7
+	gMLub4aXuR4UtA8kIEcYYC8fWA==
+X-Google-Smtp-Source: AGHT+IFrVuKPZhg0zJdZexCqaj7pqlOmDrWzjoDPWGv0gcDBn9w4Ij8iPuihVcJZ3HcNx4v4d4BZ0Q==
+X-Received: by 2002:a05:6000:11c7:b0:31f:b120:143 with SMTP id i7-20020a05600011c700b0031fb1200143mr852303wrx.59.1697793171074;
+        Fri, 20 Oct 2023 02:12:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id a6-20020a1709064a4600b009ae05f9eab3sm1071104ejv.65.2023.10.20.01.59.35
+        by smtp.gmail.com with ESMTPSA id n10-20020adffe0a000000b003200c918c81sm1237195wrr.112.2023.10.20.02.12.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Oct 2023 01:59:36 -0700 (PDT)
-Message-ID: <2bc15792-78f7-4498-b397-d8cf6053d864@linaro.org>
-Date: Fri, 20 Oct 2023 10:59:33 +0200
+        Fri, 20 Oct 2023 02:12:50 -0700 (PDT)
+Message-ID: <00a64eaa-0e6d-419a-a54f-d67fe2b60a7b@linaro.org>
+Date: Fri, 20 Oct 2023 11:12:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] coresight-tpdm: Correct the property name of MSR number
+Subject: Re: [PATCH 2/9] dt-bindings: arm: mediatek: Add MT8186 Tentacruel /
+ Tentacool Chromebooks
 Content-Language: en-US
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+To: Conor Dooley <conor@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Hao Zhang <quic_hazha@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1697770311-15392-1-git-send-email-quic_taozha@quicinc.com>
- <07ef7cf2-c5dc-4248-b72b-bad913f4508d@linaro.org>
- <d6cba576-5b65-425a-b769-e26a2595b391@quicinc.com>
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231012230237.2676469-1-wenst@chromium.org>
+ <20231012230237.2676469-3-wenst@chromium.org>
+ <20231013-washer-mortally-b27c196ac50f@spud>
+ <CAGXv+5GF7HfQSOg9c=G+c4DPUW24Ax7LX4raTynDbE3xc8iCdg@mail.gmail.com>
+ <20231013-panic-vaseline-350c10e7d585@spud>
+ <CAGXv+5EmLDWi3Lnca1vPft=9z9Cp2L2ee08in_b_21hipf9ieQ@mail.gmail.com>
+ <20231014-proud-levers-eb03f30a0a9a@spud>
+ <CAGXv+5F-x9m2WYZm-YLaxqio=VnfKkL26gLFbayJctBEJrSM6A@mail.gmail.com>
+ <20231018-earpiece-dimmed-81c0f728d0b6@spud>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,32 +132,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d6cba576-5b65-425a-b769-e26a2595b391@quicinc.com>
+In-Reply-To: <20231018-earpiece-dimmed-81c0f728d0b6@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/10/2023 10:13, Tao Zhang wrote:
->>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
->>> index b25284e..97654aa 100644
->>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->>> @@ -892,7 +892,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->>>   
->>>   	if (drvdata && tpdm_has_dsb_dataset(drvdata))
->>>   		of_property_read_u32(drvdata->dev->of_node,
->>> -			   "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
->>> +			   "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
->> So you never tested your DTS... We can keep asking about this but still
->> testing does not happen :/
+On 18/10/2023 17:07, Conor Dooley wrote:
+>>> Then it seems like what you need is something like
+>>> oneOf:
+>>>   - items:
+>>>       - const: google,tentacruel-sku262144
+>>>       - const: google,tentacruel
+>>>       - const: mediatek,mt8186
+>>>   - items:
+>>>       - enum:
+>>>           - google,tentacruel-sku262145
+>>>           - google,tentacruel-sku262146
+>>>           - google,tentacruel-sku262147
+>>>       - const: google,tentacruel-sku262144
+>>>       - const: google,tentacruel
+>>>       - const: mediatek,mt8186
+>>>
+>>> What you have at the moment just seems like a hack because you want to
+>>> stuff all of these compatible strings into a single dts.
+>>
+>> It is. And it works OK downstream. The reason we want to stuff them in
+>> one dts is because the firmware will not generate the fallback to
+>> sku262144 as the scheme above suggests.
 > 
-> Since this new property has not been applied on the exist upstream DTS, 
-> I tested this driver with the
-> 
-> local DTS. Unfortunately, the property name in the local DTS is not 
-> updated, this is why it is not found
+> I'm not going to ack the hack that you have here, sorry. Maybe Rob or
+> Krzysztof will. The list your firmware generates above doesn't even
+> match the contents of this patch, with the extra "rev-4" compatibles.
 
-But your local DTS would not pass dtbs_check tests, so that's why I am
-saying - you never tested it on mainline kernel.
+No Acks from me either... Chromebooks board compatibles are a long
+standing confusion for me and every time I forget why this is so
+counter-intuitively. My comments for changing this were rather receiving
+feedback "but our firmware likes it that way".
+OTOH, board compatibles just have to be unique, so we could accept some
+weird, counter-intuitive combinations... but it does not mean I should
+be happy with them.
 
 Best regards,
 Krzysztof
