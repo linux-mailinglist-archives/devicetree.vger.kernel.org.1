@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0EED7D08E4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:55:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9C37D0908
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:00:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC3101C20AAB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 06:55:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34D1CB2141E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 07:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC45CA5C;
-	Fri, 20 Oct 2023 06:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6647ED2E5;
+	Fri, 20 Oct 2023 07:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U3nPCMWN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OlkxWS0s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3980CA46
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 06:55:39 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9051A8
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:55:37 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9adca291f99so68222766b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 23:55:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4D2D2E2
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 07:00:10 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74E70D4C
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 00:00:08 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso73720066b.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 00:00:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697784936; x=1698389736; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697785207; x=1698390007; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oGqMY4K+B2HVw5c3OjyxezXqrQcTf69apDs4YWp1xms=;
-        b=U3nPCMWN0a/B3bPIDPh9W8MagBsG6fyk391O/ojAMUy2tpwTY0pR3HwKjzlQcqKYKM
-         /qklWuOolWLkVQ4CTyDNRHgYsRPfW2cbCpTACX07Jc+2K5eQSyjzKnYQtrSZZomd8VYt
-         d0VBlWnSY3GVNYt3FU86oWE1Zlrwee+BxeVCI8vRJOq/fqQyjKQNWAv3AodMh4hsvjnQ
-         MZXpPajxrM3UnK7dWfbHohPDeNmIq8biqJeE9sWXv6w9lMgdLhxf3ebhgjDlmz8BQRoG
-         iR+8OlrUMVZhzNxylykKJa7SFLwq4EJWnGPTenWwqBpm40P/3qniiuHNusmFfjtuAxBW
-         y/XQ==
+        bh=mfzc4g4zpz1yB50AYWx8YASQ5286qFySoxi1isAPweU=;
+        b=OlkxWS0sGR4Bp1SIhhL8WFRZPr5ryyF8qrEqv3NJJJ/vbGBQzUnZaKO+6w6cxaLyRU
+         kHTiOVrti/lDTH9Fpx4KoCyhhFRJrwfqy56NbvQJ0cvjKaglX9TQSfb9S5R1/I9RxKeA
+         7hA27e7MzyEghixh1I3GvfOJV8VkJnsCNCBFPvyzpjyfoOYuVpsWaWnnqHM1/W94jebh
+         95iVT/liLgn5siO3rGa3kliQLQK1hb1pH7NL6q7mGVR3varydLxoqwwx9n5VtsG+Ki/J
+         hfGg4R3pwKlhzQShlwzBXHKUcmti0GyGOUFldBOOY4/d3QpJnDIoM26oe13C2tqa68d3
+         dDCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697784936; x=1698389736;
+        d=1e100.net; s=20230601; t=1697785207; x=1698390007;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oGqMY4K+B2HVw5c3OjyxezXqrQcTf69apDs4YWp1xms=;
-        b=S7q8bZRvV7SALkG1+L6uj5ftrbFKdrZUXJi0an4ypraAt5EMR12IbPEOeZwlAbdUAT
-         WRNnAzDkanr1Szd+LLPU9mkICDiQVYvkZ45a3ZLTCsVUakDe6k/ZqQWjVYBjrfrmeYGC
-         ljBn+E9GoF6/edi2JJ1vU+tj67jsCzXWRaeuBPLxB+TD+hSjUM2k+et3nxkjN178ZWKj
-         OemBOQhwf47wAmR3mTX/UhrpeUOMz8KlkJdVq/4292LBxwpw4PrgsY5Mp8qBYEDtiOMw
-         j9O68anMT1e38Cycy0AN/MxGFB9VmcjRpMWzf+dbAS7Nnddw/s9krh6CQv7moVBjgf+X
-         8AlA==
-X-Gm-Message-State: AOJu0Yxt/t/eGiGAvEGUk9s01pBYtOG0gUybqMR8hl+xIO8Vg0/Ut34e
-	dAbOzE8++GjN3KFy+htUWVWSdw==
-X-Google-Smtp-Source: AGHT+IGlpICr8L7mdq/Z2N2UKdNXuFCQQvBgNMgpOU5pY4hqAhBsQeg8LrJ3nDUPIlJhvswGpoQLAQ==
-X-Received: by 2002:a17:907:a45:b0:9bd:f902:9a62 with SMTP id be5-20020a1709070a4500b009bdf9029a62mr637240ejc.33.1697784935880;
-        Thu, 19 Oct 2023 23:55:35 -0700 (PDT)
+        bh=mfzc4g4zpz1yB50AYWx8YASQ5286qFySoxi1isAPweU=;
+        b=wQUL9WCaA2yvCoGErQ5evz2FNT1a2GsW/39NaeQpsQI0DQzvsR4K9z2G1hp6FuEkXB
+         iHa+7QhbPEY3hkuc3mcryL0dGxvWAVjp79k77Guq7szFUMPauOHXVYlwYNuia5sEPeAq
+         s2Tk2IB0u69L48rsbObj5/cjY51Unv4TaGCta0C/tAqWYFZ7v+5XHQw9cNZMml+uTXtl
+         YkMwgDgWplxY8gEomIe1HFQg0e9W3b3gaUoqtvIDnAdDdQ5yFEQgckI6j2mtqycn9XUe
+         uDzAQvXxm2iAmB+HrMs5nxsq//NPvAHiAS+yhuvN5udCOu5tivv2PvRzAvS2P7os5On1
+         nJ1Q==
+X-Gm-Message-State: AOJu0Yz3GSc6QEslAwMJP2+GsQPpeCRi6/UZ/TR2OH9EKML8wR5l8Mlw
+	c2wyFaHlSFwlR3w0QAB6v3QDUQ==
+X-Google-Smtp-Source: AGHT+IEZqAyMu8v1hoVkDa8FfYgxlppDc03tZC3u+R6BXwEKi6FVD1uBaavEM53OTZbjc063+/cESw==
+X-Received: by 2002:a17:907:9495:b0:9a5:b878:7336 with SMTP id dm21-20020a170907949500b009a5b8787336mr566170ejc.7.1697785206642;
+        Fri, 20 Oct 2023 00:00:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id m2-20020a17090607c200b009c6a4a5ac80sm866581ejc.169.2023.10.19.23.55.34
+        by smtp.gmail.com with ESMTPSA id o14-20020a17090611ce00b009b29553b648sm862496eja.206.2023.10.20.00.00.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 23:55:35 -0700 (PDT)
-Message-ID: <07ef7cf2-c5dc-4248-b72b-bad913f4508d@linaro.org>
-Date: Fri, 20 Oct 2023 08:55:33 +0200
+        Fri, 20 Oct 2023 00:00:05 -0700 (PDT)
+Message-ID: <ba3ac1b2-d924-44cb-97dd-6af65a1db7a8@linaro.org>
+Date: Fri, 20 Oct 2023 09:00:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,23 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] coresight-tpdm: Correct the property name of MSR number
+Subject: Re: [PATCH v2 05/10] dt-bindings: riscv: Add andestech,cpu-intc to
+ interrupt-controller
 Content-Language: en-US
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Hao Zhang <quic_hazha@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1697770311-15392-1-git-send-email-quic_taozha@quicinc.com>
+To: Yu Chien Peter Lin <peterlin@andestech.com>, conor@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com,
+ dylan@andestech.com, locus84@andestech.com, dminus@andestech.com
+References: <20231019135905.3658215-1-peterlin@andestech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,46 +123,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1697770311-15392-1-git-send-email-quic_taozha@quicinc.com>
+In-Reply-To: <20231019135905.3658215-1-peterlin@andestech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/10/2023 04:51, Tao Zhang wrote:
-> Correct the property name of the DSB MSR number that needs to be
-> read in TPDM driver. The right property name is
-> "qcom,dsb-msrs-num".
-
-Missing Fixes tag.
-
+On 19/10/2023 15:59, Yu Chien Peter Lin wrote:
+> Add "andestech,cpu-intc" compatible string for Andes INTC which
+> provides Andes-specific IRQ chip functions.
 > 
-> This patch depends on patch series "Add support to configure TPDM DSB
-> subunit"
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=788353
-
-This is not suitable for commit msg. Dependencies are noted under ---.
-
-And how is this depending on that patch? Your buggy code was applied
-long time ago!
-
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
 > ---
->  drivers/hwtracing/coresight/coresight-tpdm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes v1 -> v2:
+>   - New patch
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index b25284e..97654aa 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -892,7 +892,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 97e8441eda1c..5b216e11c69f 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -99,7 +99,9 @@ properties:
+>          const: 1
 >  
->  	if (drvdata && tpdm_has_dsb_dataset(drvdata))
->  		of_property_read_u32(drvdata->dev->of_node,
-> -			   "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
-> +			   "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
+>        compatible:
+> -        const: riscv,cpu-intc
+> +        enum:
+> +          - riscv,cpu-intc
+> +          - andestech,cpu-intc
 
-So you never tested your DTS... We can keep asking about this but still
-testing does not happen :/
+Keep alphabetical order. Do not add stuff to the end of the lists. This
+is a generic rule. Everywhere.
 
 Best regards,
 Krzysztof
