@@ -1,96 +1,313 @@
-Return-Path: <devicetree+bounces-10456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E789A7D13B6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:08:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB467D1427
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 576E1281EC2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCACA28258E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EA21E536;
-	Fri, 20 Oct 2023 16:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CB420F5;
+	Fri, 20 Oct 2023 16:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="a0uAi1WV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lR5fdsD0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883981DDC7;
-	Fri, 20 Oct 2023 16:08:17 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D34E1A8;
-	Fri, 20 Oct 2023 09:08:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ShgNviY6uRULZSOoTM3SW6UAuXHvVtML/+Hkod5jeco=; b=a0uAi1WVuGqpIjS/NvcbG3Kmz9
-	lKUe4TZ9TFX0frVrmQpDcG1NR14DNnYyPROpjwj0e4fbcMRUuWDlQBiJSNyF4H/1cPVwjHcwXRcPp
-	q6WOqLeQXtP+GR8JnO5iWU8jpvgpsdjzc60mhg8BgKc9rKBAj1jZYZO3NDykH0zZ3vSo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qts2Y-002noa-91; Fri, 20 Oct 2023 18:07:58 +0200
-Date: Fri, 20 Oct 2023 18:07:58 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
- in schema
-Message-ID: <c3f1049b-2bfa-4421-9f40-497ddd2911b5@lunn.ch>
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
- <20231019153552.nndysafvblrkl2zn@skbuf>
- <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E7C1EA77
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 16:37:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 135ABC433C8;
+	Fri, 20 Oct 2023 16:37:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697819823;
+	bh=IKXvz0RUOrs45XsQ+nGeRi2+3vpHR0dpcPyszdbrLks=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=lR5fdsD0B7Ja2DIlG2phhgKJMnrg2aCf29I5oI3aZ01AECEmI83bTQAnOBquAHRoL
+	 R6BbfjbR1MA/CaHZZdLprChXP+eI/qjH7yAzXCBGg7S0wECCIxhkoYGyErYC8GsOeJ
+	 xMPGTl/EWmXNcCjDGotZzvRAtKjtPfuzf9T4PlKQdfkveTcqe/7Q0dpqt1o2KyPEQi
+	 gp8ZQkBsKm0httkDFFBJT0PUwQpIQpCQpjS4FGNRB4oyk2UzX2TEcHJL6OCWcb5ncm
+	 OVjBlosCRgO3FxzGD0FDAjXVCDj15AMsyITSzIJhzspdrDIasZNufPOOR7hX9pZQDj
+	 MiwmO6sZ2ElLA==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Marc
+ Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Atish Patra
+ <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, Sunil V L
+ <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, Anup
+ Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 00/15] Linux RISC-V AIA Support
+In-Reply-To: <CAK9=C2WVkbDtz9uZTNjEcJzKQ44cHLR=+nSVZZmSptzL_U4NNA@mail.gmail.com>
+References: <20231003044403.1974628-1-apatel@ventanamicro.com>
+ <87o7gu7mo9.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2XMzzYri8TNBASKqc-VmJWjGdoOHy-fczksfkU0ahhgOQ@mail.gmail.com>
+ <87h6mlbryy.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2VE9-L49tMKHjSTGDSpOFZGZw14LtD1V4GMXGiVQ-A=ng@mail.gmail.com>
+ <87o7gtpdb4.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2WVkbDtz9uZTNjEcJzKQ44cHLR=+nSVZZmSptzL_U4NNA@mail.gmail.com>
+Date: Fri, 20 Oct 2023 18:36:59 +0200
+Message-ID: <87v8b1i72s.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> Isn't there some in-kernel DTS file with a *good* example of how
-> a Marvell mv88e6xxx switch is supposed to look I can just
-> copy instead? We shouldn't conjure synthetic examples.
+Anup Patel <apatel@ventanamicro.com> writes:
 
-arch/arm/boot/dts/marvell/armada-381-netgear-gs110emx.dts is an
-example of a 6390 with external PHYs. The nodes are in a somewhat
-unconventional order, but nothing requires them to be any specific
-order.
+> On Fri, Oct 20, 2023 at 8:10=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
+el.org> wrote:
+>>
+>> Anup Patel <apatel@ventanamicro.com> writes:
+>>
+>> > On Fri, Oct 20, 2023 at 2:17=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@k=
+ernel.org> wrote:
+>> >>
+>> >> Thanks for the quick reply!
+>> >>
+>> >> Anup Patel <apatel@ventanamicro.com> writes:
+>> >>
+>> >> > On Thu, Oct 19, 2023 at 7:13=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjor=
+n@kernel.org> wrote:
+>> >> >>
+>> >> >> Hi Anup,
+>> >> >>
+>> >> >> Anup Patel <apatel@ventanamicro.com> writes:
+>> >> >>
+>> >> >> > The RISC-V AIA specification is ratified as-per the RISC-V inter=
+national
+>> >> >> > process. The latest ratified AIA specifcation can be found at:
+>> >> >> > https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-i=
+nterrupts-1.0.pdf
+>> >> >> >
+>> >> >> > At a high-level, the AIA specification adds three things:
+>> >> >> > 1) AIA CSRs
+>> >> >> >    - Improved local interrupt support
+>> >> >> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+>> >> >> >    - Per-HART MSI controller
+>> >> >> >    - Support MSI virtualization
+>> >> >> >    - Support IPI along with virtualization
+>> >> >> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
+>> >> >> >    - Wired interrupt controller
+>> >> >> >    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI g=
+enerator)
+>> >> >> >    - In Direct-mode, injects external interrupts directly into H=
+ARTs
+>> >> >>
+>> >> >> Thanks for working on the AIA support! I had a look at the series,=
+ and
+>> >> >> have some concerns about interrupt ID abstraction.
+>> >> >>
+>> >> >> A bit of background, for readers not familiar with the AIA details.
+>> >> >>
+>> >> >> IMSIC allows for 2047 unique MSI ("msi-irq") sources per hart, and
+>> >> >> each MSI is dedicated to a certain hart. The series takes the appr=
+oach
+>> >> >> to say that there are, e.g., 2047 interrupts ("lnx-irq") globally.
+>> >> >> Each lnx-irq consists of #harts * msi-irq -- a slice -- and in the
+>> >> >> slice only *one* msi-irq is acutally used.
+>> >> >>
+>> >> >> This scheme makes affinity changes more robust, because the interr=
+upt
+>> >> >> sources on "other" harts are pre-allocated. On the other hand it
+>> >> >> requires to propagate irq masking to other harts via IPIs (this is
+>> >> >> mostly done up setup/tear down). It's also wasteful, because msi-i=
+rqs
+>> >> >> are hogged, and cannot be used.
+>> >> >>
+>> >> >> Contemporary storage/networking drivers usually uses queues per co=
+re
+>> >> >> (or a sub-set of cores). The current scheme wastes a lot of msi-ir=
+qs.
+>> >> >> If we instead used a scheme where "msi-irq =3D=3D lnx-irq", instea=
+d of
+>> >> >> "lnq-irq =3D {hart 0;msi-irq x , ... hart N;msi-irq x}", there wou=
+ld be
+>> >> >> a lot MSIs for other users. 1-1 vs 1-N. E.g., if a storage device
+>> >> >> would like to use 5 queues (5 cores) on a 128 core system, the cur=
+rent
+>> >> >> scheme would consume 5 * 128 MSIs, instead of just 5.
+>> >> >>
+>> >> >> On the plus side:
+>> >> >> * Changing interrupts affinity will never fail, because the interr=
+upts
+>> >> >>   on each hart is pre-allocated.
+>> >> >>
+>> >> >> On the negative side:
+>> >> >> * Wasteful interrupt usage, and a system can potientially "run out=
+" of
+>> >> >>   interrupts. Especially for many core systems.
+>> >> >> * Interrupt masking need to proagate to harts via IPIs (there's no
+>> >> >>   broadcast csr in IMSIC), and a more complex locking scheme IMSIC
+>> >> >>
+>> >> >> Summary:
+>> >> >> The current series caps the number of global interrupts to maximum
+>> >> >> 2047 MSIs for all cores (whole system). A better scheme, IMO, woul=
+d be
+>> >> >> to expose 2047 * #harts unique MSIs.
+>> >> >>
+>> >> >> I think this could simplify/remove(?) the locking as well.
+>> >> >
+>> >> > Exposing 2047 * #harts unique MSIs has multiple issues:
+>> >> > 1) The irq_set_affinity() does not work for MSIs because each
+>> >> >      IRQ is not tied to a particular HART. This means we can't
+>> >> >      balance the IRQ processing load among HARTs.
+>> >>
+>> >> Yes, you can balance. In your code, each *active* MSI is still
+>> >> bound/active to a specific hard together with the affinity mask. In an
+>> >> 1-1 model you would still need to track the affinity mask, but the
+>> >> irq_set_affinity() would be different. It would try to allocate a new
+>> >> MSI from the target CPU, and then switch to having that MSI active.
+>> >>
+>> >> That's what x86 does AFAIU, which is also constrained by the # of
+>> >> available MSIs.
+>> >>
+>> >> The downside, as I pointed out, is that the set affinity action can
+>> >> fail for a certain target CPU.
+>> >
+>> > Yes, irq_set_affinity() can fail for the suggested approach plus for
+>> > RISC-V AIA, one HART does not have access to other HARTs
+>> > MSI enable/disable bits so the approach will also involve IPI.
+>>
+>> Correct, but the current series does a broadcast to all cores, where the
+>> 1-1 approach is at most an IPI to a single core.
+>>
+>> 128+c machines are getting more common, and you have devices that you
+>> bring up/down on a per-core basis. Broadcasting IPIs to all cores, when
+>> dealing with a per-core activity is a pretty noisy neighbor.
+>
+> Broadcast IPI in the current approach is only done upon MSI mask/unmask
+> operation. It is not done upon set_affinity() of interrupt handling.
 
-arch/arm/boot/dts/nxp/vf/vf610-zii-ssmb-spu3.dts is another 6390 which
-only uses the internal PHYs, so there are no mdio busses listed or
-needed.
+I'm aware. We're on the same page here.
 
-arch/arm/boot/dts/marvell/armada-370-rd.dts is another example of how
-it can be done. It lists the PHYs on the MDIO bus, but does not have
-any phy-handles, it lets the DSA core link them. Some people might
-consider this a bad example? But it works, i use this machine for
-development work.
+>>
+>> This could be fixed in the existing 1-n approach, by not require to sync
+>> the cores that are not handling the MSI in question. "Lazy disable"
+>
+> Incorrect. The approach you are suggesting involves an IPI upon every
+> irq_set_affinity(). This is because a HART can only enable it's own
+> MSI ID so when an IRQ is moved to from HART A to HART B with
+> a different ID X on HART B then we will need an IPI in irq_set_affinit()
+> to enable ID X on HART B.
 
-arch/arm/boot/dts/marvell/armada-385-linksys.dtsi is another
-alternative, which does not have the MDIO bus.
+Yes, the 1-1 approach will require an IPI to one target cpu on affinity
+changes, and similar on mask/unmask.
 
-	Andrew
+The 1-n approach, require no-IPI on affinity changes (nice!), but IPI
+broadcast to all cores on mask/unmask (not so nice).
+
+>> >> My concern is interrupts become a scarce resource with this
+>> >> implementation, but maybe my view is incorrect. I've seen bare-metal
+>> >> x86 systems (no VMs) with ~200 cores, and ~2000 interrupts, but maybe
+>> >> that is considered "a lot of interrupts".
+>> >>
+>> >> As long as we don't get into scenarios where we're running out of
+>> >> interrupts, due to the software design.
+>> >>
+>> >
+>> > The current approach is simpler and ensures irq_set_affinity
+>> > always works. The limit of max 2047 IDs is sufficient for many
+>> > systems (if not all).
+>>
+>> Let me give you another view. On a 128c system each core has ~16 unique
+>> interrupts for disposal. E.g. the Intel E800 NIC has more than 2048
+>> network queue pairs for each PF.
+>
+> Clearly, this example is a hypothetical and represents a poorly
+> designed platform.
+>
+> Having just 16 IDs per-Core is a very poor design choice. In fact, the
+> Server SoC spec mandates a minimum 255 IDs.
+
+You are misreading. A 128c system with 2047 MSIs per-core, will only
+have 16 *per-core unique* (2047/128) interrupts with the current series.
+
+I'm not saying that each IMSIC has 16 IDs, I'm saying that in a 128c
+system with the maximum amount of MSIs possible in the spec, you'll end
+up with 16 *unique* interrupts per core.
+
+> Regarding NICs which support a large number of queues, the driver
+> will typically enable only one queue per-core and set the affinity to
+> separate cores. We have user-space data plane applications based
+> on DPDK which are capable of using a large number of NIC queues
+> but these applications are polling based and don't use MSIs.
+
+That's one sample point, and clearly not the only one. There are *many*
+different usage models. Just because you *assign* MSI, doesn't mean they
+are firing all the time.
+
+I can show you a couple of networking setups where this is clearly not
+enough. Each core has a large number of QoS queues, and each queue would
+very much like to have a dedicated MSI.
+
+>> > When we encounter a system requiring a large number of MSIs,
+>> > we can either:
+>> > 1) Extend the AIA spec to support greater than 2047 IDs
+>> > 2) Re-think the approach in the IMSIC driver
+>> >
+>> > The choice between #1 and #2 above depends on the
+>> > guarantees we want for irq_set_affinity().
+>>
+>> The irq_set_affinity() behavior is better with this series, but I think
+>> the other downsides: number of available interrupt sources, and IPI
+>> broadcast are worse.
+>
+> The IPI overhead in the approach you are suggesting will be
+> even bad compared to the IPI overhead of the current approach
+> because we will end-up doing IPI upon every irq_set_affinity()
+> in the suggested approach compared to doing IPI upon every
+> mask/unmask in the current approach.
+
+Again, very workload dependent.
+
+This series does IPI broadcast on masking/unmasking, which means that
+cores that don't care get interrupted because, say, a network queue-pair
+is setup on another core.
+
+Some workloads never change the irq affinity.
+
+I'm just pointing out that there are pro/cons with both variants.
+
+> The biggest advantage of the current approach is a reliable
+> irq_set_affinity() which is a very valuable thing to have.
+
+...and I'm arguing that we're paying a big price for that.
+
+> ARM systems easily support a large number of LPIs per-core.
+> For example, GIC-700 supports 56000 LPIs per-core.
+> (Refer, https://developer.arm.com/documentation/101516/0300/About-the-GIC=
+-700/Features)
+
+Yeah, but this is not the GIC. This is something that looks more like
+the x86 world. We'll be stuck with a lot of implementations with AIA 1.0
+spec, and many cores.
+
+> In the RISC-V world, we can easily define a small fast track
+> extension based on S*csrind extension which can allow a
+> large number of IMSIC IDs per-core.
+>
+> Instead of addressing problems on a hypothetical system,
+> I suggest we go ahead with the current approach and deal
+> with a system having MSI over-subscription when such a
+> system shows up.
+
+I've pointed out my concerns. We're not agreeing, but hey, I'm just one
+sample point here! I'll leave it here for others to chime in!
+
+Still much appreciate all the hard work on the series!
+
+
+Have a nice weekend,
+Bj=C3=B6rn
 
