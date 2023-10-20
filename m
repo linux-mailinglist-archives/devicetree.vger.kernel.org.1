@@ -1,87 +1,126 @@
-Return-Path: <devicetree+bounces-10278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DDA7D0986
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:28:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D07B87D0991
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDBB51C20A63
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 07:28:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5DE11C20A34
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 07:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155A9D306;
-	Fri, 20 Oct 2023 07:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dlsvu9S3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB84D308;
+	Fri, 20 Oct 2023 07:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA0C7D2EF
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 07:28:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0211BC433C8;
-	Fri, 20 Oct 2023 07:28:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697786894;
-	bh=pCCRFM6ULLJjJgsKJt88LvxEULDKIIK3FvHjUIHnSc8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Dlsvu9S3x6wi/7WivOmOL46rm+tfs6G+zMYeJjQS1Bxw4TklRQL4+Bdfo3hZOppxX
-	 ZqwuDMJ+PA4AktiscfQyh0RArgy+w/1vPguWKFcG2hLbTsVRhl9k+U54tPzHdAQfsM
-	 NcmB26PbK2zLpIuTW9i5gvvAcIq/5t7Qs5TkjCYYZJp4lRxpCu17LTXBMRLbEz8LLQ
-	 /Cbp2TNmqo7DL+x6g+p8r1nSUhtCUmgmGXlv7dE5oeStP8TAfNa/wBuwgIi87dm3KG
-	 XmWPGqB4Ff+yuMJjhS2ETfBw5dAPNbFVmtiLH64mM+CY/1xODvBI7Vh5GrcP9spIoh
-	 PtBXPqygSjDTw==
-Date: Fri, 20 Oct 2023 08:28:04 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, Conor Dooley
- <conor@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, matt@ranostay.org
-Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
- schemas
-Message-ID: <20231020082804.5ee8364a@jic23-huawei>
-In-Reply-To: <20231019122120.00007cdd@Huawei.com>
-References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
-	<20231019-rematch-ethically-9d482ca4607e@spud>
-	<20231019-theme-clunky-f4a2e1d122e7@spud>
-	<0084ddad-d6fc-ca26-2d26-ba71e81f5f8b@tweaklogic.com>
-	<20231019122120.00007cdd@Huawei.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F07D2EF
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 07:33:04 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E225F91;
+	Fri, 20 Oct 2023 00:32:58 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5a7c011e113so5641517b3.1;
+        Fri, 20 Oct 2023 00:32:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697787178; x=1698391978;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VsN5y4fIi6cFNHhstQqXDFbqAjRT4Kg5GT/+7BP3xbs=;
+        b=ca/96XvBQ0hjt1EtR8g2NmJ6ojqtMqYWBMhLn0zzMcGYQZy1OmlfMa+Gq5CHMw5lPZ
+         P+X3s+GteWQB3YRlADR8+E4XpIq6agMDGi0w/xDX4P4lzu2gdc34b+3KX5dT4xGu4KWA
+         9gJfA8oy3dJtkrWLxLLHFgJ8M5PIaHxZqq4ODO8GVyIKNOcMeXQJ2z1zJfsW/f8Lwj69
+         oDa4RvAB/OvSU9AR9I+4BQc7qmZnLNLsihUP4hA2jysBKTF3vJTIyEPNQrC8Ahdtobgv
+         n8IRLOL+4d2s+KQm7SOchKNp7ypEXTq5EOr5tBDYjrbab/Zklm/8SOnanqi7Yj9tr0DN
+         RYzw==
+X-Gm-Message-State: AOJu0Yw9rBGHbniMcRUfABLG7tjRBhI9+CG1g0epZvjHVeuYpNxp8YjY
+	RqtOWYksBkE3AyrGwOu7O+Ouy5A0n9KNNw==
+X-Google-Smtp-Source: AGHT+IG7ecKYJxz7q0da0lfeeR8w95QR/7uIe9C/xNzmnkOZjrpQ59at+Wwd/PacE1GWuX4itSBUZw==
+X-Received: by 2002:a25:aba7:0:b0:d7b:985b:278f with SMTP id v36-20020a25aba7000000b00d7b985b278fmr986264ybi.16.1697787176607;
+        Fri, 20 Oct 2023 00:32:56 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id l131-20020a25cc89000000b00d677aec54ffsm381763ybf.60.2023.10.20.00.32.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Oct 2023 00:32:56 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5a7dd65052aso5779667b3.0;
+        Fri, 20 Oct 2023 00:32:56 -0700 (PDT)
+X-Received: by 2002:a81:7746:0:b0:5a8:7375:af6b with SMTP id
+ s67-20020a817746000000b005a87375af6bmr1198848ywc.44.1697787176074; Fri, 20
+ Oct 2023 00:32:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20231019140232.3660375-1-peterlin@andestech.com>
+In-Reply-To: <20231019140232.3660375-1-peterlin@andestech.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 20 Oct 2023 09:32:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW1Ua4skxtT+9kyoSDiqt2kNiNG-1jHE8rf4+b14hX4Vg@mail.gmail.com>
+Message-ID: <CAMuHMdW1Ua4skxtT+9kyoSDiqt2kNiNG-1jHE8rf4+b14hX4Vg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/10] riscv: dts: renesas: Add Andes PMU extension
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: magnus.damm@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com, 
+	dylan@andestech.com, locus84@andestech.com, dminus@andestech.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 19 Oct 2023 12:21:20 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+Hi Peter,
 
-> On Thu, 19 Oct 2023 21:24:09 +1030
-> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
-> 
-> > > Also:
-> > > <matt.ranostay@konsulko.com>: host aspmx.l.google.com said:
-> > >      550-5.1.1 The email account that you tried to reach does not exist.    
-> > Thanks Conor for pointing this out. Can you please help me out with this?
-> > get_maintainer.pl suggested me to add this email ID.  
-> 
-> Matt has moved job, I've messaged him to find out if he has a new preferred
-> email address.
+On Thu, Oct 19, 2023 at 4:05=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
+> Add "xandespmu" to ISA extensions, the SBI PMU driver will
+> probe the extension and use the non-standard irq source.
 >
-+CC address Matt suggested using going forwards.
- 
-> J
-> > 
-> > Regards,
-> > Subhajit Ghosh
-> >   
-> 
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> ---
+> Changes v1 -> v2:
+>   - New patch
 
+Thanks for your patch!
+
+> --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> @@ -26,7 +26,7 @@ cpu0: cpu@0 {
+>                         riscv,isa =3D "rv64imafdc";
+>                         riscv,isa-base =3D "rv64i";
+>                         riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> -                                              "zifencei", "zihpm";
+> +                                              "zifencei", "zihpm", "xand=
+espmu";
+>                         mmu-type =3D "riscv,sv39";
+>                         i-cache-size =3D <0x8000>;
+>                         i-cache-line-size =3D <0x40>;
+
+This extension is not documented in
+Documentation/devicetree/bindings/riscv/extensions.yaml. Perhaps it was
+introduced in an earlier patch in the series, to which I was not CCed?
+
+Threading is broken, so I can't easily find the whole series in lore:
+https://lore.kernel.org/all/20231019140232.3660375-1-peterlin@andestech.com=
+/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
