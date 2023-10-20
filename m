@@ -1,137 +1,89 @@
-Return-Path: <devicetree+bounces-10303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A377D0B39
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:13:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 562667D0BB4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8052B2823BD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:13:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D581AB217C6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 09:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D3C10A2F;
-	Fri, 20 Oct 2023 09:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B6512E6C;
+	Fri, 20 Oct 2023 09:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="F6UoGv6F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WIpyNE75"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B4110A14;
-	Fri, 20 Oct 2023 09:13:22 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FDB2D51;
-	Fri, 20 Oct 2023 02:13:19 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C4A5D1BF204;
-	Fri, 20 Oct 2023 09:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1697793197;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bx7ZRkz0a0dqCLmu+56GfvXdIrUJcnhPCzJDePZ7gDw=;
-	b=F6UoGv6FopBzZfDliMmees9tsQVobr1kV2qymReDVkFHsU2l/x0m59HEUZ4h0+4EqQHdBC
-	NVx/qVwB0kAB7XsnrA362qUkw/1BNKTFjPMwRuTDC9lmgVsq+Taar4O71UywfwSjmzmYWh
-	6kf7CMXwCYXGD1RCdHV7MW9QVg8job22XIwQIHfsq3shVnoZYzGG546Nqfac1DgB8t2Y+/
-	SqslCDg9ZkJj+NdsFheT04rBwmyj7c/0F0r8kWYCIyW2T72JbSEneKcuYovufgESLbfqVR
-	h8pMTYWPRezwFq274XEr56faPc7cyO9kqf4+44Y9v7myepuh/joEmAOlo6229g==
-Message-ID: <4da86f94-c272-4e45-bd1d-bd52d0a01a81@arinc9.com>
-Date: Fri, 20 Oct 2023 12:13:10 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED6112E57;
+	Fri, 20 Oct 2023 09:27:36 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55919D49;
+	Fri, 20 Oct 2023 02:27:35 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-5079f9675c6so834131e87.2;
+        Fri, 20 Oct 2023 02:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697794053; x=1698398853; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9HqcVJytl5bv/aF+KxQt5JHBD+CsHQ2qMEG4kdAlh5s=;
+        b=WIpyNE75romXiEXoDRTjusg8AGAmw9R9BwCd22pkVXrUPibIi6ST6ISa60rxJeFGBn
+         W+mrDAQ8pHRk7a+P+uvtAsWOI75yL9hM4OJe0ZsdKU9SNv+h8tkYYSTQT8Av968D34as
+         KsdLnoHv5oKvqff4vItMW0ipfMyO9PxUJXe2st6kuuiJ0VLNRSpchCivf2khnU4qEPbC
+         OcdhFu77ZfDITW3NuT4EWgsbOmSw4I1yNTvFK06MlDetb/vTAMZzH9sNsHM5sh7o68Cy
+         X2rWigxBqBLpnOOLe8f4EuQPYQHzvBjHb07MHaosJw/GPx9snj0AF58A2462GiI75uUm
+         H/7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697794053; x=1698398853;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9HqcVJytl5bv/aF+KxQt5JHBD+CsHQ2qMEG4kdAlh5s=;
+        b=oCRnoVVyi1t8ollQ+AQ+FylcQbW0I4YsDeming8TYvCE5Xt+PmPl7L2Q3258cCqPNW
+         MdyUQ86FXuNOGEcFdTb1k+XhYjIqEzrA2YjcIpBBZ2+N1BphSpSBjPSJrjkvHSnuUw2v
+         ggE3KY62iJR/EVmhAKnUbsNP7tLhtCK2FHMnXE/NBZR6dCcikhEI9SAcpnVjDM7yV5wx
+         dJLn/+aND9Aryk3IelOCJz+t5Zcz4C8WlAPX4sXEalClnv7XA0ULSMCAiAQIdWzjD2XF
+         Q44NCEncLz3R6dn8UOVusfP8ZVoNpP53khCtHJqA8xbY2aG3oz+seR3+BjVyzr7BHXiS
+         azDA==
+X-Gm-Message-State: AOJu0Yz+ft1lLBKSLbTpHRzl72IgBA8iwgFCKTWfw/asyCX6EhkqRGmq
+	Fe1Cr7h6veayspMiePlKryQlgEKlAnleXA==
+X-Google-Smtp-Source: AGHT+IFQ08ub3og0Zp1kbIM98EmTalF0t0kVjHMIiibOFN0/Jw5V/kHj+j6LWfgM1fKeOEK1MVmT7Q==
+X-Received: by 2002:a05:6512:3247:b0:501:c779:b3bb with SMTP id c7-20020a056512324700b00501c779b3bbmr812270lfr.60.1697794053180;
+        Fri, 20 Oct 2023 02:27:33 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id a3-20020adfe5c3000000b0032da40fd7bdsm1307189wrn.24.2023.10.20.02.27.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 02:27:32 -0700 (PDT)
+Date: Fri, 20 Oct 2023 12:27:29 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: UNGLinuxDriver@microchip.com, andrew@lunn.ch, conor+dt@kernel.org,
+	davem@davemloft.net, devicetree@vger.kernel.org,
+	edumazet@google.com, f.fainelli@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org, woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v3 2/2] net:dsa:microchip: add property to select
+Message-ID: <20231020092729.gpbr7s2cbmznmal7@skbuf>
+References: <20231019165409.5sgkyvxsidrrptgh@skbuf>
+ <20231020084620.4603-1-ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
- in schema
-To: Vladimir Oltean <olteanv@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?Q?Marek_Beh=C3=BAn?=
- <kabel@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Florian Fainelli <f.fainelli@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
- <20231019153552.nndysafvblrkl2zn@skbuf>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20231019153552.nndysafvblrkl2zn@skbuf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231020084620.4603-1-ante.knezic@helmholz.de>
 
-On 19.10.2023 18:35, Vladimir Oltean wrote:
-> Yikes, both these examples are actually broken, for a reason that was
-> extensively discussed with Arınç in the past, and that he tried to
-> automatically detect through dt-schema but was ultimately told it's too
-> complicated.
-> https://patchwork.kernel.org/project/netdevbpf/cover/20230916110902.234273-1-arinc.unal@arinc9.com/
+On Fri, Oct 20, 2023 at 10:46:20AM +0200, Ante Knezic wrote:
+> Ok, will do. I am guessing I should leave the existing 
+> ksz8795_cpu_interface_select() as it is?
 
-True, and then I've figured that that approach was wrong from the start.
-Read below.
-
-> 
-> Long story short: the "mdio" node is also the ds->slave_mii_bus (soon to
-> be ds->user_mii_bus after Florian's inclusivity changes). Having a
-> slave_mii_bus makes DSA know what to do with port nodes like this, which
-> don't have an explicit phy-handle:
-> 
-> 	port@3 {
-> 	    reg = <3>;
-> 	    label = "lan4";
-> 	};
-> 
-> but actually, call phy_connect() on the ds->slave_mii_bus at address 3
-> (the port "reg").
-> 
-> The issue is that phy_connect() won't work if ds->slave_mii_bus has an
-> OF presence, and ethernet-phy@3 isn't defined under it (which it isn't,
-> you only put ethernet-phy@9). The super detailed reason is that the
-> OF-based __of_mdiobus_register() does this:
-> 
-> 	/* Mask out all PHYs from auto probing.  Instead the PHYs listed in
-> 	 * the device tree are populated after the bus has been registered */
-> 	mdio->phy_mask = ~0;
-> 
-> So either:
-> 
-> - you delete the "mdio" node and the ethernet-phys under it, or
-> - you add all ethernet-phys under the mdio node, and put phy-handles
->    from ports to each of them, and phy-modes of "internal"
-> 
-> What you have now is exactly what won't work, i.e. an OF-based
-> slave_mii_bus with a non-OF-based phy_connect().
-> 
-> I don't want to see DT examples that are structurally broken, sorry,
-> because then we wonder why users are confused.
-> 
-> Personally, I would opt for adding the more modern explicit phy-handle
-> and phy-mode everywhere. Those also work with the U-Boot DM_DSA driver.
-
-As can be seen on the conversation on the patch series you've referred to
-above, this is ultimately what I've proposed to enforce on all ethernet
-controllers (I hadn't mentioned phy-mode there yet). As long as Andrew
-holds his stance, this won't happen. The whole conversation on that patch
-series is a great read as to how a devicetree should be defined and how
-drivers should interact with it.
-
-But sure, they can at least be put on the examples for this specific
-schema.
-
-Arınç
+I would encourage moving it to the simpler call path as well, but
+ultimately this is up to you.
 
