@@ -1,105 +1,124 @@
-Return-Path: <devicetree+bounces-10388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97C77D1011
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9693B7D101E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:00:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C188281CFF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:59:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 356E5282531
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A031A717;
-	Fri, 20 Oct 2023 12:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C7F1A72E;
+	Fri, 20 Oct 2023 13:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="foUvfQU0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="fQMXD518"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65EDD1A704
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 12:59:57 +0000 (UTC)
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE9BD5F
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:59:55 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5a86b6391e9so8602247b3.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:59:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821BF1A29C
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 13:00:27 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEEED60;
+	Fri, 20 Oct 2023 06:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697806794; x=1698411594; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QFC/B00tUI2hXABfcSdP/RdnPPeUlHvWc23J3vC1mo8=;
-        b=foUvfQU0BLptbJBxK7DRcxWBDl4s950H52WKbEUUpoUd22VoX9RtTPpI4OxOYnF4az
-         TXtJeBEVMDZk1Yfnwzq8oVRxeJ8GN27HmTjhxGu2buqcu5jKb2kx6pwC8Gj1Msy7JvEu
-         YV9INu23Imn4YcTKACkoRMRPVXXA+X3febVFAHUHKVb74Q3aIThxbcZZuX3So7+IFPOa
-         O4zmP4WvFCnFS3MA5tnaWQi5ubJGT53/HBmCXv84y7+OEecycOCIGJg0iiWTvbpL8ZBC
-         fiVFAz0KmRKmMS/AcRiBToz6JAnNdpszKHGtBsrakLOcohCPEl9z+sNrcMJMOPyxnNWj
-         hfjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697806794; x=1698411594;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QFC/B00tUI2hXABfcSdP/RdnPPeUlHvWc23J3vC1mo8=;
-        b=ii9JdnqTlIMMswY22TALp/k5WanuE9alwMG1lnx2dleTufPAEsCAOOKeg3lzoO+DO/
-         RC28SezSeVOptoVY10lxKxrZUMOp5mg7XXRbU+yOhtqttrEgNxDPP2E/N8IgLzi9XX0+
-         JbW89QWTObJXOjDt3Se54485dr0YO1Rc0BenAuNG9cBVF9s53JEI7BZeCdbmIPpwmYGV
-         hHw0rw8YKTF/15d5JD0H1wHBA0+dWaeTAsyN5aSoXlbOdrROFbz3bV97tr+tFXkU0D4R
-         XfONvUaDKu3zCCSFub9udgasZzKKgufcxUVFKY16YlMh5paBQanKIkoHwtmm1SCKxSbH
-         pV9w==
-X-Gm-Message-State: AOJu0YwxSQjW3Wgi69NnmcxWBcYhS99P+9AQaNYOljfMT+ZajfL2hdtn
-	okGNc6s67ly+clCedQ/ve9xjhbeYaIStrNwxPyO55w==
-X-Google-Smtp-Source: AGHT+IFaEnMKB0meMkvyhN4BbXF4gAdnlozEeoARMKEWNdhaivAk0ry/mu1R4xUPut/elXgpxZq5kcDKovovpb4EQoQ=
-X-Received: by 2002:a0d:e843:0:b0:5a7:dac8:440c with SMTP id
- r64-20020a0de843000000b005a7dac8440cmr1964960ywe.23.1697806794468; Fri, 20
- Oct 2023 05:59:54 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1697806824; x=1729342824;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=TnyfARd24Yv/vqdYrIhsLpQv3L7sDR2LHiBp0Qosj6Y=;
+  b=fQMXD518OKtnT67QILbxzGloZKL+kJkzL2XETgK2pHzHgdH4iG7yE/z9
+   jBSsPaCaL8xFcAfKJafpmb6bkRu5Ppb0d+YJhoIyPBTHl2LTEE2wAEyWS
+   WJq0w1csQawtC+zhl+Ujng+uMGQQkwg5LLeCqtiN37+bJE6uDOwcih/qJ
+   9pRB1r6ynEqrVISKdzRfZYonGkC955s/CG0T80oNb5WYH7jh+I+KkA3VC
+   0IKvMnEBfScNDI48vLbVMLiMEfoQfRst+vpyLilhvbL9vyHPdyzR/ew8t
+   rFUWNIKEo1ONX+GGuYWiw3HwAWq4OGn5zsCKYRqlCY4pojtiwWUwQ/VYg
+   w==;
+X-IronPort-AV: E=Sophos;i="6.03,238,1694728800"; 
+   d="scan'208";a="33575466"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 20 Oct 2023 15:00:21 +0200
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 77FB128007F;
+	Fri, 20 Oct 2023 15:00:21 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH 0/5] TQMa93xxLA/MBa93xxLA LVDS support
+Date: Fri, 20 Oct 2023 15:00:13 +0200
+Message-Id: <20231020130019.665853-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-5-3ee0c67383be@linaro.org>
- <20231019144021.ksymhjpvawv42vhj@skbuf> <20231019144935.3wrnqyipiq3vkxb7@skbuf>
- <20231019172649.784a60d4@dellmb> <20231019162232.5iykxtlcezekc2uz@skbuf>
-In-Reply-To: <20231019162232.5iykxtlcezekc2uz@skbuf>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 20 Oct 2023 14:59:43 +0200
-Message-ID: <CACRpkdam5UZWbB_tAKoU3_jdZLbH0TFT3yt3Xf9G1b=_42e4zQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 5/7] ARM64: dts: marvell: Fix some common
- switch mistakes
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
-	Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Christian Marangi <ansuelsmth@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 19, 2023 at 6:22=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
- wrote:
-> On Thu, Oct 19, 2023 at 05:26:49PM +0200, Marek Beh=C3=BAn wrote:
-> > Yes, unfortunately changing that node name will break booting.
-> >
-> > Maybe we could add a comment into the DTS to describe this unfortunate
-> > state of things? :)
->
-> Well, the fact that Linus didn't notice means that there are insufficient
-> signals currently, so I guess a more explicit comment would help. Could
-> you prepare a patch?
+Hi,
 
-I can just include a blurb in my patch so we don't get colliding
-changes.
+this series adds LVDS display support for TQMa93xxLA/MBa93xxLA.
+It consists of two parts:
+1. LVDS support for imx93
+2. LVDS platform support for tqma9352-mba93xxla
 
-Yours,
-Linus Walleij
+Patch 1 is the imx93 equivalent of commit 9cb6d1b39a8f ("soc: imx:
+  imx8m-blk-ctrl: Scan subnodes and bind drivers to them")
+Patch 2 is the imx93 equivalent of commit 1cb0c87d27dc ("dt-bindings:
+  soc: imx8mp-media-blk-ctrl: Add LDB subnode into schema and example")
+Patch 3 is the imx93 equivalent of commit 94e6197dadc9 ("arm64: dts:
+  imx8mp: Add LCDIF2 & LDB nodes")
+Patch 4 adds a video PLL configuration for 477.4MHz
+Patch 5 adds LVDS DT overlay for platform support
+
+Patches 1-3 are self-contained from patches 4-5 and could be merged
+independently.
+Patch 4 is necessary to achieve a correct LVDS frequency supported by the
+display.
+
+Alexander Stein (5):
+  soc: imx: imx93-blk-ctrl: Scan subnodes and bind drivers to them
+  dt-bindings: soc: imx93-media-blk-ctrl: Add LDB subnode into schema
+    and example
+  arm64: dts: imx93: Add LCDIF & LDB nodes
+  clk: imx: clk-fracn-gppll: Add 477.4MHz config for video pll
+  arm64: dts: mba93xxla: Add LVDS overlay
+
+ .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 44 +++++++++++
+ arch/arm64/boot/dts/freescale/Makefile        |  3 +
+ ...3-tqma9352-mba93xxla-lvds-tm070jvhg33.dtso | 45 +++++++++++
+ .../freescale/imx93-tqma9352-mba93xxla.dts    | 27 +++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      | 76 +++++++++++++++++++
+ drivers/clk/imx/clk-fracn-gppll.c             |  1 +
+ drivers/pmdomain/imx/imx93-blk-ctrl.c         |  7 ++
+ 7 files changed, 203 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtso
+
+-- 
+2.34.1
+
 
