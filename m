@@ -1,143 +1,96 @@
-Return-Path: <devicetree+bounces-10455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BCD7D137E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:03:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E789A7D13B6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D646E1C20F2A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:03:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 576E1281EC2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B807A1E529;
-	Fri, 20 Oct 2023 16:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EA21E536;
+	Fri, 20 Oct 2023 16:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IQFefCmv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="a0uAi1WV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425731E506;
-	Fri, 20 Oct 2023 16:03:35 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C018AB3;
-	Fri, 20 Oct 2023 09:03:33 -0700 (PDT)
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 1B29F660731B;
-	Fri, 20 Oct 2023 17:03:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697817812;
-	bh=gdDLnZkjmHu+Sk+/2xbwhd6fH/+pG0s/huYMTIz5rp8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IQFefCmvfeF1DgM1gwp4s6N4cgiJZSOLMPM4KqmFPhcDEqYra/6qGuzOZ8uXfsM1G
-	 dndXiXqb3HzXVk1aMsaSQ0S56EMTjnZjF64NXuuVRQQz8/270jgTiqIxtulr4wGb7c
-	 OPhUDYPn+hXJEAf4rl9wOAcZA/tf/eSSJYQQzh0N/+XupthBNbSDHU/kqHqFhTr5Z6
-	 x0j1cSz2oJoChJT4pr/9Vo3CP/ji3vHYFZ8GgNTQvXtN7ZRdbaJeFsp0+fPOob5UUU
-	 Tu62TlLLx4w2HAGI92a3SiNLOaUFO/rvEo7+sxOqggfemBvjNEz+vG+DrTd/1cZKNv
-	 kvpOyb/vt5z8A==
-Received: by mercury (Postfix, from userid 1000)
-	id 1E11910603FC; Fri, 20 Oct 2023 18:03:29 +0200 (CEST)
-Date: Fri, 20 Oct 2023 18:03:29 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883981DDC7;
+	Fri, 20 Oct 2023 16:08:17 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D34E1A8;
+	Fri, 20 Oct 2023 09:08:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ShgNviY6uRULZSOoTM3SW6UAuXHvVtML/+Hkod5jeco=; b=a0uAi1WVuGqpIjS/NvcbG3Kmz9
+	lKUe4TZ9TFX0frVrmQpDcG1NR14DNnYyPROpjwj0e4fbcMRUuWDlQBiJSNyF4H/1cPVwjHcwXRcPp
+	q6WOqLeQXtP+GR8JnO5iWU8jpvgpsdjzc60mhg8BgKc9rKBAj1jZYZO3NDykH0zZ3vSo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qts2Y-002noa-91; Fri, 20 Oct 2023 18:07:58 +0200
+Date: Fri, 20 Oct 2023 18:07:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 1/3] dt-bindings: usb: add rk3588 compatible to
- rockchip,dwc3
-Message-ID: <20231020160329.uqgjjr6ubfrcqjkj@mercury.elektranox.org>
-References: <20231020150022.48725-1-sebastian.reichel@collabora.com>
- <20231020150022.48725-2-sebastian.reichel@collabora.com>
- <20231020-shudder-tackle-cc98a82f1cd0@spud>
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: marvell: Rewrite MV88E6xxx
+ in schema
+Message-ID: <c3f1049b-2bfa-4421-9f40-497ddd2911b5@lunn.ch>
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-6-3ee0c67383be@linaro.org>
+ <20231019153552.nndysafvblrkl2zn@skbuf>
+ <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bdmk4yrcxo3we24y"
-Content-Disposition: inline
-In-Reply-To: <20231020-shudder-tackle-cc98a82f1cd0@spud>
-
-
---bdmk4yrcxo3we24y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CACRpkdbskk22SLmopUTD78kMWL_gcOa=YWHLFtrkDAD5=W=HFw@mail.gmail.com>
 
-Hi Conor,
+> Isn't there some in-kernel DTS file with a *good* example of how
+> a Marvell mv88e6xxx switch is supposed to look I can just
+> copy instead? We shouldn't conjure synthetic examples.
 
-On Fri, Oct 20, 2023 at 04:36:19PM +0100, Conor Dooley wrote:
-> On Fri, Oct 20, 2023 at 04:11:40PM +0200, Sebastian Reichel wrote:
-> > [...]
-> > +allOf:
-> > +  - $ref: snps,dwc3.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3328-dwc3
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 3
-> > +          maxItems: 4
-> > +        clock-names:
-> > +          minItems: 3
-> > +          items:
-> > +            - const: ref_clk
-> > +            - const: suspend_clk
-> > +            - const: bus_clk
-> > +            - const: grf_clk
->=20
-> minItems for clocks and clock-names is already 3, is it not?
+arch/arm/boot/dts/marvell/armada-381-netgear-gs110emx.dts is an
+example of a 6390 with external PHYs. The nodes are in a somewhat
+unconventional order, but nothing requires them to be any specific
+order.
 
-Yes, but the following 'maxItems: 4' implicitly sets it to 4,
-so I had to set it again. The same is true for clock-names -
-providings new 'items:' effectively drops the "minItems: 3"
-=66rom the generic section.
+arch/arm/boot/dts/nxp/vf/vf610-zii-ssmb-spu3.dts is another 6390 which
+only uses the internal PHYs, so there are no mdio busses listed or
+needed.
 
-> Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Thanks,
-> Conor.
+arch/arm/boot/dts/marvell/armada-370-rd.dts is another example of how
+it can be done. It lists the PHYs on the MDIO bus, but does not have
+any phy-handles, it lets the DSA core link them. Some people might
+consider this a bad example? But it works, i use this machine for
+development work.
 
-Thanks,
+arch/arm/boot/dts/marvell/armada-385-linksys.dtsi is another
+alternative, which does not have the MDIO bus.
 
--- Sebastian
-
---bdmk4yrcxo3we24y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUypMQACgkQ2O7X88g7
-+prWug//YTS5WE0ntNTSommlUibet+KcZPc5blw/2DH/Lx7UHSPecqtfjAWpAB/j
-Cg9pHPgOumi0wJSdmqKRkJST7bKaCOkpw4N4HLqnrNBL+PNLG7sQOo9qMwaV2x7B
-3nFbsXLjoxlHuYGrupRoFAUL/LevwpWC1vgnrKdk37p0uJzmhRVyUtMrjE3wqzVU
-FbiI4NgxpflWpRQ8VqtUzZVGA/15RXZVqnFjHgGZ624NhDD/2KsIUYOscvwq5qYa
-1QylGUeTFE3D7EGbmTLd/voxlGKTntEPbYw+hP8JVf/oA7d01zlFRFa3MLmVM4vg
-cRbaTt96A6ugCjBdUdkHYhw0aEROd4u/5hCdRv5whBOqWmz5HJ4jKsc+hrneNE7T
-M9tHr6WpbtHu/s4Gepx+AxScNwOEF/A93pOuQXcy1CYOjF/hvx9zP0PYsQwD7b03
-Qtr6Qnp95rozYYFt/2NforFTdFAwcGxR3XtUmd7qAMkIQYmApzgaQiDzLoJb/Gtv
-1nSAiW0lvgHALq+PefTqKCqPXs28wJXdojJJscTIRk7RbkoLkxScdnaZG85kp+Qj
-xSAtSGrvjE6PLvTdwxP3G+R9Qlh1O5mzze9iydGtwY4UsW6vR+Xybvu6e8V5rC8B
-R/C1la6YhCZoGPgK93jn4tVCqwHxiOX3TMY1NlCj4hn+2WU2AxQ=
-=a1sC
------END PGP SIGNATURE-----
-
---bdmk4yrcxo3we24y--
+	Andrew
 
