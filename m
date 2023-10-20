@@ -1,187 +1,107 @@
-Return-Path: <devicetree+bounces-10290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DA87D0A8E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:32:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6AB7D0A9D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:35:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65FD528211E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:31:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DD93B214A5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8046101CA;
-	Fri, 20 Oct 2023 08:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odWlbFAl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49AECA41;
+	Fri, 20 Oct 2023 08:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C637A10A26;
-	Fri, 20 Oct 2023 08:31:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26E84C433C8;
-	Fri, 20 Oct 2023 08:31:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697790718;
-	bh=l9qV989JwaBiiJEzdeKJlntVo1EREOKiVHaZsdwHnJo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=odWlbFAl7nFcaG6RVc59qHHDTE03y7C5RVLLzVqY7BcsH/eKUuqi5QJqQkX+DjdwI
-	 MGqJeRYmQdvcSRri1kX3RgvV1r55817E6yF41wrXWIqo5pIlNcXsjKeToLo6uY9ABW
-	 UxYMUZ96W4r3EENLUZY8CALyLETey9uFMBhkT5xxUmU4VFoRszx+PMFQHFLkBjMIvT
-	 FW2cLYwr0ufo2kK6ijcppybmTvgPGluMjf7tr71bBpwCaB+vm4m9Ze9BXwgg4vIYP3
-	 Zt1UoOfGnJt/jHxIp1PFWjQADpaEJhQVF6FOdx/cdngfKLYmWDl9DectfttbwX66k6
-	 cWDca6gXppdOA==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qtkvK-0001jy-13;
-	Fri, 20 Oct 2023 10:32:03 +0200
-Date: Fri, 20 Oct 2023 10:32:02 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 01/10] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <ZTI7AtCJWgAnACSh@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-2-quic_kriskura@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0497D12E52
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:34:56 +0000 (UTC)
+Received: from out28-217.mail.aliyun.com (out28-217.mail.aliyun.com [115.124.28.217])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ACDBD4C;
+	Fri, 20 Oct 2023 01:34:54 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.1840043|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.00383916-7.02771e-05-0.996091;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047187;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.V3YjlUW_1697790882;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V3YjlUW_1697790882)
+          by smtp.aliyun-inc.com;
+          Fri, 20 Oct 2023 16:34:50 +0800
+From: wangweidong.a@awinic.com
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	wangweidong.a@awinic.com,
+	shumingf@realtek.com,
+	rf@opensource.cirrus.com,
+	herve.codina@bootlin.com,
+	ckeepax@opensource.cirrus.com,
+	13916275206@139.com,
+	ryans.lee@analog.com,
+	linus.walleij@linaro.org,
+	sebastian.reichel@collabora.com,
+	ajye_huang@compal.corp-partner.google.com,
+	harshit.m.mogalapalli@oracle.com,
+	arnd@arndb.de,
+	colin.i.king@gmail.com,
+	dan.carpenter@linaro.org,
+	trix@redhat.com,
+	liweilei@awinic.com,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: yijiangtao@awinic.com
+Subject: [PATCH V2 0/4] ASoC: codecs: Add aw88399 amplifier driver
+Date: Fri, 20 Oct 2023 16:34:22 +0800
+Message-ID: <20231020083426.302925-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007154806.605-2-quic_kriskura@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Oct 07, 2023 at 09:17:57PM +0530, Krishna Kurapati wrote:
-> Currently host-only capable DWC3 controllers support Multiport.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-You use the word "currently" in a few places like this (e.g. in comments
-in the code). What exactly do you mean? That all current multiport
-controllers are host-only, or that this is all that the driver supports
-after your changes?
+Add the awinic,aw88399 property to the awinic,aw88395.yaml file.
 
-Please rephrase accordingly throughout so that this becomes clear.
+Add i2c and amplifier registration for
+aw88399 and their associated operation functions.
 
-In any case it looks like the above sentence is at least missing an
-"only".
- 
-> +static int dwc3_read_port_info(struct dwc3 *dwc)
-> +{
-> +	void __iomem *base;
-> +	u8 major_revision;
-> +	u32 offset = 0;
+v1 -> v2: Modify the reset mode
+          Delete AW88399_DSP_I2C_WRITES macros
+           and related debugging statements
+          Change the value of max_register in aw88399
+          Change the value of max_register in aw88261
+          Delete the judgment of unnecessary pointers
+          Modify the judgment of the ret return value
 
-I'd move the initialisation just before the loop.
+Weidong Wang (4):
+  ASoC: dt-bindings: Add schema for "awinic,aw88399"
+  ASoC: codecs: Modify max_register usage error
+  ASoC: codecs: Add code for bin parsing compatible with aw88399
+  ASoC: codecs: Add aw88399 amplifier driver
 
-> +	u32 val;
-> +
-> +	/*
-> +	 * Remap xHCI address space to access XHCI ext cap regs,
+ .../bindings/sound/awinic,aw88395.yaml        |    1 +
+ sound/soc/codecs/Kconfig                      |   14 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/aw88261.c                    |    2 +-
+ sound/soc/codecs/aw88395/aw88395_lib.c        |    3 +
+ sound/soc/codecs/aw88395/aw88395_reg.h        |    1 +
+ sound/soc/codecs/aw88399.c                    | 1911 +++++++++++++++++
+ sound/soc/codecs/aw88399.h                    |  599 ++++++
+ 8 files changed, 2532 insertions(+), 1 deletion(-)
+ create mode 100644 sound/soc/codecs/aw88399.c
+ create mode 100644 sound/soc/codecs/aw88399.h
 
-Drop comma and merge with next line and break it closer to 80 chars
-(instead of 65).
 
-> +	 * since it is needed to get port info.
+base-commit: ce55c22ec8b223a90ff3e084d842f73cfba35588
+-- 
+2.41.0
 
-s/since it is needed to get/which hold the/?
-
-> +	 */
-> +	base = ioremap(dwc->xhci_resources[0].start,
-> +				resource_size(&dwc->xhci_resources[0]));
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	do {
-> +		offset = xhci_find_next_ext_cap(base, offset,
-> +				XHCI_EXT_CAPS_PROTOCOL);
-> +		if (!offset)
-> +			break;
-> +
-> +		val = readl(base + offset);
-> +		major_revision = XHCI_EXT_PORT_MAJOR(val);
-> +
-> +		val = readl(base + offset + 0x08);
-> +		if (major_revision == 0x03) {
-> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(val);
-> +		} else if (major_revision <= 0x02) {
-> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(val);
-> +		} else {
-> +			dev_err(dwc->dev,
-
-This should be dev_warn() (as in the xhci driver) now that you no longer
-treat it as a fatal error.
-
-> +				"Unrecognized port major revision %d\n",
-
-Merge this with the previous line (even if it makes that line 83 chars).
-
-Use a lower case 'U' for consistency with most of the error messages.
-
-> +							major_revision);
-> +		}
-> +	} while (1);
-> +
-> +	dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
-> +			dwc->num_usb2_ports, dwc->num_usb3_ports);
-> +
-> +	iounmap(base);
-> +
-> +	return 0;
-> +}
-> +
->  static int dwc3_probe(struct platform_device *pdev)
->  {
->  	struct device		*dev = &pdev->dev;
-> @@ -1846,6 +1892,7 @@ static int dwc3_probe(struct platform_device *pdev)
->  	void __iomem		*regs;
->  	struct dwc3		*dwc;
->  	int			ret;
-> +	unsigned int		hw_mode;
-
-Nit: I'd place this one before ret.
-
->  
->  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
->  	if (!dwc)
-> @@ -1926,6 +1973,20 @@ static int dwc3_probe(struct platform_device *pdev)
->  			goto err_disable_clks;
->  	}
->  
-> +	/*
-> +	 * Currently only DWC3 controllers that are host-only capable
-> +	 * support Multiport.
-> +	 */
-
-So is this is a limitation of the hardware or implementation?
-
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
-> +		ret = dwc3_read_port_info(dwc);
-> +		if (ret)
-> +			goto err_disable_clks;
-> +	} else {
-> +		dwc->num_usb2_ports = 1;
-> +		dwc->num_usb3_ports = 1;
-> +	}
-> +
->  	spin_lock_init(&dwc->lock);
->  	mutex_init(&dwc->mutex);
-
-Johan
 
