@@ -1,185 +1,294 @@
-Return-Path: <devicetree+bounces-10395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89357D1046
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E557D1071
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 327932822AA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:08:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0085282329
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A7A1A721;
-	Fri, 20 Oct 2023 13:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DCC1A73C;
+	Fri, 20 Oct 2023 13:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="nY/rs2K9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6BPaSqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A60A1A70E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 13:08:05 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C373BE
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 06:08:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1697807283; x=1729343283;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Skf4z9j6PiJZ9aZ1P7AY7tJ1EDYVr5sXAm/rQpb7Ruw=;
-  b=nY/rs2K9S4yxypwgNCKB2034xmx9qADcmgRmJ5S1Gdopvo/xg9juzTjL
-   1TtUMBSuQcAv69W+/4ober1NXBRO3FIRL09rdpYDdIHXxuPriySB/OFBz
-   ORAw072BtunQT3xMfD1g+aUDypaNEQvaazZJtbV1JNqPUHRt+L6alni3h
-   +zL7+ZbvbF2ikuRaFgG7/6UQOcoD/FbUpNNeUHn31Fr73/Yn4Hogy4qRw
-   cm7effcz1N3DxzHfcAczUrzYUcE4NObgYAyFQ/BOaqnISzBh/5G7IzK+B
-   ECJCgL5R7v027iuE+PGlZTKv/bsbrecTMlHQsKVHCxDhDx28F2K3CJvVc
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.03,238,1694728800"; 
-   d="scan'208";a="33575667"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Oct 2023 15:08:01 +0200
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C725328007F;
-	Fri, 20 Oct 2023 15:08:01 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32E813AC4;
+	Fri, 20 Oct 2023 13:23:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F6ABC433C8;
+	Fri, 20 Oct 2023 13:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697808201;
+	bh=TXLUQxsI9mTYageNVxgktdbFEEqiw6lkZcz9AFp4qBI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q6BPaSqGyPLft1OpOae26qJfcW2BHB791GbPCRW5WdcqIO7PwnREweScJjXR//tNh
+	 2/ANzlOcenyu5Q3hEhIB4yJCoaMmeAzbhNNnCAp9zT6VjwWxjZoA18h2XEMcN0QgM0
+	 GZFZknRBsWDlbyn9RcI17nyACYLUVEeXLeBFG5pnJ5TrDBEf7xdWlHjw//3dXG/It/
+	 lJg5tozdst6Me5SZ6m5SrRUFO8X7cgtmdbhyuksC+QAXkGCAGqNhCyTQQuPF1X8XZ0
+	 MuR0jm8PJyIPo0jLDyLlCf69SnOLRjT/acp8iE1nZUDoNiuQsPpWKkCjQ4ZXzv93/C
+	 9WHB+P3M0dMMQ==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qtpTL-0002fV-0v;
+	Fri, 20 Oct 2023 15:23:27 +0200
+Date: Fri, 20 Oct 2023 15:23:27 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux@ew.tq-group.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: freescale: Add dual-channel LVDS overlay for TQMa8MPxL
-Date: Fri, 20 Oct 2023 15:07:55 +0200
-Message-Id: <20231020130755.670762-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+	ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
+ Glue driver
+Message-ID: <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-6-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231007154806.605-6-quic_kriskura@quicinc.com>
 
-This adds an overlay for the supported LVDS display AUO G133HAN01.
-Configure the video PLL frequency to exactly match typical pixel clock of
-141.200 MHz.
+First, drop "QCOM Glue driver" from Subject, you already have the "qcom"
+prefix.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- ...8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtso | 77 +++++++++++++++++++
- 2 files changed, 79 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtso
+On Sat, Oct 07, 2023 at 09:18:01PM +0530, Krishna Kurapati wrote:
+> Refactor setup_irq call to facilitate reading multiport IRQ's along
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a9ccc3b042e5..95a46872b468 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -129,7 +129,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-yavia.dtb
- 
- imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
-+imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtso
-new file mode 100644
-index 000000000000..5058cd9409c7
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtso
-@@ -0,0 +1,77 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Alexander Stein
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+
-+&{/} {
-+	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
-+};
-+
-+&backlight_lvds {
-+	status = "okay";
-+};
-+
-+&display {
-+	compatible = "auo,g133han01";
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dual-lvds-odd-pixels;
-+
-+			panel_in_lvds0: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dual-lvds-even-pixels;
-+
-+			panel_in_lvds1: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch1>;
-+			};
-+		};
-+	};
-+};
-+
-+&lcdif2 {
-+	status = "okay";
-+};
-+
-+&lvds_bridge {
-+	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>,
-+				 <&clk IMX8MP_VIDEO_PLL1>;
-+	assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
-+	assigned-clock-rates = <0>, <988400000>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			ldb_lvds_ch0: endpoint {
-+				remote-endpoint = <&panel_in_lvds0>;
-+			};
-+		};
-+
-+		port@2 {
-+			ldb_lvds_ch1: endpoint {
-+				remote-endpoint = <&panel_in_lvds1>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
--- 
-2.34.1
+"IRQs" or just "interrupts"
 
+> with non mulitport ones. Read through the interrupt-names property
+
+"multiport"
+
+Please spell check all your patches (commit messages and code) before
+posting, it's not the reviewers job.
+
+> to figure out, the type of interrupt (DP/DM/HS/SS) and to which port
+> it belongs. Also keep track of port index to calculate port count
+> based on interrupts provided as input in DT.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 210 +++++++++++++++++++++++++----------
+>  1 file changed, 154 insertions(+), 56 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index ef2006db7601..863892284146 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -53,14 +53,25 @@
+>  #define APPS_USB_AVG_BW 0
+>  #define APPS_USB_PEAK_BW MBps_to_icc(40)
+>  
+> +#define NUM_PHY_IRQ		4
+> +
+> +enum dwc3_qcom_ph_index {
+
+"phy_index"
+
+> +	DP_HS_PHY_IRQ_INDEX = 0,
+> +	DM_HS_PHY_IRQ_INDEX,
+> +	SS_PHY_IRQ_INDEX,
+> +	HS_PHY_IRQ_INDEX,
+> +};
+> +
+>  struct dwc3_acpi_pdata {
+>  	u32			qscratch_base_offset;
+>  	u32			qscratch_base_size;
+>  	u32			dwc3_core_base_size;
+> +	/*
+> +	 * The phy_irq_index corresponds to ACPI indexes of (in order) DP/DM/SS
+> +	 * IRQ's respectively.
+> +	 */
+> +	int			phy_irq_index[NUM_PHY_IRQ - 1];
+>  	int			hs_phy_irq_index;
+> -	int			dp_hs_phy_irq_index;
+> -	int			dm_hs_phy_irq_index;
+> -	int			ss_phy_irq_index;
+>  	bool			is_urs;
+>  };
+>  
+> @@ -73,10 +84,12 @@ struct dwc3_qcom {
+>  	int			num_clocks;
+>  	struct reset_control	*resets;
+>  
+> +	/*
+> +	 * The phy_irq corresponds to IRQ's registered for (in order) DP/DM/SS
+> +	 * respectively.
+> +	 */
+> +	int			phy_irq[NUM_PHY_IRQ - 1][DWC3_MAX_PORTS];
+>  	int			hs_phy_irq;
+> -	int			dp_hs_phy_irq;
+> -	int			dm_hs_phy_irq;
+> -	int			ss_phy_irq;
+
+I'm not sure using arrays like this is a good idea (and haven't you
+switched the indexes above?).
+
+Why not add a port structure instead?
+
+	struct dwc3_qcom_port {
+		int hs_phy_irq;
+		int dp_hs_phy_irq;
+		int dm_hs_phy_irq;
+		int ss_phy_irq;
+	};
+
+and then have
+
+	struct dwc3_qcom_port ports[DWC3_MAX_PORTS];
+
+in dwc3_qcom. The port structure can the later also be amended with
+whatever other additional per-port data there is need for.
+
+This should make the implementation cleaner.
+
+I also don't like the special handling of hs_phy_irq; if this is really
+just another name for the pwr_event_irq then this should be cleaned up
+before making the code more complicated than it needs to be.
+
+Make sure to clarify this before posting a new revision.
+
+>  	enum usb_device_speed	usb2_speed;
+>  
+>  	struct extcon_dev	*edev;
+  
+>  	if (qcom->usb2_speed == USB_SPEED_LOW) {
+> -		dwc3_qcom_disable_wakeup_irq(qcom->dm_hs_phy_irq);
+> +		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DM_HS_PHY_IRQ_INDEX][0]);
+
+For example, this would become
+
+	dwc3_qcom_disable_wakeup_irq(qcom->ports[0].dm_hs_phy_irq);
+
+which is much more readable.
+
+> -static int dwc3_qcom_prep_irq(struct dwc3_qcom *qcom, char *irq_name,
+> -				char *disp_name, int irq)
+> +static int dwc3_qcom_prep_irq(struct dwc3_qcom *qcom, const char *irq_name,
+> +				const char *disp_name, int irq)
+
+Ok, here you did drop the second name parameter, but without renaming
+the first and hidden in a long diff without any mention anywhere.
+
+> +static int dwc3_qcom_get_port_index(const char *irq_name, int irq_index)
+> +{
+> +	int port_index = -1;
+> +
+> +	switch (irq_index) {
+> +	case DP_HS_PHY_IRQ_INDEX:
+> +		if (strcmp(irq_name, "dp_hs_phy_irq") == 0)
+> +			port_index = 1;
+> +		else
+> +			sscanf(irq_name, "dp_hs_phy_%d", &port_index);
+> +		break;
+> +
+
+No need for newlines after break.
+
+> +	case DM_HS_PHY_IRQ_INDEX:
+> +		if (strcmp(irq_name, "dm_hs_phy_irq") == 0)
+> +			port_index = 1;
+> +		else
+> +			sscanf(irq_name, "dm_hs_phy_%d", &port_index);
+> +		break;
+> +
+> +	case SS_PHY_IRQ_INDEX:
+> +		if (strcmp(irq_name, "ss_phy_irq") == 0)
+> +			port_index = 1;
+> +		else
+> +			sscanf(irq_name, "ss_phy_%d", &port_index);
+> +		break;
+> +
+> +	case HS_PHY_IRQ_INDEX:
+> +		port_index = 1;
+> +		break;
+> +	}
+> +
+> +	if (port_index > DWC3_MAX_PORTS)
+> +		port_index = -1;
+> +
+> +	return port_index;
+> +}
+
+>  static int dwc3_qcom_setup_irq(struct platform_device *pdev)
+>  {
+>  	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> -	const struct dwc3_acpi_pdata *pdata = qcom->acpi_pdata;
+> +	struct device_node *np = pdev->dev.of_node;
+> +	const char **irq_names;
+> +	int port_index;
+> +	int acpi_index;
+> +	int irq_count;
+> +	int irq_index;
+>  	int irq;
+>  	int ret;
+> +	int i;
+>  
+> -	irq = dwc3_qcom_get_irq(pdev, "hs_phy_irq",
+> -				pdata ? pdata->hs_phy_irq_index : -1);
+> -	if (irq > 0) {
+> -		ret = dwc3_qcom_prep_irq(qcom, "hs_phy_irq", "qcom_dwc3 HS", irq);
+> -		if (ret)
+> -			return ret;
+> -		qcom->hs_phy_irq = irq;
+> -	}
+> +	irq_count = of_property_count_strings(np, "interrupt-names");
+
+of_property_count_strings() can return negative errnos and you don't
+have any sanity checks for the return value...
+
+Please slow down, and also make sure to get your patches reviewed
+internally before posting new revisions.
+
+> +	irq_names = devm_kzalloc(&pdev->dev, sizeof(*irq_names) * irq_count, GFP_KERNEL);
+
+devm_kcalloc()
+
+> +	if (!irq_names)
+> +		return -ENOMEM;
+>  
+> -	irq = dwc3_qcom_get_irq(pdev, "dp_hs_phy_irq",
+> -				pdata ? pdata->dp_hs_phy_irq_index : -1);
+> -	if (irq > 0) {
+> -		ret = dwc3_qcom_prep_irq(qcom, "dp_hs_phy_irq", "qcom_dwc3 DP_HS", irq);
+> -		if (ret)
+> -			return ret;
+> -		qcom->dp_hs_phy_irq = irq;
+> -	}
+> +	ret = of_property_read_string_array(np, "interrupt-names",
+> +						irq_names, irq_count);
+
+No sanity check here either?
+
+> +	for (i = 0; i < irq_count; i++) {
+> +		irq_index = dwc3_qcom_get_irq_index(irq_names[i]);
+> +		if (irq_index == -1) {
+> +			dev_dbg(&pdev->dev, "Invalid IRQ not handled");
+> +			continue;
+> +		}
+
+I'll just stop reviewing here. This is a waste of my time.
+
+Johan
 
