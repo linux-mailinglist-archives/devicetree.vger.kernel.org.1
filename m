@@ -1,107 +1,162 @@
-Return-Path: <devicetree+bounces-10500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8774E7D192E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 00:31:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2E37D194A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 00:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6F081C21032
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 22:31:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 393372826B2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 22:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEE635503;
-	Fri, 20 Oct 2023 22:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12B4249EF;
+	Fri, 20 Oct 2023 22:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bepYZ+Im"
+	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="tB6X0bM5";
+	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="gpGvhK4d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA85D35505
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 22:31:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B3E7D6E;
-	Fri, 20 Oct 2023 15:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697841097; x=1729377097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ktERwyBLEExIXBgzNyFt6G5y7R4k1hF6zHPNDQ9AZUk=;
-  b=bepYZ+Imf3XuESnYZhB6IrI4JuKukMh5pyZAfQn0685vnrglvQ5exsd5
-   qNOjRm/WVrstzSS6+2vWACJWOD+4Gc6zoNfaYaNuYODId7KRxWzwNktEE
-   +Pc2RMUDoB5Jus7NjtOVn+XKzCWjEejlewObaRXPP1r1IUwJqSZIGt8dR
-   CtsDvjNJ54tXY9E1UWbOi1U6YHhscNnyXsnuOmNyaAJucSqSXADnXa6ZP
-   Axs+5RkwZFbRmr+wVyRee67lLDeUfN5mnlvwJt0LwR0EvOekhgjX3QrMO
-   1oNq+1CRc1Q49rIFfqDnX6DKj+XvtWFBFM6uBFxOgZqGmv/h1mJxAbkm6
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="450813629"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
-   d="scan'208";a="450813629"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2023 15:31:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="827864456"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
-   d="scan'208";a="827864456"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 20 Oct 2023 15:31:32 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qty1i-000438-1S;
-	Fri, 20 Oct 2023 22:31:30 +0000
-Date: Sat, 21 Oct 2023 06:30:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
-	broonie@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Cc: oe-kbuild-all@lists.linux.dev, Chancel Liu <chancel.liu@nxp.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: imx93: Add audio device nodes
-Message-ID: <202310210636.dtEPMrF8-lkp@intel.com>
-References: <20231010133838.799714-2-chancel.liu@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CED32233D
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 22:44:57 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2412919E
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:44:51 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c50906f941so19879361fa.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:44:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697841889; x=1698446689;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:dkim-signature:dkim-signature:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hOWDIY6nzbPN7SfSuuu/ehG8xBxls07tFimOVKc/JDQ=;
+        b=WC/FYMeYYTRvZCpQWblgEeqi/Leaquy2wo92yduHoqvUcBmd9c6eeJN6SV3QEBgitt
+         pr8B8dr4ylrBMlTdJHUQ+s/i5Hz3tkT/7i4Q0PcYT6tv/p8cVCACQVpAjfNGo5FS9BXR
+         iQpoCK5l624kk3q5yk5aYnI2kH6RMl7zkA3G4FVEUF0qJbKWIDspki9wvdrKFaU+UAO/
+         J9vwaDDERShyGGQB3No6JRbvZbuJH2RXrlSl1BewhF3UIaQqSbfNpbVkMrAqGSLoNs25
+         fUy9vXIQwR5vHSX3ensTslVq6/br0ShDF921cQuSWjn5WU8KGCu3comXsRDVs9P+4WZq
+         eRmA==
+X-Gm-Message-State: AOJu0YyEg9iX2J0So/PJ91CADkrxyMx6dnYs2Xvbtccw1bvryxDdjkBq
+	T3T9C9D2OuvKddxpj5mx4I6wY53aSr8R9A==
+X-Google-Smtp-Source: AGHT+IEOtiqgWCEeEda1FzyOfdDqpHGFcIT+hHFr4olh7qltDgKct7e15ahGSvCdOYEGvtMQzMHSOw==
+X-Received: by 2002:a2e:bc22:0:b0:2c0:17bc:124e with SMTP id b34-20020a2ebc22000000b002c017bc124emr2882695ljf.38.1697841889287;
+        Fri, 20 Oct 2023 15:44:49 -0700 (PDT)
+Received: from flawful.org (c-f5f0e255.011-101-6d6c6d3.bbcust.telenor.se. [85.226.240.245])
+        by smtp.gmail.com with ESMTPSA id a14-20020a2eb54e000000b002bc3fbe9fd5sm556848ljn.55.2023.10.20.15.44.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 15:44:49 -0700 (PDT)
+Received: by flawful.org (Postfix, from userid 112)
+	id 486131372; Sat, 21 Oct 2023 00:44:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
+	t=1697841888; bh=xZk22towdhIlWka7yL48w/UBUdZHB6iALebFJYrh2C4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tB6X0bM5UB2XcTWDAI71abeP82is+fysIlY5NvUQU7WL0sORLDqWxwmMBR+8CQAHO
+	 quqXWQTDPb4fsbAiS7CvpW7u87CYFnrIx0tTNZZznI2ZPHmb5uTjMRQrE8hs87qsWF
+	 2QlZTlDOkiAYaO25P0Hipz0Mjbhc+VR3230TV+y0=
+X-Spam-Level: 
+Received: from x1-carbon.lan (OpenWrt.lan [192.168.1.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flawful.org (Postfix) with ESMTPSA id 72BAF746;
+	Sat, 21 Oct 2023 00:44:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
+	t=1697841865; bh=xZk22towdhIlWka7yL48w/UBUdZHB6iALebFJYrh2C4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=gpGvhK4daOW8V5aafvKYcGum+3fxow84CUMaqOea/yLJBjs6e5zAKYVRwTPH7ZNmZ
+	 yfqzb9bfFi8i06UN2CWZk5jDO87rqudIzSFQobWkzfX6iNQrsXmkU1D+K8nDL/mCR2
+	 0k0WZeEnfYQdz3TB0b0I8mHz9r2NfjThNlowAxwc=
+From: Niklas Cassel <nks@flawful.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Damien Le Moal <dlemoal@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Niklas Cassel <niklas.cassel@wdc.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: add missing rk3588 PCIe dma properties
+Date: Sat, 21 Oct 2023 00:44:11 +0200
+Message-ID: <20231020224412.3722784-1-nks@flawful.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010133838.799714-2-chancel.liu@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Chancel,
+From: Niklas Cassel <niklas.cassel@wdc.com>
 
-kernel test robot noticed the following build errors:
+The rk3588 has 5 PCIe controllers, however, according the the rk3588 TRM
+(Technical Reference Manual), only pcie3x4 supports the embedded DMA
+controller (eDMA) on the DWC PCIe controller.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on broonie-sound/for-next linus/master v6.6-rc6 next-20231020]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The size of the eDMA region equals to:
+0x200 + MAX(NUM_DMA_RD_CHAN, NUM_DMA_WR_CHAN) * 0x200.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chancel-Liu/arm64-dts-imx93-Add-audio-device-nodes/20231010-214443
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231010133838.799714-2-chancel.liu%40nxp.com
-patch subject: [PATCH v2 1/3] arm64: dts: imx93: Add audio device nodes
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231021/202310210636.dtEPMrF8-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231021/202310210636.dtEPMrF8-lkp@intel.com/reproduce)
+Where for each 0x200 region, the registers controlling the write channel
+starts at offset 0x0, and the registers controlling the read channel
+starts at offset 0x100.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310210636.dtEPMrF8-lkp@intel.com/
+pcie3x4 has two DMA read channels and two DMA write channels,
+so it has size: 0x200 + max(2, 2) * 0x200 = 0x600
 
-All errors (new ones prefixed by >>):
+On the rk3588 based rock-5b board, when building with CONFIG_DW_EDMA=y:
+Before this patch, only the iATUs are detected:
+rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
 
->> ERROR: Input tree has errors, aborting (use -f to force output)
+After this patch, both the iATUs and the eDMA channels are detected:
+rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
+rockchip-dw-pcie a40000000.pcie: eDMA: unroll T, 2 wr, 2 rd
 
+Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+---
+Note: this patch depends on:
+https://lore.kernel.org/linux-devicetree/20231020125221.3564951-1-nks@flawful.org/
+
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+index d7998a9c0c43..e072f5fe655d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+@@ -101,8 +101,13 @@ pcie3x4: pcie@fe150000 {
+ 			     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
+-		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
++			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
++				  "dma0", "dma1", "dma2", "dma3";
+ 		#interrupt-cells = <1>;
+ 		interrupt-map-mask = <0 0 0 7>;
+ 		interrupt-map = <0 0 0 1 &pcie3x4_intc 0>,
+@@ -122,8 +127,9 @@ pcie3x4: pcie@fe150000 {
+ 		reg = <0xa 0x40000000 0x0 0x00300000>,
+ 		      <0x0 0xfe150000 0x0 0x00010000>,
+ 		      <0x0 0xf0000000 0x0 0x00100000>,
+-		      <0xa 0x40300000 0x0 0x00002000>;
+-		reg-names = "dbi", "apb", "config", "atu";
++		      <0xa 0x40300000 0x0 0x00002000>,
++		      <0xa 0x40380000 0x0 0x00000600>;
++		reg-names = "dbi", "apb", "config", "atu", "dma";
+ 		resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
+ 		reset-names = "pwr", "pipe";
+ 		status = "disabled";
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.41.0
+
 
