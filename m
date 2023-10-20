@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-10387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A62B7D0FF8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D97C77D1011
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:00:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A0F6281F4A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:56:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C188281CFF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D3D1A5AD;
-	Fri, 20 Oct 2023 12:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A031A717;
+	Fri, 20 Oct 2023 12:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tg2pYOHd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="foUvfQU0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF60C18E14
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 12:56:27 +0000 (UTC)
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 378AFD5E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:56:26 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5a7db1f864bso8082767b3.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:56:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65EDD1A704
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 12:59:57 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE9BD5F
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:59:55 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5a86b6391e9so8602247b3.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:59:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697806585; x=1698411385; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697806794; x=1698411594; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yrcL+xKT1Haqzn96R/mZhFMvTo6rkNolacJ4Cmk/A44=;
-        b=Tg2pYOHdpZsN+CW46JWHwJhGGFR7os++Mbd3U0w6RYUE/+L1Rk3kGdhei0ing/Yoao
-         4wmwnaH6gn/Znz+Ij3K8mv5cfF6tf70oMVTMy9F8uzsLA4B2CAv7yzyg1qpP2J3EdRQn
-         mjhluWsrQqFy7XhMO7rGRuRxQQn29xDALIgtK83ThCvwUCtdCoal1DTMDfd3UEKkDGGC
-         g/+R0BrM0x6tWIslOSzzp+zHnaATRnGE82mZeV0WWMmIKOeRsReFKZKBjR/pjIA+MjTT
-         uJ5vBaP34rQ+OQ6zjD1s2os1zslKxc9VjBe6TDYm93qhCpV6SW2boud55joMHT5iTG92
-         o76w==
+        bh=QFC/B00tUI2hXABfcSdP/RdnPPeUlHvWc23J3vC1mo8=;
+        b=foUvfQU0BLptbJBxK7DRcxWBDl4s950H52WKbEUUpoUd22VoX9RtTPpI4OxOYnF4az
+         TXtJeBEVMDZk1Yfnwzq8oVRxeJ8GN27HmTjhxGu2buqcu5jKb2kx6pwC8Gj1Msy7JvEu
+         YV9INu23Imn4YcTKACkoRMRPVXXA+X3febVFAHUHKVb74Q3aIThxbcZZuX3So7+IFPOa
+         O4zmP4WvFCnFS3MA5tnaWQi5ubJGT53/HBmCXv84y7+OEecycOCIGJg0iiWTvbpL8ZBC
+         fiVFAz0KmRKmMS/AcRiBToz6JAnNdpszKHGtBsrakLOcohCPEl9z+sNrcMJMOPyxnNWj
+         hfjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697806585; x=1698411385;
+        d=1e100.net; s=20230601; t=1697806794; x=1698411594;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yrcL+xKT1Haqzn96R/mZhFMvTo6rkNolacJ4Cmk/A44=;
-        b=oYIwrmNDHg19O5K+UPGIsd8hUab1dajMDAkx0tHecAsce0NoVA+GqZMLVrMSGRkhwX
-         pn/cpktPEg17i1ZjvEIPSEGhdV5DHW7nPpzLHR0BrZzZTvCULzkvtT2R7t7iFMkDO0qc
-         JY8koBJPjM45q9G8lX45DcUSRHwkl+PcAIS6F/onUHK5n13V72iFMX8FbcTdtJhlyPWk
-         S2ywsI9Y63e1oMhhcZXh023rpg3wJIlVcQlgAJLFdzg1oRQXtS1BsPHAy3CeD5wDS/Xc
-         N3aW/eeuu0AfhETySu41ZAFfV8PzptS4RI+fy6nMyjzTx3ENYJ58YcR7bmQfE9/hXY0x
-         mQgA==
-X-Gm-Message-State: AOJu0YwJAZkywemlMexp0EUeMO5Dr+EJiaQo3mwX9zai2CmNImmnRTx0
-	m7tGkZ53QOmqVlkeuE+jUuVGKNnw6tAFAN+oUIs0Fg==
-X-Google-Smtp-Source: AGHT+IGrmN5jknlgIsjAyhgTDyk0Jj0AJJ69byvTmw81BZ3lafG/4P93aegl+ccQttzXcDL8T8XrYIIK66wdeeleL1c=
-X-Received: by 2002:a0d:d488:0:b0:594:e97b:f6fa with SMTP id
- w130-20020a0dd488000000b00594e97bf6famr2050189ywd.30.1697806585447; Fri, 20
- Oct 2023 05:56:25 -0700 (PDT)
+        bh=QFC/B00tUI2hXABfcSdP/RdnPPeUlHvWc23J3vC1mo8=;
+        b=ii9JdnqTlIMMswY22TALp/k5WanuE9alwMG1lnx2dleTufPAEsCAOOKeg3lzoO+DO/
+         RC28SezSeVOptoVY10lxKxrZUMOp5mg7XXRbU+yOhtqttrEgNxDPP2E/N8IgLzi9XX0+
+         JbW89QWTObJXOjDt3Se54485dr0YO1Rc0BenAuNG9cBVF9s53JEI7BZeCdbmIPpwmYGV
+         hHw0rw8YKTF/15d5JD0H1wHBA0+dWaeTAsyN5aSoXlbOdrROFbz3bV97tr+tFXkU0D4R
+         XfONvUaDKu3zCCSFub9udgasZzKKgufcxUVFKY16YlMh5paBQanKIkoHwtmm1SCKxSbH
+         pV9w==
+X-Gm-Message-State: AOJu0YwxSQjW3Wgi69NnmcxWBcYhS99P+9AQaNYOljfMT+ZajfL2hdtn
+	okGNc6s67ly+clCedQ/ve9xjhbeYaIStrNwxPyO55w==
+X-Google-Smtp-Source: AGHT+IFaEnMKB0meMkvyhN4BbXF4gAdnlozEeoARMKEWNdhaivAk0ry/mu1R4xUPut/elXgpxZq5kcDKovovpb4EQoQ=
+X-Received: by 2002:a0d:e843:0:b0:5a7:dac8:440c with SMTP id
+ r64-20020a0de843000000b005a7dac8440cmr1964960ywe.23.1697806794468; Fri, 20
+ Oct 2023 05:59:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,43 +62,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
- <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org>
- <169762516670.391804.7528295251386913602.robh@kernel.org> <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
- <cfc0375e-50eb-4772-9104-3b1a95b7ca4a@linaro.org> <CACRpkdbKxmMk+-OcB6zgH7Nf_jL-AV7H_S4eEcjjjywK0xCJ4Q@mail.gmail.com>
- <20231020122725.2fotbdwmmu575ndd@skbuf>
-In-Reply-To: <20231020122725.2fotbdwmmu575ndd@skbuf>
+ <20231018-marvell-88e6152-wan-led-v4-5-3ee0c67383be@linaro.org>
+ <20231019144021.ksymhjpvawv42vhj@skbuf> <20231019144935.3wrnqyipiq3vkxb7@skbuf>
+ <20231019172649.784a60d4@dellmb> <20231019162232.5iykxtlcezekc2uz@skbuf>
+In-Reply-To: <20231019162232.5iykxtlcezekc2uz@skbuf>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 20 Oct 2023 14:56:13 +0200
-Message-ID: <CACRpkdZGT=iWGjc+ROpd=Ofa6EMY761pudxcRsUKLvHZ3Ke5zg@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or ethernet-ports
+Date: Fri, 20 Oct 2023 14:59:43 +0200
+Message-ID: <CACRpkdam5UZWbB_tAKoU3_jdZLbH0TFT3yt3Xf9G1b=_42e4zQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 5/7] ARM64: dts: marvell: Fix some common
+ switch mistakes
 To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Russell King <linux@armlinux.org.uk>, 
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Eric Dumazet <edumazet@google.com>, 
-	Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
+Cc: =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	"David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>
+	Christian Marangi <ansuelsmth@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 20, 2023 at 2:27=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
+On Thu, Oct 19, 2023 at 6:22=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
  wrote:
-> On Fri, Oct 20, 2023 at 01:41:22PM +0200, Linus Walleij wrote:
-> > I can't reproduce this, make dt_bindings_check in the mainline kernel
-> > does not yield this warning
+> On Thu, Oct 19, 2023 at 05:26:49PM +0200, Marek Beh=C3=BAn wrote:
+> > Yes, unfortunately changing that node name will break booting.
+> >
+> > Maybe we could add a comment into the DTS to describe this unfortunate
+> > state of things? :)
 >
-> You used the actual command that the bot posted, right? aka "make DT_CHEC=
-KER_FLAGS=3D-m dt_binding_check"?
-> I am also seeing the yamllint warning.
+> Well, the fact that Linus didn't notice means that there are insufficient
+> signals currently, so I guess a more explicit comment would help. Could
+> you prepare a patch?
 
-Yep I added that.
-
-(But I think the kernels dt_binding_check should ultimately add
-the same flag, otherwise the world gets super confusing.)
+I can just include a blurb in my patch so we don't get colliding
+changes.
 
 Yours,
 Linus Walleij
