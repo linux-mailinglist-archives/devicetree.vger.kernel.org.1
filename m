@@ -1,263 +1,191 @@
-Return-Path: <devicetree+bounces-10253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7F57D07A8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 07:36:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3EE07D0812
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3D442822AE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 05:36:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF1A61C20ECB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 06:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91AA5612B;
-	Fri, 20 Oct 2023 05:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A85E6B67E;
+	Fri, 20 Oct 2023 06:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="YpjG7kGT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MVRyvb5P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1261FBA
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 05:36:33 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2049.outbound.protection.outlook.com [40.107.6.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D34C9;
-	Thu, 19 Oct 2023 22:36:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kuF02Nc1kdUBwIMAo+eXxGbQRQJiH7LpYZMB4G9CrEWsq2MJl599gqf31o7h39NWqgs4oDCIS5CLYJDlhSbQw9BkJ0lI5ebWcrkQZEsstV52OZ2rBJO/Gsmsb06KOqBNGqU43n5dcclinmg0QYGUu2hYh5DGJIlWkxqlkR5U+B4CKQbblyB+R9dEnJHJzPjh7Iq+J9T16zN0W4/RSRBCN7kD2fKG/lTCpVcYPkzRZ2njBDKC44E3iaF698h5OiI+QRGeoqdDKuqI3HL7m9VOSujhPkARe6PTLNIuGtGQjTvZnxPS0fjg3bAZ64zUCn3sWwL+psI9j3fL8IDZHcmoug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6BlfwJY3I2+SSw4EVPPGq4z3YdlMPRqvCBUd+APhTag=;
- b=L/oxdJHoyOiPmfWs2tpDqKq2uZFRU7ylnPBY0RgWXrvaAwmVkYYhWEl0Bs10wP2CfNmzZkXgkOrBvLh9a5Xq7T7/69/RY36277ccyWczh+LnMPF+0nJt76Wauxa8WyNxZh8v13F0lKbD26+tXbmrAZw+U8W7eEmfeitx/1XRFdjOmp6BarJp0Wr1SMIl9hxPtGkOL/sXtP7RuDmFFP4phOEtWLupBGWNgQ4gcQjBhp9E/55sFH/MdxjtgwEjnbkt6wN0l6XpDbHAz6NH1yNY4JDl54bOji++Wt594TwPci3OojYDGpcg0Q/6xqtrAf/ZZmAMLnjhI/+Fep5nTTEiEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6BlfwJY3I2+SSw4EVPPGq4z3YdlMPRqvCBUd+APhTag=;
- b=YpjG7kGTJPc+7XKtG2QG/BOG3/puSPuHx0JrMuHlPZO0PAHJAQNgD7Us1tVYTrtPH0bVEeLV7IXEdcZW+4oH8H2cBD8hieVHz+Rjxhg6O2H0WRhfXX95loMwN/bTBdAXvV+tcAF1XCusCms4VV8Nu2Tnj+ySYJgQXYSQmL6lxaQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by PAXPR04MB9138.eurprd04.prod.outlook.com (2603:10a6:102:22d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Fri, 20 Oct
- 2023 05:36:28 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6e53:39fc:f010:30d5]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6e53:39fc:f010:30d5%5]) with mapi id 15.20.6933.011; Fri, 20 Oct 2023
- 05:36:28 +0000
-Message-ID: <46f5f4ce-5033-44f1-bd4b-aef87535e4e3@oss.nxp.com>
-Date: Fri, 20 Oct 2023 13:38:52 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: media: imx-jpeg: Assign slot for imx
- jpeg encoder/decoder
-From: ming qian <ming.qian@oss.nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- mirela.rabulea@oss.nxp.com, robh+dt@kernel.org, shawnguo@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mchehab@kernel.org, hverkuil-cisco@xs4all.nl, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, xiahong.bao@nxp.com,
- eagle.zhou@nxp.com, tao.jiang_2@nxp.com, ming.qian@nxp.com,
- linux-imx@nxp.com, devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1697597713.git.ming.qian@nxp.com>
- <c7995af1f91733626ff4e86f0575dea5d2ff0bb8.1697597713.git.ming.qian@nxp.com>
- <d640f5c2-8af5-4402-a981-0e962d4f2aca@linaro.org>
- <c2eb3a37-eadb-4ec6-a6c1-075d71127ac2@oss.nxp.com>
-Content-Language: en-US
-In-Reply-To: <c2eb3a37-eadb-4ec6-a6c1-075d71127ac2@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0006.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::11) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5389468;
+	Fri, 20 Oct 2023 06:02:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F87CA;
+	Thu, 19 Oct 2023 23:02:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697781776; x=1729317776;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OFcORb9kBXdYN+vup1rawQo4ra/q85nGcGOYP0JXJag=;
+  b=MVRyvb5Pv1WjEBptbh9KuZLpKboS309CrsjdIWBVKqEXo+ywKVFK+B1a
+   +9O/bi3xzDD/na7HEZclPEL74LTU5jriQceDVATIRfiN1I38YZL7sYMp9
+   Dm51IgNEU6pwlnTz7JrFCKdM5XDUqyXNhJHkZlYfDH2oRyR/aN9/fPCuf
+   mTSh9gRLylWPT5mxcS47kLjiALTqFOa+wX2ZJl/jtUwQoDvisR1Bv7rNb
+   aNP13HHpdhRb1Xx1t4pQzw2Yhq+gLbeKXJK+KkTMYqPl2M1gL+hRjwdQi
+   qEO1YgCbasyjC+i2k+RsK9rmTl+M1m0PNkImlt/U6hCyCzPrecTM0dW0M
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="371507887"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; 
+   d="scan'208";a="371507887"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2023 23:02:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="757338898"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; 
+   d="scan'208";a="757338898"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 19 Oct 2023 23:02:51 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qtiau-00036Y-2k;
+	Fri, 20 Oct 2023 06:02:48 +0000
+Date: Fri, 20 Oct 2023 14:02:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH 03/12] usb: dwc3: qcom: Merge resources from urs_usb
+ device
+Message-ID: <202310201318.RPa2yUmS-lkp@intel.com>
+References: <20231016-dwc3-refactor-v1-3-ab4a84165470@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|PAXPR04MB9138:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3b56ab3-6807-4199-f9c4-08dbd12e81ab
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	YxubqSCqK0Cun0Lq4Y7UCIKC45Xt8V99kO2sv1m7nJ+/2vb8nV7ko+iKMGba/W0RQX2rD/xMlUzUOmjGeMOX7g8HXe9tFdBFHl3jY2AWeC+cuQzOtgZIjEbJzmtJrz2PoVk29WQV+j3NQPWBfHcvELPWCRKqDFcDQKY1iPBMKpsPcLbiwyWrPvX0yZBkT9ML26dxxEmYShMwFVGKG3pFL6++cxQasj6FYnMnydNj7/RVY+IlzywzwH+HVYHi6EEHS1/36PZAP0+Er0qNwbbuPwtVWT+rIEXWu5lUw8rAVYU4USngTGTcwSDDiSl6YSMnJAx8C392sjI2j86Wx8uSpykvbZoqATGBFR0KNs7gxm/vBoES2taMVphJIuZwpThCF8H7m3WrVtPZ3vy6Z1SVo1XgFB8WOV66IbJ8ia5jD0mEjuxFgyFsHWz4S6EUci4g4/aPrveOx32DX4u/H6Q1QYyfEQNQ27fbN36rQmT8qbJlfbhyrEvPioVZ/wERuSsIyjuOwh1NngfgxSi2fENv9cm8BYpDdMD1NousRqS6TBgtnKdfH/6xZytUCCgeJ89wRoKmx7l+fnHutmu6wGckP9ZeI7x2qWWbQhbBlYfd9o68XNnXaAZZCiC3994fnIQc3oblqegirsmfUrlvLtlNYA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(346002)(136003)(376002)(366004)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(86362001)(31696002)(6666004)(7416002)(2616005)(26005)(6512007)(6506007)(4326008)(8936002)(8676002)(83380400001)(2906002)(66946007)(66556008)(66476007)(6486002)(31686004)(41300700001)(478600001)(316002)(38100700002)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L21aeWpyTHJmMTFaYWRZTDJlQlJZLzl0cGNHRzNtUk5FajJJWGRqeVhBQjRr?=
- =?utf-8?B?emFpTVVLYngzOEhDZE1PNW1oa0wrVndXQ1pabE5zMWQwU1VpbStpVVhjQ2pT?=
- =?utf-8?B?cGw5OWo2VGFtbXY5dEVGYjNzM0NBSEwxMS9WaTE3L0RGcXd3YlRzb01Da3Fk?=
- =?utf-8?B?MllkcWVxSGRTTHlxQVRpc2UvMnN5bEs5bFR1Nk83WWN0WlN2RnJqNytqSUM4?=
- =?utf-8?B?cGVkT2ViYWFFWGpScUVuWWkzTzhlbkh2cTJwdE5DaFYxaTVoN1pKY25EQmV3?=
- =?utf-8?B?Y3d0SFJnNkVqcm9sSUJOMmJibnJMeGJrNi9CNGhVajNzQ2NSM2N6bjFQVERD?=
- =?utf-8?B?YXFra2pja2h4THcxb2IwMzF4cFhScE5hUjZMTlNzREN6YlpKOEVCQnJ4RFl1?=
- =?utf-8?B?VnhjRkVpczRrYlpHeUVBSVVnT1MrZlVTYVlOQ1p3V3dwMGRMaGtiZHhXYWtD?=
- =?utf-8?B?c2pJaVF2bjhzVllreUxnT3lKZmRqc05IQlJFVWgzRSt2Z1Raa1FXSzdNcVcz?=
- =?utf-8?B?ZVhpZ0JQT0E1UVJaWUZzQVJHcUt1T1VUdWJpWktlbFAvZmJISFUyR05ob0NM?=
- =?utf-8?B?N01HQS9Za3p1WGRpS0w2bHM5cDZ3SURoQitmM0x0ZnRzOWdELzh4NjRNZENG?=
- =?utf-8?B?NkRYZm9MZUtnZ0ZoTy9xWTlId25tNHpwcjB6TGw4YkxKcnNoU1Z0Sm44aURR?=
- =?utf-8?B?bko0NVd3MnhoNUJBanFxVzlDWkhxZlZMZVJ2YUNtRzRKMVFMR2M2TnFURU1D?=
- =?utf-8?B?UkRPY0RrQVhoUmpJZ3NpNDY1VWo0MVpoMEtkN2htMHdtSEtXRkU0aHkvemRp?=
- =?utf-8?B?Q1lWZGVIaCs5ZHJzSjAyckR0TUM5SGJCeWdCSWNVUkNDa2hhbEVFWGhxZXBy?=
- =?utf-8?B?SExUTFBkMDJYZVZJUDI3cTZqWi9vSTZ6WHJaWnIzMTZCaFNEejNMdzZlSVBo?=
- =?utf-8?B?NFAyU2dzYjNoVGtrdEZEc1lKVHJnZnVabkNZMVg2T20wdjRuRjZvWTJYbnht?=
- =?utf-8?B?NElBZUdSNUtVM08vZkdqNGQyaElDN2svNEFOZUZod2JGbCsyZGNmZHl1aHhr?=
- =?utf-8?B?SWpITDY3UFZuRzlhcHFDcitjRWRsV3c2U0IvMkkxcmJsdVI5ZWcxK3lqZTFT?=
- =?utf-8?B?Vy9tZjBsSEs4TGtCaGphajZOOCt3QVZlTFlEY3ErcGNsU0hYblhGY3ZNcEZl?=
- =?utf-8?B?VlE2TDBzRUl6TEdFRWpSTFJpSGV0Um1ZK0xUb0VhaFRZeHZFNVA4STd5NmJ5?=
- =?utf-8?B?d21ZWk5waXMzZktldlJLOXJweWtKR244aVM5NmZWcktGYTJOR2RTbGtjSkE5?=
- =?utf-8?B?cHhkeWdzaU9zUW1nTW1Ud3dMK09jQnQyN1F1NThNa2VlU04zYTZOckVVU1Az?=
- =?utf-8?B?TUQ2eUIrWmZyMXVTc3M1NGtmOExkNFVvUmhjY1BXbTZMTWhnK3c4OFlBek9i?=
- =?utf-8?B?VTFuY2lXaFRpZFllOFNHdW1uWTRjbmc2NnZGbWNoRFZsZENTVWozWXFIczA3?=
- =?utf-8?B?Z2hlQ3NyMXU1T1AzM3BFLy83S0dQNzRIb1BsemNqdlJBdTZZSFVYd3laOUsv?=
- =?utf-8?B?aUVPM3dzN05rQ3M3MnZnNnRSVnM3L0o0K1JWNmxGQnFYR3RhYXBhcDE0QzV6?=
- =?utf-8?B?VG54OGhIZGRRQmxtOGR2SkVwaHBZT3hlZW1hQzhoK1dHOGpWd0ljUFh4UlRH?=
- =?utf-8?B?QTJQd2lmL05aOGh5V0h3eUMvZDdDdnBTbDM2M3lNNTZaclZpenpFLzF2WDdM?=
- =?utf-8?B?ZWxoaytvNGNTb2JiSTMwQkE2aWFqSitFTk9OOEJhc252OUlKU25taU1aeGlZ?=
- =?utf-8?B?U1hUMHY1Rk1CU3NheElmdnUwbmg1MWRGT0twbjhaWXduaUErYzFFQTRCSGhB?=
- =?utf-8?B?SVpZWTA1WVUrcW1rSSt3TEJ1TnMwTWRHUmtYa1JGSlJxcElUSUlseU80blY0?=
- =?utf-8?B?cTNuRFM0MlFpekxaUlVYekVDMlVyN3ZnOElMb3FPV3RtMzNQMlYyOWcwMUh3?=
- =?utf-8?B?VkVRcmpXc0pldUc1VU0zSEdFckNEek9odk5td3JFV05Wa2xRbkxKeWhTakIr?=
- =?utf-8?B?YUhMaE1PTlNxSU1mb1AwemNHVm5jYm1CbkJTSTR6NTFnYWxKT1dMSzRCN3Qy?=
- =?utf-8?Q?FkdYaJYNFH4XK2Sk5/sam+Cwg?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3b56ab3-6807-4199-f9c4-08dbd12e81ab
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 05:36:28.1036
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QPXNiwBWIBy6YUhXgFV+QAZHJOxNgxN8pjEq6H5JSrmRldjrPGWKHR/5ohRMBvwPfaW+j5ARcGxo+JG8rdWB/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9138
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016-dwc3-refactor-v1-3-ab4a84165470@quicinc.com>
 
-Hi Krzysztof,
+Hi Bjorn,
 
-> 
->>> From: Ming Qian <ming.qian@nxp.com>
->>>
->>> This IP includes a jpeg wrapper and a jpeg engine, the wrapper is
->>> working on descriptor based manner. It supports up to 4 slots, each slot
->>> can have its own chained descriptors. Host won't configure the engine
->>> directly, but fill some descriptors to encode or decode one jpeg
->>> picture. Then configure the descriptors to certain slot register. The
->>> jpeg wrapper will schedule between different slots. When some slot is
->>> finished, the slot interrupt will be triggered. The purpose of slot is
->>> that engine can be shared across multiple VMS and os.
->>>
->>> Currently, power domains and interrupts are enabled for all 4 slots, but
->>> only one slot is used. There is no benefit in using more that one slot
->>> from within the same OS, as the slots are scheduled in round-robin
->>> manner and not executed in parallel.
->>>
->>> Use the property "nxp,slot" to assign a single slot, and just expose the
->>> parts of the h/w for the assigned slot. For example, only put slot 1's
->>> power-domains entry in the DT when slot 1 is assigned. If not specified,
->>> 0 is used by default.
->>>
->>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
->>> ---
->>> v5
->>> - improve commit message
->>> - improve property description
->>>
->>> v4
->>> - improve commit message
->>> - drop line making the property required, to avoid ABI break
->>>
->>> v3
->>> - add vender prefix, change property slot to nxp,slot
->>> - add type for property slot
->>>
->>> v2
->>> - add a new property in bindings document
->>>
->>>   .../bindings/media/nxp,imx8-jpeg.yaml         | 46 +++++++++----------
->>>   1 file changed, 22 insertions(+), 24 deletions(-)
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml 
->>> b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> index 3d9d1db37040..0961856bdcab 100644
->>> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> @@ -32,19 +32,27 @@ properties:
->>>       maxItems: 1
->>>     interrupts:
->>> -    description: |
->>> -      There are 4 slots available in the IP, which the driver may use
->>> -      If a certain slot is used, it should have an associated interrupt
->>> -      The interrupt with index i is assumed to be for slot i
->>> -    minItems: 1               # At least one slot is needed by the 
->>> driver
->>> -    maxItems: 4               # The IP has 4 slots available for use
->>> +    description:
->>> +      Interrupt number for slot
->>> +    maxItems: 1
->>
->> The device still has four interrupts, so we should allow up to four of
->> them. One given OS might want to use two or all four slots.
->>
->>
-> Got it, I will fix it in v6 patch.
-> 
+kernel test robot noticed the following build errors:
 
-We made an internal discussion about this, current approach of the
-bindings implies that one dts node is for one slot only, and the slot
-property is integer, not a list of slots. Whoever wants to use 2 or more
-slots, should put more nodes in the dts, one for each slot. Therefor,
-there is no point in allowing more than one interrupt in one node. Or,
-if we do, for the sake of allowing one OS to use more slots within the
-same dts node, we must also allow more power domains, in any case, we do
-not have multiple slots functionality in the driver anymore.
+[auto build test ERROR on 4d0515b235dec789578d135a5db586b25c5870cb]
 
-Best regards,
-Ming
+url:    https://github.com/intel-lab-lkp/linux/commits/Bjorn-Andersson/dt-bindings-usb-qcom-dwc3-Add-qcom-sc8180x-dwc3/20231017-160323
+base:   4d0515b235dec789578d135a5db586b25c5870cb
+patch link:    https://lore.kernel.org/r/20231016-dwc3-refactor-v1-3-ab4a84165470%40quicinc.com
+patch subject: [PATCH 03/12] usb: dwc3: qcom: Merge resources from urs_usb device
+config: csky-randconfig-002-20231020 (https://download.01.org/0day-ci/archive/20231020/202310201318.RPa2yUmS-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231020/202310201318.RPa2yUmS-lkp@intel.com/reproduce)
 
->>>     power-domains:
->>>       description:
->>>         List of phandle and PM domain specifier as documented in
->>>         Documentation/devicetree/bindings/power/power_domain.txt
->>> -    minItems: 2               # Wrapper and 1 slot
->>> -    maxItems: 5               # Wrapper and 4 slots
->>> +    minItems: 1               # Mixed power domain
->>> +    maxItems: 2               # Wrapper and 1 slot
->>> +
->>> +  nxp,slot:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Integer number of slot index used. This IP includes a jpeg 
->>> wrapper, the
->>> +      wrapper is working on descriptor based manner. It supports up 
->>> to 4 slots,
->>> +      each slot can have its own chained descriptors. The purpose is 
->>> to share
->>> +      the jpeg engine across multiple VMS and os. We use this 
->>> property to
->>> +      assign a single slot. If not specified, 0 is used by default.
->>> +    minimum: 0
->>> +    maximum: 3
->>
->> default: 0
->>
-> Got it.
-> 
-> Best regards,
-> Ming
->>
->>
->> Best regards,
->> Krzysztof
->>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310201318.RPa2yUmS-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/usb/dwc3/dwc3-qcom.c: In function 'dwc3_qcom_acpi_merge_urs_resources':
+>> drivers/usb/dwc3/dwc3-qcom.c:795:17: error: implicit declaration of function 'acpi_dev_get_resources'; did you mean 'acpi_get_event_resources'? [-Werror=implicit-function-declaration]
+     795 |         count = acpi_dev_get_resources(adev, &resource_list, NULL, NULL);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~
+         |                 acpi_get_event_resources
+>> drivers/usb/dwc3/dwc3-qcom.c:803:17: error: implicit declaration of function 'acpi_dev_free_resource_list' [-Werror=implicit-function-declaration]
+     803 |                 acpi_dev_free_resource_list(&resource_list);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +795 drivers/usb/dwc3/dwc3-qcom.c
+
+   763	
+   764	static int dwc3_qcom_acpi_merge_urs_resources(struct platform_device *pdev)
+   765	{
+   766		struct device *dev = &pdev->dev;
+   767		struct list_head resource_list;
+   768		struct resource_entry *rentry;
+   769		struct resource *resources;
+   770		struct fwnode_handle *fwh;
+   771		struct acpi_device *adev;
+   772		char name[8];
+   773		int count;
+   774		int ret;
+   775		int id;
+   776		int i;
+   777	
+   778		/* Figure out device id */
+   779		ret = sscanf(fwnode_get_name(dev->fwnode), "URS%d", &id);
+   780		if (!ret)
+   781			return -EINVAL;
+   782	
+   783		/* Find the child using name */
+   784		snprintf(name, sizeof(name), "USB%d", id);
+   785		fwh = fwnode_get_named_child_node(dev->fwnode, name);
+   786		if (!fwh)
+   787			return 0;
+   788	
+   789		adev = to_acpi_device_node(fwh);
+   790		if (!adev)
+   791			return -EINVAL;
+   792	
+   793		INIT_LIST_HEAD(&resource_list);
+   794	
+ > 795		count = acpi_dev_get_resources(adev, &resource_list, NULL, NULL);
+   796		if (count <= 0)
+   797			return count;
+   798	
+   799		count += pdev->num_resources;
+   800	
+   801		resources = kcalloc(count, sizeof(*resources), GFP_KERNEL);
+   802		if (!resources) {
+ > 803			acpi_dev_free_resource_list(&resource_list);
+   804			return -ENOMEM;
+   805		}
+   806	
+   807		memcpy(resources, pdev->resource, sizeof(struct resource) * pdev->num_resources);
+   808		count = pdev->num_resources;
+   809		list_for_each_entry(rentry, &resource_list, node) {
+   810			/* Avoid inserting duplicate entries, in case this is called more than once */
+   811			for (i = 0; i < count; i++) {
+   812				if (resource_type(&resources[i]) == resource_type(rentry->res) &&
+   813				    resources[i].start == rentry->res->start &&
+   814				    resources[i].end == rentry->res->end)
+   815					break;
+   816			}
+   817	
+   818			if (i == count)
+   819				resources[count++] = *rentry->res;
+   820		}
+   821	
+   822		ret = platform_device_add_resources(pdev, resources, count);
+   823		if (ret)
+   824			dev_err(&pdev->dev, "failed to add resources\n");
+   825	
+   826		acpi_dev_free_resource_list(&resource_list);
+   827		kfree(resources);
+   828	
+   829		return ret;
+   830	}
+   831	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
