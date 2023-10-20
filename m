@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-10486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D9DF7D1685
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 21:50:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748377D168C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 21:51:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCC77B21447
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 19:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E6451C20F9C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 19:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B279922332;
-	Fri, 20 Oct 2023 19:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACC922339;
+	Fri, 20 Oct 2023 19:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD9F1802E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 19:50:08 +0000 (UTC)
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40FDBD52;
-	Fri, 20 Oct 2023 12:50:03 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ce37683cf6so621363a34.3;
-        Fri, 20 Oct 2023 12:50:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898391802E
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 19:51:49 +0000 (UTC)
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15C8BD57;
+	Fri, 20 Oct 2023 12:51:48 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1ea45b07c59so880063fac.0;
+        Fri, 20 Oct 2023 12:51:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697831402; x=1698436202;
+        d=1e100.net; s=20230601; t=1697831507; x=1698436307;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sM5vuZZPtLOe4hJSbBefWkWbsAhOGZLPnuNSBD0x/PI=;
-        b=Axnb2W1srnOS4Q16Ty83aXQXAaOO7lt7uY7CcknbOFGAzG769Xj2Gy/LQr9o5DUjKQ
-         L2BW0QMNath8u+L8z/sFrpGt0HPlcHC9yy+qXoeFilnkW5BdbncUt+ENcgNpiuZuwJ6o
-         ohfXK65DpwQdFZALNc7ws6CXuIwzk1uDlWZC5aLYTQUQ+w8SrcO1wbG9M3gEQlbDpKWu
-         aCiUzJVBiC8zbu6D8Soq42Xf7NrpvxDawhAaD9TV7SsxPdChlBcaefnWtOj6TIZ65lCU
-         kt2acj2yhFAU9ZWvNjo1YXzQQhKe5oR3i7t3HGkd3UJ9Xe3ocWWBKrAWa5nV5sgIzz1n
-         sQog==
-X-Gm-Message-State: AOJu0YwizKwFvEljSNKgVPlx4c/RuNgbowV6o+0Jf9YMWLtgV6QTBRVC
-	FANtzyS8ARmLBNowcCSoNA==
-X-Google-Smtp-Source: AGHT+IH7Zz7jeVqsvuY4TO59akjVdECQntAhusPs80kaL+pZG54AZrO5pMUSbkCIxgZXVe1DEpLQyw==
-X-Received: by 2002:a05:6870:1311:b0:1d5:a303:5f39 with SMTP id 17-20020a056870131100b001d5a3035f39mr3130325oab.49.1697831402489;
-        Fri, 20 Oct 2023 12:50:02 -0700 (PDT)
+        bh=K8/ZbVb/9IBC0WHwq8jl1yDqEWiHfKExUA5yi1WK5j4=;
+        b=rmU9uUbtLDCSOWkVhw67/Bk/zB+G9tlsxI4PplkxPTWygDNnEbVYC1sDIvE3+YXKM7
+         rJ23raeIp53YbTc+9Rt89Ax81cS29adKY9Gy5Msa4mVe7Ebf1kn3MP9XhdMDopfh99kF
+         WhW1S+HdB5M/irNd4lpxxpIg7mAYqcG/NHM13JiJ4rWJv5NDEuUuB8hAMJuG9PPvTIuv
+         6Q+mM1JRVKi98MFNGC6/UrVgVL6SXb3o8lUhfbK6BXf+P2tQ71JfIG16fwofDhq0s2MA
+         D8kN5andnyEue7W/9XlR7jUTULv9ZCaRhXlsDtD1ArC7kF/ENZnDzT6+7YnuoLYHqhJt
+         viNw==
+X-Gm-Message-State: AOJu0Yyg8SDeE1e0UMiEfGJHABvLAXTRTBBTo+TCWfAFDwVbE/5jecWF
+	ZP9fpH0R9KwZMlLXYXB3XQ==
+X-Google-Smtp-Source: AGHT+IFDQtRnNsXely0BT6dTlD9vbK/uYWv6xNMrP4qF2nI/sgu7QAY8ttiA22cFlzAmEMbaUvSsYg==
+X-Received: by 2002:a05:6870:5cc9:b0:1e9:9989:33a5 with SMTP id et9-20020a0568705cc900b001e9998933a5mr3353395oab.5.1697831507323;
+        Fri, 20 Oct 2023 12:51:47 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eb4-20020a056870a88400b001eace5491c8sm491643oab.18.2023.10.20.12.50.01
+        by smtp.gmail.com with ESMTPSA id m7-20020a056870194700b001cc9bc7b569sm483158oak.27.2023.10.20.12.51.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Oct 2023 12:50:01 -0700 (PDT)
-Received: (nullmailer pid 4183428 invoked by uid 1000);
-	Fri, 20 Oct 2023 19:50:00 -0000
+        Fri, 20 Oct 2023 12:51:46 -0700 (PDT)
+Received: (nullmailer pid 4185737 invoked by uid 1000);
+	Fri, 20 Oct 2023 19:51:45 -0000
 From: Rob Herring <robh@kernel.org>
 To: soc@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>
 Cc: Pierre Gondois <pierre.gondois@arm.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: Update cache properties for socionext
-Date: Fri, 20 Oct 2023 14:49:53 -0500
-Message-ID: <20231020194953.4183220-1-robh@kernel.org>
+Subject: [RESEND PATCH v2] arm64: dts: Update cache properties for socionext
+Date: Fri, 20 Oct 2023 14:50:22 -0500
+Message-ID: <20231020195022.4183862-2-robh@kernel.org>
 X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -77,6 +77,10 @@ Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 Link: https://lore.kernel.org/r/20221107155825.1644604-21-pierre.gondois@arm.com
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
+I noticed this one fell thru the cracks from the rest of the series.
+
+Arnd, Can you take this directly.
+
  arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi | 1 +
  arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 2 ++
  arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 1 +
