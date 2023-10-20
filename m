@@ -1,130 +1,219 @@
-Return-Path: <devicetree+bounces-10445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82F47D12E8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:35:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE04A7D12EA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 698E5B21306
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:34:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C18282541
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5AE71DDE3;
-	Fri, 20 Oct 2023 15:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 206281DDE9;
+	Fri, 20 Oct 2023 15:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ws3Rm6Z2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pNHvl4mY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58091DDE0
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:34:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 578C8C433C7;
-	Fri, 20 Oct 2023 15:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F861DDDC;
+	Fri, 20 Oct 2023 15:36:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D730CC433C8;
+	Fri, 20 Oct 2023 15:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697816094;
-	bh=xiAEjRmww6/BxtbQQYblks4hL/CkDuN33VM/Ugwom6U=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Ws3Rm6Z21vFfjHwVeYMktTvrddWZL8CnIl7a2K/YVwu8zW2lzEL8QCdKBjdbCE0+b
-	 TxmKa+U8XzgOD8WqIPHOEpGeDZKCBnVExzIiFFHDgvC2ivXbS1eZvGcq7Q41raK+Et
-	 zjLjVZcM7cVw/VqiB4mxwtO04sSDuKE3ay5ogThzJdXwIdcR9p8NhmYvMFMEgCjlT+
-	 Awlhq5VgxA/grtAULpKTIeNvUJzF/nWXkWhV3Ew1zO3hU9Okwq3tbLGBg0uMnyZ2TZ
-	 pt2Al8U+kPJ411UjOEQSEW40kJeNU1AZ/NQ+O9OKzU7asStno22V/YtLkS0DBebxTM
-	 Por5CcyRFQxuA==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5046bf37ec1so1237740e87.1;
-        Fri, 20 Oct 2023 08:34:54 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzTPIPstrtTdQDoehU0Ql7kIY0tQw9gAaGniYUymTt8fGMMj5if
-	nVmrdihkVNM++ybjr0mAHLYPF2oETUkj9kKG6Q==
-X-Google-Smtp-Source: AGHT+IGGfrI6448U2jdzaZAybL6ixVBj5cEamLBYPee1zT/Mmiauuaf6vjmiJ6zlQdze3HklPl/J37MqqQwOuB95J5k=
-X-Received: by 2002:a19:ee14:0:b0:507:9a64:adf0 with SMTP id
- g20-20020a19ee14000000b005079a64adf0mr1693725lfb.10.1697816092553; Fri, 20
- Oct 2023 08:34:52 -0700 (PDT)
+	s=k20201202; t=1697816184;
+	bh=s1xV3JBd6JIKm+NQbSAbEH6DMv5wORv7APbuEHALwfw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pNHvl4mYVct+XX8kx8UXf2TT0nVK+m3RiqBgFauhIyP34BfS24P6w3cN+sNYgh86L
+	 zIefFNd8SChjbE5mt0RcnCDDVnHQI9kiZ34N/Ndcb99gaYfbftUXfVN2jHE+rGi3tm
+	 n1WJoP51Ny99stXZhmuo1Jrobgy4wuqH2wA5OViwEeNmvPtRxtmTZNsEomW/GeuStz
+	 E56SShxBTIycb5PteKMvF+cjGSX68RZRJUltSn2U6mia4caFYA/aHgilLqBlYv75n1
+	 XaB4EfF6m1ZGVqn9pgmCTZdSpN7ahbLcycEwthBAeTyHfVar01kDyclkbMcSWk/O7u
+	 O/Z9xWkCKirLA==
+Date: Fri, 20 Oct 2023 16:36:19 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20231020-shudder-tackle-cc98a82f1cd0@spud>
+References: <20231020150022.48725-1-sebastian.reichel@collabora.com>
+ <20231020150022.48725-2-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231014071520.1342189-1-javierm@redhat.com> <20231014071520.1342189-7-javierm@redhat.com>
-In-Reply-To: <20231014071520.1342189-7-javierm@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 20 Oct 2023 10:34:40 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+h8DcnpKqhokQOODCc8+Qi3M0PrxRFKz_Y4v37yMJvvA@mail.gmail.com>
-Message-ID: <CAL_Jsq+h8DcnpKqhokQOODCc8+Qi3M0PrxRFKz_Y4v37yMJvvA@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] dt-bindings: display: Add SSD132x OLED controllers
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Peter Robinson <pbrobinson@gmail.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xK1bQfKTFhB0MwbA"
+Content-Disposition: inline
+In-Reply-To: <20231020150022.48725-2-sebastian.reichel@collabora.com>
+
+
+--xK1bQfKTFhB0MwbA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Oct 14, 2023 at 2:15=E2=80=AFAM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
->
-> Add a Device Tree binding schema for the OLED panels based on the Solomon
-> SSD132x family of controllers.
->
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+On Fri, Oct 20, 2023 at 04:11:40PM +0200, Sebastian Reichel wrote:
+> RK3588 has three DWC3 controllers. Two of them are fully functional in
+> host, device and OTG mode including USB2 support. They are connected to
+> dedicated PHYs, that also support USB-C's DisplayPort alternate mode.
+>=20
+> The third controller is connected to one of the combphy's shared
+> with PCIe and SATA. It can only be used in host mode and does not
+> support USB2. Compared to the other controllers this one needs
+> some extra clocks.
+>=20
+> While adding the extra clocks required by RK3588, I noticed grf_clk
+> is not available on RK3568, so I disallowed it for that platform.
+>=20
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->
-> (no changes since v3)
->
-> Changes in v3:
-> - Add Rob Herring's Reviewed-by tag to patch #6.
->
-> Changes in v2:
-> - Remove unnecessary 'oneOf' in the SSD132x DT binding schema (Conor Dool=
-ey).
-> - Remove unused DT nodes labels in the binding schema examples (Conor Doo=
-ley).
-> - Split out common Solomon properties into a separate schema (Rob Herring=
-).
->
->  .../bindings/display/solomon,ssd132x.yaml     | 89 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  2 files changed, 90 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd=
-132x.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd132x.ya=
-ml b/Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
-> new file mode 100644
-> index 000000000000..0aa41bd9ddca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/solomon,ssd132x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  .../bindings/usb/rockchip,dwc3.yaml           | 60 +++++++++++++++++--
+>  1 file changed, 55 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/D=
+ocumentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> index 291844c8f3e1..264c2178d61d 100644
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -20,9 +20,6 @@ description:
+>    Type-C PHY
+>    Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+> =20
+> -allOf:
+> -  - $ref: snps,dwc3.yaml#
+> -
+>  select:
+>    properties:
+>      compatible:
+> @@ -30,6 +27,7 @@ select:
+>          enum:
+>            - rockchip,rk3328-dwc3
+>            - rockchip,rk3568-dwc3
+> +          - rockchip,rk3588-dwc3
+>    required:
+>      - compatible
+> =20
+> @@ -39,6 +37,7 @@ properties:
+>        - enum:
+>            - rockchip,rk3328-dwc3
+>            - rockchip,rk3568-dwc3
+> +          - rockchip,rk3588-dwc3
+>        - const: snps,dwc3
+> =20
+>    reg:
+> @@ -58,7 +57,9 @@ properties:
+>            Master/Core clock, must to be >=3D 62.5 MHz for SS
+>            operation and >=3D 30MHz for HS operation
+>        - description:
+> -          Controller grf clock
+> +          Controller grf clock OR UTMI clock
+> +      - description:
+> +          PIPE clock
+> =20
+>    clock-names:
+>      minItems: 3
+> @@ -66,7 +67,10 @@ properties:
+>        - const: ref_clk
+>        - const: suspend_clk
+>        - const: bus_clk
+> -      - const: grf_clk
+> +      - enum:
+> +          - grf_clk
+> +          - utmi
+> +      - const: pipe
+> =20
+>    power-domains:
+>      maxItems: 1
+> @@ -86,6 +90,52 @@ required:
+>    - clocks
+>    - clock-names
+> =20
+> +allOf:
+> +  - $ref: snps,dwc3.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3328-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+
+minItems for clocks and clock-names is already 3, is it not?
+
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+> +          maxItems: 4
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+> +            - const: grf_clk
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3568-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          maxItems: 3
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3588-dwc3
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+> +            - const: utmi
+> +            - const: pipe
 > +
-> +title: Solomon SSD132x OLED Display Controllers
-> +
-> +maintainers:
-> +  - Javier Martinez Canillas <javierm@redhat.com>
-> +
-> +properties:
-> +  compatible:
-> +    - enum:
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/rk3328-cru.h>
+> --=20
+> 2.42.0
+>=20
 
-Now this is a warning in linux-next. The '-' should not be there.
-Please send a fix.
+--xK1bQfKTFhB0MwbA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Not sure why there wasn't a report, but most likely it didn't apply to v6.6=
--rc1.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTKecwAKCRB4tDGHoIJi
+0nobAP9gB+qsHrTFsAFDJu4+fvKBpfSdY02kTL2MPTojpyy3eAD8C3SFcHdhD6T3
+zRXBywGwE+6lPmCkSRVvQByGqxESRAk=
+=vfSY
+-----END PGP SIGNATURE-----
 
-> +        - solomon,ssd1322
-> +        - solomon,ssd1325
-> +        - solomon,ssd1327
+--xK1bQfKTFhB0MwbA--
 
