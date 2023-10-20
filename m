@@ -1,181 +1,581 @@
-Return-Path: <devicetree+bounces-10324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA467D0D48
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:35:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4EA27D0D4E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFFC01C20F6E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:35:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A3CEB214B1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C50FCA75;
-	Fri, 20 Oct 2023 10:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859341798D;
+	Fri, 20 Oct 2023 10:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="sKeH60d6"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="N47yRFrW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880AB179BD
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 10:35:51 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2066.outbound.protection.outlook.com [40.107.244.66])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842E1170A;
-	Fri, 20 Oct 2023 03:35:49 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Eie8hEckEEs14ha4gJtlx4iKiWSxWboTJ0GzLIrBT47YmYIH2HYhBG+esVViKlu2ssHOIxQwTftgXxUah7bWEs/VUIOJqdIN/aEcHAoOme0v/VIHxToVlwYsL/s8bdBEiuItjS/hNtmJDOSEGphuzEoOBkrQZq3Z0mX8/Y6JJ3cYuc+42+8KAh6YzJEJ5UD8+OHI2VZxTio7v8TMbRw/dfhdE/9V594Zm4Gg4W20oneWHcR/YWGhCz716DESM811JgL+P3g6e+5QzhiC78aJfRUlg7fIF7pF6siqDnMcb/R+pFtVNcgTmA2xnGygd20R3JczZthcZRLVjWvwx3KW9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2le8x+RMQjzghYYr9XRaIW8ILaPqXqW4/Ubwyoda9BM=;
- b=BzRvaWMlSvRKghsrmxHJvQnM1a5JS6gp0PFg9DTXxitEtD5tUOfwndWMEEw//i1uvcmNTw89oE4g31YNiPNjh+LYQ0EL0Zf8B3REIruJ9z6SJauKQaxN1IN+8i/VJuJO9D1VpIgxGViiPRqaFoYC11jX/eWztHuMkCQEem+8qkz4vqYMGZmcgiJXoxcxxM2oWakvzqmd+v+vtaD8Hw1EgykMoa78gaRb04AuPN8utTlOu6oVfJBpyg2cojUnxMwkI4B8G3KPAlml2bUS0ou/8Nrf2z8v+8P6EybysygH5J7hTkzmHh6jofW5VOeUvpl9XFk654tIA4SGpmoBycIFmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2le8x+RMQjzghYYr9XRaIW8ILaPqXqW4/Ubwyoda9BM=;
- b=sKeH60d6HPI97D8BmuMtC3z0Pvofgqd0Fg/agGW12lY/QVlxKujFUBooQAr4UI3DDC3eeIL8YslOARKKRYi0GbZPPnPsHV9DecU07z/HTFk6BwfZU0dUDmzeZJpl8m5K3pqlh5Lc5jPhfGm5HIPAkDpxSlOBVzpdUmXRm/8EINo=
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
- by PH7PR12MB5711.namprd12.prod.outlook.com (2603:10b6:510:1e2::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Fri, 20 Oct
- 2023 10:35:46 +0000
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::167:7f5a:82a1:e2b9]) by SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::167:7f5a:82a1:e2b9%4]) with mapi id 15.20.6907.022; Fri, 20 Oct 2023
- 10:35:46 +0000
-From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
-	<robh@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "colnor+dt@kernel.org"
-	<colnor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, "Gogada,
- Bharat Kumar" <bharat.kumar.gogada@amd.com>
-Subject: RE: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
- buses during
-Thread-Topic: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
- buses during
-Thread-Index: AQHZ/+89QXgcS12G7EKSCK4TL1ydHbBSgl0g
-Date: Fri, 20 Oct 2023 10:35:46 +0000
-Message-ID:
- <SN7PR12MB7201A57631FB1E0FB60A9BC08BDBA@SN7PR12MB7201.namprd12.prod.outlook.com>
-References: <20231016051102.1180432-1-thippeswamy.havalige@amd.com>
-In-Reply-To: <20231016051102.1180432-1-thippeswamy.havalige@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|PH7PR12MB5711:EE_
-x-ms-office365-filtering-correlation-id: 2137cafc-0d2c-4b7e-9e46-08dbd158520d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- gs4iATO2idUPuf24ts6nMSFBWjwIYSx9nqkGvDx9wR/geNv5oYt+HuWX1/VuHv1DzUH5BHCaNGjdW6AkbdS+9FPhzPZSU6BGXVJGSBxv/zXEC5vUmC/GtVv3wzhfocjN/2EJt0Vt3o4qF7uRurXPRZE7d/8ATQuNTFNrf0lKIXfXN92rDTYPQpGNKl9DLMXdjb0giMQHuq+/jz48AeJWJqqk20w4G7elGAwAnA6D2ryGiYcF8QntVp4eRMXoBgTev9QjZC6fz00aSLNdPkIT1eHFoV5rL8KxmEz7KDqxAwgvehb7GM0Lk+RlSpR4UE4sK17r4hACnm5Wc1DkXU1em1hhY0x0JCslMefiXLoI4IP+5OJAc3xuydTC6/B6PtCoGqsDSu+/JO/u+f2Ffogm8Q3vkUt3SwCUbLgiT3Z1CNP58Q5q+kJ/Dxb37JVp3FJCnufvlSP3YnXsX8igfobbKb4nyKfHzpN1lsxjKxwS4ftgqxBmkoHJ0HyQrhABtyWQFU5QuFsWbrWq3YLsHXz+E9KQQgl95+QE/jOAQuMr6WIcQOA4KM8HfMcbrm3VHpyNOMu4cROnGrv9gBw6Ru7PLcdhkHYNg8n+LVvmu7tJjrh1/IXNSqU5hNLq80D623XK
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(346002)(39860400002)(376002)(136003)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(33656002)(41300700001)(7416002)(55016003)(5660300002)(4326008)(8676002)(8936002)(52536014)(2906002)(86362001)(38070700009)(478600001)(9686003)(122000001)(26005)(76116006)(53546011)(83380400001)(6506007)(7696005)(71200400001)(66556008)(66476007)(66946007)(64756008)(66446008)(38100700002)(316002)(54906003)(110136005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?TgurxyjkJH1v4YlMrmX13F63Ga9rwdl9owytLjBXbZqXDB5UedhQTXBsqipQ?=
- =?us-ascii?Q?x7MQScePOWi1FJoLRLUxtQbcMqWlDRv28Uk5lr2U98LOiiNgNH70nq/EY7s0?=
- =?us-ascii?Q?y/Kw/nDFZRzoPtOs78KlcqnuqJdyGLEsB1laJuNe+OoTB2Qm8R35KMOFMKjM?=
- =?us-ascii?Q?MBPik+XFhIeYyVBtIKIzK8pSZujCCbjbqwlgIKRpiIog+3QPQeUtiIOVV8Pk?=
- =?us-ascii?Q?1DqRzEumesuuqBTSLGZ5yfD74APNWFXo4Pg0Fth3rO1BLfFAxeHv2hs9YOlL?=
- =?us-ascii?Q?5zxKGHPENRFab78BMF01OsfqND3Ln7m3PcOsWOWasqAbGXWgqxred3eavt8g?=
- =?us-ascii?Q?+ljl60peabg0pMn7pgZFXszb0XZYfShH/CPV7DyB8+nxHiWqBFNBNRhXjB1/?=
- =?us-ascii?Q?faN6CgdRWKIutbJ/3zri1KXbSCSMiuBIYbEMYA90ok4G/4+0t7RYNMTyB6OA?=
- =?us-ascii?Q?6Bg/2pxX7Sr58E0THE/S71WCJppI8VMopUFWJC/FMIthjabF45dKunFD754Q?=
- =?us-ascii?Q?TW21NKjDdADW/B8GhkmSkcWi+XVfW8c9GG5TLV3lyhIuyZDPuk4tKMu5MT7i?=
- =?us-ascii?Q?ieJR3Ih9ile5JXcWiaKMsbQFow3YBKTd3paC1+9/tX2V21+qXjaq3GoNlVCW?=
- =?us-ascii?Q?gTlbOfMclhwzJpsD+HsixjgZyYohEuuMUVYyEve9NY3h19rTDgDtDNjNJhBw?=
- =?us-ascii?Q?+Pj3zFi5maMgNmU8bYIr5PLYnImnXV8IJ4X9kSeeopoW1mpvl/drJQ112flU?=
- =?us-ascii?Q?8GLf/PA8z87oXfEKbe6YDupf4IO3ho9oekYNBbnvVxxBt7EdVxnJDw+LNxjT?=
- =?us-ascii?Q?krmUySFbX8I+eqkPzEpRWEbnZnLqrtRmBOCvMVgPaHhW5oiqzSBU9fShYujY?=
- =?us-ascii?Q?GYG7THU4wgXgnnwZMtHYJREeSeak4uV91hSGb1VIHGEAwQH2yrrqJ77LhPX0?=
- =?us-ascii?Q?zH4rJEGGYZeRGAAH7i5quT2WatUxdbQZ45HPNxHHUyNKeEAhhBdCk3MLmbIJ?=
- =?us-ascii?Q?OnFJmrYS0h/ELls4kWtWLOW/OFX/E6Tyc7YF2vOTNfr+Glnq4YzfG/aCvXb5?=
- =?us-ascii?Q?WiBG9NplEgb1B/nm0htAffIlVV4/lRa6ZSz7Wu3IPXHW+/5PStZR2tfxEfqR?=
- =?us-ascii?Q?97QTVZDnt+C8gT1DN0LCiEYjKHLN2H4pT8Ms6MYbnecgtsAuU+PS0GANLog8?=
- =?us-ascii?Q?EFEkolRUdHVbWAi96rz2mCRB+H7TS+Raz8I+TLiJ2qHJLvgQttLxWuUrki24?=
- =?us-ascii?Q?82ZjlJJ2CWsXJdKs+9h0Cg6qmzV+YdvBpCxW7gUQL7qi6TfpyvVlFS4iq3f6?=
- =?us-ascii?Q?k8q+QyYvimfw4y2eoUBUz9zPopeyccTVdL4aiMJQSM5V55Kmgh0HmaEBXqr9?=
- =?us-ascii?Q?e/GAGrR0q7jf3pZ6Pfvkg6fCYrmK0uH1ZR+Add5g+hssCXMhJqe6ssgYMX4n?=
- =?us-ascii?Q?0g6ohgYaYAoIZcgQGJivu6l0Fl1mPH1sSdjpgfxHod1fUf2HvaxlUzu90d2M?=
- =?us-ascii?Q?C6bkUs/5CIU+3d09buHa8mkThCa/9Fc5W8T89AxdviAyHc0IpYyCNhl8r6VM?=
- =?us-ascii?Q?q8DD9xCPgyDgmBSKNJo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB162179BD
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 10:35:56 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8735FD6D
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 03:35:53 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so105797066b.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 03:35:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1697798152; x=1698402952; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MpUgRpro849XsHd37T9qHH8WNDWZQTZ1RSHBQlvkvCI=;
+        b=N47yRFrWN5+sbSx6Hr9l6iE3wCxPV5mgvpa20FVtt9ntTGJaOp1Ti4V0E4sYZdlCdG
+         5kIla/MULS9psLExWjbOofBnWKoyO331ZSFWRuW4FR3JbXAUjA6zJzFdCvF7cXSN87dB
+         bp+DevuCTL0w5bX6psWQDYrVQlPr9APu9pMFeDRCq/UpKqp3VV0ChbNGrb8wkY3DJs+U
+         LaXxwXNFYfXEk7N4GtLvIHSUSAtR1NDWFYX/XJKXPWXU4mGUMSm3TqNrnG1ltHgvEU6q
+         mMnCr9Cp51aqmUTnMKJB3g4d3WkrInZNGNVm5UNKjnhRm70hY6e8sfALlBgF/g+5+7DX
+         5wTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697798152; x=1698402952;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MpUgRpro849XsHd37T9qHH8WNDWZQTZ1RSHBQlvkvCI=;
+        b=F8eczrgZH/Kfaj+1UNtGDj+MIfjl3YJaijZTjltErmCsNteoYYpEbkQ76bOVV6X3ig
+         AVdMoZ2C2Qf/CPY/1tH2q4l/DAmxgQyEckVcXPXjoKxvLZ5xw/nqgWD8UEd/nK6mU4/t
+         9tjbgwthdiewe+quAfutOOZQaH3roODp6F18nELO1Prvb7KXP+NDDi+bB/p4Ps/CqUt/
+         OYI66ih1D6zxcKrSRWLcJ4LFMa6ViZzU48XBQuhww7+V2jiAGmfWgvaZPF5pXMIfZk7A
+         TnqDO6V1PFH/7YvBzMZwGiJOrOvKJ/qZuULhv4e8Lqqih6EX20rccoUmH1E/G+DQfIMO
+         IXuA==
+X-Gm-Message-State: AOJu0YyKAjMT9l1zhRMLq+3ojYPtybmDT3+gm87+Ur/XYn2fVTzWx1IY
+	sikXAPGEHpOTd2rurUl+9vzkVA==
+X-Google-Smtp-Source: AGHT+IEjR1RmItSSh2MYWBSnCmqAh7jKwbfhaugIepR3NcJo0YM/2Q/bQjVp9M8FXr/5BhVe5kcVBw==
+X-Received: by 2002:a17:907:9815:b0:9be:7b67:1674 with SMTP id ji21-20020a170907981500b009be7b671674mr1047496ejc.3.1697798151819;
+        Fri, 20 Oct 2023 03:35:51 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (k10064.upc-k.chello.nl. [62.108.10.64])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709063c0700b0099c53c4407dsm1226701ejg.78.2023.10.20.03.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 03:35:51 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Fri, 20 Oct 2023 12:35:47 +0200
+Subject: [PATCH v2 2/2] usb: typec: add support for PTN36502 redriver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2137cafc-0d2c-4b7e-9e46-08dbd158520d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2023 10:35:46.7009
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NEKIA6ZZHm25pB5RWiuidJQZxYg9fEvAEmIYZ4xq7XoFJYsi29aPlkAPwjcb1lhNH8diISyKTMkucKeG/TCn9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5711
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231020-ptn36502-v2-2-b37a337d463e@fairphone.com>
+References: <20231020-ptn36502-v2-0-b37a337d463e@fairphone.com>
+In-Reply-To: <20231020-ptn36502-v2-0-b37a337d463e@fairphone.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.3
 
-Hi Bjorn,
+Add a driver for the NXP PTN36502 Type-C USB 3.1 Gen 1 and DisplayPort
+v1.2 combo redriver.
 
-Can you please provide an update on this patch series.
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ drivers/usb/typec/mux/Kconfig    |  10 +
+ drivers/usb/typec/mux/Makefile   |   1 +
+ drivers/usb/typec/mux/ptn36502.c | 444 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 455 insertions(+)
 
-Regards,
-Thippeswamy H
+diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+index 65da61150ba7..816b9bd08355 100644
+--- a/drivers/usb/typec/mux/Kconfig
++++ b/drivers/usb/typec/mux/Kconfig
+@@ -46,4 +46,14 @@ config TYPEC_MUX_NB7VPQ904M
+ 	  Say Y or M if your system has a On Semiconductor NB7VPQ904M Type-C
+ 	  redriver chip found on some devices with a Type-C port.
+ 
++config TYPEC_MUX_PTN36502
++	tristate "NXP PTN36502 Type-C redriver driver"
++	depends on I2C
++	depends on DRM || DRM=n
++	select DRM_PANEL_BRIDGE if DRM
++	select REGMAP_I2C
++	help
++	  Say Y or M if your system has a NXP PTN36502 Type-C redriver chip
++	  found on some devices with a Type-C port.
++
+ endmenu
+diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+index 76196096ef41..9d6a5557b0bd 100644
+--- a/drivers/usb/typec/mux/Makefile
++++ b/drivers/usb/typec/mux/Makefile
+@@ -5,3 +5,4 @@ obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
+ obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
+ obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
+ obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
++obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
+diff --git a/drivers/usb/typec/mux/ptn36502.c b/drivers/usb/typec/mux/ptn36502.c
+new file mode 100644
+index 000000000000..72ae38a1b2be
+--- /dev/null
++++ b/drivers/usb/typec/mux/ptn36502.c
+@@ -0,0 +1,444 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * NXP PTN36502 Type-C driver
++ *
++ * Copyright (C) 2023 Luca Weiss <luca.weiss@fairphone.com>
++ *
++ * Based on NB7VPQ904M driver:
++ * Copyright (C) 2023 Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++ */
++
++#include <drm/drm_bridge.h>
++#include <linux/bitfield.h>
++#include <linux/i2c.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/of_graph.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <linux/usb/typec_dp.h>
++#include <linux/usb/typec_mux.h>
++#include <linux/usb/typec_retimer.h>
++
++#define PTN36502_CHIP_ID_REG				0x00
++#define PTN36502_CHIP_ID				0x02
++
++#define PTN36502_CHIP_REVISION_REG			0x01
++#define PTN36502_CHIP_REVISION_BASE_MASK		GENMASK(7, 4)
++#define PTN36502_CHIP_REVISION_METAL_MASK		GENMASK(3, 0)
++
++#define PTN36502_DP_LINK_CTRL_REG			0x06
++#define PTN36502_DP_LINK_CTRL_LANES_MASK		GENMASK(3, 2)
++#define PTN36502_DP_LINK_CTRL_LANES_2			(2)
++#define PTN36502_DP_LINK_CTRL_LANES_4			(3)
++#define PTN36502_DP_LINK_CTRL_LINK_RATE_MASK		GENMASK(1, 0)
++#define PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS		(2)
++
++/* Registers for lane 0 (0x07) to lane 3 (0x0a) have the same layout */
++#define PTN36502_DP_LANE_CTRL_REG(n)			(0x07 + (n))
++#define PTN36502_DP_LANE_CTRL_RX_GAIN_MASK		GENMASK(6, 4)
++#define PTN36502_DP_LANE_CTRL_RX_GAIN_3DB		(2)
++#define PTN36502_DP_LANE_CTRL_TX_SWING_MASK             GENMASK(3, 2)
++#define PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD         (2)
++#define PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_MASK		GENMASK(1, 0)
++#define PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB	(1)
++
++#define PTN36502_MODE_CTRL1_REG				0x0b
++#define PTN36502_MODE_CTRL1_PLUG_ORIENT_MASK		GENMASK(5, 5)
++#define PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE		(1)
++#define PTN36502_MODE_CTRL1_AUX_CROSSBAR_MASK		GENMASK(3, 3)
++#define PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON		(1)
++#define PTN36502_MODE_CTRL1_MODE_MASK			GENMASK(2, 0)
++#define PTN36502_MODE_CTRL1_MODE_OFF			(0)
++#define PTN36502_MODE_CTRL1_MODE_USB_ONLY		(1)
++#define PTN36502_MODE_CTRL1_MODE_USB_DP			(2)
++#define PTN36502_MODE_CTRL1_MODE_DP			(3)
++
++#define PTN36502_DEVICE_CTRL_REG			0x0d
++#define PTN36502_DEVICE_CTRL_AUX_MONITORING_MASK	GENMASK(7, 7)
++#define PTN36502_DEVICE_CTRL_AUX_MONITORING_EN		(1)
++
++struct ptn36502 {
++	struct i2c_client *client;
++	struct regulator *vdd18_supply;
++	struct regmap *regmap;
++	struct typec_switch_dev *sw;
++	struct typec_retimer *retimer;
++
++	struct typec_switch *typec_switch;
++
++	struct drm_bridge bridge;
++
++	struct mutex lock; /* protect non-concurrent retimer & switch */
++
++	enum typec_orientation orientation;
++	unsigned long mode;
++	unsigned int svid;
++};
++
++static int ptn36502_set(struct ptn36502 *ptn)
++{
++	bool reverse = (ptn->orientation == TYPEC_ORIENTATION_REVERSE);
++	unsigned int ctrl1_val = 0;
++	unsigned int lane_ctrl_val = 0;
++	unsigned int link_ctrl_val = 0;
++
++	switch (ptn->mode) {
++	case TYPEC_STATE_SAFE:
++		/* Deep power saving state */
++		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG,
++			     FIELD_PREP(PTN36502_MODE_CTRL1_MODE_MASK,
++					PTN36502_MODE_CTRL1_MODE_OFF));
++		return 0;
++
++	case TYPEC_STATE_USB:
++		/*
++		 * Normal Orientation (CC1)
++		 * A -> USB RX
++		 * B -> USB TX
++		 * C -> X
++		 * D -> X
++		 * Flipped Orientation (CC2)
++		 * A -> X
++		 * B -> X
++		 * C -> USB TX
++		 * D -> USB RX
++		 */
++
++		/* USB 3.1 Gen 1 only */
++		ctrl1_val = FIELD_PREP(PTN36502_MODE_CTRL1_MODE_MASK,
++				       PTN36502_MODE_CTRL1_MODE_USB_ONLY);
++		if (reverse)
++			ctrl1_val |= FIELD_PREP(PTN36502_MODE_CTRL1_PLUG_ORIENT_MASK,
++						PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE);
++
++		regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
++		return 0;
++
++	default:
++		if (ptn->svid != USB_TYPEC_DP_SID)
++			return -EINVAL;
++
++		break;
++	}
++
++	/* DP Altmode Setup */
++
++	switch (ptn->mode) {
++	case TYPEC_DP_STATE_C:
++	case TYPEC_DP_STATE_E:
++		/*
++		 * Normal Orientation (CC1)
++		 * A -> DP3
++		 * B -> DP2
++		 * C -> DP1
++		 * D -> DP0
++		 * Flipped Orientation (CC2)
++		 * A -> DP0
++		 * B -> DP1
++		 * C -> DP2
++		 * D -> DP3
++		 */
++
++		/* 4-lane DP */
++		ctrl1_val |= FIELD_PREP(PTN36502_MODE_CTRL1_MODE_MASK,
++					PTN36502_MODE_CTRL1_MODE_DP);
++		link_ctrl_val |= FIELD_PREP(PTN36502_DP_LINK_CTRL_LANES_MASK,
++					    PTN36502_DP_LINK_CTRL_LANES_4);
++		break;
++
++	case TYPEC_DP_STATE_D:
++	case TYPEC_DP_STATE_F: /* State F is deprecated */
++		/*
++		 * Normal Orientation (CC1)
++		 * A -> USB RX
++		 * B -> USB TX
++		 * C -> DP1
++		 * D -> DP0
++		 * Flipped Orientation (CC2)
++		 * A -> DP0
++		 * B -> DP1
++		 * C -> USB TX
++		 * D -> USB RX
++		 */
++
++		/* USB 3.1 Gen 1 and 2-lane DP */
++		ctrl1_val |= FIELD_PREP(PTN36502_MODE_CTRL1_MODE_MASK,
++					PTN36502_MODE_CTRL1_MODE_USB_DP);
++		link_ctrl_val |= FIELD_PREP(PTN36502_DP_LINK_CTRL_LANES_MASK,
++					    PTN36502_DP_LINK_CTRL_LANES_2);
++		break;
++
++	default:
++		return -EOPNOTSUPP;
++	}
++
++	/* Enable AUX monitoring */
++	regmap_write(ptn->regmap, PTN36502_DEVICE_CTRL_REG,
++		     FIELD_PREP(PTN36502_DEVICE_CTRL_AUX_MONITORING_MASK,
++				PTN36502_DEVICE_CTRL_AUX_MONITORING_EN));
++
++	/* Enable AUX switch path */
++	ctrl1_val |= FIELD_PREP(PTN36502_MODE_CTRL1_AUX_CROSSBAR_MASK,
++				PTN36502_MODE_CTRL1_AUX_CROSSBAR_SW_ON);
++	if (reverse)
++		ctrl1_val |= FIELD_PREP(PTN36502_MODE_CTRL1_PLUG_ORIENT_MASK,
++					PTN36502_MODE_CTRL1_PLUG_ORIENT_REVERSE);
++	regmap_write(ptn->regmap, PTN36502_MODE_CTRL1_REG, ctrl1_val);
++
++	/* DP Link rate: 5.4 Gbps (HBR2) */
++	link_ctrl_val |= FIELD_PREP(PTN36502_DP_LINK_CTRL_LINK_RATE_MASK,
++				    PTN36502_DP_LINK_CTRL_LINK_RATE_5_4GBPS);
++	regmap_write(ptn->regmap, PTN36502_DP_LINK_CTRL_REG, link_ctrl_val);
++
++	/*
++	 * For all lanes:
++	 * - Rx equivalization gain: 3 dB
++	 * - TX output swing control: 800 mVppd
++	 * - Pre-emphasis control: 3.5 dB
++	 */
++	lane_ctrl_val = FIELD_PREP(PTN36502_DP_LANE_CTRL_RX_GAIN_MASK,
++				   PTN36502_DP_LANE_CTRL_RX_GAIN_3DB) |
++			FIELD_PREP(PTN36502_DP_LANE_CTRL_TX_SWING_MASK,
++				   PTN36502_DP_LANE_CTRL_TX_SWING_800MVPPD) |
++			FIELD_PREP(PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_MASK,
++				   PTN36502_DP_LANE_CTRL_PRE_EMPHASIS_3_5DB);
++	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(0), lane_ctrl_val);
++	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(1), lane_ctrl_val);
++	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(2), lane_ctrl_val);
++	regmap_write(ptn->regmap, PTN36502_DP_LANE_CTRL_REG(3), lane_ctrl_val);
++
++	return 0;
++}
++
++static int ptn36502_sw_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
++{
++	struct ptn36502 *ptn = typec_switch_get_drvdata(sw);
++	int ret;
++
++	ret = typec_switch_set(ptn->typec_switch, orientation);
++	if (ret)
++		return ret;
++
++	mutex_lock(&ptn->lock);
++
++	if (ptn->orientation != orientation) {
++		ptn->orientation = orientation;
++
++		ret = ptn36502_set(ptn);
++	}
++
++	mutex_unlock(&ptn->lock);
++
++	return ret;
++}
++
++static int ptn36502_retimer_set(struct typec_retimer *retimer, struct typec_retimer_state *state)
++{
++	struct ptn36502 *ptn = typec_retimer_get_drvdata(retimer);
++	int ret = 0;
++
++	mutex_lock(&ptn->lock);
++
++	if (ptn->mode != state->mode) {
++		ptn->mode = state->mode;
++
++		if (state->alt)
++			ptn->svid = state->alt->svid;
++		else
++			ptn->svid = 0; // No SVID
++
++		ret = ptn36502_set(ptn);
++	}
++
++	mutex_unlock(&ptn->lock);
++
++	return ret;
++}
++
++static int ptn36502_detect(struct ptn36502 *ptn)
++{
++	struct device *dev = &ptn->client->dev;
++	unsigned int reg_val;
++	int ret;
++
++	ret = regmap_read(ptn->regmap, PTN36502_CHIP_ID_REG,
++			  &reg_val);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "Failed to read chip ID\n");
++
++	if (reg_val != PTN36502_CHIP_ID)
++		return dev_err_probe(dev, -ENODEV, "Unexpected chip ID: %x\n", reg_val);
++
++	ret = regmap_read(ptn->regmap, PTN36502_CHIP_REVISION_REG,
++			  &reg_val);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "Failed to read chip revision\n");
++
++	dev_dbg(dev, "Chip revision: base layer version %lx, metal layer version %lx\n",
++		FIELD_GET(PTN36502_CHIP_REVISION_BASE_MASK, reg_val),
++		FIELD_GET(PTN36502_CHIP_REVISION_METAL_MASK, reg_val));
++
++	return 0;
++}
++
++#if IS_ENABLED(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_PANEL_BRIDGE)
++static int ptn36502_bridge_attach(struct drm_bridge *bridge,
++				  enum drm_bridge_attach_flags flags)
++{
++	struct ptn36502 *ptn = container_of(bridge, struct ptn36502, bridge);
++	struct drm_bridge *next_bridge;
++
++	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
++		return -EINVAL;
++
++	next_bridge = devm_drm_of_get_bridge(&ptn->client->dev, ptn->client->dev.of_node, 0, 0);
++	if (IS_ERR(next_bridge)) {
++		dev_err(&ptn->client->dev, "failed to acquire drm_bridge: %pe\n", next_bridge);
++		return PTR_ERR(next_bridge);
++	}
++
++	return drm_bridge_attach(bridge->encoder, next_bridge, bridge,
++				 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
++}
++
++static const struct drm_bridge_funcs ptn36502_bridge_funcs = {
++	.attach	= ptn36502_bridge_attach,
++};
++
++static int ptn36502_register_bridge(struct ptn36502 *ptn)
++{
++	ptn->bridge.funcs = &ptn36502_bridge_funcs;
++	ptn->bridge.of_node = ptn->client->dev.of_node;
++
++	return devm_drm_bridge_add(&ptn->client->dev, &ptn->bridge);
++}
++#else
++static int ptn36502_register_bridge(struct ptn36502 *ptn)
++{
++	return 0;
++}
++#endif
++
++static const struct regmap_config ptn36502_regmap = {
++	.max_register = 0x0d,
++	.reg_bits = 8,
++	.val_bits = 8,
++};
++
++static int ptn36502_probe(struct i2c_client *client)
++{
++	struct device *dev = &client->dev;
++	struct typec_switch_desc sw_desc = { };
++	struct typec_retimer_desc retimer_desc = { };
++	struct ptn36502 *ptn;
++	int ret;
++
++	ptn = devm_kzalloc(dev, sizeof(*ptn), GFP_KERNEL);
++	if (!ptn)
++		return -ENOMEM;
++
++	ptn->client = client;
++
++	ptn->regmap = devm_regmap_init_i2c(client, &ptn36502_regmap);
++	if (IS_ERR(ptn->regmap)) {
++		dev_err(&client->dev, "Failed to allocate register map\n");
++		return PTR_ERR(ptn->regmap);
++	}
++
++	ptn->mode = TYPEC_STATE_SAFE;
++	ptn->orientation = TYPEC_ORIENTATION_NONE;
++
++	mutex_init(&ptn->lock);
++
++	ptn->vdd18_supply = devm_regulator_get_optional(dev, "vdd18");
++	if (IS_ERR(ptn->vdd18_supply))
++		return PTR_ERR(ptn->vdd18_supply);
++
++	ptn->typec_switch = fwnode_typec_switch_get(dev->fwnode);
++	if (IS_ERR(ptn->typec_switch))
++		return dev_err_probe(dev, PTR_ERR(ptn->typec_switch),
++				     "Failed to acquire orientation-switch\n");
++
++	ret = regulator_enable(ptn->vdd18_supply);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to enable vdd18\n");
++
++	ret = ptn36502_detect(ptn);
++	if (ret)
++		goto err_disable_regulator;
++
++	ret = ptn36502_register_bridge(ptn);
++	if (ret)
++		goto err_disable_regulator;
++
++	sw_desc.drvdata = ptn;
++	sw_desc.fwnode = dev->fwnode;
++	sw_desc.set = ptn36502_sw_set;
++
++	ptn->sw = typec_switch_register(dev, &sw_desc);
++	if (IS_ERR(ptn->sw)) {
++		ret = dev_err_probe(dev, PTR_ERR(ptn->sw),
++				    "Failed to register typec switch\n");
++		goto err_disable_regulator;
++	}
++
++	retimer_desc.drvdata = ptn;
++	retimer_desc.fwnode = dev->fwnode;
++	retimer_desc.set = ptn36502_retimer_set;
++
++	ptn->retimer = typec_retimer_register(dev, &retimer_desc);
++	if (IS_ERR(ptn->retimer)) {
++		ret = dev_err_probe(dev, PTR_ERR(ptn->retimer),
++				    "Failed to register typec retimer\n");
++		goto err_switch_unregister;
++	}
++
++	return 0;
++
++err_switch_unregister:
++	typec_switch_unregister(ptn->sw);
++
++err_disable_regulator:
++	regulator_disable(ptn->vdd18_supply);
++
++	return ret;
++}
++
++static void ptn36502_remove(struct i2c_client *client)
++{
++	struct ptn36502 *ptn = i2c_get_clientdata(client);
++
++	typec_retimer_unregister(ptn->retimer);
++	typec_switch_unregister(ptn->sw);
++
++	regulator_disable(ptn->vdd18_supply);
++}
++
++static const struct i2c_device_id ptn36502_table[] = {
++	{ "ptn36502" },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, ptn36502_table);
++
++static const struct of_device_id ptn36502_of_table[] = {
++	{ .compatible = "nxp,ptn36502" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, ptn36502_of_table);
++
++static struct i2c_driver ptn36502_driver = {
++	.driver = {
++		.name = "ptn36502",
++		.of_match_table = ptn36502_of_table,
++	},
++	.probe		= ptn36502_probe,
++	.remove		= ptn36502_remove,
++	.id_table	= ptn36502_table,
++};
++module_i2c_driver(ptn36502_driver);
++
++MODULE_AUTHOR("Luca Weiss <luca.weiss@fairphone.com>");
++MODULE_DESCRIPTION("NXP PTN36502 Type-C driver");
++MODULE_LICENSE("GPL");
 
-> -----Original Message-----
-> From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Sent: Monday, October 16, 2023 10:41 AM
-> To: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
-> robh@kernel.org; krzysztof.kozlowski+dt@linaro.org; colnor+dt@kernel.org;
-> Havalige, Thippeswamy <thippeswamy.havalige@amd.com>; Simek, Michal
-> <michal.simek@amd.com>; Gogada, Bharat Kumar
-> <bharat.kumar.gogada@amd.com>
-> Subject: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
-> buses during
->=20
-> Current driver is supports up to 16 buses. The following code fixes to su=
-pport
-> up to 256 buses.
->=20
-> update "NWL_ECAM_VALUE_DEFAULT " to 16  can access up to 256MB ECAM
-> region to detect 256 buses.
->=20
-> Update ecam size to 256MB in device tree binding example.
->=20
-> Remove unwanted code.
->=20
-> Thippeswamy Havalige (4):
->   PCI: xilinx-nwl: Remove unnecessary code which updates primary,
->     secondary and sub-ordinate bus numbers
->   dt-bindings: PCI: xilinx-nwl: Modify ECAM size in example
->   PCI: xilinx-nwl: Rename ECAM size default macro
->   PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
->=20
->  .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml |  2 +-
->  drivers/pci/controller/pcie-xilinx-nwl.c       | 18 +++---------------
->  2 files changed, 4 insertions(+), 16 deletions(-)
->=20
-> --
-> 2.25.1
+-- 
+2.42.0
 
 
