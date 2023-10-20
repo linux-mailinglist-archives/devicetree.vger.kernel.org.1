@@ -1,298 +1,117 @@
-Return-Path: <devicetree+bounces-10372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B357D0EFF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:44:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3477D0F25
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:51:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2C99282489
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:44:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85AF4B21415
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:51:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E281947D;
-	Fri, 20 Oct 2023 11:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bO5ue8tm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E267C199BC;
+	Fri, 20 Oct 2023 11:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614CD199B0;
-	Fri, 20 Oct 2023 11:44:21 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCF246B3;
-	Fri, 20 Oct 2023 04:43:05 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39K7a7Pe002540;
-	Fri, 20 Oct 2023 11:41:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Bm51Om3gZzpa1v/vxVMnh6BhiJMwyK7YZWgdIj9tKfc=;
- b=bO5ue8tmhYDYsaePp6uQ9DbiUgwiFIbqVlRbqjwidbu1epYkSWWo8DPuue0rLFYw5Qms
- 7dGi/QnthVEJFm1MKAONsATel7Q24KzlfyekYbmYh/KY0u7QNf7T11JkMDP9nwMyEX4u
- 9ngF/C/socdHK3KfcPA1k6mlJuzNBW5JWFXSd1Ebg0Y8INjIH8clNKIb0qnbo7lJ/hJV
- RQzQg2OZ0c9aLCzPYL4YQyT/1O7IgINZBnBxrWSL9ugNR8VgBHRQwyHIo7MO7cOWTBuD
- hWTiAYrR476QZkmq5G4M31kitn03oC21CkXGGF/EA4kGd3TMjBNysHWN53TlltzcgdLg Jg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tubwr9qvv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Oct 2023 11:41:58 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39KBfvs4025304
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Oct 2023 11:41:57 GMT
-Received: from [10.216.47.159] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 20 Oct
- 2023 04:41:49 -0700
-Message-ID: <157d1c8d-5aa4-4488-bf85-7806c8fb00bc@quicinc.com>
-Date: Fri, 20 Oct 2023 17:11:46 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198A8199AF
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:51:28 +0000 (UTC)
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DBF115;
+	Fri, 20 Oct 2023 04:51:26 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6cd09f51fe0so442629a34.1;
+        Fri, 20 Oct 2023 04:51:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697802685; x=1698407485;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lR/W3ia8+cB0B+LYLWtxUCNQzBYfS0mqOMD968U3izM=;
+        b=FNN3ZAribIgDmY0dUbtpd4jwj+QU+Y6B7rb72CLa9tJ2oCgFmYgg2ONXWSvDaBqbXw
+         AYGzumaPrFy110V63Yl3d7xYwkYyiT5wSj38H9iWdzwhQmsEvP+AVFb6dTMYXwEGfjHd
+         7tZHO7AYKyKxvoBT5fAd/ZSlL5n9xyBZLiA/RgPa18ORA4FQo8vXu/3bAJ1UJjsT8YsQ
+         k+GqAQwAiNNyONOjn0QejM6q7Gq4ORAgVCIoiiPYy2Iy5DauH+0Nv/rbqwef/xBX5v8p
+         q8OJMEciB3AgW93G5LFhQe0VWr0vdUHsp48qPrAs8VEOSFGFEXBuOq9nfLJd1JI6lu6L
+         3rdw==
+X-Gm-Message-State: AOJu0YwKjIkI4MiifsXMmz8X0ejIpZ8B6n9MJG2xYsnTh/DCAsDEF5PY
+	+FjQmepp0kDuj+GxTsj8mg==
+X-Google-Smtp-Source: AGHT+IFoYAlPs4uq7phnAfLPEfOR0rK3haSSpGcp+7wvcJavXC/lO9ZP+N8wyofzcNoQQM2EOzs5hg==
+X-Received: by 2002:a05:6830:2703:b0:6b9:c51c:f4d5 with SMTP id j3-20020a056830270300b006b9c51cf4d5mr1599457otu.10.1697802685610;
+        Fri, 20 Oct 2023 04:51:25 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d17-20020a056830045100b006c4f7ced5d2sm292635otc.70.2023.10.20.04.51.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 04:51:24 -0700 (PDT)
+Received: (nullmailer pid 2614105 invoked by uid 1000);
+	Fri, 20 Oct 2023 11:51:23 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 03/10] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>,
-        Harsh Agarwal <quic_harshq@quicinc.com>,
-        kernel test robot <lkp@intel.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-4-quic_kriskura@quicinc.com>
- <ZTJPBcyZ_zLXbgE5@hovoldconsulting.com>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZTJPBcyZ_zLXbgE5@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pUAqABDTDCaqWova7_OUswvp6OdFJFzK
-X-Proofpoint-GUID: pUAqABDTDCaqWova7_OUswvp6OdFJFzK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-20_10,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1015 bulkscore=0
- mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310200097
+From: Rob Herring <robh@kernel.org>
+To: Jyan Chou <jyanchou@realtek.com>
+Cc: linux-mmc@vger.kernel.org, abel.vesa@linaro.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org, doug@schmorgal.com, william.qiu@starfivetech.com, adrian.hunter@intel.com, briannorris@chromium.org, arnd@arndb.de, robh+dt@kernel.org, riteshh@codeaurora.org, conor+dt@kernel.org, asutoshd@codeaurora.org, linux-kernel@vger.kernel.org, tonyhuang.sunplus@gmail.com, krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de, jh80.chung@samsung.com
+In-Reply-To: <20231020034921.1179-5-jyanchou@realtek.com>
+References: <20231020034921.1179-1-jyanchou@realtek.com>
+ <20231020034921.1179-5-jyanchou@realtek.com>
+Message-Id: <169780254588.2611189.14743997729121317882.robh@kernel.org>
+Subject: Re: [PATCH V3][4/4] dt-bindings: mmc: Add dt-bindings for realtek
+ mmc driver
+Date: Fri, 20 Oct 2023 06:51:23 -0500
 
 
-
-On 10/20/2023 3:27 PM, Johan Hovold wrote:
-> On Sat, Oct 07, 2023 at 09:17:59PM +0530, Krishna Kurapati wrote:
->> From: Harsh Agarwal <quic_harshq@quicinc.com>
->>
->> Currently the DWC3 driver supports only single port controller
->> which requires at most one HS and one SS PHY.
+On Fri, 20 Oct 2023 11:49:21 +0800, Jyan Chou wrote:
+> Document the device-tree bindings for Realtek SoCs mmc driver.
 > 
-> Should that not be "at least one HS PHY and at most one SS PHY"?
->   
->> But the DWC3 USB controller can be connected to multiple ports and
->> each port can have their own PHYs. Each port of the multiport
->> controller can either be HS+SS capable or HS only capable
->> Proper quantification of them is required to modify GUSB2PHYCFG
->> and GUSB3PIPECTL registers appropriately.
->>
->> Add support for detecting, obtaining and configuring phy's supported
+> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
 > 
-> "PHYs" for consistency, no apostrophe
+> ---
+> v2 -> v3:
+> - Modify dt-bindings' content and description.
+> - Fix coding style.
+> - Update the list of maintainers.
 > 
->> by a multiport controller and. Limit the max number of ports
-> 
-> "and." what? Looks like part of the sentence is missing? Or just drop
-> " and"?
-> 
->> supported to 4 as only SC8280 which is a quad port controller supports
-> 
-> s/4/four/
-> 
-> Just change this to
-> 
-> 	Limit support to multiport controllers with up to four ports for
-> 	now (e.g. as needed for SC8280XP).
-> 
->> Multiport currently.
-> 
-> You use capitalised "Multiport" in several places it seems. Is this an
-> established term for these controllers or should it just be "multiport"
-> or "multiple ports"?
-> 
->> Reported-by: kernel test robot <lkp@intel.com>
->> Closes: https://lore.kernel.org/oe-kbuild-all/202309200156.CxQ3yaLY-lkp@intel.com/
-> 
-> Drop these two lines, as people have already suggested.
-> 
->> Co-developed-by: Harsh Agarwal <quic_harshq@quicinc.com>
->> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
->> Co-developed-by:Krishna Kurapati <quic_kriskura@quicinc.com>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> 
-> Thinh pointed out the problems with the above which were also reported
-> by checkpatch.pl.
+> v0 -> v2:
+> - Add dt-bindings.
+> ---
+> ---
+>  .../bindings/mmc/realtek-dw-mshc.yaml         | 150 ++++++++++++++++++
+>  1 file changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml
 > 
 
-I see that removing Co-Developed by tag for Harsh is helping with one 
-checkpatch issue. From what I know, although I made Harsh the Primary 
-author for the patch, should we still mention his Co-Developed-by along 
-with this Signed-Of by ?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
->> ---
->> Changes in v13:
->> Compiler issues found by kernel test robot have been fixed and tags added.
->> So removing maintainers reviewed-by tag as we have made a minor change
->> in the patch.
-> 
-> In general this is the right thing to do when the change in question was
-> non-trivial. I'm not sure that's the case here, but the robots tend to
-> complain about smaller (but sometimes important) things.
-> 
+yamllint warnings/errors:
 
-I too had this uncertainity, but I see that we must not add maintainers 
-reviewed by tag if we even make one letter of change. Wanted to adhere 
-to these rules and so removed Thinh's tag and asked for re-review.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml: cqe: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml: clock-freq-min-max: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/realtek-dw-mshc.yaml: speed-step: missing type definition
 
->> @@ -748,23 +781,32 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
->>   static int dwc3_phy_init(struct dwc3 *dwc)
->>   {
->>   	int ret;
->> +	int i;
->> +	int j;
-> 
-> These could be declared on one line (same throughout).
-> 
+doc reference errors (make refcheckdocs):
 
-I did so in v7, but was asked to put them in separate lines:
-https://lore.kernel.org/all/20230502221100.ecska23anlzv3iwq@synopsys.com/
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231020034921.1179-5-jyanchou@realtek.com
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
->>   	usb_phy_init(dwc->usb2_phy);
->>   	usb_phy_init(dwc->usb3_phy);
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-				dwc->usb2_generic_phy[i] = NULL;
->> +			else
->> +				return dev_err_probe(dev, ret,
->> +					"failed to lookup phy %s\n", phy_name);
-> 
-> Continuation lines should be intented at least two tabs further.
-> 
-> I generally suggest adding brackets around blocks with multiline
-> statements to improve readability but if you move the string to the
-> previous line and intend the continuation line (phy_name) one tab more I
-> guess that's fine.
-> 
->> +		}
->> +
->> +		if (dwc->num_usb2_ports == 1)
->> +			sprintf(phy_name, "usb3-phy");
->>   		else
->> -			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
->> +			sprintf(phy_name, "usb3-port%d", i);
->> +
->> +		dwc->usb3_generic_phy[i] = devm_phy_get(dev, phy_name);
->> +		if (IS_ERR(dwc->usb3_generic_phy[i])) {
->> +			ret = PTR_ERR(dwc->usb3_generic_phy[i]);
->> +			if (ret == -ENOSYS || ret == -ENODEV)
->> +				dwc->usb3_generic_phy[i] = NULL;
->> +			else
->> +				return dev_err_probe(dev, ret,
->> +					"failed to lookup phy %s\n", phy_name);
-> 
-> Same here.
-> 
->> +		}
->>   	}
->>   
->>   	return 0;
-> 
->> @@ -1892,9 +1975,12 @@ static int dwc3_read_port_info(struct dwc3 *dwc)
->>   
->>   	dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
->>   			dwc->num_usb2_ports, dwc->num_usb3_ports);
->> -
-> 
-> Drop this random change.
+pip3 install dtschema --upgrade
 
-The removal of extra line here done you mean ?
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> 
->>   	iounmap(base);
->>   
->> +	if ((dwc->num_usb2_ports > DWC3_MAX_PORTS) ||
->> +		(dwc->num_usb3_ports > DWC3_MAX_PORTS))
-> 
-> Again, continuation lines should be indented at least two tabs further.
-> 
->> +		return -ENOMEM;
->> +
->>   	return 0;
->>   }
-> 
->> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
->> index 2ea6df7e6571..fc5d15edab1c 100644
->> --- a/drivers/usb/dwc3/core.h
->> +++ b/drivers/usb/dwc3/core.h
->> @@ -33,6 +33,9 @@
->>   
->>   #include <linux/power_supply.h>
->>   
->> +/* Number of ports supported by a multiport controller */
-> 
-> 	/*
-> 	 * Maximum number of ports currently supported for multiport
-> 	 * controllers.
-> 	 */
-> 
->> +#define DWC3_MAX_PORTS 4
->> +
->>   #define DWC3_MSG_MAX	500
->>   
->>   /* Global constants */
->> @@ -1029,8 +1032,8 @@ struct dwc3_scratchpad_array {
->>    * @usb_psy: pointer to power supply interface.
->>    * @usb2_phy: pointer to USB2 PHY
->>    * @usb3_phy: pointer to USB3 PHY
->> - * @usb2_generic_phy: pointer to USB2 PHY
->> - * @usb3_generic_phy: pointer to USB3 PHY
->> + * @usb2_generic_phy: pointer to array of USB2 PHY
->> + * @usb3_generic_phy: pointer to array of USB3 PHY
-> 
-> s/PHY/PHYs/
-> 
->>    * @num_usb2_ports: number of USB2 ports
->>    * @num_usb3_ports: number of USB3 ports
->>    * @phys_ready: flag to indicate that PHYs are ready
-> 
-> Johan
-
-Thanks for the review. Will fix these nits in v14.
-
-Regards,
-Krishna,
 
