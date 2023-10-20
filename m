@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-10450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F32F7D12FF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:39:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD617D1319
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FEAA1C20F2D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:39:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22F1728257D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60ADB1DDF2;
-	Fri, 20 Oct 2023 15:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A77C21DFEA;
+	Fri, 20 Oct 2023 15:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gx1siHup"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWuolx4M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB171DDDC;
-	Fri, 20 Oct 2023 15:39:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B01C433C8;
-	Fri, 20 Oct 2023 15:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828451DDCB;
+	Fri, 20 Oct 2023 15:45:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E17FC433C8;
+	Fri, 20 Oct 2023 15:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697816393;
-	bh=+OCKXpXdzxESBJtSuBM1t66GV8/SeLSu2CpKQbfCz8o=;
+	s=k20201202; t=1697816744;
+	bh=RTTrL8bUNOD9Virbg1xygXP66WsHbJ0SwSynqR3CXd8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gx1siHuphdy8/nSerw/IJ8jpyI2uW/+SPVCN3I/CzPzs2iuW0L9V9ApYuJOTxPxh0
-	 7wmk8zjSWYPlp1YIoIMwqgD0eSeYfYxcv05b3ozhXCzzX/MPuqFpvI+61vLqjszEdm
-	 eTSIjEuy4XzRLsJYnKvRwODd/BWsqdP6Gb+mE8ru8vJKGhXUgGpNyA8NNSREv2fkzc
-	 jcR9wExXsnPooVUxRHOwKQFlmEuzwoZC96/iH71bXDpPdnK8nUIFWTeytAJ2hZAPdJ
-	 +dEBFeba4/hBs/ehYMGoqm4e+wLnIT8vIIsfjiOUNibQTvOBjl0wgLN8ODu7yia/lt
-	 F2b0I1rE6//KA==
-Date: Fri, 20 Oct 2023 16:39:48 +0100
+	b=lWuolx4MVLTnaeD9lAtm+MCAk5SVuDGc3Lq0Zp0ECpUC1yDQsCD0seAS6GLzx1OZ5
+	 uT+wxnrz7dlH8GY5G+EHqFWVHJ3vGbVEqhesje2R061MU5Op4OSYFvdjM9p0fY8nHm
+	 HN1WvZ0/IGJMgLlzbVQETcOMTM+xCEWwrsHOV0xj1Tr85nkpXi75wf7PPQylGPNbLv
+	 /+0maIs4vdS3JOJEkllH6GPhby1g5/3u01dwa0LkDjj8ttAL9KJIAP2j6DYPwZr5NG
+	 eUw2BMkGrMs+QKk7HX9lJ1QRWViW9LNzk4QJBoZdNS5kNorqyajf6P1DnvOz/kt84y
+	 Nu9mk2h+zbq8w==
+Date: Fri, 20 Oct 2023 16:45:38 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: add Orange Pi Zero 2W
-Message-ID: <20231020-lividly-provided-860773e90110@spud>
-References: <20231020145706.705420-1-andre.przywara@arm.com>
- <20231020145706.705420-2-andre.przywara@arm.com>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
+	f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	o.rempel@pengutronix.de
+Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <20231020-agency-yapping-17ba240510c0@spud>
+References: <cover.1697811160.git.ante.knezic@helmholz.de>
+ <cfeeec0f41a815601439e999a8dc947525b0d938.1697811160.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,63 +54,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7RnoDsnRaxG7lT4H"
+	protocol="application/pgp-signature"; boundary="fdIw5azgw3M22leo"
 Content-Disposition: inline
-In-Reply-To: <20231020145706.705420-2-andre.przywara@arm.com>
+In-Reply-To: <cfeeec0f41a815601439e999a8dc947525b0d938.1697811160.git.ante.knezic@helmholz.de>
 
 
---7RnoDsnRaxG7lT4H
+--fdIw5azgw3M22leo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 20, 2023 at 03:57:05PM +0100, Andre Przywara wrote:
-> The Orange Pi Zero 2W is a small board with an Allwinner H618 SoC.
+On Fri, Oct 20, 2023 at 04:25:03PM +0200, Ante Knezic wrote:
+> Add documentation for selecting reference rmii clock on KSZ88X3 devices
 >=20
-> Add the compatible string to the binding documents.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
+
+Something in the commit message explaining why a property is needed
+rather than using the regular old clocks property would be good.
+Please do that if you re-spin. Otherwise,
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
+(and despite the domain, I have nothing to do with switches...)
+
+Cheers,
 Conor.
 
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/net/dsa/microchip,ksz.yaml      | 17 +++++++++++=
+++++++
+>  1 file changed, 17 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
-tion/devicetree/bindings/arm/sunxi.yaml
-> index 11c5ce941dd7e..6f481e8bb4bf6 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -1013,6 +1013,11 @@ properties:
->            - const: xunlong,orangepi-zero2
->            - const: allwinner,sun50i-h616
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml=
+ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index 41014f5c01c4..624feb1bb9be 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -72,6 +72,23 @@ properties:
+>    interrupts:
+>      maxItems: 1
 > =20
-> +      - description: Xunlong OrangePi Zero 2W
-> +        items:
-> +          - const: xunlong,orangepi-zero2w
-> +          - const: allwinner,sun50i-h618
+> +  microchip,rmii-clk-internal:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Set if the RMII reference clock is provided internally. Otherwise
+> +      reference clock should be provided externally.
 > +
->        - description: Xunlong OrangePi Zero 3
->          items:
->            - const: xunlong,orangepi-zero3
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - microchip,ksz8863
+> +          - microchip,ksz8873
+> +then:
+> +  properties:
+> +    microchip,rmii-clk-internal: false
+> +
+>  required:
+>    - compatible
+>    - reg
 > --=20
-> 2.25.1
+> 2.11.0
 >=20
 
---7RnoDsnRaxG7lT4H
+--fdIw5azgw3M22leo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTKfRAAKCRB4tDGHoIJi
-0tzRAQD0VQgH5Kuw550UXTLMKW8jNw/Qgu4hfvSpfXh3u9ADmQEAtjOzhOXawHbB
-cq0DVwkXiUceYB6DFHdLwsoHM3DGLgs=
-=BdVK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTKgogAKCRB4tDGHoIJi
+0ijRAP492S8PEzqJeTIZB2c+40q4jZzHJi+JGa2i7Li8kg5hwQD/Ykbw86XHgUeU
+zVR70acAT3f7YQwvYo2I8YqyIb73KgI=
+=PzQ0
 -----END PGP SIGNATURE-----
 
---7RnoDsnRaxG7lT4H--
+--fdIw5azgw3M22leo--
 
