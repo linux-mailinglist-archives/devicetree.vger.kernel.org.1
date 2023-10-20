@@ -1,152 +1,143 @@
-Return-Path: <devicetree+bounces-10454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB127D135C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:59:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6BCD7D137E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67882282560
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:59:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D646E1C20F2A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C211E521;
-	Fri, 20 Oct 2023 15:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B807A1E529;
+	Fri, 20 Oct 2023 16:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCIvmeIC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IQFefCmv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058B91DA4C
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:59:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B7BC433C8;
-	Fri, 20 Oct 2023 15:59:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697817568;
-	bh=97TU/jnZR5ds5vVT0qQ3AnubifvbhIl0MYkUouOlAjw=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425731E506;
+	Fri, 20 Oct 2023 16:03:35 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C018AB3;
+	Fri, 20 Oct 2023 09:03:33 -0700 (PDT)
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 1B29F660731B;
+	Fri, 20 Oct 2023 17:03:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697817812;
+	bh=gdDLnZkjmHu+Sk+/2xbwhd6fH/+pG0s/huYMTIz5rp8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QCIvmeICsJHB/mYYfl5qWvYmPIzGXKDYJ/6Ac38yi8yHQSdluiJXZom2LH+4tSrdZ
-	 xDHLWg6HTkERNpXtwaGb3IyJzXcWLQ9/gGNm4jTapf36NhR2KWbyA+DVI7Blf80WgH
-	 U/v8BECmFbk1y3W/MZTkGhAIEeKRMNKqcZO5qgx5fNmqec2Ccf9G9wQX+iUh7syCEO
-	 ekfnRHZdVxo2mfaWcXomrnNRIp6Ng4mon9PerTUUls4oQzxYuDsQj/5YSuWSOOCXF0
-	 12FtW5YXtvdQTaXC4MtMrpZIt27Rlhtk3nW7vGfWIQJfguzfu8Sm+nWdNyQt5TIrdu
-	 kBiMioX0FuJsw==
-Date: Fri, 20 Oct 2023 16:59:23 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Flavio Suligoi <f.suligoi@asem.it>
-Cc: Lee Jones <lee@kernel.org>,
-	Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	b=IQFefCmvfeF1DgM1gwp4s6N4cgiJZSOLMPM4KqmFPhcDEqYra/6qGuzOZ8uXfsM1G
+	 dndXiXqb3HzXVk1aMsaSQ0S56EMTjnZjF64NXuuVRQQz8/270jgTiqIxtulr4wGb7c
+	 OPhUDYPn+hXJEAf4rl9wOAcZA/tf/eSSJYQQzh0N/+XupthBNbSDHU/kqHqFhTr5Z6
+	 x0j1cSz2oJoChJT4pr/9Vo3CP/ji3vHYFZ8GgNTQvXtN7ZRdbaJeFsp0+fPOob5UUU
+	 Tu62TlLLx4w2HAGI92a3SiNLOaUFO/rvEo7+sxOqggfemBvjNEz+vG+DrTd/1cZKNv
+	 kvpOyb/vt5z8A==
+Received: by mercury (Postfix, from userid 1000)
+	id 1E11910603FC; Fri, 20 Oct 2023 18:03:29 +0200 (CEST)
+Date: Fri, 20 Oct 2023 18:03:29 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: backlight: mp3309c: remove two required
- properties
-Message-ID: <20231020-moonrise-senate-86d0edb2d404@spud>
-References: <20231020135434.2598578-1-f.suligoi@asem.it>
- <20231020135434.2598578-2-f.suligoi@asem.it>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20231020160329.uqgjjr6ubfrcqjkj@mercury.elektranox.org>
+References: <20231020150022.48725-1-sebastian.reichel@collabora.com>
+ <20231020150022.48725-2-sebastian.reichel@collabora.com>
+ <20231020-shudder-tackle-cc98a82f1cd0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MS8zv6ItXa/c4PSq"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bdmk4yrcxo3we24y"
 Content-Disposition: inline
-In-Reply-To: <20231020135434.2598578-2-f.suligoi@asem.it>
+In-Reply-To: <20231020-shudder-tackle-cc98a82f1cd0@spud>
 
 
---MS8zv6ItXa/c4PSq
+--bdmk4yrcxo3we24y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Yo,
+Hi Conor,
 
-On Fri, Oct 20, 2023 at 03:54:33PM +0200, Flavio Suligoi wrote:
-> The two properties:
+On Fri, Oct 20, 2023 at 04:36:19PM +0100, Conor Dooley wrote:
+> On Fri, Oct 20, 2023 at 04:11:40PM +0200, Sebastian Reichel wrote:
+> > [...]
+> > +allOf:
+> > +  - $ref: snps,dwc3.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3328-dwc3
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 3
+> > +          maxItems: 4
+> > +        clock-names:
+> > +          minItems: 3
+> > +          items:
+> > +            - const: ref_clk
+> > +            - const: suspend_clk
+> > +            - const: bus_clk
+> > +            - const: grf_clk
 >=20
-> - max-brightness
-> - default brightness
+> minItems for clocks and clock-names is already 3, is it not?
+
+Yes, but the following 'maxItems: 4' implicitly sets it to 4,
+so I had to set it again. The same is true for clock-names -
+providings new 'items:' effectively drops the "minItems: 3"
+=66rom the generic section.
+
+> Otherwise,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 >=20
-> are not really required, so they can be removed from the "required"
-> section.
+> Thanks,
+> Conor.
 
-Why are they not required? You need to provide an explanation.
+Thanks,
 
-> Other changes:
->=20
-> - improve the backlight working mode description, in the "description"
->   section
+-- Sebastian
 
-> - update the example, removing the "max-brightness" and introducing the
->   "brightess-levels" property
-
-Why is this more useful?
-
-Cheers,
-Conor.
-
->=20
-> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
-> ---
->  .../bindings/leds/backlight/mps,mp3309c.yaml           | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c=
-=2Eyaml b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> index 4191e33626f5..527a37368ed7 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> +++ b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> @@ -14,8 +14,8 @@ description: |
->    programmable switching frequency to optimize efficiency.
->    It supports two different dimming modes:
-> =20
-> -  - analog mode, via I2C commands (default)
-> -  - PWM controlled mode.
-> +  - analog mode, via I2C commands, as default mode (32 dimming levels)
-> +  - PWM controlled mode (optional)
-> =20
->    The datasheet is available at:
->    https://www.monolithicpower.com/en/mp3309c.html
-> @@ -50,8 +50,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - max-brightness
-> -  - default-brightness
-> =20
->  unevaluatedProperties: false
-> =20
-> @@ -66,8 +64,8 @@ examples:
->              compatible =3D "mps,mp3309c";
->              reg =3D <0x17>;
->              pwms =3D <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*10^9 */
-> -            max-brightness =3D <100>;
-> -            default-brightness =3D <80>;
-> +            brightness-levels =3D <0 4 8 16 32 64 128 255>;
-> +            default-brightness =3D <6>;
->              mps,overvoltage-protection-microvolt =3D <24000000>;
->          };
->      };
-> --=20
-> 2.34.1
->=20
-
---MS8zv6ItXa/c4PSq
+--bdmk4yrcxo3we24y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTKj2wAKCRB4tDGHoIJi
-0h3oAQDiYRQgj//gRS3WJkhCjXAo1MV7AiztEk/V8hUK9kBEWQEAi0UKA0/tVacJ
-Rnh8+uI+acOi2u2QOnHfJRUBVK5PiQk=
-=7rd9
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUypMQACgkQ2O7X88g7
++prWug//YTS5WE0ntNTSommlUibet+KcZPc5blw/2DH/Lx7UHSPecqtfjAWpAB/j
+Cg9pHPgOumi0wJSdmqKRkJST7bKaCOkpw4N4HLqnrNBL+PNLG7sQOo9qMwaV2x7B
+3nFbsXLjoxlHuYGrupRoFAUL/LevwpWC1vgnrKdk37p0uJzmhRVyUtMrjE3wqzVU
+FbiI4NgxpflWpRQ8VqtUzZVGA/15RXZVqnFjHgGZ624NhDD/2KsIUYOscvwq5qYa
+1QylGUeTFE3D7EGbmTLd/voxlGKTntEPbYw+hP8JVf/oA7d01zlFRFa3MLmVM4vg
+cRbaTt96A6ugCjBdUdkHYhw0aEROd4u/5hCdRv5whBOqWmz5HJ4jKsc+hrneNE7T
+M9tHr6WpbtHu/s4Gepx+AxScNwOEF/A93pOuQXcy1CYOjF/hvx9zP0PYsQwD7b03
+Qtr6Qnp95rozYYFt/2NforFTdFAwcGxR3XtUmd7qAMkIQYmApzgaQiDzLoJb/Gtv
+1nSAiW0lvgHALq+PefTqKCqPXs28wJXdojJJscTIRk7RbkoLkxScdnaZG85kp+Qj
+xSAtSGrvjE6PLvTdwxP3G+R9Qlh1O5mzze9iydGtwY4UsW6vR+Xybvu6e8V5rC8B
+R/C1la6YhCZoGPgK93jn4tVCqwHxiOX3TMY1NlCj4hn+2WU2AxQ=
+=a1sC
 -----END PGP SIGNATURE-----
 
---MS8zv6ItXa/c4PSq--
+--bdmk4yrcxo3we24y--
 
