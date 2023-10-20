@@ -1,179 +1,115 @@
-Return-Path: <devicetree+bounces-10286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7E17D0A70
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:19:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8947D0A77
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:20:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CABEFB21318
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:19:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 348F8282410
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6910956;
-	Fri, 20 Oct 2023 08:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FkWacOyt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFF510957;
+	Fri, 20 Oct 2023 08:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69042B67E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:19:17 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F60D68
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 01:19:15 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 2BC5D6607353;
-	Fri, 20 Oct 2023 09:19:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697789953;
-	bh=reG4MjH5xFdaTMIIG/uyX7Y0plXz9o904hSimQazjaI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FkWacOyth/5sP7/plr9AhOaRsqcUmTwP78l0iw0RoSqAsXXe2YMiNddhzUiq3J4BT
-	 oKXODDYX+PDVKEB8lKnYMf/+XPiUVQkDO6Vp3bUr9cnzLcVu4T30b4AmR8PMyJjrvU
-	 nNrc75P4efPTAJNIKW8F+ju8ODRCc9HJcPdM4sOW0gnvrZNxNoVLtSN50m7498MaEE
-	 B5XXdtPP332cXVcn6NdoQuH/JCh0HMP40WCWYGepA2XX1WRks0+LbwngFu/dDXSbow
-	 rz2jP0OPQMHnn6nWAstVez9UObf8tJiGyXauD2ZC7BqCMhuVHwS6yCWAPrjdOKkIGx
-	 /ni9bGtzg3pIA==
-Message-ID: <e920e722-2e14-47c1-a1d3-f7f398d5cdda@collabora.com>
-Date: Fri, 20 Oct 2023 10:19:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF72B67E
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:20:53 +0000 (UTC)
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790D3B0;
+	Fri, 20 Oct 2023 01:20:51 -0700 (PDT)
+Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
+	by Atcsqr.andestech.com with ESMTP id 39K8KHU0009756;
+	Fri, 20 Oct 2023 16:20:17 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
+ Microsoft SMTP Server id 14.3.498.0; Fri, 20 Oct 2023 16:20:15 +0800
+Date: Fri, 20 Oct 2023 16:20:15 +0800
+From: Yu-Chien Peter Lin <peterlin@andestech.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+CC: <magnus.damm@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <linux-renesas-soc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <tim609@andestech.com>,
+        <dylan@andestech.com>, <locus84@andestech.com>, <dminus@andestech.com>
+Subject: Re: [PATCH v2 09/10] riscv: dts: renesas: Add Andes PMU extension
+Message-ID: <ZTI4P9KIfS58WKuU@APC323>
+References: <20231019140232.3660375-1-peterlin@andestech.com>
+ <CAMuHMdW1Ua4skxtT+9kyoSDiqt2kNiNG-1jHE8rf4+b14hX4Vg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: mediatek: Add device tree for
- MT8365-based Pumpkin i350
-Content-Language: en-US
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-mediatek@lists.infradead.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Paul Elder <paul.elder@ideasonboard.com>,
- Fabien Parent <fabien.parent@linaro.org>,
- Julien Stephan <jstephan@baylibre.com>,
- Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
- Ted Larson <ted@ologicinc.com>
-References: <20231016215123.30343-1-laurent.pinchart@ideasonboard.com>
- <20231016215123.30343-4-laurent.pinchart@ideasonboard.com>
- <c4161d95-cc4c-4801-b436-31bb82263635@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <c4161d95-cc4c-4801-b436-31bb82263635@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdW1Ua4skxtT+9kyoSDiqt2kNiNG-1jHE8rf4+b14hX4Vg@mail.gmail.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Originating-IP: [10.0.12.98]
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 39K8KHU0009756
 
-Il 19/10/23 14:45, Alexandre Mergnat ha scritto:
-> 
-> 
-> On 16/10/2023 23:51, Laurent Pinchart wrote:
->> Add a minimal device tree for the Genio i350 Pumpkin development board,
->> which is based on a MediaTek MT8365.
->>
->> The device tree is based on an initial version by Fabien Parent Based
->> written against the MediaTek BSP kernel ([1]). It has been cleaned up,
->> some features have been added (GPIO LEDs, ethernet), and some features
->> removed (audio, camera, display and dual-role USB). Those features will
->> be added back once the corresponding DT bindings and/or drivers become
->> available in the upstream kernel.
->>
->> [1] 
->> https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v5.15-dev/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>
->> Co-developed-by: Fabien Parent <fparent@baylibre.com>
->> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->> Co-developed-by: Paul Elder <paul.elder@ideasonboard.com>
->> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
->> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> ---
->> Changes compared to the BSP version:
->>
->> - Add ethernet controller
->> - Add GPIO LEDs
->> - Add reserved memory region for BL31
->> - Update board model and compatible
->> - Rename enable-sdio-wakeup to wakeup-source
->> - Drop audio support
->> - Drop display support
->> - Drop dual role USB support
->> - Don't use underscores in node names
->> - Normalize pinmux node names
->> - Remove unneeded labels
->> - Drop unneeded always-on
->> - Drop unused pinmux nodes
->> - Drop camera GPIO hog
->> - Update copyright
->> - Fix formatting
->> - Sort alphabetically
->> ---
->>   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->>   .../boot/dts/mediatek/mt8365-pumpkin.dts      | 542 ++++++++++++++++++
->>   2 files changed, 543 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/Makefile 
->> b/arch/arm64/boot/dts/mediatek/Makefile
->> index c99c3372a4b5..bbc232bdadc4 100644
->> --- a/arch/arm64/boot/dts/mediatek/Makefile
->> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->> @@ -53,4 +53,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-pumpkin.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts 
->> b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->> new file mode 100644
->> index 000000000000..88fa5d19c627
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->> @@ -0,0 +1,542 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2021 BayLibre, SAS.
->> + * Copyright (c) 2023 Ideas on Board Oy
->> + *
->> + * Author: Fabien Parent <fparent@baylibre.com>
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
->> +
->> +#include "mt8365.dtsi"
->> +#include "mt6357.dtsi"
->> +
->> +/ {
->> +    model = "OLogic Pumpkin i350 EVK";
->> +    compatible = "ologic,pumpkin-i350", "mediatek,mt8365";
->> +
->> +    aliases {
->> +        ethernet0 = &ethernet_usb;
->> +        mmc0 = &mmc0;
->> +        mmc1 = &mmc1;
->> +        mmc2 = &mmc2;
-> 
-> Are mmc aliases needed ?
-> 
+Hi Geert,
 
-This makes sure that, for example, the eMMC is always mmcblk0, and
-that a (micro)SD card always has mmcblk1.
+On Fri, Oct 20, 2023 at 09:32:45AM +0200, Geert Uytterhoeven wrote:
+> Hi Peter,
+> 
+> On Thu, Oct 19, 2023 at 4:05 PM Yu Chien Peter Lin
+> <peterlin@andestech.com> wrote:
+> > Add "xandespmu" to ISA extensions, the SBI PMU driver will
+> > probe the extension and use the non-standard irq source.
+> >
+> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > ---
+> > Changes v1 -> v2:
+> >   - New patch
+> 
+> Thanks for your patch!
+> 
+> > --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> > +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> > @@ -26,7 +26,7 @@ cpu0: cpu@0 {
+> >                         riscv,isa = "rv64imafdc";
+> >                         riscv,isa-base = "rv64i";
+> >                         riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> > -                                              "zifencei", "zihpm";
+> > +                                              "zifencei", "zihpm", "xandespmu";
+> >                         mmu-type = "riscv,sv39";
+> >                         i-cache-size = <0x8000>;
+> >                         i-cache-line-size = <0x40>;
+> 
+> This extension is not documented in
+> Documentation/devicetree/bindings/riscv/extensions.yaml. Perhaps it was
+> introduced in an earlier patch in the series, to which I was not CCed?
 
-So yes, they are.
+Yes, I missed adding the extension to dt bindings.
+Thanks for the pointer.
 
-Cheers,
-Angelo
+Best regards,
+Peter Lin
+
+> 
+> Threading is broken, so I can't easily find the whole series in lore:
+> https://lore.kernel.org/all/20231019140232.3660375-1-peterlin@andestech.com/
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
