@@ -1,225 +1,139 @@
-Return-Path: <devicetree+bounces-10369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC3187D0E7E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:34:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7AC7D0F01
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:44:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 960642824D4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:34:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70A8D1C20E74
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB4419455;
-	Fri, 20 Oct 2023 11:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACF5199C7;
+	Fri, 20 Oct 2023 11:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pqrs.dk header.i=@pqrs.dk header.b="QkYBgQhm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JUeISjOp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A4D18E3C
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:34:31 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35D4D5D
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:34:29 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c3c8adb27so108019766b.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:34:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D461199B4
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:44:21 +0000 (UTC)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F0F49EE
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:41:39 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5a8628e54d4so6421117b3.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:41:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google; t=1697801668; x=1698406468; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fXvJpV0gpvSkUrAaGppJnbjeNlJABP+T2f/Ne1XnKTw=;
-        b=QkYBgQhmBFsfyP73EUzOvZDT/GEJnHObufFs6IWBqgMHsWUH0M+iq/NS7ChVHnELi+
-         rMNjEwbss/U1MdOxoCC3BBAsUj9tHA4cyJF/Ke8jwfCFQy3xRYtPwwKD5l3+svQCzm1v
-         MT5Ku8eM9TQ/ttWUdVeMNrcHK11HFBPm9Hp4l/BVkWk+QRDJbMrRlE0RK5bF8m86owCm
-         7IvUEbaqsmI+Uzp5JP4ADmGLAN0Pf322LI+E2WtoODzKLyqrUJmMizB7yoCge9xU14qK
-         jX8ldJcjtBPil0rdqXrjHWuoxuJ5JuNMNK+KAgqu2eATCyurVyRShtZ+1FCl3YaliAE4
-         T4cg==
+        d=linaro.org; s=google; t=1697802095; x=1698406895; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J9bFjh5A1TAJojJW7zz66RNNSkHFaHMwwCUObsG9YEY=;
+        b=JUeISjOp5CJHSK1LLZ3b/u3mYHgZxPngvU03BRjZmiFfCPp6/xz+gLqFakwrBql5Za
+         020cR5pMnki2DOfExiPXmpv3lv8HSVYiwi2E9eLlzkec4HsNE8fU1xl+ZWpu5sKG0BLq
+         bbzD4fhC20QOC77PiZGXqaTKnBomR6PyQFHcWZ8sAx9J7AZTg0tEKve1VJJmWyErG/7r
+         6tTNiiI0MNDwLXVdt787JgD6SN4P7kFbKCY54330XpOhxvfC9iGWeaK1A32QiMEYXdlf
+         oISaiyG7M4YFqa46ykaCjXmgWCjGTgspaWcd7uQAcik+NiUqbWwFnwqI9XwpDgtPSfZ7
+         uOyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697801668; x=1698406468;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1697802095; x=1698406895;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fXvJpV0gpvSkUrAaGppJnbjeNlJABP+T2f/Ne1XnKTw=;
-        b=JXVARo/78U+k2CKsVMNCdcLIKgYhGCsJra1iDngIpuNukF/MY9Rdm+cVB5nLZAcG9K
-         gkfEVPvZ0Ww2PX0lV9qTe8stcGeorkW598zYhqxfJ0p2SswzGbLMV/g9bNoHvtOV2EJ+
-         QCccZrD+bVtAf6uVbTEyW81e/vigpSjGI/wT3F3/Ws2zk85wJm0wz6yRFYt6XRRSe3VS
-         N089XA6V+amJkRU8oikbvEf0UGE8htw3IAisJCbsqlTJj3CC475hvles6X3Wo821wEWo
-         oonNEr29zX0VBw1KxPhogHpQbwPbRPAruWHVhZSKlmikt90lGBrf0TNbmbACAnWxYfIO
-         Yhrw==
-X-Gm-Message-State: AOJu0YxelIJzjLIJeNFUe5TSaSEjroNTa9SnxhtjEXZOBO8c9PBE4JLr
-	GVveMZJUqzX4XB/btVbluORYZw==
-X-Google-Smtp-Source: AGHT+IE2cqRe/b7SznA5f9wgW3W00fTFZ38FmRaqPeuDiU4EW9+UF4yLZznf7d1onwrlLkBbX3ltTg==
-X-Received: by 2002:a17:907:86a0:b0:9bd:fc4a:c70b with SMTP id qa32-20020a17090786a000b009bdfc4ac70bmr1310791ejc.70.1697801668164;
-        Fri, 20 Oct 2023 04:34:28 -0700 (PDT)
-Received: from capella.localdomain ([193.89.194.60])
-        by smtp.gmail.com with ESMTPSA id ce10-20020a170906b24a00b009b654751c14sm1300320ejb.47.2023.10.20.04.34.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Oct 2023 04:34:27 -0700 (PDT)
-From: =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Date: Fri, 20 Oct 2023 13:34:16 +0200
-Subject: [PATCH v5 3/3] clk: si5351: allow PLLs to be adjusted without
- reset
+        bh=J9bFjh5A1TAJojJW7zz66RNNSkHFaHMwwCUObsG9YEY=;
+        b=YttAYFWx269J5wmfvFyiER6njlDJ6H/NTHUw39yd0zNSulGTHzTG/8rae7wY+uQkYA
+         mlf9JediE2eaPqDDQfTzP3bJ2Pnwn9qYt9GNBoIR63yC4UYWSNxuZViR4tb9vpSN7xtZ
+         AEhBTOpN+iK28uhGHXPS8zd5mepb8u43f1GPbvXJEzeZJOsg9POtqm2a0DILwiyPNke5
+         LLCkzPCLnk1W7lELI7UfhLiRJNnMVnHwJzyNv6FDLiv5TlI21/8fRnmHTqsKKQ6+0kT8
+         nKOrjpUKJRE2BILZ+AImNV2rfffMnk2DQCx8MnF3ZFvWiYmWE+fkZeerc8IcrMWKKbNk
+         I9+Q==
+X-Gm-Message-State: AOJu0Ywx+PDmYhOOwPvy/JaQvvPDrGwICqjPVyryhrHa3mtkQ9hKLnhP
+	zThAmZ/3XqKkDFrBsJxadWvp7VMMdEM6fyKpb0/yMg==
+X-Google-Smtp-Source: AGHT+IHyOEVIA5SJ7Y199R5jt+d5f7KKXk70NiIvNCL1uO+i83Ow7XGvhR98WYwCuuNubMD7tt45A0AuyLyah3Upinw=
+X-Received: by 2002:a05:690c:dcb:b0:5a7:cb5f:ee0a with SMTP id
+ db11-20020a05690c0dcb00b005a7cb5fee0amr1391397ywb.17.1697802094778; Fri, 20
+ Oct 2023 04:41:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20231020-alvin-clk-si5351-no-pll-reset-v5-3-f0c1ba537f88@bang-olufsen.dk>
-References: <20231020-alvin-clk-si5351-no-pll-reset-v5-0-f0c1ba537f88@bang-olufsen.dk>
-In-Reply-To: <20231020-alvin-clk-si5351-no-pll-reset-v5-0-f0c1ba537f88@bang-olufsen.dk>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rabeeh Khoury <rabeeh@solid-run.com>, 
- Jacob Siverskog <jacob@teenage.engineering>, 
- Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.12.3
+References: <20231018-marvell-88e6152-wan-led-v4-0-3ee0c67383be@linaro.org>
+ <20231018-marvell-88e6152-wan-led-v4-1-3ee0c67383be@linaro.org>
+ <169762516670.391804.7528295251386913602.robh@kernel.org> <CACRpkdZ4hkiD6jwENqjZRX8ZHH9+3MSMMLcJe6tJa=6Yhn1w=g@mail.gmail.com>
+ <cfc0375e-50eb-4772-9104-3b1a95b7ca4a@linaro.org>
+In-Reply-To: <cfc0375e-50eb-4772-9104-3b1a95b7ca4a@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 20 Oct 2023 13:41:22 +0200
+Message-ID: <CACRpkdbKxmMk+-OcB6zgH7Nf_jL-AV7H_S4eEcjjjywK0xCJ4Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: dsa: Require ports or ethernet-ports
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Russell King <linux@armlinux.org.uk>, 
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Eric Dumazet <edumazet@google.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	"David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org, 
+	Gregory Clement <gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On Fri, Oct 20, 2023 at 1:10=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 18/10/2023 13:11, Linus Walleij wrote:
+> > On Wed, Oct 18, 2023 at 12:32=E2=80=AFPM Rob Herring <robh@kernel.org> =
+wrote:
+> >> On Wed, 18 Oct 2023 11:03:40 +0200, Linus Walleij wrote:
 
-Introduce a new PLL reset mode flag which controls whether or not to
-reset a PLL after adjusting its rate. The mode can be configured through
-platform data or device tree.
 
-Since commit 6dc669a22c77 ("clk: si5351: Add PLL soft reset"), the
-driver unconditionally resets a PLL whenever its rate is adjusted.
-The rationale was that a PLL reset was required to get three outputs
-working at the same time. Before this change, the driver never reset the
-PLLs.
+> >> yamllint warnings/errors:
+> >> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:7: [warning] w=
+rong indentation: expected 8 but found 6 (indentation)
+> >> ./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:7: [warning] w=
+rong indentation: expected 8 but found 6 (indentation)
+> >
+> > Really?
+> >
+> > +  oneOf:
+> > +    - required:
+> > +      - ports
+>
+> .........^ here
+>
+> > +    - required:
+> > +      - ethernet-ports
+> >
+> > Two spaces after the oneOf, 2 spaces after a required as usual.
+> > I don't get it.
+>
+> Although YAML accepts your indentation, yamllint does not and we always,
+> always, expected yamllint flavor of syntax.
 
-Commit b26ff127c52c ("clk: si5351: Apply PLL soft reset before enabling
-the outputs") subsequently introduced an option to reset the PLL when
-enabling a clock output that sourced it. Here, the rationale was that
-this is required to get a deterministic phase relationship between
-multiple output clocks.
+That's chill, however I can't reproduce this, make dt_bindings_check in the
+mainline kernel does not yield this warning (after pip install
+--upgrade --user dtschema
+and yamllint is installed and all), so right now my only way of testing thi=
+s
+patch is to mail it to the mailing list and have it tested by Rob's bot.
 
-This clearly shows that it is useful to reset the PLLs in applications
-where multiple clock outputs are used. However, the Si5351 also allows
-for glitch-free rate adjustment of its PLLs if one avoids resetting the
-PLL. In our audio application where a single Si5351 clock output is used
-to supply a runtime adjustable bit clock, this unconditional PLL reset
-behaviour introduces unwanted glitches in the clock output.
+I just don't understand what I'm supposed to do... drop the dash-space "- "=
+ in
+front of "- ports"? Then the bot will be happy?
 
-It would appear that the problem being solved in the former commit
-may be solved by using the optional device tree property introduced in
-the latter commit, obviating the need for an unconditional PLL reset
-after rate adjustment. But it's not OK to break the default behaviour of
-the driver, and it cannot be assumed that all device trees are using the
-property introduced in the latter commit. Hence, the new behaviour is
-made opt-in.
+(This patch was added in response to Rob's comments
+"this should probably be in dsa.yaml".)
 
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc: Rabeeh Khoury <rabeeh@solid-run.com>
-Cc: Jacob Siverskog <jacob@teenage.engineering>
-Cc: Sergej Sawazki <sergej@taudac.com>
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Acked-by: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
----
- drivers/clk/clk-si5351.c             | 47 +++++++++++++++++++++++++++++++++---
- include/linux/platform_data/si5351.h |  2 ++
- 2 files changed, 46 insertions(+), 3 deletions(-)
+We can also just drop the patch if this whole thing upsets the tooling, it'=
+s
+just intended as a generalization of this requirement as can be seen in
+Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+which in turn can do that because it is not using the generic def.
 
-diff --git a/drivers/clk/clk-si5351.c b/drivers/clk/clk-si5351.c
-index cbf7cde01157..bed0fe3bfa08 100644
---- a/drivers/clk/clk-si5351.c
-+++ b/drivers/clk/clk-si5351.c
-@@ -506,6 +506,8 @@ static int si5351_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- {
- 	struct si5351_hw_data *hwdata =
- 		container_of(hw, struct si5351_hw_data, hw);
-+	struct si5351_platform_data *pdata =
-+		hwdata->drvdata->client->dev.platform_data;
- 	u8 reg = (hwdata->num == 0) ? SI5351_PLLA_PARAMETERS :
- 		SI5351_PLLB_PARAMETERS;
- 
-@@ -518,9 +520,10 @@ static int si5351_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 		(hwdata->params.p2 == 0) ? SI5351_CLK_INTEGER_MODE : 0);
- 
- 	/* Do a pll soft reset on the affected pll */
--	si5351_reg_write(hwdata->drvdata, SI5351_PLL_RESET,
--			 hwdata->num == 0 ? SI5351_PLL_RESET_A :
--					    SI5351_PLL_RESET_B);
-+	if (pdata->pll_reset[hwdata->num])
-+		si5351_reg_write(hwdata->drvdata, SI5351_PLL_RESET,
-+				 hwdata->num == 0 ? SI5351_PLL_RESET_A :
-+						    SI5351_PLL_RESET_B);
- 
- 	dev_dbg(&hwdata->drvdata->client->dev,
- 		"%s - %s: p1 = %lu, p2 = %lu, p3 = %lu, parent_rate = %lu, rate = %lu\n",
-@@ -1222,6 +1225,44 @@ static int si5351_dt_parse(struct i2c_client *client,
- 		}
- 	}
- 
-+	/*
-+	 * Parse PLL reset mode. For compatibility with older device trees, the
-+	 * default is to always reset a PLL after setting its rate.
-+	 */
-+	pdata->pll_reset[0] = true;
-+	pdata->pll_reset[1] = true;
-+
-+	of_property_for_each_u32(np, "silabs,pll-reset-mode", prop, p, num) {
-+		if (num >= 2) {
-+			dev_err(&client->dev,
-+				"invalid pll %d on pll-reset-mode prop\n", num);
-+			return -EINVAL;
-+		}
-+
-+		p = of_prop_next_u32(prop, p, &val);
-+		if (!p) {
-+			dev_err(&client->dev,
-+				"missing pll-reset-mode for pll %d\n", num);
-+			return -EINVAL;
-+		}
-+
-+		switch (val) {
-+		case 0:
-+			/* Reset PLL whenever its rate is adjusted */
-+			pdata->pll_reset[num] = true;
-+			break;
-+		case 1:
-+			/* Don't reset PLL whenever its rate is adjusted */
-+			pdata->pll_reset[num] = false;
-+			break;
-+		default:
-+			dev_err(&client->dev,
-+				"invalid pll-reset-mode %d for pll %d\n", val,
-+				num);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	/* per clkout properties */
- 	for_each_child_of_node(np, child) {
- 		if (of_property_read_u32(child, "reg", &num)) {
-diff --git a/include/linux/platform_data/si5351.h b/include/linux/platform_data/si5351.h
-index c71a2dd66143..5f412a615532 100644
---- a/include/linux/platform_data/si5351.h
-+++ b/include/linux/platform_data/si5351.h
-@@ -105,10 +105,12 @@ struct si5351_clkout_config {
-  * @clk_xtal: xtal input clock
-  * @clk_clkin: clkin input clock
-  * @pll_src: array of pll source clock setting
-+ * @pll_reset: array indicating if plls should be reset after setting the rate
-  * @clkout: array of clkout configuration
-  */
- struct si5351_platform_data {
- 	enum si5351_pll_src pll_src[2];
-+	bool pll_reset[2];
- 	struct si5351_clkout_config clkout[8];
- };
- 
-
--- 
-2.42.0
-
+Yours,
+Linus Walleij
 
