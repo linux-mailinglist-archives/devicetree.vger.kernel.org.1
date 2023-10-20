@@ -1,85 +1,94 @@
-Return-Path: <devicetree+bounces-10298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8BB77D0AB3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:38:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AD57D0ABF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D2FAB213AC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:38:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82B3B282220
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 08:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF22EEDF;
-	Fri, 20 Oct 2023 08:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AC7D2EF;
+	Fri, 20 Oct 2023 08:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KvrFJbPn"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="qAOpso6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9925B20EC;
-	Fri, 20 Oct 2023 08:38:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFE3AC433C8;
-	Fri, 20 Oct 2023 08:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697791091;
-	bh=9SQfZR/nn3xuO36PSNTBTydsMCVV2RapIyMT5BBaj2E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KvrFJbPnL4+dhwzTK5G5E9IsJN1JtCCt+OgH9Rr7lkGYknzK+4DSJA0fUm8kKLBfc
-	 B1u1k3OgZPf8tEgZkwceNMZLi3YOMQ/v3RfivjZTJGwN8MretAHy8nGlFlJ5yT/x+L
-	 9+/YmSvDh065sjME4f76IW7iHaYv8+N9fs3jO/Pq9LeBVKAWcvrTwSWw/iwZVpFH/u
-	 FbEg+Wh5uXLE0Vh+f4IKImMTeInPqVyNpESqrP02VfPs5sAfHhhned5RMEju7v5qSY
-	 YsDffpBWbQC0IbzVLKmEllaOPQ+wxd/E43Bc+/Tmh8GiESgiIm2v15Sg5wfFI+RCOr
-	 mN7m6YhnL1KHQ==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qtl1M-0001lO-0v;
-	Fri, 20 Oct 2023 10:38:16 +0200
-Date: Fri, 20 Oct 2023 10:38:16 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 02/10] usb: dwc3: core: Skip setting event buffers
- for host only controllers
-Message-ID: <ZTI8eFbVAYy3hxQy@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-3-quic_kriskura@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785C43214
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:46:36 +0000 (UTC)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFD76D49
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 01:46:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=XRg9DsEl/nt3hnyWShdIe+EcbDJwslBOsvtJkyHufJc=; b=qAOpso6duiZS4eu3AJOQdn0bvQ
+	eR7ySX2GH559HKGh/wqcf0D09sr5Cvj6GwxiwVEMic9bsfPR+p4ALp5326ZDAgoe18M3SRrxGQXiI
+	lt/N7SxguJyflcefIeWLzmII2185n4EA+qQkrR9n7RgcQq+ojGK9O39o5fnKndGBlYEnWFvNPlyqO
+	Squ5Qhb+Dp4EZBWPTRV3ye2tST0cX6lWYnrjL2wNZftR91sqzHY3uK2pTGFrcITkZ6AWNTGzqfTpt
+	Yg1OHFLdcFZXpwP9bcSx7Y2nzledvgVBnZv/dXLMlfyA20kTGVkS7TI6qA9iBObjm8xHeV4fYGitr
+	sHCF6p6A==;
+Received: from [192.168.1.4] (port=21399 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1qtl9F-0000z6-2F;
+	Fri, 20 Oct 2023 10:46:25 +0200
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Fri, 20 Oct 2023 10:46:25 +0200
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <olteanv@gmail.com>
+CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>,
+	<ante.knezic@helmholz.de>, <conor+dt@kernel.org>, <davem@davemloft.net>,
+	<devicetree@vger.kernel.org>, <edumazet@google.com>, <f.fainelli@gmail.com>,
+	<krzysztof.kozlowski+dt@linaro.org>, <kuba@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <marex@denx.de>, <netdev@vger.kernel.org>,
+	<pabeni@redhat.com>, <robh+dt@kernel.org>, <woojung.huh@microchip.com>
+Subject: Re: [PATCH net-next v3 2/2] net:dsa:microchip: add property to select
+Date: Fri, 20 Oct 2023 10:46:20 +0200
+Message-ID: <20231020084620.4603-1-ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20231019165409.5sgkyvxsidrrptgh@skbuf>
+References: <20231019165409.5sgkyvxsidrrptgh@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007154806.605-3-quic_kriskura@quicinc.com>
+Content-Type: text/plain
+X-Originating-IP: [192.168.6.7]
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
 
-On Sat, Oct 07, 2023 at 09:17:58PM +0530, Krishna Kurapati wrote:
-> On some SoC's like SA8295P where the tertiary controller is host-only
-> capable, GEVTADDRHI/LO, GEVTSIZ, GEVTCOUNT registers are not accessible.
-> Trying to access them leads to a crash.
-> 
-> For DRD/Peripheral supported controllers, event buffer setup is done
-> again in gadget_pullup. Skip setup or cleanup of event buffers if
-> controller is host-only capable.
-> 
-> Suggested-by: Johan Hovold <johan@kernel.org>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+On Thu, 19 Oct 2023 19:54:09 +0300, Vladimir Oltean wrote:
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> So user ports and CPU ports meet at ksz8_port_setup() from different
+> call paths, but I think it's strange to continue this coding pattern for
+> port stuff that's not common between user ports and CPU ports. For that
+> reason, the placement of the existing ksz8795_cpu_interface_select() is
+> also weird, when it could have been directly placed under
+> ksz8_config_cpu_port(), and it would have not confusingly shared a code
+> path with user ports.
+> 
+> Could you please add a dedicated ksz88x3_config_rmii_clk(), called
+> directly from ksz8_config_cpu_port()? It can have this as first step:
+> 
+> 	if (!ksz_is_ksz88x3(dev))
+> 		return 0;
+> 
+> and then the rest of the code can have a single level of indentation,
+> which would look much more natural.
+
+Ok, will do. I am guessing I should leave the existing 
+ksz8795_cpu_interface_select() as it is?
 
