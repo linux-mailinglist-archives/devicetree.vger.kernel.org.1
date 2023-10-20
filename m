@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-10449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159E07D12FB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:39:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F32F7D12FF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C513F282565
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:39:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FEAA1C20F2D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16B61DDF1;
-	Fri, 20 Oct 2023 15:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60ADB1DDF2;
+	Fri, 20 Oct 2023 15:39:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gx1siHup"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2F61DDDC
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:39:39 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF912D41
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 08:39:38 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtrat-0004Hd-RC; Fri, 20 Oct 2023 17:39:23 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtras-0033gL-9T; Fri, 20 Oct 2023 17:39:22 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qtrar-002bLX-Ve; Fri, 20 Oct 2023 17:39:22 +0200
-Date: Fri, 20 Oct 2023 17:39:21 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	thierry.reding@gmail.com, ndesaulniers@google.com, trix@redhat.com,
-	baruch@tkos.co.il, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, linux-pwm@vger.kernel.org, nathan@kernel.org
-Subject: Re: [PATCH V15 2/4] dt-bindings: pwm: add IPQ6018 binding
-Message-ID: <20231020153921.54m3pg4ocb4wy4jn@pengutronix.de>
-References: <20231005160550.2423075-1-quic_devipriy@quicinc.com>
- <20231005160550.2423075-3-quic_devipriy@quicinc.com>
- <20231018204608.qyifcnnzgi2bgzn6@pengutronix.de>
- <CAL_Jsq+df_nmNVuf46-a5Dafe4THxD-5HS-BPsTn_yzTckrOJw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB171DDDC;
+	Fri, 20 Oct 2023 15:39:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B01C433C8;
+	Fri, 20 Oct 2023 15:39:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697816393;
+	bh=+OCKXpXdzxESBJtSuBM1t66GV8/SeLSu2CpKQbfCz8o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gx1siHuphdy8/nSerw/IJ8jpyI2uW/+SPVCN3I/CzPzs2iuW0L9V9ApYuJOTxPxh0
+	 7wmk8zjSWYPlp1YIoIMwqgD0eSeYfYxcv05b3ozhXCzzX/MPuqFpvI+61vLqjszEdm
+	 eTSIjEuy4XzRLsJYnKvRwODd/BWsqdP6Gb+mE8ru8vJKGhXUgGpNyA8NNSREv2fkzc
+	 jcR9wExXsnPooVUxRHOwKQFlmEuzwoZC96/iH71bXDpPdnK8nUIFWTeytAJ2hZAPdJ
+	 +dEBFeba4/hBs/ehYMGoqm4e+wLnIT8vIIsfjiOUNibQTvOBjl0wgLN8ODu7yia/lt
+	 F2b0I1rE6//KA==
+Date: Fri, 20 Oct 2023 16:39:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: add Orange Pi Zero 2W
+Message-ID: <20231020-lividly-provided-860773e90110@spud>
+References: <20231020145706.705420-1-andre.przywara@arm.com>
+ <20231020145706.705420-2-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7qb63ejcofu46z6d"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7RnoDsnRaxG7lT4H"
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+df_nmNVuf46-a5Dafe4THxD-5HS-BPsTn_yzTckrOJw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20231020145706.705420-2-andre.przywara@arm.com>
 
 
---7qb63ejcofu46z6d
-Content-Type: text/plain; charset=utf-8
+--7RnoDsnRaxG7lT4H
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-
-On Fri, Oct 20, 2023 at 10:14:48AM -0500, Rob Herring wrote:
-> On Wed, Oct 18, 2023 at 3:46=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
-> > On Thu, Oct 05, 2023 at 09:35:48PM +0530, Devi Priya wrote:
-> > > +  "#pwm-cells":
-> > > +    const: 2
-> >
-> > The driver only supports normal polarity. Is this a shortcoming of the
-> > driver, or is the hardware incapable to do that, too?
-> >
-> > If it's only the former I'd want #pwm-cells =3D <3> here. For ease of u=
-se
-> > I'd not oppose if you pick #pwm-cells =3D <3> even if the hardware can
-> > only do normal polarity.
+On Fri, Oct 20, 2023 at 03:57:05PM +0100, Andre Przywara wrote:
+> The Orange Pi Zero 2W is a small board with an Allwinner H618 SoC.
 >=20
-> Devi, Can we get an answer here soon.
+> Add the compatible string to the binding documents.
 >=20
-> The MFD part has been applied and it references this schema causing
-> warnings. So this needs to land or MFD schema reverted.
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Or the reference to the pwm stuff deleted from the mfd binding?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Best regards
-Uwe
+Thanks,
+Conor.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
+tion/devicetree/bindings/arm/sunxi.yaml
+> index 11c5ce941dd7e..6f481e8bb4bf6 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -1013,6 +1013,11 @@ properties:
+>            - const: xunlong,orangepi-zero2
+>            - const: allwinner,sun50i-h616
+> =20
+> +      - description: Xunlong OrangePi Zero 2W
+> +        items:
+> +          - const: xunlong,orangepi-zero2w
+> +          - const: allwinner,sun50i-h618
+> +
+>        - description: Xunlong OrangePi Zero 3
+>          items:
+>            - const: xunlong,orangepi-zero3
+> --=20
+> 2.25.1
+>=20
 
---7qb63ejcofu46z6d
+--7RnoDsnRaxG7lT4H
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUynykACgkQj4D7WH0S
-/k48jQgAmXt8jVXBYTItnGzsR/oCdJ99o6oIa2BvsxBL50ugA62CUaeC83anLO1a
-qOrcp+6bNp+XAZpxNOirz3EeQKLrLQ+qpb/1fNBn4+e1YT7zv3MMXQesZWt7fhN1
-OZ3pBJktPyO9ozHKXuTTOiTUwuKPPfJemCDMAEksxTCa9Wu3hgdMcjG7CmFN0XDI
-Tl8XEyZIbN8h+FZDx6GTeVcr6AVy/m+ntGIY4EhLMPjNzG1HPVfWFCeIo0L9trzk
-PxM3UkBQbepxL3faE+2V1J5grhNdsOH0y+avnw2jQvWMauopMpSRRtWj1WffPowd
-c8b7t3zQV1HkugMxC8hE//Ph/krjyA==
-=kaZT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTKfRAAKCRB4tDGHoIJi
+0tzRAQD0VQgH5Kuw550UXTLMKW8jNw/Qgu4hfvSpfXh3u9ADmQEAtjOzhOXawHbB
+cq0DVwkXiUceYB6DFHdLwsoHM3DGLgs=
+=BdVK
 -----END PGP SIGNATURE-----
 
---7qb63ejcofu46z6d--
+--7RnoDsnRaxG7lT4H--
 
