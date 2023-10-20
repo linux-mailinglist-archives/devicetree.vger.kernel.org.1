@@ -1,265 +1,251 @@
-Return-Path: <devicetree+bounces-10427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA32F7D11F1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6884C7D1219
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECA221C20FF3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:57:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5701C20F08
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 15:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70851DA26;
-	Fri, 20 Oct 2023 14:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD7E1DA34;
+	Fri, 20 Oct 2023 15:02:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="gshecpcX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09771199BE
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 14:57:17 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 08AD119E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 07:57:16 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89C201570;
-	Fri, 20 Oct 2023 07:57:56 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.101.43])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C41023F762;
-	Fri, 20 Oct 2023 07:57:13 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chen-Yu Tsai <wens@csie.org>
-Cc: Marc Zyngier <maz@kernel.org>,
-	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: allwinner: h616: add Orange Pi Zero 2W support
-Date: Fri, 20 Oct 2023 15:57:06 +0100
-Message-Id: <20231020145706.705420-3-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231020145706.705420-1-andre.przywara@arm.com>
-References: <20231020145706.705420-1-andre.przywara@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F624199BE
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 15:02:12 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2034.outbound.protection.outlook.com [40.92.41.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21A3D52;
+	Fri, 20 Oct 2023 08:02:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=miDmwuOpdkh1Z49VBEnjlKe1OzkVolNK/xKlU1mpTttl0hLQBK+LXMw+oQqQOnTfT29oLkJBfJRBL+rFYx4aHl7cSwaGjTk7dHE4cXXHWzxUa+VRsbVtM0Px7azKR/sEYzottmgCzjH/lhxoUxZRR67s1RhHbVZ1xt14k4z18rvonkWHKf9evuhS4UlMLoem+fUmokNREm+XvFQfJbnxjoaAUAS3Rh42WGERh8kRUagVR5Q9uQPt55XtjORwyQiK7VoptabeYIULHqgOYUYwrq52pxXPzPgos/pMehSWIlGxfd/92uRx906OVFL3JrVHpmCGoaNyDU+ZBvTE2crhDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u22+lWt58j6XOonK7pX+yttwnFl5PevcfeYAcpOPZlg=;
+ b=nRwXccobL/QiPu11AZCgioQmAzcWnRckKpPpN9xTcDlElzffnbmxYY/hEa55JqXt/5kZoNgMquAwfwbbKZguUMeTmur2xqvR+PcFG4EswVBZBDumdxcRsnq2JBg1iTT4ZC0UL/4pp5bJ9gSAvKf/RGqb4iZIrhxcno9Wenr4XN5cTEeU82NQeXueDy+mqlo6OJwPB1EeWL9YmUoBYSodbn1MDCsI4FSTie4i239YGHkbiP1WevQm+PxW6CTUdNygC5HtaZaDj/EKbs7f3DKLg+tMSnng6DU56uuRUr2fyv4KT98IPiXGSSIau1fzG0jg7eXtLTeEHapKDsdLGiR5hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u22+lWt58j6XOonK7pX+yttwnFl5PevcfeYAcpOPZlg=;
+ b=gshecpcX/74ruuUckEdXTrG93/P2j7ASBhXHc6yS1f2WssqeHQ2m9VzDinkYTKR7nfP16YOaqtOTk0S7GrvDDJJR8nBhZFATpIGQ5zKaJx9VYRFGQ9XiU34wQizhHyPmaw/NIAOrgn+Pq6iizjLUAlYBXbyxRiDImpKEfZ8zFBDG9rlb0Sv+GGKE9hnz20e+Sy8sNHRKJ5S1hRsFI5ka2cFTwB9r4wvdRRBawRGTAMEcFThv+T9JnBp+qnjIyLvU1fyGrCUPteGaDUPeOlvCudP7PxoaI2xRTuAVHewk0/nHUZr6YmAhSgZyxRFet+Pm7EzTisyoruSDaNbjrPUOvg==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by SA1PR06MB8241.namprd06.prod.outlook.com (2603:10b6:806:1c4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Fri, 20 Oct
+ 2023 15:02:08 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Fri, 20 Oct 2023
+ 15:02:08 +0000
+Date: Fri, 20 Oct 2023 10:02:06 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	neil.armstrong@linaro.org, sboyd@kernel.org, sam@ravnborg.org,
+	mturquette@baylibre.com, sebastian.reichel@collabora.com,
+	dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+	linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/5] drm/panel: nv3051d: Add Powkiddy RK2023 Panel Support
+Message-ID:
+ <SN6PR06MB53427936B51EABD4484DF0C3A5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20231018161848.346947-1-macroalpha82@gmail.com>
+ <20231018161848.346947-3-macroalpha82@gmail.com>
+ <c5e2929c-ef05-4e74-947e-579706f2b4aa@quicinc.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c5e2929c-ef05-4e74-947e-579706f2b4aa@quicinc.com>
+X-TMN: [c6hAfIfdj1KylH7ib0gHz387R2RVY3OD]
+X-ClientProxiedBy: SA0PR11CA0094.namprd11.prod.outlook.com
+ (2603:10b6:806:d1::9) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZTKWbrxWpX0MzEvy@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA1PR06MB8241:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ed23567-d269-405d-73b1-08dbd17d87c2
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	5Mim3eiWkOJTW1N77Gi1wp0N3sz3txoWY5mWejy2EjWQl/0QxC0Nn1mgX1iWd0iL/q08RF1dCk0xRp21K/MrKR7MwpF/IpPj8KOJtnL68DDNTR7GPKEUZ857ACZO0741EVgToBI5EhRhNST3EnH7zn0QT5bsHI4mwHT3m56QnT+uVCk8mCMRXlyoAF+KragI0nrkfxHK4/5HmRGjDqQ5TvUydb9evOdWo6+DkOBvkBj29DOUUuIPZpQ6bpI0bB23DCGxo/4FWeWGnj/Va018vY012Pm7ZavvpyBfnx9NXerXkwaRclvyQT6c7fKyLPgXP+bLtebwez2PcYS6ElMhYW3r7Zxh+pBBFuavkSlAuS/LVucuuvVtCyO12ToTdvAD3a6n3EwSSeRybBKX/uZviyJN0w2Tv9+zWiNjEmbNtJnLcY9m0S9SwOITT+pxTY//Qbu3wsea38vjKvmxwF8DvfD2S8yZVzC0OFGKUi042dLK/W41Uw1WFiK5+bgrEKpclPv6LFg53oydcWF1/CwaKzrBXpf/v+2lAq12CyhNOVvqSugO6+KdTVvyC0kPcZZW
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?3g22Hda9ety0YLI8h26fJsx/KKGev92kmcFy4YYXC4i6APD5EOq5Y6feRKwi?=
+ =?us-ascii?Q?bNV4iUhnpxE6lWn15+UswfVaRoafv6XWCVolXvFYZusv5ViFXjm+P1PaPqWs?=
+ =?us-ascii?Q?isjEOL7urwm75NUILyvk3Z0MvDxqd2Aj7fQyUudFwzMkvPyAlQelYndEkyik?=
+ =?us-ascii?Q?tcmAnC+1zLUeZPMR42+gZP8R85jHaWX3I934ghNPRhfzpTAl/TCp8TQ8JrSt?=
+ =?us-ascii?Q?imWH2PxC+3g8jAqZZAmTmCHp01gjtRr+LSMg9IXWAo7a0Brb6xN8KYc1HZDL?=
+ =?us-ascii?Q?vc23c0Q4Jpog9TNc/cHUU084LVlTma9meT7q7+zPuAzPZ9aDQYfjipoMkjke?=
+ =?us-ascii?Q?9OvigxrBROMEApie1r5gcQNI42LScMVR1ImuSl6lz/LYSrEtTgN5R1ni4ASw?=
+ =?us-ascii?Q?AJ3wnP7f53MycUtFwTrzLu/gnDi7tJpkzkGNO8W4zQOZqTJsAciPhmaIWlKN?=
+ =?us-ascii?Q?IjfFlRzTyldIBbc6p93fM18/nJGQMX5R/Jf2DP7ixTmhtKGktblwR3AVZnXC?=
+ =?us-ascii?Q?IfEN4nd19SnVSCplW1BgmhnwHQYe3RlFnBuQnjMx8ojZ+WCHmbBqsWFpzJAX?=
+ =?us-ascii?Q?X/OUHIHUOqZa7uUi/T95HIaHVcZL2slXlG6q6HqPjHDxVxGip0L5L76QHS1W?=
+ =?us-ascii?Q?PZ/G//y+0nj/PiKY2gbqJSA4m8DTdst0wCB3pR8KOOMOjALCSmIWch42RxUM?=
+ =?us-ascii?Q?TnBnk7LRuYkPdgDVqDMVvxkB3V2wsMNW6fgA1D0hEq4lcMWE7/b93jQ7QnNY?=
+ =?us-ascii?Q?VhhJEhQZ2OdO8RsatWBXt51UoEJGgsciHzRWKodrkVSnBSSN2B/JeXdeG8qI?=
+ =?us-ascii?Q?dx8FyOPQlSDWTfMN2X2K/ByfPRynP6frTgLQ9hDWFwZl3u6kactItHJTz/xW?=
+ =?us-ascii?Q?r/EmVa+hBMulDwtuNbvrafRAnE+R088DMqS060AVuC/gZ2x2e/LiQd3a41ag?=
+ =?us-ascii?Q?jRkfSiWTAF4uUaUhBhwZqwR3gYZx+WaKz9uM6q4CRFFOzK3Kr7zysVVgFCuu?=
+ =?us-ascii?Q?a2R47U4X9HA+o5RDg9sPgusLVMQiS3O7bcBW3XIyTvoFD9fQbDR7uYx6CUMg?=
+ =?us-ascii?Q?GlpDqMxT4Xpk6rxpjQlDXiDdfYhc5ySkEa6Yp8wr0F8NVtl9TBIseWW93DjX?=
+ =?us-ascii?Q?lwXmDsN7snKrRZwE/ch9l6WybRahTNCzv8tN1ktvFyeg0SnrjWytBnU9CGpK?=
+ =?us-ascii?Q?TBqEnA8spC2goYIOgb5VpiShER2oYc0TCPENt5ohF33yg/IIX0p3l4zubqY?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ed23567-d269-405d-73b1-08dbd17d87c2
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 15:02:08.8179
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR06MB8241
 
-The Orange Pi Zero 2W is a board based on the Allwinner H618 SoC.
-It uses the RaspberryPi Zero form factor, with an optional expansion
-board, connected via an FPC connector, to provide more connectors.
+On Thu, Oct 19, 2023 at 10:22:24AM -0700, Jessica Zhang wrote:
+> 
+> 
+> On 10/18/2023 9:18 AM, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Refactor the driver to add support for the powkiddy,rk2023-panel
+> > panel. This panel is extremely similar to the rg353p-panel but
+> > requires a smaller vertical back porch and isn't as tolerant of
+> > higher speeds.
+> > 
+> > Tested on my RG351V, RG353P, RG353V, and RK2023.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Hi Chris,
+> 
+> Thanks for the patch. Just have a minor question below.
+> 
+> > ---
+> >   .../gpu/drm/panel/panel-newvision-nv3051d.c   | 56 +++++++++++++++----
+> >   1 file changed, 45 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > index 79de6c886292..d24c51503d68 100644
+> > --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > @@ -28,6 +28,7 @@ struct nv3051d_panel_info {
+> >   	unsigned int num_modes;
+> >   	u16 width_mm, height_mm;
+> >   	u32 bus_flags;
+> > +	u32 mode_flags;
+> >   };
+> >   struct panel_nv3051d {
+> > @@ -385,15 +386,7 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+> >   	dsi->lanes = 4;
+> >   	dsi->format = MIPI_DSI_FMT_RGB888;
+> > -	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> > -			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
+> > -
+> > -	/*
+> > -	 * The panel in the RG351V is identical to the 353P, except it
+> > -	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
+> > -	 */
+> > -	if (of_device_is_compatible(dev->of_node, "anbernic,rg351v-panel"))
+> > -		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> > +	dsi->mode_flags = ctx->panel_info->mode_flags;
+> >   	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
+> >   		       DRM_MODE_CONNECTOR_DSI);
+> > @@ -481,18 +474,59 @@ static const struct drm_display_mode nv3051d_rgxx3_modes[] = {
+> >   	},
+> >   };
+> > -static const struct nv3051d_panel_info nv3051d_rgxx3_info = {
+> > +static const struct drm_display_mode nv3051d_rk2023_modes[] = {
+> > +	{
+> > +		.hdisplay       = 640,
+> > +		.hsync_start    = 640 + 40,
+> > +		.hsync_end      = 640 + 40 + 2,
+> > +		.htotal         = 640 + 40 + 2 + 80,
+> > +		.vdisplay       = 480,
+> > +		.vsync_start    = 480 + 18,
+> > +		.vsync_end      = 480 + 18 + 2,
+> > +		.vtotal         = 480 + 18 + 2 + 4,
+> > +		.clock          = 24150,
+> > +		.flags          = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> > +	},
+> > +};
+> > +
+> > +static const struct nv3051d_panel_info nv3051d_rg351v_info = {
+> >   	.display_modes = nv3051d_rgxx3_modes,
+> >   	.num_modes = ARRAY_SIZE(nv3051d_rgxx3_modes),
+> >   	.width_mm = 70,
+> >   	.height_mm = 57,
+> >   	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> > +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> > +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET |
+> > +		      MIPI_DSI_CLOCK_NON_CONTINUOUS,
+> > +};
+> > +
+> > +static const struct nv3051d_panel_info nv3051d_rg353p_info = {
+> > +	.display_modes = nv3051d_rgxx3_modes,
+> > +	.num_modes = ARRAY_SIZE(nv3051d_rgxx3_modes),
+> > +	.width_mm = 70,
+> > +	.height_mm = 57,
+> 
+> Will all the panels for this driver be 70x57? If so, would it be better to
+> set display_info.[width_mm|height_mm] directly?
 
-The base board features:
-	- Allwinner H618 SoC (quad Cortex-A53 cores, with 1MB L2 cache)
-	- 1, 2 or 4GB of LPDDR4 DRAM
-	- SD card socket
-	- two USB-C sockets, one UFP, one DFP
-	- HDMI connector
-	- (yet unsupported) WiFi module
-	- 16 MiB SPI flash
-	- power supply via the UFP USB-C port
+They are all so far the same size, but I can't guarantee that going forward.
+To my knowledge this is the last of the nv3051d devices I'll be working on
+in the foreseeable future though, and so far they're all identical in size.
 
-The FPC connector provides access to two more USB host ports, Fast
-Ethernet, some GPIOs, Audio Line out and the IR receiver pin.
+> 
+> > +	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> > +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> > +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
+> > +};
+> > +
+> > +static const struct nv3051d_panel_info nv3051d_rk2023_info = {
+> > +	.display_modes = nv3051d_rk2023_modes,
+> > +	.num_modes = ARRAY_SIZE(nv3051d_rk2023_modes),
+> > +	.width_mm = 70,
+> > +	.height_mm = 57,
+> > +	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> > +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> > +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
+> >   };
+> >   static const struct of_device_id newvision_nv3051d_of_match[] = {
+> > -	{ .compatible = "newvision,nv3051d", .data = &nv3051d_rgxx3_info },
+> > +	{ .compatible = "anbernic,rg351v-panel", .data = &nv3051d_rg351v_info },
+> > +	{ .compatible = "anbernic,rg353p-panel", .data = &nv3051d_rg353p_info },
+> > +	{ .compatible = "powkiddy,rk2023-panel", .data = &nv3051d_rk2023_info },
+> >   	{ /* sentinel */ }
+> >   };
+> > +
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- .../allwinner/sun50i-h618-orangepi-zero2w.dts | 176 ++++++++++++++++++
- 1 file changed, 176 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+Sorry, will fix that in a V2. Thank you.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-new file mode 100644
-index 0000000000000..21ca1977055d9
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-@@ -0,0 +1,176 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "OrangePi Zero 2W";
-+	compatible = "xunlong,orangepi-zero2w", "allwinner,sun50i-h618";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vcc3v3: vcc3v3 {
-+		/* SY8089 DC/DC converter */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_vcc5v>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/* USB 2 & 3 are on the FPC connector (or the exansion board) */
-+
-+&mmc0 {
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_dldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;	/* internally via VCC-IO */
-+	vcc-pg-supply = <&reg_aldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;	/* internally via VCC-IO */
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+		interrupt-parent = <&pio>;
-+		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
-+
-+		vin1-supply = <&reg_vcc5v>;
-+		vin2-supply = <&reg_vcc5v>;
-+		vin3-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			/* Supplies VCC-PLL and DRAM */
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Supplies VCC-IO, so needs to be always on. */
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&spi0  {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <40000000>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
--- 
-2.25.1
-
+> 
+> I think you can drop this stray newline.
+> 
+> Thanks,
+> 
+> Jessica Zhang
+> 
+> >   MODULE_DEVICE_TABLE(of, newvision_nv3051d_of_match);
+> >   static struct mipi_dsi_driver newvision_nv3051d_driver = {
+> > -- 
+> > 2.34.1
+> > 
 
