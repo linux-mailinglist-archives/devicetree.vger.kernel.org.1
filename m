@@ -1,51 +1,77 @@
-Return-Path: <devicetree+bounces-10422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 125DA7D119D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:31:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9CA7D11AF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 16:38:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFD42282286
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:31:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C1FD1C20FC3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 14:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44373199BF;
-	Fri, 20 Oct 2023 14:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C1E15EB0;
+	Fri, 20 Oct 2023 14:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="GRIir2VB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OTQMGTIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E511DA32
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 14:31:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E65A3C433C8;
-	Fri, 20 Oct 2023 14:31:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1697812314;
-	bh=WEpjgFcPeQJKLQYrLLB7W0sYAU1Nex9t/YsX/jHg8kg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GRIir2VB2uCvTMinb4tslLmOW2YakhXGfBsVmKz1btlcpi6XXOs0oQ6pRNg4+5Yzs
-	 lEETxsx3SqDEBRcRGqaRiK6Aq4JQo6hSk8Fyxusgj15xBTEFpmLDiX4gdquo5UhhqA
-	 dObczVTLNytqnwe4LJn92N1lxwORHsmVM9ibEVxA=
-Date: Fri, 20 Oct 2023 16:31:50 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: "Balas, Eliza" <Eliza.Balas@analog.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Message-ID: <2023102030-resort-glance-57ef@gregkh>
-References: <20231019125646.14236-1-eliza.balas@analog.com>
- <20231019125646.14236-3-eliza.balas@analog.com>
- <2023101917-cork-numeric-dab8@gregkh>
- <BN7PR03MB4545E7EAB2D72B9098C30C6797DBA@BN7PR03MB4545.namprd03.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0861DA20;
+	Fri, 20 Oct 2023 14:38:05 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED9B114;
+	Fri, 20 Oct 2023 07:38:04 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-53e08b60febso1326716a12.1;
+        Fri, 20 Oct 2023 07:38:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697812682; x=1698417482; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pjBwNWpR8uoTt7yL2JwXrNyMkZDaAsBp9vs5MsXaXcU=;
+        b=OTQMGTIzrAWeHA4Fbnq8BJzSAj/+kqztQ30eJsy63bozcry7GpvrrjUqYhj6ouDcRi
+         WP/YTCeXDcoNhN1hyyyw96eh+aXJfNpEJzAUH+F6/7TgtXHiXL0F8gaADmmCqjSk2XHK
+         e8PKsOwW9q6e5r8KDLdegvnr5faM5GT7MXlGZU0ZxG/bzbRFPmXg4brl9g0kEwuNMpb/
+         cCDYlYgRUJ/KMGmqb3Jm8P/Xt11rwxgRF4rFFF4uXjFAm+3P9caVFc9TIpNaSSG9uajR
+         qFq9xUy9vTRcf6V5BqxWvnCT081TwyklRR+MBNDw7hthsqX/OguyWvpFvfcWpGuKwTRu
+         L2Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697812682; x=1698417482;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pjBwNWpR8uoTt7yL2JwXrNyMkZDaAsBp9vs5MsXaXcU=;
+        b=slkk5MMg3mFxzVB88eyHLg5ob0MUrOYfBAOFGiYNqWPUwcqax/3EgdFnkJy/MR+TGb
+         M+3jsHo99xuKdJKrR18VNCMfn0GsYPygDsSTa6aUUUpEaj8yt2ICpI83RLyQHS7HRvJ2
+         KU481Zuf+npoNDX363I6QUhepezKNSTN7GWnJw7VsaIEZPVztz74iNp5gGKiHm/hW/MF
+         GXxvGK13O65+PKGH54kyCewYEm4uorzM4xRP+Ipnc/Qk+d0BgtEnwzOZQdYs4tu4ZLEt
+         beZV0LMvFd1LmlyzAoAWvcsekTZC0oWvUOgPvMkz4QChXurPoodOCqxGIk2w+CY+yg0V
+         BtXw==
+X-Gm-Message-State: AOJu0Yz4EDwdfpOPrE1R9AaUsFhk3equDDsIE2MJ//GvwvEQF/HJODz6
+	o7HF6GO2SK+pZi+nH1/aTxQ=
+X-Google-Smtp-Source: AGHT+IGA0b+ydD3hEt71z4EGORuauwp8TxwlVz6PlNd2I2R0WB/SsXZ0sj01ayHkYrvI0lmhAD/rPQ==
+X-Received: by 2002:a05:6402:518e:b0:53e:332e:3e03 with SMTP id q14-20020a056402518e00b0053e332e3e03mr1923675edd.4.1697812682378;
+        Fri, 20 Oct 2023 07:38:02 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id s14-20020a05640217ce00b0053e625da9absm1565214edy.41.2023.10.20.07.38.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 07:38:02 -0700 (PDT)
+Date: Fri, 20 Oct 2023 17:37:59 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	o.rempel@pengutronix.de
+Subject: Re: [PATCH net-next v4 2/2] net: dsa: microchip: add property to
+ select internal RMII reference clock
+Message-ID: <20231020143759.eknrcfbztrc543mm@skbuf>
+References: <cover.1697811160.git.ante.knezic@helmholz.de>
+ <492ba34018bd5035bcc33402746df121df172f73.1697811160.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,47 +80,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BN7PR03MB4545E7EAB2D72B9098C30C6797DBA@BN7PR03MB4545.namprd03.prod.outlook.com>
+In-Reply-To: <492ba34018bd5035bcc33402746df121df172f73.1697811160.git.ante.knezic@helmholz.de>
 
-On Fri, Oct 20, 2023 at 11:18:44AM +0000, Balas, Eliza wrote:
-> > > +static int adi_axi_tdd_parse_ms(struct adi_axi_tdd_state *st,
-> > > +				const char *buf,
-> > > +				u64 *res)
-> > > +{
-> > > +	u64 clk_rate = READ_ONCE(st->clk.rate);
-> > > +	char *orig_str, *modf_str, *int_part, frac_part[7];
-> > > +	long ival, frac;
-> > > +	int ret;
-> > > +
-> > > +	orig_str = kstrdup(buf, GFP_KERNEL);
-> > > +	int_part = strsep(&orig_str, ".");
-> > 
-> > Why are we parsing floating point in the kernel?  Please just keep the
-> > api simple so that we don't have to try to do any type of parsing other
-> > than turning a single text number into a value.
-> > 
-> 
-> The adi_axi_tdd_parse_ms function does almost the same thing as the 
-> iio_str_to_fixpoint() function which already exists in kernel.
+On Fri, Oct 20, 2023 at 04:25:04PM +0200, Ante Knezic wrote:
+> +static void ksz88x3_config_rmii_clk(struct ksz_device *dev)
+> +{
+> +	bool rmii_clk_internal;
+> +
+> +	if (!ksz_is_ksz88x3(dev))
+> +		return;
+> +
+> +	rmii_clk_internal = of_property_read_bool(dev->dev->of_node,
+> +						  "microchip,rmii-clk-internal");
+> +
+> +	ksz_cfg(dev, KSZ88X3_REG_FVID_AND_HOST_MODE,
+> +		KSZ88X3_PORT3_RMII_CLK_INTERNAL, rmii_clk_internal);
+> +}
 
-That does not mean that this is a valid api for your device as you are
-not an iio driver (why aren't you an iio driver?)
+Sorry, I didn't realize on v3 that you didn't completely apply my
+feedback on v2. Can "microchip,rmii-clk-internal" be a port device tree
+property? You have indeed moved its parsing to port code, but it is
+still located directly under the switch node in the device tree.
 
-> It parses a fixed-point number from a string. 
-
-And as such, you shouldn't duplicate existing logic.
-
-> The __iio_str_to_fixpoint is used in a similar way, as I intend to use adi_axi_tdd_parse_ms.
-> It writes to a channel the corresponding scale (micro,nano) for a value.
-
-Why not just have the api accept values in nanoseconds and then no
-parsing is needed?
-
-> Since the device is not an iio device, using an iio function would be confusing.
-
-Why isn't this an iio device?
-
-thanks,
-
-greg k-h
+I'm thinking that if this property was also applicable to other switches
+with multiple RMII ports, the setting would be per port rather than global.
 
