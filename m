@@ -1,227 +1,263 @@
-Return-Path: <devicetree+bounces-10463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677857D150B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 19:42:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C37D7D1517
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 19:44:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71B8C1C20F1C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:42:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB0CC280FDE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 17:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6905320321;
-	Fri, 20 Oct 2023 17:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDC92032A;
+	Fri, 20 Oct 2023 17:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X7SlevR3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qN6wGAxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80EE2031E
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 17:42:23 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6C9126;
-	Fri, 20 Oct 2023 10:42:21 -0700 (PDT)
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 41AD3660737B;
-	Fri, 20 Oct 2023 18:42:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697823740;
-	bh=61vCDd/sNXFMkRx1cJTA4jU6t54DUXmsCc85UIZ8QtQ=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2700200D2;
+	Fri, 20 Oct 2023 17:44:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 204F6C433C9;
+	Fri, 20 Oct 2023 17:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697823878;
+	bh=tM18i9s5DyCKNvNL4uxB77beHUHrncqWw9WuGgi11Sc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X7SlevR3PHykdfwk7rOnw+QtXkDIyQqybO09uN6u1F1kY3Af9YEAJIoW1HI5uQYIv
-	 x93rnq+YA1/9UHmefX/YL0F9szvMlquJRbDQlNT1lCxL6/xXetWCk877FT9LRwrUDU
-	 9kxL/IltSqZkMabFc2N6mIMg1e2xScONIutc/rhJ/jxrM3azJymAE/41Qxvc6bfoqF
-	 x5Fa0nOuswF05bjIo0dIqCwZjLVDVnofO0+8PRWPc740WYlzsyJV8r4DSSPUnD7ID5
-	 +GHp+0ewSf9L2dJJZxo7i1AP8p0ygxGfXeFv/yAGYKDzTguKOad4DnBz2KPu0CpPdq
-	 O8VR5JxueDfvQ==
-Received: by mercury (Postfix, from userid 1000)
-	id 7EDFF10603FC; Fri, 20 Oct 2023 19:42:17 +0200 (CEST)
-Date: Fri, 20 Oct 2023 19:42:17 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
-	heiko@sntech.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
-	andy.yan@rock-chips.com
-Subject: Re: [PATCH v4 0/4] rockchip: add GATE_LINK
-Message-ID: <20231020174217.py6tqwm4wenppltl@mercury.elektranox.org>
-References: <20231018070144.8512-1-zhangqing@rock-chips.com>
+	b=qN6wGAxbfAChNjoLr5JDLEMA1Yj+VXAm1mIrvIai0T7d3G6o655pNSQo+SYWECDNJ
+	 tkFS3gMulxYKpiNf3SesEVfzKyQjA/5DtMXpEuUMZ0dxODQ8d6kmjsSjqU1iGnX45t
+	 U+OBJowH14NvBAGCP93/5kVnK3CAzSZAQiJto8Fwnuewnn4E7yoXVAqHfIsJHL6ODQ
+	 SyDGio5RxL70E0jPTDGXylaFoJJ1Rmlb47upWX/MakTC510CcYcdjGU65YQmfWndaq
+	 11TYcwA+E728enME8ni+F/2VRXXMIZQlLNiisg1bXJ79Yg5/pHzqZprTUWY3fifPJk
+	 B54UYuQvwVrbw==
+Date: Fri, 20 Oct 2023 23:14:28 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: manivannan.sadhasivam@linaro.org, aisheng.dong@nxp.com,
+	bhelgaas@google.com, devicetree@vger.kernel.org, festevam@gmail.com,
+	imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+	kishon@kernel.org, kw@linux.com,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v2 3/5] PCI: endpoint: pci-epf-test: add doorbell test
+Message-ID: <20231020174428.GB46191@thinkpad>
+References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+ <20230911220920.1817033-4-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="u4p4mgloo6pn3xch"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231018070144.8512-1-zhangqing@rock-chips.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230911220920.1817033-4-Frank.Li@nxp.com>
 
+On Mon, Sep 11, 2023 at 06:09:18PM -0400, Frank Li wrote:
 
---u4p4mgloo6pn3xch
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Subject could be,
 
-Hi,
+PCI: endpoint: pci-epf-test: Add doorbell support
 
-On Wed, Oct 18, 2023 at 03:01:40PM +0800, Elaine Zhang wrote:
-> Recent Rockchip SoCs have a new hardware block called Native Interface
-> Unit (NIU), which gates clocks to devices behind them. These effectively
-> need two parent clocks.
-> Use GATE_LINK to handle this.
->=20
-> change in v4:
-> [PATCH v4 1/4]: No change
-> [PATCH v4 2/4]: No change
-> [PATCH v4 3/4]: dropping CLK_NR_CLKS,reword commit message
-> [PATCH v4 4/4]: No change
->=20
-> change in V3:
-> [PATCH v3 1/4]: new, export clk_gate_endisable for PATCH2.
-> [PATCH v3 2/4]: reuse clk_gate_endisable and clk_gate_is_enabled.
->                 add prepare and unprepare ops.
-> [PATCH v3 3/4]: No change
-> [PATCH v3 4/4]: reword commit message
->=20
-> change in V2:
-> [PATCH v2 1/3]: fix reported warnings
-> [PATCH v2 2/3]: Bindings submit independent patches
-> [PATCH v2 3/3]: fix reported warnings
->=20
-> Elaine Zhang (4):
->   clk: gate: export clk_gate_endisable
->   clk: rockchip: add support for gate link
->   dt-bindings: clock: rk3588: export PCLK_VO1GRF clk id
->   clk: rockchip: rk3588: Adjust the GATE_LINK parameter
->=20
->  drivers/clk/clk-gate.c                        |   3 +-
->  drivers/clk/rockchip/Makefile                 |   1 +
->  drivers/clk/rockchip/clk-gate-link.c          | 120 ++++++++++++++++++
->  drivers/clk/rockchip/clk-rk3588.c             | 110 ++++++++--------
->  drivers/clk/rockchip/clk.c                    |   7 +
->  drivers/clk/rockchip/clk.h                    |  22 ++++
->  .../dt-bindings/clock/rockchip,rk3588-cru.h   |   2 +-
->  include/linux/clk-provider.h                  |   1 +
->  8 files changed, 213 insertions(+), 53 deletions(-)
->  create mode 100644 drivers/clk/rockchip/clk-gate-link.c
+> Add three register: doorbell_bar, doorbell_addr, doorbell_data,
+> doorbell_done. Call pci_epf_alloc_doorbell() all a doorbell address space.
+> 
+> Root complex(RC) side driver can trigger pci-epc-test's doorbell callback
+> handler by write doorbell_data to mapped doorbell_bar's address space.
+> 
+> pci-epc-test will set doorbell_done in doorbell callback.
+> 
 
-I get this with the patchset applied:
+How about,
 
-Oct 20 18:25:04 rk3588-evb1 kernel: clk: Disabling unused clocks
-Oct 20 18:25:04 rk3588-evb1 kernel: ------------[ cut here ]------------
-Oct 20 18:25:04 rk3588-evb1 kernel: hclk_rkvenc0 already disabled
-Oct 20 18:25:04 rk3588-evb1 kernel: WARNING: CPU: 4 PID: 1 at drivers/clk/c=
-lk.c:1090 clk_core_disable+0x1b0/0x1e0
-Oct 20 18:25:04 rk3588-evb1 kernel: Modules linked in:
-Oct 20 18:25:04 rk3588-evb1 kernel: CPU: 4 PID: 1 Comm: swapper/0 Not taint=
-ed 6.6.0-rc6-00044-g31c3dbd16ca1 #1120
-Oct 20 18:25:04 rk3588-evb1 kernel: Hardware name: Rockchip RK3588 EVB1 V10=
- Board (DT)
-Oct 20 18:25:04 rk3588-evb1 kernel: pstate: 604000c9 (nZCv daIF +PAN -UAO -=
-TCO -DIT -SSBS BTYPE=3D--)
-Oct 20 18:25:04 rk3588-evb1 kernel: pc : clk_core_disable+0x1b0/0x1e0
-Oct 20 18:25:04 rk3588-evb1 kernel: lr : clk_core_disable+0x1b0/0x1e0
-Oct 20 18:25:04 rk3588-evb1 kernel: sp : ffff8000846fbbf0
-Oct 20 18:25:04 rk3588-evb1 kernel: x29: ffff8000846fbbf0 x28: ffff8000833a=
-0008 x27: ffff8000830e0130
-Oct 20 18:25:04 rk3588-evb1 kernel: x26: ffff800082ffcff0 x25: ffff8000830b=
-9be8 x24: ffff800083236100
-Oct 20 18:25:04 rk3588-evb1 kernel: x23: 000000000000104a x22: 000000000000=
-0000 x21: ffff800084669000
-Oct 20 18:25:04 rk3588-evb1 kernel: x20: ffff00040087ca00 x19: ffff00040087=
-ca00 x18: ffffffffffffffff
-Oct 20 18:25:04 rk3588-evb1 kernel: x17: ffff80008435d050 x16: ffff80008435=
-cfe0 x15: 0720072007200720
-Oct 20 18:25:04 rk3588-evb1 kernel: x14: 0720072007200720 x13: 072007200720=
-0720 x12: 0720072007200720
-Oct 20 18:25:04 rk3588-evb1 kernel: x11: 0720072007200720 x10: ffff80008407=
-9890 x9 : ffff800080128a78
-Oct 20 18:25:04 rk3588-evb1 kernel: x8 : 00000000ffffefff x7 : ffff80008407=
-9890 x6 : 80000000fffff000
-Oct 20 18:25:04 rk3588-evb1 kernel: x5 : 0000000000000000 x4 : 000000000000=
-0000 x3 : 0000000000000000
-Oct 20 18:25:04 rk3588-evb1 kernel: x2 : 0000000000000000 x1 : 000000000000=
-0000 x0 : ffff000400a08000
-Oct 20 18:25:04 rk3588-evb1 kernel: Call trace:
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_core_disable+0x1b0/0x1e0
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable+0x38/0x60
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_gate_link_disable+0x2c/0x48
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x104/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
-Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused+0x54/0x148
-Oct 20 18:25:04 rk3588-evb1 kernel:  do_one_initcall+0x48/0x2a8
-Oct 20 18:25:04 rk3588-evb1 kernel:  kernel_init_freeable+0x1ec/0x3d8
-Oct 20 18:25:04 rk3588-evb1 kernel:  kernel_init+0x2c/0x1f8
-Oct 20 18:25:04 rk3588-evb1 kernel:  ret_from_fork+0x10/0x20
-Oct 20 18:25:04 rk3588-evb1 kernel: ---[ end trace 0000000000000000 ]---
-Oct 20 18:25:04 rk3588-evb1 kernel: ------------[ cut here ]------------
-=2E.. (more clocks follow)
+Add doorbell support to the EPF test driver by introducing 3 new registers:
 
-I managed to fix this by introducing some flags, that clk_disable /
-clk_unprepare is only called on the linked clock if there was a
-prior clk_enable/clk_prepare for it.
+doorbell_bar
+doorbell_addr
+doorbell_data
 
-Apart from that this does not remove the existing GATE clocks for
-pclk_vo0grf and pclk_vo1grf resulting in the following errors:
+The PCI RC driver can trigger the doorbell on the EP side by writing the
+content of "doorbell_data" to the address specified by the "doorbell_addr"
+register in the "doorbell_bar" BAR region.
 
-Oct 20 19:22:37 rk3588-evb1 kernel: pclk_vo0grf clk_register field
-Oct 20 19:22:37 rk3588-evb1 kernel: rockchip_clk_register_branches: failed =
-to register clock pclk_vo0grf: -17
-Oct 20 19:22:37 rk3588-evb1 kernel: pclk_vo1grf clk_register field
-Oct 20 19:22:37 rk3588-evb1 kernel: rockchip_clk_register_branches: failed =
-to register clock pclk_vo1grf: -17
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Last but not least I think it's better to restructure the patches a
-bit:
+You should also update Documentation/PCI/endpoint/pci-test-* files in a separate
+commit with doorbell support.
 
-Patch 1: Add CLK ID for PCLK_VO1GRF in the DT binding (add Fixes tag for 4f=
-5ca304f202)
-Patch 2: Fix clock"pclk_vo0grf" and "pclk_vo1grf" (add Fixes tag for f1c506=
-d152ff)
-Patch 3: Adjust GATE_LINK parameter from string to constant, but
-         keep local GATE_LINK() define
-Patch 4: Export clk_gate_endisable
-Patch 5: Add gate-link support and remove local GATE_LINK() define from rk3=
-588
-Patch 6: Remove RK3588_LINKED_CLK
+> ---
+>  drivers/pci/endpoint/functions/pci-epf-test.c | 59 ++++++++++++++++++-
+>  1 file changed, 58 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
+> index 1f0d2b84296a3..566549919b87b 100644
+> --- a/drivers/pci/endpoint/functions/pci-epf-test.c
+> +++ b/drivers/pci/endpoint/functions/pci-epf-test.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/dmaengine.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> +#include <linux/msi.h>
+>  #include <linux/slab.h>
+>  #include <linux/pci_ids.h>
+>  #include <linux/random.h>
+> @@ -39,17 +40,21 @@
+>  #define STATUS_IRQ_RAISED		BIT(6)
+>  #define STATUS_SRC_ADDR_INVALID		BIT(7)
+>  #define STATUS_DST_ADDR_INVALID		BIT(8)
+> +#define STATUS_DOORBELL_SUCCESS		BIT(9)
+>  
+>  #define FLAG_USE_DMA			BIT(0)
+>  
+>  #define TIMER_RESOLUTION		1
+>  
+> +#define MAGIC_VERSION_MASK		GENMASK(7, 0)
+> +
+>  static struct workqueue_struct *kpcitest_workqueue;
+>  
+>  struct pci_epf_test {
+>  	void			*reg[PCI_STD_NUM_BARS];
+>  	struct pci_epf		*epf;
+>  	enum pci_barno		test_reg_bar;
+> +	enum pci_barno		doorbell_bar;
+>  	size_t			msix_table_offset;
+>  	struct delayed_work	cmd_handler;
+>  	struct dma_chan		*dma_chan_tx;
+> @@ -74,6 +79,9 @@ struct pci_epf_test_reg {
+>  	u32	irq_type;
+>  	u32	irq_number;
+>  	u32	flags;
+> +	u32	doorbell_bar;
+> +	u32	doorbell_addr;
+> +	u32	doorbell_data;
+>  } __packed;
+>  
+>  static struct pci_epf_header test_header = {
+> @@ -693,6 +701,8 @@ static void pci_epf_test_unbind(struct pci_epf *epf)
+>  	struct pci_epf_bar *epf_bar;
+>  	int bar;
+>  
+> +	pci_epf_free_doorbell(epf);
+> +
+>  	cancel_delayed_work(&epf_test->cmd_handler);
+>  	pci_epf_test_clean_dma_chan(epf_test);
+>  	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++) {
+> @@ -808,9 +818,22 @@ static int pci_epf_test_link_up(struct pci_epf *epf)
+>  	return 0;
+>  }
+>  
+> +static int pci_epf_test_doorbell(struct pci_epf *epf, int index)
+> +{
+> +	struct pci_epf_test *epf_test = epf_get_drvdata(epf);
+> +	enum pci_barno test_reg_bar = epf_test->test_reg_bar;
+> +	struct pci_epf_test_reg *reg = epf_test->reg[test_reg_bar];
+> +
+> +	reg->status |= STATUS_DOORBELL_SUCCESS;
+> +	pci_epf_test_raise_irq(epf_test, reg);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct pci_epc_event_ops pci_epf_test_event_ops = {
+>  	.core_init = pci_epf_test_core_init,
+>  	.link_up = pci_epf_test_link_up,
+> +	.doorbell = pci_epf_test_doorbell,
 
-Greetings,
+I would like to pass this callback directly to the pci_epf_alloc_doorbell() API.
+ Would that be feasible?
 
--- Sebastian
+>  };
+>  
+>  static int pci_epf_test_alloc_space(struct pci_epf *epf)
+> @@ -859,7 +882,7 @@ static int pci_epf_test_alloc_space(struct pci_epf *epf)
+>  		epf_bar = &epf->bar[bar];
+>  		add = (epf_bar->flags & PCI_BASE_ADDRESS_MEM_TYPE_64) ? 2 : 1;
+>  
+> -		if (bar == test_reg_bar)
+> +		if (bar == test_reg_bar || bar == epf_test->doorbell_bar)
+>  			continue;
+>  
+>  		if (!!(epc_features->reserved_bar & (1 << bar)))
+> @@ -900,9 +923,14 @@ static int pci_epf_test_bind(struct pci_epf *epf)
+>  	struct pci_epf_test *epf_test = epf_get_drvdata(epf);
+>  	const struct pci_epc_features *epc_features;
+>  	enum pci_barno test_reg_bar = BAR_0;
+> +	enum pci_barno doorbell_bar = NO_BAR;
+>  	struct pci_epc *epc = epf->epc;
+>  	bool linkup_notifier = false;
+>  	bool core_init_notifier = false;
+> +	struct pci_epf_test_reg *reg;
+> +	struct msi_msg *msg;
+> +	u64 doorbell_addr;
+> +	u32 align;
+>  
+>  	if (WARN_ON_ONCE(!epc))
+>  		return -EINVAL;
+> @@ -923,10 +951,39 @@ static int pci_epf_test_bind(struct pci_epf *epf)
+>  	epf_test->test_reg_bar = test_reg_bar;
+>  	epf_test->epc_features = epc_features;
+>  
+> +	align = epc_features->align;
+> +	align = align ? align : 128;
+> +
+> +	ret = pci_epf_alloc_doorbell(epf, 1);
 
---u4p4mgloo6pn3xch
-Content-Type: application/pgp-signature; name="signature.asc"
+This should be renamed as pci_epc_alloc_doorbell() as per comment on patch 1/3.
+Also, the "msi_msg" pointer should be part of the EPC struct.
 
------BEGIN PGP SIGNATURE-----
+> +	if (!ret) {
+> +		msg = epf->msg;
+> +		doorbell_bar = pci_epc_get_next_free_bar(epc_features, test_reg_bar + 1);
+> +
+> +		if (doorbell_bar > 0) {
+> +			epf_test->doorbell_bar = doorbell_bar;
+> +			doorbell_addr = msg->address_hi;
+> +			doorbell_addr <<= 32;
+> +			doorbell_addr |= msg->address_lo;
+> +			epf->bar[doorbell_bar].phys_addr = round_down(doorbell_addr, align);
+> +			epf->bar[doorbell_bar].barno = doorbell_bar;
+> +			epf->bar[doorbell_bar].size = align;
+> +		} else {
+> +			pci_epf_free_doorbell(epf);
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUyu+4ACgkQ2O7X88g7
-+pp5VBAAosG0PSQuBuC4mvPRmtIDKJO5osD6ZilS/4EWjQG76xUoAiEx7eQ4HzpJ
-ORfvX/fRLcE3LdJDBRu6uuQsZzpmr4DwqT6PJBjNIwHE1+UfHf5u7ve43O8WSfpJ
-IVbuBMncy//QA9aSDYdYY3ZfFIct4O6NNbyz+94ep02vUnhExLzaLz3NEv34Jh84
-kNfd/ChNngH4pS4MiY817ctydUXM261OqYixRpNStmDKEYNxMzsUp2F0XoZFrqXY
-BdT7QtXEmeTYXqswHdNsfU0Po1jncYuXIKzcOK8IZ7NkKCd3L5oUijQHoqirZRQv
-Mb0NtEwOBByleE70BPVBMCW61ZpoOdZciQHT6n2JqasVEYn8CeRqZL/obFLd6kO7
-j6hk3FLFLgzDLRuqGJPFCAOLloGgupwon8rV1/4Pp1InjjJjkR7MYZ4PdRbXdGza
-x7TVDDHK2sB+KoOQY9QXaLFEixcdeHCgSXci8pHRi4Y3df4lWe0ldrvPHxp+YlJ5
-E3p9eVh1n6lMPrqxs8dMycovoAj7BbVO3qJmjNC9Qp//tI3AL44ANKPEFlCLExLR
-+0mW3yfug3HdXw1IRzh9rkvnzUgFxi4lOH7Q27q1sGVSqYyJ8A29pJrfMljDMtax
-BkmxUZsvui/vP/gDu32C0x1ciXoVksr2m1mokF6m6UB9x5iCepk=
-=MYrB
------END PGP SIGNATURE-----
+This one too should be renamed. 
 
---u4p4mgloo6pn3xch--
+> +		}
+> +	}
+> +
+>  	ret = pci_epf_test_alloc_space(epf);
+
+This one too.
+
+>  	if (ret)
+>  		return ret;
+>  
+> +	reg = epf_test->reg[test_reg_bar];
+> +	reg->magic |= FIELD_PREP(MAGIC_VERSION_MASK, 0x1);
+
+Why are you writing this register? This register serves for the purpose of
+testing BAR0.
+
+- Mani
+
+> +	if (doorbell_bar > 0) {
+> +		reg->doorbell_addr = doorbell_addr & (align - 1);
+> +		reg->doorbell_data = msg->data;
+> +		reg->doorbell_bar = doorbell_bar;
+> +	}
+> +
+>  	if (!core_init_notifier) {
+>  		ret = pci_epf_test_core_init(epf);
+>  		if (ret)
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
