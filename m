@@ -1,256 +1,490 @@
-Return-Path: <devicetree+bounces-10361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334BA7D0E4D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B07617D0E58
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 13:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 572EF1C20E3B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:19:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCD5B1C208B0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 11:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75E718C24;
-	Fri, 20 Oct 2023 11:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=analog.onmicrosoft.com header.i=@analog.onmicrosoft.com header.b="bieo7Yza"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7EC18E0A;
+	Fri, 20 Oct 2023 11:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C420118E00
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:18:59 +0000 (UTC)
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8683191;
-	Fri, 20 Oct 2023 04:18:58 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39K86sTq031492;
-	Fri, 20 Oct 2023 07:18:47 -0400
-Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2168.outbound.protection.outlook.com [104.47.55.168])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tubx8c81j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Oct 2023 07:18:47 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BNx/FWD81ZHWYKrsw1TAxTTX+OT1qxFOQQWxa8dmJ5prYgGozTAxwwBhP/fqboYhP7Feqli0Q/9D4OE8wdYI8uLsQE3Xk7Cgfv3X3MiPz1+EMvc0V0GL2XjfCqhHUmzxeUpojMEgWprPOgoEe2D86qFObRStFHyjts/tVmTVA+s2IIQYve7TVAYgKtXTbvJlMy7liuKfbd66XQpviQKbxbttZ7WDG9gSqOVNUUBq61ZtPdiHfp5EXV2aZhyZIIAaU4wAj0sADJjBGwmAkxmp5AhJoFov471JWWMv9r0zIWXzFbvQYZZeoiEFvY+7IXY8JhbhtVgH6aFTuCXwRtP3dg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pqri1q4g+3/KYN7XI55mNRIn1QO6D2fCRAZkW43x9Ug=;
- b=PgxazMd+8l2Qx+H5Ce8PdUqFV3yNI1elicUNCDN3jNqA1NZGG56ANy5F/wHjYhxsGr2DTJI383cFvC70/nEhTbThkA84Yx2Gv6VP6KA2uvPJ1r5NnDMdH6REKLPbTwCinvsNkz3npKJCfRGHnB2Q+Q4zS78JNY4GEuPFL8eu2moeiALLcRjvb/XcGXHbyqz8mdcaBTuU4RUcGRYYbPumuvEedjxfvGcAKOngXhod6bwdc+EJ1CGd33EIpWWlU+gPn1NTfWW6pTRtEJ1BKRO3gtbp/hmwzbDw1JKLd3R+xQZ2jNyGGuuYhBX8TDbvOLJyCyuy7MHsYK26UqfTLTCZyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pqri1q4g+3/KYN7XI55mNRIn1QO6D2fCRAZkW43x9Ug=;
- b=bieo7Yza9Qt7afPjPUo2azE7Ic+l+ECADSwClyFJlwsNqWjXG6ZrB966cMqUNHFtMX9nZGZmomsCWDW4+/ujk4kQmXvXuGv+4U86ex3i2ODpuxKE45KeSRfo73rQnstzejKGswlUjUAZUL4Us5d0nzGuO4LXsRSXLAB5QZP70eQ=
-Received: from BN7PR03MB4545.namprd03.prod.outlook.com (2603:10b6:408:e::31)
- by SN4PR03MB6799.namprd03.prod.outlook.com (2603:10b6:806:217::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.7; Fri, 20 Oct
- 2023 11:18:44 +0000
-Received: from BN7PR03MB4545.namprd03.prod.outlook.com
- ([fe80::e2c3:4dcc:c87e:bbca]) by BN7PR03MB4545.namprd03.prod.outlook.com
- ([fe80::e2c3:4dcc:c87e:bbca%5]) with mapi id 15.20.6886.034; Fri, 20 Oct 2023
- 11:18:44 +0000
-From: "Balas, Eliza" <Eliza.Balas@analog.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>
-Subject: RE: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Thread-Topic: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Thread-Index: AQHaAow+3kwQRklh0USw0Mt3uyHh0rBRZjoAgAEeXwA=
-Date: Fri, 20 Oct 2023 11:18:44 +0000
-Message-ID: 
- <BN7PR03MB4545E7EAB2D72B9098C30C6797DBA@BN7PR03MB4545.namprd03.prod.outlook.com>
-References: <20231019125646.14236-1-eliza.balas@analog.com>
- <20231019125646.14236-3-eliza.balas@analog.com>
- <2023101917-cork-numeric-dab8@gregkh>
-In-Reply-To: <2023101917-cork-numeric-dab8@gregkh>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: 
- =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcZWJhbGFzXGFw?=
- =?us-ascii?Q?cGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEy?=
- =?us-ascii?Q?OWUzNWJcbXNnc1xtc2ctNmJkZjdkZTQtNmYzYS0xMWVlLThkYjgtNzQwNGYx?=
- =?us-ascii?Q?NTcwNWY3XGFtZS10ZXN0XDZiZGY3ZGU1LTZmM2EtMTFlZS04ZGI4LTc0MDRm?=
- =?us-ascii?Q?MTU3MDVmN2JvZHkudHh0IiBzej0iNTUyMCIgdD0iMTMzNDIyNzQzMjE1MjIw?=
- =?us-ascii?Q?NTIzIiBoPSJtWGdoTE1vWjFWTzE5bnlLYWdzSndpZi9Yc3M9IiBpZD0iIiBi?=
- =?us-ascii?Q?bD0iMCIgYm89IjEiIGNpPSJjQUFBQUVSSFUxUlNSVUZOQ2dVQUFFb0NBQUFy?=
- =?us-ascii?Q?SjAwdVJ3UGFBVWxWY1AvWTYyZ3hTVlZ3LzlqcmFERURBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBSEFBQUFEYUFRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?RUFBUUFCQUFBQWxHVEdWZ0FBQUFBQUFBQUFBQUFBQUo0QUFBQmhBR1FBYVFC?=
- =?us-ascii?Q?ZkFITUFaUUJqQUhVQWNnQmxBRjhBY0FCeUFHOEFhZ0JsQUdNQWRBQnpBRjhB?=
- =?us-ascii?Q?WmdCaEFHd0Fjd0JsQUY4QVpnQnZBSE1BYVFCMEFHa0FkZ0JsQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFF?=
- =?us-ascii?Q?QUFBQUFBQUFBQWdBQUFBQUFuZ0FBQUdFQVpBQnBBRjhBY3dCbEFHTUFkUUJ5?=
- =?us-ascii?Q?QUdVQVh3QndBSElBYndCcUFHVUFZd0IwQUhNQVh3QjBBR2tBWlFCeUFERUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFBQUNBQUFB?=
- =?us-ascii?Q?QUFDZUFBQUFZUUJrQUdrQVh3QnpBR1VBWXdCMUFISUFaUUJmQUhBQWNnQnZB?=
- =?us-ascii?Q?R29BWlFCakFIUUFjd0JmQUhRQWFRQmxBSElBTWdBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFJQUFBQUFBQT09Ii8+PC9tZXRh?=
- =?us-ascii?Q?Pg=3D=3D?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN7PR03MB4545:EE_|SN4PR03MB6799:EE_
-x-ms-office365-filtering-correlation-id: 1eea58ea-4145-4662-d25a-08dbd15e525f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- b4orOuCGDB2NFuhXoIZALpSJIsaiqs2l5Aoogh0Sq0evy4nNZyJLC4Ho74s0Rn/p6LDcCPgKxuiF70cIvKFXDeeBy9OEiKuV8KCHehzlB3UCU5Grf0rZ7IEmamJeXYhenO4CsJsrDuoH+MXY/OGkK/WVXe+vej7v/Sl20GYe2j2EVX0ZxndJvFf41k7yJNUdRPgxwHuSfKWXNkuxCI6gMxCBaVvMuJjeuUjkLvo5okMXsAZ0wM5sueZBxwFboV4OE8RN21BaSRWvz1OqFVAWjK8JLtKSnxjaTifnBJ7IizXvWbAn6cuMKV6h84ubpMe5Kp7sbUcq3i7gr37HFt/DV2nb92ecdyyXivUjoIT3svFKGFzIAilFEBNCMGtr4ATfrb+DdoI8pP8tFUPnd9Le58+b3h8CxpZ+GsOlwqq6Xk0ksVQlSqbi9xrAK3d5n3ca/MLxmZk5s15nrSVri/RMmBs9LwDfLDG4hhQ8ZZQnwllncakoT7yRvHnoGBMmfGVnjtFTkv7tcZJHiL2cqnG6nNt1tR6QjAL+52c1llZbBu3yKk8k1UDWJeJolb/UbE+mYKx0n9g1DXyEBviZ17FQBMt+KTbg4hUN1L6gCTRtfZUkJf83yJ4iqMetdyxYdwy4
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR03MB4545.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(346002)(366004)(136003)(396003)(230922051799003)(451199024)(1800799009)(64100799003)(186009)(38070700009)(55016003)(71200400001)(38100700002)(86362001)(6916009)(52536014)(76116006)(316002)(66946007)(5660300002)(54906003)(2906002)(8676002)(41300700001)(83380400001)(66446008)(9686003)(8936002)(53546011)(6506007)(7696005)(66476007)(66556008)(64756008)(4326008)(122000001)(26005)(478600001)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?WPBRExj6FfpDpcizlb69THpu6xkLwIUcKN2BVDZjQVWsnzT7iibsfDTCe5vF?=
- =?us-ascii?Q?JAN8orOmugpvgEfDgx8+yG/YFoOPMdxaFw2ITSE0DwrxmYxXudhzUuUNvtym?=
- =?us-ascii?Q?FZhxJ/zIepyU1ZeoKvK+M0O2oUC2ruZVF+c1aPopDAlE8aVXM7pJOKIi43Fy?=
- =?us-ascii?Q?aGW8PEymAOopUs4h9/cpEBDgxCr1M4iLnjxiSBMPew905wF4BauMfz2OmReS?=
- =?us-ascii?Q?D5zUCp/nDI0fX1bJd0x8j7ZNX1HesOvTJgChI4M9MCfog4AOxb0JXTsvSq75?=
- =?us-ascii?Q?QhgiIyug/M+NXAeVzwU6KnLkZSstttR+2Y13NGHXQTK/AexSSRLiFOztzg2X?=
- =?us-ascii?Q?YRE6JP8IABAswoqDl+Ndh1OiLBJgM4aO96jxrU4M0ZW899Pb05Cu1kwHcP4E?=
- =?us-ascii?Q?5WKAn0QYQxwHaIwlDWvt2MPZ7UIwMq9ICQX0SVZJFuS26O3kT9+EMShHzPyu?=
- =?us-ascii?Q?8VbYwUQPAFXvWSGtZwfTfwKDPB73iN3LioIy/+rDu+G/dsa4kdaU98rQFRvE?=
- =?us-ascii?Q?i22B+iT3uNRUaTWRcaY6iJgfHdl5PG+vZ2RYrKLQq4BZDzCtVsxnWcaQShAv?=
- =?us-ascii?Q?3+tx/EwW266HYToFxpYX2MIk9bxM+GphqWAq+VL543v1Ki6QWdGmQKW/j+hF?=
- =?us-ascii?Q?05Y0QR60b3BLo5gEHWRRVGJKXYqHqJjfv/vng5HlDTpUCV8lYxrJFzyWMokN?=
- =?us-ascii?Q?6rM6cSPiuwALlVCf6gEQ45vsmYhU60oRWorfs9Q6Sgfevhi3PFVK9i9CftM/?=
- =?us-ascii?Q?d3BvieJSszu/xrcfiFCrUdraYlEOfaZomX5BYdPLLURzveMrOX5JKi5l43Vg?=
- =?us-ascii?Q?3btOpPCitHxeH16kypVAMV+BmJbAMhCehMhfm5luRUvVeFpjXuDoA+3OZka6?=
- =?us-ascii?Q?DrVgFVZSK8NfOIwCK/OCm704koYJ4QoziRel8Iu85r1CL3zp50qZRjrGfRjx?=
- =?us-ascii?Q?o4/na7DpfD/SpkVc9fv1mqoCK1yVCsJDHTg1F7+zJAP+qlG9rrXf+OsSSRrs?=
- =?us-ascii?Q?AH6rK9ExLzxETXtLadu+GdaNInqmfnawvvnHBV/3RYGMMNSBVmyuk7Efs/Sb?=
- =?us-ascii?Q?5zBN8Vcv3z6n1xVTKQ3s8sEZoyP4H0XpQnAXH9w+CUPzHGJVfWWYuMKibyWQ?=
- =?us-ascii?Q?I/E/rBv5oest7g4FOrcTlnhIwcgDOKUgW+Be7OvrxIw4+9P/AmTahcqQxCLz?=
- =?us-ascii?Q?eDMBL27eibI2aoEkKbc9br5BE6B8Fu+HeVlwZCQjKP9Ak63JrahQh1b3Dftu?=
- =?us-ascii?Q?033P+RkijVaWZi1phjnvmopwxa7tQHw1oOlZYZxYQsqo6Y+I9is4EvPTafXT?=
- =?us-ascii?Q?tOa/WBcm/jr8xG9qFBYiKZyvEV4FDRKnPnLJNno2UW7BYqkN4xOlW9kvpvuU?=
- =?us-ascii?Q?kOv0urbVW6SMH7Jnibjbs0c3M755c9C1Vn0pcdrsoXJel7BF8aKL1PKlkVyA?=
- =?us-ascii?Q?zu5SI3EZsksTceHoHfs/6o7iOkwA6fscginClrDqKwT8MEYPYDRdRYOYtU1d?=
- =?us-ascii?Q?A4qf/BcFcUemDPBbYGFCbVCSknPTdw8oetqbw2jXIxgUG6xz6bUj0XAz16py?=
- =?us-ascii?Q?9rT07QtS/iIJCgntaj+9BnbEj6GeRstlPYmQoJIS?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A223E18E03
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 11:25:49 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D22A51A8
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 04:25:46 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qtndR-0001Bn-9w; Fri, 20 Oct 2023 13:25:45 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qtndM-0030sC-8R; Fri, 20 Oct 2023 13:25:40 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qtndL-002U6o-TM; Fri, 20 Oct 2023 13:25:39 +0200
+Date: Fri, 20 Oct 2023 13:25:39 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v6 2/4] pwm: opencores: Add PWM driver support
+Message-ID: <20231020112539.gctx5uj2rrhryulo@pengutronix.de>
+References: <20231020103741.557735-1-william.qiu@starfivetech.com>
+ <20231020103741.557735-3-william.qiu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR03MB4545.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1eea58ea-4145-4662-d25a-08dbd15e525f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2023 11:18:44.1729
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DSaY+jrAy0RQK/bIVU0lVMaDtJSldEfNrVtoJvuK1VksbqKZNync6AWHySFLCX2A22aucNWFORYPP+iB18GW4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR03MB6799
-X-Proofpoint-ORIG-GUID: 4TMbOyVCKikdY7X87A26Bo_LgJcaCNGv
-X-Proofpoint-GUID: 4TMbOyVCKikdY7X87A26Bo_LgJcaCNGv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-20_10,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2310170000 definitions=main-2310200093
-
-> -----Original Message-----
-> From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Sent: Thursday, October 19, 2023 20:57
-> To: Balas, Eliza <Eliza.Balas@analog.com>
-> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Rob Herring=
- <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; =
-Derek Kiernan <derek.kiernan@amd.com>; Dragan
-> Cvetic <dragan.cvetic@amd.com>; Arnd Bergmann <arnd@arndb.de>
-> Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
->=20
-> [External]
->=20
-> On Thu, Oct 19, 2023 at 03:56:46PM +0300, Eliza Balas wrote:
-> > +config ADI_AXI_TDD
-> > +	tristate "Analog Devices TDD Engine support"
-> > +	depends on HAS_IOMEM
-> > +	select REGMAP_MMIO
-> > +	help
-> > +	  The ADI AXI TDD core is the reworked and generic TDD engine which
-> > +	  was developed for general use in Analog Devices HDL projects. Unlik=
-e
-> > +	  the previous TDD engine, this core can only be used standalone mode=
-,
-> > +	  and is not embedded into other devices.
->=20
-> What does "previous" mean here?  That's not relevant for a kernel help
-> text, is it?
->=20
-> Also, what is the module name?  Why would someone enable this?  What
-> userspace tools use it?
->=20
->=20
-> > +
-> >  config DUMMY_IRQ
-> >  	tristate "Dummy IRQ handler"
-> >  	help
->=20
-> Why put your entry in this specific location in the file?
->=20
-> > +static int adi_axi_tdd_parse_ms(struct adi_axi_tdd_state *st,
-> > +				const char *buf,
-> > +				u64 *res)
-> > +{
-> > +	u64 clk_rate =3D READ_ONCE(st->clk.rate);
-> > +	char *orig_str, *modf_str, *int_part, frac_part[7];
-> > +	long ival, frac;
-> > +	int ret;
-> > +
-> > +	orig_str =3D kstrdup(buf, GFP_KERNEL);
-> > +	int_part =3D strsep(&orig_str, ".");
->=20
-> Why are we parsing floating point in the kernel?  Please just keep the
-> api simple so that we don't have to try to do any type of parsing other
-> than turning a single text number into a value.
->=20
-
-The adi_axi_tdd_parse_ms function does almost the same thing as the=20
-iio_str_to_fixpoint() function which already exists in kernel.
-It parses a fixed-point number from a string.=20
-The __iio_str_to_fixpoint is used in a similar way, as I intend to use adi_=
-axi_tdd_parse_ms.
-It writes to a channel the corresponding scale (micro,nano) for a value.
-
-Since the device is not an iio device, using an iio function would be confu=
-sing.
-That is the reason for creating the adi_axi_tdd_parse_ms function, which is=
- easier
-to understand since I don't have to make all the multiplications that are m=
-ade=20
-in the __iio_str_to_fixpoint function.
-
-Thank you for review,
-Eliza
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cz4qfrvhjfgpon2x"
+Content-Disposition: inline
+In-Reply-To: <20231020103741.557735-3-william.qiu@starfivetech.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--cz4qfrvhjfgpon2x
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
 
+On Fri, Oct 20, 2023 at 06:37:39PM +0800, William Qiu wrote:
+> Add Pulse Width Modulation driver support for OpenCores.
+>=20
+> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  MAINTAINERS              |   7 ++
+>  drivers/pwm/Kconfig      |  11 ++
+>  drivers/pwm/Makefile     |   1 +
+>  drivers/pwm/pwm-ocores.c | 211 +++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 230 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-ocores.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6c4cce45a09d..321af8fa7aad 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16003,6 +16003,13 @@ F:	Documentation/i2c/busses/i2c-ocores.rst
+>  F:	drivers/i2c/busses/i2c-ocores.c
+>  F:	include/linux/platform_data/i2c-ocores.h
+>=20
+> +OPENCORES PWM DRIVER
+> +M:	William Qiu <william.qiu@starfivetech.com>
+> +M:	Hal Feng <hal.feng@starfivetech.com>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml
+> +F:	drivers/pwm/pwm-ocores.c
+> +
+>  OPENRISC ARCHITECTURE
+>  M:	Jonas Bonn <jonas@southpole.se>
+>  M:	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 8ebcddf91f7b..cbfbf227d957 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -434,6 +434,17 @@ config PWM_NTXEC
+>  	  controller found in certain e-book readers designed by the original
+>  	  design manufacturer Netronix.
+>=20
+> +config PWM_OCORES
+> +	tristate "Opencores PWM support"
+> +	depends on HAS_IOMEM && OF
+> +	depends on COMMON_CLK && RESET_CONTROLLER
+
+Would it make sense to add something like:
+
+	depends on ARCH_SOMETHING || COMPILE_TEST
+
+here?
+
+> +	help
+> +	  If you say yes to this option, support will be included for the
+> +	  OpenCores PWM. For details see https://opencores.org/projects/ptc.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-ocores.
+> +
+>  config PWM_OMAP_DMTIMER
+>  	tristate "OMAP Dual-Mode Timer PWM support"
+>  	depends on OF
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c822389c2a24..542b98202153 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_PWM_MICROCHIP_CORE)	+=3D pwm-microchip-cor=
+e.o
+>  obj-$(CONFIG_PWM_MTK_DISP)	+=3D pwm-mtk-disp.o
+>  obj-$(CONFIG_PWM_MXS)		+=3D pwm-mxs.o
+>  obj-$(CONFIG_PWM_NTXEC)		+=3D pwm-ntxec.o
+> +obj-$(CONFIG_PWM_OCORES)	+=3D pwm-ocores.o
+>  obj-$(CONFIG_PWM_OMAP_DMTIMER)	+=3D pwm-omap-dmtimer.o
+>  obj-$(CONFIG_PWM_PCA9685)	+=3D pwm-pca9685.o
+>  obj-$(CONFIG_PWM_PXA)		+=3D pwm-pxa.o
+> diff --git a/drivers/pwm/pwm-ocores.c b/drivers/pwm/pwm-ocores.c
+> new file mode 100644
+> index 000000000000..7a510de4e063
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-ocores.c
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * OpenCores PWM Driver
+> + *
+> + * https://opencores.org/projects/ptc
+> + *
+> + * Copyright (C) 2018-2023 StarFive Technology Co., Ltd.
+> + */
+
+Please add a section here describing the hardware limitations. Please
+stick to the format used e.g. in drivers/pwm/pwm-sl28cpld.c to make this
+easy to grep for. It should mention for example that the hardware can
+only do inverted polarity.
+
+> +
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+> +
+> +#define REG_OCPWM_CNTR(base)	((base))
+> +#define REG_OCPWM_HRC(base)	((base) + 0x4)
+> +#define REG_OCPWM_LRC(base)	((base) + 0x8)
+> +#define REG_OCPWM_CTRL(base)	((base) + 0xC)
+
+This is unusual, I would skip base here and do the addition explicitly
+in some static inline helpers like:
+
+	static inline ocores_writel(struct ocores_pwm_device *, unsigned int offse=
+t, u32 val);
+
+> +/* OCPWM_CTRL register bits*/
+> +#define OCPWM_EN      BIT(0)
+> +#define OCPWM_ECLK    BIT(1)
+> +#define OCPWM_NEC     BIT(2)
+> +#define OCPWM_OE      BIT(3)
+> +#define OCPWM_SIGNLE  BIT(4)
+> +#define OCPWM_INTE    BIT(5)
+> +#define OCPWM_INT     BIT(6)
+> +#define OCPWM_CNTRRST BIT(7)
+> +#define OCPWM_CAPTE   BIT(8)
+
+I like register bit fields being named with the register as prefix, so I
+suggest:
+
+	#define	REG_OCPWM_CTRL_EN	BIT(0)
+	...
+
+> +
+> +struct ocores_pwm_device {
+> +	struct pwm_chip chip;
+> +	struct clk *clk;
+> +	struct reset_control *rst;
+> +	const struct ocores_pwm_data *data;
+> +	void __iomem *regs;
+> +	u32 clk_rate; /* PWM APB clock frequency */
+> +};
+> +
+> +struct ocores_pwm_data {
+> +	void __iomem *(*get_ch_base)(void __iomem *base, unsigned int channel);
+
+It might be worth to mark this with the function attribute const.
+
+> +};
+> +
+> +static inline struct ocores_pwm_device *
+> +chip_to_ocores(struct pwm_chip *chip)
+
+These two lines can go in a single one.
+
+> +
+
+please drop this empty line.
+
+> +{
+> +	return container_of(chip, struct ocores_pwm_device, chip);
+> +}
+> +
+> +void __iomem *starfive_jh71x0_get_ch_base(void __iomem *base,
+> +					  unsigned int channel)
+> +{
+> +	return base + (channel > 3 ? channel % 4 * 0x10 + (1 << 15) : channel *=
+ 0x10);
+
+Maybe make this:
+
+	unsigned int offset =3D
+		(channel > 3 ? 1 << 15 : 0) +
+		(channel & 3) * 0x10
+	...
+
+or even:
+
+	unsigned int offset =3D (channel & 4) << 13 + (channel & 3) * 0x10;
+
+The former is easier to read, the latter might be compiled to faster
+code.
+
+Alternatively: Is it easier/sensible to model the jh71x0 hardware as two
+PWM chips with 4 lines each?
+
+> +}
+> +
+> +static int ocores_pwm_get_state(struct pwm_chip *chip,
+> +				struct pwm_device *dev,
+> +				struct pwm_state *state)
+> +{
+> +	struct ocores_pwm_device *pwm =3D chip_to_ocores(chip);
+
+Please use "pwm" for variables of type struct pwm_device and pick
+something different for ocores_pwm_device variables. I suggest something
+like "ddata" or "opd".
+
+> +	void __iomem *base =3D pwm->data->get_ch_base ?
+> +			     pwm->data->get_ch_base(pwm->regs, dev->hwpwm) : pwm->regs;
+> +	u32 period_data, duty_data, ctrl_data;
+> +
+> +	period_data =3D readl(REG_OCPWM_LRC(base));
+> +	duty_data =3D readl(REG_OCPWM_HRC(base));
+> +	ctrl_data =3D readl(REG_OCPWM_CTRL(base));
+> +
+> +	state->period =3D DIV_ROUND_CLOSEST_ULL((u64)period_data * NSEC_PER_SEC=
+, pwm->clk_rate);
+> +	state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL((u64)duty_data * NSEC_PER_S=
+EC, pwm->clk_rate);
+
+Please test your driver with PWM_DEBUG enabled. The rounding is wrong
+here.
+
+> +	state->polarity =3D PWM_POLARITY_INVERSED;
+> +	state->enabled =3D (ctrl_data & OCPWM_EN) ? true : false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ocores_pwm_apply(struct pwm_chip *chip,
+> +			    struct pwm_device *dev,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct ocores_pwm_device *pwm =3D chip_to_ocores(chip);
+> +	void __iomem *base =3D pwm->data->get_ch_base ?
+> +			     pwm->data->get_ch_base(pwm->regs, dev->hwpwm) : pwm->regs;
+> +	u32 period_data, duty_data, ctrl_data =3D 0;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_INVERSED)
+> +		return -EINVAL;
+> +
+> +	period_data =3D DIV_ROUND_CLOSEST_ULL(state->period * pwm->clk_rate,
+
+this multiplication might overflow. And also wrong rounding. I didn't
+check, but maybe DIV_ROUND_CLOSEST_ULL might return a value > U32_MAX?
+
+> +					    NSEC_PER_SEC);
+> +	duty_data =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle * pwm->clk_rate,
+> +					  NSEC_PER_SEC);
+> +
+> +	writel(period_data, REG_OCPWM_LRC(base));
+> +	writel(duty_data, REG_OCPWM_HRC(base));
+> +	writel(0,  REG_OCPWM_CNTR(base));
+
+s/  / /
+
+I assume this is "glitchy", i.e. after updating the REG_OCPWM_LRC and
+before updating REG_OCPWM_HRC the signal emitted might be a mixture
+between old and new state? This should be mentioned in the Limitations
+section I mentioned above. Also mention that the currently running
+period is not completed and how the output behave if the hardware is
+disabled.
+
+> +
+> +	ctrl_data =3D readl(REG_OCPWM_CTRL(base));
+> +	if (state->enabled)
+> +		writel(ctrl_data | OCPWM_EN | OCPWM_OE, REG_OCPWM_CTRL(base));
+> +	else
+> +		writel(ctrl_data & ~(OCPWM_EN | OCPWM_OE), REG_OCPWM_CTRL(base));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops ocores_pwm_ops =3D {
+> +	.get_state	=3D ocores_pwm_get_state,
+> +	.apply		=3D ocores_pwm_apply,
+> +	.owner		=3D THIS_MODULE,
+
+The assignment to .owner should be dropped. (See commit
+384461abcab6602abc06c2dfb8fb99beeeaa12b0)
+
+> +};
+> +
+> +static const struct ocores_pwm_data jh71x0_pwm_data =3D {
+> +	.get_ch_base =3D starfive_jh71x0_get_ch_base,
+> +};
+> +
+> +static const struct of_device_id ocores_pwm_of_match[] =3D {
+> +	{ .compatible =3D "opencores,pwm-ocores" },
+> +	{ .compatible =3D "starfive,jh71x0-pwm", .data =3D &jh71x0_pwm_data},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ocores_pwm_of_match);
+> +
+> +static int ocores_pwm_probe(struct platform_device *pdev)
+> +{
+> +	const struct of_device_id *id;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct ocores_pwm_device *pwm;
+> +	struct pwm_chip *chip;
+> +	int ret;
+> +
+> +	id =3D of_match_device(ocores_pwm_of_match, dev);
+> +	if (!id)
+> +		return -EINVAL;
+> +
+> +	pwm =3D devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
+> +	if (!pwm)
+> +		return -ENOMEM;
+> +
+> +	pwm->data =3D id->data;
+> +	chip =3D &pwm->chip;
+> +	chip->dev =3D dev;
+> +	chip->ops =3D &ocores_pwm_ops;
+> +	chip->npwm =3D 8;
+> +	chip->of_pwm_n_cells =3D 3;
+> +
+> +	pwm->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pwm->regs))
+> +		return dev_err_probe(dev, PTR_ERR(pwm->regs),
+> +				     "Unable to map IO resources\n");
+> +
+> +	pwm->clk =3D devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(pwm->clk))
+> +		return dev_err_probe(dev, PTR_ERR(pwm->clk),
+> +				     "Unable to get pwm's clock\n");
+> +
+> +	pwm->rst =3D devm_reset_control_get_optional_exclusive(dev, NULL);
+> +	reset_control_deassert(pwm->rst);
+> +
+> +	pwm->clk_rate =3D clk_get_rate(pwm->clk);
+> +	if (pwm->clk_rate <=3D 0) {
+> +		dev_warn(dev, "Failed to get APB clock rate\n");
+> +		return -EINVAL;
+
+dev_err_probe() here, too? Missing call to reset_control_assert().
+
+> +	}
+> +
+> +	ret =3D devm_pwmchip_add(dev, chip);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot register PTC: %d\n", ret);
+
+dev_err_probe()
+
+> +		clk_disable_unprepare(pwm->clk);
+
+This is wrong, devm_clk_get_enabled() cares for that.
+
+> +		reset_control_assert(pwm->rst);
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, pwm);
+> +
+> +	return 0;
+
+If you call platform_set_drvdata() earlier you can just return ret here
+and drop the return in the error path above.
+
+> +}
+> +
+> +static int ocores_pwm_remove(struct platform_device *dev)
+> +{
+> +	struct ocores_pwm_device *pwm =3D platform_get_drvdata(dev);
+> +
+> +	reset_control_assert(pwm->rst);
+> +	clk_disable_unprepare(pwm->clk);
+
+Wrong in the same way as the call in .probe()'s error path.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver ocores_pwm_driver =3D {
+> +	.probe =3D ocores_pwm_probe,
+> +	.remove =3D ocores_pwm_remove,
+
+Please use .remove_new
+
+> +	.driver =3D {
+> +		.name =3D "ocores-pwm",
+> +		.of_match_table =3D ocores_pwm_of_match,
+> +	},
+> +};
+> +module_platform_driver(ocores_pwm_driver);
+> +
+> +MODULE_AUTHOR("Jieqin Chen");
+
+Jieqin Chen !=3D William Qiu ?
+
+> +MODULE_AUTHOR("Hal Feng <hal.feng@starfivetech.com>");
+> +MODULE_DESCRIPTION("OpenCores PWM PTC driver");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--cz4qfrvhjfgpon2x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUyY7IACgkQj4D7WH0S
+/k5iYQf/XPI8jg0Yioe9vRiMsV63QKHwO2rqSB1+I7g0tRVqfP/mIVhLdwZ4YPew
+RQo4dn0sfLO258eCXClGcEZaiIKgxcaO8gxZscrt5W3K4Ir8d/7mRE/fkyvNgS0T
+LyZsbE5hYCa9t6GS1D7qWkmxS69v8uAhEjSXJbuI1OCv3A7Xu2SJbfkS3lUr1I80
+qE58kx4yUwVjrr2r5Ar5FCRzoxdtcPFi3mNu30BOwu6tsCV8C4mRnDpCTWWt6u3P
+LeXxcDb62aM0EahuLRruDvCTYET7ekXJ3MnTjPKGNMmcE5HtETZB9PLFUT5yImn8
+zjWX9yH/Oy/vciK9K37CmMmSlZMJlA==
+=bGrp
+-----END PGP SIGNATURE-----
+
+--cz4qfrvhjfgpon2x--
 
