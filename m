@@ -1,153 +1,189 @@
-Return-Path: <devicetree+bounces-10236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB287D05C6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 02:21:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A998C7D060B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 03:13:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E2E91C20AB7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 00:21:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8673AB21328
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 01:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A622375;
-	Fri, 20 Oct 2023 00:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2215438A;
+	Fri, 20 Oct 2023 01:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FHp5a9aG"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="eRSAzJtR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7EA369
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 00:21:10 +0000 (UTC)
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394AA11D
-	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 17:21:08 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-2739c8862d2so68567a91.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 17:21:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697761268; x=1698366068; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AazS8e3mWG6qdiQRzyWIWi2ZxzZq0l/gtqP+3nsv/Jw=;
-        b=FHp5a9aGsUNZjUm8d8jjYNZGyAjt53FYzftWu/t8lLZHuKS/ESqwnZkrquB3aJ/fGv
-         hHa1nKM2Z/mpfNFngMG4QhJ7pot1gOQfU0Gz5hDteOd4NXfad/ekVJKM3Cl+AaJNM+fx
-         5Sly5ZWteChv5dA5MJNTxagT6yjhkv0ZWt3A4nZxJGMu+3z0CNpXa7OALwiqFQFZTKWU
-         DTBQqKbBxXgU3N9qGkieTezxt9LG4rAAlXqRLUbEM4+CTf+x6ig1fKI+Jm0HY5ZGvxVD
-         T3I88VC80A2PjKMDp/txl3DgFAvj/guh8ZYRnK27KgcqKnOm4rU3sxwmC/84g5fkHy9H
-         AXLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697761268; x=1698366068;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AazS8e3mWG6qdiQRzyWIWi2ZxzZq0l/gtqP+3nsv/Jw=;
-        b=UhzbsHuQ/hFcI2IkXZAJHMncKGkqnh39YJGyU2rgdfnrDQ74/v9RN/pSXT+VZqzrs2
-         Lswt2DxcAjUOPp9ZUuGXUUVqKALp06EDRAVsHpfKZJ+kmqtKW85gOvvLMV439Aj9QGE5
-         wOh40Bwuntyx64PUCd1VHbnLsg8fSW+/MWwMVr7VZQMJ1qBWKiNG4DUQUI8LYB3weJB2
-         8JNyyQlz7jgO2O1ZfgAePvrFeGrfOMlvAZRZb+Ty2mQLKoE3gi1tcZmpw8+pExQgb2Zn
-         CC6LvByvVoTYb8cU6FEiFK1nr9rbRxN1eSR/l2yvUMiJt4UqsghIWPHd8I2SgbRwuBb+
-         ymHw==
-X-Gm-Message-State: AOJu0YyWpTXjlag946LJCfi9Wab66kmPTOeTFPAgM9EFnSTdVBbE3Jvn
-	n+JHVaLTTHGKsA4RGGsYkaVFTg==
-X-Google-Smtp-Source: AGHT+IGs8jvjaM8tAopk/BiBZwpdGjzq5RLDH6wWLbZD7+wzqgc9cO8iiFexYNATXB3GHDxFUwhTOA==
-X-Received: by 2002:a17:90b:33c4:b0:274:60c7:e15a with SMTP id lk4-20020a17090b33c400b0027460c7e15amr461810pjb.4.1697761267551;
-        Thu, 19 Oct 2023 17:21:07 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:8685:4bd3:8dc9:1f68])
-        by smtp.gmail.com with ESMTPSA id cx3-20020a17090afd8300b0027d1366d113sm2060953pjb.43.2023.10.19.17.21.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 17:21:07 -0700 (PDT)
-Date: Fri, 20 Oct 2023 09:21:02 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: andy.shevchenko@gmail.com
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 0/5] gpio: add pinctrl based generic gpio driver
-Message-ID: <ZTHH7vwG7hRneZls@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	andy.shevchenko@gmail.com, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <ZTGfXsLc_Z6yj_HB@surfacebook.localdomain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F0C377
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 01:13:40 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2114.outbound.protection.outlook.com [40.107.113.114])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC8E132
+	for <devicetree@vger.kernel.org>; Thu, 19 Oct 2023 18:13:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xrq4hfD8OmMqWQQG9sGii9mvVAFSNP9hB18nnJyY25hRd9/yyeSc1FGAy2kZr+PSk41+nvZHSUTVPC7mPy8G3J+1BXclijK1NvE23C/vG6TqDa4T2RZ/uYULTp13ByVBanoC5ACh2p8QRODTuRo4Nsb9XZnT7FiwrebafQrBFG2CY5GDB7oIDFFczIt1vjXZ+BpTJ6sNqFRd9pD9ndAV04RCOANh9t7zVonb4iX3BVnMjYgWe2oThQ1IvOMbqAODpyzSmYqCFEsVeUHPmrG7gn8cr186xiOF7GvSuIguwME1ElkC1geCo/xvQLWKh1c3fz4pyfY6f8xmm5niCeRtEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p36oTTMzWFecu22W7Vo8AqltNuLBcEk9Mv6jKjU+v9g=;
+ b=aOgdQMn9KbQOlppXT9An6+6eHC1clIFqY+KdPMirj9hpW/K+ijsTL98XrdV4lnlEzWhL1/fIrM5P/6nZnJeWpAtwdT5+KZzYigf/x9keufKJo2pYAp9AvF+41KuEIBLKT6A5bIvxEGojT66EZanVSqwM7u4ZFHWTj/AIO4ngMDBUQzXgPAjFiY/yUH0dN1V33SDSwvgGlo4JeufVsKqkQDp9Nw4jVH2zqVM9XiWesFL6Lag4qRO9oo0mj4Uga+atqgBoVjJCmAyeGF2om0LPrf4OIET+Vd40mlMHe011lwhR6Gxkp9Ix+UxbpwqCiueeBHowXCg5I9HA/lDJxPjw0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p36oTTMzWFecu22W7Vo8AqltNuLBcEk9Mv6jKjU+v9g=;
+ b=eRSAzJtRv6wYGYGoFZlYfv9px0AwnqdIcwBq8umUMFO34phBGl1wL6Ntv1ermKtOTfyMqlcC6DB7JkOjZdrqeGYyY/I2gLE0BHWplSbiqt+nxBVVk38pk1Wy2PZ0ln3Kh4bVLdiY/Ojkjs8xe0NZB4x8yRMm0w60D9pGubWA8u0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by OSZPR01MB9648.jpnprd01.prod.outlook.com (2603:1096:604:1d0::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Fri, 20 Oct
+ 2023 01:13:32 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::d2a3:45df:a180:595c]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::d2a3:45df:a180:595c%6]) with mapi id 15.20.6907.025; Fri, 20 Oct 2023
+ 01:13:32 +0000
+Message-ID: <878r7yqeo4.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	bard.liao@intel.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] dt-bindings: audio-graph-port: add ch-maps property
+In-Reply-To: <77d3d1e5-7120-4a5b-99c0-c34407f63d5b@sirena.org.uk>
+References: <877cnsy6bl.wl-kuninori.morimoto.gx@renesas.com>
+	<871qe0y6aq.wl-kuninori.morimoto.gx@renesas.com>
+	<20231012-storage-directory-548905001d10@spud>
+	<87wmvr8ioy.wl-kuninori.morimoto.gx@renesas.com>
+	<ZSllNtm4ZnUnkiV2@finisterre.sirena.org.uk>
+	<20231013-planner-irate-8e411cc54a48@spud>
+	<874jirxul6.wl-kuninori.morimoto.gx@renesas.com>
+	<20231017-darkness-jackknife-5cf32246a079@spud>
+	<871qdskbuu.wl-kuninori.morimoto.gx@renesas.com>
+	<20231018-object-renewable-6e03bce41ff4@spud>
+	<77d3d1e5-7120-4a5b-99c0-c34407f63d5b@sirena.org.uk>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Fri, 20 Oct 2023 01:13:31 +0000
+X-ClientProxiedBy: TYCP286CA0331.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:38e::10) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZTGfXsLc_Z6yj_HB@surfacebook.localdomain>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OSZPR01MB9648:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b987952-5ca3-4e22-975a-08dbd109c6ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	N2j/beHOzt0bZSnIas/NGvcnG8/2lqTtI/qq9LUSThngzkhUbheD6sp9LJecX9+d1Lwmod+da9bfyDiffR7SoHelmKrdm7abG/WFQJAv6n7pRo02lQvRMng0Ea1VyeuSR3uDkXDJBy3a3QwEbIaalvBVILBVJa/udxbxVZW12nQiXX60B2zKf5O3RGcQLjnrBJgNLbaZIU2EsVW5RJWOu9emIEA69N3HXHhdSfleBLfgfoQjCbwzMFV8kOdRLEldDkNvcvJ8UNVru+SMnbJ1KsZQ10ul+AvTsjPhH8pVixLl/WkFZiaJGV+yBttwvoxyxeHd/4u8rF8SfJawF8P4g2kML088WTVbE1qzVDPof1+Tblyijjv89GPl6GY+n6Y2WW5srzRV6PuP91HAKIOlPsFjypu/vK6z295lKL2UZcp2UakZrYYKh24gPTZGwb/ra9nz49aca25qcP2s8QrZ++YTu/oQWPBxMsR2sk4I5R3qirPNxx3ChE+t83wiVMNIKCKmAYiGVMftuDT5VhoXj1kuF0h9ciWBnaej+Zqh0KLtS5nZS0KLXlhQks+v0MUtuz54wftSkdrJYQ1L97yoOtZmYJ5My0oPpFu59kkANjM44cmDcvQjlfM3bss47eXmJCCSLnmy2+msWuFmD9xyqA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(376002)(396003)(136003)(366004)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(7416002)(6506007)(2906002)(6486002)(478600001)(2013699003)(52116002)(4744005)(41300700001)(5660300002)(4326008)(8936002)(8676002)(66556008)(54906003)(316002)(66476007)(6916009)(66946007)(36756003)(26005)(38350700005)(6512007)(2616005)(38100700002)(86362001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4H3hGbnZts+PyAcKO5W/+dALKP/iy/Pgim9psBOtDfCLQtsNwybwox9CH1zD?=
+ =?us-ascii?Q?dHxIuozFkgWkT7qffejx1PEfyZGNTUt0GuObHedcu/6wXlJLfZ71MHBnf0Mg?=
+ =?us-ascii?Q?YDZcv3ZA+6CynY8J7YIXxDkBlZjgyW+N0bIFrMLZYY7PkICLW1HEhg2kDZqC?=
+ =?us-ascii?Q?h3BTB1QP8omYLnzJ1wP+gXWYCGlw0xrHcxsG/fIuwd6oa9Z8KO43Q4601Nwo?=
+ =?us-ascii?Q?BgMiODymWpLaedlCVyE9BsnHo3MjY2/o/GMNJ2EhrrtsBIg87pk9lqqZfYlj?=
+ =?us-ascii?Q?JocmNc4r7o8zYi4dI17rL5A0DWgGZvZwgzqqm+RblgLllCt8bp5Ul3pWYJKL?=
+ =?us-ascii?Q?RM8YDZGSqOtDd/F2ww8TgZEIkIvmzlivnvJ2Jf5Je50g4uaUyvHP9x3Hc6eN?=
+ =?us-ascii?Q?iILUS+ZxpYyOzhrmF7mKdIKivGWGuDv4McYZb7TuyVC4FjKmTy+JCEKeXZ+u?=
+ =?us-ascii?Q?+pPAZh1svMHTQhEwIM3BeChulzJ9VelBBmiv+g80JOOsi5ACrWUSsa9uwPeX?=
+ =?us-ascii?Q?te14wNeCbVsRJ63MfuV3LyTOdaPT1ox+xNmiYAafFXyV6Dgg0sQdy8PHdqPC?=
+ =?us-ascii?Q?+01VdRiAz5PqiOrRo7ytxWSRVTtV0IAhsAtbkRfKQRT168eb/13Mm9xqSH3R?=
+ =?us-ascii?Q?20GzPn+qpf+Ht25ywEwJpu93hd4HdLem1rooYIhahfgKVvYb9VYp8APrv1Pq?=
+ =?us-ascii?Q?NacICLc9j/M4Kbs572fk8a8krlESvj8zYdALIlOPDw8v3MhFBMVO9Aq6Fvo2?=
+ =?us-ascii?Q?0ynCztiB0LRKSnfln3LFa3h6Jl1qxsAe9KC6OopRN9BTAAnp4sz4orboWr6+?=
+ =?us-ascii?Q?BwDsGpvJoHRVTdC21CpJcmzeRx8VN+MY1m+w4R1PQpmEYMP8nEHn722HZ15F?=
+ =?us-ascii?Q?iuZu3T754JNnxxuAzv/7BW/P7vldCuZzhUoSuDFYXZufKtgTF8IW2Y1GJR55?=
+ =?us-ascii?Q?2Kq3jq2V8gN4p/JoGL3PtqjNfIshhI44mZci7aL7LAZxhnyJ2egWfBURkJEP?=
+ =?us-ascii?Q?6jgDa9a4DuIWFVjPihw3g0KrTymI3H+ZzX26TCZ99vMq1xsgBI4S6dsIfvHa?=
+ =?us-ascii?Q?z5yymBg3SXM5J7Estpyz8wv3LO2biE0ODWW79sHr0gWFJdn+2m1sAxsSsnp+?=
+ =?us-ascii?Q?xFgCieKKgDYbpEluw3lxJzjQPvukB377fhH7sgUPmq2InSJtlHIozdlBdLN0?=
+ =?us-ascii?Q?mi161Q+80vTx3Q4wHYCwICdcJZ568d7foOSkWGcVyto+iKGp1RMHZ7p3AeCq?=
+ =?us-ascii?Q?UvziTi6s/q87Y+Pe8sGP8cSjBoNbXclzmRfn3Ralu+Teq/0YDGQVUceZfHNJ?=
+ =?us-ascii?Q?5OUnaD1VZARaDYjowz6xO83OPI+rzE5x7/gq3ZAntj18zuDHYTBMvhfea5op?=
+ =?us-ascii?Q?u1JuiPws/pUXO6NOReEqyeGEy57AmsByrDGuroUbEWoibhPG9d31umbqIiWG?=
+ =?us-ascii?Q?F79OEOQ6d1af0Z5Ed+7DJ0ANf3ZSZEaKwqsYAsp3c2EYMqs5MdPqXfNDIwIa?=
+ =?us-ascii?Q?CBHHqSddI94SoTDAyPbkbDnbEuL3t8K78+qhXuHbNIoJmZ6cAzROnJrdFJB8?=
+ =?us-ascii?Q?yAlcK72garelYNHCKb9fTj7QRKN3EuZW7o+bxwIQTz6AY/eG2/WhhRDt+TtZ?=
+ =?us-ascii?Q?aRWmtIjvwoBuUrxZ+tYZB0o=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b987952-5ca3-4e22-975a-08dbd109c6ac
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 01:13:32.3325
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CHO5b7nmlb8biyNIAGm6S/xY9zRlJP9ThhkEXMg3btkkjcLFORwc5wB7hgk4ACwrbcfLAumGMeFlftHXLrHxelP8NR9SYYqtDn4hBxZxzmMyGutFInsFY6wHbx+rmn6l
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB9648
 
-Hi Andy,
 
-On Fri, Oct 20, 2023 at 12:27:58AM +0300, andy.shevchenko@gmail.com wrote:
-> Thu, Oct 05, 2023 at 11:58:38AM +0900, AKASHI Takahiro kirjoitti:
-> > This is a revised version of my previous RFC[1]. Although I modified
-> > the commits to make them look SCMI-independent, they are still posted
-> > as RFC because I have never tested them on real hardware.
-> > 
-> > (background)
-> > I'm currently working on implementing SCMI pinctrl/gpio drivers
-> > on U-Boot[2]. Although the pinctrl driver for the kernel[3] was submitted
-> > by EPAM, it doesn't contain the gpio driver and I believe that we should
-> > discuss a couple of points on the kernel side to finalize my design for
-> > U-Boot. 
-> > 
-> > So this RFC is intended for reviews, especially to raise some issues.
-> > 
-> > 1) how to obtain a value on an input pin
-> >    All the existing gpio drivers are set to obtain a value on an input
-> >    pin by accessing the hardware directly. In SCMI case, however, this is
-> >    just impossible in its nature and must be supported via a protocol
-> >    using "Input-value" configuration type. (See the spec[4], table-23.)
-> > 
-> >    The current pinconf framework is missing the feature (the pinconf
-> >    parameter and a helper function). See patch#1, #2 and #3.
-> > 
-> >    Please note that there is an issue around the pin configuration in
-> >    EPAM's current pinctrl driver as I commented[5].
-> > 
-> > 2) DT bindings
-> >    I would like to propose a generic binding for pinctrl based gpio driver.
-> >    This allows a "consumer" driver to handle gpio pins like as other
-> >    normal gpio controllers support. (patch#5)
-> > 
-> > 3) generic GPIO driver
-> >    Based on (2), I tried to prototype a generic driver in patch#4.
-> >    Thanks to a set of existing pinctrl_gpio helper functions, except (1),
-> >    It seems that the driver can be implemented not relying on pin controller
-> >    specific code, at least for SCMI pinctrl.
-> > 
-> > I will appreciate any comments.
+Hi Mark
+
+> > I really don't like the number of elements inverting the meaning of the
+> > property.
 > 
-> Any comment here: I'm listed as a designated reviewer of GPIO patches, why am I
-> not Cc'ed on this?
+> I have to say I'm not a big fan of that either.  It might be easier to
+> map each channel to a slot number on the link, each DAI could then have
+> an independent map and the kernel could compare DAI slots to join things
+> up.  
 
-My apologies. I will add you in Cc.
+Do you mean something like this ?
+almost pseudo code...
 
-> I definitely have some comments against the code (no DT,
-> though). Please, use (up-to-date) MAINTAINERS in your v3.
+Image
+	CPU0 <---> Codec0
+	CPU1 <-+-> Codec1
+	CPU2 <-/
 
-Please don't hesitate to make comments here on v2 so that I can
-include your reviews in v3.
+code
+	ch_maps = {
+		.cpu;
+		.codec;
+		...
+	};
 
-Thanks,
--Takahiro Akashi
+	.ch_maps[0].cpu = CPU0
+	.ch_maps[1].cpu = CPU1
+	.ch_maps[2].cpu = CPU2
 
+	.ch_maps[0].codec = Codec0
+	.ch_maps[1].codec = Codec1
+	.ch_maps[2].codec = Codec1
 
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+DT
+		(A)						(B)
+		<- port ->   <- port ->       <- port ->      <- port ->
+			          ax(ep) <--> (ep)bx
+	map=<0>	cpu0(ep) <--> (ep)a0		  b0(ep) <--> (ep)codec0  map=<0>
+	map=<1>	cpu1(ep) <--> (ep)a1		  b1(ep) <--> (ep)codec1  map=<1 2>
+	map=<2>	cpu2(ep) <--> (ep)a2					  ~~~~~~~~~
+	~~~~~~~	
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
