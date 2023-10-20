@@ -1,114 +1,209 @@
-Return-Path: <devicetree+bounces-10322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0587D0D11
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:27:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940077D0D3F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 12:35:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A8928243F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:27:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97C90B213CC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 10:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D57168CA;
-	Fri, 20 Oct 2023 10:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC74EC8F9;
+	Fri, 20 Oct 2023 10:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ggQl4cAl"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hKf+xzmx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB54416433
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 10:27:21 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F798B3
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 03:27:19 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-53e08b60febso918419a12.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 03:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1697797638; x=1698402438; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=O9G9iqXSn4bIWBu+1DJE9aW2IMSJDKBdGcQ03iTHUdg=;
-        b=ggQl4cAl0qvH/xy2iY8hIKw3ouJfQu21CkAlQvrbyc8o6uo3qRhs+K7JxvuXKtNbhM
-         KOeJNisJ6OfAtU0R3/xyMGD6FhEnadXm3azqEICgU1Yelco7fa8oiaB+8VksVUNGNpx9
-         okHC2pwsf6+3gWjvuv6C73lVeBcd8073DhvvRueeNiHswgZWvRnUBKiMpznrul5YCAsL
-         p3hAPgSSTyv0W6EWkD+XuZ0pKK4HUuh8HvHfsK0kPPL7Uxm+jPEogH8n+3XSXxKo5AJT
-         bSHjJfN2FEVKi4mOz6s9/rQfgffbn60lZ7bI79ylUVVHXykwk4l/i/F7SGUrd08r+67m
-         p5hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697797638; x=1698402438;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O9G9iqXSn4bIWBu+1DJE9aW2IMSJDKBdGcQ03iTHUdg=;
-        b=vYLq+i/56B65yByzzPVxdDMJGwUM1pbk4NpvsWRf3uxciMAEUyeXdygf/iWC5x2xNy
-         1IxG+ZLFt2nAQD1QWNcOVTLAlRSEnXtZaDXtGN2BSB5kskP5rpI18+iaVlQ+mjQKjhRM
-         iRgFjkKu6ja8tv/AUpcIvRwWqPuWE8mkZeLEPhs8OvjkGt7XBn6M6R+TJaJNjUhTbe3E
-         46rai7JnIYuwzBHaoCjKsjIksy87FKsHM6ZIy8lnynMj+5Kkg1J8HvHz1oBB3i3ED5gJ
-         BGDuBVe+kj9DcWnq81lRydp2x2ckN/ewk0kU8KVGq7B4hHzQwnN8HPiE7EaRCa+o9yCG
-         fvFg==
-X-Gm-Message-State: AOJu0Yxl2i5q68/6EA1as13EJol6RypeQxUEkmGzxN4IbcJOkjYTj7bO
-	UDCsLil60WwqY9vqZWkPu//k+w==
-X-Google-Smtp-Source: AGHT+IHZl6pUqwMf9CFUA2xEvYwgpCp82Av0Lk//UAONUT1SVS4Axb4Qd2P3hrYxgtOT7flTfwUbaA==
-X-Received: by 2002:a17:907:3f85:b0:9be:6ff7:128a with SMTP id hr5-20020a1709073f8500b009be6ff7128amr1087855ejc.67.1697797637704;
-        Fri, 20 Oct 2023 03:27:17 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id a19-20020a1709065f9300b0099e12a49c8fsm1215456eju.173.2023.10.20.03.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Oct 2023 03:27:17 -0700 (PDT)
-Date: Fri, 20 Oct 2023 12:27:16 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
-	Evan Green <evan@rivosinc.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jonathan Corbet <corbet@lwn.net>, Samuel Ortiz <sameo@rivosinc.com>
-Subject: Re: [PATCH v2 01/19] riscv: hwprobe: factorize hwprobe ISA extension
- reporting
-Message-ID: <20231020-cee6ba8c9b3dc3c2a984fbb5@orel>
-References: <20231017131456.2053396-1-cleger@rivosinc.com>
- <20231017131456.2053396-2-cleger@rivosinc.com>
- <CALs-HssL=wNwj9nRuZwpZhy1CB9p9-X=OqgwBw9zvgA7hA4fEg@mail.gmail.com>
- <20231018-scrap-bankable-a0f321d97a46@spud>
- <20231018-flagpole-footpad-07a6228485f3@spud>
- <844f6f35-3125-4014-852c-9ad7aee19ddc@rivosinc.com>
- <20231019-flatten-showbiz-127b2e917a7a@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEB518E1E
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 10:35:10 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2068.outbound.protection.outlook.com [40.107.244.68])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03066D5D;
+	Fri, 20 Oct 2023 03:35:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RkWoM3EIEz5KSkzMdrDmaZmLb6gX9QQx3nvZdm2FRXtih7pJWd8axl5cXcT9INOLdIkKyrp/UkwWAw7HBlmmjVZO+g00Z0fqsKB0qzpInxpmhJ7C48fQNIoT2IMGTGOHoIyr6DuOiD4X15AluYVAAPRSSc7c6V8BJ81uKCVSrLSVE65YoDR/Jw6dSxUCU/h89JsiL3iCIBhbhZIzqnUuHICH/uaEDBhR2voCqJRVAZzV+vj1ODNjPLqTR1WnuAL43ZyM/63Ug3n9Drkrbc7P7z1m7DZDis0NTz6p2TTe0Do0mAfXQu9jGUOzF6AwOkZT3lnjsmhaDQplRyxx0H6WWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q2q+rTOak9nB9PuPXJvKKiRBehxKarf5/Pig/vcwIB8=;
+ b=P129OMsqNuiVvYs/hIymIIkUVByPzrAn6kEHCDKSDWDXIYQB0nDgXD4BCEQM/bwkUPC0s/fgeHF+wR4BfzmH2HnhWv2dkbskORRR9DKSxXCYo4UZA9e/RN8O6q7K4FXTiaRFjNEiSoxQVGd3w3ZxL1Ns+sbatAW9cpBTCtkGNP6msvjpx2jeEjuGBxGKm5rGDQ90Mwlwoak3ac7KidNqFPlYkkx70oyW8GtSfHbO35V5z3WI3zbLaLo7mvtFyKy6svhrhTylgkTHdyMzpAMUEK/tlMWB3CSuXdc3489BLV187RRXfXFNqH9mAO52VZt0lYgDV/y3X8zX1Wtwmy2oAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q2q+rTOak9nB9PuPXJvKKiRBehxKarf5/Pig/vcwIB8=;
+ b=hKf+xzmxCst6JQ0JItHtrf8S+ji3WPTLcsHvWAGgXFnQCrnDdiabl41Ri5HxhqY69RGsdeIunIuPWPbcxcb14J2DqtuKIVAuHct9rMPXpuWOJvFnWb2hrrK3pTLQhf9I3SM7GPo7S/UequgiF1i6dTs7ra7A1ntYwO/xScQc1jY=
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
+ by PH7PR12MB5711.namprd12.prod.outlook.com (2603:10b6:510:1e2::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Fri, 20 Oct
+ 2023 10:35:02 +0000
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::167:7f5a:82a1:e2b9]) by SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::167:7f5a:82a1:e2b9%4]) with mapi id 15.20.6907.022; Fri, 20 Oct 2023
+ 10:35:01 +0000
+From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, "Gogada,
+ Bharat Kumar" <bharat.kumar.gogada@amd.com>
+Subject: RE: [PATCH v7 RESEND 0/3] Add support for Xilinx XDMA Soft IP as Root
+ Port.
+Thread-Topic: [PATCH v7 RESEND 0/3] Add support for Xilinx XDMA Soft IP as
+ Root Port.
+Thread-Index: AQHZ9iAav8GpnnhtikuLDTUsy/E9P7BL+v3AgAaaqrA=
+Date: Fri, 20 Oct 2023 10:35:01 +0000
+Message-ID:
+ <SN7PR12MB720130851B21EAF714B7A41B8BDBA@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <20231003173453.938190-1-thippeswamy.havalige@amd.com>
+ <SN7PR12MB7201035D9E8F21AB4E2B52038BD7A@SN7PR12MB7201.namprd12.prod.outlook.com>
+In-Reply-To:
+ <SN7PR12MB7201035D9E8F21AB4E2B52038BD7A@SN7PR12MB7201.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|PH7PR12MB5711:EE_
+x-ms-office365-filtering-correlation-id: e7848678-1398-431c-959d-08dbd1583725
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ fWNNYopC15u65ryg2f3x9GhLh8Z6z/XnOFlI2mNmd5YqlUf5cWXdaCP4+/2ZQGRxUutgRV2tdPvI/cQyTs6yu7MxExloRK5/ROMVI2XXopeozWOVqQK1Zkqdrk6zCrp4LCTkvXYRymk3JFTy2s0LNOg2DpaufyppvwT75JMj/cZsx/bDYSYObGDKFZERMd4v9rG3kmgUGM9G6E4pH+qx2obKTbM2xAkogqL9wknVHuVVRNvMJFPwKF/0U3iUb21PGTNATfIX/nLP/HSh7vtJ6hl/B/5Cy84z2wj2dgTlPJyDLHwHRLyMEL09bhtKFpj8/f4EBi+GU/wmjDZLnOV8QmESGRLRSa/Tf6oe+6BXPG/QdPPpk9ccOvMJMO5Q782rWao4v6ZphjVvZknOQjewgomqjjklST66HEulWQa7XYKwRm0kJpeAxLYM3kfkG/3mETh9Chnou7NJXFmhiuffABHGnqYXIuwyTNb5U2bgByDYK0mWfG3uI3ezhQfVHsbT8zUYEt8kfs2z7iLflKwjiZCHFI2jaSJJPMHijkij9jCxIFPukh21n5RCYkZbeSPuN2yLY2hq8V50ZBTPmM55Oega7DML9qdQZ9ofHDEMiz1rwrU38MFtxSUvgfdvysXV
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(346002)(39860400002)(376002)(136003)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(33656002)(41300700001)(7416002)(55016003)(5660300002)(4326008)(8676002)(8936002)(52536014)(2906002)(86362001)(38070700009)(478600001)(9686003)(122000001)(26005)(76116006)(53546011)(83380400001)(6506007)(7696005)(71200400001)(66556008)(66476007)(66946007)(64756008)(66446008)(38100700002)(316002)(54906003)(110136005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?sqba3u/pSBPGX1cNUDgSpAtft90U0orqHEVhvwQ6Sn0sbhEPhBOyArO2BZfV?=
+ =?us-ascii?Q?P0UkmSUd9DKV4A6NEcU+XuvuH5idFzP4UlSDjedtuj4rPGvM43ezSrL3Jlw/?=
+ =?us-ascii?Q?NvNlW3o3D5F0CRqIDcYLC0XKPektiPftAplSDdaXcN6rvm9EuVWEbbfCemuM?=
+ =?us-ascii?Q?bQY1XOru9RzYmsyDlDdFmy8P2+ggTUkfqN2eyHZU0gx6a05RpwhPFDnbJAxR?=
+ =?us-ascii?Q?nGEWBMnnhu4uw4eHSoq3Mh4qfmgY7GiPf2J7ZYcBXzOFwFVBEACG1HoQZg+T?=
+ =?us-ascii?Q?F8YIB7uPJGBaCjSzK+ien0AjW7X4Po8+4dKzSTB89H7MBslVwYKNlfzxDGEV?=
+ =?us-ascii?Q?OLzsWRQsj8WLzBHQhIiOZbB3tpOvmca7HYsAAf6OMG1SHmhBODt2DEgJrf/n?=
+ =?us-ascii?Q?Cvl1u7Bh068oV7NIURVPN+bWtN/K65JzifCd/nHgrUSE2+Ph9wMxDpExvvIq?=
+ =?us-ascii?Q?1aHkQMkhw3aR85wdwGMy9Bt2u74WyJwProffbnW4fYXWdKW3M4T1rJcoeykZ?=
+ =?us-ascii?Q?U5AkdbpoE/sKE47BW/NamS01J8QwLI78d+zsO6LMCtgV/g4aVnpKj4cAz4MD?=
+ =?us-ascii?Q?lNO+ndse+HaeArONrzJ+Kr/8GW9o0aJACTASYdwOe0xzzwMkDmfqdkJCrL8J?=
+ =?us-ascii?Q?ovqn82VwKBFu3qtS3nneHESy+Fjj6phnW54S+W9HtvsZev4kaVRX6YdmRvWX?=
+ =?us-ascii?Q?bHC0cqc/n5X+3mhLmXgcIwHvRrbpx4pKeL6ey0LU6Ld5SEMW6BHHOlQr/93f?=
+ =?us-ascii?Q?nL/gYlqBy4AgT5LFfF47H+A6UwDj7Pbmtp8EfzGy67AiDXzdkTJEJYperFH4?=
+ =?us-ascii?Q?kxaTU62n0+vunTwgX4f1JHZYz2N/+BwU7kVvCvw4AeBgbsoNsVfQ4LH4EH67?=
+ =?us-ascii?Q?LFFqI3UOp/yM6YqYnsFrIbvvjcRjnakIAV/WkfWzFb2730Xqc0xq3M0OBXfH?=
+ =?us-ascii?Q?C0FgBoI1DvYHu1HG11di4ZfwEN6+pRVPJTgkoR5NIJcEFoaefsdYE6phMfbF?=
+ =?us-ascii?Q?EWrDTck+ERI9PwtJfsxo6p9hthtZYjXP1K71W7jPnupEhdXkFss3eo3yOHxr?=
+ =?us-ascii?Q?aNaJbwd5X7dmgKj+061BZhDvAl6c4GS5NWvFfVL6+4oiNAM6cGhEXAghQqX7?=
+ =?us-ascii?Q?zk1SJOVpdVsK5+ioHXJPbQ3ZNVdUN5nZ+qzGrCgJv8R05tdgJ6DQHKHp9ldn?=
+ =?us-ascii?Q?foXyfC/eA3cacXjuBWYGofytDHd3WHUzYFIo/J0jIZ9ohKn7jEEzsHh3qW8e?=
+ =?us-ascii?Q?SB0BPb3ODIMKm5wXWGEJkMRYs77bDkq3g4F5v5DljN/HeBIt3eOvQ4lnaJKD?=
+ =?us-ascii?Q?FJ3OtFex0tkna5WsopGcobf6f1lXUhRc66pzml6DasYAujii+ICwozsPhCJq?=
+ =?us-ascii?Q?Jyb1gDN2UI5rGpT33jhYZrgFbs7u4SLV72O8S6z9wySS73qCetMhQXkoZ26/?=
+ =?us-ascii?Q?UyqLDo4f2CZMUARSNcJHLpGpquSbv7mkOpUyXs4rRtaC0cBYGLw1INHTI5IN?=
+ =?us-ascii?Q?e2onSri9IGKEcGgPOYKj0l0mIikD9sXhR01xD+kyATMU6SLKF5bhSue/LhlN?=
+ =?us-ascii?Q?LJ8rc6iyF4LwnjB7HCY=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231019-flatten-showbiz-127b2e917a7a@spud>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7848678-1398-431c-959d-08dbd1583725
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2023 10:35:01.5178
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1CptQol6RbEiUqPNOC02x7jwUbo/usTchu9DE5el99xN7O34u2+a5joKlhoWE6fZV05n2heXIeTA5lgPgbjwGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5711
 
-On Thu, Oct 19, 2023 at 11:22:26AM +0100, Conor Dooley wrote:
-> On Thu, Oct 19, 2023 at 09:26:31AM +0200, Clément Léger wrote:
-...
-> > BTW, wouldn't
-> > it make more sense to get rid out of the unsupported extensions directly
-> > at ISA string parsing ? ie, if kernel is compiled without V support,
-> > then do not set the bits corresponding to these in the riscv_isa_ext[]
-> > array ? But the initial intent was probably to be able to report the
-> > full string through cpuinfo.
-> 
-> Yeah, hysterical raisins I guess, it's always been that way. I don't
-> think anyone originally thought about such configurations and that is
-> how the cpuinfo stuff behaves. I strongly dislike the
-> riscv_isa_extension_available() interface, but one of Drew's patches
-> does at least improve things a bit. Kinda waiting for some of the
-> patches in flight to settle down before deciding if I want to refactor
-> stuff to be less of a potential for shooting oneself in the foot.
+Hi Bjorn,
 
-And I recall promising to try and do something with it too, but that
-promise got buried under other promises... It's still on the TODO, at
-least!
+Please can you provide an update on this patch series.
 
-drew
+Regards,
+Thippeswamy H
+
+> -----Original Message-----
+> From: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>
+> Sent: Monday, October 16, 2023 11:14 AM
+> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>; linux-
+> pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> robh@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> Simek, Michal <michal.simek@amd.com>; Gogada, Bharat Kumar
+> <bharat.kumar.gogada@amd.com>
+> Subject: RE: [PATCH v7 RESEND 0/3] Add support for Xilinx XDMA Soft IP as
+> Root Port.
+>=20
+> Hi Bjorn/Lorenzo/ Krzysztof
+>=20
+> Can you please provide update on this series.
+>=20
+> Regards,
+> Thippeswamy H
+>=20
+> > -----Original Message-----
+> > From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> > Sent: Tuesday, October 3, 2023 11:05 PM
+> > To: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> > robh@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > conor+dt@kernel.org; Havalige, Thippeswamy
+> > <thippeswamy.havalige@amd.com>; Simek, Michal
+> <michal.simek@amd.com>;
+> > Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>
+> > Subject: [PATCH v7 RESEND 0/3] Add support for Xilinx XDMA Soft IP as
+> > Root Port.
+> >
+> > This series of patch add support for Xilinx XDMA Soft IP as Root Port.
+> >
+> > The Xilinx XDMA Soft IP support's 32 bit and 64bit BAR's.
+> > As Root Port it supports MSI and legacy interrupts.
+> >
+> > For code reusability existing CPM4 error interrupt bits are moved to
+> > common header.
+> >
+> > Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> > Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> > ---
+> > Thippeswamy Havalige (3):
+> >   PCI: xilinx-cpm: Move interrupt bit definitions to common header
+> >   dt-bindings: PCI: xilinx-xdma: Add YAML schemas for Xilinx XDMA PCIe
+> >     Root Port Bridge
+> >   PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+> >
+> >  .../bindings/pci/xlnx,xdma-host.yaml          | 114 +++
+> >  drivers/pci/controller/Kconfig                |  11 +
+> >  drivers/pci/controller/Makefile               |   1 +
+> >  drivers/pci/controller/pcie-xilinx-common.h   |  31 +
+> >  drivers/pci/controller/pcie-xilinx-cpm.c      |  38 +-
+> >  drivers/pci/controller/pcie-xilinx-dma-pl.c   | 803 ++++++++++++++++++
+> >  6 files changed, 967 insertions(+), 31 deletions(-)  create mode
+> > 100644 Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
+> >  create mode 100644 drivers/pci/controller/pcie-xilinx-common.h
+> >  create mode 100644 drivers/pci/controller/pcie-xilinx-dma-pl.c
+> >
+> > --
+> > 2.25.1
+
 
