@@ -1,484 +1,181 @@
-Return-Path: <devicetree+bounces-10472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2BB7D1582
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 20:10:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAE67D15B1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 20:23:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C876AB2143C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:10:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B38ECB214C9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Oct 2023 18:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149FD21104;
-	Fri, 20 Oct 2023 18:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3385C2230B;
+	Fri, 20 Oct 2023 18:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bRDohqWW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G6G4L2sB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70112032B;
-	Fri, 20 Oct 2023 18:10:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 246B7C433C7;
-	Fri, 20 Oct 2023 18:10:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697825418;
-	bh=huzjkmkK3JHtkojgquf10gotpxcSpKfROn6Vk0s6UKs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bRDohqWWICIqD+Z8T215e+YaaQO0mjoV0/uko24CyEIoiY3zbZU/OOJoyJ+KOjS84
-	 pi5kDcXXVRt3EknjnnUqbj1nGrgUqgBPKXfcha7pvQAmMAmei6RI6pMNqK45u22imc
-	 HFUy/EG4LLNDNEVmHrOmp9V0eNPamwAKGTDx+6J1AIAhnrHVtZ0IYpZATlvFtbs0O4
-	 VaS6wMo8qMF8giuRecyOp/UGQfuAwOWgZm4HJ1vSiD9oObvsoTkQigsC6UbsoRyRAl
-	 90sozgQr4kv4ZCymqvTMB1wnmB1kIbcWSQv2ycEwU3zgyxsY/fPX6hrqLBUQneixBp
-	 VOF+6tdepMS4A==
-Date: Fri, 20 Oct 2023 23:40:08 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	aisheng.dong@nxp.com, bhelgaas@google.com,
-	devicetree@vger.kernel.org, festevam@gmail.com, imx@lists.linux.dev,
-	jdmason@kudzu.us, kernel@pengutronix.de, kishon@kernel.org,
-	kw@linux.com, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-	lpieralisi@kernel.org, maz@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH v2 1/5] PCI: endpoint: Add RC-to-EP doorbell support
- using platform MSI controllery
-Message-ID: <20231020181008.GF46191@thinkpad>
-References: <20230911220920.1817033-1-Frank.Li@nxp.com>
- <20230911220920.1817033-2-Frank.Li@nxp.com>
- <20231017183722.GB137137@thinkpad>
- <ZS7YvWSlkQluPtg3@lizhi-Precision-Tower-5810>
- <20231019150441.GA7254@thinkpad>
- <ZTFSlpnF41BDzyiX@lizhi-Precision-Tower-5810>
- <20231019172347.GC7254@thinkpad>
- <ZTFxSnpqfHtVR1JJ@lizhi-Precision-Tower-5810>
- <20231020171215.GA46191@thinkpad>
- <ZTLAJu64wL17wrPj@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7232032B
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 18:22:54 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B54D6A;
+	Fri, 20 Oct 2023 11:22:53 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39KI5fYJ029777;
+	Fri, 20 Oct 2023 18:22:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=e8rxuQk/2ug768QjWGfvPaNQ15UCKIp/Vn0HPG51xrs=;
+ b=G6G4L2sBwszw2r5+DJpEnqhTKTEZtw3nlpCD0lHO7FbpT2lhxzZO0avIZ+pS4EKSHN46
+ uuQq4ulzCBWwt6J9m6msryCsFiuZY3t+J2PC/63dnIv+icgIH5MElerE7l1cF+wW9rxj
+ m4iklosVr0+D9DjULrOXw04aC9zGA/LunF3949y/gFGlAJYbQzOgM7ptZOdHSN6K//uG
+ hF0NH0EuSvVFLygLNHuDFixCfo8eSPctSmrP8LN+o+3dTJEL31wtcQOHdNcga14FAFdR
+ SKgETi5TMj+T+nRmIUx+mZOLpF/MbqHzdcog204bl3bSsMevfnJBRzyvax18J9gsj6mC 9Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tuxhc0165-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Oct 2023 18:22:40 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39KIMd5R003806
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Oct 2023 18:22:39 GMT
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 20 Oct 2023 11:22:38 -0700
+From: Anjelique Melendez <quic_amelende@quicinc.com>
+To: <pavel@ucw.cz>, <lee@kernel.org>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>
+CC: <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
+        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
+        <quic_gurus@quicinc.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        "Anjelique
+ Melendez" <quic_amelende@quicinc.com>
+Subject: [PATCH v6 0/7] Add support for LUT PPG
+Date: Fri, 20 Oct 2023 11:22:10 -0700
+Message-ID: <20231020182218.22217-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZTLAJu64wL17wrPj@lizhi-Precision-Tower-5810>
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aGC2Oe30_cV_nQgHf0oFNrbvJPZCh3VY
+X-Proofpoint-ORIG-GUID: aGC2Oe30_cV_nQgHf0oFNrbvJPZCh3VY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-20_10,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ phishscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ impostorscore=0 bulkscore=0 clxscore=1011 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
+ definitions=main-2310200154
 
-On Fri, Oct 20, 2023 at 02:00:06PM -0400, Frank Li wrote:
-> On Fri, Oct 20, 2023 at 10:42:15PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Oct 19, 2023 at 02:11:22PM -0400, Frank Li wrote:
-> > > On Thu, Oct 19, 2023 at 10:53:47PM +0530, Manivannan Sadhasivam wrote:
-> > > > On Thu, Oct 19, 2023 at 12:00:22PM -0400, Frank Li wrote:
-> > > > > On Thu, Oct 19, 2023 at 08:34:41PM +0530, Manivannan Sadhasivam wrote:
-> > > > > > On Tue, Oct 17, 2023 at 02:55:57PM -0400, Frank Li wrote:
-> > > > > > > On Wed, Oct 18, 2023 at 12:07:22AM +0530, Manivannan Sadhasivam wrote:
-> > > > > > > > On Mon, Sep 11, 2023 at 06:09:16PM -0400, Frank Li wrote:
-> > > > > > > > > This commit introduces a common method for sending messages from the Root
-> > > > > > > > > Complex (RC) to the Endpoint (EP) by utilizing the platform MSI interrupt
-> > > > > > > > > controller, such as ARM GIC, as an EP doorbell. Maps the memory assigned
-> > > > > > > > > for the BAR region by the PCI host to the message address of the platform
-> > > > > > > > > MSI interrupt controller in the PCI EP. As a result, when the PCI RC writes
-> > > > > > > > 
-> > > > > > > > "Doorbell feature is implemented by mapping the EP's MSI interrupt controller
-> > > > > > > > message address to a dedicated BAR in the EPC core. It is the responsibility
-> > > > > > > > of the EPF driver to pass the actual message data to be written by the host to
-> > > > > > > > the doorbell BAR region through its own logic."
-> > > > > > > > 
-> > > > > > > > > to the BAR region, it triggers an IRQ at the EP. This implementation serves
-> > > > > > > > > as a common method for all endpoint function drivers.
-> > > > > > > > > 
-> > > > > > > > > However, it currently supports only one EP physical function due to
-> > > > > > > > > limitations in ARM MSI/IMS readiness.
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > > > > > ---
-> > > > > > > > >  drivers/pci/endpoint/pci-epc-core.c | 192 ++++++++++++++++++++++++++++
-> > > > > > > > >  drivers/pci/endpoint/pci-epf-core.c |  44 +++++++
-> > > > > > > > >  include/linux/pci-epc.h             |   6 +
-> > > > > > > > >  include/linux/pci-epf.h             |   7 +
-> > > > > > > > >  4 files changed, 249 insertions(+)
-> > > > > > > > > 
-> > > > > > > > > diff --git a/drivers/pci/endpoint/pci-epc-core.c b/drivers/pci/endpoint/pci-epc-core.c
-> > > > > > > > > index 5a4a8b0be6262..d336a99c6a94f 100644
-> > > > > > > > > --- a/drivers/pci/endpoint/pci-epc-core.c
-> > > > > > > > > +++ b/drivers/pci/endpoint/pci-epc-core.c
-> > > > > > > > > @@ -10,6 +10,7 @@
-> > > > > > > > >  #include <linux/slab.h>
-> > > > > > > > >  #include <linux/module.h>
-> > > > > > > > >  
-> > > > > > > > > +#include <linux/msi.h>
-> > > > > > > > >  #include <linux/pci-epc.h>
-> > > > > > > > >  #include <linux/pci-epf.h>
-> > > > > > > > >  #include <linux/pci-ep-cfs.h>
-> > > > > > > > > @@ -783,6 +784,197 @@ void pci_epc_bme_notify(struct pci_epc *epc)
-> > > > > > > > >  }
-> > > > > > > > >  EXPORT_SYMBOL_GPL(pci_epc_bme_notify);
-> > > > > > > > >  
-> > > > > > > > > +/**
-> > > > > > > > > + * pci_epc_alloc_doorbell() - alloc an address space to let RC trigger EP side IRQ by write data to
-> > > > > > > > > + *			      the space.
-> > > > > > > > 
-> > > > > > > > "Allocate platform specific doorbell IRQs to be used by the host to trigger
-> > > > > > > > doorbells on EP."
-> > > > > > > > 
-> > > > > > > > > + *
-> > > > > > > > > + * @epc: the EPC device that need doorbell address and data from RC.
-> > > > > > > > 
-> > > > > > > > EPC device for which the doorbell needs to be allocated
-> > > > > > > > 
-> > > > > > > > > + * @func_no: the physical endpoint function number in the EPC device.
-> > > > > > > > > + * @vfunc_no: the virtual endpoint function number in the physical function.
-> > > > > > > > > + * @num_msgs: the total number of doorbell messages
-> > > > > > > > 
-> > > > > > > > s/num_msgs/num_db
-> > > > > > > > 
-> > > > > > > > > + *
-> > > > > > > > > + * Return: 0 success, other is failure
-> > > > > > > > > + */
-> > > > > > > > > +int pci_epc_alloc_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no, int num_msgs)
-> > > > > > > > > +{
-> > > > > > > > > +	int ret;
-> > > > > > > > > +
-> > > > > > > > > +	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
-> > > > > > > > > +		return -EINVAL;
-> > > > > > > > > +
-> > > > > > > > > +	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
-> > > > > > > > > +		return -EINVAL;
-> > > > > > > > > +
-> > > > > > > > > +	if (!epc->ops->alloc_doorbell)
-> > > > > > > > > +		return 0;
-> > > > > > > > 
-> > > > > > > > You mentioned 0 is a success. So if there is no callback, you want to return
-> > > > > > > > success?
-> > > > > > > > 
-> > > > > > > > > +
-> > > > > > > > > +	mutex_lock(&epc->lock);
-> > > > > > > > > +	ret = epc->ops->alloc_doorbell(epc, func_no, vfunc_no, num_msgs);
-> > > > > > > > 
-> > > > > > > > Why can't you just call the generic function here and in other places instead of
-> > > > > > > > implementing callbacks? I do not see a necessity for EPC specific callbacks. If
-> > > > > > > > there is one, please specify.
-> > > > > > > 
-> > > > > > > 1. Refer v1 your comments.
-> > > > > > > https://lore.kernel.org/imx/20230906145227.GC5930@thinkpad/
-> > > > > > 
-> > > > > > I do not find where I suggested the callback approach.
-> > > > > 
-> > > > > 	> > > If that, Each EPF driver need do duplicate work. 
-> > > > > 	> > > 
-> > > > > 	> > 
-> > > > > 	> > Yes, and that's how it should be. EPF core has no job in supplying the of_node.
-> > > > > 	> > It is the responsibility of the EPF drivers as they depend on OF for platform
-> > > > > 	> > support.
-> > > > > 	> 
-> > > > > 	> EPF driver still not depend on OF. such pci-epf-test, which was probed by
-> > > > > 	> configfs.
-> > > > > 	> 
-> > > > > 
-> > > > > 	Hmm, yeah. Then it should be part of the EPC driver.
-> > > > > 
-> > > > > 	Sorry for the confusion.
-> > > > > 
-> > > > > Here, all "EPF" should be "EPC". The key problem is of_node. EPC core have
-> > > > > not of_node, EPC core's parent driver (like dwc-ep driver) have of_node. 
-> > > > > 
-> > > > > pci_epc_generic_alloc_doorbell(dev), dev is probed by platform driver, such
-> > > > > as dwc-ep, which have of_node,  EPC core will create child device.
-> > > > > 
-> > > > > dwc-ep device
-> > > > >  |- epc core device
-> > > > > 
-> > > > > we can direct call pci_epc_generic_alloc_doorbell(epc->parent) here.
-> > > > > 
-> > > > > I may miss understand what your means. I think you want to dwc-ep
-> > > > > (with of_node) handle these alloc functions. 
-> > > > > 
-> > > > 
-> > > > My comment was to have just one function definition. But looking at it again, I
-> > > > think it is better to move all the (alloc, free, write_msg) definitions to
-> > > > dwc-ep, since the contents of those functions are not EPC core specific.
-> > > 
-> > > There are still problem. (alloc, free, write_msg) is quite common for all
-> > > controller and the system with MSI.
-> > > 
-> > > If move these into dwc-ep,  cdns or other controller have to duplicate 
-> > > these codes.
-> > > 
-> > > If you think it is not EPC core specific, how about create new help files?
-> > > 
-> > 
-> > Hmm, that sounds good to me. I think the best place would be:
-> > drivers/pci/endpoint/pci-ep-msi.c
-> 
-> How about header file?
-> 
-> int pci_epc_generic_alloc_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no, int num_msgs);     
-> void pci_epc_generic_free_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no);
-> 
-> Is it in include/linux/pci-epc.h, just 2 lines.
-> 
+In certain PMICs, LUT pattern and LPG configuration is stored in SDAM
+modules instead of LUT peripheral. This feature is called PPG.
 
-Sorry, I don't understand what you are suggesting. Can you elaborate?
+This change series adds support for PPG. Thanks!
 
-My suggestion was to place the function definitions in
-drivers/pci/endpoint/pci-ep-msi.c, create a separate header
-include/linux/pci-ep-msi.h and place the declarations there. The EPC drivers
-want to use generic MSI support should include this header.
+Changes since v5:
+  - Patch 4/7
+    - Update logic so that multicolor led device triggers pattern
+      on all LEDs at the same time
+    - Update nitpicks from Lee
+  - Patch 5/7
+    - Update nitpicks from Lee
+Changes since v4:
+  - Patch 3/7
+    - Get rid of r/w helpers
+    - Use regmap_read_poll_timeout() in qcom_pbs_wait_for_ack()
+    - Update error path in qcom_pbs_trigger_event()
+    - Fix reverse christmas tree
+  - Patch 4/7
+    - Get rid of r/w helpers
+    - Update variables to use "sdam" instead of "nvmem"
+    - Fix comments
+    - Fix reverse christmas tree
+    - Update lpg_pattern_set() logic
+  - Patch 5/7
+    - Removed sdam_lut_base from lpg_data
+Changes since v3:
+  - Patch 4/7
+    - Fix function returns
+    - Move register definition to top of file
+    - Revert max_brightness and probe accidental changes
+    - Combine init_sdam() and parse_sdam()
+    - Change error prints in probe to use dev_err_probe
+    - Remove ppg_en variable
+    - Update when pbs triggers are set/cleared
+  - Patch 6/7
+    - Remove use of nvmem_count
+    - Move register definition to top of file
+    - Remove lpg_get_sdam_lut_idx()
+Changes since v2:
+  - Patch 1/7
+    - Fix dt_binding_check error
+    - Rename binding file to match compatible
+    - Iclude SoC specific comptaibles
+  - Patch 2/7
+    - Update nvmem-names list
+  - Patch 3/7
+    - Update EXPORT_SYMBOL to EXPORT_SYMBOL_GPL
+    - Fix return/break logic in qcom_pbs_wait_for_ack()
+    - Update iterators to be int
+    - Add constants
+    - Fix function calls in qcom_pbs_trigger_event()
+    - Remove unnessary comments
+    - Return -EPROBE_DEFER from get_pbs_client_device()
+Changes since v1:
+  - Patch 1/7
+    - Fix dt_binding_check errors
+    - Update binding description
+  - Path 2/7
+    - Fix dt_binding_check errors
+    - Update per variant constraints
+    - Update nvmem description
+  - Patch 3/7
+    - Update get_pbs_client_device()
+    - Drop use of printk
+    - Remove unused function
 
-- Mani
+Anjelique Melendez (7):
+  dt-bindings: soc: qcom: Add qcom,pbs bindings
+  dt-bindings: leds: leds-qcom-lpg: Add support for LPG PPG
+  soc: qcom: add QCOM PBS driver
+  leds: rgb: leds-qcom-lpg: Add support for PPG through single SDAM
+  leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data to support PPG
+  leds: rgb: leds-qcom-lpg: Include support for PPG with dedicated LUT
+    SDAM
+  leds: rgb: Update PM8350C lpg_data to support two-nvmem PPG Scheme
 
-> Frank
-> > 
-> > Reason is, we cannot have this generic code under drivers/pci/controller/ as it
-> > is not a standalone PCI controller but a platform MSI controller. So having it
-> > under pci/endpoint/ makes much sense to me.
-> > 
-> > And this is not specific to EPF drivers as well, so we cannot have it under
-> > pci/endpoint/functions/.
-> > 
-> > - Mani
-> > 
-> > > Frank
-> > > 
-> > > > 
-> > > > In the EPC core, you can still have the callbacks specific to each EPC. This
-> > > > also solves your of_node problem.
-> > > > 
-> > > > - Mani
-> > > > 
-> > > > > > 
-> > > > > > > 2. Maybe some ep controller have built-in doorbell support. Write to some
-> > > > > > > address to trigger doorbell irq.
-> > > > > > > 
-> > > > > > 
-> > > > > > We will handle it whenever such EP controllers arrive. Until then, let's keep it
-> > > > > > simple.
-> > > > > > 
-> > > > > > - Mani
-> > > > > > 
-> > > > > > > Frank
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > > +	mutex_unlock(&epc->lock);
-> > > > > > > > > +
-> > > > > > > > > +	return ret;
-> > > > > > > > > +}
-> > > > > > > > > +EXPORT_SYMBOL_GPL(pci_epc_alloc_doorbell);
-> > > > > > > > > +
-> > > > > > > > > +/**
-> > > > > > > > > + * pci_epc_free_doorbell() - free resource allocated by pci_epc_alloc_doorbell()
-> > > > > > > > > + *
-> > > > > > > > > + * @epc: the EPC device that need doorbell address and data from RC.
-> > > > > > > > 
-> > > > > > > > Same as above.
-> > > > > > > > 
-> > > > > > > > > + * @func_no: the physical endpoint function number in the EPC device.
-> > > > > > > > > + * @vfunc_no: the virtual endpoint function number in the physical function.
-> > > > > > > > > + *
-> > > > > > > > > + * Return: 0 success, other is failure
-> > > > > > > > > + */
-> > > > > > > > > +void pci_epc_free_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
-> > > > > > > > > +{
-> > > > > > > > > +	if (IS_ERR_OR_NULL(epc) || func_no >= epc->max_functions)
-> > > > > > > > > +		return;
-> > > > > > > > > +
-> > > > > > > > > +	if (vfunc_no > 0 && (!epc->max_vfs || vfunc_no > epc->max_vfs[func_no]))
-> > > > > > > > > +		return;
-> > > > > > > > > +
-> > > > > > > > > +	if (!epc->ops->free_doorbell)
-> > > > > > > > > +		return;
-> > > > > > > > > +
-> > > > > > > > > +	mutex_lock(&epc->lock);
-> > > > > > > > > +	epc->ops->free_doorbell(epc, func_no, vfunc_no);
-> > > > > > > > 
-> > > > > > > > Same as suggested above.
-> > > > > > > > 
-> > > > > > > > > +	mutex_unlock(&epc->lock);
-> > > > > > > > > +}
-> > > > > > > > > +EXPORT_SYMBOL_GPL(pci_epc_free_doorbell);
-> > > > > > > > > +
-> > > > > > > > > +static irqreturn_t pci_epf_generic_doorbell_handler(int irq, void *data)
-> > > > > > > > > +{
-> > > > > > > > > +	struct pci_epf *epf = data;
-> > > > > > > > > +
-> > > > > > > > > +	if (epf->event_ops && epf->event_ops->doorbell)
-> > > > > > > > > +		epf->event_ops->doorbell(epf, irq - epf->virq_base);
-> > > > > > > > 
-> > > > > > > > Same as suggested above.
-> > > > > > > > 
-> > > > > > > > > +
-> > > > > > > > > +	return IRQ_HANDLED;
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > > +static void pci_epc_generic_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
-> > > > > > > > > +{
-> > > > > > > > > +	struct pci_epc *epc = NULL;
-> > > > > > > > > +	struct class_dev_iter iter;
-> > > > > > > > > +	struct pci_epf *epf;
-> > > > > > > > > +	struct device *dev;
-> > > > > > > > > +
-> > > > > > > > > +	class_dev_iter_init(&iter, pci_epc_class, NULL, NULL);
-> > > > > > > > > +	while ((dev = class_dev_iter_next(&iter))) {
-> > > > > > > > > +		if (dev->parent != desc->dev)
-> > > > > > > > > +			continue;
-> > > > > > > > > +
-> > > > > > > > > +		epc = to_pci_epc(dev);
-> > > > > > > > > +
-> > > > > > > > > +		class_dev_iter_exit(&iter);
-> > > > > > > > > +		break;
-> > > > > > > > > +	}
-> > > > > > > > > +
-> > > > > > > > > +	if (!epc)
-> > > > > > > > > +		return;
-> > > > > > > > > +
-> > > > > > > > > +	/* Only support one EPF for doorbell */
-> > > > > > > > > +	epf = list_first_entry_or_null(&epc->pci_epf, struct pci_epf, list);
-> > > > > > > > > +
-> > > > > > > > 
-> > > > > > > > No need of this newline
-> > > > > > > > 
-> > > > > > > > > +	if (!epf)
-> > > > > > > > > +		return;
-> > > > > > > > > +
-> > > > > > > > > +	if (epf->msg && desc->msi_index < epf->num_msgs)
-> > > > > > > > > +		epf->msg[desc->msi_index] = *msg;
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > > +
-> > > > > > > > 
-> > > > > > > > Remove extra newline
-> > > > > > > > 
-> > > > > > > > > +/**
-> > > > > > > > > + * pci_epc_generic_alloc_doorbell() - Common help function. Allocate address space from MSI
-> > > > > > > > > + *                                    controller
-> > > > > > > > > + *
-> > > > > > > > > + * @epc: the EPC device that need doorbell address and data from RC.
-> > > > > > > > > + * @func_no: the physical endpoint function number in the EPC device.
-> > > > > > > > > + * @vfunc_no: the virtual endpoint function number in the physical function.
-> > > > > > > > > + * @num_msgs: the total number of doorbell messages
-> > > > > > > > > + *
-> > > > > > > > 
-> > > > > > > > Same comment as for pci_epc_alloc_doorbell()
-> > > > > > > > 
-> > > > > > > > > + * Remark: use this function only if EPC driver just register one EPC device.
-> > > > > > > > > + *
-> > > > > > > > > + * Return: 0 success, other is failure
-> > > > > > > > > + */
-> > > > > > > > > +int pci_epc_generic_alloc_doorbell(struct pci_epc *epc, u8 func_no, u8 vfunc_no, int num_msgs)
-> > > > > > > > > +{
-> > > > > > > > > +	struct pci_epf *epf;
-> > > > > > > > > +	struct device *dev;
-> > > > > > > > > +	int virq, last;
-> > > > > > > > > +	int ret;
-> > > > > > > > > +	int i;
-> > > > > > > > > +
-> > > > > > > > > +	if (IS_ERR_OR_NULL(epc))
-> > > > > > > > > +		return -EINVAL;
-> > > > > > > > > +
-> > > > > > > > > +	/* Currently only support one func and one vfunc for doorbell */
-> > > > > > > > > +	if (func_no || vfunc_no)
-> > > > > > > > > +		return -EINVAL;
-> > > > > > > > > +
-> > > > > > > > > +	epf = list_first_entry_or_null(&epc->pci_epf, struct pci_epf, list);
-> > > > > > > > > +	if (!epf)
-> > > > > > > > > +		return -EINVAL;
-> > > > > > > > > +
-> > > > > > > > > +	dev = epc->dev.parent;
-> > > > > > > > > +	ret = platform_msi_domain_alloc_irqs(dev, num_msgs, pci_epc_generic_write_msi_msg);
-> > > > > > > > > +	if (ret) {
-> > > > > > > > > +		dev_err(dev, "Failed to allocate MSI\n");
-> > > > > > > > > +		return -ENOMEM;
-> > > > > > > > > +	}
-> > > > > > > > > +
-> > > > > > > > > +	last = -1;
-> > > > > > > > > +	for (i = 0; i < num_msgs; i++) {
-> > > > > > > > 
-> > > > > > > > You should iterate over msi_desc as below:
-> > > > > > > > 
-> > > > > > > >         msi_lock_descs(dev);
-> > > > > > > >         msi_for_each_desc(desc, dev, MSI_DESC_ALL) {
-> > > > > > > > 		...
-> > > > > > > > 	}
-> > > > > > > > 	msi_unlock_descs(dev);
-> > > > > > > > 
-> > > > > > > > > +		virq = msi_get_virq(dev, i);
-> > > > > > > > > +		if (i == 0)
-> > > > > > > > > +			epf->virq_base = virq;
-> > > > > > > > > +
-> > > > > > > > > +		ret = request_irq(virq, pci_epf_generic_doorbell_handler, 0,
-> > > > > > > > 
-> > > > > > > > 	request_irq(desc->irq, ...)
-> > > > > > > > 
-> > > > > > > > > +				  kasprintf(GFP_KERNEL, "pci-epc-doorbell%d", i), epf);
-> > > > > > > > > +
-> > > > > > > > > +		if (ret) {
-> > > > > > > > > +			dev_err(dev, "Failed to request doorbell\n");
-> > > > > > > > > +			goto err_free_irq;
-> > > > > > > > > +		}
-> > > > > > > > > +		last = i;
-> > > > > > > > > +	}
-> > > > > > > > > +
-> > > > > > > > > +	return 0;
-> > > > > > > > > +
-> > > > > > > > > +err_free_irq:
-> > > > > > > > > +	for (i = 0; i < last; i++)
-> > > > > > > > > +		kfree(free_irq(epf->virq_base + i, epf));
-> > > > > > > > > +	platform_msi_domain_free_irqs(dev);
-> > > > > > > > > +
-> > > > > > > > > +	return -EINVAL;
-> > > > > > > > 
-> > > > > > > > 	return ret;
-> > > > > > > > 
-> > > > > > > > > +}
-> > > > > > > > > +EXPORT_SYMBOL_GPL(pci_epc_generic_alloc_doorbell);
-> > > > > > > > > +
-> > > > > > > > 
-> > > > > > > > [...]
-> > > > > > > > 
-> > > > > > > > > diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
-> > > > > > > > > index 3f44b6aec4770..485c146a5efe2 100644
-> > > > > > > > > --- a/include/linux/pci-epf.h
-> > > > > > > > > +++ b/include/linux/pci-epf.h
-> > > > > > > > > @@ -79,6 +79,7 @@ struct pci_epc_event_ops {
-> > > > > > > > >  	int (*link_up)(struct pci_epf *epf);
-> > > > > > > > >  	int (*link_down)(struct pci_epf *epf);
-> > > > > > > > >  	int (*bme)(struct pci_epf *epf);
-> > > > > > > > > +	int (*doorbell)(struct pci_epf *epf, int index);
-> > > > > > > > 
-> > > > > > > > kdoc missing.
-> > > > > > > > 
-> > > > > > > > >  };
-> > > > > > > > >  
-> > > > > > > > >  /**
-> > > > > > > > > @@ -180,6 +181,9 @@ struct pci_epf {
-> > > > > > > > >  	unsigned long		vfunction_num_map;
-> > > > > > > > >  	struct list_head	pci_vepf;
-> > > > > > > > >  	const struct pci_epc_event_ops *event_ops;
-> > > > > > > > > +	struct msi_msg *msg;
-> > > > > > > > > +	u16 num_msgs;
-> > > > > > > > 
-> > > > > > > > num_db
-> > > > > > > > 
-> > > > > > > > You also need to add kdoc for each new member.
-> > > > > > > > 
-> > > > > > > > - Mani
-> > > > > > > > 
-> > > > > > > > -- 
-> > > > > > > > மணிவண்ணன் சதாசிவம்
-> > > > > > 
-> > > > > > -- 
-> > > > > > மணிவண்ணன் சதாசிவம்
-> > > > 
-> > > > -- 
-> > > > மணிவண்ணன் சதாசிவம்
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
+ .../bindings/leds/leds-qcom-lpg.yaml          |  89 ++++-
+ .../bindings/soc/qcom/qcom,pbs.yaml           |  46 +++
+ drivers/leds/rgb/leds-qcom-lpg.c              | 344 ++++++++++++++++--
+ drivers/soc/qcom/Kconfig                      |   9 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/qcom-pbs.c                   | 243 +++++++++++++
+ include/linux/soc/qcom/qcom-pbs.h             |  30 ++
+ 7 files changed, 733 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
+ create mode 100644 drivers/soc/qcom/qcom-pbs.c
+ create mode 100644 include/linux/soc/qcom/qcom-pbs.h
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.41.0
+
 
