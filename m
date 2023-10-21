@@ -1,236 +1,261 @@
-Return-Path: <devicetree+bounces-10514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C727D1B7E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 09:19:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC61D7D1BBF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 10:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D77171C20F87
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 07:19:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6886C1F21DFF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 08:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087C3D267;
-	Sat, 21 Oct 2023 07:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55AF6D28E;
+	Sat, 21 Oct 2023 08:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lVfKNeMM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LGkgia41"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826A01871
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 07:19:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33982D63;
-	Sat, 21 Oct 2023 00:18:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697872738; x=1729408738;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ird0lBAgWOCgFp5VyruLNWyvOrnWYbzy17TTHvnJ2Q0=;
-  b=lVfKNeMMBzhDra810cajxXwuCzptGpOBZiNCpjvBqlocZ/Q0ipqo357p
-   Ge4i9unIridFRchi1xwbk1LOUeiYXrt9ht/6D31Xs3WUH5FrlRb08rkUx
-   aP7vEHX2SWBP6dhA03XRjMD4mTIbnQTD5CDYMmHLsOPPUposrDEYwQWe1
-   fDXcJs3pZTMW7v5qDMDw9585g3d4IFZy24JbwdJ6jsOHDhsTOWyE8cfXy
-   aNGIY8C7jdSywJCn8flMJZp0ZEdwsqVi2PVmFvc0EeqIaiD+ZoeizsHzL
-   YpelYbGijbqckQU95iXZ6UWlLCOijk1HkmEOkytyFdBFAxymDgJpIwVUe
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="365951545"
-X-IronPort-AV: E=Sophos;i="6.03,240,1694761200"; 
-   d="scan'208";a="365951545"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2023 00:18:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="823474085"
-X-IronPort-AV: E=Sophos;i="6.03,240,1694761200"; 
-   d="scan'208";a="823474085"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 21 Oct 2023 00:18:55 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qu6G5-0004Ye-0O;
-	Sat, 21 Oct 2023 07:18:53 +0000
-Date: Sat, 21 Oct 2023 15:18:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	gregory.clement@bootlin.com, andi.shyti@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH 2/2] i2c: mv64xxx: add an optional reset-gpios property
-Message-ID: <202310211508.57kpcEto-lkp@intel.com>
-References: <20231012035838.2804064-3-chris.packham@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53BAD50E
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 08:30:25 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A355D41;
+	Sat, 21 Oct 2023 01:30:21 -0700 (PDT)
+Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D4736607314;
+	Sat, 21 Oct 2023 09:30:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697877019;
+	bh=kIE/B1VBG9CnAwJuFyku+qlURqJ0Uw31i7DxVdQN65k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LGkgia41S68jSewltRL/bH/v/umy0Z+so9Bif1odI2i+Gu0Cy0HGV38ibuGXfsIx3
+	 ZnVv5ktjdCCH6ZK9Jq5INlYrzKZ0rK7IvL7iKhGB5JOYyJ5U/5h4+5O21+RgOvYa2/
+	 gAB1UmynDzkph8VGg23pJ81YtSmmjK4DzrZgSpnuynhUy1kSlRwlbAhW9UtM+XnqK1
+	 2a3FrO1v33rtCv6UCoVFxR8MidOv33cBmUGK4qzD0GbDtLEEfYfu3iTXZ/raAKXbls
+	 bmlDa89kdLtNvO4TYcOnGK8wMtbDca0M6TdMb/MwsxJgfdMbfXLxT+r6NV1+WXuTTA
+	 wWPlTqdiUGVIA==
+Date: Sat, 21 Oct 2023 10:30:15 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 1/7] media: mediatek: vcodec: Getting the chip name of
+ each platform
+Message-ID: <20231021083015.ivxvmrm7fq5pofdp@basti-XPS-13-9310>
+References: <20231016064346.31451-1-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20231012035838.2804064-3-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20231016064346.31451-1-yunfei.dong@mediatek.com>
 
-Hi Chris,
+Hey Yunfei,
 
-kernel test robot noticed the following build errors:
+Thanks for your patches!
 
-[auto build test ERROR on wsa/i2c/for-next]
-[also build test ERROR on linus/master v6.6-rc6 next-20231020]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Could you provide a cover-letter for the next version please?
+This will help to get a good context of why we need these changes and to
+store the changelog in a helpful manner.
+Thanks.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/dt-bindings-i2c-mv64xxx-add-reset-gpios-property/20231017-102540
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/for-next
-patch link:    https://lore.kernel.org/r/20231012035838.2804064-3-chris.packham%40alliedtelesis.co.nz
-patch subject: [PATCH 2/2] i2c: mv64xxx: add an optional reset-gpios property
-config: i386-buildonly-randconfig-001-20231021 (https://download.01.org/0day-ci/archive/20231021/202310211508.57kpcEto-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231021/202310211508.57kpcEto-lkp@intel.com/reproduce)
+On 16.10.2023 14:43, Yunfei Dong wrote:
+>Getting the chip name of each platform according to the device
+>compatible to set different parameter.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310211508.57kpcEto-lkp@intel.com/
+I would reword this commit description slightly, basically what you
+change is that you store the chip name in context permanently and that
+you utilize a enum to be more descriptive.
 
-All errors (new ones prefixed by >>):
+So how about:
 
-   drivers/i2c/busses/i2c-mv64xxx.c: In function 'mv64xxx_i2c_probe':
->> drivers/i2c/busses/i2c-mv64xxx.c:1028:32: error: implicit declaration of function 'devm_gpiod_get_optional'; did you mean 'devm_clk_get_optional'? [-Werror=implicit-function-declaration]
-    1028 |         drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
-         |                                ^~~~~~~~~~~~~~~~~~~~~~~
-         |                                devm_clk_get_optional
->> drivers/i2c/busses/i2c-mv64xxx.c:1028:75: error: 'GPIOD_OUT_HIGH' undeclared (first use in this function)
-    1028 |         drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
-         |                                                                           ^~~~~~~~~~~~~~
-   drivers/i2c/busses/i2c-mv64xxx.c:1028:75: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/i2c/busses/i2c-mv64xxx.c:1068:17: error: implicit declaration of function 'gpiod_set_value_cansleep' [-Werror=implicit-function-declaration]
-    1068 |                 gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+"""
+Store the name of the chip in the context of the driver in order to be
+able to choose the correct configuration values for the different codecs.
+Use a enum value instead of an integer to store a more descriptive name.
+"""
 
+A few more comments below.
 
-vim +1028 drivers/i2c/busses/i2c-mv64xxx.c
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 24 +----------------
+> .../vcodec/decoder/mtk_vcodec_dec_drv.c       | 26 +++++++++++++++++++
+> .../vcodec/decoder/mtk_vcodec_dec_drv.h       | 17 ++++++++++++
+> 3 files changed, 44 insertions(+), 23 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>index 91ed576d6821..ba742f0e391d 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>@@ -208,36 +208,14 @@ static int vidioc_vdec_dqbuf(struct file *file, void *priv,
+> 	return v4l2_m2m_dqbuf(file, ctx->m2m_ctx, buf);
+> }
+>
+>-static int mtk_vcodec_dec_get_chip_name(void *priv)
+>-{
+>-	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+>-	struct device *dev = &ctx->dev->plat_dev->dev;
+>-
+>-	if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
+>-		return 8173;
+>-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
+>-		return 8183;
+>-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
+>-		return 8192;
+>-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
+>-		return 8195;
+>-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
+>-		return 8186;
+>-	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
+>-		return 8188;
+>-	else
+>-		return 8173;
+>-}
+>-
+> static int vidioc_vdec_querycap(struct file *file, void *priv,
+> 				struct v4l2_capability *cap)
+> {
+> 	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+> 	struct device *dev = &ctx->dev->plat_dev->dev;
+>-	int platform_name = mtk_vcodec_dec_get_chip_name(priv);
+>
+> 	strscpy(cap->driver, dev->driver->name, sizeof(cap->driver));
+>-	snprintf(cap->card, sizeof(cap->card), "MT%d video decoder", platform_name);
+>+	snprintf(cap->card, sizeof(cap->card), "MT%d video decoder", ctx->dev->chip_name);
+>
+> 	return 0;
+> }
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+>index 0a89ce452ac3..f47c98faf068 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+>@@ -326,6 +326,26 @@ static const struct v4l2_file_operations mtk_vcodec_fops = {
+> 	.mmap		= v4l2_m2m_fop_mmap,
+> };
+>
+>+static void mtk_vcodec_dec_get_chip_name(struct mtk_vcodec_dec_dev *vdec_dev)
+>+{
+>+	struct device *dev = &vdec_dev->plat_dev->dev;
+>+
+>+	if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8173;
+>+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8183;
+>+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8192;
+>+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8195;
+>+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8186;
+>+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
+>+		vdec_dev->chip_name = MTK_VDEC_MT8188;
+>+	else
+>+		vdec_dev->chip_name = MTK_VDEC_INVAL;
+>+}
+>+
+> static int mtk_vcodec_probe(struct platform_device *pdev)
+> {
+> 	struct mtk_vcodec_dec_dev *dev;
+>@@ -341,6 +361,12 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+> 	INIT_LIST_HEAD(&dev->ctx_list);
+> 	dev->plat_dev = pdev;
+>
+>+	mtk_vcodec_dec_get_chip_name(dev);
+>+	if (dev->chip_name == MTK_VDEC_INVAL) {
+>+		dev_err(&pdev->dev, "Failed to get decoder chip name");
+>+		return -EINVAL;
+>+	}
+>+
+> 	dev->vdec_pdata = of_device_get_match_data(&pdev->dev);
+> 	if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vpu",
+> 				  &rproc_phandle)) {
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+>index 7e36b2c69b7d..8f228ba9aa47 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+>@@ -18,6 +18,19 @@
+> #define IS_VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
+> #define IS_VDEC_INNER_RACING(capability) ((capability) & MTK_VCODEC_INNER_RACING)
+>
+>+/*
+>+ * enum mtk_vcodec_dec_chip_name - Structure used to separate different platform
+>+ */
 
-   983	
-   984	static int
-   985	mv64xxx_i2c_probe(struct platform_device *pd)
-   986	{
-   987		struct mv64xxx_i2c_data		*drv_data;
-   988		struct mv64xxx_i2c_pdata	*pdata = dev_get_platdata(&pd->dev);
-   989		int	rc;
-   990	
-   991		if ((!pdata && !pd->dev.of_node))
-   992			return -ENODEV;
-   993	
-   994		drv_data = devm_kzalloc(&pd->dev, sizeof(struct mv64xxx_i2c_data),
-   995					GFP_KERNEL);
-   996		if (!drv_data)
-   997			return -ENOMEM;
-   998	
-   999		drv_data->reg_base = devm_platform_ioremap_resource(pd, 0);
-  1000		if (IS_ERR(drv_data->reg_base))
-  1001			return PTR_ERR(drv_data->reg_base);
-  1002	
-  1003		strscpy(drv_data->adapter.name, MV64XXX_I2C_CTLR_NAME " adapter",
-  1004			sizeof(drv_data->adapter.name));
-  1005	
-  1006		init_waitqueue_head(&drv_data->waitq);
-  1007		spin_lock_init(&drv_data->lock);
-  1008	
-  1009		/* Not all platforms have clocks */
-  1010		drv_data->clk = devm_clk_get(&pd->dev, NULL);
-  1011		if (IS_ERR(drv_data->clk)) {
-  1012			if (PTR_ERR(drv_data->clk) == -EPROBE_DEFER)
-  1013				return -EPROBE_DEFER;
-  1014			drv_data->clk = NULL;
-  1015		}
-  1016	
-  1017		drv_data->reg_clk = devm_clk_get(&pd->dev, "reg");
-  1018		if (IS_ERR(drv_data->reg_clk)) {
-  1019			if (PTR_ERR(drv_data->reg_clk) == -EPROBE_DEFER)
-  1020				return -EPROBE_DEFER;
-  1021			drv_data->reg_clk = NULL;
-  1022		}
-  1023	
-  1024		drv_data->irq = platform_get_irq(pd, 0);
-  1025		if (drv_data->irq < 0)
-  1026			return drv_data->irq;
-  1027	
-> 1028		drv_data->reset_gpio = devm_gpiod_get_optional(&pd->dev, "reset", GPIOD_OUT_HIGH);
-  1029		if (IS_ERR(drv_data->reset_gpio))
-  1030			return PTR_ERR(drv_data->reset_gpio);
-  1031	
-  1032		if (pdata) {
-  1033			drv_data->freq_m = pdata->freq_m;
-  1034			drv_data->freq_n = pdata->freq_n;
-  1035			drv_data->adapter.timeout = msecs_to_jiffies(pdata->timeout);
-  1036			drv_data->offload_enabled = false;
-  1037			memcpy(&drv_data->reg_offsets, &mv64xxx_i2c_regs_mv64xxx, sizeof(drv_data->reg_offsets));
-  1038		} else if (pd->dev.of_node) {
-  1039			rc = mv64xxx_of_config(drv_data, &pd->dev);
-  1040			if (rc)
-  1041				return rc;
-  1042		}
-  1043	
-  1044		rc = mv64xxx_i2c_init_recovery_info(drv_data, &pd->dev);
-  1045		if (rc == -EPROBE_DEFER)
-  1046			return rc;
-  1047	
-  1048		drv_data->adapter.dev.parent = &pd->dev;
-  1049		drv_data->adapter.algo = &mv64xxx_i2c_algo;
-  1050		drv_data->adapter.owner = THIS_MODULE;
-  1051		drv_data->adapter.class = I2C_CLASS_DEPRECATED;
-  1052		drv_data->adapter.nr = pd->id;
-  1053		drv_data->adapter.dev.of_node = pd->dev.of_node;
-  1054		platform_set_drvdata(pd, drv_data);
-  1055		i2c_set_adapdata(&drv_data->adapter, drv_data);
-  1056	
-  1057		pm_runtime_set_autosuspend_delay(&pd->dev, MSEC_PER_SEC);
-  1058		pm_runtime_use_autosuspend(&pd->dev);
-  1059		pm_runtime_enable(&pd->dev);
-  1060		if (!pm_runtime_enabled(&pd->dev)) {
-  1061			rc = mv64xxx_i2c_runtime_resume(&pd->dev);
-  1062			if (rc)
-  1063				goto exit_disable_pm;
-  1064		}
-  1065	
-  1066		if (drv_data->reset_gpio) {
-  1067			udelay(1);
-> 1068			gpiod_set_value_cansleep(drv_data->reset_gpio, 0);
-  1069			udelay(1);
-  1070		}
-  1071	
-  1072		rc = request_irq(drv_data->irq, mv64xxx_i2c_intr, 0,
-  1073				 MV64XXX_I2C_CTLR_NAME, drv_data);
-  1074		if (rc) {
-  1075			dev_err(&drv_data->adapter.dev,
-  1076				"mv64xxx: Can't register intr handler irq%d: %d\n",
-  1077				drv_data->irq, rc);
-  1078			goto exit_disable_pm;
-  1079		} else if ((rc = i2c_add_numbered_adapter(&drv_data->adapter)) != 0) {
-  1080			dev_err(&drv_data->adapter.dev,
-  1081				"mv64xxx: Can't add i2c adapter, rc: %d\n", -rc);
-  1082			goto exit_free_irq;
-  1083		}
-  1084	
-  1085		return 0;
-  1086	
-  1087	exit_free_irq:
-  1088		free_irq(drv_data->irq, drv_data);
-  1089	exit_disable_pm:
-  1090		pm_runtime_disable(&pd->dev);
-  1091		if (!pm_runtime_status_suspended(&pd->dev))
-  1092			mv64xxx_i2c_runtime_suspend(&pd->dev);
-  1093	
-  1094		return rc;
-  1095	}
-  1096	
+I don't feel like this comment is terribly helpful because it is pretty
+clear what the enum is about, I would just drop it.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>+enum mtk_vcodec_dec_chip_name {
+>+	MTK_VDEC_INVAL = 0,
+>+	MTK_VDEC_MT8173 = 8173,
+>+	MTK_VDEC_MT8183 = 8183,
+>+	MTK_VDEC_MT8186 = 8186,
+>+	MTK_VDEC_MT8188 = 8188,
+>+	MTK_VDEC_MT8192 = 8192,
+>+	MTK_VDEC_MT8195 = 8195,
+>+};
+>+
+> /*
+>  * enum mtk_vdec_format_types - Structure used to get supported
+>  *		  format types according to decoder capability
+>@@ -249,6 +262,8 @@ struct mtk_vcodec_dec_ctx {
+>  * @vdec_racing_info: record register value
+>  * @dec_racing_info_mutex: mutex lock used for inner racing mode
+>  * @dbgfs: debug log related information
+>+ *
+>+ * @chip_name: the chip name used to separate different platform
+
+I wouldn't repeat chip name in the description and specify more
+concretely why we need to separate the platforms.
+
+My suggestion:
+
+  * @chip_name: used to distinguish platforms and select the correct codec configuration values.
+
+>  */
+> struct mtk_vcodec_dec_dev {
+> 	struct v4l2_device v4l2_dev;
+>@@ -289,6 +304,8 @@ struct mtk_vcodec_dec_dev {
+> 	/* Protects access to vdec_racing_info data */
+> 	struct mutex dec_racing_info_mutex;
+> 	struct mtk_vcodec_dbgfs dbgfs;
+>+
+>+	enum mtk_vcodec_dec_chip_name chip_name;
+> };
+>
+> static inline struct mtk_vcodec_dec_ctx *fh_to_dec_ctx(struct v4l2_fh *fh)
+
+Besides those small wording choices, the patch looks good.
+
+So with these issues resolved:
+
+Reviewed-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+
+Regards,
+Sebastian
+>-- 
+>2.18.0
+>
 
