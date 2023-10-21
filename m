@@ -1,145 +1,106 @@
-Return-Path: <devicetree+bounces-10528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77A587D1C44
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 11:47:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD837D1C6E
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 12:18:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31D5628249C
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 09:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 062701F21244
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 10:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2F5D526;
-	Sat, 21 Oct 2023 09:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J1SYoNWG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11944D536;
+	Sat, 21 Oct 2023 10:18:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5271B1C3A
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 09:47:43 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEBEE10CC;
-	Sat, 21 Oct 2023 02:47:37 -0700 (PDT)
-Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7F39F6607337;
-	Sat, 21 Oct 2023 10:47:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697881656;
-	bh=3EEfWwRJVneHJoBHkAnll2cb7orvXzxeDtOgWDZBml0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J1SYoNWGM08YbCHkOFz7n1c/HdRk9GioDlFlnVqrELuqxMX/12NhpPM4Gu66SS7nh
-	 FKpxN5lxoIa7VvV9PuaHuTrZInnfqBTwboRA4clIq3zv2QwVqlwxAIsq0gEPBUqyuQ
-	 q2mQTjWl6Z7zdMcSok1MYgJSTtvVc4tml5/glCrWlT5EG8qDQUzJTaUBCyV0Jrrg/0
-	 lLE0Pwl5BZBdlxAtCpbo3tJ6yXFzFnUog7iJCmN8vfDb8cgTRRYyjwAT7NoR+4+5lS
-	 CgSRb+/rX8mUnP+SnB5sozjfKh/v8NcZx0JHt305kuLkpHJkSvZJoIJw/AJv7FEuFn
-	 CgC5s9c/2xx0g==
-Date: Sat, 21 Oct 2023 11:47:34 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 4/7] media: mediatek: vcodec: Setting the supported h264
- profile for each platform
-Message-ID: <20231021094734.7osgimxoljlseztv@basti-XPS-13-9310>
-References: <20231016064346.31451-1-yunfei.dong@mediatek.com>
- <20231016064346.31451-4-yunfei.dong@mediatek.com>
- <20231021092905.3uxfwckgn5ndon6x@basti-XPS-13-9310>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571401C36
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 10:18:15 +0000 (UTC)
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF12BD41;
+	Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-581fb6f53fcso1003893eaf.2;
+        Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697883490; x=1698488290;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=V5uRcWDpqOXlkA0SQTwaP57mswGoxWrMMHmifDFiYJQ=;
+        b=NXvIUKnYvUJpYVqFpXluqEiy6ohTAUB0/Sp4WQewuDL1h2gMrhniiy8fLLyGP4IV+6
+         cFttq3wbPChHFvPS58Xa/sGnVEExvbjdcmV7/Kvj2PsRYTc8DwuynQQORFcpZ1J/jorN
+         j7x2uZuV9fv4QVksUWj8q8IegZcBI991+9O9afCrcGCaamjWrSEKpBjosKqywREl/gQx
+         s4sDvBKfWaaEUE0EUPqBlZr6AwbJ5PSkOBO7Gbte+TbyjzQ2M4u55dN7MdGb/5djvb1d
+         cSYIjfe6HV6gpsZzhebYrFKJvwii1dl42wV+ry0yWM86M3j31WY3hSkvc4mzRZS8vtcF
+         9E+g==
+X-Gm-Message-State: AOJu0YysxW6CWo8rDGAgRIS8VswlhurZTfLxj9jpsLrF/k9JCIFw5JZE
+	sNH+/IszaqT5nQ1L1Qp+WEKbxnCcjg==
+X-Google-Smtp-Source: AGHT+IGDtLLxR/perzKXsJ9v5yb1s8dzQBjD6ACEuMoaQHz4QngTZigFfIlcNZ036tNmd6iDOvED2A==
+X-Received: by 2002:a05:6870:530e:b0:1e9:e0f3:d716 with SMTP id j14-20020a056870530e00b001e9e0f3d716mr5966616oan.37.1697883490180;
+        Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id nd25-20020a056871441900b001dcfaba6d22sm781448oab.46.2023.10.21.03.18.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Oct 2023 03:18:09 -0700 (PDT)
+Received: (nullmailer pid 1320489 invoked by uid 1000);
+	Sat, 21 Oct 2023 10:18:08 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20231021092905.3uxfwckgn5ndon6x@basti-XPS-13-9310>
+From: Rob Herring <robh@kernel.org>
+To: Guo Mengqi <guomengqi3@huawei.com>
+Cc: vkoul@kernel.org, devicetree@vger.kernel.org, xuqiang36@huawei.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org, chenweilong@huawei.com, conor+dt@kernel.org
+In-Reply-To: <20231021093454.39822-3-guomengqi3@huawei.com>
+References: <20231021093454.39822-1-guomengqi3@huawei.com>
+ <20231021093454.39822-3-guomengqi3@huawei.com>
+Message-Id: <169788348856.1320467.2316881090457833857.robh@kernel.org>
+Subject: Re: [PATCH v5 2/2] dt-bindings: dma: HiSilicon: Add bindings for
+ HiSilicon Ascend sdma
+Date: Sat, 21 Oct 2023 05:18:08 -0500
 
-Hey Yunfei,
 
-please replace Setting with Set in the title.
+On Sat, 21 Oct 2023 17:34:53 +0800, Guo Mengqi wrote:
+> Add device-tree binding documentation for sdma hardware on
+> HiSilicon Ascend SoC families.
+> 
+> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
+> ---
+>  .../bindings/dma/hisilicon,ascend-sdma.yaml   | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
+> 
 
-On 21.10.2023 11:29, Sebastian Fricke wrote:
->Hey Yunfei,
->
->On 16.10.2023 14:43, Yunfei Dong wrote:
->>The supported format type of different platforms are not the
->>same. Need to set the supported profile according to the chip name.
->
->I would suggest the following rewording:
->
->Set the maximum H264 codec profile for each platform.
->The various mediatek platforms support different profiles for decoding,
->the profile of the codec limits the capabilities for decoding.
->
->With that you can add:
->Reviewed-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->
->Regards,
->Sebastian
->
->>
->>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->>---
->>.../vcodec/decoder/mtk_vcodec_dec_stateless.c | 19 +++++++++++++++++++
->>1 file changed, 19 insertions(+)
->>
->>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
->>index 1fdb21dbacb8..84c0bed577ed 100644
->>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
->>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
->>@@ -559,6 +559,20 @@ static void mtk_vcodec_dec_fill_h264_level(struct v4l2_ctrl_config *cfg,
->>	};
->>}
->>
->>+static void mtk_vcodec_dec_fill_h264_profile(struct v4l2_ctrl_config *cfg,
->>+					     struct mtk_vcodec_dec_ctx *ctx)
->>+{
->>+	switch (ctx->dev->chip_name) {
->>+	case MTK_VDEC_MT8188:
->>+	case MTK_VDEC_MT8195:
->>+		cfg->max = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10;
->>+		break;
->>+	default:
->>+		cfg->max = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH;
->>+		break;
->>+	};
->>+}
->>+
->>static void mtk_vcodec_dec_fill_h265_level(struct v4l2_ctrl_config *cfg,
->>					   struct mtk_vcodec_dec_ctx *ctx)
->>{
->>@@ -585,6 +599,11 @@ static void mtk_vcodec_dec_reset_controls(struct v4l2_ctrl_config *cfg,
->>		mtk_vcodec_dec_fill_h265_level(cfg, ctx);
->>		mtk_v4l2_vdec_dbg(3, ctx, "h265 supported level: %lld %lld", cfg->max, cfg->def);
->>		break;
->>+	case V4L2_CID_MPEG_VIDEO_H264_PROFILE:
->>+		mtk_vcodec_dec_fill_h264_profile(cfg, ctx);
->>+		mtk_v4l2_vdec_dbg(3, ctx, "h264 supported profile: %lld %lld", cfg->max,
->>+				  cfg->menu_skip_mask);
->>+		break;
->>	default:
->>		break;
->>	};
->>-- 
->>2.18.0
->>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml: dma-can-stall: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231021093454.39822-3-guomengqi3@huawei.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
