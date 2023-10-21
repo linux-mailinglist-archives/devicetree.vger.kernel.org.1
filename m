@@ -1,280 +1,308 @@
-Return-Path: <devicetree+bounces-10578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CD97D1FB4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 23:01:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE6C7D1FDE
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 23:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F6081C20904
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 21:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D8CD2819EE
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 21:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D543712E41;
-	Sat, 21 Oct 2023 21:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0Ht/7Ln"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F8E210F5;
+	Sat, 21 Oct 2023 21:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6B05667;
-	Sat, 21 Oct 2023 21:01:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA24EC433C7;
-	Sat, 21 Oct 2023 21:01:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697922094;
-	bh=M+M3q5sxfvxUvyeRGABwgSGpQ53ingORdN/e2crghb0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o0Ht/7LnWMWbBtI4Nl6SK0U3pct/JGTwno/rTY8N9ECE7uDG/oKvZPG/MBSoUrpNQ
-	 1JYl9QkpSAcVakb4/mqRlWI14WClVe6sOaiJe0fXujVr4BLLhhqyfvcxB0bdTYT8bl
-	 rMCIkBJKkyrTpiEl6qIK7G087ud4lJybQJ/q6fsneyk5GIjvyhBaYG5PCByrm/bpGU
-	 d9eR5Lc0Hfpqp0aXZrvK3vxhByEzdXxtSa0XVhRXvEEOCTlnl20XK7KmkdIXZsJ8kN
-	 h5XOsKQDu+6CzSmRazKfUVqPYXCwzeCHqxdqoyZTOxZ3JGQNUBYlkb63NhQYRWjIqH
-	 QisVVVRyLiiIA==
-Date: Sat, 21 Oct 2023 14:05:13 -0700
-From: Bjorn Andersson <andersson@kernel.org>
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	devicetree@vger.kernel.org, konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org, 
-	iommu@lists.linux.dev, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, 
-	quic_sudaraja@quicinc.com, djakov@kernel.org
-Subject: Re: [PATCH 3/6] iommu/arm-smmu-qcom: Add Qualcomm TBU driver
-Message-ID: <ljbzuewnsi52qyolombjowuouiqmv5ybwbqf2z6ok34yuiacjc@7hwfysvidjqm>
-References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
- <20231019021923.13939-4-quic_c_gdjako@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B7B210EF
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 21:48:15 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B22C9D6B
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 14:48:12 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 214BBC15;
+	Sat, 21 Oct 2023 14:48:53 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A19A3F762;
+	Sat, 21 Oct 2023 14:48:10 -0700 (PDT)
+Date: Sat, 21 Oct 2023 22:47:07 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>, Marc
+ Zyngier <maz@kernel.org>, Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: add Orange Pi Zero 2W
+ support
+Message-ID: <20231021224707.0af92fa3@slackpad.lan>
+In-Reply-To: <7582185.EvYhyI6sBW@archlinux>
+References: <20231020145706.705420-1-andre.przywara@arm.com>
+	<20231020145706.705420-3-andre.przywara@arm.com>
+	<7582185.EvYhyI6sBW@archlinux>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231019021923.13939-4-quic_c_gdjako@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 18, 2023 at 07:19:20PM -0700, Georgi Djakov wrote:
-> Add driver for the Qualcomm implementation of the ARM MMU-500 TBU.
-> The driver will enable the resources needed by the TBU and will
-> configure the registers for some debug features like checking if
-> there are any pending transactions, capturing transactions and
-> running ATOS (Address Translation Operations). ATOS/eCATS are used
-> to manually trigger an address translation of IOVA to physical
-> address by the SMMU hardware.
+On Sat, 21 Oct 2023 08:22:24 +0200
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
 
-I still don't think this commit message clearly enough describe the
-problem you're trying to solve.
+Hi,
 
-Not until I had read the Kconfig help text did I pay attention to the
-significance of the words "some debug features" in the middle of the
-paragraph.
+> On Friday, October 20, 2023 4:57:06 PM CEST Andre Przywara wrote:
+> > The Orange Pi Zero 2W is a board based on the Allwinner H618 SoC.
+> > It uses the RaspberryPi Zero form factor, with an optional expansion
+> > board, connected via an FPC connector, to provide more connectors.
+> >=20
+> > The base board features:
+> > 	- Allwinner H618 SoC (quad Cortex-A53 cores, with 1MB L2 cache)
+> > 	- 1, 2 or 4GB of LPDDR4 DRAM
+> > 	- SD card socket
+> > 	- two USB-C sockets, one UFP, one DFP
+> > 	- HDMI connector
+> > 	- (yet unsupported) WiFi module
+> > 	- 16 MiB SPI flash
+> > 	- power supply via the UFP USB-C port
+> >=20
+> > The FPC connector provides access to two more USB host ports, Fast
+> > Ethernet, some GPIOs, Audio Line out and the IR receiver pin.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com> =20
+>=20
+> I compared it to the schematic and all values looks good. Sadly, it misse=
+d=20
+> merge window.
 
+No worries, I wasn't expecting it to make it, just wanted to get this
+out to start the discussion and have something at a canonical place,
+since the first boards seem to arrive for people now.
 
-Please describe your changes in accordance with [1], i.e. clearly
-describe the problem you're trying to solve, then discuss the technical
-solution in the patch.
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-[1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+Thanks,
+Andre
 
-[..]
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-[..]
-> +#ifdef CONFIG_ARM_SMMU_QCOM_TBU
-> +
-> +struct qsmmuv500_tbu {
-> +	struct device *dev;
-> +	struct arm_smmu_device *smmu;
-> +	u32 sid_range[2];
-> +	struct list_head list;
-> +	struct clk *clk;
-> +	struct icc_path	*path;
-> +	void __iomem *base;
-> +	spinlock_t halt_lock; /* protects halt count */
+> Best regards,
+> Jernej
+>=20
+> > ---
+> >  .../allwinner/sun50i-h618-orangepi-zero2w.dts | 176 ++++++++++++++++++
+> >  1 file changed, 176 insertions(+)
+> >  create mode 100644
+> > arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.=
+dts
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts new file
+> > mode 100644
+> > index 0000000000000..21ca1977055d9
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> > @@ -0,0 +1,176 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2023 Arm Ltd.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun50i-h616.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +	model =3D "OrangePi Zero 2W";
+> > +	compatible =3D "xunlong,orangepi-zero2w", "allwinner,sun50i-h618";
+> > +
+> > +	aliases {
+> > +		serial0 =3D &uart0;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path =3D "serial0:115200n8";
+> > +	};
+> > +
+> > +	leds {
+> > +		compatible =3D "gpio-leds";
+> > +
+> > +		led-0 {
+> > +			function =3D LED_FUNCTION_STATUS;
+> > +			color =3D <LED_COLOR_ID_GREEN>;
+> > +			gpios =3D <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13  =20
+> */
+> > +		};
+> > +	};
+> > +
+> > +	reg_vcc5v: vcc5v {
+> > +		/* board wide 5V supply directly from the USB-C socket  =20
+> */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc-5v";
+> > +		regulator-min-microvolt =3D <5000000>;
+> > +		regulator-max-microvolt =3D <5000000>;
+> > +		regulator-always-on;
+> > +	};
+> > +
+> > +	reg_vcc3v3: vcc3v3 {
+> > +		/* SY8089 DC/DC converter */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc-3v3";
+> > +		regulator-min-microvolt =3D <3300000>;
+> > +		regulator-max-microvolt =3D <3300000>;
+> > +		vin-supply =3D <&reg_vcc5v>;
+> > +		regulator-always-on;
+> > +	};
+> > +};
+> > +
+> > +&ehci1 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +/* USB 2 & 3 are on the FPC connector (or the exansion board) */
+> > +
+> > +&mmc0 {
+> > +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
+> > +	bus-width =3D <4>;
+> > +	vmmc-supply =3D <&reg_vcc3v3>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&ohci1 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&pio {
+> > +	vcc-pc-supply =3D <&reg_dldo1>;
+> > +	vcc-pf-supply =3D <&reg_dldo1>;	/* internally via VCC-IO */
+> > +	vcc-pg-supply =3D <&reg_aldo1>;
+> > +	vcc-ph-supply =3D <&reg_dldo1>;	/* internally via VCC-IO */
+> > +	vcc-pi-supply =3D <&reg_dldo1>;
+> > +};
+> > +
+> > +&r_i2c {
+> > +	status =3D "okay";
+> > +
+> > +	axp313: pmic@36 {
+> > +		compatible =3D "x-powers,axp313a";
+> > +		reg =3D <0x36>;
+> > +		#interrupt-cells =3D <1>;
+> > +		interrupt-controller;
+> > +		interrupt-parent =3D <&pio>;
+> > +		interrupts =3D <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
+> > +
+> > +		vin1-supply =3D <&reg_vcc5v>;
+> > +		vin2-supply =3D <&reg_vcc5v>;
+> > +		vin3-supply =3D <&reg_vcc5v>;
+> > +
+> > +		regulators {
+> > +			/* Supplies VCC-PLL and DRAM */
+> > +			reg_aldo1: aldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <1800000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1800000>;
+> > +				regulator-name =3D "vcc1v8";
+> > +			};
+> > +
+> > +			/* Supplies VCC-IO, so needs to be always on.  =20
+> */
+> > +			reg_dldo1: dldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <3300000>;
+> > +				regulator-max-microvolt =3D  =20
+> <3300000>;
+> > +				regulator-name =3D "vcc3v3";
+> > +			};
+> > +
+> > +			reg_dcdc1: dcdc1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <810000>;
+> > +				regulator-max-microvolt =3D  =20
+> <990000>;
+> > +				regulator-name =3D "vdd-gpu-sys";
+> > +			};
+> > +
+> > +			reg_dcdc2: dcdc2 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <810000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1100000>;
+> > +				regulator-name =3D "vdd-cpu";
+> > +			};
+> > +
+> > +			reg_dcdc3: dcdc3 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <1100000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1100000>;
+> > +				regulator-name =3D "vdd-dram";
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&spi0  {
+> > +	status =3D "okay";
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&spi0_pins>, <&spi0_cs0_pin>;
+> > +
+> > +	flash@0 {
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <1>;
+> > +		compatible =3D "jedec,spi-nor";
+> > +		reg =3D <0>;
+> > +		spi-max-frequency =3D <40000000>;
+> > +	};
+> > +};
+> > +
+> > +&uart0 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&uart0_ph_pins>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&usbotg {
+> > +	/*
+> > +	 * PHY0 pins are connected to a USB-C socket, but a role switch
+> > +	 * is not implemented: both CC pins are pulled to GND.
+> > +	 * The VBUS pins power the device, so a fixed peripheral mode
+> > +	 * is the best choice.
+> > +	 * The board can be powered via GPIOs, in this case port0 *can*
+> > +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
+> > +	 * then provided by the GPIOs. Any user of this setup would
+> > +	 * need to adjust the DT accordingly: dr_mode set to "host",
+> > +	 * enabling OHCI0 and EHCI0.
+> > +	 */
+> > +	dr_mode =3D "peripheral";
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +	usb1_vbus-supply =3D <&reg_vcc5v>;
+> > +	status =3D "okay";
+> > +}; =20
+>=20
+>=20
+>=20
+>=20
+>=20
 
-But in particular it makes sure that multiple halt or resume can't
-execute concurrently.
-
-> +	int halt_count;
-> +};
-> +
-> +static DEFINE_SPINLOCK(ecats_lock);
-> +
-> +static struct qsmmuv500_tbu *qsmmuv500_find_tbu(struct qcom_smmu *qsmmu, u32 sid)
-> +{
-> +	struct qsmmuv500_tbu *tbu = NULL;
-> +	u32 start, end;
-> +
-> +	mutex_lock(&qsmmu->tbu_list_lock);
-> +
-> +	list_for_each_entry(tbu, &qsmmu->tbu_list, list) {
-> +		start = tbu->sid_range[0];
-> +		end = start + tbu->sid_range[1];
-> +
-> +		if (start <= sid && sid < end)
-> +			break;
-> +	}
-> +
-> +	mutex_unlock(&qsmmu->tbu_list_lock);
-> +
-> +	return tbu;
-> +}
-> +
-> +static int qsmmuv500_tbu_halt(struct qsmmuv500_tbu *tbu, struct arm_smmu_domain *smmu_domain)
-> +{
-> +	struct arm_smmu_device *smmu = smmu_domain->smmu;
-> +	int ret = 0, idx = smmu_domain->cfg.cbndx;
-> +	unsigned long flags;
-> +	u32 val, fsr, status;
-> +
-> +	spin_lock_irqsave(&tbu->halt_lock, flags);
-
-Does this really need to run with interrupts disabled?
-
-> +	if (tbu->halt_count) {
-> +		tbu->halt_count++;
-> +		goto out;
-> +	}
-> +
-[..]
-> +static phys_addr_t qsmmuv500_iova_to_phys(struct arm_smmu_domain *smmu_domain,
-> +					  dma_addr_t iova, u32 sid)
-> +{
-[..]
-> +	/* Only one concurrent atos operation */
-> +	spin_lock_irqsave(&ecats_lock, flags);
-
-Does this require interrupts to be disabled?
-
-> +
-> +	/*
-> +	 * After a failed translation, the next successful translation will
-> +	 * incorrectly be reported as a failure.
-
-"So if the ECATS translation fails, attempt the lookup more time."
-
-> +	 */
-> +	do {
-> +		phys = qsmmuv500_tbu_trigger_atos(smmu_domain, tbu, iova, sid);
-> +
-> +		fsr = arm_smmu_cb_read(smmu, idx, ARM_SMMU_CB_FSR);
-> +		if (fsr & ARM_SMMU_FSR_FAULT) {
-> +			/* Clear pending interrupts */
-> +			arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_FSR, fsr);
-> +			/*
-> +			 * Barrier required to ensure that the FSR is cleared
-> +			 * before resuming SMMU operation.
-> +			 */
-
-Better be clear on what this actually does, for future readers' sake:
-
-	 /* Ensure that FSR and RESUME operations aren't reordered. */
-
-But is this really necessary, the two writes are for the same device,
-can they still be reordered?
-
-> +			wmb();
-> +
-> +			if (fsr & ARM_SMMU_FSR_SS)
-> +				arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_RESUME,
-> +						  ARM_SMMU_RESUME_TERMINATE);
-> +		}
-> +	} while (!phys && needs_redo++ < 2);
-
-"needs_redo" sounds like a boolean to me. I think "attempt" would be a
-better fit here.
-
-> +
-> +	arm_smmu_cb_write(smmu, idx, ARM_SMMU_CB_SCTLR, sctlr_orig);
-> +	spin_unlock_irqrestore(&ecats_lock, flags);
-> +	qsmmuv500_tbu_resume(tbu);
-> +
-> +	/* Read to complete prior write transcations */
-> +	readl_relaxed(tbu->base + DEBUG_SR_HALT_ACK_REG);
-> +
-> +	/* Wait for read to complete */
-
-That's not what rmb() does. You don't need to do anything here,
-readl_relaxed() returns when the read is done.
-
-> +	rmb();
-> +
-> +disable_clk:
-> +	clk_disable_unprepare(tbu->clk);
-> +disable_icc:
-> +	icc_set_bw(tbu->path, 0, 0);
-> +
-> +	return phys;
-> +}
-> +#endif
-> +
->  static void qcom_smmu_tlb_sync(struct arm_smmu_device *smmu, int page,
->  				int sync, int status)
->  {
-> @@ -588,3 +895,80 @@ struct arm_smmu_device *qcom_smmu_impl_init(struct arm_smmu_device *smmu)
->  
->  	return smmu;
->  }
-> +
-> +#ifdef CONFIG_ARM_SMMU_QCOM_TBU
-> +
-> +static const struct of_device_id qsmmuv500_tbu_of_match[] = {
-> +	{ .compatible = "qcom,qsmmuv500-tbu" },
-> +	{ }
-> +};
-
-Place this below the remove function, as most other drivers do.
-
-> +
-> +static int qsmmuv500_tbu_probe(struct platform_device *pdev)
-> +{
-[..]
-> +	mutex_lock(&qsmmu->tbu_list_lock);
-> +	list_add_tail(&tbu->list, &qsmmu->tbu_list);
-
-"tbu" is devres allocated, but you don't pull it off the list (or
-synchronize) during remove.
-
-> +	mutex_unlock(&qsmmu->tbu_list_lock);
-> +
-> +	dev_set_drvdata(dev, tbu);
-> +
-> +	return 0;
-> +}
-> +
-> +static void qsmmuv500_tbu_remove(struct platform_device *pdev)
-> +{
-> +	struct qsmmuv500_tbu *tbu = dev_get_drvdata(&pdev->dev);
-> +
-> +	clk_disable_unprepare(tbu->clk);
-
-This isn't balanced.
-
-> +	clk_put(tbu->clk);
-> +	icc_put(tbu->path);
-> +}
-> +
-> +static struct platform_driver qsmmuv500_tbu_driver = {
-> +	.driver = {
-> +		.name           = "qsmmuv500-tbu",
-> +		.of_match_table = of_match_ptr(qsmmuv500_tbu_of_match),
-
-Won't of_match_ptr() result in a build warning if built without
-CONFIG_OF?
-
-> +	},
-> +	.probe  = qsmmuv500_tbu_probe,
-> +	.remove_new = qsmmuv500_tbu_remove,
-> +};
-> +module_platform_driver(qsmmuv500_tbu_driver);
-
-This file acts as a library for the arm-smmu driver today, adding a
-platform_driver here makes it look like this is a separate driver.
-
-Which makes me wonder, why is this a separate driver? Why not just
-loop over the subnodes and build the tbu_list in qcom_smmu_impl_init()?
-
-Regards,
-Bjorn
 
