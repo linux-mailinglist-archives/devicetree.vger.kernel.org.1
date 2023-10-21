@@ -1,308 +1,132 @@
-Return-Path: <devicetree+bounces-10579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE6C7D1FDE
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 23:48:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3CF7D205F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 01:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D8CD2819EE
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 21:48:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C81881C20938
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 23:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F8E210F5;
-	Sat, 21 Oct 2023 21:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA38208AB;
+	Sat, 21 Oct 2023 23:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f4ORRdYK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B7B210EF
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 21:48:15 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B22C9D6B
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 14:48:12 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 214BBC15;
-	Sat, 21 Oct 2023 14:48:53 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A19A3F762;
-	Sat, 21 Oct 2023 14:48:10 -0700 (PDT)
-Date: Sat, 21 Oct 2023 22:47:07 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>, Marc
- Zyngier <maz@kernel.org>, Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: add Orange Pi Zero 2W
- support
-Message-ID: <20231021224707.0af92fa3@slackpad.lan>
-In-Reply-To: <7582185.EvYhyI6sBW@archlinux>
-References: <20231020145706.705420-1-andre.przywara@arm.com>
-	<20231020145706.705420-3-andre.przywara@arm.com>
-	<7582185.EvYhyI6sBW@archlinux>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3864D517
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 23:02:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B4B8D52;
+	Sat, 21 Oct 2023 16:02:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697929352; x=1729465352;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pmt27KfT/G9bsDK7DiYG9O0wXtKd+XBGH+QWyFzX+ic=;
+  b=f4ORRdYK1O6k2+tB9pblKx2e/2Rj4KH1OdSQiwMzV7YVqe1K81MGAyk8
+   3DHEF+xcckEUk43MGvtMmz5QXU7FozrG5sBakN9VHPJF2zi2RQk9qqn5i
+   ZdAC+mZniFmCyO6RD92Y8Lt3kPRMzveyb5PFDAjTABYzsQaX5p/XWISAj
+   BPLHunpJCSNVwOl0W7LSPjk0yS+xbsJ3FyVBGffsdpZ1+BO67mryyZscJ
+   S8dQuzLFunksC/izei0MdTu4rCUGl8iBBdysF03biALDYO/PO/HjXKIVy
+   S1iQDPoiQdgewS9QNSBtgEFqffrWq4YNSwYW3YtavmUbFwR0U0HjNqd8a
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="366893169"
+X-IronPort-AV: E=Sophos;i="6.03,242,1694761200"; 
+   d="scan'208";a="366893169"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2023 16:02:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="787125344"
+X-IronPort-AV: E=Sophos;i="6.03,242,1694761200"; 
+   d="scan'208";a="787125344"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 21 Oct 2023 16:02:27 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1quKzB-0005Ju-18;
+	Sat, 21 Oct 2023 23:02:25 +0000
+Date: Sun, 22 Oct 2023 07:02:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
+	agross@kernel.org, konrad.dybcio@linaro.org,
+	mturquette@baylibre.com, sboyd@kernel.org,
+	dmitry.baryshkov@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jonathan@marek.ca, quic_tdas@quicinc.com,
+	vladimir.zapolskiy@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org
+Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: sc8280xp: Add in CAMCC for
+ sc8280xp
+Message-ID: <202310220607.A7eqpgZt-lkp@intel.com>
+References: <20231012113100.3656480-2-bryan.odonoghue@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231012113100.3656480-2-bryan.odonoghue@linaro.org>
 
-On Sat, 21 Oct 2023 08:22:24 +0200
-Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+Hi Bryan,
 
-Hi,
+kernel test robot noticed the following build errors:
 
-> On Friday, October 20, 2023 4:57:06 PM CEST Andre Przywara wrote:
-> > The Orange Pi Zero 2W is a board based on the Allwinner H618 SoC.
-> > It uses the RaspberryPi Zero form factor, with an optional expansion
-> > board, connected via an FPC connector, to provide more connectors.
-> >=20
-> > The base board features:
-> > 	- Allwinner H618 SoC (quad Cortex-A53 cores, with 1MB L2 cache)
-> > 	- 1, 2 or 4GB of LPDDR4 DRAM
-> > 	- SD card socket
-> > 	- two USB-C sockets, one UFP, one DFP
-> > 	- HDMI connector
-> > 	- (yet unsupported) WiFi module
-> > 	- 16 MiB SPI flash
-> > 	- power supply via the UFP USB-C port
-> >=20
-> > The FPC connector provides access to two more USB host ports, Fast
-> > Ethernet, some GPIOs, Audio Line out and the IR receiver pin.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com> =20
->=20
-> I compared it to the schematic and all values looks good. Sadly, it misse=
-d=20
-> merge window.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.6-rc6 next-20231020]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-No worries, I wasn't expecting it to make it, just wanted to get this
-out to start the discussion and have something at a canonical place,
-since the first boards seem to arrive for people now.
+url:    https://github.com/intel-lab-lkp/linux/commits/Bryan-O-Donoghue/arm64-dts-qcom-sc8280xp-Add-in-CAMCC-for-sc8280xp/20231017-105406
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231012113100.3656480-2-bryan.odonoghue%40linaro.org
+patch subject: [PATCH v4 1/4] arm64: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231022/202310220607.A7eqpgZt-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231022/202310220607.A7eqpgZt-lkp@intel.com/reproduce)
 
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310220607.A7eqpgZt-lkp@intel.com/
 
-Thanks,
-Andre
+All errors (new ones prefixed by >>):
 
-> Best regards,
-> Jernej
->=20
-> > ---
-> >  .../allwinner/sun50i-h618-orangepi-zero2w.dts | 176 ++++++++++++++++++
-> >  1 file changed, 176 insertions(+)
-> >  create mode 100644
-> > arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-> >=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.=
-dts
-> > b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts new file
-> > mode 100644
-> > index 0000000000000..21ca1977055d9
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-> > @@ -0,0 +1,176 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Arm Ltd.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun50i-h616.dtsi"
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +/ {
-> > +	model =3D "OrangePi Zero 2W";
-> > +	compatible =3D "xunlong,orangepi-zero2w", "allwinner,sun50i-h618";
-> > +
-> > +	aliases {
-> > +		serial0 =3D &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path =3D "serial0:115200n8";
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible =3D "gpio-leds";
-> > +
-> > +		led-0 {
-> > +			function =3D LED_FUNCTION_STATUS;
-> > +			color =3D <LED_COLOR_ID_GREEN>;
-> > +			gpios =3D <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13  =20
-> */
-> > +		};
-> > +	};
-> > +
-> > +	reg_vcc5v: vcc5v {
-> > +		/* board wide 5V supply directly from the USB-C socket  =20
-> */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc-5v";
-> > +		regulator-min-microvolt =3D <5000000>;
-> > +		regulator-max-microvolt =3D <5000000>;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	reg_vcc3v3: vcc3v3 {
-> > +		/* SY8089 DC/DC converter */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc-3v3";
-> > +		regulator-min-microvolt =3D <3300000>;
-> > +		regulator-max-microvolt =3D <3300000>;
-> > +		vin-supply =3D <&reg_vcc5v>;
-> > +		regulator-always-on;
-> > +	};
-> > +};
-> > +
-> > +&ehci1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +/* USB 2 & 3 are on the FPC connector (or the exansion board) */
-> > +
-> > +&mmc0 {
-> > +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> > +	bus-width =3D <4>;
-> > +	vmmc-supply =3D <&reg_vcc3v3>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ohci1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&pio {
-> > +	vcc-pc-supply =3D <&reg_dldo1>;
-> > +	vcc-pf-supply =3D <&reg_dldo1>;	/* internally via VCC-IO */
-> > +	vcc-pg-supply =3D <&reg_aldo1>;
-> > +	vcc-ph-supply =3D <&reg_dldo1>;	/* internally via VCC-IO */
-> > +	vcc-pi-supply =3D <&reg_dldo1>;
-> > +};
-> > +
-> > +&r_i2c {
-> > +	status =3D "okay";
-> > +
-> > +	axp313: pmic@36 {
-> > +		compatible =3D "x-powers,axp313a";
-> > +		reg =3D <0x36>;
-> > +		#interrupt-cells =3D <1>;
-> > +		interrupt-controller;
-> > +		interrupt-parent =3D <&pio>;
-> > +		interrupts =3D <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
-> > +
-> > +		vin1-supply =3D <&reg_vcc5v>;
-> > +		vin2-supply =3D <&reg_vcc5v>;
-> > +		vin3-supply =3D <&reg_vcc5v>;
-> > +
-> > +		regulators {
-> > +			/* Supplies VCC-PLL and DRAM */
-> > +			reg_aldo1: aldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D  =20
-> <1800000>;
-> > +				regulator-max-microvolt =3D  =20
-> <1800000>;
-> > +				regulator-name =3D "vcc1v8";
-> > +			};
-> > +
-> > +			/* Supplies VCC-IO, so needs to be always on.  =20
-> */
-> > +			reg_dldo1: dldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D  =20
-> <3300000>;
-> > +				regulator-max-microvolt =3D  =20
-> <3300000>;
-> > +				regulator-name =3D "vcc3v3";
-> > +			};
-> > +
-> > +			reg_dcdc1: dcdc1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D  =20
-> <810000>;
-> > +				regulator-max-microvolt =3D  =20
-> <990000>;
-> > +				regulator-name =3D "vdd-gpu-sys";
-> > +			};
-> > +
-> > +			reg_dcdc2: dcdc2 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D  =20
-> <810000>;
-> > +				regulator-max-microvolt =3D  =20
-> <1100000>;
-> > +				regulator-name =3D "vdd-cpu";
-> > +			};
-> > +
-> > +			reg_dcdc3: dcdc3 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D  =20
-> <1100000>;
-> > +				regulator-max-microvolt =3D  =20
-> <1100000>;
-> > +				regulator-name =3D "vdd-dram";
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&spi0  {
-> > +	status =3D "okay";
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&spi0_pins>, <&spi0_cs0_pin>;
-> > +
-> > +	flash@0 {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <1>;
-> > +		compatible =3D "jedec,spi-nor";
-> > +		reg =3D <0>;
-> > +		spi-max-frequency =3D <40000000>;
-> > +	};
-> > +};
-> > +
-> > +&uart0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&uart0_ph_pins>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usbotg {
-> > +	/*
-> > +	 * PHY0 pins are connected to a USB-C socket, but a role switch
-> > +	 * is not implemented: both CC pins are pulled to GND.
-> > +	 * The VBUS pins power the device, so a fixed peripheral mode
-> > +	 * is the best choice.
-> > +	 * The board can be powered via GPIOs, in this case port0 *can*
-> > +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> > +	 * then provided by the GPIOs. Any user of this setup would
-> > +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> > +	 * enabling OHCI0 and EHCI0.
-> > +	 */
-> > +	dr_mode =3D "peripheral";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb1_vbus-supply =3D <&reg_vcc5v>;
-> > +	status =3D "okay";
-> > +}; =20
->=20
->=20
->=20
->=20
->=20
+   In file included from arch/arm64/boot/dts/qcom/sa8540p.dtsi:7,
+                    from arch/arm64/boot/dts/qcom/sa8295p-adp.dts:13:
+>> arch/arm64/boot/dts/qcom/sc8280xp.dtsi:11:10: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
+      11 | #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
 
+
+vim +11 arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+
+  > 11	#include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+    12	#include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
+    13	#include <dt-bindings/interconnect/qcom,osm-l3.h>
+    14	#include <dt-bindings/interconnect/qcom,sc8280xp.h>
+    15	#include <dt-bindings/interrupt-controller/arm-gic.h>
+    16	#include <dt-bindings/mailbox/qcom-ipcc.h>
+    17	#include <dt-bindings/phy/phy-qcom-qmp.h>
+    18	#include <dt-bindings/power/qcom-rpmpd.h>
+    19	#include <dt-bindings/soc/qcom,gpr.h>
+    20	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+    21	#include <dt-bindings/sound/qcom,q6afe.h>
+    22	#include <dt-bindings/thermal/thermal.h>
+    23	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
