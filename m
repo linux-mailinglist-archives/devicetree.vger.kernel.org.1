@@ -1,150 +1,320 @@
-Return-Path: <devicetree+bounces-10510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C14087D1A0E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 02:53:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA097D1B4F
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 08:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7073F2825FC
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 00:53:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B08628254B
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 06:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A77B37C;
-	Sat, 21 Oct 2023 00:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D39EBC;
+	Sat, 21 Oct 2023 06:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KpVtTrBQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BEizau+6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3D3379
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 00:53:00 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D3A13E;
-	Fri, 20 Oct 2023 17:52:56 -0700 (PDT)
-Received: from Monstersaurus.local (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F7AD3D9;
-	Sat, 21 Oct 2023 02:52:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697849566;
-	bh=lryYCPXwnY6lJv+ykkheug+vJfZinI6XiTaoqh0vci4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=KpVtTrBQyslzfU0zg8LtSb/TliuNVSn4/r11IqLgVq2ncyaCeuzdLn6MHZavVbotr
-	 NNTpHpdYvwEpnJlxoFnfPMs1okgXfPhJuQQdjC9lxxRQjcs16jz76yzoZT2md8SDsM
-	 S4yUiDamxHmLkt4ga7TP3rDtGfPKTZyF68kPTNdk=
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-To: devicetree@vger.kernel.org
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Add CSI Power Regulators
-Date: Sat, 21 Oct 2023 01:52:47 +0100
-Message-Id: <20231021005250.3498664-1-kieran.bingham@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66DE17F1
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 06:22:30 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5D1106
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 23:22:28 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-5079f3f3d7aso2348638e87.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 23:22:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697869347; x=1698474147; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FntaMjejU2gWLtGj930Sn2rHR1aIlW/u+KSwKSv5jBk=;
+        b=BEizau+6qQor96UCzsZ+gV3FUAWOn40aYA7E+tIG6jM021bUbRllDYTSY1lIjYtbru
+         Mav4ClNemlKgdvxtSUVh3Lp+MP47dNB1jFlRNqrd66pJn5apfKvx0+c++i7e9HPZRe78
+         INewOiplWHZuL5X6UCHhn0OHfv+4W02Y2g1mJgEdwX76hmpw3eTUcft0bYKK4YYIG+MC
+         TQuzLSnrIngj9lZJYpA2Ai73FXCxMUQ4eGg4YsTv506lBzpBOL/ADCfxLWJP2s/8iLoz
+         uSQbTB3MiXyabXcbP8k3lIfTKnOpPvYqQGN+Qx3xAyJKSRSnW8VjsibLDsgwLEVlgKhS
+         IfsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697869347; x=1698474147;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FntaMjejU2gWLtGj930Sn2rHR1aIlW/u+KSwKSv5jBk=;
+        b=lnqYmDxrtjflYA07fHyIf0rncpszS53c4XFGgo8V3zSoLaXpGUphsSqrbAxvpvmS4u
+         WsO7jvjzOAAiwNuyO47zN80xEqVn+cJhmzkXXS4Xlz9Jj4cBZixYrhsLZjjSa+lGzJZA
+         pGBCu2T34zQZ2ph0hfYrRBN5YFLUWjqCmmH1CDRK4LahN0hZENv/25UjSR7MhlikDOBI
+         zDdQOLcpQuKnabePD2DjB1oitaQn+hRE+4Na/bjoiMdSxByaCbChfA9X0n3564t2DQYw
+         qjaLSYzu/O4KoVN3Bzt0zJZvXEw8MMUGNjCcMrSVi4FF53wnljDar/2Gn6AbVporAag4
+         nmEg==
+X-Gm-Message-State: AOJu0YySYLSnlYX425f0pFPXapPTq5HenJXgZtkuKAEHa3L8FzFUAH97
+	wFAt3iccbDuBMQh40m+DTNM=
+X-Google-Smtp-Source: AGHT+IFwwgx+syyl+INCM/H6kE9LSAfqzllwehbz0yaDBzrpmgHWO634CFjbGGijLLq3UK+kIjHYxQ==
+X-Received: by 2002:ac2:4c0b:0:b0:506:8d2a:565a with SMTP id t11-20020ac24c0b000000b005068d2a565amr2574496lfq.69.1697869346720;
+        Fri, 20 Oct 2023 23:22:26 -0700 (PDT)
+Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id w10-20020adfec4a000000b0032d2f09d991sm3064840wrn.33.2023.10.20.23.22.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 23:22:26 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chen-Yu Tsai <wens@csie.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>,
+ Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH 2/2] arm64: dts: allwinner: h616: add Orange Pi Zero 2W support
+Date: Sat, 21 Oct 2023 08:22:24 +0200
+Message-ID: <7582185.EvYhyI6sBW@archlinux>
+In-Reply-To: <20231020145706.705420-3-andre.przywara@arm.com>
+References:
+ <20231020145706.705420-1-andre.przywara@arm.com>
+ <20231020145706.705420-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Provide the 1.8 and 3.3 volt regulators that are utilised on the Debix
-SOM BMB-08 base board.
+On Friday, October 20, 2023 4:57:06 PM CEST Andre Przywara wrote:
+> The Orange Pi Zero 2W is a board based on the Allwinner H618 SoC.
+> It uses the RaspberryPi Zero form factor, with an optional expansion
+> board, connected via an FPC connector, to provide more connectors.
+> 
+> The base board features:
+> 	- Allwinner H618 SoC (quad Cortex-A53 cores, with 1MB L2 cache)
+> 	- 1, 2 or 4GB of LPDDR4 DRAM
+> 	- SD card socket
+> 	- two USB-C sockets, one UFP, one DFP
+> 	- HDMI connector
+> 	- (yet unsupported) WiFi module
+> 	- 16 MiB SPI flash
+> 	- power supply via the UFP USB-C port
+> 
+> The FPC connector provides access to two more USB host ports, Fast
+> Ethernet, some GPIOs, Audio Line out and the IR receiver pin.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Facilitate this by also supplying the pin control used to enable the
-regulators on the second MIPI CSI port.
+I compared it to the schematic and all values looks good. Sadly, it missed 
+merge window.
 
-Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
----
- .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-index 0b0c95432bdc..e058402f1f2e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-@@ -63,6 +63,50 @@ regulator-som-vdd3v3 {
- 		regulator-always-on;
- 	};
- 
-+	reg_csi1_1v8: regulator-csi1-vdd1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-name = "CSI1_VDD1V8_SW";
-+		gpio = <&expander0 13 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&reg_baseboard_vdd3v3>;
-+		enable-active-high;
-+	};
-+
-+	reg_csi1_3v3: regulator-csi1-vdd3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-name = "CSI1_VDD3V3_SW";
-+		gpio = <&expander0 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_vdd5v0>;
-+	};
-+
-+	reg_csi2_1v8: regulator-csi2-vdd1v8 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_csi2_1v8>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-name = "CSI2_VDD1V8_SW";
-+		gpio = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_baseboard_vdd3v3>;
-+	};
-+
-+	reg_csi2_3v3: regulator-csi2-vdd3v3 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_csi2_3v3>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-name = "CSI2_VDD3V3_SW";
-+		gpio = <&gpio4 25 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_vdd5v0>;
-+	};
-+
- 	regulator-vbus-usb20 {
- 		compatible = "regulator-fixed";
- 		regulator-min-microvolt = <5000000>;
-@@ -413,6 +457,18 @@ MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03		0x41
- 		>;
- 	};
- 
-+	pinctrl_reg_csi2_1v8: regcsi21v8grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21		0x19
-+		>;
-+	};
-+
-+	pinctrl_reg_csi2_3v3: regcsi23v3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25		0x19
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX		0x14f
--- 
-2.34.1
+Best regards,
+Jernej
+
+> ---
+>  .../allwinner/sun50i-h618-orangepi-zero2w.dts | 176 ++++++++++++++++++
+>  1 file changed, 176 insertions(+)
+>  create mode 100644
+> arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts new file
+> mode 100644
+> index 0000000000000..21ca1977055d9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
+> @@ -0,0 +1,176 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2023 Arm Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-h616.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "OrangePi Zero 2W";
+> +	compatible = "xunlong,orangepi-zero2w", "allwinner,sun50i-h618";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 
+*/
+> +		};
+> +	};
+> +
+> +	reg_vcc5v: vcc5v {
+> +		/* board wide 5V supply directly from the USB-C socket 
+*/
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-5v";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_vcc3v3: vcc3v3 {
+> +		/* SY8089 DC/DC converter */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_vcc5v>;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +/* USB 2 & 3 are on the FPC connector (or the exansion board) */
+> +
+> +&mmc0 {
+> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
+> +	bus-width = <4>;
+> +	vmmc-supply = <&reg_vcc3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status = "okay";
+> +};
+> +
+> +&pio {
+> +	vcc-pc-supply = <&reg_dldo1>;
+> +	vcc-pf-supply = <&reg_dldo1>;	/* internally via VCC-IO */
+> +	vcc-pg-supply = <&reg_aldo1>;
+> +	vcc-ph-supply = <&reg_dldo1>;	/* internally via VCC-IO */
+> +	vcc-pi-supply = <&reg_dldo1>;
+> +};
+> +
+> +&r_i2c {
+> +	status = "okay";
+> +
+> +	axp313: pmic@36 {
+> +		compatible = "x-powers,axp313a";
+> +		reg = <0x36>;
+> +		#interrupt-cells = <1>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
+> +
+> +		vin1-supply = <&reg_vcc5v>;
+> +		vin2-supply = <&reg_vcc5v>;
+> +		vin3-supply = <&reg_vcc5v>;
+> +
+> +		regulators {
+> +			/* Supplies VCC-PLL and DRAM */
+> +			reg_aldo1: aldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<1800000>;
+> +				regulator-max-microvolt = 
+<1800000>;
+> +				regulator-name = "vcc1v8";
+> +			};
+> +
+> +			/* Supplies VCC-IO, so needs to be always on. 
+*/
+> +			reg_dldo1: dldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<3300000>;
+> +				regulator-max-microvolt = 
+<3300000>;
+> +				regulator-name = "vcc3v3";
+> +			};
+> +
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<810000>;
+> +				regulator-max-microvolt = 
+<990000>;
+> +				regulator-name = "vdd-gpu-sys";
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<810000>;
+> +				regulator-max-microvolt = 
+<1100000>;
+> +				regulator-name = "vdd-cpu";
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<1100000>;
+> +				regulator-max-microvolt = 
+<1100000>;
+> +				regulator-name = "vdd-dram";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&spi0  {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <40000000>;
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_ph_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg {
+> +	/*
+> +	 * PHY0 pins are connected to a USB-C socket, but a role switch
+> +	 * is not implemented: both CC pins are pulled to GND.
+> +	 * The VBUS pins power the device, so a fixed peripheral mode
+> +	 * is the best choice.
+> +	 * The board can be powered via GPIOs, in this case port0 *can*
+> +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
+> +	 * then provided by the GPIOs. Any user of this setup would
+> +	 * need to adjust the DT accordingly: dr_mode set to "host",
+> +	 * enabling OHCI0 and EHCI0.
+> +	 */
+> +	dr_mode = "peripheral";
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	usb1_vbus-supply = <&reg_vcc5v>;
+> +	status = "okay";
+> +};
+
+
+
 
 
