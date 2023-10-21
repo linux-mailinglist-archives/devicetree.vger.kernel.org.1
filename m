@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877D87D19EA
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 02:29:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5977D7D19FB
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 02:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B934E1C2100A
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 00:29:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AD9D1C21005
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 00:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A67937B;
-	Sat, 21 Oct 2023 00:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8117B37B;
+	Sat, 21 Oct 2023 00:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="ITEAE7hZ"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="SCeLXvxH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E99362
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 00:29:38 +0000 (UTC)
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AB9D6F
-	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 17:29:34 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6b89ab5ddb7so1358488b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 17:29:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E140F379
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 00:39:02 +0000 (UTC)
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156DCD72
+	for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 17:38:57 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1e0ee4e777bso965737fac.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Oct 2023 17:38:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1697848173; x=1698452973; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=tweaklogic.com; s=google; t=1697848736; x=1698453536; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tdPtho0lZgqDhudRFkQ/fseTAW/FWwjkB2rta3ajsgU=;
-        b=ITEAE7hZDAW3zGDMoeqKEbMgW11t0OV9nenT+xLv1cwFEsEub7kyP4QvjWz4BOuhIh
-         wVbJPopBbnmvXlonV7UrtTW2RT0e3lFyWd+RH6zgjIYd64qEW7dFQt7d5Kb2ALKA2n6Z
-         /hErRm+9JotdCdv9F4IQdf7JbinMJglpjjLzT/a642wuVJbFxUh0uXjBSYkrsJek7V9L
-         7StBxjTJE46yrbypOsT0OW4kFIzpiMtOESkb95oRK+RkBad6dRlgLKtAQJ3+cISXVNzw
-         SWP0fTFavyU2a4rd6H+NXs4XKJFkbsjszH9lxDVd8WGBJllVg/OC/gYB7AocX/pYWB09
-         orkw==
+        bh=sSq0LiQ9DQKIgfiPKxfox3yrdlP/6a1Wky/bubnJNtk=;
+        b=SCeLXvxHn0BCXH+fUhPrq1qZ+Sc4igPf4/jnNbvV8IU1zEke/EPqd4ZwVgewUx5nSB
+         tLVNfRueIvrBeNGdYrvk1QxOVaXv5NAUqBo2G4bvHcwCLUdE3AikZ+iPH1OaQU5wnBZT
+         t5dVDcU52XbZYLhoAx7Ku8JsjjarXjhtso8sMRwIcYwhF33fgycSXPLT1OqnohvBg4YZ
+         zYVdJRMhRmrukmmBSt/FWTtnyknSEHio2wJggoXsfXXyOQpmvwMQEwXBHvhTtE+OhLzT
+         DYeOLHBOfUNOgkwFt0RiblcRnTodRXednti72xrFyJbaRW0YtEumlQi1qml+eaMqOsG3
+         MzWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697848173; x=1698452973;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697848736; x=1698453536;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tdPtho0lZgqDhudRFkQ/fseTAW/FWwjkB2rta3ajsgU=;
-        b=KAhXZ1ZdywIKTVuQ61V6MXpVUti20KmhhlPUIpv5RJe5n5qdK2Ib+sbuLrhr3wTEo2
-         4c2mKwGKgGn0B9y8paZYG6dTyDizaC7e3f6AGFI+vrj13pKx5aIeUqaLae/9qwsYfsMO
-         QWdJieAiUSRH0bDYydak8y5kjdrnaS9wN/JZhgpRntMyYjohG/9qDCRDH3HE3pJCaWym
-         FjqLsa3aCcLTo21t8xgGCm6shSymKtfJg6Ta2GmjjhKUi7lqS7jVcSa2E0Km8Hdg1uz8
-         pFv714ehqGmaJD7SadjzD0zul3UUUBJUDGFwQ8k4jlo/HxIjDXKWb/b/fY8WmJ8jOzXR
-         dQkA==
-X-Gm-Message-State: AOJu0YzxThGyglq3jBNQyzoR+Q1NXHPRBmDVNmyKAWdqwYEUyN3Mtggc
-	5MFKaWER6osOU8XBc5C7DiqnKA==
-X-Google-Smtp-Source: AGHT+IHCF9PJMgtvdjcnRVAtiC6KUBhkPgeWJlPpLOtze88+nkKKgKs9Sb0LJMpRJr5q/ex2tv8j1g==
-X-Received: by 2002:a05:6a20:3d83:b0:174:2d20:5404 with SMTP id s3-20020a056a203d8300b001742d205404mr4212302pzi.37.1697848173442;
-        Fri, 20 Oct 2023 17:29:33 -0700 (PDT)
+        bh=sSq0LiQ9DQKIgfiPKxfox3yrdlP/6a1Wky/bubnJNtk=;
+        b=ufYw41d3zhMCs5PouqVoq3UupZ3GJDYPIDmdm4oo4Zl+leoLMmY628179YD/mQwj4J
+         bYl9RytJYV8BUe+c6fu8kuRne7F4M7McB8Va7vU2zSDDhmqWUGtHkVMO1aWxuoSIGyKx
+         /1TSztD5E9iVg2PNaSi5peZowgs4ZU9enQMo5GGkYHTlpmK0e6mPmrKcz/4i/coNPRhQ
+         DYemPIpyi1phkFvUuc0JGG67KtdMTM5zjcQWKcDccjHJmpdf924InV9Rl94ijnNISZzh
+         VOG4zZq9wKpU4uv3caB48u3iNw0PN/TUlLUFCFSc/Q7GpT5JuiwBzRxbUb1jMWgN+6lS
+         biEg==
+X-Gm-Message-State: AOJu0YyyES77PUxXTCVsTsFRHyI4gZicT+HskRLA2pamNZ+Fbq40ME7K
+	wwXJunUnUggBopXEeDGSPksV7w==
+X-Google-Smtp-Source: AGHT+IGDsFGs9Jk018Kwmxob0O23QAjKaUSRVq/R/vkP5Pxc/Mm7q+JwePrfACOZ5D53ZrLy4UpBjg==
+X-Received: by 2002:a05:6870:4949:b0:1ea:8b10:247e with SMTP id fl9-20020a056870494900b001ea8b10247emr4638798oab.27.1697848736400;
+        Fri, 20 Oct 2023 17:38:56 -0700 (PDT)
 Received: from ?IPV6:2403:580d:82f4:0:9012:790b:50f:4eda? (2403-580d-82f4-0-9012-790b-50f-4eda.ip6.aussiebb.net. [2403:580d:82f4:0:9012:790b:50f:4eda])
-        by smtp.gmail.com with ESMTPSA id x3-20020aa784c3000000b006b2677d3685sm2113397pfn.207.2023.10.20.17.29.29
+        by smtp.gmail.com with ESMTPSA id k194-20020a6284cb000000b006926e3dc2besm2226644pfd.108.2023.10.20.17.38.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Oct 2023 17:29:32 -0700 (PDT)
-Message-ID: <4cf6dfe7-5afa-460a-bbae-80a9b96be1d2@tweaklogic.com>
-Date: Sat, 21 Oct 2023 10:59:26 +1030
+        Fri, 20 Oct 2023 17:38:56 -0700 (PDT)
+Message-ID: <35d74411-9b67-4c41-ae68-6042519a17b3@tweaklogic.com>
+Date: Sat, 21 Oct 2023 11:08:50 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,31 +69,35 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] dt-bindings: iio: light: Squash APDS9300 and APDS9960
  schemas
-To: Jonathan Cameron <jic23@kernel.org>,
- Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Conor Dooley <conor@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, matt@ranostay.org
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, matt@ranostay.org
 References: <20231019080437.94849-1-subhajit.ghosh@tweaklogic.com>
- <20231019-rematch-ethically-9d482ca4607e@spud>
- <20231019-theme-clunky-f4a2e1d122e7@spud>
- <0084ddad-d6fc-ca26-2d26-ba71e81f5f8b@tweaklogic.com>
- <20231019122120.00007cdd@Huawei.com> <20231020082804.5ee8364a@jic23-huawei>
-Content-Language: en-US
+ <472aa31d-7d6c-41df-86e6-d17f05998256@linaro.org>
+ <6b721019-c98e-d926-04a9-e71f9ea20762@tweaklogic.com>
+ <eedc5ebf-f8e5-4cbf-b394-c260d2fc53c8@linaro.org>
 From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20231020082804.5ee8364a@jic23-huawei>
+In-Reply-To: <eedc5ebf-f8e5-4cbf-b394-c260d2fc53c8@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
->>
-> +CC address Matt suggested using going forwards.
->   
->> J
-Sure. Thanks Jonathan.
+>> of apds9300 handles both situations whether interrupt bindings are provided or not, whereas,
+>> apds9960 requires an interrupt binding for probe() to be successful. I thought it would
+>> be appropriate to add that in the schema.
+> 
+> Not explained in commit msg.
+> 
+> Best regards,
+> Krzysztof
+> 
+Yes, I will add all these point in my next commit message in apds9306 patch series rather than
+a separate patch as suggested by Conor.
 
 Regards,
 Subhajit Ghosh
-
 
