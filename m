@@ -1,346 +1,201 @@
-Return-Path: <devicetree+bounces-10537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643627D1CB4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 13:09:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D6DA7D1CE7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 13:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C22C282455
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 11:09:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4776B1C20963
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 11:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12CCDF55;
-	Sat, 21 Oct 2023 11:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C832D528;
+	Sat, 21 Oct 2023 11:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p8EQ0XRs"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Lt4imCyU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8832063B3
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 11:09:40 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B667D7A
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 04:09:34 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3296b3f03e5so1190205f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 04:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697886572; x=1698491372; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aB4JTBbloeJlOrROqSHyOpiwaZu7mID8DECUoJEbjX8=;
-        b=p8EQ0XRsItLN5gweHBq20mlgztkddoKtXMPbe+ZDVuO/dkg2Wkq0cHYe44Xk4287+6
-         2d2zn7TbBKc4NsiRVc1O3n/fEO98NG1o2EB9SzirGFGWHNV0vu/hpMtXNXG54OTiK+Gv
-         DHdToP52Ml4Wl0e9yaQc2qNjngAq3YUUO+/3RKLcy0vTCca5XW5jiUJfuPHOrNUOyRQa
-         EmvTZvO3xUarLt5L8AG7gqFrCS1BgAP9tCco5DAmf9t1cdhrR4Qo1lRsVWLzxN+4nOai
-         iYAHJ6Rjcf0CcUjvXlcGKtddVdVnmmGN6bq8Fc0jl37J5+6nbcuJoqriAiSMmA1kXCgW
-         v1zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697886572; x=1698491372;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aB4JTBbloeJlOrROqSHyOpiwaZu7mID8DECUoJEbjX8=;
-        b=m+WgX6oe2W0s6JhlKyp0e1wF88aX4pTL9pWuVzByKoeaVxfixCYqHbGNVtYDeoQ4Yu
-         Q1LpO1RjXIxy40h8imNpfttf/VHxyNHS/efCj3C7xEXiDRQRvhYxldfSbJb601DZjbC8
-         MvxOjK9J90U/FDYUtrY0vpaCIGQtD1twfGz/bKHXaiOpO4T6sIdlrdfa3cl/5jBd5kkL
-         9nUhng3QDpfqyBi52qwsvMLsHhsphFwN1LY9RenwlW9AQfjsBBLsrpgsvfUUcx/z3XrS
-         7RjTRvqj8jqD1CojTmwOIpjKyw/tyZabQnc9GWiTSKWIjL48eUGezwW7RKsiwTXh6Nsu
-         tKWw==
-X-Gm-Message-State: AOJu0YzVpYPPswdoIgjpE9//M+ElXvYlnVuQMzuZZSD8lsd0LHQfj2fD
-	/MJV7Eqyyy2vcAGrpg5FXZiBnw==
-X-Google-Smtp-Source: AGHT+IER4N7VJrvxFrDg8VCeFtUBg7uVVL9fZojtmawRNaSOvFI0acV+CXBQr9df6LEtCx88vvIbHw==
-X-Received: by 2002:adf:eecc:0:b0:32d:a2d7:ae88 with SMTP id a12-20020adfeecc000000b0032da2d7ae88mr3508639wrp.43.1697886572444;
-        Sat, 21 Oct 2023 04:09:32 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id o7-20020a056000010700b003232d122dbfsm3491096wrx.66.2023.10.21.04.09.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Oct 2023 04:09:32 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Sat, 21 Oct 2023 13:09:26 +0200
-Subject: [PATCH v9 4/4] Input: goodix-berlin - add SPI support for Goodix
- Berlin Touchscreen IC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45C210F3
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 11:53:49 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C699A1A4;
+	Sat, 21 Oct 2023 04:53:44 -0700 (PDT)
+Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 04A88660734B;
+	Sat, 21 Oct 2023 12:53:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697889223;
+	bh=6RRGq7dtsDUYF+lQ+Zt4IpjIt/PofZwGotEJ0ImmOQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Lt4imCyUAXHE/aVO8kWHutl7uB1wKalMAHhy4/9VY8jSanNaXzNkTQAlh1CPY+DrT
+	 iU2gjiOKYrDyHLoEaqIzyWv8u7Q1nBXLGS9W4foa2I4zkY4jVggfehJjWDyVfhsYaG
+	 wweOoUAfg2OaewES/D6nQ8lvO+AnMvZd0M4U00KVvqFgqeaQ71fyhIJfN0SyojpY8m
+	 tbwuLD1VbqYXzudaCgVAaQnt2Z90JOMgPZk4+wMrGc4kdM4AoOFPCxdvPCDid2hSCe
+	 O5BUM5ksgwrCVaKp3wbyHnmKoUtmUMOztIFl0LUy0GEE6A/h+OvhteVA3LdYSbl6qy
+	 OmobyL3K8WgtQ==
+Date: Sat, 21 Oct 2023 13:53:40 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nas Chung <nas.chung@chipsnmedia.com>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Darren Etheridge <detheridge@ti.com>,
+	"Bajjuri, Praneeth" <praneeth@ti.com>,
+	"Raghavendra, Vignesh" <vigneshr@ti.com>,
+	"Bhatia, Aradhya" <a-bhatia1@ti.com>,
+	"Luthra, Jai" <j-luthra@ti.com>,
+	"Brnich, Brandon" <b-brnich@ti.com>,
+	"Pothukuchi, Vijay" <vijayp@ti.com>
+Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
+ codec IP support
+Message-ID: <20231021115340.kgjmz6fr5av6ne6s@basti-XPS-13-9310>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
+ <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231021-topic-goodix-berlin-upstream-initial-v9-4-13fb4e887156@linaro.org>
-References: <20231021-topic-goodix-berlin-upstream-initial-v9-0-13fb4e887156@linaro.org>
-In-Reply-To: <20231021-topic-goodix-berlin-upstream-initial-v9-0-13fb4e887156@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- linux-input@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>, 
- Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>, 
- Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8018;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Qt+npl8i2OE+s8j4Ze03++ftzJ+qPlUeps9Tw1QwAkg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlM7FnrYS1E9+SBgVDdlT37AOWi1Y9DsgZKvl6r2ut
- rxH//XSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTOxZwAKCRB33NvayMhJ0RpxEA
- CrO12P596OWAKyIuD6Z8EpSlTKGOtFTMlBtdFG9LwhhlVYpNpSmCjVHhnpnCPWgQJBJ5i7c0onzGfS
- H8Swdij2CuVMRN/1rkyTxZ/wR48sxT0uJPcd4GtZCDovraGUrC0kN9s6+RvxO/pzU7TcK8zkjuCcY3
- MS1X4M0Sz+j+BAlvWXxTaplNqoES5a3wlWkDiQbt0HqKMBRPSeWG+enbwaNlIviKdrToKebAytxMWQ
- K9VkGrbS/o9cM+PNNxZejuijYJxd8DKLz/aJgQ12RymjAXlsaakKpaUeZ0NYgp+ir7D7b5EElU4Zrn
- WxmrXR5lSzCaSvPhi/4HI0YheXrf/mUVpN0xRBJu8KZG17VvlQwcd1vA+Hi2yuIU34lq9LY2T0uwb0
- SIiMZXBNPYZOrBuG6gQoVVY6tH9BzMXmUQ+Sa18bYEigBflM9+39gqnWRHoXP65zVVg2khjdl93CUG
- ghynQwd9h5AHZs4Os1IDAPOT/DlsD3z7KDjeqsexQ+paPoMKvydibjJkp5Sw1cbxDvI0T0JXbh9krB
- 3BkamdFZu9w4Y9Zyx1nJRFGsv5HB5VtPRmaFjsO3iajI0xzJVEKvyR4XFZUtLUh7z8lbtPkCGvuaRL
- WeK3btXw5ZisChihl4zeTjUQMQrpgtFGvvQVkBxYHW0R++yJfilLvVEJuEcQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
 
-Add initial support for the new Goodix "Berlin" touchscreen ICs
-over the SPI interface.
+Hello Krzysztof and Rob,
 
-The driver doesn't use the regmap_spi code since the SPI messages
-needs to be prefixed, thus this custom regmap code.
+this question is quite important for our next version and for the
+overall direction of the DT bindings, could you have a look at this?
 
-This initial driver is derived from the Goodix goodix_ts_berlin
-available at [1] and [2] and only supports the GT9916 IC
-present on the Qualcomm SM8550 MTP & QRD touch panel.
+Thank you and Regards,
+Sebastian
 
-The current implementation only supports BerlinD, aka GT9916.
-
-[1] https://github.com/goodix/goodix_ts_berlin
-[2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
-
-Reviewed-by: Jeff LaBundy <jeff@labundy.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/input/touchscreen/Kconfig             |  14 +++
- drivers/input/touchscreen/Makefile            |   1 +
- drivers/input/touchscreen/goodix_berlin_spi.c | 173 ++++++++++++++++++++++++++
- 3 files changed, 188 insertions(+)
-
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index cc7b88118158..c821fe3ee794 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -433,6 +433,20 @@ config TOUCHSCREEN_GOODIX_BERLIN_I2C
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called goodix_berlin_i2c.
- 
-+config TOUCHSCREEN_GOODIX_BERLIN_SPI
-+	tristate "Goodix Berlin SPI touchscreen"
-+	depends on SPI_MASTER
-+	select REGMAP
-+	select TOUCHSCREEN_GOODIX_BERLIN_CORE
-+	help
-+	  Say Y here if you have a Goodix Berlin IC connected to
-+	  your system via SPI.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called goodix_berlin_spi.
-+
- config TOUCHSCREEN_HIDEEP
- 	tristate "HiDeep Touch IC"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 7ef677cf7a10..a81cb5aa21a5 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_CORE)	+= goodix_berlin_core.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_I2C)	+= goodix_berlin_i2c.o
-+obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_SPI)	+= goodix_berlin_spi.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
- obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
-diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touchscreen/goodix_berlin_spi.c
-new file mode 100644
-index 000000000000..1f57c3592918
---- /dev/null
-+++ b/drivers/input/touchscreen/goodix_berlin_spi.c
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Goodix Berlin Touchscreen Driver
-+ *
-+ * Copyright (C) 2020 - 2021 Goodix, Inc.
-+ * Copyright (C) 2023 Linaro Ltd.
-+ *
-+ * Based on goodix_ts_berlin driver.
-+ */
-+#include <asm/unaligned.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/spi/spi.h>
-+
-+#include "goodix_berlin.h"
-+
-+#define GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN	1
-+#define GOODIX_BERLIN_REGISTER_WIDTH		4
-+#define GOODIX_BERLIN_SPI_READ_DUMMY_LEN	3
-+#define GOODIX_BERLIN_SPI_READ_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
-+						 GOODIX_BERLIN_REGISTER_WIDTH + \
-+						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN)
-+#define GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
-+						 GOODIX_BERLIN_REGISTER_WIDTH)
-+
-+#define GOODIX_BERLIN_SPI_WRITE_FLAG		0xF0
-+#define GOODIX_BERLIN_SPI_READ_FLAG		0xF1
-+
-+static int goodix_berlin_spi_read(void *context, const void *reg_buf,
-+				  size_t reg_size, void *val_buf,
-+				  size_t val_size)
-+{
-+	struct spi_device *spi = context;
-+	struct spi_transfer xfers;
-+	struct spi_message spi_msg;
-+	const u32 *reg = reg_buf; /* reg is stored as native u32 at start of buffer */
-+	u8 *buf;
-+	int error;
-+
-+	if (reg_size != GOODIX_BERLIN_REGISTER_WIDTH)
-+		return -EINVAL;
-+
-+	buf = kzalloc(GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	spi_message_init(&spi_msg);
-+	memset(&xfers, 0, sizeof(xfers));
-+
-+	/* buffer format: 0xF1 + addr(4bytes) + dummy(3bytes) + data */
-+	buf[0] = GOODIX_BERLIN_SPI_READ_FLAG;
-+	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
-+	memset(buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + GOODIX_BERLIN_REGISTER_WIDTH,
-+	       0xff, GOODIX_BERLIN_SPI_READ_DUMMY_LEN);
-+
-+	xfers.tx_buf = buf;
-+	xfers.rx_buf = buf;
-+	xfers.len = GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size;
-+	xfers.cs_change = 0;
-+	spi_message_add_tail(&xfers, &spi_msg);
-+
-+	error = spi_sync(spi, &spi_msg);
-+	if (error < 0)
-+		dev_err(&spi->dev, "spi transfer error, %d", error);
-+	else
-+		memcpy(val_buf, buf + GOODIX_BERLIN_SPI_READ_PREFIX_LEN, val_size);
-+
-+	kfree(buf);
-+	return error;
-+}
-+
-+static int goodix_berlin_spi_write(void *context, const void *data,
-+				   size_t count)
-+{
-+	unsigned int len = count - GOODIX_BERLIN_REGISTER_WIDTH;
-+	struct spi_device *spi = context;
-+	struct spi_transfer xfers;
-+	struct spi_message spi_msg;
-+	const u32 *reg = data; /* reg is stored as native u32 at start of buffer */
-+	u8 *buf;
-+	int error;
-+
-+	buf = kzalloc(GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN + len, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	spi_message_init(&spi_msg);
-+	memset(&xfers, 0, sizeof(xfers));
-+
-+	buf[0] = GOODIX_BERLIN_SPI_WRITE_FLAG;
-+	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
-+	memcpy(buf + GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN,
-+	       data + GOODIX_BERLIN_REGISTER_WIDTH, len);
-+
-+	xfers.tx_buf = buf;
-+	xfers.len = GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN + len;
-+	xfers.cs_change = 0;
-+	spi_message_add_tail(&xfers, &spi_msg);
-+
-+	error = spi_sync(spi, &spi_msg);
-+	if (error < 0)
-+		dev_err(&spi->dev, "spi transfer error, %d", error);
-+
-+	kfree(buf);
-+	return error;
-+}
-+
-+static const struct regmap_config goodix_berlin_spi_regmap_conf = {
-+	.reg_bits = 32,
-+	.val_bits = 8,
-+	.read = goodix_berlin_spi_read,
-+	.write = goodix_berlin_spi_write,
-+};
-+
-+/* vendor & product left unassigned here, should probably be updated from fw info */
-+static const struct input_id goodix_berlin_spi_input_id = {
-+	.bustype = BUS_SPI,
-+};
-+
-+static int goodix_berlin_spi_probe(struct spi_device *spi)
-+{
-+	struct regmap_config regmap_config;
-+	struct regmap *regmap;
-+	size_t max_size;
-+	int error = 0;
-+
-+	spi->mode = SPI_MODE_0;
-+	spi->bits_per_word = 8;
-+	error = spi_setup(spi);
-+	if (error)
-+		return error;
-+
-+	max_size = spi_max_transfer_size(spi);
-+
-+	regmap_config = goodix_berlin_spi_regmap_conf;
-+	regmap_config.max_raw_read = max_size - GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
-+	regmap_config.max_raw_write = max_size - GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN;
-+
-+	regmap = devm_regmap_init(&spi->dev, NULL, spi, &regmap_config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	return goodix_berlin_probe(&spi->dev, spi->irq,
-+				   &goodix_berlin_spi_input_id, regmap);
-+}
-+
-+static const struct spi_device_id goodix_berlin_spi_ids[] = {
-+	{ "gt9916" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
-+
-+static const struct of_device_id goodix_berlin_spi_of_match[] = {
-+	{ .compatible = "goodix,gt9916", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
-+
-+static struct spi_driver goodix_berlin_spi_driver = {
-+	.driver = {
-+		.name = "goodix-berlin-spi",
-+		.of_match_table = goodix_berlin_spi_of_match,
-+		.pm = pm_sleep_ptr(&goodix_berlin_pm_ops),
-+	},
-+	.probe = goodix_berlin_spi_probe,
-+	.id_table = goodix_berlin_spi_ids,
-+};
-+module_spi_driver(goodix_berlin_spi_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Goodix Berlin SPI Touchscreen driver");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-
--- 
-2.34.1
-
+On 17.10.2023 19:09, Devarsh Thakkar wrote:
+>Hi Sebastian, Krzysztof, Rob,
+>
+>On 12/10/23 16:31, Sebastian Fricke wrote:
+>> From: Robert Beckett <bob.beckett@collabora.com>
+>>
+>> Add bindings for the chips&media wave5 codec driver
+>>
+>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+>> ---
+>>  .../devicetree/bindings/media/cnm,wave5.yaml       | 60 ++++++++++++++++++++++
+>>  1 file changed, 60 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/cnm,wave5.yaml b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
+>> new file mode 100644
+>> index 000000000000..b31d34aec05b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
+>> @@ -0,0 +1,60 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/cnm,wave5.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Chips&Media Wave 5 Series multi-standard codec IP
+>> +
+>> +maintainers:
+>> +  - Nas Chung <nas.chung@chipsnmedia.com>
+>> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
+>> +
+>> +description:
+>> +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - cnm,cm521c-vpu
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: VCODEC clock
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  sram:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The VPU uses the SRAM to store some of the reference data instead of
+>> +      storing it on DMA memory. It is mainly used for the purpose of reducing
+>> +      bandwidth.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - interrupts
+>> +
+>
+>Is it possible to keep interrupts property as optional given HW can still work
+>without it if SW does polling of ISR using registers?
+>
+>The reason to ask is in TI AM62A SoC (which also uses this codec) there is an
+>SoC errata of missing interrupt line to A53 and we are using SW based polling
+>locally to run the driver.
+>
+>We were planning to upstream that SW based polling support patch in CnM driver
+>once this base initial driver patch series gets merged, but just wanted to
+>check if upfront it is possible to have interrupts property as optional so
+>that we don't have to change the binding doc again to make it optional later on.
+>
+>Also note that the polling patch won't be specific to AM62A, other SoC's too
+>which use this wave5 hardware if they want can enable polling by choice (by
+>removing interrupt property)
+>
+>Could you please share your opinion on this ?
+>
+>Regards
+>Devarsh
+>
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    vpu: video-codec@12345678 {
+>> +        compatible = "cnm,cm521c-vpu";
+>> +        reg = <0x12345678 0x1000>;
+>> +        clocks = <&clks 42>;
+>> +        interrupts = <42>;
+>> +        sram = <&sram>;
+>> +    };
+>>
+>_______________________________________________
+>Kernel mailing list -- kernel@mailman.collabora.com
+>To unsubscribe send an email to kernel-leave@mailman.collabora.com
 
