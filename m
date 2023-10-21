@@ -1,146 +1,141 @@
-Return-Path: <devicetree+bounces-10520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29CA7D1C28
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 11:38:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD907D1C2E
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 11:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFE0AB21417
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 09:38:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAE871F21BC6
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 09:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06CB4613D;
-	Sat, 21 Oct 2023 09:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D004681;
+	Sat, 21 Oct 2023 09:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YsVF4fCL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB59353A6
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 09:38:03 +0000 (UTC)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 416121A4;
-	Sat, 21 Oct 2023 02:37:59 -0700 (PDT)
-Received: from kwepemm000013.china.huawei.com (unknown [172.30.72.57])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4SCGVJ32xtzMlpT;
-	Sat, 21 Oct 2023 17:33:44 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemm000013.china.huawei.com
- (7.193.23.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Sat, 21 Oct
- 2023 17:37:52 +0800
-From: Guo Mengqi <guomengqi3@huawei.com>
-To: <vkoul@kernel.org>, <dmaengine@vger.kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>
-CC: <xuqiang36@huawei.com>, <chenweilong@huawei.com>, <guomengqi3@huawei.com>
-Subject: [PATCH v5 2/2] dt-bindings: dma: HiSilicon: Add bindings for HiSilicon Ascend sdma
-Date: Sat, 21 Oct 2023 17:34:53 +0800
-Message-ID: <20231021093454.39822-3-guomengqi3@huawei.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231021093454.39822-1-guomengqi3@huawei.com>
-References: <20231021093454.39822-1-guomengqi3@huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14444613D
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 09:40:23 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3341DD6B;
+	Sat, 21 Oct 2023 02:40:19 -0700 (PDT)
+Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6AC846607314;
+	Sat, 21 Oct 2023 10:40:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1697881217;
+	bh=SHLD0rEJI0NmsmsXyArE+2lz+5Be5FbgqrbTnMFX+uM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YsVF4fCLLntBXs7eKN+oc/Lg6wAyAXrzgEPCw/yrbajMdmNSwcrD3wxfsZeCachRU
+	 E/R/7UNoDj9vXVwdV6ULiM6hAGnjxRsGwOlWBhCesyvyOw0z1jy0jMqHkbrg2OM1ck
+	 9FmTVqNQfv24kyz9wIUgCfRjvaHogz+ToISpVAecMmiF93Cmu4sT6JjLGxblaC2cex
+	 IXBfYqe6nE1HMUHPjWIlVYo959QewzlTEq5yN3qN4kQz0Ou3GOl0AJPh6JL3S360GC
+	 mLKJ3VLfih9jqpSc0JI1nM2TuPf8vVTomRIhW3KCaP4kjPcUkX2m6xOf7bjqFsdPfv
+	 87UN/UnHAjFoQ==
+Date: Sat, 21 Oct 2023 11:40:14 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 5/7] media: mediatek: vcodec: Setting the supported h265
+ profile for each platform
+Message-ID: <20231021094014.7pzdvgouhxjf2pvo@basti-XPS-13-9310>
+References: <20231016064346.31451-1-yunfei.dong@mediatek.com>
+ <20231016064346.31451-5-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.175.112.208]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemm000013.china.huawei.com (7.193.23.81)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20231016064346.31451-5-yunfei.dong@mediatek.com>
 
-Add device-tree binding documentation for sdma hardware on
-HiSilicon Ascend SoC families.
+Hey Yunfei,
 
-Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
----
- .../bindings/dma/hisilicon,ascend-sdma.yaml   | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
+Please replace Setting with Set in the title.
 
-diff --git a/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-new file mode 100644
-index 000000000000..7b452b54fe0c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/hisilicon,ascend-sdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Ascend System DMA (SDMA) controller
-+
-+description: |
-+  The Ascend SDMA controller is used for transferring data
-+  in system memory.
-+
-+maintainers:
-+  - Guo Mengqi <guomengqi3@huawei.com>
-+
-+allOf:
-+  - $ref: dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,ascend310-sdma
-+      - hisilicon,ascend910-sdma
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+    description:
-+      Clients specify a single cell with channel number.
-+
-+  dma-channel-mask:
-+    minItems: 1
-+    maxItems: 2
-+
-+  iommus:
-+    maxItems: 1
-+
-+  pasid-num-bits:
-+    description: |
-+      This tells smmu that this device supports iommu-sva feature.
-+      This determines the maximum number of digits in the pasid.
-+    maximum: 0x10
-+
-+  dma-coherent: true
-+
-+  dma-can-stall: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - dma-channel-mask
-+  - '#dma-cells'
-+  - iommus
-+  - pasid-num-bits
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@880e0000 {
-+        compatible = "hisilicon,ascend310-sdma";
-+        reg = <0x880e0000 0x10000>;
-+        dma-channel-mask = <0xff00>;
-+        iommus = <&smmu 0x7f46>;
-+        pasid-num-bits = <0x10>;
-+        dma-coherent;
-+        dma-can-stall;
-+        #dma-cells = <1>;
-+    };
-+
-+...
--- 
-2.17.1
+On 16.10.2023 14:43, Yunfei Dong wrote:
+>The supported format type of different platforms are not the
+>same. Need to set the supported profile according to the chip name.
 
+I would suggest the following rewording:
+
+Set the maximum H265 codec profile for each platform.
+The various mediatek platforms support different profiles for decoding,
+the profile of the codec limits the capabilities for decoding.
+
+With that you can add:
+Reviewed-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+
+Regards,
+Sebastian
+
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 19 +++++++++++++++++++
+> 1 file changed, 19 insertions(+)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>index 84c0bed577ed..b15ed773374f 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>@@ -587,6 +587,20 @@ static void mtk_vcodec_dec_fill_h265_level(struct v4l2_ctrl_config *cfg,
+> 	};
+> }
+>
+>+static void mtk_vcodec_dec_fill_h265_profile(struct v4l2_ctrl_config *cfg,
+>+					     struct mtk_vcodec_dec_ctx *ctx)
+>+{
+>+	switch (ctx->dev->chip_name) {
+>+	case MTK_VDEC_MT8188:
+>+	case MTK_VDEC_MT8195:
+>+		cfg->max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10;
+>+		break;
+>+	default:
+>+		cfg->max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE;
+>+		break;
+>+	};
+>+}
+>+
+> static void mtk_vcodec_dec_reset_controls(struct v4l2_ctrl_config *cfg,
+> 					  struct mtk_vcodec_dec_ctx *ctx)
+> {
+>@@ -604,6 +618,11 @@ static void mtk_vcodec_dec_reset_controls(struct v4l2_ctrl_config *cfg,
+> 		mtk_v4l2_vdec_dbg(3, ctx, "h264 supported profile: %lld %lld", cfg->max,
+> 				  cfg->menu_skip_mask);
+> 		break;
+>+	case V4L2_CID_MPEG_VIDEO_HEVC_PROFILE:
+>+		mtk_vcodec_dec_fill_h265_profile(cfg, ctx);
+>+		mtk_v4l2_vdec_dbg(3, ctx, "h265 supported profile: %lld %lld", cfg->max,
+>+				  cfg->menu_skip_mask);
+>+		break;
+> 	default:
+> 		break;
+> 	};
+>-- 
+>2.18.0
+>
 
