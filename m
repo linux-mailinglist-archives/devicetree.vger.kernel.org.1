@@ -1,118 +1,96 @@
-Return-Path: <devicetree+bounces-10546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79487D1DB4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 16:56:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC667D1E05
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 17:55:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C22681C20987
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 14:56:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E85F1C20946
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 15:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525F312B7C;
-	Sat, 21 Oct 2023 14:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AAD1A292;
+	Sat, 21 Oct 2023 15:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q0VneZA9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMw0w5lg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2193410A04
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 14:56:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18236D7;
-	Sat, 21 Oct 2023 07:56:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697900183; x=1729436183;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mZbYrMuL0Hg/WJ42cgIbcLp2WjDVIiKbUXUWZ6rKagQ=;
-  b=Q0VneZA9pTyiat1WKEjeUZqL8ezKRU8bhqn8702JcOQnHiPOboFvKMqa
-   r2hHMoDc7HnX424NeAC/Uu/AEwxudv5JQo+SzUiZIFepZSU4wUv3l8UAd
-   NmhAEaNEH64QhRLISdf8hrRXasXXTvuqlfwJawI3QRq6PqLV67Or3vq8I
-   hir2n6rTFhmp04pxJ5djaCyXoH0yrTk4OKHJHzhRt1l9TGzXwXl1bc0f9
-   4FU9tST7pnwkbj2azfc9xRnbRJG8ObJyCRtSuRh1gwEltaujCwM1YF4xu
-   kZGZGdrYImb7NFIlxUdwdp2wBkiPXYAuizlu0ch3WZOhRgp1Jg2wVpSiO
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="472860090"
-X-IronPort-AV: E=Sophos;i="6.03,241,1694761200"; 
-   d="scan'208";a="472860090"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2023 07:56:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="874218846"
-X-IronPort-AV: E=Sophos;i="6.03,241,1694761200"; 
-   d="scan'208";a="874218846"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 21 Oct 2023 07:56:11 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1quDOb-0004ww-18;
-	Sat, 21 Oct 2023 14:56:09 +0000
-Date: Sat, 21 Oct 2023 22:56:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: James Ogletree <james.ogletree@opensource.cirrus.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	James Ogletree <james.ogletree@cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
-	Fred Treven <fred.treven@cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] mfd: cs40l50: Add support for CS40L50 core driver
-Message-ID: <202310212247.exrCjFhj-lkp@intel.com>
-References: <20231018175726.3879955-4-james.ogletree@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9ECB18B1C
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 15:54:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D94FC433C8;
+	Sat, 21 Oct 2023 15:54:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697903698;
+	bh=RX/aqLDP1xRIhQbjEx9lk7WX42AI/4GHzOPjcXiwNd8=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=IMw0w5lgnQVLGFX1NMn08Lnthv/evMHQmiMO1+p7tAU3QC2QnJz0NqW7NAFdZ5P8S
+	 7PtP8BD1zW8GS9iO+Y8ucjA49uUzIGnIGnwr3wE2B8Ve2xRZLWF2d2kYM8l81b6QZU
+	 g77+gXxiSNncBnsZopqbMhAli8ARoIco1S/tOFX6L7BIq4j7nKZkAL41HGLzOsg2dN
+	 wF8bOC2sbDTo2Erc1eHjwubSfFKm5DdeJnpq4GiCGD19xCQMh7t3mH6QsOPwMvjTTc
+	 +QGKbPdyvSvJvCba/BV327ulnoqViqv8qUM1qH/RKmrTj3BOOq3Efyzp0bEwZZeVNs
+	 zdt0DwWq53Ffg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: agross@kernel.org,
+	konrad.dybcio@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	rafael@kernel.org,
+	viresh.kumar@linaro.org,
+	ilia.lin@kernel.org,
+	sivaprak@codeaurora.org,
+	quic_kathirav@quicinc.com,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: Re: (subset) [PATCH v5 0/9] Enable cpufreq for IPQ5332 & IPQ9574
+Date: Sat, 21 Oct 2023 08:58:33 -0700
+Message-ID: <169790390713.1690547.10661636631598722761.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <cover.1697781921.git.quic_varada@quicinc.com>
+References: <cover.1697781921.git.quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231018175726.3879955-4-james.ogletree@opensource.cirrus.com>
-
-Hi James,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus lee-mfd/for-mfd-next robh/for-next linus/master lee-mfd/for-mfd-fixes v6.6-rc6 next-20231020]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/James-Ogletree/dt-bindings-input-cirrus-cs40l50-Add-initial-DT-binding/20231019-015950
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231018175726.3879955-4-james.ogletree%40opensource.cirrus.com
-patch subject: [PATCH v4 3/4] mfd: cs40l50: Add support for CS40L50 core driver
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20231021/202310212247.exrCjFhj-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231021/202310212247.exrCjFhj-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310212247.exrCjFhj-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/mfd/cs40l50-spi.c:9:10: fatal error: linux/input/cs40l50.h: No such file or directory
-       9 | #include <linux/input/cs40l50.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
-vim +9 drivers/mfd/cs40l50-spi.c
+On Fri, 20 Oct 2023 11:49:30 +0530, Varadarajan Narayanan wrote:
+> Depends On:
+> https://lore.kernel.org/lkml/20230913-gpll_cleanup-v2-6-c8ceb1a37680@quicinc.com/T/
+> 
+> This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
+> For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
+> source switch is needed before cpu freq can be enabled.
+> 
+> [...]
 
-   > 9	#include <linux/input/cs40l50.h>
-    10	#include <linux/mfd/spi.h>
-    11	
+Applied, thanks!
 
+[1/9] clk: qcom: config IPQ_APSS_6018 should depend on QCOM_SMEM
+      commit: 6a15647d0adc686226045e8046369f34d6ab03ed
+[2/9] clk: qcom: clk-alpha-pll: introduce stromer plus ops
+      commit: 84da48921a97cee3dd1391659e93ee01d122b78b
+[3/9] clk: qcom: apss-ipq-pll: Use stromer plus ops for stromer plus pll
+      commit: 267e29198436a8cb6770213471f72502c895096a
+[4/9] clk: qcom: apss-ipq-pll: Fix 'l' value for ipq5332_pll_config
+      commit: 5b7a4d3d2b33398330aef69e0ff5656273483587
+[5/9] clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
+      commit: 00331227f42045314b3775957f2f7809fb3ac32f
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Bjorn Andersson <andersson@kernel.org>
 
