@@ -1,96 +1,107 @@
-Return-Path: <devicetree+bounces-10547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC667D1E05
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 17:55:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 526637D1E32
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 18:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E85F1C20946
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 15:55:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BE3E1C20925
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 16:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AAD1A292;
-	Sat, 21 Oct 2023 15:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71DE12B94;
+	Sat, 21 Oct 2023 16:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMw0w5lg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pjU9v8Sh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9ECB18B1C
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 15:54:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D94FC433C8;
-	Sat, 21 Oct 2023 15:54:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697903698;
-	bh=RX/aqLDP1xRIhQbjEx9lk7WX42AI/4GHzOPjcXiwNd8=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=IMw0w5lgnQVLGFX1NMn08Lnthv/evMHQmiMO1+p7tAU3QC2QnJz0NqW7NAFdZ5P8S
-	 7PtP8BD1zW8GS9iO+Y8ucjA49uUzIGnIGnwr3wE2B8Ve2xRZLWF2d2kYM8l81b6QZU
-	 g77+gXxiSNncBnsZopqbMhAli8ARoIco1S/tOFX6L7BIq4j7nKZkAL41HGLzOsg2dN
-	 wF8bOC2sbDTo2Erc1eHjwubSfFKm5DdeJnpq4GiCGD19xCQMh7t3mH6QsOPwMvjTTc
-	 +QGKbPdyvSvJvCba/BV327ulnoqViqv8qUM1qH/RKmrTj3BOOq3Efyzp0bEwZZeVNs
-	 zdt0DwWq53Ffg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: agross@kernel.org,
-	konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	rafael@kernel.org,
-	viresh.kumar@linaro.org,
-	ilia.lin@kernel.org,
-	sivaprak@codeaurora.org,
-	quic_kathirav@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: Re: (subset) [PATCH v5 0/9] Enable cpufreq for IPQ5332 & IPQ9574
-Date: Sat, 21 Oct 2023 08:58:33 -0700
-Message-ID: <169790390713.1690547.10661636631598722761.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <cover.1697781921.git.quic_varada@quicinc.com>
-References: <cover.1697781921.git.quic_varada@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E635251
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 16:17:38 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C78D5D
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 09:17:33 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c503da4fd6so27293811fa.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 09:17:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697905051; x=1698509851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2QCO7vKJdpewvnrGf7uSRM6TlZdVHtky0YfzwG9dgVY=;
+        b=pjU9v8Sh/YyZ8em/EcIQCkdxq2+38oY0OIMcZ/DbABHxJpz/lkPlMKWQMfaCjsBurT
+         dIiaPd+Ih/j+utE8T6fKkbdWZr80i7w1QsMjuwnuSrvWKQKSx8rnC/ClQE/54oSfA77/
+         c1LGbIJ7i1Lanwd8zGVa+vRwQQaVWqyeCFO70Z9bckUWP8+vEIVPKTm6bA4Uu14R1RWN
+         oy/qfamM5eCPtMlJ4yGP7hnVXpmXNpvNnloBSAYm7ixbYdlCe+vbnkm2w4J5CuoUaPTs
+         XxRZtVEvjYTpE4c4bUEM1qqxyMJihW0Iq1gOfOiQr1VqrrPsFpeCMNjXAcgB/gp7dxLs
+         3d6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697905051; x=1698509851;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2QCO7vKJdpewvnrGf7uSRM6TlZdVHtky0YfzwG9dgVY=;
+        b=hWANnI74yDJh9+HYrTdI6xwRD2zppb5r/zeHpOGpGo4sgnDY2v4jkQr7cRNqFrmmbc
+         UmYXBNYbY4wpF36wjVnp/hY0iiYtjxfdTwDltWh+zqUtyeR3SQUlCgyKDWKpM2DOY4W5
+         mJaPmy8V4xKScwTRbKYGdQbrm6amlSLX3tmuDRs6i/1WAh0UOvxjYIb0+aM506rzdJ1C
+         Dj17w2HRAjL3+00WwimdJlEc6K8LJhR55orlVgiXJethUI9PbHVH4Zws2SG8/ITwCaZG
+         TTXIYrBRwI/HzVItyzeJVFKbXMgNI8jJNxpY32COIn6SOJVc/WQWyH6Y06LuMo+Yemd6
+         freA==
+X-Gm-Message-State: AOJu0YxzTUExzkzWrXdHkji/k43oTmQUfFr4pf+85z7FFDpBe45EA45B
+	h6jjnVC2Y3WzgpbrXiFasPxSYQ==
+X-Google-Smtp-Source: AGHT+IGUX29kGn+O+8jtH1EHnalh5tcVZoDjnw2thl7vfAv7LtObZoQC9rYzurf+iaRF8Wb17E7sig==
+X-Received: by 2002:a2e:9210:0:b0:2bf:f7ea:884a with SMTP id k16-20020a2e9210000000b002bff7ea884amr3462294ljg.30.1697905051347;
+        Sat, 21 Oct 2023 09:17:31 -0700 (PDT)
+Received: from [192.168.1.116] (abyl4.neoplus.adsl.tpnet.pl. [83.9.31.4])
+        by smtp.gmail.com with ESMTPSA id h5-20020a05651c124500b002b95eb96ab7sm876376ljh.18.2023.10.21.09.17.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 Oct 2023 09:17:30 -0700 (PDT)
+Message-ID: <ae070706-2f0a-4932-b917-b8cc9a59b46e@linaro.org>
+Date: Sat, 21 Oct 2023 18:17:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] sc7180: Add qdsp baked soundcard
+To: Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: jenneron@postmarketos.org, linux-arm-msm@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231020-sc7180-qdsp-sndcard-v1-0-157706b7d06f@trvn.ru>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231020-sc7180-qdsp-sndcard-v1-0-157706b7d06f@trvn.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-On Fri, 20 Oct 2023 11:49:30 +0530, Varadarajan Narayanan wrote:
-> Depends On:
-> https://lore.kernel.org/lkml/20230913-gpll_cleanup-v2-6-c8ceb1a37680@quicinc.com/T/
+
+On 10/20/23 17:33, Nikita Travkin wrote:
+> Some devices, such as Acer Aspire 1, can't use lpass dirrectly, but
+> instead must use adsp core to play sound. Since otherwise the hardware
+> is, usually, very similar across the devices on the same platform, it
+> makes sense to reuse the same boardfile.
 > 
-> This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
-> For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
-> source switch is needed before cpu freq can be enabled.
+> This series refactors the sc7180.c slightly and adds the functions to
+> control clocks via adsp instead of controlling the hardware directly.
 > 
-> [...]
+> Existing google devices should experience no change.
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+s/baked/backed, unless it's a nice bread :)
 
-Applied, thanks!
-
-[1/9] clk: qcom: config IPQ_APSS_6018 should depend on QCOM_SMEM
-      commit: 6a15647d0adc686226045e8046369f34d6ab03ed
-[2/9] clk: qcom: clk-alpha-pll: introduce stromer plus ops
-      commit: 84da48921a97cee3dd1391659e93ee01d122b78b
-[3/9] clk: qcom: apss-ipq-pll: Use stromer plus ops for stromer plus pll
-      commit: 267e29198436a8cb6770213471f72502c895096a
-[4/9] clk: qcom: apss-ipq-pll: Fix 'l' value for ipq5332_pll_config
-      commit: 5b7a4d3d2b33398330aef69e0ff5656273483587
-[5/9] clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
-      commit: 00331227f42045314b3775957f2f7809fb3ac32f
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Konrad
 
