@@ -1,106 +1,107 @@
-Return-Path: <devicetree+bounces-10529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD837D1C6E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 12:18:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E777D1C77
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 12:20:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 062701F21244
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 10:18:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24B19B21176
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 10:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11944D536;
-	Sat, 21 Oct 2023 10:18:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E068DDC6;
+	Sat, 21 Oct 2023 10:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm6nVF/3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571401C36
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 10:18:15 +0000 (UTC)
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF12BD41;
-	Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-581fb6f53fcso1003893eaf.2;
-        Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697883490; x=1698488290;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=V5uRcWDpqOXlkA0SQTwaP57mswGoxWrMMHmifDFiYJQ=;
-        b=NXvIUKnYvUJpYVqFpXluqEiy6ohTAUB0/Sp4WQewuDL1h2gMrhniiy8fLLyGP4IV+6
-         cFttq3wbPChHFvPS58Xa/sGnVEExvbjdcmV7/Kvj2PsRYTc8DwuynQQORFcpZ1J/jorN
-         j7x2uZuV9fv4QVksUWj8q8IegZcBI991+9O9afCrcGCaamjWrSEKpBjosKqywREl/gQx
-         s4sDvBKfWaaEUE0EUPqBlZr6AwbJ5PSkOBO7Gbte+TbyjzQ2M4u55dN7MdGb/5djvb1d
-         cSYIjfe6HV6gpsZzhebYrFKJvwii1dl42wV+ry0yWM86M3j31WY3hSkvc4mzRZS8vtcF
-         9E+g==
-X-Gm-Message-State: AOJu0YysxW6CWo8rDGAgRIS8VswlhurZTfLxj9jpsLrF/k9JCIFw5JZE
-	sNH+/IszaqT5nQ1L1Qp+WEKbxnCcjg==
-X-Google-Smtp-Source: AGHT+IGDtLLxR/perzKXsJ9v5yb1s8dzQBjD6ACEuMoaQHz4QngTZigFfIlcNZ036tNmd6iDOvED2A==
-X-Received: by 2002:a05:6870:530e:b0:1e9:e0f3:d716 with SMTP id j14-20020a056870530e00b001e9e0f3d716mr5966616oan.37.1697883490180;
-        Sat, 21 Oct 2023 03:18:10 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id nd25-20020a056871441900b001dcfaba6d22sm781448oab.46.2023.10.21.03.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Oct 2023 03:18:09 -0700 (PDT)
-Received: (nullmailer pid 1320489 invoked by uid 1000);
-	Sat, 21 Oct 2023 10:18:08 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0455BD305;
+	Sat, 21 Oct 2023 10:20:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 786BEC433C8;
+	Sat, 21 Oct 2023 10:20:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697883645;
+	bh=ZZ68ZPi/suxrQ2sypyhx1bc0WmB+NG00aBTdxhJfjdo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jm6nVF/3IUsjlV9huNxWCM9lmSvgJI83txk9a0uyNNPYfsY/vsl0O2QAYCRFeKgGK
+	 Q0VRu3HXBnyZkoSQT54TsXNQ3ZvKtC2F3QEjy2rvfLoU9e2tXEvv/LLFq/m7cBQrXp
+	 Ex0F8kNxcoZUCvqd1+s9Cg2xxSLu6ZXj0ImCnWF0qDodumbCU3eZUOnTfgqcj2wUcm
+	 vvJe/uga4fAp9ME6MiGYD233p5wy3ov79rxwpgEaT03O6EnCHgMGZBUDjECUfc9PpD
+	 gnndGJ+DiQvAKohbK3nvaziY9ZkrtekRlLft0hZVgzd85EuemGgWrsB5rw2ZItZhCy
+	 gx75lqkBbiyaQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58405C0032E;
+	Sat, 21 Oct 2023 10:20:45 +0000 (UTC)
+From: Xilin Wu via B4 Relay <devnull+wuxilin123.gmail.com@kernel.org>
+Subject: [PATCH v2 0/3] Add initial support for Xiaomi Mi 11 Ultra
+Date: Sat, 21 Oct 2023 18:20:37 +0800
+Message-Id: <20231021-sakuramist-mi11u-v2-0-fa82c91ecaf0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Guo Mengqi <guomengqi3@huawei.com>
-Cc: vkoul@kernel.org, devicetree@vger.kernel.org, xuqiang36@huawei.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org, chenweilong@huawei.com, conor+dt@kernel.org
-In-Reply-To: <20231021093454.39822-3-guomengqi3@huawei.com>
-References: <20231021093454.39822-1-guomengqi3@huawei.com>
- <20231021093454.39822-3-guomengqi3@huawei.com>
-Message-Id: <169788348856.1320467.2316881090457833857.robh@kernel.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: dma: HiSilicon: Add bindings for
- HiSilicon Ascend sdma
-Date: Sat, 21 Oct 2023 05:18:08 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPWlM2UC/x3MQQqAIBBA0avErBN0CsKuEi3MphpCC6ciiO6et
+ HyL/x8QSkwCbfFAoouFt5iBZQF+cXEmxWM2oMbKaDRK3HomF1gOFdiYUw2WrCVsvK495GxPNPH
+ 9L7v+fT8M0WvJYgAAAA==
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Xilin Wu <wuxilin123@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1697883643; l=1030;
+ i=wuxilin123@gmail.com; s=20231021; h=from:subject:message-id;
+ bh=ZZ68ZPi/suxrQ2sypyhx1bc0WmB+NG00aBTdxhJfjdo=;
+ b=31ZrEbizsso30dbm1A04cuJgTiM7ym+eXyhFd0HHSVGVy7/2+Ti4kNF/dwpXCLPQPf0Y6VmLv
+ r7aUcnHQ9T1DX3ZGw3Msi7DkMCLxLIZGoI+4huWYjaq2KpuxwPM13bP
+X-Developer-Key: i=wuxilin123@gmail.com; a=ed25519;
+ pk=edoFbrGewAWr5/CxptHll7XzvXBjYiN49RrEgipi1Cg=
+X-Endpoint-Received:
+ by B4 Relay for wuxilin123@gmail.com/20231021 with auth_id=89
+X-Original-From: Xilin Wu <wuxilin123@gmail.com>
+Reply-To: <wuxilin123@gmail.com>
 
+This patch series add support for Xiaomi Mi 11 Ultra.
 
-On Sat, 21 Oct 2023 17:34:53 +0800, Guo Mengqi wrote:
-> Add device-tree binding documentation for sdma hardware on
-> HiSilicon Ascend SoC families.
-> 
-> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
-> ---
->  .../bindings/dma/hisilicon,ascend-sdma.yaml   | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-> 
+Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+---
+Changes in v2:
+- Modified framebuffer node name
+- Removed trailing blank line
+- Ensured all status property be the last one
+- Added UFS host controller supply
+- Link to v1: https://lore.kernel.org/r/all/20230806-xiaomi-star-v1-0-0c384e8b5737@gmail.com
+---
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+---
+Xilin Wu (3):
+      soc: qcom: pmic_glink: enable UCSI for SM8350
+      dt-bindings: arm: qcom: Add Xiaomi Mi 11 Ultra
+      arm64: dts: qcom: Add device tree for Xiaomi Mi 11 Ultra
 
-yamllint warnings/errors:
+ Documentation/devicetree/bindings/arm/qcom.yaml |    1 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/sm8350-xiaomi-star.dts | 1249 +++++++++++++++++++++++
+ drivers/soc/qcom/pmic_glink.c                   |    1 +
+ 4 files changed, 1252 insertions(+)
+---
+base-commit: 2dac75696c6da3c848daa118a729827541c89d33
+change-id: 20231021-sakuramist-mi11u-b9e99e27c04c
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml: dma-can-stall: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231021093454.39822-3-guomengqi3@huawei.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Xilin Wu <wuxilin123@gmail.com>
 
 
