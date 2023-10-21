@@ -1,161 +1,131 @@
-Return-Path: <devicetree+bounces-10541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8607D1CF9
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 14:05:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E59B97D1D62
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 16:08:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 021462823FD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 12:05:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6963A282116
+	for <lists+devicetree@lfdr.de>; Sat, 21 Oct 2023 14:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1716FDF40;
-	Sat, 21 Oct 2023 12:05:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Mw2uSNCq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB70DF45;
+	Sat, 21 Oct 2023 14:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100643D6B
-	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 12:05:35 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA221A4;
-	Sat, 21 Oct 2023 05:05:31 -0700 (PDT)
-Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id B2A09660734B;
-	Sat, 21 Oct 2023 13:05:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1697889929;
-	bh=gQiUDCIXsORWlCdDXjOiPPc1M08qgxbtKkFrrvPre/M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mw2uSNCqgJe1DNmZxFDBfWUlzMEPXrYIBuOK8dxmeCYe1Rz/2GwyDbIBWjbWx77Da
-	 rfUfsKcUZ4qWfDaLs41M57Hw9zN9VJHPCdY/pJwJ6LO62cnVZ9EIacybJ/WhkmjKOL
-	 yNVaX/NLX43ctI2SLnZoo1pc671uk5ELg5gYH8gjP4iuVvDASV28NGKzsMRE1Sbvw/
-	 6rzLPWThxLui5Jrb7POx4pqF3i4a0P0pis4pcQ5oZamCr9mC9KCydAPBmNR5t3y/rH
-	 g+1hCFpw0Fqx+dOiStVVxarHi8GU7KOrAwY3/sXRSuf8ooMLky/YpokODXFWI4mFL7
-	 LdWTSg8WPUmUg==
-Date: Sat, 21 Oct 2023 14:05:26 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A286DDA4
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 14:08:25 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9276ED66
+	for <devicetree@vger.kernel.org>; Sat, 21 Oct 2023 07:08:22 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1quCe3-0005gd-Ey; Sat, 21 Oct 2023 16:08:03 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1quCe2-003GVr-E8; Sat, 21 Oct 2023 16:08:02 +0200
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1quCe2-00FcKc-BI; Sat, 21 Oct 2023 16:08:02 +0200
+Date: Sat, 21 Oct 2023 16:08:02 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nas Chung <nas.chung@chipsnmedia.com>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
- codec IP support
-Message-ID: <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
-References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
- <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
- <b94e3561-f5ef-443f-98c7-9b79a8bbceec@linaro.org>
- <20231016134720.GA2650973-robh@kernel.org>
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: freescale: debix-som: Add heartbeat LED
+Message-ID: <20231021140802.4nyyaxclcrqv5n7b@pengutronix.de>
+References: <20231021005100.3490929-1-kieran.bingham@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231016134720.GA2650973-robh@kernel.org>
+In-Reply-To: <20231021005100.3490929-1-kieran.bingham@ideasonboard.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hey Rob and Krzysztof,
+Hi Kieran,
 
-On 16.10.2023 08:47, Rob Herring wrote:
->On Thu, Oct 12, 2023 at 03:24:12PM +0200, Krzysztof Kozlowski wrote:
->> On 12/10/2023 13:01, Sebastian Fricke wrote:
->> > From: Robert Beckett <bob.beckett@collabora.com>
->> >
->> > Add bindings for the chips&media wave5 codec driver
->> >
->> > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->> > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->> > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->> > ---
->> >  .../devicetree/bindings/media/cnm,wave5.yaml       | 60 ++++++++++++++++++++++
->> >  1 file changed, 60 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/media/cnm,wave5.yaml b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->> > new file mode 100644
->> > index 000000000000..b31d34aec05b
->> > --- /dev/null
->> > +++ b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->> > @@ -0,0 +1,60 @@
->> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> > +%YAML 1.2
->> > +---
->> > +$id: http://devicetree.org/schemas/media/cnm,wave5.yaml#
->>
->> Filename matching compatible, so: cnm,cm521c-vpu.yaml
+On 23-10-21, Kieran Bingham wrote:
+> Map the 'RUN' LED present on the Debix-SOM as a heartbeat.
+> 
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> ---
+>  .../dts/freescale/imx8mp-debix-som-a.dtsi     | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
+> index bc312aa1bfc8..c9a81486da48 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
+> @@ -20,6 +20,19 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+>  		enable-active-high;
+>  	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_led>;
+> +
+> +		status {
 
-With which compatible should the filename match? (see below)
-And just to be sure, this means that I rename the file to:
-`.../devicetree/bindings/media/cnm,wave521c.yaml`
+according the bindings-doc, this should be:
 
->>
->> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> > +
->> > +title: Chips&Media Wave 5 Series multi-standard codec IP
->> > +
->> > +maintainers:
->> > +  - Nas Chung <nas.chung@chipsnmedia.com>
->> > +  - Jackson Lee <jackson.lee@chipsnmedia.com>
->> > +
->> > +description:
->> > +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
->> > +
->> > +properties:
->> > +  compatible:
->> > +    enum:
->> > +      - cnm,cm521c-vpu
->>
->> Can this device be anything else? Why VPU suffix?
->
->It needs an SoC specific compatible (TI something...) as well (or
->instead). Unless there's a public spec with details on how many
->clocks, resets, interrupts, etc. there are.
+		'led-status' or 'led-0'
 
-Okay so how about this, a bit similar to the Coda driver supplying both
-a general option and a SoC specific version:
+> +			label = "yellow:status";
 
-properties:
-   compatible:
-     enum:
-       - ti,k3-j721sX-wave521c
-       - cnm,wave521c
+label is deprecated, instead function and color should be used.
 
-(ti,k3-j721sX-wave521c = manufacturer,SoC-codec)
-(tested on j721s2 but should work on other variations as well)
+With that fixed feel to add my:
 
-Another alternative could be: ti,k3-wave521c (less specific on a single
-SoC series but connected to a bigger range of devices)
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
->
->Rob
-
-Regards,
-Sebastian
-
->_______________________________________________
->Kernel mailing list -- kernel@mailman.collabora.com
->To unsubscribe send an email to kernel-leave@mailman.collabora.com
+> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+>  };
+>  
+>  &A53_0 {
+> @@ -203,6 +216,12 @@ &wdog1 {
+>  };
+>  
+>  &iomuxc {
+> +	pinctrl_gpio_led: gpioledgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16		0x19
+> +		>;
+> +	};
+> +
+>  	pinctrl_i2c1: i2c1grp {
+>  		fsl,pins = <
+>  			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL			0x400001c2
+> -- 
+> 2.34.1
+> 
+> 
 
