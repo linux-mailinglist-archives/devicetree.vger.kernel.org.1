@@ -1,123 +1,92 @@
-Return-Path: <devicetree+bounces-10660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B5A7D25E7
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 22:44:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DB17D25FC
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 22:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94F40B20C1C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:44:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D54C51C20860
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03BB101E3;
-	Sun, 22 Oct 2023 20:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F01E134CA;
+	Sun, 22 Oct 2023 20:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDgkekMV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KoVuVNe4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1151323C2;
-	Sun, 22 Oct 2023 20:44:15 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F6FE9;
-	Sun, 22 Oct 2023 13:44:13 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4083cd3917eso21143335e9.3;
-        Sun, 22 Oct 2023 13:44:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698007452; x=1698612252; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ubgw7EUHwh2i5TKOLdKPVsembpOTYUP/UvZXFU0rg78=;
-        b=mDgkekMViIMHUVKEElk6WIEAcPnNNvN3lgdSnXe7igIQN30kPThBt2we2voqngV8DF
-         fMTX7xTtPeM1jxT9eAJWIGCFS/9DjfaeRD0nvt8PqB5KmKPkJKpjnoXfZJ6tUPGuIEhI
-         u4K1pCh4W3IU+YErDM1TFa9Ny+IZd8QbHJRATs+k99zDAEkOHnZTV4qetS02MoFJcI9W
-         WD+Y2ZhcDIqFf7BLxIXuSfyokxE/9upBlpktRlW/MSnVAmi/oxvIpMgpyxGjAMLOGi40
-         uiu6S8oDi7g6gp+SWVPEqKSIGae/sI6Iij1YvxcZ97XSyWg617nzL2rHxjVJ75GIhZMJ
-         reuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698007452; x=1698612252;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ubgw7EUHwh2i5TKOLdKPVsembpOTYUP/UvZXFU0rg78=;
-        b=DVqQUdxzbFpmni4ejliis32a/6eX1sm8CaYir6633mcTzSIupE9+2pf+B9d7BhOhoz
-         EzWqXYQqm7W+uE7D7hqn7HuX/BB8Jlf5QYsawXHQjsZEiYahgzxgX+hjRIzgnIAsqqQ9
-         z/ovStXGrgpN+vbNLK+8b2FipVclmxpwXNB/yCCFlaLqqVp8o/TcSufUvLGsJOzniMD5
-         8dYuk8u5zX1Pq5Ap5ZLPZUvTaKpv9bTCv1eq1q6hJAAXv0/2WJeduWnJX83Vk7CSMguh
-         nqj+xZ7D6HYEOzN8ARLl4B2QZdYy/xrChYtReIocOiA1I9HrmCzSjTcQINUenFkBLX9O
-         CQXg==
-X-Gm-Message-State: AOJu0YzMyalFhdq5+VF5haw/taa1Sf8vukIlzKW8EyRTt2S9fGpoqC0p
-	bQEWHcuc5KuoMkbr5kmllds=
-X-Google-Smtp-Source: AGHT+IHZYO1YiVrh2DH1F+7+TsN/xjQg42iDfCcbvE3YbjU49pCuy7+y82CN88ZfctX3IIhkTcppsg==
-X-Received: by 2002:a05:6000:b11:b0:32d:b6a2:8de2 with SMTP id dj17-20020a0560000b1100b0032db6a28de2mr5271520wrb.39.1698007452174;
-        Sun, 22 Oct 2023 13:44:12 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id n18-20020a5d4852000000b0032db4e660d9sm6259104wrs.56.2023.10.22.13.44.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 13:44:11 -0700 (PDT)
-Message-ID: <6ea02e5e-bc95-48b5-d6e3-15338ebd0a4d@gmail.com>
-Date: Sun, 22 Oct 2023 22:44:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CC320E5
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 20:59:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFB6C433C9;
+	Sun, 22 Oct 2023 20:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698008370;
+	bh=HW680Nyjdn2sPjyuC26oFqzBy/xksD9kkFlNq2FbQls=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KoVuVNe4vB1/jdz0baWdh63iuLrq9z/xbM68NjeTWZ5aj/uFH2GNiE0Z/6Tx1oWwG
+	 cCZGIC2XMHPjLCB7zyOytks5aClPGnoQ80gRvhscu5fTo8MSTt+eBK7pwMDdB174Ew
+	 ldyODJAzZ72zGM37tNgPXzRUqVwz8ucH8p9hZgsADPl3U+LlXFm9S/7nz/Rzl0JpEn
+	 vEPo0HG8+9fKQ6ZiauytxgSjSX/7j/XxoUNdr3WHQOjyhHwynLCIpXgJOu/d+qSyXL
+	 w95vpX2BdG4041MnhQDJBVPcfRj+PTGRXzrDw5dS4z0qLaA8kPZ7yu021llAZ2HkPZ
+	 CUCNdelJgt53A==
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-507d1cc0538so3766491e87.2;
+        Sun, 22 Oct 2023 13:59:30 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxJBrxf+HcLskIj1m7/jx0ENYiRyB+51qAMufbC7dMZyY8LSKiv
+	uSf17C3V0XiBD54GXuNtnoRSnLGDK9IPe0Vhng==
+X-Google-Smtp-Source: AGHT+IHDN/5nZwYD/EXm3/U1KkSL7Zif4/flZGJGN0AEoRTDdt2jXysVZfPhK4kFVd/OYbw4cl6YfO6gYouOuCGHTmw=
+X-Received: by 2002:a05:6512:3747:b0:500:daf6:3898 with SMTP id
+ a7-20020a056512374700b00500daf63898mr4012711lfs.26.1698008369104; Sun, 22 Oct
+ 2023 13:59:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: usb: rockchip,dwc3: fix reference to
- nonexistent file
-To: Vegard Nossum <vegard.nossum@oracle.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
-References: <20231022185150.919293-1-vegard.nossum@oracle.com>
-Content-Language: en-US
-From: Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20231022185150.919293-1-vegard.nossum@oracle.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231020170225.3632933-1-robh@kernel.org> <20231022201748.GA32105@pendragon.ideasonboard.com>
+In-Reply-To: <20231022201748.GA32105@pendragon.ideasonboard.com>
+From: Rob Herring <robh@kernel.org>
+Date: Sun, 22 Oct 2023 15:59:16 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+UFZBM2bon3qogsq1az4fD0PW3-O2LJgLZ7Uf0zVsw6Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+UFZBM2bon3qogsq1az4fD0PW3-O2LJgLZ7Uf0zVsw6Q@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ti,ds90ub960: Add missing type for "i2c-alias"
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Oct 22, 2023 at 3:17=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Rob,
+>
+> Thank you for the patch.
+>
+> On Fri, Oct 20, 2023 at 12:02:24PM -0500, Rob Herring wrote:
+> > Every DT property needs a type defined, but "i2c-alias" is missing any
+> > type definition. It's a "uint32", so add a type reference.
+> >
+> > Fixes: 313e8b32c616 ("media: dt-bindings: media: add TI DS90UB960 FPD-L=
+ink III Deserializer")
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> This is something I should have paid more attention when reviewing the
+> bindings. I'll try to keep it in mind for the future.
 
+No need, the tools will check for you now. :)
 
-On 10/22/23 20:51, Vegard Nossum wrote:
-> This file was renamed but left a dangling reference. Fix it.
-> 
-> Fixes: 0f48b0ed356d ("dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml")
+But the same property defined multiple times is not yet checked
 
-> Cc: Johan Jonker <jbx6244@gmail.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-[PATCH v1] dt-bindings: usb: rockchip,dwc3: update inno usb2 phy binding name
-https://lore.kernel.org/linux-rockchip/f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com/
+Thanks.
 
-Already Acked.
-
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Vegard Nossum <vegard.nossum@oracle.com>
-> ---
->  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> index 291844c8f3e1..c983dfe0f629 100644
-> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> @@ -15,7 +15,7 @@ description:
->    Phy documentation is provided in the following places.
->  
->    USB2.0 PHY
-> -  Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> +  Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
->  
->    Type-C PHY
->    Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+Rob
 
