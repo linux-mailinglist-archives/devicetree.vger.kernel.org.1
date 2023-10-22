@@ -1,97 +1,123 @@
-Return-Path: <devicetree+bounces-10659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32BF77D25CB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 22:17:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B5A7D25E7
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 22:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 605431C208CD
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:17:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94F40B20C1C
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A77AF134A2;
-	Sun, 22 Oct 2023 20:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03BB101E3;
+	Sun, 22 Oct 2023 20:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h5TcbvBj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDgkekMV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90EAA6FA0
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 20:17:44 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C55F2;
-	Sun, 22 Oct 2023 13:17:42 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DB9A33D6;
-	Sun, 22 Oct 2023 22:17:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698005851;
-	bh=ddEPPlK70H204Yy7br9DdHH0Cq7Twvu7MQBse/6FuaU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h5TcbvBjibMR0naRzrjrdlDAqSoThlYtSEuOMphlpFfQuMbes6fk80e94UBOYdeE6
-	 IntMxOoZBX82NPLE8eLpdNogRJE5JjbXpj/7wvXQ5/oCWjLiRBnbxbvG4vCSgmVQbs
-	 rDjZaniStSy6XG4s6MWhpEqbWQjAYkpjjvOZKip0=
-Date: Sun, 22 Oct 2023 23:17:48 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: ti,ds90ub960: Add missing type for
- "i2c-alias"
-Message-ID: <20231022201748.GA32105@pendragon.ideasonboard.com>
-References: <20231020170225.3632933-1-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1151323C2;
+	Sun, 22 Oct 2023 20:44:15 +0000 (UTC)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F6FE9;
+	Sun, 22 Oct 2023 13:44:13 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4083cd3917eso21143335e9.3;
+        Sun, 22 Oct 2023 13:44:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698007452; x=1698612252; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ubgw7EUHwh2i5TKOLdKPVsembpOTYUP/UvZXFU0rg78=;
+        b=mDgkekMViIMHUVKEElk6WIEAcPnNNvN3lgdSnXe7igIQN30kPThBt2we2voqngV8DF
+         fMTX7xTtPeM1jxT9eAJWIGCFS/9DjfaeRD0nvt8PqB5KmKPkJKpjnoXfZJ6tUPGuIEhI
+         u4K1pCh4W3IU+YErDM1TFa9Ny+IZd8QbHJRATs+k99zDAEkOHnZTV4qetS02MoFJcI9W
+         WD+Y2ZhcDIqFf7BLxIXuSfyokxE/9upBlpktRlW/MSnVAmi/oxvIpMgpyxGjAMLOGi40
+         uiu6S8oDi7g6gp+SWVPEqKSIGae/sI6Iij1YvxcZ97XSyWg617nzL2rHxjVJ75GIhZMJ
+         reuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698007452; x=1698612252;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ubgw7EUHwh2i5TKOLdKPVsembpOTYUP/UvZXFU0rg78=;
+        b=DVqQUdxzbFpmni4ejliis32a/6eX1sm8CaYir6633mcTzSIupE9+2pf+B9d7BhOhoz
+         EzWqXYQqm7W+uE7D7hqn7HuX/BB8Jlf5QYsawXHQjsZEiYahgzxgX+hjRIzgnIAsqqQ9
+         z/ovStXGrgpN+vbNLK+8b2FipVclmxpwXNB/yCCFlaLqqVp8o/TcSufUvLGsJOzniMD5
+         8dYuk8u5zX1Pq5Ap5ZLPZUvTaKpv9bTCv1eq1q6hJAAXv0/2WJeduWnJX83Vk7CSMguh
+         nqj+xZ7D6HYEOzN8ARLl4B2QZdYy/xrChYtReIocOiA1I9HrmCzSjTcQINUenFkBLX9O
+         CQXg==
+X-Gm-Message-State: AOJu0YzMyalFhdq5+VF5haw/taa1Sf8vukIlzKW8EyRTt2S9fGpoqC0p
+	bQEWHcuc5KuoMkbr5kmllds=
+X-Google-Smtp-Source: AGHT+IHZYO1YiVrh2DH1F+7+TsN/xjQg42iDfCcbvE3YbjU49pCuy7+y82CN88ZfctX3IIhkTcppsg==
+X-Received: by 2002:a05:6000:b11:b0:32d:b6a2:8de2 with SMTP id dj17-20020a0560000b1100b0032db6a28de2mr5271520wrb.39.1698007452174;
+        Sun, 22 Oct 2023 13:44:12 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id n18-20020a5d4852000000b0032db4e660d9sm6259104wrs.56.2023.10.22.13.44.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Oct 2023 13:44:11 -0700 (PDT)
+Message-ID: <6ea02e5e-bc95-48b5-d6e3-15338ebd0a4d@gmail.com>
+Date: Sun, 22 Oct 2023 22:44:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231020170225.3632933-1-robh@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: usb: rockchip,dwc3: fix reference to
+ nonexistent file
+To: Vegard Nossum <vegard.nossum@oracle.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
+References: <20231022185150.919293-1-vegard.nossum@oracle.com>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20231022185150.919293-1-vegard.nossum@oracle.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
 
-Thank you for the patch.
 
-On Fri, Oct 20, 2023 at 12:02:24PM -0500, Rob Herring wrote:
-> Every DT property needs a type defined, but "i2c-alias" is missing any
-> type definition. It's a "uint32", so add a type reference.
+On 10/22/23 20:51, Vegard Nossum wrote:
+> This file was renamed but left a dangling reference. Fix it.
 > 
-> Fixes: 313e8b32c616 ("media: dt-bindings: media: add TI DS90UB960 FPD-Link III Deserializer")
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Fixes: 0f48b0ed356d ("dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml")
 
-This is something I should have paid more attention when reviewing the
-bindings. I'll try to keep it in mind for the future.
+> Cc: Johan Jonker <jbx6244@gmail.com>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+[PATCH v1] dt-bindings: usb: rockchip,dwc3: update inno usb2 phy binding name
+https://lore.kernel.org/linux-rockchip/f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com/
 
+Already Acked.
+
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Vegard Nossum <vegard.nossum@oracle.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> index 289737721c2c..0b71e6f911a8 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -69,6 +69,7 @@ properties:
->              maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> index 291844c8f3e1..c983dfe0f629 100644
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -15,7 +15,7 @@ description:
+>    Phy documentation is provided in the following places.
 >  
->            i2c-alias:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
->              description:
->                The I2C address used for the serializer. Transactions to this
->                address on the I2C bus where the deserializer resides are
-
--- 
-Regards,
-
-Laurent Pinchart
+>    USB2.0 PHY
+> -  Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> +  Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>  
+>    Type-C PHY
+>    Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
 
