@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3957D2415
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:01:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E24037D2426
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AFB61C208C5
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:01:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E7231C208C5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D7A10789;
-	Sun, 22 Oct 2023 16:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291B910971;
+	Sun, 22 Oct 2023 16:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z/Loa9RW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G0eoQu40"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCE36133
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:01:39 +0000 (UTC)
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD27112
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:01:37 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c50cf61f6dso37759891fa.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:01:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEEC46133
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:05:17 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E53AF7
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:05:16 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9adb9fa7200so522655066b.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:05:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697990495; x=1698595295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1697990715; x=1698595515; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XF8bZOPJInqq5OxQpnzQxfKIpWa2JL/vX2kovDuHNpI=;
-        b=Z/Loa9RWaONqFJyCGdaoAcXlUNJX6RrKBk8Ah4sGPY6569tKJ5nFZSbAHVnsWe0zq6
-         ZTuIKBY3ZS3/gnMfVYA289/dCAKYh1XVbNLCmSqk+DSD1CiODDO+tyR1dodoZQ7Mbgd9
-         5m2kA9wWF9e0ru7vkfXmZ6x090R6nJBakmBsuXfBK5olzB0mIWD+od8ux4TaDgjNZizM
-         0oe7HsoYyP61yM9IsKgXktyzm/mOdyewLm4owC7zCMh/DOcXP8gTaJMiDkM7h8pbMUao
-         28anNrrWHEK5iegGR/8u7vqJ2LEHcldTw9w0okzcZi5bD2l9VXCDFE75aHz0tadlXuNo
-         zbGQ==
+        bh=Nz06fEKj+muIVWRsfDMqvTNTReSFYKNaOH4kHlQeJ1A=;
+        b=G0eoQu40BtGwWGNkt7oKofdSPevo9wBqzWJwY4tHUE081vwFH6a3rwhLOkSkhCBPtQ
+         tzmlOD04R8u0DyzOLByMFEk8BI79IkbatQ6NLI/H00ER4P8DvGnQ9LteIRlD8TWiVgJA
+         m97CY1ecwXQzeEloik4CQJv74v0/RFLvaJ/tpNU9qPzPJHK5dcM5r5NSnsI8PokJC3O7
+         tsHebEIXSJWeVB4QzaS5VXQ+RAJpsTpo/o5TsdU6JNjPRIuSa4t3awOFe3FQ3kyVhJx3
+         ggCV2Yw5J+ilR8ahBBiyzNY20XinOLjePsxeH19+G+RvxfggbSzr73o1SV6B5XdtBrMR
+         yk6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697990495; x=1698595295;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697990715; x=1698595515;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XF8bZOPJInqq5OxQpnzQxfKIpWa2JL/vX2kovDuHNpI=;
-        b=O6daLnEMLu8N8T1+HtXrGwK/jZ9tl+gCeDn5IICsEQEF5wEQlyS/9TRw5ywzJuK8/I
-         kLz+HcIAZ0e9cuy/mxA9t+UyzBeh6yN/s4eFgr3PkP6tgwusI4rW6xPftfo1GP4OK98/
-         nNubhDk7HQAkr7KH/ZSAU58J5x+16Z3X5UhPwOW6TjDFdF32dRt+f3BZF+oTDjd9oTha
-         qz+S6h6Fpnz3JMh+LcCvBzM+8bqjXdeiA27Wbz6xBr5RwO3EW3ZQTd3oIpihsAVGttYn
-         ALqIcw6TqZMIJjz0aojZJ4LxCGn7XFI+mHYFllKIKuclT65J1dAYSO8+nTPMkHQdhXF/
-         ZHNg==
-X-Gm-Message-State: AOJu0YyWmdCqU+wULNWuoztXs8+m8OcpVyGsYtrNUf4YPX5e3exGjpbI
-	3E9fjjNcPCUvp4ApJJG1b8vjkg==
-X-Google-Smtp-Source: AGHT+IFThnnzT+oJdgMufKxYNUWxEEEv0x9joP7CgeWVHgINJI/Vzi8Ek8niFS6PfGRnZJVwbmmSYg==
-X-Received: by 2002:a05:651c:211d:b0:2bf:e61b:c980 with SMTP id a29-20020a05651c211d00b002bfe61bc980mr6172749ljq.8.1697990495328;
-        Sun, 22 Oct 2023 09:01:35 -0700 (PDT)
+        bh=Nz06fEKj+muIVWRsfDMqvTNTReSFYKNaOH4kHlQeJ1A=;
+        b=sM6LVNhhg3yZ4dNRQRcnODIBEdM0zlVmN28N8JoKt1U8W6g9zVBwX8SlQFTMuDGTfn
+         NiSFgi6iVPZoUAzIL/LtJP0u1Qhz7egxmNmJzGaZat6ghBikZNmAZ2ul0C9nnpIWSi4J
+         8vTQ7Qj9SD7EUIb7DYS7JYl41pe21aJynlOQ9pBoAHWQWjok9YGXrVzZTRqPorm1idFi
+         Y3sB8+590P32VFcu8+pbs2HkJhK1W+jVkwoHFmJN08m5FKD07CzNW1hyX7paNGvKqhi7
+         jLw1pXxYMAhFoPZ1Jr6amLPK0vtN7LrluJHI7POLovvNaCtJ4j1yTepJeQ+BJl/fxQXi
+         rjXw==
+X-Gm-Message-State: AOJu0YzYigEcStkXoXNrdDVoz8fEgurv/cSp1f+M/r4Nlm1FhyAEJ01B
+	vKz4EJ0wkOUj8Baz2q1LeTsFKg==
+X-Google-Smtp-Source: AGHT+IEAzTWtz18JMGhSnUnDqlRCGbNPQLeKM2V9oMAWGvscRKTq7KEMZJCoMHeYA+eT5V2F0jJ0qA==
+X-Received: by 2002:a17:907:7d90:b0:9a1:8993:9532 with SMTP id oz16-20020a1709077d9000b009a189939532mr8572576ejc.30.1697990714806;
+        Sun, 22 Oct 2023 09:05:14 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id c8-20020a05600c0a4800b0040775fd5bf9sm7345301wmq.0.2023.10.22.09.01.32
+        by smtp.gmail.com with ESMTPSA id mm27-20020a170906cc5b00b00993cc1242d4sm5244014ejb.151.2023.10.22.09.05.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 09:01:34 -0700 (PDT)
-Message-ID: <3d465d3c-386d-467b-87e9-806962464ac5@linaro.org>
-Date: Sun, 22 Oct 2023 18:01:31 +0200
+        Sun, 22 Oct 2023 09:05:14 -0700 (PDT)
+Message-ID: <23fa10f5-1220-4e38-942d-4033deac2de0@linaro.org>
+Date: Sun, 22 Oct 2023 18:05:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,29 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
- codec IP support
+Subject: Re: [PATCH v5 1/2] From: Luka Panio <lukapanio@gmail.com>
 Content-Language: en-US
-To: Sebastian Fricke <sebastian.fricke@collabora.com>,
- Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil
- <hverkuil@xs4all.nl>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>,
- linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- linux-kernel@vger.kernel.org,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
- Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>
-References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
- <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
- <b94e3561-f5ef-443f-98c7-9b79a8bbceec@linaro.org>
- <20231016134720.GA2650973-robh@kernel.org>
- <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
+To: Luka Panio <lukapanio@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
+ <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20231021203403.215023-1-lukapanio@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,88 +124,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
+In-Reply-To: <20231021203403.215023-1-lukapanio@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/10/2023 14:05, Sebastian Fricke wrote:
-> Hey Rob and Krzysztof,
-> 
-> On 16.10.2023 08:47, Rob Herring wrote:
->> On Thu, Oct 12, 2023 at 03:24:12PM +0200, Krzysztof Kozlowski wrote:
->>> On 12/10/2023 13:01, Sebastian Fricke wrote:
->>>> From: Robert Beckett <bob.beckett@collabora.com>
->>>>
->>>> Add bindings for the chips&media wave5 codec driver
->>>>
->>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->>>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->>>> ---
->>>>  .../devicetree/bindings/media/cnm,wave5.yaml       | 60 ++++++++++++++++++++++
->>>>  1 file changed, 60 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/media/cnm,wave5.yaml b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->>>> new file mode 100644
->>>> index 000000000000..b31d34aec05b
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->>>> @@ -0,0 +1,60 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/media/cnm,wave5.yaml#
->>>
->>> Filename matching compatible, so: cnm,cm521c-vpu.yaml
-> 
-> With which compatible should the filename match? (see below)
-> And just to be sure, this means that I rename the file to:
-> `.../devicetree/bindings/media/cnm,wave521c.yaml`
+On 21/10/2023 22:34, Luka Panio wrote:
+> dt-bindings: arm: qcom: Add Xiaomi Pad 6 (xiaomi-pipa)
 
-With the fallback compatible.
+Your subject is not correct.
 
 > 
->>>
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Chips&Media Wave 5 Series multi-standard codec IP
->>>> +
->>>> +maintainers:
->>>> +  - Nas Chung <nas.chung@chipsnmedia.com>
->>>> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
->>>> +
->>>> +description:
->>>> +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - cnm,cm521c-vpu
->>>
->>> Can this device be anything else? Why VPU suffix?
->>
->> It needs an SoC specific compatible (TI something...) as well (or
->> instead). Unless there's a public spec with details on how many
->> clocks, resets, interrupts, etc. there are.
+> Add a compatible for Xiaomi Pad 6.
 > 
-> Okay so how about this, a bit similar to the Coda driver supplying both
-> a general option and a SoC specific version:
+> Signed-off-by: Luka Panio <lukapanio@gmail.com>
+> 
+> ---
+> Update commit message
 
-Can generic compatible be used alone in board designs? If it is licensed
-block, then most likely you want a fallback.
+Please include full changelog. This is v5 so what happened between v1
+and v5?
 
-> 
-> properties:
->    compatible:
->      enum:
->        - ti,k3-j721sX-wave521c
->        - cnm,wave521c
-> 
-> (ti,k3-j721sX-wave521c = manufacturer,SoC-codec)
-> (tested on j721s2 but should work on other variations as well)
-> 
-> Another alternative could be: ti,k3-wave521c (less specific on a single
-> SoC series but connected to a bigger range of devices)
 
 Best regards,
 Krzysztof
