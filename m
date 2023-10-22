@@ -1,49 +1,51 @@
-Return-Path: <devicetree+bounces-10633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872967D24F0
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:30:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BDA97D24F2
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:31:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B46EB20CAF
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:30:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F33872813F4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896F61097E;
-	Sun, 22 Oct 2023 17:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC9610784;
+	Sun, 22 Oct 2023 17:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cAI+Fdqi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hzAt1Vab"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69C3323C9
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:30:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B516C433C7;
-	Sun, 22 Oct 2023 17:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF42223C9
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:31:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B6BC433C8;
+	Sun, 22 Oct 2023 17:31:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697995809;
-	bh=+cy7JrdQOmAKxt5f/1oHsfduy+/ecpkdk3TsslBEOTY=;
+	s=k20201202; t=1697995868;
+	bh=xIa81NLUBml5MoS2Eb3kkSqN1ZIghfNeP9hiSlzUH1A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cAI+FdqiohNObLN8vZFnXApengck5oXzAl/+SYEG5mKg/HGiYc+DR/Z+N1y9OArMq
-	 52RpK8oTCSc8RjZIByTPrPXBs355+Zze/yyrb6EGu6wpK7z/cMK5lPy7fQs67YZ48q
-	 RTp98LC7Erz/rDuIvFUByM6QK3SAO2LU8p+mcuthYOTFvXYnrEXFoEq0w7Eochi4rz
-	 Bf6kFBclcMktn9ZxCzJWaJD92yV6opUYMIGQJDtWZmjmI44e5qgs7YhSenDGA8vHj/
-	 fYm84jrgHKGvXDp/EIbtz9B/N5F+uwWbwLothAO7IHrERVg7cWcvMxA/GUdoHCmg53
-	 XcBMomOmBR01g==
-Date: Sun, 22 Oct 2023 18:30:04 +0100
+	b=hzAt1VabW6duveqB+z3dICSEWrqt9VsVnC0iGerJXDVutrrQ3RPrvRAb17u/S4miQ
+	 AR0wwKAyW+F3mbb1M9COYxgh3b1h2pLza2D9VUc3LpW2edvGjMsw1F0fgwOnU4YExb
+	 vQ8GKVmWOCcKGtGECvOb68yz+p+8HjHzXOdURqwjuFYnrfSUIUKqDs0e2VsDJ5XyAX
+	 IElUICMjwaB3hrzS9SfdIV7hqHuR3Q1PbDXdfU2BIpKZYFomxCV07vgn7SRdAYxIIC
+	 qi1tm0ffkcJ4BLKpKti+UqrL8srAGFS6d0kZ64b+sGuEih/DXeVP02rGaIrSF4KY1P
+	 jC+1JkrxllYng==
+Date: Sun, 22 Oct 2023 18:31:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Nik Bune <n2h9z4@gmail.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	skhan@linuxfoundation.org, baruch@tkos.co.il,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to
- yaml
-Message-ID: <20231022-perish-ample-e8c009664a19@spud>
-References: <20231022120328.137788-1-n2h9z4@gmail.com>
+To: lukas walter <lukas.walter@aceart.de>
+Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org, robh+dt@kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Huawei Honor 5X / GR5
+ (2016)
+Message-ID: <20231022-sequester-atypical-325eadda7a15@spud>
+References: <20231022-arousal-glowing-f72c8f2e44fa@spud>
+ <fc5234cd33b78369f792479795abd02710dfcdbf.camel@aceart.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,156 +53,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zVdCFydyJvbEUsVE"
+	protocol="application/pgp-signature"; boundary="RN7U2wqAnTB6dxtW"
 Content-Disposition: inline
-In-Reply-To: <20231022120328.137788-1-n2h9z4@gmail.com>
+In-Reply-To: <fc5234cd33b78369f792479795abd02710dfcdbf.camel@aceart.de>
 
 
---zVdCFydyJvbEUsVE
+--RN7U2wqAnTB6dxtW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 22, 2023 at 02:03:28PM +0200, Nik Bune wrote:
-> Convert txt file to yaml.
-> Add maintainers list. Took from Documentation/devicetree/bindings/arm/dig=
-icolor.yaml file.=20
-
-That seems like a bit of an odd reasoning, but Baruch was the submitter
-for the original txt form binding for this watchdog , per the git history.
-
+On Sun, Oct 22, 2023 at 01:40:41PM +0200, lukas walter wrote:
+> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> >How come this v1 has an ack?
 >=20
-> Signed-off-by: Nik Bune <n2h9z4@gmail.com>
-> ---
->  .../bindings/watchdog/cnxt,cx92755-wdt.yaml   | 49 +++++++++++++++++++
->  .../bindings/watchdog/digicolor-wdt.txt       | 25 ----------
->  2 files changed, 49 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx927=
-55-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-=
-wdt.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.=
-yaml b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-> new file mode 100644
-> index 000000000000..acd2d30b20f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/cnxt,cx92755-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Conexant Digicolor SoCs Watchdog timer
-> +
-> +description: |
-> +  The watchdog functionality in Conexant Digicolor SoCs relies on the so=
- called
-> +  "Agent Communication" block. This block includes the eight programmabl=
-e system
-> +  timer counters. The first timer (called "Timer A") is the only one tha=
-t can be
-> +  used as watchdog.
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +maintainers:
-> +  - Baruch Siach <baruch@tkos.co.il>
-> +
-> +properties:
-> +  compatible:
-> +    const: cnxt,cx92755-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      specifies the clock that drives the timer
+> This is supposed to be a v2, but I had problems sending it correctly,
+> sorry
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230916134147.1=
+63764-1-lukas.walter@aceart.de/
 
-This can just be:
-  clocks:
-    maxItems: 1
+The joys of email, ehh
 
-as clocks is a generic property & if there's only one clock, describing
-it is usually needless.
-
-Otherwise this conversion looks okay to me.
-
-Cheers,
-Conor.
-
-> +
-> +  timeout-sec: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    watchdog@f0000fc0 {
-> +        compatible =3D "cnxt,cx92755-wdt";
-> +        reg =3D <0xf0000fc0 0x8>;
-> +        clocks =3D <&main_clk>;
-> +        timeout-sec =3D <15>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt=
- b/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-> deleted file mode 100644
-> index a882967e17d4..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-> +++ /dev/null
-> @@ -1,25 +0,0 @@
-> -Conexant Digicolor SoCs Watchdog timer
-> -
-> -The watchdog functionality in Conexant Digicolor SoCs relies on the so c=
-alled
-> -"Agent Communication" block. This block includes the eight programmable =
-system
-> -timer counters. The first timer (called "Timer A") is the only one that =
-can be
-> -used as watchdog.
-> -
-> -Required properties:
-> -
-> -- compatible : Should be "cnxt,cx92755-wdt"
-> -- reg : Specifies base physical address and size of the registers
-> -- clocks : phandle; specifies the clock that drives the timer
-> -
-> -Optional properties:
-> -
-> -- timeout-sec : Contains the watchdog timeout in seconds
-> -
-> -Example:
-> -
-> -	watchdog@f0000fc0 {
-> -		compatible =3D "cnxt,cx92755-wdt";
-> -		reg =3D <0xf0000fc0 0x8>;
-> -		clocks =3D <&main_clk>;
-> -		timeout-sec =3D <15>;
-> -	};
-> --=20
-> 2.34.1
->=20
-
---zVdCFydyJvbEUsVE
+--RN7U2wqAnTB6dxtW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVcGAAKCRB4tDGHoIJi
-0u4nAQDbfwbOCduGR4mJFXl7eEwdSLF3zenXhEc5OBaGfw4rXwD/RcUcNDtbgrK9
-h2Ia6oTdJyJ2mf5wa0SlZO72g3zlGwA=
-=8fe0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVcVwAKCRB4tDGHoIJi
+0jJvAP4+ghdIssWpblmMi9YkVOa7s1TtwnvzXBODtTruht2GyQD/ewbu+P/6wDqx
+0A0ZZrh0Z3J/IfGnZcwNsjK3VxxvCgI=
+=XBcM
 -----END PGP SIGNATURE-----
 
---zVdCFydyJvbEUsVE--
+--RN7U2wqAnTB6dxtW--
 
