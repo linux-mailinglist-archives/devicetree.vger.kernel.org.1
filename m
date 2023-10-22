@@ -1,654 +1,216 @@
-Return-Path: <devicetree+bounces-10630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5D97D249C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:43:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD2B7D24DA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:18:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06D5628134B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:43:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B72928148D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815C3107A6;
-	Sun, 22 Oct 2023 16:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4ACDCA73;
+	Sun, 22 Oct 2023 17:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="oO7jnEw+";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="aOtGp4WO"
+	dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="h2CNDSPp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EC920F4
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:43:11 +0000 (UTC)
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB35112;
-	Sun, 22 Oct 2023 09:43:08 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 6E1EB32003F4;
-	Sun, 22 Oct 2023 12:43:04 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Sun, 22 Oct 2023 12:43:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to; s=fm1; t=
-	1697992983; x=1698079383; bh=lQwuNt1qlmcrKf7/523jBfqLrRcgY2nnd8g
-	PCaL8TPw=; b=oO7jnEw+XEM03u4wz+wmUq6DxEy+SI6nEI5vDSK+ENEZk5fZzwL
-	JNZf92kpU14ixaEcnTPSJJMCJyOOGla6jFLAMhs0ojVOfDp1vlczKVifugA/WQR5
-	hrwZM4as2+fscPO12mv3VO6ReF3vDFGnEa7lgAXqXf2bhcyBYD89tNeCTz6kixJq
-	ohYmYJOKH/1q9WuOC+DfhMg4zBt8wiV3XotcANOa4VYY0QD5ObWIbABav6B7PUla
-	banrjLlQaq2lOEJGehZGO8NJMidcyumLwUQhsNHFMReVoWB9mLwdBWVz6o5SMovO
-	uYXpl93H1yxCr1frvH9E3baQjEHnC9PewMQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1697992983; x=1698079383; bh=lQwuNt1qlmcrKf7/523jBfqLrRcgY2nnd8g
-	PCaL8TPw=; b=aOtGp4WOMhWwrDU7oPe9MywkdXHGQVGqd+ExJWI4usdJRu6a5F8
-	4Ll1x0TtsBlkLrhiYamusqpvimXF+SPg+yhIgnZgMiX3dmyRjAZNUgDQIGpCES3+
-	B+W9TYX4gXVEMmuXcNGiCW71b11M5ATBVkyOSYZokSEEG9WArs5LEU+jGpIDvfGu
-	Q3wN5uTrSQasS/Prv3nyk0KXWOGLHnPFGV7YhIOvtRAuzRfpLfWyHybItBVQYj0f
-	ycBMM11Ss1XSGKm+Rfulvg9FckRJVPhan7mtShiv7x+Xt2Au7d271lBGJhKj9JEh
-	Jml0npIdHfPQiVZTl6A0oSVsS/5BgU0zNeA==
-X-ME-Sender: <xms:F1E1ZUbASA9xs9TKsTO0SOcoCb52cKgMX3fQ5QAr1vG7N9Nth_7ZQg>
-    <xme:F1E1ZfbdNhsEkoxCwlwwdP4Lwh3dCyPU5dMUCQfcsJgjqx3XSXlF3JcZJ0W1aZPOf
-    vFTRXyNbbhtjNOxe34>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrkeeggddugecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedflfhi
-    rgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-    eqnecuggftrfgrthhtvghrnhepgfehhefhteegffdtledtkefhfeeuleegfeelkeehhfev
-    fedvkefgheejtdeigeevnecuffhomhgrihhnpegtphhsqdhvvggtrdhssgdpghgvnhgvgi
-    drshgsnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
-    jhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:F1E1Ze_d78u25oAnQb5m8_xaIKfK5C9XAwwpL6vvJjDU6XrBOnjvRQ>
-    <xmx:F1E1ZeqkvXWK6LVlv5Aa4w0J4KsGm-PrBwM367ZssTKBT2J_4vtmEw>
-    <xmx:F1E1Zfo35bOBBAQBykUadURz8pgtGoC7_FGnyT8XzUnLKDP0FH8svA>
-    <xmx:F1E1Zci8USUeh86o3zu09VIYmnNKjbxTl66vpzoj_Fvr75f9Uh5smQ>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id E7A5E36A0077; Sun, 22 Oct 2023 12:43:02 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1048-g9229b632c5-fm-20231019.001-g9229b632
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10C7211195
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:18:07 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2073.outbound.protection.outlook.com [40.107.93.73])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 450EDEE;
+	Sun, 22 Oct 2023 10:18:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nspV7ImP9gxi2GAS0YJU1I/u7jXzr7nr/WYIGWGjkE0tZgKAQx/AM7Kow7wzV71p+9yLlurjdYCVZd206QILRz6/ViFQkYyGBxNSQoMpn2wgfLUBHO9oDFw8XYRaaQBuiycTqsoGDc43jzGrfVfzrfWw2mKeNN22x5TTMtxh7H8QWRJrKT6WZfaNfdjE0Gjpz0BCFol3khqKzYnNWL7xRu3B5nQSY786ETRvqJ4zCeTlhYlNzBjToNh9RGr+zn22QKxAwuT5gKKCf+OB7EUzQT6ipCdvU/qlU+tIW6JpFcwcmH40OnOpRWANMFHFX0n8tfovZIzUDy9V8u3Sn4Cu2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PJOVljrfkuwt3CKHX8N4ijktw0Lng9++tU8/xRh/EE4=;
+ b=hIZR+d9XLe2GcuGyzakBNGIe1SgqHXAcobe/+hQL8FkI6nwt1AJGGjKstdLOULrGMumCe+0Rp8K/WcW4fMyRdovrGhvBizT7umjh0o+twcvRSmKh/wInC9iUHLsB8UMn4wpwoxthZrzGb/dFsgF6ikWZ3Zi//1v9iXflErKsKwvrbDJuLPOyw4OXm3v6Bgft183LRWvXTRlEOUbFwQW8d2GI5K30i/cWVw9P4Uk2xgdz9U++CYHfKfi6jLuobSbyw0Ru7yixq7h3bn9L073R87Y10UzltoiJBUTy/txga3fMAByrMUKnEe0OFB1EqP0gttOS1r48vZkb+m76Q7525A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PJOVljrfkuwt3CKHX8N4ijktw0Lng9++tU8/xRh/EE4=;
+ b=h2CNDSPpfPbbwIPlD9jiR2L9eWbOBAq3OL5evzehaTq7xax1RAgP9ztSKiS/YkU0N851632WhU30a8ikZHPzcgQVP+lk1U5at34pi/aTjklf8CER9Zd+IV08+W4XCyITnEL/rpmHNHlnLbp/D4I7Yx11gHEqw8q+tx/o1Y/0zIs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by DS0PR08MB8980.namprd08.prod.outlook.com
+ (2603:10b6:8:1a0::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Sun, 22 Oct
+ 2023 17:18:03 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::4528:c7c7:de7:aec2]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::4528:c7c7:de7:aec2%7]) with mapi id 15.20.6907.025; Sun, 22 Oct 2023
+ 17:18:02 +0000
+Date: Sun, 22 Oct 2023 12:17:55 -0500
+From: Jeff LaBundy <jeff@labundy.com>
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+Cc: Karel Balej <balejk@matfyz.cz>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Markuss Broks <markuss.broks@gmail.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] input: Imagis: add support for the IST3032C
+ touchscreen
+Message-ID: <ZTVZQ+Po20pcDWm8@nixie71>
+References: <20230926173531.18715-1-balejk@matfyz.cz>
+ <20230926173531.18715-3-balejk@matfyz.cz>
+ <ZROIKSVCiTI3VB2B@nixie71>
+ <CVUQTCJBG265.1MTSYOLY0FR7Q@gimli.ms.mff.cuni.cz>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CVUQTCJBG265.1MTSYOLY0FR7Q@gimli.ms.mff.cuni.cz>
+X-ClientProxiedBy: DS7PR03CA0270.namprd03.prod.outlook.com
+ (2603:10b6:5:3b3::35) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <13250432-d283-4329-be50-7cc7948c9110@app.fastmail.com>
-In-Reply-To: <20231004161038.2818327-3-gregory.clement@bootlin.com>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-3-gregory.clement@bootlin.com>
-Date: Sun, 22 Oct 2023 17:42:34 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 02/11] MIPS: use virtual addresses from xkphys for MIPS64
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|DS0PR08MB8980:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50706b65-4e7d-42e9-431b-08dbd322d8ba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	9mBbCsl2t5kfWIhtqVAozYDJ9rjLQBxseJRPL7vErUHyHSeoiXpn1dFUEW2zXW1DtA97K9jGeADXVNuFMon0putlIlOQ9IG94rvwIAKPmGibhOwv6DDF+4av8jbh6PDZjOKLRRvnGsJt7M3J2J3IsFH+5JZ+H3mocv9naKlvkIRfiocdBO2ty0Ggg8Yw4Ps4n+H1MrvvKGUM5Upw9bmfLIm/WpgdHZxIA15ttF1VsfbUBNABNvBUlxIFKJHmKQe01QK0/ofmrqv9iVr9nmZ/9lPbistot8EoID8SLUSSt7PhCgV9N5KZyqfp83uV82QWb4RB/86gPdN+LBjo2YP/07Ku3TNzGsVWSFZOwIghyz1qjaS1sTvD2SLWlF6kDcuml3aQcshTvNfwhrXqwW6SOkIelCIWUYHQzC1JfKFRrn/H4gwgDrS1UI7x0re8pTmE0b5WDeqjccvvnItSFYhO0PDomIpsWWLipDywHPCD9t8q02k/s6gPyioSbKRcZgLhsIZW/MOejhqIU3eviSo1Pj6fVBNHM0aDy77CM2F9PmOPLv5DXQwqoQT6/x6NZRQL03lop3I9GzMg7U0+v32l8exLNi94/h5teew+rWsIJRo=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(39830400003)(366004)(346002)(136003)(396003)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(478600001)(83380400001)(6486002)(7416002)(8676002)(316002)(54906003)(66946007)(4326008)(66476007)(6916009)(66556008)(8936002)(5660300002)(6506007)(86362001)(33716001)(38100700002)(6512007)(9686003)(26005)(41300700001)(6666004)(2906002)(67856001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hlgoddN5n1XTjkRtkJLQEXiO45JzeToXt168/lujY0r5Mk4sLLVBCiz447Ar?=
+ =?us-ascii?Q?nWyyCUnbKRSqkjFGDZMlvWkzi3nBbh5uPrIGKo8/RCpL9PZDaTwsFN2lE6wh?=
+ =?us-ascii?Q?rqHEZ54n5mnygDVVQ4j9gG7Frfdvdx+pYErZNYZPAQ9Sc0lrTAGqh6WN+mpd?=
+ =?us-ascii?Q?ngzP21MwJK7Opm6KtP35ApDNnRnz6EPZESmD9QTJBS6ZzWKN9OUhYP6vQZiO?=
+ =?us-ascii?Q?qqBchlK3JxhT2Y3/qBtFo1ENA3mlHNDvPfueZI5yeu+csFvZRkvRNe9+uH4Y?=
+ =?us-ascii?Q?SRfCo8V2px1iy70GyvWcfcGEg13vFS5Bhw59qhc+6vIDqLm5CRb7qAn0JdGK?=
+ =?us-ascii?Q?gaBf/nvhJMx7Nhari6wXNE3UwL4GTDj0e8RzWskOzPRIMcY+xD/jXVbwKJRl?=
+ =?us-ascii?Q?2g7FDBFp+WPih01ENVcYN/BZHq3GrZBqOc7XiH3KeGgWf+ziu6Wug8cg+Xfd?=
+ =?us-ascii?Q?JKCggVTftCgCak0WnnQkvAAMztOtHQH1zm7WckEPW2qrOEbREQG+xQFdlFaQ?=
+ =?us-ascii?Q?hC/rfqqzKk6/uM1rqFZgO7cl57T1d0NDjUbi8aFJf7UlIBIga/jCQSjHpHIX?=
+ =?us-ascii?Q?s5QvoIAoAuKNtJaeybGh4p3ojzEX3kCHZpFkEdHr0hNto9U5nFc9z8j743X6?=
+ =?us-ascii?Q?Dg9JpWWsa9Y7djEbFgszFwOXcGSMN4rL0yzuanWMiLrRNfI6t1HPDQxJT9hc?=
+ =?us-ascii?Q?T58SYBZBSwKOWya3lwTpz0r6EKgWmFd47Ik6Jfbv5DzUblla0gxnIPlE0o+a?=
+ =?us-ascii?Q?u7RXe+z93WfzOpAUsV0UEpvuGkyOV45djmZL4fnKu5PDtqamOxV8V4xCh4R1?=
+ =?us-ascii?Q?EhnkFmimcDc7OGz9D+zr6Ag+w+AwBtyZIYg8FY1gU5qFsdRdljjftuM8rUIg?=
+ =?us-ascii?Q?7GQl4KCpZ0Y5JSyd6U3e1kx82VLebBHcvImP9wAz5hD4qao4hh+QXkRtpoH/?=
+ =?us-ascii?Q?QW8KLuFfhFLkpGEbS0xkVdJ73R4sl2NtDqIMfNLj6oNCrApn68/kwDP+dRNH?=
+ =?us-ascii?Q?wvNDQn171Djg2jh2A/SADzHocIYs3nXKaM71ILLzFp4AxHGP7lCa7cSLBc1E?=
+ =?us-ascii?Q?JudpzQcoC/YHDP0kzrL6sct7AdNqpdDulwECiYsOczxaSUmpOhdvs6Tde2Yb?=
+ =?us-ascii?Q?wp8HwDKv1g0GGLNWt+6qAXvXVvFhuI7dUGuEbx7e36KLI0As5PMV2vZMdkcM?=
+ =?us-ascii?Q?8nY/hTMV2MX6tH9RAK97uRsKOAB3FZwZqql2Jv910/8qYKXPYFBe2lI8QZPC?=
+ =?us-ascii?Q?phPEodda46y2BL0e9HJenxuvO8+QNhoHCQz4TrbWcVyYJMApqyKOqBddTzIp?=
+ =?us-ascii?Q?pj5IF6nM3MQ4GMRNqTmWLA/MHLvrt3ZtaUPsL28LCZLNzsHWuXD+XvZ7xT8p?=
+ =?us-ascii?Q?w9CkUNNN6TRtz/Qx1TYcg/cXhQzXv3iF+35YQY3uDlEab9IEv5EGLHwL0nVi?=
+ =?us-ascii?Q?ZiRZ18P66fwBHWlBZnM3bB5f/ENU3znvn0WdSg+xjKjO/ZdqzW5jT6D1Sy4e?=
+ =?us-ascii?Q?yebV+wLkgg5VATujBk3XDYV8lWdwJ202tcLiBnW7gU/vLvYFb55MXYY5OCYp?=
+ =?us-ascii?Q?QHRG5tLwL6Bu0lW/ClkpS9d4dsvJ1V4RDqfAaKh+?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50706b65-4e7d-42e9-431b-08dbd322d8ba
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2023 17:18:02.5373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b1LCs8vIHwYmHe4lZx8vPC4vOWbdM/LTCLv0N43eo0j9bq46UygtwYfA3w01tzNq0YkvD1I/SH5rVk94Neulgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR08MB8980
 
+Hi Karel,
 
+On Thu, Sep 28, 2023 at 07:56:45PM +0200, Karel Balej wrote:
+> Hello, Jeff,
+> 
+> thank you very much for your feedback.
+> 
+> > > +	if (chip_id == IST3032C_WHOAMI) {
+> > > +		/*
+> > > +		 * if the regulator voltage is not set like this, the touchscreen
+> > > +		 * generates random touches without user interaction
+> > > +		 */
+> > > +		error = regulator_set_voltage(ts->supplies[0].consumer, 3100000, 3100000);
+> > > +		if (error)
+> > > +			dev_warn(dev, "failed to set regulator voltage\n");
+> > > +	}
+> > > +
+> >
+> > Opinions may vary, but mine is that this kind of hard-coded board-level policy
+> > does not belong in the driver. Surely the supply need not be equal to exactly
+> > 3.1 V and this is merely an upper or lower limit? Assuming so, what if the board
+> > designer opts to share this supply with another consumer that requires a specific
+> > voltage not equal to 3.1 V, but still within the safe range of IST3032C?
+> >
+> > To me, this restriction belongs in dts, specifically within the regulator child
+> > node referenced by the client which bears the new 'ist3032c' compatible string.
+> > Maybe a better solution is to simply note this presumed silicon erratum in the
+> > description of the vdd supply in the binding which, as Conor states, must not be
+> > clubbed with driver patches.
+> 
+> I agree that the voltage should not be hardcoded. I do not know what the
+> safe range for the touchscreen is though, because the downstream driver
+> does exactly this. I will try to test it with several values within the
+> range allowed by the regulator and see if I can determine some limits on
+> when the "ghost" touches do not appear.
+> 
+> However I am not sure whether this setting should be moved to the
+> regulator DT - it is my understanding that the DT for the regulator
+> should list the min/max range *supported* by the regulator, not conform
+> to requirements of its consumers, which should instead ask for the
+> regulator to be set to a range they require themselves, via their driver
+> - is it not so?
+> 
+> The regulator driver is not mainlined yet (although I managed to get the
+> downstream code working with mainline), however the downstream DT
+> contains much wider range of supported voltage (compared to those 3.1 V
+> used by the touchscreen) - an information which would get lost if I set
+> the DT for the regulator by the requirements of the touchscreen, which I
+> believe would have similiar implications as what you said regarding
+> using this regulator with other consumers.
+> 
+> What would seem a reasonable solution to me would be to move the voltage
+> range values to the touchscreen DT (which incidentally is what the
+> downstream driver does also, except it uses one value for both min and
+> max), so that they would be set by the driver but not hardcoded in the
+> code - what do you think about this?
 
-=E5=9C=A82023=E5=B9=B410=E6=9C=884=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8B=E5=
-=8D=885:10=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> From: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
->
-> Now 64-bit MIPS uses 32-bit compatible segments KSEG0 and KSEG1
-> to trivially map first 1/2 GByte of physical memory. This memory
-> used to run kernel. This mean, one should have memory installed
-> in this area in order for Linux to work.
->
-> Kconfig CONFIG_USE_XKPHYS introduced; it adds support for kernel
-> to use virtual addresses from the XKPHYS segment for both cached
-> and uncached access. XKPHYS allows to access 2^48 bytes of
-> memory, thus allowing kernel to work with any memory
-> configuration.
->
-> MIPS CPU sets KX bit in the CP0 status register at reset
-> if RESET_BASE_MODE (BIT 1) set in the GCR_CL_RESET_BASE.
->
-> Reset vector should fit into 32-bit. If reset vector put outside of
-> KSEG1, BIT(1) should be set in this value.
->
-> IRQ handler for CPU updated to generate 64-bit address for jump
+I believe this has been clarified in the other thread with Markuss, but
+just to close this out: in general, individual drivers should not be
+setting the output value of a regulator. Instead, they should merely mark
+themselves as a consumer of a regulator, and increment or decrement its
+usage counter by enabling and disabling the regulator, respectively.
 
-So I just spend some time to review and test this patch on QEMU,
-comments below:
+You are correct that the regulator node typically specifies the minimum
+and maximum voltages supported by the regulator, but if your board has
+a stricter range because said regulator is tied to something such as this
+touchscreen controller, then you can override the maximum voltage with
+something smaller (e.g. 3.1 V). The regulator framework will then set the
+output voltage according to the ultimate range defined in the device tree.
 
->
-> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@intel.com>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/Kconfig                 | 15 +++++++++++++
->  arch/mips/Makefile                |  4 ++++
->  arch/mips/generic/Platform        |  5 +++++
->  arch/mips/include/asm/addrspace.h | 12 ++++++++--
->  arch/mips/include/asm/mips-cm.h   |  1 +
->  arch/mips/include/asm/page.h      | 10 +++++++++
->  arch/mips/include/asm/vga.h       |  4 ++++
->  arch/mips/kernel/cps-vec.S        |  8 +++++++
->  arch/mips/kernel/genex.S          | 14 ++++++++++++
->  arch/mips/kernel/smp-cps.c        | 37 +++++++++++++++++++++++--------
->  arch/mips/kernel/traps.c          | 32 +++++++++++++++++++++++---
->  arch/mips/lib/uncached.c          | 10 +++++++++
->  arch/mips/mm/init.c               |  4 ++--
->  13 files changed, 140 insertions(+), 16 deletions(-)
->
-> diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-> index bc8421859006..92832bbcca5d 100644
-> --- a/arch/mips/Kconfig
-> +++ b/arch/mips/Kconfig
-> @@ -2026,6 +2026,21 @@ config 64BIT
->=20
->  endchoice
->=20
-> +config USE_XKPHYS
-> +	bool "use virtual address from XKPHYS"
-> +	depends on 64BIT
-> +	default n
-> +	help
-> +	 By default, MIPS uses 32-bit compatible segments KSEG0 and KSEG1
-> +	 to trivially map first 1/2 GByte of physical memory. This mean,
-> +	 one should have memory installed in this area in order for Linux to
-> +	 work. With this option selected, kernel uses virtual addresses from
-> +	 the XKPHYS segment for both cached and uncached access. XKPHYS allo=
-ws
-> +	 to access 2^48 bytes of memory, thus allowing to work with any memo=
-ry
-> +	 configuration.
-> +
-> +	 Say N if not sure
-> +
->  config MIPS_VA_BITS_48
->  	bool "48 bits virtual memory"
->  	depends on 64BIT
-> diff --git a/arch/mips/Makefile b/arch/mips/Makefile
-> index f49807e1f19b..544ee8427cab 100644
-> --- a/arch/mips/Makefile
-> +++ b/arch/mips/Makefile
-> @@ -303,6 +303,10 @@ ifdef CONFIG_64BIT
->      endif
->    endif
->=20
-> +  ifdef CONFIG_USE_XKPHYS
-> +      KBUILD_SYM32 =3D n
-> +  endif
-> +
->    ifeq ($(KBUILD_SYM32), y)
->      cflags-$(KBUILD_SYM32) +=3D -msym32 -DKBUILD_64BIT_SYM32
->    else
-> diff --git a/arch/mips/generic/Platform b/arch/mips/generic/Platform
-> index 0c03623f3897..2be9947814ad 100644
-> --- a/arch/mips/generic/Platform
-> +++ b/arch/mips/generic/Platform
-> @@ -12,7 +12,12 @@
->  cflags-$(CONFIG_MACH_INGENIC_SOC)	+=3D=20
-> -I$(srctree)/arch/mips/include/asm/mach-ingenic
->  cflags-$(CONFIG_MIPS_GENERIC)	+=3D=20
-> -I$(srctree)/arch/mips/include/asm/mach-generic
->=20
-> +ifndef (CONFIG_USE_XKPHYS)
->  load-$(CONFIG_MIPS_GENERIC)	+=3D 0xffffffff80100000
-> +else
-> +load-$(CONFIG_MIPS_GENERIC)	+=3D 0xa800000080100000
-> +endif
+Often times the baseline regulator nodes are defined in a PMIC-specific
+.dtsi file, or part of a more generic board definition. Then, some nodes
+are overridden at a higher level in the heirarchy tailored to the board,
+or an overlay applied by the bootloader.
 
-Better to make load address configurable.
+> 
+> Best regards,
+> K. B.
 
-> +
->  all-$(CONFIG_MIPS_GENERIC)	+=3D vmlinux.gz.itb
->=20
->  its-y					:=3D vmlinux.its.S
-> diff --git a/arch/mips/include/asm/addrspace.h=20
-> b/arch/mips/include/asm/addrspace.h
-> index 59a48c60a065..8dc500d8e66d 100644
-> --- a/arch/mips/include/asm/addrspace.h
-> +++ b/arch/mips/include/asm/addrspace.h
-> @@ -65,10 +65,15 @@
->  #define XKSSEG			_CONST64_(0x4000000000000000)
->  #define XKPHYS			_CONST64_(0x8000000000000000)
->  #define XKSEG			_CONST64_(0xc000000000000000)
-> +#if !defined(CONFIG_USE_XKPHYS)
->  #define CKSEG0			_CONST64_(0xffffffff80000000)
->  #define CKSEG1			_CONST64_(0xffffffffa0000000)
->  #define CKSSEG			_CONST64_(0xffffffffc0000000)
->  #define CKSEG3			_CONST64_(0xffffffffe0000000)
-> +#else
-> +#define CKSEG0			XKPHYS_CM_CACHED
-> +#define CKSEG1			XKPHYS_CM_UNCACHED
-> +#endif /* !defined(CONFIG_USE_XKPHYS) */
->=20
->  #define CKSEG0ADDR(a)		(CPHYSADDR(a) | CKSEG0)
->  #define CKSEG1ADDR(a)		(CPHYSADDR(a) | CKSEG1)
-> @@ -126,8 +131,11 @@
->  #define PHYS_TO_XKSEG_UNCACHED(p)	PHYS_TO_XKPHYS(K_CALG_UNCACHED, (p))
->  #define PHYS_TO_XKSEG_CACHED(p)		PHYS_TO_XKPHYS(K_CALG_COH_SHAREABLE,=
- (p))
->  #define XKPHYS_TO_PHYS(p)		((p) & TO_PHYS_MASK)
-> -#define PHYS_TO_XKPHYS(cm, a)		(XKPHYS | (_ACAST64_(cm) << 59) | (a))
-> -
-> +#define XKPHYS_CM(cm)			(XKPHYS | (_ACAST64_(cm) << 59))
-> +#define PHYS_TO_XKPHYS(cm, a)		(XKPHYS_CM(cm) | (a))
-> +#define XKPHYS_CM_CACHED		(XKPHYS_CM(K_CALG_COH_SHAREABLE))
-> +#define XKPHYS_CM_UNCACHED		(XKPHYS_CM(K_CALG_UNCACHED))
-> +#define IS_XKPHYS(a)			(((a) >> 62) =3D=3D 2)
->  /*
->   * The ultimate limited of the 64-bit MIPS architecture:  2 bits for =
-selecting
->   * the region, 3 bits for the CCA mode.  This leaves 59 bits of which=
- the
-> diff --git a/arch/mips/include/asm/mips-cm.h b/arch/mips/include/asm/m=
-ips-cm.h
-> index 23c67c0871b1..15d8d69de455 100644
-> --- a/arch/mips/include/asm/mips-cm.h
-> +++ b/arch/mips/include/asm/mips-cm.h
-> @@ -311,6 +311,7 @@ GCR_CX_ACCESSOR_RW(32, 0x018, other)
->  /* GCR_Cx_RESET_BASE - Configure where powered up cores will fetch fr=
-om */
->  GCR_CX_ACCESSOR_RW(32, 0x020, reset_base)
->  #define CM_GCR_Cx_RESET_BASE_BEVEXCBASE		GENMASK(31, 12)
-> +#define CM_GCR_Cx_RESET_BASE_MODE		BIT(1)
->=20
->  /* GCR_Cx_ID - Identify the current core */
->  GCR_CX_ACCESSOR_RO(32, 0x028, id)
-> diff --git a/arch/mips/include/asm/page.h b/arch/mips/include/asm/page=
-.h
-> index 5978a8dfb917..53b8306da571 100644
-> --- a/arch/mips/include/asm/page.h
-> +++ b/arch/mips/include/asm/page.h
-> @@ -176,7 +176,11 @@ static inline unsigned long ___pa(unsigned long x)
->  		 * the compatibility segements ckseg0 or ckseg1, or it may
->  		 * be in xkphys.
->  		 */
-> +#if defined(CONFIG_USE_XKPHYS)
-> +		return XPHYSADDR(x);
-> +#else
->  		return x < CKSEG0 ? XPHYSADDR(x) : CPHYSADDR(x);
-> +#endif
-
-Dangerous, there might be some code passing KSEG0/1 address to __pa, so
-we should not disregard it.
-
->  	}
->=20
->  	if (!IS_ENABLED(CONFIG_EVA)) {
-> @@ -196,7 +200,11 @@ static inline unsigned long ___pa(unsigned long x)
->  	return x - PAGE_OFFSET + PHYS_OFFSET;
->  }
->  #define __pa(x)		___pa((unsigned long)(x))
-> +#if IS_ENABLED(CONFIG_64BIT) && IS_ENABLED(CONFIG_USE_XKPHYS)
-> +#define __va(x)		((void *)PHYS_TO_XKSEG_CACHED(x))
-> +#else
->  #define __va(x)		((void *)((unsigned long)(x) + PAGE_OFFSET - PHYS_OF=
-FSET))
-> +#endif
-
-PAGE_OFFSET resolves to CAC_BASE anyway, so unnecessary.
-
->  #include <asm/io.h>
->=20
->  /*
-> @@ -239,6 +247,8 @@ static inline unsigned long kaslr_offset(void)
->  	return __kaslr_offset;
->  }
->=20
-> +#define UNCAC_ADDR(addr)       (UNCAC_BASE + __pa(addr))
-> +
->  #include <asm-generic/memory_model.h>
->  #include <asm-generic/getorder.h>
->=20
-> diff --git a/arch/mips/include/asm/vga.h b/arch/mips/include/asm/vga.h
-> index 0136e0366698..e338e57d0784 100644
-> --- a/arch/mips/include/asm/vga.h
-> +++ b/arch/mips/include/asm/vga.h
-> @@ -16,7 +16,11 @@
->   *	access the videoram directly without any black magic.
->   */
->=20
-> +#if defined(CONFIG_USE_XKPHYS)
-> +#define VGA_MAP_MEM(x, s)	UNCAC_ADDR(0x10000000L + (unsigned long)(x))
-> +#else
->  #define VGA_MAP_MEM(x, s)	CKSEG1ADDR(0x10000000L + (unsigned long)(x))
-> +#endif
-
-VGA_MAP_MEM intends to work on some really legacy systems, it won't break
-your platform, so better leave it as is.
-
->=20
->  #define vga_readb(x)	(*(x))
->  #define vga_writeb(x, y)	(*(y) =3D (x))
-> diff --git a/arch/mips/kernel/cps-vec.S b/arch/mips/kernel/cps-vec.S
-> index 64ecfdac6580..541f31a43a7f 100644
-> --- a/arch/mips/kernel/cps-vec.S
-> +++ b/arch/mips/kernel/cps-vec.S
-> @@ -554,7 +554,11 @@ LEAF(mips_cps_cache_init)
->  	mul	t1, t1, t0
->  	mul	t1, t1, t2
->=20
-> +#if defined(CONFIG_USE_XKPHYS)
-> +	PTR_LI	a0, XKPHYS_CM_CACHED
-> +#else
->  	li	a0, CKSEG0
-> +#endif
-
-Unnecessary, KSEG0 address here are just for matching cache ways,
-so there is no difference to use KSEG0 or XKPHYS.
-
-If you are using XKPHYS here you must extarct CCA from bootinfo
-or CP0 as it may varies on different systems.
-
->  	PTR_ADD	a1, a0, t1
->  1:	cache	Index_Store_Tag_I, 0(a0)
->  	PTR_ADD	a0, a0, t0
-> @@ -581,7 +585,11 @@ icache_done:
->  	mul	t1, t1, t0
->  	mul	t1, t1, t2
->=20
-> +#if defined(CONFIG_USE_XKPHYS)
-> +	PTR_LI	a0, XKPHYS_CM_CACHED
-> +#else
-
-Ditto.
-
->  	li	a0, CKSEG0
-> +#endif
->  	PTR_ADDU a1, a0, t1
->  	PTR_SUBU a1, a1, t0
->  1:	cache	Index_Store_Tag_D, 0(a0)
-> diff --git a/arch/mips/kernel/genex.S b/arch/mips/kernel/genex.S
-> index b6de8e88c1bd..a002058e1838 100644
-> --- a/arch/mips/kernel/genex.S
-> +++ b/arch/mips/kernel/genex.S
-> @@ -272,11 +272,25 @@ NESTED(except_vec_vi, 0, sp)
->  	.set	push
->  	.set	noreorder
->  	PTR_LA	v1, except_vec_vi_handler
-> +#if defined(CONFIG_USE_XKPHYS)
-> +FEXPORT(except_vec_vi_63_48)
-> +	lui	v0, 0		/* Patched - bits 63:48 */
-> +FEXPORT(except_vec_vi_47_32)
-> +	ori	v0, 0		/* Patched - bits 47:32 */
-> +	dsll	v0, v0, 0x10
-> +FEXPORT(except_vec_vi_31_16)
-> +	ori	v0, 0		/* Patched - bits 31:16 */
-> +	dsll	v0, v0, 0x10
-> +	jr	v1
-> +FEXPORT(except_vec_vi_15_0)
-> +	ori	v0, 0		/* Patched - bits 15:0 */
-> +#else /* defined(CONFIG_USE_XKPHYS) */
->  FEXPORT(except_vec_vi_lui)
->  	lui	v0, 0		/* Patched */
->  	jr	v1
->  FEXPORT(except_vec_vi_ori)
->  	 ori	v0, 0		/* Patched */
-> +#endif /* defined(CONFIG_USE_XKPHYS) */
->  	.set	pop
->  	END(except_vec_vi)
->  EXPORT(except_vec_vi_end)
-> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
-> index dd55d59b88db..47e76722a306 100644
-> --- a/arch/mips/kernel/smp-cps.c
-> +++ b/arch/mips/kernel/smp-cps.c
-> @@ -34,10 +34,33 @@ static unsigned __init core_vpe_count(unsigned int=20
-> cluster, unsigned core)
->  	return min(smp_max_threads, mips_cps_numvps(cluster, core));
->  }
->=20
-> +/**
-> + * plat_core_entry - query reset vector for NMI/reset
-> + *
-> + * Returns low 32 bits of the reset vector
-> + *
-> + * This is used to fill 2 registers:
-> + * - BEV Base (GCR_BEV_BASE) Offset: 0x0680
-> + * - VP Local Reset Exception Base (GCR_CL_RESET_BASE,GCR_CO_RESET_BA=
-SE)
-> + *   Offset: 0x0020 (0x2020 relative to GCR_BASE_ADDR)
-> + *
-> + * In both registers, BIT(1) should be set in case it uses address in=
- XKPHYS
-> + * (as opposed to KSEG1). This bit defined as CM_GCR_Cx_RESET_BASE_MO=
-DE,
-> + * using it unconditionally because for GCR_BEV_BASE its value is the=
- same
-> + */
-> +static u32 plat_core_entry(void)
-> +{
-> +#if defined(CONFIG_USE_XKPHYS)
-> +	return (UNCAC_ADDR(mips_cps_core_entry) & 0xffffffff)
-> +			| CM_GCR_Cx_RESET_BASE_MODE;
-> +#else
-> +	return CKSEG1ADDR((unsigned long)mips_cps_core_entry);
-> +#endif
-
-This is a CM3 feature, so perhaps we should handle it in a general
-way.
-
-> +}
-> +
->  static void __init cps_smp_setup(void)
->  {
->  	unsigned int nclusters, ncores, nvpes, core_vpes;
-> -	unsigned long core_entry;
->  	int cl, c, v;
->=20
->  	/* Detect & record VPE topology */
-> @@ -94,10 +117,8 @@ static void __init cps_smp_setup(void)
->  	/* Make core 0 coherent with everything */
->  	write_gcr_cl_coherence(0xff);
->=20
-> -	if (mips_cm_revision() >=3D CM_REV_CM3) {
-> -		core_entry =3D CKSEG1ADDR((unsigned long)mips_cps_core_entry);
-> -		write_gcr_bev_base(core_entry);
-> -	}
-> +	if (mips_cm_revision() >=3D CM_REV_CM3)
-> +		write_gcr_bev_base(plat_core_entry());
->=20
->  #ifdef CONFIG_MIPS_MT_FPAFF
->  	/* If we have an FPU, enroll ourselves in the FPU-full mask */
-> @@ -213,7 +234,7 @@ static void boot_core(unsigned int core, unsigned=20
-> int vpe_id)
->  	mips_cm_lock_other(0, core, 0, CM_GCR_Cx_OTHER_BLOCK_LOCAL);
->=20
->  	/* Set its reset vector */
-> -	write_gcr_co_reset_base(CKSEG1ADDR((unsigned long)mips_cps_core_entr=
-y));
-> +	write_gcr_co_reset_base(plat_core_entry());
->=20
->  	/* Ensure its coherency is disabled */
->  	write_gcr_co_coherence(0);
-> @@ -290,7 +311,6 @@ static int cps_boot_secondary(int cpu, struct=20
-> task_struct *idle)
->  	unsigned vpe_id =3D cpu_vpe_id(&cpu_data[cpu]);
->  	struct core_boot_config *core_cfg =3D &mips_cps_core_bootcfg[core];
->  	struct vpe_boot_config *vpe_cfg =3D &core_cfg->vpe_config[vpe_id];
-> -	unsigned long core_entry;
->  	unsigned int remote;
->  	int err;
->=20
-> @@ -314,8 +334,7 @@ static int cps_boot_secondary(int cpu, struct=20
-> task_struct *idle)
->=20
->  	if (cpu_has_vp) {
->  		mips_cm_lock_other(0, core, vpe_id, CM_GCR_Cx_OTHER_BLOCK_LOCAL);
-> -		core_entry =3D CKSEG1ADDR((unsigned long)mips_cps_core_entry);
-> -		write_gcr_co_reset_base(core_entry);
-> +		write_gcr_co_reset_base(plat_core_entry());
->  		mips_cm_unlock_other();
->  	}
->=20
-> diff --git a/arch/mips/kernel/traps.c b/arch/mips/kernel/traps.c
-> index 246c6a6b0261..875594843626 100644
-> --- a/arch/mips/kernel/traps.c
-> +++ b/arch/mips/kernel/traps.c
-> @@ -2091,11 +2091,20 @@ static void *set_vi_srs_handler(int n,=20
-> vi_handler_t addr, int srs)
->  		 * If no shadow set is selected then use the default handler
->  		 * that does normal register saving and standard interrupt exit
->  		 */
-> -		extern const u8 except_vec_vi[], except_vec_vi_lui[];
-> -		extern const u8 except_vec_vi_ori[], except_vec_vi_end[];
-> +		extern const u8 except_vec_vi[], except_vec_vi_end[];
->  		extern const u8 rollback_except_vec_vi[];
->  		const u8 *vec_start =3D using_rollback_handler() ?
->  				      rollback_except_vec_vi : except_vec_vi;
-> +		const int handler_len =3D except_vec_vi_end - vec_start;
-> +#if defined(CONFIG_USE_XKPHYS)
-> +		extern const u8 except_vec_vi_63_48[], except_vec_vi_47_32[];
-> +		extern const u8 except_vec_vi_31_16[], except_vec_vi_15_0[];
-> +		const int offset_63_48 =3D except_vec_vi_63_48 - vec_start;
-> +		const int offset_47_32 =3D except_vec_vi_47_32 - vec_start;
-> +		const int offset_31_16 =3D except_vec_vi_31_16 - vec_start;
-> +		const int offset_15_0  =3D except_vec_vi_15_0  - vec_start;
-> +#else /* defined(CONFIG_USE_XKPHYS) */
-> +		extern const u8 except_vec_vi_lui[], except_vec_vi_ori[];
->  #if defined(CONFIG_CPU_MICROMIPS) || defined(CONFIG_CPU_BIG_ENDIAN)
->  		const int lui_offset =3D except_vec_vi_lui - vec_start + 2;
->  		const int ori_offset =3D except_vec_vi_ori - vec_start + 2;
-> @@ -2103,7 +2112,7 @@ static void *set_vi_srs_handler(int n,=20
-> vi_handler_t addr, int srs)
->  		const int lui_offset =3D except_vec_vi_lui - vec_start;
->  		const int ori_offset =3D except_vec_vi_ori - vec_start;
->  #endif
-> -		const int handler_len =3D except_vec_vi_end - vec_start;
-> +#endif /* defined(CONFIG_USE_XKPHYS) */
->=20
->  		if (handler_len > VECTORSPACING) {
->  			/*
-> @@ -2119,10 +2128,21 @@ static void *set_vi_srs_handler(int n,=20
-> vi_handler_t addr, int srs)
->  #else
->  				handler_len);
->  #endif
-> +#if defined(CONFIG_USE_XKPHYS)
-> +		h =3D (u16 *)(b + offset_63_48);
-> +		*h =3D (handler >> 48) & 0xffff;
-> +		h =3D (u16 *)(b + offset_47_32);
-> +		*h =3D (handler >> 32) & 0xffff;
-> +		h =3D (u16 *)(b + offset_31_16);
-> +		*h =3D (handler >> 16) & 0xffff;
-> +		h =3D (u16 *)(b + offset_15_0);
-> +		*h =3D (handler >> 0) & 0xffff;
-> +#else /* defined(CONFIG_USE_XKPHYS) */
->  		h =3D (u16 *)(b + lui_offset);
->  		*h =3D (handler >> 16) & 0xffff;
->  		h =3D (u16 *)(b + ori_offset);
->  		*h =3D (handler & 0xffff);
-> +#endif /* defined(CONFIG_USE_XKPHYS) */
->  		local_flush_icache_range((unsigned long)b,
->  					 (unsigned long)(b+handler_len));
->  	}
-> @@ -2332,7 +2352,11 @@ static const char panic_null_cerr[] =3D
->  void set_uncached_handler(unsigned long offset, void *addr,
->  	unsigned long size)
->  {
-> +#if IS_ENABLED(CONFIG_64BIT) && IS_ENABLED(CONFIG_USE_XKPHYS)
-> +	unsigned long uncached_ebase =3D UNCAC_ADDR(ebase);
-> +#else
->  	unsigned long uncached_ebase =3D CKSEG1ADDR(ebase);
-> +#endif
->=20
->  	if (!addr)
->  		panic(panic_null_cerr);
-> @@ -2384,9 +2408,11 @@ void __init trap_init(void)
->  		 * EVA is special though as it allows segments to be rearranged
->  		 * and to become uncached during cache error handling.
->  		 */
-> +#if !defined(CONFIG_USE_XKPHYS)
->  		if (!IS_ENABLED(CONFIG_EVA) && !WARN_ON(ebase_pa >=3D 0x20000000))
->  			ebase =3D CKSEG0ADDR(ebase_pa);
->  		else
-> +#endif
->  			ebase =3D (unsigned long)phys_to_virt(ebase_pa);
->  	}
->=20
-> diff --git a/arch/mips/lib/uncached.c b/arch/mips/lib/uncached.c
-> index f80a67c092b6..8a78348a2dd7 100644
-> --- a/arch/mips/lib/uncached.c
-> +++ b/arch/mips/lib/uncached.c
-> @@ -44,6 +44,10 @@ unsigned long run_uncached(void *func)
->=20
->  	__asm__("move %0, $sp" : "=3Dr" (sp));
->=20
-> +#if defined(CONFIG_USE_XKPHYS)
-> +	if (IS_XKPHYS(sp))
-> +		usp =3D UNCAC_ADDR(sp);
-
-Unnecessary, the else if later is actually handling XKPHYS sp.
-
-> +#else /* defined(CONFIG_USE_XKPHYS) */
->  	if (sp >=3D (long)CKSEG0 && sp < (long)CKSEG2)
->  		usp =3D CKSEG1ADDR(sp);
->  #ifdef CONFIG_64BIT
-> @@ -52,10 +56,15 @@ unsigned long run_uncached(void *func)
->  		usp =3D PHYS_TO_XKPHYS(K_CALG_UNCACHED,
->  				     XKPHYS_TO_PHYS((long long)sp));
->  #endif
-> +#endif /* defined(CONFIG_USE_XKPHYS) */
->  	else {
->  		BUG();
->  		usp =3D sp;
->  	}
-> +#if defined(CONFIG_USE_XKPHYS)
-> +	if (IS_XKPHYS(lfunc))
-> +		ufunc =3D UNCAC_ADDR(lfunc);
-
-ditto.
-
-> +#else /* defined(CONFIG_USE_XKPHYS) */
->  	if (lfunc >=3D (long)CKSEG0 && lfunc < (long)CKSEG2)
->  		ufunc =3D CKSEG1ADDR(lfunc);
->  #ifdef CONFIG_64BIT
-> @@ -64,6 +73,7 @@ unsigned long run_uncached(void *func)
->  		ufunc =3D PHYS_TO_XKPHYS(K_CALG_UNCACHED,
->  				       XKPHYS_TO_PHYS((long long)lfunc));
->  #endif
-> +#endif /* defined(CONFIG_USE_XKPHYS) */
->  	else {
->  		BUG();
->  		ufunc =3D lfunc;
-> diff --git a/arch/mips/mm/init.c b/arch/mips/mm/init.c
-> index 5dcb525a8995..eb57283ec4e0 100644
-> --- a/arch/mips/mm/init.c
-> +++ b/arch/mips/mm/init.c
-> @@ -427,7 +427,7 @@ void __init paging_init(void)
->  	free_area_init(max_zone_pfns);
->  }
->=20
-> -#ifdef CONFIG_64BIT
-> +#if defined(CONFIG_64BIT) && !defined(CONFIG_USE_XKPHYS)
->  static struct kcore_list kcore_kseg0;
->  #endif
->=20
-> @@ -470,7 +470,7 @@ void __init mem_init(void)
->  	setup_zero_pages();	/* Setup zeroed pages.  */
->  	mem_init_free_highmem();
->=20
-> -#ifdef CONFIG_64BIT
-> +#if defined(CONFIG_64BIT) && !defined(CONFIG_USE_XKPHYS)
->  	if ((unsigned long) &_text > (unsigned long) CKSEG0)
->  		/* The -4 is a hack so that user tools don't have to handle
->  		   the overflow.  */
-> --=20
-> 2.40.1
-
-Thanks.
-
---=20
-- Jiaxun
+Kind regards,
+Jeff LaBundy
 
