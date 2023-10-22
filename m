@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-10610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C125C7D23A3
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:46:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D467D23A5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:46:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2EC81C209D5
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 15:46:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E46AE1F215BA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 15:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1386FCC;
-	Sun, 22 Oct 2023 15:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D6E10952;
+	Sun, 22 Oct 2023 15:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLCbgrtq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+S5QuC4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF4663B2
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 15:46:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18BE3C43391;
-	Sun, 22 Oct 2023 15:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8846F63B2
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 15:46:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C9E9C43397;
+	Sun, 22 Oct 2023 15:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697989570;
-	bh=KqtvWHvEr2+HSDf51eJD5dXAJxO3x4VmurwGhZc1wtM=;
+	s=k20201202; t=1697989571;
+	bh=KM1jYkXyTzK0guELYzlv7dUspsOjWBjpStn2Ayrrro0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hLCbgrtqhmY1jO0WfLI1Va39wYLTFz8wABttbmsrMRURn3PV4LcwcyzdQCYg7IVL8
-	 CsYM9lUqZv8nOczoBJnbY9G6n74vl/JoKP/fy7CIaKOb6oSsZpv9en0PT9vvxx7lKT
-	 plsfBDwoSqbuUIgJWuN6vDH0G4kYKvpcn77JUte4OktSTTOFX412MUM1IIpU5BvMBA
-	 rJ6/zOQT2Q7qSVvxxPgoM5FWcbgrEAurKKrmvISrTpsJpEf9kx+NEV6hgG681t6le2
-	 oHxeIOz8kmLlrAoiY/UsRl9t7Ro5HjslnVGq51TzKtk6YPy1CyEtJSFGtuAJAF/kKT
-	 OVWumfiGhI4mA==
+	b=Q+S5QuC4+zia9Zl89xR6XEJkQtu0HrEfwuUpzMMz+KZwnfj4oKP10/i0l54pBwzbi
+	 a6ikST1jY6UX0/6opWaeyhb7GjJce5X8ZNNWH8vlOhVtCFmdwS3mPXA5WR6pZlxhLz
+	 5zln5T8qOp1rBjCEvceItQcHAut4vjxVO1rPpbdIK3eA23tnQ0kcsHQkV2zXDbiT1a
+	 CE1EJCwr8KpUTRWomH2AW5OhfhQwvn9wJj02Gr4beRmpicNSgk4eI1d5TIOdqxBD2v
+	 eGUxm5hzQIgKmjHmTgXLvoKgAmdflSsb4p6DxWuj0bRTXX0HQZEkd13C0JXMOt5xZx
+	 wNsD51X3mC7iA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
+To: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	Luca Weiss <luca@z3ntu.xyz>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/2] Small updates / fixups for PMIC spmi-gpio
-Date: Sun, 22 Oct 2023 08:50:17 -0700
-Message-ID: <169798982330.271027.14782440269787832990.b4-ty@kernel.org>
+Subject: Re: [PATCH 0/2] Small style fixes in msm8974.dtsi
+Date: Sun, 22 Oct 2023 08:50:18 -0700
+Message-ID: <169798982357.271027.2288868085918805203.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231002-pm7250b-gpio-fixup-v2-0-debb8b599989@fairphone.com>
-References: <20231002-pm7250b-gpio-fixup-v2-0-debb8b599989@fairphone.com>
+In-Reply-To: <20230627-msm8974-sort-v1-0-75c5800a2e09@z3ntu.xyz>
+References: <20230627-msm8974-sort-v1-0-75c5800a2e09@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +60,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 02 Oct 2023 09:00:10 +0200, Luca Weiss wrote:
-> Update the schema to use plural _gpios label in the example. And fix a
-> dtbs_check warning in pm7250b.dtsi.
+On Tue, 27 Jun 2023 21:45:12 +0200, Luca Weiss wrote:
+> While making sure the nodes are sorted correctly, I also noticed that
+> some lines are wrongly indented. Fix both.
 > 
 > 
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: pm7250b: Use correct node name for gpios
-      commit: 6cd8621758004d98f7c622c2d756c116c6888127
+[1/2] ARM: dts: qcom: msm8974: replace incorrect indentation in interconnect
+      commit: 207f4ce365819ac68b634153d074252338d00ef6
+[2/2] ARM: dts: qcom: msm8974: sort nodes by reg
+      commit: 4960e06d386ecc5307bc2e66a77d5f06df1e2a6f
 
 Best regards,
 -- 
