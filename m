@@ -1,226 +1,335 @@
-Return-Path: <devicetree+bounces-10648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B667D254F
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:28:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F8E7D2564
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:42:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FC6A1C208E3
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:28:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4164B20D1D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C8011CA8;
-	Sun, 22 Oct 2023 18:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB04310A09;
+	Sun, 22 Oct 2023 18:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="GnZ4U9Tg"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="majhYMf+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45EF72575
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 18:28:23 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2051.outbound.protection.outlook.com [40.107.220.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49F2E0;
-	Sun, 22 Oct 2023 11:28:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JRus//SPzae2jdyzzf0rmwB1CNu7We8cfCd8XSo5bxnz2inewqxs9Rroh8OlQ5ThmFVmhuGi+Y33jNOJu03cFtfTOnFyx11yeDLE6SkLRtqXVU02wzJjWB6sZKLVuAPcVjfpLvIcr9C/4SjI/xDZEPwX0dn0DIOxKB60v4xnm5bAYinXZQqfJRKEuksR19UeKlJfkrooozFmUGgKoiZsYqTLp6CnsrXnPK6Xub6ae7bXAej5SaOcYrtn9u5V0V4wbHnB2qjuGUle1KG1lDc7IULEEegRaL1rydfIHvN4YJmqrBFEEspvfPzPaTywSJDQ3su4apzUuFRIaI/OtuftdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bguMoSyeuFLmZ7hAyCAVY0JsaNTASlkxnBZas76M24o=;
- b=h9zJBMpTJbppwuOohZw2ibQNP4LKZEDIV3G1ueLmtg30YlM4XMr40a7O4/4qi+WrAon3j21sjmaQE12oW0v0fZS1cATPdqgYUT6bZTwNYN5SgpEPqvN5Vb4EDJXVQDzP3wjYrFI650beebeyXwjeBAF03KmTaofuRCYOVQD9lNSKfgeB/5ygcBEXi/mRdAdh0GmFIPSwSg+Dr3MwHFzzoKZhSjlaZlUk7s+Mcg11oqkaLUZp/5CoAbVuDvLUt4sK7y4piYzu6Zp7eUDLvB4tPBRkujWXWOQ7namhcfepDXispba6iVz4aM7zjFtT9qNfRQSK29ecKgJRDH9tob8z1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bguMoSyeuFLmZ7hAyCAVY0JsaNTASlkxnBZas76M24o=;
- b=GnZ4U9Tg+2lD0k/rFtCF2QJkzvs8wm++OPCqbciUap0lmtssGrUr0KFgj9wrfsSLp9qxJTaqLMyhbQlEhLaTJcgOTAwjB2AMQcflXO5j8qockNmh9gMdj29iU6MKeELrUOkG9EX/5zt1CtQJHamJkvuD5TCsfmJeCV3m9EVsptY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from DM5PR0801MB3767.namprd08.prod.outlook.com (2603:10b6:4:7c::37)
- by SJ0PR08MB7831.namprd08.prod.outlook.com (2603:10b6:a03:3d8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Sun, 22 Oct
- 2023 18:28:16 +0000
-Received: from DM5PR0801MB3767.namprd08.prod.outlook.com
- ([fe80::7eda:274f:8165:2155]) by DM5PR0801MB3767.namprd08.prod.outlook.com
- ([fe80::7eda:274f:8165:2155%4]) with mapi id 15.20.6907.032; Sun, 22 Oct 2023
- 18:28:16 +0000
-Date: Sun, 22 Oct 2023 13:28:14 -0500
-From: Jeff LaBundy <jeff@labundy.com>
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
-Message-ID: <ZTVpvlkORe4E41vy@nixie71>
-References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
- <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
- <ZQYUe46/rj8jqNvg@nixie71>
- <ZRg-uZskk07jxup0@gerhold.net>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZRg-uZskk07jxup0@gerhold.net>
-X-ClientProxiedBy: DM6PR02CA0038.namprd02.prod.outlook.com
- (2603:10b6:5:177::15) To DM5PR0801MB3767.namprd08.prod.outlook.com
- (2603:10b6:4:7c::37)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B913C2901;
+	Sun, 22 Oct 2023 18:42:17 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16BAE0;
+	Sun, 22 Oct 2023 11:42:15 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39MINZlJ030162;
+	Sun, 22 Oct 2023 18:41:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Ritmfuc6Se9Vc4xPKPYBe0LSKU3x8kDYBvVduJlxJa4=;
+ b=majhYMf+rJCUvCili4uIdEsm2I4n4ViWotBrIe0Pe8VNUvXLd4Z5FwKM7VFN4z27UOXd
+ FKlk9Nkeb/aieN9zha4SKA2KvblKdxK+J9RXvr6BQBUSW2EkK+Ggh3tIKsd0Ca38Gw68
+ uyFy+9daHZWTXWA8XeNVL4oVcUSGBvZFof/Kfu+5XWzYpZ37IV9Z2iefCeWfgGgCR0Gv
+ Q32xf4JjSSjmqz2ik6CGvKk6PgS+IYRDXj75vKQ7+1CunAUnMWQBUwv21fcEADBv5vc/
+ LKPOQ4xSsebPFpfsAQPIQ1I4osjZfOENL2C+LUDebkcS6YBnLBCNsKTiB/bDuBc6Xn3e XA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv7u3tpgp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Oct 2023 18:41:58 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39MIfvam017543
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Oct 2023 18:41:57 GMT
+Received: from [10.216.52.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sun, 22 Oct
+ 2023 11:41:50 -0700
+Message-ID: <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
+Date: Mon, 23 Oct 2023 00:11:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM5PR0801MB3767:EE_|SJ0PR08MB7831:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ad96ee7-ebef-49d4-6eb3-08dbd32ca8c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	HRdZIJLKQJ6eUXAbfvuMl4qkx/Nnj9/MOKM54SZmWkJ/UXpiUtIVlgy9i6k+N5VU1ajl5AstIMV+v03gjp6OzhsKq8c+HfALa4vZOojsq/Z9dBKrkiB1ItW4/ZEF71hvGcco+rIELgyQr3Q6tDYK+8nhjAZ7J/CTWVzkilnYzmvOXmKcrW5fFVJd6xnJFt/iUCs9IzFqIH8Bxa/zHInmxiH5Dxbnqz1PUsd3k5P+n8SuOWZNnCAULYjT6D/yZhTtG76WLofOJ7e1jQNLPGvOw7+Xz2gRDy7L5x9Urivr+ZNrnTTmgs9xDk/EFp11GNwpV85hRs9kf2nBUBKhTHBxovjP4evDNHBQu7xC7kdO8X337HO1c+HVNTN4Xia3wiMcGY/tyMiiiVKZS//0BELjbTBFOUzOeJ4BTLBt5KwXbmGdN9YlSVrst57stweOMPY3cJVb+1Q2+aCBAiKUz1IqJAoViMOWPfJwNT3z0nsCYWJUPspKkunMfOyVUDaq14kcMNN/N8ubA+5DB4MfIrfbum/M48gKUa7s65L6lY07FjrsbSPnxymqpLV67W3iuAke
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR0801MB3767.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(376002)(396003)(39830400003)(346002)(366004)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(26005)(33716001)(38100700002)(2906002)(41300700001)(86362001)(7416002)(5660300002)(8676002)(8936002)(4326008)(478600001)(6506007)(66476007)(54906003)(316002)(66556008)(66946007)(6916009)(83380400001)(6486002)(6512007)(9686003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gRee0F/tdLeF68xU0B6B5vcQEr40jTr9vhu+wdPmBntVPKHDQaITWpMK2rm7?=
- =?us-ascii?Q?N+PdUILWk17/ETjcjYoDtnTOWKNlzt/6E/8hkAn4bQgfE5c1p+AIWSliD+6Z?=
- =?us-ascii?Q?nARQY8Suy7tdKO2NtnkltpKltfKqCJSIkOJNfKeWjpSYxxQ4PPEdLuLTVE5G?=
- =?us-ascii?Q?4BqSMWLDfVwn/eRbFVfWAflFXrY8gNXe3YfN6XkjIaOLW4kWJTnhs9+juhtf?=
- =?us-ascii?Q?EEsuEZfuwucAHXuSbNcHN0Hyebr9VqCR+jL56XDRx5l9EVVwrMu8LGT1z5Ne?=
- =?us-ascii?Q?kVTiBjiqvzcC1M5H31FhZn1GETJt+t2mlC/Nx6T7qF2gLR7i9SLK6GVD33VE?=
- =?us-ascii?Q?pnHWEOunCfJJkbbWLmak+EcrUfS9kOp1E7SGrpGGv9b1mHw30iy/b6NYBxSA?=
- =?us-ascii?Q?ijXXY0lt3pFVNe6QblfqHX3jrVkXZAofH4tTKfl3dqbf9iy9cPJM05hSrWhz?=
- =?us-ascii?Q?aVjRCzaVnvjoMk/DryRrBDunOZFFJOiweZskDPkqdHCJvTbc3Ne9nl/q1jIw?=
- =?us-ascii?Q?XSKrJXCjSN7u5VkU49SAvVdB7MkG6qD8BIvC204Z+I5yrDk4mFleaFtTUe3D?=
- =?us-ascii?Q?MVc6yhvN152YrS3tNg97mhV2k5fudwEh1RtFRTkwGahbSltLfRh1rrXwD2Nw?=
- =?us-ascii?Q?C4sFh1mLqDQlo+NOFr8Uz7UV1Ju2YDxsXX3PuGoOjcVbv3ynkO/cJ4c/ncn8?=
- =?us-ascii?Q?WiWFd5AxlictbVq5Un4A7xB7TgtO39w4P30CcbV3Rasatusa9cyRXcy+PD6C?=
- =?us-ascii?Q?da1kPokIxiAVpxUzrkyzk/nc/dob38Vmcca9DBaEWsvmhP/zcL7PzEN1dBS0?=
- =?us-ascii?Q?Jjh6g8ynEmM1IXPwQFLE13dXwpgwPjW2K0OdNUiixJ9wVA0HH/AmYdquHUYM?=
- =?us-ascii?Q?OKELAschCHkLexikrShoA/BJ5Z/FJMzmAsk9PWPVb6FHXJEwYuFfm9nwl2dl?=
- =?us-ascii?Q?CAw3cVbewPprpWtncbJDhiJtkWqcYmUxR/a62BRNf9qjjfNElHGnV1on2lcp?=
- =?us-ascii?Q?N5Ao0XZXlSXnp//GSKy3vyDQavdKoyOzMUyrJ6MVPnaQkasI4VKR8YF9YY96?=
- =?us-ascii?Q?YFpiPe/nd+fwR7GIlok3yq1nMkHs4zL0nlK+OkXm9WkDKmw0I7bsMQCogEFF?=
- =?us-ascii?Q?9DEgHOj5rY4bMLj4WzHpVFguicbK7B2MtLV8241jNLPx37i2mDnbQ4gCfMjy?=
- =?us-ascii?Q?5dZ4NTZy58+bAQrgYUSR+/49vVnPQXPKq++UNqdIqvY0YlOvK24cTO9n9Vjr?=
- =?us-ascii?Q?N8NidyiYzoJjUa7Njh+ahCxsRR93LL8IJFXNytlxxuLnr/7Dwr91P5Z/mJ03?=
- =?us-ascii?Q?TCFiw7aVPT2A80+9SMIJgq55al+i7GB890htNmZph1LTzdLcS/XLZU5RABIQ?=
- =?us-ascii?Q?DxdUx0NRy9i0EFewsq1eWDUhy5jydMBW0KINa2Ul5yWe6xbRby46CEbMX5Jz?=
- =?us-ascii?Q?U3nfSXOJXrxWnrqaai+q3cpTHU1GASOBPi/fu3woBGbTYarlhy2lQI9fX9Fp?=
- =?us-ascii?Q?g2K4swDeRx9fXrG1oylK58L524bzxI8G6zXTzUEUiJpAQhUrjLVBXfhbi2pS?=
- =?us-ascii?Q?XijyVODJ8DJuBuO9heGvb8m9YnEObU3ijIAq8tBv?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ad96ee7-ebef-49d4-6eb3-08dbd32ca8c4
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR0801MB3767.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2023 18:28:16.7659
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uULBDG4KONP44Lza3E23F1TCurD24iUUCmuI/6NFXukgKY1OeUiIGlmPwVb6Xu+faFnDrPAeS7qhwhT/b5mNMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR08MB7831
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
+ Glue driver
+To: Johan Hovold <johan@kernel.org>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi
+	<balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-6-quic_kriskura@quicinc.com>
+ <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -STz74Ajs0z0XUfCN19hAX2Jv6XfQASf
+X-Proofpoint-ORIG-GUID: -STz74Ajs0z0XUfCN19hAX2Jv6XfQASf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-22_16,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
+ suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310220172
 
-Hi Stephan,
 
-On Sat, Sep 30, 2023 at 05:28:57PM +0200, Stephan Gerhold wrote:
 
-[...]
+On 10/20/2023 6:53 PM, Johan Hovold wrote:
+> First, drop "QCOM Glue driver" from Subject, you already have the "qcom"
+> prefix.
+> 
+> On Sat, Oct 07, 2023 at 09:18:01PM +0530, Krishna Kurapati wrote:
+>> Refactor setup_irq call to facilitate reading multiport IRQ's along
+> 
+> "IRQs" or just "interrupts"
+> 
+>> with non mulitport ones. Read through the interrupt-names property
+> 
+> "multiport"
+> 
+> Please spell check all your patches (commit messages and code) before
+> posting, it's not the reviewers job.
+> 
+>> to figure out, the type of interrupt (DP/DM/HS/SS) and to which port
+>> it belongs. Also keep track of port index to calculate port count
+>> based on interrupts provided as input in DT.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   drivers/usb/dwc3/dwc3-qcom.c | 210 +++++++++++++++++++++++++----------
+>>   1 file changed, 154 insertions(+), 56 deletions(-)
+>>
+>> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+>> index ef2006db7601..863892284146 100644
+>> --- a/drivers/usb/dwc3/dwc3-qcom.c
+>> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+>> @@ -53,14 +53,25 @@
+>>   #define APPS_USB_AVG_BW 0
+>>   #define APPS_USB_PEAK_BW MBps_to_icc(40)
+>>   
+>> +#define NUM_PHY_IRQ		4
+>> +
+>> +enum dwc3_qcom_ph_index {
+> 
+> "phy_index"
+> 
+>> +	DP_HS_PHY_IRQ_INDEX = 0,
+>> +	DM_HS_PHY_IRQ_INDEX,
+>> +	SS_PHY_IRQ_INDEX,
+>> +	HS_PHY_IRQ_INDEX,
+>> +};
+>> +
+>>   struct dwc3_acpi_pdata {
+>>   	u32			qscratch_base_offset;
+>>   	u32			qscratch_base_size;
+>>   	u32			dwc3_core_base_size;
+>> +	/*
+>> +	 * The phy_irq_index corresponds to ACPI indexes of (in order) DP/DM/SS
+>> +	 * IRQ's respectively.
+>> +	 */
+>> +	int			phy_irq_index[NUM_PHY_IRQ - 1];
+>>   	int			hs_phy_irq_index;
+>> -	int			dp_hs_phy_irq_index;
+>> -	int			dm_hs_phy_irq_index;
+>> -	int			ss_phy_irq_index;
+>>   	bool			is_urs;
+>>   };
+>>   
+>> @@ -73,10 +84,12 @@ struct dwc3_qcom {
+>>   	int			num_clocks;
+>>   	struct reset_control	*resets;
+>>   
+>> +	/*
+>> +	 * The phy_irq corresponds to IRQ's registered for (in order) DP/DM/SS
+>> +	 * respectively.
+>> +	 */
+>> +	int			phy_irq[NUM_PHY_IRQ - 1][DWC3_MAX_PORTS];
+>>   	int			hs_phy_irq;
+>> -	int			dp_hs_phy_irq;
+>> -	int			dm_hs_phy_irq;
+>> -	int			ss_phy_irq;
+> 
+> I'm not sure using arrays like this is a good idea (and haven't you
+> switched the indexes above?).
+> 
+> Why not add a port structure instead?
+> 
+> 	struct dwc3_qcom_port {
+> 		int hs_phy_irq;
+> 		int dp_hs_phy_irq;
+> 		int dm_hs_phy_irq;
+> 		int ss_phy_irq;
+> 	};
+> 
+> and then have
+> 
+> 	struct dwc3_qcom_port ports[DWC3_MAX_PORTS];
+> 
+> in dwc3_qcom. The port structure can the later also be amended with
+> whatever other additional per-port data there is need for.
+> 
+> This should make the implementation cleaner.
+> 
+> I also don't like the special handling of hs_phy_irq; if this is really
+> just another name for the pwr_event_irq then this should be cleaned up
+> before making the code more complicated than it needs to be.
+> 
+> Make sure to clarify this before posting a new revision.
+> 
 
-> In v2 I have added linux/of.h and linux/mod_devicetable.h, since I'm
-> actually using definitions from these two only. Seems like including
-> of_device.h is discouraged nowadays, see commit dbce1a7d5dce ("Input:
-> Explicitly include correct DT includes").
+hs_phy_irq is different from pwr_event_irq.
+AFAIK, there is only one of this per controller.
 
-Apologies for the delayed response and some confusion from my side. What
-you have added in v2 is correct, and what I should have suggested in the
-first place.
+>> -static int dwc3_qcom_prep_irq(struct dwc3_qcom *qcom, char *irq_name,
+>> -				char *disp_name, int irq)
+>> +static int dwc3_qcom_prep_irq(struct dwc3_qcom *qcom, const char *irq_name,
+>> +				const char *disp_name, int irq)
+> 
+> Ok, here you did drop the second name parameter, but without renaming
+> the first and hidden in a long diff without any mention anywhere.
+> 
+I didn't understand the comment. Can you please elaborate.
+I didn't drop the second parameter. In the usage of this call, I passed 
+same value to both irq_name and disp_name:
 
-[...]
+"dwc3_qcom_prep_irq(qcom, irq_names[i], irq_names[i], irq);"
 
-> > Nit: it would still be nice to preserve as many return values as possible, perhaps
-> > as follows:
-> > 
-> > +exit_test_mode:
-> > 	error = i2c_smbus_write_byte_data(...) ? : error;
-> > 
-> > > +power_off:
-> > > +	hx852x_power_off(hx);
-> > > +	return error;
-> > 
-> > Similarly, with hx852x_power_off() being promoted to int as suggested above,
-> > this could be:
-> > 
-> > 	return hx852x_power_off(...) ? : error;
-> > 
-> > There are other idiomatic ways to do the same thing based on your preference.
-> > Another (perhaps more clear) option would be to move some of these test mode
-> > functions into a helper, which would also avoid some goto statements.
-> > 
-> 
-> I played with this for a bit. A problem of the "? : error" approach is
-> that it hides the original error in case the new calls error again.
+I mentioned in cover-letter that I am using same name as obtained from 
+DT to register the interrupts as well. Should've mentioned that in 
+commit text of this patch. Will do it in next version.
 
-That's correct; good catch.
+>> +static int dwc3_qcom_get_port_index(const char *irq_name, int irq_index)
+>> +{
+>> +	int port_index = -1;
+>> +
+>> +	switch (irq_index) {
+>> +	case DP_HS_PHY_IRQ_INDEX:
+>> +		if (strcmp(irq_name, "dp_hs_phy_irq") == 0)
+>> +			port_index = 1;
+>> +		else
+>> +			sscanf(irq_name, "dp_hs_phy_%d", &port_index);
+>> +		break;
+>> +
+> 
+> No need for newlines after break.
+> 
+>> +	case DM_HS_PHY_IRQ_INDEX:
+>> +		if (strcmp(irq_name, "dm_hs_phy_irq") == 0)
+>> +			port_index = 1;
+>> +		else
+>> +			sscanf(irq_name, "dm_hs_phy_%d", &port_index);
+>> +		break;
+>> +
+>> +	case SS_PHY_IRQ_INDEX:
+>> +		if (strcmp(irq_name, "ss_phy_irq") == 0)
+>> +			port_index = 1;
+>> +		else
+>> +			sscanf(irq_name, "ss_phy_%d", &port_index);
+>> +		break;
+>> +
+>> +	case HS_PHY_IRQ_INDEX:
+>> +		port_index = 1;
+>> +		break;
+>> +	}
+>> +
+>> +	if (port_index > DWC3_MAX_PORTS)
+>> +		port_index = -1;
+>> +
+>> +	return port_index;
+>> +}
+> 
+>>   static int dwc3_qcom_setup_irq(struct platform_device *pdev)
+>>   {
+>>   	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+>> -	const struct dwc3_acpi_pdata *pdata = qcom->acpi_pdata;
+>> +	struct device_node *np = pdev->dev.of_node;
+>> +	const char **irq_names;
+>> +	int port_index;
+>> +	int acpi_index;
+>> +	int irq_count;
+>> +	int irq_index;
+>>   	int irq;
+>>   	int ret;
+>> +	int i;
+>>   
+>> -	irq = dwc3_qcom_get_irq(pdev, "hs_phy_irq",
+>> -				pdata ? pdata->hs_phy_irq_index : -1);
+>> -	if (irq > 0) {
+>> -		ret = dwc3_qcom_prep_irq(qcom, "hs_phy_irq", "qcom_dwc3 HS", irq);
+>> -		if (ret)
+>> -			return ret;
+>> -		qcom->hs_phy_irq = irq;
+>> -	}
+>> +	irq_count = of_property_count_strings(np, "interrupt-names");
+> 
+> of_property_count_strings() can return negative errnos and you don't
+> have any sanity checks for the return value...
+> 
+> Please slow down, and also make sure to get your patches reviewed
+> internally before posting new revisions.
+> 
+It did go through internal review but probably went un-noticed. Will add 
+sanity checks here and below.
 
+>> +	irq_names = devm_kzalloc(&pdev->dev, sizeof(*irq_names) * irq_count, GFP_KERNEL);
 > 
-> Let's assume
+> devm_kcalloc()
 > 
-> 	error = hx852x_start(hx);
-> 	if (error)
-> 		goto power_off;
+>> +	if (!irq_names)
+>> +		return -ENOMEM;
+>>   
+>> -	irq = dwc3_qcom_get_irq(pdev, "dp_hs_phy_irq",
+>> -				pdata ? pdata->dp_hs_phy_irq_index : -1);
+>> -	if (irq > 0) {
+>> -		ret = dwc3_qcom_prep_irq(qcom, "dp_hs_phy_irq", "qcom_dwc3 DP_HS", irq);
+>> -		if (ret)
+>> -			return ret;
+>> -		qcom->dp_hs_phy_irq = irq;
+>> -	}
+>> +	ret = of_property_read_string_array(np, "interrupt-names",
+>> +						irq_names, irq_count);
 > 
-> fails with error = -ENXIO. We jump to power_off:
+> No sanity check here either?
 > 
-> power_off:
-> 	return hx852x_power_off(hx) ? : error;
+>> +	for (i = 0; i < irq_count; i++) {
+>> +		irq_index = dwc3_qcom_get_irq_index(irq_names[i]);
+>> +		if (irq_index == -1) {
+>> +			dev_dbg(&pdev->dev, "Invalid IRQ not handled");
+>> +			continue;
+>> +		}
 > 
-> Let's say for whatever reason hx852x_power_off() fails too but returns
-> -EINVAL. Then the final return value will be -EINVAL, while with the
-> current approach in this patch it would return the original cause
-> (-ENXIO). I think that's more clear.
+> I'll just stop reviewing here. This is a waste of my time.
 > 
-> I also played with moving code to a separate function to avoid the
-> gotos, but I feel like that makes the fairly focused logic of this
-> function (reading the configuration by temporarily entering the test
-> mode) just more confusing.
-> 
-> To still fix the error handling I ended up with duplicating the
-> "success" code path and the "error" code path (it's just two function
-> calls), i.e.:
-> 
-> 	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
-> 	if (error)
-> 		goto err_power_off;
-> 
-> 	return hx852x_power_off(hx);
-> 
-> err_test_mode:
-> 	i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
-> err_power_off:
-> 	hx852x_power_off(hx);
-> 	return error;
-> 
-> I hope that's fine too. A bit ugly maybe but in this case I would prefer
-> having the main code path (reading the configuration) clearly readable.
-> 
-> Let me know if you have a better suggestion for these (I'll send v2 in a
-> bit so that you can see the full diff there).
 
-Maybe we can massage this just a bit more; I have followed up with another
-suggestion in v2.
-
-> 
-> Thanks!
-> Stephan
-
-Kind regards,
-Jeff LaBundy
+Regards,
+Krishna,
 
