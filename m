@@ -1,135 +1,182 @@
-Return-Path: <devicetree+bounces-10642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B53617D2515
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:00:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25EE77D251B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:04:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9462B20CBF
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:00:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55B3C1C208D2
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062D611C8A;
-	Sun, 22 Oct 2023 18:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D984111B7;
+	Sun, 22 Oct 2023 18:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hCvWET6D"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZzSBwl6L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82D82594;
-	Sun, 22 Oct 2023 18:00:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EED4C433C8;
-	Sun, 22 Oct 2023 18:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697997639;
-	bh=9wO5luQQA8YamZzHgZ2c+8fPusMyrapaaEYIJ6WW7d4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hCvWET6DpMgtWpc4RTvFqtnFe/lRb3pvOTc1BbmpzD7II1ggf9IjdzX1rT13qkC/W
-	 CceP0hWDUW4bxZqJJCAh2iXQcjGJ4IY9xombM9nW4mmBLJ30cEEfy4iGkkWw27YAhP
-	 9nkhlXCuiwMRr9FMucNlHHRApkm/bV71zVP042GkU4jCckh7fTETl4l2VDGocODOtD
-	 iVm0eOPrPBAkYRCFBcQv52qjHDEKwKfpOsGo73uG+ZI2FRJ4cs4yyzHVT0xb2zoCN4
-	 cTBMUO5QxyRTGCh4NlNoSsFmyF94GjaZ8+XRzAAgsll0kYuiTTmX700T/uYhBOkJy2
-	 vdOJEVOK7HDjg==
-Date: Sun, 22 Oct 2023 19:00:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
-	conor+dt@kernel.org, conor.dooley@microchip.com,
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
-	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
-	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
-	wens@csie.org, will@kernel.org, ycliang@andestech.com
-Subject: Re: [PATCH v3 00/13] Support Andes PMU extension
-Message-ID: <20231022-cabana-crate-503b6e8d0481@spud>
-References: <20231022151858.2479969-1-peterlin@andestech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DDB2116;
+	Sun, 22 Oct 2023 18:04:32 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03DB3EB;
+	Sun, 22 Oct 2023 11:04:29 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39MHrXnN017932;
+	Sun, 22 Oct 2023 18:04:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=r6WaxMpdUmwjwDPCw6l+Jo0VHXva34qXWZID+ugfozw=;
+ b=ZzSBwl6LR2VQfRx+qnLQQ48MIB6Rujy3XJksRbjTXUQJIxoEl26ktUnFTGcnS8SjWmwz
+ bc3xzgXABH1gi9wqQtLSvCQuo+p+1HiMK/381jM1ga5iH3fTA953edA7CTK82g0rLRi8
+ JgkkOa0+DrrKREtiyiAPdSAJlo7xoPlx8xpp7Itqs58mJ7o7U3VZVA0mG/Jnm4e1WnRR
+ 5x4D7/HRHESO8EQkOQcZn2LKY7lYw3XBEpAjKGH67+9KvBjDBRZEl+GwNhDvAfeH0qDX
+ Dq3Yq+k+UYtouKU5Mp0a6qs+aSvPmyPXzFl115ZbOE6b7mSa9pQaVi4dku+bedMamSBU /Q== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv6872drk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Oct 2023 18:04:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39MI48Si011837
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Oct 2023 18:04:08 GMT
+Received: from [10.216.52.212] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sun, 22 Oct
+ 2023 11:03:59 -0700
+Message-ID: <257716c4-7194-4d26-a34c-fff09234628f@quicinc.com>
+Date: Sun, 22 Oct 2023 23:33:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kQihSqwF+AlYNzqS"
-Content-Disposition: inline
-In-Reply-To: <20231022151858.2479969-1-peterlin@andestech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 03/10] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+To: Johan Hovold <johan@kernel.org>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi
+	<balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>,
+        Harsh Agarwal <quic_harshq@quicinc.com>,
+        kernel test robot <lkp@intel.com>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-4-quic_kriskura@quicinc.com>
+ <ZTJPBcyZ_zLXbgE5@hovoldconsulting.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZTJPBcyZ_zLXbgE5@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qXlYAIJnx-Q8i5ItSB5csTQroOf_lBIg
+X-Proofpoint-ORIG-GUID: qXlYAIJnx-Q8i5ItSB5csTQroOf_lBIg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-22_15,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ suspectscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=697 impostorscore=0
+ spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310220166
 
 
---kQihSqwF+AlYNzqS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey,
+On 10/20/2023 3:27 PM, Johan Hovold wrote:
+> On Sat, Oct 07, 2023 at 09:17:59PM +0530, Krishna Kurapati wrote:
+>> From: Harsh Agarwal <quic_harshq@quicinc.com>
+>>
+>> Currently the DWC3 driver supports only single port controller
+>> which requires at most one HS and one SS PHY.
+> 
+> Should that not be "at least one HS PHY and at most one SS PHY"?
+>   
 
-On Sun, Oct 22, 2023 at 11:18:45PM +0800, Yu Chien Peter Lin wrote:
-> Hi All,
->=20
-> This patch series introduces the Andes PMU extension, which serves
-> the same purpose as Sscofpmf. In this version we use FDT-based
-> probing and the CONFIG_ANDES_CUSTOM_PMU to enable perf sampling
-> and filtering support.
->=20
-> Its non-standard local interrupt is assigned to bit 18 in the
-> custom S-mode local interrupt enable/pending registers (slie/slip),
-> while the interrupt cause is (256 + 18).
->=20
-> The feature needs the PMU device registered in OpenSBI.
-> The OpenSBI and Linux patches can be found on Andes Technology GitHub
-> - https://github.com/andestech/opensbi/commits/andes-pmu-support-v2
-> - https://github.com/andestech/linux/commits/andes-pmu-support-v3
->=20
-> The PMU device tree node used on AX45MP:
-> - https://github.com/andestech/opensbi/blob/andes-pmu-support-v2/docs/pmu=
-_support.md#example-3
->=20
-> Tested hardware:
-> - ASUS  Tinker-V (RZ/Five, AX45MP single core)
-> - Andes AE350    (AX45MP quad core)
->=20
-> Locus Wei-Han Chen (1):
->   riscv: andes: Support symbolic FW and HW raw events
->=20
-> Yu Chien Peter Lin (12):
->   riscv: errata: Rename defines for Andes
->   irqchip/riscv-intc: Allow large non-standard hwirq number
->   irqchip/riscv-intc: Introduce Andes IRQ chip
->   dt-bindings: riscv: Add Andes interrupt controller compatible string
->   riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes
->     INTC
->   perf: RISC-V: Eliminate redundant IRQ enable/disable operations
->   RISC-V: Move T-Head PMU to CPU feature alternative framework
->   perf: RISC-V: Introduce Andes PMU for perf event sampling
->   dt-bindings: riscv: Add T-Head PMU extension description
->   dt-bindings: riscv: Add Andes PMU extension description
->   riscv: dts: allwinner: Add T-Head PMU extension
->   riscv: dts: renesas: Add Andes PMU extension
+No, I think it would be appropriate to say "at least one phy (HS/SS)" as 
+even one phy is sufficient to get things working.
 
-You only sent 5 of these patches FYI.
+>> But the DWC3 USB controller can be connected to multiple ports and
+>> each port can have their own PHYs. Each port of the multiport
+>> controller can either be HS+SS capable or HS only capable
+>> Proper quantification of them is required to modify GUSB2PHYCFG
+>> and GUSB3PIPECTL registers appropriately.
+>>
+>> Add support for detecting, obtaining and configuring phy's supported
+> 
+> "PHYs" for consistency, no apostrophe
+> 
+>> by a multiport controller and. Limit the max number of ports
+> 
+> "and." what? Looks like part of the sentence is missing? Or just drop
+> " and"?
+> 
+>> supported to 4 as only SC8280 which is a quad port controller supports
+> 
+> s/4/four/
+> 
+> Just change this to
+> 
+> 	Limit support to multiport controllers with up to four ports for
+> 	now (e.g. as needed for SC8280XP).
+> 
+>> Multiport currently.
+> 
+> You use capitalised "Multiport" in several places it seems. Is this an
+> established term for these controllers or should it just be "multiport"
+> or "multiple ports"?
+> 
+This is an established term AFAIK. So I've been using it here like this.
 
---kQihSqwF+AlYNzqS
-Content-Type: application/pgp-signature; name="signature.asc"
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202309200156.CxQ3yaLY-lkp@intel.com/
+> 
+> Drop these two lines, as people have already suggested.
+> 
+ACK.
 
------BEGIN PGP SIGNATURE-----
+>> Co-developed-by: Harsh Agarwal <quic_harshq@quicinc.com>
+>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+>> Co-developed-by:Krishna Kurapati <quic_kriskura@quicinc.com>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> 
+> Thinh pointed out the problems with the above which were also reported
+> by checkpatch.pl.
+> 
+>> ---
+>> Changes in v13:
+>> Compiler issues found by kernel test robot have been fixed and tags added.
+>> So removing maintainers reviewed-by tag as we have made a minor change
+>> in the patch.
+> 
+> In general this is the right thing to do when the change in question was
+> non-trivial. I'm not sure that's the case here, but the robots tend to
+> complain about smaller (but sometimes important) things.
+> 
+Got it. Will be careful about such things next time.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVjPAAKCRB4tDGHoIJi
-0o+CAQCs8vdPe2eoLkFKb2hs5d1cvV8J9PlrQHw0kqccpMHL3AD8CQBoM5Sk3hvM
-Gz9PBQeo9LO29BJjkL9Q/nthrSlgIw0=
-=9vNu
------END PGP SIGNATURE-----
-
---kQihSqwF+AlYNzqS--
+Regards,
+Krishna,
 
