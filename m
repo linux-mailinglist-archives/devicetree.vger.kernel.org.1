@@ -1,101 +1,185 @@
-Return-Path: <devicetree+bounces-10595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0357D2309
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 14:02:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968A07D230D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 14:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84B1C28143C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:02:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0BA6B20D46
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81505D2EB;
-	Sun, 22 Oct 2023 12:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E078D304;
+	Sun, 22 Oct 2023 12:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l6yE3L8Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pz1x6n/2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70C06FBB
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 12:02:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA5EF3
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 05:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697976119; x=1729512119;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1+EME6/XrPRU90YrywMkk9/B10YrGiYHUwClKV6ZNkI=;
-  b=l6yE3L8ZjDj2BkbEl84ebh2JceMIpXLBl1Q8Hl26ogzlSDcWDmP1Akz+
-   s/eF2SnoeB5sYcLs/09GQZVw7XTK2zy7DfmqROULo7fH8NweriwFWfhcW
-   DxCotWwxzo/N8x7yzObV5skuLZu7DrwYxHy/KK26oi9i5jV0jGlsUClmU
-   R4pN9dgd2XjfS+41iMY5k2Uv6LcrmS1ZNIS9Mpnxnl7wI2NkYIhjkLjfz
-   Dr2wi+DUl3Z/bsIlr6DmBOH5F+jGdKJw7oyRhWfMVxmCCHwPE1gmZhqze
-   dyXu6TIt460AcVWcn/9fNimNdghLtfGf9GQ3qCCqlF6SwHfwUFUN6C/Rf
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="366925417"
-X-IronPort-AV: E=Sophos;i="6.03,242,1694761200"; 
-   d="scan'208";a="366925417"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2023 05:01:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="1089198785"
-X-IronPort-AV: E=Sophos;i="6.03,242,1694761200"; 
-   d="scan'208";a="1089198785"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 22 Oct 2023 05:01:54 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1quX9U-0005wI-1X;
-	Sun, 22 Oct 2023 12:01:52 +0000
-Date: Sun, 22 Oct 2023 20:01:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH] dt-bindings: phy: ralink-usb-phy: convert to dtschema
-Message-ID: <202310221955.omy7vvDK-lkp@intel.com>
-References: <20231022102901.797030-1-sergio.paracuellos@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B392901
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 12:03:46 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BBBA3;
+	Sun, 22 Oct 2023 05:03:44 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9be02fcf268so343704166b.3;
+        Sun, 22 Oct 2023 05:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697976223; x=1698581023; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LV4D2DnniG5y0BqTHFZQB1MGn4Ao69hJ2NYsUwg1XoA=;
+        b=Pz1x6n/2KrcylN5fR5PbATiRbk0lvQCMaulynwhdsc7IPJvjpPPn6Ec0aE+qEwaVl8
+         cT9Q9q1hLsBD/ZaT7flsRJvELU6Q1OA9hXLnm1ccVAYiMCLQX0Mc2htXGJvtGhwPr6gA
+         8FChjyZXoeKvR7tnmYJcYir2rrq6DVpMRJvOf0ggMMzurUPOboijdVxctor2jEnBJOkk
+         Vsb2GmAzII/fKTyX41prqbWcoY18ExrBxSbSFDiQHMh/c6HQhzZ7mSW2m44W9NqJCqua
+         oM/pEkj6ulyeybq9wq+8fZfBHtDL+LK/ME/8OhDa0mbk+nPXLcqxqgRhHgKr+DCMv9w2
+         8paQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697976223; x=1698581023;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LV4D2DnniG5y0BqTHFZQB1MGn4Ao69hJ2NYsUwg1XoA=;
+        b=d0hAOc5LJsxsU+t05Y8vRzTagoawuRWX8WpOuNBr0ZJjvVdGP5BVmDdhd/9VSGGWZZ
+         Mv5BLaa4KenMblnSMAEkn1ejydkOfYGJsIW3t6rNk02jwVbmpK6XfOv4/ySoZLzRW+xj
+         ZLs90lQ0pGXnhlzG13QFgBb51YF98CDOHybhLbm1tJXi0rQqBEf6AlBMCO/5CK7YdtVf
+         KEHkNa4IW/dCO8dRVPSZtOxjupyi4XdljErrJP5GRZl3z8FbCNecJ6YFR8amVeL/Jh/1
+         eQ84b6g+xOHloO20ouyQBOUUl0jSkB+VlQJ/K3J+52akT8fv9FyIZdcoa/d4yVVkGlUN
+         JJPg==
+X-Gm-Message-State: AOJu0YyBjHXnUf+mRaqs0i0IAoJNximVfjYXPwpaVR//0W79NymU9z+J
+	phSTMe6xYwhA7ntc1XExsnY=
+X-Google-Smtp-Source: AGHT+IH1iiAQaekK8D5v5zJkhVAmQ58w+d+CKS4qxxgJ8PwvgrnrO1pQzOeT/Qw0m+iwgCLYdQWeOw==
+X-Received: by 2002:a17:907:1b0a:b0:99d:e8da:c20b with SMTP id mp10-20020a1709071b0a00b0099de8dac20bmr5049091ejc.24.1697976222823;
+        Sun, 22 Oct 2023 05:03:42 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3664:5c63:7da:9756:9320])
+        by smtp.gmail.com with ESMTPSA id q24-20020a170906361800b009b2ba067b37sm4870012ejb.202.2023.10.22.05.03.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Oct 2023 05:03:42 -0700 (PDT)
+From: Nik Bune <n2h9z4@gmail.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	skhan@linuxfoundation.org,
+	baruch@tkos.co.il
+Cc: Nik Bune <n2h9z4@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to yaml
+Date: Sun, 22 Oct 2023 14:03:28 +0200
+Message-Id: <20231022120328.137788-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231022102901.797030-1-sergio.paracuellos@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Sergio,
+Convert txt file to yaml.
+Add maintainers list. Took from Documentation/devicetree/bindings/arm/digicolor.yaml file. 
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+---
+ .../bindings/watchdog/cnxt,cx92755-wdt.yaml   | 49 +++++++++++++++++++
+ .../bindings/watchdog/digicolor-wdt.txt       | 25 ----------
+ 2 files changed, 49 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
 
-[auto build test WARNING on robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sergio-Paracuellos/dt-bindings-phy-ralink-usb-phy-convert-to-dtschema/20231022-183119
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231022102901.797030-1-sergio.paracuellos%40gmail.com
-patch subject: [PATCH] dt-bindings: phy: ralink-usb-phy: convert to dtschema
-reproduce: (https://download.01.org/0day-ci/archive/20231022/202310221955.omy7vvDK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310221955.omy7vvDK-lkp@intel.com/
-
-# many are suggestions rather than must-fix
-
-WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#51: FILE: Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml:1:
+diff --git a/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+new file mode 100644
+index 000000000000..acd2d30b20f3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
-
++---
++$id: http://devicetree.org/schemas/watchdog/cnxt,cx92755-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Conexant Digicolor SoCs Watchdog timer
++
++description: |
++  The watchdog functionality in Conexant Digicolor SoCs relies on the so called
++  "Agent Communication" block. This block includes the eight programmable system
++  timer counters. The first timer (called "Timer A") is the only one that can be
++  used as watchdog.
++
++allOf:
++  - $ref: watchdog.yaml#
++
++maintainers:
++  - Baruch Siach <baruch@tkos.co.il>
++
++properties:
++  compatible:
++    const: cnxt,cx92755-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      specifies the clock that drives the timer
++
++  timeout-sec: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@f0000fc0 {
++        compatible = "cnxt,cx92755-wdt";
++        reg = <0xf0000fc0 0x8>;
++        clocks = <&main_clk>;
++        timeout-sec = <15>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt b/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+deleted file mode 100644
+index a882967e17d4..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Conexant Digicolor SoCs Watchdog timer
+-
+-The watchdog functionality in Conexant Digicolor SoCs relies on the so called
+-"Agent Communication" block. This block includes the eight programmable system
+-timer counters. The first timer (called "Timer A") is the only one that can be
+-used as watchdog.
+-
+-Required properties:
+-
+-- compatible : Should be "cnxt,cx92755-wdt"
+-- reg : Specifies base physical address and size of the registers
+-- clocks : phandle; specifies the clock that drives the timer
+-
+-Optional properties:
+-
+-- timeout-sec : Contains the watchdog timeout in seconds
+-
+-Example:
+-
+-	watchdog@f0000fc0 {
+-		compatible = "cnxt,cx92755-wdt";
+-		reg = <0xf0000fc0 0x8>;
+-		clocks = <&main_clk>;
+-		timeout-sec = <15>;
+-	};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
