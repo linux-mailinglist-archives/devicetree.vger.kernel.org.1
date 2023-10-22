@@ -1,168 +1,94 @@
-Return-Path: <devicetree+bounces-10662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 676227D2611
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 23:14:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233707D2612
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 23:16:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1B1A28144D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 21:13:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEFA5281433
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 21:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7F4134DB;
-	Sun, 22 Oct 2023 21:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6991134DC;
+	Sun, 22 Oct 2023 21:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5A11078F
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 21:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02038101E3
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 21:16:01 +0000 (UTC)
 Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB6EAD;
-	Sun, 22 Oct 2023 14:13:52 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-579de633419so27153737b3.3;
-        Sun, 22 Oct 2023 14:13:52 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08B3AF
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 14:16:00 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5a7af20c488so27324977b3.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 14:16:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698009231; x=1698614031;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O7altDW3iLD1hJkh5bq+RenC4wfZp29IviHsdT4eIlA=;
-        b=m5qNMdn2ptQ6n01Mfzk61jFXDWKihX5yljIwC+KqTALd+wINcHEg6FdskqVd2Ym/5P
-         0UzQ2Bz+cE9SmTlLOqZNftGVmDGv9JL2vDRIO0kLK6m+EoTDTRyoZpmdyJEFOq7Md41J
-         dor1E0ktadGhwmC1aHo4riDtz/6q4n1l7HVoHx+FrQfZ2nRuoCN1nky8a7N0urmmTkmf
-         vACfa7j7w1ktWQlkwHECHGyHy65VaiAOo7xPAVJB6q2KJ/u/Ry52BkoKpOnD6/bT8Aos
-         lP6Mq5S2Xl57xBj18lyMtMsTAKzoigd9xoVcaTSEuo6OZc/ARiyvoBs7AoTlb88MQZ6z
-         Nzsg==
-X-Gm-Message-State: AOJu0Ywaae7EwLiMDXcuUTF1tRSpKNWx3hUvqPoIkLI3T75yGcDZyyc1
-	JljS82sIQZ+NH2r+r9UMcA==
-X-Google-Smtp-Source: AGHT+IFEil4Wtp2HBQexBRNE2hIDjHAPT4UaP+tJX3tIVD4uLeHG5TzVYD80JHuaTRfmfY2F9HwOQA==
-X-Received: by 2002:a81:480c:0:b0:5a9:117d:ddbc with SMTP id v12-20020a81480c000000b005a9117dddbcmr4992933ywa.15.1698009230839;
-        Sun, 22 Oct 2023 14:13:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698009360; x=1698614160;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J5qdRx9w38uewGOvQSjl82e1Dk017FDdnHXm5nRCJmo=;
+        b=dmgDh4Ag28VV7g5z8va66aOA6spDTDpEiPrAB0JpKxzzjtf4KpmbypJKd6OcnkkzEH
+         VLUrlzm82Dnf+08OKsKua3j2ZLFxLk5DMArkSD3zhP3W5QluyZruB/q1ZK7nWpbnijNG
+         /CW9xdT1m2q0Ht2Z6/xx4d+4u0QQAR0b6JYop6v36LMwfxxIVm21zqL3PwjdiXFgJW8l
+         PR0Ry35ikXZWa8GQKe/bnviy/7h38QMC7fHtYlny/X7VrbTc6+4VjyS3Ewn+rNgK76yo
+         +GPGYpLsZpyD2kUWqlAXvqSY7a95sMccMhi08UoD4NwY1lo5fCuKuVYwU+wSgCxKL64g
+         LCYw==
+X-Gm-Message-State: AOJu0YwoKXOl0N3kNu/+GRcWkrYjKeTb2tc+vK1vfjn3vAKBcNhBJW48
+	jyX4+n4qKIEXvdmqT9rwmg==
+X-Google-Smtp-Source: AGHT+IG775QBgwR9QOMoIXL0rYJuGAkmxPRZF8VZib/r9lbl2oU5E35+LdMos2vE6VQGgCaAxG5OrA==
+X-Received: by 2002:a05:690c:dcd:b0:5a7:bbd1:ec21 with SMTP id db13-20020a05690c0dcd00b005a7bbd1ec21mr10791826ywb.0.1698009359928;
+        Sun, 22 Oct 2023 14:15:59 -0700 (PDT)
 Received: from herring.priv ([2607:fb91:e6c1:8e5d:a109:ceb8:bec4:d970])
-        by smtp.gmail.com with ESMTPSA id h84-20020a816c57000000b005a0f9718a5fsm2572322ywc.78.2023.10.22.14.13.49
+        by smtp.gmail.com with ESMTPSA id r9-20020a0de809000000b005845e6f9b50sm2571436ywe.113.2023.10.22.14.15.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Oct 2023 14:13:50 -0700 (PDT)
-Received: (nullmailer pid 688966 invoked by uid 1000);
-	Sun, 22 Oct 2023 21:13:48 -0000
-Date: Sun, 22 Oct 2023 16:13:48 -0500
+        Sun, 22 Oct 2023 14:15:59 -0700 (PDT)
+Received: (nullmailer pid 692476 invoked by uid 1000);
+	Sun, 22 Oct 2023 21:15:57 -0000
+Date: Sun, 22 Oct 2023 16:15:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Guo Mengqi <guomengqi3@huawei.com>
-Cc: vkoul@kernel.org, dmaengine@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, xuqiang36@huawei.com, chenweilong@huawei.com
-Subject: Re: [PATCH v5 2/2] dt-bindings: dma: HiSilicon: Add bindings for
- HiSilicon Ascend sdma
-Message-ID: <20231022211348.GA682758-robh@kernel.org>
-References: <20231021093454.39822-1-guomengqi3@huawei.com>
- <20231021093454.39822-3-guomengqi3@huawei.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2] dt-bindings: watchdog: fsl,scu-wdt: Document imx8dl
+Message-ID: <20231022211557.GA690569-robh@kernel.org>
+References: <20231004182043.2309790-1-festevam@gmail.com>
+ <CAOMZO5DsZgp2d5w6a+ZRWoLCkPAKCxE0KCcXhP5t=9yQckqgqg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231021093454.39822-3-guomengqi3@huawei.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5DsZgp2d5w6a+ZRWoLCkPAKCxE0KCcXhP5t=9yQckqgqg@mail.gmail.com>
 
-On Sat, Oct 21, 2023 at 05:34:53PM +0800, Guo Mengqi wrote:
-> Add device-tree binding documentation for sdma hardware on
-> HiSilicon Ascend SoC families.
+On Thu, Oct 19, 2023 at 11:54:34PM -0300, Fabio Estevam wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
-> ---
->  .../bindings/dma/hisilicon,ascend-sdma.yaml   | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
+> On Wed, Oct 4, 2023 at 3:21 PM Fabio Estevam <festevam@gmail.com> wrote:
+> >
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > imx8dxl also contains the SCU watchdog block.
+> >
+> > Add an entry for 'fsl,imx8dxl-sc-wdt'.
+> >
+> > Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> > Cc: Guenter Roeck <linux@roeck-us.net>
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Changes since v1:
+> > - Sent it as a standalone patch to the DT folks.
+> > - Collected Conor's ack.
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-> new file mode 100644
-> index 000000000000..7b452b54fe0c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/hisilicon,ascend-sdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HiSilicon Ascend System DMA (SDMA) controller
-> +
-> +description: |
-> +  The Ascend SDMA controller is used for transferring data
-> +  in system memory.
-> +
-> +maintainers:
-> +  - Guo Mengqi <guomengqi3@huawei.com>
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,ascend310-sdma
-> +      - hisilicon,ascend910-sdma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#dma-cells':
-> +    const: 1
-> +    description:
-> +      Clients specify a single cell with channel number.
-> +
-> +  dma-channel-mask:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  pasid-num-bits:
-> +    description: |
-> +      This tells smmu that this device supports iommu-sva feature.
+> Can this go through your tree?
 
-How is this a feature of the DMA controller? Shouldn't this be part of 
-the iommu cells? How does pasid relate to SVA?
+I'm waiting to see if Guenter picks it up, but will if he doesn't.
 
-> +      This determines the maximum number of digits in the pasid.
-> +    maximum: 0x10
-> +
-> +  dma-coherent: true
-> +
-> +  dma-can-stall: true
-
-What is this?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - dma-channel-mask
-> +  - '#dma-cells'
-> +  - iommus
-> +  - pasid-num-bits
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dma-controller@880e0000 {
-> +        compatible = "hisilicon,ascend310-sdma";
-> +        reg = <0x880e0000 0x10000>;
-> +        dma-channel-mask = <0xff00>;
-> +        iommus = <&smmu 0x7f46>;
-> +        pasid-num-bits = <0x10>;
-> +        dma-coherent;
-> +        dma-can-stall;
-> +        #dma-cells = <1>;
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
+Rob
 
