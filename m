@@ -1,50 +1,61 @@
-Return-Path: <devicetree+bounces-10641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95EED7D2507
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:45:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53617D2515
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352152812E4
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:45:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9462B20CBF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E88111B7;
-	Sun, 22 Oct 2023 17:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062D611C8A;
+	Sun, 22 Oct 2023 18:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvpT/NLp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hCvWET6D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843FB63B8
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:45:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B21C433C7;
-	Sun, 22 Oct 2023 17:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82D82594;
+	Sun, 22 Oct 2023 18:00:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EED4C433C8;
+	Sun, 22 Oct 2023 18:00:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697996732;
-	bh=JbZ2PzZZaBxejkHJXLSRADkSCgcvTSdrxEHIJ1m9eV0=;
+	s=k20201202; t=1697997639;
+	bh=9wO5luQQA8YamZzHgZ2c+8fPusMyrapaaEYIJ6WW7d4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XvpT/NLpgZkczSyfPrskKpofp0dlSEU3xmWYAez6L6fRaisdVuEzE3nL4W6Sv7QVM
-	 Nkg0iXn9VbogSgGhsBTob5e+0Zxh2SGOgzIFX4zwOMRhNrrelmF/+5L9cKjiQoJvwe
-	 NLMr8eUAXLM3H9r7UAFJmJuNQOJjUWUNlq0zLj5tTsETINq69Jo8ShEK9f67qdU5dy
-	 10UBiixEuEOYmR4awpm+1IUnAifvcI0viaEcN3B2EOp+TUC8UQk8+podqKzqS1x5AE
-	 QZTN+gZBp4jrceqWjtauiVMHcICViC9ne+SPONuOeG3JQJgJXLp4+ccwR97ZucCL1Q
-	 +jr48wOZC5+bQ==
-Date: Sun, 22 Oct 2023 18:45:27 +0100
+	b=hCvWET6DpMgtWpc4RTvFqtnFe/lRb3pvOTc1BbmpzD7II1ggf9IjdzX1rT13qkC/W
+	 CceP0hWDUW4bxZqJJCAh2iXQcjGJ4IY9xombM9nW4mmBLJ30cEEfy4iGkkWw27YAhP
+	 9nkhlXCuiwMRr9FMucNlHHRApkm/bV71zVP042GkU4jCckh7fTETl4l2VDGocODOtD
+	 iVm0eOPrPBAkYRCFBcQv52qjHDEKwKfpOsGo73uG+ZI2FRJ4cs4yyzHVT0xb2zoCN4
+	 cTBMUO5QxyRTGCh4NlNoSsFmyF94GjaZ8+XRzAAgsll0kYuiTTmX700T/uYhBOkJy2
+	 vdOJEVOK7HDjg==
+Date: Sun, 22 Oct 2023 19:00:28 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Nik Bune <n2h9z4@gmail.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	skhan@linuxfoundation.org, baruch@tkos.co.il,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to
- yaml
-Message-ID: <20231022-sequence-munchkin-099ebb5b0573@spud>
-References: <20231022120328.137788-1-n2h9z4@gmail.com>
- <20231022-perish-ample-e8c009664a19@spud>
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [PATCH v3 00/13] Support Andes PMU extension
+Message-ID: <20231022-cabana-crate-503b6e8d0481@spud>
+References: <20231022151858.2479969-1-peterlin@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,163 +63,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kjXWxpFUU9GUqHjc"
+	protocol="application/pgp-signature"; boundary="kQihSqwF+AlYNzqS"
 Content-Disposition: inline
-In-Reply-To: <20231022-perish-ample-e8c009664a19@spud>
+In-Reply-To: <20231022151858.2479969-1-peterlin@andestech.com>
 
 
---kjXWxpFUU9GUqHjc
+--kQihSqwF+AlYNzqS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 22, 2023 at 06:30:04PM +0100, Conor Dooley wrote:
-> On Sun, Oct 22, 2023 at 02:03:28PM +0200, Nik Bune wrote:
-> > Convert txt file to yaml.
-> > Add maintainers list. Took from Documentation/devicetree/bindings/arm/d=
-igicolor.yaml file.=20
+Hey,
+
+On Sun, Oct 22, 2023 at 11:18:45PM +0800, Yu Chien Peter Lin wrote:
+> Hi All,
 >=20
-> That seems like a bit of an odd reasoning, but Baruch was the submitter
-> for the original txt form binding for this watchdog , per the git history.
+> This patch series introduces the Andes PMU extension, which serves
+> the same purpose as Sscofpmf. In this version we use FDT-based
+> probing and the CONFIG_ANDES_CUSTOM_PMU to enable perf sampling
+> and filtering support.
 >=20
-> >=20
-> > Signed-off-by: Nik Bune <n2h9z4@gmail.com>
-> > ---
-> >  .../bindings/watchdog/cnxt,cx92755-wdt.yaml   | 49 +++++++++++++++++++
-> >  .../bindings/watchdog/digicolor-wdt.txt       | 25 ----------
-> >  2 files changed, 49 insertions(+), 25 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx9=
-2755-wdt.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolo=
-r-wdt.txt
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wd=
-t.yaml b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..acd2d30b20f3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/cnxt,cx92755-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Conexant Digicolor SoCs Watchdog timer
-> > +
-> > +description: |
-> > +  The watchdog functionality in Conexant Digicolor SoCs relies on the =
-so called
-> > +  "Agent Communication" block. This block includes the eight programma=
-ble system
-> > +  timer counters. The first timer (called "Timer A") is the only one t=
-hat can be
-> > +  used as watchdog.
-> > +
-> > +allOf:
-> > +  - $ref: watchdog.yaml#
-> > +
-> > +maintainers:
-> > +  - Baruch Siach <baruch@tkos.co.il>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: cnxt,cx92755-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      specifies the clock that drives the timer
+> Its non-standard local interrupt is assigned to bit 18 in the
+> custom S-mode local interrupt enable/pending registers (slie/slip),
+> while the interrupt cause is (256 + 18).
 >=20
-> This can just be:
->   clocks:
->     maxItems: 1
+> The feature needs the PMU device registered in OpenSBI.
+> The OpenSBI and Linux patches can be found on Andes Technology GitHub
+> - https://github.com/andestech/opensbi/commits/andes-pmu-support-v2
+> - https://github.com/andestech/linux/commits/andes-pmu-support-v3
 >=20
-> as clocks is a generic property & if there's only one clock, describing
-> it is usually needless.
+> The PMU device tree node used on AX45MP:
+> - https://github.com/andestech/opensbi/blob/andes-pmu-support-v2/docs/pmu=
+_support.md#example-3
 >=20
-> Otherwise this conversion looks okay to me.
+> Tested hardware:
+> - ASUS  Tinker-V (RZ/Five, AX45MP single core)
+> - Andes AE350    (AX45MP quad core)
+>=20
+> Locus Wei-Han Chen (1):
+>   riscv: andes: Support symbolic FW and HW raw events
+>=20
+> Yu Chien Peter Lin (12):
+>   riscv: errata: Rename defines for Andes
+>   irqchip/riscv-intc: Allow large non-standard hwirq number
+>   irqchip/riscv-intc: Introduce Andes IRQ chip
+>   dt-bindings: riscv: Add Andes interrupt controller compatible string
+>   riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes
+>     INTC
+>   perf: RISC-V: Eliminate redundant IRQ enable/disable operations
+>   RISC-V: Move T-Head PMU to CPU feature alternative framework
+>   perf: RISC-V: Introduce Andes PMU for perf event sampling
+>   dt-bindings: riscv: Add T-Head PMU extension description
+>   dt-bindings: riscv: Add Andes PMU extension description
+>   riscv: dts: allwinner: Add T-Head PMU extension
+>   riscv: dts: renesas: Add Andes PMU extension
 
-> > +
-> > +  timeout-sec: true
+You only sent 5 of these patches FYI.
 
-While looking at your other wd conversion I noticed this, which should
-not be needed since you are referencing watchdog.yaml.
-
-Cheers,
-Conor.
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    watchdog@f0000fc0 {
-> > +        compatible =3D "cnxt,cx92755-wdt";
-> > +        reg =3D <0xf0000fc0 0x8>;
-> > +        clocks =3D <&main_clk>;
-> > +        timeout-sec =3D <15>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.t=
-xt b/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-> > deleted file mode 100644
-> > index a882967e17d4..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-> > +++ /dev/null
-> > @@ -1,25 +0,0 @@
-> > -Conexant Digicolor SoCs Watchdog timer
-> > -
-> > -The watchdog functionality in Conexant Digicolor SoCs relies on the so=
- called
-> > -"Agent Communication" block. This block includes the eight programmabl=
-e system
-> > -timer counters. The first timer (called "Timer A") is the only one tha=
-t can be
-> > -used as watchdog.
-> > -
-> > -Required properties:
-> > -
-> > -- compatible : Should be "cnxt,cx92755-wdt"
-> > -- reg : Specifies base physical address and size of the registers
-> > -- clocks : phandle; specifies the clock that drives the timer
-> > -
-> > -Optional properties:
-> > -
-> > -- timeout-sec : Contains the watchdog timeout in seconds
-> > -
-> > -Example:
-> > -
-> > -	watchdog@f0000fc0 {
-> > -		compatible =3D "cnxt,cx92755-wdt";
-> > -		reg =3D <0xf0000fc0 0x8>;
-> > -		clocks =3D <&main_clk>;
-> > -		timeout-sec =3D <15>;
-> > -	};
-> > --=20
-> > 2.34.1
-> >=20
-
-
-
---kjXWxpFUU9GUqHjc
+--kQihSqwF+AlYNzqS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVftwAKCRB4tDGHoIJi
-0m3oAP4+LnvE5nMD2qev8lpNQ6cWNAz+Yn6FUYt1ELYdCc7d5wD+NF/HvIgpnGrw
-Uj3eZKfJY6zgaE6k4by1WJ/2V/5yhAo=
-=uMnr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVjPAAKCRB4tDGHoIJi
+0o+CAQCs8vdPe2eoLkFKb2hs5d1cvV8J9PlrQHw0kqccpMHL3AD8CQBoM5Sk3hvM
+Gz9PBQeo9LO29BJjkL9Q/nthrSlgIw0=
+=9vNu
 -----END PGP SIGNATURE-----
 
---kjXWxpFUU9GUqHjc--
+--kQihSqwF+AlYNzqS--
 
