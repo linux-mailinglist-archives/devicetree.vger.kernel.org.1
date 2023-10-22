@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-10634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDA97D24F2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:31:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5507D24F5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 19:35:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F33872813F4
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:31:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD1AE28150F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC9610784;
-	Sun, 22 Oct 2023 17:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8F91118F;
+	Sun, 22 Oct 2023 17:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hzAt1Vab"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwRhM6Oh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF42223C9
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:31:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B6BC433C8;
-	Sun, 22 Oct 2023 17:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D9323C9
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 17:34:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4341C433C7;
+	Sun, 22 Oct 2023 17:34:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697995868;
-	bh=xIa81NLUBml5MoS2Eb3kkSqN1ZIghfNeP9hiSlzUH1A=;
+	s=k20201202; t=1697996098;
+	bh=2Cum5Lnb9QFyJyDRCwFuomJRiUxeMw85rd8TM5XEc5M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hzAt1VabW6duveqB+z3dICSEWrqt9VsVnC0iGerJXDVutrrQ3RPrvRAb17u/S4miQ
-	 AR0wwKAyW+F3mbb1M9COYxgh3b1h2pLza2D9VUc3LpW2edvGjMsw1F0fgwOnU4YExb
-	 vQ8GKVmWOCcKGtGECvOb68yz+p+8HjHzXOdURqwjuFYnrfSUIUKqDs0e2VsDJ5XyAX
-	 IElUICMjwaB3hrzS9SfdIV7hqHuR3Q1PbDXdfU2BIpKZYFomxCV07vgn7SRdAYxIIC
-	 qi1tm0ffkcJ4BLKpKti+UqrL8srAGFS6d0kZ64b+sGuEih/DXeVP02rGaIrSF4KY1P
-	 jC+1JkrxllYng==
-Date: Sun, 22 Oct 2023 18:31:03 +0100
+	b=bwRhM6OhL/UzUY3iRwNcKgZSyT+SdgOK25HOL9+9zcYzLYzRcEq4fMy/6LxRReFeW
+	 3/no7ChgSmxCcyp2W8NeTzlWRQX51UxfuOhoG5N2FZz+wwPLPy0Zzj7KPKXau2yeXx
+	 S8IorDwgc4g4tztIOYIAZlO9rUwx7RctA2D8jCB7UE14mdiTo6KWVNpTGlZA5kB9GM
+	 w++dJ8XJgdHVmj4daGLGFVZ4SW6PROuEtJ897yDKOEY1aAGDheHkHWPFdHZ8Eq6a9h
+	 aQm4J7oggqnmQCGDioapJWRbLZuu5WCk0mZcU0g4+2rPFycpEAsueRa5UX9bO23h5i
+	 ucetX5WUzR3Rw==
+Date: Sun, 22 Oct 2023 18:34:54 +0100
 From: Conor Dooley <conor@kernel.org>
-To: lukas walter <lukas.walter@aceart.de>
-Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org, robh+dt@kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Huawei Honor 5X / GR5
- (2016)
-Message-ID: <20231022-sequester-atypical-325eadda7a15@spud>
-References: <20231022-arousal-glowing-f72c8f2e44fa@spud>
- <fc5234cd33b78369f792479795abd02710dfcdbf.camel@aceart.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: ti,ds90ub960: Add missing type for
+ "i2c-alias"
+Message-ID: <20231022-dice-plywood-a51e476eb07a@spud>
+References: <20231020170225.3632933-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,38 +54,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RN7U2wqAnTB6dxtW"
+	protocol="application/pgp-signature"; boundary="w0aP+RuQEiHwXrIZ"
 Content-Disposition: inline
-In-Reply-To: <fc5234cd33b78369f792479795abd02710dfcdbf.camel@aceart.de>
+In-Reply-To: <20231020170225.3632933-1-robh@kernel.org>
 
 
---RN7U2wqAnTB6dxtW
+--w0aP+RuQEiHwXrIZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 22, 2023 at 01:40:41PM +0200, lukas walter wrote:
-> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >
-> >How come this v1 has an ack?
+On Fri, Oct 20, 2023 at 12:02:24PM -0500, Rob Herring wrote:
+> Every DT property needs a type defined, but "i2c-alias" is missing any
+> type definition. It's a "uint32", so add a type reference.
 >=20
-> This is supposed to be a v2, but I had problems sending it correctly,
-> sorry
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20230916134147.1=
-63764-1-lukas.walter@aceart.de/
+> Fixes: 313e8b32c616 ("media: dt-bindings: media: add TI DS90UB960 FPD-Lin=
+k III Deserializer")
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-The joys of email, ehh
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---RN7U2wqAnTB6dxtW
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yam=
+l b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> index 289737721c2c..0b71e6f911a8 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -69,6 +69,7 @@ properties:
+>              maxItems: 1
+> =20
+>            i2c-alias:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+>              description:
+>                The I2C address used for the serializer. Transactions to t=
+his
+>                address on the I2C bus where the deserializer resides are
+> --=20
+> 2.42.0
+>=20
+
+--w0aP+RuQEiHwXrIZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVcVwAKCRB4tDGHoIJi
-0jJvAP4+ghdIssWpblmMi9YkVOa7s1TtwnvzXBODtTruht2GyQD/ewbu+P/6wDqx
-0A0ZZrh0Z3J/IfGnZcwNsjK3VxxvCgI=
-=XBcM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTVdPgAKCRB4tDGHoIJi
+0rJ+AQDTCcR8mZ1cxKZlr5M4bP8/RBkCSESXsvYiQEnAGVNHNQEA3aM6sI6VJ6NI
+NERweUroAYMdMOIM8ZyGxaJPRdfojgw=
+=Lk19
 -----END PGP SIGNATURE-----
 
---RN7U2wqAnTB6dxtW--
+--w0aP+RuQEiHwXrIZ--
 
