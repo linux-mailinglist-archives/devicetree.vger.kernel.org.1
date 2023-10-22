@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04BF7D243B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:09:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3623A7D2443
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25E56B20CF0
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:09:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67CD81C204AB
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FED51096A;
-	Sun, 22 Oct 2023 16:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778B210975;
+	Sun, 22 Oct 2023 16:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Iot1OvRv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aJHqr0vc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5342D2EE
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:09:36 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA094F4
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:09:34 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-53ebf429b4fso3743763a12.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:09:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31AB6133
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:12:21 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646A9F3
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:12:20 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso369766166b.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:12:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697990973; x=1698595773; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1697991139; x=1698595939; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zaErdBD/Zof7qEGhoIXEKedJ5RRKWeU2fXLAhDujbwk=;
-        b=Iot1OvRvw6HAWJ/meQMZl8I9KuGpyOwHXwa7/AIz+Ou0Q2uoQi2Y4HkUM2QdG+MKnE
-         9rsSevyM31ZLa2o6R7fb9GUOc8yEwowk3mvXf+6lVXT8K+lfvj1CxOGAmWq4GEC+HnlZ
-         fCdZM9Pouiy+xknLc020iea9PtkbcA3rfJNicxLtglIL1DQsopabm1YkIITjVDxlU0E4
-         op+DhhZ+BilDZMzh+PMk1f1beTAwGTj0BERmuQd91k3ZY4Ebkq/Mnfkn+WIp2gE0JlHg
-         5/ieRymQOx+lIqJ6WyddFpj5McsS8QEPcEfZ8YIo7+/q4QUtYOL2jHdhxyHr9Ch6Z891
-         2tSw==
+        bh=GIP6QYPQ0gMLC3Rz4H2bjfCK8p7pgS1S5b1y0RTf/38=;
+        b=aJHqr0vcEL5Phi0ebN79dGkTgZof37nxBokF061HrRCmL6MtpLZ8f/b/9m7cEAs15o
+         sAnSW6u44zlruUuhliNGaF1ORSwGXmyu7bY/lvETDidJmAietQReQi6ek/EQjUtbbZs5
+         bAtg1y8wfYu8xHI1H5oQHwehcsV3hoe5tMC/8UFjdpEeiwzzHIdBOGmYfw5IMy/mueZ6
+         2s+y0ZQEQTkXP7SetaRLWbFhoWo2Q1nsYLnnMwZw7morDPUHOhm+KPNaXyCyhhHnHcSp
+         /Hj2fXVGaJipDcsveMNk6cXU0zdeyO88obLUy6dyPTyD21LEIOOi8J/V0/Vyof2325/E
+         j9Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697990973; x=1698595773;
+        d=1e100.net; s=20230601; t=1697991139; x=1698595939;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zaErdBD/Zof7qEGhoIXEKedJ5RRKWeU2fXLAhDujbwk=;
-        b=Jlh10vRYoft7+lLMNR2ydoDed4ltVAsI2+iHuG1G+nzOBNBgXzcwkQbgt4M31mzqIi
-         devj/nzTtzpPO7qGHkWl7008oZhDUU3Q6Qgu6ExVDaM6CKvAf7ogp+rsAbSgf6mGITaC
-         X2l9ZSKTwgVg3R17aFd0cTQZODTCOBuh+Gxb25WSpAmo+MdNKrwCp2b0YCCFMidBlpks
-         /gGv3KV/905rFN43MVplerMV7Wi7UeK+KwP9jb8W5pOa0vnfhpCT8Lyb8I2b/qVeNpeH
-         corhMZ7krxN9cdvDLv6thZi9A+tiFkCQ3cc/oO8JiF+jtBM9HeBzxK02UA77NP5uDl7H
-         jUoA==
-X-Gm-Message-State: AOJu0YyGQZMAv17pJ+H8E9jpAQ6tdftg3dUpqwOvViQL9wwJ0lN+o18Q
-	nmWAihExQmZ6RHFd+NrIRiGeXg==
-X-Google-Smtp-Source: AGHT+IG1VqebjDS/4SdzS4iDvslh7ghOyH8hqchoaphXFsDonvitbOWy/9QH+bHmoZ3R8UKvLgfheg==
-X-Received: by 2002:a05:6402:4305:b0:53e:7ec9:753d with SMTP id m5-20020a056402430500b0053e7ec9753dmr5047115edc.27.1697990973351;
-        Sun, 22 Oct 2023 09:09:33 -0700 (PDT)
+        bh=GIP6QYPQ0gMLC3Rz4H2bjfCK8p7pgS1S5b1y0RTf/38=;
+        b=jK1FUcnqL1G3hAc9vpqIpRdEmXvcm7nY6a+ljq447A6n0EhzHNJgqaElk57xojrHJH
+         QPw8JhdRstDcRpajN7tmEKC4PuXq0Z0wxZjrlIUCCDuy603JnJrtocp6BOim8OIXJND3
+         MMPAiE2X8Ew0GHU0tZmuYxdxngp1e3eRj07Jva+n2ln6tM1oK+Rdt5w5dYuDkdSEnSEP
+         x2O/Zuc7osetVeD/merrWy4H+936ymPc8j5kbjZS/CSvZCdhTLv4GtfrjKMAeqfsx7nm
+         pfagPtP4+z5lcrZIzL32djsGGEqBaliSkuMuFOBLHaMvztF+G2nWnKk42TZpLxnZVEqs
+         cPcw==
+X-Gm-Message-State: AOJu0YwY7q+5cQ6uawohU+KGVaUZUFVLlvO9Dk3EDomzoMTNpJ+Z2ZSh
+	lfxZanUH3hUO2Ap8PutAiGBfWg==
+X-Google-Smtp-Source: AGHT+IFF9W9HrvIHEk0M7O67l4RMkNX2j3714GN3iwXBtTNQ7kese24W/M7Lafg6hJMeoyNpZ0QaHQ==
+X-Received: by 2002:a17:907:a49:b0:9c7:4d51:af08 with SMTP id be9-20020a1709070a4900b009c74d51af08mr5519507ejc.43.1697991138784;
+        Sun, 22 Oct 2023 09:12:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ee8-20020a056402290800b00537666d307csm4957284edb.32.2023.10.22.09.09.31
+        by smtp.gmail.com with ESMTPSA id s16-20020a170906bc5000b009b95b46bbd1sm5253139ejv.133.2023.10.22.09.12.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 09:09:32 -0700 (PDT)
-Message-ID: <675ad5e3-05ab-4431-a243-72e8a56e81d2@linaro.org>
-Date: Sun, 22 Oct 2023 18:09:30 +0200
+        Sun, 22 Oct 2023 09:12:18 -0700 (PDT)
+Message-ID: <7d40c242-7779-45de-83c5-06db9983dae1@linaro.org>
+Date: Sun, 22 Oct 2023 18:12:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: cpus: Add Qualcomm Kryo 465
+Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
+ codec IP support
 Content-Language: en-US
-To: David Wronek <davidwronek@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Devarsh Thakkar <devarsht@ti.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, devicetree@vger.kernel.org,
- Joe Mason <buddyjojo06@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20231021071619.187374-1-davidwronek@gmail.com>
+ NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>
+Cc: linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ linux-kernel@vger.kernel.org,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
+ Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>,
+ "Bajjuri, Praneeth" <praneeth@ti.com>, "Raghavendra, Vignesh"
+ <vigneshr@ti.com>, "Bhatia, Aradhya" <a-bhatia1@ti.com>,
+ "Luthra, Jai" <j-luthra@ti.com>, "Brnich, Brandon" <b-brnich@ti.com>,
+ "Pothukuchi, Vijay" <vijayp@ti.com>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
+ <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,18 +138,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231021071619.187374-1-davidwronek@gmail.com>
+In-Reply-To: <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/10/2023 09:16, David Wronek wrote:
-> Add a compatible for the Qualcomm Kryo 465 found in SM7125.
+On 17/10/2023 15:39, Devarsh Thakkar wrote:
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - interrupts
+>> +
 > 
-> Signed-off-by: David Wronek <davidwronek@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 1 
+> Is it possible to keep interrupts property as optional given HW can still work
+> without it if SW does polling of ISR using registers?
+> 
+> The reason to ask is in TI AM62A SoC (which also uses this codec) there is an
+> SoC errata of missing interrupt line to A53 and we are using SW based polling
+> locally to run the driver.
+> 
+> We were planning to upstream that SW based polling support patch in CnM driver
+> once this base initial driver patch series gets merged, but just wanted to
+> check if upfront it is possible to have interrupts property as optional so
+> that we don't have to change the binding doc again to make it optional later on.
+> 
+> Also note that the polling patch won't be specific to AM62A, other SoC's too
+> which use this wave5 hardware if they want can enable polling by choice (by
+> removing interrupt property)
+> 
+> Could you please share your opinion on this ?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You know, if you do not have interrupt line connected, how could it be
+required, right? If the hardware does not require interrupt to be
+connected then bindings should not require it.
 
 Best regards,
 Krzysztof
