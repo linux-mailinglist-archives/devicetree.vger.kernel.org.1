@@ -1,172 +1,204 @@
-Return-Path: <devicetree+bounces-10597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D447D2310
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 14:05:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7206C7D2329
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 15:13:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AAB728154D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:05:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47CD92813EE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 13:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CD5D304;
-	Sun, 22 Oct 2023 12:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A95D507;
+	Sun, 22 Oct 2023 13:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cqyj76xa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QxIokFqb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BDC2901
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 12:05:52 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A661114;
-	Sun, 22 Oct 2023 05:05:49 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0FF6656D;
-	Sun, 22 Oct 2023 14:05:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1697976337;
-	bh=XLggI/OzeRShGWMvxDswWLX4tMFqVlxpAgYqh++VSV8=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=cqyj76xafwKS3a8bpPaw0jRVL2jJccu39i6EdnZIV8StmiiIDrfcdZCyS7XDo2XA0
-	 jQgltxtgjxRdq8ZGIBg/Mh6q7vZ4JiTRXdigZcK2JYPcM7qxPQMqcOMqJf9Dk8gmF/
-	 QZ0EEGbwE/HeEWVaJ3nQqd4l2telJkVYE/dG1Kvc=
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D1423CB
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 13:12:58 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDBDB93;
+	Sun, 22 Oct 2023 06:12:56 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2bfed7c4e6dso35741751fa.1;
+        Sun, 22 Oct 2023 06:12:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697980375; x=1698585175; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3q0Avs5ak9d/HD/1I6mLe6b4hH5YiM69d6TrXnVBkvI=;
+        b=QxIokFqb09tbHU2wJUYMFGk787yfs7tIyQNAd5oHdJohBtRYRBy/KRPBjdsstR1XNS
+         5GvjmznbuFdZrV8dgoc4Z9zz/kjcqGKwuwf3FZOB/HPBsa0vg6iklKMOtKcoU+c6AwiU
+         iKEIC8eTpBjRkuIRkQRBJR4O3tBgZrJzP+bnzjiyh6DCkMV5PqcZQBepdtiuMbzCNyTc
+         1aFOqytv2ZG21FAkDKTnvk3FV4gfUMYW6Wl+GlkgeJk7lRQo7ALUCZ9/dt9FPlG49jIf
+         ebrdjRIOlBzmYV55z4YpoD7XRPBzinwT8mNA0s/wwSCtry2zQ0+87L/FfgSco/h8UpeE
+         LmfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697980375; x=1698585175;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3q0Avs5ak9d/HD/1I6mLe6b4hH5YiM69d6TrXnVBkvI=;
+        b=jAu3cnZ3IfZH/PhVtC8LL4X6MQBQVy3JylQSpvxObVcIELF8oHOdvPxmlg1QIC0oaL
+         YrHVoSkHSDANgdq7cnPq9GDnQyT4XCdkIp4BrR2+jCK6TFF9Lgedo5barXdzEjJp83zK
+         qkx3hv3edRIAC+2FW9/ilJn8u6TbPoUKDU2KqBbbpkMF7GXwxKoLVrQ9WRc2G1Uq0pn3
+         nDsPJj5UvWDjccFeCkqVKHyKrZW200rAxIiJ0RCwfR5el4oy6AjM3Y9CX1N2G7k11q9s
+         VWocqGJJxjGMlDXndcEgO8ZAbmLHcjYnEA6S3wApqDhuekE8/Ntm9cOQ6Nw1kaAufEnD
+         HWNQ==
+X-Gm-Message-State: AOJu0Yz5e0wFSDi+ohrtpiHKOwLV4o6up9hmjYUQs3OXQ9mSx3necgcx
+	+/ciwJ8KM63q7V9qJfN20cWSmmo7zVM=
+X-Google-Smtp-Source: AGHT+IEQrPMe3KcRw7f9DcWNsK50Ob6oizvv6cqASQ8UtfhyYw4285VJ40Zw/YSujH9I3IP/FAWn7g==
+X-Received: by 2002:a2e:b88b:0:b0:2c5:521:cec3 with SMTP id r11-20020a2eb88b000000b002c50521cec3mr5165993ljp.23.1697980374450;
+        Sun, 22 Oct 2023 06:12:54 -0700 (PDT)
+Received: from localhost.localdomain (141.red-88-10-53.dynamicip.rima-tde.net. [88.10.53.141])
+        by smtp.gmail.com with ESMTPSA id p12-20020a05600c418c00b0040773c69fc0sm11508292wmh.11.2023.10.22.06.12.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Oct 2023 06:12:53 -0700 (PDT)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: phy: ralink-usb-phy: convert to dtschema
+Date: Sun, 22 Oct 2023 15:12:52 +0200
+Message-Id: <20231022131252.801090-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231021141802.7k6irkkgycp4hek7@pengutronix.de>
-References: <20231021005250.3498664-1-kieran.bingham@ideasonboard.com> <20231021141802.7k6irkkgycp4hek7@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Add CSI Power Regulators
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
-To: Marco Felsch <m.felsch@pengutronix.de>
-Date: Sun, 22 Oct 2023 13:05:44 +0100
-Message-ID: <169797634457.750763.12645281668685716649@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Quoting Marco Felsch (2023-10-21 15:18:02)
-> Hi Kieran,
->=20
-> thanks for your patch.
->=20
-> On 23-10-21, Kieran Bingham wrote:
-> > Provide the 1.8 and 3.3 volt regulators that are utilised on the Debix
-> > SOM BMB-08 base board.
-> >=20
-> > Facilitate this by also supplying the pin control used to enable the
-> > regulators on the second MIPI CSI port.
-> >=20
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > ---
-> >  .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dt=
-s b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > index 0b0c95432bdc..e058402f1f2e 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> > @@ -63,6 +63,50 @@ regulator-som-vdd3v3 {
-> >               regulator-always-on;
-> >       };
-> > =20
-> > +     reg_csi1_1v8: regulator-csi1-vdd1v8 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <1800000>;
-> > +             regulator-name =3D "CSI1_VDD1V8_SW";
->=20
-> Can we drop the _SW suffix here and below? I like to align the names
-> with the schematic power-rail names to make it easier to grep.
+Convert the ralink-usb-phy bindings to DT schema.
 
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v2:
+ - Add missing SPDX License Identifier
 
-Sure that's fine with me. I think the _SW is probably a hangover from
-the BSP kernel, I'm not sure why I kept it ;-)
+ .../bindings/phy/ralink-usb-phy.txt           | 23 ------
+ .../bindings/phy/ralink-usb-phy.yaml          | 70 +++++++++++++++++++
+ 2 files changed, 70 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
 
-> With that fixed feel free to add my:
+diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt b/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
+deleted file mode 100644
+index 9d2868a437ab..000000000000
+--- a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-Mediatek/Ralink USB PHY
+-
+-Required properties:
+- - compatible: "ralink,rt3352-usbphy"
+-	       "mediatek,mt7620-usbphy"
+-	       "mediatek,mt7628-usbphy"
+- - reg: required for "mediatek,mt7628-usbphy", unused otherwise
+- - #phy-cells: should be 0
+- - ralink,sysctl: a phandle to a ralink syscon register region
+- - resets: the two reset controllers for host and device
+- - reset-names: the names of the 2 reset controllers
+-
+-Example:
+-
+-usbphy: phy {
+-	compatible = "mediatek,mt7628-usbphy";
+-	reg = <0x10120000 0x1000>;
+-	#phy-cells = <0>;
+-
+-	ralink,sysctl = <&sysc>;
+-	resets = <&rstctrl 22 &rstctrl 25>;
+-	reset-names = "host", "device";
+-};
+diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
+new file mode 100644
+index 000000000000..b05665f5b641
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/ralink-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek/Ralink USB PHY
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - ralink,rt3352-usbphy
++      - mediatek,mt7620-usbphy
++      - mediatek,mt7628-usbphy
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 0
++
++  ralink,sysctl:
++    description:
++      phandle to a ralink syscon register region.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  resets:
++    items:
++      - description: USB Host reset controller
++      - description: USB Device reset controller
++
++  reset-names:
++    items:
++      - const: host
++      - const: device
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7628-usbphy
++    then:
++      required:
++        - reg
++
++required:
++  - compatible
++  - "#phy-cells"
++  - ralink,sysctl
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@10120000 {
++      compatible = "mediatek,mt7628-usbphy";
++      reg = <0x10120000 0x1000>;
++      #phy-cells = <0>;
++      ralink,sysctl = <&sysc>;
++      resets = <&rstctrl 22>,
++               <&rstctrl 25>;
++      reset-names = "host", "device";
++    };
++
++...
+-- 
+2.25.1
 
-Thanks
-
---
-Kieran
-
->=20
-> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
->=20
-> > +             gpio =3D <&expander0 13 GPIO_ACTIVE_HIGH>;
-> > +             vin-supply =3D <&reg_baseboard_vdd3v3>;
-> > +             enable-active-high;
-> > +     };
-> > +
-> > +     reg_csi1_3v3: regulator-csi1-vdd3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-name =3D "CSI1_VDD3V3_SW";
-> > +             gpio =3D <&expander0 14 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_vdd5v0>;
-> > +     };
-> > +
-> > +     reg_csi2_1v8: regulator-csi2-vdd1v8 {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_reg_csi2_1v8>;
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <1800000>;
-> > +             regulator-name =3D "CSI2_VDD1V8_SW";
-> > +             gpio =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_baseboard_vdd3v3>;
-> > +     };
-> > +
-> > +     reg_csi2_3v3: regulator-csi2-vdd3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_reg_csi2_3v3>;
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-name =3D "CSI2_VDD3V3_SW";
-> > +             gpio =3D <&gpio4 25 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             vin-supply =3D <&reg_vdd5v0>;
-> > +     };
-> > +
-> >       regulator-vbus-usb20 {
-> >               compatible =3D "regulator-fixed";
-> >               regulator-min-microvolt =3D <5000000>;
-> > @@ -413,6 +457,18 @@ MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03              0=
-x41
-> >               >;
-> >       };
-> > =20
-> > +     pinctrl_reg_csi2_1v8: regcsi21v8grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21              0=
-x19
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_reg_csi2_3v3: regcsi23v3grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25               0=
-x19
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_uart2: uart2grp {
-> >               fsl,pins =3D <
-> >                       MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX            0=
-x14f
-> > --=20
-> > 2.34.1
-> >=20
-> >
 
