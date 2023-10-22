@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-10607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE3C7D239F
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:46:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E9D7D23A4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 17:46:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD51E1C209DE
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 15:46:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0146BB20D01
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 15:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F71E107A1;
-	Sun, 22 Oct 2023 15:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BFA10945;
+	Sun, 22 Oct 2023 15:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UEDDOjk8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PqrBIifU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A41163B2
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 15:46:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED23C433C7;
-	Sun, 22 Oct 2023 15:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032CF63B2
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 15:46:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5007C433D9;
+	Sun, 22 Oct 2023 15:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697989566;
-	bh=286IEr6Au2fjEg8EUTjPOBmNUpcywoLU8+MN1g61aBw=;
+	s=k20201202; t=1697989567;
+	bh=DrNGws2BbDIJSL5/4j3CgtnQlWq5CA2V5NGPeMNac00=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UEDDOjk8xf2FP5mSSbJHg1CbKwjRtRe+R+MVb4G5Zvs7mxtvJjDe98jIJZwDwyOYj
-	 Pj0hXih9Fd6hnKmoJjQu+bTuOvZQkPqS32qxg1EETMkexyqM3YtAq0H7yrOH522Zg0
-	 LJa/WNSB302anTADe5FpE2214g4iNCyUYQQur2mepRyAhrvTXccN5Z+Ukg56NfBrcz
-	 PSWBGpN9qDwqf6e4JqLnL2b5pckOp7sxZ9RjP5bsaMsWGmQnGVLeEasdvEtX/slfoN
-	 guMiZIJA8arhpeEJb0tGHHJa62CEdBEU2Vl063zmgEERwBtzg9VkE64DbvHWusQw2r
-	 iYdqofxEKtLEA==
+	b=PqrBIifUu6XWT1lpS5o+VILXZKP5gkGS6XZyYbvlfJvm3U8E7MUk/9Z/tmUUtHNGq
+	 JwHC/QEGmoVz4CBGHx9Gwld6FQT2XkHwoRqwg0aY9iFzL6rL+WT/lW+Yffue4olBPY
+	 VMNlnqvn6DailPOuhlsJ2fhRoqdms17AZOCJNr2TL/mk62LsvVdsw1YuojMuHDvHIT
+	 Q/baKWbyUOfjV6Dy9GxoDB1MWGnsEFa+YjBH73Veoi82PijKfmAD1F7DLB2g1C4r2t
+	 OoLa/Bi8mai5oOa2Cmv2eAMYV1CFz/aecUuFyxS1QLusf0/1pcJ5KRmIqxV3MuLR6M
+	 44PhJPYcK+Zxw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: Andy Gross <agross@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: add missing camera LED pin config
-Date: Sun, 22 Oct 2023 08:50:14 -0700
-Message-ID: <169798982330.271027.9186412119973993390.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Use the correct DP PHY compatible
+Date: Sun, 22 Oct 2023 08:50:15 -0700
+Message-ID: <169798982297.271027.18200659862754581550.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231003093647.3840-1-johan+linaro@kernel.org>
-References: <20231003093647.3840-1-johan+linaro@kernel.org>
+In-Reply-To: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
+References: <20230929-topic-x13s_edpphy-v1-1-ce59f9eb4226@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,16 +58,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 03 Oct 2023 11:36:47 +0200, Johan Hovold wrote:
-> Add the missing pin configuration for the recently added camera
-> indicator LED.
+On Fri, 29 Sep 2023 18:02:57 +0200, Konrad Dybcio wrote:
+> The DP PHY needs different settings when an eDP display is used.
+> Make sure these apply on the X13s.
+> 
+> FWIW
+> I could not notice any user-facing change stemming from this commit.
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8280xp-x13s: add missing camera LED pin config
-      commit: a3457cc5bc30ad053c90ae9f14e9b7723d204a98
+[1/1] arm64: dts: qcom: sc8280xp-x13s: Use the correct DP PHY compatible
+      commit: 0cd080dd6d08817c9980d2069197b066636b0f23
 
 Best regards,
 -- 
