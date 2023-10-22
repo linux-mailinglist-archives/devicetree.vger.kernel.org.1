@@ -1,117 +1,200 @@
-Return-Path: <devicetree+bounces-10587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E5A97D2271
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6882E7D229D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:29:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 913BE1C2091A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:00:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 822471C20930
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88F611C30;
-	Sun, 22 Oct 2023 10:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1E763D7;
+	Sun, 22 Oct 2023 10:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FLa/vHW7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PjRmXcVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D352A51
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 10:00:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48913C433C7;
-	Sun, 22 Oct 2023 10:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697968813;
-	bh=7PsMWbaVMedcFn6pPH+/OzV5PSechVS/ScQduga9eQk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FLa/vHW7t8aqno59J8dt7ReYX8iDpAuNnwvWrlchV/dNSytiLmDRXjqasn6wdZfhk
-	 hV+jNBGwOT+sXnjm7yMLdAhMCFi2vfSikzVUwjp+xu5F+lDFKAo/1xhHbJG19yBCCT
-	 u5dBv5n7TsQlKrPbV3q/oNx4XbKb7cpayC7x9noJCcJGUV8bE4EUX+lZh+Z1kmiL+J
-	 DyxNt3kT5d0Qh6rkMpm4BkWKjPFwdfsRUV2a6vtfbXTkfgrDjGAEXbMeirAqIStS9z
-	 dUYV6L9LMJdnG0eujR0GuqeINj+D3/pHBDG+fz+zbbL3ozNoHFnYSqVzK8rYU+3eqv
-	 T7FKjtPcjtZIA==
-Date: Sun, 22 Oct 2023 11:00:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	jenneron@postmarketos.org, linux-arm-msm@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,sm8250: Add
- sc7180-qdsp6-sndcard
-Message-ID: <20231022-snowy-flashily-0c814247e557@spud>
-References: <20231020-sc7180-qdsp-sndcard-v1-0-157706b7d06f@trvn.ru>
- <20231020-sc7180-qdsp-sndcard-v1-1-157706b7d06f@trvn.ru>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E2920E0
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 10:29:06 +0000 (UTC)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17269A7;
+	Sun, 22 Oct 2023 03:29:05 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c51388ccebso34389551fa.3;
+        Sun, 22 Oct 2023 03:29:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697970543; x=1698575343; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZiTcAHupBgTw7Vl1VZjjsvOC2KRXwCZBUoGeBsfXfLo=;
+        b=PjRmXcVz+3Th2mA7QSgfQcwdWLoCrYCh3MbxEnYdozJFHRoGHGlIHJQXOfw4daQpDW
+         LJEVqbBMe6gPThBxkkfcYk7bToHD1tZyRmvKvRkazkF6GoxoYnV9aKQM+Uo5b4ItkOEG
+         f+QaJ4Ayu5Kgfq2SHuRm4Di6ZduhRI0qptNgDwBj7iHIY6xmy0bpAO877ywS24gBrGtG
+         S33sl+2R4cyiznT9AIixVyRp0Hdf/zcmzJtJSRMfJPAm73rIgeVkRswOmQGxpBIGZOMK
+         hg3QlRVEMPGLPozPwpbTtpcOQ7cSW02kcxiSlm++RBHZSMwBCAEQmMBNaR16Pj1hLeuG
+         r2Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697970543; x=1698575343;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZiTcAHupBgTw7Vl1VZjjsvOC2KRXwCZBUoGeBsfXfLo=;
+        b=DEIuqeDbg66Pmk5a7A0WqdIBghID83imcXvwD3U+8mIWVqeQamSmnJMwWSJA7o2Ac7
+         6gA1GPFfRXt+5n+BTKa0XnBchNEFyVPEtHGr13FWKg2UIj4vl6zuwfVLe0PApPPstORF
+         AYl0FuuCbt2CW+i+sQ6smVf4o+sGaAW1R6zRsx8E6cUlXMtgYJ6ge3VPqd9bO1INTXmP
+         ss7umaFFvoC/U+IkFYYSZAjozmUpr0qLvRYyKmLet5QZNt71TGEghB/JaTS7bnJG7Gzs
+         MdootNXiQEnIr1lXybZVsdBIFMlZAtCDAVFW3KvX9R1ag6Iyda7BGyLIFhOd2A0burQa
+         aajA==
+X-Gm-Message-State: AOJu0YzI3rVHrjEjtDqATup5QIdCZ+o6sNVFIAYOMRA7eaauO4GI/hNK
+	zypDxj9ezFt6san58eun0wd7Tr24nU4=
+X-Google-Smtp-Source: AGHT+IG8AwKgQREdrTd3BzyymAYq98n5Fx6GodhxOoWKX4nGppqIcvjY8xJrbmDGlAjC3UzC0qC49w==
+X-Received: by 2002:a2e:700d:0:b0:2c5:23f8:1111 with SMTP id l13-20020a2e700d000000b002c523f81111mr4092078ljc.41.1697970542665;
+        Sun, 22 Oct 2023 03:29:02 -0700 (PDT)
+Received: from localhost.localdomain (141.red-88-10-53.dynamicip.rima-tde.net. [88.10.53.141])
+        by smtp.gmail.com with ESMTPSA id x10-20020a05600c21ca00b003feea62440bsm6497645wmj.43.2023.10.22.03.29.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Oct 2023 03:29:02 -0700 (PDT)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: [PATCH] dt-bindings: phy: ralink-usb-phy: convert to dtschema
+Date: Sun, 22 Oct 2023 12:29:01 +0200
+Message-Id: <20231022102901.797030-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nNQF1DonWtR70u/D"
-Content-Disposition: inline
-In-Reply-To: <20231020-sc7180-qdsp-sndcard-v1-1-157706b7d06f@trvn.ru>
+Content-Transfer-Encoding: 8bit
 
+Convert the ralink-usb-phy bindings to DT schema.
 
---nNQF1DonWtR70u/D
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+ .../bindings/phy/ralink-usb-phy.txt           | 23 -------
+ .../bindings/phy/ralink-usb-phy.yaml          | 69 +++++++++++++++++++
+ 2 files changed, 69 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
 
-On Fri, Oct 20, 2023 at 08:33:46PM +0500, Nikita Travkin wrote:
-> sc7180 can make use of the adsp-baked soundcard, add relevant compatible
-> to the documentation.
->=20
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt b/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
+deleted file mode 100644
+index 9d2868a437ab..000000000000
+--- a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-Mediatek/Ralink USB PHY
+-
+-Required properties:
+- - compatible: "ralink,rt3352-usbphy"
+-	       "mediatek,mt7620-usbphy"
+-	       "mediatek,mt7628-usbphy"
+- - reg: required for "mediatek,mt7628-usbphy", unused otherwise
+- - #phy-cells: should be 0
+- - ralink,sysctl: a phandle to a ralink syscon register region
+- - resets: the two reset controllers for host and device
+- - reset-names: the names of the 2 reset controllers
+-
+-Example:
+-
+-usbphy: phy {
+-	compatible = "mediatek,mt7628-usbphy";
+-	reg = <0x10120000 0x1000>;
+-	#phy-cells = <0>;
+-
+-	ralink,sysctl = <&sysc>;
+-	resets = <&rstctrl 22 &rstctrl 25>;
+-	reset-names = "host", "device";
+-};
+diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
+new file mode 100644
+index 000000000000..62dcf11d112c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
+@@ -0,0 +1,69 @@
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/ralink-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek/Ralink USB PHY
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - ralink,rt3352-usbphy
++      - mediatek,mt7620-usbphy
++      - mediatek,mt7628-usbphy
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 0
++
++  ralink,sysctl:
++    description:
++      phandle to a ralink syscon register region.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  resets:
++    items:
++      - description: USB Host reset controller
++      - description: USB Device reset controller
++
++  reset-names:
++    items:
++      - const: host
++      - const: device
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7628-usbphy
++    then:
++      required:
++        - reg
++
++required:
++  - compatible
++  - "#phy-cells"
++  - ralink,sysctl
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@10120000 {
++      compatible = "mediatek,mt7628-usbphy";
++      reg = <0x10120000 0x1000>;
++      #phy-cells = <0>;
++      ralink,sysctl = <&sysc>;
++      resets = <&rstctrl 22>,
++               <&rstctrl 25>;
++      reset-names = "host", "device";
++    };
++
++...
+-- 
+2.25.1
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-COnor.
-
-> ---
->  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/D=
-ocumentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> index 262de7a60a73..e082a4fe095d 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - qcom,apq8016-sbc-sndcard
->            - qcom,msm8916-qdsp6-sndcard
->            - qcom,qrb5165-rb5-sndcard
-> +          - qcom,sc7180-qdsp6-sndcard
->            - qcom,sc8280xp-sndcard
->            - qcom,sdm845-sndcard
->            - qcom,sm8250-sndcard
->=20
-> --=20
-> 2.41.0
->=20
-
---nNQF1DonWtR70u/D
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTTypwAKCRB4tDGHoIJi
-0gl5AP0X+bwFzAyHiu5r1O6UFDt6fXJWOpKG7KiyYT2H/ADLfQEAv0d2OZNJEAOh
-3R4ScbuFOliRrkzghDPBebpGO59z+A0=
-=XI4e
------END PGP SIGNATURE-----
-
---nNQF1DonWtR70u/D--
 
