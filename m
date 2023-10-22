@@ -1,118 +1,87 @@
-Return-Path: <devicetree+bounces-10589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3BC7D22C9
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:51:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725DB7D22D7
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 13:18:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07CF2B20D48
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:51:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23FA9281293
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 11:18:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2DE26AB4;
-	Sun, 22 Oct 2023 10:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NkuDTB4O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947BC17E6;
+	Sun, 22 Oct 2023 11:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AC71C30
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 10:51:44 +0000 (UTC)
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD39EB4
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 03:51:42 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5a7b91faf40so23517207b3.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 03:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697971902; x=1698576702; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qtBLYHItiMRAtWv2eIIyDWdvOr+sJvW/WOE9B0k2XRw=;
-        b=NkuDTB4O/Nd48Yas/JhUC6lJqnb8ZTYBFcyAFQnf58+4ERJbJNFS6EIjiKsXode/1O
-         IfkXOwBc0PNWRITMYxnSiXUNm+D5b/jYFAkz51FcLgPe47Ux9KBzHB6JyuDqu2nvU6u2
-         EeDyjQOZUZYu+AvrVhEuTdZS7Dq7wNVY3dtqDyJBE1psT4VBFsnBMDaNY2JRYYBtk/nx
-         Wz8gbaPLbQwYtD8CprBZoF8h5rqD30Qn2a9AzRTEFoJSiFSifG3hRXIc1gUd3vBaXqSY
-         Y35sK0HAdzUMlBJLIJwiJviu58678KPSerquWshltnMO33OP8Twqj8U9FuqbEMstCAP7
-         TP6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697971902; x=1698576702;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qtBLYHItiMRAtWv2eIIyDWdvOr+sJvW/WOE9B0k2XRw=;
-        b=vmIAcaRF4Bf776emaiDD5ldBFlmmeIM5IqCXkXpUXDz8XVagCErnNrV6dHf+K7dK6s
-         EL6zgXeLzSuS15YqgL0Wv334ds/int4zvmBg3heCvF7GvfsIgv7e9aMNfuTaykkK2KkG
-         fDanAChy7HGFOzdxm140JN57Y9vpTstgmblMyp1RIhVPIF20q1cbRYr2DldFvRqWj6la
-         BOjnfUeBcpbKvb5Xmjc1F8ZGBhVtz5QeLdlCOREWwQl06jLX56lbC8kj2SQSr7bOb8md
-         7EkkKAh6tRuFf32itnqgE7Z45DnhqK+GWwdLn806kAWui7G6MPm+Pfbvo96l1RjOW193
-         WrQQ==
-X-Gm-Message-State: AOJu0YxlNfsfbEcMqkYEBHjmsKNcxwVB3/ffQS/2gCPfkgQlncdCA8rM
-	Ut+R9Sw0lIYqfbKGezbJmnaOwPwToafliseqdPSWzY7q3n/Zi1kn
-X-Google-Smtp-Source: AGHT+IHvSGTdwWJCN+NUWfNu/iFOGpqaoQeYpFbg6MJyqmijJSTWlLgR/hV+HQSRRk+O0gguRdSlYnVT5vCX2KlXnKA=
-X-Received: by 2002:a0d:df02:0:b0:5a7:be1a:6c32 with SMTP id
- i2-20020a0ddf02000000b005a7be1a6c32mr7073499ywe.24.1697971902097; Sun, 22 Oct
- 2023 03:51:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C3F23A8
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 11:18:47 +0000 (UTC)
+X-Greylist: delayed 582 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 22 Oct 2023 04:18:45 PDT
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920B4E5
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 04:18:45 -0700 (PDT)
+Received: from Vostro-3710.lan (unknown [58.61.140.248])
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id A9001800084;
+	Sun, 22 Oct 2023 19:08:15 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jernej.skrabec@gmail.com
+Cc: andre.przywara@arm.com,
+	conor+dt@kernel.org,
+	robh+dt@kernel.org,
+	samuel@sholland.org,
+	wens@csie.org,
+	devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: update emac properties for Orange Pi Zero 3
+Date: Sun, 22 Oct 2023 19:08:11 +0800
+Message-Id: <20231022110811.1109389-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <3254946.aeNJFYEL58@jernej-laptop>
+References: <3254946.aeNJFYEL58@jernej-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231021-sakuramist-mi11u-v2-0-fa82c91ecaf0@gmail.com> <20231021-sakuramist-mi11u-v2-1-fa82c91ecaf0@gmail.com>
-In-Reply-To: <20231021-sakuramist-mi11u-v2-1-fa82c91ecaf0@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 22 Oct 2023 13:51:31 +0300
-Message-ID: <CAA8EJprtd8htkDWAvhamgEo3DWMMDYe-P6cnr6nwLnms=N0k9A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] soc: qcom: pmic_glink: enable UCSI for SM8350
-To: wuxilin123@gmail.com
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGBpOVk9KTEkaHUJDHkJPHlUTARMWGhIXJBQOD1
+	lXWRgSC1lBWU5DVU1KVUpPS1VJT0NZV1kWGg8SFR0UWUFZT0tIVUpKS0hKQ1VKS0tVS1kG
+X-HM-Tid: 0a8b57124132b03akuuua9001800084
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PyI6PCo4MTw6UUIxNjcvPC4f
+	KQgKChVVSlVKTUJMQkxJQ0JNTUhLVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWU5D
+	VU1KVUpPS1VJT0NZV1kIAVlBSUlJQzcG
 
-On Sat, 21 Oct 2023 at 13:20, Xilin Wu via B4 Relay
-<devnull+wuxilin123.gmail.com@kernel.org> wrote:
->
-> From: Xilin Wu <wuxilin123@gmail.com>
->
-> UCSI is supported on SM8350. Allow it to enable USB role switch and
-> altmode notifications on SM8350.
+> Can you also explain how did you figure out that additional PHY properties
+> are needed? At first glance, based on description of motorcomm,keep-pll-enabled,
+> it's not immediately clear why it should be needed. Same goes for second
+> property.
 
-We have had troubles with UCSI on sm8350. I have a workaround for this
-(and earlier) platforms. Once it is ready to be posted, I'll include
-your patch in the series, if you don't mind.
+This is based on a search for
+'motorcomm,clk-out-frequency-hz = <125000000>' in the kernel.
+Refer to device tree of other devices with the same properties.
+After a simple short test, it seems that it is unnecessary.
+I will delete these two properties in patch v2.
 
->
-> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
-> ---
->  drivers/soc/qcom/pmic_glink.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
-> index 914057331afd..1196e79e6fb3 100644
-> --- a/drivers/soc/qcom/pmic_glink.c
-> +++ b/drivers/soc/qcom/pmic_glink.c
-> @@ -341,6 +341,7 @@ static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT
->                                                            BIT(PMIC_GLINK_CLIENT_UCSI);
->
->  static const struct of_device_id pmic_glink_of_match[] = {
-> +       { .compatible = "qcom,sm8350-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
->         { .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
->         { .compatible = "qcom,sm8550-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
->         { .compatible = "qcom,pmic-glink" },
->
-> --
-> 2.42.0
->
+> 1800 ps delay basically means that rgmii is not correct type and rgmii-rxid
+> should be used instead. Indeed, schematic confirms that's the case. With that,
+> allwinner,rx-delay-ps can be 0 and thus ommited from DT file.
 
+Thanks, rgmii-rxid works for me. Will be corrected in patch v2.
+
+Thanks,
+Chukun
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
