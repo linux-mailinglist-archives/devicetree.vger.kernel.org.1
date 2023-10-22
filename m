@@ -1,200 +1,118 @@
-Return-Path: <devicetree+bounces-10588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6882E7D229D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:29:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3BC7D22C9
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 12:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 822471C20930
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:29:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07CF2B20D48
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1E763D7;
-	Sun, 22 Oct 2023 10:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2DE26AB4;
+	Sun, 22 Oct 2023 10:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PjRmXcVz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NkuDTB4O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E2920E0
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 10:29:06 +0000 (UTC)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17269A7;
-	Sun, 22 Oct 2023 03:29:05 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c51388ccebso34389551fa.3;
-        Sun, 22 Oct 2023 03:29:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AC71C30
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 10:51:44 +0000 (UTC)
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD39EB4
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 03:51:42 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5a7b91faf40so23517207b3.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 03:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697970543; x=1698575343; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZiTcAHupBgTw7Vl1VZjjsvOC2KRXwCZBUoGeBsfXfLo=;
-        b=PjRmXcVz+3Th2mA7QSgfQcwdWLoCrYCh3MbxEnYdozJFHRoGHGlIHJQXOfw4daQpDW
-         LJEVqbBMe6gPThBxkkfcYk7bToHD1tZyRmvKvRkazkF6GoxoYnV9aKQM+Uo5b4ItkOEG
-         f+QaJ4Ayu5Kgfq2SHuRm4Di6ZduhRI0qptNgDwBj7iHIY6xmy0bpAO877ywS24gBrGtG
-         S33sl+2R4cyiznT9AIixVyRp0Hdf/zcmzJtJSRMfJPAm73rIgeVkRswOmQGxpBIGZOMK
-         hg3QlRVEMPGLPozPwpbTtpcOQ7cSW02kcxiSlm++RBHZSMwBCAEQmMBNaR16Pj1hLeuG
-         r2Hg==
+        d=linaro.org; s=google; t=1697971902; x=1698576702; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtBLYHItiMRAtWv2eIIyDWdvOr+sJvW/WOE9B0k2XRw=;
+        b=NkuDTB4O/Nd48Yas/JhUC6lJqnb8ZTYBFcyAFQnf58+4ERJbJNFS6EIjiKsXode/1O
+         IfkXOwBc0PNWRITMYxnSiXUNm+D5b/jYFAkz51FcLgPe47Ux9KBzHB6JyuDqu2nvU6u2
+         EeDyjQOZUZYu+AvrVhEuTdZS7Dq7wNVY3dtqDyJBE1psT4VBFsnBMDaNY2JRYYBtk/nx
+         Wz8gbaPLbQwYtD8CprBZoF8h5rqD30Qn2a9AzRTEFoJSiFSifG3hRXIc1gUd3vBaXqSY
+         Y35sK0HAdzUMlBJLIJwiJviu58678KPSerquWshltnMO33OP8Twqj8U9FuqbEMstCAP7
+         TP6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697970543; x=1698575343;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1697971902; x=1698576702;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZiTcAHupBgTw7Vl1VZjjsvOC2KRXwCZBUoGeBsfXfLo=;
-        b=DEIuqeDbg66Pmk5a7A0WqdIBghID83imcXvwD3U+8mIWVqeQamSmnJMwWSJA7o2Ac7
-         6gA1GPFfRXt+5n+BTKa0XnBchNEFyVPEtHGr13FWKg2UIj4vl6zuwfVLe0PApPPstORF
-         AYl0FuuCbt2CW+i+sQ6smVf4o+sGaAW1R6zRsx8E6cUlXMtgYJ6ge3VPqd9bO1INTXmP
-         ss7umaFFvoC/U+IkFYYSZAjozmUpr0qLvRYyKmLet5QZNt71TGEghB/JaTS7bnJG7Gzs
-         MdootNXiQEnIr1lXybZVsdBIFMlZAtCDAVFW3KvX9R1ag6Iyda7BGyLIFhOd2A0burQa
-         aajA==
-X-Gm-Message-State: AOJu0YzI3rVHrjEjtDqATup5QIdCZ+o6sNVFIAYOMRA7eaauO4GI/hNK
-	zypDxj9ezFt6san58eun0wd7Tr24nU4=
-X-Google-Smtp-Source: AGHT+IG8AwKgQREdrTd3BzyymAYq98n5Fx6GodhxOoWKX4nGppqIcvjY8xJrbmDGlAjC3UzC0qC49w==
-X-Received: by 2002:a2e:700d:0:b0:2c5:23f8:1111 with SMTP id l13-20020a2e700d000000b002c523f81111mr4092078ljc.41.1697970542665;
-        Sun, 22 Oct 2023 03:29:02 -0700 (PDT)
-Received: from localhost.localdomain (141.red-88-10-53.dynamicip.rima-tde.net. [88.10.53.141])
-        by smtp.gmail.com with ESMTPSA id x10-20020a05600c21ca00b003feea62440bsm6497645wmj.43.2023.10.22.03.29.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Oct 2023 03:29:02 -0700 (PDT)
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Subject: [PATCH] dt-bindings: phy: ralink-usb-phy: convert to dtschema
-Date: Sun, 22 Oct 2023 12:29:01 +0200
-Message-Id: <20231022102901.797030-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        bh=qtBLYHItiMRAtWv2eIIyDWdvOr+sJvW/WOE9B0k2XRw=;
+        b=vmIAcaRF4Bf776emaiDD5ldBFlmmeIM5IqCXkXpUXDz8XVagCErnNrV6dHf+K7dK6s
+         EL6zgXeLzSuS15YqgL0Wv334ds/int4zvmBg3heCvF7GvfsIgv7e9aMNfuTaykkK2KkG
+         fDanAChy7HGFOzdxm140JN57Y9vpTstgmblMyp1RIhVPIF20q1cbRYr2DldFvRqWj6la
+         BOjnfUeBcpbKvb5Xmjc1F8ZGBhVtz5QeLdlCOREWwQl06jLX56lbC8kj2SQSr7bOb8md
+         7EkkKAh6tRuFf32itnqgE7Z45DnhqK+GWwdLn806kAWui7G6MPm+Pfbvo96l1RjOW193
+         WrQQ==
+X-Gm-Message-State: AOJu0YxlNfsfbEcMqkYEBHjmsKNcxwVB3/ffQS/2gCPfkgQlncdCA8rM
+	Ut+R9Sw0lIYqfbKGezbJmnaOwPwToafliseqdPSWzY7q3n/Zi1kn
+X-Google-Smtp-Source: AGHT+IHvSGTdwWJCN+NUWfNu/iFOGpqaoQeYpFbg6MJyqmijJSTWlLgR/hV+HQSRRk+O0gguRdSlYnVT5vCX2KlXnKA=
+X-Received: by 2002:a0d:df02:0:b0:5a7:be1a:6c32 with SMTP id
+ i2-20020a0ddf02000000b005a7be1a6c32mr7073499ywe.24.1697971902097; Sun, 22 Oct
+ 2023 03:51:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231021-sakuramist-mi11u-v2-0-fa82c91ecaf0@gmail.com> <20231021-sakuramist-mi11u-v2-1-fa82c91ecaf0@gmail.com>
+In-Reply-To: <20231021-sakuramist-mi11u-v2-1-fa82c91ecaf0@gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sun, 22 Oct 2023 13:51:31 +0300
+Message-ID: <CAA8EJprtd8htkDWAvhamgEo3DWMMDYe-P6cnr6nwLnms=N0k9A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] soc: qcom: pmic_glink: enable UCSI for SM8350
+To: wuxilin123@gmail.com
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Convert the ralink-usb-phy bindings to DT schema.
+On Sat, 21 Oct 2023 at 13:20, Xilin Wu via B4 Relay
+<devnull+wuxilin123.gmail.com@kernel.org> wrote:
+>
+> From: Xilin Wu <wuxilin123@gmail.com>
+>
+> UCSI is supported on SM8350. Allow it to enable USB role switch and
+> altmode notifications on SM8350.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- .../bindings/phy/ralink-usb-phy.txt           | 23 -------
- .../bindings/phy/ralink-usb-phy.yaml          | 69 +++++++++++++++++++
- 2 files changed, 69 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
- create mode 100644 Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
+We have had troubles with UCSI on sm8350. I have a workaround for this
+(and earlier) platforms. Once it is ready to be posted, I'll include
+your patch in the series, if you don't mind.
 
-diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt b/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
-deleted file mode 100644
-index 9d2868a437ab..000000000000
---- a/Documentation/devicetree/bindings/phy/ralink-usb-phy.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--Mediatek/Ralink USB PHY
--
--Required properties:
-- - compatible: "ralink,rt3352-usbphy"
--	       "mediatek,mt7620-usbphy"
--	       "mediatek,mt7628-usbphy"
-- - reg: required for "mediatek,mt7628-usbphy", unused otherwise
-- - #phy-cells: should be 0
-- - ralink,sysctl: a phandle to a ralink syscon register region
-- - resets: the two reset controllers for host and device
-- - reset-names: the names of the 2 reset controllers
--
--Example:
--
--usbphy: phy {
--	compatible = "mediatek,mt7628-usbphy";
--	reg = <0x10120000 0x1000>;
--	#phy-cells = <0>;
--
--	ralink,sysctl = <&sysc>;
--	resets = <&rstctrl 22 &rstctrl 25>;
--	reset-names = "host", "device";
--};
-diff --git a/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
-new file mode 100644
-index 000000000000..62dcf11d112c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/ralink-usb-phy.yaml
-@@ -0,0 +1,69 @@
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/ralink-usb-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek/Ralink USB PHY
-+
-+maintainers:
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ralink,rt3352-usbphy
-+      - mediatek,mt7620-usbphy
-+      - mediatek,mt7628-usbphy
-+  reg:
-+    maxItems: 1
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  ralink,sysctl:
-+    description:
-+      phandle to a ralink syscon register region.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  resets:
-+    items:
-+      - description: USB Host reset controller
-+      - description: USB Device reset controller
-+
-+  reset-names:
-+    items:
-+      - const: host
-+      - const: device
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt7628-usbphy
-+    then:
-+      required:
-+        - reg
-+
-+required:
-+  - compatible
-+  - "#phy-cells"
-+  - ralink,sysctl
-+  - resets
-+  - reset-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    phy@10120000 {
-+      compatible = "mediatek,mt7628-usbphy";
-+      reg = <0x10120000 0x1000>;
-+      #phy-cells = <0>;
-+      ralink,sysctl = <&sysc>;
-+      resets = <&rstctrl 22>,
-+               <&rstctrl 25>;
-+      reset-names = "host", "device";
-+    };
-+
-+...
+>
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+> ---
+>  drivers/soc/qcom/pmic_glink.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+> index 914057331afd..1196e79e6fb3 100644
+> --- a/drivers/soc/qcom/pmic_glink.c
+> +++ b/drivers/soc/qcom/pmic_glink.c
+> @@ -341,6 +341,7 @@ static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT
+>                                                            BIT(PMIC_GLINK_CLIENT_UCSI);
+>
+>  static const struct of_device_id pmic_glink_of_match[] = {
+> +       { .compatible = "qcom,sm8350-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+>         { .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+>         { .compatible = "qcom,sm8550-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+>         { .compatible = "qcom,pmic-glink" },
+>
+> --
+> 2.42.0
+>
+
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
 
