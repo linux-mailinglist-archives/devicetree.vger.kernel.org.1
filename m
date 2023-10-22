@@ -1,178 +1,151 @@
-Return-Path: <devicetree+bounces-10624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3623A7D2443
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:12:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429F87D244C
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:19:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67CD81C204AB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:12:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E648E2814EF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 16:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778B210975;
-	Sun, 22 Oct 2023 16:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6AB10A00;
+	Sun, 22 Oct 2023 16:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aJHqr0vc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BV+Qj9P+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31AB6133
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:12:21 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646A9F3
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:12:20 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso369766166b.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 09:12:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D732A101C9
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 16:19:21 +0000 (UTC)
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EBC2114;
+	Sun, 22 Oct 2023 09:19:20 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-4197fa36b6aso14660461cf.3;
+        Sun, 22 Oct 2023 09:19:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697991139; x=1698595939; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GIP6QYPQ0gMLC3Rz4H2bjfCK8p7pgS1S5b1y0RTf/38=;
-        b=aJHqr0vcEL5Phi0ebN79dGkTgZof37nxBokF061HrRCmL6MtpLZ8f/b/9m7cEAs15o
-         sAnSW6u44zlruUuhliNGaF1ORSwGXmyu7bY/lvETDidJmAietQReQi6ek/EQjUtbbZs5
-         bAtg1y8wfYu8xHI1H5oQHwehcsV3hoe5tMC/8UFjdpEeiwzzHIdBOGmYfw5IMy/mueZ6
-         2s+y0ZQEQTkXP7SetaRLWbFhoWo2Q1nsYLnnMwZw7morDPUHOhm+KPNaXyCyhhHnHcSp
-         /Hj2fXVGaJipDcsveMNk6cXU0zdeyO88obLUy6dyPTyD21LEIOOi8J/V0/Vyof2325/E
-         j9Gg==
+        d=gmail.com; s=20230601; t=1697991559; x=1698596359; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=51yoIPIuPIQY2xrhDSozZ8zZaCC3jRFcHjFfojAFMEs=;
+        b=BV+Qj9P+5om2F/jZ5KbjlqEYDOLuTSK0WgwgUg/Qur5EODcJjxtm1HAhHx9CGOXLIi
+         hewcH22aiv9+onjJG0C+ILufwXnVivHFCcNNiAVSYGhvE+uXIb4NZ4InfQUqmX6bQK0G
+         IztDEty1oaCNNzm4Hf5O14qL1rwA89Z5TpFMYZu7FIJOGrpC1HO22HwwdpOrNon73fIi
+         HbwCPmMumQ+exxw8d8jrbfYMVX1a28lPaRpfuWNC5Om1UNAIqk0Xv2YBwJHYMpITapXO
+         UvTq+HN9kEnIasNw9PLvqGtz3V7fOdwf9tz24FAaGqP2+vW8c4GD6gQs3ufvvHrTedSJ
+         3ILg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697991139; x=1698595939;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GIP6QYPQ0gMLC3Rz4H2bjfCK8p7pgS1S5b1y0RTf/38=;
-        b=jK1FUcnqL1G3hAc9vpqIpRdEmXvcm7nY6a+ljq447A6n0EhzHNJgqaElk57xojrHJH
-         QPw8JhdRstDcRpajN7tmEKC4PuXq0Z0wxZjrlIUCCDuy603JnJrtocp6BOim8OIXJND3
-         MMPAiE2X8Ew0GHU0tZmuYxdxngp1e3eRj07Jva+n2ln6tM1oK+Rdt5w5dYuDkdSEnSEP
-         x2O/Zuc7osetVeD/merrWy4H+936ymPc8j5kbjZS/CSvZCdhTLv4GtfrjKMAeqfsx7nm
-         pfagPtP4+z5lcrZIzL32djsGGEqBaliSkuMuFOBLHaMvztF+G2nWnKk42TZpLxnZVEqs
-         cPcw==
-X-Gm-Message-State: AOJu0YwY7q+5cQ6uawohU+KGVaUZUFVLlvO9Dk3EDomzoMTNpJ+Z2ZSh
-	lfxZanUH3hUO2Ap8PutAiGBfWg==
-X-Google-Smtp-Source: AGHT+IFF9W9HrvIHEk0M7O67l4RMkNX2j3714GN3iwXBtTNQ7kese24W/M7Lafg6hJMeoyNpZ0QaHQ==
-X-Received: by 2002:a17:907:a49:b0:9c7:4d51:af08 with SMTP id be9-20020a1709070a4900b009c74d51af08mr5519507ejc.43.1697991138784;
-        Sun, 22 Oct 2023 09:12:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id s16-20020a170906bc5000b009b95b46bbd1sm5253139ejv.133.2023.10.22.09.12.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 09:12:18 -0700 (PDT)
-Message-ID: <7d40c242-7779-45de-83c5-06db9983dae1@linaro.org>
-Date: Sun, 22 Oct 2023 18:12:15 +0200
+        d=1e100.net; s=20230601; t=1697991559; x=1698596359;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=51yoIPIuPIQY2xrhDSozZ8zZaCC3jRFcHjFfojAFMEs=;
+        b=Yfc/IWNsKNatA/h4I/43HEVNEZ1KucRBr1gzbF5QKcyjIlgxepOD2YOUnbapQ3xI29
+         SbP5Q3ltu4RVfHs/m/SeuxcMrexI35b+OJlxy6VquT2/OVZbs0RcWg/uvsCKcG2dlK5K
+         Is5v/nsSEkzNAa+rokBotq6roW2KxP9oAp3ny3N0gxi3gsG4H8kFch98m1rhrHVKn8Vk
+         gZbYwXIPm/SV+SDDN54/TeCZmm62c8PGpw1r8ejCSSv5In4pD9RxOiERXK9lTwwnUC2l
+         kYMzFp+O+8l7I1NCJkU9rT1EklUPFABFlkjpGFisFjKwEnHypb+HyXZHXIZF/p41mjSI
+         lIiA==
+X-Gm-Message-State: AOJu0Yy72MCu2hh1qa2ebHplJConPbNHGVOVZicX55X9oGP8E1R3lEi5
+	991pSWWZDPD8Cz1N+JCegwA=
+X-Google-Smtp-Source: AGHT+IF1J+2YfIOkfenkxN0ecNMu8q8DtSMdTCz1taKAmJyUrM2SEiQ6YiScGAphry5OBXtbcwoGVw==
+X-Received: by 2002:ac8:5d44:0:b0:41c:d1e7:27b5 with SMTP id g4-20020ac85d44000000b0041cd1e727b5mr9043611qtx.25.1697991559036;
+        Sun, 22 Oct 2023 09:19:19 -0700 (PDT)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:a07c:e734:336b:c675])
+        by smtp.gmail.com with ESMTPSA id r2-20020ac85202000000b004197079f2f8sm2111177qtn.64.2023.10.22.09.19.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Oct 2023 09:19:18 -0700 (PDT)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: alexander.stein@ew.tq-group.com,
+	aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V2] arm64: dts: imx8mp: Add NPU Node
+Date: Sun, 22 Oct 2023 11:19:10 -0500
+Message-Id: <20231022161911.10792-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
- codec IP support
-Content-Language: en-US
-To: Devarsh Thakkar <devarsht@ti.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil
- <hverkuil@xs4all.nl>, Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>
-Cc: linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- linux-kernel@vger.kernel.org,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
- Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>,
- "Bajjuri, Praneeth" <praneeth@ti.com>, "Raghavendra, Vignesh"
- <vigneshr@ti.com>, "Bhatia, Aradhya" <a-bhatia1@ti.com>,
- "Luthra, Jai" <j-luthra@ti.com>, "Brnich, Brandon" <b-brnich@ti.com>,
- "Pothukuchi, Vijay" <vijayp@ti.com>
-References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
- <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
- <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4c557cbd-33e9-a0df-3431-04ade12b6f07@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/10/2023 15:39, Devarsh Thakkar wrote:
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - interrupts
->> +
-> 
-> Is it possible to keep interrupts property as optional given HW can still work
-> without it if SW does polling of ISR using registers?
-> 
-> The reason to ask is in TI AM62A SoC (which also uses this codec) there is an
-> SoC errata of missing interrupt line to A53 and we are using SW based polling
-> locally to run the driver.
-> 
-> We were planning to upstream that SW based polling support patch in CnM driver
-> once this base initial driver patch series gets merged, but just wanted to
-> check if upfront it is possible to have interrupts property as optional so
-> that we don't have to change the binding doc again to make it optional later on.
-> 
-> Also note that the polling patch won't be specific to AM62A, other SoC's too
-> which use this wave5 hardware if they want can enable polling by choice (by
-> removing interrupt property)
-> 
-> Could you please share your opinion on this ?
+The NPU is based on the Vivante GC8000 and its power-domain
+is controlled my pgc_mlmix.  Since the power-domain uses
+some of these clocks, setup the clock parent and rates
+inside the power-domain, and add the NPU node.
 
-You know, if you do not have interrupt line connected, how could it be
-required, right? If the hardware does not require interrupt to be
-connected then bindings should not require it.
+The data sheet states the CLK_ML_AHB should be 300MHz for
+nominal, but 800MHz clock will divide down to 266 instead.
+Boards which operate in over-drive mode should update the
+clocks on their boards accordingly.  When the driver loads,
+the NPU numerates as:
 
-Best regards,
-Krzysztof
+ etnaviv-gpu 38500000.npu: model: GC8000, revision: 8002
+
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+
+V2:  Move the clock parent and rate assignments to the ppc_mlmix node
+     since clock parents should be configured before they are used,
+     and pgc_mlmix uses them first.
+     Slow the clock rates down to confirm to nominal mode instead of
+     overdrive mode.
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index c9a610ba4836..a18b9ba98ea2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -887,6 +887,15 @@ pgc_mlmix: power-domain@24 {
+ 						clocks = <&clk IMX8MP_CLK_ML_AXI>,
+ 							 <&clk IMX8MP_CLK_ML_AHB>,
+ 							 <&clk IMX8MP_CLK_NPU_ROOT>;
++						assigned-clocks = <&clk IMX8MP_CLK_ML_CORE>,
++								  <&clk IMX8MP_CLK_ML_AXI>,
++								  <&clk IMX8MP_CLK_ML_AHB>;
++						assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
++									 <&clk IMX8MP_SYS_PLL1_800M>,
++									 <&clk IMX8MP_SYS_PLL1_800M>;
++						assigned-clock-rates = <800000000>,
++								       <800000000>,
++								       <300000000>;
+ 					};
+ 				};
+ 			};
+@@ -2012,6 +2021,18 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
+ 			interconnect-names = "g1", "g2", "vc8000e";
+ 		};
+ 
++		npu: npu@38500000 {
++			compatible = "vivante,gc";
++			reg = <0x38500000 0x200000>;
++			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8MP_CLK_NPU_ROOT>,
++				 <&clk IMX8MP_CLK_NPU_ROOT>,
++				 <&clk IMX8MP_CLK_ML_AXI>,
++				 <&clk IMX8MP_CLK_ML_AHB>;
++			clock-names = "core", "shader", "bus", "reg";
++			power-domains = <&pgc_mlmix>;
++		};
++
+ 		gic: interrupt-controller@38800000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x38800000 0x10000>,
+-- 
+2.40.1
 
 
