@@ -1,155 +1,745 @@
-Return-Path: <devicetree+bounces-10651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2D77D256D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A6E7D2572
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 20:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D465B20CFF
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:47:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16FC3B20CC1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 18:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2047111A3;
-	Sun, 22 Oct 2023 18:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48068111A3;
+	Sun, 22 Oct 2023 18:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MW3kw9L0"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="mTK6bWhr";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="h1Lem57P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363082F93
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 18:47:28 +0000 (UTC)
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A585E5
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 11:47:26 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53e2dc8fa02so3773581a12.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 11:47:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698000445; x=1698605245; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8P8P+iM71eTJhKfuoAtGwJ4q8emSpHNO0sAy3qdb6PA=;
-        b=MW3kw9L03clbQnpaZXcnnnj62YrACREfOJZFnD94R0fBh8SavkrTiEiSmZ9c/xLBSC
-         j3IrwjokLIHomHyEOt8iEyvszYmv/aFuYEgACJphQQNUlX3dX7ZTv6ZsYkoCmEb47QZp
-         mdxbHMzV45oy6KKXeYtNswp8yeXsdsuCN3TeJtjPZP4G+OIDBuxUU1rMMQyPTgKgr7BA
-         FElne6DpjCH3GIq8VrV8EGRBaoZ6UYs162QWL2HO7FXHvGptgSt/ebu11iKIqSVKApzs
-         ln1+fLtVL0swv4Mqxsj/vFm0AlB/x+QJx8io7XFriiziWnQS9emkbdWRSZgVi9ZYFS4F
-         khpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698000445; x=1698605245;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8P8P+iM71eTJhKfuoAtGwJ4q8emSpHNO0sAy3qdb6PA=;
-        b=ooWQTcJXyyYkzsZqMDtM/FOAV5+au02QJxSuNHI+xpAo7PgvCnHwq1JPDWsFIixr6P
-         4QWGa3w+cnmUizXgs6EoHCqCPj7JR0k2OJaN9rZxgejrixL8DDrEXXMJvj3KmglHvZ+8
-         fawKaIsn2JaAmk1ZXj54i1E4Lm8l7bJkh/TRFvEj4xW6CZ6YySgTCcrM5ge0MmkdRKFb
-         WAPCnrxG5CYyOyDA/2X6H2mcUwR2guMF7bqLWmLJ/MI7BqmWac85dvZOG0pEULn1fN4C
-         F5E2pfecJsKftzJ/vjgOdNpLvW4ncCOF6KdR9CxgiIArlMHtoJxVvEMloKjti2v5bPb8
-         qkhQ==
-X-Gm-Message-State: AOJu0Yx0KjlT5z3uVpZpC6futi5/tbMgRXTH8+jpcgHyRJUC/REDsRg6
-	fH9veR1kQChS93qFegj58SL4PA==
-X-Google-Smtp-Source: AGHT+IHfhMZaz/D2NdIaWacW6xN8+tCnhiX1C1NzEDLYYkU3dK5fQid9Rcrcz7o7anhgQFcmpfvj/w==
-X-Received: by 2002:a17:907:70a:b0:9b8:b683:5854 with SMTP id xb10-20020a170907070a00b009b8b6835854mr5780513ejb.61.1698000444969;
-        Sun, 22 Oct 2023 11:47:24 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id f7-20020a1709062c4700b009c3828fec06sm5331727ejh.81.2023.10.22.11.47.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 11:47:24 -0700 (PDT)
-Message-ID: <f032b481-15d7-49c7-8a06-8966e2a2eaa3@linaro.org>
-Date: Sun, 22 Oct 2023 20:47:23 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C669F2F93
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 18:49:28 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E822DE5;
+	Sun, 22 Oct 2023 11:49:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698000560; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Ip/R+um7vbuDF2Opqj34MuPIzLISiAy0wQ84/wsxqsLwMdLo4KzG7VnpUM/QHDxrjS
+    xdOWwFSVykEPRwN0zilEPgCeRq4jBmXGIyhxG1tdQ5qZKfG+viuG0ZiNJ/r3VqgvBiDB
+    MGEdsw07SPG71ruS4XUAocncRaeo98Lm6ssu1iPq0oLhsViSKfVAUwe1U84Tr2oD6Q1o
+    sYX5SjKxOPDLrw2xetbMO+QLY7l2lWA5RDu5xptwtWb0ILXAmDGkgZzNKY/VzAGI7V6H
+    xLwwUvcVLpgmEx7TEuDUrArF1dmuRt2JxqbAv1ySdughoo9lKZxBpA5Xyu05Hd7ygSIK
+    ltkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698000560;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=fFFFG+QQz6OYpUyny5W+yZg5BK94VXENv9YglvlxvVk=;
+    b=PWmJY//b30j0qUvNHfFJvrNsgZJ5SEENlxGyJQSnfPE1DMzfCoCX/1BmYd7VEzkser
+    4WBPjvgiknzctnfrtp34uTaPBCe+j1WPtGZeviPxK6zhs2OmZCxp+OkSV4igEtmQFHX0
+    FbSKCyK3k+GWQBA5Zq4xLzkdONx3VmwdadG7MY4FXKJwooBwCgc7qWYghwaC4QM5qKH4
+    v5eaYMvz1vwgNIWsTrLqusI39JeMmHy7vf7W/FCIe6p2jhgMRoghueha2LzwntF8R6kh
+    xCN5J38eGBDENjJL6HJWn+2u1rvtkwCS7FWYU5sDyvTm3oGKH28wLb4TDR/dT/rjimZH
+    9DaQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698000560;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=fFFFG+QQz6OYpUyny5W+yZg5BK94VXENv9YglvlxvVk=;
+    b=mTK6bWhrPmhafywlPZOPKbDlCT5mOrf5om+foKbMUEpu2SI2E7gf5Njda657HsEB+8
+    MSf+ClPjbzNpuzPxAf8d9Wcc8cdYGZhLRuO1fySxq2omEWBIg36eZn1NcgjCEaudCXC2
+    IH9bVuhfy8QGgHX1xBzkNK+Zg1Wd2c9/6k8+KUXLAtJ6zAo+9j8/sVJ3MdBsWk8y3RBE
+    JhPhF61hhA+PrW4KPQXwqkCwxxd/Q4JSya89j63YWvVPo8V/yquFrk0ONz6jFFkToUUQ
+    bb92JmNDuEUCiGF7C2PZEPPKlUFWF8NLf2YU26+V5z1eb3v2/zLHE2U4EhQ4oYwxmnoF
+    v9xA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698000560;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=fFFFG+QQz6OYpUyny5W+yZg5BK94VXENv9YglvlxvVk=;
+    b=h1Lem57PjwxV7x8PhAJqFERTRcotYevCKqMuXMUhFXXpFky4INoYnCwkI4AmZ3yKkp
+    5cFhuHnZwO1m5LeMyYCQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z/h"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
+    with ESMTPSA id j34a49z9MInJKPm
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sun, 22 Oct 2023 20:49:19 +0200 (CEST)
+Date: Sun, 22 Oct 2023 20:49:13 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH v2 2/2] Input: add Himax HX852x(ES) touchscreen driver
+Message-ID: <ZTVuqW7oU5BmPzTS@gerhold.net>
+References: <20230930-hx852x-v2-0-c5821947b225@gerhold.net>
+ <20230930-hx852x-v2-2-c5821947b225@gerhold.net>
+ <ZTVoiklUJaDn5576@nixie71>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] From: Luka Panio <lukapanio@gmail.com>
-Content-Language: en-US
-To: Luka Panio <lukapanio@gmail.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
- <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20231021203403.215023-1-lukapanio@gmail.com>
- <23fa10f5-1220-4e38-942d-4033deac2de0@linaro.org>
- <CACi=Ov6wjptBidbBxHDpRGdnV8W6yHxO=e92B3pVP1eXRvU8DQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CACi=Ov6wjptBidbBxHDpRGdnV8W6yHxO=e92B3pVP1eXRvU8DQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZTVoiklUJaDn5576@nixie71>
 Content-Transfer-Encoding: 7bit
 
-On 22/10/2023 19:26, Luka Panio wrote:
->>> dt-bindings: arm: qcom: Add Xiaomi Pad 6 (xiaomi-pipa)
+Hi Jeff,
+
+Thanks a lot for reviewing this again!
+
+On Sun, Oct 22, 2023 at 01:23:06PM -0500, Jeff LaBundy wrote:
+> Hi Stephan,
 > 
->> Your subject is not correct.
+> This looks great, just a few remaining comments.
 > 
-> Sorry, but what should be there?
-
-Your subject is:
-"From: Luka Panio"
-Subject contains git commit subject. See git log --- PATH for ideas.
-
+> On Sat, Sep 30, 2023 at 05:32:01PM +0200, Stephan Gerhold wrote:
+> > From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > 
+> > Add a simple driver for the Himax HX852x(ES) touch panel controller,
+> > with support for multi-touch and capacitive touch keys.
+> > 
+> > The driver is somewhat based on sample code from Himax. However, that
+> > code was so extremely confusing that we spent a significant amount of
+> > time just trying to understand the packet format and register commands.
+> > In this driver they are described with clean structs and defines rather
+> > than lots of magic numbers and offset calculations.
+> > 
+> > Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> >  MAINTAINERS                              |   7 +
+> >  drivers/input/touchscreen/Kconfig        |  10 +
+> >  drivers/input/touchscreen/Makefile       |   1 +
+> >  drivers/input/touchscreen/himax_hx852x.c | 499 +++++++++++++++++++++++++++++++
+> >  4 files changed, 517 insertions(+)
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 90f13281d297..c551c60b0598 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -9331,6 +9331,13 @@ S:	Maintained
+> >  F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+> >  F:	drivers/input/touchscreen/himax_hx83112b.c
+> >  
+> > +HIMAX HX852X TOUCHSCREEN DRIVER
+> > +M:	Stephan Gerhold <stephan@gerhold.net>
+> > +L:	linux-input@vger.kernel.org
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml
+> > +F:	drivers/input/touchscreen/himax_hx852x.c
+> > +
+> >  HIPPI
+> >  M:	Jes Sorensen <jes@trained-monkey.org>
+> >  L:	linux-hippi@sunsite.dk
+> > diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> > index e3e2324547b9..8e5667ae5dab 100644
+> > --- a/drivers/input/touchscreen/Kconfig
+> > +++ b/drivers/input/touchscreen/Kconfig
+> > @@ -427,6 +427,16 @@ config TOUCHSCREEN_HIDEEP
+> >  	  To compile this driver as a module, choose M here : the
+> >  	  module will be called hideep_ts.
+> >  
+> > +config TOUCHSCREEN_HIMAX_HX852X
+> > +	tristate "Himax HX852x(ES) touchscreen"
+> > +	depends on I2C
+> > +	help
+> > +	  Say Y here if you have a Himax HX852x(ES) touchscreen.
+> > +	  If unsure, say N.
+> > +
+> > +	  To compile this driver as a module, choose M here: the module
+> > +	  will be called himax_hx852x.
+> > +
+> >  config TOUCHSCREEN_HYCON_HY46XX
+> >  	tristate "Hycon hy46xx touchscreen support"
+> >  	depends on I2C
+> > diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+> > index 62bd24f3ac8e..f42a87faa86c 100644
+> > --- a/drivers/input/touchscreen/Makefile
+> > +++ b/drivers/input/touchscreen/Makefile
+> > @@ -48,6 +48,7 @@ obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
+> >  obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
+> >  obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
+> >  obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
+> > +obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX852X)	+= himax_hx852x.o
+> >  obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
+> >  obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
+> >  obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
+> > diff --git a/drivers/input/touchscreen/himax_hx852x.c b/drivers/input/touchscreen/himax_hx852x.c
+> > new file mode 100644
+> > index 000000000000..98a55be7891d
+> > --- /dev/null
+> > +++ b/drivers/input/touchscreen/himax_hx852x.c
+> > @@ -0,0 +1,499 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Himax HX852x(ES) Touchscreen Driver
+> > + * Copyright (c) 2020-2023 Stephan Gerhold <stephan@gerhold.net>
+> > + * Copyright (c) 2020 Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > + *
+> > + * Based on the Himax Android Driver Sample Code Ver 0.3 for HMX852xES chipset:
+> > + * Copyright (c) 2014 Himax Corporation.
+> > + */
+> > +
+> > +#include <asm/unaligned.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/input.h>
+> > +#include <linux/input/mt.h>
+> > +#include <linux/input/touchscreen.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#define HX852X_COORD_SIZE(fingers)	((fingers) * sizeof(struct hx852x_coord))
+> > +#define HX852X_WIDTH_SIZE(fingers)	ALIGN(fingers, 4)
+> > +#define HX852X_BUF_SIZE(fingers)	(HX852X_COORD_SIZE(fingers) + \
+> > +					 HX852X_WIDTH_SIZE(fingers) + \
+> > +					 sizeof(struct hx852x_touch_info))
+> > +
+> > +#define HX852X_MAX_FINGERS		12
+> > +#define HX852X_MAX_KEY_COUNT		4
+> > +#define HX852X_MAX_BUF_SIZE		HX852X_BUF_SIZE(HX852X_MAX_FINGERS)
+> > +
+> > +#define HX852X_TS_SLEEP_IN		0x80
+> > +#define HX852X_TS_SLEEP_OUT		0x81
+> > +#define HX852X_TS_SENSE_OFF		0x82
+> > +#define HX852X_TS_SENSE_ON		0x83
+> > +#define HX852X_READ_ONE_EVENT		0x85
+> > +#define HX852X_READ_ALL_EVENTS		0x86
+> > +#define HX852X_READ_LATEST_EVENT	0x87
+> > +#define HX852X_CLEAR_EVENT_STACK	0x88
+> > +
+> > +#define HX852X_REG_SRAM_SWITCH		0x8c
+> > +#define HX852X_REG_SRAM_ADDR		0x8b
+> > +#define HX852X_REG_FLASH_RPLACE		0x5a
+> > +
+> > +#define HX852X_SRAM_SWITCH_TEST_MODE	0x14
+> > +#define HX852X_SRAM_ADDR_CONFIG		0x7000
+> > +
+> > +struct hx852x {
+> > +	struct i2c_client *client;
+> > +	struct input_dev *input_dev;
+> > +	struct touchscreen_properties props;
+> > +	struct gpio_desc *reset_gpiod;
+> > +	struct regulator_bulk_data supplies[2];
+> > +	unsigned int max_fingers;
+> > +	unsigned int keycount;
+> > +	unsigned int keycodes[HX852X_MAX_KEY_COUNT];
+> > +};
+> > +
+> > +struct hx852x_config {
+> > +	u8 rx_num;
+> > +	u8 tx_num;
+> > +	u8 max_pt;
+> > +	u8 padding1[3];
+> > +	__be16 x_res;
+> > +	__be16 y_res;
+> > +	u8 padding2[2];
+> > +} __packed __aligned(4);
+> > +
+> > +struct hx852x_coord {
+> > +	__be16 x;
+> > +	__be16 y;
+> > +} __packed __aligned(4);
+> > +
+> > +struct hx852x_touch_info {
+> > +	u8 finger_num;
+> > +	__le16 finger_pressed;
+> > +	u8 padding;
+> > +} __packed __aligned(4);
+> > +
+> > +static int hx852x_i2c_read(struct hx852x *hx, u8 cmd, void *data, u16 len)
+> > +{
+> > +	struct i2c_client *client = hx->client;
+> > +	int ret;
+> > +
+> > +	struct i2c_msg msg[] = {
+> > +		{
+> > +			.addr = client->addr,
+> > +			.flags = 0,
+> > +			.len = 1,
+> > +			.buf = &cmd,
+> > +		},
+> > +		{
+> > +			.addr = client->addr,
+> > +			.flags = I2C_M_RD,
+> > +			.len = len,
+> > +			.buf = data,
+> > +		}
 > 
->> Please include full changelog. This is v5 so what happened between v1
->> and v5?
+> Nit: standard practice is to close all array elements with a trailing comma,
+> even the final element, in order to avoid an extra line in the diff (i.e.
+> } --> },) if another element is added later. Obviously we wouldn't add more
+> elements to this array in the future, but it's best to remain consistent.
 > 
-> That is a full changelog, no other changes to dt-bindings were done.
 
+Sure, I'll fix this in v3!
 
+> > +	};
+> > +
+> > +	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
+> > +	if (ret != ARRAY_SIZE(msg)) {
+> > +		dev_err(&client->dev, "failed to read %#x: %d\n", cmd, ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hx852x_power_on(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	int error;
+> > +
+> > +	error = regulator_bulk_enable(ARRAY_SIZE(hx->supplies), hx->supplies);
+> > +	if (error) {
+> > +		dev_err(dev, "failed to enable regulators: %d\n", error);
+> > +		return error;
+> > +	}
+> > +
+> > +	gpiod_set_value_cansleep(hx->reset_gpiod, 1);
+> > +	msleep(20);
+> > +	gpiod_set_value_cansleep(hx->reset_gpiod, 0);
+> > +	msleep(20);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hx852x_start(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	int error;
+> > +
+> > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_OUT);
+> > +	if (error) {
+> > +		dev_err(dev, "failed to send TS_SLEEP_OUT: %d\n", error);
+> > +		return error;
+> > +	}
+> > +	msleep(30);
+> > +
+> > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_ON);
+> > +	if (error) {
+> > +		dev_err(dev, "failed to send TS_SENSE_ON: %d\n", error);
+> > +		return error;
+> > +	}
+> > +	msleep(20);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hx852x_stop(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	int error;
+> > +
+> > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_OFF);
+> > +	if (error) {
+> > +		dev_err(dev, "failed to send TS_SENSE_OFF: %d\n", error);
+> > +		return error;
+> > +	}
+> > +	msleep(20);
+> > +
+> > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_IN);
+> > +	if (error) {
+> > +		dev_err(dev, "failed to send TS_SLEEP_IN: %d\n", error);
+> > +		return error;
+> > +	}
+> > +	msleep(30);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hx852x_power_off(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	int error;
+> > +
+> > +	error = regulator_bulk_disable(ARRAY_SIZE(hx->supplies), hx->supplies);
+> > +	if (error)
+> > +		dev_err(dev, "failed to disable regulators: %d\n", error);
+> > +	return error;
+> > +}
+> > +
+> > +static int hx852x_read_config(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	struct hx852x_config conf;
+> > +	int x_res, y_res;
+> > +	int error;
+> > +
+> > +	error = hx852x_power_on(hx);
+> > +	if (error)
+> > +		return error;
+> > +
+> > +	/* Sensing must be turned on briefly to load the config */
+> > +	error = hx852x_start(hx);
+> > +	if (error)
+> > +		goto err_power_off;
+> > +
+> > +	error = hx852x_stop(hx);
+> > +	if (error)
+> > +		goto err_power_off;
+> > +
+> > +	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH,
+> > +					  HX852X_SRAM_SWITCH_TEST_MODE);
+> > +	if (error)
+> > +		goto err_power_off;
+> > +
+> > +	error = i2c_smbus_write_word_data(hx->client, HX852X_REG_SRAM_ADDR,
+> > +					  HX852X_SRAM_ADDR_CONFIG);
+> > +	if (error)
+> > +		goto err_test_mode;
+> > +
+> > +	error = hx852x_i2c_read(hx, HX852X_REG_FLASH_RPLACE, &conf, sizeof(conf));
+> > +	if (error)
+> > +		goto err_test_mode;
+> > +
+> > +	x_res = be16_to_cpu(conf.x_res);
+> > +	y_res = be16_to_cpu(conf.y_res);
+> > +	hx->max_fingers = (conf.max_pt & 0xf0) >> 4;
+> > +	dev_dbg(dev, "x res: %u, y res: %u, max fingers: %u\n",
+> > +		x_res, y_res, hx->max_fingers);
+> > +
+> > +	if (hx->max_fingers > HX852X_MAX_FINGERS) {
+> > +		dev_err(dev, "max supported fingers: %u, found: %u\n",
+> > +			HX852X_MAX_FINGERS, hx->max_fingers);
+> > +		error = -EINVAL;
+> > +		goto err_test_mode;
+> > +	}
+> > +
+> > +	if (x_res && y_res) {
+> > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_X, 0, x_res - 1, 0, 0);
+> > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_Y, 0, y_res - 1, 0, 0);
+> > +	}
+> > +
+> > +	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
+> > +	if (error)
+> > +		goto err_power_off;
+> > +
+> > +	return hx852x_power_off(hx);
+> > +
+> > +err_test_mode:
+> > +	i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
+> > +err_power_off:
+> > +	hx852x_power_off(hx);
+> > +	return error;
+> 
+> Your new version is an improvement, but maybe we can remove duplicate
+> code by introducing some helper variables:
+> 
+> 	int error, error2 = 0, error3;
+> 
+> 	/* ... */
+> 
+> err_test_mode:
+> 	error2 = i2c_smbus_write_byte_data(...);
+> 
+> err_power_off:
+> 	error3 = hx852x_power_off(...);
+> 
+> 	if (error)
+> 		return error;
+> 
+> 	return error2 ? : error3;
+> 
+> In this case we achieve our goal of attempting to return the device to a
+> safe state in both passing and failing cases. In the event of multiple
+> errors, we return the first to occur.
+> 
 
-Best regards,
-Krzysztof
+Right, this would work as well. Personally I think my solution is
+slightly easier to read though. In your version my eyes somewhat
+"stumble" over the multiple "error" variables and then about the purpose
+of the "? : " construction. This is probably highly subjective. :-)
 
+Do you mind if keep this as-is? I don't have a strong opinion about
+this, but a slight preference for my current solution.
+
+> > +}
+> > +
+> > +static int hx852x_handle_events(struct hx852x *hx)
+> > +{
+> > +	/*
+> > +	 * The event packets have variable size, depending on the amount of
+> > +	 * supported fingers (hx->max_fingers). They are laid out as follows:
+> > +	 *  - struct hx852x_coord[hx->max_fingers]: Coordinates for each finger
+> > +	 *  - u8[ALIGN(hx->max_fingers, 4)]: Touch width for each finger
+> > +	 *      with padding for 32-bit alignment
+> > +	 *  - struct hx852x_touch_info
+> > +	 *
+> > +	 * Load everything into a 32-bit aligned buffer so the coordinates
+> > +	 * can be assigned directly, without using get_unaligned_*().
+> > +	 */
+> > +	u8 buf[HX852X_MAX_BUF_SIZE] __aligned(4);
+> > +	struct hx852x_coord *coord = (struct hx852x_coord *)buf;
+> > +	u8 *width = &buf[HX852X_COORD_SIZE(hx->max_fingers)];
+> > +	struct hx852x_touch_info *info = (struct hx852x_touch_info *)
+> > +		&width[HX852X_WIDTH_SIZE(hx->max_fingers)];
+> > +	unsigned long finger_pressed, key_pressed;
+> > +	unsigned int i, x, y, w;
+> > +	int error;
+> > +
+> > +	error = hx852x_i2c_read(hx, HX852X_READ_ALL_EVENTS, buf,
+> > +				HX852X_BUF_SIZE(hx->max_fingers));
+> > +	if (error)
+> > +		return error;
+> > +
+> > +	finger_pressed = get_unaligned_le16(&info->finger_pressed);
+> > +	key_pressed = finger_pressed >> HX852X_MAX_FINGERS;
+> > +
+> > +	/* All bits are set when no touch is detected */
+> > +	if (info->finger_num == 0xff || !(info->finger_num & 0x0f))
+> > +		finger_pressed = 0;
+> > +	if (key_pressed == 0xf)
+> > +		key_pressed = 0;
+> > +
+> > +	for_each_set_bit(i, &finger_pressed, hx->max_fingers) {
+> > +		x = be16_to_cpu(coord[i].x);
+> > +		y = be16_to_cpu(coord[i].y);
+> > +		w = width[i];
+> > +
+> > +		input_mt_slot(hx->input_dev, i);
+> > +		input_mt_report_slot_state(hx->input_dev, MT_TOOL_FINGER, 1);
+> > +		touchscreen_report_pos(hx->input_dev, &hx->props, x, y, true);
+> > +		input_report_abs(hx->input_dev, ABS_MT_TOUCH_MAJOR, w);
+> > +	}
+> > +	input_mt_sync_frame(hx->input_dev);
+> > +
+> > +	for (i = 0; i < hx->keycount; i++)
+> > +		input_report_key(hx->input_dev, hx->keycodes[i], key_pressed & BIT(i));
+> > +
+> > +	input_sync(hx->input_dev);
+> > +	return 0;
+> > +}
+> > +
+> > +static irqreturn_t hx852x_interrupt(int irq, void *ptr)
+> > +{
+> > +	struct hx852x *hx = ptr;
+> > +	int error;
+> > +
+> > +	error = hx852x_handle_events(hx);
+> > +	if (error) {
+> > +		dev_err_ratelimited(&hx->client->dev, "failed to handle events: %d\n", error);
+> > +		return IRQ_NONE;
+> > +	}
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int hx852x_input_open(struct input_dev *dev)
+> > +{
+> > +	struct hx852x *hx = input_get_drvdata(dev);
+> > +	int error;
+> > +
+> > +	error = hx852x_power_on(hx);
+> > +	if (error)
+> > +		return error;
+> > +
+> > +	error = hx852x_start(hx);
+> > +	if (error) {
+> > +		hx852x_power_off(hx);
+> > +		return error;
+> > +	}
+> > +
+> > +	enable_irq(hx->client->irq);
+> > +	return 0;
+> > +}
+> > +
+> > +static void hx852x_input_close(struct input_dev *dev)
+> > +{
+> > +	struct hx852x *hx = input_get_drvdata(dev);
+> > +
+> > +	hx852x_stop(hx);
+> > +	disable_irq(hx->client->irq);
+> > +	hx852x_power_off(hx);
+> > +}
+> > +
+> > +static int hx852x_parse_properties(struct hx852x *hx)
+> > +{
+> > +	struct device *dev = &hx->client->dev;
+> > +	int error;
+> > +
+> > +	hx->keycount = device_property_count_u32(dev, "linux,keycodes");
+> > +	if (hx->keycount <= 0) {
+> > +		hx->keycount = 0;
+> > +		return 0;
+> > +	}
+> 
+> With negative return values of device_property_count_u32() squashed in this
+> way, there is no way to warn the developer that the array is invalid. The
+> error message associated with device_property_read_u32_array() below is
+> essentially dead code, because the latter is a wrapper around the former,
+> and any syntax error that causes one to fail will cause the other to fail.
+> 
+> Since device_property_count_u32() returns -EINVAL in case of a missing array,
+> we can do the following. Note there is no need to explicitly set hx->keycount
+> to zero in case no keys are specified, since the hx structure is correctly
+> allocated using devm_kzalloc().
+> 
+> 	int count;
+> 
+> 	count = device_property_count_u32(...);
+> 	if (count == -EINVAL) {
+> 		return 0;
+> 	} else if (count < 0) {
+> 		dev_err(...);
+> 		return count;
+> 	} else if (count > HX852X_MAX_KEY_COUNT) {
+> 		dev_err(...);
+> 		return -EINVAL;
+> 	}
+> 
+> 	hx->keycount = count;
+> 
+> 	error = device_property_read_u32_array(...);
+> 	if (error)
+> 		dev_err(...);
+> 
+> 	return error;
+> 
+
+Ah right, thanks for spotting this! Will use this in v3.
+
+> > +
+> > +	if (hx->keycount > HX852X_MAX_KEY_COUNT) {
+> > +		dev_err(dev, "max supported keys: %u, found: %u\n",
+> > +			HX852X_MAX_KEY_COUNT, hx->keycount);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	error = device_property_read_u32_array(dev, "linux,keycodes",
+> > +					       hx->keycodes, hx->keycount);
+> > +	if (error)
+> > +		dev_err(dev, "failed to read linux,keycodes: %d\n", error);
+> > +
+> > +	return error;
+> > +}
+> > +
+> > +static int hx852x_probe(struct i2c_client *client)
+> > +{
+> > +	struct device *dev = &client->dev;
+> > +	struct hx852x *hx;
+> > +	int error, i;
+> > +
+> > +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+> > +				     I2C_FUNC_SMBUS_WRITE_BYTE |
+> > +				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
+> > +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA)) {
+> > +		dev_err(dev, "not all required i2c functionality supported\n");
+> > +		return -ENXIO;
+> > +	}
+> > +
+> > +	hx = devm_kzalloc(dev, sizeof(*hx), GFP_KERNEL);
+> > +	if (!hx)
+> > +		return -ENOMEM;
+> > +
+> > +	hx->client = client;
+> > +	hx->input_dev = devm_input_allocate_device(dev);
+> > +	if (!hx->input_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	hx->input_dev->name = "Himax HX852x";
+> > +	hx->input_dev->id.bustype = BUS_I2C;
+> > +	hx->input_dev->open = hx852x_input_open;
+> > +	hx->input_dev->close = hx852x_input_close;
+> > +
+> > +	i2c_set_clientdata(client, hx);
+> > +	input_set_drvdata(hx->input_dev, hx);
+> > +
+> > +	hx->supplies[0].supply = "vcca";
+> > +	hx->supplies[1].supply = "vccd";
+> > +	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(hx->supplies), hx->supplies);
+> > +	if (error)
+> > +		return dev_err_probe(dev, error, "failed to get regulators\n");
+> > +
+> > +	hx->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(hx->reset_gpiod))
+> > +		return dev_err_probe(dev, PTR_ERR(hx->reset_gpiod),
+> > +				     "failed to get reset gpio\n");
+> > +
+> > +	error = devm_request_threaded_irq(dev, client->irq, NULL, hx852x_interrupt,
+> > +					  IRQF_ONESHOT | IRQF_NO_AUTOEN, NULL, hx);
+> > +	if (error)
+> > +		return dev_err_probe(dev, error, "failed to request irq %d", client->irq);
+> > +
+> > +	error = hx852x_read_config(hx);
+> > +	if (error)
+> > +		return error;
+> > +
+> > +	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_X);
+> > +	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_Y);
+> > +	input_set_abs_params(hx->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+> > +
+> > +	touchscreen_parse_properties(hx->input_dev, true, &hx->props);
+> > +	error = hx852x_parse_properties(hx);
+> > +	if (error)
+> > +		return error;
+> > +
+> > +	hx->input_dev->keycode = hx->keycodes;
+> > +	hx->input_dev->keycodemax = hx->keycount;
+> > +	hx->input_dev->keycodesize = sizeof(hx->keycodes[0]);
+> > +	for (i = 0; i < hx->keycount; i++)
+> > +		input_set_capability(hx->input_dev, EV_KEY, hx->keycodes[i]);
+> > +
+> > +	error = input_mt_init_slots(hx->input_dev, hx->max_fingers,
+> > +				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
+> > +	if (error)
+> > +		return dev_err_probe(dev, error, "failed to init MT slots\n");
+> > +
+> > +	error = input_register_device(hx->input_dev);
+> > +	if (error)
+> > +		return dev_err_probe(dev, error, "failed to register input device\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hx852x_suspend(struct device *dev)
+> > +{
+> > +	struct hx852x *hx = dev_get_drvdata(dev);
+> 
+> 	int error = 0;
+> 
+> > +
+> > +	mutex_lock(&hx->input_dev->mutex);
+> > +	if (input_device_enabled(hx->input_dev))
+> > +		hx852x_stop(hx);
+> 
+> 		error = hx852x_stop(...);
+> 
+> > +	mutex_unlock(&hx->input_dev->mutex);
+> > +
+> > +	return 0;
+> 
+> 	return error;
+> 
+
+Oops. I meant to change this in v2 but forgot it apparently.
+Will fix fix this in v3 as well!
+
+I'll wait for your reply regarding the error handling in
+hx852x_read_config(), in case you have a strong opinion about that. :)
+
+Thanks!
+Stephan
 
