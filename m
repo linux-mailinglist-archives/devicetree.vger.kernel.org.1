@@ -1,68 +1,75 @@
-Return-Path: <devicetree+bounces-10583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 400737D20D0
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 05:12:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16537D21FE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 10:55:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74427281182
-	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 03:12:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40A01B20D66
+	for <lists+devicetree@lfdr.de>; Sun, 22 Oct 2023 08:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65232A51;
-	Sun, 22 Oct 2023 03:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF7B110F;
+	Sun, 22 Oct 2023 08:55:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OZhyM/+4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B3DA2C
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 03:12:20 +0000 (UTC)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4CA126;
-	Sat, 21 Oct 2023 20:12:18 -0700 (PDT)
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6b709048f32so1656978b3a.0;
-        Sat, 21 Oct 2023 20:12:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F3C10FC
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 08:55:22 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A046FE8;
+	Sun, 22 Oct 2023 01:55:20 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32daeed7771so1546253f8f.3;
+        Sun, 22 Oct 2023 01:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697964919; x=1698569719; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Ssc4QYYiYfFrGCEeMacSQXcB+utJ/7KMp+ed9vgKRQ=;
+        b=OZhyM/+4Gfu/BeaLZmh8MeQBTAkMqKT0JCUhLu6QNj9KhmA8rxz5gxZ8/a6ayAeloA
+         YeKrxNIB/4TRSW0Xu+5uJUsgAbjVSqZtG121Dp/ZVd/UvjkZwH/2uUuSmtB4jnoyhlKX
+         5LfebfPSaU7B63sAYjPrda1OSfMoeD16I2wj2sBcP1wk/eGzBT7KRjKbPwl6wk8dpBCk
+         3/TP+CB6Xyw70ZP4ypMNVj1NlgK7IZ6Ef76k7FCYloxQy7uF+CCZkZLG0yhKQyAiEYNE
+         3ww6RSF1FYXNk2wpb0l87wLRl1CwuQT26boIJWJEkoNBdTiTexxt+D0sv2A7lXFDdk/q
+         6Vlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697944337; x=1698549137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vzbV6n5FMSqzKY14jdbBPxtAS0oUis2FQ9UO1ljggKk=;
-        b=mzISRJylVKLnmJoa15YboZTy8f/qHsHGVJVCUKupWBD5oySrEzsS6lHEqv7afO2tlO
-         jXWJDC2jEfMTAJs6CXe0o37BIpoE+L3nwlMGAJGQKgeOqdn9obLmafZhe5v7DXTp+i7f
-         ed7oPPaN4TmwJc0vz/4caJzk8VZcOb5W0swwaLdfGigtyX3e2S1Lxym6FJpc0WrM4Gyb
-         iLK50oR1TkwuPLVR7hUWWtB8hE0Pc0+T0Z7Nq7OWQRAxisOQWy+wRnbotdod9bUCOKPO
-         xq49O/i0whkzn0cGRa2FvyPYcZD4UAJngFkr60RzSe5U0nxkSurs8YnAYM/vGHBMg+vw
-         3L9g==
-X-Gm-Message-State: AOJu0Yzg9f4yGK9rikXf9ZbbY/S0tydtLdygd8Oc4GLyhqwCiIKPUL2T
-	TEwIHxF5Cf0UxCY0QiqSH0A=
-X-Google-Smtp-Source: AGHT+IGn1rdEcDNwpcTXBcAeDQHrRijrN5j3sC4fgHBSRQcw/DGa0ruWU3RPC712akl1Q8o3z+lAQg==
-X-Received: by 2002:a17:902:ce92:b0:1c9:e774:58e1 with SMTP id f18-20020a170902ce9200b001c9e77458e1mr5089702plg.8.1697944337344;
-        Sat, 21 Oct 2023 20:12:17 -0700 (PDT)
-Received: from dev-linux.lan (cpe-70-95-21-110.san.res.rr.com. [70.95.21.110])
-        by smtp.gmail.com with ESMTPSA id n8-20020a170902e54800b001c9c879ee4asm3789589plf.17.2023.10.21.20.12.16
+        d=1e100.net; s=20230601; t=1697964919; x=1698569719;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Ssc4QYYiYfFrGCEeMacSQXcB+utJ/7KMp+ed9vgKRQ=;
+        b=f2/LV8J8M3VGI0FnI7vuKkBkz9V0XJQCTDR+u1QOqpyzdhkSse6C0+iMjNfTmZ81Vg
+         zkV4Dubi6I7KZJG+wOKPpCBLj1JxfbCGRoBPZVboSd26eOF8aOgp8Erd9IgUo/hnykeG
+         AUd0lHWKNuotc9eoYfdltuBU0rhMo2n4UwmvScoRAKvmXbCnk0caMTnISISqEACzeVG+
+         RN0dG2BvkJ8pJWseARCIoP7mFY8yYrMD80Kw0fATl6ONXRz0A6izwutPiZ60FhoL/VFo
+         p3+RmScAzU3Ie9A5cegMhELsW2z98Z4MXZtTxpe4+4tk3G3cCj9rVvcqTfwNAjUm7cz4
+         EjdQ==
+X-Gm-Message-State: AOJu0Yw9sM/nK87fCLuMwBQYNH3vZHImSFtgwcdegiBRbwWFYOt7CpRk
+	4sH/AaJhoBCXk38gKU+lbtaSGqfX0tw=
+X-Google-Smtp-Source: AGHT+IFJ5J9DPyKj/lg2BW5Op5YdPB5iS1osFfI0ZCJ8QcyfzJaNAz5SzBucP3sfMsHKdI3wFazJwQ==
+X-Received: by 2002:a5d:6408:0:b0:32d:9572:6469 with SMTP id z8-20020a5d6408000000b0032d95726469mr4387064wru.46.1697964918515;
+        Sun, 22 Oct 2023 01:55:18 -0700 (PDT)
+Received: from localhost.localdomain (141.red-88-10-53.dynamicip.rima-tde.net. [88.10.53.141])
+        by smtp.gmail.com with ESMTPSA id o3-20020a5d6843000000b003143c9beeaesm5245871wrw.44.2023.10.22.01.55.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Oct 2023 20:12:16 -0700 (PDT)
-From: Sukrut Bellary <sukrut.bellary@linux.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Nishanth Menon <nm@ti.com>
-Cc: Sukrut Bellary <sukrut.bellary@linux.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] iio: adc: ti-adc128s052: Add lower resolution devices support
-Date: Sat, 21 Oct 2023 20:12:03 -0700
-Message-Id: <20231022031203.632153-3-sukrut.bellary@linux.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231022031203.632153-1-sukrut.bellary@linux.com>
-References: <20231022031203.632153-1-sukrut.bellary@linux.com>
+        Sun, 22 Oct 2023 01:55:17 -0700 (PDT)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: daniel.lezcano@linaro.org,
+	tglx@linutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: timer: add Ralink SoCs system tick counter
+Date: Sun, 22 Oct 2023 10:55:18 +0200
+Message-Id: <20231022085518.792100-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,247 +78,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The adcxx4s communicates with a host processor via an SPI/Microwire Bus
-interface. The device family responds with 12-bit data, of which the LSB
-bits are transmitted by the lower resolution devices as 0.
-The unavailable bits are 0 in LSB.
-Shift is calculated per resolution and used in scaling and
-raw data read.
+Add YAML doc for the system tick counter which is present on Ralink SoCs.
 
-Lets reuse the driver to support the family of devices with name
-ADC<bb><c>S<sss>, where
-* bb is the resolution in number of bits (8, 10, 12)
-* c is the number of channels (1, 2, 4, 8)
-* sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
-and 101 for 1 MSPS)
-
-Complete datasheets are available at TI's website here:
-https://www.ti.com/lit/gpn/adc<bb><c>s<sss>.pdf
-
-Tested only with ti-adc102s051 on BegalePlay SBC.
-https://www.beagleboard.org/boards/beagleplay
-
-arm64: dts: ti: k3-am625-beagleplay: Add adc102s051
-Add adc102s051 support.
-Tested on beaglePlay SBC
-https://www.beagleboard.org/boards/beagleplay
-
-Co-developed-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Sukrut Bellary <sukrut.bellary@linux.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 ---
 Changes in v2:
-        - Arranged of_device_id and spi_device_id in numeric order.
-        - Used enum to index into adc128_config.
-        - Reorder adc128_config in alphabetical.
-        - Include channel resolution information.
-        - Shift is calculated per resolution and used in scaling and 
-          raw data read.
-- Link to v1: https://lore.kernel.org/all/20220701042919.18180-3-nm@ti.com/
----
- drivers/iio/adc/ti-adc128s052.c | 131 +++++++++++++++++++++++---------
- 1 file changed, 96 insertions(+), 35 deletions(-)
+- Add Rob's Reviewed-by tag.
 
-diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
-index a456ea78462f..61e3181b8daf 100644
---- a/drivers/iio/adc/ti-adc128s052.c
-+++ b/drivers/iio/adc/ti-adc128s052.c
-@@ -7,6 +7,22 @@
-  * https://www.ti.com/lit/ds/symlink/adc128s052.pdf
-  * https://www.ti.com/lit/ds/symlink/adc122s021.pdf
-  * https://www.ti.com/lit/ds/symlink/adc124s021.pdf
-+ *
-+ * The adcxx4s communicates with a host processor via an SPI/Microwire Bus
-+ * interface. This driver supports the whole family of devices with a name
-+ * ADC<bb><c>S<sss>, where
-+ * bb is the resolution in number of bits (8, 10, 12)
-+ * c is the number of channels (1, 2, 4, 8)
-+ * sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
-+ * and 101 for 1 MSPS)
-+ *
-+ * Complete datasheets are available at TI's website here:
-+ *   https://www.ti.com/lit/gpn/adc<bb><c>s<sss>.pdf
-+ *
-+ * 8, 10, and 12 bits converters send 12-bit data with
-+ * unavailable bits set to 0 in LSB.
-+ * Shift is calculated per resolution and used in scaling and
-+ * raw data read.
-  */
- 
- #include <linux/err.h>
-@@ -53,7 +69,7 @@ static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
- 	if (ret < 0)
- 		return ret;
- 
--	return ((adc->buffer[0] << 8 | adc->buffer[1]) & 0xFFF);
-+	return (adc->buffer[0] << 8 | adc->buffer[1]);
- }
- 
- static int adc128_read_raw(struct iio_dev *indio_dev,
-@@ -70,7 +86,8 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
- 		if (ret < 0)
- 			return ret;
- 
--		*val = ret;
-+		*val = (ret >> channel->scan_type.shift) &
-+			GENMASK(channel->scan_type.realbits - 1, 0);
- 		return IIO_VAL_INT;
- 
- 	case IIO_CHAN_INFO_SCALE:
-@@ -80,7 +97,7 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
- 			return ret;
- 
- 		*val = ret / 1000;
--		*val2 = 12;
-+		*val2 = channel->scan_type.realbits;
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 
- 	default:
-@@ -89,24 +106,34 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
- 
- }
- 
--#define ADC128_VOLTAGE_CHANNEL(num)	\
--	{ \
--		.type = IIO_VOLTAGE, \
--		.indexed = 1, \
--		.channel = (num), \
--		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
--		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) \
-+#define _ADC128_VOLTAGE_CHANNEL(num, real_bits, store_bits)		\
-+	{								\
-+		.type = IIO_VOLTAGE,					\
-+		.indexed = 1,						\
-+		.channel = (num),					\
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+		.scan_index = (num),					\
-+		.scan_type = {						\
-+			.sign = 'u',					\
-+			.realbits = (real_bits),			\
-+			.storagebits = (store_bits),			\
-+			.shift = (12 - real_bits),			\
-+		},							\
- 	}
- 
--static const struct iio_chan_spec adc128s052_channels[] = {
--	ADC128_VOLTAGE_CHANNEL(0),
--	ADC128_VOLTAGE_CHANNEL(1),
--	ADC128_VOLTAGE_CHANNEL(2),
--	ADC128_VOLTAGE_CHANNEL(3),
--	ADC128_VOLTAGE_CHANNEL(4),
--	ADC128_VOLTAGE_CHANNEL(5),
--	ADC128_VOLTAGE_CHANNEL(6),
--	ADC128_VOLTAGE_CHANNEL(7),
-+#define ADC082_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 8, 16)
-+#define ADC102_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 10, 16)
-+#define ADC128_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 12, 16)
+v1: https://lore.kernel.org/lkml/CAMhs-H_9kAdOfR-RaJWqAq6d3S3DXtKJqWy-EWCu0-ZjWKB9Sw@mail.gmail.com/T/#re9225265416ca8463c5f06d736f9834ae75efe0c
+
+I am sending this with Rob's RB added since I ping for the v1 multiple
+times without response. So I can be missing something or the patch is
+lost for any reason. Thanks!
+
+ .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+
+diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+new file mode 100644
+index 000000000000..59d97feddf4e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+static const struct iio_chan_spec adc082s021_channels[] = {
-+	ADC082_VOLTAGE_CHANNEL(0),
-+	ADC082_VOLTAGE_CHANNEL(1),
-+};
++title: System tick counter present in Ralink family SoCs
 +
-+static const struct iio_chan_spec adc102s021_channels[] = {
-+	ADC102_VOLTAGE_CHANNEL(0),
-+	ADC102_VOLTAGE_CHANNEL(1),
- };
- 
- static const struct iio_chan_spec adc122s021_channels[] = {
-@@ -121,10 +148,32 @@ static const struct iio_chan_spec adc124s021_channels[] = {
- 	ADC128_VOLTAGE_CHANNEL(3),
- };
- 
-+static const struct iio_chan_spec adc128s052_channels[] = {
-+	ADC128_VOLTAGE_CHANNEL(0),
-+	ADC128_VOLTAGE_CHANNEL(1),
-+	ADC128_VOLTAGE_CHANNEL(2),
-+	ADC128_VOLTAGE_CHANNEL(3),
-+	ADC128_VOLTAGE_CHANNEL(4),
-+	ADC128_VOLTAGE_CHANNEL(5),
-+	ADC128_VOLTAGE_CHANNEL(6),
-+	ADC128_VOLTAGE_CHANNEL(7),
-+};
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
 +
- static const struct adc128_configuration adc128_config[] = {
--	{ adc128s052_channels, ARRAY_SIZE(adc128s052_channels) },
-+	{ adc082s021_channels, ARRAY_SIZE(adc082s021_channels) },
-+	{ adc102s021_channels, ARRAY_SIZE(adc102s021_channels) },
- 	{ adc122s021_channels, ARRAY_SIZE(adc122s021_channels) },
- 	{ adc124s021_channels, ARRAY_SIZE(adc124s021_channels) },
-+	{ adc128s052_channels, ARRAY_SIZE(adc128s052_channels) },
-+};
++properties:
++  compatible:
++    const: ralink,cevt-systick
 +
-+/* Ensure match with adc128_config indices */
-+enum adc128_configuration_index {
-+	ADC128_CONFIG_INDEX_082S,
-+	ADC128_CONFIG_INDEX_102S,
-+	ADC128_CONFIG_INDEX_122S,
-+	ADC128_CONFIG_INDEX_124S,
-+	ADC128_CONFIG_INDEX_128S,
- };
- 
- static const struct iio_info adc128_info = {
-@@ -177,31 +226,43 @@ static int adc128_probe(struct spi_device *spi)
- }
- 
- static const struct of_device_id adc128_of_match[] = {
--	{ .compatible = "ti,adc128s052", .data = &adc128_config[0] },
--	{ .compatible = "ti,adc122s021", .data = &adc128_config[1] },
--	{ .compatible = "ti,adc122s051", .data = &adc128_config[1] },
--	{ .compatible = "ti,adc122s101", .data = &adc128_config[1] },
--	{ .compatible = "ti,adc124s021", .data = &adc128_config[2] },
--	{ .compatible = "ti,adc124s051", .data = &adc128_config[2] },
--	{ .compatible = "ti,adc124s101", .data = &adc128_config[2] },
-+	{ .compatible = "ti,adc082s021", .data = &adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ .compatible = "ti,adc082s051", .data = &adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ .compatible = "ti,adc082s101", .data = &adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ .compatible = "ti,adc102s021", .data = &adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ .compatible = "ti,adc102s051", .data = &adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ .compatible = "ti,adc102s101", .data = &adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ .compatible = "ti,adc122s021", .data = &adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ .compatible = "ti,adc122s051", .data = &adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ .compatible = "ti,adc122s101", .data = &adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ .compatible = "ti,adc124s021", .data = &adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ .compatible = "ti,adc124s051", .data = &adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ .compatible = "ti,adc124s101", .data = &adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ .compatible = "ti,adc128s052", .data = &adc128_config[ADC128_CONFIG_INDEX_128S] },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, adc128_of_match);
- 
- static const struct spi_device_id adc128_id[] = {
--	{ "adc128s052", (kernel_ulong_t)&adc128_config[0] },
--	{ "adc122s021",	(kernel_ulong_t)&adc128_config[1] },
--	{ "adc122s051",	(kernel_ulong_t)&adc128_config[1] },
--	{ "adc122s101",	(kernel_ulong_t)&adc128_config[1] },
--	{ "adc124s021", (kernel_ulong_t)&adc128_config[2] },
--	{ "adc124s051", (kernel_ulong_t)&adc128_config[2] },
--	{ "adc124s101", (kernel_ulong_t)&adc128_config[2] },
-+	{ "adc082s021", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ "adc082s051", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ "adc082s101", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_082S] },
-+	{ "adc102s021", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ "adc102s051", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ "adc102s101", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_102S] },
-+	{ "adc122s021",	(kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ "adc122s051",	(kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ "adc122s101",	(kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_122S] },
-+	{ "adc124s021", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ "adc124s051", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ "adc124s101", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_124S] },
-+	{ "adc128s052", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_128S] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, adc128_id);
- 
- static const struct acpi_device_id adc128_acpi_match[] = {
--	{ "AANT1280", (kernel_ulong_t)&adc128_config[2] },
-+	{ "AANT1280", (kernel_ulong_t)&adc128_config[ADC128_CONFIG_INDEX_124S] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(acpi, adc128_acpi_match);
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    systick@d00 {
++        compatible = "ralink,cevt-systick";
++        reg = <0xd00 0x10>;
++
++        interrupt-parent = <&cpuintc>;
++        interrupts = <7>;
++    };
++...
 -- 
-2.34.1
+2.25.1
 
 
