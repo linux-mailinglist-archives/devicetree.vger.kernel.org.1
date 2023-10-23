@@ -1,157 +1,329 @@
-Return-Path: <devicetree+bounces-10891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218FF7D35DF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:55:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DAE27D35EC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:56:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5802B20C4B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:55:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 030D528129E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA4E18025;
-	Mon, 23 Oct 2023 11:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D432A18040;
+	Mon, 23 Oct 2023 11:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HmZlQbwH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CvbdBVea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF02179B4
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:55:06 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CC6AF;
-	Mon, 23 Oct 2023 04:55:04 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39NBsPc9031622;
-	Mon, 23 Oct 2023 11:55:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GdM270Ymk4GmaoE8s1C0BZCXZ4sHC1MXNy0TNyH38c4=;
- b=HmZlQbwHKZ3saMsMm13Mh1hc9Z1qVfTwDCuQy4k8GJXlwrAR57KxcZw5PXsCmNdeAzR7
- bXL0eqH7MsAzshtO0JtU61UmIUBPCYsHA2xv7NL203UNEQyj5kIYuLSlf0obmXjimsiq
- pbhAhj+By6IF6umBZXHFk3hn0a/FknsoOgSQ2CFvIPTD/lPRLJ8aVPCv3SfThNtGSzSh
- m3nwyX5qBsOvbCGrdYPpUGC80lbh1talrGlZR4qyOPuCR99yW0ppEcrgQBwG8bUlpWHQ
- ww7p2ezuw5IspjSPMRAcwnxyJYTFpd6AWAGGbnJfOTqRJPfdhfKHmgp7zPn4iZK1KERT pQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv7u3v8kq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 11:55:01 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39NBt0GU025086
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 11:55:00 GMT
-Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 23 Oct
- 2023 04:54:55 -0700
-Message-ID: <d3b62002-c29c-a45e-279f-7d07c697aa77@quicinc.com>
-Date: Mon, 23 Oct 2023 19:54:52 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA46918629;
+	Mon, 23 Oct 2023 11:56:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80EA0C433C8;
+	Mon, 23 Oct 2023 11:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698062199;
+	bh=ye0Dbd8QYVtEN8vg7b7frsXs9Dqrk9uXB/oe2lWo/oI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CvbdBVeaxqqYJ3oP/sI6EYSHPI7ct4J1bHnZpQDi4wc3tPSFA99qY+nyyFYOCIHJP
+	 exnZC9FL8kgYxF6wjhENzNjRsgIQFJ2t14BjQ9QlaFNgW9tdl3+JRdGg/Hr+PCnUx0
+	 PcQIqu3MZ3pVDWEaWSdknKZOwCsD0WXrqgPiAyukRVjjEvRqB1bZgO7HrqPsApRg2v
+	 ruyo4J3L3/KsbzqUmOk+bvEWKgR1kdaU0jtwaBpeFjy3N83SZ0w/y1VcewUfu3j2wA
+	 j8f6yb+F1f+BbO3kfV0oLlt4cAqkNw3u4N7m0IgBBq/Up2k8H/k4cmRHJH6QALVw18
+	 xsqr7vsJFaGqA==
+Date: Mon, 23 Oct 2023 12:56:28 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [RFC PATCH v3 RESEND 07/13] RISC-V: Move T-Head PMU to CPU
+ feature alternative framework
+Message-ID: <20231023-derived-rind-cfec145c9ce6@spud>
+References: <20231023004100.2663486-1-peterlin@andestech.com>
+ <20231023004100.2663486-8-peterlin@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
- bindings
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
- <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-In-Reply-To: <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PmZJVdcFGMnJ25jI4nqqVqd7lWtZ3dWf
-X-Proofpoint-ORIG-GUID: PmZJVdcFGMnJ25jI4nqqVqd7lWtZ3dWf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-23_10,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 mlxlogscore=934
- suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310230104
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3CrJUMx+JJd/NlXH"
+Content-Disposition: inline
+In-Reply-To: <20231023004100.2663486-8-peterlin@andestech.com>
 
 
+--3CrJUMx+JJd/NlXH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2023/10/23 17:27, Krzysztof Kozlowski wrote:
-> On 23/10/2023 11:20, Zhenhua Huang wrote:
->> Add bindings for the QCOM Memory Dump driver providing debug
-> 
-> Bindings are for hardware, not driver. This suggests it is not suitable
-> for bindings at all.
-> 
->> facilities. Firmware dumps system cache, internal memory,
->> peripheral registers to reserved DDR as per the table which
->> populated by the driver, after crash and warm reset.
-> 
-> Again driver :/
+On Mon, Oct 23, 2023 at 08:40:54AM +0800, Yu Chien Peter Lin wrote:
+> The custom PMU extension aims to support perf event sampling prior
+> to the ratification of Sscofpmf. Instead of utilizing the bits and
+> CSRs reserved for future standard, a set of custom CSRs is added.
+> Hence, we may consider it as a CPU feature rather than an erratum.
+>=20
+> T-Head cores need to append "xtheadpmu" to the riscv,isa-extensions
+> for each cpu node in device tree, and enable CONFIG_THEAD_CUSTOM_PMU
+> for proper functioning as of this commit.
+>=20
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> ---
+> Hi All,
+>=20
+> This is in preparation for introducing other PMU alternative.
+> We follow Conor's suggestion [1] to use cpu feature alternative
+> framework rather than errata, if you want to stick with errata
+> alternative or have other issues, please let me know. Thanks.
 
-Thanks for pointing out. Qualcomm memory dump device is a reserved 
-memory region which is used to communicate with firmware. I will update 
-description in next version.
+I replied to the discussion on v2 earlier this morning (please try to
+wait for previous conversations to resolve before sending new versions)
+commenting on this patch:
+https://lore.kernel.org/linux-riscv/20231023-impulse-quickness-4c7076e6eb58=
+@spud/T/#m77982ce990577b974edd24bb3ac175737b2a621c
 
-Thanks,
-Zhenhua
+Sticking with the existing method for the t-head stuff isn't a matter
+of how the code is structured, but a question of regressing existing
+platforms.
 
-> 
->>
->> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
->> ---
->>   .../bindings/soc/qcom/qcom,mem-dump.yaml           | 42 +++++++++++++++++++++
->>   .../devicetree/bindings/sram/qcom,imem.yaml        | 44 ++++++++++++++++++++++
->>   2 files changed, 86 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->> new file mode 100644
->> index 0000000..87f8f51
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,mem-dump.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> 
-> Drop quotes.
-> 
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
-> 
->> +
->> +title: Qualcomm memory dump
-> 
-> Describe hardware, not driver.
-> 
->> +
->> +description: |
->> +  Qualcomm memory dump driver dynamically reserves memory and provides hints(id and size)
-> 
-> Again, driver, so not suitable for DTS and bindings.
-> 
-> Best regards,
-> Krzysztof
-> 
+Cheers,
+Conor.
+
+>=20
+> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20230907021635=
+=2E1002738-4-peterlin@andestech.com/#25503860
+>=20
+> Changes v1 -> v2:
+>   - New patch
+> Changes v2 -> v3:
+>   - Removed m{vendor/arch/imp}id checks in pmu_sbi_setup_irqs()
+> ---
+>  arch/riscv/Kconfig.errata            | 13 -------------
+>  arch/riscv/errata/thead/errata.c     | 19 -------------------
+>  arch/riscv/include/asm/errata_list.h | 15 +--------------
+>  arch/riscv/include/asm/hwcap.h       |  1 +
+>  arch/riscv/kernel/cpufeature.c       |  1 +
+>  drivers/perf/Kconfig                 | 13 +++++++++++++
+>  drivers/perf/riscv_pmu_sbi.c         | 19 ++++++++++++++-----
+>  7 files changed, 30 insertions(+), 51 deletions(-)
+>=20
+> diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
+> index 566bcefeab50..35dfb19d6a29 100644
+> --- a/arch/riscv/Kconfig.errata
+> +++ b/arch/riscv/Kconfig.errata
+> @@ -85,17 +85,4 @@ config ERRATA_THEAD_CMO
+> =20
+>  	  If you don't know what to do here, say "Y".
+> =20
+> -config ERRATA_THEAD_PMU
+> -	bool "Apply T-Head PMU errata"
+> -	depends on ERRATA_THEAD && RISCV_PMU_SBI
+> -	default y
+> -	help
+> -	  The T-Head C9xx cores implement a PMU overflow extension very
+> -	  similar to the core SSCOFPMF extension.
+> -
+> -	  This will apply the overflow errata to handle the non-standard
+> -	  behaviour via the regular SBI PMU driver and interface.
+> -
+> -	  If you don't know what to do here, say "Y".
+> -
+>  endmenu # "CPU errata selection"
+> diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/e=
+rrata.c
+> index 0554ed4bf087..5de5f7209132 100644
+> --- a/arch/riscv/errata/thead/errata.c
+> +++ b/arch/riscv/errata/thead/errata.c
+> @@ -53,22 +53,6 @@ static bool errata_probe_cmo(unsigned int stage,
+>  	return true;
+>  }
+> =20
+> -static bool errata_probe_pmu(unsigned int stage,
+> -			     unsigned long arch_id, unsigned long impid)
+> -{
+> -	if (!IS_ENABLED(CONFIG_ERRATA_THEAD_PMU))
+> -		return false;
+> -
+> -	/* target-c9xx cores report arch_id and impid as 0 */
+> -	if (arch_id !=3D 0 || impid !=3D 0)
+> -		return false;
+> -
+> -	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+> -		return false;
+> -
+> -	return true;
+> -}
+> -
+>  static u32 thead_errata_probe(unsigned int stage,
+>  			      unsigned long archid, unsigned long impid)
+>  {
+> @@ -80,9 +64,6 @@ static u32 thead_errata_probe(unsigned int stage,
+>  	if (errata_probe_cmo(stage, archid, impid))
+>  		cpu_req_errata |=3D BIT(ERRATA_THEAD_CMO);
+> =20
+> -	if (errata_probe_pmu(stage, archid, impid))
+> -		cpu_req_errata |=3D BIT(ERRATA_THEAD_PMU);
+> -
+>  	return cpu_req_errata;
+>  }
+> =20
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/as=
+m/errata_list.h
+> index c190393aa9db..1b5354a50d55 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -25,8 +25,7 @@
+>  #ifdef CONFIG_ERRATA_THEAD
+>  #define	ERRATA_THEAD_PBMT 0
+>  #define	ERRATA_THEAD_CMO 1
+> -#define	ERRATA_THEAD_PMU 2
+> -#define	ERRATA_THEAD_NUMBER 3
+> +#define	ERRATA_THEAD_NUMBER 2
+>  #endif
+> =20
+>  #ifdef __ASSEMBLY__
+> @@ -147,18 +146,6 @@ asm volatile(ALTERNATIVE_2(						\
+>  	    "r"((unsigned long)(_start) + (_size))			\
+>  	: "a0")
+> =20
+> -#define THEAD_C9XX_RV_IRQ_PMU			17
+> -#define THEAD_C9XX_CSR_SCOUNTEROF		0x5c5
+> -
+> -#define ALT_SBI_PMU_OVERFLOW(__ovl)					\
+> -asm volatile(ALTERNATIVE(						\
+> -	"csrr %0, " __stringify(CSR_SSCOUNTOVF),			\
+> -	"csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),		\
+> -		THEAD_VENDOR_ID, ERRATA_THEAD_PMU,			\
+> -		CONFIG_ERRATA_THEAD_PMU)				\
+> -	: "=3Dr" (__ovl) :						\
+> -	: "memory")
+> -
+>  #endif /* __ASSEMBLY__ */
+> =20
+>  #endif
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index b7b58258f6c7..d3082391c901 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -58,6 +58,7 @@
+>  #define RISCV_ISA_EXT_ZICSR		40
+>  #define RISCV_ISA_EXT_ZIFENCEI		41
+>  #define RISCV_ISA_EXT_ZIHPM		42
+> +#define RISCV_ISA_EXT_XTHEADPMU		43
+> =20
+>  #define RISCV_ISA_EXT_MAX		64
+> =20
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 1cfbba65d11a..4a3fb017026c 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -181,6 +181,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
+>  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+>  	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+>  	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> +	__RISCV_ISA_EXT_DATA(xtheadpmu, RISCV_ISA_EXT_XTHEADPMU),
+>  };
+> =20
+>  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
+> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> index 273d67ecf6d2..c71b6f16bdfa 100644
+> --- a/drivers/perf/Kconfig
+> +++ b/drivers/perf/Kconfig
+> @@ -86,6 +86,19 @@ config RISCV_PMU_SBI
+>  	  full perf feature support i.e. counter overflow, privilege mode
+>  	  filtering, counter configuration.
+> =20
+> +config THEAD_CUSTOM_PMU
+> +	bool "T-Head custom PMU support"
+> +	depends on RISCV_ALTERNATIVE && RISCV_PMU_SBI
+> +	default y
+> +	help
+> +	  The T-Head C9xx cores implement a PMU overflow extension very
+> +	  similar to the core SSCOFPMF extension.
+> +
+> +	  This will patch the overflow CSR and handle the non-standard
+> +	  behaviour via the regular SBI PMU driver and interface.
+> +
+> +	  If you don't know what to do here, say "Y".
+> +
+>  config ARM_PMU_ACPI
+>  	depends on ARM_PMU && ACPI
+>  	def_bool y
+> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
+> index f340db9ce1e2..a3d5ededfd45 100644
+> --- a/drivers/perf/riscv_pmu_sbi.c
+> +++ b/drivers/perf/riscv_pmu_sbi.c
+> @@ -20,10 +20,21 @@
+>  #include <linux/cpu_pm.h>
+>  #include <linux/sched/clock.h>
+> =20
+> -#include <asm/errata_list.h>
+>  #include <asm/sbi.h>
+>  #include <asm/hwcap.h>
+> =20
+> +#define THEAD_C9XX_RV_IRQ_PMU		17
+> +#define THEAD_C9XX_CSR_SCOUNTEROF	0x5c5
+> +
+> +#define ALT_SBI_PMU_OVERFLOW(__ovl)					\
+> +asm volatile(ALTERNATIVE(						\
+> +	"csrr %0, " __stringify(CSR_SSCOUNTOVF),			\
+> +	"csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),		\
+> +		0, RISCV_ISA_EXT_XTHEADPMU,				\
+> +		CONFIG_THEAD_CUSTOM_PMU)				\
+> +	: "=3Dr" (__ovl) :						\
+> +	: "memory")
+> +
+>  #define SYSCTL_NO_USER_ACCESS	0
+>  #define SYSCTL_USER_ACCESS	1
+>  #define SYSCTL_LEGACY		2
+> @@ -805,10 +816,8 @@ static int pmu_sbi_setup_irqs(struct riscv_pmu *pmu,=
+ struct platform_device *pde
+>  	if (riscv_isa_extension_available(NULL, SSCOFPMF)) {
+>  		riscv_pmu_irq_num =3D RV_IRQ_PMU;
+>  		riscv_pmu_use_irq =3D true;
+> -	} else if (IS_ENABLED(CONFIG_ERRATA_THEAD_PMU) &&
+> -		   riscv_cached_mvendorid(0) =3D=3D THEAD_VENDOR_ID &&
+> -		   riscv_cached_marchid(0) =3D=3D 0 &&
+> -		   riscv_cached_mimpid(0) =3D=3D 0) {
+> +	} else if (riscv_isa_extension_available(NULL, XTHEADPMU) &&
+> +		   IS_ENABLED(CONFIG_THEAD_CUSTOM_PMU)) {
+>  		riscv_pmu_irq_num =3D THEAD_C9XX_RV_IRQ_PMU;
+>  		riscv_pmu_use_irq =3D true;
+>  	}
+> --=20
+> 2.34.1
+>=20
+
+--3CrJUMx+JJd/NlXH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTZfbAAKCRB4tDGHoIJi
+0hb7AQChme18l0KgHqpprLTN0kROM107t9194FKQxmlCBOo+9gD+N9abwsMMJfKh
+0A9X4v4ePpcB8tvAnnz58cMfLZt0OAs=
+=CUTY
+-----END PGP SIGNATURE-----
+
+--3CrJUMx+JJd/NlXH--
 
