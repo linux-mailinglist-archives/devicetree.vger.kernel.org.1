@@ -1,203 +1,74 @@
-Return-Path: <devicetree+bounces-10767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BCC7D2A62
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:27:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 402D97D2A68
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B83D728133C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:27:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7141B1C208A8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B6A63D6;
-	Mon, 23 Oct 2023 06:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EA46AB0;
+	Mon, 23 Oct 2023 06:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YtSpZJ2J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="edZHsRJI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CAD4568E
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:27:22 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD481DF;
-	Sun, 22 Oct 2023 23:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1698042440; x=1729578440;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=B4cdU/iC1dUVeB9k49fZxtcHN1oJA8yJgehxpOxX72I=;
-  b=YtSpZJ2J824Ok1NK+o4a7hgSJmenFLdvn/Ss3kvBi0oHQ6xIi8894V8m
-   5RgitfL9VFr5P1iGHWYKGs7M3APadeCv9Vh/hpTQKpWeQqqUdqLL8z5WQ
-   lZam5ehrWE9sR49zJfBsVqXRFuIebQ3H+kqdKxeRHcpWbXBPDo7fqkPsJ
-   pfKiR7qR9wCrjzRrlFlUm0FLGuydtMFjOsifH/ndAjQnXTIjMO0laf3Xn
-   PJwuHYHZIK6t2VSmkJGjUedDdeGjXJU90Mfk3n3vAppXjEBD32H9O0kxj
-   E2qWLPbMvLuvZ9aPRxuGs+SZNLvlb0kXyh/39dE+GSlH3autmMMVSEFyK
-   w==;
-X-IronPort-AV: E=Sophos;i="6.03,244,1694728800"; 
-   d="scan'208";a="33590173"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 23 Oct 2023 08:27:17 +0200
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E556728007F;
-	Mon, 23 Oct 2023 08:27:16 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Marek Vasut <marex@denx.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB subnode into schema and example
-Date: Mon, 23 Oct 2023 08:27:20 +0200
-Message-ID: <5986192.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231022-helper-dating-a0f65a8f6f72@spud>
-References: <20231020130019.665853-1-alexander.stein@ew.tq-group.com> <20231020130019.665853-3-alexander.stein@ew.tq-group.com> <20231022-helper-dating-a0f65a8f6f72@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A29A6AA5
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:29:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B6D4C433C7;
+	Mon, 23 Oct 2023 06:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698042541;
+	bh=9FFTyA/IN+1usMt39XOMXypfgiatVLpJUUWPvSRYpQE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=edZHsRJIbpx8t6abh7Ur86OpCFb8ExmK5+NSkbA4yoXq+dJq56GoOzZIiZEjuG1iu
+	 MT9K0GntLc9aE1J6gKd8/h2Ylg3xe3vKeQbrnZi61NSP5BOw9aRT6OCksEbqTSgEPW
+	 JmJVNRbJWSNpcyr9rfHkHU9IeD+9p+PHrnGvFCdxO/ykoBfcUORvwj663F2VP1AAYE
+	 N0wcPoua109WYEElsHfTNnjCV0PjXLrkfk8UnPhelNzrhWQUCXomsw7JlgmES1krC2
+	 be9ERESrE9SSO9GYQ9mEMZfMhDRHdUitmIdEm/7873Hm1xtpT12nXpTau7eIACl175
+	 4HKBx3vlOQGzA==
+From: Vinod Koul <vkoul@kernel.org>
+To: devicetree@vger.kernel.org, 
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc: kishon@kernel.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+In-Reply-To: <20231022163006.803800-1-sergio.paracuellos@gmail.com>
+References: <20231022163006.803800-1-sergio.paracuellos@gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: phy: ralink-usb-phy: convert to
+ dtschema
+Message-Id: <169804253768.383714.5625853416046934960.b4-ty@kernel.org>
+Date: Mon, 23 Oct 2023 11:58:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-Hi Conor,
 
-Am Sonntag, 22. Oktober 2023, 19:39:12 CEST schrieb Conor Dooley:
-> Yo,
->=20
-> On Fri, Oct 20, 2023 at 03:00:15PM +0200, Alexander Stein wrote:
-> > Document the LDB bridge subnode and add the subnode into the example.
-> > For the subnode to work, the block control must scan its subnodes and
-> > bind drivers to them, do not misuse either simple-bus or simple-mfd
-> > here.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >=20
-> >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 44 +++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.ya=
-ml
-> > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.ya=
-ml
-> > index b3554e7f9e76..5ba66dfb0e05 100644
-> > ---
-> > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.ya=
-ml
-> > +++
-> > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.ya=
-ml>=20
-> > @@ -24,6 +24,12 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >=20
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> >=20
-> >    '#power-domain-cells':
-> >      const: 1
-> >=20
-> > @@ -46,9 +52,16 @@ properties:
-> >        - const: csi
-> >        - const: dsi
-> >=20
-> > +  bridge@20:
-> > +    type: object
-> > +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> >=20
-> >  required:
-> >    - compatible
-> >    - reg
-> >=20
-> > +  - '#address-cells'
-> > +  - '#size-cells'
->=20
-> It seems to make little sense to me that these would become required
-> when the bridge is optional. Is it valid to have one of these
-> media-blk-ctrls without the ldb subnode?
+On Sun, 22 Oct 2023 18:30:06 +0200, Sergio Paracuellos wrote:
+> Convert the ralink-usb-phy bindings to DT schema.
+> 
+> 
 
-fsl,imx93-media-blk-ctrl privides several power-domains (DSI, CSI, ISI, PXP=
-=20
-and LCDIF), currently unused. This series introduces the usage for LCDIF po=
-wer=20
-domain. LDB is the LVDS display bridge. So there are several power domains=
-=20
-which don't requires the usage of ldb.
-On the other hand I prefer consistency, so I opted to keep things similar t=
-o=20
-commit 1cb0c87d27dc. If it shall not be added here, it should be removed in=
-=20
-Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml as=
-=20
-well.
+Applied, thanks!
+
+[1/1] dt-bindings: phy: ralink-usb-phy: convert to dtschema
+      commit: f5d5a0b5553aa1a4e165e6fc6c582db487768846
 
 Best regards,
-Alexander
-
->=20
-> >    - power-domains
-> >    - clocks
-> >    - clock-names
-> >=20
-> > @@ -77,4 +90,35 @@ examples:
-> >                 clock-names =3D "apb", "axi", "nic", "disp", "cam",
-> >                =20
-> >                               "pxp", "lcdif", "isi", "csi", "dsi";
-> >       =20
-> >        #power-domain-cells =3D <1>;
-> >=20
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +
-> > +      bridge@20 {
-> > +          compatible =3D "fsl,imx93-ldb";
-> > +          reg =3D <0x20 0x4>, <0x24 0x4>;
-> > +          reg-names =3D "ldb", "lvds";
-> > +          clocks =3D <&clk IMX93_CLK_LVDS_GATE>;
-> > +          clock-names =3D "ldb";
-> > +
-> > +          ports {
-> > +              #address-cells =3D <1>;
-> > +              #size-cells =3D <0>;
-> > +
-> > +              port@0 {
-> > +                  reg =3D <0>;
-> > +
-> > +                  ldb_from_lcdif2: endpoint {
-> > +                      remote-endpoint =3D <&lcdif2_to_ldb>;
-> > +                  };
-> > +              };
-> > +
-> > +              port@1 {
-> > +                  reg =3D <1>;
-> > +
-> > +                  ldb_lvds: endpoint {
-> > +                      remote-endpoint =3D <&ldb_to_panel>;
-> > +                  };
-> > +              };
-> > +          };
-> > +        };
-> >=20
-> >      };
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-- 
+~Vinod
 
 
 
