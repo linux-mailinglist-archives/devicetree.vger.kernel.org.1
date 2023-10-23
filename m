@@ -1,100 +1,147 @@
-Return-Path: <devicetree+bounces-10941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FB07D3900
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D63767D3932
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:20:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49C7EB20CE8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:10:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 657A3B20C00
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B0E1B282;
-	Mon, 23 Oct 2023 14:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027261B287;
+	Mon, 23 Oct 2023 14:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VdQ2Puhh"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="lYc+ZBHk";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="niRJqeL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB43291E;
-	Mon, 23 Oct 2023 14:10:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBEC1C433C7;
-	Mon, 23 Oct 2023 14:10:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698070222;
-	bh=6vH16FEOHa8dxD2HaGOACPP5M5V5znbbUY7rMFuXZLk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VdQ2PuhhNMziTwMmg9/EeEJ3CbPiBjLIEnb/EfnjqUDyGdLGJMzQGfW5HAysZK8yr
-	 b/O4JKgUxxpouvDOazGmsset5rHSdPkbWBhSv/AeP5pk1rUAODyPuoHo+ocEACbrt5
-	 mNLvf41900/nYdAmDUHsd6DLiB8tPuLfsaJuwUW21dhlRYYcd6t3mBIXjVn3JnPVew
-	 wYmH4/oQVBUtZmeYX1ibALo+2N3bGZGWF4+2rXYsHX1GBNCR+86R83a5cQ3v7RdHbU
-	 LI0vRo8/147tvS9VM0tiZG3Ede/Uj7rMrVCtaNeRRuC9ePR27Pw3v62MruCHRCnLhn
-	 8h5lhhpniEdig==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1quvdd-0000Z6-0W;
-	Mon, 23 Oct 2023 16:10:37 +0200
-Date: Mon, 23 Oct 2023 16:10:37 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com,
-	Harsh Agarwal <quic_harshq@quicinc.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v13 03/10] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-Message-ID: <ZTZ-3Vick1LBRKYb@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-4-quic_kriskura@quicinc.com>
- <ZTJPBcyZ_zLXbgE5@hovoldconsulting.com>
- <257716c4-7194-4d26-a34c-fff09234628f@quicinc.com>
- <ZTY42KvYCk9HhCIE@hovoldconsulting.com>
- <e640c995-4751-464b-b6fc-106be822ae1c@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57EFB19BDC
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 14:19:56 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC950100;
+	Mon, 23 Oct 2023 07:19:54 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 319375C033F;
+	Mon, 23 Oct 2023 10:19:54 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Mon, 23 Oct 2023 10:19:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1698070794; x=1698157194; bh=bs
+	mBsb2C4biRFAK90R3YGndrC+6bsEOQQxqfzZ99ePQ=; b=lYc+ZBHk7xNLUtCtBW
+	SW8wU5/knar6IJPqYjl2CJlJp3v6LY9kHkC/0Zfhp+3PTywtBVWdAqtC05b7Pbzr
+	U0hz2+5uHYYsZS0NY32+N1gtTXo4aD7GNYc1rbazGdO0kyURlMQBaEirGbvxkG9d
+	SIAW0ZhuyzLDXAtskzdjRZxeHE7ttbI9ALKzJf0d6CeVwc9wvatHsle+gWRH4fVb
+	55FuhknZOFv5PHK4IK8rzARimnoff+PJPTeyjyIM0mWIRxMmzFwWahsJ2ZRGVauV
+	bOxKJuyw7zaSXKFAOCRJlzcHn9kWaL7DG1uRb2N9IQr83vl3yqUJiLntZnkFkXjF
+	tfTg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1698070794; x=1698157194; bh=bsmBsb2C4biRF
+	AK90R3YGndrC+6bsEOQQxqfzZ99ePQ=; b=niRJqeL+BF+kNPZQvaQPd/1+q2SwC
+	69sqEW1ElhXcqkiS2L7UGVNTaxU+nsD5f0wrk/AX8LHVxxVBnJnQSNwuKytXPxt2
+	z7m3Hg++LJW/fAsDZj01KzRe4fZNimddMbymzw69rCMe5pVjfRD1VGtoqXlhUwYX
+	M82mbZRNauf5OBlCi9+V9Bbao1ZWLMekUgh7l1pUm6uKWjtg6u2JhkNnfvOiBkE1
+	8YioQ8s2B9pAvNmz5GZwg5JALdw67TAToo8hKHBX58mE4e6httVe8fqF3V9uNVde
+	xEQskAu0dFh408H21biJ8MxBRlaRvv0kmYld0GqBk3mKPnBHvJORtg9Rw==
+X-ME-Sender: <xms:CYE2ZU6h5o3AkFhd4qe-eFIxvZEUjYvLbfwcW4WGXBK3K-PsQTRkcQ>
+    <xme:CYE2ZV7e_D95Qufz1UVDxew2mQ-3zZrG04n_OxWOQt_VxIJeVMtUPQ7jfOdnnLapy
+    _tz_-BoCs3Ep7ShLgA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrkeeigdejfecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeufeeh
+    udenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:CoE2ZTd6e-iqyuzsZkMtdUeVlyibjgocKeAvVmwIt8yQZycGQhSUvg>
+    <xmx:CoE2ZZLf943EmtbrTJ9opSX9KHiXy-IqgACy1quGrRuG3IlaRUtLkw>
+    <xmx:CoE2ZYIhQxg_-d026fnfbeqRlwAXDB712lhngTpCP5fPmgyfVVHe6A>
+    <xmx:CoE2ZdUI7CZ4zJBij_i-AoyZBN_gMqojPy_Q-e-0n3S3UOkxBO9BTQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id DCB18B60089; Mon, 23 Oct 2023 10:19:53 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1048-g9229b632c5-fm-20231019.001-g9229b632
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e640c995-4751-464b-b6fc-106be822ae1c@quicinc.com>
+Message-Id: <15f25d73-32d5-4809-8096-32c856559d66@app.fastmail.com>
+In-Reply-To: 
+ <BN7PR03MB4545DA4A9404F349170CBA1097D8A@BN7PR03MB4545.namprd03.prod.outlook.com>
+References: <20231019125646.14236-1-eliza.balas@analog.com>
+ <20231019125646.14236-3-eliza.balas@analog.com>
+ <2023101917-cork-numeric-dab8@gregkh>
+ <BN7PR03MB4545E7EAB2D72B9098C30C6797DBA@BN7PR03MB4545.namprd03.prod.outlook.com>
+ <2023102030-resort-glance-57ef@gregkh>
+ <BN7PR03MB4545FF54B96514EC9F41887E97D8A@BN7PR03MB4545.namprd03.prod.outlook.com>
+ <2023102339-outcast-scone-5a63@gregkh>
+ <BN7PR03MB4545DA4A9404F349170CBA1097D8A@BN7PR03MB4545.namprd03.prod.outlook.com>
+Date: Mon, 23 Oct 2023 16:19:32 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Eliza Balas" <Eliza.Balas@analog.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
+ "Jonathan Cameron" <jic23@kernel.org>,
+ "Lars-Peter Clausen" <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
+Content-Type: text/plain
 
-On Mon, Oct 23, 2023 at 06:03:32PM +0530, Krishna Kurapati PSSNV wrote:
-> On 10/23/2023 2:41 PM, Johan Hovold wrote:
-> 
-> >>>> Multiport currently.
-> >>>
-> >>> You use capitalised "Multiport" in several places it seems. Is this an
-> >>> established term for these controllers or should it just be "multiport"
-> >>> or "multiple ports"?
-> >>>
-> >> This is an established term AFAIK. So I've been using it here like this.
-> > 
-> > Do you have a pointer? A google search seems to mostly come up with
-> > links to this patch series.
-> 
-> Only pointer I had is the hardware programming guide internally. It 
-> mentioned "Multiport" as an established term. I think that is self 
-> explanatory in usb context. Isn't it ?
+On Mon, Oct 23, 2023, at 15:30, Balas, Eliza wrote:
+>> -----Original Message-----
+>> Cvetic <dragan.cvetic@amd.com>; Arnd Bergmann <arnd@arndb.de>
+>> Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
 
-Self-explanatory, yes, just not sure whether capitalising it as
-"Multiport" is warranted. But thanks for clarifying where this comes
-from.
+>> > > > Since the device is not an iio device, using an iio function would be confusing.
+>> > >
+>> > > Why isn't this an iio device?
+>> >
+>> > The device is not registered into the IIO device tree,
+>> > and does not rely on IIO kernel APIs.
+>> > Even though there are a few attributes that resemble the
+>> > ones from iio, and the sysfs structure is similar,
+>> > this is not an IIO device.
+>> > In the previous patch versions 1 and 2 we concluded
+>> > that this device fits better in the misc subsystem.
+>> 
+>> Ok, can you point to that in the changelog where the IIO maintainer
+>> agreed that this doesn't fit into that subsystem?
+>> 
+> This was one of the discussions from previous v2 : 
+> https://lore.kernel.org/all/5b6318f16799e6e2575fe541e83e42e0afebe6cf.camel@gmail.com/
+>
+> I will add it to the changelog the next time I submit the patches.
 
-Johan
+It sounds like Jonathan wasn't quite sure either here, and I would
+still argue (as I did in that thread), that drivers/iio is probably
+a better option than drivers/misc.
+
+In particular, you mention that you actually make this device
+appear as an IIO device to user space using the "iio-fake" hack.
+
+I can see that IIO is not a perfect fit if this is the only
+device of its kind, but going that way anyway avoids a number
+of problems by reusing infrastructure for the IIO ABI and
+serialization with in-kernel users, as well as giving you
+the option of adding other compatible drivers later.
+
+     Arnd
 
