@@ -1,226 +1,259 @@
-Return-Path: <devicetree+bounces-11049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF53E7D3DE5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:36:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2417D3DE9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2A631C20939
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F5161C20981
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D45E210ED;
-	Mon, 23 Oct 2023 17:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15C2210FD;
+	Mon, 23 Oct 2023 17:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="m9KwzjhQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X/2caegp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6540C210E9
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:36:25 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2062.outbound.protection.outlook.com [40.107.243.62])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17ACB94;
-	Mon, 23 Oct 2023 10:36:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l+V1340Zn4gi9eH7KOMw9euxwwZBJWR+V4CkX+MF1vK46e7PidE61MTUOPzitMQRNojZYZA0Qyl80lqyN5hljQ/zX73mFdaz0haaZi00UVZjxWpxNEbecRh2EMEmlSv/+n8+8lRl+Obl4LzZ5lS49/GsqmVNaOQ1UqzT8RVQtE24W2fFNn7kORKTcTfleRW7VXcof8RX5F3fMnI3TA8rjXfA9pzkMyk0WbMwfkgZfllWlfY4OVvb+hE+ieqsUXu1MwPk4sNy2eZ7p+cZukcPv2IHEJaIfRtpL14Rp6MtENUBpxnyrxzO42YFu3U8XhSqH8U30MOEl5or4WHpbwGmCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dpeozGvoSEtstxeCLbSaaHHLTKButJugnsChcdKLN/s=;
- b=cMWfbWbUOrC+NLcJw5SoxjpfEWoDCWSMor06HLGq82p9qHW5fr1vDK+OB89TyMPNFnWYEtUWiySrCa7HuRAvBw8xLYQobXBj/vXITAbGH1lCDVogHzOUa9BLJJ0WWoUO1zswP3JS9D4JstOKiuHSldXEQcyuf0AFkNBB1YEMPcebZNnSFcF22QP3adsTIFFCrX5nFnY9Z6mvDHsQu0z/PAy6YGefdUH8mPg5YbG6BYACKKAtUE0LjyarzFtv9rIMSRJR+PK8V6/W3zn4wz1oVsxst2lTs5YpSRr8t7tA/I/0enKyoNM/4jZXkjq4qzZsov4EWSv0rrbA9KwaodrCTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dpeozGvoSEtstxeCLbSaaHHLTKButJugnsChcdKLN/s=;
- b=m9KwzjhQbFyiK3PtA4z17OqqM753wVBTZ6dr2io/7V29DhFFRXJgI1ORmU6zB0eR51a4uOP7j1HIrOWcwNHN1cVSGvfXbd066+s5hdp0ItDXRExmNcZsKaHmCFekfODBalmefBowU4nlf0T84zV8lMAbmkJvW6zln+O3ZYVVSN4=
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
- by SJ1PR12MB6243.namprd12.prod.outlook.com (2603:10b6:a03:456::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Mon, 23 Oct
- 2023 17:36:21 +0000
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::b900:6805:abb1:bc0]) by SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::b900:6805:abb1:bc0%6]) with mapi id 15.20.6907.030; Mon, 23 Oct 2023
- 17:36:21 +0000
-From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "bhelgaas@google.com"
-	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"Simek, Michal" <michal.simek@amd.com>, "Gogada, Bharat Kumar"
-	<bharat.kumar.gogada@amd.com>
-Subject: RE: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
- buses during
-Thread-Topic: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
- buses during
-Thread-Index: AQHZ/+89QXgcS12G7EKSCK4TL1ydHbBSgl0ggAUp7wCAAAIhcA==
-Date: Mon, 23 Oct 2023 17:36:21 +0000
-Message-ID:
- <SN7PR12MB72016B115DE57CDCAEACB57B8BD8A@SN7PR12MB7201.namprd12.prod.outlook.com>
-References:
- <SN7PR12MB7201A57631FB1E0FB60A9BC08BDBA@SN7PR12MB7201.namprd12.prod.outlook.com>
- <20231023172530.GA1602129@bhelgaas>
-In-Reply-To: <20231023172530.GA1602129@bhelgaas>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|SJ1PR12MB6243:EE_
-x-ms-office365-filtering-correlation-id: 6889d097-7b32-4e0b-077a-08dbd3ee9257
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- AmDtDALHiufC/+8LKUCmoDXxDNEyq1fhlfSCHNzc8XwLinEYwAeFCqOp4TAYokufKe0he/pVo2pni/xGkVAWo0kS40YVSAmVCjutPw6daxRMacTrGNA8AtAaayAHslUrSPlCtY5BHGExwQIM2c4UjiNqiWfxDWb+ykTYiDUU8DQVFufaVJTvnar2ExVOckJY+st4S37u1co9jsiC0vety+gXU5okWqZzadB8UByix3D3Qnnb7/F9wLtWjFslapsCg7XZZClbml4nJC+yXDGDuAFleHxh6Vk9tzhh+MwDw0l4BDjc25ceKKE8Q+wSJ/XQ/pFeww67yobwZgCo+FcC8rIg/vxd9Pd5zafCzUqtyiczLPId510R5nvSPoZ7QeYmaglFR4Sfkux9BAxGx0b09Lhbq1J3LHhgfCFu7aSD3x/N/yX2PFHb5aOEgfIc1gbLR/3lzAA68SlMsBpipshvGbYuqBEI6pVpX2fWIExGKuQQOADxfkywgUjopvd9a/X12IwsmxwrFzB9dHbiUxKdozDU8uusWmGFAsU/R/hSfnGrINEDsWvRjPlu9K8krEW3lpOvLPcZ3Wm66CpgC5LakCsBtLhKWFOewhbDaJoLiQA=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(39860400002)(376002)(346002)(366004)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(38070700009)(38100700002)(2906002)(55016003)(52536014)(86362001)(5660300002)(41300700001)(7416002)(33656002)(8936002)(4326008)(8676002)(478600001)(71200400001)(7696005)(6506007)(6916009)(316002)(122000001)(66946007)(66556008)(66476007)(54906003)(66446008)(64756008)(76116006)(966005)(83380400001)(53546011)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?euZFGZb4sTqvainuCziJKLSKreyXlDGu9vrsPQl9IZylZFpde5gFXxe7+Gls?=
- =?us-ascii?Q?fsEp3FP4K4J87YzrDzJmdFMawLuxX2sI/fIIMtW54fWg4UlR9tNGp/9RRH3l?=
- =?us-ascii?Q?OsAPqOmqRKo64DNTXFvisL4LKEiAjktoAr8S7A/xDkoLIBt+z0VVJOpXx3HP?=
- =?us-ascii?Q?6NEiquaVjwSxd7U812m8yJgIBnFOkRAbIPT0syj/TbpLW2/8V3A1Ya8HGZJu?=
- =?us-ascii?Q?QneGivw6ScR7xGr1UmHk3OUVesXE2wqeU05G/nouVbDq2okqRFkkTFdfnc7W?=
- =?us-ascii?Q?HPi0GUTIkOxStj4VDIs90nDmgii+pz+neqMzvyYZQ35YT08l3i6IzOqIbwdj?=
- =?us-ascii?Q?+DqyyJvh/Whqmga+9zgoJH4HJXBVSeI8r6piQG3HnV2lS+OZizaIN7+K0ACY?=
- =?us-ascii?Q?XPkuuaqStL6nWdP73m7xSKI4tb4IsMSumaVlBd2t2JL2aAC6YbmPM0m2e0mg?=
- =?us-ascii?Q?SFeNGZ68TM0kSrFtuo1C6xxDEJZ6oLhu4auiQqyjcK27MOUYdvN6br9FE74c?=
- =?us-ascii?Q?6of+2LO+OruOKP/H2qMOyImBdLKXzOzXSAr17JPTh2/4MNvKCqY1G71wqMpD?=
- =?us-ascii?Q?G3SbnQnVdMdnHJKEHZjLufg39z+t6GmM8XCpuN/CVEQdq8AU9aaCPzEyJeaQ?=
- =?us-ascii?Q?2wQu/Q5AaYugje4y8DmfTPY4sEVu28hdQtUdViPurTaBEBSW5gNT/OyC2ZyX?=
- =?us-ascii?Q?TFDXhMqU/HDQyRvr9CjXmXSVvP7brWWssEuCRKNzI77v/tqcmXnB/HKODcOK?=
- =?us-ascii?Q?I+KL9B8rotHfrbHrQdqoVdvLXUzI3UYWzCthw5vN2kQXbt8IryT6KecE8Bsn?=
- =?us-ascii?Q?AHtMM7vMVexX4tbmyQrz0PQG73tNhX9+Eijba/Dry0DJJYPTS9mKqvLCBC4r?=
- =?us-ascii?Q?QRu3tVMdTw4ZUBg8y8PFusd+wVGgF6gd8Rlkhn0Yi+X/oy8jGn/CJX5o2gG1?=
- =?us-ascii?Q?tVgwpDYhJw6m/S8HlJt5GrzuS8c1zL3PsdVKZrdJPwJgsFDFYF5CofsvfM1R?=
- =?us-ascii?Q?k4rDELzMsDqHUJG7+O9TLSpjkpUqAK+cXD/FTGA1cD3Ha8PnMJ7Dot9vyuYU?=
- =?us-ascii?Q?dU4+FZpp7mr11RfPNMCnhueuQAEJJNzcMcO7biMUsR25acwMw0GYpHwJiDYn?=
- =?us-ascii?Q?0NBrtezJaGKaG6BYBfG8XIUsnqyhzSruryOpjXBasbPb3NVtVqJlVGIrIflu?=
- =?us-ascii?Q?XSWXSEtD8qgffLilwDViWt0PDszsR8q1GdF94XyQyIpTzH0OEksgZJ1iQFpn?=
- =?us-ascii?Q?h3etgUtKK7KISbpQKMLpZ4hIGcPZbqTRgbrUT+Z7aWc9ZY5iK1rg9AAj6HJR?=
- =?us-ascii?Q?v4bIfmww7zXptIdhPoxMtLyodDYB23uwNch00t5oqB2bLMVdm33yPHG6tWX5?=
- =?us-ascii?Q?kU56WRJfebWehaBlxTkuieyBPuKmf3UGnEMdU3625CH03JfVaxcX0aIMo3W2?=
- =?us-ascii?Q?6SakuSJ/4py7zUMjnhb6cnn5AcdzSpTvl2TXGSiUaAiZHAwJQZBAQsB6W46w?=
- =?us-ascii?Q?x1MqCHyDfLbCqrD6MkLwznpqB0dAUaaVccmkvXscVgwntP71K5Q56gXt/IX+?=
- =?us-ascii?Q?Tnenu0uMCJzN52RPcU5jYVNXIMHsUuNb7B9az7mfS7F8XeHRMN9zRoPKnDJL?=
- =?us-ascii?Q?G7N9OqYnq3bttfyjfj638aM=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFED210EA
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:37:39 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754F0A3
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:37:36 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso547247966b.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698082654; x=1698687454; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mpIxc8lRkjmGHBrOrWkUutSpPEIyuqpJsUF79g+Yai8=;
+        b=X/2caegpxNZNOcEnZTD1VqbE/++yQuOtxJuJgUs8PGdvlqcGEaTNNonU8W+WeBDmEQ
+         JcCBi3tOQZ4wgNMLoJVgC/R9VGE4YNMdWbnzPzih5rY6GjtVdDhCW7yUC0Ji/8hfbFi2
+         h60e++NbET6pXi2NXwmiIewfTXc87UzdIdDq7yXx/mnI0X2sMfI/+EtivGX+SIkxIEBQ
+         bGZQyTMwS1ChBL9pnMLTiWk/AfDTo2AIF2Gz8bnHI0/JGrnV4VZJOpyiiUq0gr+zHqs8
+         S1XLziFEm/WikOVzKKcz4O6EmXi2uVcoBVOJ/fIzFpHiRQsa8XJEDETeJc6aEU1jXQLa
+         8BRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698082654; x=1698687454;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mpIxc8lRkjmGHBrOrWkUutSpPEIyuqpJsUF79g+Yai8=;
+        b=cZoeAwZf5NEBXmF55YUme4HgJqjbvtZFrj2SJASfCV943MspQ+ubZGLOsmBllXG3Y2
+         73LpVigmYzOn0mhlvl3Tl1Nyn8vPbAHYEGKzzr2/0/tQHO6iHhi9rcfgm0gzRzbtAWk2
+         uycHIQ/K0z6lEm5LD0mOTRAExK3a6iydyQumP628Jx29KcD6ZrHw9raAIj+xz2yPsi0/
+         E9/CRInW8wHhNWLMAhQDQ//Io+YKsYP/QP7+2B6/XYSIFVYuJf+eLJWzW65bS9dDjmNa
+         5bVZnjMgy6iEerRiw4MFz9+o52yA8NtYrUgM3sF3JLwDyP/w7sK9q92HET8DxGEbR9Gs
+         sBXQ==
+X-Gm-Message-State: AOJu0Yy9ZZ/4u4CY9KSKWwPn4wOOoc8xHeLw4x4gxlEOsVyUgOCLlDL4
+	ffSYd2EWkpRYHFW44Xo6h+uWPg==
+X-Google-Smtp-Source: AGHT+IHidXufr99BQROxxi52qKHN2SrRZZW3iTTaRWOviu76uWx6FNOrVRKkBZbn8xpDn1uAO5YmAg==
+X-Received: by 2002:a17:907:c386:b0:9c7:fd91:4309 with SMTP id tm6-20020a170907c38600b009c7fd914309mr4570701ejc.0.1698082653885;
+        Mon, 23 Oct 2023 10:37:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id k17-20020a1709063e1100b009b2cc87b8c3sm6940519eji.52.2023.10.23.10.37.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 10:37:33 -0700 (PDT)
+Message-ID: <81d7b86e-aee2-4222-8c7a-52d0b710a2f2@linaro.org>
+Date: Mon, 23 Oct 2023 19:37:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6889d097-7b32-4e0b-077a-08dbd3ee9257
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2023 17:36:21.3386
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uFtOS2kzyG4rEejedojZhHAoT1pbKaaT7iAehiPL6fYJm9n2NveqKT1lrxejMbtzx3OzELziwRO5wkUDCi7RXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6243
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/5] net: dt-bindings: Introduce the Qualcomm
+ IPQESS Ethernet switch
+Content-Language: en-US
+To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Luka Perkov <luka.perkov@sartura.hr>, Robert Marko
+ <robert.marko@sartura.hr>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20231023155013.512999-1-romain.gantois@bootlin.com>
+ <20231023155013.512999-2-romain.gantois@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231023155013.512999-2-romain.gantois@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Bjorn,
+On 23/10/2023 17:50, Romain Gantois wrote:
+> Add the DT binding for the IPQESS Ethernet switch subsystem, that
+> integrates a modified QCA8K switch and an EDMA MAC controller. It inherits
+> from a basic ethernet switch binding and adds three regmaps, a phandle and
+> reset line for the PSGMII, a phandle to the MDIO bus, a clock, and 32
+> interrupts.
+> 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>  .../bindings/net/qcom,ipq4019-ess.yaml        | 152 ++++++++++++++++++
+>  1 file changed, 152 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml
+> new file mode 100644
+> index 000000000000..9bb6b010ea6a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml
+> @@ -0,0 +1,152 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/qcom,ipq4019-ess.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm IPQ4019 Ethernet switch subsystem driver
 
-Thanks for update, provided list consist of all submitted patches for both =
-the series.
+Bindings should be about hardware. Please drop "driver". "Subsystem"
+also sounds like Linuxism.
 
-Regards,
-Thippeswamy H
-> -----Original Message-----
-> From: Bjorn Helgaas <helgaas@kernel.org>
-> Sent: Monday, October 23, 2023 10:57 PM
-> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>
-> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
-> robh@kernel.org; krzysztof.kozlowski+dt@linaro.org; Simek, Michal
-> <michal.simek@amd.com>; Gogada, Bharat Kumar
-> <bharat.kumar.gogada@amd.com>
-> Subject: Re: [PATCH v5 RESEND 0/4] increase ecam size value to discover 2=
-56
-> buses during
->=20
-> On Fri, Oct 20, 2023 at 10:35:46AM +0000, Havalige, Thippeswamy wrote:
-> > Hi Bjorn,
-> >
-> > Can you please provide an update on this patch series.
->=20
-> As with your Xilinx XDMA Soft IP series, I hope to get this merged for v6=
-.7.
->=20
-> Would you take a quick look at patchwork here:
-> https://patchwork.kernel.org/project/linux-pci/list/?submitter=3D207519
-> to make sure that everything you're waiting on is listed there?
->=20
-> I cleaned out things that appeared to be older versions of the "Increase =
-ECAM
-> size" and the "Add support for Xilinx XDMA Soft IP"
-> series, but the subject lines didn't always match exactly, so it's possib=
-le I
-> incorrectly marked something as "superseded".
->=20
-> Bjorn
->=20
-> > > -----Original Message-----
-> > > From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> > > Sent: Monday, October 16, 2023 10:41 AM
-> > > To: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > > Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
-> > > robh@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > > colnor+dt@kernel.org; Havalige, Thippeswamy
-> > > <thippeswamy.havalige@amd.com>; Simek, Michal
-> > > <michal.simek@amd.com>; Gogada, Bharat Kumar
-> > > <bharat.kumar.gogada@amd.com>
-> > > Subject: [PATCH v5 RESEND 0/4] increase ecam size value to discover
-> > > 256 buses during
-> > >
-> > > Current driver is supports up to 16 buses. The following code fixes
-> > > to support up to 256 buses.
-> > >
-> > > update "NWL_ECAM_VALUE_DEFAULT " to 16  can access up to 256MB
-> ECAM
-> > > region to detect 256 buses.
-> > >
-> > > Update ecam size to 256MB in device tree binding example.
-> > >
-> > > Remove unwanted code.
-> > >
-> > > Thippeswamy Havalige (4):
-> > >   PCI: xilinx-nwl: Remove unnecessary code which updates primary,
-> > >     secondary and sub-ordinate bus numbers
-> > >   dt-bindings: PCI: xilinx-nwl: Modify ECAM size in example
-> > >   PCI: xilinx-nwl: Rename ECAM size default macro
-> > >   PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
-> > >
-> > >  .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml |  2 +-
-> > >  drivers/pci/controller/pcie-xilinx-nwl.c       | 18 +++-------------=
---
-> > >  2 files changed, 4 insertions(+), 16 deletions(-)
-> > >
-> > > --
-> > > 2.25.1
-> >
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> +
+> +maintainers:
+> +  - Romain Gantois <romain.gantois@bootlin.com>
+> +
+> +$ref: ethernet-switch.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qca,ipq4019-qca8337n
+
+
+What do you want to express here? ipq4019 is not qca. This is Qualcomm
+(so qcom) SoC.
+
+> +
+> +  reg:
+> +    maxItems: 3
+> +    description: Base ESS registers, PSGMII registers and EDMA registers
+
+You need to describe the items, so:
+items:
+ - description: foo
+ - description: foo
+ - description: foo
+
+> +
+> +  reg-names:
+> +    maxItems: 3
+
+You need to list items instead.
+
+> +
+> +  resets:
+> +    maxItems: 2
+> +    description: Handles to the PSGMII and ESS reset lines
+
+You need to list items instead.
+
+> +
+> +  reset-names:
+> +    maxItems: 2
+
+You need to list items instead.
+
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: Handle to the GCC ESS clock
+> +
+> +  clock-names:
+> +    maxItems: 1
+
+Drop clock-names, useless for one entry.
+
+> +
+> +  psgmii-ethphy:
+> +    maxItems: 1
+> +    description: Handle to the MDIO bus node corresponding to the PSGMII
+
+That's a bit odd property. Where is it defined?
+
+> +
+> +  mdio:
+> +    maxItems: 1
+> +    description: Handle to the IPQ4019 MDIO Controller
+> +
+> +  interrupts:
+> +    maxItems: 32
+> +    description: One interrupt per tx and rx queue, the first 16 are rx queues
+> +                 and the last 16 are the tx queues
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - resets
+> +  - reset-names
+> +  - clocks
+> +  - clock-names
+> +  - mdio
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+
+
+Best regards,
+Krzysztof
+
 
