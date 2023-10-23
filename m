@@ -1,456 +1,130 @@
-Return-Path: <devicetree+bounces-10810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520C07D2CCF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:34:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B922C7D2CD8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:37:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751141C20988
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:34:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6B991C20953
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A99D107B3;
-	Mon, 23 Oct 2023 08:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E98E4C9E;
+	Mon, 23 Oct 2023 08:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="IlUh33D7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PPhvIOR7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656C5125B4
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:34:43 +0000 (UTC)
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0D3FC
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:34:40 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-6934202b8bdso2920460b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:34:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CC3101EC
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:37:18 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F40D5D
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:37:16 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so44869221fa.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:37:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698050080; x=1698654880; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aR8KPNyv3zA05aOnkxQ4ETv9DdtPX6p9DawGEERDunE=;
-        b=IlUh33D7sLQ7F/d+bK/fR2Uy46y4sR81wmNL6GYowJ4SBeGnT0qc4QYOsQ9MYx/j3C
-         yc/gEBWwQvvkRL41AQddeTIIAZMrxF6fYsbVwGHdUtHmjZdFk/mXzAJrhCjCIQlA/PRm
-         RuNsHr441DhWTUxRVSuiQzw/XtEB72vNoejesWFGwu8SJWB5YK4X0AN4dLMiyM+qQyIP
-         gsG9Sou3B4cP/OeTxy23U0rKO9x/sN+hlE3Sg6dYUdV6JS3PgixT9yG5tlBZDct1CK8R
-         b7dkQ9prVvQqDEm/zTawcT0v9Vc6Lykyy3bOXoWNC5bwCL12lY1LQ6JWl3H1c1R5AZu9
-         iPYQ==
+        d=linaro.org; s=google; t=1698050235; x=1698655035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=me2MC4nn/CV3tpkA7KZB34ZTwycbNAKshOBYMr2X+Pk=;
+        b=PPhvIOR7tf5eRKVGIOnItTLxoqVfUtMphG2mxi5WG83HKhPmatY8WspWdceVH+Cg98
+         tPjI+S9JB2VUevZ5k4WVdY/GNpKFmANGaU62cBOwNV+d875stIGB6pGbDiHI0/guxG3O
+         cZ5GUT+jyJqDHGUcrZrryE0G6mura5rZPg+ZhayY0tiW3RPFhmGdPJg3TJ0iDTRVy+7R
+         UymCwJWTXvYwYgB4+1SBaeX0BSbkVVhmEqPyc5eB//esbWk8et42rprRHXGu/q/nfi/J
+         WDQaBL4CDuTbYmsdvnkZWs+0P7RfzJka7VqSHui7+91ih2KozkMrxwxp4M6d6gUX/TW+
+         Mg+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698050080; x=1698654880;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aR8KPNyv3zA05aOnkxQ4ETv9DdtPX6p9DawGEERDunE=;
-        b=Za3f96qZecVCZWY2BzVNTT+qsAz/zljBDquIVI+faTE+nOwA3rqlYjuC3LpEpCTOIe
-         EcEisxFFMX+Y8s2qtEILsH2BQ8aIUPsThK+IfH1XGiHSFYzMw08vFflCQwbX2I6fy35X
-         /fyxQfsAptc+meCB3XqKTLJj/hn8I/gmOjKDaQsqUjHfvu04+41O44V20yBSZl7MWcst
-         TB/EaY6iT6krrNkNT5nNC0IDLtt+8QByNHoz+xwy/LHgUvF01UYjq8S3+KVIUzin7pOm
-         nBOrHxzvDQDYQzVn2Q9Lyqf4msSyVQapbrD13gP4dGPYXPZc7sW/nZDRUrZac2YxQdM4
-         dymA==
-X-Gm-Message-State: AOJu0YyPGYOqCgXjVqWPD8GcBzkd+AiiavR9+N/HeqAWjzoBnBwCIyr1
-	4zt8yl/ulj8xyzDThG+2wimT+1Y3gxMrOmd9W8JTlA==
-X-Google-Smtp-Source: AGHT+IFXhqBiushNXKeL48+cHAHIX6i6jopbNruTLpgFa74dQ5CKzy8rMHklTu1wEk3qPGVkDqiin5PmFn+Wkm3RIkk=
-X-Received: by 2002:a05:6a20:12d0:b0:17a:4890:fa31 with SMTP id
- v16-20020a056a2012d000b0017a4890fa31mr8849626pzg.56.1698050079415; Mon, 23
- Oct 2023 01:34:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698050235; x=1698655035;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=me2MC4nn/CV3tpkA7KZB34ZTwycbNAKshOBYMr2X+Pk=;
+        b=DIvA3calsAN90OA+uatIJmK0rHzfbjpZqnvILV6GNhQZqE9QWFTF1cmKe6exH7Rpp9
+         upwTdBGVrWIoFbOI7hwkfSkB8bpVlhDsZG5KJP8M9/OVt2t94bw08RxKH9jCDVDPTXe+
+         Mzg1UXLGKhdd+dFZNxuqJOsA3heUbgiAsSf8/BtoovAFV7jt/9tKqmPSt7ZYQM30FUhg
+         M8KS2ZDv24pyxgjjsW0Lx2BPHWBd6MrmuMvjBCvs2MAd+kh2BonnFwfi8cndJjSDegEv
+         2J+EOuNx/B5EgCSYFVic4YlILpCeGsuWNd1Y3CGlkpvqChKSBDwNNhc1S5wG8WmDM93N
+         j8GA==
+X-Gm-Message-State: AOJu0Yz6GuWqsPV3PncnfEGGZpMmWstRSblZEDm7D2N+JvrDQDCDlpfk
+	g3VENCOKOEL4c2aD6hBf5GXutQ==
+X-Google-Smtp-Source: AGHT+IHlKoNRRLj9D+bLl/GMYZXBlYtqehKTnbdPLVHoetbAT9+UytWeVgCL/DfTleBsee6/yAUHYQ==
+X-Received: by 2002:a2e:a589:0:b0:2c5:1a8e:e4c9 with SMTP id m9-20020a2ea589000000b002c51a8ee4c9mr6107923ljp.31.1698050234775;
+        Mon, 23 Oct 2023 01:37:14 -0700 (PDT)
+Received: from [192.168.86.24] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id az20-20020a05600c601400b004054dcbf92asm8758062wmb.20.2023.10.23.01.37.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 01:37:14 -0700 (PDT)
+Message-ID: <06a2c115-278a-47e0-b5ba-74639b6b23aa@linaro.org>
+Date: Mon, 23 Oct 2023 09:37:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231003044403.1974628-1-apatel@ventanamicro.com>
- <87o7gu7mo9.fsf@all.your.base.are.belong.to.us> <CAK9=C2XMzzYri8TNBASKqc-VmJWjGdoOHy-fczksfkU0ahhgOQ@mail.gmail.com>
- <87h6mlbryy.fsf@all.your.base.are.belong.to.us> <CAK9=C2VE9-L49tMKHjSTGDSpOFZGZw14LtD1V4GMXGiVQ-A=ng@mail.gmail.com>
- <87o7gtpdb4.fsf@all.your.base.are.belong.to.us> <CAK9=C2WVkbDtz9uZTNjEcJzKQ44cHLR=+nSVZZmSptzL_U4NNA@mail.gmail.com>
- <87v8b1i72s.fsf@all.your.base.are.belong.to.us> <CAK9=C2X__tYk21F+o2GmKDMzdnZf8TXJn=baO248ao8as47vnA@mail.gmail.com>
- <875y31cc2y.fsf@all.your.base.are.belong.to.us> <87jzrdx1mm.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <87jzrdx1mm.fsf@all.your.base.are.belong.to.us>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Mon, 23 Oct 2023 14:04:26 +0530
-Message-ID: <CAK9=C2U2FEoAPgoxibsbPsjF+d+APWFuJtEL43=xxwnwM4L1ZA@mail.gmail.com>
-Subject: Re: [PATCH v10 00/15] Linux RISC-V AIA Support
-To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add WSA2
+ audio ports IDs
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Banajit Goswami <bgoswami@quicinc.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231019153541.49753-1-krzysztof.kozlowski@linaro.org>
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20231019153541.49753-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: *
 
-On Mon, Oct 23, 2023 at 12:32=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kerne=
-l.org> wrote:
->
-> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
->
-> > Anup Patel <apatel@ventanamicro.com> writes:
-> >
-> >> On Fri, Oct 20, 2023 at 10:07=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@=
-kernel.org> wrote:
-> >>>
-> >>> Anup Patel <apatel@ventanamicro.com> writes:
-> >>>
-> >>> > On Fri, Oct 20, 2023 at 8:10=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjor=
-n@kernel.org> wrote:
-> >>> >>
-> >>> >> Anup Patel <apatel@ventanamicro.com> writes:
-> >>> >>
-> >>> >> > On Fri, Oct 20, 2023 at 2:17=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <b=
-jorn@kernel.org> wrote:
-> >>> >> >>
-> >>> >> >> Thanks for the quick reply!
-> >>> >> >>
-> >>> >> >> Anup Patel <apatel@ventanamicro.com> writes:
-> >>> >> >>
-> >>> >> >> > On Thu, Oct 19, 2023 at 7:13=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel=
- <bjorn@kernel.org> wrote:
-> >>> >> >> >>
-> >>> >> >> >> Hi Anup,
-> >>> >> >> >>
-> >>> >> >> >> Anup Patel <apatel@ventanamicro.com> writes:
-> >>> >> >> >>
-> >>> >> >> >> > The RISC-V AIA specification is ratified as-per the RISC-V=
- international
-> >>> >> >> >> > process. The latest ratified AIA specifcation can be found=
- at:
-> >>> >> >> >> > https://github.com/riscv/riscv-aia/releases/download/1.0/r=
-iscv-interrupts-1.0.pdf
-> >>> >> >> >> >
-> >>> >> >> >> > At a high-level, the AIA specification adds three things:
-> >>> >> >> >> > 1) AIA CSRs
-> >>> >> >> >> >    - Improved local interrupt support
-> >>> >> >> >> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
-> >>> >> >> >> >    - Per-HART MSI controller
-> >>> >> >> >> >    - Support MSI virtualization
-> >>> >> >> >> >    - Support IPI along with virtualization
-> >>> >> >> >> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
-> >>> >> >> >> >    - Wired interrupt controller
-> >>> >> >> >> >    - In MSI-mode, converts wired interrupt into MSIs (i.e.=
- MSI generator)
-> >>> >> >> >> >    - In Direct-mode, injects external interrupts directly =
-into HARTs
-> >>> >> >> >>
-> >>> >> >> >> Thanks for working on the AIA support! I had a look at the s=
-eries, and
-> >>> >> >> >> have some concerns about interrupt ID abstraction.
-> >>> >> >> >>
-> >>> >> >> >> A bit of background, for readers not familiar with the AIA d=
-etails.
-> >>> >> >> >>
-> >>> >> >> >> IMSIC allows for 2047 unique MSI ("msi-irq") sources per har=
-t, and
-> >>> >> >> >> each MSI is dedicated to a certain hart. The series takes th=
-e approach
-> >>> >> >> >> to say that there are, e.g., 2047 interrupts ("lnx-irq") glo=
-bally.
-> >>> >> >> >> Each lnx-irq consists of #harts * msi-irq -- a slice -- and =
-in the
-> >>> >> >> >> slice only *one* msi-irq is acutally used.
-> >>> >> >> >>
-> >>> >> >> >> This scheme makes affinity changes more robust, because the =
-interrupt
-> >>> >> >> >> sources on "other" harts are pre-allocated. On the other han=
-d it
-> >>> >> >> >> requires to propagate irq masking to other harts via IPIs (t=
-his is
-> >>> >> >> >> mostly done up setup/tear down). It's also wasteful, because=
- msi-irqs
-> >>> >> >> >> are hogged, and cannot be used.
-> >>> >> >> >>
-> >>> >> >> >> Contemporary storage/networking drivers usually uses queues =
-per core
-> >>> >> >> >> (or a sub-set of cores). The current scheme wastes a lot of =
-msi-irqs.
-> >>> >> >> >> If we instead used a scheme where "msi-irq =3D=3D lnx-irq", =
-instead of
-> >>> >> >> >> "lnq-irq =3D {hart 0;msi-irq x , ... hart N;msi-irq x}", the=
-re would be
-> >>> >> >> >> a lot MSIs for other users. 1-1 vs 1-N. E.g., if a storage d=
-evice
-> >>> >> >> >> would like to use 5 queues (5 cores) on a 128 core system, t=
-he current
-> >>> >> >> >> scheme would consume 5 * 128 MSIs, instead of just 5.
-> >>> >> >> >>
-> >>> >> >> >> On the plus side:
-> >>> >> >> >> * Changing interrupts affinity will never fail, because the =
-interrupts
-> >>> >> >> >>   on each hart is pre-allocated.
-> >>> >> >> >>
-> >>> >> >> >> On the negative side:
-> >>> >> >> >> * Wasteful interrupt usage, and a system can potientially "r=
-un out" of
-> >>> >> >> >>   interrupts. Especially for many core systems.
-> >>> >> >> >> * Interrupt masking need to proagate to harts via IPIs (ther=
-e's no
-> >>> >> >> >>   broadcast csr in IMSIC), and a more complex locking scheme=
- IMSIC
-> >>> >> >> >>
-> >>> >> >> >> Summary:
-> >>> >> >> >> The current series caps the number of global interrupts to m=
-aximum
-> >>> >> >> >> 2047 MSIs for all cores (whole system). A better scheme, IMO=
-, would be
-> >>> >> >> >> to expose 2047 * #harts unique MSIs.
-> >>> >> >> >>
-> >>> >> >> >> I think this could simplify/remove(?) the locking as well.
-> >>> >> >> >
-> >>> >> >> > Exposing 2047 * #harts unique MSIs has multiple issues:
-> >>> >> >> > 1) The irq_set_affinity() does not work for MSIs because each
-> >>> >> >> >      IRQ is not tied to a particular HART. This means we can'=
-t
-> >>> >> >> >      balance the IRQ processing load among HARTs.
-> >>> >> >>
-> >>> >> >> Yes, you can balance. In your code, each *active* MSI is still
-> >>> >> >> bound/active to a specific hard together with the affinity mask=
-. In an
-> >>> >> >> 1-1 model you would still need to track the affinity mask, but =
-the
-> >>> >> >> irq_set_affinity() would be different. It would try to allocate=
- a new
-> >>> >> >> MSI from the target CPU, and then switch to having that MSI act=
-ive.
-> >>> >> >>
-> >>> >> >> That's what x86 does AFAIU, which is also constrained by the # =
-of
-> >>> >> >> available MSIs.
-> >>> >> >>
-> >>> >> >> The downside, as I pointed out, is that the set affinity action=
- can
-> >>> >> >> fail for a certain target CPU.
-> >>> >> >
-> >>> >> > Yes, irq_set_affinity() can fail for the suggested approach plus=
- for
-> >>> >> > RISC-V AIA, one HART does not have access to other HARTs
-> >>> >> > MSI enable/disable bits so the approach will also involve IPI.
-> >>> >>
-> >>> >> Correct, but the current series does a broadcast to all cores, whe=
-re the
-> >>> >> 1-1 approach is at most an IPI to a single core.
-> >>> >>
-> >>> >> 128+c machines are getting more common, and you have devices that =
-you
-> >>> >> bring up/down on a per-core basis. Broadcasting IPIs to all cores,=
- when
-> >>> >> dealing with a per-core activity is a pretty noisy neighbor.
-> >>> >
-> >>> > Broadcast IPI in the current approach is only done upon MSI mask/un=
-mask
-> >>> > operation. It is not done upon set_affinity() of interrupt handling=
-.
-> >>>
-> >>> I'm aware. We're on the same page here.
-> >>>
-> >>> >>
-> >>> >> This could be fixed in the existing 1-n approach, by not require t=
-o sync
-> >>> >> the cores that are not handling the MSI in question. "Lazy disable=
-"
-> >>> >
-> >>> > Incorrect. The approach you are suggesting involves an IPI upon eve=
-ry
-> >>> > irq_set_affinity(). This is because a HART can only enable it's own
-> >>> > MSI ID so when an IRQ is moved to from HART A to HART B with
-> >>> > a different ID X on HART B then we will need an IPI in irq_set_affi=
-nit()
-> >>> > to enable ID X on HART B.
-> >>>
-> >>> Yes, the 1-1 approach will require an IPI to one target cpu on affini=
-ty
-> >>> changes, and similar on mask/unmask.
-> >>>
-> >>> The 1-n approach, require no-IPI on affinity changes (nice!), but IPI
-> >>> broadcast to all cores on mask/unmask (not so nice).
-> >>>
-> >>> >> >> My concern is interrupts become a scarce resource with this
-> >>> >> >> implementation, but maybe my view is incorrect. I've seen bare-=
-metal
-> >>> >> >> x86 systems (no VMs) with ~200 cores, and ~2000 interrupts, but=
- maybe
-> >>> >> >> that is considered "a lot of interrupts".
-> >>> >> >>
-> >>> >> >> As long as we don't get into scenarios where we're running out =
-of
-> >>> >> >> interrupts, due to the software design.
-> >>> >> >>
-> >>> >> >
-> >>> >> > The current approach is simpler and ensures irq_set_affinity
-> >>> >> > always works. The limit of max 2047 IDs is sufficient for many
-> >>> >> > systems (if not all).
-> >>> >>
-> >>> >> Let me give you another view. On a 128c system each core has ~16 u=
-nique
-> >>> >> interrupts for disposal. E.g. the Intel E800 NIC has more than 204=
-8
-> >>> >> network queue pairs for each PF.
-> >>> >
-> >>> > Clearly, this example is a hypothetical and represents a poorly
-> >>> > designed platform.
-> >>> >
-> >>> > Having just 16 IDs per-Core is a very poor design choice. In fact, =
-the
-> >>> > Server SoC spec mandates a minimum 255 IDs.
-> >>>
-> >>> You are misreading. A 128c system with 2047 MSIs per-core, will only
-> >>> have 16 *per-core unique* (2047/128) interrupts with the current seri=
-es.
-> >>>
-> >>> I'm not saying that each IMSIC has 16 IDs, I'm saying that in a 128c
-> >>> system with the maximum amount of MSIs possible in the spec, you'll e=
-nd
-> >>> up with 16 *unique* interrupts per core.
-> >>
-> >> -ENOPARSE
-> >>
-> >> I don't see how this applies to the current approach because we treat
-> >> MSI ID space as global across cores so if a system has 2047 MSIs
-> >> per-core then we have 2047 MSIs across all cores.
-> >
-> > Ok, I'll try again! :-)
-> >
-> > Let's assume that each core in the 128c system has some per-core
-> > resources, say a two NIC queue pairs, and a storage queue pair. This
-> > will consume, e.g., 2*2 + 2 (6) MSI sources from the global namespace.
-> >
-> > If each core does this it'll be 6*128 MSI sources of the global
-> > namespace.
-> >
-> > The maximum number of "privates" MSI sources a core can utilize is 16.
-> >
-> > I'm trying (it's does seem to go that well ;-)) to point out that it's
-> > only 16 unique sources per core. For, say, a 256 core system it would b=
-e
-> > 8. 2047 MSI sources in a system is not much.
-> >
-> > Say that I want to spin up 24 NIC queues with one MSI each on each core
-> > on my 128c system. That's not possible with this series, while with an
-> > 1-1 system it wouldn't be an issue.
-> >
-> > Clearer, or still weird?
-> >
-> >>
-> >>>
-> >>> > Regarding NICs which support a large number of queues, the driver
-> >>> > will typically enable only one queue per-core and set the affinity =
-to
-> >>> > separate cores. We have user-space data plane applications based
-> >>> > on DPDK which are capable of using a large number of NIC queues
-> >>> > but these applications are polling based and don't use MSIs.
-> >>>
-> >>> That's one sample point, and clearly not the only one. There are *man=
-y*
-> >>> different usage models. Just because you *assign* MSI, doesn't mean t=
-hey
-> >>> are firing all the time.
-> >>>
-> >>> I can show you a couple of networking setups where this is clearly no=
-t
-> >>> enough. Each core has a large number of QoS queues, and each queue wo=
-uld
-> >>> very much like to have a dedicated MSI.
-> >>>
-> >>> >> > When we encounter a system requiring a large number of MSIs,
-> >>> >> > we can either:
-> >>> >> > 1) Extend the AIA spec to support greater than 2047 IDs
-> >>> >> > 2) Re-think the approach in the IMSIC driver
-> >>> >> >
-> >>> >> > The choice between #1 and #2 above depends on the
-> >>> >> > guarantees we want for irq_set_affinity().
-> >>> >>
-> >>> >> The irq_set_affinity() behavior is better with this series, but I =
-think
-> >>> >> the other downsides: number of available interrupt sources, and IP=
-I
-> >>> >> broadcast are worse.
-> >>> >
-> >>> > The IPI overhead in the approach you are suggesting will be
-> >>> > even bad compared to the IPI overhead of the current approach
-> >>> > because we will end-up doing IPI upon every irq_set_affinity()
-> >>> > in the suggested approach compared to doing IPI upon every
-> >>> > mask/unmask in the current approach.
-> >>>
-> >>> Again, very workload dependent.
-> >>>
-> >>> This series does IPI broadcast on masking/unmasking, which means that
-> >>> cores that don't care get interrupted because, say, a network queue-p=
-air
-> >>> is setup on another core.
-> >>>
-> >>> Some workloads never change the irq affinity.
-> >>
-> >> There are various events which irq affinity such as irq balance,
-> >> CPU hotplug, system suspend, etc.
-> >>
-> >> Also, the 1-1 approach does IPI upon set_affinity, mask and
-> >> unmask whereas the 1-n approach does IPI only upon mask
-> >> and unmask.
-> >
-> > An important distinction; When you say IPI on mask/unmask it is a
-> > broadcast IPI to *all* cores, which is pretty instrusive.
-> >
-> > The 1-1 variant does an IPI to a *one* target core.
-> >
-> >>> I'm just pointing out that there are pro/cons with both variants.
-> >>>
-> >>> > The biggest advantage of the current approach is a reliable
-> >>> > irq_set_affinity() which is a very valuable thing to have.
-> >>>
-> >>> ...and I'm arguing that we're paying a big price for that.
-> >>>
-> >>> > ARM systems easily support a large number of LPIs per-core.
-> >>> > For example, GIC-700 supports 56000 LPIs per-core.
-> >>> > (Refer, https://developer.arm.com/documentation/101516/0300/About-t=
-he-GIC-700/Features)
-> >>>
-> >>> Yeah, but this is not the GIC. This is something that looks more like
-> >>> the x86 world. We'll be stuck with a lot of implementations with AIA =
-1.0
-> >>> spec, and many cores.
-> >>
-> >> Well, RISC-V AIA is neigher ARM GIG not x86 APIC. All I am saying
-> >> is that there are systems with large number per-core interrupt IDs
-> >> for handling MSIs.
-> >
-> > Yes, and while that is nice, it's not what IMSIC is.
->
-> Some follow-ups, after thinking more about it more over the weekend.
->
-> * Do one really need an IPI for irq_set_affinity() for the 1-1 model?
->   Why touch the enable/disable bits when moving interrupts?
+Hi Krzysztof,
 
-In the 1-1 model, the ID on the current HART and target HART upon
-irq_set_affinity will be different so we can't leave the unused ID on
-current HART enabled because it can lead to spurious interrupts
-when the ID on current HART is re-used for some other device.
+On 19/10/2023 16:35, Krzysztof Kozlowski wrote:
+> Add defines for audio ports used on Qualcomm WSA2 LPASS (Low Power
+> Audio SubSystem).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> index 39f203256c4f..c5ea35abf129 100644
+> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> @@ -139,6 +139,11 @@
+>   #define DISPLAY_PORT_RX_5	133
+>   #define DISPLAY_PORT_RX_6	134
+>   #define DISPLAY_PORT_RX_7	135
+> +#define WSA2_CODEC_DMA_RX_0	136
+> +#define WSA2_CODEC_DMA_TX_0	137
+> +#define WSA2_CODEC_DMA_RX_1	138
+> +#define WSA2_CODEC_DMA_TX_1	139
+> +#define WSA2_CODEC_DMA_TX_2	140
+>   
 
-There is also a possibility of receiving an interrupt while the ID was
-moved to a new target HART in-which case we have to detect and
-re-trigger interrupt on the new target HART. In fact, x86 APLIC does
-an IPI to take care of this case.
+Patches looks fine as it is, but do you realize that this s a dead code 
+w.r.t upstream.
+WSA2 is used only with 4 speaker setup and in such cases we use WSA 
+codec dma to drive 4 channels.
 
->
-> * In my book the IMSIC looks very much like the x86 LAPIC, which also
->   has few interrupts (IMSIC <2048, LAPIC 256). The IRQ matrix allocator
->   [1], and a scheme similar to LAPIC [2] would be a good fit. This is
->   the 1-1 model, but more sophisticated than what I've been describing
->   (e.g. properly handling mangaged/regular irqs). As a bonus we would
->   get the IRQ matrix debugfs/tracepoint support.
->
+So WSA2 will not be used by itself.
+I would prefer support for this to be added when we are really able to 
+test WSA2 by itself.
 
-Yes, I have been evaluating the 1-1 model for the past few days. I also
-have a working implementation with a simple per-CPU bitmap based
-allocator which handles both legacy MSI (block of 1,2,4,8,16, or 32 IDs)
-and MSI-X.
+thanks,
+Srini
 
-The irq matrix allocator needs to be improved for handling legacy MSI
-so initially I will post a v11 series which works for me and converging
-with irq matrix allocator can be future work.
-
-Regards,
-Anup
+>   #define LPASS_CLK_ID_PRI_MI2S_IBIT	1
+>   #define LPASS_CLK_ID_PRI_MI2S_EBIT	2
 
