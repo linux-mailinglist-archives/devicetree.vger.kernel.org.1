@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE337D2A81
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:33:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF567D2A87
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF800B20CCD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:33:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E786FB20C9C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFD433FE;
-	Mon, 23 Oct 2023 06:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7CC463A3;
+	Mon, 23 Oct 2023 06:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DqGWsHpU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZT9zZ0C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419782C9A
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:33:32 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF80D6B
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:33:30 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so457631866b.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:33:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451C53C2B
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:36:55 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FABDB
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:36:53 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9be02fcf268so421344566b.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698042809; x=1698647609; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698043012; x=1698647812; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LijNvWdGC8XJoGtVKJV72FOB8daRdFEv0JQadX+AqIk=;
-        b=DqGWsHpUeHX8p2KGBg8i5na5JvriIbBlWqgDrKiQG4jrFx8IPvBZfgVwUwmMW2N7kt
-         dgzIYSboY43lAkb/TtT5afL4EU+P5Nwr2SHzasxfKSl+C7pUPFW8dkJgQI5Q9T6fdum9
-         t/UMkaEhH+KkOP9dMOI7Ng2dlc10X0jNmopCuK2Od7wHWuPNHGa9hpmNrburXKa2mAXL
-         WQOJCHIBBiVUMNQt2UKUXMUKbTtZmwbNhE0KP0bMdaD10Z8nxZMklhqNs2Z6NMcTOHMv
-         NmBeC3nB/oh6Q9Bu997zDOvTJAaVwbeQXEyNm6Y9WVzf8ES+uP92gvcO875fFRTW5CEW
-         ZMHw==
+        bh=K4fyo6K7OzrkvLsx7JVTpQeOK1B6fLbPRjuPeJMN1uM=;
+        b=tZT9zZ0CuvV38PndY+r8D/ZYuqwuLyiKvuZY/iTGd1sJCrltxNEth3b9ONxROZmold
+         PXuSeKLt/bDubhb9aEpRA2Fir+GZl3dnWgnnCtvv4fyE/TZpbudUk+VFw/yUmY3VVljR
+         67vtGEUaSuu57e0J+LK+7GNPTn7KoQooXE729+64HFHdeIOmsCtfz9q65z7ijzJ/vsxk
+         xv6LMSOgDVufK37R/9fLBP3LL6WP96tpZyetoPAOYG+GCeutSEEMd6c7Xd75L0+HVa1w
+         Vs5XRnARZ0aVkU/c70uQLQ4K5ItOtsuGD4wcOF8m/smeBcLUonyRYXyGRoQmEQZSaBUq
+         SdwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698042809; x=1698647609;
+        d=1e100.net; s=20230601; t=1698043012; x=1698647812;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LijNvWdGC8XJoGtVKJV72FOB8daRdFEv0JQadX+AqIk=;
-        b=EqluppCk/qDPkLvtZu2B1/sQau59za78PN1EsSpVFVt9jbHygVDgshV99gEjtFU2lJ
-         0PwGJLR7GTrbtoT7BwrW6/XYeoJguqwhvDTxkB2ICN33qR7IiJROWFSWg5kfpm/yZ3E4
-         /1ZodytaEzqBd/bOEqT8bC7/oc556Zwmkd5YJlaVUvbvgiP24aHtpFmiH+ovn57dYnlP
-         a/zU2JJka8/38guXra/R5mGkJFc2dJfH9KWDgJk7SMu3q8ukXEQfO0M4Qcr8SfPQLC95
-         Gr8X5cNkhaoHDaEx/P3GaRtDbA05Hk8KoTVImIWgFWY1W6raMY2SV4swvYjZRE6yLkdc
-         BO+g==
-X-Gm-Message-State: AOJu0YwaIcpDbREHMqNStPwK1ROzTS1otQH6vHYci5SshTXDCsUPUXxO
-	LXBOghIYbxieWaYqE/Fo4fPNNYZ+Vvb7TGhuFOg=
-X-Google-Smtp-Source: AGHT+IEGGgZd+5lZSMxSEsJEln4KnfedOGHp74y5oT1XVGozjDboEwH2OrZvrOSOpaMoleLdIQXXhw==
-X-Received: by 2002:a17:907:1c0b:b0:9be:45b3:1c3c with SMTP id nc11-20020a1709071c0b00b009be45b31c3cmr7101863ejc.64.1698042809130;
-        Sun, 22 Oct 2023 23:33:29 -0700 (PDT)
+        bh=K4fyo6K7OzrkvLsx7JVTpQeOK1B6fLbPRjuPeJMN1uM=;
+        b=VuKFRpwK/zIL2qQ7fim3BgwA1EBTuEKstyKEJZw/WCxbkbuGGg1BxlbdVR/UfcLPdz
+         N31nsGop5PmYsqX0m3mor3rdHbCL83ADt8YuJsxF3JnJjemkyoDs5StXoBHiJXdEyXTN
+         LsjmfVJ/1UAX/2UrB64w4uzbqtYAQzn4ORvaqoi3cetyr/bA7iHQdWlh+USZprbWA+wD
+         cgZy0kdigE/Oq/IJ7SDnIUyAqmHiLOpDvtSso1RWaBBEUR1u5sXg4uHNYzYyHrNDE6jl
+         EPbHFISxrN/lOf4Cp1T3Gi+VidRY7vHex8FxG6T3qD9PVfiayGZ1KuFCds7lfMO7Fkcf
+         fatQ==
+X-Gm-Message-State: AOJu0Yyl+w/F3uZJuQ5a7O3FgdTN+VHOKHwBHse866+YfSgpB52ZTT6O
+	6IjCbzeTYl+gkBp9Ijpp+8GFGg==
+X-Google-Smtp-Source: AGHT+IH3hv75FHOFtN9KpfJZvvb9R2F2oWmDzQHlsuKXhdyfvMoyH6MMbW/kj9pL89WnuEQwY6O8Zw==
+X-Received: by 2002:a17:907:7b90:b0:9c7:56ee:b6e5 with SMTP id ne16-20020a1709077b9000b009c756eeb6e5mr7368082ejc.40.1698043011756;
+        Sun, 22 Oct 2023 23:36:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id y15-20020a1709064b0f00b009b2b9af0784sm6039976eju.110.2023.10.22.23.33.25
+        by smtp.gmail.com with ESMTPSA id f25-20020a170906561900b009920e9a3a73sm6154197ejq.115.2023.10.22.23.36.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 23:33:28 -0700 (PDT)
-Message-ID: <64299e61-c519-4318-a10d-87df91c496a5@linaro.org>
-Date: Mon, 23 Oct 2023 08:33:25 +0200
+        Sun, 22 Oct 2023 23:36:51 -0700 (PDT)
+Message-ID: <c4ef9cac-15ac-4c2c-9f9a-cb9e740e2900@linaro.org>
+Date: Mon, 23 Oct 2023 08:36:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,30 +67,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/11] iio: adc: Update bindings to remove support for
- ADC7 name used on QCOM PMICs
+Subject: Re: [PATCH 06/11] iio: adc: Add QCOM PMIC5 Gen3 ADC bindings
 Content-Language: en-US
 To: Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linus.walleij@linaro.org, Jonathan.Cameron@huawei.com, sboyd@kernel.org,
  dmitry.baryshkov@linaro.org, quic_subbaram@quicinc.com,
- quic_collinsd@quicinc.com, quic_kamalw@quicinc.com, quic_jestar@quicinc.com,
+ quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
  marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
  Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
- <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Luca Weiss <luca@z3ntu.xyz>, linux-iio@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Luca Weiss <luca@z3ntu.xyz>,
+ linux-iio@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc: linux-arm-msm-owner@vger.kernel.org
 References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
- <20230708072835.3035398-5-quic_jprakash@quicinc.com>
- <dffc7942-d9b6-e291-9cab-9a1642225fc3@linaro.org>
- <dcbab235-3510-9e8e-5f08-7b8241a71688@quicinc.com>
+ <20230708072835.3035398-7-quic_jprakash@quicinc.com>
+ <bb225c12-f017-fac3-45f1-c828a10553e2@linaro.org>
+ <99070bce-6188-82eb-c92c-cf7a323394e2@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,31 +131,149 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <dcbab235-3510-9e8e-5f08-7b8241a71688@quicinc.com>
+In-Reply-To: <99070bce-6188-82eb-c92c-cf7a323394e2@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/10/2023 08:11, Jishnu Prakash wrote:
+On 23/10/2023 08:14, Jishnu Prakash wrote:
 > Hi Krzysztof,
 > 
-> On 7/9/2023 10:49 PM, Krzysztof Kozlowski wrote:
+> On 7/9/2023 10:53 PM, Krzysztof Kozlowski wrote:
 >> On 08/07/2023 09:28, Jishnu Prakash wrote:
->>> Now that usage of "ADC7" name has been replaced with usage of "ADC5
->>> Gen2" name everywhere, remove all support for "ADC7" name.
+>>> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
+>>> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
+>>> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
+>>> going through PBS firmware through a single register interface. This
+>>> interface is implemented on an SDAM peripheral on the master PMIC PMK8550
+>>> rather than a dedicated ADC peripheral.
+>>>
+>>> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+>>> ---
+>>>   properties:
+>>>     compatible:
+>>> @@ -27,10 +27,11 @@ properties:
+>>>             - qcom,spmi-adc5
+>>>             - qcom,spmi-adc-rev2
+>>>             - qcom,spmi-adc5-gen2
+>>> +          - qcom,spmi-adc5-gen3
+>>
+>> This could be ordered...
+> 
+> 
+> Yes, will do that in the next patchset.
+> 
+> 
+>>>   
+>>>     reg:
+>>>       description: VADC base address in the SPMI PMIC register map
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>> Why? This does not make any sense. With previous patches it looks like
+>> random set of changes.
+> 
+> 
+> The idea here is to convey that reg can have multiple values for ADC5 
+> Gen3 as there can be more than one peripheral used for ADC, so there can 
+> be multiple base addresses. I'll try to make this more clear in the next 
+> patchset.
+
+You cannot remove constraints from an entry.
+
+> 
+> 
+>>
+>>
+>>>   
+>>>     '#address-cells':
+>>>       const: 1
+>>> @@ -38,6 +39,12 @@ properties:
+>>>     '#size-cells':
+>>>       const: 0
+>>>   
+>>>   
+>>> +      qcom,adc-tm-type:
+>>> +        description: |
+>>> +            Indicates if ADC_TM monitoring is done on this channel.
+>> Description does not match property name.
+> 
+> 
+> You mean it sounds more like an enum which can take several values 
+> rather than just a boolean? I can update it to "qcom,adc-tm" if that 
+> looks better.
+
+The property name suggests this is type of monitoring. Property
+description says this will enable ADC_TM monitoring. These two do not match.
+
+Except that I wonder now whether this is a property of hardware at
+all... What is this monitoring? By the driver?
+
+...
+
+>>>       then:
+>>>         patternProperties:
+>>> @@ -299,7 +315,7 @@ examples:
+>>>                   label = "xo_therm";
+>>>               };
+>>>   
+>>> -            channel@47 {
+>>> +            channel@147 {
 >> Why?
 > 
-> The idea is to replace usage of the name "ADC7" with "ADC5 Gen2" 
-> everywhere possible, to match our internal convention and align better 
+> 
+> It would be needed if this channel number was supposed to be the virtual 
+> channel number made by combining PMIC SID and actual channel 
+> number....but I could drop it for now and do it in a separate fix as 
+> Jonathan suggested.
+> 
+> 
+>>
+>>>                   reg = <PM8350_ADC5_GEN2_AMUX_THM4_100K_PU(1)>;
+>>>                   qcom,ratiometric;
+>>>                   qcom,hw-settle-time = <200>;
+>>> @@ -307,3 +323,80 @@ examples:
+>>>               };
+>>>           };
+>>>       };
+>>> +
+>>> +  - |
+>>> +    #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pmk8550.h>
+>>> +    #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h>
+>>> +    #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550b.h>
+>>> +    #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550vx.h>
+>>> +
+>>> +    pmic {
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      /* VADC node */
+>>> +      pmk8550_vadc: vadc@9000 {
+>>> +        compatible = "qcom,spmi-adc5-gen3";
+>> Don't add new examples which differ only in compatible.
+> 
+> 
+> This example does have differences unique to ADC5 Gen3 such as use of 
+> "#thermal-sensor-cells" and "qcom,adc-tm-type" properties....to make it 
+> clearer, I'll delete some of the excess nodes which don't highlight 
+> these differences.
+> 
+> 
+>>
+>>
+>>> diff --git a/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h b/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h
+>>> new file mode 100644
+>>> index 000000000000..74e6e2f6f9ed
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h
+>>> @@ -0,0 +1,48 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> Dual license.
+> 
+> 
+> I think we do have an internal rule by which we do have to add these two 
+> licenses....I'll check again and update them if required.
 
-That's not a valid reason to touch bindings. Compatible is just some
-unique name, so there is nothing bad in existing name.
-
-> with the "ADC5 Gen3" support I'm adding in this patch series - is it 
-> better if I just update documentation and dtbindings directly in one 
-> patch for ADC5 Gen2 and update devicetree in one patch after that for 
-> the corresponding macro changes?
-
-Don't touch the compatible.
+Just to be clear: your internal rules are your internal affair. We
+expect here dual license.
 
 Best regards,
 Krzysztof
