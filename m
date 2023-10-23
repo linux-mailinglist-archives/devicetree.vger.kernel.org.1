@@ -1,107 +1,263 @@
-Return-Path: <devicetree+bounces-11086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC387D4178
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 23:08:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5CD7D40B7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 22:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06EA82813F9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 21:08:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA1B1F221C0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6A7219FB;
-	Mon, 23 Oct 2023 21:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43D222F10;
+	Mon, 23 Oct 2023 20:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FMaZnOfw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC57B219EF
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 21:08:32 +0000 (UTC)
-X-Greylist: delayed 4760 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 23 Oct 2023 14:07:54 PDT
-Received: from 10.mo582.mail-out.ovh.net (10.mo582.mail-out.ovh.net [87.98.157.236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCA691FC0
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 14:07:54 -0700 (PDT)
-Received: from director6.ghost.mail-out.ovh.net (unknown [10.108.4.60])
-	by mo582.mail-out.ovh.net (Postfix) with ESMTP id F23A9210F1
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 19:48:32 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-42zsw (unknown [10.110.171.110])
-	by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 843D51FD57;
-	Mon, 23 Oct 2023 19:48:32 +0000 (UTC)
-Received: from RCM-web9.webmail.mail.ovh.net ([151.80.29.21])
-	by ghost-submission-6684bf9d7b-42zsw with ESMTPSA
-	id US+OIBDONmUBzgEAn4Ta5Q
-	(envelope-from <rafal@milecki.pl>); Mon, 23 Oct 2023 19:48:32 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E4D22EF3
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 20:17:28 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30D80D6E;
+	Mon, 23 Oct 2023 13:17:27 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9adca291f99so543067966b.2;
+        Mon, 23 Oct 2023 13:17:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698092245; x=1698697045; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=F3p2PnLUVcsWhyg9y4I5JwaQK0DHEZVP7M5znrQSP0s=;
+        b=FMaZnOfwURsbnXVZ7L0SBH2BbWeaAl0FuDJ0Jee6F7jSUyByVahAsGEaR3YNG6IJAG
+         bJAKj/HuwlM8Q7q+kc/wr6VadWNNwweSEo72j6n5ce5lbG4pCc0lQJjcrCySn0HpVHkX
+         hiVCCL6WzGypAiuPMXbLavMY/H55Go8SG4oafr/BsWaJR6eP5TzvNw6cM8XLkekK9Nyg
+         DuO6OpIkeZheCCqNcoErZfg5DVGR8NshIWRF5+VoipeGtKQozyFjD1IdYqev7qlmJuym
+         7i5a9VDDOcujJaI51uuDA+u1d/hBvypmN/C+rhUyndH3myREkkOqnA0UM2LCPZaDnuCc
+         PMsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698092245; x=1698697045;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F3p2PnLUVcsWhyg9y4I5JwaQK0DHEZVP7M5znrQSP0s=;
+        b=k01Yfr7e9q9K1aX0uhf1J2Q30J+dT5/4oogCchcUBTVOiFEzMb+VbXuskGlEg6Y/aj
+         XTKw/IthqvMSFj41xdf7+LDx66x9Kp6KUHOCz6iMOZqhFdvO7qiEspnv1iO4ATRWUuZX
+         JkbCvWO0SbI1xg0uFxv1/ji+bEfTFrRiG0PnztFpiCc/JgAyaXdcR4SPv+WiX5n8VeKy
+         uekI+2fJbse5LiPys3V1gKDpy0+nKCFnToi9jTPZLZw+DdVGVpwXvtIia4EuUNWG/PUF
+         kE+b+q0rVxjfG5vhUcGiRkDnZc4VzbkA0EJAR1WJy5gCBAnxYR6iq0fo1Sc4NUKvdHtB
+         MJ8Q==
+X-Gm-Message-State: AOJu0Yy0k4i89IIhRTURk+ogRvSWbV1LnEaRM8eKCQuDV1nrt7DEK9G8
+	WriTcCM4XyK8FGKQ19fY62M=
+X-Google-Smtp-Source: AGHT+IHsyiIrO3EdEjsHS/lptDQDezlTNE0C1bRSK1xDXvjW4+pDoJfdRGlYrl4dSWu+v6fYeQOs6w==
+X-Received: by 2002:a17:907:9282:b0:9bd:fc4b:6c9b with SMTP id bw2-20020a170907928200b009bdfc4b6c9bmr8381154ejc.36.1698092245263;
+        Mon, 23 Oct 2023 13:17:25 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id k2-20020a1709067ac200b0099bcf1c07c6sm7177770ejo.138.2023.10.23.13.17.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 13:17:24 -0700 (PDT)
+Date: Mon, 23 Oct 2023 22:17:22 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Message-ID: <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
+References: <ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP>
+ <3df06d79-ea51-4202-8cc8-468f741603bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 23 Oct 2023 21:48:32 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: bcm-kernel-feedback-list@broadcom.com, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82e?=
- =?UTF-8?Q?cki?= <zajec5@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear
- R8000 CPU ports
-In-Reply-To: <f5329b80-1a72-4083-823e-07e9a884ddbb@broadcom.com>
-References: <20231013103314.10306-1-zajec5@gmail.com>
- <20231013103314.10306-2-zajec5@gmail.com>
- <20231023183302.1192686-1-florian.fainelli@broadcom.com>
- <f5329b80-1a72-4083-823e-07e9a884ddbb@broadcom.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <23edd7fb640bf9146895680b4b08c878@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 31.11.218.106
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 14848367973526252321
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrkeeigddugedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeeiieeguedvhfehvedtteejudeftdfgtefffeefhefhleejfeeijeeuieelveegieenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrddvudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedvpdhmohguvgepshhmthhpohhuth
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3df06d79-ea51-4202-8cc8-468f741603bf@linaro.org>
 
-On 2023-10-23 20:36, Florian Fainelli wrote:
-> On 10/23/23 11:33, Florian Fainelli wrote:
->> From: Florian Fainelli <f.fainelli@gmail.com>
->> 
->> On Fri, 13 Oct 2023 12:33:14 +0200, Rafał Miłecki <zajec5@gmail.com> 
->> wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>> 
->>> While switch ports 5 and 7 are disabled (vendor designed port 8 to be
->>> used for CPU traffic) they could be used strictly technically. For 
->>> some
->>> reason however both those ports need forcing link to be usable.
->>> 
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->> 
->> Applied to 
->> https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+On Mon, Oct 23, 2023 at 09:54:49AM +0200, Krzysztof Kozlowski wrote:
+> On 22/10/2023 13:31, Stanislav Jakubek wrote:
+> > Convert Broadcom Kona family clock controller unit (CCU) bindings
+> > to DT schema.
+> > 
+> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > 
-> Ended up with the following commit message:
+> Thank you for your patch. There is something to discuss/improve.
 > 
-> Ports 5 and 7 are disabled by default because the standard use case is
-> for port 8 to manage all CPU directed traffic. For experimentation
-> purposes however it is desirable to provide adequate properties such
-> that people can experiment with using different ports without having to
-> figure out their configuration. Some of the use cases include but are
-> not limited to doubling or tripling the bandwidth by leveraging the
-> additional ports/Ethernet MAC combinations.
+> > +description:
+> > +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
+> > +  manages a set of clock signals.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - brcm,bcm11351-aon-ccu
+> > +      - brcm,bcm11351-hub-ccu
+> > +      - brcm,bcm11351-master-ccu
+> > +      - brcm,bcm11351-root-ccu
+> > +      - brcm,bcm11351-slave-ccu
+> > +      - brcm,bcm21664-aon-ccu
+> > +      - brcm,bcm21664-master-ccu
+> > +      - brcm,bcm21664-root-ccu
+> > +      - brcm,bcm21664-slave-ccu
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  clock-output-names:
+> > +    minItems: 1
+> > +    maxItems: 10
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - brcm,bcm11351-aon-ccu
+> > +              - brcm,bcm11351-hub-ccu
+> > +              - brcm,bcm11351-master-ccu
+> > +              - brcm,bcm11351-root-ccu
+> > +              - brcm,bcm11351-slave-ccu
+> > +    then:
+> > +      properties:
+> > +        clock-output-names:
+> > +          description: |
+> > +            The following table defines the set of CCUs and clock specifiers
+> > +            for BCM281XX family clocks.
+> > +            These clock specifiers are defined in:
+> > +                "include/dt-bindings/clock/bcm281xx.h"
+> > +
+> > +            CCU     Clock        Type  Index  Specifier
+> > +            ---     -----        ----  -----  ---------
+> > +            root    frac_1m      peri    0    BCM281XX_ROOT_CCU_FRAC_1M
+> > +
+> > +            aon     hub_timer    peri    0    BCM281XX_AON_CCU_HUB_TIMER
+> > +            aon     pmu_bsc      peri    1    BCM281XX_AON_CCU_PMU_BSC
+> > +            aon     pmu_bsc_var  peri    2    BCM281XX_AON_CCU_PMU_BSC_VAR
+> > +
+> > +            hub     tmon_1m      peri    0    BCM281XX_HUB_CCU_TMON_1M
+> > +
+> > +            master  sdio1        peri    0    BCM281XX_MASTER_CCU_SDIO1
+> > +            master  sdio2        peri    1    BCM281XX_MASTER_CCU_SDIO2
+> > +            master  sdio3        peri    2    BCM281XX_MASTER_CCU_SDIO3
+> > +            master  sdio4        peri    3    BCM281XX_MASTER_CCU_SDIO4
+> > +            master  dmac         peri    4    BCM281XX_MASTER_CCU_DMAC
+> > +            master  usb_ic       peri    5    BCM281XX_MASTER_CCU_USB_IC
+> > +            master  hsic2_48m    peri    6    BCM281XX_MASTER_CCU_HSIC_48M
+> > +            master  hsic2_12m    peri    7    BCM281XX_MASTER_CCU_HSIC_12M
+> > +
+> > +            slave   uartb        peri    0    BCM281XX_SLAVE_CCU_UARTB
+> > +            slave   uartb2       peri    1    BCM281XX_SLAVE_CCU_UARTB2
+> > +            slave   uartb3       peri    2    BCM281XX_SLAVE_CCU_UARTB3
+> > +            slave   uartb4       peri    3    BCM281XX_SLAVE_CCU_UARTB4
+> > +            slave   ssp0         peri    4    BCM281XX_SLAVE_CCU_SSP0
+> > +            slave   ssp2         peri    5    BCM281XX_SLAVE_CCU_SSP2
+> > +            slave   bsc1         peri    6    BCM281XX_SLAVE_CCU_BSC1
+> > +            slave   bsc2         peri    7    BCM281XX_SLAVE_CCU_BSC2
+> > +            slave   bsc3         peri    8    BCM281XX_SLAVE_CCU_BSC3
+> > +            slave   pwm          peri    9    BCM281XX_SLAVE_CCU_PWM
 > 
-> 
-> let me know if I should rephrase it before pushing this to the the ARM
-> SoC maintainers (tomorrow).
+> I don't really understand why this is in the binding schema. I guess you
+> wanted to copy it from the old binding, but, unless there is real reason
+> for it, don't. The clock IDs should be in the header file and that's it.
+> Nothing here.
 
-Looks good, thank you!
+Hi Krzysztof, you're correct that I just copied this from the old bindings.
+brcm,iproc-clocks.yaml has a similar table, so I thought this would be fine.
+I'm OK with dropping it, but how should I document the clock-output-names
+values then? A bunch of if-then blocks (per compatible)? Or should I not even
+bother and just keep minItems/maxItems without documenting the values?
 
--- 
-Rafał Miłecki
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - brcm,bcm21664-aon-ccu
+> > +              - brcm,bcm21664-master-ccu
+> > +              - brcm,bcm21664-root-ccu
+> > +              - brcm,bcm21664-slave-ccu
+> > +    then:
+> > +      properties:
+> > +        clock-output-names:
+> > +          maxItems: 8
+
+I've also noticed that dtbs_check gives out warnings(?) like this for
+bcm21664 ccu nodes:
+
+/arch/arm/boot/dts/broadcom/bcm21664-garnet.dtb:
+    root_ccu@35001000: clock-output-names: ['frac_1m'] is too short
+    from schema $id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
+
+and this maxItems:8 seems to me like the culprit (since the bcm11351 if-then
+doesn't have that). Seems to me like it also overrides the minItems to be 8
+as well. I don't understand why it would do that though.
+
+I suppose just adding minItems: 1 would be the correct fix in this case?
+
+> > +          description: |
+> > +            The following table defines the set of CCUs and clock specifiers
+> > +            for BCM21664 family clocks.
+> > +            These clock specifiers are defined in:
+> > +                "include/dt-bindings/clock/bcm21664.h"
+> > +
+> > +            CCU     Clock         Type  Index  Specifier
+> > +            ---     -----         ----  -----  ---------
+> > +            root    frac_1m       peri    0    BCM21664_ROOT_CCU_FRAC_1M
+> > +
+> > +            aon     hub_timer     peri    0    BCM21664_AON_CCU_HUB_TIMER
+> > +
+> > +            master  sdio1         peri    0    BCM21664_MASTER_CCU_SDIO1
+> > +            master  sdio2         peri    1    BCM21664_MASTER_CCU_SDIO2
+> > +            master  sdio3         peri    2    BCM21664_MASTER_CCU_SDIO3
+> > +            master  sdio4         peri    3    BCM21664_MASTER_CCU_SDIO4
+> > +            master  sdio1_sleep   peri    4    BCM21664_MASTER_CCU_SDIO1_SLEEP
+> > +            master  sdio2_sleep   peri    5    BCM21664_MASTER_CCU_SDIO2_SLEEP
+> > +            master  sdio3_sleep   peri    6    BCM21664_MASTER_CCU_SDIO3_SLEEP
+> > +            master  sdio4_sleep   peri    7    BCM21664_MASTER_CCU_SDIO4_SLEEP
+> > +
+> > +            slave   uartb         peri    0    BCM21664_SLAVE_CCU_UARTB
+> > +            slave   uartb2        peri    1    BCM21664_SLAVE_CCU_UARTB2
+> > +            slave   uartb3        peri    2    BCM21664_SLAVE_CCU_UARTB3
+> > +            slave   uartb4        peri    3    BCM21664_SLAVE_CCU_UARTB4
+> > +            slave   bsc1          peri    4    BCM21664_SLAVE_CCU_BSC1
+> > +            slave   bsc2          peri    5    BCM21664_SLAVE_CCU_BSC2
+> > +            slave   bsc3          peri    6    BCM21664_SLAVE_CCU_BSC3
+> > +            slave   bsc4          peri    7    BCM21664_SLAVE_CCU_BSC4
+> 
+> Same comments.
+> 
+> In any case, allOf: goes after required: block.
+
+Ack.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#clock-cells'
+> > +  - clock-output-names
+> > +
+> > +additionalProperties: false
+> > +
+> Best regards,
+> Krzysztof
+> 
+
+Thanks for the feedback,
+Stanislav
 
