@@ -1,119 +1,219 @@
-Return-Path: <devicetree+bounces-11009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C637D3C4A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:23:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9F97D3C68
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:26:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 673EBB20CF4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:23:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9539280EE9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899E51D53E;
-	Mon, 23 Oct 2023 16:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C953D1D541;
+	Mon, 23 Oct 2023 16:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IKj3FUNA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RmPm0XZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E551CA96;
-	Mon, 23 Oct 2023 16:23:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9513C433CA;
-	Mon, 23 Oct 2023 16:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698078188;
-	bh=zHfAntJF659ZXEdU01P0pwRPRHt3P7xAjAvUFOn2ic0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IKj3FUNAb3E0vctM7jf/Nljaub340tKF75OnwYllA5P7bXYezvK+kefFeBlaQzTY/
-	 5Vw1thzKtTQyMvfEyi+5yRFJxGJXFFfljrJ3qx1avcduYqA88caJd2syK9g5b4AgV0
-	 VURltqu5n9TksXk0rXvBhgiAFJXRpMLRFIS0kPOlTJR1+5B2dYoDI7i7waRvom4+BN
-	 F3OP1GhMaCpXnokqTrzTR6t5TffswY2NkOPNhzEpao8rbKtxJUsfw+wgnjG1QlkpX5
-	 Sf2IxsmEYih3V4jQ4QoOWUgByopxFMvRpHaO/SSu92LE+XCg7TP1bOA88Ju0ilt6P/
-	 ijSOEk/PgfKHQ==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1quxi7-0002AB-1c;
-	Mon, 23 Oct 2023 18:23:23 +0200
-Date: Mon, 23 Oct 2023 18:23:23 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 09/10] arm64: dts: qcom: sa8295p: Enable tertiary
- controller and its 4 USB ports
-Message-ID: <ZTad-_toGkumYx6O@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-10-quic_kriskura@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1E514F70
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:26:19 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1583210A;
+	Mon, 23 Oct 2023 09:26:17 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39NGQA8Q064284;
+	Mon, 23 Oct 2023 11:26:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1698078370;
+	bh=ToVUXy/JJet0aGuRbevQ1uj23FQvFLehD2uGhtFjkOw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RmPm0XZT1FuQyVBHx2xmRT0GxHgTWos1KfY2lxlHygEGoqcaHpSWdKv1e2+kmGBFm
+	 7jgfTUQttjCnNGdy2nMk9kInpQ/qxe2qBJsniUGyw1p1OcYJA/SygAOBiInmB8EGSM
+	 1VqEDYTtMVlkvSvexR6FEAD6kq4m+wIgY8cr3+0Q=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39NGQAux094084
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 23 Oct 2023 11:26:10 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 23
+ Oct 2023 11:26:09 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 23 Oct 2023 11:26:09 -0500
+Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39NGQ9NO063677;
+	Mon, 23 Oct 2023 11:26:09 -0500
+Message-ID: <67efff7e-adc5-4117-a715-7fe219d2f92c@ti.com>
+Date: Mon, 23 Oct 2023 11:26:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007154806.605-10-quic_kriskura@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] mux: mmio: use reg property when parent device is not
+ a syscon
+Content-Language: en-US
+To: Peter Rosin <peda@axentia.se>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230911151030.71100-1-afd@ti.com>
+ <0cb645c7-f3c5-e4bb-7686-2a83d32274bb@axentia.se>
+ <ab1c4929-0d7d-45eb-ab70-7680dbebcdbb@ti.com>
+ <38d3582f-c2d6-3d1a-5706-84fccd22a2ac@axentia.se>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <38d3582f-c2d6-3d1a-5706-84fccd22a2ac@axentia.se>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, Oct 07, 2023 at 09:18:05PM +0530, Krishna Kurapati wrote:
-> Enable tertiary controller for SA8295P (based on SC8280XP).
-> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
+On 10/20/23 4:22 PM, Peter Rosin wrote:
+> Hi!
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 49 ++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
+> 2023-10-20 at 18:43, Andrew Davis wrote:
+>> On 10/20/23 9:28 AM, Peter Rosin wrote:
+>>> Hi!
+>>>
+>>> 2023-09-11 at 17:10, Andrew Davis wrote:
+>>>> The DT binding for the reg-mux compatible states it can be used when the
+>>>> "parent device of mux controller is not syscon device". It also allows
+>>>> for a reg property. When the reg property is provided, use that to
+>>>> identify the address space for this mux. If not provided fallback to
+>>>> using the parent device as a regmap provider.
+>>>>
+>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>> Reviewed-by: Nishanth Menon <nm@ti.com>
+>>>> ---
+>>>>
+>>>> Changes from v2:
+>>>>    - Rebased on v6.6-rc1
+>>>>
+>>>> Changes from v1:
+>>>>    - Flip logic as suggested in v1[0]
+>>>>
+>>>> [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+>>>>
+>>>>    drivers/mux/mmio.c | 9 ++++++---
+>>>>    1 file changed, 6 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+>>>> index fd1d121a584ba..b6095b7853ed2 100644
+>>>> --- a/drivers/mux/mmio.c
+>>>> +++ b/drivers/mux/mmio.c
+>>>> @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+>>>>        int ret;
+>>>>        int i;
+>>>>    -    if (of_device_is_compatible(np, "mmio-mux"))
+>>>> +    if (of_device_is_compatible(np, "mmio-mux")) {
+>>>>            regmap = syscon_node_to_regmap(np->parent);
+>>>> -    else
+>>>> -        regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+>>>> +    } else {
+>>>> +        regmap = device_node_to_regmap(np);
+>>>
+>>> I started digging in device_node_to_regmap() to try to find an error that
+>>> could be used to trigger if the failover to dev_get_regmap() should be
+>>> tried, instead of always doing the failover on error. I got lost fairly
+>>> quickly, but it seems device_node_to_regmap() can return -EDEFER_PROBE.
+>>> While I'm not certain that it is applicable, that case should probably
+>>> not fall back to dev_get_regmap()...
+>>>
+>>> Are there other error cases that should prevent the failover? I would
+>>> guess that it's perhaps just a single error that should trigger trying
+>>> the failover path? But I don't know, and which error if that's the case?
+>>>
+>>
+>> Ideally the only error that will be returned is ENOMEM, which happens when
+>> this node does not have a 'reg' property, and this is also the one case we
+>> want to do the failover. So all should be well.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index fd253942e5e5..271000163823 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> The ideal working case is usually not much of a problem. When I look at what
+> device_node_to_regmap does, I find, appart from -ENOMEM, possibilities of
+> -ENOENT (because no clock), and the clock may theoretically fail to prepare
+> for numerous reasons hidden in clock drivers, but the clock core can
+> trigger at least -EACCES and -EINPROGRESS via runtime PM.
+> 
+> And it definitely looks like the -EPROBE_DEFER case needs to be addressed.
+> I.e., why is this call chain not a problem?
+> 
+> mux_mmio_probe
+>   ->device_node_to_regmap
+>    -> device_node_get_regmap
+>     -> of_syscon_register
+>      -> of_hwspin_lock_get_id
+>      <- -EPROBE_DEFER
+>     <- ERR_PTR(-EPROBE_DEFER)
+>    <- ERR_PTR(-EPROBE_DEFER)
+>   <- ERR_PTR(-EPROBE_DEFER)
+> 
+> As far as I can tell, if device_node_to_regmap() fails with -EPROBE_DEFER
+> with your patch, then mux_mmio_probe() misbehaves. It should have aborted
+> and failed with -EPROBE_DEFER, but instead throws that error away and
+> goes on to try dev_get_regmap(). That, in turn, is probably futile and
+> will likely error out in some way, breaking a system that might have been
+> ok, if the probe had been retried some time later.
+> 
 
-Sort order ('p' < 'r').
+This is why I liked the v1 version, dev_get_regmap() just returns a
+simple NULL on error, no complex EPROBE_DEFER oddness :)
 
-> +&usb_2 {
-> +	pinctrl-0 = <&usb2_en_state>,
-> +		    <&usb3_en_state>,
-> +		    <&usb4_en_state>,
-> +		    <&usb5_en_state>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-> +
->  &usb_2_hsphy0 {
->  	vdda-pll-supply = <&vreg_l5a>;
->  	vdda18-supply = <&vreg_l7g>;
-> @@ -729,3 +740,41 @@ wake-n-pins {
->  		};
->  	};
->  };
-> +
-> +&pmm8540c_gpios {
+So is EPROBE_DEFER the only one we think should retry and not go
+down the fallback path? I believe that is the normal assumption
+for most drivers.
 
-Sort order here too ('p' < 't' in "&tlmm").
+> As long as the above is not sufficiently explained away, or fixed, I
+> consider the patch broken.
+> 
+>>> How much badness can be caused if syscon_node_to_regmap() fails for some
+>>> random obscure reason and the failover path is taken inadvertently? It
+>>> certainly smells bad for -EDEFER_PROBE, but do you have any insight in
+>>> other cases?
+>>>
+>>
+>> If we take the failover inadvertently then we will check if the parent
+>> node is a syscon, if it is then our offset will most likely be wrong
+>> (parent will not match child 'reg').
+>>
+>>> And after getting to approx that point a while back, I had other things
+>>> to take care of, and this fell off the table. Sorry!
+>>>
+>>
+>> No problem as long as we can find a way to get this in quickly (lot of
+>> DT warning need cleaned up based on this patch).
+> 
+> Hold your horses, I need the above explanation first (and perhaps an
+> updated patch).
+> 
 
-> +	usb2_en_state: usb2-en-state {
+I'm not normally so impatient but this went two whole kernel cycles without
+any comment until rc6.. v4 on the way.
 
-No need to include '_state' in the labels.
+Andrew
 
-Johan
+> Cheers,
+> Peter
+> 
+>> Thanks
+>> Andrew
+>>
+>>> Cheers,
+>>> Peter
+>>>
+>>>> +        if (IS_ERR(regmap))
+>>>> +            regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+>>>> +    }
+>>>>        if (IS_ERR(regmap)) {
+>>>>            ret = PTR_ERR(regmap);
+>>>>            dev_err(dev, "failed to get regmap: %d\n", ret);
 
