@@ -1,375 +1,177 @@
-Return-Path: <devicetree+bounces-10880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B957D306C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB577D30B0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:01:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 515E928134C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:56:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 866F128125D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77CD111B0;
-	Mon, 23 Oct 2023 10:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3389112B90;
+	Mon, 23 Oct 2023 11:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zdo+OfjR"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="hTCnmESm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E236A1845
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:56:06 +0000 (UTC)
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FA5D7B
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:56:00 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54041e33845so1683413a12.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:56:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51AD13ADC
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:01:08 +0000 (UTC)
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC0D10C1
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:01:04 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-d9ac43d3b71so3045666276.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:01:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698058559; x=1698663359; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D3uCaDkYIP2k+SJkMK/GFg6xfE/rRo7Hk4A+SRqM1sI=;
-        b=zdo+OfjRq1dQSJxXvsVlGovRZtsjpYFS4XqCuyVT2BBW+ISJc3DsChNs96r6W0I/PW
-         K9d4pyhlpRYhiXlT0ovrcXJRYIrrez2iV58QVM6ddmLUdG4tJ1+5Us/vhGMi9U7CGYiW
-         /x2kXifWoxC/B4p7bqWGGl+xv5Pz3InlUIYvo8XAO2BojWFXKVQBJ1l75gWZWkacRQPm
-         z44pUF1fosvL91NGj/F0nupFjbu/YEWPFe6kteNPM62eguAJ/3x03RW4FdLjCJBi30W7
-         sKRgusAyllOS41/Aq+XtilavTBvNyi8GBPmuctN1Q/v2U8XhHGhAxf2s5gcvczdfeVH5
-         ymiQ==
+        d=amarulasolutions.com; s=google; t=1698058864; x=1698663664; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CQnyw3MjdCXKTfyQSa/jGUuKdoEycBcWTe0sh3zaKAg=;
+        b=hTCnmESm0n9IdCN3jOGrqBRmMrgLENDWDIXphQB0v/rbTChX5BHJNWGO7PpIDg51lA
+         ibv14Xq+gI4ZtgNh5Vi/4Fe0EA75NxMZhuueZo3AzT0/4MPy0iHb6AyHi1dAFLsK+HwP
+         ILEOCDaT+eBYSPu+7HQAZ/O9e8p3Mbzj8cyGw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698058559; x=1698663359;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3uCaDkYIP2k+SJkMK/GFg6xfE/rRo7Hk4A+SRqM1sI=;
-        b=H3wpr5XSRW0igSiCDWmR0y6oVdd6i4/TPmcnl3BZYsPDUUd0DN20s1k3Bgvp38LGgD
-         2+hLAoMBUuSlKaBTb/y+dLDcdQmgSBk6psTkt6Z0UqZLrG6agsj+giYUvVKbZF0LYSNy
-         4EFRWZ9UVK1Fm8piAU9/9nVeMX0bb+SU6WYTwOqGoM0UQH6u5UhzlkKubPNavGhSRUYb
-         fJfLTI55ntUmOxJ8wr7h1gMKO7VWBuJySfmlUKigRwn+/yuzsb8VjnxATvs8RSQIgnNN
-         Nm0WsT924TaDZhrjjh0O+4BCXBzZQz0gS68KUTZQ3YNjB4SzUtZAA/iFGz/BHbkLaLpA
-         OTfg==
-X-Gm-Message-State: AOJu0YxeoZTYbEL/EFF7tq9NFaRfxC8bdEiYNV0yXlaDfL8fowE89+vm
-	2ebigdSZTw45r2kRZJ8MumoDbg==
-X-Google-Smtp-Source: AGHT+IHgud+ri83ecGImW587nXW8BLXh+rzA3PwsJVWpotOaar4YBUzaqFakBmvO76oc4SqntSfuYA==
-X-Received: by 2002:a17:907:7b9f:b0:9bf:8073:a922 with SMTP id ne31-20020a1709077b9f00b009bf8073a922mr8004440ejc.19.1698058558770;
-        Mon, 23 Oct 2023 03:55:58 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id c11-20020a170906340b00b009be23a040cfsm6371567ejb.40.2023.10.23.03.55.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 03:55:58 -0700 (PDT)
-Message-ID: <a1846955-e6d9-4217-8c9f-1f20be166f4b@baylibre.com>
-Date: Mon, 23 Oct 2023 12:55:56 +0200
+        d=1e100.net; s=20230601; t=1698058864; x=1698663664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CQnyw3MjdCXKTfyQSa/jGUuKdoEycBcWTe0sh3zaKAg=;
+        b=WGYJgmZ8TzZ+mECH9vf8/TZvWgG0K/Xf2jIxHOeMC+YpaRi5ug12kIJq3vxHBJuoSV
+         tFWkF2eRrpqYAg0Fw1cWpfItehajibc008DG1H2yAjhBSUlQnKs4pRW53OolRsN3WyEg
+         w+I6FpYY+aWFSyRr7P8xB6P60gxRoF3oMJKthyrCNhBBBNFvuj3ol5U3VOJMbv4AWIqj
+         mbgcIAAVuMyZ2ygN8BMFFaUV2sg1Hcso64B/7J1DP7OfBwzQj/vHhAskz9eSUYVtxQGL
+         w/vEbMLVtbXN0x54oTxD0SKSGeMBReiPXrAhlpIAcjKEf9SDrB7Ccb657+2ygCN1GIyf
+         odYg==
+X-Gm-Message-State: AOJu0YxGduS/8YJvK3UhX8Hpesb1BNRGLimcnEV/ThgopM1MfsWJ3dHX
+	A6x4VYJPlR0W3PmPyC+Bcga5OCHYo9g1qSx3igKhD0S38vcKyVgO/RcGww==
+X-Google-Smtp-Source: AGHT+IHsgGGa2skrDGr96nwbMOiC55O2cCdp4sM8NTs6qixH/wFcZIQVI1iSePRLMK2nXAYF5AkwHSE0OOXJHQbWoxA=
+X-Received: by 2002:a25:4217:0:b0:d9b:3b3e:5a07 with SMTP id
+ p23-20020a254217000000b00d9b3b3e5a07mr7276609yba.5.1698058863818; Mon, 23 Oct
+ 2023 04:01:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] arm64: dts: Add MediaTek MT8188 dts and evaluation
- board and Makefile
-Content-Language: en-US
-To: Jason-ch Chen <jason-ch.chen@mediatek.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Eugen Hristev <eugen.hristev@collabora.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20231023083839.24453-1-jason-ch.chen@mediatek.com>
- <20231023083839.24453-5-jason-ch.chen@mediatek.com>
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20231023083839.24453-5-jason-ch.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230904180635.923506-1-dario.binacchi@amarulasolutions.com> <5e75b5fd-c351-1f42-94ed-b6dc1d3f030e@foss.st.com>
+In-Reply-To: <5e75b5fd-c351-1f42-94ed-b6dc1d3f030e@foss.st.com>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Mon, 23 Oct 2023 13:00:48 +0200
+Message-ID: <CABGWkvquib1WEKGR-DFiNN62gLcYF3Y==K29_w-=9pV0gnjEqg@mail.gmail.com>
+Subject: Re: [RFC PATCH] ARM: dts: stm32f469-disco: use the same 3v3 for SD
+ and DSI nodes
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Alexandre,
+
+On Thu, Sep 14, 2023 at 10:57=E2=80=AFAM Alexandre TORGUE
+<alexandre.torgue@foss.st.com> wrote:
+>
+> On 9/4/23 20:06, Dario Binacchi wrote:
+> > In the board schematic, the power supply for the SD card is the same 3.=
+3
+> > volts used to power the LCD panel and other peripherals. By generalizin=
+g
+> > the name of the voltage regulator, it simplifies the device tree and ma=
+kes
+> > it more readable.
+> >
+>
+> It makes sens as it is the same discret regulator (no pmic involved).
+>
+
+I don't see it applied to linux-stm32/next. Is something missing?
+
+Thanks and regards,
+Dario
+
+> regards
+> Alex
+>
+> > Link: https://www.st.com/en/evaluation-tools/32f469idiscovery.html#cad-=
+resources
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> >   arch/arm/boot/dts/st/stm32f469-disco.dts | 15 ++++-----------
+> >   1 file changed, 4 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/st/stm32f469-disco.dts b/arch/arm/boot/d=
+ts/st/stm32f469-disco.dts
+> > index cbbd521bf010..8a4f8ddd083d 100644
+> > --- a/arch/arm/boot/dts/st/stm32f469-disco.dts
+> > +++ b/arch/arm/boot/dts/st/stm32f469-disco.dts
+> > @@ -69,16 +69,9 @@ aliases {
+> >               serial0 =3D &usart3;
+> >       };
+> >
+> > -     mmc_vcard: mmc_vcard {
+> > +     vcc_3v3: vcc-3v3 {
+> >               compatible =3D "regulator-fixed";
+> > -             regulator-name =3D "mmc_vcard";
+> > -             regulator-min-microvolt =3D <3300000>;
+> > -             regulator-max-microvolt =3D <3300000>;
+> > -     };
+> > -
+> > -     vdd_dsi: vdd-dsi {
+> > -             compatible =3D "regulator-fixed";
+> > -             regulator-name =3D "vdd_dsi";
+> > +             regulator-name =3D "vcc_3v3";
+> >               regulator-min-microvolt =3D <3300000>;
+> >               regulator-max-microvolt =3D <3300000>;
+> >       };
+> > @@ -164,7 +157,7 @@ panel@0 {
+> >               compatible =3D "orisetech,otm8009a";
+> >               reg =3D <0>; /* dsi virtual channel (0..3) */
+> >               reset-gpios =3D <&gpioh 7 GPIO_ACTIVE_LOW>;
+> > -             power-supply =3D <&vdd_dsi>;
+> > +             power-supply =3D <&vcc_3v3>;
+> >               status =3D "okay";
+> >
+> >               port {
+> > @@ -219,7 +212,7 @@ timer@2 {
+> >
+> >   &sdio {
+> >       status =3D "okay";
+> > -     vmmc-supply =3D <&mmc_vcard>;
+> > +     vmmc-supply =3D <&vcc_3v3>;
+> >       cd-gpios =3D <&gpiog 2 GPIO_ACTIVE_LOW>;
+> >       broken-cd;
+> >       pinctrl-names =3D "default", "opendrain";
+>
 
 
+--=20
 
-On 23/10/2023 10:38, Jason-ch Chen wrote:
-> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
-> 
-> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
-> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
-> 
-> We add basic chip support for MediaTek MT8188 on evaluation board.
-> 
-> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 387 ++++++++
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 956 ++++++++++++++++++++
->   3 files changed, 1344 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index e6e7592a3645..8900b939ed52 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r5-sku2.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-evb.dts b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
-> new file mode 100644
-> index 000000000000..68a82b49f7a3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
-> @@ -0,0 +1,387 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2023 MediaTek Inc.
-> + */
-> +/dts-v1/;
-> +#include "mt8188.dtsi"
-> +#include "mt6359.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8188 evaluation board";
-> +	compatible = "mediatek,mt8188-evb", "mediatek,mt8188";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c2 = &i2c2;
-> +		i2c3 = &i2c3;
-> +		i2c4 = &i2c4;
-> +		i2c5 = &i2c5;
-> +		i2c6 = &i2c6;
-> +		mmc0 = &mmc0;
-> +	};
-> +
-> +	chosen: chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x80000000>;
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		scp_mem_reserved: memory@50000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x50000000 0 0x2900000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&auxadc {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
+Dario Binacchi
 
-IMO, the order should be
+Senior Embedded Linux Developer
 
-clock-frequency = <400000>;
-pinctrl-0 = <&i2c0_pins>;
-pinctrl-names = "default";
-status = "okay";
+dario.binacchi@amarulasolutions.com
 
-Please apply this to other nodes
-
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c2_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c3_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c4_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c5 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c5_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c6 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c6_pins>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	bus-width = <8>;
-> +	hs400-ds-delay = <0x1481b>;
-> +	max-frequency = <200000000>;
-> +
-> +	cap-mmc-highspeed;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	supports-cqe;
-> +	cap-mmc-hw-reset;
-> +	no-sdio;
-> +	no-sd;
-> +	non-removable;
-> +
-> +	vmmc-supply = <&mt6359_vemc_1_ldo_reg>;
-> +	vqmmc-supply = <&mt6359_vufs_ldo_reg>;
-> +
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc0_default_pins>;
-> +	pinctrl-1 = <&mmc0_uhs_pins>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mt6359_vcore_buck_reg {
-> +	regulator-always-on;
-> +};
-> +
-> +&mt6359_vgpu11_buck_reg {
-> +	regulator-always-on;
-> +};
-> +
-> +&mt6359_vpu_buck_reg {
-> +	regulator-always-on;
-> +};
-> +
-> +&mt6359_vrf12_ldo_reg {
-> +	regulator-always-on;
-> +};
-> +
-> +&nor_flash {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&nor_pins_default>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-
-Order:
+__________________________________
 
 
-#address-cells = <1>;
-#size-cells = <0>;
+Amarula Solutions SRL
 
-pinctrl-0 = <&nor_pins_default>;
-pinctrl-names = "default";
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
 
-status = "okay";
+T. +39 042 243 5310
+info@amarulasolutions.com
 
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <52000000>;
-> +	};
-> +};
-> +
-
-..snip..
-
-> +
-> +&pmic {
-> +	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&scp {
-> +	memory-region = <&scp_mem_reserved>;
-> +	status = "okay";
-> +};
-> +
-> +&spi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi0_pins>;
-
-Order:
-
-pinctrl-0 = <&spi0_pins>;
-pinctrl-names = "default";
-
-Please apply this to other nodes
-
-> +	status = "okay";
-> +};
-> +
-> +&spi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi1_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&spi2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi2_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&u3phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&u3phy1 {
-> +	status = "okay";
-> +};
-> +
-> +&u3phy2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_pins>;
-> +	status = "okay";
-> +};
-> +
-
-..snip..
-
-> +		};
-> +	};
-> +};
-
-After that:
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-
--- 
-Regards,
-Alexandre
+www.amarulasolutions.com
 
