@@ -1,398 +1,77 @@
-Return-Path: <devicetree+bounces-10930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDAF7D3880
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:53:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A8E7D3889
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E9561C208B8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:53:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18D78281577
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339A31A580;
-	Mon, 23 Oct 2023 13:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DCF1B265;
+	Mon, 23 Oct 2023 13:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fBvOzI0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECF61A279
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:53:05 +0000 (UTC)
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFF0E4
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:53:03 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:375d:2b56:c03f:d72d])
-	by xavier.telenet-ops.be with bizsmtp
-	id 1Rt32B00C3CbNjd01Rt3e3; Mon, 23 Oct 2023 15:53:03 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1quvMW-007KHO-8p;
-	Mon, 23 Oct 2023 15:53:03 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1quvMd-007oLl-3v;
-	Mon, 23 Oct 2023 15:53:03 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: i2c: i2c-demux-pinctrl: Convert to json-schema
-Date: Mon, 23 Oct 2023 15:53:00 +0200
-Message-Id: <28c173dfbbc17403b0c5a6f27661d7bd33a86f84.1698068607.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8BC11CAC
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:55:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5364C433C7;
+	Mon, 23 Oct 2023 13:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698069359;
+	bh=yY7128FTqOAVEE2hwQAdyTNyFxh3eCY8SsAjx1SS6aE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=fBvOzI0O488r6TEi17oJjyAQmZ+UR9Py5FcB5n2vajr/gcaOPqaxX7qOFksLV/V85
+	 fjasd82I7K2qyP75iUh7EKUbGHwulm98UKkphZ6c94ELbK9yA5YiME5YrzfGBQF/+F
+	 Cz1GDZp+6Th28B30W3mgjG5vkXUb7Yuy745dt+HRpo0Yy9V37VPp3xvKe9Q7Gmi9a2
+	 uRRaMITaExe2MiCG17jVmwO0i5+v/qKmln6uyK8YPL0zRRYsrKQfrQUP7sxV74epRg
+	 IWbs3ZeeM4TUxsfAheQnxbzSm9XV66xgbviHlVZ1WfRn5Y37XsMprB3jfir84NrQKN
+	 pD9AppS8dfAKA==
+From: Lee Jones <lee@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>
+In-Reply-To: <20231023131409.1796451-1-sebastian.reichel@collabora.com>
+References: <20231023131409.1796451-1-sebastian.reichel@collabora.com>
+Subject: Re: (subset) [PATCH v4] dt-bindings: mfd: max8925: Convert to DT
+ schema format
+Message-Id: <169806935666.159408.10545089566212045567.b4-ty@kernel.org>
+Date: Mon, 23 Oct 2023 14:55:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
 
-Convert the pinctrl-based I2C bus demultiplexer Device Tree binding
-documentation to json-schema.
+On Mon, 23 Oct 2023 15:12:20 +0200, Sebastian Reichel wrote:
+> Convert the binding to DT schema format.
+> 
+> The sub-functions of this MFD device do not have their own compatible
+> string and are thus described directly in the MFD binding document
+> after being converted to YAML.
+> 
+> 
+> [...]
 
-Update the example to match reality.
+Applied, thanks!
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-The example includes changes from "[PATCH 0/3] dts: renesas: Fix I2C bus
-demux node names and ADV751[13] power supplies"
-(https://lore.kernel.org/r/cover.1698068646.git.geert+renesas@glider.be)
+[1/1] dt-bindings: mfd: max8925: Convert to DT schema format
+      commit: 34abc0252d1923cdf82c2352409df490253c8814
 
- .../bindings/i2c/i2c-demux-pinctrl.txt        | 135 --------------
- .../bindings/i2c/i2c-demux-pinctrl.yaml       | 172 ++++++++++++++++++
- 2 files changed, 172 insertions(+), 135 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt
-deleted file mode 100644
-index 86b2e433a969013c..0000000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt
-+++ /dev/null
-@@ -1,135 +0,0 @@
--Pinctrl-based I2C Bus DeMux
--
--This binding describes an I2C bus demultiplexer that uses pin multiplexing to
--route the I2C signals, and represents the pin multiplexing configuration using
--the pinctrl device tree bindings. This may be used to select one I2C IP core at
--runtime which may have a better feature set for a given task than another I2C
--IP core on the SoC. The most simple example is to fall back to GPIO bitbanging
--if your current runtime configuration hits an errata of the internal IP core.
--
--    +-------------------------------+
--    | SoC                           |
--    |                               |   +-----+  +-----+
--    |   +------------+              |   | dev |  | dev |
--    |   |I2C IP Core1|--\           |   +-----+  +-----+
--    |   +------------+   \-------+  |      |        |
--    |                    |Pinctrl|--|------+--------+
--    |   +------------+   +-------+  |
--    |   |I2C IP Core2|--/           |
--    |   +------------+              |
--    |                               |
--    +-------------------------------+
--
--Required properties:
--- compatible: "i2c-demux-pinctrl"
--- i2c-parent: List of phandles of I2C masters available for selection. The first
--	      one will be used as default.
--- i2c-bus-name: The name of this bus. Also needed as pinctrl-name for the I2C
--		parents.
--
--Furthermore, I2C mux properties and child nodes. See i2c-mux.yaml in this
--directory.
--
--Example:
--
--Here is a snipplet for a bus to be demuxed. It contains various i2c clients for
--HDMI, so the bus is named "i2c-hdmi":
--
--	i2chdmi: i2c@8 {
--
--		compatible = "i2c-demux-pinctrl";
--		i2c-parent = <&gpioi2c>, <&iic2>, <&i2c2>;
--		i2c-bus-name = "i2c-hdmi";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		ak4643: sound-codec@12 {
--			compatible = "asahi-kasei,ak4643";
--
--			#sound-dai-cells = <0>;
--			reg = <0x12>;
--		};
--
--		composite-in@20 {
--			compatible = "adi,adv7180";
--			reg = <0x20>;
--			remote = <&vin1>;
--
--			port {
--				adv7180: endpoint {
--					bus-width = <8>;
--					remote-endpoint = <&vin1ep0>;
--				};
--			};
--		};
--
--		hdmi@39 {
--			compatible = "adi,adv7511w";
--			reg = <0x39>;
--			interrupt-parent = <&gpio1>;
--			interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
--
--			adi,input-depth = <8>;
--			adi,input-colorspace = "rgb";
--			adi,input-clock = "1x";
--			adi,input-style = <1>;
--			adi,input-justification = "evenly";
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
--					adv7511_in: endpoint {
--						remote-endpoint = <&du_out_lvds0>;
--					};
--				};
--
--				port@1 {
--					reg = <1>;
--					adv7511_out: endpoint {
--						remote-endpoint = <&hdmi_con>;
--					};
--				};
--			};
--		};
--	};
--
--And for clarification, here are the snipplets for the i2c-parents:
--
--	gpioi2c: i2c@9 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "i2c-gpio";
--		gpios = <&gpio5 6 GPIO_ACTIVE_HIGH /* sda */
--			 &gpio5 5 GPIO_ACTIVE_HIGH /* scl */
--			>;
--		i2c-gpio,delay-us = <5>;
--	};
--
--...
--
--&i2c2	{
--	pinctrl-0 = <&i2c2_pins>;
--	pinctrl-names = "i2c-hdmi";
--
--	clock-frequency = <100000>;
--};
--
--...
--
--&iic2	{
--	pinctrl-0 = <&iic2_pins>;
--	pinctrl-names = "i2c-hdmi";
--
--	clock-frequency = <100000>;
--};
--
--Please note:
--
--- pinctrl properties for the parent I2C controllers need a pinctrl state
--  with the same name as i2c-bus-name, not "default"!
--
--- the i2c masters must have their status "disabled". This driver will
--  enable them at runtime when needed.
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml
-new file mode 100644
-index 0000000000000000..2c08f2a7cf1ee28c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml
-@@ -0,0 +1,172 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-demux-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Pinctrl-based I2C Bus Demultiplexer
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+
-+description: |
-+  This binding describes an I2C bus demultiplexer that uses pin multiplexing to
-+  route the I2C signals, and represents the pin multiplexing configuration
-+  using the pinctrl device tree bindings.  This may be used to select one I2C
-+  IP core at runtime which may have a better feature set for a given task than
-+  another I2C IP core on the SoC.  The most simple example is to fall back to
-+  GPIO bitbanging if your current runtime configuration hits an errata of the
-+  internal IP core.
-+
-+      +-------------------------------+
-+      | SoC                           |
-+      |                               |   +-----+  +-----+
-+      |   +------------+              |   | dev |  | dev |
-+      |   |I2C IP Core1|--\           |   +-----+  +-----+
-+      |   +------------+   \-------+  |      |        |
-+      |                    |Pinctrl|--|------+--------+
-+      |   +------------+   +-------+  |
-+      |   |I2C IP Core2|--/           |
-+      |   +------------+              |
-+      |                               |
-+      +-------------------------------+
-+
-+allOf:
-+  - $ref: i2c-mux.yaml
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: i2c-demux-pinctrl
-+
-+  i2c-parent:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      List of phandles of I2C masters available for selection.  The first one
-+      will be used as default.
-+
-+  i2c-bus-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      The name of this bus.  Also needed as pinctrl-name for the I2C parents.
-+
-+required:
-+  - compatible
-+  - i2c-parent
-+  - i2c-bus-name
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gpioi2c2: i2c-9 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "i2c-gpio";
-+        scl-gpios = <&gpio5 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+        sda-gpios = <&gpio5 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+        i2c-gpio,delay-us = <5>;
-+
-+        // The I2C controller must have its status "disabled".  The I2C bus
-+        // demultiplexer will enable it at runtime when needed.
-+        status = "disabled";
-+    };
-+
-+    iic2: i2c@e6520000 {
-+        reg = <0xe6520000 0x425>;
-+        pinctrl-0 = <&iic2_pins>;
-+        // The pinctrl property for the parent I2C controller needs a pinctrl
-+        // state with the same name as i2c-bus-name in the I2C bus demultiplexer
-+        // node, not "default"!
-+        pinctrl-names = "i2c-hdmi";
-+
-+        clock-frequency = <100000>;
-+
-+        // The I2C controller must have its status "disabled".  The I2C bus
-+        // demultiplexer will enable it at runtime when needed.
-+        status = "disabled";
-+    };
-+
-+    i2c2: i2c@e6530000 {
-+        reg = <0 0xe6530000 0 0x40>;
-+        pinctrl-0 = <&i2c2_pins>;
-+        // The pinctrl property for the parent I2C controller needs a pinctrl
-+        // state with the same name as i2c-bus-name in the I2C bus demultiplexer
-+        // node, not "default"!
-+        pinctrl-names = "i2c-hdmi";
-+
-+        clock-frequency = <100000>;
-+
-+        // The I2C controller must have its status "disabled".  The I2C bus
-+        // demultiplexer will enable it at runtime when needed.
-+        status = "disabled";
-+    };
-+
-+    // Example for a bus to be demuxed.  It contains various I2C clients for
-+    // HDMI, so the bus is named "i2c-hdmi":
-+    i2chdmi: i2c-mux3 {
-+            compatible = "i2c-demux-pinctrl";
-+            i2c-parent = <&iic2>, <&i2c2>, <&gpioi2c2>;
-+            i2c-bus-name = "i2c-hdmi";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ak4643: codec@12 {
-+                    compatible = "asahi-kasei,ak4643";
-+                    #sound-dai-cells = <0>;
-+                    reg = <0x12>;
-+            };
-+
-+            composite-in@20 {
-+                    compatible = "adi,adv7180";
-+                    reg = <0x20>;
-+
-+                    port {
-+                            adv7180: endpoint {
-+                                    bus-width = <8>;
-+                                    remote-endpoint = <&vin1ep0>;
-+                            };
-+                    };
-+            };
-+
-+            hdmi@39 {
-+                    compatible = "adi,adv7511w";
-+                    reg = <0x39>;
-+                    interrupt-parent = <&gpio1>;
-+                    interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-+                    clocks = <&cec_clock>;
-+                    clock-names = "cec";
-+
-+                    avdd-supply = <&fixedregulator1v8>;
-+                    dvdd-supply = <&fixedregulator1v8>;
-+                    pvdd-supply = <&fixedregulator1v8>;
-+                    dvdd-3v-supply = <&fixedregulator3v3>;
-+                    bgvdd-supply = <&fixedregulator1v8>;
-+
-+                    adi,input-depth = <8>;
-+                    adi,input-colorspace = "rgb";
-+                    adi,input-clock = "1x";
-+
-+                    ports {
-+                            #address-cells = <1>;
-+                            #size-cells = <0>;
-+
-+                            port@0 {
-+                                    reg = <0>;
-+                                    adv7511_in: endpoint {
-+                                            remote-endpoint = <&lvds0_out>;
-+                                    };
-+                            };
-+
-+                            port@1 {
-+                                    reg = <1>;
-+                                    adv7511_out: endpoint {
-+                                            remote-endpoint = <&hdmi_con_out>;
-+                                    };
-+                            };
-+                    };
-+            };
-+    };
--- 
-2.34.1
+--
+Lee Jones [李琼斯]
 
 
