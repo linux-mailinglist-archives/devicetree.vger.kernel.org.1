@@ -1,764 +1,1289 @@
-Return-Path: <devicetree+bounces-10831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF197D2D8C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69CDE7D2D95
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:05:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 450FCB20D2B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:02:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6252B20CA8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433CD12B70;
-	Mon, 23 Oct 2023 09:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F224012B71;
+	Mon, 23 Oct 2023 09:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CJkEK9aI"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Dl+4B7Pm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4C6B63A8;
-	Mon, 23 Oct 2023 09:02:46 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78B297;
-	Mon, 23 Oct 2023 02:02:42 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9c603e235d1so458024566b.3;
-        Mon, 23 Oct 2023 02:02:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698051761; x=1698656561; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KkpYrLCTHn+x0mf2/kUM++L2w8naD2HODADtgabnuSc=;
-        b=CJkEK9aIv/LdbCkpjUezs46xmrs5AsWjFRgFK8Swad0FpdOMI+G+N89tyKxflOPiLZ
-         9cl0rm45euxAJBOrChNuow+QXBrobRON7DlNC5xbmjJ+dAzdNSZ/QHMSCLtqauie8YjF
-         qQDS0kh2LEhmh9jZ0UU+BBa6zfpQzX13C2LjqVmw530fEebF0Oal6+dtSVEsq9ggdmv6
-         cjMNTT/G8yfXiigfALbpPE94iur2WXDlJ27GtET59PnWpYvzBJG8fHw8+mKoV5eVyRgD
-         eXLpqvE2x3b/zmmaegT2R5dNfyfEHEzQs9iKGe+dzUMJ2ckfaCkO9qn/OdkeAekbb73+
-         M0sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698051761; x=1698656561;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KkpYrLCTHn+x0mf2/kUM++L2w8naD2HODADtgabnuSc=;
-        b=CPdsbvA1W/UhTpV2093YMRWcwX9isd57cJxQ4vF3Txee7uxDJo+9fBnNOZo5NSS1ym
-         eba0zzTbHSeCPNxDcuvNCSuw3wBX7LhoOaPQcBvxdUm+5Cc+kSZfwYiyMtfvLINSXuFs
-         Jbocok9EpkznPPy3Bz7nuzR3/AP88d2rd8rsH4BdPuryvhi7B9OHgM+vu5rYjGhH+/X8
-         vH7ayoHB05wIukdwymanLFjyZ42uvEUOajxTB+jUKufPAvJJuOD9WHG3ccKbDrNVQmQm
-         YNVNLuQ44LJXgR3Ty0zOmYDf6LTQuG0F4/KDXx21bOH/5N8JdjOlZbiltQXIoN4KduwF
-         IjVw==
-X-Gm-Message-State: AOJu0YzBSPAnvDwF6e6gARc79rVfpe5I3pZokTQv32lAQyjdcc3cjxsU
-	e/9zXEcBUS79l6qRlRnfe/o=
-X-Google-Smtp-Source: AGHT+IHr3OXzqx4Z7DG7++/F+tCV3bUf271GydBlKBJdBmhf+iNojTqdgsI7ZamwciEm/oXJmuk0GA==
-X-Received: by 2002:a17:907:1b0c:b0:9b2:955a:e375 with SMTP id mp12-20020a1709071b0c00b009b2955ae375mr8425748ejc.23.1698051760416;
-        Mon, 23 Oct 2023 02:02:40 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:3344:1b7d:7200::eba])
-        by smtp.gmail.com with ESMTPSA id 20-20020a170906019400b00992b8d56f3asm6326555ejb.105.2023.10.23.02.02.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Oct 2023 02:02:40 -0700 (PDT)
-From: Luka Panio <lukapanio@gmail.com>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <keescook@chromium.org>,
-	Tony Luck <tony.luck@intel.com>,
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: Luka Panio <lukapanio@gmail.com>
-Subject: [PATCH v8 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial device tree
-Date: Mon, 23 Oct 2023 11:02:30 +0200
-Message-ID: <20231023090230.43210-2-lukapanio@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231023090230.43210-1-lukapanio@gmail.com>
-References: <20231023090230.43210-1-lukapanio@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3552B63A8
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:05:16 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF31A9;
+	Mon, 23 Oct 2023 02:05:10 -0700 (PDT)
+Received: from [100.94.55.57] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C0D536605638;
+	Mon, 23 Oct 2023 10:05:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698051909;
+	bh=K1gajUG5nCLZWafYty7WKQiuGF8tybFkXEIGrUugcEI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Dl+4B7PmTGTYTE1DtvS6rM+lpuakBby3T38D0y3Uf/b9s7nBgxq88rSdmApydsauT
+	 icKFMaAbthePZEn/xvUDOvehiWu6/HGsOnynRvCezcPdh3giiMYe4NUgmB3vhUM2Is
+	 hw6jXS9mdiYqhaRJGfIRaHmrmaJL1VXey6zja6KOMW8f3rO5ZxQo6cu9h56SQ/DupR
+	 wGlWkE+Up2RhVtx2aBmTlHEg+C2NPTUwAIwwaf09EzxKf03k9RVhWqHtw+RpbVOrEg
+	 kBHzdW0hNxxb+eQXqEwetKJeh8hw/8WdqKGnWPAsYBRt5QXjtyiPR1N/+3eDyFztnR
+	 R7YZM0pjinxug==
+Message-ID: <60beb523-292b-4c77-9030-1bfdfd73c140@collabora.com>
+Date: Mon, 23 Oct 2023 12:05:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
+ based Tentacruel / Tentacool
+Content-Language: en-US
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231012230237.2676469-1-wenst@chromium.org>
+ <20231012230237.2676469-7-wenst@chromium.org>
+From: Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <20231012230237.2676469-7-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Initial support for Xiaomi Pad 6 tablet, that have sm8250 soc.
+On 10/13/23 02:02, Chen-Yu Tsai wrote:
+> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
+> Krabby design.
+> 
+> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
+> convertible device with touchscreen and stylus.
+> 
+> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
+> device. It does not have a touchscreen or stylus.
+> 
+> The two devices both have two variants. The difference is a second
+> source touchpad controller that shares the same address as the original,
+> but is incompatible.
+> 
+> The extra SKU IDs for the Tentacruel devices map to different sensor
+> components attached to the Embedded Controller. These are not visible
+> to the main processor.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile         |    4 +
+>   .../dts/mediatek/mt8186-corsola-krabby.dtsi   |  130 ++
+>   .../mt8186-corsola-tentacool-sku327681.dts    |   49 +
+>   .../mt8186-corsola-tentacool-sku327683.dts    |   26 +
+>   .../mt8186-corsola-tentacruel-sku262144.dts   |   44 +
+>   .../mt8186-corsola-tentacruel-sku262148.dts   |   28 +
+>   .../boot/dts/mediatek/mt8186-corsola.dtsi     | 1704 +++++++++++++++++
+>   7 files changed, 1985 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327681.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index e6e7592a3645..442af61b1305 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -43,6 +43,10 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327683.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262144.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262148.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r5-sku2.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
+> new file mode 100644
+> index 000000000000..0586c24f1e12
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8186-corsola.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	aliases {
+> +		i2c4 = &i2c4;
+> +	};
+> +};
+> +
+> +&dsi_out {
+> +	remote-endpoint = <&ps8640_in>;
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <400000>;
+> +
+> +	ps8640: edp-bridge@8 {
+> +		compatible = "parade,ps8640";
+> +		reg = <0x8>;
+> +		powerdown-gpios = <&pio 96 GPIO_ACTIVE_LOW>;
+> +		reset-gpios = <&pio 98 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ps8640_pins>;
+> +		vdd12-supply = <&mt6366_vrf12_reg>;
+> +		vdd33-supply = <&mt6366_vcn33_reg>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				ps8640_in: endpoint {
+> +					remote-endpoint = <&dsi_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				ps8640_out: endpoint {
+> +					remote-endpoint = <&panel_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		aux-bus {
+> +			panel {
+> +				compatible = "edp-panel";
+> +				power-supply = <&pp3300_disp_x>;
+> +				backlight = <&backlight_lcd0>;
+> +
+> +				port {
+> +					panel_in: endpoint {
+> +						remote-endpoint = <&ps8640_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	i2c-scl-internal-delay-ns = <10000>;
+> +
+> +	touchscreen: touchscreen@10 {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x10>;
+> +		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touchscreen_pins>;
+> +		post-power-on-delay-ms = <10>;
+> +		hid-descr-addr = <0x0001>;
+> +		vdd-supply = <&pp3300_s3>;
+> +	};
+> +};
+> +
+> +&i2c4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c4_pins>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	proximity@28 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sar_sensor_pins>;
+> +		compatible = "semtech,sx9324";
+> +		reg = <0x28>;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
+> +		vdd-supply = <&mt6366_vio18_reg>;
+> +		svdd-supply = <&mt6366_vio18_reg>;
+> +		#io-channel-cells = <1>;
+> +	};
+> +};
+> +
+> +&pio {
+> +	i2c4_pins: i2c4-pins {
+> +		pins-bus {
+> +			pinmux = <PINMUX_GPIO136__FUNC_SDA4>,
+> +				 <PINMUX_GPIO135__FUNC_SCL4>;
+> +			bias-disable;
+> +			drive-strength = <4>;
+> +			input-enable;
+> +		};
+> +	};
+> +
+> +	ps8640_pins: ps8640-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO96__FUNC_GPIO96>,
+> +				 <PINMUX_GPIO98__FUNC_GPIO98>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	sar_sensor_pins: sar-sensor-pins {
+> +		pin-irq {
+> +			pinmux = <PINMUX_GPIO5__FUNC_GPIO5>;
+> +			input-enable;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327681.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327681.dts
+> new file mode 100644
+> index 000000000000..8dfc24afabea
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327681.dts
+> @@ -0,0 +1,49 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8186-corsola-krabby.dtsi"
+> +
+> +/ {
+> +	model = "Google Tentacool board";
+> +	compatible = "google,tentacruel-sku327681", "google,tentacruel", "mediatek,mt8186";
+> +	chassis-type = "laptop";
+> +};
+> +
+> +/delete-node/ &gpio_keys;
+> +/delete-node/ &touchscreen;
+> +
+> +&i2c1 {
+> +	status = "disabled";
+> +};
+> +
+> +&keyboard_controller {
+> +	function-row-physmap = <
+> +		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
+> +		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
+> +		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
+> +		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
+> +		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
+> +		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
+> +		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
+> +		MATRIX_KEY(0x02, 0x09, 0)	/* T8 */
+> +		MATRIX_KEY(0x01, 0x09, 0)	/* T9 */
+> +		MATRIX_KEY(0x00, 0x04, 0)	/* T10 */
+> +	>;
+> +
+> +	linux,keymap = <
+> +		MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> +		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> +		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> +		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> +		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
+> +		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> +		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> +		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> +		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> +		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> +		CROS_STD_MAIN_KEYMAP
+> +	>;
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts
+> new file mode 100644
+> index 000000000000..9b10336ede06
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +#include "mt8186-corsola-tentacool-sku327681.dts"
+> +
+> +/ {
+> +	compatible = "google,tentacruel-sku327683", "google,tentacruel", "mediatek,mt8186";
+> +};
+> +
+> +/* This variant replaces only the touchpad controller. */
+> +&i2c2 {
+> +	/delete-node/ touchpad@15;
+> +
+> +	touchpad@15 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&trackpad_pin>;
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x15>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		hid-descr-addr = <0x0001>;
+> +		vcc-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
+> new file mode 100644
+> index 000000000000..26e9f19758cb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2022 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8186-corsola-krabby.dtsi"
+> +
+> +/ {
+> +	model = "Google Tentacruel board";
+> +	compatible = "google,tentacruel-sku262144", "google,tentacruel-sku262145",
+> +		     "google,tentacruel-sku262146", "google,tentacruel-sku262147",
+> +		     "google,tentacruel", "mediatek,mt8186";
+> +	chassis-type = "convertible";
+> +};
+> +
+> +&keyboard_controller {
+> +	function-row-physmap = <
+> +		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
+> +		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
+> +		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
+> +		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
+> +		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
+> +		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
+> +		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
+> +		MATRIX_KEY(0x02, 0x09, 0)	/* T8 */
+> +		MATRIX_KEY(0x01, 0x09, 0)	/* T9 */
+> +		MATRIX_KEY(0x00, 0x04, 0)	/* T10 */
+> +	>;
+> +
+> +	linux,keymap = <
+> +		MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> +		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> +		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> +		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> +		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
+> +		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> +		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> +		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> +		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> +		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> +		CROS_STD_MAIN_KEYMAP
+> +	>;
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+> new file mode 100644
+> index 000000000000..59d4d21fc7d3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2022 Google LLC
+> + */
+> +
+> +#include "mt8186-corsola-tentacruel-sku262144.dts"
+> +
+> +/ {
+> +	compatible = "google,tentacruel-sku262144", "google,tentacruel-sku262145",
+> +		     "google,tentacruel-sku262146", "google,tentacruel-sku262147",
+> +		     "google,tentacruel", "mediatek,mt8186";
+> +};
+> +
+> +/* This variant replaces only the touchpad controller. */
+> +&i2c2 {
+> +	/delete-node/ touchpad@15;
+> +
+> +	touchpad@15 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&trackpad_pin>;
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x15>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		hid-descr-addr = <0x0001>;
+> +		vcc-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> new file mode 100644
+> index 000000000000..42ebab1bafeb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -0,0 +1,1704 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2022 MediaTek Inc.
+> + */
+> +/dts-v1/;
+> +#include "mt8186.dtsi"
+> +#include <dt-bindings/pinctrl/mt8186-pinfunc.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/input/gpio-keys.h>
+> +
+> +/ {
+> +	aliases {
+> +		i2c0 = &i2c0;
+> +		i2c1 = &i2c1;
+> +		i2c2 = &i2c2;
+> +		i2c3 = &i2c3;
+> +		i2c5 = &i2c5;
+> +		mmc0 = &mmc0;
+> +		mmc1 = &mmc1;
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		/* The size should be filled in by the bootloader. */
+> +		reg = <0 0x40000000 0 0>;
+> +	};
+> +
+> +	backlight_lcd0: backlight-lcd0 {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm0 0 500000>;
+> +		power-supply = <&ppvar_sys>;
+> +		enable-gpios = <&pio 152 0>;
+> +		brightness-levels = <0 1023>;
+> +		num-interpolated-steps = <1023>;
+> +		default-brightness-level = <576>;
+> +	};
+> +
+> +	btsco: bt-sco {
+> +		compatible = "linux,bt-sco";
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+> +	dmic_codec: dmic-codec {
+> +		compatible = "dmic-codec";
+> +		num-channels = <2>;
+> +		wakeup-delay-ms = <50>;
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+> +	gpio_keys: gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pen_eject>;
+> +
+> +		pen_insert: pen-insert-switch {
+> +			label = "Pen Insert";
+> +			/* Insert = low, eject = high */
+> +			gpios = <&pio 18 GPIO_ACTIVE_LOW>;
+> +			linux,code = <SW_PEN_INSERTED>;
+> +			linux,input-type = <EV_SW>;
+> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	pp1800_dpbrdg_dx: regulator-pp1800-dpbrdg-dx {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&en_pp1800_dpbrdg>;
+> +		regulator-name = "pp1800_dpbrdg_dx";
+> +		enable-active-high;
+> +		gpio = <&pio 39 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&mt6366_vio18_reg>;
+> +	};
+> +
+> +	pp3300_disp_x: regulator-pp3300-disp-x {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp3300_disp_x";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&edp_panel_fixed_pins>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		gpio = <&pio 153 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&pp3300_z2>;
+> +	};
+> +
+> +	/* system wide LDO 3.3V power rail */
+> +	pp3300_z5: regulator-pp3300-ldo-z5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp3300_ldo_z5";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +
+> +	/* separately switched 3.3V power rail */
+> +	pp3300_s3: regulator-pp3300-s3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp3300_s3";
+> +		/* automatically sequenced by PMIC EXT_PMIC_EN2 */
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&pp3300_z2>;
+> +	};
+> +
+> +	/* system wide 3.3V power rail */
+> +	pp3300_z2: regulator-pp3300-z2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp3300_z2";
+> +		/* EN pin tied to pp4200_z2, which is controlled by EC */
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +
+> +	/* system wide 4.2V power rail */
+> +	pp4200_z2: regulator-pp4200-z2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp4200_z2";
+> +		/* controlled by EC */
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <4200000>;
+> +		regulator-max-microvolt = <4200000>;
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +
+> +	/* system wide switching 5.0V power rail */
+> +	pp5000_z2: regulator-pp5000-z2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pp5000_z2";
+> +		/* controlled by EC */
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +
+> +	/* system wide semi-regulated power rail from battery or USB */
+> +	ppvar_sys: regulator-ppvar-sys {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ppvar_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		adsp_dma_mem: memory@61000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x61000000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: memory@60000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x60000000 0 0xA00000>;
+> +			no-map;
+> +		};
+> +
+> +		scp_mem: memory@50000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x50000000 0 0x10a0000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	sound: sound {
+> +		compatible = "mediatek,mt8186-mt6366-rt1019-rt5682s-sound";
+> +		pinctrl-names = "aud_clk_mosi_off",
+> +				"aud_clk_mosi_on",
+> +				"aud_clk_miso_off",
+> +				"aud_clk_miso_on",
+> +				"aud_dat_miso_off",
+> +				"aud_dat_miso_on",
+> +				"aud_dat_mosi_off",
+> +				"aud_dat_mosi_on",
+> +				"aud_gpio_i2s0_off",
+> +				"aud_gpio_i2s0_on",
+> +				"aud_gpio_i2s1_off",
+> +				"aud_gpio_i2s1_on",
+> +				"aud_gpio_i2s2_off",
+> +				"aud_gpio_i2s2_on",
+> +				"aud_gpio_i2s3_off",
+> +				"aud_gpio_i2s3_on",
+> +				"aud_gpio_tdm_off",
+> +				"aud_gpio_tdm_on",
+> +				"aud_gpio_pcm_off",
+> +				"aud_gpio_pcm_on",
+> +				"aud_gpio_dmic_sec";
+> +		pinctrl-0 = <&aud_clk_mosi_off>;
+> +		pinctrl-1 = <&aud_clk_mosi_on>;
+> +		pinctrl-2 = <&aud_clk_miso_off>;
+> +		pinctrl-3 = <&aud_clk_miso_on>;
+> +		pinctrl-4 = <&aud_dat_miso_off>;
+> +		pinctrl-5 = <&aud_dat_miso_on>;
+> +		pinctrl-6 = <&aud_dat_mosi_off>;
+> +		pinctrl-7 = <&aud_dat_mosi_on>;
+> +		pinctrl-8 = <&aud_gpio_i2s0_off>;
+> +		pinctrl-9 = <&aud_gpio_i2s0_on>;
+> +		pinctrl-10 = <&aud_gpio_i2s1_off>;
+> +		pinctrl-11 = <&aud_gpio_i2s1_on>;
+> +		pinctrl-12 = <&aud_gpio_i2s2_off>;
+> +		pinctrl-13 = <&aud_gpio_i2s2_on>;
+> +		pinctrl-14 = <&aud_gpio_i2s3_off>;
+> +		pinctrl-15 = <&aud_gpio_i2s3_on>;
+> +		pinctrl-16 = <&aud_gpio_tdm_off>;
+> +		pinctrl-17 = <&aud_gpio_tdm_on>;
+> +		pinctrl-18 = <&aud_gpio_pcm_off>;
+> +		pinctrl-19 = <&aud_gpio_pcm_on>;
+> +		pinctrl-20 = <&aud_gpio_dmic_sec>;
+> +		mediatek,adsp = <&adsp>;
+> +		mediatek,platform = <&afe>;
+> +
+> +		playback-codecs {
+> +			sound-dai = <&it6505dptx>, <&rt1019p>;
+> +		};
+> +
+> +		headset-codec {
+> +			sound-dai = <&rt5682s 0>;
+> +		};
+> +	};
+> +
+> +	rt1019p: speaker-codec {
+> +		compatible = "realtek,rt1019p";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&rt1019p_pins_default>;
+> +		sdb-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+> +	usb_p1_vbus: regulator-usb-p1-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vbus1";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		enable-active-high;
+> +		gpio = <&pio 148 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&pp5000_z2>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_enable_pin>;
+> +		post-power-on-delay-ms = <50>;
+> +		reset-gpios = <&pio 54 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	wifi_wakeup: wifi-wakeup {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_wakeup_pin>;
+> +
+> +		wowlan-event {
+> +			label = "Wake on WiFi";
+> +			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_WAKEUP>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +};
+> +
+> +&adsp {
+> +	memory-region = <&adsp_dma_mem>, <&adsp_mem>;
+> +	status = "fail"; /* causes stall */
+> +};
+> +
+> +&afe {
+> +	i2s0-share = "I2S1";
+> +	i2s3-share = "I2S2";
+> +	status = "okay";
+> +};
+> +
+> +&cci {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu0 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu1 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu2 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu3 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu4 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu5 {
+> +	proc-supply = <&mt6366_vproc12_reg>;
+> +};
+> +
+> +&cpu6 {
+> +	proc-supply = <&mt6366_vproc11_reg>;
+> +};
+> +
+> +&cpu7 {
+> +	proc-supply = <&mt6366_vproc11_reg>;
+> +};
+> +
+> +&dpi {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&dpi_pins_default>;
+> +	pinctrl-1 = <&dpi_pins_sleep>;
+> +	status = "okay";
+> +};
+> +
+> +&dpi_out {
+> +	remote-endpoint = <&it6505_in>;
+> +};
+> +
+> +&dsi0 {
+> +	status = "okay";
+> +};
+> +
+> +&gic {
+> +	mediatek,broken-save-restore-fw;
+> +};
+> +
+> +&gpu {
+> +	mali-supply = <&mt6366_vgpu_reg>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_pins>;
+> +	clock-frequency = <400000>;
+> +	i2c-scl-internal-delay-ns = <8000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2_pins>;
+> +	clock-frequency = <400000>;
+> +	i2c-scl-internal-delay-ns = <10000>;
+> +	status = "okay";
+> +
+> +	touchpad@15 {
+> +		compatible = "elan,ekth3000";
+> +		reg = <0x15>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&trackpad_pin>;
+> +		vcc-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c3_pins>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	it6505dptx: dp-bridge@5c {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&it6505_pins>;
+> +		compatible = "ite,it6505";
+> +		reg = <0x5c>;
+> +		interrupts-extended = <&pio 8 IRQ_TYPE_LEVEL_LOW>;
+> +		ovdd-supply = <&mt6366_vsim2_reg>;
+> +		pwr18-supply = <&pp1800_dpbrdg_dx>;
+> +		reset-gpios = <&pio 177 GPIO_ACTIVE_HIGH>;
+> +		no-laneswap;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				it6505_in: endpoint {
+> +					link-frequencies = /bits/ 64 <150000000>;
+> +					remote-endpoint = <&dpi_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c5_pins>;
+> +	status = "okay";
+> +
+> +	rt5682s: codec@1a {
+> +		compatible = "realtek,rt5682s";
+> +		reg = <0x1a>;
+> +		interrupts-extended = <&pio 17 IRQ_TYPE_EDGE_BOTH>;
+> +		realtek,jd-src = <1>;
+> +		AVDD-supply = <&mt6366_vio18_reg>;
+> +		DBVDD-supply = <&mt6366_vio18_reg>;
+> +		LDO1-IN-supply = <&mt6366_vio18_reg>;
+> +		MICVDD-supply = <&pp3300_z2>;
+> +		#sound-dai-cells = <1>;
+> +	};
+> +};
+> +
+> +&mfg0 {
+> +	domain-supply = <&mt6366_vsram_gpu_reg>;
+> +};
+> +
+> +&mfg1 {
+> +	domain-supply = <&mt6366_vgpu_reg>;
+> +};
+> +
+> +&mipi_tx0 {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	pinctrl-names = "default", "state_uhs";
+> +	pinctrl-0 = <&mmc0_pins_default>;
+> +	pinctrl-1 = <&mmc0_pins_uhs>;
+> +	bus-width = <8>;
+> +	max-frequency = <200000000>;
+> +	non-removable;
+> +	cap-mmc-highspeed;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	supports-cqe;
+> +	no-sd;
+> +	no-sdio;
+> +	cap-mmc-hw-reset;
+> +	hs400-ds-delay = <0x11814>;
+> +	mediatek,hs400-ds-dly3 = <0x14>;
+> +	vmmc-supply = <&mt6366_vemc_reg>;
+> +	vqmmc-supply = <&mt6366_vio18_reg>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc1 {
+> +	pinctrl-names = "default", "state_uhs", "state_eint";
+> +	pinctrl-0 = <&mmc1_pins_default>;
+> +	pinctrl-1 = <&mmc1_pins_uhs>;
+> +	pinctrl-2 = <&mmc1_pins_eint>;
+> +	/delete-property/ interrupts;
+> +	interrupt-names = "msdc", "sdio_wakeup";
+> +	interrupts-extended = <&gic GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			      <&pio 87 IRQ_TYPE_LEVEL_LOW>;
+> +	bus-width = <4>;
+> +	max-frequency = <200000000>;
+> +	cap-sd-highspeed;
+> +	sd-uhs-sdr104;
+> +	sd-uhs-sdr50;
+> +	keep-power-in-suspend;
+> +	wakeup-source;
+> +	cap-sdio-irq;
+> +	no-mmc;
+> +	no-sd;
+> +	non-removable;
+> +	vmmc-supply = <&pp3300_s3>;
+> +	vqmmc-supply = <&mt6366_vio18_reg>;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	bluetooth@2 {
+> +		compatible = "mediatek,mt7921s-bluetooth";
+> +		reg = <2>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_pins_reset>;
+> +		reset-gpios = <&pio 155 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&nor_flash {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&nor_pins_default>;
+> +	assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D7_D4>;
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <39000000>;
+> +	};
+> +};
+> +
+> +&pio {
+> +	/* 185 lines */
+> +	gpio-line-names = "TP",
+> +			  "TP",
+> +			  "TP",
+> +			  "I2S0_HP_DI",
+> +			  "I2S3_DP_SPKR_DO",
+> +			  "SAR_INT_ODL",
+> +			  "BT_WAKE_AP_ODL",
+> +			  "WIFI_INT_ODL",
+> +			  "DPBRDG_INT_ODL",
+> +			  "EDPBRDG_INT_ODL",
+> +			  "EC_AP_HPD_OD",
+> +			  "TCHPAD_INT_ODL",
+> +			  "TCHSCR_INT_1V8_ODL",
+> +			  "EC_AP_INT_ODL",
+> +			  "EC_IN_RW_ODL",
+> +			  "GSC_AP_INT_ODL",
+> +			  /* AP_FLASH_WP_L is crossystem ABI. Rev1 schematics call it AP_WP_ODL. */
+> +			  "AP_FLASH_WP_L",
+> +			  "HP_INT_ODL",
+> +			  "PEN_EJECT_OD",
+> +			  "WCAM_PWDN_L",
+> +			  "WCAM_RST_L",
+> +			  "UCAM_SEN_EN",
+> +			  "UCAM_RST_L",
+> +			  "LTE_RESET_L",
+> +			  "LTE_SAR_DETECT_L",
+> +			  "I2S2_DP_SPK_MCK",
+> +			  "I2S2_DP_SPKR_BCK",
+> +			  "I2S2_DP_SPKR_LRCK",
+> +			  "I2S2_DP_SPKR_DI (TP)",
+> +			  "EN_PP1000_EDPBRDG",
+> +			  "EN_PP1800_EDPBRDG",
+> +			  "EN_PP3300_EDPBRDG",
+> +			  "UART_GSC_TX_AP_RX",
+> +			  "UART_AP_TX_GSC_RX",
+> +			  "UART_DBGCON_TX_ADSP_RX",
+> +			  "UART_ADSP_TX_DBGCON_RX",
+> +			  "EN_PP1000_DPBRDG",
+> +			  "TCHSCR_REPORT_DISABLE",
+> +			  "EN_PP3300_DPBRDG",
+> +			  "EN_PP1800_DPBRDG",
+> +			  "SPI_AP_CLK_EC",
+> +			  "SPI_AP_CS_EC_L",
+> +			  "SPI_AP_DO_EC_DI",
+> +			  "SPI_AP_DI_EC_DO",
+> +			  "SPI_AP_CLK_GSC",
+> +			  "SPI_AP_CS_GSC_L",
+> +			  "SPI_AP_DO_GSC_DI",
+> +			  "SPI_AP_DI_GSC_DO",
+> +			  "UART_DBGCON_TX_SCP_RX",
+> +			  "UART_SCP_TX_DBGCON_RX",
+> +			  "EN_PP1200_CAM_X",
+> +			  "EN_PP2800A_VCM_X",
+> +			  "EN_PP2800A_UCAM_X",
+> +			  "EN_PP2800A_WCAM_X",
+> +			  "WLAN_MODULE_RST_L",
+> +			  "EN_PP1200_UCAM_X",
+> +			  "I2S1_HP_DO",
+> +			  "I2S1_HP_BCK",
+> +			  "I2S1_HP_LRCK",
+> +			  "I2S1_HP_MCK",
+> +			  "TCHSCR_RST_1V8_L",
+> +			  "SPI_AP_CLK_ROM",
+> +			  "SPI_AP_CS_ROM_L",
+> +			  "SPI_AP_DO_ROM_DI",
+> +			  "SPI_AP_DI_ROM_DO",
+> +			  "NC",
+> +			  "NC",
+> +			  "EMMC_STRB",
+> +			  "EMMC_CLK",
+> +			  "EMMC_CMD",
+> +			  "EMMC_RST_L",
+> +			  "EMMC_DATA0",
+> +			  "EMMC_DATA1",
+> +			  "EMMC_DATA2",
+> +			  "EMMC_DATA3",
+> +			  "EMMC_DATA4",
+> +			  "EMMC_DATA5",
+> +			  "EMMC_DATA6",
+> +			  "EMMC_DATA7",
+> +			  "AP_KPCOL0",
+> +			  "NC",
+> +			  "NC",
+> +			  "NC",
+> +			  "TP",
+> +			  "SDIO_CLK",
+> +			  "SDIO_CMD",
+> +			  "SDIO_DATA0",
+> +			  "SDIO_DATA1",
+> +			  "SDIO_DATA2",
+> +			  "SDIO_DATA3",
+> +			  "NC",
+> +			  "NC",
+> +			  "NC",
+> +			  "NC",
+> +			  "NC",
+> +			  "NC",
+> +			  "EDPBRDG_PWREN",
+> +			  "BL_PWM_1V8",
+> +			  "EDPBRDG_RST_L",
+> +			  "MIPI_DPI_CLK",
+> +			  "MIPI_DPI_VSYNC",
+> +			  "MIPI_DPI_HSYNC",
+> +			  "MIPI_DPI_DE",
+> +			  "MIPI_DPI_D0",
+> +			  "MIPI_DPI_D1",
+> +			  "MIPI_DPI_D2",
+> +			  "MIPI_DPI_D3",
+> +			  "MIPI_DPI_D4",
+> +			  "MIPI_DPI_D5",
+> +			  "MIPI_DPI_D6",
+> +			  "MIPI_DPI_DA7",
+> +			  "MIPI_DPI_D8",
+> +			  "MIPI_DPI_D9",
+> +			  "MIPI_DPI_D10",
+> +			  "MIPI_DPI_D11",
+> +			  "PCM_BT_CLK",
+> +			  "PCM_BT_SYNC",
+> +			  "PCM_BT_DI",
+> +			  "PCM_BT_DO",
+> +			  "JTAG_TMS_TP",
+> +			  "JTAG_TCK_TP",
+> +			  "JTAG_TDI_TP",
+> +			  "JTAG_TDO_TP",
+> +			  "JTAG_TRSTN_TP",
+> +			  "CLK_24M_WCAM",
+> +			  "CLK_24M_UCAM",
+> +			  "UCAM_DET_ODL",
+> +			  "AP_I2C_EDPBRDG_SCL_1V8",
+> +			  "AP_I2C_EDPBRDG_SDA_1V8",
+> +			  "AP_I2C_TCHSCR_SCL_1V8",
+> +			  "AP_I2C_TCHSCR_SDA_1V8",
+> +			  "AP_I2C_TCHPAD_SCL_1V8",
+> +			  "AP_I2C_TCHPAD_SDA_1V8",
+> +			  "AP_I2C_DPBRDG_SCL_1V8",
+> +			  "AP_I2C_DPBRDG_SDA_1V8",
+> +			  "AP_I2C_WLAN_SCL_1V8",
+> +			  "AP_I2C_WLAN_SDA_1V8",
+> +			  "AP_I2C_AUD_SCL_1V8",
+> +			  "AP_I2C_AUD_SDA_1V8",
+> +			  "AP_I2C_TPM_SCL_1V8",
+> +			  "AP_I2C_UCAM_SDA_1V8",
+> +			  "AP_I2C_UCAM_SCL_1V8",
+> +			  "AP_I2C_UCAM_SDA_1V8",
+> +			  "AP_I2C_WCAM_SCL_1V8",
+> +			  "AP_I2C_WCAM_SDA_1V8",
+> +			  "SCP_I2C_SENSOR_SCL_1V8",
+> +			  "SCP_I2C_SENSOR_SDA_1V8",
+> +			  "AP_EC_WARM_RST_REQ",
+> +			  "AP_XHCI_INIT_DONE",
+> +			  "USB3_HUB_RST_L",
+> +			  "EN_SPKR",
+> +			  "BEEP_ON",
+> +			  "AP_EDP_BKLTEN",
+> +			  "EN_PP3300_DISP_X",
+> +			  "EN_PP3300_SDBRDG_X",
+> +			  "BT_KILL_1V8_L",
+> +			  "WIFI_KILL_1V8_L",
+> +			  "PWRAP_SPI0_CSN",
+> +			  "PWRAP_SPI0_CK",
+> +			  "PWRAP_SPI0_MO",
+> +			  "PWRAP_SPI0_MI",
+> +			  "SRCLKENA0",
+> +			  "SRCLKENA1",
+> +			  "SCP_VREQ_VAO",
+> +			  "AP_RTC_CLK32K",
+> +			  "AP_PMIC_WDTRST_L",
+> +			  "AUD_CLK_MOSI",
+> +			  "AUD_SYNC_MOSI",
+> +			  "AUD_DAT_MOSI0",
+> +			  "AUD_DAT_MOSI1",
+> +			  "AUD_CLK_MISO",
+> +			  "AUD_SYNC_MISO",
+> +			  "AUD_DAT_MISO0",
+> +			  "AUD_DAT_MISO1",
+> +			  "NC",
+> +			  "NC",
+> +			  "DPBRDG_PWREN",
+> +			  "DPBRDG_RST_L",
+> +			  "LTE_W_DISABLE_L",
+> +			  "LTE_SAR_DETECT_L",
+> +			  "EN_PP3300_LTE_X",
+> +			  "LTE_PWR_OFF_L",
+> +			  "LTE_RESET_L",
+> +			  "TP",
+> +			  "TP";
+> +
+> +	aud_clk_mosi_off: aud-clk-mosi-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO166__FUNC_GPIO166>,
+> +				 <PINMUX_GPIO167__FUNC_GPIO167>;
+> +			input-enable;
+> +			bias-pull-down;
+> +		};
+> +	};
+> +
+> +	aud_clk_mosi_on: aud-clk-mosi-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO166__FUNC_AUD_CLK_MOSI>,
+> +				 <PINMUX_GPIO167__FUNC_AUD_SYNC_MOSI>;
+> +		};
+> +	};
+> +
+> +	aud_clk_miso_off: aud-clk-miso-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO170__FUNC_GPIO170>,
+> +				 <PINMUX_GPIO171__FUNC_GPIO171>;
+> +			input-enable;
+> +			bias-pull-down;
+> +		};
+> +	};
+> +
+> +	aud_clk_miso_on: aud-clk-miso-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO170__FUNC_AUD_CLK_MISO>,
+> +				 <PINMUX_GPIO171__FUNC_AUD_SYNC_MISO>;
+> +		};
+> +	};
+> +
+> +	aud_dat_mosi_off: aud-dat-mosi-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO168__FUNC_GPIO168>,
+> +				 <PINMUX_GPIO169__FUNC_GPIO169>;
+> +			input-enable;
+> +			bias-pull-down;
+> +		};
+> +	};
+> +
+> +	aud_dat_mosi_on: aud-dat-mosi-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO168__FUNC_AUD_DAT_MOSI0>,
+> +				 <PINMUX_GPIO169__FUNC_AUD_DAT_MOSI1>;
+> +		};
+> +	};
+> +
+> +	aud_dat_miso_off: aud-dat-miso-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO172__FUNC_GPIO172>,
+> +				 <PINMUX_GPIO173__FUNC_GPIO173>;
+> +			input-enable;
+> +			bias-pull-down;
+> +		};
+> +	};
+> +
+> +	aud_dat_miso_on: aud-dat-miso-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO172__FUNC_AUD_DAT_MISO0>,
+> +				 <PINMUX_GPIO173__FUNC_AUD_DAT_MISO1>;
+> +			input-schmitt-enable;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s0_off: aud-gpio-i2s0-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO3__FUNC_GPIO3>;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s0_on: aud-gpio-i2s0-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO3__FUNC_I2S0_DI>;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s1_off: aud-gpio-i2s-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO56__FUNC_GPIO56>,
+> +				 <PINMUX_GPIO57__FUNC_GPIO57>,
+> +				 <PINMUX_GPIO58__FUNC_GPIO58>,
+> +				 <PINMUX_GPIO59__FUNC_GPIO59>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s1_on: aud-gpio-i2s1-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO56__FUNC_I2S1_DO>,
+> +				 <PINMUX_GPIO57__FUNC_I2S1_BCK>,
+> +				 <PINMUX_GPIO58__FUNC_I2S1_LRCK>,
+> +				 <PINMUX_GPIO59__FUNC_I2S1_MCK>;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s2_off: aud-gpio-i2s2-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO26__FUNC_GPIO26>,
+> +				 <PINMUX_GPIO27__FUNC_GPIO27>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s2_on: aud-gpio-i2s2-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO26__FUNC_I2S2_BCK>,
+> +				 <PINMUX_GPIO27__FUNC_I2S2_LRCK>;
+> +			drive-strength = <4>;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s3_off: aud-gpio-i2s3-off-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO4__FUNC_GPIO4>;
+> +			output-low;
+> +		};
+> +	};
+> +
+> +	aud_gpio_i2s3_on: aud-gpio-i2s3-on-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO4__FUNC_I2S3_DO>;
+> +			drive-strength = <4>;
+> +		};
+> +	};
+> +
+> +	aud_gpio_tdm_off: aud-gpio-tdm-off-pins { };
+> +
+> +	aud_gpio_tdm_on: aud-gpio-tdm-on-pins { };
 
-Signed-off-by: Luka Panio <lukapanio@gmail.com>
----
-v2:
-Update commit message. Drop reserved gpio's as this device in reality do not have gpio, and pins are not protected.
+Hi Chen-Yu,
 
-v3:
-Update commit message.
+These two aud_gpio_tdm empty entries cause this message to be printed:
 
-v4:
-Update commit message.
+[   12.949519] mt8186_mt6366_rt1019_rt5682s sound: there is not valid 
+maps for state aud_gpio_tdm_off
+[   12.959025] mt8186_mt6366_rt1019_rt5682s sound: there is not valid 
+maps for state aud_gpio_tdm_on
 
-v5:
-Update commit message.
 
-v6:
-Update commit message.
+Eugen
 
-v7:
-Fix typo in "chassis-type", remove useless newlines, update license
-
-v8:
-Set real name in arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sm8250-xiaomi-pipa.dts      | 623 ++++++++++++++++++
- 2 files changed, 624 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 2cca20563a1d..41ab333d1f81 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -208,6 +208,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-boe.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-csot.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-pipa.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-new file mode 100644
-index 000000000000..39c94ed4951c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-@@ -0,0 +1,623 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2023 Luka Panio <lukapanio@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "sm8250.dtsi"
-+#include "pm8150.dtsi"
-+#include "pm8150b.dtsi"
-+#include "pm8150l.dtsi"
-+#include "pm8009.dtsi"
-+
-+/*
-+ * Delete following upstream (sm8250.dtsi) reserved
-+ * memory mappings which are different on this device.
-+ */
-+/delete-node/ &adsp_mem;
-+/delete-node/ &cdsp_secure_heap;
-+/delete-node/ &slpi_mem;
-+/delete-node/ &spss_mem;
-+/delete-node/ &xbl_aop_mem;
-+
-+/ {
-+
-+	model = "Xiaomi Pad 6";
-+	compatible = "xiaomi,pipa", "qcom,sm8250";
-+
-+	chassis-type = "tablet";
-+
-+	/* required for bootloader to select correct board */
-+	qcom,msm-id = <QCOM_ID_SM8250 0x20001>; /* SM8250 v2.1 */
-+	qcom,board-id = <0x34 0>;
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer: framebuffer@9c000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x9c000000 0x0 0x2300000>;
-+			width = <1800>;
-+			height = <2880>;
-+			stride = <(1800 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	battery_l: battery-l {
-+		compatible = "simple-battery";
-+		voltage-min-design-microvolt = <3870000>;
-+		energy-full-design-microwatt-hours = <16700000>;
-+		charge-full-design-microamp-hours = <4420000>;
-+	};
-+
-+	battery_r: battery-r {
-+		compatible = "simple-battery";
-+		voltage-min-design-microvolt = <3870000>;
-+		energy-full-design-microwatt-hours = <16700000>;
-+		charge-full-design-microamp-hours = <4420000>;
-+	};
-+
-+	bl_vddpos_5p5: bl-vddpos-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "bl_vddpos_5p5";
-+		regulator-min-microvolt = <5500000>;
-+		regulator-max-microvolt = <5500000>;
-+		regulator-enable-ramp-delay = <233>;
-+		gpio = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	bl_vddneg_5p5: bl-vddneg-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "bl_vddneg_5p5";
-+		regulator-min-microvolt = <5500000>;
-+		regulator-max-microvolt = <5500000>;
-+		regulator-enable-ramp-delay = <233>;
-+		gpio = <&tlmm 131 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vol_up_n>;
-+
-+		key-vol-up {
-+			label = "Volume Up";
-+			gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	/* S6c is really ebi.lvl but it's there for supply map completeness sake. */
-+	vreg_s6c_0p88: smpc6-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_s6c_0p88";
-+		regulator-min-microvolt = <880000>;
-+		regulator-max-microvolt = <880000>;
-+		regulator-always-on;
-+		vin-supply = <&vph_pwr>;
-+	};
-+
-+	reserved-memory {
-+		xbl_aop_mem: xbl-aop@80700000 {
-+			reg = <0x0 0x80600000 0x0 0x260000>;
-+			no-map;
-+		};
-+
-+		slpi_mem: slpi@88c00000 {
-+			reg = <0x0 0x88c00000 0x0 0x2f00000>;
-+			no-map;
-+		};
-+
-+		adsp_mem: adsp@8bb00000 {
-+			reg = <0x0 0x8bb00000 0x0 0x2500000>;
-+			no-map;
-+		};
-+
-+		spss_mem: spss@8e000000 {
-+			reg = <0x0 0x8e000000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		cdsp_secure_heap: cdsp-secure-heap@8e100000 {
-+			reg = <0x0 0x8e100000 0x0 0x4600000>;
-+			no-map;
-+		};
-+
-+		cont_splash_mem: cont-splash@9c000000 {
-+			reg = <0x0 0x9c000000 0x0 0x2300000>;
-+			no-map;
-+		};
-+
-+		ramoops@b0000000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xb0000000 0x0 0x400000>;
-+			record-size = <0x1000>;
-+			console-size = <0x200000>;
-+			ecc-size = <16>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&adsp {
-+	firmware-name = "qcom/sm8250/xiaomi/pipa/adsp.mbn";
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-l1-l8-l11-supply = <&vreg_s6c_0p88>;
-+		vdd-l2-l10-supply = <&vreg_bob>;
-+		vdd-l3-l4-l5-l18-supply = <&vreg_s6a_0p95>;
-+		vdd-l6-l9-supply = <&vreg_s8c_1p35>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_1p9>;
-+		vdd-l13-l16-l17-supply = <&vreg_bob>;
-+
-+		/* (S1+S2+S3) - cx.lvl (ARC) */
-+
-+		vreg_s4a_1p8: smps4 {
-+			regulator-name = "vreg_s4a_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a_1p9: smps5 {
-+			regulator-name = "vreg_s5a_1p9";
-+			regulator-min-microvolt = <1900000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s6a_0p95: smps6 {
-+			regulator-name = "vreg_s6a_0p95";
-+			regulator-min-microvolt = <600000>;
-+			regulator-max-microvolt = <1128000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2a_3p1: ldo2 {
-+			regulator-name = "vreg_l2a_3p1";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3a_0p9: ldo3 {
-+			regulator-name = "vreg_l3a_0p9";
-+			regulator-min-microvolt = <928000>;
-+			regulator-max-microvolt = <932000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L4 - lmx.lvl (ARC) */
-+
-+		vreg_l5a_0p88: ldo5 {
-+			regulator-name = "vreg_l5a_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6a_1p2: ldo6 {
-+			regulator-name = "vreg_l6a_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L7 is unused. */
-+
-+		vreg_l9a_1p2: ldo9 {
-+			regulator-name = "vreg_l9a_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L10 is unused, L11 - lcx.lvl (ARC) */
-+
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-name = "vreg_l12a_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L13 is unused. */
-+
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-name = "vreg_l14a_1p88";
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L15 & L16 are unused. */
-+
-+		vreg_l17a_3p0: ldo17 {
-+			regulator-name = "vreg_l17a_3p0";
-+			regulator-min-microvolt = <2496000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_0p9: ldo18 {
-+			regulator-name = "vreg_l18a_0p9";
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm8150l-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-l1-l8-supply = <&vreg_s4a_1p8>;
-+		vdd-l2-l3-supply = <&vreg_s8c_1p35>;
-+		vdd-l4-l5-l6-supply = <&vreg_bob>;
-+		vdd-l7-l11-supply = <&vreg_bob>;
-+		vdd-l9-l10-supply = <&vreg_bob>;
-+		vdd-bob-supply = <&vph_pwr>;
-+
-+		vreg_bob: bob {
-+			regulator-name = "vreg_bob";
-+			regulator-min-microvolt = <3350000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+		};
-+
-+		/*
-+		 * S1-S6 are ARCs:
-+		 * (S1+S2) - gfx.lvl,
-+		 * S3 - mx.lvl,
-+		 * (S4+S5) - mmcx.lvl,
-+		 * S6 - ebi.lvl
-+		 */
-+
-+		vreg_s7c_0p35: smps7 {
-+			regulator-name = "vreg_s7c_0p35";
-+			regulator-min-microvolt = <348000>;
-+			regulator-max-microvolt = <1000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s8c_1p35: smps8 {
-+			regulator-name = "vreg_s8c_1p35";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1400000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1c_1p8: ldo1 {
-+			regulator-name = "vreg_l1c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L2-4 are unused. */
-+
-+		vreg_l5c_1p8: ldo5 {
-+			regulator-name = "vreg_l5c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c_2p9: ldo6 {
-+			regulator-name = "vreg_l6c_2p9";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c_2p85: ldo7 {
-+			regulator-name = "vreg_l7c_2p85";
-+			regulator-min-microvolt = <2856000>;
-+			regulator-max-microvolt = <3104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8c_1p8: ldo8 {
-+			regulator-name = "vreg_l8c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c_2p9: ldo9 {
-+			regulator-name = "vreg_l9c_2p9";
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10c_3p3: ldo10 {
-+			regulator-name = "vreg_l10c_3p3";
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11c_3p0: ldo11 {
-+			regulator-name = "vreg_l11c_3p0";
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pm8009-rpmh-regulators";
-+		qcom,pmic-id = "f";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vreg_bob>;
-+		vdd-l2-supply = <&vreg_s8c_1p35>;
-+		vdd-l5-l6-supply = <&vreg_bob>;
-+		vdd-l7-supply = <&vreg_s4a_1p8>;
-+
-+		vreg_s1f_1p2: smps1 {
-+			regulator-name = "vreg_s1f_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s2f_0p5: smps2 {
-+			regulator-name = "vreg_s2f_0p5";
-+			regulator-min-microvolt = <512000>;
-+			regulator-max-microvolt = <1100000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L1 is unused. */
-+
-+		vreg_l2f_1p3: ldo2 {
-+			regulator-name = "vreg_l2f_1p3";
-+			regulator-min-microvolt = <1056000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L3 & L4 are unused. */
-+
-+		vreg_l5f_2p8: ldo5 {
-+			regulator-name = "vreg_l5f_2p85";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6f_2p8: ldo6 {
-+			regulator-name = "vreg_l6f_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7f_1p8: ldo7 {
-+			regulator-name = "vreg_l7f_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&cdsp {
-+	firmware-name = "qcom/sm8250/xiaomi/pipa/cdsp.mbn";
-+	status = "okay";
-+};
-+
-+&gmu {
-+	status = "okay";
-+};
-+
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&gpu_mem>;
-+		firmware-name = "qcom/sm8250/xiaomi/pipa/a650_zap.mbn";
-+	};
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	fuel-gauge@55 {
-+		compatible = "ti,bq27z561";
-+		reg = <0x55>;
-+		monitored-battery = <&battery_r>;
-+	};
-+};
-+
-+&i2c11 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	backlight: backlight@11 {
-+		compatible = "kinetic,ktz8866";
-+		reg = <0x11>;
-+		vddpos-supply = <&bl_vddpos_5p5>;
-+		vddneg-supply = <&bl_vddneg_5p5>;
-+		enable-gpios = <&tlmm 139 GPIO_ACTIVE_HIGH>;
-+		current-num-sinks = <5>;
-+		kinetic,current-ramp-delay-ms = <128>;
-+		kinetic,led-enable-ramp-delay-ms = <1>;
-+		kinetic,enable-lcd-bias;
-+	};
-+};
-+
-+&i2c13 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	fuel-gauge@55 {
-+		compatible = "ti,bq27z561";
-+		reg = <0x55>;
-+		monitored-battery = <&battery_l>;
-+	};
-+};
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l5a_0p88>;
-+	vdda-pll-supply = <&vreg_l9a_1p2>;
-+	status = "okay";
-+};
-+
-+&pm8150_gpios {
-+	vol_up_n: vol-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		input-enable;
-+		bias-pull-up;
-+	};
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_2 {
-+	status = "okay";
-+};
-+
-+&slpi {
-+	firmware-name = "qcom/sm8250/xiaomi/pipa/slpi.mbn";
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	vdda-pll-supply = <&vreg_l5a_0p88>;
-+	vdda18-supply = <&vreg_l12a_1p8>;
-+	vdda33-supply = <&vreg_l2a_3p1>;
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+	vdda-phy-supply = <&vreg_l9a_1p2>;
-+	vdda-pll-supply = <&vreg_l18a_0p9>;
-+};
-+
-+&ufs_mem_hc {
-+	vcc-supply = <&vreg_l17a_3p0>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l6a_1p2>;
-+	vccq-max-microamp = <800000>;
-+	vccq2-supply = <&vreg_s4a_1p8>;
-+	vccq2-max-microamp = <800000>;
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l5a_0p88>;
-+	vdda-pll-supply = <&vreg_l9a_1p2>;
-+	status = "okay";
-+};
-+
-+&venus {
-+	firmware-name = "qcom/sm8250/xiaomi/pipa/venus.mbn";
-+	status = "okay";
-+};
--- 
-2.42.0
-
+[...]
 
