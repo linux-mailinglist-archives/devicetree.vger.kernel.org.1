@@ -1,193 +1,129 @@
-Return-Path: <devicetree+bounces-10864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFDD7D2E79
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:35:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AF97D2ECC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:46:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ED37B20DB7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:35:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1014BB20C9E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C6C134D7;
-	Mon, 23 Oct 2023 09:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 420A313AC9;
+	Mon, 23 Oct 2023 09:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUlzZDGA"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="n02jASmO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A60F134A8
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:34:25 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128B81703
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:34:20 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9a6190af24aso487652866b.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:34:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DDD134CD
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:46:16 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E566CA4
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698053659; x=1698658459; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eOCS/2RfNmQmoFsml4/VOeq7KMUi/C5qimLfoXh4PeY=;
-        b=lUlzZDGAmOg6sJaMumTk0Ac5uHgIA+Bn5YKzct2V87baNyMgtJem/pOKlJ023CsQ6t
-         ZFCCh71S/C/GSrWCPkKPFWrjVU3rBFbpzHK/GdVUwv1EOLSdpqEIOWDVQOeGt6AHY29V
-         M1lWDlWI9XzFv77TjNZwxkGBNUpBMw9NIdXDknlSpm2DVdgerH+9EZYfnz2ybdbyEf+m
-         hpcpduYeGG7nPGhXo21lqSY3w570wJ63/gYmmD0vwvxBwXfQb7aKH0nQ8UF4xBR02uHT
-         m28cf8bokqK1OvcfwiAdjoTcpwF6Rv58GHNTdj4vFbQiVyB/azcDgnumRZDCGLJnzfet
-         r2Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698053659; x=1698658459;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eOCS/2RfNmQmoFsml4/VOeq7KMUi/C5qimLfoXh4PeY=;
-        b=ZFRFdoG3E+DtK8Bz8mQaBpRzPrtyT+ZhpYHGgmqrfR93aoeJgn6pQhtYGNljVDjuYY
-         +EZG5QCN9eLczRFINnW5rkAYH0zX404KM+4cql1atj40KO1SPawf13Jl73KA30gpIdb9
-         wwoYT9/T5vq/qZwZfvBru9RBJj3487O5reWGd7Z2SJugpwihzQJ1beTtPF52vfgB8WXW
-         bVYTZBQDQ27mBD5n+iBswljmP//GwNrA7DRb8fgHFYFF9NnmGi3sPH2yyd6VB6Gf8/rg
-         dMpnmODZ8pIPK8IzPWtNbQQWyYFfD6tkgqeVl1OPvTFpkK7PohUJOJgTFPZI2AIJ5inM
-         8Wjw==
-X-Gm-Message-State: AOJu0YyyFqnP5sEooQxID1YXwYx53iJlfW7NDw6az/eyPNSnjktJL39Y
-	O+BD9y0M6vq1SxlveLclKB/sOA==
-X-Google-Smtp-Source: AGHT+IExkFV8MgBc2NlmjF/uEYmlY1vZrLJIAEd8RHSl4u0Grc7c0g07ReIZh6u343y7S+360A6/jA==
-X-Received: by 2002:a17:906:da84:b0:9a5:d657:47e1 with SMTP id xh4-20020a170906da8400b009a5d65747e1mr6621758ejb.43.1698053658862;
-        Mon, 23 Oct 2023 02:34:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z23-20020a170906075700b009b27d4153cfsm6389962ejb.176.2023.10.23.02.34.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 02:34:18 -0700 (PDT)
-Message-ID: <26b65551-1437-4e21-947e-1628052b7c36@linaro.org>
-Date: Mon, 23 Oct 2023 11:34:16 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1698054374; x=1729590374;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=yNDakSBJiLDmDrrKfDAnDXHB76PZcRTWX3Nz0Nx2QS0=;
+  b=n02jASmOhoZ7x2imVnaGu+OVId2UMoG/s/Q+WNpck072p0XFVc6CwoB7
+   hpKFZjq+EHGDWuH/ucnd4kbollq0vuoIlVKgH32plc+hFkPHpCtRWcdJX
+   pk3s+uioMuBoMj2towl+mSU2DZSBo+iH8M7KSb6MC9EU6acYuO1DlxMPH
+   39C6IKuZ8Bda0w8lf5k3q7kVBtenGS7h7tOkmNu4eWkzmr3BypKCYzyeo
+   dLQnTkbB92Sxda6wK6dS6CxMcRYENU15Ul2mPWOZSP1IztpffnlcHa+3d
+   vsuLGw0QbY/bgo44s/wMtW0yg6+DZHWIMrHP914Wzuso7mvFrP7JUJBCF
+   w==;
+X-IronPort-AV: E=Sophos;i="6.03,244,1694728800"; 
+   d="scan'208";a="33597591"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 23 Oct 2023 11:46:12 +0200
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9829828007F;
+	Mon, 23 Oct 2023 11:46:12 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] ARM: dts: imx7s: Add DMA channels for CSPI peripherals
+Date: Mon, 23 Oct 2023 11:46:12 +0200
+Message-Id: <20231023094612.374487-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial
- device tree
-Content-Language: en-US
-To: Luka Panio <lukapanio@gmail.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
- <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20231023090230.43210-1-lukapanio@gmail.com>
- <20231023090230.43210-2-lukapanio@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231023090230.43210-2-lukapanio@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/10/2023 11:02, Luka Panio wrote:
-> Initial support for Xiaomi Pad 6 tablet, that have sm8250 soc.
-> 
-> Signed-off-by: Luka Panio <lukapanio@gmail.com>
-> ---
-> v2:
-> Update commit message. Drop reserved gpio's as this device in reality do not have gpio, and pins are not protected.
-> 
-> v3:
-> Update commit message.
-> 
-> v4:
-> Update commit message.
-> 
-> v5:
-> Update commit message.
-> 
-> v6:
-> Update commit message.
-> 
-> v7:
-> Fix typo in "chassis-type", remove useless newlines, update license
-> 
-> v8:
-> Set real name in arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
+This adds the rx/tx DMA channels for CSPI peripherals. Channel numbers
+are taken from i.MX7D RM Rev1 01/2018.
+Peripheral types ID (7) is selected according to fsl,imx-sdma.yaml and
+is similar to i.MX6 and i.MX8M platforms. Same goes for transfer
+priority ID (last number).
 
-Slow down with these resends. You are spamming us way too much. One
-version of your patchset per day. Max.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Tested on TQMa7D/MBa7x using the on-board SPI attached NOR flash.
 
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sm8250-xiaomi-pipa.dts      | 623 ++++++++++++++++++
->  2 files changed, 624 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2cca20563a1d..41ab333d1f81 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -208,6 +208,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-boe.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-csot.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-pipa.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> new file mode 100644
-> index 000000000000..39c94ed4951c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> @@ -0,0 +1,623 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+ arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-I don't understand why decided to ignore my advice.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+index b563383be695..38a72f969b4e 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+@@ -725,6 +725,8 @@ ecspi4: spi@30630000 {
+ 				clocks = <&clks IMX7D_ECSPI4_ROOT_CLK>,
+ 					<&clks IMX7D_ECSPI4_ROOT_CLK>;
+ 				clock-names = "ipg", "per";
++				dma-names = "rx", "tx";
++				dmas = <&sdma 6 7 1>, <&sdma 7 7 2>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -880,6 +882,8 @@ ecspi1: spi@30820000 {
+ 					clocks = <&clks IMX7D_ECSPI1_ROOT_CLK>,
+ 						<&clks IMX7D_ECSPI1_ROOT_CLK>;
+ 					clock-names = "ipg", "per";
++					dma-names = "rx", "tx";
++					dmas = <&sdma 0 7 1>, <&sdma 1 7 2>;
+ 					status = "disabled";
+ 				};
+ 
+@@ -892,6 +896,8 @@ ecspi2: spi@30830000 {
+ 					clocks = <&clks IMX7D_ECSPI2_ROOT_CLK>,
+ 						<&clks IMX7D_ECSPI2_ROOT_CLK>;
+ 					clock-names = "ipg", "per";
++					dma-names = "rx", "tx";
++					dmas = <&sdma 2 7 1>, <&sdma 3 7 2>;
+ 					status = "disabled";
+ 				};
+ 
+@@ -904,6 +910,8 @@ ecspi3: spi@30840000 {
+ 					clocks = <&clks IMX7D_ECSPI3_ROOT_CLK>,
+ 						<&clks IMX7D_ECSPI3_ROOT_CLK>;
+ 					clock-names = "ipg", "per";
++					dma-names = "rx", "tx";
++					dmas = <&sdma 4 7 1>, <&sdma 5 7 2>;
+ 					status = "disabled";
+ 				};
+ 
+-- 
+2.34.1
 
 
