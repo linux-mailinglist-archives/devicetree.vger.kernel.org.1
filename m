@@ -1,129 +1,145 @@
-Return-Path: <devicetree+bounces-10672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F75C7D276E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:15:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409C67D2770
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A0811C2084D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 00:15:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E54C1C2089C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 00:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A970173;
-	Mon, 23 Oct 2023 00:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB0F19F;
+	Mon, 23 Oct 2023 00:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ek9yWICR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633827E;
-	Mon, 23 Oct 2023 00:15:40 +0000 (UTC)
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A32DA;
-	Sun, 22 Oct 2023 17:15:37 -0700 (PDT)
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 39N0DIsq070639;
-	Mon, 23 Oct 2023 08:13:18 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
- Microsoft SMTP Server id 14.3.498.0; Mon, 23 Oct 2023 08:13:17 +0800
-Date: Mon, 23 Oct 2023 08:13:10 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
-        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
-        <conor.dooley@microchip.com>, <devicetree@vger.kernel.org>,
-        <dminus@andestech.com>, <evan@rivosinc.com>, <geert+renesas@glider.be>,
-        <guoren@kernel.org>, <heiko@sntech.de>, <irogers@google.com>,
-        <jernej.skrabec@gmail.com>, <jolsa@kernel.org>, <jszhang@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
-        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
-        <will@kernel.org>, <ycliang@andestech.com>
-Subject: Re: [PATCH v3 00/13] Support Andes PMU extension
-Message-ID: <ZTW6lgK1oifvtqyH@APC323>
-References: <20231022151858.2479969-1-peterlin@andestech.com>
- <20231022-cabana-crate-503b6e8d0481@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345CE7E;
+	Mon, 23 Oct 2023 00:18:10 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DACCDB;
+	Sun, 22 Oct 2023 17:18:09 -0700 (PDT)
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 5B9676606F85;
+	Mon, 23 Oct 2023 01:18:07 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698020287;
+	bh=4Z1XHTk+ALsRgwRr7R3lLjwa13S7I+K3DpeSPC4sFgA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ek9yWICRyg8JotFltL9yj0hU1kfPisDHrOSSvs9hwB4mKx7HxH+5mLnMk0cqWE5AG
+	 +BJX61xnr8aqDOolSQD2u6f3gTBV+5vHpmrT41mxjjHdu3LE0ColLFoxGOXZpxuIYI
+	 uAAdQQYjgNC4vsuNynoDnA9rvqIrYrY22JPhBb8pDsfafcvduZnpVYn29rCty9CloZ
+	 JNs9/4AwMmMq1mTPSOMkXdAfluhBPOfuhQuCBVlOzNIJHl4GyXfyzT0s2youipjUk7
+	 /iyVJ+6r5dZw3WspwCSGgF8qW6GA5+VG8WD8DXzUTNyN/tWvxZy9PS+zg9EVCT04/E
+	 7AtO7LEjrKMAw==
+Received: by mercury (Postfix, from userid 1000)
+	id E8615106050E; Mon, 23 Oct 2023 02:18:03 +0200 (CEST)
+Date: Mon, 23 Oct 2023 02:18:03 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20231023001803.7fylnbv74zp2ynx7@mercury.elektranox.org>
+References: <20231020150022.48725-1-sebastian.reichel@collabora.com>
+ <20231020150022.48725-2-sebastian.reichel@collabora.com>
+ <20231020-shudder-tackle-cc98a82f1cd0@spud>
+ <20231020160329.uqgjjr6ubfrcqjkj@mercury.elektranox.org>
+ <20231022214219.GA706888-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="efodancjhx3m5yv4"
 Content-Disposition: inline
-In-Reply-To: <20231022-cabana-crate-503b6e8d0481@spud>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Originating-IP: [10.0.12.98]
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 39N0DIsq070639
+In-Reply-To: <20231022214219.GA706888-robh@kernel.org>
 
-On Sun, Oct 22, 2023 at 07:00:28PM +0100, Conor Dooley wrote:
-> Hey,
-> 
-> On Sun, Oct 22, 2023 at 11:18:45PM +0800, Yu Chien Peter Lin wrote:
-> > Hi All,
-> > 
-> > This patch series introduces the Andes PMU extension, which serves
-> > the same purpose as Sscofpmf. In this version we use FDT-based
-> > probing and the CONFIG_ANDES_CUSTOM_PMU to enable perf sampling
-> > and filtering support.
-> > 
-> > Its non-standard local interrupt is assigned to bit 18 in the
-> > custom S-mode local interrupt enable/pending registers (slie/slip),
-> > while the interrupt cause is (256 + 18).
-> > 
-> > The feature needs the PMU device registered in OpenSBI.
-> > The OpenSBI and Linux patches can be found on Andes Technology GitHub
-> > - https://github.com/andestech/opensbi/commits/andes-pmu-support-v2
-> > - https://github.com/andestech/linux/commits/andes-pmu-support-v3
-> > 
-> > The PMU device tree node used on AX45MP:
-> > - https://github.com/andestech/opensbi/blob/andes-pmu-support-v2/docs/pmu_support.md#example-3
-> > 
-> > Tested hardware:
-> > - ASUS  Tinker-V (RZ/Five, AX45MP single core)
-> > - Andes AE350    (AX45MP quad core)
-> > 
-> > Locus Wei-Han Chen (1):
-> >   riscv: andes: Support symbolic FW and HW raw events
-> > 
-> > Yu Chien Peter Lin (12):
-> >   riscv: errata: Rename defines for Andes
-> >   irqchip/riscv-intc: Allow large non-standard hwirq number
-> >   irqchip/riscv-intc: Introduce Andes IRQ chip
-> >   dt-bindings: riscv: Add Andes interrupt controller compatible string
-> >   riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes
-> >     INTC
-> >   perf: RISC-V: Eliminate redundant IRQ enable/disable operations
-> >   RISC-V: Move T-Head PMU to CPU feature alternative framework
-> >   perf: RISC-V: Introduce Andes PMU for perf event sampling
-> >   dt-bindings: riscv: Add T-Head PMU extension description
-> >   dt-bindings: riscv: Add Andes PMU extension description
-> >   riscv: dts: allwinner: Add T-Head PMU extension
-> >   riscv: dts: renesas: Add Andes PMU extension
-> 
-> You only sent 5 of these patches FYI.
 
-Hi Conor,
+--efodancjhx3m5yv4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah... I know. The following emails were intercepted automatically
-due to our data traffic policy. I will resend the whole series soon.
+Hi Rob,
 
-Best regards,
-Peter Lin
+On Sun, Oct 22, 2023 at 04:42:19PM -0500, Rob Herring wrote:
+> On Fri, Oct 20, 2023 at 06:03:29PM +0200, Sebastian Reichel wrote:
+> > On Fri, Oct 20, 2023 at 04:36:19PM +0100, Conor Dooley wrote:
+> > > On Fri, Oct 20, 2023 at 04:11:40PM +0200, Sebastian Reichel wrote:
+> > > > [...]
+> > > > +allOf:
+> > > > +  - $ref: snps,dwc3.yaml#
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            const: rockchip,rk3328-dwc3
+> > > > +    then:
+> > > > +      properties:
+> > > > +        clocks:
+> > > > +          minItems: 3
+> > > > +          maxItems: 4
+> > > > +        clock-names:
+> > > > +          minItems: 3
+> > > > +          items:
+> > > > +            - const: ref_clk
+> > > > +            - const: suspend_clk
+> > > > +            - const: bus_clk
+> > > > +            - const: grf_clk
+> > >=20
+> > > minItems for clocks and clock-names is already 3, is it not?
+> >=20
+> > Yes, but the following 'maxItems: 4' implicitly sets it to 4,
+> > so I had to set it again. The same is true for clock-names -
+> > providings new 'items:' effectively drops the "minItems: 3"
+> > from the generic section.
+>=20
+> Are you sure? We don't add anything implicit in the if/then schemas.=20
+> Could be a tool issue though.
 
+I had this issue in the past. But just in case I also did a re-test
+before sending my last mail and I did get a warning. So yes, I'm
+quite sure :)
+
+-- Sebastian
+
+--efodancjhx3m5yv4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmU1u7gACgkQ2O7X88g7
++ppiog//dTq13sn4IdxnxaJPIqoOT87S1/uSFXDk18+PMySQWvlRgvG6Go7ozL5k
+TKjrhVcYad7SVuJZ+ngEdGkU7RlNui+ioKTwiurqWA1yGC2p6vNm5SCndv9onUPk
+oiaFGoaY+qTlqInwSibs3pT9XrXVY4TXQxALndF48NxV4UyBfhRVeWSC246NYJr+
+BZL0MFKTHdnshHNEDMoBpsVl0tp7kGjFZtbYUYpbTrzNNpb36aR4nGds/ovoqYOL
+Yz2w2EHFvlEpvyTLuXy4UN+pgeayL0wLBG+uk3l4B7ikiO5Yi8GI7DKxRyV9bVvF
+/z1jSj6dbaub0oYO9DR8e3a2k/Z2YZ7DffL8oPf8ZhaZGj6rxZHSzBV2ipt5wTwZ
+5YyWQtWuxmka4PrJfFLxm3syheXWnwyUnvFAeuBM/hbp5TtdpIq0zcfVX/T9AcFt
+PctvrZo4HLOxnwQoyd+lnTFrhw4VygC9akpUWHj+3KXzVCB80W/qX63DiLL0X7cq
+Snx1KgXTHZ0AM0J5nCWK2ttN7/yU54kqwg2v/sSRp6iyY24kau9endcwi8v5pdIx
+e2ci77l3IfIKpoKUgpsiKxQp6H2pQ6B2qwodlfcaphde1GDEdeCPplILEC1IsstQ
+bXuYBy3niQdeh+F5W0YWbwQpQ2Ns030D6ZUWs4ft9Dqut2C/fgk=
+=F+il
+-----END PGP SIGNATURE-----
+
+--efodancjhx3m5yv4--
 
