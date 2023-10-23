@@ -1,105 +1,156 @@
-Return-Path: <devicetree+bounces-11066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D18D7D3F4E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:33:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67ADB7D3F58
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:36:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85D46B20D27
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:33:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FAF8281479
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42DF219FD;
-	Mon, 23 Oct 2023 18:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66461C2AC;
+	Mon, 23 Oct 2023 18:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="B26rZWfz"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="EkD5tiCB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D469219F0
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 18:33:08 +0000 (UTC)
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6D1FD
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:33:06 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-778999c5ecfso254084085a.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:33:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FB5219E8
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 18:36:32 +0000 (UTC)
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797E8BD
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:36:31 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-7788db95652so255468185a.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:36:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1698085986; x=1698690786; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=weKQeYDjC8Miy6wNcNTzw6LxRY9DckTpIeFDe0ceyEg=;
-        b=B26rZWfz3fF9WaHoHoGSdmG1yBYeDhlFKPo3BAK5gc6BXMq3/3tCjxt0BkNReG1nAq
-         uAt7b2ro/AbG5Kk6AeJ3aaJsX1AuLbxpbDbNb/qsg0zwtaKdPZItfhsoG2icPgsxDiha
-         Bvwp+wHqzrONDdKTSTTf904E2QKlUsvutSbrc=
+        d=broadcom.com; s=google; t=1698086190; x=1698690990; darn=vger.kernel.org;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P6lMb0UZb8r8TRmRDirfHTigTBhrAW9wLoF5otwjcVg=;
+        b=EkD5tiCBvXCXcksuFQhMNgCxBz7AWlNJ/nhWMsDZf+4EKZhWHYQCBG8ItO3fCSejoI
+         Wmal8ifADTMoXxGuzcRAqz5Mf+3VFOrZ2/0EzvVq0UCDid+pj+Uqyg/o1l2pCYs4EPsk
+         A0H4fxz+YUU0lHG5rVPO4acjzh2SxlC3etqKU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698085986; x=1698690786;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=weKQeYDjC8Miy6wNcNTzw6LxRY9DckTpIeFDe0ceyEg=;
-        b=rSXmj5YkafQ4CshYeqL+vJ83mE7chYN6xPGDYsyCFrn0TR/D73vDgVyZxlKTE7irLh
-         5ETLW98ikz7s5ydEK+Xwqduq/3H/3XJ1pdIkdZTC+SZbwcz23zDGvpaDvMsHJc2/EugD
-         aL0vwB73q3NgOCS9gx+Lh66vYwc9RlJnTPjwV2AKm1/0ryGIF8o6O/xvkIME26kq7kQD
-         RJ4oej2UTiNwKh98vtLJPxO5OHSoiA4Ba4MKvaLFWnDzBV5T6q/mrc+ZBfsUrjN9GFHi
-         LdX50jOGhTJyil/V+QAsZDlCrNFQHWK4FwGJzMVu5m9N+X0SqlVMLPih8fdfSw7PZH5+
-         2JTQ==
-X-Gm-Message-State: AOJu0YxyTPSkim5W/9EPIfnjJ74z3PapXx/eJX5R3nx6I/mGgG0XhGk7
-	EOX9eA4H01vyFp8pfSJS7L7mrQ==
-X-Google-Smtp-Source: AGHT+IExUtGwoRlLS93CXr4gBeQz2wENaOK0pH0VNtGbYBVn3vDu8lY2FyjVY0WJixfPxNIITwkFCg==
-X-Received: by 2002:a05:620a:bcb:b0:770:f346:e9e8 with SMTP id s11-20020a05620a0bcb00b00770f346e9e8mr11430387qki.10.1698085985871;
-        Mon, 23 Oct 2023 11:33:05 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id bm32-20020a05620a19a000b007758b25ac3bsm2895452qkb.82.2023.10.23.11.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Oct 2023 11:33:05 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear R8000 CPU ports
-Date: Mon, 23 Oct 2023 11:33:02 -0700
-Message-Id: <20231023183302.1192686-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231013103314.10306-2-zajec5@gmail.com>
-References: <20231013103314.10306-1-zajec5@gmail.com> <20231013103314.10306-2-zajec5@gmail.com>
+        d=1e100.net; s=20230601; t=1698086190; x=1698690990;
+        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=P6lMb0UZb8r8TRmRDirfHTigTBhrAW9wLoF5otwjcVg=;
+        b=wMztn4mbaPQDnD3vJ1SVH+wu8rWpF/Ebi7xod39qBC5slqWGfJHx9Fz/rlcYaOfevI
+         5S3dtv3auqV7ARl3ElJQuJAUzkD4du841POqSRMRyyGAdhuWUic7zdyV61W9uPPoZkRO
+         YpPQgt/yh7qPFBzX3IhxyAdivG7yROgJvmAPuU4J22nCbmhN0dDcOqS3VrnJotQbkBr9
+         sEUpn/LOJAPHdAATpXW7dM2H9ArQzyICBmc/yiOSBOru4yfhqRcFbF9KhhWfnprWBphs
+         Oxvm8dVhgut4IxVsPtiRLNyUbEGRBgMqHBEBxmaBYVd1pCSAFmtGheC+gedXckUrGv0D
+         meAg==
+X-Gm-Message-State: AOJu0YyoBegHlWbDcNl1EsB0K7qjmvFVSLrIoX7BQL9/D46ZxiKagxRl
+	aeGrg/QuC9Pf4fnGPVRqZ/4vSA==
+X-Google-Smtp-Source: AGHT+IFP0rFPlH70zsKSuhJlJ0z9LSVvnL82ZgXVDi+veijs6bSmU5sJ3QNayTZz6DAvskYWDKC5zA==
+X-Received: by 2002:a05:6214:404:b0:626:f3d:9e46 with SMTP id z4-20020a056214040400b006260f3d9e46mr11640348qvx.18.1698086190532;
+        Mon, 23 Oct 2023 11:36:30 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id di5-20020ad458e5000000b0065b1f90ff8csm3062685qvb.40.2023.10.23.11.36.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 11:36:29 -0700 (PDT)
+Message-ID: <f5329b80-1a72-4083-823e-07e9a884ddbb@broadcom.com>
+Date: Mon, 23 Oct 2023 11:36:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear
+ R8000 CPU ports
+To: bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <zajec5@gmail.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, Hauke Mehrtens
+ <hauke@hauke-m.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20231013103314.10306-1-zajec5@gmail.com>
+ <20231013103314.10306-2-zajec5@gmail.com>
+ <20231023183302.1192686-1-florian.fainelli@broadcom.com>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ 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
+In-Reply-To: <20231023183302.1192686-1-florian.fainelli@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000000181aa0608667420"
+	boundary="000000000000344ec606086680a8"
 
---0000000000000181aa0608667420
-Content-Type: text/plain; charset=UTF-8
+--000000000000344ec606086680a8
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Fri, 13 Oct 2023 12:33:14 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 10/23/23 11:33, Florian Fainelli wrote:
+> From: Florian Fainelli <f.fainelli@gmail.com>
 > 
-> While switch ports 5 and 7 are disabled (vendor designed port 8 to be
-> used for CPU traffic) they could be used strictly technically. For some
-> reason however both those ports need forcing link to be usable.
+> On Fri, 13 Oct 2023 12:33:14 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> While switch ports 5 and 7 are disabled (vendor designed port 8 to be
+>> used for CPU traffic) they could be used strictly technically. For some
+>> reason however both those ports need forcing link to be usable.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
+Ended up with the following commit message:
+
+Ports 5 and 7 are disabled by default because the standard use case is
+for port 8 to manage all CPU directed traffic. For experimentation
+purposes however it is desirable to provide adequate properties such
+that people can experiment with using different ports without having to
+figure out their configuration. Some of the use cases include but are
+not limited to doubling or tripling the bandwidth by leveraging the
+additional ports/Ethernet MAC combinations.
+
+
+let me know if I should rephrase it before pushing this to the the ARM 
+SoC maintainers (tomorrow).
+-- 
 Florian
 
---0000000000000181aa0608667420
+
+--000000000000344ec606086680a8
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -170,15 +221,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIAFu0o8E8cNBLbSF
-OMoXIfUY5DTT+dq/FeDoNIAEpRTkMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTAyMzE4MzMwNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOXO7GpeBWFyGnEl
+gS5t+7DTg21dd8U2R9FUapoHYaISMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTAyMzE4MzYzMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAPaDl4mTIKZ8qG9AlEAYtgmK96ep0gwOQK
-jP9iM6yvdNvDR4vtnbtfRbhIST6wH5FXf6vhy2YTWfj8BGMlv3zaVpeFn9cIXhUfcG+cJYuDNkNu
-foX3wgqLG26Ara2wo/txO3rprhbafEOPUHlea+hCBtiqXl42QCIr1yHnqNB4j3592ZULuCAd+aEc
-6wJQ7gZxFWTMQxo6UO0J6QiTr6Wf56YWW7450jOkOFrrB5gw7xua6a5Kirc+pvW8FjraTTfLTsFE
-KSEuGZpbv1Gq25/ABNSYte+aqGTboEt1yI/2PR4u0f6xidSi53+vWBdEYDw7nRTUUZkH5Q8MelqZ
-FGAR
---0000000000000181aa0608667420--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQADBhfBiudCsFaaP1SfgbF/Jeo45ULHQf5F
+Vb/8hJiY7OUJoDi4TPImXPnPYwl0PPbEfdYASUWcMD2UtH9BStgD51OqLwGVdLyqF56GFola8cn0
+/h4rYfNs1eIFotsHfptk2RpUD/X1NIGHocx6SvOmHSRAsLOhvtJxIKfbmyoFopd2tkM51r09sH+O
+zwbscHUH437ekvK6IRUopyuTbEwYa/5BYBqk4/Odc5mPTuifxYz74/jOtA/sy51mFT6xbLiRh6Ql
+MsoF/UhJz5lnnmAIcymKKV+FqLo+KSOptKev1ypKUQ3ZEmtm3nCWacDJcBBe0Yz9YxbNb8FhVsQj
+/cWC
+--000000000000344ec606086680a8--
 
