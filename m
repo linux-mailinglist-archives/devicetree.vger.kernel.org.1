@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68EB7D2E4D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:31:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E737D2E53
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AA452811CF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:31:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20B2EB20CBB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503BB134AF;
-	Mon, 23 Oct 2023 09:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E61134AF;
+	Mon, 23 Oct 2023 09:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wFkIGymV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lHRo4DTL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E24747A
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9EF31FDB
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:32:23 +0000 (UTC)
 Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBB6BE
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:31:24 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9be02fcf268so446144766b.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:31:24 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B00197
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:32:22 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9c5b313b3ffso438687266b.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:32:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698053483; x=1698658283; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698053540; x=1698658340; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tyFzM67x1/2Iv4+IBgYZUNJYMjWASdOO23llnCqnyIA=;
-        b=wFkIGymV0HKs0TbYYDkZm2W3SnBBciJ4gyReg9y85QVJPACx08PaqGq3rHQpZF9iZT
-         2ev5DOa6KRr1GYlDmX5zOk2jktJsZ4/Ay66YD1VBwn+oOtrAcLc99kjx8h+TZJZ9g6ZO
-         3jDtvGokMSe6rkzxsueRJbkjq5UkeQGVHPJQZi/SjV+9iwT6zSGgyO7CaR3cSFrIdm6S
-         kopiOvx5PDDum24CAsgrcJ1TX+znpfhj0rFH3aNsWDGg/FpCco9jhXtcPQde0bJTzin3
-         wdDvE7m3EwoP4kmI+wmcuCBa7PM3+FVsdb84luBNLaogJkGYTR8bp2Z7YZOXVjVBrXnt
-         pQGg==
+        bh=8ft7MIvpYJY02cNf4li75+d93ztRdElHNTCufIUN/dc=;
+        b=lHRo4DTLmuqhdyCACYP/oG/S5loF6fEK5PRLi6yZ6eDCLlQ3IEH0bBl5WmyimgilzR
+         K5K40o8svr+fMGpWKprAMeu95LUOHuf7kcGqAyEv59vEoopRXJSxgBYiq1pt86K4wJ4l
+         cROae0xr0/r3MiEEuVU9zkxFSYxfpiNjbdNWoE78MRF/RsUJ43ocaJeO4rzoIxQg/YfZ
+         n2ZA1kXLPxiQyS+d2hBBb5pH8TVfSFZPpxl+Mhba+b/6ZVq5DIwl/tSvGb3vE0UaZkvI
+         QL8CyTgfGVgvtt2Ws0JuTPSs2VvEH7+eqAt4MT0g9fH5Nuo1ERlxbF+bABGqGmfqBqjL
+         Ry1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698053483; x=1698658283;
+        d=1e100.net; s=20230601; t=1698053540; x=1698658340;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tyFzM67x1/2Iv4+IBgYZUNJYMjWASdOO23llnCqnyIA=;
-        b=fAO78yMsaa341ouejvrRHMtGoI1K7MYkecd+HzNJIR/iJC7nOHphyEd3CiXG3lJyn3
-         +Ri49qVKNOGVujhNSUR9baolZttHKDeSu7kaBT3Y9CsOEnEKgwoN9Wf0tujDQFFZHTdi
-         kwN5g01zm5pynYNhiU5p4S5s6gJXLFIDy3Hog8m/V1xL7iuJLfdij6xLOWEwp7vmpUam
-         HqZm4fXp8gCtdihXD7Mzn52fslvDJYqPFVn8G5ecILJv5jBCpmwv6xOSZjFByImBPijj
-         WuRGcV90/gDfy179m8RLoI11GDWhdCmycK0b0P+/ccp4cvqCt2+Re3FJiAXcL9vqOgBR
-         xhgg==
-X-Gm-Message-State: AOJu0YxOfXjuyQCNb86YwQS8doNBdJM5LxJPVvv/ojrPQvPeY208GU/J
-	iUASWOYAojLL+n5Yg6YBgJtJjw==
-X-Google-Smtp-Source: AGHT+IGvGw7VaAxRV7tuzC8re9PUOmwoMFVRp8KzNDobE6qN4NnguuqTj3H6emVkvVYGFjMXYzsfWg==
-X-Received: by 2002:a17:907:3f85:b0:9be:4eb8:5b1e with SMTP id hr5-20020a1709073f8500b009be4eb85b1emr6832064ejc.59.1698053482830;
-        Mon, 23 Oct 2023 02:31:22 -0700 (PDT)
+        bh=8ft7MIvpYJY02cNf4li75+d93ztRdElHNTCufIUN/dc=;
+        b=M5aWqjvMpLRT5tjnY6B3Rfuaby8t1osJx5kO/xx4UuST0j2ni8WxX3/U3/6hZHVFAz
+         L3xyxjTmeFHTx+awgKPQ+WSzhXHcyPX72eXp5Fdxj+2CV1N88ASSimMt8g3pLooTFLjd
+         JpgSqZFpWl0GezCd4kZxCaoV1C38fTnBGfAoUaateTdQcqY6hJhxKS4IEMwekOb9nn3j
+         ZpWZYxKGmyQjL2VJgLOGsdOhhcqaJGrJAppXlwhAT6Qykxx0ORk35Vg2RqEWOJfTOQTM
+         zearyBO23zYJdSMj46SAzokYGf0XEwmNqv7NY/ZL6W3V56kMNUDjrVSx8RAj3rpqfLSA
+         OBYw==
+X-Gm-Message-State: AOJu0Yw4br9Rd4PVVwvumswFptj9SzLA4hCqcwvBzCTwRf6XtCgwNNpG
+	n4pZAXiefsrzAvemjgjAFqEZPw==
+X-Google-Smtp-Source: AGHT+IFs48ObQ/rUFpza+UFse27hu34z8lQM0x/pvnxVvQQIONYNvFU2OzHnJ/btQ31kR972S31c3w==
+X-Received: by 2002:a17:907:25c3:b0:9bf:39f3:f11a with SMTP id ae3-20020a17090725c300b009bf39f3f11amr6529060ejc.74.1698053540660;
+        Mon, 23 Oct 2023 02:32:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z23-20020a170906075700b009b27d4153cfsm6389962ejb.176.2023.10.23.02.31.21
+        by smtp.gmail.com with ESMTPSA id z23-20020a170906075700b009b27d4153cfsm6389962ejb.176.2023.10.23.02.32.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 02:31:22 -0700 (PDT)
-Message-ID: <5bac8188-7d27-4efe-9493-dec4393fbeb0@linaro.org>
-Date: Mon, 23 Oct 2023 11:31:20 +0200
+        Mon, 23 Oct 2023 02:32:20 -0700 (PDT)
+Message-ID: <f3d3a532-bb01-4ed7-be0a-ec021095964a@linaro.org>
+Date: Mon, 23 Oct 2023 11:32:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/5] soc: qcom: memory_dump: Add memory dump driver
+Subject: Re: [PATCH v1 4/5] arm64: defconfig: enable Qcom Memory Dump driver
 Content-Language: en-US
 To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -75,7 +75,7 @@ To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_tingweiz@quicinc.com
 References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-4-git-send-email-quic_zhenhuah@quicinc.com>
+ <1698052857-6918-5-git-send-email-quic_zhenhuah@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,199 +121,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1698052857-6918-4-git-send-email-quic_zhenhuah@quicinc.com>
+In-Reply-To: <1698052857-6918-5-git-send-email-quic_zhenhuah@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/10/2023 11:20, Zhenhua Huang wrote:
-> Qualcomm memory dump driver initializes system memory dump table.
-> Firmware dumps system cache, internal memory, peripheral registers
-> to DDR as per this table after system crashes and warm resets. The
-> driver reserves memory, populates ids and sizes for firmware dumping
-> according to the configuration.
+> Enable Qcom Memory Dump driver to allow storing debugging
+
+s/Qcom/Qualcomm/
+
+> information after crash by firmware, including cache
+> contents, internal memory, registers.
+
+Which boards and SoCs need it? This is a defconfig for all platforms,
+not for Qualcomm only.
+
 > 
-> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-> ---
 
-...
 
-> +
-> +/* populate allocated region */
-> +static int __init mem_dump_populate_mem(struct device *dev,
-> +					struct page *start_page,
-> +					size_t total_size)
-> +{
-> +	struct qcom_memory_dump *memdump = dev_get_drvdata(dev);
-> +	struct qcom_dump_entry dump_entry;
-> +	struct qcom_dump_data *dump_data;
-> +	struct xbc_node *linked_list;
-> +	phys_addr_t phys_end_addr;
-> +	phys_addr_t phys_addr;
-> +	const char *size_p;
-> +	void *dump_vaddr;
-> +	const char *id_p;
-> +	int ret = 0;
-> +	int size;
-> +	int id;
-> +
-> +	phys_addr = page_to_phys(start_page);
-> +	phys_end_addr = phys_addr + total_size;
-> +	dump_vaddr = page_to_virt(start_page);
-> +
-> +	ret = mem_dump_register_data_table(dev, dump_vaddr, phys_addr);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Mem Dump table set up is failed\n");
-> +		return ret;
-
-That's not the syntax. Syntax is return dev_err_probe
-
-> +	}
-> +
-> +	ret = qcom_init_memdump_imem_area(dev, total_size);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Apply two tables: QCOM_DUMP_TYPE_TABLE and QCOM_DUMP_TYPE_DATA */
-> +	mem_dump_apply_offset(&dump_vaddr, &phys_addr,
-> +			      sizeof(struct qcom_dump_table) * 2);
-> +
-> +	/* Both "id" and "size" must be present */
-> +	xbc_node_for_each_subkey(memdump->mem_dump_node, linked_list) {
-> +		const char *name = xbc_node_get_data(linked_list);
-> +
-> +		if (!name)
-> +			continue;
-> +
-> +		id_p = xbc_node_find_value(linked_list, "id", NULL);
-> +		size_p = xbc_node_find_value(linked_list, "size", NULL);
-> +
-> +		if (id_p && size_p) {
-> +			ret = kstrtoint(id_p, 0, &id);
-> +			if (ret)
-> +				continue;
-> +
-> +			ret = kstrtoint(size_p, 0, &size);
-> +
-> +			if (ret)
-> +				continue;
-> +
-> +		/*
-> +		 * Physical layout: starting from two qcom_dump_data.
-> +		 * Following are respective dump meta data and reserved regions.
-> +		 * Qcom_dump_data is populated by the driver, fw parse it
-> +		 * and dump respective info into dump mem.
-> +		 * Illustrate the layout:
-> +		 *
-> +		 *   +------------------------+------------------------+
-> +		 *   | qcom_dump_table(TABLE) | qcom_dump_table(DATA)  |
-> +		 *   +------------------------+------------------------+
-> +		 *   +-------------+----------+-------------+----------+
-> +		 *   |qcom_dump_data| dump mem|qcom_dump_data| dump mem |
-> +		 *   +-------------+----------+-------------+----------+
-> +		 *   +-------------+----------+-------------+----------+
-> +		 *   |qcom_dump_data| dump mem|qcom_dump_data| dump mem |
-> +		 *   +-------------+----------+-------------+----------+
-> +		 *   ...
-> +		 */
-
-You have wrong indentation here.
-
-> +			dump_data = dump_vaddr;
-> +			dump_data->addr = phys_addr + QCOM_DUMP_DATA_SIZE;
-> +			dump_data->len = size;
-> +			dump_entry.id = id;
-> +			strscpy(dump_data->name, name,
-> +				sizeof(dump_data->name));
-> +			dump_entry.addr = phys_addr;
-> +			ret = mem_dump_data_register(dev, QCOM_DUMP_TABLE_LINUX,
-> +						     &dump_entry);
-> +			if (ret) {
-> +				dev_err_probe(dev, ret, "Dump data setup failed, id = %d\n",
-> +					      id);
-
-Syntax is return dev_err_probe
-
-> +				return ret;
-> +			}
-> +
-> +			mem_dump_apply_offset(&dump_vaddr, &phys_addr,
-> +					      size + QCOM_DUMP_DATA_SIZE);
-> +			if (phys_addr > phys_end_addr) {
-> +				dev_err_probe(dev, -ENOMEM, "Exceeding allocated region\n");
-
-ENOMEM? Does not look right then.
-
-> +				return -ENOMEM;
-> +			}
-> +		} else {
-> +			continue;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int __init mem_dump_probe(struct platform_device *pdev)
-> +{
-> +	struct qcom_memory_dump *memdump;
-> +	struct device *dev = &pdev->dev;
-> +	struct page *page;
-> +	size_t total_size;
-> +	int ret = 0;
-> +
-> +	memdump = devm_kzalloc(dev, sizeof(struct qcom_memory_dump),
-> +			       GFP_KERNEL);
-> +	if (!memdump)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, memdump);
-> +
-> +	/* check and initiate CMA region */
-> +	ret = mem_dump_reserve_mem(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* allocate and populate */
-> +	page = mem_dump_alloc_mem(dev, &total_size);
-> +	if (IS_ERR(page)) {
-> +		ret = PTR_ERR(page);
-> +		dev_err_probe(dev, ret, "mem dump alloc failed\n");
-
-No, the syntax is:
-ret = dev_err_probe
-
-But why do you print messgaes for memory allocations?
-
-> +		goto release;
-> +	}
-> +
-> +	ret = mem_dump_populate_mem(dev, page, total_size);
-> +	if (!ret)
-> +		dev_info(dev, "Mem dump region populated successfully\n");
-
-Drop simple probe success messages. Not needed.
-
-> +	else
-> +		goto free;
-> +
-> +	return 0;
-> +
-> +free:
-> +	cma_release(dev_get_cma_area(dev), page, (total_size / PAGE_SIZE));
-> +
-> +release:
-> +	of_reserved_mem_device_release(dev);
-
-Where is cleanup on unbind?
-
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id mem_dump_match_table[] = {
-> +	{.compatible = "qcom,mem-dump",},
-> +	{}
-> +};
-> +
 Best regards,
 Krzysztof
 
