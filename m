@@ -1,165 +1,94 @@
-Return-Path: <devicetree+bounces-11060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6FF7D3E10
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:43:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C0C7D3E17
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E13C1C2087C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:43:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45F0E2815C7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37241210F3;
-	Mon, 23 Oct 2023 17:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dnurKmnx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF11E21116;
+	Mon, 23 Oct 2023 17:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D417D200BF;
-	Mon, 23 Oct 2023 17:43:05 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9E498;
-	Mon, 23 Oct 2023 10:43:03 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39NGrEWF021316;
-	Mon, 23 Oct 2023 17:42:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Thbvvz6X+dAXdwI8GyfmFVSpYdfQyNnRvRh5T6KVgDs=;
- b=dnurKmnxAhvUTlo44pBlF+ZYn8UMDEf2aCqDckdxHoVmISI0dPSFEa6klZCDBWvH1moa
- lChPJ5MkEbpvaUwuWyvWPEkqNIAFgMF0wVZ4LmVS7rLaHXj5zIwt3IHnPd6ygP4IAJVr
- oK3afcJyYH4YUmLmu5uin15Uydp4YOE83PBb47Jazb9ij5z1x0jOL9vs4mW94AHFp9NW
- Q8EGeOHrFZ1OnxRAawB3XvbctXekLr9dpeZPkEXAsBXLJK8oiSDrBUNcBTRo67cea+jU
- bwCid2a/H2ONmnYlFk0uqPDDRkEOSZgl3L/JIMewKNtm5GeqXdpbv72HBQ5UMcO2p4bs rw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twtxwrejb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 17:42:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39NHgqIF007389
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 17:42:52 GMT
-Received: from [10.216.7.46] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 23 Oct
- 2023 10:42:45 -0700
-Message-ID: <faa647ed-9692-4233-b421-b9e6271f8934@quicinc.com>
-Date: Mon, 23 Oct 2023 23:12:40 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EFE200BF;
+	Mon, 23 Oct 2023 17:43:43 +0000 (UTC)
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B926FF;
+	Mon, 23 Oct 2023 10:43:42 -0700 (PDT)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-583552eafd3so1929325eaf.0;
+        Mon, 23 Oct 2023 10:43:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698083021; x=1698687821;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c7LX1REoaUHg4Ho2SH1SkZYL3w8GokVQSY2mKadQZME=;
+        b=KE4NYb5CfVc9teXuBFUmlPzfbWSIAuTw9zodVj3Z3MNfJykKQZ3XQRD6j4SJjlHIcL
+         RvTnEfEv6YGYlTndWkybxwyJbYuIGSBtqtT2/oSKSksCLCmFmrJi7q5igDbTvngjJVuJ
+         2MGYFgtmt2ezxFbmftNfNCSP6qqt4oBMezrCJBqCb7GwU+5ihhPT2Rapg7rYzzVUrt3K
+         pfkcX4aXbkyyzr+VuSaiaVLwkrtQsVbofCeEc6WvRd3632dG+lFHGycrwL2sWBcfmVMG
+         sd5HeLWeE62zKT9/ib5kNOkY5k9gdWpWUtl+F68q8TVv8aryeaSqwJKMyVnxBFMIr3d4
+         aNXw==
+X-Gm-Message-State: AOJu0Yzt6JkD3BtAqpnopuduGdnW8eSVLCOq9HARYAkcAawa6YJ3CRsv
+	arXt5CZoFvh/fdKKCpwq4w==
+X-Google-Smtp-Source: AGHT+IH4CGn5BouhmBudMVEJ2xntrZh9i20oGkrxRttcAVrPeJoL+bhkvjPFJBIFu46oMns3TmYouA==
+X-Received: by 2002:a4a:db89:0:b0:582:c8b4:d9df with SMTP id s9-20020a4adb89000000b00582c8b4d9dfmr9412997oou.1.1698083021376;
+        Mon, 23 Oct 2023 10:43:41 -0700 (PDT)
+Received: from herring.priv ([2607:fb91:e6e0:8169:8cd7:6070:de02:c079])
+        by smtp.gmail.com with ESMTPSA id f22-20020a4ace96000000b0057bb406dc31sm1589980oos.2.2023.10.23.10.43.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 10:43:40 -0700 (PDT)
+Received: (nullmailer pid 867812 invoked by uid 1000);
+	Mon, 23 Oct 2023 17:43:35 -0000
+Date: Mon, 23 Oct 2023 12:43:35 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Christian Marangi <ansuelsmth@gmail.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v5 1/7] dt-bindings: net: dsa: Require ports or
+ ethernet-ports
+Message-ID: <20231023174335.GA865777-robh@kernel.org>
+References: <20231023-marvell-88e6152-wan-led-v5-0-0e82952015a7@linaro.org>
+ <20231023-marvell-88e6152-wan-led-v5-1-0e82952015a7@linaro.org>
+ <CACRpkdZ_o0pMXZEVWfGiu2tPjv=dLMagT6KF-d=kaZ6fJZqr0A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 09/10] arm64: dts: qcom: sa8295p: Enable tertiary
- controller and its 4 USB ports
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-10-quic_kriskura@quicinc.com>
- <ZTad-_toGkumYx6O@hovoldconsulting.com>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZTad-_toGkumYx6O@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gM9Yoy4cwfT-mfFK2KJNiKj1cExvwry2
-X-Proofpoint-GUID: gM9Yoy4cwfT-mfFK2KJNiKj1cExvwry2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-23_16,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0 spamscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- mlxlogscore=792 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310230154
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZ_o0pMXZEVWfGiu2tPjv=dLMagT6KF-d=kaZ6fJZqr0A@mail.gmail.com>
 
-
-
-On 10/23/2023 9:53 PM, Johan Hovold wrote:
-> On Sat, Oct 07, 2023 at 09:18:05PM +0530, Krishna Kurapati wrote:
->> Enable tertiary controller for SA8295P (based on SC8280XP).
->> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 49 ++++++++++++++++++++++++
->>   1 file changed, 49 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> index fd253942e5e5..271000163823 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->> @@ -9,6 +9,7 @@
->>   #include <dt-bindings/gpio/gpio.h>
->>   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>   #include <dt-bindings/spmi/spmi.h>
->> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+On Mon, Oct 23, 2023 at 09:51:00AM +0200, Linus Walleij wrote:
+> On Mon, Oct 23, 2023 at 9:19 AM Linus Walleij <linus.walleij@linaro.org> wrote:
 > 
-> Sort order ('p' < 'r').
-
-ACK
-
+> > Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+> > a DSA switch node need to have a ports or ethernet-ports
+> > subnode, and that is actually required, so add requirements
+> > using oneOf.
+> >
+> > Suggested-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> (...)
+> > +  oneOf:
+> > +    - required:
+> > +      - ports
+> > +    - required:
+> > +      - ethernet-ports
 > 
->> +&usb_2 {
->> +	pinctrl-0 = <&usb2_en_state>,
->> +		    <&usb3_en_state>,
->> +		    <&usb4_en_state>,
->> +		    <&usb5_en_state>;
->> +	pinctrl-names = "default";
->> +
->> +	status = "okay";
->> +};
->> +
->>   &usb_2_hsphy0 {
->>   	vdda-pll-supply = <&vreg_l5a>;
->>   	vdda18-supply = <&vreg_l7g>;
->> @@ -729,3 +740,41 @@ wake-n-pins {
->>   		};
->>   	};
->>   };
->> +
->> +&pmm8540c_gpios {
-> 
-> Sort order here too ('p' < 't' in "&tlmm").
-> 
+> Ooops I meant to drop the patch altogether because I just
+> couldn't figure out how to test this.
 
-ACK.
+Just move it up a level (no indent).
 
->> +	usb2_en_state: usb2-en-state {
-> 
-> No need to include '_state' in the labels.
-> 
-Any specific reason ? I have no problem if removing the suffix but just 
-wanted to know the reason.
-
-Regards,
-Krishna,
+Rob
 
