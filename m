@@ -1,235 +1,390 @@
-Return-Path: <devicetree+bounces-11067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67ADB7D3F58
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:36:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 145C37D3F5F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:38:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FAF8281479
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:36:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5A95B20E75
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66461C2AC;
-	Mon, 23 Oct 2023 18:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="EkD5tiCB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E771DA53;
+	Mon, 23 Oct 2023 18:38:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FB5219E8
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 18:36:32 +0000 (UTC)
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797E8BD
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:36:31 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-7788db95652so255468185a.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:36:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1698086190; x=1698690990; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P6lMb0UZb8r8TRmRDirfHTigTBhrAW9wLoF5otwjcVg=;
-        b=EkD5tiCBvXCXcksuFQhMNgCxBz7AWlNJ/nhWMsDZf+4EKZhWHYQCBG8ItO3fCSejoI
-         Wmal8ifADTMoXxGuzcRAqz5Mf+3VFOrZ2/0EzvVq0UCDid+pj+Uqyg/o1l2pCYs4EPsk
-         A0H4fxz+YUU0lHG5rVPO4acjzh2SxlC3etqKU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698086190; x=1698690990;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=P6lMb0UZb8r8TRmRDirfHTigTBhrAW9wLoF5otwjcVg=;
-        b=wMztn4mbaPQDnD3vJ1SVH+wu8rWpF/Ebi7xod39qBC5slqWGfJHx9Fz/rlcYaOfevI
-         5S3dtv3auqV7ARl3ElJQuJAUzkD4du841POqSRMRyyGAdhuWUic7zdyV61W9uPPoZkRO
-         YpPQgt/yh7qPFBzX3IhxyAdivG7yROgJvmAPuU4J22nCbmhN0dDcOqS3VrnJotQbkBr9
-         sEUpn/LOJAPHdAATpXW7dM2H9ArQzyICBmc/yiOSBOru4yfhqRcFbF9KhhWfnprWBphs
-         Oxvm8dVhgut4IxVsPtiRLNyUbEGRBgMqHBEBxmaBYVd1pCSAFmtGheC+gedXckUrGv0D
-         meAg==
-X-Gm-Message-State: AOJu0YyoBegHlWbDcNl1EsB0K7qjmvFVSLrIoX7BQL9/D46ZxiKagxRl
-	aeGrg/QuC9Pf4fnGPVRqZ/4vSA==
-X-Google-Smtp-Source: AGHT+IFP0rFPlH70zsKSuhJlJ0z9LSVvnL82ZgXVDi+veijs6bSmU5sJ3QNayTZz6DAvskYWDKC5zA==
-X-Received: by 2002:a05:6214:404:b0:626:f3d:9e46 with SMTP id z4-20020a056214040400b006260f3d9e46mr11640348qvx.18.1698086190532;
-        Mon, 23 Oct 2023 11:36:30 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id di5-20020ad458e5000000b0065b1f90ff8csm3062685qvb.40.2023.10.23.11.36.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 11:36:29 -0700 (PDT)
-Message-ID: <f5329b80-1a72-4083-823e-07e9a884ddbb@broadcom.com>
-Date: Mon, 23 Oct 2023 11:36:27 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEAAC219FC
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 18:38:16 +0000 (UTC)
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7A3B7
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:38:12 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:375d:2b56:c03f:d72d])
+	by michel.telenet-ops.be with bizsmtp
+	id 1We92B00F3CbNjd06We9Bz; Mon, 23 Oct 2023 20:38:11 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1quzoQ-007Kpl-5v;
+	Mon, 23 Oct 2023 20:38:09 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1quzoW-007y4M-W9;
+	Mon, 23 Oct 2023 20:38:09 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH RFC] dt-bindings: mfd: ams,as3711: Convert to json-schema
+Date: Mon, 23 Oct 2023 20:38:07 +0200
+Message-Id: <9af48b816f2b6397f5ada58a9b5ced85213e5194.1698085945.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Set fixed-link for extra Netgear
- R8000 CPU ports
-To: bcm-kernel-feedback-list@broadcom.com, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <zajec5@gmail.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Hauke Mehrtens
- <hauke@hauke-m.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231013103314.10306-1-zajec5@gmail.com>
- <20231013103314.10306-2-zajec5@gmail.com>
- <20231023183302.1192686-1-florian.fainelli@broadcom.com>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- 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
-In-Reply-To: <20231023183302.1192686-1-florian.fainelli@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000344ec606086680a8"
-
---000000000000344ec606086680a8
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 10/23/23 11:33, Florian Fainelli wrote:
-> From: Florian Fainelli <f.fainelli@gmail.com>
-> 
-> On Fri, 13 Oct 2023 12:33:14 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> While switch ports 5 and 7 are disabled (vendor designed port 8 to be
->> used for CPU traffic) they could be used strictly technically. For some
->> reason however both those ports need forcing link to be usable.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
-> 
-> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+Convert the Austria MicroSystems AS3711 Quad Buck High Current PMIC with
+Charger Device Tree binding documentation to json-schema.
 
-Ended up with the following commit message:
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+RFC, as I couldn't get the multiple dependencies right (see FIXMEs):
+  1. How to incorporate "su2-dev: [ su2-max-uA ]" and
+     "su2-feedback-curr-auto: [ su2-dev ]"?
+  2. su2-dev requiring one of su2-fbprot-* does not seem to work?
 
-Ports 5 and 7 are disabled by default because the standard use case is
-for port 8 to manage all CPU directed traffic. For experimentation
-purposes however it is desirable to provide adequate properties such
-that people can experiment with using different ports without having to
-figure out their configuration. Some of the use cases include but are
-not limited to doubling or tripling the bandwidth by leveraging the
-additional ports/Ethernet MAC combinations.
+Anyone with better *Of foo? Thanks!
+---
+ .../devicetree/bindings/mfd/ams,as3711.yaml   | 223 ++++++++++++++++++
+ .../devicetree/bindings/mfd/as3711.txt        |  73 ------
+ 2 files changed, 223 insertions(+), 73 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/as3711.txt
 
-
-let me know if I should rephrase it before pushing this to the the ARM 
-SoC maintainers (tomorrow).
+diff --git a/Documentation/devicetree/bindings/mfd/ams,as3711.yaml b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+new file mode 100644
+index 0000000000000000..d9f08e017194c4f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+@@ -0,0 +1,223 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ams,as3711.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Austria MicroSystems AS3711 Quad Buck High Current PMIC with Charger
++
++maintainers:
++  - Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>
++
++description:
++  AS3711 is an I2C PMIC from Austria MicroSystems with multiple DCDC and LDO
++  power supplies, a battery charger and an RTC.  So far only bindings for the
++  two stepup DCDC converters are defined.
++
++properties:
++  compatible:
++    const: ams,as3711
++
++  reg:
++    maxItems: 1
++
++  backlight:
++    description:
++      Step-up converter configuration, to be used as a backlight source
++    type: object
++    properties:
++      compatible:
++        const: ams,as3711-bl
++
++      su1-dev:
++        description: Framebuffer phandle for the first step-up converter
++        $ref: /schemas/types.yaml#/definitions/phandle
++
++      su1-max-uA:
++        description: Maximum current for the first step-up converter
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      su2-dev:
++        description: Framebuffer phandle for the second step-up converter
++        $ref: /schemas/types.yaml#/definitions/phandle
++
++      su2-max-uA:
++        description: Maximum current for the second step-up converter
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      su2-feedback-voltage:
++        description: Second step-up converter uses voltage feedback
++        type: boolean
++
++      su2-feedback-curr1:
++        description:
++          Second step-up converter uses CURR1 input for current feedback
++        type: boolean
++
++      su2-feedback-curr2:
++        description:
++          Second step-up converter uses CURR2 input for current feedback
++        type: boolean
++
++      su2-feedback-curr3:
++        description:
++          Second step-up converter uses CURR3 input for current feedback
++        type: boolean
++
++      su2-feedback-curr-auto:
++        description:
++          Second step-up converter uses automatic current feedback selection
++        type: boolean
++
++      su2-fbprot-lx-sd4:
++        description:
++          Second step-up converter uses LX_SD4 for over-voltage protection
++        type: boolean
++
++      su2-fbprot-gpio2:
++        description:
++          Second step-up converter uses GPIO2 for over-voltage protection
++        type: boolean
++
++      su2-fbprot-gpio3:
++        description:
++          Second step-up converter uses GPIO3 for over-voltage protection
++        type: boolean
++
++      su2-fbprot-gpio4:
++        description:
++          Second step-up converter uses GPIO4 for over-voltage protection
++        type: boolean
++
++      su2-auto-curr1:
++        description:
++          Second step-up converter uses CURR1 input for automatic current
++          feedback
++        type: boolean
++
++      su2-auto-curr2:
++        description:
++          Second step-up converter uses CURR2 input for automatic current
++          feedback
++        type: boolean
++
++      su2-auto-curr3:
++        description:
++          Second step-up converter uses CURR3 input for automatic current
++          feedback
++        type: boolean
++
++    required:
++      - compatible
++
++    dependencies:
++      # To use the SU1 converter as a backlight source the following two
++      # properties must be provided:
++      su1-dev: [ su1-max-uA ]
++      su1-max-uA: [ su1-dev ]
++
++      # To use the SU2 converter as a backlight source the following two
++      # properties must be provided:
++      # FIXME How to incorporate "su2-dev: [ su2-max-uA ]"?
++      # FIXME su2-dev requiring one of su2-fbprot-* does not seem to work?
++      su2-dev:
++        allOf:
++          - oneOf:
++              - required:
++                  - su2-feedback-voltage
++              - required:
++                  - su2-feedback-curr1
++              - required:
++                  - su2-feedback-curr2
++              - required:
++                  - su2-feedback-curr3
++              - required:
++                  - su2-feedback-curr-auto
++          - oneof:
++              - required:
++                  - su2-fbprot-lx-sd4
++              - required:
++                  - su2-fbprot-gpio2
++              - required:
++                  - su2-fbprot-gpio3
++              - required:
++                  - su2-fbprot-gpio4
++
++      su2-max-uA: [ su2-dev ]
++      su2-feedback-voltage: [ su2-dev ]
++      su2-feedback-curr1: [ su2-dev ]
++      su2-feedback-curr2: [ su2-dev ]
++      su2-feedback-curr3: [ su2-dev ]
++      # FIXME How to incorporate "su2-feedback-curr-auto: [ su2-dev ]"?
++      su2-feedback-curr-auto:
++        anyOf:
++          - required:
++              - su2-auto-curr1
++          - required:
++              - su2-auto-curr2
++          - required:
++              - su2-auto-curr3
++      su2-fbprot-lx-sd4: [ su2-dev ]
++      su2-fbprot-gpio2: [ su2-dev ]
++      su2-fbprot-gpio3: [ su2-dev ]
++      su2-fbprot-gpio4: [ su2-dev ]
++      su2-auto-curr1: [ su2-feedback-curr-auto ]
++      su2-auto-curr2: [ su2-feedback-curr-auto ]
++      su2-auto-curr3: [ su2-feedback-curr-auto ]
++
++    additionalProperties: false
++
++  regulators:
++    description: Other DCDC and LDO supplies
++    type: object
++    patternProperties:
++      "^(sd[1-4]|ldo[1-8])$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        as3711@40 {
++            compatible = "ams,as3711";
++            reg = <0x40>;
++
++            regulators {
++                sd4 {
++                    regulator-name = "1.215V";
++                    regulator-min-microvolt = <1215000>;
++                    regulator-max-microvolt = <1235000>;
++                };
++                ldo2 {
++                    regulator-name = "2.8V CPU";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                };
++            };
++
++            backlight {
++                compatible = "ams,as3711-bl";
++                su2-dev = <&lcdc>;
++                su2-max-uA = <36000>;
++                su2-feedback-curr-auto;
++                su2-fbprot-gpio4;
++                su2-auto-curr1;
++                su2-auto-curr2;
++                su2-auto-curr3;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/as3711.txt b/Documentation/devicetree/bindings/mfd/as3711.txt
+deleted file mode 100644
+index d98cf18c721ceb18..0000000000000000
+--- a/Documentation/devicetree/bindings/mfd/as3711.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-AS3711 is an I2C PMIC from Austria MicroSystems with multiple DCDC and LDO power
+-supplies, a battery charger and an RTC. So far only bindings for the two stepup
+-DCDC converters are defined. Other DCDC and LDO supplies are configured, using
+-standard regulator properties, they must belong to a sub-node, called
+-"regulators" and be called "sd1" to "sd4" and "ldo1" to "ldo8." Stepup converter
+-configuration should be placed in a subnode, called "backlight."
+-
+-Compulsory properties:
+-- compatible		: must be "ams,as3711"
+-- reg			: specifies the I2C address
+-
+-To use the SU1 converter as a backlight source the following two properties must
+-be provided:
+-- su1-dev		: framebuffer phandle
+-- su1-max-uA		: maximum current
+-
+-To use the SU2 converter as a backlight source the following two properties must
+-be provided:
+-- su2-dev		: framebuffer phandle
+-- su1-max-uA		: maximum current
+-
+-Additionally one of these properties must be provided to select the type of
+-feedback used:
+-- su2-feedback-voltage	: voltage feedback is used
+-- su2-feedback-curr1	: CURR1 input used for current feedback
+-- su2-feedback-curr2	: CURR2 input used for current feedback
+-- su2-feedback-curr3	: CURR3 input used for current feedback
+-- su2-feedback-curr-auto: automatic current feedback selection
+-
+-and one of these to select the over-voltage protection pin
+-- su2-fbprot-lx-sd4	: LX_SD4 is used for over-voltage protection
+-- su2-fbprot-gpio2	: GPIO2 is used for over-voltage protection
+-- su2-fbprot-gpio3	: GPIO3 is used for over-voltage protection
+-- su2-fbprot-gpio4	: GPIO4 is used for over-voltage protection
+-
+-If "su2-feedback-curr-auto" is selected, one or more of the following properties
+-have to be specified:
+-- su2-auto-curr1	: use CURR1 input for current feedback
+-- su2-auto-curr2	: use CURR2 input for current feedback
+-- su2-auto-curr3	: use CURR3 input for current feedback
+-
+-Example:
+-
+-as3711@40 {
+-	compatible = "ams,as3711";
+-	reg = <0x40>;
+-
+-	regulators {
+-		sd4 {
+-			regulator-name = "1.215V";
+-			regulator-min-microvolt = <1215000>;
+-			regulator-max-microvolt = <1235000>;
+-		};
+-		ldo2 {
+-			regulator-name = "2.8V CPU";
+-			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <2800000>;
+-			regulator-always-on;
+-			regulator-boot-on;
+-		};
+-	};
+-
+-	backlight {
+-		compatible = "ams,as3711-bl";
+-		su2-dev = <&lcdc>;
+-		su2-max-uA = <36000>;
+-		su2-feedback-curr-auto;
+-		su2-fbprot-gpio4;
+-		su2-auto-curr1;
+-		su2-auto-curr2;
+-		su2-auto-curr3;
+-	};
+-};
 -- 
-Florian
+2.34.1
 
-
---000000000000344ec606086680a8
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOXO7GpeBWFyGnEl
-gS5t+7DTg21dd8U2R9FUapoHYaISMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTAyMzE4MzYzMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQADBhfBiudCsFaaP1SfgbF/Jeo45ULHQf5F
-Vb/8hJiY7OUJoDi4TPImXPnPYwl0PPbEfdYASUWcMD2UtH9BStgD51OqLwGVdLyqF56GFola8cn0
-/h4rYfNs1eIFotsHfptk2RpUD/X1NIGHocx6SvOmHSRAsLOhvtJxIKfbmyoFopd2tkM51r09sH+O
-zwbscHUH437ekvK6IRUopyuTbEwYa/5BYBqk4/Odc5mPTuifxYz74/jOtA/sy51mFT6xbLiRh6Ql
-MsoF/UhJz5lnnmAIcymKKV+FqLo+KSOptKev1ypKUQ3ZEmtm3nCWacDJcBBe0Yz9YxbNb8FhVsQj
-/cWC
---000000000000344ec606086680a8--
 
