@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 946EF7D2A7A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:32:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE337D2A81
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:33:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35246B20CD5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:32:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF800B20CCD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90404186B;
-	Mon, 23 Oct 2023 06:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFD433FE;
+	Mon, 23 Oct 2023 06:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hSfcKguc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DqGWsHpU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8566FAA
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:32:19 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4444CD68
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:32:16 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9adca291f99so421112266b.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:32:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419782C9A
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:33:32 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF80D6B
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:33:30 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so457631866b.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:33:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698042735; x=1698647535; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698042809; x=1698647609; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7fmtVbt5nFW5Eb2dXOQDhCfs+v2LzrHd1TY7XR+eBVc=;
-        b=hSfcKguc3EvxoYhB6l+WYtHTlvYpgXsl4Y9Jc6JP+TmgLpbOO3d6/uzsbhv8g0TTlw
-         DvAv7VUdhpslYWPuWw/0PJKfopcsk3fIsYPwbhZl9J1Ywk8zrBsVEnFHpZUgiJ1fgzyI
-         GSJ6hvXE2OAE8Na7CbqLhRI+GQFiS5olb/M8AuIcAvhQ+dIlhRAdKSeT0RVgrkFFoP3e
-         FOfxIwUqEsHrLMLpfPL7YxriWjcSkr5BeJggORDgzVk+bW63C4ILjrxtMwERv5tO+6+J
-         gwXgUEaM11o/iLttY6sHawzmemLjbjfQZcMApsPcYuf2B9RImn0roqRP+3mNHodaDDOw
-         DZYA==
+        bh=LijNvWdGC8XJoGtVKJV72FOB8daRdFEv0JQadX+AqIk=;
+        b=DqGWsHpUeHX8p2KGBg8i5na5JvriIbBlWqgDrKiQG4jrFx8IPvBZfgVwUwmMW2N7kt
+         dgzIYSboY43lAkb/TtT5afL4EU+P5Nwr2SHzasxfKSl+C7pUPFW8dkJgQI5Q9T6fdum9
+         t/UMkaEhH+KkOP9dMOI7Ng2dlc10X0jNmopCuK2Od7wHWuPNHGa9hpmNrburXKa2mAXL
+         WQOJCHIBBiVUMNQt2UKUXMUKbTtZmwbNhE0KP0bMdaD10Z8nxZMklhqNs2Z6NMcTOHMv
+         NmBeC3nB/oh6Q9Bu997zDOvTJAaVwbeQXEyNm6Y9WVzf8ES+uP92gvcO875fFRTW5CEW
+         ZMHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698042735; x=1698647535;
+        d=1e100.net; s=20230601; t=1698042809; x=1698647609;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7fmtVbt5nFW5Eb2dXOQDhCfs+v2LzrHd1TY7XR+eBVc=;
-        b=HUkspDvfqPz0LdKhGs1UnBpoGvL87w3MUclnKxuN6Y7D+Av3n3LpXVp0IW/wWbudDC
-         XQ5BFTebj6bAdJ8uReSACPOcPMmQhMu+6W5P5EBQ5CQMGsaoeeVHQm9aReJOTrIo5hHg
-         Pjb5nuUdpJUzb9GbPd3cud6LgF3oS3JP4DCqXAIDWgwrZ5M4P7MRSxfdO+5Zam+byiD8
-         RGHdqoQPxjnKCaycEXmaMYn6Qy60/hNcxAblLeDa/fKMHJ3tWYII2ePh9/Y5YJEYPODj
-         sbWK4y1w/usFJxa/fsj8HHP/P2ZiPjLf34b6JPaiciDPWjHVTvTP7iunf4rBAPvpv7MI
-         v42Q==
-X-Gm-Message-State: AOJu0YywLbcDGr/XPYqL5KpsKEpX/Wpuy9/qLcLJXFIlcwDq/IkL9Fvx
-	f30VvVeUmOzvYhhz6aKhZhiltA==
-X-Google-Smtp-Source: AGHT+IGzM+9O12/OCrP9uIqfj4L7fDrO4fHM6BwltP7gRv2HSMBUHNwYE1ycAcpcieFz83V4FZcytQ==
-X-Received: by 2002:a17:906:794c:b0:9a2:1e03:1572 with SMTP id l12-20020a170906794c00b009a21e031572mr7399114ejo.19.1698042734714;
-        Sun, 22 Oct 2023 23:32:14 -0700 (PDT)
+        bh=LijNvWdGC8XJoGtVKJV72FOB8daRdFEv0JQadX+AqIk=;
+        b=EqluppCk/qDPkLvtZu2B1/sQau59za78PN1EsSpVFVt9jbHygVDgshV99gEjtFU2lJ
+         0PwGJLR7GTrbtoT7BwrW6/XYeoJguqwhvDTxkB2ICN33qR7IiJROWFSWg5kfpm/yZ3E4
+         /1ZodytaEzqBd/bOEqT8bC7/oc556Zwmkd5YJlaVUvbvgiP24aHtpFmiH+ovn57dYnlP
+         a/zU2JJka8/38guXra/R5mGkJFc2dJfH9KWDgJk7SMu3q8ukXEQfO0M4Qcr8SfPQLC95
+         Gr8X5cNkhaoHDaEx/P3GaRtDbA05Hk8KoTVImIWgFWY1W6raMY2SV4swvYjZRE6yLkdc
+         BO+g==
+X-Gm-Message-State: AOJu0YwaIcpDbREHMqNStPwK1ROzTS1otQH6vHYci5SshTXDCsUPUXxO
+	LXBOghIYbxieWaYqE/Fo4fPNNYZ+Vvb7TGhuFOg=
+X-Google-Smtp-Source: AGHT+IEGGgZd+5lZSMxSEsJEln4KnfedOGHp74y5oT1XVGozjDboEwH2OrZvrOSOpaMoleLdIQXXhw==
+X-Received: by 2002:a17:907:1c0b:b0:9be:45b3:1c3c with SMTP id nc11-20020a1709071c0b00b009be45b31c3cmr7101863ejc.64.1698042809130;
+        Sun, 22 Oct 2023 23:33:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id y15-20020a1709064b0f00b009b2b9af0784sm6039976eju.110.2023.10.22.23.32.12
+        by smtp.gmail.com with ESMTPSA id y15-20020a1709064b0f00b009b2b9af0784sm6039976eju.110.2023.10.22.23.33.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 23:32:14 -0700 (PDT)
-Message-ID: <7af782f3-fe6c-415b-a993-55962845a102@linaro.org>
-Date: Mon, 23 Oct 2023 08:32:11 +0200
+        Sun, 22 Oct 2023 23:33:28 -0700 (PDT)
+Message-ID: <64299e61-c519-4318-a10d-87df91c496a5@linaro.org>
+Date: Mon, 23 Oct 2023 08:33:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/11] ARM: dts: qcom: Update devicetree for ADC7 rename
- for QCOM PMICs
+Subject: Re: [PATCH 04/11] iio: adc: Update bindings to remove support for
+ ADC7 name used on QCOM PMICs
 Content-Language: en-US
 To: Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linus.walleij@linaro.org, Jonathan.Cameron@huawei.com, sboyd@kernel.org,
  dmitry.baryshkov@linaro.org, quic_subbaram@quicinc.com,
- quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
+ quic_collinsd@quicinc.com, quic_kamalw@quicinc.com, quic_jestar@quicinc.com,
  marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- linux-arm-msm@vger.kernel.org
-Cc: linux-iio@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Luca Weiss <luca@z3ntu.xyz>, linux-iio@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Cc: linux-arm-msm-owner@vger.kernel.org
 References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
- <20230708072835.3035398-4-quic_jprakash@quicinc.com>
- <839cfac2-8f74-3386-5854-e3fb2ba4e07f@linaro.org>
- <27b5806f-ef15-7a90-5adc-5ee12690f2ca@quicinc.com>
+ <20230708072835.3035398-5-quic_jprakash@quicinc.com>
+ <dffc7942-d9b6-e291-9cab-9a1642225fc3@linaro.org>
+ <dcbab235-3510-9e8e-5f08-7b8241a71688@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,49 +136,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <27b5806f-ef15-7a90-5adc-5ee12690f2ca@quicinc.com>
+In-Reply-To: <dcbab235-3510-9e8e-5f08-7b8241a71688@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/10/2023 08:09, Jishnu Prakash wrote:
+On 23/10/2023 08:11, Jishnu Prakash wrote:
 > Hi Krzysztof,
 > 
-> On 7/9/2023 10:48 PM, Krzysztof Kozlowski wrote:
+> On 7/9/2023 10:49 PM, Krzysztof Kozlowski wrote:
 >> On 08/07/2023 09:28, Jishnu Prakash wrote:
->>> The name "ADC7" needs to be replaced with the name "ADC5_GEN2"
->>> everywhere to match the convention used for these ADC peripherals
->>> on Qualcomm Technologies, Inc. PMICs. Update devicetree files for
->> We do not rename compatibles to match convention. Please provide proper
->> rationale.
+>>> Now that usage of "ADC7" name has been replaced with usage of "ADC5
+>>> Gen2" name everywhere, remove all support for "ADC7" name.
+>> Why?
 > 
-> I'll avoid renaming the compatible directly, will just mark it 
-> deprecated - but is it fine to do the other changes, for updating the 
-> macro names used in devicetree (replacing the ADC7 macros with the ADC5 
-> Gen2 macros)?
+> The idea is to replace usage of the name "ADC7" with "ADC5 Gen2" 
+> everywhere possible, to match our internal convention and align better 
 
-Please provide proper rationale why "ADC7 needs to be replaced". Your
-marketing is not a proper rationale.
+That's not a valid reason to touch bindings. Compatible is just some
+unique name, so there is nothing bad in existing name.
 
-> 
-> I do see an example of a macro change in devicetree done in this patch: 
-> https://lore.kernel.org/all/cover.1646388139.git.zong.li@sifive.com/.
-> 
-> Patch 2 here replaced some macro definitions: 
-> https://lore.kernel.org/all/f9284873c2993a9952d9fe4f8dd5e89f20daab75.1646388139.git.zong.li@sifive.com/.
-> 
-> Patch 3 made the corresponding update in devicetree files: 
-> https://lore.kernel.org/all/db92d209fa700f7da8bc8028083476fcc138d80e.1646388139.git.zong.li@sifive.com/. 
+> with the "ADC5 Gen3" support I'm adding in this patch series - is it 
+> better if I just update documentation and dtbindings directly in one 
+> patch for ADC5 Gen2 and update devicetree in one patch after that for 
+> the corresponding macro changes?
 
-And what is rationale in that patchset?
-
-> 
-> 
->  From this mail, it looks like the maintainer was willing to pick them 
-> at that time: 
-> https://lore.kernel.org/all/20220315225652.CDAD1C340E8@smtp.kernel.org/, 
-> would something similar be possible here?
-
-For stated before marketing reasons - no, would not be possible.
+Don't touch the compatible.
 
 Best regards,
 Krzysztof
