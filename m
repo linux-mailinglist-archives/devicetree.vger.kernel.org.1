@@ -1,182 +1,125 @@
-Return-Path: <devicetree+bounces-11002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521A27D3B8E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:58:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72347D3BBE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08E24281446
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:58:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FCA4280ED4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4221C6BF;
-	Mon, 23 Oct 2023 15:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF67E1CA81;
+	Mon, 23 Oct 2023 16:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uu2nv3x2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cYpDtb94"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5432A11CBB;
-	Mon, 23 Oct 2023 15:58:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16FEBC433C8;
-	Mon, 23 Oct 2023 15:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359D15E80
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:06:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C272C433C9;
+	Mon, 23 Oct 2023 16:06:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698076712;
-	bh=eHQE9AW+TMhNeP+Km14R1yq/+eqHlqagrK1M9EYQg3Q=;
+	s=k20201202; t=1698077218;
+	bh=S6VMIhoVKsj2e7n62GkaiRTDJ8EPj3xrFNXOf/EI3g4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uu2nv3x2wZYIXNe6hKG4VpNBSs9klnoB6Bb9jinZaTd8TzjvSgHgniv6jtd9n5vFs
-	 7kPHt1G0/UyPeCs5f2oc+JOzFHFSzHAaoPLgfK3egiOe/npAd/llQkGThbE92+Rw/j
-	 NoA8DMcD2UXJbL9U0JXG+m76kB2I5WrB2TB9JCMoub9aaVcgSvGwot81pmP9hd0Xz7
-	 sD8fyyNRFmCL0zDAjtPkml5IuANJf+/MJWrqXPSdmGnkv3RA7EC5GVijuQnEECGKh1
-	 3nZJrLxj6l3ouSEfkjosuXJNH/UUEVZ7X4H6++FTg0YturEfuuZr1dmJP+44g3MMKZ
-	 F+5hYBiCLvW5Q==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1quxKI-00022S-02;
-	Mon, 23 Oct 2023 17:58:46 +0200
-Date: Mon, 23 Oct 2023 17:58:46 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 07/10] usb: dwc3: qcom: Add multiport suspend/resume
- support for wrapper
-Message-ID: <ZTaYNjRyT1Fn4QWX@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-8-quic_kriskura@quicinc.com>
+	b=cYpDtb94XJDFXVmeIHBnQAYcWchRsElqnt/ALJtp2Nr9knWzV6ELe5NVhsPEEQTdy
+	 VXSIPOkSDdLEup7euvSldPwpVw1JI5QcflcunBcK3ARhshUrB9zvbOz8VUeA1klxLW
+	 BqBOvZ+zL3bibs4lmFSI8rwFEuJABaUEciz9oKA1e9YSAz9yLXoDYT80cVXulk84o6
+	 0gxlU/VLdGkroOQGCb/m4vYMzEyNuyI4dytoehPFtu535+AF1Qr9uU9Be9wkkB1NKE
+	 PM9hOBvnmDMx+Q951pglC1ZBfWmaDU2ZXNV+JDiGFyKtP8fD3dz8YtZHaJzMyNSQsY
+	 y1hgR/8EWvgzA==
+Date: Mon, 23 Oct 2023 17:06:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
+	nuno.sa@analog.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: adis16460: Add
+ 'spi-cs-inactive-delay-ns' property
+Message-ID: <20231023-repost-coma-2f67ea8b95af@spud>
+References: <20231023140534.704312-1-ramona.gradinariu@analog.com>
+ <20231023140534.704312-4-ramona.gradinariu@analog.com>
+ <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Vq5WbrHhYg5Chr9o"
 Content-Disposition: inline
-In-Reply-To: <20231007154806.605-8-quic_kriskura@quicinc.com>
+In-Reply-To: <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
 
-On Sat, Oct 07, 2023 at 09:18:03PM +0530, Krishna Kurapati wrote:
-> QCOM SoC SA8295P's tertiary quad port controller supports 2 HS+SS
-> ports and 2 HS only ports. Add support for configuring PWR_EVENT_IRQ's
-> for all the ports during suspend/resume.
 
-No need to mention SA8295P as this is needed for all multiport
-controllers.
+--Vq5WbrHhYg5Chr9o
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Say something about adding support for multiport controllers generally
-instead and mention what the power event irqs are used for.
- 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 35 ++++++++++++++++++++++++++++-------
->  1 file changed, 28 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 651b9775a0c2..dbd4239e61c9 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -37,7 +37,11 @@
->  #define PIPE3_PHYSTATUS_SW			BIT(3)
->  #define PIPE_UTMI_CLK_DIS			BIT(8)
->  
-> -#define PWR_EVNT_IRQ_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ1_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
-> +#define PWR_EVNT_IRQ3_STAT_REG			0x228
-> +#define PWR_EVNT_IRQ4_STAT_REG			0x238
+On Mon, Oct 23, 2023 at 04:27:48PM +0200, Nuno S=E1 wrote:
+> On Mon, 2023-10-23 at 17:05 +0300, Ramona Gradinariu wrote:
+> > The adis16460 device requires a stall time between SPI
+> > transactions (during which the chip select is inactive),
+> > with a minimum value equal to 16 microseconds.
+> > This commit adds 'spi-cs-inactive-delay-ns' property, which should
+> > indicate the stall time between consecutive SPI transactions.
+> >=20
+> > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> > ---
+> > changes in v2:
+> > =A0- added default value
+> > =A0- updated description
+> > =A0- updated commit message
+> > =A0.../devicetree/bindings/iio/imu/adi,adis16460.yaml=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 | 6 ++++++
+> > =A01 file changed, 6 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.ya=
+ml
+> > b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> > index 4e43c80e5119..f10469b86ee0 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> > @@ -25,6 +25,12 @@ properties:
+> >=20
+> > =A0=A0 spi-cpol: true
+> >=20
+> > +=A0 spi-cs-inactive-delay-ns:
+> > +=A0=A0=A0 minimum: 16000
+> > +=A0=A0=A0 default: 16000
+> > +=A0=A0=A0 description:
+> > +=A0=A0=A0=A0=A0 Indicates the stall time between consecutive SPI trans=
+actions.
+> > +
+>=20
+> You should drop the description...=20
+>=20
+> Also, give more time before posting a v2 so others get a chance to review=
+ your
+> patches. It's also better for you since you can gather more change reques=
+ts.
 
-Not sure these defines makes sense on their own. You now only use them
-via the array below.
+Further, I don't see an answer to Krzysztof's question of why the stall
+time would not just be set to 16,000 ns in the driver, based on the
+compatible.
 
-I think I already asked you whether these offsets depend on SoC and you
-said no, right?
+--Vq5WbrHhYg5Chr9o
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
->  #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
->  #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
->  
-> @@ -107,6 +111,19 @@ struct dwc3_qcom {
->  	int			num_ports;
->  };
->  
-> +/*
-> + * Currently non-multiport controller have only one PWR_EVENT_IRQ register,
-> + * but multiport controllers like SA8295 contain upto 4 of them.
-> + */
+-----BEGIN PGP SIGNATURE-----
 
-Please try not talk about "currently" and as things are likely to
-change or, in fact, even *are* changing with your very patch series.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTaaHgAKCRB4tDGHoIJi
+0hH3AQDXlI8mVw1mEWJZ4i6/O+ODetpJSdpxn2jwhPshD+QGfwEA6EW9738l8qsH
+kUrRwUbbQgTOSkDwjPsDlOYFAholUQo=
+=E9Go
+-----END PGP SIGNATURE-----
 
-Again, this is not SA8295 specific.
-
-> +#define NUM_PWR_EVENT_STAT_REGS	4
-
-You already have MAX_PORTS, why are you defining a new define that will
-always have to be equal to MAX_PORTS?
-
-> +
-> +static u32 pwr_evnt_irq_stat_reg_offset[NUM_PWR_EVENT_STAT_REGS] = {
-
-missing const
-
-> +	PWR_EVNT_IRQ1_STAT_REG,
-> +	PWR_EVNT_IRQ2_STAT_REG,
-> +	PWR_EVNT_IRQ3_STAT_REG,
-> +	PWR_EVNT_IRQ4_STAT_REG,
-> +};
-> +
->  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
->  {
->  	u32 reg;
-> @@ -446,9 +463,11 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  	if (qcom->is_suspended)
->  		return 0;
->  
-> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
-> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
-> +	for (i = 0; i < qcom->num_ports; i++) {
-> +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
-> +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> +			dev_err(qcom->dev, "HS-PHY not in L2\n");
-
-Error message should contain the port number.
-
-> +	}
->  
->  	for (i = qcom->num_clocks - 1; i >= 0; i--)
->  		clk_disable_unprepare(qcom->clks[i]);
-> @@ -494,9 +513,11 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
->  		dev_warn(qcom->dev, "failed to enable interconnect: %d\n", ret);
->  
->  	/* Clear existing events from PHY related to L2 in/out */
-> -	dwc3_qcom_setbits(qcom->qscratch_base, PWR_EVNT_IRQ_STAT_REG,
-> -			  PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-> -
-> +	for (i = 0; i < qcom->num_ports; i++) {
-> +		dwc3_qcom_setbits(qcom->qscratch_base,
-> +			pwr_evnt_irq_stat_reg_offset[i],
-> +			PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-
-Again, continuation lines should be indented at least two tabs further.
-
-> +	}
->  	qcom->is_suspended = false;
->  
->  	return 0;
-
-Johan
+--Vq5WbrHhYg5Chr9o--
 
