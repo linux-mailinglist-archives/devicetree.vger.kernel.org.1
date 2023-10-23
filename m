@@ -1,100 +1,149 @@
-Return-Path: <devicetree+bounces-11015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14177D3CC0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:40:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F077A7D3CD8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:50:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CBEA2815A4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:40:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D28A1C20981
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C6111CAC;
-	Mon, 23 Oct 2023 16:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF271A722;
+	Mon, 23 Oct 2023 16:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="V/xOy/CX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hsqdITsZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748F8208A1;
-	Mon, 23 Oct 2023 16:40:47 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6B993;
-	Mon, 23 Oct 2023 09:40:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=2Qgu3sV7JqSs1+xqVkj3Q4GC+iKi/Wf5NSoQxrtF3ew=; b=V/xOy/CXT9JTBGtsL7Y3xvmZwV
-	rnjrtnpa5D22ISWgGO9NXgw8FxE1TOh+Ky7E5bQuEIBPVohIRtEarYFHeqnEvmA8GPV33pt+97QuE
-	qNoxRycGKX+H0q2vf7UImSz8VoL2M2kkyftM18WG2htwIMUd1lNv1JzSTbHPyZMJga6Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1quxyl-0032zT-EI; Mon, 23 Oct 2023 18:40:35 +0200
-Date: Mon, 23 Oct 2023 18:40:35 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A0C18E17
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:50:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E7D9C433C7;
+	Mon, 23 Oct 2023 16:50:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698079846;
+	bh=onD/1VpEcq0ar0HLDecxjwDy6/MzmpL5MbWQrVCDEBg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hsqdITsZGRXZSoz8Zen3g5ujFVc6y/NTwK+YshogcOC0pp31XP5VwqgzIUk9Ckl+U
+	 iYFIKIAaE+e/5265zv8+3EWhWWxt9rqP8E+ThEnp54xFWyA8HatPPdng+2jO+wfwUb
+	 DOPPAwkblPfZrY3e2S4BzQ+e1u9CjhfSs6O/xcYP9WEXwlgk+XMChpcAG4jrPBBKar
+	 LoJ4Y27lXUuKte8bEm8IAZ0k9ayEBRndUiUZtwF7zrBW/OTzsa42d0d+jksZgvVxUV
+	 47DhkS3ubihHdT9YIzPAI6JmzGetJLfL8+kArjqwsVKtWSyBSSTd7z16C8CaaCv9h0
+	 6NAkymk0pHEHw==
+Date: Mon, 23 Oct 2023 17:50:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 2/5] net: dsa: qca: Make the QCA8K hardware
- library available globally
-Message-ID: <3f279720-5386-4ea2-b54c-ffc44277b1cc@lunn.ch>
-References: <20231023155013.512999-1-romain.gantois@bootlin.com>
- <20231023155013.512999-3-romain.gantois@bootlin.com>
+	Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] dt-bindings: audio-graph-port: add ch-map-idx
+ property
+Message-ID: <20231023-security-tadpole-8b4fd45a96da@spud>
+References: <874jihlx44.wl-kuninori.morimoto.gx@renesas.com>
+ <87wmvdkiif.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ruNs9TzVbLZc0kVS"
+Content-Disposition: inline
+In-Reply-To: <87wmvdkiif.wl-kuninori.morimoto.gx@renesas.com>
+
+
+--ruNs9TzVbLZc0kVS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231023155013.512999-3-romain.gantois@bootlin.com>
+Content-Transfer-Encoding: quoted-printable
 
-> @@ -62,21 +61,37 @@ const struct qca8k_mib_desc ar8327_mib[] = {
->  	MIB_DESC(1, 0xa8, "RXUnicast"),
->  	MIB_DESC(1, 0xac, "TXUnicast"),
->  };
-> +EXPORT_SYMBOL(ar8327_mib);
+Yo,
 
-Christian should decide, since he wrote most of this code, but i would
-prefer EXPORT_SYMBOL_GPL().
+On Mon, Oct 23, 2023 at 05:36:09AM +0000, Kuninori Morimoto wrote:
+> This patch adds ch-maps property to enable handling CPU:Codec =3D N:M
+> connection.
+>=20
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml        | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yam=
+l b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index 60b5e3fd1115..47f04cdd6670 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -19,7 +19,12 @@ definitions:
+>      properties:
+>        mclk-fs:
+>          $ref: simple-card.yaml#/definitions/mclk-fs
+> -
 
-> --- a/drivers/net/dsa/qca/qca8k.h
-> +++ b/include/linux/dsa/qca8k.h
-> @@ -13,6 +13,7 @@
->  #include <linux/gpio.h>
->  #include <linux/leds.h>
->  #include <linux/dsa/tag_qca.h>
-> +#include <net/dsa.h>
->  
->  #define QCA8K_ETHERNET_MDIO_PRIORITY			7
->  #define QCA8K_ETHERNET_PHY_PRIORITY			6
-> @@ -265,6 +266,7 @@
->  #define   QCA8K_PORT_LOOKUP_STATE_LEARNING		QCA8K_PORT_LOOKUP_STATE(0x3)
->  #define   QCA8K_PORT_LOOKUP_STATE_FORWARD		QCA8K_PORT_LOOKUP_STATE(0x4)
->  #define   QCA8K_PORT_LOOKUP_LEARN			BIT(20)
-> +#define   QCA8K_PORT_LOOKUP_LOOPBACK_EN			BIT(21)
+Why have you removed the blank line here?
 
-Maybe do the move first, and then add new features in another patch?
+> +      ch-map-idx:
 
-      Andrew
+I would rather this be spelt out as "channel-map-index" - although I
+don't know if that is the best name for the property, as it seems very
+tied to a single operating systems variable names.
+I'll leave it to Mark as to whether there is a less linux implementation
+coupled name for this property.
+
+> +        description: It indicates index of ch_maps array for CPU / Codec=
+ if number of
+
+=46rom a bindings perspective, "ch_maps array" is meaningless, as it is
+(AFAICT) a linux driver variable name, whereas the property description
+needs to describe the hardware alone.
+
+> +          CPU(N) / Codec(M) DAIs were not same in one dai-link. ch-map-i=
+dx is not needed if the
+> +          numbers were 1:M or N:1 or N=3DM. see soc.h::[dai_link->ch_map=
+s Image sample] and
+
+Again, relying on header files in an operating system to explain the
+property is not a runner. You need to explain how to populate this
+property in an operating system independent manner.
+
+> +          ${LINUX}/sound/soc/generic/audio-graph-card2-custom-sample.dts=
+i. It is good sample.
+
+I'd much rather you added an example to this dt-binding, rather than
+pointing off to another location. A proper example will also be able to
+be validated by dt-binding-check.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Blank line here please.
+
+Cheers,
+Conor.
+
+>    endpoint-base:
+>      allOf:
+>        - $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> --=20
+> 2.25.1
+>=20
+
+--ruNs9TzVbLZc0kVS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTakYgAKCRB4tDGHoIJi
+0o3/AQDhRJS/mOXWB4AdVYiKnbnsld3CgR0HRZKljGI0juJ5LgEA4P9TomOoqcoB
+QcFUcKrr9v4ReivCcvCrmLVUs0TCcQ0=
+=q5jM
+-----END PGP SIGNATURE-----
+
+--ruNs9TzVbLZc0kVS--
 
