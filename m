@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-11010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9F97D3C68
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:26:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB51B7D3C70
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9539280EE9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:26:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01F611C20456
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C953D1D541;
-	Mon, 23 Oct 2023 16:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A469F1D542;
+	Mon, 23 Oct 2023 16:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RmPm0XZT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tDZauvxm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1E514F70
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:26:19 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1583210A;
-	Mon, 23 Oct 2023 09:26:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F343514F70
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:27:10 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D576E5;
+	Mon, 23 Oct 2023 09:27:09 -0700 (PDT)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39NGQA8Q064284;
-	Mon, 23 Oct 2023 11:26:10 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39NGR1AZ104142;
+	Mon, 23 Oct 2023 11:27:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698078370;
-	bh=ToVUXy/JJet0aGuRbevQ1uj23FQvFLehD2uGhtFjkOw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=RmPm0XZT1FuQyVBHx2xmRT0GxHgTWos1KfY2lxlHygEGoqcaHpSWdKv1e2+kmGBFm
-	 7jgfTUQttjCnNGdy2nMk9kInpQ/qxe2qBJsniUGyw1p1OcYJA/SygAOBiInmB8EGSM
-	 1VqEDYTtMVlkvSvexR6FEAD6kq4m+wIgY8cr3+0Q=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39NGQAux094084
+	s=ti-com-17Q1; t=1698078421;
+	bh=jtWF08naILkon915EMffsBHZ2FAx71FsAsp0B6E5a0A=;
+	h=From:To:CC:Subject:Date;
+	b=tDZauvxmMBt/rPVm+YSnBky1Gh/yefYbWukB4ZrEqYWMoiaa5017tILg4I2IGehZU
+	 TACTR9eFhTe61T3F/tjpI5mIKIK29NkQNjQCjHifuQqghXZKI/A7Sr9D3QApA3p1O5
+	 sdNdM/+9NQ0pBQV7+wNvmWWU9Ss+urtSCGW//Q7I=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39NGR1Fp094422
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 23 Oct 2023 11:26:10 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 23 Oct 2023 11:27:01 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 23
- Oct 2023 11:26:09 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 11:27:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 23 Oct 2023 11:26:09 -0500
-Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39NGQ9NO063677;
-	Mon, 23 Oct 2023 11:26:09 -0500
-Message-ID: <67efff7e-adc5-4117-a715-7fe219d2f92c@ti.com>
-Date: Mon, 23 Oct 2023 11:26:09 -0500
-Precedence: bulk
-X-Mailing-List: devicetree@vger.kernel.org
-List-Id: <devicetree.vger.kernel.org>
-List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
-List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] mux: mmio: use reg property when parent device is not
- a syscon
-Content-Language: en-US
+ Frontend Transport; Mon, 23 Oct 2023 11:27:01 -0500
+Received: from fllv0039.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39NGR00G081049;
+	Mon, 23 Oct 2023 11:27:00 -0500
+From: Andrew Davis <afd@ti.com>
 To: Peter Rosin <peda@axentia.se>,
         Greg Kroah-Hartman
 	<gregkh@linuxfoundation.org>,
@@ -67,153 +56,78 @@ To: Peter Rosin <peda@axentia.se>,
         Krzysztof
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230911151030.71100-1-afd@ti.com>
- <0cb645c7-f3c5-e4bb-7686-2a83d32274bb@axentia.se>
- <ab1c4929-0d7d-45eb-ab70-7680dbebcdbb@ti.com>
- <38d3582f-c2d6-3d1a-5706-84fccd22a2ac@axentia.se>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <38d3582f-c2d6-3d1a-5706-84fccd22a2ac@axentia.se>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis
+	<afd@ti.com>
+Subject: [PATCH v4] mux: mmio: use reg property when parent device is not a syscon
+Date: Mon, 23 Oct 2023 11:26:59 -0500
+Message-ID: <20231023162659.81397-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
+Precedence: bulk
+X-Mailing-List: devicetree@vger.kernel.org
+List-Id: <devicetree.vger.kernel.org>
+List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
+List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 10/20/23 4:22 PM, Peter Rosin wrote:
-> Hi!
-> 
-> 2023-10-20 at 18:43, Andrew Davis wrote:
->> On 10/20/23 9:28 AM, Peter Rosin wrote:
->>> Hi!
->>>
->>> 2023-09-11 at 17:10, Andrew Davis wrote:
->>>> The DT binding for the reg-mux compatible states it can be used when the
->>>> "parent device of mux controller is not syscon device". It also allows
->>>> for a reg property. When the reg property is provided, use that to
->>>> identify the address space for this mux. If not provided fallback to
->>>> using the parent device as a regmap provider.
->>>>
->>>> Signed-off-by: Andrew Davis <afd@ti.com>
->>>> Reviewed-by: Nishanth Menon <nm@ti.com>
->>>> ---
->>>>
->>>> Changes from v2:
->>>>    - Rebased on v6.6-rc1
->>>>
->>>> Changes from v1:
->>>>    - Flip logic as suggested in v1[0]
->>>>
->>>> [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
->>>>
->>>>    drivers/mux/mmio.c | 9 ++++++---
->>>>    1 file changed, 6 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
->>>> index fd1d121a584ba..b6095b7853ed2 100644
->>>> --- a/drivers/mux/mmio.c
->>>> +++ b/drivers/mux/mmio.c
->>>> @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
->>>>        int ret;
->>>>        int i;
->>>>    -    if (of_device_is_compatible(np, "mmio-mux"))
->>>> +    if (of_device_is_compatible(np, "mmio-mux")) {
->>>>            regmap = syscon_node_to_regmap(np->parent);
->>>> -    else
->>>> -        regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
->>>> +    } else {
->>>> +        regmap = device_node_to_regmap(np);
->>>
->>> I started digging in device_node_to_regmap() to try to find an error that
->>> could be used to trigger if the failover to dev_get_regmap() should be
->>> tried, instead of always doing the failover on error. I got lost fairly
->>> quickly, but it seems device_node_to_regmap() can return -EDEFER_PROBE.
->>> While I'm not certain that it is applicable, that case should probably
->>> not fall back to dev_get_regmap()...
->>>
->>> Are there other error cases that should prevent the failover? I would
->>> guess that it's perhaps just a single error that should trigger trying
->>> the failover path? But I don't know, and which error if that's the case?
->>>
->>
->> Ideally the only error that will be returned is ENOMEM, which happens when
->> this node does not have a 'reg' property, and this is also the one case we
->> want to do the failover. So all should be well.
-> 
-> The ideal working case is usually not much of a problem. When I look at what
-> device_node_to_regmap does, I find, appart from -ENOMEM, possibilities of
-> -ENOENT (because no clock), and the clock may theoretically fail to prepare
-> for numerous reasons hidden in clock drivers, but the clock core can
-> trigger at least -EACCES and -EINPROGRESS via runtime PM.
-> 
-> And it definitely looks like the -EPROBE_DEFER case needs to be addressed.
-> I.e., why is this call chain not a problem?
-> 
-> mux_mmio_probe
->   ->device_node_to_regmap
->    -> device_node_get_regmap
->     -> of_syscon_register
->      -> of_hwspin_lock_get_id
->      <- -EPROBE_DEFER
->     <- ERR_PTR(-EPROBE_DEFER)
->    <- ERR_PTR(-EPROBE_DEFER)
->   <- ERR_PTR(-EPROBE_DEFER)
-> 
-> As far as I can tell, if device_node_to_regmap() fails with -EPROBE_DEFER
-> with your patch, then mux_mmio_probe() misbehaves. It should have aborted
-> and failed with -EPROBE_DEFER, but instead throws that error away and
-> goes on to try dev_get_regmap(). That, in turn, is probably futile and
-> will likely error out in some way, breaking a system that might have been
-> ok, if the probe had been retried some time later.
-> 
+The DT binding for the reg-mux compatible states it can be used when the
+"parent device of mux controller is not syscon device". It also allows
+for a reg property. When the reg property is provided, use that to
+identify the address space for this mux. If not provided fallback to
+using the parent device as a regmap provider.
 
-This is why I liked the v1 version, dev_get_regmap() just returns a
-simple NULL on error, no complex EPROBE_DEFER oddness :)
+While here use dev_err_probe() in the error path to prevent printing
+a message on probe defer which now can happen in extra ways.
 
-So is EPROBE_DEFER the only one we think should retry and not go
-down the fallback path? I believe that is the normal assumption
-for most drivers.
+Signed-off-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Nishanth Menon <nm@ti.com>
+---
 
-> As long as the above is not sufficiently explained away, or fixed, I
-> consider the patch broken.
-> 
->>> How much badness can be caused if syscon_node_to_regmap() fails for some
->>> random obscure reason and the failover path is taken inadvertently? It
->>> certainly smells bad for -EDEFER_PROBE, but do you have any insight in
->>> other cases?
->>>
->>
->> If we take the failover inadvertently then we will check if the parent
->> node is a syscon, if it is then our offset will most likely be wrong
->> (parent will not match child 'reg').
->>
->>> And after getting to approx that point a while back, I had other things
->>> to take care of, and this fell off the table. Sorry!
->>>
->>
->> No problem as long as we can find a way to get this in quickly (lot of
->> DT warning need cleaned up based on this patch).
-> 
-> Hold your horses, I need the above explanation first (and perhaps an
-> updated patch).
-> 
+Changes from v3:
+ - Check for probe defer
 
-I'm not normally so impatient but this went two whole kernel cycles without
-any comment until rc6.. v4 on the way.
+Changes from v2:
+ - Rebased on v6.6-rc1
 
-Andrew
+Changes from v1:
+ - Flip logic as suggested in v1[0]
 
-> Cheers,
-> Peter
-> 
->> Thanks
->> Andrew
->>
->>> Cheers,
->>> Peter
->>>
->>>> +        if (IS_ERR(regmap))
->>>> +            regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
->>>> +    }
->>>>        if (IS_ERR(regmap)) {
->>>>            ret = PTR_ERR(regmap);
->>>>            dev_err(dev, "failed to get regmap: %d\n", ret);
+[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+
+ drivers/mux/mmio.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+index fd1d121a584ba..07c99588ff999 100644
+--- a/drivers/mux/mmio.c
++++ b/drivers/mux/mmio.c
+@@ -44,14 +44,17 @@ static int mux_mmio_probe(struct platform_device *pdev)
+ 	int ret;
+ 	int i;
+ 
+-	if (of_device_is_compatible(np, "mmio-mux"))
++	if (of_device_is_compatible(np, "mmio-mux")) {
+ 		regmap = syscon_node_to_regmap(np->parent);
+-	else
+-		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
++	} else {
++		regmap = device_node_to_regmap(np);
++		/* Fallback to checking the parent node on any error other than probe defer */
++		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER))
++			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
++	}
+ 	if (IS_ERR(regmap)) {
+ 		ret = PTR_ERR(regmap);
+-		dev_err(dev, "failed to get regmap: %d\n", ret);
+-		return ret;
++		return dev_err_probe(dev, ret, "failed to get regmap\n");
+ 	}
+ 
+ 	ret = of_property_count_u32_elems(np, "mux-reg-masks");
+-- 
+2.39.2
+
 
