@@ -1,108 +1,127 @@
-Return-Path: <devicetree+bounces-10829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702607D2D72
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:58:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D190A7D2D88
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:02:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AC70B20E06
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:58:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC822814D9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD4512B85;
-	Mon, 23 Oct 2023 08:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A752A12B6E;
+	Mon, 23 Oct 2023 09:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="phezEq5x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BIA6n2Er"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D3E125D1
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:58:04 +0000 (UTC)
-Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07E3D79
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:58:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=FM79yVJVep+HIJW89qSSuMfOMacWUUdHj2ArtvarWvU=; b=phezEq5xyNXIx8+9BxJwWtIA+l
-	/0xFBX2Fa+u1GkjQF8+lqzbvv01Kef7eY0RA1bjnpeB57K4H2mIZUYQpuqo19xfTcoyMHt2rN6K1K
-	bGo/lfhjOfnd0oAF6vkAjHzfa2o++RscXyyHj+ZSXfw9FXGtsn2CBhgvoUjcc4cznraemdtSHNPLv
-	FcbaqllhFJqPSzeWjuzggjX2tx0uKktmxHiLzM7z8S4hC/xdCDDpjHi/K12gKgn9aPCunLozqIvPN
-	E7u5xCnUqg4E4roPaJxJwnD672ugFLjpK1PHuto1B3gF91KNZA2VWu/OB/wy+GuEfKqWesz661Lmd
-	V/VddbNQ==;
-Received: from [192.168.1.4] (port=56549 helo=SH-EX2013.helmholz.local)
-	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Ante.Knezic@helmholz.de>)
-	id 1quqkz-0001uZ-1m;
-	Mon, 23 Oct 2023 10:57:53 +0200
-Received: from linuxdev.helmholz.local (192.168.6.7) by
- SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Mon, 23 Oct 2023 10:57:53 +0200
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: <o.rempel@pengutronix.de>
-CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>,
-	<ante.knezic@helmholz.de>, <conor+dt@kernel.org>, <davem@davemloft.net>,
-	<devicetree@vger.kernel.org>, <edumazet@google.com>, <f.fainelli@gmail.com>,
-	<krzysztof.kozlowski+dt@linaro.org>, <kuba@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <marex@denx.de>, <netdev@vger.kernel.org>,
-	<olteanv@gmail.com>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<woojung.huh@microchip.com>
-Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
-Date: Mon, 23 Oct 2023 10:57:50 +0200
-Message-ID: <20231023085750.8537-1-ante.knezic@helmholz.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20231023084150.GB3787187@pengutronix.de>
-References: <20231023084150.GB3787187@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2066E63A8;
+	Mon, 23 Oct 2023 09:02:41 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7638397;
+	Mon, 23 Oct 2023 02:02:39 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98377c5d53eso428202766b.0;
+        Mon, 23 Oct 2023 02:02:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698051758; x=1698656558; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iaSNLjd6qp2TTeM4lQ0nSQjwYYZEfvjgfhn3UAjO2Dc=;
+        b=BIA6n2Er/gUoh8IXDlAXlhQUmbh2rFUL+mhuKOgyMSSF0InGHJTd5IY+WFEdgE7cpR
+         Jar9K3lAPdjuERT8W2owjhVDBsl5lDWDSQERAR8oFe4IFz+RhCql7ax56tG1cVQG4iv/
+         hfw8F+Fs0HQAB/ensbm/cj5URzauI6IF4yZyDCoHow5F+qCrBsjwE/zFyK32m4HP2znM
+         AWoWiuG7NwXD3RhWsNS3N9tp2MuksFyPPt9vS6qMMz/QeAah2v9sC0kjVbpLk75xdwYy
+         2zVEQ6eLdCvmYDIRBOUNZ7Q16I3KbijCKVKjotTdWU5/50Nolqb0BPNc0xVBfJxxxE2+
+         pSmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698051758; x=1698656558;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iaSNLjd6qp2TTeM4lQ0nSQjwYYZEfvjgfhn3UAjO2Dc=;
+        b=sIN07DIvXP4ETKDQ9iJNbpPmIF+b8BCywl3Mxq9JIGUeu60ya/rNXvW9v8ZBZmyGya
+         8Y/JKZvMASuoU72Ruczug55loDQyrDOOwxYwY+zS75NFJnw9kkW2t3H/sbBpItmvvZar
+         oLx/dBF8gg3fJFZm1he0VJVogmnkwyn9y80PKEpNCa40UdbQzjah7qXHahc7DHgzH/Yp
+         duC5n0088UZKdHx1pZyAaAArwsZ7Ny1poOkE5nPDTb9Zt8TUly5xT27W3t+WC7acg2Oa
+         GhYgWE58lqphwKo/l4Lf/FyTnzdOUD6WOQdpsaQYVmQHQoT/njGRIb0e5lyqNjvvowv2
+         L+aQ==
+X-Gm-Message-State: AOJu0YyT35umysOi369Ttd7lSxKv+MYnwctRlVWHzYhdrgIQNx6Hvlz4
+	r/TMkNVI+NS/+6JkjEz/l+o=
+X-Google-Smtp-Source: AGHT+IEzc+1DI+ZcbZbo3aWCLNDTe65vgU8MirpcnkiY1TwqFwyjVUnjpu1zsDvj4Uq1uSkly+nDuA==
+X-Received: by 2002:a17:907:7da9:b0:9b2:982e:339a with SMTP id oz41-20020a1709077da900b009b2982e339amr6866306ejc.22.1698051757412;
+        Mon, 23 Oct 2023 02:02:37 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:3344:1b7d:7200::eba])
+        by smtp.gmail.com with ESMTPSA id 20-20020a170906019400b00992b8d56f3asm6326555ejb.105.2023.10.23.02.02.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 02:02:36 -0700 (PDT)
+From: Luka Panio <lukapanio@gmail.com>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <keescook@chromium.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: Luka Panio <lukapanio@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v8 1/2] dt-bindings: arm: qcom: Add Xiaomi Pad 6 (xiaomi-pipa)
+Date: Mon, 23 Oct 2023 11:02:29 +0200
+Message-ID: <20231023090230.43210-1-lukapanio@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.6.7]
-X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
- SH-EX2013.helmholz.local (192.168.1.4)
-X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
+Content-Transfer-Encoding: 8bit
 
-On Mon, 23 Oct 2023 10:41:50 +0200, Oleksij Rempel wrote:
+Add a compatible for Xiaomi Pad 6.
 
-> Here is KSZ8873 as initial reference:
-> https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/00002348A.pdf
-> 3.3.9 RMII INTERFACE OPERATION:
-> "When EN_REFCLKO_3 is high, KSZ8873RLL will output a 50 MHz in REFCLKO_3.
-> Register 198 bit[3] is used to select internal or external reference
-> clock. Internal reference clock means that the clock for the RMII of
-> KSZ8873RLL will be provided by the KSZ8873RLL internally and the
-> REFCLKI_3 pin is unconnected. For the external reference clock, the
-> clock will provide to KSZ8873RLL via REFCLKI_3."
-> 
-> KSZ9897:
-> http://ww1.microchip.com/downloads/en/DeviceDoc/00002330B.pdf
-> 4.11.2 REDUCED MEDIA INDEPENDENT INTERFACE (RMII)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Luka Panio <lukapanio@gmail.com>
 
-The upper paragraph refers to the case when switch is acting as a clock
-provider (regardless whether its set as internal or external reference
-clock). You can see this if you look at the next paragraph:
-"If KSZ8863RLL does not provide the reference clock, this 50 MHz reference 
-clock with divide-by-2 (25 MHz) has to be used in X1 pin instead of the 
-25 MHz crystal, since the ..."
-So rmii-clk-internal property does not select whether switch is acting
-as a clock provider or clock consumer which is what you are refering to
-I believe? The clock provider/consumer is set via strapping pins.
+---
+v2:
+Update commit message
 
-Real case scenario: I have a board where switch is acting as a clock
-provider, generating output to REFCLKO pin and feeding it to uC. 
-This board does not have externally routed copper track from REFCLKO 
-to REFCLKI, thus making the RMII interface not operable, unless the 
-rmii-clk-internal bit is set.
-If this bit is not set, only way to make it running is to solder a
-jumper wire from REFCLKO to REFCLKI.
+v3:
+Update commit message
+
+v4:
+Update commit message
+
+v5:
+Update commit message
+
+v6:
+Update commit message
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index adbfaea32343..1bfae1b237d2 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -965,6 +965,7 @@ properties:
+               - sony,pdx203-generic
+               - sony,pdx206-generic
+               - xiaomi,elish
++              - xiaomi,pipa
+           - const: qcom,sm8250
+ 
+       - items:
+-- 
+2.42.0
 
 
