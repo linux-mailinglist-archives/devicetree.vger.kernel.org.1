@@ -1,130 +1,129 @@
-Return-Path: <devicetree+bounces-10811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B922C7D2CD8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:37:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F9C7D2CE3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6B991C20953
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:37:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CDD9281593
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E98E4C9E;
-	Mon, 23 Oct 2023 08:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BBBDDCE;
+	Mon, 23 Oct 2023 08:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PPhvIOR7"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="D5xl3ItW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CC3101EC
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:37:18 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F40D5D
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:37:16 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c5087d19a6so44869221fa.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 01:37:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698050235; x=1698655035; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=me2MC4nn/CV3tpkA7KZB34ZTwycbNAKshOBYMr2X+Pk=;
-        b=PPhvIOR7tf5eRKVGIOnItTLxoqVfUtMphG2mxi5WG83HKhPmatY8WspWdceVH+Cg98
-         tPjI+S9JB2VUevZ5k4WVdY/GNpKFmANGaU62cBOwNV+d875stIGB6pGbDiHI0/guxG3O
-         cZ5GUT+jyJqDHGUcrZrryE0G6mura5rZPg+ZhayY0tiW3RPFhmGdPJg3TJ0iDTRVy+7R
-         UymCwJWTXvYwYgB4+1SBaeX0BSbkVVhmEqPyc5eB//esbWk8et42rprRHXGu/q/nfi/J
-         WDQaBL4CDuTbYmsdvnkZWs+0P7RfzJka7VqSHui7+91ih2KozkMrxwxp4M6d6gUX/TW+
-         Mg+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698050235; x=1698655035;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=me2MC4nn/CV3tpkA7KZB34ZTwycbNAKshOBYMr2X+Pk=;
-        b=DIvA3calsAN90OA+uatIJmK0rHzfbjpZqnvILV6GNhQZqE9QWFTF1cmKe6exH7Rpp9
-         upwTdBGVrWIoFbOI7hwkfSkB8bpVlhDsZG5KJP8M9/OVt2t94bw08RxKH9jCDVDPTXe+
-         Mzg1UXLGKhdd+dFZNxuqJOsA3heUbgiAsSf8/BtoovAFV7jt/9tKqmPSt7ZYQM30FUhg
-         M8KS2ZDv24pyxgjjsW0Lx2BPHWBd6MrmuMvjBCvs2MAd+kh2BonnFwfi8cndJjSDegEv
-         2J+EOuNx/B5EgCSYFVic4YlILpCeGsuWNd1Y3CGlkpvqChKSBDwNNhc1S5wG8WmDM93N
-         j8GA==
-X-Gm-Message-State: AOJu0Yz6GuWqsPV3PncnfEGGZpMmWstRSblZEDm7D2N+JvrDQDCDlpfk
-	g3VENCOKOEL4c2aD6hBf5GXutQ==
-X-Google-Smtp-Source: AGHT+IHlKoNRRLj9D+bLl/GMYZXBlYtqehKTnbdPLVHoetbAT9+UytWeVgCL/DfTleBsee6/yAUHYQ==
-X-Received: by 2002:a2e:a589:0:b0:2c5:1a8e:e4c9 with SMTP id m9-20020a2ea589000000b002c51a8ee4c9mr6107923ljp.31.1698050234775;
-        Mon, 23 Oct 2023 01:37:14 -0700 (PDT)
-Received: from [192.168.86.24] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id az20-20020a05600c601400b004054dcbf92asm8758062wmb.20.2023.10.23.01.37.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 01:37:14 -0700 (PDT)
-Message-ID: <06a2c115-278a-47e0-b5ba-74639b6b23aa@linaro.org>
-Date: Mon, 23 Oct 2023 09:37:10 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A1E125A6
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:38:51 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B341D188;
+	Mon, 23 Oct 2023 01:38:49 -0700 (PDT)
+X-UUID: 925d184e717f11ee8051498923ad61e6-20231023
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=dQXcmjFwd9DXm27/c465+NmP2tWOpWp/6hKymZvRh44=;
+	b=D5xl3ItWDjypRc5RlLN/z+kn+TH5lTX1nM/fUSRLuLDEsYNmEXbid9xAqn9ouviR6bEiwZ1chmv14Xa+Z4X7IJJ2mr5Iqz7Gy4WvlK885QcUjXICBLH9T2TrsSWvBX1320vPYK9c5U9FctpnCV54dKVX8sJuF9nVV2SlSzTkZUM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:0ea7720a-484b-407b-ba1f-51ec4506eb35,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:a830a8fb-4a48-46e2-b946-12f04f20af8c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 925d184e717f11ee8051498923ad61e6-20231023
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <jason-ch.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1486113246; Mon, 23 Oct 2023 16:38:42 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 23 Oct 2023 16:38:41 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 23 Oct 2023 16:38:41 +0800
+From: Jason-ch Chen <jason-ch.chen@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Eugen Hristev
+	<eugen.hristev@collabora.com>, Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre
+ Mergnat <amergnat@baylibre.com>
+CC: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+	jason-ch chen <Jason-ch.Chen@mediatek.com>
+Subject: [PATCH v6 0/4] Add basic node support for MediaTek MT8188 SoC
+Date: Mon, 23 Oct 2023 16:38:35 +0800
+Message-ID: <20231023083839.24453-1-jason-ch.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add WSA2
- audio ports IDs
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Banajit Goswami <bgoswami@quicinc.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231019153541.49753-1-krzysztof.kozlowski@linaro.org>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20231019153541.49753-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+Content-Type: text/plain
+X-MTK: N
 
-Hi Krzysztof,
+From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 
-On 19/10/2023 16:35, Krzysztof Kozlowski wrote:
-> Add defines for audio ports used on Qualcomm WSA2 LPASS (Low Power
-> Audio SubSystem).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> index 39f203256c4f..c5ea35abf129 100644
-> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> @@ -139,6 +139,11 @@
->   #define DISPLAY_PORT_RX_5	133
->   #define DISPLAY_PORT_RX_6	134
->   #define DISPLAY_PORT_RX_7	135
-> +#define WSA2_CODEC_DMA_RX_0	136
-> +#define WSA2_CODEC_DMA_TX_0	137
-> +#define WSA2_CODEC_DMA_RX_1	138
-> +#define WSA2_CODEC_DMA_TX_1	139
-> +#define WSA2_CODEC_DMA_TX_2	140
->   
+MT8188 is a SoC based on 64bit ARMv8 architecture.
+It contains 6 CA55 and 2 CA78 cores.
+MT8188 share many HW IP with MT65xx series.
 
-Patches looks fine as it is, but do you realize that this s a dead code 
-w.r.t upstream.
-WSA2 is used only with 4 speaker setup and in such cases we use WSA 
-codec dma to drive 4 channels.
+This patchset was tested on MT8188 evaluation board to shell.
 
-So WSA2 will not be used by itself.
-I would prefer support for this to be added when we are really able to 
-test WSA2 by itself.
+Based on tag: next-20231023, linux-next/master
 
-thanks,
-Srini
+Changes in v6:
+- Add L2 and L3 cache information
+- Fix reviewer's comments
 
->   #define LPASS_CLK_ID_PRI_MI2S_IBIT	1
->   #define LPASS_CLK_ID_PRI_MI2S_EBIT	2
+Changes in v5:
+- Remove unnecessary always-on regulator nodes
+- Fix dtbs_check warning
+
+Changes in v4:
+- Explain the reason of modifying pwrap binding file, and correct the
+  subject
+- Fix reviewer's comments
+
+Changes in v3:
+- Remove the duplicated part of mt8188 in the pwrap yaml file
+- Fix reviewer's comments about coding style
+
+Changes in v2:
+- Add MT8188 PMIC Wrapper compatible to binding document
+- Fix reviewer's comments
+
+jason-ch chen (4):
+  dt-bindings: arm: Add compatible for MediaTek MT8188
+  dt-bindings: arm: mediatek: Add mt8188 pericfg compatible
+  dt-bindings: soc: mediatek: pwrap: Modify compatible for MT8188
+  arm64: dts: Add MediaTek MT8188 dts and evaluation board and Makefile
+
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml |   6 +-
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8188-evb.dts   | 387 +++++++
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 956 ++++++++++++++++++
+ 6 files changed, 1354 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
+
+-- 
+2.18.0
+
 
