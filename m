@@ -1,169 +1,357 @@
-Return-Path: <devicetree+bounces-10922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08C9B7D37DB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:23:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D169B7D380B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:28:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B63F528130D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:23:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC93F1C2088C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD9018E3B;
-	Mon, 23 Oct 2023 13:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9D819BA1;
+	Mon, 23 Oct 2023 13:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="T7cEzjpp"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="KmrzeQpK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2399314286
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:23:39 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8245926B7;
-	Mon, 23 Oct 2023 06:23:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1698067401; x=1729603401;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KraaAR9AJRx4szBcb69Mh9Dil932gzrCb3ff3bUUqeE=;
-  b=T7cEzjpp2WWwpDgofDuSkW+PokhhIu1cwmSfiZsddeJpOR6AHQIw4joj
-   mZ5CcrkvMSeuoRIxGaiT06Okkk5cssJym5x8TxjJZ7Ty6VpgBAmRMw0Lf
-   +KdxgizhV4m9zr3dxqeJazlgrENYgXSxW+kZgSqRTX5sTcTKR+EqE65r2
-   +MC+1wMyMztBI5ukvXE0RHwhnXeJtwZjye0hTHbV+7dAxSpWZTpJbGimV
-   g2sYLAPvi8YfVsUdzvvh49onK3vAIiPtjg/IqvK61E5zINxlz59TM6mBp
-   kqhrDECjLb+gC/4N7uejDOiv+4+byHFiVbUB9aNgX5GOLD6R1pPHvvR5b
-   g==;
-X-IronPort-AV: E=Sophos;i="6.03,244,1694728800"; 
-   d="scan'208";a="33603121"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 23 Oct 2023 15:23:19 +0200
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C6A0128007F;
-	Mon, 23 Oct 2023 15:23:18 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>
-Cc: aford@beaconembedded.com, Adam Ford <aford173@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2] arm64: dts: imx8mp: Add NPU Node
-Date: Mon, 23 Oct 2023 15:23:21 +0200
-Message-ID: <9185912.CDJkKcVGEf@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231022161911.10792-1-aford173@gmail.com>
-References: <20231022161911.10792-1-aford173@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF3C637
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:28:46 +0000 (UTC)
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2062.outbound.protection.outlook.com [40.107.104.62])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B37F9;
+	Mon, 23 Oct 2023 06:28:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f4Su9Cnt9Md72Na+ujtHT1nSXIT7DREYicK3+Z5g5uwa/cMzjyoEL1rD0wgcmu2eL0n7eI4YlaiIygDKb5fhWDadFgxB3tGvKRAMvvb97C7GCYssM+GCy/KF5+40E8aHgb7LoprIa2XzH7aI0y6EZdmqpsc+SxgaryHp/Dw3hd0MHNYZy9Plnngd8NgHCeIkTZ6ym1EIE4JhnlOFY36mBeArfS5LXJh947FpaLcAQGvY17kvjLrh84sOFS5jOTeFcRt/vTIPI6hLOjyFnE0ru+td1xYULO9ETLOrSZUNJaS8l9Im81p5WjIBKqADzxz37OqTAMTHzuoHiS5HjQ+uFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EJaCxwwh+roQjYl602o8k+9pslodONkqCleR2OziZ5o=;
+ b=mqs5o3c/BTkrCven7ZZBEeG0jeF6/L023bhbn+MBR+xmb2EqGa77d/Wu44OLTrhUIEYbaaOx6vu7xrBH4mqw7J/+nc+bjir2/oWEl7/Xbuw4+v4MYemNp3PHL/0ME148O4OKJqmKJN9V4DPNTXtoueZ8tIalhgBD3gf3Wg7/2jZW2GNglFZpVkn/wQNZ8TvWvcbf2XN1qjOe1I5BYZ4fFB1OAGA0z1PyYaeD3ZuBztAb+ESFM+fPECRqXwNkVoq4kYCF/K1CJddRGutFoouVkjJekC3rWMzCrPnBEPtfr4vPPV7u8vosIyJiT8hyD5L3ratlzRdCuU9myFbDAyIeTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EJaCxwwh+roQjYl602o8k+9pslodONkqCleR2OziZ5o=;
+ b=KmrzeQpKNV4I5YGQn/CcvCO6BhRUVBsN+ebTYoB7AIqcOL1mY+VzSnrj4/HOPQMfaqRMB1GQJNpsw5mHZxHiujEAPF+p/QgDcN8vX1ad8FpRCSIbCmDCm8PF6rptFJo2wd0yqq/hPUh8kvuDidtDu3IQWoW8NCQIMUEOK4xEl+c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by DB5PR08MB10163.eurprd08.prod.outlook.com (2603:10a6:10:4a2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Mon, 23 Oct
+ 2023 13:28:42 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::1d06:cca0:f1ef:ff62]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::1d06:cca0:f1ef:ff62%4]) with mapi id 15.20.6907.025; Mon, 23 Oct 2023
+ 13:28:41 +0000
+Message-ID: <ee4034b9-85f6-42cc-abca-d61004aa0a6c@wolfvision.net>
+Date: Mon, 23 Oct 2023 15:28:39 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/3] media: rockchip: Add a driver for Rockhip's camera
+ interface
+Content-Language: en-US
+To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+ heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ ezequiel@vanguardiasur.com.ar
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+ paul.kocialkowski@bootlin.com
+References: <cover.1697446303.git.mehdi.djait@bootlin.com>
+ <3790470ff7606fc075ec742d43254e52dde5d120.1697446303.git.mehdi.djait@bootlin.com>
+From: Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <3790470ff7606fc075ec742d43254e52dde5d120.1697446303.git.mehdi.djait@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0037.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:1d::6) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DB5PR08MB10163:EE_
+X-MS-Office365-Filtering-Correlation-Id: bbf5b571-d505-4a02-9ee7-08dbd3cbf954
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	eBN393mllWijMsMHnS+x75IsG0j4EkDMCtpPEHtDXw3A5bcdG672XMOzU3lynnuQ2Ego+JikvszbC2Kg4eLCWN0aJOV1bNEtcten7EEzHN3DujGteDCykALufAmriqYHl2z1zs9uVPz3HDex01RMCw/enUVhMGid9+elGRVI8AizIVX/axPrkCRensRsyE1PtzT9X6m3HdAtiyQRrsp9WmWTPbGcERdba8dXdWg07ZD9unbMmZl6ZuHEJ5TJpDMTMXVxStJGnIppAMLhjq0Bn7DlGCoV81FSMmzfErDZj6dNnbJsJBa1kV/Q9e6yVFTANqX7zps4noI0K9C6wBcRN+rutTgpfJdYfduEz2la4cXaKvPE04q0UF2gngdUf7CQg19jWijR4EWq+3c+vcJVxCwcs3ApoD0CmPGkWq+TQ5F6hlWlBsC7Dj7Z5wtg9K/bZnPl/1qNO6JbdTvyUJaTMyk4Tcydl1BL8rJmSAuWxmmGboSrtT8wkvgp5IT37anMcjsXyhkPqItBYFZhrhkiraIc3LV7nqvBQzqax/TiKqaVcdXYVIbcd85+fB/kNTcD68eJYDadRoMd1uPWxs0hsFFGOT+zpldjSO08ZO3HUqHySRK7Hm3kE8OuNEXlvl4OluhlmEfWiKHIDV3omTiaMw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(136003)(39830400003)(366004)(346002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(53546011)(44832011)(66946007)(66556008)(66476007)(316002)(478600001)(5660300002)(8676002)(6486002)(8936002)(4326008)(31686004)(6512007)(6506007)(41300700001)(7416002)(2906002)(38100700002)(83380400001)(2616005)(36756003)(31696002)(86362001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SWNZTzFjcUpucmZPTXpBcWxCQnd5c251dDFjcE1jK3pxZXUvNzFVazJEcjVk?=
+ =?utf-8?B?UTFrd2crTWlKY3h2cGI3NE5aTEVkL2dyR3VFY1NYNURGWCtMQVNJUEt3Uk04?=
+ =?utf-8?B?Nm1qcmxMZEVtSDBiVlhBNlM4MGxBVXNLMTFpOCtMZHFoeHU1MlUzZGx2b01J?=
+ =?utf-8?B?YVJYaVJhYUd1ODNvbUY4NDFXdG4zeWZMVnk4c08zVm9lN3VYMXNRS1FtWndF?=
+ =?utf-8?B?MHNGQnNRSUw1N1pCMk51ZGhncGd2TGo3UnRyNGxBYW5TM0RxRVVWeENrVFpj?=
+ =?utf-8?B?U1A1R2tnSmVKNEpraDFJQ2NSYnkvRWlCK2hUaVRmTVRkMzBjOTFINHVLRW1N?=
+ =?utf-8?B?eTFwS0tLR09tdi9kMGpHclZjODZSUFNkYUdPT0pYNExiM2NtR2tnSDFiMklP?=
+ =?utf-8?B?dzRSL1RkY3BzZ1UyT2tlVEVudWhHVEt4c0NyQU9ZQmN5aWVDMlVYd3h0TktG?=
+ =?utf-8?B?ekgxSGRIbWJKK2NyYkZoTnpFTGxRVnR4WlZvRGZMWmtoQjI5cHk2aWFtbkZm?=
+ =?utf-8?B?VmZiZTZIK1NwSm8wOFJObnNDc3RiQWtyZHcrSDBWY2YxbjF6eG1yTWFuSGUr?=
+ =?utf-8?B?STdleU1YcmNFODltUTliVzJ1UjZNSVJQQXNZSWk5dk9QTVZEaGMvYllRNnJ3?=
+ =?utf-8?B?Vnp6U2todno1TXM3eHBCQTZiRTNkTTIvbHkxeVh3VGYyZ2dEWHlqaG1rNVZE?=
+ =?utf-8?B?ZGJWdHVKVE9QRG9uZ1p3Snhxa3A0K0lsdGE3VFJZYWFJZVV1VHJGMS8yc0k5?=
+ =?utf-8?B?ZXBscUxxUzRUWnpRaEcvWTRvNjRGd0lzQ2JjVjVsR3lUZVZXajVkVHNFUnNs?=
+ =?utf-8?B?d0I0ZTA2YVNmU1UxNzduc3V1cFBKb2ltR1ZYQ1d3VkJ2ZWpHZE9OUVhSekVJ?=
+ =?utf-8?B?SzdzNzQ1elkxcCs4cWo5MVdoM0txMHpIaE5ZbjQwcmZPUEFBQ0crS3ZpWGhJ?=
+ =?utf-8?B?SUNaZXliTmRvd0ZXcnBiemdaMzNjaHJIVU1lRUhsWjNiTWFnSDNYMEd6eGpa?=
+ =?utf-8?B?UWxXSWh4KzFjRzBhYVB1UmdkQkM4YTRYajBoS3V0dkJFUUFmSWJLNEFkWDFI?=
+ =?utf-8?B?cVd4WFNiSVRRcGw1WG85djZPKytNSVNYQUwwaTZvUWhTamhiczBPWTZmOW9w?=
+ =?utf-8?B?MjFtZUZRSnFlUlFyMGZreTBhNWt3ZHBkU2p2S1FYaVlIYlZJb2lyNWtUR3Jq?=
+ =?utf-8?B?OXZyRmVyZDl5djd1UmFWTGhNWkU4SDJld2tySnRZVWNCSm1hN3RSK29PcTRE?=
+ =?utf-8?B?Z29FZHRsY3RLZG1SOVpEendvdlBvZDY1cTRTTjJDN1gyam1EcnVJY2hic05E?=
+ =?utf-8?B?UkNDZnJYc1pYL2dDM3htRGNvVU4yQk56dTNDdmU4S1lSYThDTlJBQy9BN3pp?=
+ =?utf-8?B?TUdiVTNmREVOaEdvRWFJM0VUZFlnUStrMzF6VzFKVTdvb2Nsc2o2azlwMTA1?=
+ =?utf-8?B?MEtCOEpXNHFISXcxdFF6WmNHcitESGlmbW1Ua0M0K3kyZW80ZGVrVjR1dnZk?=
+ =?utf-8?B?ZWU5QldQZE1FRnkvM0s5VUlMUStvY0JsUThaZVJBd3JXUy81TW92czFpZ0VF?=
+ =?utf-8?B?OEJZSmJrRk5vaC9jbFRjcXNqdTcrdkwyQzlQWWVRcGlRTGtRcGZ2UnFiWEx4?=
+ =?utf-8?B?cVArYUJBS3B5MGU0blk3WTJUdXBXR3RLaS9hYjNPVWtlc2dTUXFpcERnbk16?=
+ =?utf-8?B?SXBXOG9jV3VBVXZNZEx3bVhWdmxMTEZWMnlNZkJKTldRdDdiZDBibisrcDhi?=
+ =?utf-8?B?UVYyNVF4a1BXL0xXK21QTHh1dHg5cXRFZy9KNDJsVmRDT2x5anZuVHYzUHdP?=
+ =?utf-8?B?Y25aYm82TDByT1Y0TytnNlcwVWl5eng4Nno1djdDVE5NNzBHTitxUGZvRFVU?=
+ =?utf-8?B?QXNwTWVFQXM3V3VjQlQ3ZXM3b2VScG80bHBGR1V5Umc5OTRxTkxFdzFjWDJY?=
+ =?utf-8?B?MGwrR0dBcUlBNUR5dnJCbmkzZjB5Szk1TGZWa1N0cktGcXhGbk9Gbkl0SXd1?=
+ =?utf-8?B?V0VQZ3kxVUdwZjN2L1NBOTZEQWZpK3B0RmNvK1RjQ1pmYWUwY1dOT1l0Zlpx?=
+ =?utf-8?B?TlFUTlJZRzc3VStUWk42UERDcVZhRk9YSUJDeE9xYWZCYXJDaFprNDVNWDgy?=
+ =?utf-8?B?OEE3cXh3ZFBiRWRieFA1TG00Z3pDRGsyUE5hYStBS1JRM3czRnNvSm14OWxK?=
+ =?utf-8?B?SFVnT29TUG5DdW4wTUVRckxzUm1wN24vdm56NjBkZ1F0cVFscUhuSDFSdDR0?=
+ =?utf-8?B?SklkMS9nWjh3TjhmZjh3MlN3NG9nPT0=?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbf5b571-d505-4a02-9ee7-08dbd3cbf954
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 13:28:41.9087
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: w1s3PcuzCP05MpPXmSiyiIIWQ5WhiJyDOTKO/Dn4CKgr/G/LlPvU0DQOdTwX2oVkW1shlKD0h6+SGqjE7qygEmgw7Fg955KPfO4hm6otAYY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR08MB10163
 
-Hi Adam,
+Hi Mehdi,
 
-thanks for the update.
+Typo in the subject: "Rockhip's" -> "Rockchip's"
+I think this typo has been in there for a while now ;-)
 
-Am Sonntag, 22. Oktober 2023, 18:19:10 CEST schrieb Adam Ford:
-> The NPU is based on the Vivante GC8000 and its power-domain
-> is controlled my pgc_mlmix.  Since the power-domain uses
-> some of these clocks, setup the clock parent and rates
-> inside the power-domain, and add the NPU node.
->=20
-> The data sheet states the CLK_ML_AHB should be 300MHz for
-> nominal, but 800MHz clock will divide down to 266 instead.
-> Boards which operate in over-drive mode should update the
-> clocks on their boards accordingly.  When the driver loads,
-> the NPU numerates as:
->=20
->  etnaviv-gpu 38500000.npu: model: GC8000, revision: 8002
+On 10/16/23 11:00, Mehdi Djait wrote:
+> Introduce a driver for the camera interface on some Rockchip platforms.
+> 
+> This controller supports CSI2 and BT656 interfaces, but for
+> now only the BT656 interface could be tested, hence it's the only one
+> that's supported in the first version of this driver.
 
-There seems to be some race condition upon GPU/NPU detection. Sometimes I g=
-et=20
-these messages:
-[    1.338100] etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6204
-[    1.344469] etnaviv-gpu 38008000.gpu: model: GC520, revision: 5341
-[    1.350748] etnaviv-gpu 38500000.npu: model: GC0, revision: 0
-[    1.356514] etnaviv-gpu 38500000.npu: Unknown GPU model
+"CSI2" -> "MIPI CSI-2" ?
+"BT656" -> "BT.656" ?
+Also, additional interfaces are supported by some units, e.g., the
+RK3568 VICAP also supports BT.1120.
 
-Sometimes I see GC8000 being detected as you have written. Despite that the=
-=20
-patch itself looks good.
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+But most likely it becomes too complex to list everything, and it would
+be better if you simply described the unit in the PX30. I think this
+would clarify the commit message a lot.
 
->=20
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->=20
-> V2:  Move the clock parent and rate assignments to the ppc_mlmix node
->      since clock parents should be configured before they are used,
->      and pgc_mlmix uses them first.
->      Slow the clock rates down to confirm to nominal mode instead of
->      overdrive mode.
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> c9a610ba4836..a18b9ba98ea2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -887,6 +887,15 @@ pgc_mlmix: power-domain@24 {
->  						clocks =3D <&clk=20
-IMX8MP_CLK_ML_AXI>,
->  							 <&clk=20
-IMX8MP_CLK_ML_AHB>,
->  							 <&clk=20
-IMX8MP_CLK_NPU_ROOT>;
-> +						assigned-clocks =3D=20
-<&clk IMX8MP_CLK_ML_CORE>,
-> +							=09
-  <&clk IMX8MP_CLK_ML_AXI>,
-> +							=09
-  <&clk IMX8MP_CLK_ML_AHB>;
-> +						assigned-clock-
-parents =3D <&clk IMX8MP_SYS_PLL1_800M>,
-> +							=09
-	 <&clk IMX8MP_SYS_PLL1_800M>,
-> +							=09
-	 <&clk IMX8MP_SYS_PLL1_800M>;
-> +						assigned-clock-
-rates =3D <800000000>,
-> +							=09
-       <800000000>,
-> +							=09
-       <300000000>;
->  					};
->  				};
->  			};
-> @@ -2012,6 +2021,18 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
->  			interconnect-names =3D "g1", "g2", "vc8000e";
->  		};
->=20
-> +		npu: npu@38500000 {
-> +			compatible =3D "vivante,gc";
-> +			reg =3D <0x38500000 0x200000>;
-> +			interrupts =3D <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk IMX8MP_CLK_NPU_ROOT>,
-> +				 <&clk IMX8MP_CLK_NPU_ROOT>,
-> +				 <&clk IMX8MP_CLK_ML_AXI>,
-> +				 <&clk IMX8MP_CLK_ML_AHB>;
-> +			clock-names =3D "core", "shader", "bus", "reg";
-> +			power-domains =3D <&pgc_mlmix>;
-> +		};
+> This controller can be fond on PX30, RK1808, RK3128 and RK3288,
+> but for now it's only been tested on PX30.
+> 
+> Most of this driver was written following the BSP driver from rockchip,
+
+"rockchip" -> "Rockchip"
+
+> removing the parts that either didn't fit correctly the guidelines, or
+> that couldn't be tested.
+> 
+> In the BSP, this driver is known as the "cif" driver, but this was
+> renamed to "vip" to better fit the controller denomination in the
+> datasheet.
+> 
+> This basic version doesn't support cropping nor scaling, and is only
+> designed with one SDTV video decoder being attached to it a any time.
+> 
+> This version uses the "pingpong" mode of the controller, which is a
+> double-buffering mechanism.
+> 
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+
+Two things below:
+
+>[...]
+> diff --git a/drivers/media/platform/rockchip/vip/dev.h b/drivers/media/platform/rockchip/vip/dev.h
+> new file mode 100644
+> index 000000000000..eb9cd8f20ffc
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/vip/dev.h
+> @@ -0,0 +1,163 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Rockchip VIP Driver
+> + *
+> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + */
 > +
->  		gic: interrupt-controller@38800000 {
->  			compatible =3D "arm,gic-v3";
->  			reg =3D <0x38800000 0x10000>,
+> +#ifndef _RK_VIP_DEV_H
+> +#define _RK_VIP_DEV_H
+> +
+> +#include <linux/clk.h>
+> +#include <linux/mutex.h>
+> +#include <media/media-device.h>
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/videobuf2-v4l2.h>
+> +
+> +#define VIP_DRIVER_NAME		"rk_vip"
+> +#define VIP_VIDEODEVICE_NAME	"stream_vip"
+> +
+> +#define RK_VIP_MAX_BUS_CLK	8
+> +#define RK_VIP_MAX_SENSOR	2
+> +#define RK_VIP_MAX_RESET	5
+> +#define RK_VIP_MAX_CSI_CHANNEL	4
+> +
+> +#define RK_VIP_DEFAULT_WIDTH	640
+> +#define RK_VIP_DEFAULT_HEIGHT	480
+> +
+> +#define write_vip_reg(base, addr, val)  writel(val, (addr) + (base))
+> +#define read_vip_reg(base, addr) readl((addr) + (base))
 
+Please provide those helpers as proper inline functions. As to the
+naming, the "_reg" suffix seems unnecessary.
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Alternatively, you could consider converting the driver to use regmap.
 
+> +
+> +enum rk_vip_state {
+> +	RK_VIP_STATE_DISABLED,
+> +	RK_VIP_STATE_READY,
+> +	RK_VIP_STATE_STREAMING
+> +};
+> +
+> +enum rk_vip_chip_id {
+> +	CHIP_PX30_VIP,
+> +	CHIP_RK1808_VIP,
+> +	CHIP_RK3128_VIP,
+> +	CHIP_RK3288_VIP
+> +};
+> +
+> +enum host_type_t {
+> +	RK_CSI_RXHOST,
+> +	RK_DSI_RXHOST
+> +};
+> +
+> +struct rk_vip_buffer {
+> +	struct vb2_v4l2_buffer vb;
+> +	struct list_head queue;
+> +	union {
+> +		u32 buff_addr[VIDEO_MAX_PLANES];
+> +		void *vaddr[VIDEO_MAX_PLANES];
+> +	};
+> +};
+> +
+> +struct rk_vip_scratch_buffer {
+> +	void *vaddr;
+> +	dma_addr_t dma_addr;
+> +	u32 size;
+> +};
+> +
+> +static inline struct rk_vip_buffer *to_rk_vip_buffer(struct vb2_v4l2_buffer *vb)
+> +{
+> +	return container_of(vb, struct rk_vip_buffer, vb);
+> +}
+> +
+> +struct rk_vip_sensor_info {
+> +	struct v4l2_subdev *sd;
+> +	int pad;
+> +	struct v4l2_mbus_config mbus;
+> +	int lanes;
+> +	v4l2_std_id std;
+> +};
+> +
+> +struct vip_output_fmt {
+> +	u32 fourcc;
+> +	u32 mbus;
+> +	u32 fmt_val;
+> +	u8 cplanes;
+> +};
+> +
+> +enum vip_fmt_type {
+> +	VIP_FMT_TYPE_YUV = 0,
+> +	VIP_FMT_TYPE_RAW,
+> +};
+> +
+> +struct vip_input_fmt {
+> +	u32 mbus_code;
+> +	u32 dvp_fmt_val;
+> +	u32 csi_fmt_val;
+> +	enum vip_fmt_type fmt_type;
+> +	enum v4l2_field field;
+> +};
+> +
+> +struct rk_vip_stream {
+> +	struct rk_vip_device		*vipdev;
+> +	enum rk_vip_state		state;
+> +	bool				stopping;
+> +	wait_queue_head_t		wq_stopped;
+> +	int				frame_idx;
+> +	int				frame_phase;
+> +
+> +	/* lock between irq and buf_queue */
+> +	spinlock_t			vbq_lock;
+> +	struct vb2_queue		buf_queue;
+> +	struct list_head		buf_head;
+> +	struct rk_vip_scratch_buffer	scratch_buf;
+> +	struct rk_vip_buffer		*buffs[2];
+> +
+> +	/* vfd lock */
+> +	struct mutex			vlock;
+> +	struct video_device		vdev;
+> +	struct media_pad		pad;
+> +
+> +	struct vip_output_fmt		*vip_fmt_out;
+> +	const struct vip_input_fmt	*vip_fmt_in;
+> +	struct v4l2_pix_format_mplane	pixm;
+> +};
+> +
+> +static inline struct rk_vip_stream *to_rk_vip_stream(struct video_device *vdev)
+> +{
+> +	return container_of(vdev, struct rk_vip_stream, vdev);
+> +}
+> +
+> +struct rk_vip_device {
+> +	struct list_head		list;
+> +	struct device			*dev;
+> +	int				irq;
+> +	void __iomem			*base_addr;
+> +	void __iomem			*csi_base;
+> +	struct clk_bulk_data		clks[RK_VIP_MAX_BUS_CLK];
+> +	int				num_clk;
+> +	struct vb2_alloc_ctx		*alloc_ctx;
+> +	bool				iommu_en;
+> +	struct iommu_domain		*domain;
+> +	struct reset_control		*vip_rst;
+> +
+> +	struct v4l2_device		v4l2_dev;
+> +	struct media_device		media_dev;
+> +	struct v4l2_ctrl_handler	ctrl_handler;
+> +	struct v4l2_async_notifier	notifier;
+> +	struct v4l2_async_connection	asd;
+> +	struct rk_vip_sensor_info	sensor;
 
+Using "sensor" as name does not seem correct. As pointed out above it
+could be a video decoder just as well. Something with "subdevice" maybe?
+
+Thanks and best regards,
+Michael
+
+> [...]
 
