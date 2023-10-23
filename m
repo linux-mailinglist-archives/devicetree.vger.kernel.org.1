@@ -1,208 +1,99 @@
-Return-Path: <devicetree+bounces-10791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E297D2B38
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:24:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7496D7D2B40
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:27:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CDAF2814DB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 07:24:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D17A9B20E00
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 07:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11CB101D7;
-	Mon, 23 Oct 2023 07:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76162101EA;
+	Mon, 23 Oct 2023 07:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="XK2+j12i"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="TtwU/HLF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0C5747D
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 07:24:36 +0000 (UTC)
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2DAED60
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 00:24:33 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c504a51a18so6716061fa.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 00:24:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1698045872; x=1698650672; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bKdg99eVmqTJQsPp1Hlo5pZF0dZtBhRpT+d6cOzhUQw=;
-        b=XK2+j12iVOVvOJqay9FxrDRRWUbdJ8DQkgG5UNq9NpI+2PNK8vKQJ1/at7cMXtTDWI
-         a4pSZij/gemzMZt7w+coDCTV4wvoBCzTIOVseryEA2n6eXC1wg1isAlJDpg1wthCXyFr
-         V3ov1V5yyNRgK2L9IsDk99bcx8//C2NuXNNS9EXPCbkcbLslwnttowcR1bOXTYCojj9P
-         dXAS2I3lRTq1ozeEbqRjVV6NYRdt1c2MqM+X70RkAk3qyjYSRExXBdzE8wr3xbTmnLJf
-         DQv23HdHKg3RfDr1dpHt6luN+WTKPChmaXHAnlZAFxHI1QTtu1JyjdZijEeJ7cyZaZol
-         /4WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698045872; x=1698650672;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bKdg99eVmqTJQsPp1Hlo5pZF0dZtBhRpT+d6cOzhUQw=;
-        b=UvvQTun5NKLxP9eb3JqbWEHIOfD9bLryQmrWBSWpIqpj9dppSQM7ODTnE7HKHjjZJ8
-         Q6vMJ4J2XXno0f0fh7wNN08o1kngJmySy4dyAHy7KdUirY5r5Ld0dLwXXCU5kzMXR8NW
-         icX6hp2L/KkB3ftYv4ULgB8yyi1Mtf4IhEqgDSwSFrn7hNmaRpNrl7FdPiM/PqE93OTU
-         UKTyfdKksPB+Gtda5lJ4J5cGh1OlzVG+AiqNXswPS5CNhTOwMEqWydtxub2YVjd5vv0v
-         GtUmEFyENa0YaG3F/mOgEu9PiaxUxP+Jjciv86a3/2XvIyHcIwGGT47nckH+g6Fs0VGC
-         +7og==
-X-Gm-Message-State: AOJu0YznN/FtDRjHb1ihsc6KoV/b+povAbgqbDQAl0M0q1r/W8jdl200
-	TBwmL3xlIiiu0jol4VMo7g/fBQ==
-X-Google-Smtp-Source: AGHT+IHeLcw0Gv1b3ochJlwAxOBaEeux/G3ce+Ey9OlLNTwkHWbN+mde2nshq6mVDd2Bj3+G98CePg==
-X-Received: by 2002:a2e:a179:0:b0:2bc:d505:2bf3 with SMTP id u25-20020a2ea179000000b002bcd5052bf3mr5395573ljl.1.1698045871829;
-        Mon, 23 Oct 2023 00:24:31 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:17bb:4fd9:531:a7cc? ([2a01:e0a:999:a3a0:17bb:4fd9:531:a7cc])
-        by smtp.gmail.com with ESMTPSA id x22-20020a05600c189600b004083a105f27sm13228369wmp.26.2023.10.23.00.24.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 00:24:31 -0700 (PDT)
-Message-ID: <3f383b96-87ae-4580-a23d-0196bbd8ec91@rivosinc.com>
-Date: Mon, 23 Oct 2023 09:24:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069CB23C5
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 07:27:17 +0000 (UTC)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B299D68
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 00:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=DRz54Zp5sd6COe1CQZ2vLOKmpOEpvMJkuysqr9IECXg=; b=TtwU/HLFuJuTb5U6KzlUE1rTTv
+	mIA/F0hyliKQ8qMk+pmJPo0a0d4MzDyDsCyTWWCduboAKs/wdHWD7hrlJDmo03ZzZnV8KS1cKQFiS
+	98C8KzT3BPskecl0hBblVAlGqWU7xYCQBC9NLJVIoLGgvriwZSl2Bg1AppYIMu6eVs1Ya/ixk0joz
+	Ei8D5BBrrNB3kFgr67qzXZO6cQidt2FybSA7q8qFAoOUK/Iw3CHT4J5uxeoAxL4MrWDC+aZUfpCHf
+	l6FpMGveniJGoSqBTwGoJxMDtdk0i976zWU9B7+a6bp/l61Qjmh+OlMWPsz4Vm553e/try+m7hhs8
+	WkJg8yOg==;
+Received: from [192.168.1.4] (port=47838 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1qupL7-0002sJ-21;
+	Mon, 23 Oct 2023 09:27:05 +0200
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Mon, 23 Oct 2023 09:27:05 +0200
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <olteanv@gmail.com>
+CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>,
+	<ante.knezic@helmholz.de>, <conor+dt@kernel.org>, <davem@davemloft.net>,
+	<devicetree@vger.kernel.org>, <edumazet@google.com>, <f.fainelli@gmail.com>,
+	<krzysztof.kozlowski+dt@linaro.org>, <kuba@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <marex@denx.de>, <netdev@vger.kernel.org>,
+	<o.rempel@pengutronix.de>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<woojung.huh@microchip.com>
+Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
+Date: Mon, 23 Oct 2023 09:27:00 +0200
+Message-ID: <20231023072700.17060-1-ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20231020143759.eknrcfbztrc543mm@skbuf>
+References: <20231020143759.eknrcfbztrc543mm@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/19] riscv: add ISA extension parsing for vector
- crypto extensions
-Content-Language: en-US
-To: Evan Green <evan@rivosinc.com>, Conor Dooley <conor@kernel.org>
-Cc: Jerry Shih <jerry.shih@sifive.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
- Andrew Jones <ajones@ventanamicro.com>, Samuel Ortiz <sameo@rivosinc.com>
-References: <20231017131456.2053396-1-cleger@rivosinc.com>
- <20231017131456.2053396-6-cleger@rivosinc.com>
- <DA8B4610-D514-4733-B875-C247FFCCC7AA@sifive.com>
- <af785f0f-9de7-4548-9cdb-f392cde1cc2b@rivosinc.com>
- <CALs-HstEBt-ntCcETa9YwS6On3nGyoEc2p7R-gaBLG9+aFJL5w@mail.gmail.com>
- <7626f978-e9ea-4f8f-b814-aeac02bd3712@rivosinc.com>
- <20231019-nuclear-vista-ef3e0b9bef71@spud>
- <CALs-HssWZyhnbo=ErH+LEfMi4m04i39Cw3PGXP1WhCFfSP8G=A@mail.gmail.com>
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <CALs-HssWZyhnbo=ErH+LEfMi4m04i39Cw3PGXP1WhCFfSP8G=A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.6.7]
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
 
+On Fri, 20 Oct 2023 17:37:59 +0300, Vladimir Oltean wrote:
 
-
-On 19/10/2023 18:19, Evan Green wrote:
-> On Thu, Oct 19, 2023 at 8:33 AM Conor Dooley <conor@kernel.org> wrote:
->>
->> On Thu, Oct 19, 2023 at 11:35:59AM +0200, Clément Léger wrote:
->>>
->>>
->>> On 18/10/2023 19:26, Evan Green wrote:
->>>> On Wed, Oct 18, 2023 at 5:53 AM Clément Léger <cleger@rivosinc.com> wrote:
->>>>>
->>>>>
->>>>>
->>>>> On 18/10/2023 03:45, Jerry Shih wrote:
->>>>>> On Oct 17, 2023, at 21:14, Clément Léger <cleger@rivosinc.com> wrote:
->>>>>>> @@ -221,6 +261,22 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->>>>>>>      __RISCV_ISA_EXT_DATA(zkt, RISCV_ISA_EXT_ZKT),
->>>>>>>      __RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
->>>>>>>      __RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
->>>>>>> +    __RISCV_ISA_EXT_DATA(zvbb, RISCV_ISA_EXT_ZVBB),
->>>>>>> +    __RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
->>>>>>> +    __RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
->>>>>>
->>>>>> The `Zvkb` is the subset of `Zvbb`[1]. So, the `Zvkb` should be bundled with `Zvbb`.
->>>>>
->>>>> Hi Jerry,
->>>>>
->>>>> Thanks for catching this, I think some other extensions will fall in
->>>>> this category as well then (Zvknha/Zvknhb). I will verify that.
->>>>
->>>> The bundling mechanism works well when an extension is a pure lasso
->>>> around other extensions. We'd have to tweak that code if we wanted to
->>>> support cases like this, where the extension is a superset of others,
->>>> but also contains loose change not present anywhere else (and
->>>> therefore also needs to stand as a separate bit).
->>>
->>> For Zvbb and Zvknhb, I used the following code:
->>>
->>> static const unsigned int riscv_zvbb_bundled_exts[] = {
->>>       RISCV_ISA_EXT_ZVKB,
->>>       RISCV_ISA_EXT_ZVBB
->>> };
->>>
->>> static const unsigned int riscv_zvknhb_bundled_exts[] = {
->>>       RISCV_ISA_EXT_ZVKNHA,
->>>       RISCV_ISA_EXT_ZVKNHB
->>> };
->>>
->>> Which correctly results in both extension (superset + base set) being
->>> enabled when only one is set. Is there something that I'm missing ?
->>>
->>>>
->>>> IMO, decomposing "pure" bundles makes sense since otherwise usermode
->>>> would have to query multiple distinct bitmaps that meant the same
->>>> thing (eg check the Zk bit, or maybe check the Zkn/Zkr/Zkt bits, or
->>>> maybe check the Zbkb/Zbkc... bits, and they're all equivalent). But
->>>> when an extension is a superset that also contains loose change, there
->>>> really aren't two equivalent bitmasks, each bit adds something new.
->>>
->>> Agreed but if a system only report ZVBB for instance and the user wants
->>> ZVKB, then it is clear that ZVKB should be reported as well I guess. So
->>> in the end, it works much like "bundle" extension, just that the bundle
->>> is actually a "real" ISA extension by itself.
->>>
->>> Clément
->>>
->>>>
->>>> There's an argument to be made for still turning on the containing
->>>> extensions to cover for silly ISA strings (eg ISA strings that
->>>> advertise the superset but fail to advertise the containing
->>>> extensions). We can decide if we want to work that hard to cover
->>>> hypothetical broken ISA strings now, or wait until they show up.
->>>> Personally I would wait until something broken shows up. But others
->>>> may feel differently.
->>
->> I'm not really sure that those are "silly" ISA strings. People are going
->> to do it that way because it is much easier than spelling out 5 dozen
->> sub-components, and it is pretty inevitable that subsets will be
->> introduced in the future for extensions we currently have.
->>
->> IMO, it's perfectly valid to say you have the supersets and not spell
->> out all the subcomponents.
+> Sorry, I didn't realize on v3 that you didn't completely apply my
+> feedback on v2. Can "microchip,rmii-clk-internal" be a port device tree
+> property? You have indeed moved its parsing to port code, but it is
+> still located directly under the switch node in the device tree.
 > 
-> Hm, ok. If ISA strings are likely to be written that way, then I agree
-> having the kernel flip on all the contained extensions is a good idea.
-> We can tweak patch 2 to support the parsing of struct
-> riscv_isa_ext_data with both .id and .bundle_size set (instead of only
-> one or the other as it is now). Looking back at that patch, it looks
-> quite doable. Alright!
+> I'm thinking that if this property was also applicable to other switches
+> with multiple RMII ports, the setting would be per port rather than global.
 
-Hey Evan,
-
-do you have anything against using this code:
-
-static const unsigned int riscv_zvbb_bundled_exts[] = {
-	RISCV_ISA_EXT_ZVKB,
-	RISCV_ISA_EXT_ZVBB
-};
-
-...
-
-Then declaring zvbb like that:
-
-__RISCV_ISA_EXT_BUNDLE(zvbb, riscv_zvbb_bundled_exts),
-
-I agree that it is *not* a bundled extension but it actually already
-works with Conor's code. Not sure that adding more code is needed to
-handle that case.
-
-Clément
+As far as I am aware only the KSZ8863 and KSZ8873 have this property available,
+but the biggger issue might be in scaling this to port property as the register
+"Forward Invalid VID Frame and Host Mode" where the setting is applied is
+located under "Advanced Control Registers" section which is actually global at
+least looking from the switch point of view. Usually port properties are more
+applicable when registers in question are located under "Port Registers" section.
+This is somewhat similar to for example enabling the tail tag mode which is 
+again used only by the port 3 interface and is control from "Global Control 1"
+register.
+With this in mind - if you still believe we should move this to port dt 
+property, then should we forbid setting the property for any other port other 
+than port 3, and can/should this be enforced by the dt schema?
 
 
-> 
-> -Evan
+
 
