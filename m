@@ -1,136 +1,235 @@
-Return-Path: <devicetree+bounces-10968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B637D39D4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:42:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 365AE7D3A43
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BEB1281245
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:42:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 621481C20981
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E232818032;
-	Mon, 23 Oct 2023 14:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7825B1B298;
+	Mon, 23 Oct 2023 15:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sbyUbEp8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17F414A84
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 14:42:02 +0000 (UTC)
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED592126
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 07:41:40 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:375d:2b56:c03f:d72d])
-	by andre.telenet-ops.be with bizsmtp
-	id 1Shd2B00U3CbNjd01ShdCU; Mon, 23 Oct 2023 16:41:38 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1quw7W-007KKf-NH;
-	Mon, 23 Oct 2023 16:41:37 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1quw7d-007tac-Iq;
-	Mon, 23 Oct 2023 16:41:37 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH dt-schema] schemas: gpio: gpio-consumer: Fix false positives on nodes named gpio
-Date: Mon, 23 Oct 2023 16:41:34 +0200
-Message-Id: <20231023144134.1881973-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383861427E
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 15:03:56 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2734BE5
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:03:52 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40850b244beso26845275e9.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698073430; x=1698678230; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RXmp4I3uvpxbm0ipdb6KWErtCpbOovB/CwKRgnvI79w=;
+        b=sbyUbEp8T9PKfmJCb/WttAFq+02tvSrbwMnhqKQC3zpmGnVnJ0rND7Y7kDHFT0TGpn
+         iBMBAm9jQ1GZRmt0qkq4umT2ZRPWoJ4JIIZJ+jdLJq72BymfTgVHG33DJ2qbYVihVvB8
+         1tVmR3+Vm7mQ/PloNb0xxVR3h205xEHgmqoxPu/bfFPfGiWawwl/c98xs9sjhcvNk1v8
+         WKPP+yWwqYf6sQX+AqEwADE55HMXwlGRDBb64HvUS1SuvTMl6h3/pT3cNf3eAmL6g5hw
+         3DGMkKqgQ8H2zRAK76K561UGkoNqhlNP4WP5RLooeePgdsPC6yuERqV0Hg3IjhhKxxSj
+         emGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698073430; x=1698678230;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RXmp4I3uvpxbm0ipdb6KWErtCpbOovB/CwKRgnvI79w=;
+        b=hnolxW0tG3MQ9scPSKqxnkjl9JBOx+vmOWDXgRHKephPGIbBkRm9RlKB8DDKT1SBx9
+         1Gm4tlyndyXnxfKfrtNpTWAWxa4ccw+CUMigUPSx/hudXFg7gUInxV15yx3XI5RRda/1
+         GzcfHEJMfo+VnXSEEQbMHqYYDv2RoFFU6dJRzTCs4jWKZNsFZIZbB3MkqhXpsfKja8IG
+         OYKLnIswDhU/nN4ngbPLFmECMBsXgARyciHA6Q0uk4+rrkHS/1UtycUyIxMErvIfUFra
+         I3jcK8KcbDLAT0Q+/CKvTmh6NOtLpVU27618YvxtcrIjZm+9wKUZdQG+82CMhbbJF6ps
+         1Kzw==
+X-Gm-Message-State: AOJu0YxKj5phWI0bmLigiAwd3PPuFiITr8KNr63e5Nf3IChuS/yHr3Al
+	pWcofkrN4S5a/UEHzP2ck623vA==
+X-Google-Smtp-Source: AGHT+IGiZzbbLaHo26LYPn1zH3l3ShOA76v4rLw9T1Pa/dBRwd8nmyRiw8wZuy+iGqLlUNpFOvK3pg==
+X-Received: by 2002:a05:600c:4e91:b0:409:773:cf5d with SMTP id f17-20020a05600c4e9100b004090773cf5dmr1063792wmq.28.1698073430476;
+        Mon, 23 Oct 2023 08:03:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id b12-20020a05600c150c00b0040586360a36sm14235016wmg.17.2023.10.23.08.03.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 08:03:49 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v10 0/4] Input: add initial support for Goodix Berlin
+ touchscreen IC
+Date: Mon, 23 Oct 2023 17:03:44 +0200
+Message-Id: <20231023-topic-goodix-berlin-upstream-initial-v10-0-88eec2e51c0b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFCLNmUC/53RzW7DIAwH8FepOI+JzwA77T2mHYCYFikLFUmjT
+ lXffU4PaycuWY+20O9v7AuZoGaYyNvuQiosecplxIKzlx2JBz/ugeYeG0QwIVnHOjqXY450X0q
+ fzzRAHfJIT8dpruC/aB7znP1Ag3cGLESbVCRIBT8BDdWP8YDYeBoGbB4rpHy+hX98Yn3I01zq9
+ 22Wha/df6YunDKqPDOKB+sh9e/4zNfyWuqerAmLeEYVqIou4GeAg2PQqPIZVaKamDYmgu8Nc42
+ qnlEVqswpE5V1AbhpVH1XLeMbVb2qxgktnNTayUbt7qrjYqPaoRoUxOSVS8G11zK/Kmdsq2pQx
+ VER5EmDtY1qH1W5UbWocsPxEJwJ6LtGdQ+q2LpXt6oy4RKsNVz/Va/X6w8ulRaSnwMAAA==
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ linux-input@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>, 
+ Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>, 
+ Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5482;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=TOKd5Htic2U0f6lJ+FhEACAi4YMaYwuHiHqxdLPe7Cw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlNotT/39T+NYq/ARoXrOWk8my0uu0kEv7GfXc4wLP
+ Iju1vGWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTaLUwAKCRB33NvayMhJ0UOfD/
+ 9+20l6pDvtLwaGnkH6fCYzKfpGuLQ0suXHZUUUpkv1BHoPixTNdz+R/49MgtNSARyj/OansW91RxRj
+ k2SVryAehWQTo5QZdk7ZJ7Lk77yV9vivqGJ9X/A+T8Do5oG1u3V8jKvIXZ+KjlkHI37H/ihc0ESshY
+ 3kQ73kEHTRWTllZytK5VJuloqwcP5IuXSF0AN06o4nyZu6aUeuzR4RwsUqQINGgoziiFSoQ+N0iYW1
+ C7nWB4yw2whYYmDhBNM78DsQsymTnvcbV/poodGnMxPkt1mWdR2c/BZujTnwZ9o2WtwHaEHJKCgRQp
+ OZz5MVx+KcX7WnpB/3nI2GRAOaayICvoyQ9qCsRakkqIG7HIP3GZTYSyZy5ZmmaT9vsE0NaywZ9Y5G
+ vuMKbrV+9jTcoiV5WlnyVgdfZB31lH3eAFM98h4gaYikkBpl/CSttfutp0uJvYodMJaB77p58xUEk/
+ zQvo9HZPW2g+j8Td7BtGiYxlAywhcsa/z+NcRlW97pAdNJJ8sw/hT9YL2IhTIB9DGiAVb823A/TBVP
+ M556GVIhq2YydhL3edVQBeHN30giHt0p8Ok40F8c8aVLkt4C6SNsjGfJZDKLph/Di/FJONH9tny19O
+ mFlFRIXHbOKkJho1CdSr/094sIdC6a3HaHjB9WK7o7Q3VXLEp/qGK44eaEMQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Just like for "gpio", nodes can be named "gpios" or
-"<something>-gpio(s)", causing false positive failures.
+These touchscreen ICs support SPI, I2C and I3C interface, up to
+10 finger touch, stylus and gestures events.
 
-See also commit 80120fccde170902 ("schemas: gpio: fix false positive
-failures on nodes named 'gpio'").
+This initial driver is derived from the Goodix goodix_ts_berlin
+available at [1] and [2] and only supports the GT9916 IC
+present on the Qualcomm SM8550 MTP & QRD touch panel.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+The current implementation only supports BerlinD, aka GT9916.
+
+Support for advanced features like:
+- Firmware & config update
+- Stylus events
+- Gestures events
+- Previous revisions support (BerlinA or BerlinB)
+is not included in current version.
+
+The current support will work with currently flashed firmware
+and config, and bail out if firmware or config aren't flashed yet.
+
+[1] https://github.com/goodix/goodix_ts_berlin
+[2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Seen on Linux, e.g.:
+Changes in v10:
+- Fix according to Dmitry's review:
+ - move goodix_berlin_get_ic_info() afe_data to heap
+ - merge the goodix_berlin_parse_finger() loops and skip invalid fingers instead of returning
+ - remove unwanted goodix_berlin_touch_handler() "static" for buffer
+ - only call goodix_berlin_request_handle_reset() if gpio was provided
+ - use "error = func(); if(error) return error;" instead of "return func()" when function handles multiple error cases
+- Link to v9: https://lore.kernel.org/r/20231021-topic-goodix-berlin-upstream-initial-v9-0-13fb4e887156@linaro.org
 
-    arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: /: keyboard-gpio: {'compa=
-tible': ['gpio-keys-polled'], 'poll-interval': [[50]], 'pinctrl-0': [[29]],=
- 'pinctrl-names': ['default'], 'key-3': {'gpios': [[28, 19, 1]], 'linux,cod=
-e': [[4]], 'label': ['SW1-3'], 'debounce-interval': [[20]]}, 'key-4': {'gpi=
-os': [[28, 20, 1]], 'linux,code': [[5]], 'label': ['SW1-4'], 'debounce-inte=
-rval': [[20]]}} is not of type 'array'
-	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-    arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: pinctrl@fffc0000: keyboar=
-d-gpio: {'pins': ['GP_0_19', 'GP_0_20'], 'bias-pull-up': True, 'phandle': [=
-[29]]} is not of type 'array'
-	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+Changes in v9:
+- Rebased on next-20231020 
+- Link to v8: https://lore.kernel.org/r/20231003-topic-goodix-berlin-upstream-initial-v8-0-171606102ed6@linaro.org
 
-    arch/arm/boot/dts/microchip/at91-kizbox3-hs.dtb: /: gpios: {'compatible=
-': ['gpio'], 'status': ['okay'], 'rf_on': {'label': ['rf on'], 'gpio': [[38=
-, 83, 0]], 'output': True, 'init-low': True}, 'wifi_on': {'label': ['wifi o=
-n'], 'gpio': [[38, 84, 0]], 'output': True, 'init-low': True}, 'zbe_test_ra=
-dio': {'label': ['zbe test radio'], 'gpio': [[38, 53, 0]], 'output': True, =
-'init-low': True}, 'zbe_rst': {'label': ['zbe rst'], 'gpio': [[38, 57, 0]],=
- 'output': True, 'init-low': True}, 'io_reset': {'label': ['io reset'], 'gp=
-io': [[38, 62, 0]], 'output': True, 'init-low': True}, 'io_test_radio': {'l=
-abel': ['io test radio'], 'gpio': [[38, 73, 0]], 'output': True, 'init-low'=
-: True}, 'io_boot_0': {'label': ['io boot 0'], 'gpio': [[38, 75, 0]], 'outp=
-ut': True, 'init-low': True}, 'io_boot_1': {'label': ['io boot 1'], 'gpio':=
- [[38, 81, 0]], 'output': True, 'init-low': True}, 'verbose_bootloader': {'=
-label': ['verbose bootloader'], 'gpio': [[38, 43, 0]], 'input': True}, 'nai=
-l_bed_detection': {'label': ['nail bed detection'], 'gpio': [[38, 44, 0]], =
-'input': True}, 'id_usba': {'label': ['id usba'], 'gpio': [[38, 64, 1]], 'i=
-nput': True}} is not of type 'array'
-	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+Changes in v8:
+- Add missing bitfield.h include in core
+- Link to v7: https://lore.kernel.org/r/20231002-topic-goodix-berlin-upstream-initial-v7-0-792fb91f5e88@linaro.org
 
-For marzen, the alternative fix would be to
-s/keyboard-gpio/keyboard-polled/g.
+Changes in v7:
+- rebased on v6.6-rc3
+- Link to v6: https://lore.kernel.org/r/20230912-topic-goodix-berlin-upstream-initial-v6-0-b4ecfa49fb9d@linaro.org
+
+Changes in v6:
+- rebased on v6.6-rc1
+- changed commit message prefix to match the other Input commits
+- Link to v5: https://lore.kernel.org/r/20230801-topic-goodix-berlin-upstream-initial-v5-0-079252935593@linaro.org
+
+Changes in v5:
+- rebased on next-20230801
+- Link to v4: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v4-0-0947c489be17@linaro.org
+
+Changes in v4:
+- Core updates:
+ - drop kconfig depends, deps will be handled by _SPI and _I2C
+ - change power_on() error labels
+ - print errors on all dev_err() prints
+ - remove useless default variable initialization
+ - switch irq touch checksum error to dev_err()
+ - add Jeff's review tag
+- I2C changes
+ - change REGMAP_I2C Kconfig from depends to select
+ - add Jeff's review tag
+- SPI changes
+ - add select REGMAP to Kconfig
+ - added GOODIX_BERLIN_ prefix to defines
+ - switched from ret to error
+ - add Jeff's review tag
+- Link to v3: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v3-0-f0577cead709@linaro.org
+
+Changes in v3:
+- Another guge cleanups after Jeff's review:
+ - appended goodix_berlin_ before all defines
+ - removed some unused defines
+ - removed retries on most of read functions, can be added back later
+ - added __le to ic_info structures
+ - reworked and simplified irq handling, dropped enum and ts_event structs
+ - added struct for touch data
+ - simplified and cleaned goodix_berlin_check_checksum & goodix_berlin_is_dummy_data
+ - moved touch_data_addr to the end of the main code_data
+ - reworked probe to get_irq last and right before setip input device
+ - cleaned probe by removing the "cd->dev"
+ - added short paragraph to justify new driver for berlin devices
+ - defined all offsets & masks
+- Added bindings review tag
+- Link to v2: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v2-0-26bc8fe1e90e@linaro.org
+
+Changes in v2:
+- Huge cleanups after Jeff's review:
+ - switch to error instead of ret
+ - drop dummy vendor/product ids
+ - drop unused defined/enums
+ - drop unused ic_info and only keep needes values
+ - cleanup namings and use goodix_berlin_ everywhere
+ - fix regulator setup
+ - fix default variables value when assigned afterwars
+ - removed indirections
+ - dropped debugfs
+ - cleaned input_dev setup
+ - dropped _remove()
+ - sync'ed i2c and spi drivers
+- fixed yaml bindings
+- Link to v1: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org
+
 ---
- dtschema/schemas/gpio/gpio-consumer.yaml | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+Neil Armstrong (4):
+      dt-bindings: input: document Goodix Berlin Touchscreen IC
+      Input: add core support for Goodix Berlin Touchscreen IC
+      Input: goodix-berlin - add I2C support for Goodix Berlin Touchscreen IC
+      Input: goodix-berlin - add SPI support for Goodix Berlin Touchscreen IC
 
-diff --git a/dtschema/schemas/gpio/gpio-consumer.yaml b/dtschema/schemas/gp=
-io/gpio-consumer.yaml
-index 1ac35244de7317bc..9572a9cd0febef19 100644
---- a/dtschema/schemas/gpio/gpio-consumer.yaml
-+++ b/dtschema/schemas/gpio/gpio-consumer.yaml
-@@ -17,7 +17,10 @@ select:
-=20
- properties:
-   gpios:
--    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    # 'gpios' can appear as a property or node name
-+    oneOf:
-+      - type: object
-+      - $ref: /schemas/types.yaml#/definitions/phandle-array
-=20
-   gpio:
-     # 'gpio' can appear as a property or node name
-@@ -28,6 +31,9 @@ properties:
-=20
- patternProperties:
-   "(?<!,nr)-gpios?$":
--    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    # these can appear as properties or node names
-+    oneOf:
-+      - type: object
-+      - $ref: /schemas/types.yaml#/definitions/phandle-array
-=20
- additionalProperties: true
---=20
-2.34.1
+ .../bindings/input/touchscreen/goodix,gt9916.yaml  |  95 ++++
+ drivers/input/touchscreen/Kconfig                  |  31 ++
+ drivers/input/touchscreen/Makefile                 |   3 +
+ drivers/input/touchscreen/goodix_berlin.h          | 159 ++++++
+ drivers/input/touchscreen/goodix_berlin_core.c     | 594 +++++++++++++++++++++
+ drivers/input/touchscreen/goodix_berlin_i2c.c      |  74 +++
+ drivers/input/touchscreen/goodix_berlin_spi.c      | 177 ++++++
+ 7 files changed, 1133 insertions(+)
+---
+base-commit: 2030579113a1b1b5bfd7ff24c0852847836d8fd1
+change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
