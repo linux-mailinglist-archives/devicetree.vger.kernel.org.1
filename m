@@ -1,188 +1,162 @@
-Return-Path: <devicetree+bounces-11074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB1E7D40DD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 22:26:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A97E7D415F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 23:07:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24ACB281359
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 20:26:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 689FA1C20B11
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 21:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7D122F0B;
-	Mon, 23 Oct 2023 20:26:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0587219F7;
+	Mon, 23 Oct 2023 21:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxGEJWaU"
+	dkim=pass (1024-bit key) header.d=ni.com header.i=@ni.com header.b="QaX0yfVo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DBC63C0
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 20:26:40 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E39D68;
-	Mon, 23 Oct 2023 13:26:38 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so554008366b.3;
-        Mon, 23 Oct 2023 13:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698092797; x=1698697597; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A009epGh9BGNMcw+mtBy+K3MSkhtuedVQ3bAIozMsTc=;
-        b=TxGEJWaUu5xb+4JhfT6VjZpY1UUjmXI6vixcYl50GzPJfyYui2usTLVRM0LjFr7hfy
-         uJnIG0LevAHgkOvq7Dnpv2dQa/C5K1eIRgekqoAt84XLCxIADRtZ/VkjQxVJZZVj9Qo7
-         vD9DjoCUi6tDRK7WYJgqGFXTyS1KQGfw/0x8VF9jU/2ikQzQ0QoAw/ahmzeki6gygyKi
-         cQYIkBd0Ar6SEqxIQbYcT2bpyTwHl2gtV3gIEW9W+VfPgBGzXrv2pLjTPColplyd6tCq
-         Xjzl4qk1p1tTMsNf8haAeEFZkfjPCJjNh9W4cVQN1wHmZkIt+adKCetmxsCuwKTCcU0Y
-         8X6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698092797; x=1698697597;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A009epGh9BGNMcw+mtBy+K3MSkhtuedVQ3bAIozMsTc=;
-        b=MMna3AH1yFjdjYXtDKQ3gnOfyoeG9yJI02KpNHiLgd3Ir871Oh4mXky6bjaapfsKJH
-         h9Ob53AEJLDOIQpkCqlAzNA1/SlDt3l92QaQj5qcd3363KFXfCXvXGnCpVb28J6joYe/
-         jMO5QAHyCmpdIoDxwD1W7yJfk/v6ktMoZfrfugW0ozYm1meMB3bHai5uEIieHhPNSgqE
-         zYC6EECpASUtVe0ifOUcX/5W4/YbNhjbfqJsHw8r2ZB4FRFTxI8wtctyjdtl3Rw1R6Gb
-         NBQDA3l3aPmZ9UwXOZ0F4dt4y+5ss9+7P0mvlAY0YF6YdQcLcIXGzcFsLWph11F1oliv
-         MOrw==
-X-Gm-Message-State: AOJu0YyE9vqBZkj5wLC2f664Wvqbg3xXRDg+iHEigoQ5+ZlbFbUJuLnH
-	hYm2C8/CjCedCJn0UoMNEFE=
-X-Google-Smtp-Source: AGHT+IE19jF6AT0z0G1sht98s/fssTiS2Znwx2H1e3VS3nh5vrSR5XtzBV3V4nmUbmQW4nyT9vXEMQ==
-X-Received: by 2002:a17:907:9618:b0:9a2:139:f45d with SMTP id gb24-20020a170907961800b009a20139f45dmr7238702ejc.43.1698092797042;
-        Mon, 23 Oct 2023 13:26:37 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:b198:95f4:ac2c:9085])
-        by smtp.gmail.com with ESMTPSA id n13-20020a170906088d00b0098ec690e6d7sm7113428eje.73.2023.10.23.13.26.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Oct 2023 13:26:36 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	baruch@tkos.co.il
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to yaml
-Date: Mon, 23 Oct 2023 22:26:22 +0200
-Message-Id: <20231023202622.18558-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2AF21367
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 21:07:12 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2133.outbound.protection.outlook.com [40.107.93.133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FBD5BE;
+	Mon, 23 Oct 2023 14:07:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nHcwXhfvjs5CN0p4jifRlnyPs6+2IXptp5ElDMFwe//U8KmHk8VttrJxFUrn3Hj6ARsFmhkh2w6srDcqkhw3Go85BLyEcwu8xFXDYDRfv6UKmyRLbZeWm/cguN+Cg4dx2g1i3J/ZkpIlDuZoX1EY8yFZh/Cz3H5bipozGgChUWvrR04xAJbZ2AO/gS8BiqETuEY0aliMOL6cb0B3LVTsITierdUDblMzNnW7AjtD009eMgUriFBjjGJPnisOPf8NKyCbOfZhyBwlcQRuZFCPdXYv9Gfbz87dKZ7SW9sldauOBucXAHwZ9hCjM8V/G6q/VGiXTc1W/SKx20LszVeMlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=os7ErRXujv+r5OobqNcDiUKc6N3TQnz7sF1gybOkZBg=;
+ b=gJfcMBRnPCqKyPIFb6DNd6v3FBldb/1JsAfv3QF+ZeRmbYF6qqEd3j8Bugp4C2bQljlsWqnxxkDunCl0CptIXy0pEGt8Ow+mNNXD4uoyxCQ+bWd2XJPU7H4XDZDz+Gvbl/MqTERYgyywNFy7ahvd707eBF+TKKeLB2VZc8W4aRneljJ+BSwcXblqWAzotSdqNl6pIv9IHVxd9rF8l1LVW3/4EOyCisp4dWuUx/rkHV/jvMW2AL3FshhJbvuj31iv4nn1M/wJ3dKFPoSOlgbVL2Ogq7Ae7UQbv0Y5L4YKsEg/Hlsb9IaQzncy2rv55Rke9fLmuYdHiq4uSVgzVfjgUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=os7ErRXujv+r5OobqNcDiUKc6N3TQnz7sF1gybOkZBg=;
+ b=QaX0yfVog3KrMR1zZajTeJ39t7t8AYNdipmpRMIE65EOKi6arax4P1HprUwauy+ueT0zRZ7yTU0+qAsjBtQ0anRhQmiLgVtPSxbeEeb8nCyDsxmAy+Nxa9NzlfC24W0CqrNFOP4jkKLspMP1SQk8qtgcd68Fx8m3HfCFC0nfo2A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ni.com;
+Received: from SN6PR04MB4973.namprd04.prod.outlook.com (2603:10b6:805:91::30)
+ by DM8PR04MB8134.namprd04.prod.outlook.com (2603:10b6:5:317::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Mon, 23 Oct
+ 2023 21:07:06 +0000
+Received: from SN6PR04MB4973.namprd04.prod.outlook.com
+ ([fe80::9481:d7e:63a6:1bef]) by SN6PR04MB4973.namprd04.prod.outlook.com
+ ([fe80::9481:d7e:63a6:1bef%4]) with mapi id 15.20.6907.030; Mon, 23 Oct 2023
+ 21:07:05 +0000
+From: Brenda Streiff <brenda.streiff@ni.com>
+To:
+Cc: Brenda Streiff <brenda.streiff@ni.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 tty-next 0/2] serial: Add driver for National Instruments UARTs
+Date: Mon, 23 Oct 2023 16:04:55 -0500
+Message-Id: <20231023210458.447779-1-brenda.streiff@ni.com>
+X-Mailer: git-send-email 2.30.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SN1PR12CA0112.namprd12.prod.outlook.com
+ (2603:10b6:802:21::47) To SN6PR04MB4973.namprd04.prod.outlook.com
+ (2603:10b6:805:91::30)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR04MB4973:EE_|DM8PR04MB8134:EE_
+X-MS-Office365-Filtering-Correlation-Id: 824b058b-e58f-4d0c-3362-08dbd40c0275
+x-ni-monitor: EOP Exclude NI Domains ETR True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ClD5PXfP7QmRzUMRJGzTv89s5B5uXLPvz6w9irJK3iR/ljhJ/bL6Z19e93DSdzmnj6B4kLFSrWvCfCUestfqRQrBKI4tRE+J1xvSn3xN0Ia1Or8DtbXfZOzRfljbY1DRReT1YSSwTQ2QSNPdN8I5b/LP3EwuLjXvcm7LKdiL4uEhPARHuG/KrDzHabKLYCjYgHFIO+NuCogjXDOX6Z1oE9ee/2u6FM35aH38A1aozNLfJqNiOVX0mOG9VKj/rxAMGTMPvILpgIgyQvXI59zBGziAOtzTBgcqrK/A8W/mkKHUJrD0WTi2QffUYlYWBQsgQ2U473wbTesBg/liH7sidsRHPNO7fRAYKCWI5V6GnuVCVNkp6Iqrkzg8GEOEC/VoSnwp1rF51xO9DLPTHG6dUMdw/owLsG2FQ18ZNtYG8dUv1lMM61hrMh13nb7u+mOC6tdItLaeTpF8xJaotfFmNIDkbuctf3zGZoKvhfzguIInGvG22y9Rf2exKZSuKl1ARKbSvkOHmBCK/byYjqnixkQTGmqnriexfiM76Fl3B+sP1v9KnQB3I6UT9+xMCm24klv9SIdSgGn1bPtlheF89w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR04MB4973.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(136003)(39860400002)(396003)(346002)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(109986022)(2616005)(6506007)(6512007)(38100700002)(36756003)(86362001)(1076003)(26005)(44832011)(2906002)(6666004)(966005)(6486002)(478600001)(8936002)(41300700001)(83380400001)(4326008)(8676002)(5660300002)(54906003)(66946007)(66476007)(316002)(66556008)(266003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?oCicetd+u3cmW/qPT67niqKqZdaOtyq06orc0oKnHZzeQF8AfsNZ6igXoNGQ?=
+ =?us-ascii?Q?i/oUuvqMCa/uUIYJr2BrRNiKzDkdVKE5/65gNRxogSvr5Qh6KHwhR+td36ys?=
+ =?us-ascii?Q?NlwBrvOCFDQA5zMCgw6iQEIWOH6bE4YD27kpDe/rmKwnKQfM/kwERadryUa4?=
+ =?us-ascii?Q?hgGipgGnCi5nNO+4N92kD/9WPoxX428COyeJTs1XrcQD/XuFgIFTiNUCjSUg?=
+ =?us-ascii?Q?LqgdNzDLAOA6Jz8Omr24KE4roJM3VX8jn7uc+d0kphcn2G7yuL7EZiwFsKEh?=
+ =?us-ascii?Q?C5GZOHl7tcVQEPz0rUkzmb9xDrvh2UOnhiADioQRghoSscqip3SueE1s+LQe?=
+ =?us-ascii?Q?/2THkv7GQ+USOlveeCWl4UG1fVyACCxJZs4JwwecFn+CGpPSFQNJCI7Whavh?=
+ =?us-ascii?Q?FGuuCTd0nvluyIBndo8yqWJNMM2I4dr1BbWuX3o4JQZQhGPzt14/Pszj7K3o?=
+ =?us-ascii?Q?nIecrweLlSdbmYixbI0VL4bZ8zTYESZY3Bmser5UJVspdSz1nBFvB9CibVF1?=
+ =?us-ascii?Q?bRDqA1NXO+y0VY29caV1M4saI+U7/q9iYvRfEQHWg4F7CJvHnavjrao7r2pw?=
+ =?us-ascii?Q?yP/mJiwnM/yyoK3U3Cm+kBktqys8rIE1SPl2cCnwzqMyqhtnPw/J1pmxhp0s?=
+ =?us-ascii?Q?dsH+e9e/tptsu8u6NIHrlAJ4myjx3f4h2+dRs+Dh5tcrmeHO8HOLovcGatx2?=
+ =?us-ascii?Q?CH8CiHIx9BRXUPVX1ClZdCpZFC1sR55mcHOVeF88Ze6pHudNEARKDl1l3slU?=
+ =?us-ascii?Q?1wiPrR6bZXLFSewKLUEoe3eQwTjsZecYY+/PGsw4LSP3SPijL/pWtena7L2h?=
+ =?us-ascii?Q?MvjPoGQdrsZL349Qyh+sME8y9lUkgWcwjGVApdEj1g2YNihMvQwRyLlTUD42?=
+ =?us-ascii?Q?yGhh5Prmo49/toRxJiwzmqsygBjDP2yEPQSmfaDENFNDkHfrUVFP9S/b1whF?=
+ =?us-ascii?Q?ZulWIJtRdtYGl1UEmNdxycHVw1cmI/Rkzezhlc6arodY/vwqxlNw4YhYu5OX?=
+ =?us-ascii?Q?pCQF+zxCbZFKdsGi6nVStHNpx8NBz8Y57r75gI3npfr1982OcPOXviA12IY4?=
+ =?us-ascii?Q?fDD/MA+wEJlwDzOTE+zbh8im48ij4kSlWX6sz0ZAL1SwfdOB/Rq0KviJQe/+?=
+ =?us-ascii?Q?UUeUzLFgBMnwM/yBSB7uSNO/wyG/IFHWkycX3A+IZALM4MB/BXztS1V0fh2r?=
+ =?us-ascii?Q?ZCzRyj6w186qlnfoXIx9L4PaCh0iib741ddPTwryJVrpoS7/6zez5lVak2oD?=
+ =?us-ascii?Q?ZBnfwabPdPuQrVPqZxMsXy2ogNVfuP81gMkWf90reqjyXekWauM2fhVi2e0l?=
+ =?us-ascii?Q?0tp6Q13OnFDvzq5yILz5dw9+nojRHxQebGNSHfO7XbLFnRutVsVj+eZvNOxF?=
+ =?us-ascii?Q?HFzj9PRdD+OzgScRU17Bi7qjrRmkNeBVET0qUn/tNmixGPKROeWOpTR60FrU?=
+ =?us-ascii?Q?HWRYkXSfs2LnLSYhnxzPmd9kEDrPtF+SWLkdgjKO50UjDlHpcRnelMgessCX?=
+ =?us-ascii?Q?tb+m6FL/QEzmfFqrClFYlWU45d68sbgN9SfocmljQwxza4onyIeZL8t1ZT8F?=
+ =?us-ascii?Q?whOyH5juQkEfAJXVUXjRs+0e4gnyJgsQSWROPMFv?=
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 824b058b-e58f-4d0c-3362-08dbd40c0275
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR04MB4973.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 21:07:05.3391
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8T0q8tpx6K+KLTFaJV04FlaLvSeRDcUoLuzPLFec4fPpP0fj5+2BtsQYVzjRPm0X6Bt2lHVW5dDi/Mzfq/h4wQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR04MB8134
 
-Convert txt file to yaml.
-Add maintainers list.
+This patch series adds a driver for the 16550-like UARTs on National
+Instruments (NI) embedded controller hardware.
 
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+These UARTs have an interface that is compatible with the TL16C550C (for
+which we build on top of 8250_core) but also has extra registers for
+the embedded RS-232/RS-485 transceiver control circuitry.
 ---
+Changes from v5 -> v6:
+- fix unused-const-variable warnings with COMPILE_TEST=y and W=1
+  https://lore.kernel.org/oe-kbuild-all/202310170418.GCOnw1n1-lkp@intel.com/
 
-Changes in v2 (according to review comments):
-- Updated clocks property to have only maxItems without $ref and description. 
-- Removed timeout-sec explicit definition, as it is defined in watchdog.yaml.
+v5: https://lore.kernel.org/linux-serial/20231012205112.112261-1-brenda.streiff@ni.com/
+v4: https://lore.kernel.org/linux-serial/20230505213850.829639-1-brenda.streiff@ni.com/
+v3: https://lore.kernel.org/linux-serial/20230418223800.284601-1-brenda.streiff@ni.com/
+v2: https://lore.kernel.org/linux-serial/20230410211152.94332-1-brenda.streiff@ni.com/
+v1: https://lore.kernel.org/linux-serial/20230329154235.615349-1-brenda.streiff@ni.com/
 
-v1 patch: https://lore.kernel.org/all/20231022120328.137788-1-n2h9z4@gmail.com/
+Brenda Streiff (2):
+  dt-bindings: serial: ni,ni16650: add bindings
+  serial: 8250: add driver for NI UARTs
 
- .../bindings/watchdog/cnxt,cx92755-wdt.yaml   | 45 +++++++++++++++++++
- .../bindings/watchdog/digicolor-wdt.txt       | 25 -----------
- 2 files changed, 45 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+ .../bindings/serial/ni,ni16550.yaml           |  51 ++
+ MAINTAINERS                                   |   7 +
+ drivers/tty/serial/8250/8250_ni.c             | 478 ++++++++++++++++++
+ drivers/tty/serial/8250/Kconfig               |  13 +
+ drivers/tty/serial/8250/Makefile              |   1 +
+ 5 files changed, 550 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/ni,ni16550.yaml
+ create mode 100644 drivers/tty/serial/8250/8250_ni.c
 
-diff --git a/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-new file mode 100644
-index 000000000000..1844d7e026fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/cnxt,cx92755-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Conexant Digicolor SoCs Watchdog timer
-+
-+description: |
-+  The watchdog functionality in Conexant Digicolor SoCs relies on the so called
-+  "Agent Communication" block. This block includes the eight programmable system
-+  timer counters. The first timer (called "Timer A") is the only one that can be
-+  used as watchdog.
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+maintainers:
-+  - Baruch Siach <baruch@tkos.co.il>
-+
-+properties:
-+  compatible:
-+    const: cnxt,cx92755-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@f0000fc0 {
-+        compatible = "cnxt,cx92755-wdt";
-+        reg = <0xf0000fc0 0x8>;
-+        clocks = <&main_clk>;
-+        timeout-sec = <15>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt b/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-deleted file mode 100644
-index a882967e17d4..000000000000
---- a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Conexant Digicolor SoCs Watchdog timer
--
--The watchdog functionality in Conexant Digicolor SoCs relies on the so called
--"Agent Communication" block. This block includes the eight programmable system
--timer counters. The first timer (called "Timer A") is the only one that can be
--used as watchdog.
--
--Required properties:
--
--- compatible : Should be "cnxt,cx92755-wdt"
--- reg : Specifies base physical address and size of the registers
--- clocks : phandle; specifies the clock that drives the timer
--
--Optional properties:
--
--- timeout-sec : Contains the watchdog timeout in seconds
--
--Example:
--
--	watchdog@f0000fc0 {
--		compatible = "cnxt,cx92755-wdt";
--		reg = <0xf0000fc0 0x8>;
--		clocks = <&main_clk>;
--		timeout-sec = <15>;
--	};
 -- 
-2.34.1
+2.30.2
 
 
