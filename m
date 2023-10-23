@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-10862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B507D2E77
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 329307D2E64
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A5221C20A06
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:35:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B56B1C209EE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBA6134CA;
-	Mon, 23 Oct 2023 09:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F40914004;
+	Mon, 23 Oct 2023 09:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15A414AA7
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22B913AD8
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:34:12 +0000 (UTC)
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5145710DC
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:34:16 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7C310C2
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:34:08 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qurJi-0000D9-0p; Mon, 23 Oct 2023 11:33:46 +0200
+	id 1qurJi-0000DA-0o; Mon, 23 Oct 2023 11:33:46 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qurJg-003fwm-UG; Mon, 23 Oct 2023 11:33:44 +0200
+	id 1qurJg-003fwn-Ue; Mon, 23 Oct 2023 11:33:44 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1qurJg-009wcZ-2k;
+	id 1qurJg-009wcj-2p;
 	Mon, 23 Oct 2023 11:33:44 +0200
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: "David S. Miller" <davem@davemloft.net>,
@@ -50,18 +50,17 @@ To: "David S. Miller" <davem@davemloft.net>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>
 Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
 	kernel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
 	netdev@vger.kernel.org,
 	UNGLinuxDriver@microchip.com,
 	"Russell King (Oracle)" <linux@armlinux.org.uk>,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next v7 1/9] net: dsa: microchip: Add missing MAC address register offset for ksz8863
-Date: Mon, 23 Oct 2023 11:33:35 +0200
-Message-Id: <20231023093343.2370248-2-o.rempel@pengutronix.de>
+Subject: [PATCH net-next v7 2/9] dt-bindings: net: dsa: microchip: add wakeup-source property
+Date: Mon, 23 Oct 2023 11:33:36 +0200
+Message-Id: <20231023093343.2370248-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231023093343.2370248-1-o.rempel@pengutronix.de>
 References: <20231023093343.2370248-1-o.rempel@pengutronix.de>
@@ -77,30 +76,33 @@ X-SA-Exim-Mail-From: ore@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the missing offset for the global MAC address register
-(REG_SW_MAC_ADDR) for the ksz8863 family of switches.
+Add wakeup-source property to enable Wake on Lan functionality in the
+switch.
+
+Since PME wake pin is not always attached to the SoC, use wakeup-source
+instead of wakeup-gpios
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
- drivers/net/dsa/microchip/ksz_common.c | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index b800ace40ce1..02fab1adb27f 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -441,6 +441,7 @@ static const u8 ksz8795_shifts[] = {
- };
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+index 41014f5c01c4..b3029c64d0d5 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+@@ -38,6 +38,8 @@ properties:
+       Should be a gpio specifier for a reset line.
+     maxItems: 1
  
- static const u16 ksz8863_regs[] = {
-+	[REG_SW_MAC_ADDR]		= 0x70,
- 	[REG_IND_CTRL_0]		= 0x79,
- 	[REG_IND_DATA_8]		= 0x7B,
- 	[REG_IND_DATA_CHECK]		= 0x7B,
++  wakeup-source: true
++
+   microchip,synclko-125:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
 -- 
 2.39.2
 
