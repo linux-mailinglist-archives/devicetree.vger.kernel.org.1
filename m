@@ -1,93 +1,126 @@
-Return-Path: <devicetree+bounces-10870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38DE7D2F7A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:08:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637167D2F97
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1065E1C2088C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:08:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E84281427
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 10:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6422914266;
-	Mon, 23 Oct 2023 10:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAA614286;
+	Mon, 23 Oct 2023 10:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BThUPZ+n"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jFNeP0L5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276AA13FF1;
-	Mon, 23 Oct 2023 10:08:49 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD8AD70;
-	Mon, 23 Oct 2023 03:08:47 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9be3b66f254so439993266b.3;
-        Mon, 23 Oct 2023 03:08:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122D413AFB
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:22:52 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67C3D66
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:22:50 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4083f613275so25756905e9.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:22:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698055726; x=1698660526; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NoLI+1gjuvGhtQcIYLFoNDRARHSfjJdsWzkAT+zoGXc=;
-        b=BThUPZ+nb/A0ORA6ToamCPQADyflKS2RePmRSxV5WHnI9AiySPY1fV1D1AjLmhCMjR
-         B8DVujk9XbwBZ6rXRBTNjm9N+loZSmDmfjp4WfebLXixYqh4dv0eVUanTI83bkjoAzN0
-         DP6Z5ECioAfOkj5heW9yS3GZ4y4VQElH3Lf0jAinYQ5TyTUzCNNPpNtRS1Ke36vcRBdv
-         fNL+Y+JpyZS7z3FvOARBHtsWAHxe1PfmAvsjA8+cg3KIAa+loTAoB4JM7iAOt1SeCZxm
-         vf1V0+H4J2yG2//qQsCVzorV4XOTM9eNoqvGHIrno2oQaHf7jfi7YIPyB8tW+jEGcqY6
-         MVfg==
+        d=tuxon.dev; s=google; t=1698056569; x=1698661369; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wUnnGAdmDfMipB0/9liPZMIOUoXhP0zAlTuz0GroIGc=;
+        b=jFNeP0L5vwS/zBrTIHKxpjJ3G6aUx5EonbyLaKnNV2zF3CVXCZKZhjmf5w4YyVn0H3
+         XTb89EUSTzW55RP7OncMgXrgwI4R3cEQtnR/tA7c+98BX60W8kLhyVqSb5CN5XXyUoUv
+         gxpn7kvcH+k4yOlC4mq+rAfmN50jDQ4YqD1oAS9x70aXKASqSPB3y3HpfgVAxTi3wc/l
+         XdQkQ4O/JPias7dY4y5E4XwjzJDjZBSFZq5n82gNRbtJUM4ghpOoom+Wpu8VrGr+bs0p
+         EVgBn2oAOho+dvU137wejGGlV0bGxCgqdo50iURrb/Du7WUc5gLM8x5S+P+Ucmsh2aUX
+         oBMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698055726; x=1698660526;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1698056569; x=1698661369;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NoLI+1gjuvGhtQcIYLFoNDRARHSfjJdsWzkAT+zoGXc=;
-        b=ccm0B45OPNvVu3zicpk0v0Y+Hk1iFsyOaY4+YQN8MJoGE9pehxSkB+NbN6cdVk/flr
-         oLlEaJIppjgqocTT443jW/k2BfGsnbMWZPfOd1IbrkT14wyv4ddzOqdoAJw5GFvJn2gA
-         ZMfy7LSBOj8gpvHvKVHEfawXWsc0iW/UHj+MiWcJ9XoBAbq6/ZXOc6g41q6QTe1F4V/8
-         JIFaSsyN8r0o8/ZxfEPqYbGQJ6IygcW07XtyQgYSVidZNm+s+5/fp5/SA9y7izyLR7NK
-         irqx1uugnaqJr5Uk9dGTpQjsfdK+y8UWJgPDdkUZFftet7EbhtcU37Fnflfls4VWycO6
-         Jfpw==
-X-Gm-Message-State: AOJu0Yzn71XsD+WqOy5qdmlrBXNWWNjSBHdK+UY8FFu6utgvhLZBy/YX
-	Otndsg2XmcdfT1Ik2KtYJda4R+cekcVFcj02/vrgw11eWYQ0xYgIy6Q=
-X-Google-Smtp-Source: AGHT+IHH5k41rDtCP7EilOm3nbP1rmpcCZAvRbEfUvewcW1efh55jqPAh4r4JGYS//ROncv6/E0AMMI0cpirb/riDaQ=
-X-Received: by 2002:a17:907:e91:b0:9bf:6200:fe33 with SMTP id
- ho17-20020a1709070e9100b009bf6200fe33mr7738331ejc.16.1698055725602; Mon, 23
- Oct 2023 03:08:45 -0700 (PDT)
+        bh=wUnnGAdmDfMipB0/9liPZMIOUoXhP0zAlTuz0GroIGc=;
+        b=R/WIW1cY7moAASmv80m9dosphHRdF/KHLj3G8+Q+WoawE3sVEpH/LNkr3ZcRFSyANo
+         1bcv+0psNwBd1ZEDhQ/7hqrmKIw/J7Fm1tBwpA+T9LytPNf7or6tHxuve2pjzrXecwx0
+         YW1P453l+rt/mlwoI7+GqUq67xBOaXZVHSGi4GLRBBxzbHuQVyUgn3jhkj0BpxKVAToe
+         xsonvUOs/4MEAaj2CkrFeZjJY0AAHbaPbW/58z+8hzL6MzHbM4OnsTubmQfGOOgEXkES
+         WlH6r8f+W62D5AW5Lk73TsB4nKgpTgtyB475OAZPcxG8B8PPE9HjleOBeKcLPiMzR30i
+         noOA==
+X-Gm-Message-State: AOJu0Yz0bPhKBpdxPAxstKv9VrQzkcUIfEAqHjzbKX8QnDvtx+k/MoSq
+	ZWvFXpojGHEQ67nsVd43F5H0tQ==
+X-Google-Smtp-Source: AGHT+IFqYO5bI+Kdl0SkjyRuSYnohDay+J2f9QzfY0pKi3Y493KGEjzuhSot3Dc88fVZ0pL4mUkG7w==
+X-Received: by 2002:a05:600c:3d87:b0:3fe:1232:93fa with SMTP id bi7-20020a05600c3d8700b003fe123293famr6882340wmb.22.1698056569060;
+        Mon, 23 Oct 2023 03:22:49 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.185])
+        by smtp.gmail.com with ESMTPSA id 1-20020a05600c228100b0040596352951sm13593275wmf.5.2023.10.23.03.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 03:22:48 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: tglx@linutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 0/7] irqchip/renesas-rzg2l: add support for RZ/G3S SoC
+Date: Mon, 23 Oct 2023 13:22:16 +0300
+Message-Id: <20231023102223.1309614-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023090230.43210-1-lukapanio@gmail.com> <20231023090230.43210-2-lukapanio@gmail.com>
- <26b65551-1437-4e21-947e-1628052b7c36@linaro.org>
-In-Reply-To: <26b65551-1437-4e21-947e-1628052b7c36@linaro.org>
-From: Luka Panio <lukapanio@gmail.com>
-Date: Mon, 23 Oct 2023 12:08:32 +0200
-Message-ID: <CACi=Ov6YLoOvqUqdJArGvEWsODUcwkfyTpdLX4RB+eBNLbn7RA@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial
- device tree
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
->Slow down with these resends. You are spamming us way too much. One
->version of your patchset per day. Max.
-Ok, sorry.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
->I don't understand why decided to ignore my advice.
-I thought it was your suggestion to switch to GPL-2.0-only?
-or you wanted to say that it should be "GPL-2.0-only OR BSD-2-Clause
-"? Sorry didn't got that
-Thanks,
-Luka Panio
+Hi,
 
-P.S. Sorry for duplicated message if you got it
+Series adds support for IA55 available on RZ/G3S SoC.
+Patches are split as follows:
+- 1/7 updates documentation
+- 2/7 adds IA55 clock
+- 3/7 minor cleanup on the way TITSR fields are populated
+- 4/7 implement restriction described in HW manual for ISCR register
+- 5/7 adds support for suspend to RAM
+- 6/7 minor cleanup that replaces spaces with tabs on macro definition
+- 7/7 adds IA55 device tree node
+
+Thank you,
+Claudiu Beznea
+
+Claudiu Beznea (7):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: document RZ/G3S
+  clk: renesas: r9a08g045: add IA55 pclk and its reset
+  irqchip/renesas-rzg2l: add macros to retrieve TITSR index and
+    associated selector
+  irqchip/renesas-rzg2l: implement restriction when writing ISCR
+    register
+  irqchip/renesas-rzg2l: cache registers on suspend/resume
+  irqchip/renesas-rzg2l: use tabs instead of spaces
+  arm64: dts: renesas: r9108g045: add irqc
+
+ .../renesas,rzg2l-irqc.yaml                   |   5 +-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  68 +++++++++++
+ drivers/clk/renesas/r9a08g045-cpg.c           |   3 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 111 ++++++++++++------
+ 4 files changed, 152 insertions(+), 35 deletions(-)
+
+-- 
+2.39.2
+
 
