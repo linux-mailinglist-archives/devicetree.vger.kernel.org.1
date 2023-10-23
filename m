@@ -1,132 +1,166 @@
-Return-Path: <devicetree+bounces-11087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2425B7D4189
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 23:17:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086D17D419B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 23:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8B42B20C22
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 21:17:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39BF01C20862
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 21:24:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C3921351;
-	Mon, 23 Oct 2023 21:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF653125B0;
+	Mon, 23 Oct 2023 21:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Hadr64Nj"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="GONCJMSN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D755614F61
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 21:16:51 +0000 (UTC)
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3569E1990
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 14:16:18 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6b36e1fcee9so3105630b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 14:16:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AC82032F
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 21:24:51 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93E95E8;
+	Mon, 23 Oct 2023 14:24:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DROzQqXfXKtJvmi9ScTdgSoqAZUvmfiKhgeAKZli2WkIQKLSHGq6neBfpkW/CMJmipYo7/dQy6z2fTegrWoZ7lIQci480PJPECFsGhN66PaQyAOhCZbFap/fQBFF8IzPBZNSMgN6KxrsIVr+EuDB8fKz4Xd4uif0BF9NXhaaIqQMnKYKT/FmWkg9NcDA6Vi2m7/DRvRzlHnwv8poR7JCbdyaONG8/61j2pXCPhzVnBFf+8IZhx0LyhPTiFeww5lATeFcFN4exSk9JzMdCRCXRZ26cJi6nYSZh8tjiSwdkpsOJ0BAP/5wDqVg6v4vej65M3LPke4yG6lO6/uvYVe/gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xjo69AYbvgkMUv/7Z7u3J7b2W9jtJHSbzu1Tsi9/774=;
+ b=UbpqCmXtpvVtxqNFf53MsEJdoeUFcWdv8HmYe1mI4Mz00ZboUGndgCBYpb6oNvYxDg5xc4izqsKzPtVUmhvdaFl02VJMeM6AmKuHD3hxxWDdB3D+CthFpBOtJURBK3qpqcjO8VVcL9vSqRQlPImF+nB8A5fOVviGPa3cUUZ5N50RTvsdGHD5XhkgcFPlomBpACX2DC2rDt4gJrJ9yp7A8OkyjXumHIxR6OkD7Outs8ioWLynvdPM8D+0xXvS21F3e7w2+nsqHk+K2ihO7zSatmZRDwklCnf2CeKnW4FulRi11GxgDpvzjugTYTf9XD8CTumw19MN8Y9GGGtj78cyxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698095777; x=1698700577; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvhazaZM9RfI4iJsfgktcPhLE+7qHteXIMbKad1YWwM=;
-        b=Hadr64NjKF49gGJbppffIuqkb8sCVABGLrfesp/6s16qECmQrvim4ZwJGzYzoswSGg
-         k39QwS6dqO5TdLhQDBwg93bZ3sJzXLDV7uloKtPxh3ozMx6KodM74EzQyFm5+ZyOkxNB
-         Bgl0N8QZWkd7zN1bkqy4R9SXhc0RIzECCTYMhxn7d+PgN3Qc5ZZF30VUZHrX5dOulKEi
-         yCAIuUHgif1RFrFuFByTc9I/9+f4LXCXehnk4DCl0zcO8ttSGRDRyFQrS8Zd2AGxGVLs
-         5Nvn/2UM5Ssm1YmDMoqyi4hA6F3oqDdbHx/arZvlpEA2rQS2Wiv+IguDCx1e5RVjqr9L
-         +Y8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698095777; x=1698700577;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zvhazaZM9RfI4iJsfgktcPhLE+7qHteXIMbKad1YWwM=;
-        b=PJdaGYeMEa1ccC2pa+Eooqpvd30bxld7p7vjIdpHw0kmE7X9zUfUGSvDbTZl6xdKqd
-         M5Ux95feuCfil5GN9KTcxZPe31Nn/QfVQ56zHSOLL1SopSGpUunGe9vCwD6o0WmjgonT
-         PL0f1lDfq1SyeuMyEO22Ixz+zwroD/crr5h04dwBv598XZ+G1AHrfm5Bgus/xKMbL4Mf
-         V+nlwcI12pD2H2SdQd9TwSKTLZhNv+HqX0BsMqo0Ntt8TbD8Fcx3z/Mffe4kfM4Y0l3k
-         3Maf8W515O0dj4DTuG54lNCVc3E+rVkmlkb1Ovmr3avzETPFLeTcAPDVXjUMN3Mo2Xj4
-         9Fwg==
-X-Gm-Message-State: AOJu0YxayAUaxnbZ1xSB+7sfyIfdTuM0l89EIKowmNtCC2670sA+Xb7q
-	+by6BBlJMZZNmdkMShps05Aiwg==
-X-Google-Smtp-Source: AGHT+IHHOa6b8isYHkqmJjQq3xCd6kvCalcUdzFL2r7jyGX64Eq4yPLeQJvZ+MMD0KyWAU4/1ldzgw==
-X-Received: by 2002:a05:6a00:a0b:b0:6bd:9281:9453 with SMTP id p11-20020a056a000a0b00b006bd92819453mr9522592pfh.9.1698095777579;
-        Mon, 23 Oct 2023 14:16:17 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:b9a0:8714:407c:4146])
-        by smtp.gmail.com with ESMTPSA id f18-20020aa79692000000b00690c52267easm6535133pfk.40.2023.10.23.14.16.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Oct 2023 14:16:17 -0700 (PDT)
-Date: Mon, 23 Oct 2023 14:16:14 -0700
-From: Drew Fustini <dfustini@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xjo69AYbvgkMUv/7Z7u3J7b2W9jtJHSbzu1Tsi9/774=;
+ b=GONCJMSNYkuZ9UW+F6H1WrUJaVF1gvWfgTQjCHqbpl3rpXpL1JNIT9HVyN0gxGfBYjHWNdAIN0tpfhxZ3QMVIesq8RxU17ma0DE9uyHj/AnyMfxDKMFwPxkJxVg4/a5cbzBJqtXX69zssyapXzPWWyYorb2pBnTBj9Odyzsv3k8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by SA2PR08MB6825.namprd08.prod.outlook.com
+ (2603:10b6:806:fb::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Mon, 23 Oct
+ 2023 21:24:46 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e73c:270b:75f7:5302]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e73c:270b:75f7:5302%4]) with mapi id 15.20.6907.032; Mon, 23 Oct 2023
+ 21:24:46 +0000
+Date: Mon, 23 Oct 2023 16:24:38 -0500
+From: Jeff LaBundy <jeff@labundy.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@t-8ch.de>
+Cc: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
-Cc: Robert Nelson <robertcnelson@beagleboard.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
-	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/7] RISC-V: Add MMC support for TH1520 boards
-Message-ID: <ZTbini/VyDxHMyrm@x1>
-References: <20231023-th1520-mmc-v3-0-23850668d208@baylibre.com>
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <ZTbklpRhpMIPey2j@nixie71>
+References: <20231017034356.1436677-1-anshulusr@gmail.com>
+ <20231017034356.1436677-2-anshulusr@gmail.com>
+ <ZTWza+S+t+UZKlwu@nixie71>
+ <00d2fcbc-3fd8-477d-8df1-afec20b458b6@t-8ch.de>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <00d2fcbc-3fd8-477d-8df1-afec20b458b6@t-8ch.de>
+X-ClientProxiedBy: DS7PR03CA0252.namprd03.prod.outlook.com
+ (2603:10b6:5:3b3::17) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023-th1520-mmc-v3-0-23850668d208@baylibre.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SA2PR08MB6825:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb0d83dd-d803-4d23-598f-08dbd40e7af6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	dV0d5w/QmzhrnvJsbv8x6/uoQOyg0BNul+2OBdCXCu0jpVENqzhEs+Lh3mu0HyRSXqf6nGmTr404/Kveb0GcXsl7Mddk/cDbUP2+QMiwfHLM7qDIMFcp83047/wwjTSmpf+LPbYMPsL5ZaX67QrNwHg6N9byxWTTh/z38Wdf4ACF7XaWG+Iw2LllH0k8ozK8FRlifd6U5BHv3b7CvpdThO9OldkqYHZ9DBd0zc8RrzchKvivvWsz25Y8+yxcKW1rzxiwAVlwUp9obl4p6X2hGtxeiOBqwYLyq694CXSep1uDzxNMuF19VrNOhch1lzfJrXgQeAxlJuI1M9ok/GNZagff0BPTXZKKpPDLo7Gj+TKuFYVKuIoPGgNAK2VdBELqZgRZSS5trd6c/sE5KoaZ+YhVSyQTe3xGeiQTTX/NFx6gsutTtjwScMTsOwa1oAkDv38s4SjSfiITtvQNYa5sOWJtVMrjm214bbX3Xyxwn5j1sHxyuLtfGbMcjBKenkqzsyn1SVs5VF2HWVNfKQQ1VaK9nZPP3waTgk3EZK59ZFkBgBl6I6/jPsixzN5hVAZP
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39830400003)(346002)(396003)(366004)(376002)(136003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(9686003)(83380400001)(26005)(4744005)(316002)(6486002)(7416002)(6916009)(8936002)(478600001)(8676002)(41300700001)(66946007)(2906002)(4326008)(38100700002)(66476007)(5660300002)(6512007)(66574015)(54906003)(6666004)(6506007)(66556008)(33716001)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?B1w05ouDFUd5ChwCGM+lU/3nfSguebna4esxvJp7A4VIROsrzPxI4Z+9j2?=
+ =?iso-8859-1?Q?ciyFTVtzz2/kb3uU+smvdiIOEp3NGL5VMEpWXPhrwyZdkGsnu6Ieh2wspt?=
+ =?iso-8859-1?Q?q3v32R3TvT7Z3SIuHA/E6aHu94HPEzdStJYLlKOfg1pna35ybZY+hOoUMm?=
+ =?iso-8859-1?Q?9d0drEhsiwGP66SjQ5VF1b02k4kBGhYawWdVE78W1uDISOFh3azPKs9241?=
+ =?iso-8859-1?Q?9qJVXBBLV4gsmzrN2TzzkPtVUIs6Wgd5i49qpYOER4RYBdC+JKJHFCRG33?=
+ =?iso-8859-1?Q?hBF8zd5SOant6djaN3JjhPk50GdPxvQ07O8jVFYE9d5Upfl/dBcXs4HnD5?=
+ =?iso-8859-1?Q?nQl3wKbKcxI/lJIR2jLywXDLBbQmIcEiV+eg+WeL98V4p6Ftzm/YGI+nHC?=
+ =?iso-8859-1?Q?TRfqImsG8NrHiEtTHgMX40sVAg4UwNrsD9yXu44ZdhcdDlmlResSSp9Pk2?=
+ =?iso-8859-1?Q?L7iQ0+V+2Uy5zQc0hi7IwfnxdU19nw1kPdeTmFB3oCNdEEf/MJoVr1jWZa?=
+ =?iso-8859-1?Q?2CilQagPxp9S2D5tko7g494Qzl3E7iS95Saelc9Hhb7HV7kIzWCTydzhq6?=
+ =?iso-8859-1?Q?lFU08wJMs/swDz02KPzsIoj0k00Bf01f3HlnLCTnvhZUr0muSMLLCD7EL9?=
+ =?iso-8859-1?Q?JCrvgsi8eVzpyHSXqIEAWskL4Mg8inyVNgXb+TpMq7jHqfqdI57CwTwMzo?=
+ =?iso-8859-1?Q?Xcb1b0w1GL2x67ZgkkNJ6KB/fyxWAOz8tdAYjWH/onfg27RcuArZMXKQPk?=
+ =?iso-8859-1?Q?IwkWDRdLfMX4Wb2Gd5t/FJcTPpMBcJxo3JUyGp8KuQMOR/QJ5OkpcSdqan?=
+ =?iso-8859-1?Q?P7z693EoxAzVMMEVKJmrQn7xpbcZ9ro+tymm8hCx/7N9JMP0EkZruL/ncr?=
+ =?iso-8859-1?Q?5cdGONwFWqZXi1892xNSkYh67NpXZHTYgFM1piKid+x5AWsEahkWgSKovE?=
+ =?iso-8859-1?Q?sWSKNiRhdKYbC/VB1uYQ4JvuaFlwigQq7+p6/mGmScRr1+U9K5baDWRNVa?=
+ =?iso-8859-1?Q?8ogYe1y33WbUNDkOrH48lC8OL6Z1K3ianSFQWRlJ7/Nl/vGxjrdS1Ycx/k?=
+ =?iso-8859-1?Q?OujMqnNE3jmXWhbdc5WK4tLhMAYVNgOkmsRNXzDge95BEsC2xm9UAKiugW?=
+ =?iso-8859-1?Q?5D/f6s2kyFD/4nTYt3i98waeNck8MTKsIzISdP3Yih4QT1WY4QZhagmD4G?=
+ =?iso-8859-1?Q?Fbh7Y15lVRoZyGfe1lRP5TcnvwiVz3+QvASPihRxuQB4Du541eSgVNwJeS?=
+ =?iso-8859-1?Q?tewXg9hzUYfd979QvUYLs2ZDXsh3YIgM2TIdwDjfVlc1FPCEGen7SS1K/K?=
+ =?iso-8859-1?Q?zqo8zqvRbpp8i4bGYUFttxedGi6bTODfSqvLLuG/xx5fKlQF2/glW7MXMu?=
+ =?iso-8859-1?Q?zm2bUM7AFq451C6I4CqFYlYkxatzLxXSt/8eNuWqMbl7fmpr994oNucgLO?=
+ =?iso-8859-1?Q?LQN5/FLBFE3kLKbstFu84Pyo/nQqtKbGrp0vN5IknxHU+jdZUvtXRM7bW1?=
+ =?iso-8859-1?Q?cTFTt+4uAuL1RSNIGHU2eBPxsGH+7lQz1sAU/dAk8yTKJB0gOwIzoVmUoa?=
+ =?iso-8859-1?Q?iNq27v5PH9vyE/1d90pV/FWISB0my4yDbepng1N5ZRF0dwGBG68EK+PovO?=
+ =?iso-8859-1?Q?0BUAL09NZ6NXY+KsAhXEv2C03T0Iy3QDE2?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb0d83dd-d803-4d23-598f-08dbd40e7af6
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 21:24:46.2777
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ln+7meh0rOgDU9it9j0RiqYcmgH6Zzc7TKw9jvBvCd7ZEDyrsU3QSw+9ATvUFkbZgglIrWhQFcrIjBoVn1IDvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR08MB6825
 
-On Mon, Oct 23, 2023 at 01:33:02PM -0700, Drew Fustini wrote:
-> This series adds support for the MMC controller in the T-Head TH1520
-> SoC, and it enables the eMMC and microSD slot on both the BeagleV
-> Ahead and the Sipeed LicheePi 4A.
-> 
-> I tested on top of v6.6-rc6 with riscv defconfig. I was able to boot
-> both the Ahead [1] and LPi4a [2] from eMMC. The following prerequisites
-> are required:
-> 
->   [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus [3]
-> 
-> I pushed a branch [4] with this patch series and the above patch for
-> those that find a git branch easier to test.
-> 
-> Note: I have only tested eMMC and microSD. I have not yet configured
-> or tested the mmc controller used for SDIO WiFi yet.
-> 
-> References:
-> [1] https://gist.github.com/pdp7/7850027e8d256b6fd9cd53080240f0f6
-> [2] https://gist.github.com/pdp7/fae4637378426723508b679420a0a5a1
-> [3] https://lore.kernel.org/linux-riscv/20230912072232.2455-1-jszhang@kernel.org/
-> [4] https://github.com/pdp7/linux/tree/b4/th1520-mmc
-> 
-> Changes in PATCH v3:
-> - always call th1520_sdhci_set_phy() in th1520_set_uhs_signaling()
->   and not only when timing is MMC_TIMING_MMC_HS400. This allows the
->   microSD slot to work as th1520_phy_3_3v_init() is called from
->   th1520_sdhci_set_phy().
-> - add mmc1 node for mmc controller connected to the microSD slot
-> - add enable mmc1 and add properties for microSD on the Ahead and LPi4A
+Hi Thomas,
 
-My apologies for sending this v3 series prematurely. I wanted to send
-out the fix above that enabled microSD to work but I failed to address
-the feedback from Adrian and Jisheng on v2 [1] and I also failed to
-applied the tags from v2. I will address those in a v4 but I'll wait a
-few days in case there is any feedback on the th1520_set_uhs_signaling()
-change above.
+On Mon, Oct 23, 2023 at 07:55:52AM +0200, Thomas Weißschuh  wrote:
 
-Thank you,
-Drew
+[...]
 
-[1] https://lore.kernel.org/r/20231017-th1520-mmc-v2-0-4678c8cc4048@baylibre.com
+> >> +   err = i2c_master_send(client, write_buf, sizeof(write_buf));
+> >> +   if (err < 0)
+> >> +       return err;
+> >
+> > You correctly return err (or rather, ret) for negative values, but you should also
+> > check that ret matches the size of the data sent. For 0 <= ret < sizeof(writebuf),
+> > return -EIO.
+> 
+> The driver did this originally.
+> I then requested it to be removed as this case
+> can never happen.
+> i2c_master_send will either return size of(writebuf) or an error.
+
+Great catch; indeed you are correct. Apologies for having missed this
+in the change log; this is good to know in the future.
+
+That being said, it's a moot point IMO; this driver seems like a good
+candidate for regmap. If regmap cannot be made to work here for some
+reason, then I'd like to at least see some wrapper functions to avoid
+duplicate code and manual assignments to a buffer.
+
+Kind regards,
+Jeff LaBundy
 
