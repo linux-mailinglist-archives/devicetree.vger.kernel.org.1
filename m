@@ -1,84 +1,137 @@
-Return-Path: <devicetree+bounces-10893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B3617D35F7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:59:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C10C7D360C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC92D1C20935
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:59:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53ED8B20C7B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788AA18629;
-	Mon, 23 Oct 2023 11:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D3E1862B;
+	Mon, 23 Oct 2023 12:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m7flUE3m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MY2dbfAS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4639E18025;
-	Mon, 23 Oct 2023 11:59:22 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD9EF5;
-	Mon, 23 Oct 2023 04:59:20 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b6559cbd74so488100666b.1;
-        Mon, 23 Oct 2023 04:59:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698062358; x=1698667158; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nnqy7dSxOjQjqscv4DWvyJMFvfwEd0TnRvRI5+ZbjWo=;
-        b=m7flUE3mJRnPL2h+1TVvA1/SxuXPj/RJldsppMLplwaffwRWSGl9j75jV2r2mD6n8D
-         jqT4Qap+9N+Q3IIFQkmRVGRu6TC8Bdy6UcNOO8ri9kC+hhtkAwwnACPWMX8xFcYw+u7E
-         vLQvWiQuS8FZdPJgAXBtf6Ttr/KOmgHDl2f8kFHT/SrFT0mnMSKty0rCoDkj5NeC88Y9
-         jhKR+778paeJPa7eqc2FIzDiHOMyKUBzqdliNUVl6mJtJbzCm5rn7RBhFFn4L1NZPdrw
-         1nenTcSL8YbSswoXJ4jMIp/WphuhIQVe5N/t8c8fCY3+2yGgoLnypnRBoJqpwSgjAsiR
-         hnog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698062358; x=1698667158;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nnqy7dSxOjQjqscv4DWvyJMFvfwEd0TnRvRI5+ZbjWo=;
-        b=Ae6vsQtzLEWHZMnMixxytO9M+8tvW7i4ZqHkE06olrzvNWtzddw7ePkNEY2ny/+gRN
-         +1HawVZmH1A87Rjllk/YLRVLiomUP5TDXJQa7rimwP2PDsvaE79cIdLdl0dVkEviCj0R
-         9Y54+bRMsotQZmnkMo/AGhGbQdkPjxQwZEQMdv0gzAgvj/uEAGWhjoJc0K8/tPtt5lg8
-         M3zVXC4atrGCbeTgoUtKYz1sKBWiV9K+D2GI4dask5ByRTOqGDojcEqrB4EIjGlRl4b8
-         CacA2bc1IP1rQoSJi9MtVSkrCPtmLIgMv7dYZHoWiwREWQciGOODyk7Y6vZdap/S4dZg
-         JIbQ==
-X-Gm-Message-State: AOJu0YxnN7RwjPuc1hyQMUo1EuGfFCUboXRfLQUgfNs6cOHFp4TgTFL5
-	3NZIxnJBaEQJod4yx6tph/v5OzIOjOOczmHUJZL0873hk7Mj/6Qp
-X-Google-Smtp-Source: AGHT+IEn0NHJ4SfG0P+T4S3NwQqFTArELhFnDro91pfObDGaOIHYbJg5GjpcRO9l38DOWF/Ws4+OojefE8nrEYCon5s=
-X-Received: by 2002:a17:907:9485:b0:9be:f71d:9471 with SMTP id
- dm5-20020a170907948500b009bef71d9471mr7774826ejc.68.1698062358169; Mon, 23
- Oct 2023 04:59:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9C018629;
+	Mon, 23 Oct 2023 12:04:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42501C433C8;
+	Mon, 23 Oct 2023 12:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698062644;
+	bh=n/SYhgOy7PYoOMa/qRT/xqvF+V6QNHFqWYg+hu0aDj4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MY2dbfASZER6tuIdGGsFhjcDL09IA9tXH1K2hRODqDJmoBwN1y9Pn+s7KPAjTz4yb
+	 9JPo8v456haLAbc55KVPK4k05l3EDrlzlGgCg7itvHppqavF+wM3J5IreBTFzbhIfB
+	 kLQ24DWYhW6tANl7QVCqPNxPNSeWuykvVc7skyKlqMhb6XeBov4DJsAUrTf0Zkyszr
+	 MzoffD2wL1QGU5T/xqwnIIQzr0YFM0MC/Nh0v2A2Bu5EYeYXfKE6DHwygsEIlmRIyw
+	 AequAVKeZ4TbiC3hjQRz+JPCvpgJpmIy7hm8buNLxBNK59ViC3AYScv2oHmO7kX0eE
+	 YXqYt+lr/L2RQ==
+Date: Mon, 23 Oct 2023 13:03:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [PATCH v3 RESEND 10/13] dt-bindings: riscv: Add Andes PMU
+ extension description
+Message-ID: <20231023-spectacle-module-0516fb35995a@spud>
+References: <20231023004100.2663486-1-peterlin@andestech.com>
+ <20231023004100.2663486-11-peterlin@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023090230.43210-1-lukapanio@gmail.com> <20231023090230.43210-2-lukapanio@gmail.com>
- <26b65551-1437-4e21-947e-1628052b7c36@linaro.org>
-In-Reply-To: <26b65551-1437-4e21-947e-1628052b7c36@linaro.org>
-From: Luka Panio <lukapanio@gmail.com>
-Date: Mon, 23 Oct 2023 13:59:07 +0200
-Message-ID: <CACi=Ov7MXJsEazZZbisHWUfZD4B8WxtKROjwu-EEQfRgPHSGkA@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial
- device tree
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="P1S9GHX9rhzdHs0r"
+Content-Disposition: inline
+In-Reply-To: <20231023004100.2663486-11-peterlin@andestech.com>
 
-Ok sorry just didn't got it right. will send a new patchset tomorrow.
-Thanks,
-Luka Panio
+
+--P1S9GHX9rhzdHs0r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Oct 23, 2023 at 08:40:57AM +0800, Yu Chien Peter Lin wrote:
+> Document the ISA string for Andes Technology performance monitor
+> extension which provides counter overflow interrupt and mode
+> filtering mechanisms.
+>=20
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> ---
+> Changes v2 -> v3:
+>   - New patch
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 5e9291d258d5..e0694e2adbc2 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -246,6 +246,13 @@ properties:
+>              in commit 2e5236 ("Ztso is now ratified.") of the
+>              riscv-isa-manual.
+> =20
+> +        - const: xandespmu
+> +          description:
+> +            The Andes Technology performance monitor extension for count=
+er overflow
+> +            and privilege mode filtering. For more details, see Counter =
+Related
+> +            Registers in the AX45MP datasheet.
+> +            https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
+5.0.0-Datasheet.pdf
+
+Does/will this PMU function identically on the other CPUs that support it?
+I assume the answer is yes.
+
+Cheers,
+Conor.
+
+> +
+>          - const: xtheadpmu
+>            description:
+>              The T-Head performance monitor extension for counter overflo=
+w. For more
+> --=20
+> 2.34.1
+>=20
+
+--P1S9GHX9rhzdHs0r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTZhKQAKCRB4tDGHoIJi
+0q2MAP0VirheuKpWgXrPAEWaqZ66m6sp12MVuSOdCvU0US0f/AEA2BobNxX5Jk4Y
+UqRJn9N7kWZtJAvcqBjJPvvs15wdpgc=
+=/DQg
+-----END PGP SIGNATURE-----
+
+--P1S9GHX9rhzdHs0r--
 
