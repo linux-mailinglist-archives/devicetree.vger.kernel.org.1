@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-10839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2BF47D2DFD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:21:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 896507D2DFF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:21:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BC432812A2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:21:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B24221C209C4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4AC12E42;
-	Mon, 23 Oct 2023 09:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC02012B93;
+	Mon, 23 Oct 2023 09:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K2AM2o0K"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XIAn6hVw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CD711CA1
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B04812B9F
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:21:29 +0000 (UTC)
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA3EE5;
-	Mon, 23 Oct 2023 02:21:26 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39N9LDPG004726;
-	Mon, 23 Oct 2023 09:21:23 GMT
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6CCD65;
+	Mon, 23 Oct 2023 02:21:28 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39N7UfoT017983;
+	Mon, 23 Oct 2023 09:21:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-type; s=qcppdkim1;
- bh=0Cnir9Am8qWxXKRc3LW3pMOLVgwJooj3tBJ4CFq+93M=;
- b=K2AM2o0KfrntlyaP6LN+o2vUT/RtW6Q+44V7vxMHlwuYW1fjvz3nrxEHo2j95ATRF+XG
- H1Eo+zwdLQK/4TG3kpYq6L5HB999bBZY6ooptnF/Xg8MWVGfCu/1ugVP1YbWfYSGY54c
- 3hC7Q9m0oEBysbAAMpGaM79H5gdKzKemZE+lLPEyle/bVT3llTrcZuUm6yITjUMKezpY
- hkfsF0PQVfNzOW+EKehdlpIh/d4344d2yM84oey24ASR0E6YOOdS7gtaHb+zkBW7giXW
- VKgwcGXqaGooO5KhHgmBYZNUd3mRiBQ8+hzulS+IkGnGJGkV9l67bbFLCHiTA/dxch28 eQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twp3vg02w-1
+ bh=XjY/aLYCXQIKfzAL6rkhVazPSSEJptdIg8VY6/AWpho=;
+ b=XIAn6hVwf6kEbVgG6RziMzvEfvAgxqjSiZGsxVvpNiuzC9ygIugkUx6DD49IaKUUbwK4
+ gfa9nRdzbQuLtBq+lj25XXhdk3B1dpqW6E/I+TtAsB8vmNsdLP0UQgdO//gq0yMYlyEE
+ /TyyK+avhDO8gKHu8q+Saf2ozqG3eLoPONqILymkALV6ab1KUc7aE/XEt8kcPEnJKkFI
+ xDzRLKfc95W2yv72ViGIOAh8jmZtENeLJE5Uq/vF6HR4Vl61MHY3ctxCXqrZ8ii8dbe6
+ JXmEfLQejlt7B1ao2xTsPDfbim4Y/Mqd05zwCtQ1cVm9tApslxMzpcjcIM+2tAcRx/Wq vQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv4bm4ah3-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 09:21:22 +0000
+	Mon, 23 Oct 2023 09:21:25 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39N9LLNv002219
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39N9LPO4018504
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 09:21:21 GMT
+	Mon, 23 Oct 2023 09:21:25 GMT
 Received: from zhenhuah-gv.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 23 Oct 2023 02:21:16 -0700
+ 15.2.1118.39; Mon, 23 Oct 2023 02:21:19 -0700
 From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
 To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
         <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,9 +54,9 @@ To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
 CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
         <quic_tingweiz@quicinc.com>, Zhenhua Huang <quic_zhenhuah@quicinc.com>
-Subject: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver bindings
-Date: Mon, 23 Oct 2023 17:20:53 +0800
-Message-ID: <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
+Subject: [PATCH v1 2/5] dt-bindings: sram: qcom,imem: document sm8250
+Date: Mon, 23 Oct 2023 17:20:54 +0800
+Message-ID: <1698052857-6918-3-git-send-email-quic_zhenhuah@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
 References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
@@ -72,138 +72,36 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QbXPCt9RCrhwsTqtYRnQu7oDKbecljkg
-X-Proofpoint-ORIG-GUID: QbXPCt9RCrhwsTqtYRnQu7oDKbecljkg
+X-Proofpoint-GUID: OVbN_iv_SKAOCIy1OPlCk9HOSEGoneAs
+X-Proofpoint-ORIG-GUID: OVbN_iv_SKAOCIy1OPlCk9HOSEGoneAs
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-23_07,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 bulkscore=0 phishscore=0 priorityscore=1501 malwarescore=0
- impostorscore=0 adultscore=0 spamscore=0 clxscore=1015 mlxlogscore=843
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310230080
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ bulkscore=0 priorityscore=1501 mlxlogscore=815 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310230080
 
-Add bindings for the QCOM Memory Dump driver providing debug
-facilities. Firmware dumps system cache, internal memory,
-peripheral registers to reserved DDR as per the table which
-populated by the driver, after crash and warm reset.
+Add compatible for sm8250 IMEM.
 
 Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
 ---
- .../bindings/soc/qcom/qcom,mem-dump.yaml           | 42 +++++++++++++++++++++
- .../devicetree/bindings/sram/qcom,imem.yaml        | 44 ++++++++++++++++++++++
- 2 files changed, 86 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+ Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
-new file mode 100644
-index 0000000..87f8f51
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/qcom/qcom,mem-dump.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm memory dump
-+
-+description: |
-+  Qualcomm memory dump driver dynamically reserves memory and provides hints(id and size)
-+  of debugging information based on specified protocols with firmware. Firmware then does
-+  the real data capture. The debugging information includes cache contents, internal
-+  memory, registers. After crash and warm reboot, firmware scans ids,
-+  sizes and stores contents into reserved memory accordingly. Firmware then enters into full
-+  dump mode which dumps whole DDR to PC through USB.
-+
-+maintainers:
-+  - Zhenhua Huang <quic_zhenhuah@quicinc.com>
-+
-+properties:
-+  compatible:
-+    const: qcom,mem-dump
-+
-+  memory-region:
-+    maxItems: 1
-+    description: phandle to memory reservation for qcom,mem-dump region.
-+
-+required:
-+  - compatible
-+  - memory-region
-+
-+additionalProperties: false
-+
-+examples:
-+  # minimum memory dump definition.
-+  - |
-+    mem-dump {
-+        compatible = "qcom,mem-dump";
-+        memory-region = <&dump_mem>;
-+    };
-+
-+...
 diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-index 8025a85..e9eaa7a 100644
+index e9eaa7a..f7c4d3d 100644
 --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
 +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-@@ -52,6 +52,40 @@ patternProperties:
-     $ref: /schemas/remoteproc/qcom,pil-info.yaml#
-     description: Peripheral image loader relocation region
- 
-+patternProperties:
-+  "^mem-dump-table@[0-9a-f]+$":
-+    type: object
-+    description: Used to store dump table base addr
-+    properties:
-+      compatible:
-+        const: "qcom,qcom-imem-mem-dump-table"
-+
-+      reg:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+    additionalProperties: false
-+
-+patternProperties:
-+  "^mem-dump-table-size@[0-9a-f]+$":
-+    type: object
-+    description: Used to store dump table size
-+    properties:
-+      compatible:
-+        const: "qcom,qcom-imem-mem-dump-table-size"
-+
-+      reg:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -76,5 +110,15 @@ examples:
-                 compatible = "qcom,pil-reloc-info";
-                 reg = <0x94c 0xc8>;
-             };
-+
-+            mem-dump-table@10 {
-+                compatible = "qcom,qcom-imem-mem-dump-table";
-+                reg = <0x10 0x8>;
-+            };
-+
-+	    mem-dump-table-size@724 {
-+		compatible = "qcom,qcom-imem-mem-dump-table-size";
-+		reg = <0x724 0x8>;
-+            };
-         };
-     };
+@@ -29,6 +29,7 @@ properties:
+           - qcom,sdx55-imem
+           - qcom,sdx65-imem
+           - qcom,sm6375-imem
++          - qcom,sm8250-imem
+           - qcom,sm8450-imem
+       - const: syscon
+       - const: simple-mfd
 -- 
 2.7.4
 
