@@ -1,169 +1,100 @@
-Return-Path: <devicetree+bounces-11014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9124A7D3CB5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:37:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14177D3CC0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:40:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A6FE2815A8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:37:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CBEA2815A4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED222566;
-	Mon, 23 Oct 2023 16:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C6111CAC;
+	Mon, 23 Oct 2023 16:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UGXh1vBI"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="V/xOy/CX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4DC1DA39
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:37:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69DFFC433C7;
-	Mon, 23 Oct 2023 16:37:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698079055;
-	bh=4j4zRVpdENg4gFv1kRMTIK1mdiei4ouowMHUHlbMvdI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UGXh1vBIm6GumULitSKCEjbrLw/iuKY7Ps0Fn88fe0oLBpQKW5p6V9Ryv1rA5z0pl
-	 EMJ333zl57pM9ZI0iRgqwVD67mvzLR0N6XdO+rvLmTCFcP/ElWFhrs10gNZNPyKDCu
-	 JTgR4zI2YsIR9DfrAmi5bmIKPq4hRgeagt2GtBdepM9vDYyd8wt3vvcEgl6BBVdeWT
-	 ZUhhDw21xgZtbhpe1uXMkaPKqWquaxdMYpSIk0sTtqO0pQDFUHIusVHKj+Ojlb0HiE
-	 A2b+OjQmp0GYcDrPHtCNMHcOiC5ah1nv8gcAp7g6q9YEG8hqSV6+5eZWo+dhSdvkKN
-	 UczVhSBh3Ajbg==
-Date: Mon, 23 Oct 2023 17:37:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748F8208A1;
+	Mon, 23 Oct 2023 16:40:47 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6B993;
+	Mon, 23 Oct 2023 09:40:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=2Qgu3sV7JqSs1+xqVkj3Q4GC+iKi/Wf5NSoQxrtF3ew=; b=V/xOy/CXT9JTBGtsL7Y3xvmZwV
+	rnjrtnpa5D22ISWgGO9NXgw8FxE1TOh+Ky7E5bQuEIBPVohIRtEarYFHeqnEvmA8GPV33pt+97QuE
+	qNoxRycGKX+H0q2vf7UImSz8VoL2M2kkyftM18WG2htwIMUd1lNv1JzSTbHPyZMJga6Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1quxyl-0032zT-EI; Mon, 23 Oct 2023 18:40:35 +0200
+Date: Mon, 23 Oct 2023 18:40:35 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Marek Vasut <marex@denx.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
-	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB
- subnode into schema and example
-Message-ID: <20231023-quote-wrongly-ed07265e12ac@spud>
-References: <20231020130019.665853-1-alexander.stein@ew.tq-group.com>
- <20231020130019.665853-3-alexander.stein@ew.tq-group.com>
- <20231022-helper-dating-a0f65a8f6f72@spud>
- <5986192.lOV4Wx5bFT@steina-w>
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 2/5] net: dsa: qca: Make the QCA8K hardware
+ library available globally
+Message-ID: <3f279720-5386-4ea2-b54c-ffc44277b1cc@lunn.ch>
+References: <20231023155013.512999-1-romain.gantois@bootlin.com>
+ <20231023155013.512999-3-romain.gantois@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xhT/qDoRzBha/YYS"
-Content-Disposition: inline
-In-Reply-To: <5986192.lOV4Wx5bFT@steina-w>
-
-
---xhT/qDoRzBha/YYS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231023155013.512999-3-romain.gantois@bootlin.com>
 
-On Mon, Oct 23, 2023 at 08:27:20AM +0200, Alexander Stein wrote:
-> Am Sonntag, 22. Oktober 2023, 19:39:12 CEST schrieb Conor Dooley:
-> > On Fri, Oct 20, 2023 at 03:00:15PM +0200, Alexander Stein wrote:
-> > > Document the LDB bridge subnode and add the subnode into the example.
-> > > For the subnode to work, the block control must scan its subnodes and
-> > > bind drivers to them, do not misuse either simple-bus or simple-mfd
-> > > here.
-> > >=20
-> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > ---
-> > >=20
-> > >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 44 +++++++++++++++++=
-++
-> > >  1 file changed, 44 insertions(+)
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.=
-yaml
-> > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.=
-yaml
-> > > index b3554e7f9e76..5ba66dfb0e05 100644
-> > > ---
-> > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.=
-yaml
-> > > +++
-> > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.=
-yaml>=20
-> > > @@ -24,6 +24,12 @@ properties:
-> > >    reg:
-> > >      maxItems: 1
-> > >=20
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 1
-> > > +
-> > >=20
-> > >    '#power-domain-cells':
-> > >      const: 1
-> > >=20
-> > > @@ -46,9 +52,16 @@ properties:
-> > >        - const: csi
-> > >        - const: dsi
-> > >=20
-> > > +  bridge@20:
-> > > +    type: object
-> > > +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
-> > > +    unevaluatedProperties: false
-> > > +
-> > >=20
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > >=20
-> > > +  - '#address-cells'
-> > > +  - '#size-cells'
-> >=20
-> > It seems to make little sense to me that these would become required
-> > when the bridge is optional. Is it valid to have one of these
-> > media-blk-ctrls without the ldb subnode?
->=20
-> fsl,imx93-media-blk-ctrl privides several power-domains (DSI, CSI, ISI, P=
-XP=20
-> and LCDIF), currently unused. This series introduces the usage for LCDIF =
-power=20
-> domain. LDB is the LVDS display bridge. So there are several power domain=
-s=20
-> which don't requires the usage of ldb.
-> On the other hand I prefer consistency, so I opted to keep things similar=
- to=20
-> commit 1cb0c87d27dc. If it shall not be added here, it should be removed =
-in=20
-> Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml =
-as=20
-> well.
+> @@ -62,21 +61,37 @@ const struct qca8k_mib_desc ar8327_mib[] = {
+>  	MIB_DESC(1, 0xa8, "RXUnicast"),
+>  	MIB_DESC(1, 0xac, "TXUnicast"),
+>  };
+> +EXPORT_SYMBOL(ar8327_mib);
 
-IIRC the tooling will complain if you have an enabled node containing
-#address-cells and/or #size-cells but no child nodes, so making
-#address-cells or #size-cells required will cause problems. Looks like
-the only user has the child node, so it didn't crop up yet.
+Christian should decide, since he wrote most of this code, but i would
+prefer EXPORT_SYMBOL_GPL().
 
---xhT/qDoRzBha/YYS
-Content-Type: application/pgp-signature; name="signature.asc"
+> --- a/drivers/net/dsa/qca/qca8k.h
+> +++ b/include/linux/dsa/qca8k.h
+> @@ -13,6 +13,7 @@
+>  #include <linux/gpio.h>
+>  #include <linux/leds.h>
+>  #include <linux/dsa/tag_qca.h>
+> +#include <net/dsa.h>
+>  
+>  #define QCA8K_ETHERNET_MDIO_PRIORITY			7
+>  #define QCA8K_ETHERNET_PHY_PRIORITY			6
+> @@ -265,6 +266,7 @@
+>  #define   QCA8K_PORT_LOOKUP_STATE_LEARNING		QCA8K_PORT_LOOKUP_STATE(0x3)
+>  #define   QCA8K_PORT_LOOKUP_STATE_FORWARD		QCA8K_PORT_LOOKUP_STATE(0x4)
+>  #define   QCA8K_PORT_LOOKUP_LEARN			BIT(20)
+> +#define   QCA8K_PORT_LOOKUP_LOOPBACK_EN			BIT(21)
 
------BEGIN PGP SIGNATURE-----
+Maybe do the move first, and then add new features in another patch?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTahSAAKCRB4tDGHoIJi
-0vS+AQC45ElFCzZEUe5/Th99QAcnTpLwpHp/8fZYeUbBNEHJSgEAv/Eh5gQhIGd6
-z2Ep4eW1LJXgSQL1VLTN6vznUdXFtgQ=
-=U4hY
------END PGP SIGNATURE-----
-
---xhT/qDoRzBha/YYS--
+      Andrew
 
