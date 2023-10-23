@@ -1,373 +1,154 @@
-Return-Path: <devicetree+bounces-10917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D2607D3781
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:14:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E02BA7D3786
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:15:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FACC1C20860
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:14:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AED12815B3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E2C18E1B;
-	Mon, 23 Oct 2023 13:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3228918E3E;
+	Mon, 23 Oct 2023 13:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Bf7hu9t8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gfba+b57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B030314AA6
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:14:25 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744E1C4;
-	Mon, 23 Oct 2023 06:14:22 -0700 (PDT)
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id E0AC26606F51;
-	Mon, 23 Oct 2023 14:14:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698066861;
-	bh=pj3VhyfFH6ErSwBdbhZsBJKn1hmYCYEaTcjA/2LT/4g=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Bf7hu9t8ds8F3W5z5d9lLLMukJmnnj0UBlYLzZaquz4PldMp80lXdxA2f+OFgIxF7
-	 QlCHR3uDawan1u+7Zhnsv52R66TxmULRndtqx0foRoWGoeeqmYFmH/sUx9w/3KhYNJ
-	 XiNJvLzFWR5AKxr2sQebqbHQ2WNj6NneH11K6+jw0L1TaMnHzDIwR3X6W84UeYd9g5
-	 /wqfCYMzz0yMazh2wpVjO85ukLOEAi6aVJZ/3UZo04ucMsltTmY1KMqsGH4hMP38Gx
-	 zPcrZdOONFRtguh/ArPszK4DGHwozxYi2G13HFPhVu+dr/spvObKUdO0YvnfwbV70U
-	 fe1zgm87hcz9Q==
-Received: by mercury (Postfix, from userid 1000)
-	id 7CBA3106052D; Mon, 23 Oct 2023 15:14:18 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Sebastian Reichel <sre@kernel.org>,
-	Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] dt-bindings: mfd: max8925: Convert to DT schema format
-Date: Mon, 23 Oct 2023 15:12:20 +0200
-Message-ID: <20231023131409.1796451-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0859614F7E;
+	Mon, 23 Oct 2023 13:15:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA831C433C7;
+	Mon, 23 Oct 2023 13:15:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698066932;
+	bh=CdJMUFikVJCii5mXprW48PiT+muGUJ/z75ryr8dOT9Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gfba+b579X1512dlnYUOz7QOqNdJEPRvyAvHLUmZannabB5KUp/Vd3Nm/wSp8w2Ri
+	 waWiz3yGxmNns+bcqhNmTx3yAj8DjeWrGgYG+cILorB5OlTJMUMuZfwBM5P6K2opLI
+	 UY4ZUWoLhQYb5c8kuo2Rqj2ltbtYQCYqcShndvP7eJQcrpkDGEqkBKUqewciqhtL4z
+	 ZRHbdg0S9NouQGLv9TERVzEhsg491DHa+Nb3tYAsbl/ShQKjEBrY/bAm6jfQFNhnKg
+	 n6QRiR+y6WdYy+q4hnLsqr0vNva4ufLMvhzGRqdzZQR30/A4Yj82LcIoT3QECEOCGO
+	 RTAdBEBM+aIrg==
+Date: Mon, 23 Oct 2023 14:15:21 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+	conor+dt@kernel.org, conor.dooley@microchip.com,
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
+	wens@csie.org, will@kernel.org, ycliang@andestech.com
+Subject: Re: [PATCH v3 RESEND 04/13] dt-bindings: riscv: Add Andes interrupt
+ controller compatible string
+Message-ID: <20231023-contented-passcode-2e8d082afed4@spud>
+References: <20231023004100.2663486-1-peterlin@andestech.com>
+ <20231023004100.2663486-5-peterlin@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="57Aul/yfSew6m9cD"
+Content-Disposition: inline
+In-Reply-To: <20231023004100.2663486-5-peterlin@andestech.com>
 
-Convert the binding to DT schema format.
 
-The sub-functions of this MFD device do not have their own compatible
-string and are thus described directly in the MFD binding document
-after being converted to YAML.
+--57Aul/yfSew6m9cD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
-Hi Lee,
+On Mon, Oct 23, 2023 at 08:40:51AM +0800, Yu Chien Peter Lin wrote:
+> Add "andestech,cpu-intc" compatible string which indicates that
+> Andes specific local interrupt is supported on the core,
+> e.g. AX45MP cores have 3 types of non-standard local interrupt
+> can be handled in supervisor mode:
+>=20
+> - Slave port ECC error interrupt
+> - Bus write transaction error interrupt
+> - Performance monitor overflow interrupt
+>=20
+> These interrupts are enabled/disabled via a custom register
+> SLIE instead of the standard interrupt enable register SIE.
+>=20
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> ---
+> Changes v1 -> v2:
+>   - New patch
+> Changes v2 -> v3:
+>   - Updated commit message
+>   - Fixed possible compatibles for Andes INTC
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index 97e8441eda1c..4c1bbcf07406 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -99,7 +99,12 @@ properties:
+>          const: 1
+> =20
+>        compatible:
+> -        const: riscv,cpu-intc
+> +        oneOf:
+> +          - items:
+> +              - enum:
+> +                  - andestech,cpu-intc
 
-As mentioned in previous version, please merge through your tree. No need
-for an immutable branch, since further fixes to the binding will go through
-your tree.
+Why is this an enum rather than const? What other entries are we going
+to add here in the near future?
 
-Changes since PATCHv3:
- * https://lore.kernel.org/all/20230930202743.214631-1-sebastian.reichel@collabora.com/
- * Collected Acked-by from Rob Herring
- * Removed "power:" from patch subject
- * Fix mail address from Lee Jones
+> +              - const: riscv,cpu-intc
 
-Changes since PATCHv2:
- * https://lore.kernel.org/all/20230922233142.1479677-1-sebastian.reichel@collabora.com/
- * Add unevaluatedProperties: false to regulators subnode (Krzysztof Kozlowski)
- * Use "pmic" for nodename (Krzysztof Kozlowski)
+My follow-up question, if my original question on the v2 series had been
+answered was going to be about how generic the "andestech,cpu-intc"
+compatible is.
 
-Changes since PATCHv1:
- * https://lore.kernel.org/all/20210413153407.GA1707829@robh.at.kernel.org/
- * Update License to GPL OR BSD
- * Add missing type references pointed out by Rob
----
- .../leds/backlight/max8925-backlight.txt      |  10 --
- .../devicetree/bindings/mfd/max8925.txt       |  64 --------
- .../bindings/mfd/maxim,max8925.yaml           | 145 ++++++++++++++++++
- .../bindings/power/supply/max8925_battery.txt |  18 ---
- 4 files changed, 145 insertions(+), 92 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/leds/backlight/max8925-backlight.txt
- delete mode 100644 Documentation/devicetree/bindings/mfd/max8925.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max8925.yaml
- delete mode 100644 Documentation/devicetree/bindings/power/supply/max8925_battery.txt
+Having a cpu-specific compatible in addition to "andestech,cpu-intc"
+one makes sense to me, so that we can differentiate between
+implementations/integrations of this intc, especially if Andes have no
+plans to move to the standard implementation.
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/max8925-backlight.txt b/Documentation/devicetree/bindings/leds/backlight/max8925-backlight.txt
-deleted file mode 100644
-index b4cffdaa4137..000000000000
---- a/Documentation/devicetree/bindings/leds/backlight/max8925-backlight.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--88pm860x-backlight bindings
--
--Optional properties:
--  - maxim,max8925-dual-string: whether support dual string
--
--Example:
--
--	backlights {
--		maxim,max8925-dual-string = <0>;
--	};
-diff --git a/Documentation/devicetree/bindings/mfd/max8925.txt b/Documentation/devicetree/bindings/mfd/max8925.txt
-deleted file mode 100644
-index 4f0dc6638e5e..000000000000
---- a/Documentation/devicetree/bindings/mfd/max8925.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--* Maxim max8925 Power Management IC
--
--Required parent device properties:
--- compatible : "maxim,max8925"
--- reg : the I2C slave address for the max8925 chip
--- interrupts : IRQ line for the max8925 chip
--- interrupt-controller: describes the max8925 as an interrupt
--  controller (has its own domain)
--- #interrupt-cells : should be 1.
--	- The cell is the max8925 local IRQ number
--
--Optional parent device properties:
--- maxim,tsc-irq: there are 2 IRQ lines for max8925, one is indicated in
--  interrupts property, the other is indicated here.
--
--max8925 consists of a large and varied group of sub-devices:
--
--Device			 Supply Names	 Description
--------			 ------------	 -----------
--max8925-onkey		:		: On key
--max8925-rtc		:		: RTC
--max8925-regulator	:		: Regulators
--max8925-backlight	:		: Backlight
--max8925-touch		:		: Touchscreen
--max8925-power		:		: Charger
--
--Example:
--
--	pmic: max8925@3c {
--		compatible = "maxim,max8925";
--		reg = <0x3c>;
--		interrupts = <1>;
--		interrupt-parent = <&intcmux4>;
--		interrupt-controller;
--		#interrupt-cells = <1>;
--		maxim,tsc-irq = <0>;
--
--		regulators {
--			SDV1 {
--				regulator-min-microvolt = <637500>;
--				regulator-max-microvolt = <1425000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			LDO1 {
--				regulator-min-microvolt = <750000>;
--				regulator-max-microvolt = <3900000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--		};
--		backlight {
--			maxim,max8925-dual-string = <0>;
--		};
--		charger {
--			batt-detect = <0>;
--			topoff-threshold = <1>;
--			fast-charge = <7>;
--			no-temp-support = <0>;
--			no-insert-detect = <0>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max8925.yaml b/Documentation/devicetree/bindings/mfd/maxim,max8925.yaml
-new file mode 100644
-index 000000000000..86dd810851ab
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max8925.yaml
-@@ -0,0 +1,145 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max8925.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MAX8925 PMIC from Maxim Integrated.
-+
-+maintainers:
-+  - Lee Jones <lee@kernel.org>
-+
-+properties:
-+  compatible:
-+    const: maxim,max8925
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 1
-+    description:
-+      The cell is the IRQ number
-+
-+  maxim,tsc-irq:
-+    description: second interrupt from max8925
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  regulators:
-+    type: object
-+
-+    patternProperties:
-+      "^SDV[1-3]$|^LDO[1-9]$|^LDO1[0-9]$|^LDO20$":
-+        description: regulator configuration for SDV1-3 and LDO1-20
-+        $ref: /schemas/regulator/regulator.yaml
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+  backlight:
-+    type: object
-+    properties:
-+      maxim,max8925-dual-string:
-+        description: set to 1 to support dual string
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        default: 0
-+
-+    additionalProperties: false
-+
-+  charger:
-+    type: object
-+    properties:
-+      batt-detect:
-+        description: set to 1 if battery detection via ID pin is supported
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        default: 0
-+
-+      topoff-threshold:
-+        description: charging current in topoff mode, configures bits 5-6 in CHG_CNTL1
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 3
-+        default: 0
-+
-+      fast-charge:
-+        description: set charging current in fast mode, configures bits 0-3 in CHG_CNTL1
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 7
-+        default: 0
-+
-+      no-temp-support:
-+        description: set to 1 if temperature sensing is not supported
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        default: 0
-+
-+      no-insert-detect:
-+        description: set to 1 if AC detection is not supported
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        default: 0
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@3c {
-+            compatible = "maxim,max8925";
-+            reg = <0x3c>;
-+            interrupts = <1>;
-+            interrupt-parent = <&intcmux4>;
-+            interrupt-controller;
-+            #interrupt-cells = <1>;
-+            maxim,tsc-irq = <0>;
-+
-+            regulators {
-+                SDV1 {
-+                    regulator-min-microvolt = <637500>;
-+                    regulator-max-microvolt = <1425000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                LDO1 {
-+                    regulator-min-microvolt = <750000>;
-+                    regulator-max-microvolt = <3900000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+            };
-+
-+            backlight {
-+                maxim,max8925-dual-string = <0>;
-+            };
-+
-+            charger {
-+                batt-detect = <0>;
-+                topoff-threshold = <1>;
-+                fast-charge = <7>;
-+                no-temp-support = <0>;
-+                no-insert-detect = <0>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/power/supply/max8925_battery.txt b/Documentation/devicetree/bindings/power/supply/max8925_battery.txt
-deleted file mode 100644
-index d7e3e0c0f71d..000000000000
---- a/Documentation/devicetree/bindings/power/supply/max8925_battery.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--max8925-battery bindings
--~~~~~~~~~~~~~~~~
--
--Optional properties :
-- - batt-detect: whether support battery detect
-- - topoff-threshold: set charging current in topoff mode
-- - fast-charge: set charging current in fast mode
-- - no-temp-support: whether support temperature protection detect
-- - no-insert-detect: whether support insert detect
--
--Example:
--	charger {
--		batt-detect = <0>;
--		topoff-threshold = <1>;
--		fast-charge = <7>;
--		no-temp-support = <0>;
--		no-insert-detect = <0>;
--	};
--- 
-2.42.0
+Cheers,
+Conor.
 
+> +          - const: riscv,cpu-intc
+> =20
+>        interrupt-controller: true
+> =20
+> --=20
+> 2.34.1
+>=20
+
+--57Aul/yfSew6m9cD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTZx6QAKCRB4tDGHoIJi
+0lxjAP9yZzi/BFekfjYM8fNDu6y5img3GQ6JfxNOt5mf+VPcSQD/U7Y4IGJ8P8Uy
+b+1kEyPrf/GAimbqTmYZqLzmAO9cNgw=
+=3GJA
+-----END PGP SIGNATURE-----
+
+--57Aul/yfSew6m9cD--
 
