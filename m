@@ -1,133 +1,207 @@
-Return-Path: <devicetree+bounces-11011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB51B7D3C70
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C8307D3C76
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:29:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01F611C20456
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:27:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DCBA1C20756
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A469F1D542;
-	Mon, 23 Oct 2023 16:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1571D550;
+	Mon, 23 Oct 2023 16:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tDZauvxm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hZHqsj2+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F343514F70
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:27:10 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D576E5;
-	Mon, 23 Oct 2023 09:27:09 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39NGR1AZ104142;
-	Mon, 23 Oct 2023 11:27:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698078421;
-	bh=jtWF08naILkon915EMffsBHZ2FAx71FsAsp0B6E5a0A=;
-	h=From:To:CC:Subject:Date;
-	b=tDZauvxmMBt/rPVm+YSnBky1Gh/yefYbWukB4ZrEqYWMoiaa5017tILg4I2IGehZU
-	 TACTR9eFhTe61T3F/tjpI5mIKIK29NkQNjQCjHifuQqghXZKI/A7Sr9D3QApA3p1O5
-	 sdNdM/+9NQ0pBQV7+wNvmWWU9Ss+urtSCGW//Q7I=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39NGR1Fp094422
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 23 Oct 2023 11:27:01 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 23
- Oct 2023 11:27:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 23 Oct 2023 11:27:01 -0500
-Received: from fllv0039.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39NGR00G081049;
-	Mon, 23 Oct 2023 11:27:00 -0500
-From: Andrew Davis <afd@ti.com>
-To: Peter Rosin <peda@axentia.se>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH v4] mux: mmio: use reg property when parent device is not a syscon
-Date: Mon, 23 Oct 2023 11:26:59 -0500
-Message-ID: <20231023162659.81397-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB681C6BD
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:29:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A171C433C8;
+	Mon, 23 Oct 2023 16:29:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698078574;
+	bh=EoELWdCTU/JDbdAobvm5Pw4/PCUaGHgAI6hiMXhgaww=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hZHqsj2+ChyNr5vaf7VVmbXSmQndDsvgJlS68g6cd1+34j5WaTgVvKfel+SlMDd1H
+	 2CeCVmDF6jFY6+ogAXsrg55Iei54pUCT9WH0pwbk7m6+vpBy1G0qdIl/cnFkUN+vih
+	 mRFZoyCUz4gl7Ea+r7HbnDa61j4AECSQXnD/GTEsXZnXHRLHyvDGLo87EaEfvAeHvF
+	 JdTxWPj5D9MKvSuWfij/qPh1js39op1qxQ0PzAqRlxlQzLR8Xl+1nCmlSjddVY/agk
+	 pu1g++/n/htwOrAli4nIEI+hzHH81T8BDZQK8s+pepO9z38K/8vvy5b9kPf7ytz6SP
+	 kW3cTFrmxoP3w==
+Date: Mon, 23 Oct 2023 17:29:28 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Flavio Suligoi <f.suligoi@asem.it>
+Cc: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: backlight: mp3309c: remove two required
+ properties
+Message-ID: <20231023-anybody-silver-4548023f8f26@spud>
+References: <20231020135434.2598578-1-f.suligoi@asem.it>
+ <20231020135434.2598578-2-f.suligoi@asem.it>
+ <20231020-moonrise-senate-86d0edb2d404@spud>
+ <DU2PR01MB803498DFD93E82DD3947D72DF9D8A@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1hasvoe2yijFzxL9"
+Content-Disposition: inline
+In-Reply-To: <DU2PR01MB803498DFD93E82DD3947D72DF9D8A@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
 
-The DT binding for the reg-mux compatible states it can be used when the
-"parent device of mux controller is not syscon device". It also allows
-for a reg property. When the reg property is provided, use that to
-identify the address space for this mux. If not provided fallback to
-using the parent device as a regmap provider.
 
-While here use dev_err_probe() in the error path to prevent printing
-a message on probe defer which now can happen in extra ways.
+--1hasvoe2yijFzxL9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Nishanth Menon <nm@ti.com>
----
+On Mon, Oct 23, 2023 at 09:28:03AM +0000, Flavio Suligoi wrote:
+> > On Fri, Oct 20, 2023 at 03:54:33PM +0200, Flavio Suligoi wrote:
+> > > The two properties:
+> > >
+> > > - max-brightness
+> > > - default brightness
+> > >
+> > > are not really required, so they can be removed from the "required"
+> > > section.
+> >=20
+> > Why are they not required? You need to provide an explanation.
+>=20
+> The "max-brightness" is not more used now in the driver (I used it in the=
+ first version
+> of the driver).
 
-Changes from v3:
- - Check for probe defer
+If it is not used any more, what happens when someone passes an old
+devicetree to the kernel, that contains max-brightness, but not any of
+your new properties?
 
-Changes from v2:
- - Rebased on v6.6-rc1
+> The "default-brightness", if omitted in the DT, is managed by the device =
+driver,
+> using a default value. This depends on the dimming mode used:
 
-Changes from v1:
- - Flip logic as suggested in v1[0]
+For default-brightness, has here always been support in the driver for
+the property being omitted, or is this newly added?
 
-[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+> - for the "analog mode", via I2C commands, this value is fixed by hardwar=
+e (=3D31)
+> - while in case of pwm mode the default used is the last value of the=20
+>   brightness-levels array.
+>=20
+> Also the brightness-levels array is not required; if it is omitted, the d=
+river uses=20
+> a default array of 0..255 and the "default-brightness" is the last one, w=
+hich is "255".
 
- drivers/mux/mmio.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+Firstly, this is the sort of rationale that needs to be put into your
+commit messages, rather than bullet pointed lists of what you have done.
 
-diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
-index fd1d121a584ba..07c99588ff999 100644
---- a/drivers/mux/mmio.c
-+++ b/drivers/mux/mmio.c
-@@ -44,14 +44,17 @@ static int mux_mmio_probe(struct platform_device *pdev)
- 	int ret;
- 	int i;
- 
--	if (of_device_is_compatible(np, "mmio-mux"))
-+	if (of_device_is_compatible(np, "mmio-mux")) {
- 		regmap = syscon_node_to_regmap(np->parent);
--	else
--		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-+	} else {
-+		regmap = device_node_to_regmap(np);
-+		/* Fallback to checking the parent node on any error other than probe defer */
-+		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER))
-+			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-+	}
- 	if (IS_ERR(regmap)) {
- 		ret = PTR_ERR(regmap);
--		dev_err(dev, "failed to get regmap: %d\n", ret);
--		return ret;
-+		return dev_err_probe(dev, ret, "failed to get regmap\n");
- 	}
- 
- 	ret = of_property_count_u32_elems(np, "mux-reg-masks");
--- 
-2.39.2
+Secondly, what about other operating systems etc, do any of those support
+this platform and depend on presence of these properties?
 
+>=20
+> > > Other changes:
+> > >
+> > > - improve the backlight working mode description, in the "description"
+> > >   section
+> >=20
+> > > - update the example, removing the "max-brightness" and introducing t=
+he
+> > >   "brightess-levels" property
+> >=20
+> > Why is this more useful?
+>=20
+> I introduced the "brightness-levels" instead of "max-brightness" for homo=
+geneity,
+> since the "analog mode" dimming has a brightness-levels array fixed by ha=
+rdware (0..31).
+> In this way also the "pwm" mode can use the same concepts of array of lev=
+els.
+
+What I would like is an explanation in the commit message as to why the
+revised example is more helpful than the existing (and
+must-remain-valid) one.
+
+Cheers,
+Conor.
+
+> >=20
+> > >
+> > > Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+> > > ---
+> > >  .../bindings/leds/backlight/mps,mp3309c.yaml           | 10 ++++----=
+--
+> > >  1 file changed, 4 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git
+> > a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > index 4191e33626f5..527a37368ed7 100644
+> > > ---
+> > a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > +++
+> > b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > @@ -14,8 +14,8 @@ description: |
+> > >    programmable switching frequency to optimize efficiency.
+> > >    It supports two different dimming modes:
+> > >
+> > > -  - analog mode, via I2C commands (default)
+> > > -  - PWM controlled mode.
+> > > +  - analog mode, via I2C commands, as default mode (32 dimming level=
+s)
+> > > +  - PWM controlled mode (optional)
+> > >
+> > >    The datasheet is available at:
+> > >    https://www.monolithicpower.com/en/mp3309c.html
+> > > @@ -50,8 +50,6 @@ properties:
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > -  - max-brightness
+> > > -  - default-brightness
+> > >
+> > >  unevaluatedProperties: false
+> > >
+> > > @@ -66,8 +64,8 @@ examples:
+> > >              compatible =3D "mps,mp3309c";
+> > >              reg =3D <0x17>;
+> > >              pwms =3D <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*10=
+^9 */
+> > > -            max-brightness =3D <100>;
+> > > -            default-brightness =3D <80>;
+> > > +            brightness-levels =3D <0 4 8 16 32 64 128 255>;
+> > > +            default-brightness =3D <6>;
+> > >              mps,overvoltage-protection-microvolt =3D <24000000>;
+> > >          };
+> > >      };
+> > > --
+> > > 2.34.1
+> > >
+
+--1hasvoe2yijFzxL9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTafaAAKCRB4tDGHoIJi
+0ioYAPwIB9qpasFEJTxm0CGQOOzjeK4OOVT0f1QajPGRI/HW5QD+Pjff6ug25S+3
+S9JumNZXeMWUTLBjBR8WBYGlldWmPgc=
+=msqy
+-----END PGP SIGNATURE-----
+
+--1hasvoe2yijFzxL9--
 
