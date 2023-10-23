@@ -1,125 +1,171 @@
-Return-Path: <devicetree+bounces-11003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72347D3BBE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:07:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D337F7D3BC9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 18:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FCA4280ED4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:07:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB724B20CB4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 16:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF67E1CA81;
-	Mon, 23 Oct 2023 16:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BD11CABE;
+	Mon, 23 Oct 2023 16:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cYpDtb94"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvlSqODP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359D15E80
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 16:06:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C272C433C9;
-	Mon, 23 Oct 2023 16:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3481CF86;
+	Mon, 23 Oct 2023 16:09:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6AD1C433C7;
+	Mon, 23 Oct 2023 16:09:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698077218;
-	bh=S6VMIhoVKsj2e7n62GkaiRTDJ8EPj3xrFNXOf/EI3g4=;
+	s=k20201202; t=1698077354;
+	bh=q3udcmAsMOTYZRfyrRXc6quMPQsnI4nlAxg7mdbb+CM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cYpDtb94XJDFXVmeIHBnQAYcWchRsElqnt/ALJtp2Nr9knWzV6ELe5NVhsPEEQTdy
-	 VXSIPOkSDdLEup7euvSldPwpVw1JI5QcflcunBcK3ARhshUrB9zvbOz8VUeA1klxLW
-	 BqBOvZ+zL3bibs4lmFSI8rwFEuJABaUEciz9oKA1e9YSAz9yLXoDYT80cVXulk84o6
-	 0gxlU/VLdGkroOQGCb/m4vYMzEyNuyI4dytoehPFtu535+AF1Qr9uU9Be9wkkB1NKE
-	 PM9hOBvnmDMx+Q951pglC1ZBfWmaDU2ZXNV+JDiGFyKtP8fD3dz8YtZHaJzMyNSQsY
-	 y1hgR/8EWvgzA==
-Date: Mon, 23 Oct 2023 17:06:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
-	nuno.sa@analog.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: adis16460: Add
- 'spi-cs-inactive-delay-ns' property
-Message-ID: <20231023-repost-coma-2f67ea8b95af@spud>
-References: <20231023140534.704312-1-ramona.gradinariu@analog.com>
- <20231023140534.704312-4-ramona.gradinariu@analog.com>
- <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
+	b=nvlSqODPE4F0iXpYhyKCYN+IiPr3LmO2vXll5dwXTtPUb2mGp8x9DBelq0ZqWlamt
+	 2hWzduky8atikefHg47Py6ZY8l+YERO56H2I9/GZT2SZN+cva8dwgSmIYGWvSU/YpJ
+	 HVxJ63ukz/DmkAwlOm91Pnkpv6Cvz3/m2UPrhmAlcnXsYPjujLKxMC9ecRq/yny/F4
+	 mduTZhMxLNzqCpzR02a3X0QGxhI/jnh0ja56CQksuJezRrU2+ucDBpf/XtGxH9SRlz
+	 AEvPclrdYV/Dbq1V4ZaJVrC5zqwktCoUuCRk2i6ohGN4p0d0WCFy9FfP2thxhVhB1q
+	 nQsg4pRJiY+pg==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1quxUf-00025R-0t;
+	Mon, 23 Oct 2023 18:09:29 +0200
+Date: Mon, 23 Oct 2023 18:09:29 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+	ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v13 08/10] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
+Message-ID: <ZTaauQewazaaFonF@hovoldconsulting.com>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-9-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Vq5WbrHhYg5Chr9o"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
+In-Reply-To: <20231007154806.605-9-quic_kriskura@quicinc.com>
 
+On Sat, Oct 07, 2023 at 09:18:04PM +0530, Krishna Kurapati wrote:
+> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+> platforms.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 84 ++++++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index cad59af7ccef..5f64f75b07db 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -3330,6 +3330,90 @@ system-cache-controller@9200000 {
+>  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
+> +		usb_2: usb@a4f8800 {
+> +			compatible = "qcom,sc8280xp-dwc3-mp", "qcom,dwc3";
 
---Vq5WbrHhYg5Chr9o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So you went with a dedicated compatible even though you are now
+inferring the number of ports from the interrupts property.
 
-On Mon, Oct 23, 2023 at 04:27:48PM +0200, Nuno S=E1 wrote:
-> On Mon, 2023-10-23 at 17:05 +0300, Ramona Gradinariu wrote:
-> > The adis16460 device requires a stall time between SPI
-> > transactions (during which the chip select is inactive),
-> > with a minimum value equal to 16 microseconds.
-> > This commit adds 'spi-cs-inactive-delay-ns' property, which should
-> > indicate the stall time between consecutive SPI transactions.
-> >=20
-> > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> > ---
-> > changes in v2:
-> > =A0- added default value
-> > =A0- updated description
-> > =A0- updated commit message
-> > =A0.../devicetree/bindings/iio/imu/adi,adis16460.yaml=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0 | 6 ++++++
-> > =A01 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.ya=
-ml
-> > b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-> > index 4e43c80e5119..f10469b86ee0 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-> > @@ -25,6 +25,12 @@ properties:
-> >=20
-> > =A0=A0 spi-cpol: true
-> >=20
-> > +=A0 spi-cs-inactive-delay-ns:
-> > +=A0=A0=A0 minimum: 16000
-> > +=A0=A0=A0 default: 16000
-> > +=A0=A0=A0 description:
-> > +=A0=A0=A0=A0=A0 Indicates the stall time between consecutive SPI trans=
-actions.
-> > +
->=20
-> You should drop the description...=20
->=20
-> Also, give more time before posting a v2 so others get a chance to review=
- your
-> patches. It's also better for you since you can gather more change reques=
-ts.
+Should we drop that compatible again or is there any other reason to
+keep a separate one?
 
-Further, I don't see an answer to Krzysztof's question of why the stall
-time would not just be set to 16,000 ns in the driver, based on the
-compatible.
+> +			interrupts-extended = <&pdc 127 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 126 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 129 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 128 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 131 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 130 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 133 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 132 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 16 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 857 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			interrupt-names = "dp_hs_phy_1", "dm_hs_phy_1",
+> +					  "dp_hs_phy_2", "dm_hs_phy_2",
+> +					  "dp_hs_phy_3", "dm_hs_phy_3",
+> +					  "dp_hs_phy_4", "dm_hs_phy_4",
+> +					  "ss_phy_1", "ss_phy_2",
+> +					  "pwr_event_1",
+> +					  "pwr_event_2",
+> +					  "pwr_event_3",
+> +					  "pwr_event_4";
 
---Vq5WbrHhYg5Chr9o
-Content-Type: application/pgp-signature; name="signature.asc"
+The interrupt order does not match the binding, where the power event
+interrupts come first.
 
------BEGIN PGP SIGNATURE-----
+And we probably also want the hs_phy_irqs here after fixing the
+incomplete binding.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTaaHgAKCRB4tDGHoIJi
-0hH3AQDXlI8mVw1mEWJZ4i6/O+ODetpJSdpxn2jwhPshD+QGfwEA6EW9738l8qsH
-kUrRwUbbQgTOSkDwjPsDlOYFAholUQo=
-=E9Go
------END PGP SIGNATURE-----
+> +			usb_2_dwc3: usb@a400000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0 0x0a400000 0 0xcd00>;
+> +				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
 
---Vq5WbrHhYg5Chr9o--
+I'd also like to know what that second dwc3 interrupt is for and whether
+it should be defined here as well.
+
+> +				iommus = <&apps_smmu 0x800 0x0>;
+> +				phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
+> +				       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
+> +				       <&usb_2_hsphy2>,
+> +				       <&usb_2_hsphy3>;
+> +				phy-names = "usb2-port0", "usb3-port0",
+> +					    "usb2-port1", "usb3-port1",
+> +					    "usb2-port2",
+> +					    "usb2-port3";
+> +
+> +				/*
+> +				 * Multiport controllers are host only contollers, so
+
+spelling again...
+
+> +				 * the dr_mode can be defaulted to host irrespective of
+> +				 * the platform.
+> +				 */
+
+I know someone asked you to add a comment, but I think you should drop
+it again because it makes little sense in its current form.
+
+This particular controller is always going to be host only so just set
+dr_mode here. No one is going to be overriding that.
+
+Any comment would need to be about this particular platform and not make
+claims about future controllers.
+
+> +				dr_mode = "host";
+> +			};
+> +		};
+> +
+
+Johan
 
