@@ -1,198 +1,155 @@
-Return-Path: <devicetree+bounces-10985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1228A7D3B2D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:47:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE527D3B65
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:50:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 437531C208B8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:47:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B90FB20C65
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33E71C291;
-	Mon, 23 Oct 2023 15:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288CE1C684;
+	Mon, 23 Oct 2023 15:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbnK38bP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SHW0P8+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F961B279;
-	Mon, 23 Oct 2023 15:47:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF3EC433C7;
-	Mon, 23 Oct 2023 15:47:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698076028;
-	bh=L40xDQVgTfM0jKjY2CcPMsYuyMAVupFmFZq0N07DI+g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sbnK38bPQPrn092XhaR2cO/AxY4uEXjnMQcpC/NMA4g9AOotvxHqhhb8JjZVlNh5p
-	 oB2FU40IkKtsr3pZCmQVe51Lr5/HnWBgZsWMQGvZ64zfZAY54H8mymRuRdAcimCse5
-	 xL7UmT8q0D24Y0kqT/1VUpYyXsNAqiVjcXwlr0Hu/A4hfqXcuE3hpV0cF6PQV+Xi2y
-	 Wx1tS2qxw+84a4lTKT6VkzZiIvuiWF3rQtSLm7nPb3rMCMjvNWcFBuI1y97XII3rRs
-	 BRq4B6aNjAvrANDVhKkizGr3qX4UYGsxdi/14X66cP6GOTKAYmdHzHW6uQb2LKIVSZ
-	 CyAZrzZt+q6Ng==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qux9F-0001yj-3D;
-	Mon, 23 Oct 2023 17:47:22 +0200
-Date: Mon, 23 Oct 2023 17:47:21 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541EB1BDFD;
+	Mon, 23 Oct 2023 15:50:14 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE749D;
+	Mon, 23 Oct 2023 08:50:09 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1E1F01BF210;
+	Mon, 23 Oct 2023 15:50:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698076207;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vjTVkjCQdXsf3tUmJ77Jk9QRxhArGxc9gP+wJ5AuGB0=;
+	b=SHW0P8+Ov4W6o8525HadMppMPrqfnbfazhjdIOG8bi/hKCuuAnUJGv4Y9s/tWDMj3wWeza
+	5MvThii/WbcZI1pf9Dy+jr3Sh261/X8p9PWgK6WSPjv0FuQ3OiSRsbXrylZ0xs9d4Dxmr2
+	TrD5k3OPv24PWvcBpUaGrZ+apxA4BeFfN6UnsqczQ/YWwHH1VueFyZpuUu4wvO1UWDcg4r
+	a95InWiX+MUeY2XJy+DzWOSJOeCWfpzhXS71W31SIRV1peZITrDjul0WfpwY1abWXeDq3S
+	otOSvwKr2nQwbOHrGigseB3KhpxUQ6qYBML20DVZWL64GKPau2u8Q74iVcbsug==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: davem@davemloft.net,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
 	Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 06/10] usb: dwc3: qcom: Enable wakeup for applicable
- ports of multiport
-Message-ID: <ZTaViatsRY7LCbIX@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-7-quic_kriskura@quicinc.com>
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: [PATCH net-next 0/5] net: ipqess: introduce Qualcomm IPQESS driver
+Date: Mon, 23 Oct 2023 17:50:07 +0200
+Message-ID: <20231023155013.512999-1-romain.gantois@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231007154806.605-7-quic_kriskura@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Sat, Oct 07, 2023 at 09:18:02PM +0530, Krishna Kurapati wrote:
-> Currently wakeup is supported by only single port controllers. Read speed
-> of each port and accordingly enable IRQ's for those ports.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 65 +++++++++++++++++++-----------------
->  1 file changed, 35 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 863892284146..651b9775a0c2 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -90,7 +90,7 @@ struct dwc3_qcom {
->  	 */
->  	int			phy_irq[NUM_PHY_IRQ - 1][DWC3_MAX_PORTS];
->  	int			hs_phy_irq;
-> -	enum usb_device_speed	usb2_speed;
-> +	enum usb_device_speed	usb2_speed[DWC3_MAX_PORTS];
+Hello everyone,
 
-This also belongs in a new port structure.
+This is a driver for the Qualcomm IPQ4019 Ethernet Switch Subsystem. The
+IPQ4019 SoC integrates a modified version of the QCA8K Ethernet switch. One
+major difference with the original switch IP is that port tags are passed
+to the integrated Ethernet controller out-of-band.
 
->  	struct extcon_dev	*edev;
->  	struct extcon_dev	*host_edev;
-> @@ -335,7 +335,8 @@ static bool dwc3_qcom_is_host(struct dwc3_qcom *qcom)
->  	return dwc->xhci;
->  }
->  
-> -static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
-> +static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom,
-> +							int port_index)
+My colleague Maxime Chevallier submitted several iterations of this driver
+about a year ago, here is the latest one:
+https://lore.kernel.org/netdev/20221104174151.439008-1-maxime.chevallier@bootlin.com/
 
-No need for line break (since it's a function definition).
+These series were rejected because they required adding out-of-band tagging
+support to the DSA subsystem. Therefore, we rewrote the driver as a pure
+switchdev module, which shares a common backend library with the current
+QCA8K driver.
 
->  {
->  	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
->  	struct usb_device *udev;
-> @@ -348,12 +349,10 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
->  
->  	/*
->  	 * It is possible to query the speed of all children of
-> -	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
-> -	 * currently supports only 1 port per controller. So
-> -	 * this is sufficient.
-> +	 * USB2.0 root hub via usb_hub_for_each_child().
+The main driver components are:
+ - ipqess_switch.c which registers and configures the integrated switch
+ - ipqess_port.c which creates net devices for each one of the front-facing
+   ports.
+ - ipqess_edma.c which handles the integrated EDMA Ethernet controller
+   linked to the CPU port.
+ - drivers/net/dsa/qca/qca8k-common.c which defines low-level ESS access
+   methods common to this driver and the original DSA QCA8K driver.
 
-This comment no longer makes sense with your current implementation.
+Thanks to the people from Sartura for providing us hardware and working on
+the base QCA8K driver, and to Maxime for his work on the EDMA code.
 
-But perhaps this should be done using usb_hub_for_each_child() instead
-as that may be more efficient. Then you use this function to read out
-the speed for all the ports in go (and store it in the port structures I
-mentioned). Please determine which alternative is best.
+Best regards,
 
->  	 */
->  #ifdef CONFIG_USB
-> -	udev = usb_hub_find_child(hcd->self.root_hub, 1);
-> +	udev = usb_hub_find_child(hcd->self.root_hub, port_index + 1);
->  #else
->  	udev = NULL;
->  #endif
-> @@ -386,23 +385,29 @@ static void dwc3_qcom_disable_wakeup_irq(int irq)
->  
->  static void dwc3_qcom_disable_interrupts(struct dwc3_qcom *qcom)
->  {
-> +	int i;
-> +
->  	dwc3_qcom_disable_wakeup_irq(qcom->hs_phy_irq);
->  
-> -	if (qcom->usb2_speed == USB_SPEED_LOW) {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DM_HS_PHY_IRQ_INDEX][0]);
-> -	} else if ((qcom->usb2_speed == USB_SPEED_HIGH) ||
-> -			(qcom->usb2_speed == USB_SPEED_FULL)) {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DP_HS_PHY_IRQ_INDEX][0]);
-> -	} else {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DP_HS_PHY_IRQ_INDEX][0]);
-> -		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DM_HS_PHY_IRQ_INDEX][0]);
-> -	}
-> +	for (i = 0; i < qcom->num_ports; i++) {
-> +		if (qcom->usb2_speed[i] == USB_SPEED_LOW) {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DM_HS_PHY_IRQ_INDEX][i]);
-> +		} else if ((qcom->usb2_speed[i] == USB_SPEED_HIGH) ||
-> +			(qcom->usb2_speed[i] == USB_SPEED_FULL)) {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DP_HS_PHY_IRQ_INDEX][i]);
-> +		} else {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DP_HS_PHY_IRQ_INDEX][i]);
-> +			dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[DM_HS_PHY_IRQ_INDEX][i]);
-> +		}
->  
-> -	dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[SS_PHY_IRQ_INDEX][0]);
-> +		dwc3_qcom_disable_wakeup_irq(qcom->phy_irq[SS_PHY_IRQ_INDEX][i]);
-> +	}
->  }
+Romain
 
-The above is hardly readable, partly because of the 2d array that I
-think you should drop, and partly because you add the port loop here
-instead of in the caller.
+Romain Gantois (5):
+  net: dt-bindings: Introduce the Qualcomm IPQESS Ethernet switch
+  net: dsa: qca: Make the QCA8K hardware library available globally
+  net: ipqess: introduce the Qualcomm IPQESS driver
+  net: ipqess: add a PSGMII calibration procedure to the IPQESS driver
+  dts: qcom: ipq4019: Add description for the IPQ4019 ESS EDMA and
+    switch
 
-A lot of these functions should become port operation where you either
-pass in a port structure directly or possibly a port index as I've
-mentioned before.
+ .../bindings/net/qcom,ipq4019-ess.yaml        |  152 ++
+ MAINTAINERS                                   |    7 +
+ .../boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi |   13 +
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi      |   94 +
+ drivers/net/dsa/qca/Kconfig                   |   10 +
+ drivers/net/dsa/qca/Makefile                  |    5 +-
+ drivers/net/dsa/qca/qca8k-8xxx.c              |    2 +-
+ drivers/net/dsa/qca/qca8k-common.c            |   97 +-
+ drivers/net/dsa/qca/qca8k-leds.c              |    2 +-
+ drivers/net/ethernet/qualcomm/Kconfig         |   14 +
+ drivers/net/ethernet/qualcomm/Makefile        |    2 +
+ drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
+ .../ethernet/qualcomm/ipqess/ipqess_calib.c   |  495 ++++
+ .../ethernet/qualcomm/ipqess/ipqess_edma.c    | 1162 ++++++++++
+ .../ethernet/qualcomm/ipqess/ipqess_edma.h    |  484 ++++
+ .../qualcomm/ipqess/ipqess_notifiers.c        |  306 +++
+ .../qualcomm/ipqess/ipqess_notifiers.h        |   29 +
+ .../ethernet/qualcomm/ipqess/ipqess_port.c    | 2017 +++++++++++++++++
+ .../ethernet/qualcomm/ipqess/ipqess_port.h    |   99 +
+ .../ethernet/qualcomm/ipqess/ipqess_switch.c  |  559 +++++
+ .../ethernet/qualcomm/ipqess/ipqess_switch.h  |   40 +
+ .../net/dsa/qca => include/linux/dsa}/qca8k.h |   74 +-
+ 22 files changed, 5648 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_calib.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_notifiers.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_notifiers.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_port.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_port.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.h
+ rename {drivers/net/dsa/qca => include/linux/dsa}/qca8k.h (87%)
 
-[ I realise that the confusion around hs_phy_irq may be partly to blame
-for this but since that one is also a per-port interrupt, that's no
-longer an issue. ]
- 
->  static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
-> @@ -454,10 +461,8 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  	 * The role is stable during suspend as role switching is done from a
->  	 * freezable workqueue.
->  	 */
-> -	if (dwc3_qcom_is_host(qcom) && wakeup) {
-> -		qcom->usb2_speed = dwc3_qcom_read_usb2_speed(qcom);
+-- 
+2.42.0
 
-So just let this function update the usb2 speed for all ports unless
-there are reasons not to.
-
-> +	if (dwc3_qcom_is_host(qcom) && wakeup)
->  		dwc3_qcom_enable_interrupts(qcom);
-
-And then iterate over the ports and enable the interrupts here as you
-did above for the pwr_evnt_irqs.
-
-> -	}
->  
->  	qcom->is_suspended = true;
-
-Johan
 
