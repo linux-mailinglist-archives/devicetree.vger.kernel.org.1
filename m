@@ -1,194 +1,183 @@
-Return-Path: <devicetree+bounces-10977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC03A7D3AA4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:24:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FE77D3AFD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED7771C208B5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:24:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5F2B2813BD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624911BDD9;
-	Mon, 23 Oct 2023 15:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD261BDE8;
+	Mon, 23 Oct 2023 15:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ey1ipz+7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lZn7xze6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9A21C684
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 15:24:41 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BEB93
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:24:40 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c509f2c46cso49170151fa.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:24:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF0A1640B
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 15:38:28 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACD1ADF
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:38:26 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-408425c7c10so28860445e9.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 08:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698074678; x=1698679478; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wn+/cuIsAm1M8WgrztuEIP/JufWrXE9je0kNSVLLQhw=;
-        b=ey1ipz+7YjvG9QsfNaXmTWANhv0n5IVb9DRSxgkFVzhrQdfh/XmOKEYa2ePdEm3lBy
-         M2YKifqBbB9z0mClsSWevzWaN/sjBSS7qD2j4PmIdVEchNOqbkfEOxRe/yhgh3qr7u41
-         RcDdCcITDiHJJ1QpoGkugwmAPP1MPAVqLYI23peVwjkKL5cLHXiS37Rf6RWfy507dUqZ
-         zSCzDCFHrCo6jfIb8FYWK+JRBlux1ncrTWN7QQdb03rZ5KxkgDIyW8Nn5KlMB1fzzsM9
-         T7EDQCtZGCYxB9WhliImgawdx0S22xvYVlEBur6znKEfgbPfw8o+935d0x9PPhN8txZR
-         4NoA==
+        d=linaro.org; s=google; t=1698075505; x=1698680305; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1N//AnYmHXkSl9KLuAZmJ5UEbGwSxaTciSmclXgwpFw=;
+        b=lZn7xze6i5sJtxmEE7vElFR9RoDhpiKu6QzApjydBSoxrSeKmAtwStwgPjkbbAwgeP
+         JqovTiQxodXK5+8cO2wAWb9dGkQUE6kYXCqXM+eQo7ZyldrX9e0KwvyXyL1I3oVaXP0G
+         BimFLIGceGJasDlLrephb2R2EYVT+utG6lzjuT7OP5b0bbAbL5cR81k1MDfNHR0lIBFR
+         c2mLZFgeWhwRibKf2MGI54ug2tqeYIwztH1ZK/S3V7MXwGgh05c6QmiYYdql2jUw4CpB
+         RnQlAP13ET4p/TuF0faI0lhmKR7wJD58/Vxv7JYfIAtmgeDMlenEZo5lMCPhWv1zpZBB
+         S99A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698074678; x=1698679478;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wn+/cuIsAm1M8WgrztuEIP/JufWrXE9je0kNSVLLQhw=;
-        b=uSOQslxEpEBJytV9nPM/otVJsXpvVit/d1kiqmqVwk5ZLDEszgULfkufzQ0qhP7PS/
-         3xdQw0DTvaujVpPWsNgsZilnImrfcRpwicKpcycAsx/P8BhDUETGNnJyWcvC6+j2llMN
-         txSQW8tnaORvw/g7iLTVPJIEbEVK7g3ErP6AvxE5Ne4fabvgC2aX5pUL2JDAaZb9ybGw
-         imI+cCFKs8NPp6uETFuS3foXtczcOVFdnOo6K++XPgba7YuKwI1mnRGFK8dcw8HvC1TV
-         5gjMRTHCOjQTu2SFHT0cTY3r/2QjdvfzMDDvEWzVhG4jEYXfdrMXywi94e4wayPw8IWl
-         3I9Q==
-X-Gm-Message-State: AOJu0YxoGFB5iLWZo9+fPZbNshR7rqOFuOGXvLCQ+Qp8qyvvHgoHQb+S
-	+mei/buhc4hQO39RcRB3bYU8vg==
-X-Google-Smtp-Source: AGHT+IEn9DezJLQOP+TApb1JLeDNLiRu23ST/BmgqHwWEvtC8BvNsG4o3xtvL8cQYSaBpK9goB9MyA==
-X-Received: by 2002:a2e:8656:0:b0:2c5:1c9d:7f81 with SMTP id i22-20020a2e8656000000b002c51c9d7f81mr7233131ljj.32.1698074678308;
-        Mon, 23 Oct 2023 08:24:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id w11-20020a5d608b000000b0032008f99216sm7960428wrt.96.2023.10.23.08.24.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 08:24:37 -0700 (PDT)
-Message-ID: <4e2928a0-b2e6-4651-8cab-7f1c4d8f697d@linaro.org>
-Date: Mon, 23 Oct 2023 17:24:36 +0200
+        d=1e100.net; s=20230601; t=1698075505; x=1698680305;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1N//AnYmHXkSl9KLuAZmJ5UEbGwSxaTciSmclXgwpFw=;
+        b=K+0MDdLjmRpSxpywl79Zly6bBF2Yb3H432cOVAFNvenR1Pp09y+y2VbbEhlPAN8nyr
+         okBtZtBDPQ7weqo2dG2ujiL2tKh/8PHUzFWBUWSK95PgzYyXnmejFLg1Ba1737i4em/q
+         vljYhEufDyPnxY0q6p9LnU+2NA0DGpJK8uwMfqbtuFhT5h9+wo9DqPOVS7Ep4He5DuCs
+         wJDjjWYTgU6k/wcWs5ABFyoihfzngnUAnPEad+ac+bTGsIERuGTvZBUwGTUPGNlspX+W
+         sdPZGOxso5W+jilP9gwU+xHLpSfwW+qgQzbTeju0TYW4bOc9Uon7Q09xseg8VIJLArg/
+         X3KA==
+X-Gm-Message-State: AOJu0YyQBrKyHD6q6q2cF/9Madrk9nBxPmRlc7AgSAOXV2akoXX+I2wM
+	ZzYyQKkMKVG+2w3ov2iEzMOidg==
+X-Google-Smtp-Source: AGHT+IGqtadhtCg8N+P5t3OwpPbwmHmbDPrJjZ66M1shJc2FWzZoaTgvgET3E215JeVdsaYY1PPRUQ==
+X-Received: by 2002:a05:600c:310f:b0:408:febf:831f with SMTP id g15-20020a05600c310f00b00408febf831fmr2870502wmo.28.1698075505064;
+        Mon, 23 Oct 2023 08:38:25 -0700 (PDT)
+Received: from x13s-linux.nxsw.local ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id f4-20020a5d50c4000000b0032da319a27asm8096929wrt.9.2023.10.23.08.38.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 08:38:24 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: andersson@kernel.org,
+	agross@kernel.org,
+	konrad.dybcio@linaro.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	dmitry.baryshkov@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jonathan@marek.ca,
+	quic_tdas@quicinc.com,
+	vladimir.zapolskiy@linaro.org
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	bryan.odonoghue@linaro.org
+Subject: [PATCH v3.1 0/4] Add sc8280xp CAMCC bindings and driver
+Date: Mon, 23 Oct 2023 16:38:17 +0100
+Message-Id: <20231023153821.189331-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH dt-schema] schemas: gpio: gpio-consumer: Fix false
- positives on nodes named gpio
-Content-Language: en-US
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20231023144134.1881973-1-geert+renesas@glider.be>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231023144134.1881973-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On 23/10/2023 16:41, Geert Uytterhoeven wrote:
-> Just like for "gpio", nodes can be named "gpios" or
-> "<something>-gpio(s)", causing false positive failures.
->=20
-> See also commit 80120fccde170902 ("schemas: gpio: fix false positive
-> failures on nodes named 'gpio'").
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Seen on Linux, e.g.:
->=20
->     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: /: keyboard-gpio: {'c=
-ompatible': ['gpio-keys-polled'], 'poll-interval': [[50]], 'pinctrl-0': [=
-[29]], 'pinctrl-names': ['default'], 'key-3': {'gpios': [[28, 19, 1]], 'l=
-inux,code': [[4]], 'label': ['SW1-3'], 'debounce-interval': [[20]]}, 'key=
--4': {'gpios': [[28, 20, 1]], 'linux,code': [[5]], 'label': ['SW1-4'], 'd=
-ebounce-interval': [[20]]}} is not of type 'array'
-> 	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.=
-yaml#
->     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: pinctrl@fffc0000: key=
-board-gpio: {'pins': ['GP_0_19', 'GP_0_20'], 'bias-pull-up': True, 'phand=
-le': [[29]]} is not of type 'array'
-> 	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.=
-yaml#
+V3.1
+- Drops dependency from below, since that patch needs a rebase
+  on clk-next now anyway.
+- Adds Krzysztof's RB as indicated to patches 1,2,4
 
-keyboard-gpio is not commonly used names. Most (almost all) boards just
-call it "gpio-keys".
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/qcom-linux-clk-for-6.7-camcc-sc8280xp-v3.1 
 
->=20
->     arch/arm/boot/dts/microchip/at91-kizbox3-hs.dtb: /: gpios: {'compat=
-ible': ['gpio'], 'status': ['okay'], 'rf_on': {'label': ['rf on'], 'gpio'=
-: [[38, 83, 0]], 'output': True, 'init-low': True}, 'wifi_on': {'label': =
-['wifi on'], 'gpio': [[38, 84, 0]], 'output': True, 'init-low': True}, 'z=
-be_test_radio': {'label': ['zbe test radio'], 'gpio': [[38, 53, 0]], 'out=
-put': True, 'init-low': True}, 'zbe_rst': {'label': ['zbe rst'], 'gpio': =
-[[38, 57, 0]], 'output': True, 'init-low': True}, 'io_reset': {'label': [=
-'io reset'], 'gpio': [[38, 62, 0]], 'output': True, 'init-low': True}, 'i=
-o_test_radio': {'label': ['io test radio'], 'gpio': [[38, 73, 0]], 'outpu=
-t': True, 'init-low': True}, 'io_boot_0': {'label': ['io boot 0'], 'gpio'=
-: [[38, 75, 0]], 'output': True, 'init-low': True}, 'io_boot_1': {'label'=
-: ['io boot 1'], 'gpio': [[38, 81, 0]], 'output': True, 'init-low': True}=
-, 'verbose_bootloader': {'label': ['verbose bootloader'], 'gpio': [[38, 4=
-3, 0]], 'input': True}, 'nail_bed_detection': {'label': ['nail bed detect=
-ion'], 'gpio': [[38, 44, 0]], 'input': True}, 'id_usba': {'label': ['id u=
-sba'], 'gpio': [[38, 64, 1]], 'input': True}} is not of type 'array'
-> 	    from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.=
-yaml#
+V3:
 
-compatible =3D "gpio"? Is there such binding?
+This patch depends-on:
+https://lore.kernel.org/linux-arm-msm/20230923112105.18102-4-quic_luoj@quicinc.com
 
-I think we should not allow "gpios" as a node, at least above examples
-do not justify it.
+- Resolves CLK_CRITICAL camcc_gdsc_clk by making camcc_gdsc_clk
+  always-on and dropping the CLK_CRITICAL flag.
+  We want camcc_gdsc_clk for retention, however CLK_CRITICAL is not
+  compatible with pm_runtime suspend and power collapse. - Konrad, Bod
 
->=20
-> For marzen, the alternative fix would be to
-> s/keyboard-gpio/keyboard-polled/g.
-> ---
+- Uses gcc.yaml instead of camcc-common.yaml - Krzysztof
 
+- Drops fix for 8550, TBH I didn't know use for socname-ip.yaml
+  with compat strings for different drivers was OK, so long as the
+  content of the yaml was compliant for both. - Krzysztof
 
+- Drops clock-names, adds RB as indicated - Konrad
 
-Best regards,
-Krzysztof
+- Reworks "really_probe" to account for patch from Lou Jie which
+  is RB from Stephen Boyd but not in any -next tree I can point to right
+  now. - Konrad, Bod
+
+- :g/CAM_CC/s//CAMCC/g - Bod
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/clk-for-6.7-camcc-sc8280xp-v3
+ 
+V2:
+
+I've expanded the scope of this series to include some fixups for the
+camcc.yaml in general.
+
+- Adds qcom,camcc-common.yaml
+  There are a number of repeated patterns in the various camcc yaml
+  files which we can contain in a common camcc .yaml instead.
+  I used gcc.yaml as a base per Krzysztof's suggestion.
+
+- Adding the common values file I noticed that sm8450 and sm8550 were
+  both listed as compatible strings in qcom,sm8450-camcc.yaml.
+
+  This appears to be in error though since sm8450 and sm8550 are
+  not compat strings of the same driver but different drivers entirely.
+
+- Switches to indexing, instead of fw_name for clocks - Konrad
+
+- Adds the GCC AHB to the clock index - Bod/Konrad
+
+- Changes reference "cam_cc" to "camcc" throughout camcc-sc8280xp.c
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-26-10-23-sc8280xp-camcc-v2
+
+V1:
+This is a bog-standard series to add in the CAMCC for 8280xp.
+As a precursor to adding in sc8280xp I thought a bit of tidy up on the
+existing yaml for the camcc controllers in general would be worthwhile.
+
+As a result there's a precursor patch which aggregates the various camcc
+yaml files into one location.
+
+The sc8280xp looks like sdm845 with more blocks. Similar to sc8280xp we
+park GDSC to CXO. Thanks to Dmitry for the suggestion the GDSC parking.
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-09-23-sc8280xp-camcc
+
+Bryan O'Donoghue (4):
+  dt-bindings: clock: Use gcc.yaml for common clock properties
+  dt-bindings: clock: Add SC8280XP CAMCC
+  clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC
+  arm64: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp
+
+ .../bindings/clock/qcom,camcc-sm8250.yaml     |   18 +-
+ .../bindings/clock/qcom,sc7180-camcc.yaml     |   18 +-
+ .../bindings/clock/qcom,sc7280-camcc.yaml     |   18 +-
+ .../bindings/clock/qcom,sdm845-camcc.yaml     |   18 +-
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   20 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   15 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sc8280xp.c             | 3048 +++++++++++++++++
+ .../dt-bindings/clock/qcom,sc8280xp-camcc.h   |  179 +
+ 10 files changed, 3274 insertions(+), 70 deletions(-)
+ create mode 100644 drivers/clk/qcom/camcc-sc8280xp.c
+ create mode 100644 include/dt-bindings/clock/qcom,sc8280xp-camcc.h
+
+-- 
+2.40.1
 
 
