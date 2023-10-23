@@ -1,186 +1,86 @@
-Return-Path: <devicetree+bounces-10833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D4C7D2DA7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:09:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791907D2DB8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:10:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BFF6B20C8F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:09:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31B1E281367
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 09:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADC812B77;
-	Mon, 23 Oct 2023 09:09:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6308712B7D;
+	Mon, 23 Oct 2023 09:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iWSOlNSo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FF3101F0
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:09:05 +0000 (UTC)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993C398;
-	Mon, 23 Oct 2023 02:09:02 -0700 (PDT)
-Received: from kwepemm000013.china.huawei.com (unknown [172.30.72.56])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4SDTlz6dxYzMm8l;
-	Mon, 23 Oct 2023 17:04:47 +0800 (CST)
-Received: from [10.174.178.156] (10.174.178.156) by
- kwepemm000013.china.huawei.com (7.193.23.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Mon, 23 Oct 2023 17:08:58 +0800
-Message-ID: <ff4df55f-27f2-8042-be58-a5feb2620551@huawei.com>
-Date: Mon, 23 Oct 2023 17:08:57 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA661FDB
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 09:10:52 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C17D65;
+	Mon, 23 Oct 2023 02:10:51 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 85ED466071F8;
+	Mon, 23 Oct 2023 10:10:49 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698052250;
+	bh=8SSRPDD/rI9f9UmV2sEinNETdurqi1qZJq4soIW88dA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iWSOlNSoKuvlmYYB4BVYaS85Z70Rh3VSe8E4r+uFawpyXQh5e0QqGbrz0TCJK0M6w
+	 WNVhyUMFtnRX4fyiwp/pAY4Nf4Bh6Giodd854idOTHdeLh5cksRAnN3Jh79iGqZD4/
+	 V1bivnZuPO9xYtUv/tF6wUStf/Uj7TbSd0hZTw3gNsvzQmXrHC9koxlK6kUnzvR0xR
+	 vQv+5Wuk4I08myMwaH37dQC3xSqRtP9CNZ1+dUjgOA6hwZfBPCqOPmjuV8YWWfyiqb
+	 tEih+HBTZmpVTIshJtP5EziO3dHC2YE1yenbm+K0MpVy1Newzs5POICY458AjNWVYK
+	 GRO3yp4QjlKTg==
+Message-ID: <5f9acc87-399f-48c2-82b3-ae17534e7c6e@collabora.com>
+Date: Mon, 23 Oct 2023 11:10:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v5 2/2] dt-bindings: dma: HiSilicon: Add bindings for
- HiSilicon Ascend sdma
-To: Rob Herring <robh@kernel.org>
-CC: <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <xuqiang36@huawei.com>,
-	<chenweilong@huawei.com>
-References: <20231021093454.39822-1-guomengqi3@huawei.com>
- <20231021093454.39822-3-guomengqi3@huawei.com>
- <20231022211348.GA682758-robh@kernel.org>
-From: "guomengqi (A)" <guomengqi3@huawei.com>
-In-Reply-To: <20231022211348.GA682758-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.156]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemm000013.china.huawei.com (7.193.23.81)
-X-CFilter-Loop: Reflected
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/4] arm64: dts: Add MediaTek MT8188 dts and evaluation
+ board and Makefile
+Content-Language: en-US
+To: Jason-ch Chen <jason-ch.chen@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Eugen Hristev <eugen.hristev@collabora.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
+ <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20231023083839.24453-1-jason-ch.chen@mediatek.com>
+ <20231023083839.24453-5-jason-ch.chen@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231023083839.24453-5-jason-ch.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Il 23/10/23 10:38, Jason-ch Chen ha scritto:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> 
+> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
+> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
+> 
+> We add basic chip support for MediaTek MT8188 on evaluation board.
+> 
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
 
-在 2023/10/23 5:13, Rob Herring 写道:
-> On Sat, Oct 21, 2023 at 05:34:53PM +0800, Guo Mengqi wrote:
->> Add device-tree binding documentation for sdma hardware on
->> HiSilicon Ascend SoC families.
->>
->> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
->> ---
->>   .../bindings/dma/hisilicon,ascend-sdma.yaml   | 73 +++++++++++++++++++
->>   1 file changed, 73 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
->> new file mode 100644
->> index 000000000000..7b452b54fe0c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
->> @@ -0,0 +1,73 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/hisilicon,ascend-sdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: HiSilicon Ascend System DMA (SDMA) controller
->> +
->> +description: |
->> +  The Ascend SDMA controller is used for transferring data
->> +  in system memory.
->> +
->> +maintainers:
->> +  - Guo Mengqi <guomengqi3@huawei.com>
->> +
->> +allOf:
->> +  - $ref: dma-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hisilicon,ascend310-sdma
->> +      - hisilicon,ascend910-sdma
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#dma-cells':
->> +    const: 1
->> +    description:
->> +      Clients specify a single cell with channel number.
->> +
->> +  dma-channel-mask:
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  pasid-num-bits:
->> +    description: |
->> +      This tells smmu that this device supports iommu-sva feature.
-> How is this a feature of the DMA controller? Shouldn't this be part of
-> the iommu cells? How does pasid relate to SVA?
-Hi
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-"pasid-num-bits" shows number of address spaces that device can access.
-
-The property is necessary because iommu driver use this property to 
-decide whether the device supports SVA.
-
-For example,
-
-     pasid-num-bits = <0x10>; // the device can access page table from 
-at most 16 user processes
-
-Descriptions can be found at 
-Documentation/devicetree/bindings/iommu/iommu.txt .
-
-This does not fit in iommu cells? I think iommu cells only hold stream 
-id and dma window.
-
->
->> +      This determines the maximum number of digits in the pasid.
->> +    maximum: 0x10
->> +
->> +  dma-coherent: true
->> +
->> +  dma-can-stall: true
-> What is this?
-
-This means dma controller can wait for iommu to handle the page fault.
-
-When present, the master can wait for a transaction to  complete for an 
-indefinite amount of time.
-
-The hardware is designed with stalling support.
-
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - dma-channel-mask
->> +  - '#dma-cells'
->> +  - iommus
->> +  - pasid-num-bits
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    dma-controller@880e0000 {
->> +        compatible = "hisilicon,ascend310-sdma";
->> +        reg = <0x880e0000 0x10000>;
->> +        dma-channel-mask = <0xff00>;
->> +        iommus = <&smmu 0x7f46>;
->> +        pasid-num-bits = <0x10>;
->> +        dma-coherent;
->> +        dma-can-stall;
->> +        #dma-cells = <1>;
->> +    };
->> +
->> +...
->> -- 
->> 2.17.1
->>
-> .
 
