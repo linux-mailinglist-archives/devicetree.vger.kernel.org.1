@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0CBF7D37C0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:22:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE067D37CC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:22:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DF79B20C32
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:21:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67F69B20C4B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F84918E20;
-	Mon, 23 Oct 2023 13:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE5818E34;
+	Mon, 23 Oct 2023 13:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LpjRl0Lo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gg/xjm9L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D978114286
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:21:53 +0000 (UTC)
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A106172D
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:21:43 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c50305c5c4so49844291fa.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:21:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478C014286
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:22:41 +0000 (UTC)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653A61FFD
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:22:33 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-313e742a787so1858877f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698067301; x=1698672101; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698067351; x=1698672151; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t5hSf4iSPJYF4QIDxZP0IdPJzki5G+jXoj6BEraG2qw=;
-        b=LpjRl0Lo9MgV6R+y4OyqyiURJPoffu5/D89B4c7FuMOgSeLvFzC77Gjy+R4ORjcp0o
-         bJBHZNZzb+pJLV1G2BTb/AujWnmEtP7d9fmlHXfiiV/kPAVFEwp+2HkM3S7sgYOEEVQx
-         148iFCGjFHWo0LY7i3mgXTHO9qk9QTC4UPWO0wJA8UxULB0+VmJJ+RteNp27fci0Y/BM
-         7RYlZ86XPceiJBPb2dfupeBTv2eP06ZwnldMgzysu6OQrKjNvIvU0OGPK5Kr/0gB0TdU
-         N43XOPs8DEtbQeDHS7yhbk4GOQvyuGCM9pJOLAVyNYnpRtSR+yl+zc0Bu+zRk6LR0b9d
-         QZ5A==
+        bh=gZ4OTD+mAZ/PEriBd52ngcEYX2LeQoqs4YvhBcfpPaQ=;
+        b=Gg/xjm9LWVOQj6wm/dvLecVc8OkwXjka8m2Qf1CKdTmVjfp6RYA32ylDcxw52zAh50
+         dVR+vj/OfdnUfhf0QeU5m7UbUEl7umk6zj9tYEY3v2bLFXURErFi8EsYA8PKypd0F1py
+         HCOOpf+cM+w5LZBt6bK+3qN3C3R19BLSj9C5sMMrqNm/jJrGU2CTXi1QODiVKseRn4KT
+         xDnC8ho7irB2YsKzjB3nqa6cUKwgAYzlBCVX79vDpzeeGQ5kDDxcejC+uwIAOF+PPRvd
+         crOuu3p/1XWdg6fDjt5SUSwn8ll4owcy/TVXeFqOIBpPXAE7LEmhOp/o74OOMxc4+45F
+         YHRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698067301; x=1698672101;
+        d=1e100.net; s=20230601; t=1698067351; x=1698672151;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t5hSf4iSPJYF4QIDxZP0IdPJzki5G+jXoj6BEraG2qw=;
-        b=ISnZEX+v/ZRfS5xbxufuwhw3hvQrPzQ6/s9KiU2qLVo168AxIQnwQCYQ0LVcxBmbTe
-         BzMpHfuC3SGucjy/yFhg73kzT/mrqRJghIL/x6nMha+DSPuBnaEcEhqPGEKiOLOzkWKX
-         S7men9D4fRUqT/eT5DALB3txmGrOXVgMnRH8QIhLdYlheVxicVVHCMgaEn6J4SQ83FJ6
-         YPl9NL2XxHtEGb3A0/qhopwl5ObCxyAUI5Tfq0j5d1zBz4APbtohnbveEbFU3s3UyQum
-         K60hPqSFH0wobpDEg2PHbzUbPgD5Xtd4hHQRRpLVdkaHX3Fs/GLTInbTFd+oSem7S86V
-         rVOw==
-X-Gm-Message-State: AOJu0YxPIoZH0wELvzBBHvovHHT1H6HK+PCxGkXbPCb+uCOxCJubKnIF
-	gI6p1tVlMDySMrzBzXdzKMPikQ==
-X-Google-Smtp-Source: AGHT+IFsh2Vm5kjD/uKoQv/A+GZaJ9FewtOlyrfhcAxQ5Dfry6bby2EhkMnqHYJN7/CupvwTwv7ytw==
-X-Received: by 2002:a05:651c:1255:b0:2bc:d8cb:59fe with SMTP id h21-20020a05651c125500b002bcd8cb59femr6076625ljh.8.1698067301590;
-        Mon, 23 Oct 2023 06:21:41 -0700 (PDT)
+        bh=gZ4OTD+mAZ/PEriBd52ngcEYX2LeQoqs4YvhBcfpPaQ=;
+        b=n51d4QT1RpnCH8xe7x48XlIeI0CjriuvQuvxIxx3r9oYo8OElylvGNPS9JgRJKOBlB
+         4Xk2mHrJJw8znaQ7PpzVYbRSJWDktozNCg/IHI2ENIZ/YMoBnMRNfULbNHTQpV9xBvtc
+         hGxMID43yRXp2XT8hvvpbjSMNIY1Qyau/kN1BXMrnMeQCLnsQzNGOQve6QKNyvIZZkAw
+         8grbqyXWre7SR6y3cpwCguDa1na2zf5zbP8nP4Bm69httrk1Yae2Ws8TH09wv73xpUMS
+         e5FdHey7pGH5O/nEA82p6RCXmbOxgbcZDQLWZvCnFTZAsc0up1Zpbz4c27vituv13ZJl
+         sUzg==
+X-Gm-Message-State: AOJu0Ywr+4IhXYU6mQyZwKlFFUV/FXkCmn9QrosX3wXDuun15X8cx+bh
+	IfrqU6m6PXee9CiJg9RuBmGJMg==
+X-Google-Smtp-Source: AGHT+IHaR0agTZOxHy4i0NkFCR+/+eBs7GaFEmyRJumeLHdjnvWaNRB6yL7tHE7LeYOhAWu3oFuaoA==
+X-Received: by 2002:adf:978c:0:b0:32d:c5da:d4c0 with SMTP id s12-20020adf978c000000b0032dc5dad4c0mr12928756wrb.3.1698067351421;
+        Mon, 23 Oct 2023 06:22:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id b14-20020a5d550e000000b0032d9caeab0fsm7756288wrv.77.2023.10.23.06.21.40
+        by smtp.gmail.com with ESMTPSA id b14-20020a5d550e000000b0032d9caeab0fsm7756288wrv.77.2023.10.23.06.22.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Oct 2023 06:21:41 -0700 (PDT)
-Message-ID: <f93ff2d3-dc9c-4ca5-a630-3a623c01e498@linaro.org>
-Date: Mon, 23 Oct 2023 15:21:40 +0200
+        Mon, 23 Oct 2023 06:22:30 -0700 (PDT)
+Message-ID: <b7011f02-a412-4642-862d-c2df88ae316b@linaro.org>
+Date: Mon, 23 Oct 2023 15:22:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: adis16475: Add
+Subject: Re: [PATCH 3/3] dt-bindings: adis16460: Add
  'spi-cs-inactive-delay-ns' property
 Content-Language: en-US
 To: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
@@ -75,7 +75,7 @@ To: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
  conor+dt@kernel.org, linux-iio@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20231023123542.582392-1-ramona.gradinariu@analog.com>
- <20231023123542.582392-3-ramona.gradinariu@analog.com>
+ <20231023123542.582392-4-ramona.gradinariu@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,36 +121,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231023123542.582392-3-ramona.gradinariu@analog.com>
+In-Reply-To: <20231023123542.582392-4-ramona.gradinariu@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/10/2023 14:35, Ramona Gradinariu wrote:
 > Add 'spi-cs-inactive-delay-ns' property.
+
+This we see from the diff. Commit should explain: Why?
+
 > 
 > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
 > ---
->  Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml | 5 +++++
+>  Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml | 5 +++++
 >  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-> index c73533c54588..f01bf0ada0e8 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-> @@ -47,6 +47,11 @@ properties:
->    spi-max-frequency:
->      maximum: 2000000
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> index 4e43c80e5119..3691c0be4f9d 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> @@ -25,6 +25,11 @@ properties:
+>  
+>    spi-cpol: true
 >  
 > +  spi-cs-inactive-delay-ns:
 > +    minimum: 16000
 > +    description:
 > +      If not explicitly set in the device tree, the driver will set it to 16us.
 
-Drop description, it's redundant/useless. Instead:
-
-default: 16000
-
-
+Why do you even need it here?
 
 Best regards,
 Krzysztof
