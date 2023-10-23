@@ -1,242 +1,78 @@
-Return-Path: <devicetree+bounces-10698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C2E7D2843
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:07:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F947D2856
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09A1B1F21678
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:07:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23E6BB20CA8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5091106;
-	Mon, 23 Oct 2023 02:07:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ug/XwqsS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E48B1390;
+	Mon, 23 Oct 2023 02:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD23D1374
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:07:55 +0000 (UTC)
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2058.outbound.protection.outlook.com [40.107.104.58])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A785107;
-	Sun, 22 Oct 2023 19:07:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T8YFMNzu1AIA0DkU62PuxSezwbVESHx+4v5ct+2ru+siqEW4iCHEA/i8v1EJstk+BRFwZDA0XOi/9GH8xPJ/R+FLVXZ1CRq/4wrihsRlMCX18QWq7PMLQuceU8Nzt4XqyLgUhb+Z2tUmGErUE4U4zNkanarJLHjUgQVV+t4kxIzXZE6bq46Nvlg0+x50hGZ5yk283C/dV1uq41b6EynCMz7q5ihOXf1SuDqSrcDbatOLkwju/5RaLq1MH0zHPemBP5gyb1vpqBRQtRqqcRIBiNTPM6dctaeuaWvr46/5YGKZFLcvzzYqbDYRybOZT2th1a+CeaSpAxNtirKHQVeDTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z5vqGqGWmbk80w1TAHdGYnQK2KuxxtXCJoX8RGwyi80=;
- b=XRUjmqIXMufs3GMNO9bnD2sk3bfyy/nXDcCRmxrPzlGLhoxYcarEWIYiEg9BoZxmEFDn/1EIwHiKsb+qDGl3dk7V9pg7OZH89lq5Axw2NnY3TbFasHScCO6dhRf2BR6IlKn4X/i+POI8riixbQZ2kaHwmrER5OTF+y67mdJxXI71ED5Y/+6C1VeCrlF9S80otguvoHcQI124wd8gZxYgVpANOnLmowObwamOm51eND3aLsTtfBltwHrgFSTfwy93dm4rpRDwJ3vWdROkgbjP6XP1EISWnjGKqmcwUdrPz3KDrjVxvlEYnTpAjGUCso1SfX91/t1Ervi8YKI9vnwC8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z5vqGqGWmbk80w1TAHdGYnQK2KuxxtXCJoX8RGwyi80=;
- b=Ug/XwqsSFZ0XALdPJVkbvJpn6iuO0M3tr1d4Obdd42CgrJBVjKNQrni1d3jyfUyyYKIiNCxgw36Frj45zEZk/6aZNWk2CYnRz1a2eNTkx3nBlzXYlbdwv36Jd/XWMo60OCH1kQGOFWTrFnT4MdxE3kHFaB7s43ChXdjCoOdHyYM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS1PR04MB9504.eurprd04.prod.outlook.com (2603:10a6:20b:4c6::19)
- by PAWPR04MB9837.eurprd04.prod.outlook.com (2603:10a6:102:385::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.22; Mon, 23 Oct
- 2023 02:07:52 +0000
-Received: from AS1PR04MB9504.eurprd04.prod.outlook.com
- ([fe80::ddf9:e4b4:367d:bc06]) by AS1PR04MB9504.eurprd04.prod.outlook.com
- ([fe80::ddf9:e4b4:367d:bc06%6]) with mapi id 15.20.6933.011; Mon, 23 Oct 2023
- 02:07:52 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6C6A2A
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:12:30 +0000 (UTC)
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 533B0112;
+	Sun, 22 Oct 2023 19:12:28 -0700 (PDT)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 23 Oct 2023 11:12:27 +0900
+Received: from mail.mfilter.local (mail-arc01.css.socionext.com [10.213.46.36])
+	by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 969B12059053;
+	Mon, 23 Oct 2023 11:12:27 +0900 (JST)
+Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Mon, 23 Oct 2023 11:12:27 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+	by kinkan2.css.socionext.com (Postfix) with ESMTP id DF4A7B1D40;
+	Mon, 23 Oct 2023 11:12:26 +0900 (JST)
+From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To: soc@kernel.org,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: Pierre Gondois <pierre.gondois@arm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v4 2/2] ASoC: imx-rpmsg: Force codec power on in low power audio mode
-Date: Mon, 23 Oct 2023 10:07:18 +0800
-Message-Id: <20231023020718.1276000-2-chancel.liu@nxp.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH 0/2] Update UniPhier armv8 devicetree
+Date: Mon, 23 Oct 2023 11:12:19 +0900
+Message-Id: <20231023021221.2884828-1-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231023020718.1276000-1-chancel.liu@nxp.com>
-References: <20231023020718.1276000-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0084.apcprd02.prod.outlook.com
- (2603:1096:4:90::24) To AS1PR04MB9504.eurprd04.prod.outlook.com
- (2603:10a6:20b:4c6::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS1PR04MB9504:EE_|PAWPR04MB9837:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2abb7609-bdcc-4778-64ee-08dbd36cdcd9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	iFguM+ilEHO4Bkfn5w8QzHdN+GY76nD9xvK4cwEh2esewIxSlPEsJfvJ9UgVlCOIOHA7QOSi0jA/Wh0oLY4qioeG46XdzfhVfC2VmlfeQtq/65rD869/lbqn684RRVrt+yk6U2GkJO/9Ee7E5eYymOPq2muuILoc/tGPMHv0Vi4atO6q+ap0c8v6ws6dCXuL7dHBMtmMlkD+E2oCqDOceNOQrRoeM5PnYrkkBZ26SbH6VFEeI1u1RCZRpVGyJyQnhHjN8LLZifWuUQ+8mSiQ35CfsUBQOo/0jbucjbL5XGZU5tGbV1ARyWN8ljcwddDpL0B5GjHv1IULRI94AgvDxwUpR84K0kPdwnPI6dbEEGTqrPhIkUaGduiO9e21BB9gZjLO4zoC/xj5zaf0LJ9rTXmvJ6ccCWKBk2rEdQjiLp/BVrLl20abpkXW1R7Vzbcjkwbst9PKkfnyXP3E3MzcjT0vYa39qj12oI26Qfx2Wv2+raIuoC742baAX7QSJAg/AuRWLwIWDDva//OAXEFmSxdwwps3aIx5NiPy8K2f/T0CVCggoCjB3AwTj197ngoH4RAGHSmMsxD1vlQbRr717QV1zmwTVgzILNZeBWJOx1NuPKqKK7t7TvjQV2W/3e5GUbqK4Pvw9mCbJcOXVZKFS3jfqLpD6bJM1h9D1HnBels=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR04MB9504.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(39860400002)(396003)(366004)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(2616005)(7416002)(41300700001)(2906002)(2013699003)(36756003)(921008)(86362001)(26005)(38100700002)(38350700005)(83380400001)(66946007)(66556008)(8936002)(316002)(4326008)(8676002)(5660300002)(44832011)(478600001)(1076003)(66476007)(6666004)(6512007)(52116002)(6506007)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?unjxIcZVGEXBkBbsN9rd0st8ARUB7XGhwBMKH5hxMJY0dow0E8tP5pALhT2W?=
- =?us-ascii?Q?lZbQ76E/23XE9xCWBZVS81qql5DMI/dvtGJgyKsAfW0Km4/lz7b/jS45zGW9?=
- =?us-ascii?Q?2DKABYLZBY9Y4mDZM7POOBEqO/NeiBg6DxgEDDUQ3YZZEmr+TTYa9v/Th8RY?=
- =?us-ascii?Q?Ye3pXSR83KvEYuMbyWY8KrP5TniFSPUiTGAPf5TKIBh6fSnbDFK/iglH8fIq?=
- =?us-ascii?Q?neV2Un6hKNxCKtQ2LHGfGhg1H/1QtKhNSiSfC7IDCsVmmgAK/RUrKL6v1Z36?=
- =?us-ascii?Q?a1Wu3x+N+VQk1oIvn/TIR62FwCBdiQyYGWS2O4GX9f67Ns4uhFL25jMLBYZZ?=
- =?us-ascii?Q?FCReFB8b7JlBCuyxGvOMrMhoCyQ24U/5NEWzFWbfhJE+WQOODh2rNvPDvfAw?=
- =?us-ascii?Q?lzvylNzZgWIZ71fUHvBXuv2Oyx5Dn6vFXls5OoHDvpsR/d2USw9t6M+PGvi7?=
- =?us-ascii?Q?Tup0e/ET/yKeFc1hYLnzE/awBNehVDbwIleQbv4V3WFaAH8FO9D5Owgz3i4l?=
- =?us-ascii?Q?ioivYMvg9rsZaKQF0gVi1FTK5HV0MOts924bcojmJe/GOMuNAXSgJT7/HWm+?=
- =?us-ascii?Q?t0/eTK/bAZpy68M/1rynrVGn2/BJaIJOqhEPKzAYbAqeUbi4mwGklNJKHCyH?=
- =?us-ascii?Q?PHt94bJVWpx6KnP5lohYh2BPfw7IyrbLTemjq6m7QxcoFRyeHw2DM/wKO5TT?=
- =?us-ascii?Q?Mau4UhofJgM0o/iglz3yG2PrNlG4dYMBd2zEexpoVRYyNPEmUcnFNGGnQECR?=
- =?us-ascii?Q?PM/C6X/X9wsoJ1j6f/MIGjcxW0Ne5coSVlRMPaCzald34hCm/v1UE5pM3hvH?=
- =?us-ascii?Q?2kwwLQaCFr2ENwvcuC+G/jvjmjncMGEyGwY5ZLIeassYuTb8TFoPdZLKDHRH?=
- =?us-ascii?Q?c/MsTBScXiDA8RoItmeYMomn9466Hx1TYZnX/dM+SFjgiL3pCT60ZM7vjImK?=
- =?us-ascii?Q?hTPsrYJLGGp28INqx2Qh2vSgEfD9TKCVnbw9mSmmma4y06+9Wz+Jt0LNr7Sk?=
- =?us-ascii?Q?CQHEWTq3ZahdnfdfMowoQV0uW2z50+ZfHDZqI6uZ8HRB1o2cSlTnOQay0Xgl?=
- =?us-ascii?Q?vAHSy6wIUoSV/MOR76hYoYRogSQS51ZWe6ocxqacNXvtpqhjNxYS05nuNzCm?=
- =?us-ascii?Q?3UyGyFRaeQrAFqoreiZHlQpWHtjirgk0s4ymnUvMiSK7a055Ho281G6LjzLl?=
- =?us-ascii?Q?e6R061w+djmDusgivBI8J9egbTooi3c3UNsWJdqKE67zdCExwNcgKqtWnV8U?=
- =?us-ascii?Q?Yl8y66QLXUMkV2WU6xT7IL0FUxW/Y0nVsrpzaBoGTJYUyiuoKpL36DzDuHDR?=
- =?us-ascii?Q?AzJpQgkX1M4H3XNynpZiJg8iFhC+91TF9SOJpwm4en4Hk3ZAk99MYmcdw3mY?=
- =?us-ascii?Q?sFEiwh8CYgKF7oP50TP+5QLSMVoDMjHy8yzzglJR2ekzjznf9PGmD9lixTcr?=
- =?us-ascii?Q?zUXFiBLvubAoDscTzPeNf+SzmK9d2+7MlCsxDZMERJcslbb/n8trJ0WSuNlA?=
- =?us-ascii?Q?Mh7bfo2hFZPeNozMJ6CkcwYTigZcuopnr/qspxi3GUshvfgum6WEJFkTqtOc?=
- =?us-ascii?Q?3QxXHiH4bRKjVSaVGlquOPL886Aw0+R9KdUYUcGk?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2abb7609-bdcc-4778-64ee-08dbd36cdcd9
-X-MS-Exchange-CrossTenant-AuthSource: AS1PR04MB9504.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 02:07:52.0095
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q/dzk7ioM7mrFW8RL4jefvYkQQhjDWKHBqOzy923EqwPf8jsEJhSjBFg41Uph9Q/Zre2dq+OZEYo0W/dP09pCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9837
+Content-Transfer-Encoding: 8bit
 
-Low power audio mode requires binding codec still power on while Acore
-enters into suspend so Mcore can continue playback music.
+Update devicetree sources for UniPhier armv8 SoCs to add
+missing cache properties.
 
-ASoC machine driver acquires DAPM endpoints through reading
-"ignore-suspend-widgets" property from DT and then forces the path
-between these endpoints ignoring suspend.
+This series combines the following patches:
+- https://lore.kernel.org/r/20221107155825.1644604-21-pierre.gondois@arm.com
+- https://lore.kernel.org/all/f9a2c0d7-a78d-9368-f9bb-e8aba11e7d81@socionext.com/
 
-If the rpmsg sound card is in low power audio mode, the suspend/resume
-callback of binding codec is overridden to disable the suspend/resume.
+Krzysztof Kozlowski (1):
+  arm64: dts: socionext: add missing cache properties
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- sound/soc/fsl/imx-rpmsg.c | 58 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+Pierre Gondois (1):
+  arm64: dts: Update cache properties for socionext
 
-diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
-index a9324712e3fa..e5bd63dab10c 100644
---- a/sound/soc/fsl/imx-rpmsg.c
-+++ b/sound/soc/fsl/imx-rpmsg.c
-@@ -20,8 +20,11 @@ struct imx_rpmsg {
- 	struct snd_soc_dai_link dai;
- 	struct snd_soc_card card;
- 	unsigned long sysclk;
-+	bool lpa;
- };
- 
-+static struct dev_pm_ops lpa_pm;
-+
- static const struct snd_soc_dapm_widget imx_rpmsg_dapm_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_SPK("Ext Spk", NULL),
-@@ -38,6 +41,58 @@ static int imx_rpmsg_late_probe(struct snd_soc_card *card)
- 	struct device *dev = card->dev;
- 	int ret;
- 
-+	if (data->lpa) {
-+		struct snd_soc_component *codec_comp;
-+		struct device_node *codec_np;
-+		struct device_driver *codec_drv;
-+		struct device *codec_dev = NULL;
-+
-+		codec_np = data->dai.codecs->of_node;
-+		if (codec_np) {
-+			struct platform_device *codec_pdev;
-+			struct i2c_client *codec_i2c;
-+
-+			codec_i2c = of_find_i2c_device_by_node(codec_np);
-+			if (codec_i2c)
-+				codec_dev = &codec_i2c->dev;
-+			if (!codec_dev) {
-+				codec_pdev = of_find_device_by_node(codec_np);
-+				if (codec_pdev)
-+					codec_dev = &codec_pdev->dev;
-+			}
-+		}
-+		if (codec_dev) {
-+			codec_comp = snd_soc_lookup_component_nolocked(codec_dev, NULL);
-+			if (codec_comp) {
-+				int i, num_widgets;
-+				const char *widgets;
-+				struct snd_soc_dapm_context *dapm;
-+
-+				num_widgets = of_property_count_strings(data->card.dev->of_node,
-+									"ignore-suspend-widgets");
-+				for (i = 0; i < num_widgets; i++) {
-+					of_property_read_string_index(data->card.dev->of_node,
-+								      "ignore-suspend-widgets",
-+								      i, &widgets);
-+					dapm = snd_soc_component_get_dapm(codec_comp);
-+					snd_soc_dapm_ignore_suspend(dapm, widgets);
-+				}
-+			}
-+			codec_drv = codec_dev->driver;
-+			if (codec_drv->pm) {
-+				memcpy(&lpa_pm, codec_drv->pm, sizeof(lpa_pm));
-+				lpa_pm.suspend = NULL;
-+				lpa_pm.resume = NULL;
-+				lpa_pm.freeze = NULL;
-+				lpa_pm.thaw = NULL;
-+				lpa_pm.poweroff = NULL;
-+				lpa_pm.restore = NULL;
-+				codec_drv->pm = &lpa_pm;
-+			}
-+			put_device(codec_dev);
-+		}
-+	}
-+
- 	if (!data->sysclk)
- 		return 0;
- 
-@@ -137,6 +192,9 @@ static int imx_rpmsg_probe(struct platform_device *pdev)
- 		goto fail;
- 	}
- 
-+	if (of_property_read_bool(np, "fsl,enable-lpa"))
-+		data->lpa = true;
-+
- 	data->card.dev = &pdev->dev;
- 	data->card.owner = THIS_MODULE;
- 	data->card.dapm_widgets = imx_rpmsg_dapm_widgets;
+ arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi | 2 ++
+ arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 4 ++++
+ arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 2 ++
+ 3 files changed, 8 insertions(+)
+
 -- 
 2.25.1
 
