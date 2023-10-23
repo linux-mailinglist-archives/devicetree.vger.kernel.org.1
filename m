@@ -1,217 +1,135 @@
-Return-Path: <devicetree+bounces-11062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261B57D3E4F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:51:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A144A7D3E6A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D02182813D7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:51:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7E92813A4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F058421342;
-	Mon, 23 Oct 2023 17:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Oh5Lik/M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197B421343;
+	Mon, 23 Oct 2023 17:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2712110D;
-	Mon, 23 Oct 2023 17:51:08 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF97D73;
-	Mon, 23 Oct 2023 10:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3/iUMEFKo+Sriw48TJmEW/W6vROCpBV4Feg7wlAPFQ4=; b=Oh5Lik/MMbUmhez2xPGcULw1FX
-	oryyjioVyG+fhTipbc2g+Gl+a28EygKtCQTQPgFp+xoT9CuYZ57bCzc0j8xod7xE06qvAPXJuYOS0
-	yVdvaUgJa5SLxzg679Wv7j5fT8Hrmlu3exh4xc1sa7CEV9cuCJ+KiY78fgy7EI4sTGgE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1quz4o-0033TQ-0V; Mon, 23 Oct 2023 19:50:54 +0200
-Date: Mon, 23 Oct 2023 19:50:53 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS
- driver
-Message-ID: <b8ac3558-b6f0-4658-b406-8ceba062a52c@lunn.ch>
-References: <20231023155013.512999-1-romain.gantois@bootlin.com>
- <20231023155013.512999-4-romain.gantois@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7FF33E7
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:59:07 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696F2BE;
+	Mon, 23 Oct 2023 10:59:06 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5a7c011e113so39342037b3.1;
+        Mon, 23 Oct 2023 10:59:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698083945; x=1698688745;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ILGXXBI0xPsbEpyQCSI+1mkyQ59/epgNCarVkLH7ohg=;
+        b=WE6Nav6ODn5JVJN5OoN/JRLPl3ITfBZAyLMPV32qS2JrISB3ocb8/CzZaL+VGJplH1
+         zA/P3lGxLH04Ay069nDpeSjvuplmmN6HdZgS8SpDZFib65TYkuQ2hAXjRWiRy2k9+Gay
+         Co27BK9i2/EKto6Om/065Ogfok6dRBEonnnOpaa9EgsUiCPpn+EqQgWC/VO8A88Q7RUI
+         DdxqOlVpLtq6hvOrxWihmUGD0wigDdgZQGCg1kCxxur8IfkL2vFf/DCj+molH4gKAqx0
+         0zTJNDEKWIyH/xFXgK10orWeebx9xOxl7TttFI/G+ukC9aNH9Y1n7k5P0hgq5R+j4Nem
+         QaeQ==
+X-Gm-Message-State: AOJu0YwoZttu2edVvqp+HrRg80IUGpQD2SuKGEf/5edrkC5EHO3sH3H1
+	yRbFTVOvO7Fpnvmjh12Mo5az4uy+wzuvHA==
+X-Google-Smtp-Source: AGHT+IHlXNDsLJJqHDqUrfWmicV1vKqxJaCRnhNoazeDTLp0YnMrjkMlD7coXqVjTGkA/rF2ifWcRQ==
+X-Received: by 2002:a0d:f585:0:b0:59b:de0f:c23b with SMTP id e127-20020a0df585000000b0059bde0fc23bmr8126679ywf.46.1698083945373;
+        Mon, 23 Oct 2023 10:59:05 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id p130-20020a815b88000000b0059b20231f1dsm3319690ywb.121.2023.10.23.10.59.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 10:59:04 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5a7c011e113so39341767b3.1;
+        Mon, 23 Oct 2023 10:59:04 -0700 (PDT)
+X-Received: by 2002:a81:8341:0:b0:5a7:bbd1:ec1d with SMTP id
+ t62-20020a818341000000b005a7bbd1ec1dmr10435521ywf.17.1698083944720; Mon, 23
+ Oct 2023 10:59:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023155013.512999-4-romain.gantois@bootlin.com>
+References: <bfd1cf9d620a8229f5a5e62e6fe9e59c153d0830.1698051619.git.geert+renesas@glider.be>
+ <20231023-sulfate-babble-695b239f52b5@spud>
+In-Reply-To: <20231023-sulfate-babble-695b239f52b5@spud>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 23 Oct 2023 19:58:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW7UQ=c9V6rjpZdcaNPSXLOu5aEiLhreirPP6NXN0Ke2Q@mail.gmail.com>
+Message-ID: <CAMuHMdW7UQ=c9V6rjpZdcaNPSXLOu5aEiLhreirPP6NXN0Ke2Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: regulator: dlg,da9210: Convert to json-schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Support Opensource <support.opensource@diasemi.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, David Rau <David.Rau.opensource@dm.renesas.com>, 
+	Adam Ward <Adam.Ward.Opensource@diasemi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +/* locking is handled by the caller */
-> +static int ipqess_edma_rx_buf_alloc_napi(struct ipqess_edma_rx_ring *rx_ring)
-> +{
-> +	struct ipqess_edma_buf *buf = &rx_ring->buf[rx_ring->head];
-> +
-> +	buf->skb = napi_alloc_skb(&rx_ring->napi_rx,
-> +				  IPQESS_EDMA_RX_HEAD_BUFF_SIZE);
+Hi Conor,
 
-You might want to look at using the page_pool code. Its shown to be
-more efficient for some drivers, e.g. the FEC.
+CC David, Adam
 
-> +static int ipqess_edma_redirect(struct ipqess_edma_rx_ring *rx_ring,
-> +				struct sk_buff *skb, int port_id)
-> +{
-> +	struct ipqess_port *port;
-> +
-> +	if (port_id == 0) {
-> +		/* The switch probably redirected an unknown frame to the CPU port
-> +		 * (IGMP,BC,unknown MC, unknown UC)
-> +		 */
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (port_id < 0 || port_id > QCA8K_NUM_PORTS) {
-> +		dev_warn(rx_ring->edma->sw->priv->dev,
-> +			 "received packet tagged with out-of-bounds port id %d\n",
-> +			 port_id);
+On Mon, Oct 23, 2023 at 6:18=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+> On Mon, Oct 23, 2023 at 11:04:45AM +0200, Geert Uytterhoeven wrote:
+> > Convert the Dialog Semiconductor DA9210 Multi-Phase 12A DC-DC Buck
+> > Converter Device Tree binding documentation to json-schema.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Maybe rate limit this?
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/dlg,da9210.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/dlg,da9210.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Dialog Semiconductor DA9210 Multi-Phase 12A DC-DC Buck Converte=
+r
+> > +
+> > +maintainers:
+> > +  - Support Opensource <support.opensource@diasemi.com>
+>
+> This should really be a person... Does your work with Renesas cover you
+> for dialog stuff too?
 
-> +static int ipqess_port_set_mac_address(struct net_device *netdev, void *a)
-> +{
-> +	struct sockaddr *addr = a;
-> +	int err;
-> +
-> +	if (!is_valid_ether_addr(addr->sa_data))
-> +		return -EADDRNOTAVAIL;
+I'm not really into the PMICs department, only into making dtbs_check
+for "my" DTS files clean ;-)
+I hope one of the Dialog/Renesas PMIC people can point me to a better
+address.  Steve Twiss sent a goodbye message to some kernel people
+and lkml three years ago, but it is not on lore, as it contained HTML.
 
-I would be surprised if that could happen.
+Ah, according to git log, David and Adam touched some of the files
+lately, so perhaps they can help?
 
-> +static int
-> +ipqess_port_fdb_do_dump(const unsigned char *addr, u16 vid,
-> +			bool is_static, void *data)
-> +{
-> +	struct ipqess_port_dump_ctx *dump = data;
-> +	u32 portid = NETLINK_CB(dump->cb->skb).portid;
-> +	u32 seq = dump->cb->nlh->nlmsg_seq;
-> +	struct nlmsghdr *nlh;
-> +	struct ndmsg *ndm;
+> Otherwise,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-It looks like you can reuse dsa_slave_port_fdb_do_dump(), if you
-export it.
+Thanks!
 
-> +static int
-> +ipqess_port_fdb_dump(struct sk_buff *skb, struct netlink_callback *cb,
-> +		     struct net_device *dev, struct net_device *filter_dev,
-> +		     int *idx)
-> +{
-> +	struct ipqess_port *port = netdev_priv(dev);
-> +	struct qca8k_priv *priv = port->sw->priv;
-> +	struct ipqess_port_dump_ctx dump = {
-> +		.dev = dev,
-> +		.skb = skb,
-> +		.cb = cb,
-> +		.idx = *idx,
-> +	};
+Gr{oetje,eeting}s,
 
-And with a little bit of refactoring, you should be able to use the
-core of qca8k_port_fdb_dump(). All that seems to differ is how you get
-to the struct qca8k_priv *priv.
+                        Geert
 
-That then makes me wounder if there is more code here which could be
-removed with a little refactoring of the DSA driver?
 
-> +static void ipqess_port_get_drvinfo(struct net_device *dev,
-> +				    struct ethtool_drvinfo *drvinfo)
-> +{
-> +	strscpy(drvinfo->driver, "qca8k-ipqess", sizeof(drvinfo->driver));
-> +	strscpy(drvinfo->fw_version, "N/A", sizeof(drvinfo->fw_version));
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-If you leave this alone, it will contain the git hash of the kernel,
-which is more useful than 'N/A'.
-
-> +	strscpy(drvinfo->bus_info, "platform", sizeof(drvinfo->bus_info));
-> +}
-> +
-
-> +static int ipqess_port_get_eeprom_len(struct net_device *dev)
-> +{
-> +	return 0;
-> +}
-
-Is this actually useful? What does it default to if not provided? 42?
-
-> +static void ipqess_port_get_ethtool_stats(struct net_device *dev,
-> +					  struct ethtool_stats *stats,
-> +					  uint64_t *data)
-> +{
-
-...
-
-> +	for (c = 0; c < priv->info->mib_count; c++) {
-> +		mib = &ar8327_mib[c];
-> +		reg = QCA8K_PORT_MIB_COUNTER(port->index) + mib->offset;
-> +
-> +		ret = qca8k_read(priv, reg, &val);
-> +		if (ret < 0)
-> +			continue;
-
-Given the switch is built in, is this fast? The 8k driver avoids doing
-register reads for this.
-
-> +static int ipqess_port_set_eee(struct net_device *dev, struct ethtool_eee *eee)
-> +{
-> +	struct ipqess_port *port = netdev_priv(dev);
-> +	int ret;
-> +	u32 lpi_en = QCA8K_REG_EEE_CTRL_LPI_EN(port->index);
-> +	struct qca8k_priv *priv = port->sw->priv;
-> +	u32 reg;
-> +
-> +	/* Port's PHY and MAC both need to be EEE capable */
-> +	if (!dev->phydev || !port->pl)
-> +		return -ENODEV;
-> +
-> +	mutex_lock(&priv->reg_mutex);
-> +	ret = qca8k_read(priv, QCA8K_REG_EEE_CTRL, &reg);
-> +	if (ret < 0) {
-> +		mutex_unlock(&priv->reg_mutex);
-> +		return ret;
-> +	}
-> +
-> +	if (eee->eee_enabled)
-> +		reg |= lpi_en;
-> +	else
-> +		reg &= ~lpi_en;
-> +	ret = qca8k_write(priv, QCA8K_REG_EEE_CTRL, reg);
-> +	mutex_unlock(&priv->reg_mutex);
-
-Everybody gets EEE wrong. The best example to copy is mvneta.
-
-I also have a patchset which basically re-writes EEE in all the
-drivers and moves as much as possible into the core. Those patches may
-someday make it in. But until then, copy mvneta.
-
-	Andrew
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
