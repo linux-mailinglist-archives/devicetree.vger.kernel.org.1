@@ -1,167 +1,202 @@
-Return-Path: <devicetree+bounces-10715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A717D2904
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 05:24:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F8D57D2908
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 05:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D5E82813CE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 03:24:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89AD3B20CA9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 03:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2F6110B;
-	Mon, 23 Oct 2023 03:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E1517FE;
+	Mon, 23 Oct 2023 03:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QoV+b182"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="hYla1npD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7FD17FE
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:24:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 508D9188;
-	Sun, 22 Oct 2023 20:24:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698031471; x=1729567471;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WG7qKWGw/AVDVBViDrvNqZrBZW+aiYkM5T/NGemPMbg=;
-  b=QoV+b182rC+OmkkAKAojHH+iXNdfZXsKyVQPGhsB7FLo8O7Arpz8M0r0
-   zlReltiMGvowFVpvPwJ3aoerNXf5oE9CR9nb/k3Esl/Ieuj4nQgemDVow
-   vOj1n23AmUEWn7m35EICeIVN5yxp4I04WeFl/nwoCQw9Gj4p3lOd2DiM2
-   /ibj65z3OSCvcAhL5lHFuuG/mbawk9yP5eTC9NnQFVGgZ3Su+gGRovnmG
-   Ym9dNfK2IUBF4VVvz66+zTHqgkYbKiOJgLbazWvfjWK49/tx/ORZkMzUb
-   S7rcoooLPrxZux+Tln23/B1xZHTll/RVkAzzFAdiHELvfLBzy+2Yaymw6
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="472971052"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; 
-   d="scan'208";a="472971052"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2023 20:24:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="1005169869"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; 
-   d="scan'208";a="1005169869"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 22 Oct 2023 20:24:27 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qulYH-0006WL-0R;
-	Mon, 23 Oct 2023 03:24:25 +0000
-Date: Mon, 23 Oct 2023 11:24:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-input@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bastien Nocera <hadess@hadess.net>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v9 3/4] Input: goodix-berlin - add I2C support for Goodix
- Berlin Touchscreen IC
-Message-ID: <202310231123.eHyxswnW-lkp@intel.com>
-References: <20231021-topic-goodix-berlin-upstream-initial-v9-3-13fb4e887156@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF8715C9
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 03:27:29 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2048.outbound.protection.outlook.com [40.107.21.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0F2188;
+	Sun, 22 Oct 2023 20:27:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bwBGPPWHFrd1PYWWezWmg7IA9BvGllTCt5ja9PyFiE9MhMoa6I5dB1Fiw6uDri4mK1s3M6zMoNg2OOQ1T6evvTZqY99JaiCKiOLSr1UtSpjgW3n1ZBuhzx1GMiZgBidzXsAWZCmv5sWqOd1AzGScZcyVip1WuDG823NR44EG/X7ed6upGCvgPfI4xQjpwnibIfrqqCSZI6Htizci1V4TNRkeOJ4DsSQuPf/sLLiH3cu4atjnyIuDMrFEtwMzPSv1HrE0UdBnx9zj2ur8IJY8tcRmTwuYjc5KrOE3D9KZJGtxSxlMFeGe7jYpPDXKt7dD8csPuEi1FNejJzlf93t9Rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0ixjEEwDUzfzkTquyh05Qk7boLCEWRzfDUAMysP81u8=;
+ b=YGBdmVth7t1Heq3JQzTZBmXipJ1bQQh1aXCj7pv1UjY8p14suTBkw2OL6Xqzrry4UzH00810l6SIQF1dWdtNm48hX0NDOc7BEonWTabX3lLWMJjM2WE8Yx85jau5pTvXZpXIcQrPDkksNyDTQ3NODO4Pt7uCaU1tPUFb7j9TTEKrvWADz5ygfvLJwfK4zmVjmZSv2fF3GNFi9mnAVSXxybbqgl0aEcvt1x5Qpymh25ZsilIaF/5N6ZNqrDubRqGP3bSFYFwnT6gG2NYzRdT2TJ8YG76985QAgadOEX31hsYjmpmF/WUKzZZigrMOVJiUGkTxr46meZ2Ev3NPzddHiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0ixjEEwDUzfzkTquyh05Qk7boLCEWRzfDUAMysP81u8=;
+ b=hYla1npDid7ZbsJBqUkGwxoyPHG9LjayWjyrGjx3itX+vrEDZO+moUhjVs91oBBYY00SNNwE32h38F2ktpf1xUC2P+sUrPi3xUBzMB5rmQ8ls9x7eOnIIVPw1mUD8GII9PazbraFekJKHGlMimb5wiUw788kZ3v6ta9PW90AF54=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by PR3PR04MB7242.eurprd04.prod.outlook.com (2603:10a6:102:91::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.14; Mon, 23 Oct
+ 2023 03:27:23 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::50bf:dcd6:885e:32c4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::50bf:dcd6:885e:32c4%4]) with mapi id 15.20.6933.011; Mon, 23 Oct 2023
+ 03:27:23 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	abelvesa@kernel.org
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 1/2] dt-bindings: clock: support i.MX93 Analog clock module
+Date: Mon, 23 Oct 2023 11:31:43 +0800
+Message-Id: <20231023033144.3694131-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0003.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::20) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231021-topic-goodix-berlin-upstream-initial-v9-3-13fb4e887156@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|PR3PR04MB7242:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9dd9d9f9-76fb-4e1a-4763-08dbd377f8fc
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	AmO6oZaTCenuXpSIR4sqmoQ+V3Cpy1e4e7iH11QZq44N0ME3LQR/yYqkQqa6hxkzIcAO6qh2mPTLWS9R3sE4Q9P7ESYm8m0wdpkke3FsBzyv3HnO2VIrWR8G3F8EfP6D/34DmnY0PSDLMX6xOPcgEfaB6INZJZatMmi+rFsdrjoMBTpi6R68vz/2RR542dK+DnxS6U6ih1qhNAIM7UouwpGabsMrnC/QAiwJ4jWq7cxhsR3oYdTrl9oWKLN26swu5OvoNHb7Y05ExB6UydYTdi5rsyZMMiGzkI4yF2Rnawn7BMJCEsULFTZRDuD/zEqiJfW1zzltNDu6kBInvbaigR8du/xvcbnXeRF4dbZE71oc0bXfvIu8cIon9kRe4Av8TPhD+haOEcq+9w77wdSJsZbx2WQ6p1U+Zntp4zuKwBbE68Iv3RPwkeu3P7mGJTz4r+z6XvBy2M4eqzQayPieVwGbwSOFAP6glBW6VkUxkvPfrEpDFQao3JOZQDaFp1qXGxuS0TIha+bV90W4YlyZvYzC2euG4ADcTg4Yb7oUvzGWNtzinte4jIDferrPVP/SpdCGKw7vPhkqZDhepRSfVwq+a8NRhRb6IUXDQs5sBEo=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(396003)(136003)(39860400002)(366004)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(2906002)(38100700002)(316002)(66946007)(66556008)(66476007)(2616005)(26005)(1076003)(478600001)(6506007)(6666004)(6512007)(52116002)(966005)(6486002)(83380400001)(41300700001)(5660300002)(7416002)(86362001)(8936002)(8676002)(4326008)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?WEDiWluUQ+SCQfXuKqxSNHp3HAQzsnc0Ng5oWf5fWkauYhLBjAgTzWMD3UgG?=
+ =?us-ascii?Q?AvBHCbMeIJFmDPNV9xhwNGJEyO8w/k/l5juaFX0tIibQFgGuotsLl0cDt4Lf?=
+ =?us-ascii?Q?IBUmlojJrGN41p9l6D/srLj6BIPxIjraaj5bAR5hDQZuyfqH66Y1XsTaRHII?=
+ =?us-ascii?Q?jwjqL+3kcP5VAAUV5kS5ib312H3HjYdSMnEWTHUhWoOzuIDw4D/ZW2ZDRTI9?=
+ =?us-ascii?Q?S+4x1+F71LcvCWm/540yyQq1ShLioKcEiFxTxwsCV/OJKYq37RN2mspfvg0I?=
+ =?us-ascii?Q?hPzu13/Pjz0MftbhoC7zgTtPQRlex3JLC5yYHhq16B2tWzn0DTv7PfLDNjjZ?=
+ =?us-ascii?Q?7QEukgzct/Jg0tZgtJwZ+3J+hbqiw9INKDRWdpXEL7IDfC6QyMpQqfBOaakJ?=
+ =?us-ascii?Q?xUHVOYIBuLv/R0Ds02FCvbxJwFfVdS2+4XZYwS1SxXuz+mxyMkzJTb2uHZmm?=
+ =?us-ascii?Q?gwOKVZk8qf72k3Oyb+j6uhMMUCBZVNhjPhoziUgp89jl7/c+cy9O9zm+V/Zn?=
+ =?us-ascii?Q?wfpg14ECoU1MLVwRcWVyl6QcmK5pOvPoeWNEw2qzeTefVEFZ35LckeqNNZwW?=
+ =?us-ascii?Q?mYbjwpKmNu1EWSB95RpFw2qYo4zbBj6PpBgMislsEkS2YMquMAn7eS8l83Qs?=
+ =?us-ascii?Q?uk3bGFr78ir4oEw7PtkHCFqSZm02jILpekigm/khQVnFfyJYsJ2TZwm2tX/l?=
+ =?us-ascii?Q?8dZ835bHq38anOWTIr7ME0SjDXPz2wEy7FqN6yBD4er0nS0JOuPY2kQyl6DY?=
+ =?us-ascii?Q?i/+pd6tGUHDF/IRFQ7B7d1BI86XIKt5gfpanC5nzQf9u1B/clxUWyE+IjWE2?=
+ =?us-ascii?Q?x//Lt20dcl/soaFpd56a8g1aA91TA2PLJvwhzxO5oqIpPnc2zRbAhcAUbOWw?=
+ =?us-ascii?Q?fbBGP0FuksAqCAx5jvKcDnxqTVjeozoTrVC7luiT2f4bdORd0a82I6+WrP4/?=
+ =?us-ascii?Q?vrAl5EMk0wQm/Ed4UvszCoOeTKKrAyg6xPkKjmWknhEIav3lpe+fJyaA3t3f?=
+ =?us-ascii?Q?YQcYX63C549JgYqvaKSS/Boxa8uI0FYqL/wG8LOWt8B+n8nF63bNJ7wS9Eq8?=
+ =?us-ascii?Q?5Ie4CSJf0C7AkFBi+PgVTvtI2rmGaDBiVns5ntDipJEWKqF9HyN4uXb4vBez?=
+ =?us-ascii?Q?Py6qXIY4Xr/59QfOlrD2VKIrR5BrOSUzSx7mHmUaYzLK/xZC7xtLSo+fkcun?=
+ =?us-ascii?Q?/SgndnfgjufpByekfw1C24ZEUzS/wbNfnOGQ9b4VN1KCYENThWoM9GQkbQgT?=
+ =?us-ascii?Q?HwIMq0T8gMaw7W+NaeTT2epeRdbvRsqqPHxvhTmIjzAt9ndQSgCIInlgxU94?=
+ =?us-ascii?Q?+Llx6kItF1GiCysPwLQPJCx84Z04pdNWqV8AxJCodgM2SIXo5LTQzoBEf+12?=
+ =?us-ascii?Q?HlFtoMHldhNSrUMEIDJcasTbmAtg1OjMqgSNJttE4Cfyu+cv3PoowG3lsfT5?=
+ =?us-ascii?Q?NM9aTqRhnl+fHuVH1bvB/bdu3axdDqqXV/vRcSRY97DUvenpLvsZtWyuVxZZ?=
+ =?us-ascii?Q?2Vsjq815lcOtDNSo3Nj87JM3BC14uJgyRWwFyWa2Ar4rYt796B+U5cB6qkOc?=
+ =?us-ascii?Q?6ltjWWCSv4CM9ArgVN7z4v4OV0LcH9zKPQ1/FTyL?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9dd9d9f9-76fb-4e1a-4763-08dbd377f8fc
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 03:27:23.7689
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A6peImR9L7z4orl+vYDE/TYDg5VJAHB/+O/e4r0d6maAu2CdEI2YSTBh+/+TPBOiyNtvLZ+ng4N8PDCL2hAj3Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7242
 
-Hi Neil,
+From: Peng Fan <peng.fan@nxp.com>
 
-kernel test robot noticed the following build warnings:
+Support i.MX93 Analog module which produces PLL and OSC for Clock
+Controller Module
 
-[auto build test WARNING on 2030579113a1b1b5bfd7ff24c0852847836d8fd1]
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/dt-bindings-input-document-Goodix-Berlin-Touchscreen-IC/20231021-191942
-base:   2030579113a1b1b5bfd7ff24c0852847836d8fd1
-patch link:    https://lore.kernel.org/r/20231021-topic-goodix-berlin-upstream-initial-v9-3-13fb4e887156%40linaro.org
-patch subject: [PATCH v9 3/4] Input: goodix-berlin - add I2C support for Goodix Berlin Touchscreen IC
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20231023/202310231123.eHyxswnW-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231023/202310231123.eHyxswnW-lkp@intel.com/reproduce)
+V2:
+ Update subject and commit, rename file to fsl,imx93-analog.yaml
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310231123.eHyxswnW-lkp@intel.com/
+ .../bindings/clock/fsl,imx93-analog.yaml      | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx93-analog.yaml
 
-All warnings (new ones prefixed by >>):
-
-   drivers/input/touchscreen/goodix_berlin_core.c: In function 'goodix_berlin_get_ic_info':
->> drivers/input/touchscreen/goodix_berlin_core.c:285:1: warning: the frame size of 1148 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-     285 | }
-         | ^
-
-
-vim +285 drivers/input/touchscreen/goodix_berlin_core.c
-
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  235  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  236  static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  237  {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  238  	u8 afe_data[GOODIX_BERLIN_IC_INFO_MAX_LEN];
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  239  	__le16 length_raw;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  240  	u16 length;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  241  	int error;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  242  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  243  	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  244  				&length_raw, sizeof(length_raw));
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  245  	if (error) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  246  		dev_info(cd->dev, "failed get ic info length, %d\n", error);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  247  		return error;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  248  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  249  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  250  	length = le16_to_cpu(length_raw);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  251  	if (length >= GOODIX_BERLIN_IC_INFO_MAX_LEN) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  252  		dev_info(cd->dev, "invalid ic info length %d\n", length);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  253  		return -EINVAL;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  254  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  255  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  256  	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  257  				afe_data, length);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  258  	if (error) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  259  		dev_info(cd->dev, "failed get ic info data, %d\n", error);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  260  		return error;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  261  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  262  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  263  	/* check whether the data is valid (ex. bus default values) */
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  264  	if (goodix_berlin_is_dummy_data(cd, (const uint8_t *)afe_data, length)) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  265  		dev_err(cd->dev, "fw info data invalid\n");
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  266  		return -EINVAL;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  267  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  268  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  269  	if (!goodix_berlin_checksum_valid((const uint8_t *)afe_data, length)) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  270  		dev_info(cd->dev, "fw info checksum error\n");
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  271  		return -EINVAL;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  272  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  273  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  274  	error = goodix_berlin_convert_ic_info(cd, afe_data, length);
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  275  	if (error)
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  276  		return error;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  277  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  278  	/* check some key info */
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  279  	if (!cd->touch_data_addr) {
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  280  		dev_err(cd->dev, "touch_data_addr is null\n");
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  281  		return -EINVAL;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  282  	}
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  283  
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  284  	return 0;
-7aae63b22cf7e9 Neil Armstrong 2023-10-21 @285  }
-7aae63b22cf7e9 Neil Armstrong 2023-10-21  286  
-
+diff --git a/Documentation/devicetree/bindings/clock/fsl,imx93-analog.yaml b/Documentation/devicetree/bindings/clock/fsl,imx93-analog.yaml
+new file mode 100644
+index 000000000000..c026639fefa3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/fsl,imx93-analog.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/fsl,imx93-analog.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX93 Analog Clock Module
++
++maintainers:
++  - Peng Fan <peng.fan@nxp.com>
++
++description: |
++  NXP i.MX93 Analog module which produces PLL and OSC to Clock Controller
++  Module.
++
++properties:
++  compatible:
++    items:
++      - const: fsl,imx93-anatop
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@44480000 {
++        compatible = "fsl,imx93-anatop";
++        reg = <0x44480000 0x2000>;
++        #clock-cells = <1>;
++    };
++
++...
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.37.1
+
 
