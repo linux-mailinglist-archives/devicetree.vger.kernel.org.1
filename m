@@ -1,137 +1,156 @@
-Return-Path: <devicetree+bounces-10895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C10C7D360C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:04:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3FF7D3648
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 14:19:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53ED8B20C7B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:04:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCA9C1C2089C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 12:19:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D3E1862B;
-	Mon, 23 Oct 2023 12:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D6718656;
+	Mon, 23 Oct 2023 12:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MY2dbfAS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DDTpblGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9C018629;
-	Mon, 23 Oct 2023 12:04:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42501C433C8;
-	Mon, 23 Oct 2023 12:03:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698062644;
-	bh=n/SYhgOy7PYoOMa/qRT/xqvF+V6QNHFqWYg+hu0aDj4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MY2dbfASZER6tuIdGGsFhjcDL09IA9tXH1K2hRODqDJmoBwN1y9Pn+s7KPAjTz4yb
-	 9JPo8v456haLAbc55KVPK4k05l3EDrlzlGgCg7itvHppqavF+wM3J5IreBTFzbhIfB
-	 kLQ24DWYhW6tANl7QVCqPNxPNSeWuykvVc7skyKlqMhb6XeBov4DJsAUrTf0Zkyszr
-	 MzoffD2wL1QGU5T/xqwnIIQzr0YFM0MC/Nh0v2A2Bu5EYeYXfKE6DHwygsEIlmRIyw
-	 AequAVKeZ4TbiC3hjQRz+JPCvpgJpmIy7hm8buNLxBNK59ViC3AYScv2oHmO7kX0eE
-	 YXqYt+lr/L2RQ==
-Date: Mon, 23 Oct 2023 13:03:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
-	conor+dt@kernel.org, conor.dooley@microchip.com,
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
-	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
-	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
-	wens@csie.org, will@kernel.org, ycliang@andestech.com
-Subject: Re: [PATCH v3 RESEND 10/13] dt-bindings: riscv: Add Andes PMU
- extension description
-Message-ID: <20231023-spectacle-module-0516fb35995a@spud>
-References: <20231023004100.2663486-1-peterlin@andestech.com>
- <20231023004100.2663486-11-peterlin@andestech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843B518E06
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 12:19:51 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F75FD;
+	Mon, 23 Oct 2023 05:19:49 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39NCJkV9013225;
+	Mon, 23 Oct 2023 12:19:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6Vh6tIspITarSOm3ojfMImIkGB++8w5DHKrNpdHIc6c=;
+ b=DDTpblGk8PrNhRHaGxETWGlIeJ0DtitF1Xhr0xHwVESLhgwVjTS+3vMew9eMTWPiKtnh
+ vAEiupq+W7c4QsxdCwOJ4g2P2ft9+iw9hBN3NJCGem0vmCnOj7LMop4dEPn+CWKkJvgZ
+ HKZjBdXAiAcREo1ttCWiW5BjnqsDevSbCF311q0rh2axXuszT46EiTpm2MSrN8HQAy9T
+ CTp3hViZ2cUyvgXDEQeT4xTA7qR4vG0RK80gxH5hOlojnetkYe+WOvctNuo+ijqhQNB2
+ N9+LDW3CLfEKH+2WjxhKgBe/UL0sX3cc0LyJdWR7uhNEulZMyrS/tiCpfzt0ZmrggAWk Dg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv6v8ve15-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Oct 2023 12:19:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39NCJ5jv032423
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Oct 2023 12:19:05 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 23 Oct
+ 2023 05:19:00 -0700
+Message-ID: <10848e69-b994-b562-d5d3-25a7ca40cb97@quicinc.com>
+Date: Mon, 23 Oct 2023 20:18:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="P1S9GHX9rhzdHs0r"
-Content-Disposition: inline
-In-Reply-To: <20231023004100.2663486-11-peterlin@andestech.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 0/5] soc/arm64: qcom: add initial version of memory
+ dump
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <70072874-6fa8-46ba-bf26-c35aa6ec7bb6@linaro.org>
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <70072874-6fa8-46ba-bf26-c35aa6ec7bb6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9RoYCXResJIlj9C7uClwCt_KiZaj4zbY
+X-Proofpoint-ORIG-GUID: 9RoYCXResJIlj9C7uClwCt_KiZaj4zbY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-23_10,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=231 mlxscore=0 phishscore=0 clxscore=1015 adultscore=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2310170001 definitions=main-2310230108
 
 
---P1S9GHX9rhzdHs0r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 23, 2023 at 08:40:57AM +0800, Yu Chien Peter Lin wrote:
-> Document the ISA string for Andes Technology performance monitor
-> extension which provides counter overflow interrupt and mode
-> filtering mechanisms.
->=20
-> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> ---
-> Changes v2 -> v3:
->   - New patch
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 5e9291d258d5..e0694e2adbc2 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -246,6 +246,13 @@ properties:
->              in commit 2e5236 ("Ztso is now ratified.") of the
->              riscv-isa-manual.
-> =20
-> +        - const: xandespmu
-> +          description:
-> +            The Andes Technology performance monitor extension for count=
-er overflow
-> +            and privilege mode filtering. For more details, see Counter =
-Related
-> +            Registers in the AX45MP datasheet.
-> +            https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
-5.0.0-Datasheet.pdf
+On 2023/10/23 17:25, Krzysztof Kozlowski wrote:
+> On 23/10/2023 11:20, Zhenhua Huang wrote:
+>> Qualcomm memory dump driver is to cooperate with firmware, providing the
+>> hints(id and size) of storing useful debugging information into pre-allocated
+>> memory. Firmware then does the real data capture. The debugging information
+>> includes cache contents, internal memory, registers.
+>>
+>> The driver dynamically reserves memory and provides the hints(dump id and size)
+>> following specified protocols with firmware. After crash and warm reboot,
+>> firmware scans these information and stores contents into reserved memory
+>> accordingly. Firmware then enters into full dump mode which dumps whole DDR
+>> to host through USB.
+> 
+> How does it relate to minidump?
 
-Does/will this PMU function identically on the other CPUs that support it?
-I assume the answer is yes.
+Minidump is used for dumping *software* related data/information. While 
+the memory dump is used to communicate with firmware to dump *hardware* 
+related information.
 
-Cheers,
-Conor.
+> 
+>>
+>> User then get full dump using PCAT and can parse out these informations.
+>>
+>> Dump id and size are provided by bootconfig. The expected format of a
+>> bootconfig file is as follows:-
+>> memory_dump_config {
+>> 	<node name> {
+>> 		id = <id of HW component>
+>> 		size = <dump size of HW component>
+>> 	}
+>> }
+>>
+>> for example:
+>> memory_dump_config {
+>>          c0_context_dump {
+>> 		id = 0
+>> 		size = 0x800
+>>          }
+>> }
+>>
+>> Test based on 6.6-rc1.
+> 
+> I don't think so (or you miss yamllint).
+> 
+> $ git checkout v6.6-rc1
+> $ b4 am...
+> $ dt_binding_chec
 
-> +
->          - const: xtheadpmu
->            description:
->              The T-Head performance monitor extension for counter overflo=
-w. For more
-> --=20
-> 2.34.1
->=20
+Apologize for this. I actually run it but seems some mistakes here, will 
+be more careful next time.
 
---P1S9GHX9rhzdHs0r
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> qcom,mem-dump.yaml:5:10: [error] string value is redundantly quoted with
+> any quotes (quoted-strings)
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTZhKQAKCRB4tDGHoIJi
-0q2MAP0VirheuKpWgXrPAEWaqZ66m6sp12MVuSOdCvU0US0f/AEA2BobNxX5Jk4Y
-UqRJn9N7kWZtJAvcqBjJPvvs15wdpgc=
-=/DQg
------END PGP SIGNATURE-----
-
---P1S9GHX9rhzdHs0r--
+Thanks,
+Zhenhua
 
