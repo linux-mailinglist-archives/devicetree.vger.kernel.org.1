@@ -1,130 +1,134 @@
-Return-Path: <devicetree+bounces-11044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA6417D3DB2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 829A57D3DC2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 19:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64F7B28154E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:29:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C6CF28154C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 17:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058DE20B31;
-	Mon, 23 Oct 2023 17:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA9D20B3F;
+	Mon, 23 Oct 2023 17:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="FWz9cTzT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqlLv54O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6976820B29
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:29:31 +0000 (UTC)
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E051738
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:29:21 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-5a1d89ff4b9so1830839a12.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 10:29:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698082161; x=1698686961; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Z+lM1psdaIr4vqzMn22M1QYDstohuJWu+yz55IiCnA=;
-        b=FWz9cTzTFoLUyU1GHdasai+atLj/rWbT3oQ+M3vgLxZi/eM8bABmnW1QhAPo7yczEl
-         qa7RleVFtWl4SSuPF800ubDAKJS11TDLKHEz5L94FZf6KTnM3YWBp1EDgC8RM/s4zgMo
-         B1gXNzva7fSzXgxwpzg4zSGIp104FPe2PIum4+KcNHxIfhIWbzAcf1J/XTkub2kwPByE
-         g2xFq70etWLIZWC9ncgPO3T/I98A0h0aPLRqd3T5YWuVikcbniDAWJwvAZV6QpJC7t7G
-         7oXpDk2JvjCDnYALPyNJ0CUx52N4hOFSzJIglMS0oUJBiuXnTWGKH6zEPOZsA8qKmYYP
-         F4uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698082161; x=1698686961;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Z+lM1psdaIr4vqzMn22M1QYDstohuJWu+yz55IiCnA=;
-        b=Or7/hJV3IhOBrBUvKsAwQoE8MoSFUQfDFrUT4G2vbWqIENAlEiwyS8muI2HBCmgfNn
-         f6mE74Mn6qU5DEB3Ur2y3BdV5DwjNjJr8GLRYNGfFitVfOESjpkKE4EofKDGnWmZ5bWW
-         Rt55zGPHE4wneGPaqtJ0VMiRFs5F1o8CY2+TlLYdNcc1jvKmQZmL93/zpS8PGR3SICbL
-         V3bCmnmgYd7y3VmRB0M4q0vZxjCNLfTKw8WULKpRgbYFCMDRz4w1k2Zhoic6S8X1WLBy
-         TAEZ49ACTVV41QnXqPRbD71jQUN08TCZ/KVmJzSui/yeI2NE811hgL3ol4griwLU9ui5
-         Yz2A==
-X-Gm-Message-State: AOJu0Ywk6Z7pHdqhuMlIPZA1Axt6pFKO3MGZ/0K1IIu3qpI19gmMdApO
-	i1gzOmuK1XyWl7pK2qt/cUlxDA==
-X-Google-Smtp-Source: AGHT+IHo6USP3pcRlXKuqJ79woJTXEsC0Rq2g43o4Sr9KzMGrxRYLsluIqp45MjwhV/47Ir+x9eEvA==
-X-Received: by 2002:a05:6a20:daa3:b0:157:609f:6057 with SMTP id iy35-20020a056a20daa300b00157609f6057mr319511pzb.27.1698082161065;
-        Mon, 23 Oct 2023 10:29:21 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([171.76.86.9])
-        by smtp.gmail.com with ESMTPSA id g5-20020aa79f05000000b006be055ab117sm6473194pfr.92.2023.10.23.10.29.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Oct 2023 10:29:20 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922F119BCB
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:31:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AAE8C433C9;
+	Mon, 23 Oct 2023 17:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698082312;
+	bh=RoIE1xXK4oaL8rcaDxktETkJEouLHhkNssWXuP5Epe0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qqlLv54Os7Roj262+yZrxTxWxk6jTaW36NOHexBdLV1QrnXB3c7ChlTjcUyjiEM4T
+	 UhJxniIAuRLa6zq8WeZEzE/EPPvALijyHrcJ0fxP9UKlcFAz8SZhkugcYe4uzDniEc
+	 q5oeD+2GNT1qf8TxI7nm5Qho98DiuSuUX/g0YUFjmiGqFpOMis7QWLeURZLUutX/Z5
+	 +BgQxoD9TM8KvjdN/Qn8+evhg6A+xFMCrShDuqJT8UNIIus5cxc1PARM0W7kAH8LFf
+	 WY70VXysTuqxjD2S4sEEAFJ9Nx54Sv3kfej8hH868br2TwO6daWLNczPwP2qbjYoad
+	 PsVgcZ6Yn1Vsg==
+Date: Mon, 23 Oct 2023 18:31:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v11 14/14] MAINTAINERS: Add entry for RISC-V AIA drivers
-Date: Mon, 23 Oct 2023 22:58:00 +0530
-Message-Id: <20231023172800.315343-15-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231023172800.315343-1-apatel@ventanamicro.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jitao Shi <jitao.shi@mediatek.com>,
+	Xinlei Lee <xinlei.lee@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 02/18] dt-bindings: display: mediatek: ccorr: add binding
+ for MT8365 SoC
+Message-ID: <20231023-reshoot-liquefy-429aacb68694@spud>
+References: <20231023-display-support-v1-0-5c860ed5c33b@baylibre.com>
+ <20231023-display-support-v1-2-5c860ed5c33b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ARUire+fEKHR8b9F"
+Content-Disposition: inline
+In-Reply-To: <20231023-display-support-v1-2-5c860ed5c33b@baylibre.com>
 
-Add myself as maintainer for RISC-V AIA drivers including the
-RISC-V INTC driver which supports both AIA and non-AIA platforms.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- MAINTAINERS | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+--ARUire+fEKHR8b9F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 801a2f44182c..4557675c6086 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18410,6 +18410,20 @@ S:	Maintained
- F:	drivers/mtd/nand/raw/r852.c
- F:	drivers/mtd/nand/raw/r852.h
- 
-+RISC-V AIA DRIVERS
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-+F:	drivers/irqchip/irq-riscv-aplic-*.c
-+F:	drivers/irqchip/irq-riscv-aplic-*.h
-+F:	drivers/irqchip/irq-riscv-imsic-*.c
-+F:	drivers/irqchip/irq-riscv-imsic-*.h
-+F:	drivers/irqchip/irq-riscv-intc.c
-+F:	include/linux/irqchip/riscv-aplic.h
-+F:	include/linux/irqchip/riscv-imsic.h
-+
- RISC-V ARCHITECTURE
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- M:	Palmer Dabbelt <palmer@dabbelt.com>
--- 
-2.34.1
+On Mon, Oct 23, 2023 at 04:40:02PM +0200, Alexandre Mergnat wrote:
+> Display Color Correction for MT8365 is compatible with another SoC.
+> Then, add MT8365 binding along with MT8183 SoC.
 
+This commit message's first line is too vague & the second doesn't make
+sense. I suspect something as succinct as "Document the display colour
+correction on mt<foo>, which is compatible with that of the mt<bar>"
+does what you are looking for.
+
+I suspect this is going to apply to the rest of the series...
+
+Cheers,
+Conor.
+
+
+>=20
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml |=
+ 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cc=
+orr.yaml
+> index 8c2a737237f2..9f8366763831 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> @@ -24,6 +24,9 @@ properties:
+>        - enum:
+>            - mediatek,mt8183-disp-ccorr
+>            - mediatek,mt8192-disp-ccorr
+> +      - items:
+> +          - const: mediatek,mt8365-disp-ccorr
+> +          - const: mediatek,mt8183-disp-ccorr
+>        - items:
+>            - enum:
+>                - mediatek,mt8186-disp-ccorr
+>=20
+> --=20
+> 2.25.1
+>=20
+
+--ARUire+fEKHR8b9F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTauAQAKCRB4tDGHoIJi
+0rG1AQDVNLCTauTO68aeJeXwZERo8tQp+TLgjwiLq+AqZulyQwEA9uXOZb3JrBGq
+ZdzQoSqOFaugEQ+Xa3te/HhYaNLcNwM=
+=fTxV
+-----END PGP SIGNATURE-----
+
+--ARUire+fEKHR8b9F--
 
