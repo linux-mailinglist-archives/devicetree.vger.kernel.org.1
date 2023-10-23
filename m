@@ -1,54 +1,87 @@
-Return-Path: <devicetree+bounces-10701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9525A7D2857
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:12:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949A27D2866
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:15:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C52AC1C20952
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDA62281400
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 02:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E3C111B;
-	Mon, 23 Oct 2023 02:12:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BDC139C;
+	Mon, 23 Oct 2023 02:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="NxUivNus"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466821374
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:12:31 +0000 (UTC)
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id E997A8E;
-	Sun, 22 Oct 2023 19:12:29 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 23 Oct 2023 11:12:29 +0900
-Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
-	by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 54D902059034;
-	Mon, 23 Oct 2023 11:12:29 +0900 (JST)
-Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Mon, 23 Oct 2023 11:12:29 +0900
-Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-	by kinkan2.css.socionext.com (Postfix) with ESMTP id A7B71B1D40;
-	Mon, 23 Oct 2023 11:12:28 +0900 (JST)
-From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To: soc@kernel.org,
-	Arnd Bergmann <arnd@arndb.de>
-Cc: Pierre Gondois <pierre.gondois@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH 2/2] arm64: dts: socionext: add missing cache properties
-Date: Mon, 23 Oct 2023 11:12:21 +0900
-Message-Id: <20231023021221.2884828-3-hayashi.kunihiko@socionext.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4722D111B
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 02:15:51 +0000 (UTC)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2063.outbound.protection.outlook.com [40.107.215.63])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE6C90;
+	Sun, 22 Oct 2023 19:15:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nXuZz74++AdIhkc5X1N3RelCitxwBFF2Nj8yyqMLkA3oPrYrh0KNv6QK2dwL2QsWfFP8czizpeR9ytJllG4s5fxhyDbXD4UPdv2GVg3V/N3JPiOosIAxJG1Ek+xIGsNVG/blGThnyl1FGAbem0fcyYfDruhkkOu+FhkNCQcbhz66mw5lcrl96n9KjRImxMF1bezYLCLdFuWZuWlRIZm5RjoPdmZd8wr7c5uF48lB1+6rylAqx0iEuQGWdyOWSEkO96c7uhiHQ9x5Xy6ciC3hYpmzkptGTWuvHP5XJ7XH/zAiBzw2JoU0OFDaQcCALTUECltq/vvT1K1QSlvGgeADMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p0B6YPQjXsiydo8BAkiftkLvXJ1z6BjLQPPkrd+sWvA=;
+ b=L8zpM+JW+OsXzR8blywPP3P3WTk4ziqCACidPAV9SzonoxNf/XkBPL1CQgGdRxDCwnxf9oL9VXM/ypgpXybFWn9FtxQHEzb0L3lhGVmCqo0xYSe+K86ClvZTgneXVjrFsBVi+cGAtrqIvyqX+3zI4d0eIUY7kYm2roMaSx2E9S3g4D5wtGbu+kajfoWoUBZoiB+Fue+L9Na6asWTozXdbJ9c4po6oBiNnPrhGi422Dt3zO4w0R9DAqX+Jl8dI4UQxbXyBJ9mOtxZfMj1HA7Oo241BNAPVOR1f9jkjT1luV9H4FSuHNFToOCYMrq05Y6OKZTfQCY2M29g62H99Eluhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p0B6YPQjXsiydo8BAkiftkLvXJ1z6BjLQPPkrd+sWvA=;
+ b=NxUivNusgWwuRfMJ6a0423QjO6Py5THyCmP8Vp3GJn8BvkL1mnyMlAopKK86HVSQnJv1eyhxNMqg8Pchflib9uTSezWVxHBjDLiUTvNysgkrE727LhBh0NC+DJsPpbylYnC4dtHF0dMM23/S7f9yK1/CHSFuUXt5gEulGCc3iks=
+Received: from SG2PR02CA0033.apcprd02.prod.outlook.com (2603:1096:3:18::21) by
+ SEZPR03MB8265.apcprd03.prod.outlook.com (2603:1096:101:19c::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Mon, 23 Oct
+ 2023 02:15:44 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:3:18:cafe::6f) by SG2PR02CA0033.outlook.office365.com
+ (2603:1096:3:18::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33 via Frontend
+ Transport; Mon, 23 Oct 2023 02:15:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6933.15 via Frontend Transport; Mon, 23 Oct 2023 02:15:44 +0000
+Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 23 Oct
+ 2023 10:15:41 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01B.nuvoton.com
+ (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Mon, 23 Oct
+ 2023 10:15:41 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 23 Oct 2023 10:15:41 +0800
+From: Seven Lee <wtli@nuvoton.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <YHCHuang@nuvoton.com>,
+	<KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>,
+	<WTLI@nuvoton.com>, <scott6986@gmail.com>, <supercraig0719@gmail.com>,
+	<dardar923@gmail.com>, Seven Lee <wtli@nuvoton.com>
+Subject: [PATCH 1/2] ASoC: dt-bindings: nau8821: Add DMIC slew rate selection
+Date: Mon, 23 Oct 2023 10:15:36 +0800
+Message-ID: <20231023021537.617980-1-wtli@nuvoton.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231023021221.2884828-1-hayashi.kunihiko@socionext.com>
-References: <20231023021221.2884828-1-hayashi.kunihiko@socionext.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,64 +89,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|SEZPR03MB8265:EE_
+X-MS-Office365-Filtering-Correlation-Id: c73590e9-cde0-45d2-6fd0-08dbd36df6ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8tGyU1szvFinj9vSEmQjA+OsdbvGWoobJhZJLkDB/3M14QXu9qAjtGb0Wt2FVhrCtGKp35zavwPdXUJGvbyp9tY4jJH36/qYfV+cxToq+4HV66QfjsQtFg1yyKELf/tBUhRjq8wL8v8eX8xQFt7kIBZwXUq+VVYSQ7d40BiiQWY8TJ9aWI73eKgT+CokulFD7Cmb9bGVJYf3TWTSfNwYjuaUf/fNVYErysPX9CPcO6sR9WFWS3yZY6VcJSnVlnhpfAQ4+njq5BgjUoFKMCHFG3nrG6bDQwuTur8mha4JEv8i3avjDkQosMOwLYd3YgKBbrlt64H9qWfjSq8nPxwITvpy6/c8S/Wo9p7+5FLkERish8R7gTNjI09GCvNDrtcCT2FK3WmFP4MqzCvns2/B/W9rYr0jqiJMraOF6cRpjZ7Sws6rFRYDA30sL91rdDT1/722VAv8iKuvE7m8uax4lq5mK49mBIb+qzmsyMs4neQzl1wcYo3f9MRqjgm5ImiU8V8EK0ih1CsF1nbZLKkAlPVFBE+g9JTyP0Mw9H0eTAL00gcvJT5D8GqzeYUQeN5aamIoWvQbko2gAIhO+qMrWQiZnelQQpnlJ90MfYF7y/v7nQF7yY1CYtfy8IGmhRFabu8cio6KuBnMOrtIkBB7Eq9WjMmWvFax7qSyzpLJMQWpWOI04Addlp4jBgGeevf5W/sXSLaecINW/PMuw3IiS56SQ/QB1TOlhAAV9b8h7WOhf9PjCwhk9ib08JRP6+NMtNEONAeaj6b7IdtBQX6u/uOafMAY1vFa6ENcmy5LLB4=
+X-Forefront-Antispam-Report:
+	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(4636009)(136003)(39860400002)(376002)(346002)(396003)(230922051799003)(186009)(82310400011)(1800799009)(451199024)(64100799003)(46966006)(40470700004)(36840700001)(2906002)(41300700001)(40460700003)(86362001)(5660300002)(7416002)(36756003)(36860700001)(4326008)(8676002)(8936002)(107886003)(478600001)(6666004)(26005)(1076003)(356005)(82740400003)(81166007)(2616005)(6916009)(316002)(54906003)(70206006)(70586007)(40480700001)(426003)(336012)(47076005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2023 02:15:44.5289
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c73590e9-cde0-45d2-6fd0-08dbd36df6ab
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8265
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add input with DMIC slew rate selection
 
-As all level 2 and level 3 caches are unified, add required
-cache-unified property to fix warnings like:
-
-  uniphier-ld11-ref.dtb: l2-cache: 'cache-unified' is a required property
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Signed-off-by: Seven Lee <wtli@nuvoton.com>
 ---
- arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi | 1 +
- arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 2 ++
- arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 1 +
- 3 files changed, 4 insertions(+)
+ .../devicetree/bindings/sound/nuvoton,nau8821.yaml         | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-index 54e58d945fd7..4680571c264d 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-@@ -53,6 +53,7 @@ cpu1: cpu@1 {
- 		l2: l2-cache {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+index 3e54abd4ca74..5f7f2eed4834 100644
+--- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+@@ -89,6 +89,12 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     default: 3072000
  
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-index 18390cba2eda..335093da6573 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-@@ -87,11 +87,13 @@ cpu3: cpu@101 {
- 		a72_l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		a53_l2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-index 56e037900818..d6e3cc6fdb25 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-@@ -84,6 +84,7 @@ cpu3: cpu@3 {
- 		l2: l2-cache {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
++  nuvoton,dmic-slew-rate-selection:
++    description: number from 0 to 7 that sets DMIC slew rate.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 7
++    default: 0
++
+   nuvoton,left-input-single-end:
+     description: Enable left input with single-ended settings if set.
+         For the headset mic application, the single-ended control is
+@@ -127,6 +133,7 @@ examples:
+             nuvoton,jack-insert-debounce = <7>;
+             nuvoton,jack-eject-debounce = <0>;
+             nuvoton,dmic-clk-threshold = <3072000>;
++            nuvoton,dmic-slew-rate-selection= <0>;
+             #sound-dai-cells = <0>;
+         };
+     };
 -- 
 2.25.1
 
