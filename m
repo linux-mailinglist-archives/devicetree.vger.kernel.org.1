@@ -1,357 +1,177 @@
-Return-Path: <devicetree+bounces-10720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3A07D2950
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:37:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 793F17D295B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5AAF2813B6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:37:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A565B20D6C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 04:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC86186D;
-	Mon, 23 Oct 2023 04:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285784C7D;
+	Mon, 23 Oct 2023 04:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EqgrGjZD"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="pnNzc+dO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD31CA40
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:37:14 +0000 (UTC)
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C465CFC;
-	Sun, 22 Oct 2023 21:37:12 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1c9e072472bso17039185ad.2;
-        Sun, 22 Oct 2023 21:37:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698035832; x=1698640632; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HbBRX2jJlyHvVSg6fxWudjXJuNB/hXK9P8KU1NFtc+8=;
-        b=EqgrGjZD94+rtwv9HELrsMIKAfiy9CUsZAVaJlXEC6dwq8lamZYuClFVRbhV+gQn/o
-         32SeXJA+XtEWePFjMumiNYS5cSs2OVwpGKXnZ7RUS0Ec1xxZRIp3YocVWtt2y/FMtc9B
-         7i2/a/mfMKxET8qUlt/Ge/5frcLbbz8qEzPwSgzCf8U+/B7OiJ8FrDNU+jyAlEDtPe2d
-         7/MveoTY5CW9fPf2/3P0l3bK3XcrJ9GBRlcvKPUDnMHoqv2onoh2N38ClVM0riMqEozS
-         b5AMlVtD92Vxa0c5s728yStYeRov35gxv4kbCbWCD63p4MFepOzPRKqQtbPiUTAFqxhS
-         6BcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698035832; x=1698640632;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HbBRX2jJlyHvVSg6fxWudjXJuNB/hXK9P8KU1NFtc+8=;
-        b=PxDrlCSbAgFLmp21cYMPAD8AaLjESQXBiuCrXEBYwTwjOLJ20HFU++2uSyl7e3xFZT
-         6BSsYDJeCw73R8TJRITGyd834UbVMkCdIua4k9qD5SV1TxMB7kmThXyAFqvF7TkeAHzc
-         azdCJr7qtBWQyI0dKnWPmp3wCNVksUN36/OyOrbtuyUDfOXmhjrmCS/3ed92CUcdweHZ
-         fmog4Khkpb45P5ZIvZDlkZ5IAmIn8W4I1DYZe6i7JVa2Tqp3K6E8dY9ZZjR221kmy/eW
-         pO51ZW0V2EAJOj6mr8rJHpcHc62LLC+WVLU/1ZFZygK7e3a3ZEH2MVqh36SFQgod8RoZ
-         6OsA==
-X-Gm-Message-State: AOJu0Ywc+WsiNuH7hRuRgTfzykeGTRO+bcMo6YHYlylRpORCA00dpbhZ
-	Q0Xwxd19tmxFZ0mAePU5lN3MduFn16k=
-X-Google-Smtp-Source: AGHT+IG3Cv1PrEpfwdKo9dnDJh83E0rbwK+l6VxU2v/xHO0SRF8V3dClgsiiJ0IsXHwuiM7cS71bQg==
-X-Received: by 2002:a17:902:7407:b0:1ca:86db:1d31 with SMTP id g7-20020a170902740700b001ca86db1d31mr6216447pll.7.1698035831964;
-        Sun, 22 Oct 2023 21:37:11 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:40e3:3912:b22a:135e])
-        by smtp.gmail.com with ESMTPSA id a8-20020a170902ecc800b001b8a2edab6asm5097264plh.244.2023.10.22.21.37.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Oct 2023 21:37:11 -0700 (PDT)
-Date: Sun, 22 Oct 2023 21:37:08 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bastien Nocera <hadess@hadess.net>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/4] Input: add core support for Goodix Berlin
- Touchscreen IC
-Message-ID: <ZTX4dPa3CxZacDph@google.com>
-References: <20231021-topic-goodix-berlin-upstream-initial-v9-0-13fb4e887156@linaro.org>
- <20231021-topic-goodix-berlin-upstream-initial-v9-2-13fb4e887156@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5F54A2A
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:45:59 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EA23D5B;
+	Sun, 22 Oct 2023 21:45:56 -0700 (PDT)
+X-UUID: 0ab0000c715f11ee8051498923ad61e6-20231023
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=MLtZa0IjzU6Ae4rzeGnDkbO/Z8kVW5GCiHvS2GPUrPM=;
+	b=pnNzc+dOXEsk8RuRvRmK8IeJakuZoFHVFfLyrZvC9U0wFcd/B8xlUVIV4wPMxQZqO5ujMdUQ4HcKy/ZNyym7EHp56p1mpeks/4MRGP6v5bc9tr5R36BvMUHJwNktHFfsngfGLIjo+ReChikD8YzdhmBAVOzL5nyCNcPVoDfYOrE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:c542129e-93a8-4037-a35a-4d82f5fd3a12,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:a171a5fb-4a48-46e2-b946-12f04f20af8c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 0ab0000c715f11ee8051498923ad61e6-20231023
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1968020672; Mon, 23 Oct 2023 12:45:51 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 23 Oct 2023 12:45:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 23 Oct 2023 12:45:49 +0800
+From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Chun-Kuang Hu
+	<chunkuang.hu@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>, Jason-ch
+ Chen <jason-ch.chen@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>,
+	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>, Singo Chang
+	<singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Shawn Sung
+	<shawn.sung@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jeffrey Kardatzke
+	<jkardatzke@google.com>
+Subject: [PATCH v2 00/11] Add mediate-drm secure flow for SVP
+Date: Mon, 23 Oct 2023 12:45:37 +0800
+Message-ID: <20231023044549.21412-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231021-topic-goodix-berlin-upstream-initial-v9-2-13fb4e887156@linaro.org>
+Content-Type: text/plain
+X-MTK: N
 
-Hi Neil,
+The patch series provides drm driver support for enabling secure video
+path (SVP) playback on MediaiTek hardware in the Linux kernel.
 
-On Sat, Oct 21, 2023 at 01:09:24PM +0200, Neil Armstrong wrote:
-> +static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
-> +{
-> +	u8 afe_data[GOODIX_BERLIN_IC_INFO_MAX_LEN];
+Memory Definitions:
+secure memory - Memory allocated in the TEE (Trusted Execution
+Environment) which is inaccessible in the REE (Rich Execution
+Environment, i.e. linux kernel/userspace).
+secure handle - Integer value which acts as reference to 'secure
+memory'. Used in communication between TEE and REE to reference
+'secure memory'.
+secure buffer - 'secure memory' that is used to store decrypted,
+compressed video or for other general purposes in the TEE.
+secure surface - 'secure memory' that is used to store graphic buffers.
 
-You probably already saw the kernel test robot message, I think we
-should allocate this buffer in the heap (and free it once its no longer
-needed).
+Memory Usage in SVP:
+The overall flow of SVP starts with encrypted video coming in from an
+outside source into the REE. The REE will then allocate a 'secure
+buffer' and send the corresponding 'secure handle' along with the
+encrypted, compressed video data to the TEE. The TEE will then decrypt
+the video and store the result in the 'secure buffer'. The REE will
+then allocate a 'secure surface'. The REE will pass the 'secure
+handles' for both the 'secure buffer' and 'secure surface' into the
+TEE for video decoding. The video decoder HW will then decode the
+contents of the 'secure buffer' and place the result in the 'secure
+surface'. The REE will then attach the 'secure surface' to the overlay
+plane for rendering of the video.
 
-> +	__le16 length_raw;
-> +	u16 length;
-> +	int error;
-> +
-> +	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +				&length_raw, sizeof(length_raw));
-> +	if (error) {
-> +		dev_info(cd->dev, "failed get ic info length, %d\n", error);
-> +		return error;
-> +	}
-> +
-> +	length = le16_to_cpu(length_raw);
-> +	if (length >= GOODIX_BERLIN_IC_INFO_MAX_LEN) {
-> +		dev_info(cd->dev, "invalid ic info length %d\n", length);
-> +		return -EINVAL;
-> +	}
-> +
-> +	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_IC_INFO_ADDR,
-> +				afe_data, length);
-> +	if (error) {
-> +		dev_info(cd->dev, "failed get ic info data, %d\n", error);
-> +		return error;
-> +	}
-> +
-> +	/* check whether the data is valid (ex. bus default values) */
-> +	if (goodix_berlin_is_dummy_data(cd, (const uint8_t *)afe_data, length)) {
+Everything relating to ensuring security of the actual contents of the
+'secure buffer' and 'secure surface' is out of scope for the REE and
+is the responsibility of the TEE.
 
-This cast is not needed.
+DRM driver handles allocation of gem objects that are backed by a 'secure
+surface' and for displaying a 'secure surface' on the overlay plane.
+This introduces a new flag for object creation called
+DRM_MTK_GEM_CREATE_ENCRYPTED which indicates it should be a 'secure
+surface'. All changes here are in MediaTek specific code.
 
-> +		dev_err(cd->dev, "fw info data invalid\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!goodix_berlin_checksum_valid((const uint8_t *)afe_data, length)) {
+---
+Based on 3 series and 1 patch:
+[1] dma-buf: heaps: Add MediaTek secure heap
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=782776
 
-This cast is not needed either.
+[2] add driver to support secure video decoder
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=782922
 
-> +		dev_info(cd->dev, "fw info checksum error\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	error = goodix_berlin_convert_ic_info(cd, afe_data, length);
-> +	if (error)
-> +		return error;
-> +
-> +	/* check some key info */
-> +	if (!cd->touch_data_addr) {
-> +		dev_err(cd->dev, "touch_data_addr is null\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void goodix_berlin_parse_finger(struct goodix_berlin_core *cd,
-> +				       const void *buf, int touch_num)
-> +{
-> +	const struct goodix_berlin_touch_data *touch_data = buf;
-> +	int i;
-> +
-> +	/* Check for data validity */
-> +	for (i = 0; i < touch_num; i++) {
-> +		unsigned int id;
-> +
-> +		id = FIELD_GET(GOODIX_BERLIN_TOUCH_ID_MASK, touch_data[i].id);
-> +
-> +		if (id >= GOODIX_BERLIN_MAX_TOUCH) {
-> +			dev_warn(cd->dev, "invalid finger id %d\n", id);
-> +			return;
+[3] soc: mediatek: Add register definitions for GCE
+- https://patchwork.kernel.org/project/linux-mediatek/patch/20231017064717.21616-2-shawn.sung@mediatek.com/
 
-Is it important to abort entire packet if one if the slots has incorrect
-data? Can we simply skip over these contacts?
+[4] Add CMDQ secure driver for SVP
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=795502
+---
+Change in v2:
 
-> +		}
-> +	}
-> +
-> +	/* Report finger touches */
-> +	for (i = 0; i < touch_num; i++) {
-> +		input_mt_slot(cd->input_dev,
-> +			      FIELD_GET(GOODIX_BERLIN_TOUCH_ID_MASK,
-> +					touch_data[i].id));
-> +		input_mt_report_slot_state(cd->input_dev, MT_TOOL_FINGER, true);
-> +
-> +		touchscreen_report_pos(cd->input_dev, &cd->props,
-> +				       __le16_to_cpu(touch_data[i].x),
-> +				       __le16_to_cpu(touch_data[i].y),
-> +				       true);
-> +		input_report_abs(cd->input_dev, ABS_MT_TOUCH_MAJOR,
-> +				 __le16_to_cpu(touch_data[i].w));
-> +	}
-> +
-> +	input_mt_sync_frame(cd->input_dev);
-> +	input_sync(cd->input_dev);
-> +}
-> +
-> +static void goodix_berlin_touch_handler(struct goodix_berlin_core *cd,
-> +					const void *pre_buf, u32 pre_buf_len)
-> +{
-> +	static u8 buffer[GOODIX_BERLIN_IRQ_READ_LEN(GOODIX_BERLIN_MAX_TOUCH)];
+1. remove the DRIVER_RDNDER flag for mtk_drm_ioctl
+2. move cmdq_insert_backup_cookie into client driver
+3. move secure gce node define from mt8195-cherry.dtsi to mt8195.dtsi
+---
 
-No, please no static data. The drivers should be ready to handle more
-than one device on a system. If the buffer is large-ish put it into
-goodix_berlin_core.
+CK Hu (1):
+  drm/mediatek: Add interface to allocate MediaTek GEM buffer.
 
+Jason-JH.Lin (10):
+  drm/mediatek/uapi: Add DRM_MTK_GEM_CREATED_ENCRYPTTED flag
+  drm/mediatek: Add secure buffer control flow to mtk_drm_gem
+  drm/mediatek: Add secure identify flag and funcution to mtk_drm_plane
+  drm/mediatek: Add mtk_ddp_sec_write to config secure buffer info
+  drm/mediatek: Add get_sec_port interface to mtk_ddp_comp
+  drm/mediatek: Add secure layer config support for ovl
+  drm/mediatek: Add secure layer config support for ovl_adaptor
+  drm/mediatek: Add secure flow support to mediatek-drm
+  drm/mediatek: Add cmdq_insert_backup_cookie before secure pkt finalize
+  arm64: dts: mt8195: Add secure mbox settings for vdosys
 
-> +	u8 point_type, touch_num;
-> +	int error;
-> +
-> +	/* copy pre-data to buffer */
-> +	memcpy(buffer, pre_buf, pre_buf_len);
-> +
-> +	touch_num = FIELD_GET(GOODIX_BERLIN_TOUCH_COUNT_MASK,
-> +			      buffer[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]);
-> +
-> +	if (touch_num > GOODIX_BERLIN_MAX_TOUCH) {
-> +		dev_warn(cd->dev, "invalid touch num %d\n", touch_num);
-> +		return;
-> +	}
-> +
-> +	if (touch_num) {
-> +		/* read more data if more than 2 touch events */
-> +		if (unlikely(touch_num > 2)) {
-> +			error = regmap_raw_read(cd->regmap,
-> +						cd->touch_data_addr + pre_buf_len,
-> +						&buffer[pre_buf_len],
-> +						(touch_num - 2) * GOODIX_BERLIN_BYTES_PER_POINT);
-> +			if (error) {
-> +				dev_err_ratelimited(cd->dev, "failed to get touch data, %d\n",
-> +						    error);
-> +				return;
-> +			}
-> +		}
-> +
-> +		point_type = FIELD_GET(GOODIX_BERLIN_POINT_TYPE_MASK,
-> +				       buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN]);
-> +
-> +		if (point_type == GOODIX_BERLIN_POINT_TYPE_STYLUS ||
-> +		    point_type == GOODIX_BERLIN_POINT_TYPE_STYLUS_HOVER) {
-> +			dev_warn_once(cd->dev, "Stylus event type not handled\n");
-> +			return;
-> +		}
-> +
-> +		if (!goodix_berlin_checksum_valid(&buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN],
-> +						  touch_num * GOODIX_BERLIN_BYTES_PER_POINT + 2)) {
-> +			dev_err(cd->dev, "touch data checksum error, data: %*ph\n",
-> +				touch_num * GOODIX_BERLIN_BYTES_PER_POINT + 2,
-> +				&buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN]);
-> +			return;
-> +		}
-> +	}
-> +
-> +	goodix_berlin_parse_finger(cd, &buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN],
-> +				   touch_num);
-> +}
-> +
-> +static int goodix_berlin_request_handle_reset(struct goodix_berlin_core *cd)
-> +{
-> +	gpiod_set_value(cd->reset_gpio, 1);
-> +	usleep_range(2000, 2100);
-> +	gpiod_set_value(cd->reset_gpio, 0);
-> +
-> +	msleep(GOODIX_BERLIN_NORMAL_RESET_DELAY_MS);
-
-The reset line handling is optional, we should skip waits if there is
-no GPIO defined for the board. 
-
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t goodix_berlin_threadirq_func(int irq, void *data)
-> +{
-> +	struct goodix_berlin_core *cd = data;
-> +	u8 buf[GOODIX_BERLIN_IRQ_READ_LEN(2)];
-> +	u8 event_status;
-> +	int error;
-> +
-> +	/* First, read buffer with space for 2 touch events */
-> +	error = regmap_raw_read(cd->regmap, cd->touch_data_addr, buf,
-> +				GOODIX_BERLIN_IRQ_READ_LEN(2));
-> +	if (error) {
-> +		dev_err_ratelimited(cd->dev, "failed get event head data, %d\n", error);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	if (buf[GOODIX_BERLIN_STATUS_OFFSET] == 0)
-> +		return IRQ_HANDLED;
-> +
-> +	if (!goodix_berlin_checksum_valid(buf, GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN)) {
-> +		dev_warn_ratelimited(cd->dev, "touch head checksum err : %*ph\n",
-> +				     GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN, buf);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	event_status = buf[GOODIX_BERLIN_STATUS_OFFSET];
-> +
-> +	if (event_status & GOODIX_BERLIN_TOUCH_EVENT)
-> +		goodix_berlin_touch_handler(cd, buf, GOODIX_BERLIN_IRQ_READ_LEN(2));
-> +
-> +	if (event_status & GOODIX_BERLIN_REQUEST_EVENT) {
-> +		switch (buf[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]) {
-> +		case GOODIX_BERLIN_REQUEST_CODE_RESET:
-> +			goodix_berlin_request_handle_reset(cd);
-> +			break;
-> +
-> +		default:
-> +			dev_warn(cd->dev, "unsupported request code 0x%x\n",
-> +				 buf[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]);
-> +		}
-> +	}
-> +
-> +	/* Clear up status field */
-> +	regmap_write(cd->regmap, cd->touch_data_addr, 0);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int goodix_berlin_input_dev_config(struct goodix_berlin_core *cd,
-> +					  const struct input_id *id)
-> +{
-> +	struct input_dev *input_dev;
-> +	int error;
-> +
-> +	input_dev = devm_input_allocate_device(cd->dev);
-> +	if (!input_dev)
-> +		return -ENOMEM;
-> +
-> +	cd->input_dev = input_dev;
-> +	input_set_drvdata(input_dev, cd);
-> +
-> +	input_dev->name = "Goodix Berlin Capacitive TouchScreen";
-> +	input_dev->phys = "input/ts";
-> +
-> +	input_dev->id = *id;
-> +
-> +	input_set_abs_params(cd->input_dev, ABS_MT_POSITION_X, 0, SZ_64K - 1, 0, 0);
-> +	input_set_abs_params(cd->input_dev, ABS_MT_POSITION_Y, 0, SZ_64K - 1, 0, 0);
-> +	input_set_abs_params(cd->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
-> +
-> +	touchscreen_parse_properties(cd->input_dev, true, &cd->props);
-> +
-> +	error = input_mt_init_slots(cd->input_dev, GOODIX_BERLIN_MAX_TOUCH,
-> +				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-> +	if (error)
-> +		return error;
-> +
-> +	return input_register_device(cd->input_dev);
-
-Please in functions with multiple possible failure paths use format
-
-	error = op(...);
-	if (error)
-		return error;
-
-	return 0;
-
-Thanks.
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   6 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   3 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  31 +-
+ .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  15 +
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       | 274 +++++++++++++++++-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.h       |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |  14 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  13 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  13 +
+ drivers/gpu/drm/mediatek/mtk_drm_gem.c        | 121 ++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_gem.h        |  16 +
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c      |   7 +
+ drivers/gpu/drm/mediatek/mtk_drm_plane.h      |   2 +
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  11 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.h       |   2 +
+ include/uapi/drm/mediatek_drm.h               |  59 ++++
+ 16 files changed, 570 insertions(+), 18 deletions(-)
+ create mode 100644 include/uapi/drm/mediatek_drm.h
 
 -- 
-Dmitry
+2.18.0
+
 
