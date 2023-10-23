@@ -1,281 +1,164 @@
-Return-Path: <devicetree+bounces-10924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677057D3813
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46AEA7D386A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 15:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 252A7280E94
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:30:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 011EF2812BC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AB619BDB;
-	Mon, 23 Oct 2023 13:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8851A265;
+	Mon, 23 Oct 2023 13:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=analog.onmicrosoft.com header.i=@analog.onmicrosoft.com header.b="EMow/M0p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bF6GF3aa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B1912B95
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:30:32 +0000 (UTC)
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9F9E5;
-	Mon, 23 Oct 2023 06:30:31 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39NBUgKh018146;
-	Mon, 23 Oct 2023 09:30:23 -0400
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2100.outbound.protection.outlook.com [104.47.58.100])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tvuseyv3r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 09:30:23 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J6j30BCNO6GdD2B/03oGFGiaDSWoDGLXBPPgNJIKag3eXlX1jaJC3puijvO7hdmyeWJt1SM5zMf8n/yEXwTD4y9ZkRYAjP7AJsZnXrumPbn6OhW75QlWGTMj7rXtFxyqxZfPwdqP2mojifwu2GXeiOzPQ6FUSyS16+s4woubBnjPK4/+juIJ6Ro2lGsGpA1CezvwJaWFoSJ99awKmH3lVUK6gRn7l2BSvg+KDAKV+fj2yTYNRvUdGLJp84kcMrY6KgXwctVthr2nhWdIESed/UPUAy6YXcfUYD1dd69PR2mwKBfCBc1mQe/GptjNsRUBZJ5N2y+gEboX1fdRNPbqnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Omq5cgscLayQJS6duR4r/Lj8BeFhNvjY3TohrwC9y2Y=;
- b=I/ZX6MUa0oML9RI8hOqll1s9/lG67rMOm5xYLwlqC5yYvtAuiU594CxT7E7TN8u67jG8+3pkQrRC2P+JssQfR1ENlMB5d9GpXBUJrXoMLfTmrj/7BuI2pkOLtQM3lBBUwzfTlFRnR1F5JCs7reVdvud+XzeZf9nrzV6CAEtL/Do+WnHkSFG3WDcF3LZnOn1ewUlwDgSbhU7PbGhGojw9I21n9lZYkvPdVeELDN1u3UycqtdOADi+/Bv0JW/haPwjTxY25rfFwZfe7ssSToC+AMCIhL9gVp3a5LWbQSiPCRxGNYME3zPsvY0tbxbVVYyUb6/0+kCiYc3htT2bXQwThQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292A223DE
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 13:50:10 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C9CE4
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:50:08 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c503dbe50dso49889671fa.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:50:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Omq5cgscLayQJS6duR4r/Lj8BeFhNvjY3TohrwC9y2Y=;
- b=EMow/M0pW8GavZ0RZJ/wY4EcNpklrOdItJdoZlKe2zYwQ4uCLmnWU+AwmB7XNAQpnYQOG49DedH65YRWiEzHjAOmFp3bsAKjq4pLg3uy93fZedozEIoMqOv7+xqD++qz+0GvoRYO7Bkoby4XFC+HfWSiH6E5qcUZK7Mbrh2kZag=
-Received: from BN7PR03MB4545.namprd03.prod.outlook.com (2603:10b6:408:e::31)
- by SA3PR03MB7304.namprd03.prod.outlook.com (2603:10b6:806:2fa::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.11; Mon, 23 Oct
- 2023 13:30:21 +0000
-Received: from BN7PR03MB4545.namprd03.prod.outlook.com
- ([fe80::e2c3:4dcc:c87e:bbca]) by BN7PR03MB4545.namprd03.prod.outlook.com
- ([fe80::e2c3:4dcc:c87e:bbca%5]) with mapi id 15.20.6886.034; Mon, 23 Oct 2023
- 13:30:21 +0000
-From: "Balas, Eliza" <Eliza.Balas@analog.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>
-Subject: RE: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Thread-Topic: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Thread-Index: 
- AQHaAow+3kwQRklh0USw0Mt3uyHh0rBRZjoAgAEeXwCAADqhAIAEjRKQgAAQXYCAAANoYA==
-Date: Mon, 23 Oct 2023 13:30:21 +0000
-Message-ID: 
- <BN7PR03MB4545DA4A9404F349170CBA1097D8A@BN7PR03MB4545.namprd03.prod.outlook.com>
-References: <20231019125646.14236-1-eliza.balas@analog.com>
- <20231019125646.14236-3-eliza.balas@analog.com>
- <2023101917-cork-numeric-dab8@gregkh>
- <BN7PR03MB4545E7EAB2D72B9098C30C6797DBA@BN7PR03MB4545.namprd03.prod.outlook.com>
- <2023102030-resort-glance-57ef@gregkh>
- <BN7PR03MB4545FF54B96514EC9F41887E97D8A@BN7PR03MB4545.namprd03.prod.outlook.com>
- <2023102339-outcast-scone-5a63@gregkh>
-In-Reply-To: <2023102339-outcast-scone-5a63@gregkh>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: 
- =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcZWJhbGFzXGFw?=
- =?us-ascii?Q?cGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEy?=
- =?us-ascii?Q?OWUzNWJcbXNnc1xtc2ctNGU2ZDY2ZmItNzFhOC0xMWVlLThkYjgtNzQwNGYx?=
- =?us-ascii?Q?NTcwNWY3XGFtZS10ZXN0XDRlNmQ2NmZjLTcxYTgtMTFlZS04ZGI4LTc0MDRm?=
- =?us-ascii?Q?MTU3MDVmN2JvZHkudHh0IiBzej0iNzk4NiIgdD0iMTMzNDI1NDE0MTkwOTUw?=
- =?us-ascii?Q?OTIzIiBoPSJ5STFzMEFUN2NRamVqRUphY0VmcjBzZUk2TEU9IiBpZD0iIiBi?=
- =?us-ascii?Q?bD0iMCIgYm89IjEiIGNpPSJjQUFBQUVSSFUxUlNSVUZOQ2dVQUFFb0NBQUFM?=
- =?us-ascii?Q?YXR3UXRRWGFBUlc1c09jaXNWL1VGYm13NXlLeFg5UURBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBSEFBQUFEYUFRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?RUFBUUFCQUFBQWxHVEdWZ0FBQUFBQUFBQUFBQUFBQUo0QUFBQmhBR1FBYVFC?=
- =?us-ascii?Q?ZkFITUFaUUJqQUhVQWNnQmxBRjhBY0FCeUFHOEFhZ0JsQUdNQWRBQnpBRjhB?=
- =?us-ascii?Q?WmdCaEFHd0Fjd0JsQUY4QVpnQnZBSE1BYVFCMEFHa0FkZ0JsQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFF?=
- =?us-ascii?Q?QUFBQUFBQUFBQWdBQUFBQUFuZ0FBQUdFQVpBQnBBRjhBY3dCbEFHTUFkUUJ5?=
- =?us-ascii?Q?QUdVQVh3QndBSElBYndCcUFHVUFZd0IwQUhNQVh3QjBBR2tBWlFCeUFERUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFBQUNBQUFB?=
- =?us-ascii?Q?QUFDZUFBQUFZUUJrQUdrQVh3QnpBR1VBWXdCMUFISUFaUUJmQUhBQWNnQnZB?=
- =?us-ascii?Q?R29BWlFCakFIUUFjd0JmQUhRQWFRQmxBSElBTWdBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFJQUFBQUFBQT09Ii8+PC9tZXRh?=
- =?us-ascii?Q?Pg=3D=3D?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN7PR03MB4545:EE_|SA3PR03MB7304:EE_
-x-ms-office365-filtering-correlation-id: 3365af04-3256-4f56-121f-08dbd3cc3494
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- F3Lfd7Zl6Cz3yA7dMiWuO6HwHg4Jk0lNXxlpA1FrNj4y8cnIfpZ0RrqKo0Qf5xyAM07Pkwhd1gQ9DmmfpRXg1aAiMWpO6qKmAqazjjndVE2dgnEDbk1+dXGzXLG1nKoELObyJKJtPwyKmitqaUKdaZWL2HAajIzkzzggQkMHMTBrgaU3GUhLYtresY0EztrK2ZRT2M0/DOQ/D/+KDrpGWwwBy2UpWlcDHb830TYJPp/bsaRzeb+8Up8Pohes1lTBZrNEUVs3/pPBqLrXzRfoX5TCgxtHIIXTMJFSzvavw7bUaeMsawzER5nW8WC6yhD4v5Z1WxVXqw+/FTOqRrBvgaO7twvAzP3wg2Y9ly5X4k8HTivSiye4lYPEY9yRcQ8Ra4vKZfvtIELOTfXPjHNXagYGBmcioHMp+xTF7/+YXgWytY6RYannUmKfb1ZUNMDnffaylnvpL1zv/Dr37P5zsvgKLgvZ/5dzLfIvL7dPa1+5fRKB7yJ2GUHpE+IzU8V5hftfQDNyPn4qJN5RAt3gmf20S4qCCIILdbaJGNQ9FC63GNFpuhRAVVAVXJLBHlQkZyCuauT24ZkgaRHnmy/Wb+m6AqGJXH8cc3dtiEDwOP8=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR03MB4545.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(346002)(376002)(136003)(366004)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(33656002)(55016003)(54906003)(6916009)(38070700009)(66556008)(66446008)(316002)(64756008)(66476007)(66946007)(86362001)(38100700002)(122000001)(76116006)(53546011)(83380400001)(26005)(71200400001)(6506007)(7696005)(9686003)(8936002)(2906002)(966005)(478600001)(5660300002)(8676002)(41300700001)(4326008)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?6VBBJ+wjIFwX1a2WVkOUN6cocqmK0Ymw1mM6mH9mtA897XRZyZycfgqvZbt2?=
- =?us-ascii?Q?5HDJy3Cuw6s3ijjqbd7cgvlDHr5m/BcwrDA8cVKW/aoRHyQkI7tMIwDH8TzX?=
- =?us-ascii?Q?DcJyZsLS0R/IGn+V7mgr5+lxeO+pgbCynmZM+fDSyn0zyXjgL5mrROAZFBrs?=
- =?us-ascii?Q?LbsQ4MEQ9/nw308iUf46JdqMBDQk6NHf1pM7XHlUIO4GJ6rRzKJ6hXri6gPe?=
- =?us-ascii?Q?YsbBG2zpIwrRTw5glQIhpja6DgIRGOXZo5+KOoquM1+Et+74cIwUGo4PhWHW?=
- =?us-ascii?Q?Z0E/dgAGD/AAd/psATUzTbZDplpL/y4jRAi4ANzdQhmRpFbz1nxqqkgoO44S?=
- =?us-ascii?Q?aohzSYvwjKG6vzPafiJG9yVdNMi0gVnBrNqZjtuvhaXA0E/6M0O7W2gMaAqM?=
- =?us-ascii?Q?7ZE5VTQ6I+TESLo0kjK2kmlm1irsqw8S44WJvsLwK8/vBPYdHodj/RZ/iT3o?=
- =?us-ascii?Q?Aj40u7BD8sQdOa4rHrxjGCxEHOtOXdjlbcRZoRg7ESseZARRjt3jEFeBAAAV?=
- =?us-ascii?Q?R7Bn7BK8fmpM4IF5Wngxe1TpENQLsNvxNzJz+t2Vb5iBbBXjVP7FJ3iExmAp?=
- =?us-ascii?Q?27WRVY1mPljupUkHwX/HMmbVlZMtykUFkXOMkv4VAnvBt7Qz6naF/oU60dY8?=
- =?us-ascii?Q?fg/QlogmZFX14EOvJPv3aUIg0f1Vci+F6wwhUy5Rg54dVL4IMKMwOPzTapHc?=
- =?us-ascii?Q?EWDMotK5BPYrj/ZtLvkgeV+TYbNB8pxi+TucdnxomRQZUgBN6yoVYOrdlVOG?=
- =?us-ascii?Q?G/BVMxP2s5lGFgC2ShwOOmT5d6kCs5+K9zFLSWzriwu09pfZ+tJJvPV8AbMV?=
- =?us-ascii?Q?DPqGuztnRjcHbS0f/83bBCW08k1GtBka34ZgwJX8/4HXiAAGFRR32veirP8h?=
- =?us-ascii?Q?lq62YT3dtLiC0dF4L1oK2/58Llj2rLmiiGEIueRD5iGKmCwdXxa3tw91FLRJ?=
- =?us-ascii?Q?TX0c9Cc0DdhP877C4xilKtvix0I8xU4wHABr41wyLKq2Ko/vDnqP9otS9CIz?=
- =?us-ascii?Q?1ARNhxsjI6MAA+wTUxuzsAl87QnktVPTNiwHrvi45g8qfN/TgZU9/bjN+gaI?=
- =?us-ascii?Q?vNfRav7pDE0/2q6RQ7NtQ4PhIpQuHawWIk2+gDLkx/YcQUmzMCfO5A2a88/z?=
- =?us-ascii?Q?0ZkwA1IcUIxMOZkAtZi5yof4T+zCrIC/PUnbjyOpbHZ+eDjcXKtYqNHPXt8Z?=
- =?us-ascii?Q?6apoJnMhSP/Cn+3qx/N0kNuhikd/5nrhk2GWN0OSGqYntEM3G2d/ocbKwCdu?=
- =?us-ascii?Q?+B3NcxJmAbFhQvHf0QFC4IWfqtBwty/QsSjf3AAk8xqBEsomwCBczpONEdHY?=
- =?us-ascii?Q?XNG9ivO6U0cVos3U7mqvjNWjMHfnZYjvYbsi1rxtfa+//P3my3Mg/a/bd2Pu?=
- =?us-ascii?Q?k+mFr1lMbZv5TiuZGw/pOU66aFlM5wFOriSWw7UZs1V5gsO3oeA3T4htFs5e?=
- =?us-ascii?Q?x8Zxb2o9/pP4lLGIvCuwT3MvFgroCBUEQ1oztEz4+sKM13YhckNKebKPfzWx?=
- =?us-ascii?Q?q6MCXzp8mX12qsL3cXvaZW7PusOXrTeTDSwMxFIiF4BJIq+aYRLNoL89JciT?=
- =?us-ascii?Q?VbdhohAjLD+9dBiyY6ScBY3YxGtonxwAmtBDZu/F?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google; t=1698069006; x=1698673806; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p4dzCg7KZAa1pqs+2lmIym8cEv1bEx0TEnLwptO2/Vg=;
+        b=bF6GF3aa+B8fKRZaclavnJeA26/axrIhpi2izruqx39LdI6xayPUjC8KtCXUIYrxAV
+         VlwB+h65a2VcB5WEOvXuY4Vx5cWDYTP84TXmSh09EDJLWMun2FHgyNwWtMKwiAbY+0Ud
+         Elx2aEZPriKRo8UmWP1+mTs//CwBjdyXNN2SlTyIiF2McctxxfL59s91SSF8b1VQoGJW
+         Ilj2cb0iH7SVWcmNzmIaCc6fvg3H2ekWhDoXxbQiaBaN3zZ4vpH62Zfu3PtC5JWBlOT+
+         m4/DveEhus9AdOluA50XIR5v9JNJ9Zac23t1+HvRGjmRPDyixSfy0AQp37ZhWkHiHwy0
+         dIVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698069006; x=1698673806;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p4dzCg7KZAa1pqs+2lmIym8cEv1bEx0TEnLwptO2/Vg=;
+        b=kvJIZgSZDe0grJhBNAxjUsP0e4iPvXTipqqUQGtvAK1zKkLMDAqciAmQH1eWyyMdlD
+         Ts7eQTz2SY2eIKsDlw0JrzpkJ9Jx4Vty+v20iD73KsUWc9kc6Fe44qzFXcb1TAaIz8ic
+         ajx1R7tGw8zpRkcyCfckeZiqmwhJRRqkIJuP6aFLOI4au7X1ZfK9gizOBTcwgFRtJxBQ
+         O8o8L4njVk4QrN1gLfGXS15RPYXNfmD0eImRGiYd6Ty5zM9AOuLNOlMNR3RKYFciJjIx
+         XiKmfXMeiZ1E0C/0NV+INvoqA2PCfy8Jrc0EYreGIVivz2Nh5fOAIcEuAIi0+BAjWDVR
+         v03w==
+X-Gm-Message-State: AOJu0YxWsBsqf24JD7BBhX525MF2lawfECEvWEh28zd2oIZtjbMlZGsQ
+	WmaHsr7nihhCrbzbYZdu4B/Z9Q==
+X-Google-Smtp-Source: AGHT+IEQ4WBPBtS2Ox9Bm+ePm+PXigmAVHXAmyLqEzyDaPgd1UuV+VW7vRb0C23sGArP96jdeblznQ==
+X-Received: by 2002:a2e:3c03:0:b0:2c5:2357:be98 with SMTP id j3-20020a2e3c03000000b002c52357be98mr6559362lja.44.1698069006480;
+        Mon, 23 Oct 2023 06:50:06 -0700 (PDT)
+Received: from [192.168.204.110] (178235177080.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.80])
+        by smtp.gmail.com with ESMTPSA id c15-20020a2e680f000000b002c504d8260esm1596302lja.24.2023.10.23.06.50.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 06:50:06 -0700 (PDT)
+Message-ID: <757382c1-142b-454c-b2b5-7ec97bd7328d@linaro.org>
+Date: Mon, 23 Oct 2023 15:50:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR03MB4545.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3365af04-3256-4f56-121f-08dbd3cc3494
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2023 13:30:21.1909
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: quuTOogVtxsfGn1YvRqjYmNsUFtH7tbNmbSipzC6PdaeJJVbKwEo7JGlnJukB1IhP2dNkc2YSanlG6YUcRR7HA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR03MB7304
-X-Proofpoint-GUID: hMM0PKdpOuFWsBf1gdCSX91OpZKjshSY
-X-Proofpoint-ORIG-GUID: hMM0PKdpOuFWsBf1gdCSX91OpZKjshSY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-23_12,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0
- mlxlogscore=999 adultscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2310170000
- definitions=main-2310230118
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/5] soc/arm64: qcom: add initial version of memory
+ dump
+Content-Language: en-US
+To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_tingweiz@quicinc.com
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Sent: Monday, October 23, 2023 16:00
-> To: Balas, Eliza <Eliza.Balas@analog.com>
-> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Rob Herring=
- <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; =
-Derek Kiernan <derek.kiernan@amd.com>; Dragan
-> Cvetic <dragan.cvetic@amd.com>; Arnd Bergmann <arnd@arndb.de>
-> Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
->=20
-> [External]
->=20
-> On Mon, Oct 23, 2023 at 12:54:15PM +0000, Balas, Eliza wrote:
-> > > -----Original Message-----
-> > > From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > Sent: Friday, October 20, 2023 17:32
-> > > To: Balas, Eliza <Eliza.Balas@analog.com>
-> > > Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Rob Her=
-ring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.or=
-g>; Derek Kiernan <derek.kiernan@amd.com>; Dragan
-> > > Cvetic <dragan.cvetic@amd.com>; Arnd Bergmann <arnd@arndb.de>
-> > > Subject: Re: [PATCH v3 2/2] drivers: misc: adi-axi-tdd: Add TDD engin=
-e
-> > >
-> > > [External]
-> > >
-> > > On Fri, Oct 20, 2023 at 11:18:44AM +0000, Balas, Eliza wrote:
-> > > > > > +static int adi_axi_tdd_parse_ms(struct adi_axi_tdd_state *st,
-> > > > > > +				const char *buf,
-> > > > > > +				u64 *res)
-> > > > > > +{
-> > > > > > +	u64 clk_rate =3D READ_ONCE(st->clk.rate);
-> > > > > > +	char *orig_str, *modf_str, *int_part, frac_part[7];
-> > > > > > +	long ival, frac;
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	orig_str =3D kstrdup(buf, GFP_KERNEL);
-> > > > > > +	int_part =3D strsep(&orig_str, ".");
-> > > > >
-> > > > > Why are we parsing floating point in the kernel?  Please just kee=
-p the
-> > > > > api simple so that we don't have to try to do any type of parsing=
- other
-> > > > > than turning a single text number into a value.
-> > > > >
-> > > >
-> > > > The adi_axi_tdd_parse_ms function does almost the same thing as the
-> > > > iio_str_to_fixpoint() function which already exists in kernel.
-> > >
-> > > That does not mean that this is a valid api for your device as you ar=
-e
-> > > not an iio driver (why aren't you an iio driver?)
-> > >
-> > > > It parses a fixed-point number from a string.
-> > >
-> > > And as such, you shouldn't duplicate existing logic.
-> > >
-> > > > The __iio_str_to_fixpoint is used in a similar way, as I intend to =
-use adi_axi_tdd_parse_ms.
-> > > > It writes to a channel the corresponding scale (micro,nano) for a v=
-alue.
-> > >
-> > > Why not just have the api accept values in nanoseconds and then no
-> > > parsing is needed?
-> >
-> > I thought this would be easier for the user, to work with smaller value=
-s,
-> > than using a lot of zeros for nanoseconds. I will make the changes
-> > to accept values in nanoseconds..
->=20
-> Make the kernel simpler, it's easier to make more complex userspace,
-> right?
->=20
-> > > > Since the device is not an iio device, using an iio function would =
-be confusing.
-> > >
-> > > Why isn't this an iio device?
-> >
-> > The device is not registered into the IIO device tree,
-> > and does not rely on IIO kernel APIs.
-> > Even though there are a few attributes that resemble the
-> > ones from iio, and the sysfs structure is similar,
-> > this is not an IIO device.
-> > In the previous patch versions 1 and 2 we concluded
-> > that this device fits better in the misc subsystem.
->=20
-> Ok, can you point to that in the changelog where the IIO maintainer
-> agreed that this doesn't fit into that subsystem?
->=20
-This was one of the discussions from previous v2 : https://lore.kernel.org/=
-all/5b6318f16799e6e2575fe541e83e42e0afebe6cf.camel@gmail.com/
+On 23.10.2023 11:20, Zhenhua Huang wrote:
+> Qualcomm memory dump driver is to cooperate with firmware, providing the
+Firmware == The hypervisor? The TZ? Some uncore chip?
 
-I will add it to the changelog the next time I submit the patches.
+> hints(id and size) of storing useful debugging information into pre-allocated
+> memory. Firmware then does the real data capture. The debugging information
+> includes cache contents, internal memory, registers. 
+Exposing all of the user's data.. Is this enabled by default?
 
-Thank you,
-Eliza
+> 
+> The driver dynamically reserves memory and provides the hints(dump id and size)
+> following specified protocols with firmware. After crash and warm reboot,
+> firmware scans these information and stores contents into reserved memory
+> accordingly. Firmware then enters into full dump mode which dumps whole DDR
+> to host through USB.
+Is that only something that works on engineering / prototype devices?
+
+> User then get full dump using PCAT and can parse out these informations.
+Is PCAT open-source, or at least freely available?
+
+> 
+> Dump id and size are provided by bootconfig. The expected format of a
+> bootconfig file is as follows:-
+Is it the same bootconfig that Google invented? Wasn't that just key=val?
+
+> memory_dump_config {
+> 	<node name> {
+> 		id = <id of HW component>
+> 		size = <dump size of HW component>
+> 	}
+> }
+> 
+> for example:
+> memory_dump_config {
+>         c0_context_dump {
+> 		id = 0
+> 		size = 0x800
+>         }
+> }
+> 
+> Test based on 6.6-rc1.
+That's sorta ancient, especially since you're likely looking to get
+this merged in 6.8.. -next would probably be a better target.
+
+Konrad
 
