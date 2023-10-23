@@ -1,54 +1,65 @@
-Return-Path: <devicetree+bounces-10883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F2B7D32E8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:24:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB287D34B6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F1632813D6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:24:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE84EB20CF2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550F815494;
-	Mon, 23 Oct 2023 11:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C123E15EA5;
+	Mon, 23 Oct 2023 11:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PbaaiVjZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="agfoQ+8J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE2E15492;
-	Mon, 23 Oct 2023 11:24:51 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9861010A;
-	Mon, 23 Oct 2023 04:24:48 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39NBKK03015461;
-	Mon, 23 Oct 2023 11:24:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BFthNX+O9dgOMwJlzFJJOGfz/uKZ8unpM9GIonMsweE=;
- b=PbaaiVjZjsPDZMd0qAMT056dqb+EDRavHG5JXHXEGVMDR8nhqLWYb9TLv0CjxnvDaKtS
- s5L6hvhLkajkPbv0/2/Ng3ycmpKGR4ghkYSflt5FR2AM44iZKlEt5CAwWAli3yjY4/Mo
- OT/GUlg/F6y6okzG9jizVbfRibKEPBxYeNNxIvgh5cEOH+hA+d0tth6T3zCLoIDyTU3I
- iMhI5plCca7zvaw/u8ask+Y5gyTM3tBeogx+2efk4nOawA3jY3B7k0PkC6FRyhpB7GjB
- BaNqfZNbSAiEjHoNaodl70+Pey8t+fcyd+jiJLMgvgAHz47dgmFGn6Mh9/8/4DbngSA0 Dg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv5nduvrf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 11:24:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39NBONuB031751
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Oct 2023 11:24:23 GMT
-Received: from [10.216.55.75] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 23 Oct
- 2023 04:24:15 -0700
-Message-ID: <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
-Date: Mon, 23 Oct 2023 16:54:11 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075AE16405
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:42:15 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3507110F1
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:41:54 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9936b3d0286so483870066b.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:41:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698061309; x=1698666109; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1bCerCDAEZy49Pjk9AKA1MD4HW0on4gv7aPJ4yjosrI=;
+        b=agfoQ+8JGgq1UdpADNwir1HCnOS0eC8zHSD4Q/IJbTzHoL+scJ3FdUHV6hsH2dE/od
+         AON+TsSQZTgb9F0I5A5WHmmv+AG0XiaVTO5bVnaz1pIkWEXmZ53jiyB1qfsdIUcWZp7m
+         MuW0X+UG/lV+nquPXa4cRJ3lHKdbmEnL7A14I7qM/ckRbN0fFXLowuywTmFSFi06AT2G
+         LiM/1bsFosH2f0BDDMtu5ihgvd2QB4gHg79iOs6u3/pwOu/Tiw50CyAI4ZAPCnd2WHSR
+         rxwUq8OPKeE132n00BX/qZE/BitNiaxMb63LCtMHmzWBwwmq3iuwzyDzAIY+cK05+iIr
+         qwrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698061309; x=1698666109;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1bCerCDAEZy49Pjk9AKA1MD4HW0on4gv7aPJ4yjosrI=;
+        b=MjLL0Yt7YyqPTfnq3Hdt5WVciAUrdM/pd50ydTC2GU15AtRYEdTqA4bLJMzRTeNjnh
+         LFDPMTvU6/tGFkHo83d5iKgKlHEoSJF2p/6Hj4oafi5F2RA0wJA7tOpULT4tUgIP6fNh
+         MqyMfOKO9ZhXMQdzZB5rKkBJnKBdQgreRCmH6FE3Dvus+fajmaKRJ+tYtZ/gmauMPkuH
+         JqSCbHK2m7EN/Ft+fyvYNDLF/zRUZZppJZiLlip7ySpBWZ1Z1nHz5K5DSipASV/nknKg
+         o+IL2XNjHZQDF6/lkaHDkZms730vD4GZVuc7xxdTfsEBDaPbj7UBTtZyBWUBM5OoXpBI
+         rSCg==
+X-Gm-Message-State: AOJu0Yx69hFr1WLbvKh3cXQeUKbJ7C/vg68HI2yphyhgnFucK67xFyVv
+	jIyqY1ouf0CTupOhaewDfG9bPA==
+X-Google-Smtp-Source: AGHT+IGhi87IDFEnFOgNFUa+IO/q70IXJ9jmoGkRXfWsgXQ4bzB5D+XAhw4ghTqYTur2wbCSLlI1ag==
+X-Received: by 2002:a17:907:60d5:b0:9bf:c6a2:d3d8 with SMTP id hv21-20020a17090760d500b009bfc6a2d3d8mr7279998ejc.29.1698061309291;
+        Mon, 23 Oct 2023 04:41:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id dv19-20020a170906b81300b009928b4e3b9fsm6587999ejb.114.2023.10.23.04.41.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 04:41:48 -0700 (PDT)
+Message-ID: <0e34c780-3634-4ca1-954f-c74dc566c7cb@linaro.org>
+Date: Mon, 23 Oct 2023 13:41:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,188 +67,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-6-quic_kriskura@quicinc.com>
- <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add WSA2
+ audio ports IDs
 Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Banajit Goswami <bgoswami@quicinc.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231019153541.49753-1-krzysztof.kozlowski@linaro.org>
+ <06a2c115-278a-47e0-b5ba-74639b6b23aa@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <06a2c115-278a-47e0-b5ba-74639b6b23aa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JOENsTwatpA3fdB7Ys3YR81l7ARb_DW9
-X-Proofpoint-ORIG-GUID: JOENsTwatpA3fdB7Ys3YR81l7ARb_DW9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-23_09,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=713 bulkscore=0
- adultscore=0 impostorscore=0 mlxscore=0 phishscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310230098
 
-
-
-On 10/23/2023 2:51 PM, Johan Hovold wrote:
-> On Mon, Oct 23, 2023 at 12:11:45AM +0530, Krishna Kurapati PSSNV wrote:
->> On 10/20/2023 6:53 PM, Johan Hovold wrote:
->>> On Sat, Oct 07, 2023 at 09:18:01PM +0530, Krishna Kurapati wrote:
+On 23/10/2023 10:37, Srinivas Kandagatla wrote:
+> Hi Krzysztof,
 > 
->>>> +#define NUM_PHY_IRQ		4
->>>> +
->>>> +enum dwc3_qcom_ph_index {
->>>
->>> "phy_index"
->>>
->>>> +	DP_HS_PHY_IRQ_INDEX = 0,
->>>> +	DM_HS_PHY_IRQ_INDEX,
->>>> +	SS_PHY_IRQ_INDEX,
->>>> +	HS_PHY_IRQ_INDEX,
->>>> +};
->>>> +
->>>>    struct dwc3_acpi_pdata {
->>>>    	u32			qscratch_base_offset;
->>>>    	u32			qscratch_base_size;
->>>>    	u32			dwc3_core_base_size;
->>>> +	/*
->>>> +	 * The phy_irq_index corresponds to ACPI indexes of (in order) DP/DM/SS
->>>> +	 * IRQ's respectively.
->>>> +	 */
->>>> +	int			phy_irq_index[NUM_PHY_IRQ - 1];
->>>>    	int			hs_phy_irq_index;
->>>> -	int			dp_hs_phy_irq_index;
->>>> -	int			dm_hs_phy_irq_index;
->>>> -	int			ss_phy_irq_index;
->>>>    	bool			is_urs;
->>>>    };
->>>>    
->>>> @@ -73,10 +84,12 @@ struct dwc3_qcom {
->>>>    	int			num_clocks;
->>>>    	struct reset_control	*resets;
->>>>    
->>>> +	/*
->>>> +	 * The phy_irq corresponds to IRQ's registered for (in order) DP/DM/SS
->>>> +	 * respectively.
->>>> +	 */
->>>> +	int			phy_irq[NUM_PHY_IRQ - 1][DWC3_MAX_PORTS];
->>>>    	int			hs_phy_irq;
->>>> -	int			dp_hs_phy_irq;
->>>> -	int			dm_hs_phy_irq;
->>>> -	int			ss_phy_irq;
->>>
->>> I'm not sure using arrays like this is a good idea (and haven't you
->>> switched the indexes above?).
->>>
->>> Why not add a port structure instead?
->>>
->>> 	struct dwc3_qcom_port {
->>> 		int hs_phy_irq;
->>> 		int dp_hs_phy_irq;
->>> 		int dm_hs_phy_irq;
->>> 		int ss_phy_irq;
->>> 	};
->>>
->>> and then have
->>>
->>> 	struct dwc3_qcom_port ports[DWC3_MAX_PORTS];
->>>
->>> in dwc3_qcom. The port structure can the later also be amended with
->>> whatever other additional per-port data there is need for.
->>>
->>> This should make the implementation cleaner.
->>>
->>> I also don't like the special handling of hs_phy_irq; if this is really
->>> just another name for the pwr_event_irq then this should be cleaned up
->>> before making the code more complicated than it needs to be.
->>>
->>> Make sure to clarify this before posting a new revision.
+> On 19/10/2023 16:35, Krzysztof Kozlowski wrote:
+>> Add defines for audio ports used on Qualcomm WSA2 LPASS (Low Power
+>> Audio SubSystem).
 >>
->> hs_phy_irq is different from pwr_event_irq.
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+>> index 39f203256c4f..c5ea35abf129 100644
+>> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+>> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+>> @@ -139,6 +139,11 @@
+>>   #define DISPLAY_PORT_RX_5	133
+>>   #define DISPLAY_PORT_RX_6	134
+>>   #define DISPLAY_PORT_RX_7	135
+>> +#define WSA2_CODEC_DMA_RX_0	136
+>> +#define WSA2_CODEC_DMA_TX_0	137
+>> +#define WSA2_CODEC_DMA_RX_1	138
+>> +#define WSA2_CODEC_DMA_TX_1	139
+>> +#define WSA2_CODEC_DMA_TX_2	140
+>>   
 > 
-> How is it different and how are they used?
+> Patches looks fine as it is, but do you realize that this s a dead code 
+> w.r.t upstream.
+> WSA2 is used only with 4 speaker setup and in such cases we use WSA 
+> codec dma to drive 4 channels.
 > 
->> AFAIK, there is only one of this per controller.
-> 
-> But previous controllers were all single port so this interrupt is
-> likely also per-port, even if your comment below seems to suggest even
-> SC8280XP has one, which is unexpected (and not described in the updated
-> binding):
-> 
-> 	Yes, all targets have the same IRQ's. Just that MP one's have
-> 	multiple IRQ's of each type. But hs-phy_irq is only one in
-> 	SC8280 as well.
-> 
-> 	https://lore.kernel.org/lkml/70b2495f-1305-05b1-2039-9573d171fe24@quicinc.com/
-> 
-> Please clarify.
-> 
+> So WSA2 will not be used by itself.
+> I would prefer support for this to be added when we are really able to 
+> test WSA2 by itself.
 
-For sure pwr_event_irq and hs_phy_irq are different. I assumed it was 
-per-controller and not per-phy because I took reference from software 
-code we have on downstream and hs_phy for multiport is not used 
-anywhere. I don't see any functionality implemented in downstream for 
-that IRQ. And it is only one for single port controllers.
+OK, the patchset can be ignored.
 
-But I got the following info from HW page and these are all the 
-interrupts (on apss processor) for multiport (extra details removed):
+Best regards,
+Krzysztof
 
-u_usb31_scnd_mvs_pipe_wrapper_usb31_power_event_irq_0	SYS_apcsQgicSPI[130]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_power_event_irq_1	SYS_apcsQgicSPI[135]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_power_event_irq_3	SYS_apcsQgicSPI[856]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_power_event_irq_2	SYS_apcsQgicSPI[857]
-
-u_usb31_scnd_mvs_pipe_wrapper_usb31_ctrl_irq[0]	SYS_apcsQgicSPI[133]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_ctrl_irq[1]	SYS_apcsQgicSPI[134]
-u_cm_usb3_uni_wrapper_mp0_usb3phy_debug_irq	SYS_apcsQgicSPI[668]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_bam_irq[0]	SYS_apcsQgicSPI[830]
-u_cm_usb3_uni_wrapper_mp1_usb3phy_debug_irq	SYS_apcsQgicSPI[855]
-
-u_usb31_scnd_mvs_pipe_wrapper_usb31_hs_phy_irq_0	SYS_apcsQgicSPI[131]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_hs_phy_irq_1	SYS_apcsQgicSPI[136]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_hs_phy_irq_3	SYS_apcsQgicSPI[859]
-u_usb31_scnd_mvs_pipe_wrapper_usb31_hs_phy_irq_2	SYS_apcsQgicSPI[860]
-
-	
-u_cm_dwc_usb2_hs0_usb2_dpse	apps_pdc_irq_out[127]
-u_cm_dwc_usb2_hs0_usb2_dmse	apps_pdc_irq_out[126]
-u_cm_dwc_usb2_hs1_usb2_dpse	apps_pdc_irq_out[129]
-u_cm_dwc_usb2_hs1_usb2_dmse	apps_pdc_irq_out[128]
-u_cm_dwc_usb2_hs2_usb2_dpse	apps_pdc_irq_out[131]
-u_cm_dwc_usb2_hs2_usb2_dmse	apps_pdc_irq_out[130]
-u_cm_dwc_usb2_hs3_usb2_dpse	apps_pdc_irq_out[133]
-u_cm_dwc_usb2_hs3_usb2_dmse	apps_pdc_irq_out[132]
-u_cm_usb3_uni_wrapper_mp0_qmp_usb3_lfps_rxterm_irq	apps_pdc_irq_out[16]
-u_cm_usb3_uni_wrapper_mp1_qmp_usb3_lfps_rxterm_irq	apps_pdc_irq_out[17]
-
-Seems like there are 4 IRQ's for HS.
-
-Regards,
-Krishna,
 
