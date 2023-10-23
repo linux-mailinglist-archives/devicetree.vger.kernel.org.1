@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-10765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABDD57D2A5B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:25:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4264D7D2A5F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 08:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F124281352
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:25:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72E2D1C2085F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 06:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350B863C9;
-	Mon, 23 Oct 2023 06:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A7A63D4;
+	Mon, 23 Oct 2023 06:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPeE+teF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M9nFH8+v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB914568E
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:25:22 +0000 (UTC)
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4746DD68
-	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:25:21 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32da4ffd7e5so1593756f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:25:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB49F568E
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 06:26:07 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DEBE8
+	for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:26:05 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32dc9ff4a8fso1952708f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Oct 2023 23:26:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698042320; x=1698647120; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698042364; x=1698647164; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sfY/LHw0uTAkxpXUZZN5Qo0yX1rtz6T+7Ay6oAo+XCE=;
-        b=dPeE+teFH8XPHjivUP+K44e2aJMZSLVyhkoXy+GP0G/NYHLWc4ExNQkG4gWDaa/g/J
-         xl0Rlx/qBDuzO2rd+H8iZTUUkQLnz964AuVvr/JBO9zFGrcDKnR75ANRzhBAFcS98aT0
-         rWx2MCUzpt9FfMjERNJv6g/UG+60U1EyZwkLrqYqlQavLjYYTsZdk2sLci+zHYp7C9eM
-         BaAPdb7cZQxnjpWWGCSKntgHAIcclA7hoZG6y2MovYFlzA8YH7ZaTlZC03pzgiajn0+3
-         ZiiLwULPNsG39taGDyiWTApdhuTjA3rw7vYU4r+ZqkdqhSZedgmIP6HZCj5wwBLv1/c5
-         smzA==
+        bh=hqg72fEhJTXDkQA4ZZ6xGVl4sYdkDk9SnvmpinDoWQE=;
+        b=M9nFH8+v/nQbgTtFFXzh8hRyRt6pOPPD9B7R/OyR5aLMTHE0JGV4EcfO/XJzhp4nTU
+         P4YpYpa7bbx4M0y21w8or9HiR9aUEA3O06oTM6+bvTsWHMSUAgXGCnGMCOrlJgG+XNVJ
+         rkfgeY7I/MLAmhqPARl3Va8rNNtDn30Ti961x0Xg7/bwNbgsyLScyU/h29qesgpPdDIr
+         trKvVTxEufAtZm+QEP9wsZLkW2ICiTE1B50ishtG4WsvuqTjKUVObwlILe8Y4ezixkn3
+         ksvUeFFndisr+2Ly3/jEEN10cws52pU4K2Ba54HxiwpJVWY1Hm2oa1E4Luro/KIv93DZ
+         QMWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698042320; x=1698647120;
+        d=1e100.net; s=20230601; t=1698042364; x=1698647164;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sfY/LHw0uTAkxpXUZZN5Qo0yX1rtz6T+7Ay6oAo+XCE=;
-        b=RchbXf4vpGLWtdlZO0IHwpJQgjgp3yO/9CmFSCm5cjyt28cOLkl6P0uoVqVHntcLDM
-         Genuv7s1Tzl7q5ANbIHZJxJYo8eaNob4t+lqIhuVPs3FZe0iY+GM88esifKN3RvswvWb
-         T9SMStJX6QPPa32dwz7DYs/PcSTWObWS79ncGDrLWHBgUY9xpbdyjXZFUDK19uclmNQb
-         hCOR5/BVhSSpdyI01JaMAHKdqSAooIFmwezHeSyd9vs3mfB9AeyMg2kA55c/+0jwqU8S
-         ALzbUUbYwoLuDx1YsEvhsPjSn6g/16fXhlwMRZYMlQiiuveD+ZwiaYFvK73QN2ulwtg1
-         1pyg==
-X-Gm-Message-State: AOJu0Yy+PSw1dn394dK5t+13DAU8+diN6NfGs5vY7xYMTuD/PRnOXFtl
-	pZUx+9p5IrvZWFnyGREQKM0TdQ==
-X-Google-Smtp-Source: AGHT+IFS1GqkZh1Lu+eG6xcqGkHTzIRpigvyli5aWxFkh96JeQeVlkHZXu9B5m53PZue0m6lVlPHyg==
-X-Received: by 2002:a05:6000:400a:b0:32d:d4c5:272b with SMTP id cp10-20020a056000400a00b0032dd4c5272bmr9554375wrb.26.1698042319746;
-        Sun, 22 Oct 2023 23:25:19 -0700 (PDT)
+        bh=hqg72fEhJTXDkQA4ZZ6xGVl4sYdkDk9SnvmpinDoWQE=;
+        b=Pm9s6+O7gBLTtaHb4UL8oYQiQRQQi9TAec1YOZt0IU4Z2mB9HdSoDk0VkNZMEqa57M
+         OYKIJnUCbpmrCzJlNAHYxSOdvtupsY6P3GDXJ9LM3+lJW4QcytLVJbvByLdXPkI08foC
+         g9ams025NGV8IDdcfjqk9SE8Lcj5ntUhOIYF3pO7j77gitrfWq7xcywUTw2Vzri1E/7f
+         kNbp1XXSlKb2qBOxFOaO5UT6L8le/98lRJzjLux+Q/w0o6uMYGEscgxU7mQZP105tVYf
+         c0A2OXIl/fQo0de5kZFVMcfeKZ75rPs3R9BH6rX+hCMjVXVggiGbTXhOhtnCe0kHBfLP
+         /qCw==
+X-Gm-Message-State: AOJu0Yy09bSYyZeVpWxPiKAKfR1gRMnJFGcZqCDyOwxyEIgs9pSeIQhN
+	rynJJGWJ/gF92mXEO3V33EXrcQ==
+X-Google-Smtp-Source: AGHT+IHUkfuaaNW/06VhD49i0b5jc3VWanQB35gRwtdy/KweUv4ebtoZVIJZQ26fiFJd0gkFiTVUPw==
+X-Received: by 2002:a05:6000:b4b:b0:32d:a4c4:f700 with SMTP id dk11-20020a0560000b4b00b0032da4c4f700mr5876324wrb.38.1698042364357;
+        Sun, 22 Oct 2023 23:26:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id r9-20020a056000014900b003232f167df5sm6998663wrx.108.2023.10.22.23.25.18
+        by smtp.gmail.com with ESMTPSA id r9-20020a056000014900b003232f167df5sm6998663wrx.108.2023.10.22.23.26.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Oct 2023 23:25:19 -0700 (PDT)
-Message-ID: <0b6dc83f-8c78-4c7d-8511-280219ef4b71@linaro.org>
-Date: Mon, 23 Oct 2023 08:25:17 +0200
+        Sun, 22 Oct 2023 23:26:03 -0700 (PDT)
+Message-ID: <883f1aa8-b2cb-48f2-926c-9b66b46f3f1b@linaro.org>
+Date: Mon, 23 Oct 2023 08:26:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -129,29 +129,16 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/10/2023 02:22, Sebastian Reichel wrote:
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - powerdown-gpios
-> +  - port
+> +allOf:
+> +  - $ref: ../video-interface-devices.yaml#
 > +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c0 {
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - galaxycore,gc0308
+> +      - galaxycore,gc0309
 
-i2c {
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-With above:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Your driver suggests they are compatible with each other.
 
 Best regards,
 Krzysztof
