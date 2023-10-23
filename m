@@ -1,152 +1,157 @@
-Return-Path: <devicetree+bounces-10890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-10891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7B67D358C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:49:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218FF7D35DF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 13:55:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0F3B1C208D0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:49:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5802B20C4B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 11:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3017168C9;
-	Mon, 23 Oct 2023 11:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA4E18025;
+	Mon, 23 Oct 2023 11:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HmZlQbwH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4862A15EAD
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:49:26 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8206EAF
-	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 04:49:23 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qutQt-0007fH-7U; Mon, 23 Oct 2023 13:49:19 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qutQq-003hJw-Mt; Mon, 23 Oct 2023 13:49:16 +0200
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qutQq-00FvNG-Jo; Mon, 23 Oct 2023 13:49:16 +0200
-Date: Mon, 23 Oct 2023 13:49:16 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Ante Knezic <ante.knezic@helmholz.de>
-Cc: UNGLinuxDriver@microchip.com, andrew@lunn.ch, conor+dt@kernel.org,
-	davem@davemloft.net, devicetree@vger.kernel.org,
-	edumazet@google.com, f.fainelli@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
-	olteanv@gmail.com, pabeni@redhat.com, robh+dt@kernel.org,
-	woojung.huh@microchip.com
-Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
-Message-ID: <20231023114916.GC3787187@pengutronix.de>
-References: <20231023084150.GB3787187@pengutronix.de>
- <20231023085750.8537-1-ante.knezic@helmholz.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF02179B4
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 11:55:06 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CC6AF;
+	Mon, 23 Oct 2023 04:55:04 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39NBsPc9031622;
+	Mon, 23 Oct 2023 11:55:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=GdM270Ymk4GmaoE8s1C0BZCXZ4sHC1MXNy0TNyH38c4=;
+ b=HmZlQbwHKZ3saMsMm13Mh1hc9Z1qVfTwDCuQy4k8GJXlwrAR57KxcZw5PXsCmNdeAzR7
+ bXL0eqH7MsAzshtO0JtU61UmIUBPCYsHA2xv7NL203UNEQyj5kIYuLSlf0obmXjimsiq
+ pbhAhj+By6IF6umBZXHFk3hn0a/FknsoOgSQ2CFvIPTD/lPRLJ8aVPCv3SfThNtGSzSh
+ m3nwyX5qBsOvbCGrdYPpUGC80lbh1talrGlZR4qyOPuCR99yW0ppEcrgQBwG8bUlpWHQ
+ ww7p2ezuw5IspjSPMRAcwnxyJYTFpd6AWAGGbnJfOTqRJPfdhfKHmgp7zPn4iZK1KERT pQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tv7u3v8kq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Oct 2023 11:55:01 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39NBt0GU025086
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Oct 2023 11:55:00 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 23 Oct
+ 2023 04:54:55 -0700
+Message-ID: <d3b62002-c29c-a45e-279f-7d07c697aa77@quicinc.com>
+Date: Mon, 23 Oct 2023 19:54:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231023085750.8537-1-ante.knezic@helmholz.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
+ <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PmZJVdcFGMnJ25jI4nqqVqd7lWtZ3dWf
+X-Proofpoint-ORIG-GUID: PmZJVdcFGMnJ25jI4nqqVqd7lWtZ3dWf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-23_10,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 mlxlogscore=934
+ suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310230104
 
-On Mon, Oct 23, 2023 at 10:57:50AM +0200, Ante Knezic wrote:
-> On Mon, 23 Oct 2023 10:41:50 +0200, Oleksij Rempel wrote:
+
+
+On 2023/10/23 17:27, Krzysztof Kozlowski wrote:
+> On 23/10/2023 11:20, Zhenhua Huang wrote:
+>> Add bindings for the QCOM Memory Dump driver providing debug
 > 
-> > Here is KSZ8873 as initial reference:
-> > https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/00002348A.pdf
-> > 3.3.9 RMII INTERFACE OPERATION:
-> > "When EN_REFCLKO_3 is high, KSZ8873RLL will output a 50 MHz in REFCLKO_3.
-> > Register 198 bit[3] is used to select internal or external reference
-> > clock. Internal reference clock means that the clock for the RMII of
-> > KSZ8873RLL will be provided by the KSZ8873RLL internally and the
-> > REFCLKI_3 pin is unconnected. For the external reference clock, the
-> > clock will provide to KSZ8873RLL via REFCLKI_3."
-> > 
-> > KSZ9897:
-> > http://ww1.microchip.com/downloads/en/DeviceDoc/00002330B.pdf
-> > 4.11.2 REDUCED MEDIA INDEPENDENT INTERFACE (RMII)
+> Bindings are for hardware, not driver. This suggests it is not suitable
+> for bindings at all.
 > 
-> The upper paragraph refers to the case when switch is acting as a clock
-> provider (regardless whether its set as internal or external reference
-> clock). You can see this if you look at the next paragraph:
-> "If KSZ8863RLL does not provide the reference clock, this 50 MHz reference 
-> clock with divide-by-2 (25 MHz) has to be used in X1 pin instead of the 
-> 25 MHz crystal, since the ..."
-> So rmii-clk-internal property does not select whether switch is acting
-> as a clock provider or clock consumer which is what you are refering to
-> I believe? The clock provider/consumer is set via strapping pins.
+>> facilities. Firmware dumps system cache, internal memory,
+>> peripheral registers to reserved DDR as per the table which
+>> populated by the driver, after crash and warm reset.
 > 
-> Real case scenario: I have a board where switch is acting as a clock
-> provider, generating output to REFCLKO pin and feeding it to uC. 
-> This board does not have externally routed copper track from REFCLKO 
-> to REFCLKI, thus making the RMII interface not operable, unless the 
-> rmii-clk-internal bit is set.
-> If this bit is not set, only way to make it running is to solder a
-> jumper wire from REFCLKO to REFCLKI.
+> Again driver :/
 
-In case of KSZ8873 we seems to have something like:
+Thanks for pointing out. Qualcomm memory dump device is a reserved 
+memory region which is used to communicate with firmware. I will update 
+description in next version.
 
-Switch MAC<-.
-            |
-  PLL -> clk sel -> REFCLKO
-            \-----< REFCLKI
+Thanks,
+Zhenhua
 
-Clock select in this case is controlled by Register 198 (0xC6).
-
-In case of KSZ9897 we probably have something like:
-
-Switch MAC<-.
-            |
-  PLL -> clk sel -> REFCLKO
-            \--x--< REFCLKI
-	       |
-            Gate REFCLKI if REFCLKO is used.
-
-In both cases:
-- KSZ8873, Setting bit3 in Register 198 (0xC6) will control use of clk
-  select
-- KSZ9897, setting bit2 in Register 0xN301, will controll use of clk
-  select and probably gate REFCLKI.
-
-So far, it looks very similar to me and it is usually handled by
-phy-mode rmii vs revrmii. Correct?
-
-So, the main question is still, do we need this kind of configuration
-per port or it is enough to have it per switch?
-
-For some reasons KSZ8863MLL datasheet provides RMII clock select
-configuration for two ports (port 1 and 3)
-https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/KSZ8863MLL-FLL-RLL-Data-Sheet-00002335C.pdf
-May be there are variants with two RMIIs?
-
-Something similar but with multiple RMII interfaces seems to be
-supported by KSZ8864CNX:
-https://eu.mouser.com/datasheet/2/268/00002229A-1082534.pdf
-
-And all KSZ9xxx series seems to handle it per port as well. 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+>>
+>> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+>> ---
+>>   .../bindings/soc/qcom/qcom,mem-dump.yaml           | 42 +++++++++++++++++++++
+>>   .../devicetree/bindings/sram/qcom,imem.yaml        | 44 ++++++++++++++++++++++
+>>   2 files changed, 86 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>> new file mode 100644
+>> index 0000000..87f8f51
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,mem-dump.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> 
+> Drop quotes.
+> 
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+> 
+>> +
+>> +title: Qualcomm memory dump
+> 
+> Describe hardware, not driver.
+> 
+>> +
+>> +description: |
+>> +  Qualcomm memory dump driver dynamically reserves memory and provides hints(id and size)
+> 
+> Again, driver, so not suitable for DTS and bindings.
+> 
+> Best regards,
+> Krzysztof
+> 
 
