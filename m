@@ -1,136 +1,198 @@
-Return-Path: <devicetree+bounces-11247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492C67D4E8F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F817D4E94
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 796C41C203BA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:07:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0318D1C2095A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E35826284;
-	Tue, 24 Oct 2023 11:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747B526288;
+	Tue, 24 Oct 2023 11:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z1/oGFXx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y4YmxgKC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4D37498
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 11:07:46 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0124210C9;
-	Tue, 24 Oct 2023 04:07:44 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O9UPQH010513;
-	Tue, 24 Oct 2023 11:07:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zw1Vl4UXWdOGwHXgSaTvEAFKvHGzn9SXnQ7rMcUBl7w=;
- b=Z1/oGFXxhYyrv742Ee5ei8TgC+T6gdX4vB5oSqKlHrF2nHO+VacMfAKYH6iGi+cPudoi
- zaUULUnmLIBAmscQGIMlTzDWVPd8KkMPr4ZTWj+JiV0UoLwdkvq7vwQyLIggM+xfkWk5
- fGlUyDjAy1RN417iQV00QWKLvUuhN+rbmxiMf0j9+XDU9hhlFcFVps2ppJAT9KwWzyhH
- Zxz8DtqwPtq07BwYmAseo7kCUYQb9wRy/W0Jh5cJNTCxSgXopWBqQ4LNAWOFntSL39Ll
- th7gsKFFww4fB1SKurod+/LO480xC0F8Jw8lplBp8mYrulP0gFHgRFmNGi7uBfjXKMKQ Jg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twxa0hp3r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 11:07:37 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39OB7aTh014072
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 11:07:36 GMT
-Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
- 2023 04:07:31 -0700
-Message-ID: <b8b6ea74-8e25-ecf4-1ab2-0d4ffca9e743@quicinc.com>
-Date: Tue, 24 Oct 2023 19:07:23 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA457498
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 11:10:05 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E62AFE
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 04:10:02 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6bbfb8f7ac4so913497b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 04:10:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698145802; x=1698750602; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RE1wsH4r/PT9CdvJUxnqs/kAns7JcqtTbkS2nbmYIlM=;
+        b=Y4YmxgKCt2HVyW75f+YrxDHiakcKG9Q6nBVxQLg01RAvOdk5mOPUg+E2S3OTsW243a
+         75uUBbWtaBDapss81wUA6151bfQbnrmz0oelW7E07XY/ISjF9Q//ftrDEXZ2Mn9jyXNt
+         TVofZ6Njca9DghJYbwzPQF+56hG1kIrlMKRyj4ctIuQ4ZhzAftOCHOYjkFD+B7Ga1QwC
+         EHVI/oYvJ0uhQLav4nLxOn9cjT0EDt92Q0S5MmYLMJSlxJcDQS3SC5qWZjUh4Pvv/1qm
+         Yx9leHD7TZmIoO549gWkllEHbSkYDTdI9ALw1SKp7jOBmLP/MyvWv6gVJ2KlRsKdnfI5
+         i94A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698145802; x=1698750602;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RE1wsH4r/PT9CdvJUxnqs/kAns7JcqtTbkS2nbmYIlM=;
+        b=xJ/r1zG9C5RrqNCWeGEePEBIBS1ybFwFQ082IwKjelX0qWos/lbMCtS4rUw+WlUBsm
+         a5mcEWB/dYZinNRHrYMe3LZ1+KYgLXFGdVV8Bfs2BwfOhwKBHCXp4vKzT0MLkDZj0uNU
+         1N3dy6Xy4mgaSTrGB0ORH9u4vjsNVpTH37exnyIp9fvzRJbZkaenyzb5ZDVZGHPPJzyx
+         GMSk392V3SFZF47gQTOumHMS4GMG6h0ZVsL/Up6+GLy70lwKpKgRv32s6v/ZAzUzLS/L
+         zgmjlsVJxZS2JXad3xigkG1e5AY2Kty7H66Ckv/vMoBNSF/hiipwSGIVNO+W9j/Jvfqq
+         7VkA==
+X-Gm-Message-State: AOJu0Yx5vNDemi9FFKC6/6r1izGr7SWJWo2bKIFmU43c01aOnQBlmB0e
+	8KjmomHRZBeend4cW2n5paRFDsXIuf1TT5T9WucJRg==
+X-Google-Smtp-Source: AGHT+IEX6WuqA5vIkcaujPmdybMRkAiT+hemmNEfBNRefkfhx9JKBoVLMwM5Lt2yToWxR/gWgGlVNg==
+X-Received: by 2002:a05:6a21:8cc5:b0:17b:170c:2d11 with SMTP id ta5-20020a056a218cc500b0017b170c2d11mr11510054pzb.6.1698145801901;
+        Tue, 24 Oct 2023 04:10:01 -0700 (PDT)
+Received: from octopus ([2400:4050:c3e1:100:7c15:610f:1205:f10c])
+        by smtp.gmail.com with ESMTPSA id f125-20020a625183000000b0065a1b05193asm7801805pfb.185.2023.10.24.04.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 04:10:01 -0700 (PDT)
+Date: Tue, 24 Oct 2023 20:09:52 +0900
+From: AKASHI Takahiro <takahiro.akashi@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
+ generic gpio driver
+Message-ID: <ZTemAK/jBtv9b5xP@octopus>
+Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
+ <20231005025843.508689-6-takahiro.akashi@linaro.org>
+ <20231006132346.GA3426353-robh@kernel.org>
+ <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
+ <ZSTgTC4cFFpofYAk@octopus>
+ <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
+ <ZS3yK/f12Mxw9rXe@octopus>
+ <CACRpkdarDrVkPmyDawhZ+H94S4F=dtDSDVuKegi-eNfQNDY3rg@mail.gmail.com>
+ <ZTduWx7CH1ifI5Uc@octopus>
+ <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 2/5] dt-bindings: sram: qcom,imem: document sm8250
-To: Rob Herring <robh@kernel.org>
-CC: <robh+dt@kernel.org>, <quic_tingweiz@quicinc.com>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <kernel@quicinc.com>
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-3-git-send-email-quic_zhenhuah@quicinc.com>
- <169808266064.861239.7420927840211548252.robh@kernel.org>
-Content-Language: en-US
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-In-Reply-To: <169808266064.861239.7420927840211548252.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HUIbpJlwLIf7gHQHfPoFEOGN0AmccWs0
-X-Proofpoint-ORIG-GUID: HUIbpJlwLIf7gHQHfPoFEOGN0AmccWs0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-24_10,2023-10-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
- mlxscore=0 phishscore=0 mlxlogscore=885 impostorscore=0 clxscore=1011
- bulkscore=0 adultscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310240093
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
+
+Hi Linus,
+
+On Tue, Oct 24, 2023 at 11:40:00AM +0200, Linus Walleij wrote:
+> Hi Takahiro,
+> 
+> On Tue, Oct 24, 2023 at 9:12???AM AKASHI Takahiro
+> <takahiro.akashi@linaro.org> wrote:
+> 
+> > > I think it is better of the pin controller just parse and add any
+> > > subdevices (GPIO or other) using of_platform_default_populate()
+> > > (just grep for this function and you will see how many device
+> > > drivers use that).
+> >
+> > IICU, then, we will have to add a "compatible" to pinctrl node
+> > to make of_platform_default_populate() work as expected. That is:
+> >
+> > scmi {
+> >     ...
+> >     protocol@19 {
+> >         compatible = "simple-bus"; // <- added
+> 
+> Hm right, but you could also use
+> of_platform_populate(np, NULL, NULL, dev);
+> 
+> Then the compatible match is of no concern.
+> 
+> Sorry for my lack of attention to details :/
+> 
+> If you want to restrict the population to a few select compatibles
+> (maybe only "pin-control-gpio") then you can do
+> that with
+> 
+> const struct of_device_id of_scmi_protocol_19_match_table[] = {
+>         { .compatible = "pin-control-gpio", },
+>         {}
+> };
+> of_platform_populate(np, of_scmi_protocol_19_match_table, NULL, dev);
+> 
+> > Is this what you meant?
+> > In this case, however, "protocol@19" has a mixture of sub-nodes,
+> > most are pinconf definitions which are the properties of the pin
+> > controller, while "scmi_gpio" is a separate device.
+> 
+> That looks good to me, it makes sense to have the GPIO as a subnode
+> here and mandate it with a compatible to match.
+> 
+> > The code will work, but is it sane from DT binding pov?
+> 
+> Let's let the DT people jump in on that.
+> 
+> > > Instead just call gpiochip_add_pin_range() directly in Linux
+> > > after adding the pin controller and gpio_chip.
+> > > C.f. drivers/pinctrl/pinctrl-sx150x.c for an example of a driver
+> > > doing this. In this case the SX150X is hot-plugged (on a slow
+> > > bus) so it needs to figure out all ranges at runtime anyway.
+> >
+> > Are you suggesting implementing a custom function for parsing "gpio-ranges"
+> > and calling it in pin_control_gpio_probe() instead of a generic helper?
+> 
+> The generic helper will always be attempted but if there are
+> no ranges in the device tree, it will just continue without adding
+> any ranges. I suggest putting *no* ranges into the device tree.
+> 
+> > Or do you want to always map all the pin controller's pins to
+> > gpio pins as sx150x does?
+> 
+> I think since the SCMI firmware knows about the available line
+> and pins etc, it makes sense that the driver comes up with the
+> applicable ranges on its own (derived from the information from
+> the SCMI firmware) and add them, instead of trying to put that
+> information into the device tree at all. Just omit it, and make your
+> own ranges, and add them in the Linux driver with
+> gpiochip_add_pin_range() without involving DT at all when defining
+> the ranges.
+
+As far as I understand, there is only one way for SCMI gpio driver
+to know which pins are actually GPIO pins; Calling PINCNTRL_CONFIG_GET
+command with "Input-mode" or "Output-mode" configuration type
+against *every* pin-controller's pins.
+(Here I assume that the command would fail with INVALID_PARAMETERS or
+NOT_SUPPORTED if configuring the given pin as a GPIO input or output
+is not possible. But the specification seems to be a bit ambiguous.)
+
+It means that, if SCMI firmware has 100 pinctrl pins, the driver needs
+to call the command 200 times in order to get the answer.
+
+It is possible but I believe that it is clunky and painful for the driver
+initialization.
+I'd like to see explicit "gpio-ranges" property in a device tree.
+
+Thanks,
+-Takahiro Akashi
 
 
 
-On 2023/10/24 1:40, Rob Herring wrote:
+> I'm sorry if I'm unclear sometimes.
 > 
-> On Mon, 23 Oct 2023 17:20:54 +0800, Zhenhua Huang wrote:
->> Add compatible for sm8250 IMEM.
->>
->> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/sram/qcom,imem.yaml:56:1: [error] duplication of key "patternProperties" in mapping (key-duplicates)
-> ./Documentation/devicetree/bindings/sram/qcom,imem.yaml:73:1: [error] duplication of key "patternProperties" in mapping (key-duplicates)
-> ./Documentation/devicetree/bindings/sram/qcom,imem.yaml:120:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/sram/qcom,imem.yaml:120:1: found a tab character where an indentation space is expected
-> ./Documentation/devicetree/bindings/sram/qcom,imem.yaml:120:1: found a tab character where an indentation space is expected
-> 
-
-Sorry for my carelessness... Will be more careful next time..
-
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1698052857-6918-3-git-send-email-quic_zhenhuah@quicinc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> Yours,
+> Linus Walleij
 
