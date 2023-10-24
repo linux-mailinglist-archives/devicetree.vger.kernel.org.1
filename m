@@ -1,126 +1,171 @@
-Return-Path: <devicetree+bounces-11132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC587D4749
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:20:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8CC7D4779
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D9E1B20DE1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 06:20:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C7C9281158
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 06:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78540F9CE;
-	Tue, 24 Oct 2023 06:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1A615BA;
+	Tue, 24 Oct 2023 06:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EdtBctL0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="nX11cSps"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74F11FB5
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:19:59 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE34C0;
-	Mon, 23 Oct 2023 23:19:58 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O4KfLa024701;
-	Tue, 24 Oct 2023 06:19:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type :
- content-transfer-encoding; s=qcppdkim1;
- bh=1OwdJREB68Tm+HQrsXVH0DCJ0LM2A7jdLzDG0rB6Do8=;
- b=EdtBctL0k924v6ReWFnTLMpwS5bU5oSNTJEUJIly56i6HpAB2Sx/YDLx1kQjsWeAMOei
- GBArjvcjcDARJJVk4xaR4I01nMZ9956CwXkzHWvR9ZHtZC5DRbI9kISMrKI0R0K04dEx
- JYj9zmLCOuoC4mUUZE0TN/hwQajb5oUCok1uMDvJ3vgvlW06essunPk+Ha4USr/vv9C5
- E70M+PJSoNlpt4GRk5tZadAkbOdvq91S9qT3BD9Jv+rNh8zKFpGZdU2xbyINu3PcIT/z
- q60DeghOMc7K/61z8y0c0GgomeMn44MQwOjb1oZqEhrDtKClc9OWj3pmN/xKfma2rvHv lw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twtxwsrw3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 06:19:34 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39O6JXfA021778
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 06:19:33 GMT
-Received: from taozha-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 23 Oct 2023 23:19:28 -0700
-From: Tao Zhang <quic_taozha@quicinc.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Tao Zhang <quic_taozha@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-Subject: [PATCH v1] coresight-tpdm: Correct the property name of MSR number
-Date: Tue, 24 Oct 2023 14:19:13 +0800
-Message-ID: <1698128353-31157-1-git-send-email-quic_taozha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD88134B1
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:30:18 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191C8EA;
+	Mon, 23 Oct 2023 23:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1698129016; x=1729665016;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=9AUC3WlKvozWisL0AjNz7g2p54DmQxQY/G1iKkNelTY=;
+  b=nX11cSps315ss6+O40IjlsSkOxnWiTbPCaO1lCJO9QgWYGEMgRfzuQDy
+   f08YNDE0230LOYIDgkWr51tk9MAXVQL9FstowdYC/zgtADoUquGeW+dKT
+   dhXgo6dMtnC2KddSTlNqTQzjpJVX7hWGBvUBpHxD7/Mi6CDmIH2rGyIE6
+   xHMQV8u0L0A6s/3ZEDj+Yq/FgQm8W7nQqnCRq6VFbTsme0rpPwPspUnuW
+   QANZw89+PKHaE3zOARBFplR77N5GzQFHHyLuMZEQTtv16xwqdquhbLdkp
+   vD0M0I77T3Uh3B4WBcydNIaUmg87B7Zu72aJ+iAsi+ZVNbJsc1sI8cMIW
+   A==;
+X-IronPort-AV: E=Sophos;i="6.03,246,1694728800"; 
+   d="scan'208";a="33614186"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Oct 2023 08:30:14 +0200
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B490B28007F;
+	Tue, 24 Oct 2023 08:30:13 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Marek Vasut <marex@denx.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB subnode into schema and example
+Date: Tue, 24 Oct 2023 08:30:16 +0200
+Message-ID: <8331331.NyiUUSuA9g@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20231023-quote-wrongly-ed07265e12ac@spud>
+References: <20231020130019.665853-1-alexander.stein@ew.tq-group.com> <5986192.lOV4Wx5bFT@steina-w> <20231023-quote-wrongly-ed07265e12ac@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: nhPAbO5hXgR3pu11tg_TTQCZzf2njAxL
-X-Proofpoint-GUID: nhPAbO5hXgR3pu11tg_TTQCZzf2njAxL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-24_04,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0 spamscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310240053
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Correct the property name of the DSB MSR number that needs to be
-read in TPDM driver. The right property name is
-"qcom,dsb-msrs-num".
+Am Montag, 23. Oktober 2023, 18:37:29 CEST schrieb Conor Dooley:
+> On Mon, Oct 23, 2023 at 08:27:20AM +0200, Alexander Stein wrote:
+> > Am Sonntag, 22. Oktober 2023, 19:39:12 CEST schrieb Conor Dooley:
+> > > On Fri, Oct 20, 2023 at 03:00:15PM +0200, Alexander Stein wrote:
+> > > > Document the LDB bridge subnode and add the subnode into the exampl=
+e.
+> > > > For the subnode to work, the block control must scan its subnodes a=
+nd
+> > > > bind drivers to them, do not misuse either simple-bus or simple-mfd
+> > > > here.
+> > > >=20
+> > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > ---
+> > > >=20
+> > > >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 44
+> > > >  +++++++++++++++++++
+> > > >  1 file changed, 44 insertions(+)
+> > > >=20
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
+l.y
+> > > > aml
+> > > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
+l.y
+> > > > aml
+> > > > index b3554e7f9e76..5ba66dfb0e05 100644
+> > > > ---
+> > > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
+l.y
+> > > > aml
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
+l.y
+> > > > aml>
+> > > >=20
+> > > > @@ -24,6 +24,12 @@ properties:
+> > > >    reg:
+> > > >      maxItems: 1
+> > > >=20
+> > > > +  '#address-cells':
+> > > > +    const: 1
+> > > > +
+> > > > +  '#size-cells':
+> > > > +    const: 1
+> > > > +
+> > > >=20
+> > > >    '#power-domain-cells':
+> > > >      const: 1
+> > > >=20
+> > > > @@ -46,9 +52,16 @@ properties:
+> > > >        - const: csi
+> > > >        - const: dsi
+> > > >=20
+> > > > +  bridge@20:
+> > > > +    type: object
+> > > > +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
+> > > > +    unevaluatedProperties: false
+> > > > +
+> > > >=20
+> > > >  required:
+> > > >    - compatible
+> > > >    - reg
+> > > >=20
+> > > > +  - '#address-cells'
+> > > > +  - '#size-cells'
+> > >=20
+> > > It seems to make little sense to me that these would become required
+> > > when the bridge is optional. Is it valid to have one of these
+> > > media-blk-ctrls without the ldb subnode?
+> >=20
+> > fsl,imx93-media-blk-ctrl privides several power-domains (DSI, CSI, ISI,
+> > PXP
+> > and LCDIF), currently unused. This series introduces the usage for LCDIF
+> > power domain. LDB is the LVDS display bridge. So there are several power
+> > domains which don't requires the usage of ldb.
+> > On the other hand I prefer consistency, so I opted to keep things simil=
+ar
+> > to commit 1cb0c87d27dc. If it shall not be added here, it should be
+> > removed in
+> > Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> > as well.
+>=20
+> IIRC the tooling will complain if you have an enabled node containing
+> #address-cells and/or #size-cells but no child nodes, so making
+> #address-cells or #size-cells required will cause problems. Looks like
+> the only user has the child node, so it didn't crop up yet.
 
-Fixes： 90a7371cb08d ("coresight-tpdm: Add nodes for dsb msr support")
-Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
----
- drivers/hwtracing/coresight/coresight-tpdm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I was not able to raise a warning with enabled media_blk_ctrl having #addre=
+ss-
+cells/#size-cells being set but no subnode.
+I don't have a strong opinion on this, but I prefer having both bindings as=
+=20
+similar as possible.
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index b25284e..97654aa 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -892,7 +892,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
- 
- 	if (drvdata && tpdm_has_dsb_dataset(drvdata))
- 		of_property_read_u32(drvdata->dev->of_node,
--			   "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
-+			   "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
- 
- 	/* Set up coresight component description */
- 	desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
--- 
-2.7.4
+best regards,
+Alexander
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
