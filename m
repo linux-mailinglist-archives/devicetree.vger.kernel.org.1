@@ -1,166 +1,132 @@
-Return-Path: <devicetree+bounces-11244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B687D4E56
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:56:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6DE7D4E64
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:57:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E8D81C2098F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:56:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D39BA1F2207E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A801A250F4;
-	Tue, 24 Oct 2023 10:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91CE250F4;
+	Tue, 24 Oct 2023 10:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ADNtEXnh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451EF23755
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:55:57 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 93F06D7A;
-	Tue, 24 Oct 2023 03:55:55 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D0DE2F4;
-	Tue, 24 Oct 2023 03:56:36 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E12D63F64C;
-	Tue, 24 Oct 2023 03:55:53 -0700 (PDT)
-Date: Tue, 24 Oct 2023 11:55:48 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-Message-ID: <ZTeitAqfwyse9Vkj@pluto>
-References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
- <20231005025843.508689-6-takahiro.akashi@linaro.org>
- <20231006132346.GA3426353-robh@kernel.org>
- <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
- <ZSTgTC4cFFpofYAk@octopus>
- <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
- <ZS3yK/f12Mxw9rXe@octopus>
- <CACRpkdarDrVkPmyDawhZ+H94S4F=dtDSDVuKegi-eNfQNDY3rg@mail.gmail.com>
- <ZTduWx7CH1ifI5Uc@octopus>
- <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C935D18E2C
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:57:25 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8359D7E;
+	Tue, 24 Oct 2023 03:57:23 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O8L5h8010988;
+	Tue, 24 Oct 2023 10:57:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=pwHPbWVenOA4Gkx0pRNbSvnx9bMxQbdSR9AdgfBq/MY=;
+ b=ADNtEXnh2tW3EFyQIX3Pl77/y4B2stkM/xvl5Q9PV6ZS5GtQ4xihidXtstuGqeutrT8U
+ pzLfgQa5offZ/AVKJYxyXCbFGRq+x0uGw1wtgh59I3IhGLujdFLljmia2AHre0oS8afw
+ +5sVxNS5VrIPjIfjfZmIbK1VfMf8tL7IFcyd/HpWYSJKF15xyMS3lWTI7WuFObneMkRi
+ 6VZ7elQbIAuEV2cRXBgGm3+k8+xcnFp97mgSXXdwEPx33gqBxzkPdJliqXxyR6OlntMH
+ EYYxd7gLocTv3h877AUt3I8RJ60k4qiFnvGWvQsPreP+9MbRD6vQE1IUV5lasKyqw2oK 0Q== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twxn41gej-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 10:57:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39OAvBaW009547
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 10:57:11 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
+ 2023 03:57:06 -0700
+Message-ID: <7a703504-edf1-d85c-0949-9cfcf3251b0b@quicinc.com>
+Date: Tue, 24 Oct 2023 18:57:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
+ <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
+ <d3b62002-c29c-a45e-279f-7d07c697aa77@quicinc.com>
+ <38aa02c4-5b8d-4978-96a2-241fe5f94b50@linaro.org>
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <38aa02c4-5b8d-4978-96a2-241fe5f94b50@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4axXBYttmFH_Hg-2I1G8MiMqV40Ts9ew
+X-Proofpoint-ORIG-GUID: 4axXBYttmFH_Hg-2I1G8MiMqV40Ts9ew
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-24_10,2023-10-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ clxscore=1015 spamscore=0 mlxlogscore=769 lowpriorityscore=0 phishscore=0
+ mlxscore=0 impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
+ definitions=main-2310240092
 
-On Tue, Oct 24, 2023 at 11:40:00AM +0200, Linus Walleij wrote:
-> Hi Takahiro,
-> 
 
-Hi,
 
-> On Tue, Oct 24, 2023 at 9:12 AM AKASHI Takahiro
-> <takahiro.akashi@linaro.org> wrote:
+On 2023/10/23 20:52, Krzysztof Kozlowski wrote:
+> On 23/10/2023 13:54, Zhenhua Huang wrote:
+>>
+>>
+>> On 2023/10/23 17:27, Krzysztof Kozlowski wrote:
+>>> On 23/10/2023 11:20, Zhenhua Huang wrote:
+>>>> Add bindings for the QCOM Memory Dump driver providing debug
+>>>
+>>> Bindings are for hardware, not driver. This suggests it is not suitable
+>>> for bindings at all.
+>>>
+>>>> facilities. Firmware dumps system cache, internal memory,
+>>>> peripheral registers to reserved DDR as per the table which
+>>>> populated by the driver, after crash and warm reset.
+>>>
+>>> Again driver :/
+>>
+>> Thanks for pointing out. Qualcomm memory dump device is a reserved
+>> memory region which is used to communicate with firmware. I will update
+>> description in next version.
 > 
-> > > I think it is better of the pin controller just parse and add any
-> > > subdevices (GPIO or other) using of_platform_default_populate()
-> > > (just grep for this function and you will see how many device
-> > > drivers use that).
-> >
-> > IICU, then, we will have to add a "compatible" to pinctrl node
-> > to make of_platform_default_populate() work as expected. That is:
-> >
-> > scmi {
-> >     ...
-> >     protocol@19 {
-> >         compatible = "simple-bus"; // <- added
-> 
-> Hm right, but you could also use
-> of_platform_populate(np, NULL, NULL, dev);
-> 
-> Then the compatible match is of no concern.
-> 
-> Sorry for my lack of attention to details :/
-> 
-> If you want to restrict the population to a few select compatibles
-> (maybe only "pin-control-gpio") then you can do
-> that with
-> 
-> const struct of_device_id of_scmi_protocol_19_match_table[] = {
->         { .compatible = "pin-control-gpio", },
->         {}
-> };
-> of_platform_populate(np, of_scmi_protocol_19_match_table, NULL, dev);
-> 
-> > Is this what you meant?
-> > In this case, however, "protocol@19" has a mixture of sub-nodes,
-> > most are pinconf definitions which are the properties of the pin
-> > controller, while "scmi_gpio" is a separate device.
-> 
-> That looks good to me, it makes sense to have the GPIO as a subnode
-> here and mandate it with a compatible to match.
-> 
-> > The code will work, but is it sane from DT binding pov?
-> 
-> Let's let the DT people jump in on that.
-> 
-> > > Instead just call gpiochip_add_pin_range() directly in Linux
-> > > after adding the pin controller and gpio_chip.
-> > > C.f. drivers/pinctrl/pinctrl-sx150x.c for an example of a driver
-> > > doing this. In this case the SX150X is hot-plugged (on a slow
-> > > bus) so it needs to figure out all ranges at runtime anyway.
-> >
-> > Are you suggesting implementing a custom function for parsing "gpio-ranges"
-> > and calling it in pin_control_gpio_probe() instead of a generic helper?
-> 
-> The generic helper will always be attempted but if there are
-> no ranges in the device tree, it will just continue without adding
-> any ranges. I suggest putting *no* ranges into the device tree.
-> 
-> > Or do you want to always map all the pin controller's pins to
-> > gpio pins as sx150x does?
-> 
-> I think since the SCMI firmware knows about the available line
-> and pins etc, it makes sense that the driver comes up with the
-> applicable ranges on its own (derived from the information froms
-> the SCMI firmware) and add them, instead of trying to put that
-> information into the device tree at all. Just omit it, and make your
-> own ranges, and add them in the Linux driver with
-> gpiochip_add_pin_range() without involving DT at all when defining
-> the ranges.
-> 
-> I'm sorry if I'm unclear sometimes.
+> I have still doubts that it is suitable for DT. I usually expect  such
+> firmware feature-drivers to be instantiated by existing firmware
+> drivers. You do not need DT for this.
 
-...a maybe dumb question from my side, BUT does the SCMI Pinctrl carry
-enough information as it stands for the driver to derive autonomously
-and efficently the possible/applicable gpio ranges ?
+Got it, as it interacts with firmware, you think it should be a firmware 
+driver? But it seems there should not be existing suitable place to put 
+it now(qcom_scm.c is for TZ). Shall we create one new file like 
+*qcom_sdi.c* in drivers/firmware and put it there? Because SDI(system 
+debug image, which is part of bootloader) is the firmware doing the things.
 
-Are they (GPIOs) all the remaining unassociated pins ?
-If this is the case note that the SCMI Pinctrl lets you query the
-associations in groups or functions and this is generally now done
-only lazily on-demand when specific pins/groups/funcs are requested
-by the parsed DT confs: IOW, in order to derive GPIOs from the set
-of unassociated ones, you will have to at first add some new full-lookup
-pinctrl_ops to query upfront all existing associations (avoiding, at will,
-the lazy querying adopted now) and then singling-out the non-associated
-ones from the lists of all possible group/funcs associations.
-
-Moreover, should we allow anyway the optional possibility to forcibly
-restrict the available gpios from the DT, or we can just assume that
-those un-available (map out as above) wont just be exposed by the
-SCMI server ?
-
-..again sorry if I am missing something crucial here and just talking
-non-sense but I have limited familiarity with Pinctrl/GPIOs usage.
-
-Thanks
-Cristian
+> 
+> Best regards,
+> Krzysztof
+> 
 
