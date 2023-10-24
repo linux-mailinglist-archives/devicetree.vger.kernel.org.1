@@ -1,105 +1,117 @@
-Return-Path: <devicetree+bounces-11360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B77B7D56DD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:47:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE587D56E0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 949ACB20EEB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:47:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C50B1C209E0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D44E37C98;
-	Tue, 24 Oct 2023 15:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfyqkcXu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C3DA37CBF;
+	Tue, 24 Oct 2023 15:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0874C273E1
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:47:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5267FC433C7;
-	Tue, 24 Oct 2023 15:47:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698162439;
-	bh=IoRcMqQobOWmVc0E97Y2wJjL+IlvKc3OjGUUBJBdy2Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gfyqkcXuTiq9JCbtgds/gyTx61nkkPRAH+LYRCaqwbIIXsi+rXAYSPHMjOsSHf+tA
-	 O74wFQtvu2Pd7Sutu6+aumBA5QZKjF5jY4CqlMaEeHKYP2ZmbTxc+NaKB0dyhkddEc
-	 8AbaXFhRunA43jgMPC1VbFwV6vjgWhdE4jvStFumGsfz2emXRAzhiIlBpu3zHsbYG+
-	 309vL/WkHIjSK/7vdjkxRO03Lx6uAH7sUL9/KFBbVhwZMfqLp38FlrNVWqltqT1V0l
-	 SobbKEOcRejC2X6ewHA5cUmzn3uxhWPdvJVWV3Vm+Z4JxSqJN5s+ddiqRbD6NGBcDW
-	 BDCZ81BCBiweQ==
-Date: Tue, 24 Oct 2023 16:47:14 +0100
-From: Lee Jones <lee@kernel.org>
-To: Jeff LaBundy <jeff@labundy.com>
-Cc: James Ogletree <James.Ogletree@cirrus.com>,
-	James Ogletree <james.ogletree@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fred Treven <Fred.Treven@cirrus.com>,
-	Ben Bright <Ben.Bright@cirrus.com>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/4] mfd: cs40l50: Add support for CS40L50 core driver
-Message-ID: <20231024154714.GK8909@google.com>
-References: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
- <20231018175726.3879955-4-james.ogletree@opensource.cirrus.com>
- <20231019162359.GF2424087@google.com>
- <E3224624-7FF4-48F6-BA53-08312B69EF9F@cirrus.com>
- <20231023092046.GA8909@google.com>
- <ZTcZIMbrFEhz+rm4@nixie71>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7820273E1
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:47:51 +0000 (UTC)
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9DB1B3;
+	Tue, 24 Oct 2023 08:47:46 -0700 (PDT)
+Received: from i53875a19.versanet.de ([83.135.90.25] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1qvJd5-0005MZ-2h; Tue, 24 Oct 2023 17:47:39 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ sboyd@kernel.org, mturquette@baylibre.com, daniel@ffwll.ch,
+ airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add Powkiddy RK2023
+Date: Tue, 24 Oct 2023 17:47:37 +0200
+Message-ID: <11399368.MucGe3eQFb@diego>
+In-Reply-To:
+ <SN6PR06MB534206AB35C00B3D003765AAA5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
+References:
+ <20231018161848.346947-1-macroalpha82@gmail.com> <3083498.U7HbjWM52l@diego>
+ <SN6PR06MB534206AB35C00B3D003765AAA5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZTcZIMbrFEhz+rm4@nixie71>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Mon, 23 Oct 2023, Jeff LaBundy wrote:
-> I understand that no customer would ever build the to-be-added codec
-> driver _without_ the input driver, but the MFD must be generic enough
-> to support this case. Would a codec-only implementation use f0 and ReDC
-> estimation? If so, then these functions _do_ belong in the MFD, albeit
-> with some comments to explain their nature.
+Hi Chris,
 
-I'm not going to be able to accept a single-function device into the
-multi-function devices subsystem.  Please submit both once the codec is
-ready.
+Am Freitag, 20. Oktober 2023, 17:03:08 CEST schrieb Chris Morgan:
+> On Thu, Oct 19, 2023 at 07:45:17PM +0200, Heiko St=FCbner wrote:
+> > Hey Chris,
+> >=20
+> > Am Donnerstag, 19. Oktober 2023, 16:43:56 CEST schrieb Chris Morgan:
+> > > On Thu, Oct 19, 2023 at 11:21:47AM +0200, Krzysztof Kozlowski wrote:
+> > > > On 18/10/2023 18:18, Chris Morgan wrote:
+> > > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > >=20
+> > > > > The Powkiddy RK2023 is a handheld gaming device made by Powkiddy =
+and
+> > > > > powered by the Rockchip RK3566 SoC.
+> > > > >=20
+> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+> > > > >  1 file changed, 5 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml =
+b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > > > > index a349bf4da6bc..a6612185a7ff 100644
+> > > > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > > > > @@ -674,6 +674,11 @@ properties:
+> > > > >            - const: powkiddy,rgb30
+> > > > >            - const: rockchip,rk3566
+> > > > > =20
+> > > > > +      - description: Powkiddy RK2023
+> > > > > +        items:
+> > > > > +          - const: powkiddy,rk2023
+> > > >=20
+> > > > This cuold be just enum in previous entry :/ but I remember we talk=
+ed
+> > > > about this once with Heiko.
+> > >=20
+> > > For hardware that requires a different device tree, is that possible?
+> > > While most of the devices I've worked on for the RK3566 series are ve=
+ry
+> > > similar for the moment only 1 is identical (the RG353P and the RG353M)
+> > > and can use the same device tree.
+> >=20
+> > In my reply I pointed to the Rock PI 4A/4A+/B/B+/C family, which also h=
+as
+> > different devicetrees but is part of the same family of device designs.
+> >=20
+> > So similar Powkiddy RK3568 based gaming handhelds also sound like
+> > a nice family name in the description ;-) .
+>=20
+> Gotcha, I can do that. Would you like for me to go back and do the same
+> for the Anbernic devices as well? I can do it as part of a seperate
+> patch series.
 
-> > > >> + struct device *dev = cs40l50->dev;
-> > > >> + int error;
-> > > >> +
-> > > >> + mutex_init(&cs40l50->lock);
-> > > > 
-> > > > Don't you need to destroy this in the error path?
-> > > 
-> > > My understanding based on past feedback is that mutex_destroy()
-> > > is an empty function unless mutex debugging is enabled, and there
-> > > is no need cleanup the mutex explicitly. I will change this if you
-> > > disagree with that feedback.
-> > 
-> > It just seems odd to create something and not tear it down.
-> 
-> mutex_init() is not creating anything; the mutex struct is allocated as
-> part of the driver's private data, which is de-allocated as part of device
-> managed resources being freed when the module is unloaded.
-> 
-> mutex_destroy() is a NOP unless CONFIG_DEBUG_MUTEXES is set, and there are
-> roughly 4x fewer instances of it than mutex_init() in mainline. I recommend
-> not to add mutex_destroy() because it adds unnecessary tear-down paths and
-> remove() callbacks that wouldn't otherwise have to exist.
+that doing that for the Anberic devices would be really nice too, so
+yes please :-) .
 
-Fair enough.
+Thanks
+Heiko
 
--- 
-Lee Jones [李琼斯]
+
 
