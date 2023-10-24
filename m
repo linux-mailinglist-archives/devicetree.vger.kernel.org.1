@@ -1,94 +1,120 @@
-Return-Path: <devicetree+bounces-11422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90167D5B97
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:36:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6940F7D5BC3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F2C0281193
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:36:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AFD01C20A9A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1C63CD19;
-	Tue, 24 Oct 2023 19:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3687F3AC2B;
+	Tue, 24 Oct 2023 19:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ggSESHXo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB85224A09
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:36:35 +0000 (UTC)
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCAAB3;
-	Tue, 24 Oct 2023 12:36:34 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6ce322b62aeso3153151a34.3;
-        Tue, 24 Oct 2023 12:36:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D18266A9
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:46:42 +0000 (UTC)
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E0410D3
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:46:41 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id 006d021491bc7-584042a01eeso2959358eaf.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:46:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1698176800; x=1698781600; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ko81kVFawiPk62I2UsRSceb9b1VOPxmBQiQP7A61UvE=;
+        b=ggSESHXogeyEi2KMclNLSh6AieR4p/uZ47mGljvRfiliGJKwa0ZrrX1gtPh2vUkH5S
+         k3k4nARuZ7Sb8H3d1DxOUWKB60USYi0W+wjvtcMqsOtD0o+oKL66Poqjdx6/kc+y0Ess
+         6AG4Qtpxi/Jp0wDWBzM3fg+M3kna8cZXw5Wuo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698176194; x=1698780994;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xw/76vCr0PLDGu+ObHw0El452oG4pXRjVAV5SmwwM50=;
-        b=ZWDBnnedHDFNZSKmDYFEx9c6kJyJLMlJIUvCqqQJENtTeM5dXhpWEWRer+zKFmOl0j
-         5IlSVahJDQUkzJA7Xq2WjFgCixrv/ZHAxiJOwvx0wuQdo3BhQ6FX1qYF1NrELcNh/X9Y
-         PnjoJR6l3jtciN1Yv5uCnTKjc+lkc/057+IPcNRj4YlyZy2snSLLzlyPFMJtXtFIfztc
-         8MTIIuO1n4KtFIIoEMowS1RClhumkQrjbw1zexnxstzSibnyJRvFtrOSuVx7dfOdWsj8
-         NTbuPK4etT3obkHF7LJ2jQa2EVVQ5GRvanqf4K7pcOykhjJCWfIE/WPABBTe2GR5ZoCt
-         8fMg==
-X-Gm-Message-State: AOJu0YzbtGgnbJ820ChbOMPMJk0nrJ2QkKHFv87ICfjnEGO/6UySmEAR
-	/LmtgW5d9jWJEGj2IGHRew==
-X-Google-Smtp-Source: AGHT+IGAF+x9ZUitcV7dAlZnDe47vxmPt4py4fpRetqxMJ7bZjP220rsXPpzI50pM4oM+BNkX6P1HQ==
-X-Received: by 2002:a9d:73c3:0:b0:6b9:b226:d08e with SMTP id m3-20020a9d73c3000000b006b9b226d08emr14910421otk.34.1698176193747;
-        Tue, 24 Oct 2023 12:36:33 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z10-20020a4ad1aa000000b00581daa5c5fdsm2049818oor.29.2023.10.24.12.36.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 12:36:33 -0700 (PDT)
-Received: (nullmailer pid 434690 invoked by uid 1000);
-	Tue, 24 Oct 2023 19:36:31 -0000
-Date: Tue, 24 Oct 2023 14:36:31 -0500
-From: Rob Herring <robh@kernel.org>
-To: Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc: linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Jacob Siverskog <jacob@teenage.engineering>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rabeeh Khoury <rabeeh@solid-run.com>, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Sergej Sawazki <sergej@taudac.com>, Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>, linux-kernel@vger.kernel.org, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: clock: si5351: add PLL reset mode
- property
-Message-ID: <169817619092.434632.12338153362080945824.robh@kernel.org>
-References: <20231020-alvin-clk-si5351-no-pll-reset-v5-0-f0c1ba537f88@bang-olufsen.dk>
- <20231020-alvin-clk-si5351-no-pll-reset-v5-2-f0c1ba537f88@bang-olufsen.dk>
+        d=1e100.net; s=20230601; t=1698176800; x=1698781600;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ko81kVFawiPk62I2UsRSceb9b1VOPxmBQiQP7A61UvE=;
+        b=ZxoKt1S5mwD0zLM2JQIsVoJt5yieXoMghjkDDKa54v2njBJamF7OICIC28zY3JmelZ
+         Vnp4VRkCu464ys4W0Zx9gv1VWgHiOclEZumG8xO+tzXl8P2GkvuAPwoFNd5g7/wrPOkD
+         pHytwV2Uy2K1Uo2Ddn3Fq6dcqQIsw3Rpdxm0RgW/sUDMP0cW1/gKqyGQPbws7ADn7RLU
+         Zp4kxCfO9bBaXoHualigOF3ZUi3ua0hcD4fqRFGbsDGQTaOleRYNd7cqIeSxNMhZsCC6
+         hEWy9zGdWOqP2kyfL7azw5f9VjJmJYC0jJjnV6vcH6jnFuZnxtVJqxMPsmttU/AUzp0L
+         LSBQ==
+X-Gm-Message-State: AOJu0YyHC4JOfo5DvHRbOzq0HXw7zzOTV5xX5aPY7Ibvt65VrYVqm6yw
+	NV5Um9K26cWhj6bEEUy/We9ihFPKnnMoBdn3zDKB7g==
+X-Google-Smtp-Source: AGHT+IGZLu9siBSnt2MbWkvBMR/N7snwcPPmuPMWWr58Q8rokuqI3qNHuZ9YSR/3f+pgfmtMzYR7ZeBgSq+sGhGPjVQ=
+X-Received: by 2002:a4a:bb0f:0:b0:571:1fad:ebe0 with SMTP id
+ f15-20020a4abb0f000000b005711fadebe0mr13943983oop.3.1698176800424; Tue, 24
+ Oct 2023 12:46:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231020-alvin-clk-si5351-no-pll-reset-v5-2-f0c1ba537f88@bang-olufsen.dk>
+References: <20231024000724.57714-1-hsinyi@chromium.org> <20231024000724.57714-2-hsinyi@chromium.org>
+ <20231024-reenact-wildfowl-de6575bbe6f6@spud>
+In-Reply-To: <20231024-reenact-wildfowl-de6575bbe6f6@spud>
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+Date: Tue, 24 Oct 2023 12:46:14 -0700
+Message-ID: <CAJMQK-g2hWi1GO+9HxE=0AUDWMNF1YSQc9z8=imdF8FduOr+MA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-katsu
+To: Conor Dooley <conor@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	=?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
+	Frank Wunderlich <frank-w@public-files.de>, Macpaul Lin <macpaul.lin@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Oct 24, 2023 at 8:15=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Mon, Oct 23, 2023 at 05:02:24PM -0700, Hsin-Yi Wang wrote:
+> > Add katsu and katsu sku38 which uses different audio codec.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> >  Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docu=
+mentation/devicetree/bindings/arm/mediatek.yaml
+> > index a5999b3afc35..fe8c488a3207 100644
+> > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > @@ -235,6 +235,12 @@ properties:
+> >          items:
+> >            - const: google,kappa
+> >            - const: mediatek,mt8183
+> > +      - description: Google Katsu (ASUS Chromebook Detachable CZ1)
+> > +        items:
+> > +          - enum:
+> > +              - google,katsu
+> > +              - google,katsu-sku38
+>
+> This seems a little odd - does the non sku38 not have an sku of its own?
+>
 
-On Fri, 20 Oct 2023 13:34:15 +0200, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
-> 
-> For applications where the PLL must be adjusted without glitches in the
-> clock output(s), a new silabs,pll-reset-mode property is added. It
-> can be used to specify whether or not the PLL should be reset after
-> adjustment. Resetting is known to cause glitches.
-> 
-> For compatibility with older device trees, it must be assumed that the
-> default PLL reset mode is to unconditionally reset after adjustment.
-> 
-> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> Cc: Rabeeh Khoury <rabeeh@solid-run.com>
-> Cc: Jacob Siverskog <jacob@teenage.engineering>
-> Cc: Sergej Sawazki <sergej@taudac.com>
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-> ---
->  .../devicetree/bindings/clock/silabs,si5351.yaml   | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
+It's actually sku32. I'll update that in the next version. Thanks.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+> > +          - const: mediatek,mt8183
+> >        - description: Google Kodama (Lenovo 10e Chromebook Tablet)
+> >          items:
+> >            - enum:
+> > --
+> > 2.42.0.758.gaed0368e0e-goog
+> >
 
