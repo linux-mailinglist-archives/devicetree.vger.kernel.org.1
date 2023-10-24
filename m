@@ -1,139 +1,206 @@
-Return-Path: <devicetree+bounces-11372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607BF7D5816
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:24:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDFC7D5829
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B50E281AA8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:24:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C4B2815C4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4D039957;
-	Tue, 24 Oct 2023 16:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E20E39950;
+	Tue, 24 Oct 2023 16:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="k4MIVHE+"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="MxgKkMra";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="2PCEAStk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B0D38DEC
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:24:12 +0000 (UTC)
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01AAB111
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:24:09 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-6b26a3163acso3671110b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:24:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1698164649; x=1698769449; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZKTm1mrgyLc1h8Vt1hMbh4XUq9UQSm1P9ND6vgHtPB4=;
-        b=k4MIVHE+0PbeZIPTGn5y3n93OW81aHxr2DHqvg+mjJpDYtKmt+bhBwWyYLEdpkvpQ4
-         qeDKwvVdjsxLw1u72xTXBHq0Ev/DT0c61BuiyOaKlHruXjyaBe61Ls/UXghY67A1UnRo
-         Riy4CrAoHEHn0uqUUcMqaQ/+RMev2zIZ6AxVokNe48o5mlFQq8GaG/pYpY4i4st7dDE9
-         6Yxlty5xikWBvI7WUCrMQwnIbiQdAS23IcSH+Wxt3iaq8V8OBjxXY7MpcZNHkCBPvSug
-         8JR62EOTJ+x21AtT8YmylanyYYBhJlgKc/vIu4RWTTuxTGvCTfSCikRh1kMGh4pAXfbK
-         xGRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698164649; x=1698769449;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZKTm1mrgyLc1h8Vt1hMbh4XUq9UQSm1P9ND6vgHtPB4=;
-        b=AWQrxy89nkOTrx15+szLWVba5uQUqOhxH305Aw+4NrtMdX+p/cTGXM5ZErkPtxEcGb
-         1CC/V7xOCvC2C28sPlgiqMUkQGRqueyFYWpTj8b21i1WoQkQA0Jstcu0VVvLcOL6D6ep
-         V3BDPcOzjKNuwIp3x6tf+D1ERWSYL3wEVZwkuHkfL/IxIgbkDZgn5gIcEelE6hBMIaUR
-         YFYEoYOOlcC4+Nn1C6g1tJzNs0kXaBT1jgZmg2du3XOcpixdvVV2wD4EVHJE46MG0HvD
-         nvkIT2oqgtm7SLgdktOfh8kObGOSEV0vWWTI+oYPSfOF+rtcdwfZHlISgJuLWSVTkBrM
-         Q4WA==
-X-Gm-Message-State: AOJu0Yw66P0NMFl/qDTVWsMjQLTswVgrEZN4JzRTNbl3olX+TKaCIfN6
-	Wnncg0eAkYa5/Rqv53iqXR6DgrGRnNglA6012hfYPA==
-X-Google-Smtp-Source: AGHT+IEAI9u7l/s4QVSYjQHbkLLuhBrDpPV96Xch65PsfjSchtzTZm58WnDeu2X2ZQ59ZzT2bUYsOjtfY4Tuo1cd9lw=
-X-Received: by 2002:a05:6a00:c8d:b0:6bc:635a:aad3 with SMTP id
- a13-20020a056a000c8d00b006bc635aaad3mr10680827pfv.9.1698164649373; Tue, 24
- Oct 2023 09:24:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B4F29D05
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:25:38 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1AD111;
+	Tue, 24 Oct 2023 09:25:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698164734; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=jFmsKgTNZAZIwUdugGKnmrcnP5auvCuXcRINXCifCaqO2Rxwwh5aTPGR4MBASQ81d/
+    OHlOQkIEDiM2VJHDCJ0Ar0qRHDGH9jE1tRnCbVRhOL/jkIstiQlwCetHNgbOu46MRfhS
+    nQeYXi4AdGH3sdVqPZN/jL5PeTLM2j7nbVxpFvUeC3tp5VvZy/dec1W9X3TcR2mJPW90
+    f0gPLZ8R2ZQOb3hcK40vs19NtQhp9nLVsk7gnRTa2KD1uLZ/fafHXOApviEHp8NzM/lC
+    Q6iQdRn4HSFiduvyayKDLraMPVDFDW2Igbbt/lToO01oJ+Hq9xlHwiotzuZZJVsSlh/B
+    nhPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698164734;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
+    b=MKjshxKL2XMbugW1bLA9mN8A0RKMg2KLCu19ikbDuOfgDnchzw7UgMWFUd+C3Skj1/
+    5DX/m2puY2yTWVHIMc07WyMuk4JV4aynmNyWZz05eXfkWse/zd86SWqjln2NYNU3Icjk
+    tGyFMIbbJDPuX65tu1o/ba4qjQWiok7CAFYG/M8fgwOjObX4KomI0N+1IU25xDPkIkTY
+    8jSvz/giiiN6pDAY1cam5yuSt4/q4PpvnZ2y6xL5rUPP/s23Sr/wCxRysvpbu4E2RBEh
+    B9gPEgcD+xi2z+9kYgcMzjwhHt5ElfRoUJq0iXkupIkuf0DG7qyg0xTmIRUGdfK3vbT8
+    8HYw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698164734;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
+    b=MxgKkMraIPXFbPtFfYbpgzo7AyE6t3/6XtN08BPqKzB4dIDWiByfjTXj4o71jchFO4
+    xp2PjzC3Ar/4zr1/NugLN+v+LX+lhZ0Rk739Fd0hmD/CGWirt1MQptRjN8mlS/aunEJP
+    YDbDiOtoTZZx41cLh6zYmAL8HMCcLXV5cHqUGt2jDIJKHaOd+oKT8X6nxHJEzGJ2pG5J
+    06+hUg0ZDoZHt4xZXxU4L8mZp7kiJOwvYUjRbGqe5yeWmFjLN9tH4xt6NE0T39xIx8vA
+    QV2WzNaM0WlSnrqoB9Xy2CCV58Im4HF74ks/GAroHmbWg3jyGlIEoWTjXVKZZrTqvLkz
+    5WXg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698164734;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
+    b=2PCEAStkBVaZjcLABSrDuFH8+MKtswPuHybD8FIetqU3T5XlT5mm0KXJESzGBYuJNM
+    1wOSuHbnT4QEpu196ZCA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z+P1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
+    with ESMTPSA id j34a49z9OGPXRmV
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Oct 2023 18:25:33 +0200 (CEST)
+Date: Tue, 24 Oct 2023 18:25:28 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ilia Lin <ilia.lin@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain
+ devices
+Message-ID: <ZTfv-Dea693UqLXB@gerhold.net>
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
+ <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
+ <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
+ <ZTeyhR7YY7VgWQlU@kernkonzept.com>
+ <CAPDyKFrcV8iJnJ904j1jkx0E8PaOLmiTZ7CKk7EV8qQ71AZdbA@mail.gmail.com>
+ <ZTfBZqBwqskhFydZ@kernkonzept.com>
+ <CAPDyKFooPLCmJeqjhiMm7HRdW5UrEw0yHvGF9fgLvOigsgbWxg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023155013.512999-1-romain.gantois@bootlin.com>
- <20231023155013.512999-4-romain.gantois@bootlin.com> <b8ac3558-b6f0-4658-b406-8ceba062a52c@lunn.ch>
- <f4e6dcee-23cf-bf29-deef-cf876e63bb8a@bootlin.com> <932bef01-b498-4c1a-a7f4-3357fe94e883@lunn.ch>
-In-Reply-To: <932bef01-b498-4c1a-a7f4-3357fe94e883@lunn.ch>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Tue, 24 Oct 2023 18:23:58 +0200
-Message-ID: <CA+HBbNHb2RF3tfDYRTG6AndhmW1U4tvFmiC+rhYwH8SCLqSUzw@mail.gmail.com>
-Subject: Re: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS driver
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jakub Kicinski <kuba@kernel.org>, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	thomas.petazzoni@bootlin.com, Florian Fainelli <f.fainelli@gmail.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	linux-arm-kernel@lists.infradead.org, 
-	Vladimir Oltean <vladimir.oltean@nxp.com>, Luka Perkov <luka.perkov@sartura.hr>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@somainline.org>, 
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFooPLCmJeqjhiMm7HRdW5UrEw0yHvGF9fgLvOigsgbWxg@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 24, 2023 at 4:08=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > > > + for (c =3D 0; c < priv->info->mib_count; c++) {
-> > > > +         mib =3D &ar8327_mib[c];
-> > > > +         reg =3D QCA8K_PORT_MIB_COUNTER(port->index) + mib->offset=
-;
-> > > > +
-> > > > +         ret =3D qca8k_read(priv, reg, &val);
-> > > > +         if (ret < 0)
-> > > > +                 continue;
-> > >
-> > > Given the switch is built in, is this fast? The 8k driver avoids doin=
-g
-> > > register reads for this.
+On Tue, Oct 24, 2023 at 06:11:34PM +0200, Ulf Hansson wrote:
+> On Tue, 24 Oct 2023 at 15:07, Stephan Gerhold
+> <stephan.gerhold@kernkonzept.com> wrote:
 > >
-> > Sorry, I don't quite understand what you mean. Are you referring to the=
- existing
-> > QCA8k DSA driver? From what I've seen, it calls qca8k_get_ethtool_stats=
- defined
-> > in qca8k-common.c and this uses the same register read.
->
-> It should actually build an Ethernet frame containing a command to get
-> most of the statistics in one operation. That frame is sent to the
-> switch over the SoCs ethernet interface. The switch replies with a
-> frame containing the statistics. This should be faster than doing lots
-> of register reads over a slow MDIO bus.
->
-> Now, given that this switch is built into the SoC, i assume the MDIO
-> bus is gone, so register access is fast. So you don't need to use
-> Ethernet frames.
+> > On Tue, Oct 24, 2023 at 02:49:32PM +0200, Ulf Hansson wrote:
+> > > On Tue, 24 Oct 2023 at 14:03, Stephan Gerhold
+> > > <stephan.gerhold@kernkonzept.com> wrote:
+> > > >
+> > > > On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
+> > > > > On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > > >
+> > > > > > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+> > > > > > <stephan.gerhold@kernkonzept.com> wrote:
+> > > > > > >
+> > > > > > > The genpd core caches performance state votes from devices that are
+> > > > > > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
+> > > > > > > runtime PM performance state handling"). They get applied once the
+> > > > > > > device becomes active again.
+> > > > > > >
+> > > > > > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
+> > > > > > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
+> > > > > > > devices that use runtime PM only to control the enable and performance
+> > > > > > > state for the attached power domain.
+> > > > > > >
+> > > > > > > However, at the moment nothing ever resumes the virtual devices created
+> > > > > > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
+> > > > > > > means that performance state votes made during cpufreq scaling get
+> > > > > > > always cached and never applied to the hardware.
+> > > > > > >
+> > > > > > > Fix this by enabling the devices after attaching them and use
+> > > > > > > dev_pm_syscore_device() to ensure the power domains also stay on when
+> > > > > > > going to suspend. Since it supplies the CPU we can never turn it off
+> > > > > > > from Linux. There are other mechanisms to turn it off when needed,
+> > > > > > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+> > > > > >
+> > > > > > I believe we discussed using dev_pm_syscore_device() for the previous
+> > > > > > version. It's not intended to be used for things like the above.
+> > > > > >
+> > > > > > Moreover, I was under the impression that it wasn't really needed. In
+> > > > > > fact, I would think that this actually breaks things for system
+> > > > > > suspend/resume, as in this case the cpr driver's genpd
+> > > > > > ->power_on|off() callbacks are no longer getting called due this,
+> > > > > > which means that the cpr state machine isn't going to be restored
+> > > > > > properly. Or did I get this wrong?
+> > > > >
+> > > > > BTW, if you really need something like the above, the proper way to do
+> > > > > it would instead be to call device_set_awake_path() for the device.
+> > > > >
+> > > >
+> > > > Unfortunately this does not work correctly. When I use
+> > > > device_set_awake_path() it does set dev->power.wakeup_path = true.
+> > > > However, this flag is cleared again in device_prepare() when entering
+> > > > suspend. To me it looks a bit like wakeup_path is not supposed to be set
+> > > > directly by drivers? Before and after your commit 8512220c5782 ("PM /
+> > > > core: Assign the wakeup_path status flag in __device_prepare()") it
+> > > > seems to be internally bound to device_may_wakeup().
+> > > >
+> > > > It works if I make device_may_wakeup() return true, with
+> > > >
+> > > >         device_set_wakeup_capable(dev, true);
+> > > >         device_wakeup_enable(dev);
+> > > >
+> > > > but that also allows *disabling* the wakeup from sysfs which doesn't
+> > > > really make sense for the CPU.
+> > > >
+> > > > Any ideas?
+> > >
+> > > The device_set_awake_path() should be called from a system suspend
+> > > callback. So you need to add that callback for the cpufreq driver.
+> > >
+> > > Sorry, if that wasn't clear.
+> > >
+> >
+> > Hmm, but at the moment I'm calling this on the virtual genpd devices.
+> > How would it work for them? I don't have a suspend callback for them.
+> >
+> > I guess could loop over the virtual devices in the cpufreq driver
+> > suspend callback, but is my driver suspend callback really guaranteed to
+> > run before the device_prepare() that clears "wakeup_path" on the virtual
+> > devices?
+> 
+> Yes, that's guaranteed. dpm_prepare() (which calls device_prepare())
+> is always being executed before dpm_suspend().
+> 
 
-It is being accessed as regular MMIO so the MDIO bottleneck is not present,
-so we never tried if the special ethernet packets are even support, especia=
-lly
-since the tag is completely different from that in regular qca8k switches.
+Thanks, I think I understand. Maybe. :-)
 
-Regards,
-Robert
->
->          Andrew
+Just to confirm, I should call device_set_awake_path() for the virtual
+genpd devices as part of the PM ->suspend() callback? And this will be
+guaranteed to run after the "prepare" phase but before the
+"suspend_noirq" phase where the genpd core will check the wakeup flag?
 
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Thanks,
+Stepan
 
