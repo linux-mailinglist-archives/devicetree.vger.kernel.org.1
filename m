@@ -1,93 +1,115 @@
-Return-Path: <devicetree+bounces-11415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D9D7D5B37
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:10:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A61F7D5B4D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:15:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1D35B20D5E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0AF2818A9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB043CCF2;
-	Tue, 24 Oct 2023 19:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KX2YVeM6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF06F3CCF9;
+	Tue, 24 Oct 2023 19:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC59E3C6BE
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:10:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97408C433C7;
-	Tue, 24 Oct 2023 19:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698174651;
-	bh=9P0Xbi4QRhEOx6Tg+9+CA1C0vPu9RF8BUGInzmbyOX4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KX2YVeM6JhaE+WWjcdrpxwZR2Jqj5bQRfk+uWPi/b3K/VXM/fsgq1NBf9VYbHx+RZ
-	 JNBpz6ooqEUsB4OOrYIsn3Mc2GrpIWa9+Puri4d0Y0reKDc6zXLlLpRj0+o6WNPp10
-	 aP00UqJcNnlGmcDupvWGmkIPrUwx4YPSfiDhof72PLHGKZkt9GsO7L9DZ3DPB4yZSu
-	 z/LG1HS2DGqMLTrGeFux5aupXTpxicnruDGusZXlghLyxlT5zcaTjwWnV30vzQjzAS
-	 4d+alanio7lKQrOIyvY8aNf8F68wUXgKrV1ekbN8jpY/z49/2bf1xZC1g7b5rDq39f
-	 eA4SeRYHE1/wA==
-From: Mark Brown <broonie@kernel.org>
-To: Support Opensource <support.opensource@diasemi.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <bfd1cf9d620a8229f5a5e62e6fe9e59c153d0830.1698051619.git.geert+renesas@glider.be>
-References: <bfd1cf9d620a8229f5a5e62e6fe9e59c153d0830.1698051619.git.geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: regulator: dlg,da9210: Convert to
- json-schema
-Message-Id: <169817464932.84334.9478753707523977088.b4-ty@kernel.org>
-Date: Tue, 24 Oct 2023 20:10:49 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D52920B0C
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:15:51 +0000 (UTC)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631C1109;
+	Tue, 24 Oct 2023 12:15:50 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b2ea7cc821so3393621b6e.1;
+        Tue, 24 Oct 2023 12:15:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698174949; x=1698779749;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fc7wsu+Ez53X61VDpaWVir82UtYO/AqwmwLE+WTcs7o=;
+        b=Ympkgw82amTwWMA7C8Sh93ah33FrMYi8aLpgaRRRxltyRb6tJuNXWzFUQ2B/YHuBel
+         6hACTWs9dHYkLHdHUyHNsqIPe82p5aGezlWKBF5jwaY58ojq6TXFiOXatAccCWQOAUx4
+         GdqEcuVCCw+7LffSEYWCATvmnxATyBL83wLjUomtjrpQNGTMGXYlYhRPESuq8ac+cKbl
+         tBPkU6qQm/rxDtrBRhut/gNDb8wOuZSi7JU+5JGW98oB5z1fAQY2UGC0aJ2WcND3aJ1L
+         GDr2TnpYi9jS1e42iQJo2Pr+CWtR/4pP6896cCDifvf5zMWbyqM88RUlyDCNOAVwuPzM
+         HK0A==
+X-Gm-Message-State: AOJu0YwUHxZTgUE3Hzulnered2bHQrQQf69XVjCcVx6crwRjcjRnGKEq
+	5D/YVjURPn80iv/GK2/GyA==
+X-Google-Smtp-Source: AGHT+IER1+W8thq+jVs5LXcjlTIf2E/TkcDrEDQn3qMEpjU+x8WiOWdAZMsl5sTg8R2Hr324uf0jDg==
+X-Received: by 2002:a05:6808:181:b0:3ab:8574:e8ab with SMTP id w1-20020a056808018100b003ab8574e8abmr14532474oic.21.1698174949695;
+        Tue, 24 Oct 2023 12:15:49 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j5-20020a056830270500b006ce46212341sm1399103otu.54.2023.10.24.12.15.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 12:15:49 -0700 (PDT)
+Received: (nullmailer pid 403998 invoked by uid 1000);
+	Tue, 24 Oct 2023 19:15:48 -0000
+Date: Tue, 24 Oct 2023 14:15:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: catalin.marinas@arm.com, will@kernel.org, frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [RFC PATCH 1/3] of: reserved_mem: Change the order that
+ reserved_mem regions are stored
+Message-ID: <20231024191548.GA358703-robh@kernel.org>
+References: <20231019184825.9712-1-quic_obabatun@quicinc.com>
+ <20231019184825.9712-2-quic_obabatun@quicinc.com>
+ <CAL_Jsq+pUv29277spzXB7QJ=OZTwGy_FmW55CzQPWYLPktA0EA@mail.gmail.com>
+ <7e6ddffc-81a5-4183-9e59-7060776c936a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7e6ddffc-81a5-4183-9e59-7060776c936a@quicinc.com>
 
-On Mon, 23 Oct 2023 11:04:45 +0200, Geert Uytterhoeven wrote:
-> Convert the Dialog Semiconductor DA9210 Multi-Phase 12A DC-DC Buck
-> Converter Device Tree binding documentation to json-schema.
+On Thu, Oct 19, 2023 at 03:45:37PM -0700, Oreoluwa Babatunde wrote:
 > 
-> 
+> On 10/19/2023 12:46 PM, Rob Herring wrote:
+> > On Thu, Oct 19, 2023 at 1:49 PM Oreoluwa Babatunde
+> > <quic_obabatun@quicinc.com> wrote:
+> >> The dynamic allocation of the reserved_mem array needs to be done after
+> >> paging_init() is called because memory allocated using memblock_alloc()
+> >> is not writeable before that.
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> >> --- a/arch/arm64/kernel/setup.c
+> >> +++ b/arch/arm64/kernel/setup.c
+> >> @@ -27,6 +27,8 @@
+> >>  #include <linux/proc_fs.h>
+> >>  #include <linux/memblock.h>
+> >>  #include <linux/of_fdt.h>
+> >> +#include <linux/of_reserved_mem.h>
+> >> +
+> >>  #include <linux/efi.h>
+> >>  #include <linux/psci.h>
+> >>  #include <linux/sched/task.h>
+> >> @@ -346,6 +348,8 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
+> >>
+> >>         paging_init();
+> >>
+> >> +       fdt_init_reserved_mem();
+> >> +
+> > You removed this call from the common code and add it to arm64 arch
+> > code, doesn't that break every other arch?
+> Yes, the same changes will be needed for every other arch. I was hoping to
+> get some feedback on the RFC before implementing this on other archs which
+> is why the change is currently only in arm64.
+> > The very next thing done here is unflattening the DT. So another call
+> > from the arch code to the DT code isn't needed either.
+> Yes, I see that unflatten_device_tree() is being called right after here.
+> Just to clarify, are you suggesting to move fdt_init_reserved_mem() into the
+> unflatten_device_tree() call?
 
-Thanks!
+In general, I want fewer calls between arch code and DT core and for the 
+DT core to be more in control of the ordering that things happen. Your 
+series does the opposite.
 
-[1/1] dt-bindings: regulator: dlg,da9210: Convert to json-schema
-      commit: 7a198e0d48167db90e50777aab5a83a74e351f71
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
 
