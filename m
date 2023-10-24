@@ -1,136 +1,159 @@
-Return-Path: <devicetree+bounces-11185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97927D4AE4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:51:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243597D4B1F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1882C1C209E5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:51:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 738EDB20E44
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF3A1B26D;
-	Tue, 24 Oct 2023 08:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E1220B0C;
+	Tue, 24 Oct 2023 08:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibv-augsburg.net header.i=@ibv-augsburg.net header.b="E2HUeYhc";
-	dkim=permerror (0-bit key) header.d=ibv-augsburg.net header.i=@ibv-augsburg.net header.b="rfzJINJN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mY75BUOx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2CA7461;
-	Tue, 24 Oct 2023 08:51:44 +0000 (UTC)
-X-Greylist: delayed 169 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 Oct 2023 01:51:41 PDT
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45811110;
-	Tue, 24 Oct 2023 01:51:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1698137313; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=dCcByXA50jlPc/5462sZaBYKE1yLuq8didSSqCaiBubc/EXXEqja6NYRBlfmv/CznH
-    yY3b9Vr8Ha1wBKqnHAtCoSDJu+S6cjyBBSKyUfRatTBjbpJ4X0+E1G7uEW3pqljWqm4W
-    u+Xb+evtzvEwK1GeQosGn45YP1mtRhOIvbNbQt3eKqLKr6SQLzGKOdPmKjM4Vpk7Mlv1
-    WP0mC2COCNREel8omco3oWrfJJIXNtuOsmCf1Rhyg+dBfpkTHjkYP6sNmSeCoUh1ZHQF
-    zYGJHKece8em7+Qs04hf4oKbYgkZdS3rgvHqIqxiRYZSBDJJwFEFsLGDMEgQ5+1mlDyf
-    lYJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698137313;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8DmN4MjoYkBhQY8ESnY7blQegmMPGHJ4AlxHqUCnUtU=;
-    b=RAOA5Yq4NAHi1lIYy9fPITpAgKff26SsILB/yW7T6nHf5CnvVhAAGkKjC2IfqNaWP6
-    u1Q5fr7hqcOpzATNQYVaFHuyKAOsNWI49DZ0UfLUJt12TGh8fJtcze4tS4uR1+usmjvR
-    8c7gVEmsrOPEY5In93JSNg2RQO+WkKjhB3Ohk4mjap+rng/2FWSQJUxbXbHU5jN/EnL3
-    j2TV3lKJy+bYwmRXbFoJCTs6rasJtKBY9QYfPVxrXmBeRl7/V1Q7UfQgcObeo6q3/OnJ
-    eT6fCc7I4DqB6lIKyp6CkWwNRWOxJdiqRVhfTpfnHQjBC3sSW1qdOn8QWl6WIeADMq4J
-    hZrw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo00
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698137313;
-    s=strato-dkim-0002; d=ibv-augsburg.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8DmN4MjoYkBhQY8ESnY7blQegmMPGHJ4AlxHqUCnUtU=;
-    b=E2HUeYhcKPAGXcpVmL6LqqrMrF7Ib5R4o0KvG+smrDoI22sZJ+0L8/jX4/xlgN+f3N
-    z+WyigESPlkHNmR1fQakN1a6hdwhgtDP80tJUWDoEqTu86iEDBGSvQxUdEy5D+iR/Ixb
-    9E22vSQ5dIaYhiR1dTQAtIQ1NB7f5497UtmL4EH3DQp7UAmfr1h6UMLHpPqXqAr1rEuN
-    85A8piSKfmxjzR77X5gDbMHuYu5b5Qp7sRToLmarTcvZQEB1Dcbx65fEWr8g4HPJ0dQ1
-    X9GxoUSNJHDzdtFFZt4fiXj7SAX5+dS6dk/ue8mAN8yXWZ5af3VcMZ6PWC66i3bHobOv
-    D2BQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698137313;
-    s=strato-dkim-0003; d=ibv-augsburg.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8DmN4MjoYkBhQY8ESnY7blQegmMPGHJ4AlxHqUCnUtU=;
-    b=rfzJINJNKVbLLy68yENYq1w7rR9Eo54SM0TqV2JqOUk6QkZFpiK29+LQbTdcWCt4go
-    yEkVyJWl1w+392W9JGBg==
-X-RZG-AUTH: ":KGMJfE6heLGk8b3w7Oa1fDtXwBjeDczIOHPRx8yNRKhFG/cxcP9dNdI9SxioDT8RvZMqtMfbyXFLOT+0odACkA=="
-Received: from JADEVM-DRA
-    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
-    with ESMTPSA id U33eaez9O8mWZhh
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 24 Oct 2023 10:48:32 +0200 (CEST)
-Date: Tue, 24 Oct 2023 10:48:31 +0200
-From: Dominic Rath <dominic.rath@ibv-augsburg.net>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Fang Xiang <fangxiang3@xiaomi.com>, bahle@ibv-augsburg.de,
-	rath@ibv-augsburg.de
-Subject: Re: [PATCH v3 3/5] irqchip/gic-v3-its: Split allocation from
- initialisation of its_node
-Message-ID: <20231024084831.GA3788@JADEVM-DRA>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20231006125929.48591-1-lpieralisi@kernel.org>
- <20231006125929.48591-4-lpieralisi@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9557461;
+	Tue, 24 Oct 2023 08:54:32 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC76610E9;
+	Tue, 24 Oct 2023 01:54:19 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O8Y6gO025163;
+	Tue, 24 Oct 2023 08:54:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=W6ajn5ipoxlzEj1no8f6ESzNsQM/d79ox1pO89tPgJk=;
+ b=mY75BUOxHVDp99Yn+QNle4PyXsbXIzy+EZEexKzuZSs6SLhxYGfT2KemFETwNWnnz876
+ jM78JtX3s7ZefCroPmjiwTjcKn/ab5n6rd3gFuHr7i4j1Zbqm8vcYI9ObM09GC4koxlb
+ otU8QlKbLE75+jusrvzF1te0j5Zo0qJyotOx9Lmrb0TB8iheZAkLvBUU8qJ5A/WpKOpL
+ idTV6T79sqZbfsT0Sz/Iwvy9N4JL3Nt6a51wdJRkxNZPAII5ls73R2WtTandfiidDkub
+ WgVfABgz/JD9QQuCq81cbj7DywQfJ7Acaq+5Pzpm9E5/L1yE7wsWNB7l7zAGLPb00hwS yQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tx5f58jnv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 08:54:08 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39O8s7Ej005073
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 08:54:07 GMT
+Received: from [10.249.18.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
+ 2023 01:54:00 -0700
+Message-ID: <196601cc-f8c6-4266-bfff-3fd69f0ab31c@quicinc.com>
+Date: Tue, 24 Oct 2023 14:23:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006125929.48591-4-lpieralisi@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
+ Glue driver
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi
+	<balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
+References: <20231007154806.605-1-quic_kriskura@quicinc.com>
+ <20231007154806.605-6-quic_kriskura@quicinc.com>
+ <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
+ <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
+ <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
+ <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
+ <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
+ <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
+ <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kbMudVGa0LNV5015FDNoHqNKOSEaamK2
+X-Proofpoint-ORIG-GUID: kbMudVGa0LNV5015FDNoHqNKOSEaamK2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-24_07,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0 adultscore=0
+ priorityscore=1501 mlxlogscore=999 bulkscore=0 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310240074
 
-Hi,
 
-On Fri, Oct 06, 2023 at 02:59:27PM +0200, Lorenzo Pieralisi wrote:
-> From: Marc Zyngier <maz@kernel.org>
+
+On 10/24/2023 12:26 PM, Johan Hovold wrote:
 > 
-> In order to pave the way for more fancy quirk handling without making
-> more of a mess of this terrible driver, split the allocation of the
-> ITS descriptor (its_node) from the actual probing.
+> You need to provide this information so that we can determine what the
+> binding should look like. The implementation would also be simplified if
+> we don't have to add random hacks to it just because we don't know why
+> the vendor driver you refer does not use it currently on this particular
+> platform.
+> 
+>> Also I plan on splitting the patchset into 4 parts (essentially 4 diff
+>> series):
+>>
+>> 1. Bindings update for hs_phy_irq's
+>> 2. DT patches for MP controller and platform specific files
+>> 3. Core driver update for supporting multiport
+>> 4. QCOM driver update for supporting wakeup/suspend/resume
+>>
+>> This is in accordance to [1] and that way qcom code won't block core
+>> driver changes from getting merged. Core driver changes are independent
+>> and are sufficient to get multiport working.
+> 
+> No, you clearly did not understand [1] at all. And stop trying to game
+> the upstreaming process. Bindings and driver patches go together. The
+> devicetree changes can be sent separately in case of USB but only
+> *after* the first set has been merged.
+> 
+> If the code had been in good shape from the start it would have been
+> merged by now. Just learn from your mistakes and next time things will
+> be smoother.
+> 
 
-it seems that this change breaks MSI-X (MSI?) reception on at least
-the TI AM64x, probably most/all of TI's recent devices (K3).
+I agree that bindings should go first. My point is core bindings are 
+already approved and merged and just wanted to check if core driver 
+changes can be merged without glue blocking them. Core driver changes 
+have nothing to do with interrupt handling in glue. If we get the core 
+changes merged separately after fixing the nits mentioned, we can take 
+up this interrupt handling in glue in parallel. I am just trying to see 
+if we can start merging independent portions of code. I agree that my 
+glue driver changes are still not upto mark. But that has nothing to do 
+with core driver changes.
 
-These devices rely on a quirk CONFIG_SOCIONEXT_SYNQUACER_PREITS that
-uses an address from the dts specified e.g. as
+Please let me know if that is appropriate because I think functionality 
+intended by changes in core is independent of glue driver and glue 
+bindings. If anything glue is partially dependent on core changes (like 
+the MAX_PORTS macro etc., but not the other way around).
 
-  socionext,synquacer-pre-its = <0x1000000 0x400000>;
-
-to configure a MSI base address that differs from the ARM default.
-
-With this change, the quirk still sets its->get_msi_base and clears
-IRQ_DOMAIN_FLAG_ISOLATED_MSI from its->msi_domain_flags during
-its_of_probe, but both get overwritten again during its_probe_one
-with the defaults.
-
-Previously the defaults would be set first and then the quirks were
-applied.
-
-I have no idea whether TI's use of this quirk was "correct", but it did
-work, and since 6.6-rc6 MSI-X has been broken for us.
-
-Best Regards,
-Dominic
+Regards,
+Krishna,
 
