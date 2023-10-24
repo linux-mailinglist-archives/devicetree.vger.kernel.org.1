@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8BF7D4899
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:33:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE7347D48A1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D850281735
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:33:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D8E0281904
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F183914A8F;
-	Tue, 24 Oct 2023 07:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E754614F68;
+	Tue, 24 Oct 2023 07:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HUe5be4S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VzNEi096"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEBA7486
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:33:44 +0000 (UTC)
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4DF10C
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:33:42 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so55466271fa.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:33:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D4E14A9F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:35:20 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C93F120
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:35:18 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-507bd19eac8so6087445e87.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698132820; x=1698737620; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1698132916; x=1698737716; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AK2JS0/81pDYSI6L7u1k0BgqB5D3FbcHDK7LTJTLCcQ=;
-        b=HUe5be4S3iubDGlFe2mUnINpCNMXqRxUeK+8+gt6ZQ+18Toi84jwPFwdPdjQ3A7pAN
-         2loj9W/ggGe1f5Wf1swmVHuUKzWYvADJpyUcYvgeE8AFISI+JhAFLKHGHBCkQsZRzLr3
-         6RTYNwZ/4bnGcR3U77L8xafRUDoTXABonp2CBpWnuZLOgpAElk89NeY0S5tSEXrE/h4K
-         tT6L9rXBM2BmHnMyzfCNuAJkqPrlsUeo9LymqWlHuxZKiKn5aUYjjbgHChUj6DirWIGY
-         qU4hD06LDBjVWc8NXb4wdUVCvkds6kb25sJ/pAjDjYOUnW1RHVmSPFpIGumjeoeCvenD
-         f/0w==
+        bh=eJv6gqM+OTcCh7zIMBr0dC/szBwvLdyr8Zi+KxfKXXk=;
+        b=VzNEi096omLVAUcFCLMn83TiKqBHNIhNoqKBVyLjQMULRoPCaWknwcYfeEGOfDaKOW
+         hJuXDuGqIVIm/LELKPXecVOIx9ev06m2e6KgG1WV7+0eLmu4cyrpW0jfvEbg+/AQVLmG
+         Z+JDzubyc4z0+McUXa5BgNiDIH7nQDxSzRyW6bM9I0rKEPep/csXLUnTnBg8ElAcI09g
+         BcsXRhhcx7jiaWu7BOpubL9NGXPTQ9YvWczF6CPAZBdAHojmUqIX254ANsRzLK3AYdJk
+         fWU+KBcGXQxvrs0AZkJ7qHsl5KF6xP8RqOitHPQ8uGbyqWz9T1VqGOX/GPCCRSSnVHAg
+         BMYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698132820; x=1698737620;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1698132916; x=1698737716;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AK2JS0/81pDYSI6L7u1k0BgqB5D3FbcHDK7LTJTLCcQ=;
-        b=HyPr2mXu4jBfpOn0M30H1xUgtaTxj4HsJFqYb97U1dJjiGiffzZuJSpCVBZpTHiDNI
-         dmu1dqHZRxpS05BB4tfJ6EMhslHYKEhpxmOU43g6TbAQLPlk0Ywy9yZ2oozDKly6O2Fx
-         qqsUNnvOSODAvozAdykvETMj/COqVnRliSGNPTyOpezMtkhsbxwm/Z6rYWm6/9EbAJe9
-         awComWoNBhpD2OFhzsRPPmnuXMGFtKui1EbAz/74uwfD7EFyl9a4LZO2kT4k9JSF05kO
-         Idw9YM0t5t+3fEm4RD3fkfCY/z7q280qsSsLzsAdbAb7qdi024X9e06RPiWbGsMiBzXy
-         CvGw==
-X-Gm-Message-State: AOJu0YyRoiEPJptt58j9pHqUk/3bvv08rlCc5bDkfzQ1eMJfJBjrZeoB
-	quOEufVfcORCGEiwo7NJIL3epg==
-X-Google-Smtp-Source: AGHT+IHVAW6I1tWe3Cph0VY02pQsdhncN7oMJqXngyQdcMUODl307DBJRdhWQ2SqTeyMBoRZAuqueQ==
-X-Received: by 2002:a2e:7c15:0:b0:2c5:5926:de52 with SMTP id x21-20020a2e7c15000000b002c55926de52mr7753810ljc.53.1698132820471;
-        Tue, 24 Oct 2023 00:33:40 -0700 (PDT)
+        bh=eJv6gqM+OTcCh7zIMBr0dC/szBwvLdyr8Zi+KxfKXXk=;
+        b=kkuQ6D4qHJ4cfRn8RHa9Q6yHz+Nn072XGBzp2NY3WAQ68aXE74bZiyTM/wQw8keHgg
+         jsXMlRxxUXBI1wPUMSRmCgUMDtxp61AoeR6LUribhibf8OeDwKvZ0YjhJn/QEgb4h0uN
+         ZtFfGaL4RgxmX3KOsGuBQ1P1KIAna/WZDZVQD3H36Y0l45+Xr06LF/Vzi37fEsq9+w4r
+         gd3CDOOHcLU6ZZbHGQ7dRrSVBUvRl6WyQTYPw1lmYVua8wSgDix90s1/bxuitUnn1wi1
+         yZsD2tSR9Gv5oHZd/FDnWTwLXU6XVoL6uhRE8jG/kJumms7CkEDDVSaaN/DZivOJmkLN
+         gW6g==
+X-Gm-Message-State: AOJu0YxWec154yWEMcCLXPA1z/UqzAnm3X8eb9NM79ZhPS84fgX+NZEo
+	kruQhPTKyysEJJPQGytXlK6XWA==
+X-Google-Smtp-Source: AGHT+IFARmjYw5wDyWxwrUmv/qROfvnOdbej4Df0ElPnEMtUn0NSwrLyjovG1vRgr/O0m/HvTuWrfg==
+X-Received: by 2002:a2e:6819:0:b0:2c0:2ab7:9ab1 with SMTP id c25-20020a2e6819000000b002c02ab79ab1mr7684938lja.35.1698132916263;
+        Tue, 24 Oct 2023 00:35:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ay10-20020a05600c1e0a00b00405442edc69sm13486017wmb.14.2023.10.24.00.33.39
+        by smtp.gmail.com with ESMTPSA id ay10-20020a05600c1e0a00b00405442edc69sm13486017wmb.14.2023.10.24.00.35.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 00:33:39 -0700 (PDT)
-Message-ID: <530b364d-1cdb-4905-a3f6-fd15c7aa1456@linaro.org>
-Date: Tue, 24 Oct 2023 09:33:38 +0200
+        Tue, 24 Oct 2023 00:35:15 -0700 (PDT)
+Message-ID: <b6cb4233-9c07-46bc-9ff4-448e2b121edd@linaro.org>
+Date: Tue, 24 Oct 2023 09:35:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH dt-schema] schemas: gpio: gpio-consumer: Fix false
- positives on nodes named gpio
+Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: sm8250-xiaomi-pipa: Add initial
+ device tree
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Luka Panio <lukapanio@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20231023144134.1881973-1-geert+renesas@glider.be>
- <4e2928a0-b2e6-4651-8cab-7f1c4d8f697d@linaro.org>
- <CAMuHMdVSx2G8A6wP+j0fNoFz1Y4+=R+diXc5pxJrn1FV65EBeQ@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
+ <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20231024063740.4975-1-lukapanio@gmail.com>
+ <20231024063740.4975-2-lukapanio@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,126 +126,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMuHMdVSx2G8A6wP+j0fNoFz1Y4+=R+diXc5pxJrn1FV65EBeQ@mail.gmail.com>
+In-Reply-To: <20231024063740.4975-2-lukapanio@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On 23/10/2023 20:08, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
->=20
-> On Mon, Oct 23, 2023 at 5:24=E2=80=AFPM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 23/10/2023 16:41, Geert Uytterhoeven wrote:
->>> Just like for "gpio", nodes can be named "gpios" or
->>> "<something>-gpio(s)", causing false positive failures.
->>>
->>> See also commit 80120fccde170902 ("schemas: gpio: fix false positive
->>> failures on nodes named 'gpio'").
->>>
->>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>> ---
->>> Seen on Linux, e.g.:
->>>
->>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: /: keyboard-gpio: {=
-'compatible': ['gpio-keys-polled'], 'poll-interval': [[50]], 'pinctrl-0':=
- [[29]], 'pinctrl-names': ['default'], 'key-3': {'gpios': [[28, 19, 1]], =
-'linux,code': [[4]], 'label': ['SW1-3'], 'debounce-interval': [[20]]}, 'k=
-ey-4': {'gpios': [[28, 20, 1]], 'linux,code': [[5]], 'label': ['SW1-4'], =
-'debounce-interval': [[20]]}} is not of type 'array'
->>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
-nsumer.yaml#
->>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: pinctrl@fffc0000: k=
-eyboard-gpio: {'pins': ['GP_0_19', 'GP_0_20'], 'bias-pull-up': True, 'pha=
-ndle': [[29]]} is not of type 'array'
->>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
-nsumer.yaml#
->>
->> keyboard-gpio is not commonly used names. Most (almost all) boards jus=
-t
->> call it "gpio-keys".
->=20
-> Most call it "keyboard".
+On 24/10/2023 08:37, Luka Panio wrote:
+> Initial support for Xiaomi Pad 6 tablet, that have sm8250 soc.
+> 
+> Signed-off-by: Luka Panio <lukapanio@gmail.com>
+> ---
+> v2:
 
-Most? My grep counted only 14.
-
-520 for gpio-keys (not counting -polled)
-
-But sure, can be keyboard.
-
->=20
-> Marzen has 4 keys split in two keyboards due to hardware limitations,
-> hence I had called them "keyboard-irq" (using falling edge interrupts,
-> i.e. no real key-up events)  and "keyboard-gpio" (gpio polling
-> without interrupts).
-keyboard-0
-keyboard-1
-
->=20
->>>     arch/arm/boot/dts/microchip/at91-kizbox3-hs.dtb: /: gpios: {'comp=
-atible': ['gpio'], 'status': ['okay'], 'rf_on': {'label': ['rf on'], 'gpi=
-o': [[38, 83, 0]], 'output': True, 'init-low': True}, 'wifi_on': {'label'=
-: ['wifi on'], 'gpio': [[38, 84, 0]], 'output': True, 'init-low': True}, =
-'zbe_test_radio': {'label': ['zbe test radio'], 'gpio': [[38, 53, 0]], 'o=
-utput': True, 'init-low': True}, 'zbe_rst': {'label': ['zbe rst'], 'gpio'=
-: [[38, 57, 0]], 'output': True, 'init-low': True}, 'io_reset': {'label':=
- ['io reset'], 'gpio': [[38, 62, 0]], 'output': True, 'init-low': True}, =
-'io_test_radio': {'label': ['io test radio'], 'gpio': [[38, 73, 0]], 'out=
-put': True, 'init-low': True}, 'io_boot_0': {'label': ['io boot 0'], 'gpi=
-o': [[38, 75, 0]], 'output': True, 'init-low': True}, 'io_boot_1': {'labe=
-l': ['io boot 1'], 'gpio': [[38, 81, 0]], 'output': True, 'init-low': Tru=
-e}, 'verbose_bootloader': {'label': ['verbose bootloader'], 'gpio': [[38,=
- 43, 0]], 'input': True}, 'nail_bed_detection': {'label': ['nail bed dete=
-ction'], 'gpio': [[38, 44, 0]], 'input': True}, 'id_usba': {'label': ['id=
- usba'], 'gpio': [[38, 64, 1]], 'input': True}} is not of type 'array'
->>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
-nsumer.yaml#
->>
->> compatible =3D "gpio"? Is there such binding?
->>
->> I think we should not allow "gpios" as a node, at least above examples=
-
->> do not justify it.
->=20
-> Note that there are more.  I used grep, and picked just one to see if I=
- could
-> fix that one too while at it:
->=20
-> $ git grep "\<gpios\s*{"
-> arch/arm/boot/dts/marvell/kirkwood-db.dtsi:
-> pmx_sdio_gpios: pmx-sdio-gpios {
-> arch/arm/boot/dts/marvell/orion5x-netgear-wnr854t.dts:  pmx_pci_gpios:
-> pmx-pci-gpios {
-> arch/arm/boot/dts/marvell/orion5x-rd88f5182-nas.dts:
-> pmx_misc_gpios: pmx-misc-gpios {
-> arch/arm/boot/dts/marvell/orion5x-rd88f5182-nas.dts:    pmx_pci_gpios:
-> pmx-pci-gpios {
-> arch/arm/boot/dts/microchip/at91-kizbox3-hs.dts:        gpios {
-> arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi:  sdc4_gpios: sdc4-gpios =
-{
-> arch/arm/boot/dts/st/ste-hrefv60plus.dtsi:                      gpios {=
-
-> arch/mips/boot/dts/ingenic/qi_lb60.dts:         mmc-gpios {
-
-These look like pins so they would have their own schema, most likely
-not "gpios" but "pins" or something similar.
-
->=20
-> Or:
->=20
-> $ git grep -e "-gpio\s*{" | wc -l
-> 64
-
-For example Xilinx ones are pincfg, so they should have some name with
-known pattern (e.g. mentioned "pins").
-
->=20
->>> For marzen, the alternative fix would be to
->>> s/keyboard-gpio/keyboard-polled/g.
->=20
-> Do you prefer the alternative?
-
-I would propose to change the names in the DTS. For pin configuration
-nodes this however might require first having DT schema for them.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
