@@ -1,138 +1,161 @@
-Return-Path: <devicetree+bounces-11227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B8D7D4CD6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817FB7D4CFA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:54:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33A721C20AD7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:47:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B356E1C20B13
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA26249FD;
-	Tue, 24 Oct 2023 09:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CD824A0C;
+	Tue, 24 Oct 2023 09:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fHJUspks"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QUIG+DmL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545A918E27
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:47:34 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC45A92
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:47:32 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso36537325e9.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:47:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698140851; x=1698745651; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x6MWUd7aqJU+RyKZEkGxK6HLsZy1LBZI2NHtQ/z43aI=;
-        b=fHJUspksWLBRv5KXFjTYEVzCvvLZGzV3lJroX+TmNZfQJqlZbUZ65Yd9MdgSUQ3fep
-         Tb/aN4OPq7PGJPbhAp1gng6gNV84rF08EdwHuYCB6LyxzfKurO5U5W0Zc+hh3vdc54Hw
-         VLaKh25D1cUHICorYtHU06YJxAerjUcqiOdMMCFaKArNLsRLzdq4syCEoq4o9cqCFK6K
-         KqsMhYU/aaAo1AH4sK5wRKfCQbr1Xe803vALnDYFkcKwrYViDRrpAas0Xb2FPtDzl8Mz
-         MwopLtBifKOSfneo+ejg6YfDMpS2cYyR6NkFqu8V9q0z8Eu6sNps5NT3Z+zu+spetdee
-         Ft7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698140851; x=1698745651;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6MWUd7aqJU+RyKZEkGxK6HLsZy1LBZI2NHtQ/z43aI=;
-        b=s1C46j1J5NfN5qWJe70zxpmxZ1RPzdGPmV+4TLz7pFXIvxmniFKDAhHg+0KLjalqc5
-         HKh7wVshauHrT5onsjfp7vEJQ+EIMqrqfz9mTQ45dPEw9EeZK1cNkWl/jrZfP/MGYXcF
-         oX8r8oYuFg+gEdPQvvydDc1aQugQNKzxKEq6IPUu0mVDikvrhSxF8dfOWvKG5No0pqGV
-         GLDKuPIcT4zcIq+h3IOhGF0/jp8N6hKFuu1k61400lgvuWezNsiXBobALFYReaq3b5Oq
-         XsYedAQPrOLCWT5KNu9KSNX0jcsl7va0A0O8dSeyovsMyO++yN676uBhZcgRyCHEbA2i
-         tEog==
-X-Gm-Message-State: AOJu0YxssN1hM6XJh3Fp9TOdJm5vDYaxftKS+OMHgCwkHPzQbhe1c86w
-	BonLEhK72yFWMH0n8HhG0WT9dA==
-X-Google-Smtp-Source: AGHT+IEQBKgigKRTPFTRZ1HUumAXzBLooE6sUMLZ71bOwGt4iZlfl+uviaSnAYq2eru3B4WrrZD2NQ==
-X-Received: by 2002:a05:600c:1907:b0:408:6fae:1aae with SMTP id j7-20020a05600c190700b004086fae1aaemr6443536wmq.31.1698140851135;
-        Tue, 24 Oct 2023 02:47:31 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id r8-20020adff108000000b0032db1d741a6sm9602052wro.99.2023.10.24.02.47.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 02:47:30 -0700 (PDT)
-Message-ID: <037d24b9-38ea-4da5-a1d2-8ace4d9dfa5c@baylibre.com>
-Date: Tue, 24 Oct 2023 11:47:29 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21702CA4D
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:54:08 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27EDB83;
+	Tue, 24 Oct 2023 02:54:07 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O7xbcL002048;
+	Tue, 24 Oct 2023 09:54:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=R5T/Jdrr21/BhDX3iJZH8nMfjInIu+4kITpjaH/Ovvw=;
+ b=QUIG+DmLgwg2Wq+QWU+WhekQEHSk6ZTFsLMLeJ4b21T5cdP8ftHiUiL6+4gJDO3xmznt
+ wn9NufimGNmo6q4QUzLuXbXebjFHZSY0GZQMId7Du8I48+I8F5J6RunXjRhaNkx1OhLI
+ vvZiRiU0ZLF5E7lyXH1MHGRYmBz1Dmm3yMOKQCk6dQabKVI7P9VwH3xD/nI2pGT3PeIA
+ I+6xIIZpJHh2nfQaGWSdOYEqHgNgK6R1jXWhwiNOUGEbnBwOE2otfFRi1j9gazF/1Qnc
+ pWIcgfQuU1vd4temjJTBCLvBIpBew8kWOf6qHNiAwlyPkQ2TTVjPSzw9N3hE7c0eTwn0 Sg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twxn41daq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 09:54:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39O9s2gP024070
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 09:54:02 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
+ 2023 02:53:57 -0700
+Message-ID: <0578d070-e41b-bd22-72ca-e366ea9a5ed2@quicinc.com>
+Date: Tue, 24 Oct 2023 17:53:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/18] dt-bindings: display: mediatek: color: add binding
- for MT8365 SoC
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 0/5] soc/arm64: qcom: add initial version of memory
+ dump
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jitao Shi <jitao.shi@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>,
- CK Hu <ck.hu@mediatek.com>, Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
-References: <20231023-display-support-v1-0-5c860ed5c33b@baylibre.com>
- <20231023-display-support-v1-3-5c860ed5c33b@baylibre.com>
- <CAGXv+5Hwe8jhgthnxwXEPezhwvhfcE=WMp_My3W8FisRagRTKQ@mail.gmail.com>
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <CAGXv+5Hwe8jhgthnxwXEPezhwvhfcE=WMp_My3W8FisRagRTKQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Caleb Connolly <caleb.connolly@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <092c7a54-edb9-4ff5-8c35-a936461111df@linaro.org>
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <092c7a54-edb9-4ff5-8c35-a936461111df@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Kyb_eYZVwD-UAeDKlEI9qKMn5vq9IoCs
+X-Proofpoint-ORIG-GUID: Kyb_eYZVwD-UAeDKlEI9qKMn5vq9IoCs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-24_09,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ clxscore=1011 spamscore=0 mlxlogscore=536 lowpriorityscore=0 phishscore=0
+ mlxscore=0 impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
+ definitions=main-2310240083
 
 
 
-On 24/10/2023 11:40, Chen-Yu Tsai wrote:
-> On Mon, Oct 23, 2023 at 10:40 PM Alexandre Mergnat
-> <amergnat@baylibre.com> wrote:
->>
->> Display Color for MT8365 is compatible with another SoC.
->> Then, add MT8365 binding along with MT8183 SoC.
+On 2023/10/23 22:31, Caleb Connolly wrote:
 > 
-> This unfortunately doesn't match what the patch is doing.
-
-Yeah, I fixed it for v2.
-
 > 
-> ChenYu
+> On 23/10/2023 10:20, Zhenhua Huang wrote:
+>> Qualcomm memory dump driver is to cooperate with firmware, providing the
+>> hints(id and size) of storing useful debugging information into pre-allocated
+>> memory. Firmware then does the real data capture. The debugging information
+>> includes cache contents, internal memory, registers.
+>>
+>> The driver dynamically reserves memory and provides the hints(dump id and size)
+>> following specified protocols with firmware. After crash and warm reboot,
+>> firmware scans these information and stores contents into reserved memory
+>> accordingly. Firmware then enters into full dump mode which dumps whole DDR
+>> to host through USB.
+>>
+>> User then get full dump using PCAT and can parse out these informations.
 > 
->> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->> ---
->>   Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
->> index f21e44092043..fbf15242af52 100644
->> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
->> @@ -39,6 +39,7 @@ properties:
->>                 - mediatek,mt8188-disp-color
->>                 - mediatek,mt8192-disp-color
->>                 - mediatek,mt8195-disp-color
->> +              - mediatek,mt8365-disp-color
->>             - const: mediatek,mt8173-disp-color
->>     reg:
->>       maxItems: 1
->>
->> --
->> 2.25.1
->>
->>
+> PCAT is a proprietary tool that requires signing up to qualcomm.com and
+> installing the Qualcomm Package Manager to access. It also relies on
+> another tool (QUTS) to actually interact with the board.
+> 
 
--- 
-Regards,
-Alexandre
+Oh.. I saw PCAT is introduced in doc of RB5 development kit so tried 
+with it as well. I will investigate more on this. Thanks.
+
+> Shouldn't we have a FOSS (or at the very least OSS) tool that can be
+> used to interact with these memory dumps?
+>>
+>> Dump id and size are provided by bootconfig. The expected format of a
+>> bootconfig file is as follows:-
+>> memory_dump_config {
+>> 	<node name> {
+>> 		id = <id of HW component>
+>> 		size = <dump size of HW component>
+>> 	}
+>> }
+>>
+>> for example:
+>> memory_dump_config {
+>>          c0_context_dump {
+>> 		id = 0
+>> 		size = 0x800
+>>          }
+>> }
+>>
+>> Test based on 6.6-rc1.
+>>
+>> Zhenhua Huang (5):
+>>    dt-bindings: soc: qcom: Add memory_dump driver bindings
+>>    dt-bindings: sram: qcom,imem: document sm8250
+>>    soc: qcom: memory_dump: Add memory dump driver
+>>    arm64: defconfig: enable Qcom Memory Dump driver
+>>    arm64: dts: qcom: sm8250: Add memory dump node
+>>
+>>   .../bindings/soc/qcom/qcom,mem-dump.yaml           |  42 ++
+>>   .../devicetree/bindings/sram/qcom,imem.yaml        |  45 ++
+>>   MAINTAINERS                                        |   7 +
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi               |  31 ++
+>>   arch/arm64/configs/defconfig                       |   1 +
+>>   drivers/soc/qcom/Kconfig                           |  11 +
+>>   drivers/soc/qcom/Makefile                          |   1 +
+>>   drivers/soc/qcom/memory_dump.c                     | 540 +++++++++++++++++++++
+>>   8 files changed, 678 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>>   create mode 100644 drivers/soc/qcom/memory_dump.c
+>>
+> 
 
