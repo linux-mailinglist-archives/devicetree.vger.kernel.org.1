@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-11459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3D87D5D24
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:26:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B0087D5D28
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:26:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CABF1C20D7B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:26:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AB8DB21128
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C05C3F4CA;
-	Tue, 24 Oct 2023 21:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2633F4D2;
+	Tue, 24 Oct 2023 21:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JCf9bsc8"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="H8ddV685"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A193D967
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 21:26:27 +0000 (UTC)
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A0B129
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:26:26 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1c9d922c039so41722535ad.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:26:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7319F3F4D0
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 21:26:29 +0000 (UTC)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D3E9D
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:26:27 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c5cd27b1acso41441095ad.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:26:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698182785; x=1698787585; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1698182787; x=1698787587; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nPMghuwp+tPA5DuqxMPybyD0q/nbyVUGg3y+BUmnhAU=;
-        b=JCf9bsc8gsFmYEEN5FA/Mq1VcLZntjYOHPWNQUlkZ1hEP2lhwV9dA9Nr1muGijf7zm
-         h7xEERbar6T2fPjFtWySQBQNVEKyNkWEUR4t5moPvQRcQztfiYcwcp9zso+sZ9q2p1iu
-         h04Cw6fXmgVMKLJvO8Bj16FBULE9whIKqqo/U=
+        bh=h2dmeSI4v9358eF9Xt6D4Fy7YCDY8dJsKHs01cKRDtU=;
+        b=H8ddV685psRdKA+QUvxMhpWR8rjvzBH9uZfIoIzoL7s8+9QqdqKlPrNBBpe1Ov+xV9
+         8scNWvHAkBYHS22afjQ5Xs65Y0BGVEVP5jujjw8CEBkbQcL8EkXKlb3hdMEmpEZulsY8
+         a8MgaRZZAjlSRdKH73R/1nhMyyvYeMV6/FQKQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698182785; x=1698787585;
+        d=1e100.net; s=20230601; t=1698182787; x=1698787587;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nPMghuwp+tPA5DuqxMPybyD0q/nbyVUGg3y+BUmnhAU=;
-        b=K5hcfOucoucWxQmRalvAqM3zo37rMa26UEf+vyPpXd2pnklRH8F+V1zRmIHYt6i9zY
-         Gmmo+FtI5HJL6Yqs8mZQRiDSZTymnm0LQ7SbmLt0CbJGoQ9D/q3r/RqKcny8+EmKWuat
-         rNZ/tisMJBotAyomj2dIRoQNgvfEJ3bswSD4v8QTn0WoIqSFVNQGTDuxyRBoAsqFeEYc
-         86sW6bQlQGKH5wmv9JjQLRyp4mngNQ6LVKqyFKuis7SMnm5ljJvhbQxJ024GbuTsMr/K
-         sV56/dT4w5Tj/pRrUBdZz4KSdk9g7iewiJmx73N1YauSd3KC8rbbmqiG1nCdB9fIABxY
-         Hr3Q==
-X-Gm-Message-State: AOJu0Yw44Gsm8nzEs0Y/G6yL3UFfsnx4mXCqosSabgy/4Pk+yg7AXpKp
-	J/6SagAlvY50NvVYjrfrCgJkKA==
-X-Google-Smtp-Source: AGHT+IFmCsigqtOmK3pF3vfTppVXjAMhmh8TLrWxud/qg3KLT70MRIgtqngZr0IQmbvT4J7nmCwjDA==
-X-Received: by 2002:a17:903:200b:b0:1ca:8e79:53a2 with SMTP id s11-20020a170903200b00b001ca8e7953a2mr12674948pla.46.1698182785720;
-        Tue, 24 Oct 2023 14:26:25 -0700 (PDT)
+        bh=h2dmeSI4v9358eF9Xt6D4Fy7YCDY8dJsKHs01cKRDtU=;
+        b=X7fUSCWFgDGjWypUYQbxGjnYCFrvRrhgxibiqXLvX6qHqMhc/lPrWYg4/IR3jneqWT
+         eTahx6pPLNLTXFplBMnB89hSXYtFKdA3wPT6uqIjdYcoNDxg0oqEgg5Qe81TuQImrumf
+         iR1n5g9E9JxF6yA67OlTwbGxvLOKfbMNGQfS4pvE+e45anWUq9a14CdiMI9Fl9ejXNr3
+         lUwg7NZjdyozUsg6+SoJcYIP6vHpGVcT6DKQbPgpmxUaZU6IA0Avcuogl2chOa/rrWFk
+         lwdtpVZ0Oczlk0SiFgkD76/zTGIn9x3XmegpXvy7n/g5f21BBXVEh42QpRLScuNnR2HD
+         9vNQ==
+X-Gm-Message-State: AOJu0Yz6jWoT9/iLN7Mu2+yuGauVuMXSIM7rh8fai5XeIqlFfLNS893t
+	fQkUTLjm2ktKM2tfOhrBt2pceQ==
+X-Google-Smtp-Source: AGHT+IHrhw2npik+3CuCrqC1k6Tl6nZchhwtz1ITQtz4ptgQ+uKtpPDikebU4ebMokZbGpKDIZRUkw==
+X-Received: by 2002:a17:902:c942:b0:1c9:dcea:33e5 with SMTP id i2-20020a170902c94200b001c9dcea33e5mr14179872pla.67.1698182786986;
+        Tue, 24 Oct 2023 14:26:26 -0700 (PDT)
 Received: from hsinyi.sjc.corp.google.com ([2620:15c:9d:2:5a2d:c345:7f3f:d26c])
-        by smtp.gmail.com with ESMTPSA id p9-20020a170902e74900b001b850c9d7b3sm7824140plf.249.2023.10.24.14.26.24
+        by smtp.gmail.com with ESMTPSA id p9-20020a170902e74900b001b850c9d7b3sm7824140plf.249.2023.10.24.14.26.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 14:26:25 -0700 (PDT)
+        Tue, 24 Oct 2023 14:26:26 -0700 (PDT)
 From: Hsin-Yi Wang <hsinyi@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -70,9 +70,9 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 2/7] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-katsu
-Date: Tue, 24 Oct 2023 14:22:24 -0700
-Message-ID: <20231024212618.1079676-3-hsinyi@chromium.org>
+Subject: [PATCH v2 3/7] arm64: dts: mt8183: Add kukui katsu board
+Date: Tue, 24 Oct 2023 14:22:25 -0700
+Message-ID: <20231024212618.1079676-4-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.42.0.758.gaed0368e0e-goog
 In-Reply-To: <20231024212618.1079676-1-hsinyi@chromium.org>
 References: <20231024212618.1079676-1-hsinyi@chromium.org>
@@ -84,33 +84,128 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add katsu sku32 and sku38 which uses different audio codec.
+katsu is also known as ASUS Chromebook Detachable CZ1.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
 v1->v2: non sku38 is sku32
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+ .../dts/mediatek/mt8183-kukui-katsu-sku32.dts | 40 +++++++++++++++++
+ .../dts/mediatek/mt8183-kukui-katsu-sku38.dts | 44 +++++++++++++++++++
+ 3 files changed, 86 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index a5999b3afc35..4fe58cfe6f1b 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -235,6 +235,13 @@ properties:
-         items:
-           - const: google,kappa
-           - const: mediatek,mt8183
-+      - description: Google Katsu (ASUS Chromebook Detachable CZ1)
-+        items:
-+          - enum:
-+              - google,katsu-sku32
-+              - google,katsu-sku38
-+          - const: google,katsu
-+          - const: mediatek,mt8183
-       - description: Google Kodama (Lenovo 10e Chromebook Tablet)
-         items:
-           - enum:
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index e6e7592a3645..a13419e67e8e 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -36,6 +36,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu-sku22.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-katsu-sku32.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-katsu-sku38.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku288.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+new file mode 100644
+index 000000000000..9fa205c06c74
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-kakadu.dtsi"
++#include "mt8183-kukui-audio-da7219-rt1015p.dtsi"
++
++/ {
++	model = "Google katsu board";
++	chassis-type = "tablet";
++	compatible = "google,katsu-sku32", "google,katsu", "mediatek,mt8183";
++};
++
++&i2c0 {
++	status = "okay";
++
++	/delete-node/touchscreen@10;
++	touchscreen1: touchscreen@5d {
++		compatible = "goodix,gt7375p";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&open_touch>;
++
++		interrupt-parent = <&pio>;
++		interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&lcd_pp3300>;
++	};
++};
++
++&panel {
++	compatible = "starry,2081101qfh032011-53g";
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_KATSU";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
+new file mode 100644
+index 000000000000..472a5a3ea25c
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-kakadu.dtsi"
++#include "mt8183-kukui-audio-rt1015p.dtsi"
++
++/ {
++	model = "Google katsu sku38 board";
++	chassis-type = "tablet";
++	compatible = "google,katsu-sku38", "google,katsu", "mediatek,mt8183";
++};
++
++&i2c0 {
++	status = "okay";
++
++	/delete-node/touchscreen@10;
++	touchscreen1: touchscreen@5d {
++		compatible = "goodix,gt7375p";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&open_touch>;
++
++		interrupt-parent = <&pio>;
++		interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&lcd_pp3300>;
++	};
++};
++
++&panel {
++	compatible = "starry,2081101qfh032011-53g";
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_KATSU";
++};
++
++&sound {
++	compatible = "mediatek,mt8183_mt6358_ts3a227_rt1015p";
++};
 -- 
 2.42.0.758.gaed0368e0e-goog
 
