@@ -1,213 +1,125 @@
-Return-Path: <devicetree+bounces-11124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E29017D4589
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 04:34:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA677D45CE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 05:10:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D73028138F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 02:34:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D6A31F222AF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 03:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D514E1FAD;
-	Tue, 24 Oct 2023 02:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6FD2113;
+	Tue, 24 Oct 2023 03:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Sv1DZlmj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JoCBA+H3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C771172B;
-	Tue, 24 Oct 2023 02:34:03 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F9F10E;
-	Mon, 23 Oct 2023 19:33:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uRBH5xj5OQGLHiQskLOllsNyGfVBzFgpBHyO/FBi0PE=; b=Sv1DZlmjlpXWZMobMer65I5DgG
-	5ItL9ba2DyCOgt/qWmK+fK71kQrueOK/TyhNseWGggUVj/HYVy4yTqxtqHHQfPpUpN041XqfVRa+v
-	FnTtGPgLRSn1vK/dJSba8olxs6rpC5y3u5eyFAYIv8VHsCF3crzBt0+krftN2e0RC5Wc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qv7Em-00026a-OZ; Tue, 24 Oct 2023 04:33:44 +0200
-Date: Tue, 24 Oct 2023 04:33:44 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, horatiu.vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
-Subject: Re: [PATCH net-next v2 8/9] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-Message-ID: <eee6df3d-5e6b-4b4c-bfcc-55b31814fb82@lunn.ch>
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461821863
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 03:09:59 +0000 (UTC)
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0539495;
+	Mon, 23 Oct 2023 20:09:53 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-4196ae80fc3so23678041cf.0;
+        Mon, 23 Oct 2023 20:09:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698116992; x=1698721792; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hN9IUFI6BlAMzBsGDYubLRAFahODywghGKhRYzTefJ0=;
+        b=JoCBA+H3BjsQOXFAEd1iNGBQQEHovnT0cxDA3TI5zWVAkQ+PXL8j789BU0VHN/3eqZ
+         7xsl1yvNaHcIVo8aFui3zXvTIqh6e6g4BooYqR5R7T3S2i8ZtRcMSz9mng021NeoOweW
+         i3uTdR9IybZa1YEcZYSdYQyT1CjSqIi68jJSAqaSZ/3ikpf3vwI/cDR+wl5py/Vmf4t+
+         iKHjFnSokPfeTLQUCf9CgKqwB2q5Yo3yEskWzgBHtcSDYLdRo/OH4HoSOoq15wWjxek0
+         18daSS+1zVbBJjy8S11xfcyxo8LD0lFnU5y2X8+7XadrfQjKPvSt8aFRuUr5JNVbS2X7
+         Sb6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698116992; x=1698721792;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hN9IUFI6BlAMzBsGDYubLRAFahODywghGKhRYzTefJ0=;
+        b=mq/OHwKpeH6S6OuQhTS7ogcY3P2HHKX90NOfdV+rKEf6cOqQC1mnvdQolsS/ZJo41f
+         fzlidDKVsUoNaGzd2f8kqDsefUz331ygEm3H7LR6NaeSdNlEZOd9y0SJ/5axEl/3g3Y0
+         UbiglwTUiVKTcgUQwNm6MQV0kUxyTmmxQYvkqm1c55aE/hUObtiAm0uenyuk5Vs3ioO+
+         SQZ+524A9VxY2F4Ndwcy43CHjiOs4ba5SUNU5Qdks3VgSbXoW5Mn712B8pInZCO7iwNu
+         PfhA7JP9DGihN63Z39t3R1ST+GWoXXXRnGzX6bsYmjIb7NTIvj7aDidxTsZaoMNcP3TD
+         xDHA==
+X-Gm-Message-State: AOJu0Yz77Ef0EFyAuAoOEV7/viLgst4cFQWP073e9xLMuLRJoJNQ85uf
+	zkTHFJHavh2aIjxYZ9516Io=
+X-Google-Smtp-Source: AGHT+IFgtt7qitr+NPw6HUCaMALJuH0l8Wik05EqRQK2bUBhL+33C5ajSP6/54/3OXj0qZQjqMFg0A==
+X-Received: by 2002:a05:622a:15cd:b0:403:a9aa:571f with SMTP id d13-20020a05622a15cd00b00403a9aa571fmr12883815qty.16.1698116991997;
+        Mon, 23 Oct 2023 20:09:51 -0700 (PDT)
+Received: from [192.168.20.212] (cpe-107-15-246-199.nc.res.rr.com. [107.15.246.199])
+        by smtp.gmail.com with ESMTPSA id j13-20020ac84f8d000000b00419b67d2823sm3179750qtw.34.2023.10.23.20.09.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2023 20:09:51 -0700 (PDT)
+Message-ID: <97e2decd-f6a3-91cb-6ca7-539f53b686f3@gmail.com>
+Date: Mon, 23 Oct 2023 23:09:50 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH v9 01/20] dt-bindings: PCI: Add PLDA XpressRICH PCIe host
+ common properties
+Content-Language: en-US
+To: Minda Chen <minda.chen@starfivetech.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+ <kw@linux.com>, Rob Herring <robh+dt@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Mason Huo <mason.huo@starfivetech.com>,
+ Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231020104341.63157-1-minda.chen@starfivetech.com>
+ <20231020104341.63157-2-minda.chen@starfivetech.com>
+ <8ced1915-7b94-4abc-bd8b-cb4bf027fa01@linaro.org>
+ <bd441e1d-73ae-4abc-8eb2-877419acb2df@starfivetech.com>
+From: John Clark <inindev@gmail.com>
+In-Reply-To: <bd441e1d-73ae-4abc-8eb2-877419acb2df@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> +static int lan865x_set_hw_macaddr(struct net_device *netdev)
-> +{
-> +	u32 regval;
-> +	bool ret;
-> +	struct lan865x_priv *priv = netdev_priv(netdev);
-> +	const u8 *mac = netdev->dev_addr;
-> +
-> +	ret = oa_tc6_read_register(priv->tc6, LAN865X_MAC_NCR, &regval);
-> +	if (ret)
-> +		goto error_mac;
-> +	if ((regval & LAN865X_TXEN) | (regval & LAN865X_RXEN)) {
+> On 2023/10/20 19:04, Krzysztof Kozlowski wrote:
+>> On 20/10/2023 12:43, Minda Chen wrote:
+>>> Add PLDA XpressRICH PCIe host common properties dt-binding doc.
+>>> Microchip PolarFire PCIe host using PLDA IP.
+>>> Move common properties from Microchip PolarFire PCIe host
+>>> to PLDA files.
+>>>
+>>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>   .../bindings/pci/microchip,pcie-host.yaml     | 55 +-------------
+>>>   .../pci/plda,xpressrich3-axi-common.yaml      | 75 +++++++++++++++++++
+>> Where was this patch reviewed?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> This Conor's review tag. v2 : https://patchwork.kernel.org/project/linux-pci/patch/20230727103949.26149-2-minda.chen@starfivetech.com/
+> This is Rob's review tag v3: https://patchwork.kernel.org/project/linux-pci/patch/20230814082016.104181-2-minda.chen@starfivetech.com/
 
-Would testing netif_running(netdev) be enough? That is a more common
-test you see. In fact, you already have that in
-lan865x_set_mac_address(). And in lan865x_probe() why would the
-hardware be enabled?
+Tested-by: John Clark <inindev@gmail.com>: 
+https://github.com/inindev/visionfive2/tree/main/kernel/patches
 
-
-> +		if (netif_msg_drv(priv))
-> +			netdev_warn(netdev, "Hardware must be disabled for MAC setting\n");
-> +		return -EBUSY;
-> +	}
-> +	/* MAC address setting */
-> +	regval = (mac[3] << 24) | (mac[2] << 16) | (mac[1] << 8) | mac[0];
-> +	ret = oa_tc6_write_register(priv->tc6, LAN865X_MAC_SAB1, regval);
-> +	if (ret)
-> +		goto error_mac;
-> +
-> +	regval = (mac[5] << 8) | mac[4];
-> +	ret = oa_tc6_write_register(priv->tc6, LAN865X_MAC_SAT1, regval);
-> +	if (ret)
-> +		goto error_mac;
-> +
-> +	return 0;
-> +
-> +error_mac:
-> +	return -ENODEV;
-
-oa_tc6_write_register() should return an error code, so return it.
-
-> +static int lan865x_set_mac_address(struct net_device *netdev, void *addr)
-> +{
-> +	struct sockaddr *address = addr;
-> +
-> +	if (netif_running(netdev))
-> +		return -EBUSY;
-> +
-> +	eth_hw_addr_set(netdev, address->sa_data);
-> +
-> +	return lan865x_set_hw_macaddr(netdev);
-
-You should ideally only update the netdev MAC address, if you managed
-to change the value in the hardware.
-
-> +static void lan865x_set_multicast_list(struct net_device *netdev)
-> +{
-> +	struct lan865x_priv *priv = netdev_priv(netdev);
-> +	u32 regval = 0;
-> +
-> +	if (netdev->flags & IFF_PROMISC) {
-> +		/* Enabling promiscuous mode */
-> +		regval |= MAC_PROMISCUOUS_MODE;
-> +		regval &= (~MAC_MULTICAST_MODE);
-> +		regval &= (~MAC_UNICAST_MODE);
-> +	} else if (netdev->flags & IFF_ALLMULTI) {
-> +		/* Enabling all multicast mode */
-> +		regval &= (~MAC_PROMISCUOUS_MODE);
-> +		regval |= MAC_MULTICAST_MODE;
-> +		regval &= (~MAC_UNICAST_MODE);
-> +	} else if (!netdev_mc_empty(netdev)) {
-> +		/* Enabling specific multicast addresses */
-> +		struct netdev_hw_addr *ha;
-> +		u32 hash_lo = 0;
-> +		u32 hash_hi = 0;
-> +
-> +		netdev_for_each_mc_addr(ha, netdev) {
-> +			u32 bit_num = lan865x_hash(ha->addr);
-> +			u32 mask = 1 << (bit_num & 0x1f);
-> +
-> +			if (bit_num & 0x20)
-> +				hash_hi |= mask;
-> +			else
-> +				hash_lo |= mask;
-> +		}
-> +		if (oa_tc6_write_register(priv->tc6, LAN865X_MAC_HRT, hash_hi)) {
-> +			if (netif_msg_timer(priv))
-> +				netdev_err(netdev, "Failed to write reg_hashh");
-> +			return;
-> +		}
-> +		if (oa_tc6_write_register(priv->tc6, LAN865X_MAC_HRB, hash_lo)) {
-> +			if (netif_msg_timer(priv))
-> +				netdev_err(netdev, "Failed to write reg_hashl");
-> +			return;
-> +		}
-> +		regval &= (~MAC_PROMISCUOUS_MODE);
-> +		regval &= (~MAC_MULTICAST_MODE);
-> +		regval |= MAC_UNICAST_MODE;
-> +	} else {
-> +		/* enabling local mac address only */
-> +		if (oa_tc6_write_register(priv->tc6, LAN865X_MAC_HRT, regval)) {
-> +			if (netif_msg_timer(priv))
-> +				netdev_err(netdev, "Failed to write reg_hashh");
-> +			return;
-> +		}
-> +		if (oa_tc6_write_register(priv->tc6, LAN865X_MAC_HRB, regval)) {
-> +			if (netif_msg_timer(priv))
-> +				netdev_err(netdev, "Failed to write reg_hashl");
-> +			return;
-> +		}
-> +	}
-> +	if (oa_tc6_write_register(priv->tc6, LAN865X_MAC_NCFGR, regval)) {
-> +		if (netif_msg_timer(priv))
-> +			netdev_err(netdev, "Failed to enable promiscuous mode");
-> +	}
-> +}
-
-Another of those big functions which could be lots of simple functions
-each doing one thing.
-
-> +/* Configures the number of bytes allocated to each buffer in the
-> + * transmit/receive queue. LAN865x supports only 64 and 32 bytes cps and also 64
-> + * is the default value. So it is enough to configure the queue buffer size only
-> + * for 32 bytes. Generally cps can't be changed during run time and also it is
-> + * configured in the device tree. The values for the Tx/Rx queue buffer size are
-> + * taken from the LAN865x datasheet.
-> + */
-
-Its unclear why this needs to be a callback. Why not just set it after
-oa_tc6_init() returns?
-
-> +static void lan865x_remove(struct spi_device *spi)
-> +{
-> +	struct lan865x_priv *priv = spi_get_drvdata(spi);
-> +
-> +	oa_tc6_exit(priv->tc6);
-> +	unregister_netdev(priv->netdev);
-
-Is that the correct order? Seems like you should unregister the netdev
-first.
-
-> +#ifdef CONFIG_ACPI
-> +static const struct acpi_device_id lan865x_acpi_ids[] = {
-> +	{ .id = "LAN865X",
-> +	},
-> +	{},
-
-Does this work? You don't have access to the device tree properties.
-
-     Andrew
 
