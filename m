@@ -1,101 +1,109 @@
-Return-Path: <devicetree+bounces-11263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5347D500B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:42:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5968A7D5034
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF60EB20C97
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:42:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01073280EC2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08AFE26292;
-	Tue, 24 Oct 2023 12:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jT/Q06gQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88999266BA;
+	Tue, 24 Oct 2023 12:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A4514F82
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:42:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90AB4C433C8;
-	Tue, 24 Oct 2023 12:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698151333;
-	bh=5lr+pjwvp0zOcTeinONIaVGHup83Xhs/5KopjafIzWI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jT/Q06gQwMhmXpCagBElDNMA/5ot1BalmQiWLI6DB9ID59whjQKQaCKm1JrMAKVCB
-	 oQh+TomXr/VvPjWIzDJZhOvHa8QvvmTDDf8SQOGnWhZMb+XuxoSWFxJzoYfPwt5LhJ
-	 WiNGScv9mbRQnFgdDMQQDcsV8h3/l8iUsEQ1uo510OFScpZQrroRFfVYuM6KSFHRiX
-	 qC5n7AQqQJQRn4VMAFumFtTqpmo9DH59WBImCUzPhYCD3F1OM5el7To6V8e6BOwU6e
-	 4qAxsqJ9xFjY1eLZtMXHQc/tOXL0+Nfzh/gLMaaFazGfLjr6UdkeCjms+EKZv89Nqv
-	 Sz3zpyz6vhWSw==
-Date: Tue, 24 Oct 2023 13:42:02 +0100
-From: Mark Brown <broonie@kernel.org>
-To: wangweidong.a@awinic.com
-Cc: 13916275206@139.com, ajye_huang@compal.corp-partner.google.com,
-	alsa-devel@alsa-project.org, arnd@arndb.de,
-	ckeepax@opensource.cirrus.com, colin.i.king@gmail.com,
-	conor+dt@kernel.org, dan.carpenter@linaro.org,
-	devicetree@vger.kernel.org, harshit.m.mogalapalli@oracle.com,
-	herve.codina@bootlin.com, krzysztof.kozlowski+dt@linaro.org,
-	lgirdwood@gmail.com, linus.walleij@linaro.org,
-	linux-kernel@vger.kernel.org, liweilei@awinic.com, perex@perex.cz,
-	rf@opensource.cirrus.com, robh+dt@kernel.org, ryans.lee@analog.com,
-	sebastian.reichel@collabora.com, shumingf@realtek.com,
-	tiwai@suse.com, trix@redhat.com, yijiangtao@awinic.com
-Subject: Re: [PATCH V2 3/4] ASoC: codecs: Add code for bin parsing compatible
- with aw88399
-Message-ID: <27dd3dfb-7a40-4e26-b8c2-e432c30a0eea@sirena.org.uk>
-References: <21bfa0bb-d936-402d-9ca9-6bcf181a0f35@sirena.org.uk>
- <20231024071929.88898-1-wangweidong.a@awinic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E235533F1;
+	Tue, 24 Oct 2023 12:48:42 +0000 (UTC)
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE311CC;
+	Tue, 24 Oct 2023 05:48:41 -0700 (PDT)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-58441865ffaso1721340eaf.1;
+        Tue, 24 Oct 2023 05:48:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698151721; x=1698756521;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=n7IhxXRlskYcJ5lLaoUuwURziaHmVBMP8WH2znEzqGs=;
+        b=Y1G1q7jMc74LjCLEaUd89MOJzvtgH/hCuk0gBlKSPZiBH/9khLZA19KdaebICO72dK
+         36+CA5S54aH2hJtaraXaG8bpOWtldTTVaucUqMqKa6cUlB6LCc4C6xmvSY819timovrU
+         8aYxXVAYaV9V2UxEd7xDUNq34qYfD2JyT0KCCfbJYUfIEifjesj9KSmlxtso954hZ2Nj
+         8MQOZSULS4QCkrktF/EYgSZtduEjx3g2vBDAEqEPi6ssONhK82FHbipHn+Xwn/eJhiE3
+         dxNwyxhchXkwf8YuAFHjJ0eiYHVWX5zJebiklKUkYJkfTcSuggvuCBdeBqMYzSz/d7JW
+         brpg==
+X-Gm-Message-State: AOJu0Yy22eGZP7B8TcvYu3ogQc4fsS1I1PbCeAWCPaaIBWxcYvA0hyvB
+	DOK17dUqUJpfldawpntU+Cejd1poUg==
+X-Google-Smtp-Source: AGHT+IERP02p8mG8jQwC1rb7eQXcVDY+PYIHSHNQTUPah9qW3w7GkcKnL2Mp8Z4hl+R+YXDXxBtwQg==
+X-Received: by 2002:a05:6808:18a9:b0:3af:5fea:2f7b with SMTP id bi41-20020a05680818a900b003af5fea2f7bmr15719454oib.47.1698151720916;
+        Tue, 24 Oct 2023 05:48:40 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bj6-20020a056808198600b003adcaf28f61sm1924931oib.41.2023.10.24.05.48.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 05:48:40 -0700 (PDT)
+Received: (nullmailer pid 3451039 invoked by uid 1000);
+	Tue, 24 Oct 2023 12:48:34 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pL7UoU2fS9tXvDvv"
-Content-Disposition: inline
-In-Reply-To: <20231024071929.88898-1-wangweidong.a@awinic.com>
-X-Cookie: 1 bulls, 3 cows.
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Vladimir Oltean <olteanv@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh+dt@kernel.org>, Eric Dumazet <edumazet@google.com>, Gregory Clement <gregory.clement@bootlin.com>
+In-Reply-To: <20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org>
+References: <20231024-marvell-88e6152-wan-led-v6-0-993ab0949344@linaro.org>
+ <20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org>
+Message-Id: <169815156038.3447619.17571704457000261488.robh@kernel.org>
+Subject: Re: [PATCH net-next v6 1/7] dt-bindings: net: dsa: Require ports
+ or ethernet-ports
+Date: Tue, 24 Oct 2023 07:48:34 -0500
 
 
---pL7UoU2fS9tXvDvv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 24 Oct 2023 11:24:53 +0200, Linus Walleij wrote:
+> Bindings using dsa.yaml#/$defs/ethernet-ports specify that
+> a DSA switch node need to have a ports or ethernet-ports
+> subnode, and that is actually required, so add requirements
+> using oneOf.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-On Tue, Oct 24, 2023 at 03:19:28PM +0800, wangweidong.a@awinic.com wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> I generated the patch based on the mainline branch,=20
-> Why would there be a conflict? I know that I made a change to
-> this file when I committed aw87390 and that=20
-> the change was in the Linux-next branch, but the two=20
-> changes are in different parts of the file.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
 
-I don't know off hand, I didn't check in detail.  It's possible someone
-else sent a fix that's been applied and is causing the issue - if you
-check out my branch and try to apply the patches hopefully you can
-figure out what the problem was.
+dtschema/dtc warnings/errors:
 
---pL7UoU2fS9tXvDvv
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmU3u5kACgkQJNaLcl1U
-h9Dr6Qf/fdkNinl8wVxXP3U0qwaV15ASSfA38GeqDIqp+FlZSN61aMRCAfgEvI0y
-QiJ1yqwLMrQzbWZcss2SnDi3N0J7KAqe3DXDHyH5FGYDxgSpMegLxDojqD6ecoEV
-vf25mLtwq6w7/2LHuoJqiPDeE+LARk28dFHrIeAiQAl0NDxBX+Q84heKKbTzf0iC
-RxFTOfdtBPxGmm0pyA7bm647VGZ5cqC2Yres0FD+ES20QnEh0lRImX7PY8yCAvyu
-ykm+apBEZeKrq27nTFpmG4tNSFh2tCmlPCVhM4O2kGflQ0YHQUa0S8HxrnKiXSRb
-2A8LUloo0+K+kEFa6oTbzwdjhOjcGA==
-=RVdx
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---pL7UoU2fS9tXvDvv--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
