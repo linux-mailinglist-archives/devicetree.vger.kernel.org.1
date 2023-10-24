@@ -1,161 +1,174 @@
-Return-Path: <devicetree+bounces-11347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682C07D54F8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:13:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7713E7D54E7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:11:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988AC1C20B4E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:13:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3885B281A7A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C2D2E654;
-	Tue, 24 Oct 2023 15:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEA32E65E;
+	Tue, 24 Oct 2023 15:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="XX4+RIdQ";
-	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="YPetIezb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W83XrDyJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992132E65E
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:13:05 +0000 (UTC)
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A0293
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:13:01 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c514cbbe7eso64459301fa.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:13:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698160380; x=1698765180;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature:dkim-signature
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fs5BWqZ4KWd4eF9fOCTK8GAB1nXsPd0oZ+/iEQRlIeA=;
-        b=Cid/dwyqzHK76cDQAiq5rH5r3RbKt5jGVOfpGm2zTcLF0KeiTSDWhTnxSRMXArbSYt
-         ZAsl2q0Bw+ipAv0Fphpc4AF4NrNNzX0o9JwisX/aR0xWwNbOAyX4x3Jb1ZYLYW1cbFMd
-         YdtElpoRsutieYkCoGdtie3H1AzgiauOjl5zA+Z2MTCJxzcAVuzPdE8mFp5mbNMJHH10
-         3BL5unXceNMxdWSekG4NtZtnbih2/HSQxA0S41KrAnfx7oDum67R0Qfn/0QWGUCjwUKS
-         SOUwAi/J2d1u19KMXb3uVL0Zg/I9pFAYf/DUqEFNaCU28Dr1uvEyxtXaQhWW1RU3urAC
-         F+5w==
-X-Gm-Message-State: AOJu0Yx5Nf1bBHcKCB2Zs/MTkRIKEgfygXjEzuP1pLLevv8DceuLzVoP
-	d5YU6kp05UTT9pwkRSbi0psCRFYw0IUJ1A==
-X-Google-Smtp-Source: AGHT+IHl71uJGbEbXc3w8oVa2Mg/uvQXyiVqTw/MvYHeGU39r5d4sVSBsO6Db8ed/fm0SJEcqfiTvg==
-X-Received: by 2002:a2e:81d7:0:b0:2c5:3a9:7467 with SMTP id s23-20020a2e81d7000000b002c503a97467mr8710099ljg.8.1698160379925;
-        Tue, 24 Oct 2023 08:12:59 -0700 (PDT)
-Received: from flawful.org (c-f5f0e255.011-101-6d6c6d3.bbcust.telenor.se. [85.226.240.245])
-        by smtp.gmail.com with ESMTPSA id q24-20020a2e9698000000b002c12c2094e4sm2106927lji.74.2023.10.24.08.12.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 08:12:59 -0700 (PDT)
-Received: by flawful.org (Postfix, from userid 112)
-	id CC3F514E3; Tue, 24 Oct 2023 17:12:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
-	t=1698160378; bh=ErqCJiP8U44ISh4Im9EcpFWgOzEosEpfBHoDJ+9Kgdw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XX4+RIdQqpwcgiSk3keVVRMKdRRL6KvGkN9SzivO/Leac6WITW3z5iIDgSEAiD8se
-	 ggR8vd8W9LNeDKYsXoPfZg233lGpDSxYTBxHRubh/9dQhIS3PJUSzxakpHYm0nGokn
-	 GxkzAi6NtUZmcpjU7D6mvxICXdBDPYUoetIwmgbw=
-X-Spam-Level: 
-Received: from x1-carbon.lan (OpenWrt.lan [192.168.1.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by flawful.org (Postfix) with ESMTPSA id 14D5015E1;
-	Tue, 24 Oct 2023 17:10:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
-	t=1698160247; bh=ErqCJiP8U44ISh4Im9EcpFWgOzEosEpfBHoDJ+9Kgdw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YPetIezbIGPz/6ySQtofIO1XKUtjvcIGK/RwOaRqbMiPAspV+G+wA19XlHTfwKvMH
-	 k/lMSgd2DckEIDOIiVS1bMBWcP7XbW5zAbz7sqw9MpjZnpQqKtAbhr90knfA8lZo0u
-	 s9tgKPeOxCbawAWwZVFr7XzoLGyJVZHmuyY/0MeQ=
-From: Niklas Cassel <nks@flawful.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Damien Le Moal <dlemoal@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Niklas Cassel <niklas.cassel@wdc.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: add missing rk3588 PCIe dma properties
-Date: Tue, 24 Oct 2023 17:10:11 +0200
-Message-ID: <20231024151014.240695-5-nks@flawful.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231024151014.240695-1-nks@flawful.org>
-References: <20231024151014.240695-1-nks@flawful.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418401170F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:11:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81735C433C8;
+	Tue, 24 Oct 2023 15:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698160299;
+	bh=i3lEmr2804Re0R8BC/B+Wz81u5KMi4oOTUkxC/heGVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W83XrDyJOKyT6S6VLNOjrOxU5Ac7Y20mPs1IVs/CzLIAk3UAnHl7q8NPubqOFMLYk
+	 lwNGhkVY09SMBJ+kej6OBXOHypHzyy6YU5KT636cForgUFLZRWQg7UzndJMDW28kE4
+	 D4FtNUShbcCOWROXAGdvYx9EpR53M80SjyjG9aNnvwT4GD0Y2GmUcuGFndixEcA5rV
+	 qNM2USGw3khqy0okLuqr9Pc6F0nGfhDJPAzNpRA4gBStgbrS/8Hio7jLdQ6wsEh5t/
+	 H2QMa8SHbOWmfGIKrUTZx6oFlfhY8gLkfp9XxivpJhxNrUM6udi9aFMv5CRahhuooz
+	 YA/JytV7GprhQ==
+Date: Tue, 24 Oct 2023 16:11:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+	Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
+	nuno.sa@analog.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: adis16460: Add
+ 'spi-cs-inactive-delay-ns' property
+Message-ID: <20231024-backache-unranked-c4905d8944b7@spud>
+References: <20231023140534.704312-1-ramona.gradinariu@analog.com>
+ <20231023140534.704312-4-ramona.gradinariu@analog.com>
+ <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
+ <20231023-repost-coma-2f67ea8b95af@spud>
+ <5c600a6db6173a56251302da8d2f438435959bd2.camel@gmail.com>
+ <8391fb67-e575-49e6-9857-806cb85e9e59@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AVu1vVpv5euJ77HU"
+Content-Disposition: inline
+In-Reply-To: <8391fb67-e575-49e6-9857-806cb85e9e59@linaro.org>
 
-From: Niklas Cassel <niklas.cassel@wdc.com>
 
-The rk3588 has 5 PCIe controllers, however, according the the rk3588 TRM
-(Technical Reference Manual), only pcie3x4 supports the embedded DMA
-controller (eDMA) on the DWC PCIe controller.
+--AVu1vVpv5euJ77HU
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The size of the eDMA region equals to:
-0x200 + MAX(NUM_DMA_RD_CHAN, NUM_DMA_WR_CHAN) * 0x200.
+On Tue, Oct 24, 2023 at 03:47:16PM +0200, Krzysztof Kozlowski wrote:
+> On 24/10/2023 08:53, Nuno S=E1 wrote:
+> > On Mon, 2023-10-23 at 17:06 +0100, Conor Dooley wrote:
+> >> On Mon, Oct 23, 2023 at 04:27:48PM +0200, Nuno S=E1 wrote:
+> >>> On Mon, 2023-10-23 at 17:05 +0300, Ramona Gradinariu wrote:
+> >>>> The adis16460 device requires a stall time between SPI
+> >>>> transactions (during which the chip select is inactive),
+> >>>> with a minimum value equal to 16 microseconds.
+> >>>> This commit adds 'spi-cs-inactive-delay-ns' property, which should
+> >>>> indicate the stall time between consecutive SPI transactions.
+> >>>>
+> >>>> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> >>>> ---
+> >>>> changes in v2:
+> >>>> =A0- added default value
+> >>>> =A0- updated description
+> >>>> =A0- updated commit message
+> >>>> =A0.../devicetree/bindings/iio/imu/adi,adis16460.yaml=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 | 6 ++++++
+> >>>> =A01 file changed, 6 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460=
+=2Eyaml
+> >>>> b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> >>>> index 4e43c80e5119..f10469b86ee0 100644
+> >>>> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> >>>> @@ -25,6 +25,12 @@ properties:
+> >>>>
+> >>>> =A0=A0 spi-cpol: true
+> >>>>
+> >>>> +=A0 spi-cs-inactive-delay-ns:
+> >>>> +=A0=A0=A0 minimum: 16000
+> >>>> +=A0=A0=A0 default: 16000
+> >>>> +=A0=A0=A0 description:
+> >>>> +=A0=A0=A0=A0=A0 Indicates the stall time between consecutive SPI tr=
+ansactions.
+> >>>> +
+> >>>
+> >>> You should drop the description...=20
+> >>>
+> >>> Also, give more time before posting a v2 so others get a chance to re=
+view
+> >>> your
+> >>> patches. It's also better for you since you can gather more change re=
+quests.
+> >>
+> >> Further, I don't see an answer to Krzysztof's question of why the stall
+> >> time would not just be set to 16,000 ns in the driver, based on the
+> >> compatible.
+> >=20
+> > Hi Conor,
+> >=20
+> > Regarding that, I'm the one to blame since I was the one asking for the=
+ property
+> > during internal review... The reason is that "spi-cs-inactive-delay-ns"=
+ is
+> > already part of spi-peripheral-props.yaml which we already reference. S=
+o my
+> > question would be why not using it?
+> >=20
+> > These devices are a bit sensitive regarding these timings. Not in devic=
+es
+> > supported by this driver but I already experienced having to set timing=
+s bigger
+> > than defined in the datasheet for spi to be reliable. this was true on =
+a RPI but
+> > might not be in another platform.
+> >=20
+> > Hence having the flexibility to change the time in an already supported=
+ property
+> > does sound good to me. If not set, we still use the default value based=
+ on the
+> > compatible. Now, if you tell me "let's just add this if we really get t=
+he need
+> > for it", I get it but I also don't understand why not add it now...
 
-Where for each 0x200 region, the registers controlling the write channel
-starts at offset 0x0, and the registers controlling the read channel
-starts at offset 0x100.
+I don't object to having the property, it'd just be good for the commit
+message to have mentioned that the minimum time may not be sufficient
+for all configurations.
 
-pcie3x4 has two DMA read channels and two DMA write channels,
-so it has size: 0x200 + max(2, 2) * 0x200 = 0x600
+Cheers,
+Conor.
 
-On the rk3588 based rock-5b board, when building with CONFIG_DW_EDMA=y:
-Before this patch, only the iATUs are detected:
-rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
+> I think it is okay to document specific SPI peripheral constraints in
+> each device. Just like we document sometimes SPI frequency. The v1 did
+> not explain this, but I see in this commit msg some rationale.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-After this patch, both the iATUs and the eDMA channels are detected:
-rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
-rockchip-dw-pcie a40000000.pcie: eDMA: unroll T, 2 wr, 2 rd
+--AVu1vVpv5euJ77HU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
----
- arch/arm64/boot/dts/rockchip/rk3588.dtsi | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index d7998a9c0c43..e072f5fe655d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-@@ -101,8 +101,13 @@ pcie3x4: pcie@fe150000 {
- 			     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
- 			     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
- 			     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
--			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
-+				  "dma0", "dma1", "dma2", "dma3";
- 		#interrupt-cells = <1>;
- 		interrupt-map-mask = <0 0 0 7>;
- 		interrupt-map = <0 0 0 1 &pcie3x4_intc 0>,
-@@ -122,8 +127,9 @@ pcie3x4: pcie@fe150000 {
- 		reg = <0xa 0x40000000 0x0 0x00300000>,
- 		      <0x0 0xfe150000 0x0 0x00010000>,
- 		      <0x0 0xf0000000 0x0 0x00100000>,
--		      <0xa 0x40300000 0x0 0x00002000>;
--		reg-names = "dbi", "apb", "config", "atu";
-+		      <0xa 0x40300000 0x0 0x00002000>,
-+		      <0xa 0x40380000 0x0 0x00000600>;
-+		reg-names = "dbi", "apb", "config", "atu", "dma";
- 		resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
- 		reset-names = "pwr", "pipe";
- 		status = "disabled";
--- 
-2.41.0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTfepwAKCRB4tDGHoIJi
+0m47AP9JuRzFY22arJqLQuWt5Tr58NL/3Hj7VXErM+HcZoe+/QD/Wrag8T3+WCAM
+dWFxFeGkzqJcrP3fPRV3nAAtLUNslg4=
+=u8oN
+-----END PGP SIGNATURE-----
 
+--AVu1vVpv5euJ77HU--
 
