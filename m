@@ -1,175 +1,135 @@
-Return-Path: <devicetree+bounces-11374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1EB7D584A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:29:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BBCA7D5852
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 824A8B20D1E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:29:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CF401C20C0B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2560839948;
-	Tue, 24 Oct 2023 16:29:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA51D3995F;
+	Tue, 24 Oct 2023 16:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bAHZIHkc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCF3210FD
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:29:27 +0000 (UTC)
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9E11B3;
-	Tue, 24 Oct 2023 09:29:22 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5845a94dae1so1213608eaf.0;
-        Tue, 24 Oct 2023 09:29:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698164962; x=1698769762;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lyvP8rg0cN3uMaVGkUZJYnGyShBPgeG7niyvmwU0I7E=;
-        b=JdeIWagfaoq9xk2goPqmXPpIX6xPdQmlRevemgvciTpSzNIfMv6I5OEsaHdO3wKV1J
-         f9xzvpspkDe1R5l7vBODvIVpLDsZEMry0Gc5hVu6DPbszniUdF1E95JcEOa1komsWvw7
-         b6QuP229mCW9TVlBDTe+A1sW84D+vzRTj2a2XKA94uBpWFIGi0OP5v20I6jdEjHbNdqO
-         E5a2AntNsIxi6RfksT2nmuWt2eiW9wxrA0pNmYBFKvRwTAVehgRq2l5HauSzVD5mtg7g
-         FHLXQvHWyoeLh2ostLtCC1ZSeQT3xOQozZMkfCG50ZOHZJnnO1ITLloQ4K9RANJGd0iW
-         v0Qg==
-X-Gm-Message-State: AOJu0YykRMOK5aGBQJU6k5ZyeWHHmPyydnfEBwP7elc1rUFK0TyLF/Qm
-	X3+Z8gsEzteDuCIdBNpzwg==
-X-Google-Smtp-Source: AGHT+IHHMl2/oHWft2yTTAv4LNNI02Tu07uYTbFvwLbExU9mIcFCwW29I/FboUp1wYBFIRXZrsw17A==
-X-Received: by 2002:a4a:e751:0:b0:571:aceb:26d3 with SMTP id n17-20020a4ae751000000b00571aceb26d3mr7013547oov.4.1698164961620;
-        Tue, 24 Oct 2023 09:29:21 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id di11-20020a0568201e8b00b0057b43a25deasm1997587oob.3.2023.10.24.09.29.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 09:29:20 -0700 (PDT)
-Received: (nullmailer pid 4048334 invoked by uid 1000);
-	Tue, 24 Oct 2023 16:29:19 -0000
-Date: Tue, 24 Oct 2023 11:29:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>, Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: mtd: binman-partitions: Add
- alignment properties
-Message-ID: <20231024162919.GC3707756-robh@kernel.org>
-References: <20231009220436.2164245-1-sjg@chromium.org>
- <20231009220436.2164245-3-sjg@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8402E62F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:29:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F623C433C7;
+	Tue, 24 Oct 2023 16:29:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698164975;
+	bh=ToOuDiwID7kYMJgwK7NAcFBO1+obD7vq8ICE/ePutgM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bAHZIHkcyLdhkhrgG7n1TAPSNDSKFGBgu0cm5CvBb8cyKj4yj35FQcxUMojfEFeXd
+	 HhLTYYZ9yI8UGpubvQdnYYuEfesBxfu+tUvdE+0pfyKcE76Mr87VxJZoBFWPXpo7bu
+	 2e/V87MxrKtDAYDqv9iYQRzTrkmuVRaj4MaDIq5WKwZmUqFN39ensnxMEHI6WK7cYn
+	 ePxDQRXL/v971RAG+5hUmlBJof35vOL7Ggn9EvflerRMDAX/lpZSvvl5nGY90gZjky
+	 83vnHCs+rGtn9Y8lOVMkecw3ycH9QPZ+jjy2JNMSPIyaErjbSEsYI9/TS43ci3snl3
+	 Zjqb2HeQsvOzQ==
+Date: Tue, 24 Oct 2023 17:29:28 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Niklas Cassel <nks@flawful.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Niklas Cassel <niklas.cassel@wdc.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: dwc: rockchip: Add atu property
+Message-ID: <20231024-zoology-preteen-5627e1125ae0@spud>
+References: <20231024151014.240695-1-nks@flawful.org>
+ <20231024151014.240695-2-nks@flawful.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GmxiJMkWxFE9W0TW"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231009220436.2164245-3-sjg@chromium.org>
+In-Reply-To: <20231024151014.240695-2-nks@flawful.org>
 
-On Mon, Oct 09, 2023 at 04:04:15PM -0600, Simon Glass wrote:
-> Add three properties for controlling alignment of partitions, aka
-> 'entries' in binman.
-> 
-> For now there is no explicit mention of hierarchy, so a 'section' is
-> just the 'binman' node.
-> 
-> These new properties are inputs to the packaging process, but are also
-> needed if the firmware is repacked, to ensure that alignment
-> constraints are not violated. Therefore they are provided as part of
-> the schema.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
+
+--GmxiJMkWxFE9W0TW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Oct 24, 2023 at 05:10:08PM +0200, Niklas Cassel wrote:
+> From: Niklas Cassel <niklas.cassel@wdc.com>
+>=20
+> Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
+> using:
+>=20
+> allOf:
+>   - $ref: /schemas/pci/snps,dw-pcie.yaml#
+>=20
+> and snps,dw-pcie.yaml does have the atu property defined, in order to be
+> able to use this property, while still making sure 'make CHECK_DTBS=3Dy'
+> pass, we need to add this property to rockchip-dw-pcie.yaml.
+>=20
+> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
 > ---
-> 
-> (no changes since v2)
-> 
-> Changes in v2:
-> - Fix 'a' typo in commit message
-> 
->  .../mtd/partitions/binman-partition.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> index 35a320359ec1..8e8a3b6d4d14 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> @@ -28,6 +28,42 @@ properties:
->            - const: u-boot       # u-boot.bin from U-Boot project
->            - const: atf-bl31     # bl31.bin or bl31.elf from TF-A project
->  
-> +  align:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This sets the alignment of the entry. The entry offset is adjusted
-> +      so that the entry starts on an aligned boundary within the containing
-> +      section or image. For example ‘align = <16>’ means that the entry will
-> +      start on a 16-byte boundary. This may mean that padding is added before
+>  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml =
+b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 1ae8dcfa072c..229f8608c535 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -29,16 +29,20 @@ properties:
+>            - const: rockchip,rk3568-pcie
+> =20
+>    reg:
+> +    minItems: 3
+>      items:
+>        - description: Data Bus Interface (DBI) registers
+>        - description: Rockchip designed configuration registers
+>        - description: Config registers
+> +      - description: iATU registers
 
-Only your example defines that alignment is in bytes.
+Is this extra register only for the ..88 or for the ..68 and for the
+=2E.88 models?
 
-> +      the entry. The padding is part of the containing section but is not
-> +      included in the entry, meaning that an empty space may be created before
-> +      the entry starts. Alignment should be a power of 2. If ‘align’ is not
-> +      provided, no alignment is performed.
+> =20
+>    reg-names:
+> +    minItems: 3
+>      items:
+>        - const: dbi
+>        - const: apb
+>        - const: config
+> +      - const: atu
+> =20
+>    clocks:
+>      minItems: 5
+> --=20
+> 2.41.0
+>=20
 
-Would be nice to have some constraints. Unfortunately, no way to say 
-'power of 2' in json-schema (we could add something possibly), so the 
-only way is:
+--GmxiJMkWxFE9W0TW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-enum: [ 2, 4, 8, 16, 32, 64, ... ]
+-----BEGIN PGP SIGNATURE-----
 
-Kind of verbose if we add all 31 possibilities...
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTfw6AAKCRB4tDGHoIJi
+0qb/AP4hIJGUoqERu3QlpvqCaZ/CBI2cf+nZgPkQl4kGAYVyfgD+PXkXwVjXkAbA
+HSw5kLuiPMl+65KV5fy0La1elPqpSwc=
+=qavj
+-----END PGP SIGNATURE-----
 
-Could also do this:
-
-minium: 2
-maximum: 0x80000000
-multipleOf: 2
-
-> +
-> +  align-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This sets the alignment of the entry size. For example, to ensure
-> +      that the size of an entry is a multiple of 64 bytes, set this to 64.
-> +      While this does not affect the contents of the entry within binman
-> +      itself (the padding is performed only when its parent section is
-> +      assembled), the end result is that the entry ends with the padding
-> +      bytes, so may grow. If ‘align-size’ is not provided, no alignment is
-> +      performed.
-> +
-> +  align-end:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This sets the alignment of the end of an entry with respect to the
-> +      containing section. Some entries require that they end on an alignment
-> +      boundary, regardless of where they start. This does not move the start
-> +      of the entry, so the contents of the entry will still start at the
-> +      beginning. But there may be padding at the end. While this does not
-> +      affect the contents of the entry within binman itself (the padding is
-> +      performed only when its parent section is assembled), the end result is
-> +      that the entry ends with the padding bytes, so may grow. If ‘align-end’
-> +      is not provided, no alignment is performed.
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -40,10 +76,13 @@ examples:
->          partition@100000 {
->              compatible = "u-boot";
->              reg = <0x100000 0xf00000>;
-> +            align-size = <0x1000>;
-> +            align-end = <0x10000>;
->          };
->  
->          partition@200000 {
->              compatible = "atf-bl31";
->              reg = <0x200000 0x100000>;
-> +            align = <0x4000>;
->          };
->      };
-> -- 
-> 2.42.0.609.gbb76f46606-goog
-> 
+--GmxiJMkWxFE9W0TW--
 
