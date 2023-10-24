@@ -1,152 +1,103 @@
-Return-Path: <devicetree+bounces-11363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86287D56FD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:56:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082847D5709
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 636E9281220
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:56:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 362091C20A22
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B269638DD6;
-	Tue, 24 Oct 2023 15:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C2638DD7;
+	Tue, 24 Oct 2023 15:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="koeL6VnG"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="aK7qefab"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611591D6A9;
-	Tue, 24 Oct 2023 15:56:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A91FE83;
-	Tue, 24 Oct 2023 08:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698162974; x=1729698974;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SddTswXNy85QoKJZdafbQk9nSfChueXqS/eU+G7CMYg=;
-  b=koeL6VnGVGJKMm0OZoKUANAQAtyXmNPmeVBL333MTn7PKsKdezKzflx6
-   PffPi4bDwB/pV3+9SlP/LlDdTxBdS9+hHIld92T37DDTv1WOAKOElxcVO
-   Nc+IvFHWx1xknjlumgNufiFkY0I/Nakl4/TW2RS/kDw3weY1t1Ddq1f8i
-   aV1bZ0zLIROX+kSHF7Az3+gnIEBM6TuJizN8ahYQ/o/GktRwpmoZGWSOx
-   rzRJ8cFfN3yaFTZZTZGgsS815HD1b+k3+QSlY0kQkM35LtuqaaqeXQgWJ
-   kMdeBAH4ZpyeCd3r5i8dJUTXo7es/j6G4pQyS/oF2sQMR831RQbDBZiVH
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="5719680"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="5719680"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 08:56:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758510350"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="758510350"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 24 Oct 2023 08:56:07 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qvJlF-0007yD-1U;
-	Tue, 24 Oct 2023 15:56:05 +0000
-Date: Tue, 24 Oct 2023 23:55:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAED374D6
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:57:05 +0000 (UTC)
+Received: from todd.t-8ch.de (todd.t-8ch.de [IPv6:2a01:4f8:c010:41de::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7146F10FC;
+	Tue, 24 Oct 2023 08:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1698163020; bh=BNVJRacOEROOJUbOi3+VHcE+dWCyfrMR1wZHRSbWoM0=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=aK7qefabd1HYLkS2rsJZke9BfVu/vDcyrJRTkRqhCctijuPOl27YWMUK0xzwwgZD5
+	 8Hnf4FIfOL37zBXuKz6VYkKnjsiSMvqtSihMZm414gVikRARfNR/ju5dcQOQNDWpU9
+	 +QutV/PKBIwRHkhBgW/Oyoz9TVZ6JYpBVrap1NJg=
+Date: Tue, 24 Oct 2023 17:56:47 +0200 (GMT+02:00)
+From: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh_?= <thomas@t-8ch.de>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS
- driver
-Message-ID: <202310242300.y8Z3ImgQ-lkp@intel.com>
-References: <20231023155013.512999-4-romain.gantois@bootlin.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org
+Message-ID: <51c4ab9a-1d45-4665-bb27-0214a9588a1c@t-8ch.de>
+In-Reply-To: <ZTbklpRhpMIPey2j@nixie71>
+References: <20231017034356.1436677-1-anshulusr@gmail.com> <20231017034356.1436677-2-anshulusr@gmail.com> <ZTWza+S+t+UZKlwu@nixie71> <00d2fcbc-3fd8-477d-8df1-afec20b458b6@t-8ch.de> <ZTbklpRhpMIPey2j@nixie71>
+Subject: Re: [PATCH v5 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023155013.512999-4-romain.gantois@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Correlation-ID: <51c4ab9a-1d45-4665-bb27-0214a9588a1c@t-8ch.de>
 
-Hi Romain,
+Hi Jeff,
 
-kernel test robot noticed the following build warnings:
+Oct 23, 2023 23:24:55 Jeff LaBundy <jeff@labundy.com>:
+> On Mon, Oct 23, 2023 at 07:55:52AM +0200, Thomas Wei=C3=9Fschuh=C2=A0 wro=
+te:
+>
+> [...]
+>
+>>>> +=C2=A0=C2=A0 err =3D i2c_master_send(client, write_buf, sizeof(write_=
+buf));
+>>>> +=C2=A0=C2=A0 if (err < 0)
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;
+>>>
+>>> You correctly return err (or rather, ret) for negative values, but you =
+should also
+>>> check that ret matches the size of the data sent. For 0 <=3D ret < size=
+of(writebuf),
+>>> return -EIO.
+>>
+>> The driver did this originally.
+>> I then requested it to be removed as this case
+>> can never happen.
+>> i2c_master_send will either return size of(writebuf) or an error.
+>
+> Great catch; indeed you are correct. Apologies for having missed this
+> in the change log; this is good to know in the future.
 
-[auto build test WARNING on net-next/main]
+I guess it would make sense to also adapt the
+function documentation to be more explicit
+about this invariant.
+No need to complicate every caller unnecessarily.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/net-dt-bindings-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231023-235323
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231023155013.512999-4-romain.gantois%40bootlin.com
-patch subject: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS driver
-config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231024/202310242300.y8Z3ImgQ-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231024/202310242300.y8Z3ImgQ-lkp@intel.com/reproduce)
+I can send a patch somewhere next week, but
+if you want to send one I'll be happy to review it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310242300.y8Z3ImgQ-lkp@intel.com/
+> That being said, it's a moot point IMO; this driver seems like a good
+> candidate for regmap. If regmap cannot be made to work here for some
+> reason, then I'd like to at least see some wrapper functions to avoid
+> duplicate code and manual assignments to a buffer.
 
-All warnings (new ones prefixed by >>):
+Ack.
 
-   drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.c: In function 'ipqess_edma_rx_buf_prepare':
->> drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.c:156:25: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     156 |                         (struct ipqess_edma_rx_desc *)buf->dma;
-         |                         ^
-
-
-vim +156 drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.c
-
-   139	
-   140	static int ipqess_edma_rx_buf_prepare(struct ipqess_edma_buf *buf,
-   141					      struct ipqess_edma_rx_ring *rx_ring)
-   142	{
-   143		memset(buf->skb->data, 0, sizeof(struct ipqess_edma_rx_desc));
-   144	
-   145		buf->dma = dma_map_single(rx_ring->ppdev, buf->skb->data,
-   146					  IPQESS_EDMA_RX_HEAD_BUFF_SIZE,
-   147					  DMA_FROM_DEVICE);
-   148		if (dma_mapping_error(rx_ring->ppdev, buf->dma)) {
-   149			dev_kfree_skb_any(buf->skb);
-   150			buf->skb = NULL;
-   151			return -EFAULT;
-   152		}
-   153	
-   154		buf->length = IPQESS_EDMA_RX_HEAD_BUFF_SIZE;
-   155		rx_ring->hw_desc[rx_ring->head] =
- > 156				(struct ipqess_edma_rx_desc *)buf->dma;
-   157		rx_ring->head = (rx_ring->head + 1) % IPQESS_EDMA_RX_RING_SIZE;
-   158	
-   159		ipqess_edma_m32(rx_ring->edma, IPQESS_EDMA_RFD_PROD_IDX_BITS,
-   160				(rx_ring->head + IPQESS_EDMA_RX_RING_SIZE - 1)
-   161				% IPQESS_EDMA_RX_RING_SIZE,
-   162				IPQESS_EDMA_REG_RFD_IDX_Q(rx_ring->idx));
-   163	
-   164		return 0;
-   165	}
-   166	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thomas
 
