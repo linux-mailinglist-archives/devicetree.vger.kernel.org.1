@@ -1,164 +1,273 @@
-Return-Path: <devicetree+bounces-11235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E12867D4D5F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:11:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6AB7D4D72
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:15:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E4711C20865
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:11:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DFF5B20F02
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F3C250FA;
-	Tue, 24 Oct 2023 10:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27D225102;
+	Tue, 24 Oct 2023 10:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jUogb4BX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pkSh1nIZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA8F1FDF
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:11:08 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6969F9;
-	Tue, 24 Oct 2023 03:11:06 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O8KD2u030309;
-	Tue, 24 Oct 2023 10:11:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=YffooxULNv7b8kk2n2L8oG5mv+aN01WiO5p6mu3vx9w=;
- b=jUogb4BX3c4RGEd3Yjfsj3z2b1YuZnJPlwJZTk7u08L5jjrIuwVcMDVJzrn9BhmfrbJh
- 4XKxkuqAcxg7UcwBdlVAqoJpMN7jNVScHJK/ZYaSo3PJTWzzvABecxJrhMfnhnifMbpf
- F7lkbbN7gudhFwiHJIXgXvvK0QZaOzrdU+5IW0epmw1GpNZfnzsQn99IaEv+oulpSqZK
- 63siRJ2f+psYyD8A6CoFU5liPVIDGF/HLVHi/jNQiRQwMAj7uPnC1nJZoMaUWo5XbSqt
- Lt7Xm97HzMVdAoS2ohBRcXPkeDexoPr/phaKm4NC+3qgbQ6oJCjgtEeFM0PjzseUr7+4 rg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tx7r80h63-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 10:11:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39OAB2NW012545
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 10:11:02 GMT
-Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
- 2023 03:10:57 -0700
-Message-ID: <ac42f27e-007d-1157-ae46-403420d9fdcb@quicinc.com>
-Date: Tue, 24 Oct 2023 18:10:54 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB1B3FE1;
+	Tue, 24 Oct 2023 10:15:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E925C433C8;
+	Tue, 24 Oct 2023 10:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698142500;
+	bh=mEUQjGN6AUBmfa+H+hNXq1xNSGPN8suHINWx+52wmbE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pkSh1nIZ8Kk4sMmOglQWhm8LtWqjPekV6G0M4XS9tVWb7evWdeMJ2bP66voXJ4VzX
+	 vDX6uOduAY59EEnYairU7RqVtqc1XIE2QhjtntX50apXrav1026u3KRXEjSegl4QQA
+	 S3GNMhfIe1Z+EK0iY8fw9xPb1k+Upx05GAWWj1cUUEQwkQnSV68ewoHhMLe3s/XiUr
+	 g+AVFIyyIp/N4L9361zNPuyGwjnMdVibVISqERdMH/iRtM4FNYnTalkSorG32W46hL
+	 XNqBPmgSLBVcoi5mApHUx1bG/mKTunCckbQkLJxTO6tUGpL2TOoQra7xrcDYUJHoBz
+	 plMovqDfYLnqw==
+Message-ID: <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
+Date: Tue, 24 Oct 2023 13:14:55 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 0/5] soc/arm64: qcom: add initial version of memory
- dump
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
+ suspend
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <757382c1-142b-454c-b2b5-7ec97bd7328d@linaro.org>
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-In-Reply-To: <757382c1-142b-454c-b2b5-7ec97bd7328d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Elson Roy Serrao <quic_eserrao@quicinc.com>, gregkh@linuxfoundation.org,
+ Thinh.Nguyen@synopsys.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
+ <20230814185043.9252-4-quic_eserrao@quicinc.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230814185043.9252-4-quic_eserrao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ci7jOvFrbEtjXvCsYpMVLQ1TMk__-oj8
-X-Proofpoint-GUID: Ci7jOvFrbEtjXvCsYpMVLQ1TMk__-oj8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-24_09,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=747 lowpriorityscore=0 bulkscore=0 phishscore=0 spamscore=0
- clxscore=1015 priorityscore=1501 suspectscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310240084
 
+Hi Elson,
 
-
-On 2023/10/23 21:50, Konrad Dybcio wrote:
-> On 23.10.2023 11:20, Zhenhua Huang wrote:
->> Qualcomm memory dump driver is to cooperate with firmware, providing the
-> Firmware == The hypervisor? The TZ? Some uncore chip?
-
-It's part of bootloader which also needs to cooperate with TZ. After 
-system crash and warm reset, system enters debug mode which needs the 
-dump table.
-
+On 14/08/2023 21:50, Elson Roy Serrao wrote:
+> The current implementation blocks the runtime pm operations when cable
+> is connected. This would block dwc3 to enter a low power state during
+> bus suspend scenario. Modify the runtime pm ops to handle bus suspend
+> case for such platforms where the controller low power mode entry/exit
+> is handled by the glue driver. This enablement is controlled through a
+> dt property and platforms capable of detecting bus resume can benefit
+> from this feature. Also modify the remote wakeup operations to trigger
+> runtime resume before sending wakeup signal.
 > 
->> hints(id and size) of storing useful debugging information into pre-allocated
->> memory. Firmware then does the real data capture. The debugging information
->> includes cache contents, internal memory, registers.
-> Exposing all of the user's data.. Is this enabled by default?
-
-In theory it can be controlled by static bool download_mode = 
-IS_ENABLED(CONFIG_QCOM_SCM_DOWNLOAD_MODE_DEFAULT); in driver qcom_scm.c.
-But from my local test on RB5, it can always enter into download mode seems.
-
+> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c   | 28 ++++++++++++++++++++++++++--
+>  drivers/usb/dwc3/core.h   |  3 +++
+>  drivers/usb/dwc3/gadget.c | 32 +++++++++++++++++++++++++-------
+>  3 files changed, 54 insertions(+), 9 deletions(-)
 > 
->>
->> The driver dynamically reserves memory and provides the hints(dump id and size)
->> following specified protocols with firmware. After crash and warm reboot,
->> firmware scans these information and stores contents into reserved memory
->> accordingly. Firmware then enters into full dump mode which dumps whole DDR
->> to host through USB.
-> Is that only something that works on engineering / prototype devices?
-> 
->> User then get full dump using PCAT and can parse out these informations.
-> Is PCAT open-source, or at least freely available?
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 9c6bf054f15d..9bfd9bb18caf 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1518,6 +1518,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  	dwc->dis_split_quirk = device_property_read_bool(dev,
+>  				"snps,dis-split-quirk");
+>  
+> +	dwc->runtime_suspend_on_usb_suspend = device_property_read_bool(dev,
+> +				"snps,runtime-suspend-on-usb-suspend");
+> +
+>  	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
+>  	dwc->tx_de_emphasis = tx_de_emphasis;
+>  
+> @@ -2029,6 +2032,9 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>  
+>  	switch (dwc->current_dr_role) {
+>  	case DWC3_GCTL_PRTCAP_DEVICE:
+> +		/* runtime resume on bus resume scenario */
+> +		if (PMSG_IS_AUTO(msg) && dwc->connected)
+> +			break;
+>  		ret = dwc3_core_init_for_resume(dwc);
+>  		if (ret)
+>  			return ret;
+> @@ -2090,8 +2096,13 @@ static int dwc3_runtime_checks(struct dwc3 *dwc)
+>  {
+>  	switch (dwc->current_dr_role) {
+>  	case DWC3_GCTL_PRTCAP_DEVICE:
+> -		if (dwc->connected)
+> +		if (dwc->connected) {
+> +			/* bus suspend scenario */
+> +			if (dwc->runtime_suspend_on_usb_suspend &&
+> +			    dwc->suspended)
 
-I see it is introduced in doc of development-kit for RB5, but in another 
-mail Caleb mentioned it's still needing to sign up... which I need to 
-further investigate.
+If dwc is already suspended why do we return -EBUSY?
+Should this be !dwc->suspended?
 
-> 
->>
->> Dump id and size are provided by bootconfig. The expected format of a
->> bootconfig file is as follows:-
-> Is it the same bootconfig that Google invented? Wasn't that just key=val?
+> +				break;
+>  			return -EBUSY;
+> +		}
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+>  	default:
+> @@ -2107,9 +2118,22 @@ static int dwc3_runtime_suspend(struct device *dev)
+>  	struct dwc3     *dwc = dev_get_drvdata(dev);
+>  	int		ret;
+>  
+> -	if (dwc3_runtime_checks(dwc))
+> +	ret = dwc3_runtime_checks(dwc);
+> +	if (ret)
+>  		return -EBUSY;
+>  
+> +	switch (dwc->current_dr_role) {
+> +	case DWC3_GCTL_PRTCAP_DEVICE:
+> +		/* bus suspend case */
+> +		if (!ret && dwc->connected)
 
-Seems not same, the author is not from google :) it's kernel XBC(extra 
-boot config): lib/bootconfig.c
+No need to check !ret again as it will never happen because
+we are returning -EBUSY earlier if (ret);
 
-> 
->> memory_dump_config {
->> 	<node name> {
->> 		id = <id of HW component>
->> 		size = <dump size of HW component>
->> 	}
->> }
->>
->> for example:
->> memory_dump_config {
->>          c0_context_dump {
->> 		id = 0
->> 		size = 0x800
->>          }
->> }
->>
->> Test based on 6.6-rc1.
-> That's sorta ancient, especially since you're likely looking to get
-> this merged in 6.8.. -next would probably be a better target.
+> +			return 0;
+> +		break;
+> +	case DWC3_GCTL_PRTCAP_HOST:
+> +	default:
+> +		/* do nothing */
+> +		break;
+> +	}
+> +
 
-Sure, Thanks. Will verify in -next.
+While this takes care of runtime suspend case, what about system_suspend?
+Should this check be moved to dwc3_suspend_common() instead?
 
-> 
-> Konrad
+>  	ret = dwc3_suspend_common(dwc, PMSG_AUTO_SUSPEND);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index a69ac67d89fe..f2f788a6b4b5 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -1124,6 +1124,8 @@ struct dwc3_scratchpad_array {
+>   * @num_ep_resized: carries the current number endpoints which have had its tx
+>   *		    fifo resized.
+>   * @debug_root: root debugfs directory for this device to put its files in.
+> + * @runtime_suspend_on_usb_suspend: true if dwc3 runtime suspend is allowed
+> + *			during bus suspend scenario.
+>   */
+>  struct dwc3 {
+>  	struct work_struct	drd_work;
+> @@ -1340,6 +1342,7 @@ struct dwc3 {
+>  	int			last_fifo_depth;
+>  	int			num_ep_resized;
+>  	struct dentry		*debug_root;
+> +	bool			runtime_suspend_on_usb_suspend;
+>  };
+>  
+>  #define INCRX_BURST_MODE 0
+> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
+> index 5fd067151fbf..978ce0e91164 100644
+> --- a/drivers/usb/dwc3/gadget.c
+> +++ b/drivers/usb/dwc3/gadget.c
+> @@ -2401,15 +2401,21 @@ static int dwc3_gadget_wakeup(struct usb_gadget *g)
+>  		return -EINVAL;
+>  	}
+>  
+> -	spin_lock_irqsave(&dwc->lock, flags);
+>  	if (!dwc->gadget->wakeup_armed) {
+>  		dev_err(dwc->dev, "not armed for remote wakeup\n");
+> -		spin_unlock_irqrestore(&dwc->lock, flags);
+>  		return -EINVAL;
+>  	}
+> -	ret = __dwc3_gadget_wakeup(dwc, true);
+>  
+> +	ret = pm_runtime_resume_and_get(dwc->dev);
+> +	if (ret < 0) {
+> +		pm_runtime_set_suspended(dwc->dev);
+> +		return ret;
+> +	}
+> +
+> +	spin_lock_irqsave(&dwc->lock, flags);
+> +	ret = __dwc3_gadget_wakeup(dwc, true);
+>  	spin_unlock_irqrestore(&dwc->lock, flags);
+> +	pm_runtime_put_noidle(dwc->dev);
+>  
+>  	return ret;
+>  }
+> @@ -2428,6 +2434,12 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>  		return -EINVAL;
+>  	}
+>  
+> +	ret = pm_runtime_resume_and_get(dwc->dev);
+> +	if (ret < 0) {
+> +		pm_runtime_set_suspended(dwc->dev);
+> +		return ret;
+> +	}
+> +
+>  	spin_lock_irqsave(&dwc->lock, flags);
+>  	/*
+>  	 * If the link is in U3, signal for remote wakeup and wait for the
+> @@ -2438,6 +2450,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>  		ret = __dwc3_gadget_wakeup(dwc, false);
+>  		if (ret) {
+>  			spin_unlock_irqrestore(&dwc->lock, flags);
+> +			pm_runtime_put_noidle(dwc->dev);
+>  			return -EINVAL;
+>  		}
+>  		dwc3_resume_gadget(dwc);
+> @@ -2452,6 +2465,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>  		dev_err(dwc->dev, "function remote wakeup failed, ret:%d\n", ret);
+>  
+>  	spin_unlock_irqrestore(&dwc->lock, flags);
+> +	pm_runtime_put_noidle(dwc->dev);
+>  
+>  	return ret;
+>  }
+> @@ -2732,21 +2746,23 @@ static int dwc3_gadget_pullup(struct usb_gadget *g, int is_on)
+>  	/*
+>  	 * Avoid issuing a runtime resume if the device is already in the
+>  	 * suspended state during gadget disconnect.  DWC3 gadget was already
+> -	 * halted/stopped during runtime suspend.
+> +	 * halted/stopped during runtime suspend except for bus suspend case
+> +	 * where we would have skipped the controller halt.
+>  	 */
+>  	if (!is_on) {
+>  		pm_runtime_barrier(dwc->dev);
+> -		if (pm_runtime_suspended(dwc->dev))
+> +		if (pm_runtime_suspended(dwc->dev) && !dwc->connected)
+>  			return 0;
+>  	}
+>  
+>  	/*
+>  	 * Check the return value for successful resume, or error.  For a
+>  	 * successful resume, the DWC3 runtime PM resume routine will handle
+> -	 * the run stop sequence, so avoid duplicate operations here.
+> +	 * the run stop sequence except for bus resume case, so avoid
+> +	 * duplicate operations here.
+>  	 */
+>  	ret = pm_runtime_get_sync(dwc->dev);
+> -	if (!ret || ret < 0) {
+> +	if ((!ret && !dwc->connected) || ret < 0) {
+>  		pm_runtime_put(dwc->dev);
+>  		if (ret < 0)
+>  			pm_runtime_set_suspended(dwc->dev);
+> @@ -4331,6 +4347,8 @@ static void dwc3_gadget_suspend_interrupt(struct dwc3 *dwc,
+>  	}
+>  
+>  	dwc->link_state = next;
+> +	pm_runtime_mark_last_busy(dwc->dev);
+> +	pm_request_autosuspend(dwc->dev);
+>  }
+>  
+>  static void dwc3_gadget_interrupt(struct dwc3 *dwc,
 
-Thanks,
-Zhenhua
+-- 
+cheers,
+-roger
 
