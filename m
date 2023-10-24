@@ -1,156 +1,191 @@
-Return-Path: <devicetree+bounces-11189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886EB7D4B7E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:06:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A477D4B95
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 413722816F8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:06:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA6B0281793
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A489121373;
-	Tue, 24 Oct 2023 09:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4C8219FC;
+	Tue, 24 Oct 2023 09:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ih3HhdbX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JSEMSTi3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDA514017;
-	Tue, 24 Oct 2023 09:06:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E790FC433C8;
-	Tue, 24 Oct 2023 09:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD49321373
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:09:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4235C433C8;
+	Tue, 24 Oct 2023 09:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698138380;
-	bh=tw6phL3njg7Zk6Ua/WCHEM58n0W8/AyOMzwRfIKowRs=;
+	s=k20201202; t=1698138542;
+	bh=tXHeRev7TDX6RphiYrjhkOj9XbHdnjXSBQGfuia//+4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ih3HhdbX31Wkgy27F6HRxpE3Vm4JjuchCIypVYEbrbnA8YRbLzAiB7A2fiBP2wdrK
-	 1S/zRb2vbKl1dnGwit5YKRJrR2u6yRSGQ5nibOzEf4mBGmmmPc5O/Q486wt99rp4JD
-	 QjQCRo2/+c/UOk68hLfeaZUKbK+itH++tMsYLU+0kVQk3SXOzELtqpT5w1tZcGpptj
-	 /MzFG1suRqBg6R7rCuklotyiTOhFW4oAqiMo0pA+OUtzhrl8T31ygyAoKVYbYInHEd
-	 LlPlXdiR+MAvv9bi+bNAhdxjnm2qsKjz0ZysBXhCU5Lm23HR1vBoBWFANDYaE9AV6v
-	 y/lB3Nd41rjTg==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qvDMy-0003zs-1N;
-	Tue, 24 Oct 2023 11:06:36 +0200
-Date: Tue, 24 Oct 2023 11:06:36 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	b=JSEMSTi3sW+WIDxLX6FFLS2JeC8kyHR04eVJbkDfQV0CAHBzkCVSIlDcnlwkDw8MZ
+	 5XcnFwFiZ+qKb6ENh820LtXOiY89z48lIgcV12lUE+efdHFVX004C7+eras9DRnvdn
+	 qbOI5vsMAcZQcao4cQrH1Xfgnw3HZWUXFDJ8G6TiQXWH89gBlzGi/x79nTGFR7lAbG
+	 QLY2sGblURh+R0LyXyvgx3IoVcSsuENyd02sJRlOFfy0fHm1NWUBDCkTEd7rK/S2FN
+	 zBmYIIxlOi7agCQaxsDkCzLrgQQp6iSRNBNGEvYGHL1KiANxOqpUq24+nxjbK5dzkR
+	 GSDoleG711kHA==
+Date: Tue, 24 Oct 2023 10:08:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 06/10] usb: dwc3: qcom: Enable wakeup for applicable
- ports of multiport
-Message-ID: <ZTeJHMJYMQWVIbI7@hovoldconsulting.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-7-quic_kriskura@quicinc.com>
- <ZTaViatsRY7LCbIX@hovoldconsulting.com>
- <7e9bdd65-35b7-43c2-810a-2cd81f736084@quicinc.com>
- <ZTdt-wyCHh3i0SlK@hovoldconsulting.com>
- <00044364-9a6a-4138-9c17-7b0b801e9f10@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Marek Vasut <marex@denx.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB
+ subnode into schema and example
+Message-ID: <20231024-reimburse-domain-893407e09833@spud>
+References: <20231020130019.665853-1-alexander.stein@ew.tq-group.com>
+ <5986192.lOV4Wx5bFT@steina-w>
+ <20231023-quote-wrongly-ed07265e12ac@spud>
+ <8331331.NyiUUSuA9g@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gm5wsyKv10PD0tI4"
+Content-Disposition: inline
+In-Reply-To: <8331331.NyiUUSuA9g@steina-w>
+
+
+--gm5wsyKv10PD0tI4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <00044364-9a6a-4138-9c17-7b0b801e9f10@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 24, 2023 at 02:11:31PM +0530, Krishna Kurapati PSSNV wrote:
-> On 10/24/2023 12:40 PM, Johan Hovold wrote:
- 
-> >>> But perhaps this should be done using usb_hub_for_each_child() instead
-> >>> as that may be more efficient. Then you use this function to read out
-> >>> the speed for all the ports in go (and store it in the port structures I
-> >>> mentioned). Please determine which alternative is best.
-> >>>
-> >> Either ways is fine. We would have qcom->num_ports to determine how many
-> >> speeds we can read.
-> > 
-> > That's not the point. I'm referring to which alternative is less
-> > computationally expensive and allows for a clean implementation.
-> > 
-> > Please do try to figure it out yourself.
-> > 
-> I don't think its much of a difference:
-> 
-> while (loop over num_ports) {
-> 	read_usb2_speed()
-> }
-> 
-> read_usb2_speed() {
-> 	while (loop over num_ports) {
-> 		hub api to read speed.
-> 	}
-> }
-> 
-> The second one would avoid calling read_usb2_speed multiple times. Will 
-> take that path.
+On Tue, Oct 24, 2023 at 08:30:16AM +0200, Alexander Stein wrote:
+> Am Montag, 23. Oktober 2023, 18:37:29 CEST schrieb Conor Dooley:
+> > On Mon, Oct 23, 2023 at 08:27:20AM +0200, Alexander Stein wrote:
+> > > Am Sonntag, 22. Oktober 2023, 19:39:12 CEST schrieb Conor Dooley:
+> > > > On Fri, Oct 20, 2023 at 03:00:15PM +0200, Alexander Stein wrote:
+> > > > > Document the LDB bridge subnode and add the subnode into the exam=
+ple.
+> > > > > For the subnode to work, the block control must scan its subnodes=
+ and
+> > > > > bind drivers to them, do not misuse either simple-bus or simple-m=
+fd
+> > > > > here.
+> > > > >=20
+> > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > ---
+> > > > >=20
+> > > > >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 44
+> > > > >  +++++++++++++++++++
+> > > > >  1 file changed, 44 insertions(+)
+> > > > >=20
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-c=
+trl.y
+> > > > > aml
+> > > > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-c=
+trl.y
+> > > > > aml
+> > > > > index b3554e7f9e76..5ba66dfb0e05 100644
+> > > > > ---
+> > > > > a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-c=
+trl.y
+> > > > > aml
+> > > > > +++
+> > > > > b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-c=
+trl.y
+> > > > > aml>
+> > > > >=20
+> > > > > @@ -24,6 +24,12 @@ properties:
+> > > > >    reg:
+> > > > >      maxItems: 1
+> > > > >=20
+> > > > > +  '#address-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > > +  '#size-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > >=20
+> > > > >    '#power-domain-cells':
+> > > > >      const: 1
+> > > > >=20
+> > > > > @@ -46,9 +52,16 @@ properties:
+> > > > >        - const: csi
+> > > > >        - const: dsi
+> > > > >=20
+> > > > > +  bridge@20:
+> > > > > +    type: object
+> > > > > +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
+> > > > > +    unevaluatedProperties: false
+> > > > > +
+> > > > >=20
+> > > > >  required:
+> > > > >    - compatible
+> > > > >    - reg
+> > > > >=20
+> > > > > +  - '#address-cells'
+> > > > > +  - '#size-cells'
+> > > >=20
+> > > > It seems to make little sense to me that these would become required
+> > > > when the bridge is optional. Is it valid to have one of these
+> > > > media-blk-ctrls without the ldb subnode?
+> > >=20
+> > > fsl,imx93-media-blk-ctrl privides several power-domains (DSI, CSI, IS=
+I,
+> > > PXP
+> > > and LCDIF), currently unused. This series introduces the usage for LC=
+DIF
+> > > power domain. LDB is the LVDS display bridge. So there are several po=
+wer
+> > > domains which don't requires the usage of ldb.
+> > > On the other hand I prefer consistency, so I opted to keep things sim=
+ilar
+> > > to commit 1cb0c87d27dc. If it shall not be added here, it should be
+> > > removed in
+> > > Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.y=
+aml
+> > > as well.
+> >=20
+> > IIRC the tooling will complain if you have an enabled node containing
+> > #address-cells and/or #size-cells but no child nodes, so making
+> > #address-cells or #size-cells required will cause problems. Looks like
+> > the only user has the child node, so it didn't crop up yet.
+>=20
+> I was not able to raise a warning with enabled media_blk_ctrl having #add=
+ress-
+> cells/#size-cells being set but no subnode.
+> I don't have a strong opinion on this, but I prefer having both bindings =
+as=20
+> similar as possible.
 
-You need to look at the implementation of usb_hub_for_each_child() and
-usb_hub_find_child() to determine that, which you now forced me to
-do; and yes, you're right, this shouldn't matter from an efficiency
-standpoint.
+The complaint is from dtc, possibly only at W=3D1:
+unnecessary #address-cells/#size-cells without "ranges" or child "reg" prop=
+erty
 
-> >>> [ I realise that the confusion around hs_phy_irq may be partly to blame
-> >>> for this but since that one is also a per-port interrupt, that's no
-> >>> longer an issue. ]
-> >>
-> >> I don't want to add support for this right away [1]. I would like to
-> >> keep hs_phy_irq outside the loop for now.
-> > 
-> > No. Stop trying to take shortcuts. Again, this is upstream, not
-> > Qualcomm's vendor kernel.
-> 
-> I don't think it is a shortcut.
-> 
-> The reason I said I would keep it out of loop is I know why we need 
-> DP/DM/SS IRQ's during wakeup. The wakeup signals come in as 
-> rising/falling edges in high speed on DP/DM lines and LFPS terminations 
-> come on SS lines.
+--gm5wsyKv10PD0tI4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-It is a shortcut as this interrupt is per-port and some SoC's already
-use it. So you're making a mess of the implementation for no good
-reason.
+-----BEGIN PGP SIGNATURE-----
 
-> So we need these 3 interrupts for sure in wakeup context.
-> hs_phy_irq is not mandatory for wakeup. Any particular reason why it is 
-> needed to add driver support for hs_phy_irq's of multiport now ? May be 
-> I am missing something. If there is any reason why we need to add it 
-> now, I would try to learn and see if it has any side effects (like 
-> generating spurious wakeup's) and if nothing, I would add it back to 
-> port structure.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTeJqAAKCRB4tDGHoIJi
+0uUzAQC031R4thbZ37BFnpSE5+qX/374uopzziZtAGu6k4496wEAkKFCo6wlMcvc
+SYQ7z2EVJdvqdqQIJ8JRoTJgpyutqwk=
+=ElME
+-----END PGP SIGNATURE-----
 
-As I've mentioned a few times now, the hs_phy_irq is already used by a
-few SoC's so you can't just pretend it doesn't exist and mess up the
-implementation for no good reason.
-
-Just find out how it is used and why only some Qualcomm SoC's use it
-currently. It appears to be used in parallel with the DP/DM interrupts,
-and it has been there from the start:
-
-	a4333c3a6ba9 ("usb: dwc3: Add Qualcomm DWC3 glue driver")
-
-Sure, the wakeup implementation was incomplete and broken for a long
-time, but I'm not going to let you continue this practise of pushing
-incomplete hacks upstream which someone else will eventually be forced
-to clean up. You have the documentation, just use it.
-
-Johan
+--gm5wsyKv10PD0tI4--
 
