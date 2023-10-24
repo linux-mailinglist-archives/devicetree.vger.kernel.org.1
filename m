@@ -1,111 +1,145 @@
-Return-Path: <devicetree+bounces-11232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 885D17D4D46
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:05:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446B97D4D51
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D79AB20DA3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:05:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2048281882
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC41250EE;
-	Tue, 24 Oct 2023 10:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pOadOaly"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 266CC2421D;
+	Tue, 24 Oct 2023 10:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2AF2421D;
-	Tue, 24 Oct 2023 10:05:45 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50C5D118;
-	Tue, 24 Oct 2023 03:05:43 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 83A512000C;
-	Tue, 24 Oct 2023 10:05:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698141941;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MN831TqYZOpqvXC2XriVIlPZsef8tm9lyCIKQly4bCk=;
-	b=pOadOalyRqzNXEzU7qu+TIY9M3RWnqbI1XIgDabGwHefnL2/iZJ5dnjy/XB9TZpY+aMTQt
-	9nj8KmYLay3idnZ6x0yErnGA8jbnDsXkCVu8gmVi7SGlbqFQvcxiyGyjqw7vs9H+QacyYF
-	Q5hATO6pb+tQgcX9nQ6btGQagj3lDiCemrEDBX+TFzQOrNF+9L8um7f9ADf/9XoPUv+95V
-	YBAPArUCTegkCaV1wqC8mwdmxnbawPFaSvUK5woxDHGb83xTHmAfM6euGzNVOpaKqt6ORu
-	vniZngFevfyrcP/RP333G5SNFysVCY1rkzuumGLimeKy8GEua2M6mszO6LsoMA==
-Date: Tue, 24 Oct 2023 12:05:53 +0200 (CEST)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: Romain Gantois <romain.gantois@bootlin.com>, Rob Herring <robh@kernel.org>, 
-    Luka Perkov <luka.perkov@sartura.hr>, 
-    Konrad Dybcio <konrad.dybcio@somainline.org>, 
-    Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
-    Jakub Kicinski <kuba@kernel.org>, 
-    Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-    Russell King <linux@armlinux.org.uk>, Andy Gross <agross@kernel.org>, 
-    davem@davemloft.net, thomas.petazzoni@bootlin.com, 
-    Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Florian Fainelli <f.fainelli@gmail.com>, linux-kernel@vger.kernel.org, 
-    Eric Dumazet <edumazet@google.com>, Bjorn Andersson <andersson@kernel.org>, 
-    linux-arm-kernel@lists.infradead.org, 
-    Robert Marko <robert.marko@sartura.hr>, 
-    Vladimir Oltean <vladimir.oltean@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
-    Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH net-next 1/5] net: dt-bindings: Introduce the Qualcomm
- IPQESS Ethernet switch
-In-Reply-To: <550cba92-39dc-4e45-beb3-c714d14d9d85@linaro.org>
-Message-ID: <498ee025-b1b7-eafc-3758-993c5d564f67@bootlin.com>
-References: <20231023155013.512999-1-romain.gantois@bootlin.com> <20231023155013.512999-2-romain.gantois@bootlin.com> <169808266457.861402.14537617078362005098.robh@kernel.org> <35ec9e4b-21ee-1436-da00-02e11effdc23@bootlin.com>
- <550cba92-39dc-4e45-beb3-c714d14d9d85@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690161FDF
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:08:32 +0000 (UTC)
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B53DA;
+	Tue, 24 Oct 2023 03:08:30 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6ce2c71c61fso2537693a34.1;
+        Tue, 24 Oct 2023 03:08:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698142109; x=1698746909;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fgLdb8aZYAs0Y0vcAtZXYMnjVSNSuVBAYZU46oMnylE=;
+        b=vwrkjQTjaojTWw7p75D+HbOiDJpgkiM8+oe3JjT24O1jhS5a9lYFnJ+lMNWHPYStXG
+         CDUJ0ZSGG9s85FtDib4VwFubUbzyM9+6NwPN/bYhcDd25yTIc+27n7f9IxEEfsfAWmw+
+         iHd19rZCxu7aNt5iIB/d2tBCygFjzlQTCC05ZqZWUY+8r9ZeX7mmQVbLkLbpy5X0MtJE
+         arFsDYOomgwDTi5AcTnZH/FG8Hv0T89SkUyxAc42mefDmPMhWzcUnzqTCzswJmZWQbQC
+         frP5iwk5/TiZxhwMMEnHLhy9WMQLad7LAcfOlvW1mYvstZvFV/AZDmK73RS6KiFbwCU2
+         PE/Q==
+X-Gm-Message-State: AOJu0YzJ6gJZT1XZDGBeVbxDyzutw+UhR+S8c4okP4MYsupTaRBFPOpG
+	0utpiZrgH5Y+ZB/14SVh5CAZi6ajEaV5IQ==
+X-Google-Smtp-Source: AGHT+IFwbmfZEtB6EjV7plAjBjiMSKS8WA0uiSTZMc8xtF5/VyWVAhFyE31uIrTnpoR2++LVtkQnkw==
+X-Received: by 2002:a05:6830:6b45:b0:6c4:e8ff:9e7d with SMTP id dc5-20020a0568306b4500b006c4e8ff9e7dmr10664744otb.23.1698142109494;
+        Tue, 24 Oct 2023 03:08:29 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id b190-20020a0dd9c7000000b005a23ab90366sm3924244ywe.11.2023.10.24.03.08.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Oct 2023 03:08:28 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso3950886276.2;
+        Tue, 24 Oct 2023 03:08:28 -0700 (PDT)
+X-Received: by 2002:a25:b9cf:0:b0:d9a:5908:a29 with SMTP id
+ y15-20020a25b9cf000000b00d9a59080a29mr10249227ybj.64.1698142108080; Tue, 24
+ Oct 2023 03:08:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+ <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
+In-Reply-To: <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 24 Oct 2023 12:08:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
+Message-ID: <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
+Subject: Re: [GIT PULL v2] drm: renesas: shmobile: Atomic conversion + DT
+ support (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion
+ + DT support)
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, 
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 24 Oct 2023, Krzysztof Kozlowski wrote:
+On Mon, Oct 16, 2023 at 11:59=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+>         Hi David, Daniel,
+>
+> The following changes since commit 389af786f92ecdff35883551d54bf4e507ffcc=
+cb:
+>
+>   Merge tag 'drm-intel-next-2023-09-29' of
+> git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-10-04
+> 13:55:19 +1000)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
+> tags/shmob-drm-atomic-dt-tag2
+>
+> for you to fetch changes up to 1399ebacbf590dfbac4fbba181dd1595b2fa10ba:
+>
+>   drm: renesas: shmobile: Add DT support (2023-10-16 11:47:48 +0200)
+>
+> ----------------------------------------------------------------
+> drm: renesas: shmobile: Atomic conversion + DT support
+>
+> Currently, there are two drivers for the LCD controller on Renesas
+> SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+>   1. sh_mobile_lcdcfb, using the fbdev framework,
+>   2. shmob_drm, using the DRM framework.
+> However, only the former driver is used, as all platform support
+> integrates the former.  None of these drivers support DT-based systems.
+>
+> Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+> support, complemented by the customary set of fixes and improvements.
+>
+> Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider=
+.be/
+>
+> Changes compared to v1:
+>   - Rebase to drm-next,
+>   - Add Acked-by.
+>
+> Thanks for pulling!
 
-> On 24/10/2023 11:54, Romain Gantois wrote:
-> > Hello Rob,
-> > 
-> > On Mon, 23 Oct 2023, Rob Herring wrote:
-> > 
-> >> pip3 install dtschema --upgrade
-> >>
-> >> Please check and re-submit after running the above command yourself. Note
-> >> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> >> your schema. However, it must be unset to test all examples with your schema.
-> >>
-> >>
-> > 
-> > Even after upgrading dtschema to 2023.9, installing yamllint 1.32.0 and running 
-> > without DT_SCHEMA_FILES, I can't seem to reproduce this error. I've also tried 
-> > rebasing on v6.5-rc1 which didn't show it either. However, It seems like 
-> 
-> v6.5-rc1 is some ancient version, so how can you rebase on top of it?
-I just cherry-picked this patch series on v6.5-rc1. I also tried v6.6-rc1. Since 
-Rob mentionned basing his series on rc1 in his last message, I inferred that he 
-compiled the dtb checks on the last kernel rc1, but maybe I misunderstood what 
-he meant. 
+Ping?
+Thanks!
 
-> 
-> Which commit this is based on?
+Gr{oetje,eeting}s,
 
-This patch series was based on:
+                        Geert
 
-6e7ce2d71bb9 net: lan966x: remove useless code in lan966x_xtr_irq_handler
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-which was the latest commit in net-next/main at the time. Essentially, the patch 
-series is meant to be based on net-next.
-
-Best Regards,
-
-Romain
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
