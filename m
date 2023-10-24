@@ -1,59 +1,76 @@
-Return-Path: <devicetree+bounces-11395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7001A7D59F9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:53:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C497D5A1A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:05:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C0C01C2036D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:52:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00C89B20F17
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00073993C;
-	Tue, 24 Oct 2023 17:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF593B78D;
+	Tue, 24 Oct 2023 18:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="szEiV2H2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldc1OphL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E9D42C84C
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 17:52:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEBD1C433C7;
-	Tue, 24 Oct 2023 17:52:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698169976;
-	bh=KUF7e+OQ3Cmah38SMoodhEwyDPQhM9qKHEvTf9JRMLA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=szEiV2H2y6V69DSMmIjRsYCrp7HLNV/OYuRJb36ATW03CYFhw7JwfTZ7CE3WiiunT
-	 IoMGGD+iW3gjfdM5coQnjSmuYY57kaitDfZG+vVWYuEmpF/W/TrEudTZP5J3hDKRpz
-	 nTzMTiUHC3esNZ+ZqhB+LxOwRpxcbNgCohlcUegpEXuT3LncyOCpGY3CCJUvOThe/h
-	 hyN+7Dv1qPOApEdX2Xif3Rbb72hl53NwpT/I2Bf0OHRQZaNG0VYw8ZDsqi4wy2zq2P
-	 ixonxQTg+4Y7pKbQo8XdnBSzp/FiAHOgGLpH/jRqE2WRPdazUQFCecbe7oiv5iB+zU
-	 xqeGovmWrEOTg==
-Date: Tue, 24 Oct 2023 12:52:53 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v9 19/20] PCI: starfive: Add JH7110 PCIe controller
-Message-ID: <20231024175253.GA1662387@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D8E440E
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:05:41 +0000 (UTC)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5F910CF;
+	Tue, 24 Oct 2023 11:05:39 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-694ed847889so4040261b3a.2;
+        Tue, 24 Oct 2023 11:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698170739; x=1698775539; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9HGH0nYv3U6DlSujipQyBODLHc0mtSCpbyj+VerOFKc=;
+        b=ldc1OphLM8/hFiK5l0qF/jOLJMr709PFSh7kuJld6tnZ0PlDo0bAPxGbT6XmZlGL5M
+         hXjk8OumDLIepq5RvT7Rt0bl9FQ/LAgSJtzozfKyPmLZ566+MUUPOa0nbboM5smDKSnG
+         YPOaU3EE/t8yeU9EtC0/6t4mWubU+oQEXmZNY8HwTCIYXqwPL7xd3f0hwd3fk9dUoiNP
+         noiA0EDMpATghmLNZYRx4o0Nh66zDLFQsW1yny2w99zSyfN70oZkRahLB0AKo5ZiGdbI
+         ERQypS/UKjEfpouG6LXXzGe+2J2gWl75K493JUADPyhWedLxTvOptPbZCnmTvmnBEoX9
+         2c5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698170739; x=1698775539;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9HGH0nYv3U6DlSujipQyBODLHc0mtSCpbyj+VerOFKc=;
+        b=Icmz3FF5zowRmdyndFFGC3Xzxsy8aLxVqNsPLrJ7+XVyhLiBvtSF1I5g/5H+g0wH01
+         eK+aUHr2UJRhQiORrosK6PsQZ45BOIfwxXFj5XcOTg8C+pCvRmf+tMgSryMzdPYiH647
+         s06MYQuVNdqJrfLzNcmbIwIhwQT1fU6rPmy6Fi6i/1w4tzLpGU3mlK/WzdFdMW/tIhl+
+         BQUhTjt4uSLtKMi+Il1Q3gbSxBDfOSGbkH2Q8SBsAda3m2xd+P1IYQlAU4zNwn+J8qCw
+         PKPCjiN88W1LwA6Pd3TK17gEOITU0F2Xoda6PnJIbdQ2MDuEkNQD7nAv0sh6bs0oGuE8
+         uRkQ==
+X-Gm-Message-State: AOJu0YzbS4ihwGTSb9O8SP3d3hTeGMRBrHGGrtMc+RkfBK5Szqm72ETn
+	L+8PFLdvU1TW07PmAvIvan0=
+X-Google-Smtp-Source: AGHT+IH7AIflD5NOyUHiqDYAVfOm0SwFrJtBZCtAWu+ciPu3Oln+qs0ys/z6ziH9ctYo6cojOsdBPw==
+X-Received: by 2002:a17:90b:2d8a:b0:27c:ef4b:6dcf with SMTP id sj10-20020a17090b2d8a00b0027cef4b6dcfmr10864537pjb.21.1698170739001;
+        Tue, 24 Oct 2023 11:05:39 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r8-20020a17090ad40800b002636dfcc6f5sm7468885pju.3.2023.10.24.11.05.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 11:05:38 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 24 Oct 2023 11:05:37 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Nik Bune <n2h9z4@gmail.com>
+Cc: wim@linux-watchdog.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	skhan@linuxfoundation.org, baruch@tkos.co.il,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt
+ to yaml
+Message-ID: <f55d2749-f311-4d8f-a394-3591d18fc523@roeck-us.net>
+References: <20231023202622.18558-1-n2h9z4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,166 +79,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231020104341.63157-20-minda.chen@starfivetech.com>
+In-Reply-To: <20231023202622.18558-1-n2h9z4@gmail.com>
 
-On Fri, Oct 20, 2023 at 06:43:40PM +0800, Minda Chen wrote:
-> Add StarFive JH7110 SoC PCIe controller platform
-> driver codes, JH7110 with PLDA host PCIe core.
+On Mon, Oct 23, 2023 at 10:26:22PM +0200, Nik Bune wrote:
+> Convert txt file to yaml.
+> Add maintainers list.
+> 
+> Signed-off-by: Nik Bune <n2h9z4@gmail.com>
 
-Wrap all your commit logs to fill about 75 columns (as suggested
-before).  "git log" adds a few spaces, so if you fill to 75 columns,
-the result will still fit in a default 80 column window.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-> +config PCIE_STARFIVE_HOST
-> +	tristate "StarFive PCIe host controller"
-> +	depends on OF && PCI_MSI
-> +	select PCIE_PLDA_HOST
-> +	help
-> +	  Say Y here if you want to support the StarFive PCIe controller
-> +	  in host mode. StarFive PCIe controller uses PLDA PCIe
-> +	  core.
-
-Add blank line between paragraphs.  Wrap to fill 75-78 columns.
-
-> +	  If you choose to build this driver as module it will
-> +	  be dynamically linked and module will be called
-> +	  pcie-starfive.ko
-
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -6,14 +6,26 @@
->  #ifndef _PCIE_PLDA_H
->  #define _PCIE_PLDA_H
->  
-> +#include <linux/phy/phy.h>
-
-I don't think you need to #include this.  In this file you only use a
-pointer to struct phy, so declaring the struct should be enough, e.g.,
-
-  struct phy;
-
-You will have to #include it in pcie-starfive.c where you actually
-*use* phy, of course.
-
-> +#define CONFIG_SPACE_ADDR			0x1000u
-
-This looks like an *offset* that you add to ->bridge_addr.  Adding two
-addresses together doesn't really make sense.
-
-> +static int starfive_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
-> +				      int where, int size, u32 value)
-> +{
-> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
-> +		return PCIBIOS_BAD_REGISTER_NUMBER;
-
-I think this should probably return PCIBIOS_SUCCESSFUL.  There's
-nothing wrong with the register number; you just want to pretend that
-it's hardwired to zero.  That means ignore writes and always return 0
-for reads.
-
-> +	return pci_generic_config_write(bus, devfn, where, size, value);
-> +}
+> ---
+> 
+> Changes in v2 (according to review comments):
+> - Updated clocks property to have only maxItems without $ref and description. 
+> - Removed timeout-sec explicit definition, as it is defined in watchdog.yaml.
+> 
+> v1 patch: https://lore.kernel.org/all/20231022120328.137788-1-n2h9z4@gmail.com/
+> 
+>  .../bindings/watchdog/cnxt,cx92755-wdt.yaml   | 45 +++++++++++++++++++
+>  .../bindings/watchdog/digicolor-wdt.txt       | 25 -----------
+>  2 files changed, 45 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+> new file mode 100644
+> index 000000000000..1844d7e026fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/cnxt,cx92755-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static int starfive_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
-> +				     int where, int size, u32 *value)
-> +{
-> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
-> +		return PCIBIOS_BAD_REGISTER_NUMBER;
-
-Set *value to zero and return PCIBIOS_SUCCESSFUL.
-
-> +	return pci_generic_config_read(bus, devfn, where, size, value);
-> +}
+> +title: Conexant Digicolor SoCs Watchdog timer
 > +
-> +static int starfive_pcie_parse_dt(struct starfive_jh7110_pcie *pcie, struct device *dev)
-
-95% of this driver (and the rest of drivers/pci) is wrapped to fit in
-80 columns, e.g.,
-
-  static int starfive_pcie_parse_dt(struct starfive_jh7110_pcie *pcie,
-                                    struct device *dev)
-
-> +	domain_nr = of_get_pci_domain_nr(dev->of_node);
+> +description: |
+> +  The watchdog functionality in Conexant Digicolor SoCs relies on the so called
+> +  "Agent Communication" block. This block includes the eight programmable system
+> +  timer counters. The first timer (called "Timer A") is the only one that can be
+> +  used as watchdog.
 > +
-> +	if (domain_nr < 0 || domain_nr > 1)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "failed to get valid pcie id\n");
-
-"id" is too generic and doesn't hint about where the problem is.
-Update the message ("pcie id") to mention "domain" so it corresponds
-with the source ("linux,pci-domain" from DT).
-
-> +	ret = reset_control_deassert(pcie->resets);
-> +	if (ret) {
-> +		clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
-> +		dev_err_probe(dev, ret, "failed to resets\n");
-
-"failed to ... resets" is missing a word.  "Failed to deassert
-resets", I guess?
-
-> +	/* Ensure that PERST has been asserted for at least 100 ms,
-> +	 * the sleep value is T_PVPERL from PCIe CEM spec r2.0 (Table 2-4)
-> +	 */
-
-Use multiline comment formatting (also below):
-
-  /*
-   * Ensure ...
-   */
-
-> +	msleep(100);
-> +	if (pcie->reset_gpio)
-> +		gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+> +allOf:
+> +  - $ref: watchdog.yaml#
 > +
-> +	/* As the requirement in PCIe base spec r6.0, system (<=5GT/s) must
-> +	 * wait a minimum of 100 ms following exit from a conventional reset
-> +	 * before sending a configuration request to the device.
-
-Mention sec 6.6.1, where (I think) this value comes from.  Eventually
-we should make a #define for this because it's not specific to any one
-PCIe controller.
-
-> +	msleep(100);
+> +maintainers:
+> +  - Baruch Siach <baruch@tkos.co.il>
 > +
-> +	if (starfive_pcie_host_wait_for_link(pcie))
-> +		dev_info(dev, "port link down\n");
+> +properties:
+> +  compatible:
+> +    const: cnxt,cx92755-wdt
 > +
-> +	return ret;
-
-We know the value here, so return it explicitly:
-
-  return 0;
-
-> +static int starfive_pcie_suspend_noirq(struct device *dev)
-> +{
-> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+> +  reg:
+> +    maxItems: 1
 > +
-> +	if (!pcie)
-> +		return 0;
-
-How could it happen that "pcie" is zero?  I think it could only happen
-if there were a driver bug or a memory corruption.  Either way, we
-should remove the check so we take a NULL pointer fault and find out
-about the problem.
-
-> +static int starfive_pcie_resume_noirq(struct device *dev)
-> +{
-> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
-> +	int ret;
+> +  clocks:
+> +    maxItems: 1
 > +
-> +	ret = starfive_pcie_enable_phy(dev, &pcie->plda);
-> +	if (ret)
-> +		return ret;
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
 > +
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clocks\n");
-> +		starfive_pcie_disable_phy(&pcie->plda);
-> +		return ret;
-> +	}
+> +unevaluatedProperties: false
 > +
-> +	return ret;
-
-  return 0;
-
-Bjorn
+> +examples:
+> +  - |
+> +    watchdog@f0000fc0 {
+> +        compatible = "cnxt,cx92755-wdt";
+> +        reg = <0xf0000fc0 0x8>;
+> +        clocks = <&main_clk>;
+> +        timeout-sec = <15>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt b/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+> deleted file mode 100644
+> index a882967e17d4..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Conexant Digicolor SoCs Watchdog timer
+> -
+> -The watchdog functionality in Conexant Digicolor SoCs relies on the so called
+> -"Agent Communication" block. This block includes the eight programmable system
+> -timer counters. The first timer (called "Timer A") is the only one that can be
+> -used as watchdog.
+> -
+> -Required properties:
+> -
+> -- compatible : Should be "cnxt,cx92755-wdt"
+> -- reg : Specifies base physical address and size of the registers
+> -- clocks : phandle; specifies the clock that drives the timer
+> -
+> -Optional properties:
+> -
+> -- timeout-sec : Contains the watchdog timeout in seconds
+> -
+> -Example:
+> -
+> -	watchdog@f0000fc0 {
+> -		compatible = "cnxt,cx92755-wdt";
+> -		reg = <0xf0000fc0 0x8>;
+> -		clocks = <&main_clk>;
+> -		timeout-sec = <15>;
+> -	};
+> -- 
+> 2.34.1
+> 
 
