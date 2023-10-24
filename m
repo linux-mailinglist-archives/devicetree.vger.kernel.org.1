@@ -1,173 +1,112 @@
-Return-Path: <devicetree+bounces-11320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C3E7D5347
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:55:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E740C7D534C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E4A1C20BEE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:55:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 178611C20BF7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E154F2B5FB;
-	Tue, 24 Oct 2023 13:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65472B74D;
+	Tue, 24 Oct 2023 13:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SXwLnCrP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QNK3gLrG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972192420F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:55:13 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 902F21BF4
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:55:08 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4083cd3917eso35943895e9.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:55:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698155707; x=1698760507; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WVvJSmKdB8QA7XXk5oVO214x0d/SCNFjFOhZkbU5BcQ=;
-        b=SXwLnCrPcCsca80qHPN2Qzi+8XRPdQHsQBGSiTqFaPi0NDGeGUdJSrWXkXqBlUBSin
-         S20+EdvS7GWrRXg7AwVcvcqy+7O1jDvZi8VceAjXM4K+7vENOvxXsI6ntWVZmzlHar8W
-         pSES6UAY9oZJGFbPf1G6Wt4XnmydEXx7GMyGt0gQ3DnCVGQUYW+0mlqVwR9I9uV3ui3j
-         7fPA6Xd85nXHEoxkRXa1+/s5zqP/9VHpns5DJ15hAeH0Y++4wmuYUmQxrywBubb5hG4Z
-         dyhtGbCToUMFIp8d+ulfs4sfUIk6jx2UwiQ2SVMQ1+hD0vidJ3zmky6RukMIXNonkKs0
-         VCTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698155707; x=1698760507;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WVvJSmKdB8QA7XXk5oVO214x0d/SCNFjFOhZkbU5BcQ=;
-        b=AWNr3Njq000+XONmpL8VR6g6jY9zm0eX3/5qRAFPTbzsqpM89TnmHngAA40fUi9oI4
-         warD3AIgyKHpvdReISLqvk9HEhQPr5mRYuvjaiC5uuzBXeBMXSAThFMlWaPQvdGchPbA
-         zHfEndWevxaofQojLGW0SJu6JDeHqeE/HUBO/m5iUrTYtEiRR2Hdz+81Ha/PkOthM6RA
-         OO89625mBEndqQP+p6hOCL5nc3GrvwqeD6t/JHHjYXMsS39OJcSVg6ix/i+cFUT3yvzX
-         DH/CutqpijDXIeiorIrlWKbesG3CZtnrPILCfqwKak748+3PJ/ufTdDX80UHKcbnLNoE
-         3ldw==
-X-Gm-Message-State: AOJu0YxqqLtgzSTYdOmB5KQ8wJdCC5arrk1KpgqZMMVMjhdhkSSPLtzj
-	6w7L3nNqetJ5tIeoG2QkKdXFXw==
-X-Google-Smtp-Source: AGHT+IGXC4b4EMmGnTiggsj6T5p3sDh8hvZ8EFQSQ6SPShTMk26zqe+tdz3pHiTyyTCkr3sPazCTJg==
-X-Received: by 2002:adf:ed8e:0:b0:32d:9d99:d0a5 with SMTP id c14-20020adfed8e000000b0032d9d99d0a5mr9757772wro.5.1698155706981;
-        Tue, 24 Oct 2023 06:55:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id e23-20020adf9bd7000000b0032d893d8dc8sm10075487wrc.2.2023.10.24.06.55.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 06:55:06 -0700 (PDT)
-Message-ID: <424de835-0b9b-49d5-a0d8-dc74c58ff5a1@linaro.org>
-Date: Tue, 24 Oct 2023 15:55:04 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97C62420F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:55:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9A7C433CB;
+	Tue, 24 Oct 2023 13:55:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698155733;
+	bh=6RjFQUx2aS9W96EY+vVbpPyHbDi4OypX4NJKROyEC6s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=QNK3gLrGWE5M9wnAF2YOhi3yRCXzv6Ppn57p2FgZvB7mRzzP6HGLzTungGTFKfZRH
+	 GuL2fCJ7RUlFgktvrM3H7g8nb7/k5zDIIBu2/gsQ/NauyIZXznlB9jk3c99/oOuBHb
+	 2rMa2PjYaw1emweZ0RQLSoGR1Fd0zm65r2Fh3M9jIrOzVvp6Rto9AooHz0b0YnKfK6
+	 VcAAUhOUjwLcZu8MHHFuiyQbjlxHyIYseCdC0senVFk18Hj/kg4rLmHZPxrQetwPoA
+	 cv7k81Rv+GB8/mkaZ5wKGzb8m0NVMxtwSySy5+oEj0WvbqL/XQecfEp2xUTcugeoyl
+	 NaRvSxE6m0NRw==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, perex@perex.cz, 
+ tiwai@suse.com, shumingf@realtek.com, rf@opensource.cirrus.com, 
+ herve.codina@bootlin.com, ckeepax@opensource.cirrus.com, 
+ 13916275206@139.com, ryans.lee@analog.com, linus.walleij@linaro.org, 
+ sebastian.reichel@collabora.com, ajye_huang@compal.corp-partner.google.com, 
+ harshit.m.mogalapalli@oracle.com, arnd@arndb.de, colin.i.king@gmail.com, 
+ dan.carpenter@linaro.org, trix@redhat.com, liweilei@awinic.com, 
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
+Cc: yijiangtao@awinic.com
+In-Reply-To: <20231020083426.302925-1-wangweidong.a@awinic.com>
+References: <20231020083426.302925-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V2 0/4] ASoC: codecs: Add aw88399 amplifier driver
+Message-Id: <169815572396.69390.16547597734984966966.b4-ty@kernel.org>
+Date: Tue, 24 Oct 2023 14:55:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
- bindings
-Content-Language: en-US
-To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_tingweiz@quicinc.com
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
- <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
- <d3b62002-c29c-a45e-279f-7d07c697aa77@quicinc.com>
- <38aa02c4-5b8d-4978-96a2-241fe5f94b50@linaro.org>
- <7a703504-edf1-d85c-0949-9cfcf3251b0b@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7a703504-edf1-d85c-0949-9cfcf3251b0b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On 24/10/2023 12:57, Zhenhua Huang wrote:
+On Fri, 20 Oct 2023 16:34:22 +0800, wangweidong.a@awinic.com wrote:
+> Add the awinic,aw88399 property to the awinic,aw88395.yaml file.
 > 
+> Add i2c and amplifier registration for
+> aw88399 and their associated operation functions.
 > 
-> On 2023/10/23 20:52, Krzysztof Kozlowski wrote:
->> On 23/10/2023 13:54, Zhenhua Huang wrote:
->>>
->>>
->>> On 2023/10/23 17:27, Krzysztof Kozlowski wrote:
->>>> On 23/10/2023 11:20, Zhenhua Huang wrote:
->>>>> Add bindings for the QCOM Memory Dump driver providing debug
->>>>
->>>> Bindings are for hardware, not driver. This suggests it is not suitable
->>>> for bindings at all.
->>>>
->>>>> facilities. Firmware dumps system cache, internal memory,
->>>>> peripheral registers to reserved DDR as per the table which
->>>>> populated by the driver, after crash and warm reset.
->>>>
->>>> Again driver :/
->>>
->>> Thanks for pointing out. Qualcomm memory dump device is a reserved
->>> memory region which is used to communicate with firmware. I will update
->>> description in next version.
->>
->> I have still doubts that it is suitable for DT. I usually expect  such
->> firmware feature-drivers to be instantiated by existing firmware
->> drivers. You do not need DT for this.
+> v1 -> v2: Modify the reset mode
+>           Delete AW88399_DSP_I2C_WRITES macros
+>            and related debugging statements
+>           Change the value of max_register in aw88399
+>           Change the value of max_register in aw88261
+>           Delete the judgment of unnecessary pointers
+>           Modify the judgment of the ret return value
 > 
-> Got it, as it interacts with firmware, you think it should be a firmware 
-> driver? But it seems there should not be existing suitable place to put 
-> it now(qcom_scm.c is for TZ). Shall we create one new file like 
-> *qcom_sdi.c* in drivers/firmware and put it there? Because SDI(system 
-> debug image, which is part of bootloader) is the firmware doing the things.
+> [...]
 
-Dunno, didn't think about this. I comment here only about bindings. This
-does not look suitable for bindings. That's it.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/4] ASoC: dt-bindings: Add schema for "awinic,aw88399"
+      (no commit info)
+[2/4] ASoC: codecs: Modify max_register usage error
+      commit: f1c406866af5dacdd9601cfa3be4873ebd801b86
+[3/4] ASoC: codecs: Add code for bin parsing compatible with aw88399
+      (no commit info)
+[4/4] ASoC: codecs: Add aw88399 amplifier driver
+      (no commit info)
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
