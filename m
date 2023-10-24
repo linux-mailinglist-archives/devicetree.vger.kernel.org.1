@@ -1,98 +1,122 @@
-Return-Path: <devicetree+bounces-11453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29057D5CE1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:05:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F29547D5D00
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:18:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 822A3B20FC9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:05:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8928AB20FC4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08A73D3BE;
-	Tue, 24 Oct 2023 21:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952F93E49D;
+	Tue, 24 Oct 2023 21:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ka/ZKhFp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7783038DCC
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 21:05:10 +0000 (UTC)
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2831C10CE;
-	Tue, 24 Oct 2023 14:05:09 -0700 (PDT)
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-581d4f9a2c5so3174517eaf.0;
-        Tue, 24 Oct 2023 14:05:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698181508; x=1698786308;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I9Jm9ApzQsIzZy9Gg4QWmLADDrD7P3P/rQ+FPHDJPLY=;
-        b=n0McznPp9pEICAf0LUESvwAzCvnfOQJTjTn7pIiWp25W6MlUXoIPTb6Mt2h8j9F5ul
-         +kgua5CKnY8lg2HHem9R/OHvhyuiA+EA9sJrdeZY3GPzwswSkr0h2ZM9r6SBBzXqHkGw
-         jKwik/llSKkCtkddJeCtVXg3ovBDDMhvr/YXZ3X4lBrUpFpaAJMcPISsyAqUYxxSqPXS
-         1oGvHZIYvUNcZZ5KGAcC/QLup7gUhw8EgQXXSW1BR5jePPqEwi4wkUzDl33L39A2O9u2
-         TCfCwl5NLffPZvWuK+tYWUTy/X9JLMeSiRCJFzyg3obEb0idvMcl1jzEwER7E0i86YrV
-         kA1w==
-X-Gm-Message-State: AOJu0YyOc0xzgvrolK+hFGE7ntPnSPOYH3UMFuForJthobAhBqez2v1E
-	p/qF2TN0ZRMYOmgYZuAitw==
-X-Google-Smtp-Source: AGHT+IF7Nx137HVm0cdS3eQV3tQRM+AfGLBpEp3+amIbNonfpHoo43OeYB/YL3TfKLtWBudotEAICg==
-X-Received: by 2002:a4a:da54:0:b0:571:28d5:2c71 with SMTP id f20-20020a4ada54000000b0057128d52c71mr12909779oou.2.1698181508427;
-        Tue, 24 Oct 2023 14:05:08 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e22-20020a4a5516000000b0057e54da7201sm2178503oob.35.2023.10.24.14.05.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 14:05:07 -0700 (PDT)
-Received: (nullmailer pid 591081 invoked by uid 1000);
-	Tue, 24 Oct 2023 21:05:06 -0000
-Date: Tue, 24 Oct 2023 16:05:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jim Liu <jim.t90615@gmail.com>
-Cc: linus.walleij@linaro.org, linux-gpio@vger.kernel.org, openbmc@lists.ozlabs.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, brgl@bgdev.pl, linux-kernel@vger.kernel.org, JJLIU0@nuvoton.com
-Subject: Re: [PATCH v6 1/3] dt-bindings: gpio: add NPCM sgpio driver bindings
-Message-ID: <169818150576.590864.5480268670179831271.robh@kernel.org>
-References: <20231024090631.3359592-1-jim.t90615@gmail.com>
- <20231024090631.3359592-2-jim.t90615@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD401D692;
+	Tue, 24 Oct 2023 21:18:26 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23BD10CF;
+	Tue, 24 Oct 2023 14:18:24 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id E8CF66607333;
+	Tue, 24 Oct 2023 22:18:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698182303;
+	bh=YRq5099l8oQL4Fdgmj24/WWMHCqsGt/HPtK1ssRTRao=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ka/ZKhFp5M0+/HZbpCsb/pNnyzTib5pwvFEwqEMBcLpZKQeZl3X5l65mXPgALnchS
+	 VNbg51Rugu1nhqbFGtYnMItn2Ejb7TtMvzMF2QflQezH3EN7NYYkYtsbBOY+8fSa9t
+	 0nI1rqJNFcb3KDmnaBjK+3XaTkoHpOdKjlf3QguMmTba+Tnv8p+isVAZNP/kWI4n1V
+	 t6fYkZQTThb+ISVq44KhCtxSKW9v5UIMLtgAYRsk7xlS03QUdMOQQ929+W+yAY5/Te
+	 7Wnn4TVona2qfx9AlnFmBPk+MXH9BnhPe0DCKIWV3znm5faqxttQ8Q62xOkO+AmUp0
+	 2MGixT6kVYbjg==
+From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
+To: Shuah Khan <shuah@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>
+Cc: devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-kselftest@vger.kernel.org,
+	kernel@collabora.com,
+	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/2] Add test to verify probe of devices from discoverable busses on DT platforms
+Date: Tue, 24 Oct 2023 17:17:58 -0400
+Message-ID: <20231024211818.365844-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024090631.3359592-2-jim.t90615@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-On Tue, 24 Oct 2023 17:06:29 +0800, Jim Liu wrote:
-> Add dt-bindings document for the Nuvoton NPCM7xx sgpio driver
-> 
-> Signed-off-by: Jim Liu <jim.t90615@gmail.com>
-> ---
-> Changes for v6:
->    - Drop quotes for $ref
->    - Add and drop '|' for description
->    - Add space after 'exposed.'
->    - remove status
-> Changes for v5:
->    - remove bus bus-frequency
->    - modify in/out description
-> Changes for v4:
->    - modify in/out property
->    - modify bus-frequency property
-> Changes for v3:
->    - modify description
->    - modify in/out property name
-> Changes for v2:
->    - modify description
-> ---
->  .../bindings/gpio/nuvoton,sgpio.yaml          | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
-> 
+This is part of an effort to improve detection of regressions impacting
+device probe on all platforms. The recently merged DT kselftest [1]
+detects probe issues for all devices described statically in the DT.
+That leaves out devices discovered at run-time from discoverable busses.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is where this test comes in. All of the devices that are connected
+through discoverable busses (ie USB and PCI), and which are internal and
+therefore always present, can be described in a per-platform file so
+they can be checked for. The test will check that the device has been
+instantiated and bound to a driver.
+
+Patch 1 introduces the test. Patch 2 adds the test definitions for the
+google,spherion machine (Acer Chromebook 514) as an example.
+
+This is the sample output from the test running on Spherion:
+
+TAP version 13
+ Using board file:  boards/google,spherion
+1..10
+ok 1 usb.camera.0.device
+ok 2 usb.camera.0.driver
+ok 3 usb.camera.1.device
+ok 4 usb.camera.1.driver
+ok 5 usb.bluetooth.0.device
+ok 6 usb.bluetooth.0.driver
+ok 7 usb.bluetooth.1.device
+ok 8 usb.bluetooth.1.driver
+ok 9 pci.wifi.device
+ok 10 pci.wifi.driver
+ Totals: pass:10 fail:0 xfail:0 xpass:0 skip:0 error:0
+
+[1] https://lore.kernel.org/all/20230828211424.2964562-1-nfraprado@collabora.com/
+
+
+Nícolas F. R. A. Prado (2):
+  kselftest: Add test to verify probe of devices from discoverable
+    busses
+  kselftest: devices: Add board file for google,spherion
+
+ tools/testing/selftests/Makefile              |   1 +
+ tools/testing/selftests/devices/.gitignore    |   1 +
+ tools/testing/selftests/devices/Makefile      |   8 +
+ .../selftests/devices/boards/google,spherion  |   3 +
+ .../devices/test_discoverable_devices.sh      | 165 ++++++++++++++++++
+ 5 files changed, 178 insertions(+)
+ create mode 100644 tools/testing/selftests/devices/.gitignore
+ create mode 100644 tools/testing/selftests/devices/Makefile
+ create mode 100644 tools/testing/selftests/devices/boards/google,spherion
+ create mode 100755 tools/testing/selftests/devices/test_discoverable_devices.sh
+
+-- 
+2.42.0
 
 
