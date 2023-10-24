@@ -1,273 +1,188 @@
-Return-Path: <devicetree+bounces-11237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6AB7D4D72
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:15:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1687F7D4D82
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DFF5B20F02
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6055281954
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27D225102;
-	Tue, 24 Oct 2023 10:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662A825108;
+	Tue, 24 Oct 2023 10:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pkSh1nIZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UdTWEH8i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB1B3FE1;
-	Tue, 24 Oct 2023 10:15:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E925C433C8;
-	Tue, 24 Oct 2023 10:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CDDE25104;
+	Tue, 24 Oct 2023 10:18:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 907B0C433C7;
+	Tue, 24 Oct 2023 10:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698142500;
-	bh=mEUQjGN6AUBmfa+H+hNXq1xNSGPN8suHINWx+52wmbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pkSh1nIZ8Kk4sMmOglQWhm8LtWqjPekV6G0M4XS9tVWb7evWdeMJ2bP66voXJ4VzX
-	 vDX6uOduAY59EEnYairU7RqVtqc1XIE2QhjtntX50apXrav1026u3KRXEjSegl4QQA
-	 S3GNMhfIe1Z+EK0iY8fw9xPb1k+Upx05GAWWj1cUUEQwkQnSV68ewoHhMLe3s/XiUr
-	 g+AVFIyyIp/N4L9361zNPuyGwjnMdVibVISqERdMH/iRtM4FNYnTalkSorG32W46hL
-	 XNqBPmgSLBVcoi5mApHUx1bG/mKTunCckbQkLJxTO6tUGpL2TOoQra7xrcDYUJHoBz
-	 plMovqDfYLnqw==
-Message-ID: <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
-Date: Tue, 24 Oct 2023 13:14:55 +0300
+	s=k20201202; t=1698142705;
+	bh=s5cqeaFmg7kTADBcVre28wPksw9MH2Sh+8D1VUrzUCU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UdTWEH8i1A1Tywjs5kmlMInTxc9oXW3OGcY/EgSSVsJdvKFQhEnbpp0bggXvPpyKa
+	 FiRhb7w9bB34pZIMW4BKwEtDhk7vI0WNeePX8R7iPZzSoqbNgTBlcbqid3Iuf38eUI
+	 icgiRf/eGq4R1uNoa459BeB4hZm3DBJoqVEzfN5yJNaG83qKgXpUqRvDDFcfi1PGpa
+	 D+n4Y0y5TjV47fZZzhnPHOg1MB6z64wYLvY9BbHzUYg6GCGi4HEF7w1YTh3GoRjne2
+	 31HwhhbkUzFQ3xDNpq4YFBGYRdu3Ay9lnRJSA1hEL1O8xcDrF0DevP3BVNTQnY8hZu
+	 V1pVFrM2kItqg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1qvEUR-007AIl-75;
+	Tue, 24 Oct 2023 11:18:23 +0100
+Date: Tue, 24 Oct 2023 11:18:21 +0100
+Message-ID: <86lebs493m.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dominic Rath <dominic.rath@ibv-augsburg.net>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	Mark Rutland <mark.rutland@arm.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Fang Xiang <fangxiang3@xiaomi.com>,
+	bahle@ibv-augsburg.de,
+	rath@ibv-augsburg.de
+Subject: Re: [PATCH v3 3/5] irqchip/gic-v3-its: Split allocation from initialisation of its_node
+In-Reply-To: <20231024084831.GA3788@JADEVM-DRA>
+References: <20230905104721.52199-1-lpieralisi@kernel.org>
+	<20231006125929.48591-1-lpieralisi@kernel.org>
+	<20231006125929.48591-4-lpieralisi@kernel.org>
+	<20231024084831.GA3788@JADEVM-DRA>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
- suspend
-Content-Language: en-US
-To: Elson Roy Serrao <quic_eserrao@quicinc.com>, gregkh@linuxfoundation.org,
- Thinh.Nguyen@synopsys.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-4-quic_eserrao@quicinc.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230814185043.9252-4-quic_eserrao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dominic.rath@ibv-augsburg.net, lpieralisi@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-acpi@vger.kernel.org, mark.rutland@arm.com, robin.murphy@arm.com, rafael@kernel.org, robh+dt@kernel.org, fangxiang3@xiaomi.com, bahle@ibv-augsburg.de, rath@ibv-augsburg.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hi Elson,
+On Tue, 24 Oct 2023 09:48:31 +0100,
+Dominic Rath <dominic.rath@ibv-augsburg.net> wrote:
+>=20
+> Hi,
+>=20
+> On Fri, Oct 06, 2023 at 02:59:27PM +0200, Lorenzo Pieralisi wrote:
+> > From: Marc Zyngier <maz@kernel.org>
+> >=20
+> > In order to pave the way for more fancy quirk handling without making
+> > more of a mess of this terrible driver, split the allocation of the
+> > ITS descriptor (its_node) from the actual probing.
+>=20
+> it seems that this change breaks MSI-X (MSI?) reception on at least
+> the TI AM64x, probably most/all of TI's recent devices (K3).
+>=20
+> These devices rely on a quirk CONFIG_SOCIONEXT_SYNQUACER_PREITS that
+> uses an address from the dts specified e.g. as
+>=20
+>   socionext,synquacer-pre-its =3D <0x1000000 0x400000>;
+>=20
+> to configure a MSI base address that differs from the ARM default.
 
-On 14/08/2023 21:50, Elson Roy Serrao wrote:
-> The current implementation blocks the runtime pm operations when cable
-> is connected. This would block dwc3 to enter a low power state during
-> bus suspend scenario. Modify the runtime pm ops to handle bus suspend
-> case for such platforms where the controller low power mode entry/exit
-> is handled by the glue driver. This enablement is controlled through a
-> dt property and platforms capable of detecting bus resume can benefit
-> from this feature. Also modify the remote wakeup operations to trigger
-> runtime resume before sending wakeup signal.
-> 
-> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
-> ---
->  drivers/usb/dwc3/core.c   | 28 ++++++++++++++++++++++++++--
->  drivers/usb/dwc3/core.h   |  3 +++
->  drivers/usb/dwc3/gadget.c | 32 +++++++++++++++++++++++++-------
->  3 files changed, 54 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 9c6bf054f15d..9bfd9bb18caf 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1518,6 +1518,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->  	dwc->dis_split_quirk = device_property_read_bool(dev,
->  				"snps,dis-split-quirk");
->  
-> +	dwc->runtime_suspend_on_usb_suspend = device_property_read_bool(dev,
-> +				"snps,runtime-suspend-on-usb-suspend");
-> +
->  	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
->  	dwc->tx_de_emphasis = tx_de_emphasis;
->  
-> @@ -2029,6 +2032,9 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
->  
->  	switch (dwc->current_dr_role) {
->  	case DWC3_GCTL_PRTCAP_DEVICE:
-> +		/* runtime resume on bus resume scenario */
-> +		if (PMSG_IS_AUTO(msg) && dwc->connected)
-> +			break;
->  		ret = dwc3_core_init_for_resume(dwc);
->  		if (ret)
->  			return ret;
-> @@ -2090,8 +2096,13 @@ static int dwc3_runtime_checks(struct dwc3 *dwc)
->  {
->  	switch (dwc->current_dr_role) {
->  	case DWC3_GCTL_PRTCAP_DEVICE:
-> -		if (dwc->connected)
-> +		if (dwc->connected) {
-> +			/* bus suspend scenario */
-> +			if (dwc->runtime_suspend_on_usb_suspend &&
-> +			    dwc->suspended)
+<rant>
+Why on Earth are people using a property that is specific to another
+implementation? Not only the HW is braindead, but this is now tied to
+whatever additional implementation quirks we find...
 
-If dwc is already suspended why do we return -EBUSY?
-Should this be !dwc->suspended?
+This is just dumb.
+</rant>
 
-> +				break;
->  			return -EBUSY;
-> +		}
->  		break;
->  	case DWC3_GCTL_PRTCAP_HOST:
->  	default:
-> @@ -2107,9 +2118,22 @@ static int dwc3_runtime_suspend(struct device *dev)
->  	struct dwc3     *dwc = dev_get_drvdata(dev);
->  	int		ret;
->  
-> -	if (dwc3_runtime_checks(dwc))
-> +	ret = dwc3_runtime_checks(dwc);
-> +	if (ret)
->  		return -EBUSY;
->  
-> +	switch (dwc->current_dr_role) {
-> +	case DWC3_GCTL_PRTCAP_DEVICE:
-> +		/* bus suspend case */
-> +		if (!ret && dwc->connected)
+> With this change, the quirk still sets its->get_msi_base and clears
+> IRQ_DOMAIN_FLAG_ISOLATED_MSI from its->msi_domain_flags during
+> its_of_probe, but both get overwritten again during its_probe_one
+> with the defaults.
+>=20
+> Previously the defaults would be set first and then the quirks were
+> applied.
 
-No need to check !ret again as it will never happen because
-we are returning -EBUSY earlier if (ret);
+Yeah, that's clearly a regression, and I've confirmed it on my
+Synquacer (which means the TI folks have accurately copied a dumb
+idea). Can you please give the patch below a go on your system and
+confirm asap whether it works for you?
 
-> +			return 0;
-> +		break;
-> +	case DWC3_GCTL_PRTCAP_HOST:
-> +	default:
-> +		/* do nothing */
-> +		break;
-> +	}
-> +
+> I have no idea whether TI's use of this quirk was "correct", but it did
+> work, and since 6.6-rc6 MSI-X has been broken for us.
 
-While this takes care of runtime suspend case, what about system_suspend?
-Should this check be moved to dwc3_suspend_common() instead?
+Just as for bad SW, the worse HW ideas get replicated. Then I write
+bad SW for it.
 
->  	ret = dwc3_suspend_common(dwc, PMSG_AUTO_SUSPEND);
->  	if (ret)
->  		return ret;
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index a69ac67d89fe..f2f788a6b4b5 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -1124,6 +1124,8 @@ struct dwc3_scratchpad_array {
->   * @num_ep_resized: carries the current number endpoints which have had its tx
->   *		    fifo resized.
->   * @debug_root: root debugfs directory for this device to put its files in.
-> + * @runtime_suspend_on_usb_suspend: true if dwc3 runtime suspend is allowed
-> + *			during bus suspend scenario.
->   */
->  struct dwc3 {
->  	struct work_struct	drd_work;
-> @@ -1340,6 +1342,7 @@ struct dwc3 {
->  	int			last_fifo_depth;
->  	int			num_ep_resized;
->  	struct dentry		*debug_root;
-> +	bool			runtime_suspend_on_usb_suspend;
->  };
->  
->  #define INCRX_BURST_MODE 0
-> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-> index 5fd067151fbf..978ce0e91164 100644
-> --- a/drivers/usb/dwc3/gadget.c
-> +++ b/drivers/usb/dwc3/gadget.c
-> @@ -2401,15 +2401,21 @@ static int dwc3_gadget_wakeup(struct usb_gadget *g)
->  		return -EINVAL;
->  	}
->  
-> -	spin_lock_irqsave(&dwc->lock, flags);
->  	if (!dwc->gadget->wakeup_armed) {
->  		dev_err(dwc->dev, "not armed for remote wakeup\n");
-> -		spin_unlock_irqrestore(&dwc->lock, flags);
->  		return -EINVAL;
->  	}
-> -	ret = __dwc3_gadget_wakeup(dwc, true);
->  
-> +	ret = pm_runtime_resume_and_get(dwc->dev);
-> +	if (ret < 0) {
-> +		pm_runtime_set_suspended(dwc->dev);
-> +		return ret;
-> +	}
-> +
-> +	spin_lock_irqsave(&dwc->lock, flags);
-> +	ret = __dwc3_gadget_wakeup(dwc, true);
->  	spin_unlock_irqrestore(&dwc->lock, flags);
-> +	pm_runtime_put_noidle(dwc->dev);
->  
->  	return ret;
->  }
-> @@ -2428,6 +2434,12 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->  		return -EINVAL;
->  	}
->  
-> +	ret = pm_runtime_resume_and_get(dwc->dev);
-> +	if (ret < 0) {
-> +		pm_runtime_set_suspended(dwc->dev);
-> +		return ret;
-> +	}
-> +
->  	spin_lock_irqsave(&dwc->lock, flags);
->  	/*
->  	 * If the link is in U3, signal for remote wakeup and wait for the
-> @@ -2438,6 +2450,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->  		ret = __dwc3_gadget_wakeup(dwc, false);
->  		if (ret) {
->  			spin_unlock_irqrestore(&dwc->lock, flags);
-> +			pm_runtime_put_noidle(dwc->dev);
->  			return -EINVAL;
->  		}
->  		dwc3_resume_gadget(dwc);
-> @@ -2452,6 +2465,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->  		dev_err(dwc->dev, "function remote wakeup failed, ret:%d\n", ret);
->  
->  	spin_unlock_irqrestore(&dwc->lock, flags);
-> +	pm_runtime_put_noidle(dwc->dev);
->  
->  	return ret;
->  }
-> @@ -2732,21 +2746,23 @@ static int dwc3_gadget_pullup(struct usb_gadget *g, int is_on)
->  	/*
->  	 * Avoid issuing a runtime resume if the device is already in the
->  	 * suspended state during gadget disconnect.  DWC3 gadget was already
-> -	 * halted/stopped during runtime suspend.
-> +	 * halted/stopped during runtime suspend except for bus suspend case
-> +	 * where we would have skipped the controller halt.
->  	 */
->  	if (!is_on) {
->  		pm_runtime_barrier(dwc->dev);
-> -		if (pm_runtime_suspended(dwc->dev))
-> +		if (pm_runtime_suspended(dwc->dev) && !dwc->connected)
->  			return 0;
->  	}
->  
->  	/*
->  	 * Check the return value for successful resume, or error.  For a
->  	 * successful resume, the DWC3 runtime PM resume routine will handle
-> -	 * the run stop sequence, so avoid duplicate operations here.
-> +	 * the run stop sequence except for bus resume case, so avoid
-> +	 * duplicate operations here.
->  	 */
->  	ret = pm_runtime_get_sync(dwc->dev);
-> -	if (!ret || ret < 0) {
-> +	if ((!ret && !dwc->connected) || ret < 0) {
->  		pm_runtime_put(dwc->dev);
->  		if (ret < 0)
->  			pm_runtime_set_suspended(dwc->dev);
-> @@ -4331,6 +4347,8 @@ static void dwc3_gadget_suspend_interrupt(struct dwc3 *dwc,
->  	}
->  
->  	dwc->link_state = next;
-> +	pm_runtime_mark_last_busy(dwc->dev);
-> +	pm_request_autosuspend(dwc->dev);
->  }
->  
->  static void dwc3_gadget_interrupt(struct dwc3 *dwc,
+Thanks,
 
--- 
-cheers,
--roger
+	M.
+
+=46rom b5571a69f09733ecfa0c944cc48baced6590d024 Mon Sep 17 00:00:00 2001
+From: Marc Zyngier <maz@kernel.org>
+Date: Tue, 24 Oct 2023 11:07:34 +0100
+Subject: [PATCH] irqchip/gic-v3-its: Don't override quirk settings with
+ default values
+
+When splitting the allocation of the ITS node from its configuration,
+some of the default settings were kept in the latter instead of
+being moved to the former.
+
+This has the side effect of negating some of the quirk detection that
+have happened in between, amongst which the dreaded Synquacer hack
+(that also affect Dominic's TI platform).
+
+Move the initialisation of these fields early, so that they can
+again be overriden by the Synquacer quirk.
+
+Fixes: 9585a495ac93 ("irqchip/gic-v3-its: Split allocation from initialisat=
+ion of its_node")
+Reported by: Dominic Rath <dominic.rath@ibv-augsburg.net>
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+Link: https://lore.kernel.org/r/20231024084831.GA3788@JADEVM-DRA
+---
+ drivers/irqchip/irq-gic-v3-its.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-=
+its.c
+index 75a2dd550625..a8c89df1a997 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -5112,8 +5112,6 @@ static int __init its_probe_one(struct its_node *its)
+ 	}
+ 	its->cmd_base =3D (void *)page_address(page);
+ 	its->cmd_write =3D its->cmd_base;
+-	its->get_msi_base =3D its_irq_get_msi_base;
+-	its->msi_domain_flags =3D IRQ_DOMAIN_FLAG_ISOLATED_MSI;
+=20
+ 	err =3D its_alloc_tables(its);
+ 	if (err)
+@@ -5362,6 +5360,8 @@ static struct its_node __init *its_node_init(struct r=
+esource *res,
+ 	its->typer =3D gic_read_typer(its_base + GITS_TYPER);
+ 	its->base =3D its_base;
+ 	its->phys_base =3D res->start;
++	its->get_msi_base =3D its_irq_get_msi_base;
++	its->msi_domain_flags =3D IRQ_DOMAIN_FLAG_ISOLATED_MSI;
+=20
+ 	its->numa_node =3D numa_node;
+ 	its->fwnode_handle =3D handle;
+--=20
+2.39.2
+
+
+--=20
+Without deviation from the norm, progress is not possible.
 
