@@ -1,95 +1,93 @@
-Return-Path: <devicetree+bounces-11229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30317D4CFC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2617D4D01
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2098D1C20A5E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:54:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EBF41C20AD7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB5024A0F;
-	Tue, 24 Oct 2023 09:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7266524A12;
+	Tue, 24 Oct 2023 09:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="rU3EL63s"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L+Xqh5Fx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C64024A0C;
-	Tue, 24 Oct 2023 09:54:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF3BC433C8;
-	Tue, 24 Oct 2023 09:54:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1698141259;
-	bh=W+0QNqrgDZnOgi+hua/M9Ooqieg02b9bat44s6CqMUI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rU3EL63smcyw4DW29cAE87yiTKhtpmVZoah8oPz++M+9CngOTdXHOpiDWm6zB8G0P
-	 cxWLL5j2Unb+zvM2Ztic/IytOdi+nrfwR1KXcK0YKDQnppva8BZE15ST8L7AjJnLYO
-	 1ZmSZVPjy8VGBg+EQ6GxSTZQhUniGjXogo0c4iGY=
-Date: Tue, 24 Oct 2023 11:54:14 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Message-ID: <2023102408-deodorize-frequent-184e@gregkh>
-References: <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <196601cc-f8c6-4266-bfff-3fd69f0ab31c@quicinc.com>
- <ZTeL4nSw6dMGKODm@hovoldconsulting.com>
- <2023102429-craftsman-student-ba77@gregkh>
- <ZTeObdjSSok0tttg@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9853F249FD;
+	Tue, 24 Oct 2023 09:54:39 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7866118;
+	Tue, 24 Oct 2023 02:54:35 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2B12B1BF20A;
+	Tue, 24 Oct 2023 09:54:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698141274;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=A6kpnCauGpieWhcMLKeK1rtS0Ofn4S7bu6jwngyl3s0=;
+	b=L+Xqh5Fx2hVbFpW0OYWntx/WrCJXy4GXTE0DVdPVQGEU879NpTo2VCtqKl8EecnRz+us/n
+	0eD2Ic3DphekNkJwZoe+ZlO94pwlwIDomXT9/GSlERM8WEgEm1YrCjqPIlZVHAI7kgiyhs
+	r0GcytSD7vlUQSAMaTYwW+V03QMztxGa47Dr6e/bT96j/6Fgxml91yQ+xUK9LiNDiIs6qy
+	LRryjMKU7CT96ixVyiNFy/WS4g+LdKXMsAHFMsj/Scx36mCSgQE+urHwzz3u9U7/bY4sw5
+	F40xBEdfI9hKDfjRExeWrretWdk+w4dLhS4xyrpiuD90jSaU7gYi2YY3ct8ezA==
+Date: Tue, 24 Oct 2023 11:54:44 +0200 (CEST)
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+cc: Romain Gantois <romain.gantois@bootlin.com>, 
+    Luka Perkov <luka.perkov@sartura.hr>, 
+    Konrad Dybcio <konrad.dybcio@somainline.org>, 
+    Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
+    Jakub Kicinski <kuba@kernel.org>, 
+    Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+    Russell King <linux@armlinux.org.uk>, Andy Gross <agross@kernel.org>, 
+    davem@davemloft.net, thomas.petazzoni@bootlin.com, 
+    Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Florian Fainelli <f.fainelli@gmail.com>, linux-kernel@vger.kernel.org, 
+    Eric Dumazet <edumazet@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+    linux-arm-kernel@lists.infradead.org, 
+    Robert Marko <robert.marko@sartura.hr>, 
+    Vladimir Oltean <vladimir.oltean@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
+    Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH net-next 1/5] net: dt-bindings: Introduce the Qualcomm
+ IPQESS Ethernet switch
+In-Reply-To: <169808266457.861402.14537617078362005098.robh@kernel.org>
+Message-ID: <35ec9e4b-21ee-1436-da00-02e11effdc23@bootlin.com>
+References: <20231023155013.512999-1-romain.gantois@bootlin.com> <20231023155013.512999-2-romain.gantois@bootlin.com> <169808266457.861402.14537617078362005098.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZTeObdjSSok0tttg@hovoldconsulting.com>
+Content-Type: text/plain; charset=US-ASCII
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Tue, Oct 24, 2023 at 11:29:17AM +0200, Johan Hovold wrote:
-> On Tue, Oct 24, 2023 at 11:23:19AM +0200, Greg Kroah-Hartman wrote:
-> > On Tue, Oct 24, 2023 at 11:18:26AM +0200, Johan Hovold wrote:
-> 
-> > > And we may even consider reverting the updated bindings as it appears
-> > > they are still not correct.
-> > 
-> > If you can tell me what the git ids of them are, I'll be glad to do so
-> > right now, sorry for taking them "early".
-> 
-> That's
-> 
-> 	ca58c4ae75b6 ("dt-bindings: usb: qcom,dwc3: Add bindings for SC8280 Multiport")
-> 
-> and
-> 
-> 	eb3f1d9e42b1 ("dt-bindings: usb: Add bindings for multiport properties on DWC3 controller")
-> 
-> It's probably best to just revert them now.
+Hello Rob,
 
-Now reverted, thanks.
+On Mon, 23 Oct 2023, Rob Herring wrote:
 
-greg k-h
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
+> 
+
+Even after upgrading dtschema to 2023.9, installing yamllint 1.32.0 and running 
+without DT_SCHEMA_FILES, I can't seem to reproduce this error. I've also tried 
+rebasing on v6.5-rc1 which didn't show it either. However, It seems like 
+the error is related to the psgmii-ethphy node which I'm planning on 
+removing anyway.
+
+Thanks,
+
+Romain
 
