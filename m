@@ -1,183 +1,203 @@
-Return-Path: <devicetree+bounces-11316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E917D5210
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:43:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8437D52A9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:48:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B97411C20846
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:43:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 652B2281BD0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240A725116;
-	Tue, 24 Oct 2023 13:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34E22B5F2;
+	Tue, 24 Oct 2023 13:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bD3PbT0h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TpKRsUxl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA1E21378
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:43:05 +0000 (UTC)
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B50CC
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:43:03 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c9d132d92cso8561055ad.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:43:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E002B759
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:47:31 +0000 (UTC)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F9FB19B0
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:47:21 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32d9d8284abso3052803f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:47:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698154983; x=1698759783; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=llE/A+xwdvnmuUTq+C1r2sdJnt3pwBP1QiuNoEB548A=;
-        b=bD3PbT0hQ1dVD+iDsHeJ2mlcykXCE8UIGyAqM43nFIuBix2pW20Lm5G2HtF1ERhOXM
-         ZMNyfx442D+cwbUGB4pHUFgN3m9uju1GeE7zYajeIFQ+UTvSivAe0B8f9eHFu35AcsK1
-         sUXnLfK2oivsbqMkYvogMnddmBFdF/jUGyVldQPf/YYe/5ye6sjxjmFZEEI6+6IsZL1+
-         eWOSov7frJ2Yt2EBqiuXFjQyvqrfAiO8uS6HcrSzUeU1lPeK+XtOApBcH6ayhKa8xnRE
-         7NKI9yr1SDXibE66M8J+JutmS0VMRbVD0VmefjO0kFwy427AHlNAz7Z6SH3o715TgzI8
-         prow==
+        d=linaro.org; s=google; t=1698155239; x=1698760039; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wvhpCK3frheCthRrpOgh0zrl+ct+ClP+4XcisWHapjk=;
+        b=TpKRsUxltXjHqYx5IKnhJM4qe7cLJQkF5InzYtsuAi8CIOlMJ7uIIwjWTSNZHCZkZH
+         +TtuuDl7rGeuE3vl93xIsS/VGIGnP6Z3YCfNXJYQMDcF5WpMAnrVjK9E2nhaxv6uF2i5
+         CzxmpwGI2jTbjfwupbr0xQup/lO+sng17mQaiBTWakiYwbZnXygI1gA26stGtPJC3YSk
+         Kecf78A+iuL/kN7rdlI2SoVpJrOCnE4wEnkkXFKxnG2cCH2Ftp3Y/lBUw27BPh/eGa53
+         rYyB6PORjTKk3pIZB6udvYAQobAHdpGcdIyfFmWYxLV5Hpd0kUTPjzh+DR7ZzbcilyLz
+         YJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698154983; x=1698759783;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1698155239; x=1698760039;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=llE/A+xwdvnmuUTq+C1r2sdJnt3pwBP1QiuNoEB548A=;
-        b=llv49vgv11PiNXBbqR1s3Htj8o6hsULTnRWoB9EzfkDBE4KN/a/2F0lA4PQl/2IaoK
-         HKzNmI9BDqPI45c7ZpKXoB+BvpCGODwYbPKh/9OUyX2Ow5qL/g12rJVoNFyGg8r0JTav
-         X/IYIGcYXa6a8zzMlfATXOnUvorFJQMxOMmPRZJ0ZPeV0WsKLiocTJgPqYqzo0yJi+sT
-         U9g9LS/cNBEMbiHCqmGgPkjd6dS3VkwitZta73TyCyzCrUT1cza3gyrigjbpFvYls+K6
-         7NlgicLGZlwmadn5hsM2a04yPahp1aid/o+27IWP1Y+qz3fjaLqyYympwSqOnPbJ/ZxK
-         ugKQ==
-X-Gm-Message-State: AOJu0YyFVXqsnvwWJwe7TAuOaO74YQHGvXjZaTyytTrgFZXodUN/mk4w
-	jFluLJRAokQZ/KhR2qiAit6GkQ==
-X-Google-Smtp-Source: AGHT+IGO3UGtt2ntifIx9N2oGOGvNFeTOoA1Q+nxYUjFjDT1CwynHW+luQG8rzi0DgBIyG+IUHTKdg==
-X-Received: by 2002:a17:903:6c7:b0:1ca:85b4:b962 with SMTP id kj7-20020a17090306c700b001ca85b4b962mr11793079plb.4.1698154982724;
-        Tue, 24 Oct 2023 06:43:02 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:7c15:610f:1205:f10c])
-        by smtp.gmail.com with ESMTPSA id q12-20020a170902dacc00b001c71ec1866fsm7416507plx.258.2023.10.24.06.42.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 06:43:02 -0700 (PDT)
-Date: Tue, 24 Oct 2023 22:42:57 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-Message-ID: <ZTfJ4b7VdTkA0sxo@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231006132346.GA3426353-robh@kernel.org>
- <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
- <ZSTgTC4cFFpofYAk@octopus>
- <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
- <ZS3yK/f12Mxw9rXe@octopus>
- <CACRpkdarDrVkPmyDawhZ+H94S4F=dtDSDVuKegi-eNfQNDY3rg@mail.gmail.com>
- <ZTduWx7CH1ifI5Uc@octopus>
- <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
- <ZTemAK/jBtv9b5xP@octopus>
- <CACRpkdY-5uS9EeXfDFVOiRKiFmwwSn3jRVGhT-n4JMqesHEumw@mail.gmail.com>
+        bh=wvhpCK3frheCthRrpOgh0zrl+ct+ClP+4XcisWHapjk=;
+        b=UllfnO/YAy2Q0xvE7sIJF53P/WiUPbXVqTLSdcyun6aDjIHa2yr2rWZgU09XFDYLkq
+         nd3XqFAHWNNUEgQZjxB7t04BC6J2JFkcRTLDkOCBSYBCRkqBC6/lI8HQlVTEesDIkW8W
+         8EmqLmgCajPDBvitmbZHddqCXWWsPK9ZoN3gh1n2LjiDp3twfyiJo0KLL+q0mG7n1CM3
+         8cyMIwojymrsICSapZQCmVCUA3B5FIc4370D4lSFfiyy1jsdUH2nNj3xuUxd6WbmrJcm
+         GHklth2CGNxyc1cjZ4bLBaahFXtoc8tnp6tV2WIWgPVUHbMWhohRHtaCaaZeFjSuiIxj
+         Mtnw==
+X-Gm-Message-State: AOJu0Yz1crIQGssaRzIXGeWC/SUs1opck0EtpG6kCkN65DTVMk98XMw4
+	Fwqr0yVgDFK63rsRWvJCkhnZZQ==
+X-Google-Smtp-Source: AGHT+IGz3jnjKq9evm/HLmafgvEvDPTZr2z9ydQDtKuBwKG0JHRLP24wqRMQ4CriBz77UjQDHz5O9A==
+X-Received: by 2002:a5d:5b1f:0:b0:32d:7615:372b with SMTP id bx31-20020a5d5b1f000000b0032d7615372bmr12731797wrb.12.1698155238858;
+        Tue, 24 Oct 2023 06:47:18 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id y10-20020a5d470a000000b0032d9efeccd8sm9975318wrq.51.2023.10.24.06.47.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Oct 2023 06:47:18 -0700 (PDT)
+Message-ID: <8391fb67-e575-49e6-9857-806cb85e9e59@linaro.org>
+Date: Tue, 24 Oct 2023 15:47:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdY-5uS9EeXfDFVOiRKiFmwwSn3jRVGhT-n4JMqesHEumw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] dt-bindings: adis16460: Add
+ 'spi-cs-inactive-delay-ns' property
+Content-Language: en-US
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
+ nuno.sa@analog.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231023140534.704312-1-ramona.gradinariu@analog.com>
+ <20231023140534.704312-4-ramona.gradinariu@analog.com>
+ <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
+ <20231023-repost-coma-2f67ea8b95af@spud>
+ <5c600a6db6173a56251302da8d2f438435959bd2.camel@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5c600a6db6173a56251302da8d2f438435959bd2.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 24, 2023 at 03:12:51PM +0200, Linus Walleij wrote:
-> On Tue, Oct 24, 2023 at 1:10???PM AKASHI Takahiro
-> <takahiro.akashi@linaro.org> wrote:
+On 24/10/2023 08:53, Nuno Sá wrote:
+> On Mon, 2023-10-23 at 17:06 +0100, Conor Dooley wrote:
+>> On Mon, Oct 23, 2023 at 04:27:48PM +0200, Nuno Sá wrote:
+>>> On Mon, 2023-10-23 at 17:05 +0300, Ramona Gradinariu wrote:
+>>>> The adis16460 device requires a stall time between SPI
+>>>> transactions (during which the chip select is inactive),
+>>>> with a minimum value equal to 16 microseconds.
+>>>> This commit adds 'spi-cs-inactive-delay-ns' property, which should
+>>>> indicate the stall time between consecutive SPI transactions.
+>>>>
+>>>> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+>>>> ---
+>>>> changes in v2:
+>>>>  - added default value
+>>>>  - updated description
+>>>>  - updated commit message
+>>>>  .../devicetree/bindings/iio/imu/adi,adis16460.yaml          | 6 ++++++
+>>>>  1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+>>>> b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+>>>> index 4e43c80e5119..f10469b86ee0 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+>>>> @@ -25,6 +25,12 @@ properties:
+>>>>
+>>>>    spi-cpol: true
+>>>>
+>>>> +  spi-cs-inactive-delay-ns:
+>>>> +    minimum: 16000
+>>>> +    default: 16000
+>>>> +    description:
+>>>> +      Indicates the stall time between consecutive SPI transactions.
+>>>> +
+>>>
+>>> You should drop the description... 
+>>>
+>>> Also, give more time before posting a v2 so others get a chance to review
+>>> your
+>>> patches. It's also better for you since you can gather more change requests.
+>>
+>> Further, I don't see an answer to Krzysztof's question of why the stall
+>> time would not just be set to 16,000 ns in the driver, based on the
+>> compatible.
 > 
-> > As far as I understand, there is only one way for SCMI gpio driver
-> > to know which pins are actually GPIO pins; Calling PINCNTRL_CONFIG_GET
-> > command with "Input-mode" or "Output-mode" configuration type
-> > against *every* pin-controller's pins.
-> > (Here I assume that the command would fail with INVALID_PARAMETERS or
-> > NOT_SUPPORTED if configuring the given pin as a GPIO input or output
-> > is not possible. But the specification seems to be a bit ambiguous.)
+> Hi Conor,
 > 
-> As I also wrote in the reply to Christian, I expect the SCMI firmware
-> to consider GPIO a function on the pins, and either individual pins
-> (groups with just one pin in it) or entire groups of pins can be switched
-> to perform the "gpio function". ("gpio function" is akin to "i2c function"
-> or "HDMI function" etc.)
+> Regarding that, I'm the one to blame since I was the one asking for the property
+> during internal review... The reason is that "spi-cs-inactive-delay-ns" is
+> already part of spi-peripheral-props.yaml which we already reference. So my
+> question would be why not using it?
+> 
+> These devices are a bit sensitive regarding these timings. Not in devices
+> supported by this driver but I already experienced having to set timings bigger
+> than defined in the datasheet for spi to be reliable. this was true on a RPI but
+> might not be in another platform.
+> 
+> Hence having the flexibility to change the time in an already supported property
+> does sound good to me. If not set, we still use the default value based on the
+> compatible. Now, if you tell me "let's just add this if we really get the need
+> for it", I get it but I also don't understand why not add it now...
+> 
 
-First of all, there is no pre-defined naming convention either for
-pins, groups or functions. SCMI firmware can give them any names.
+I think it is okay to document specific SPI peripheral constraints in
+each device. Just like we document sometimes SPI frequency. The v1 did
+not explain this, but I see in this commit msg some rationale.
 
-Secondly, What you said in the above is already implemented in
-my RFC patch. Please remember the example that I gave:
+Best regards,
+Krzysztof
 
->     gpio-ranges = <&scmi_pinctrl 6 0 0>;
->     gpio-ranges-group-names = "pinmux_gpio";
-> 
-> means that SCMI *group*, "pinmux_gpio", are mapped to this driver's
-> gpio range which starts with 5. If "pinmux_gpio" indicates SCMI *pin*
-> range [20..24],
-> 
->     baa-gpios = <&gpio0 7>;
-> will refer to gpio pin#7 that is actually SCMI's 22 (=20 + (7-5)).
-
-Given the fact there is no naming convention, we need to explicitly
-specify an associated group name in "gpio-ranges-group-names" in any way.
-
-What my driver doesn't care for now is the case where a group of GPIO pins
-are multiplexed with other functions (UART, I2C or whatever else).
-In this case, we need to configure "pinconf" setup prior to using those
-pins as GPIO anyway. Simply, it is out of scope of my driver.
-(We can still use existing generic GPIO interfaces to operate them once
-set up, though.)
-
-After all, I still believe we need "gpio-ranges" property in most of
-all use cases (The only exception is, as I mentioned, to unconditionally
-map all pinctrl's pins to GPIO (if possible) when SCMI firmware provides
-only GPIO function for all pins. I think it is a simple and yet likely
-use case.
-
-Thanks,
--Takahiro Akashi
-
-
-> 
-> If the SCMI protocol considers GPIO usage to be something else
-> than a function of a pin, that is going to be a problem. Then the SCMI
-> protocol need some other way of determining that the pin is in
-> GPIO mode, and perhaps something would need to be added to
-> the protocol for that.
-> 
-> The reason is that in practice a lot of hardware has to decouple
-> the pin from any internal function in order to use it as GPIO, and
-> connect it to the GPIO block that can drive the line high and low.
-> And we don't select that as a function, how is the firmware going
-> to know that it needs to do this? Implicitly from the call requesting
-> the line to be output perhaps. But if the firmware can be altered
-> to do that, the firmware can just as well be altered to present
-> GPIO as a proper function.
-> 
-> Using a function makes most sense, because the board firmware
-> knows which pins are GPIO lines and what they are used for
-> (such as a LED or camera flash) and at boot certainly put them
-> into GPIO function and drive them high/low or set them as
-> input (high impedance).
-> 
-> > It means that, if SCMI firmware has 100 pinctrl pins, the driver needs
-> > to call the command 200 times in order to get the answer.
-> 
-> I think we should only need to check which function each pin
-> has and those that are in the GPIO function we put into the ranges.
-> 
-> Yours,
-> Linus Walleij
 
