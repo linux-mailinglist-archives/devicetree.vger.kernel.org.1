@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2987D4937
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:03:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1DA7D4966
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:09:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE501B20D7F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:03:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A2F8B20DD5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058C6156CD;
-	Tue, 24 Oct 2023 08:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD5815AD9;
+	Tue, 24 Oct 2023 08:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UMOrs8rb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hWyTYVJk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4F613FED
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:03:44 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E352128
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:03:41 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99c3c8adb27so588778066b.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:03:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A3415E92
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:09:42 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC9210D3
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:09:36 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9c41e95efcbso597454266b.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698134619; x=1698739419; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698134974; x=1698739774; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ql5Q8FOWaOd+nb6/H3/ESaBIL30yXZyLnkCaJtQzqT0=;
-        b=UMOrs8rb5G2bZCm/pJc6O2B3+lANiBcJDN3j551uW2GjuYertlu3Boc4wB4wNS118c
-         FtEpaBby1YHMCR1Jst1/BVolTh9YbQ3J6AilU9HyOvrbn5h6BrURsxt8wcnqYd3Dcodu
-         iYhrBZjlnPta6j9EXKI1HR1gTBz428ull4vSgCod8n3fljPrIZqbM0Uil6wRfD0buBwl
-         2c4dJeXYzEU6SvAlV//GtfG1RzME7QDWRGbZhXuNy3MldxDDpP8AZ1jOuMcNfdWoDW4Z
-         wHrdzJYq3vGQOzBFdDWaeKwJJaz83jlX6W9xWmyNbZydg/f0Sk0ucaCjh4iuZSQXBFJU
-         tkkw==
+        bh=toWYAk3EgYsTqySHvKidvzeQFGIfxjFGk+ZqTild4vc=;
+        b=hWyTYVJkxBA0agC2fVqEQbIRAk7GaSKskulH0ewJMSXKWju007bgKhXRM4ZLj1M0ln
+         b7w2egXTgob0RWYxlnhYjNXXieHcZpydE2x8p5aOLoCC4Mfoi5p4OxgxeiEcRI3amBy8
+         8Yi9p0kZJy2OjhCfmQEY/J8Of87uastB4zN4oQL7vrVL1zizs6GXUTXz/lRhp0ltRyrc
+         80/tscVwvx/a7t8ecaf0pDuQJytJ/dSJvzaiC0tC5E2ZpEEdlzY6whZykfyqHOu/HJW9
+         yNZc1Lqo7Rd/6gIY9Js9CUP4Xtmj528g+rldYKyfme+i4QIbnc/OmX/8UuN6OtgnNtp9
+         cYSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698134619; x=1698739419;
+        d=1e100.net; s=20230601; t=1698134974; x=1698739774;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ql5Q8FOWaOd+nb6/H3/ESaBIL30yXZyLnkCaJtQzqT0=;
-        b=lrWaPD9t828Usuzed16CgdVfPBXIWj8Pu9x3VDyt8JDbQO8jjJFc7LKy1aFyubpKwx
-         hQBFYXU7/R41ctilPCkPgZWAla4v6XSPKgUGjTjZl1nuiJQpKz/HXP9wbJqNjb1TFBKu
-         N8alQ1CCmQ1AY3glOjkaS8sItm6UcHvmeenRSfQ4u2B7i8DE3U/LE4t110ntZGc/Ee1C
-         FOtpU5VCpjY5pr7zPigMQzYDkuT+Zdokq2iYkw1uY+BQf+h4Lccjmjh6f1kS3V/34kZj
-         TaTcHLrQlDtvF1Z05iphimxRqyTSLS39nz/Npk+IXYHqUvQV0z6TEDZbRcZdrNjRU7Tx
-         A7mw==
-X-Gm-Message-State: AOJu0YzQdgLT/qG+Cuzw3nYL492S45Zy7slz3PC03tNDeyMsbDVnKruh
-	L4QMkpHo7j2Cl+l4zt98ZVz/Jw==
-X-Google-Smtp-Source: AGHT+IFVooAJl5fWHgr45jmFwB8Oe4BFvAgfTrtsvxzZZRlzL56/Mb5UBFVMkGxIF7wMbXAgxUggCA==
-X-Received: by 2002:a17:907:7251:b0:9ad:e298:a5d with SMTP id ds17-20020a170907725100b009ade2980a5dmr10917817ejc.19.1698134619544;
-        Tue, 24 Oct 2023 01:03:39 -0700 (PDT)
+        bh=toWYAk3EgYsTqySHvKidvzeQFGIfxjFGk+ZqTild4vc=;
+        b=hgSccpCKJcex/Y/Y2z0Gaxy5OO/fvMZ+5MYxU5zhtyhOCiCfRTeL8XUMyNobPu45zT
+         XyYyJ+4uFOc/WqOcWNF2kD7wVc2CWhqk8yJgdS1baOtmGIh2G+FCd+RKhDg+sKCHeaVA
+         s/OHfJL/U5cx5ynaeQwxEd7aGVEV2SAVSSwm4RtHw81ltCGnaGO74AGSufbDrhYFdd1x
+         GzgqxrMJoRcIjpiA0QlIab0stj/eya4AmlDzAqUXQT3csseJ1UeeS/Gy9JLGX77iZNYX
+         ypnANMEeP07M0Xd6aOUzKkylP8DidqdMIacKP6KFvIpuiB1J+UKfbgOw9g4WwKvVPS78
+         h7VQ==
+X-Gm-Message-State: AOJu0YxVOA8eAXOQ1GWl3960IVlFZ4i6xGX+ZfT5mBptlv9t4EAoNfsd
+	SltXm8ezJbeHHmK5P8JAyMdZVI9dCLVMEjtXAeY=
+X-Google-Smtp-Source: AGHT+IHOirAy10twOiAqPw3M/ZvlVfrT2gMGMgFgJAzONkq/D9uw4GlM+a4JNMd3bxN9o2hHtk0r9Q==
+X-Received: by 2002:a17:907:d25:b0:9bd:e99b:82d2 with SMTP id gn37-20020a1709070d2500b009bde99b82d2mr7835973ejc.9.1698134974333;
+        Tue, 24 Oct 2023 01:09:34 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z16-20020a170906075000b009a5f1d1564dsm7806148ejb.126.2023.10.24.01.03.36
+        by smtp.gmail.com with ESMTPSA id lh22-20020a170906f8d600b0099290e2c163sm7735886ejb.204.2023.10.24.01.09.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 01:03:38 -0700 (PDT)
-Message-ID: <91764d23-eed2-48f9-97c5-ac6a44f48f2b@linaro.org>
-Date: Tue, 24 Oct 2023 10:03:35 +0200
+        Tue, 24 Oct 2023 01:09:33 -0700 (PDT)
+Message-ID: <cf6abcb7-1066-4b4f-a915-5e9982e1fb04@linaro.org>
+Date: Tue, 24 Oct 2023 10:09:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 9/9] dt-bindings: net: add Microchip's LAN865X
- 10BASE-T1S MACPHY
+Subject: Re: [PATCH v2 2/4] media: dt-bindings: gc0308: add binding
 Content-Language: en-US
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, corbet@lwn.net, steen.hegelund@microchip.com,
- rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
- andrew@lunn.ch
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
- Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
- Thorsten.Kummermehr@microchip.com
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-10-Parthiban.Veerasooran@microchip.com>
+To: Sebastian Reichel <sre@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231024010355.1877523-1-sre@kernel.org>
+ <20231024010355.1877523-3-sre@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,158 +124,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231023154649.45931-10-Parthiban.Veerasooran@microchip.com>
+In-Reply-To: <20231024010355.1877523-3-sre@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/10/2023 17:46, Parthiban Veerasooran wrote:
-> Add DT bindings for Microchip's LAN865X 10BASE-T1S MACPHY. The LAN8650/1
-> combines a Media Access Controller (MAC) and an Ethernet PHY to enable
-> 10BASE‑T1S networks. The Ethernet Media Access Controller (MAC) module
-> implements a 10 Mbps half duplex Ethernet MAC, compatible with the IEEE
-> 802.3 standard and a 10BASE-T1S physical layer transceiver integrated
-> into the LAN8650/1. The communication between the Host and the MAC-PHY is
-> specified in the OPEN Alliance 10BASE-T1x MACPHY Serial Interface (TC6).
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
+On 24/10/2023 02:59, Sebastian Reichel wrote:
+> Add DT binding for GalaxyCore GC0308 camera sensor.
 > 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
 > ---
->  .../bindings/net/microchip,lan865x.yaml       | 101 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+>  .../bindings/media/i2c/galaxycore,gc0308.yaml | 108 ++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/microchip,lan865x.yaml b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
-> new file mode 100644
-> index 000000000000..974622dd6846
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/microchip,lan865x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip LAN8650/1 10BASE-T1S MACPHY Ethernet Controllers
-> +
-> +maintainers:
-> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
-> +
-> +description:
-> +  The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
-> +  PHY to enable 10BASE‑T1S networks. The Ethernet Media Access Controller
-> +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
-> +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiver
-> +  integrated into the LAN8650/1. The communication between the Host and
-> +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
-> +  Interface (TC6).
-> +
-> +  Specifications about the LAN8650/1 can be found at:
-> +    https://www.microchip.com/en-us/product/lan8650
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,lan865x
 
-No wildcards in compatibles.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt from MAC-PHY asserted in the event of Receive Chunks
-> +      Available, Transmit Chunk Credits Available and Extended Status
-> +      Event.
-> +    maxItems: 1
-> +
-> +  local-mac-address:
-
-Drop property, not needed.
-
-> +    description:
-> +      Specifies the MAC address assigned to the network device.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 6
-> +    maxItems: 6
-> +
-> +  spi-max-frequency:
-> +    minimum: 15000000
-> +    maximum: 25000000
-> +
-> +  oa-tc6:
-> +    $ref: oa-tc6.yaml#
-> +    unevaluatedProperties: true
-
-This must be false.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pinctrl-names
-> +  - pinctrl-0
-> +  - interrupts
-> +  - interrupt-parent
-> +  - local-mac-address
-> +  - spi-max-frequency
-> +  - oa-tc6
-> +
-> +additionalProperties: false
-
-Instead:
-unevaluatedProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      ethernet@0 {
-> +        compatible = "microchip,lan865x";
-> +        reg = <0>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&eth0_pins>;
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> +        local-mac-address = [04 05 06 01 02 03];
-> +        spi-max-frequency = <15000000>;
-> +        status = "okay";
-
-Drop status.
-
-> +        oa-tc6 {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          oa-cps = <64>;
-> +          oa-txcte;
-> +	  oa_rxcte;
-> +	  oa-prote;
-> +	  oa-dprac;
-
-Again totally mixed up indentation.
-
-> +        };
-> +      };
-> +    };
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
