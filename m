@@ -1,252 +1,134 @@
-Return-Path: <devicetree+bounces-11252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001ED7D4F45
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:57:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232947D4F62
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 305D81C20A15
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:57:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1013EB20E41
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743F5266C1;
-	Tue, 24 Oct 2023 11:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7731C266D9;
+	Tue, 24 Oct 2023 12:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U38GQfbR"
+	dkim=pass (2048-bit key) header.d=kernkonzept.com header.i=@kernkonzept.com header.b="mTYVwfkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6A211731;
-	Tue, 24 Oct 2023 11:57:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31B9CC433C7;
-	Tue, 24 Oct 2023 11:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698148647;
-	bh=P/62AzhAT4KUu+utmsfzDa4VRGeCzMsZgfgeMsb7fFQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U38GQfbR3I5gJybWpH3LqCbdHqpdPDApaYa1y7mhdHfH2MA7aXAYD+2IlpfaC18ma
-	 ay52CdaP3lbY7qoerCPgb9NzBkZaYvVu6JOy6tttoVEA/9mwRg6ZlI0aiqvEeInWsf
-	 kOd9ellhuLwmoQl6mfxAOuMpu+8dt9wLEIdk/FScqAlOGcsHo8PqLqskRi6YiRSxlr
-	 NaPcuKp9WnIagQ1fYKvNijy78f+vYKm/NxP7lIuAqlZd/dVtwz/vPsm47pdz6uMMdW
-	 SXvqgXOgbwqZFCX4/1BYlXn7j2iOMuHpR9lEIalQ/nNPG4+BlxKqWdsLHMuJxaJ+IJ
-	 XV8pef6DwsLOQ==
-Message-ID: <59767fb8-8b9a-472a-884c-009cb00ed0b9@kernel.org>
-Date: Tue, 24 Oct 2023 13:57:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1C3266D0
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:03:31 +0000 (UTC)
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352D3F9;
+	Tue, 24 Oct 2023 05:03:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kernkonzept.com; s=mx1; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Reply-To:
+	Content-ID:Content-Description;
+	bh=zRIi9/LubZwPopqf6kr3BLpCYi15YnR3163PaROLkPc=; b=mTYVwfkdKLTHhanJB6iXTcGdRN
+	B4MGvwjKxtEHB9ISxJYLjUPkavsTwTRNUl+/dYaX8yIOwuQxB7l9Np7qR13iLSaKKHdBO0cJGkzd1
+	z6+PwxU6TURDYTmHgLz9xsIBJxXlfBQgwSXCjAnQCaj8RjJi041unbBCCgvcs1T7TkzE9Wz6bzxHq
+	5A9yH8mOT1hmHimnZy+WkCoU6cMmRgZ7sQtnjBzlPfMGk/4pXLyTnc+pcMVGqBAVPL2M/8TqlOFup
+	z99GPSxcLYXAtUlrlJtsa3F9kVjgZilmYOJEo5yezpZXCs/tExSS3HRS4iPEy1l70zpPHHtUetTZu
+	SMl1I8Mg==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
+	id 1qvG83-000jUo-0O;
+	Tue, 24 Oct 2023 14:03:22 +0200
+Date: Tue, 24 Oct 2023 14:03:17 +0200
+From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ilia Lin <ilia.lin@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain
+ devices
+Message-ID: <ZTeyhR7YY7VgWQlU@kernkonzept.com>
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
+ <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
+ <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 8/9] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, corbet@lwn.net, steen.hegelund@microchip.com,
- rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
- andrew@lunn.ch
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
- Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
- Thorsten.Kummermehr@microchip.com
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
 
-On 23/10/2023 17:46, Parthiban Veerasooran wrote:
-> The LAN8650/1 is designed to conform to the OPEN Alliance 10BASE‑T1x
-> MAC‑PHY Serial Interface specification, Version 1.1. The IEEE Clause 4
-> MAC integration provides the low pin count standard SPI interface to any
-> microcontroller therefore providing Ethernet functionality without
-> requiring MAC integration within the microcontroller. The LAN8650/1
-> operates as an SPI client supporting SCLK clock rates up to a maximum of
-> 25 MHz. This SPI interface supports the transfer of both data (Ethernet
-> frames) and control (register access).
+On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
+> On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >
+> > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+> > <stephan.gerhold@kernkonzept.com> wrote:
+> > >
+> > > The genpd core caches performance state votes from devices that are
+> > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
+> > > runtime PM performance state handling"). They get applied once the
+> > > device becomes active again.
+> > >
+> > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
+> > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
+> > > devices that use runtime PM only to control the enable and performance
+> > > state for the attached power domain.
+> > >
+> > > However, at the moment nothing ever resumes the virtual devices created
+> > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
+> > > means that performance state votes made during cpufreq scaling get
+> > > always cached and never applied to the hardware.
+> > >
+> > > Fix this by enabling the devices after attaching them and use
+> > > dev_pm_syscore_device() to ensure the power domains also stay on when
+> > > going to suspend. Since it supplies the CPU we can never turn it off
+> > > from Linux. There are other mechanisms to turn it off when needed,
+> > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+> >
+> > I believe we discussed using dev_pm_syscore_device() for the previous
+> > version. It's not intended to be used for things like the above.
+> >
+> > Moreover, I was under the impression that it wasn't really needed. In
+> > fact, I would think that this actually breaks things for system
+> > suspend/resume, as in this case the cpr driver's genpd
+> > ->power_on|off() callbacks are no longer getting called due this,
+> > which means that the cpr state machine isn't going to be restored
+> > properly. Or did I get this wrong?
 > 
-> By default, the chunk data payload is 64 bytes in size. A smaller payload
-> data size of 32 bytes is also supported and may be configured in the
-> Chunk Payload Size (CPS) field of the Configuration 0 (OA_CONFIG0)
-> register. Changing the chunk payload size requires the LAN8650/1 be reset
-> and shall not be done during normal operation.
+> BTW, if you really need something like the above, the proper way to do
+> it would instead be to call device_set_awake_path() for the device.
 > 
-> The Ethernet Media Access Controller (MAC) module implements a 10 Mbps
-> half duplex Ethernet MAC, compatible with the IEEE 802.3 standard.
-> 10BASE-T1S physical layer transceiver integrated into the LAN8650/1. The
-> PHY and MAC are connected via an internal Media Independent Interface
-> (MII).
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-> ---
->  MAINTAINERS                              |   6 +
->  drivers/net/ethernet/microchip/Kconfig   |  11 +
->  drivers/net/ethernet/microchip/Makefile  |   2 +
->  drivers/net/ethernet/microchip/lan865x.c | 415 +++++++++++++++++++++++
->  4 files changed, 434 insertions(+)
->  create mode 100644 drivers/net/ethernet/microchip/lan865x.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9580be91f5e9..1b1bd3218a2d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14001,6 +14001,12 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/microchip/lan743x_*
->  
-> +MICROCHIP LAN8650/1 10BASE-T1S MACPHY ETHERNET DRIVER
-> +M:	Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/net/ethernet/microchip/lan865x.c
-> +
->  MICROCHIP LAN87xx/LAN937x T1 PHY DRIVER
->  M:	Arun Ramadoss <arun.ramadoss@microchip.com>
->  R:	UNGLinuxDriver@microchip.com
-> diff --git a/drivers/net/ethernet/microchip/Kconfig b/drivers/net/ethernet/microchip/Kconfig
-> index 329e374b9539..596caf59dea6 100644
-> --- a/drivers/net/ethernet/microchip/Kconfig
-> +++ b/drivers/net/ethernet/microchip/Kconfig
-> @@ -59,4 +59,15 @@ source "drivers/net/ethernet/microchip/lan966x/Kconfig"
->  source "drivers/net/ethernet/microchip/sparx5/Kconfig"
->  source "drivers/net/ethernet/microchip/vcap/Kconfig"
->  
-> +config LAN865X
-> +	tristate "LAN865x support"
-> +	depends on SPI
-> +	depends on OA_TC6
-> +	help
-> +      	  Support for the Microchip LAN8650/1 Rev.B0 MACPHY Ethernet chip. It
-> +	  uses OPEN Alliance 10BASE-T1x Serial Interface specification.
-> +
-> +      	  To compile this driver as a module, choose M here. The module will be
-> +          called lan865x.
 
-That's odd indentation. Kconfig help goes with tab and two spaces.
+Unfortunately this does not work correctly. When I use
+device_set_awake_path() it does set dev->power.wakeup_path = true.
+However, this flag is cleared again in device_prepare() when entering
+suspend. To me it looks a bit like wakeup_path is not supposed to be set
+directly by drivers? Before and after your commit 8512220c5782 ("PM /
+core: Assign the wakeup_path status flag in __device_prepare()") it
+seems to be internally bound to device_may_wakeup().
 
-> +
->  endif # NET_VENDOR_MICROCHIP
-> diff --git a/drivers/net/ethernet/microchip/Makefile b/drivers/net/ethernet/microchip/Makefile
-> index bbd349264e6f..1fa4e15a067d 100644
-> --- a/drivers/net/ethernet/microchip/Makefile
-> +++ b/drivers/net/ethernet/microchip/Makefile
-> @@ -12,3 +12,5 @@ lan743x-objs := lan743x_main.o lan743x_ethtool.o lan743x_ptp.o
->  obj-$(CONFIG_LAN966X_SWITCH) += lan966x/
->  obj-$(CONFIG_SPARX5_SWITCH) += sparx5/
->  obj-$(CONFIG_VCAP) += vcap/
+It works if I make device_may_wakeup() return true, with
 
-...
+	device_set_wakeup_capable(dev, true);
+	device_wakeup_enable(dev);
 
-> +static void lan865x_remove(struct spi_device *spi)
-> +{
-> +	struct lan865x_priv *priv = spi_get_drvdata(spi);
-> +
-> +	oa_tc6_exit(priv->tc6);
-> +	unregister_netdev(priv->netdev);
-> +	free_netdev(priv->netdev);
-> +}
-> +
-> +#ifdef CONFIG_OF
+but that also allows *disabling* the wakeup from sysfs which doesn't
+really make sense for the CPU.
 
-Drop ifdef
+Any ideas?
 
-> +static const struct of_device_id lan865x_dt_ids[] = {
-> +	{ .compatible = "microchip,lan865x" },
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lan865x_dt_ids);
-> +#endif
-> +
-> +#ifdef CONFIG_ACPI
-> +static const struct acpi_device_id lan865x_acpi_ids[] = {
-> +	{ .id = "LAN865X",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(acpi, lan865x_acpi_ids);
-> +#endif
-> +
-> +static struct spi_driver lan865x_driver = {
-> +	.driver = {
-> +		.name = DRV_NAME,
-> +#ifdef CONFIG_OF
-
-Drop ifdef
-
-> +		.of_match_table = lan865x_dt_ids,
-> +#endif
-> +#ifdef CONFIG_ACPI
-
-Why do you need this ifdef?
-
-> +		   .acpi_match_table = ACPI_PTR(lan865x_acpi_ids),
-> +#endif
-> +	 },
-> +	.probe = lan865x_probe,
-> +	.remove = lan865x_remove,
-> +};
-> +module_spi_driver(lan865x_driver);
-> +
-> +MODULE_DESCRIPTION(DRV_NAME " 10Base-T1S MACPHY Ethernet Driver");
-> +MODULE_AUTHOR("Parthiban Veerasooran <parthiban.veerasooran@microchip.com>");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("spi:" DRV_NAME);
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong.
-
-
-Best regards,
-Krzysztof
-
+Thanks!
+--
+Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
