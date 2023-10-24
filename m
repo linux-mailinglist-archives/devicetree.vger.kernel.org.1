@@ -1,109 +1,152 @@
-Return-Path: <devicetree+bounces-11264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5968A7D5034
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:48:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494407D503E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01073280EC2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:48:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3775AB20DD2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88999266BA;
-	Tue, 24 Oct 2023 12:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA60C266C4;
+	Tue, 24 Oct 2023 12:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HBszIJEj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E235533F1;
-	Tue, 24 Oct 2023 12:48:42 +0000 (UTC)
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE311CC;
-	Tue, 24 Oct 2023 05:48:41 -0700 (PDT)
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-58441865ffaso1721340eaf.1;
-        Tue, 24 Oct 2023 05:48:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E99026292
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:50:12 +0000 (UTC)
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B200E128
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:50:08 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5a7af45084eso42847647b3.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698151808; x=1698756608; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=drfWjB6Z+XkamCb0RZVbD4fvzQ6BkCWkgYR2SPLQjDQ=;
+        b=HBszIJEjk1A4xHOEl31Ftpw3M74iAcPoDvlg1joH27lysuT+u6/oRSsfwP8BbqGlTi
+         0ZaHn5pwFJJ9WRGbQuiCUMSkKH1QyALpj8l+IyVSkSqZKclyEFki1BZbpiWZMXKgH5Rn
+         ezhXTKE1DesgDiXhA5dSC83H91HxHA6quA8E/JclciNLDNZ3VCoCub/NKw9NQTGfUVIF
+         lIe5KWZC4ccoBBiZansLoP01AaCHsBsruV+hmyc9Yc1Wso5XV40GWhywUHsnJ5EFzgvI
+         7z92i0kY3Yo7Ij4/f+sHnDGVdajC8CRYNK2j+lmcV/LComgsJS76Ozr/jr+PLeHr6Mf8
+         +4vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698151721; x=1698756521;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=n7IhxXRlskYcJ5lLaoUuwURziaHmVBMP8WH2znEzqGs=;
-        b=Y1G1q7jMc74LjCLEaUd89MOJzvtgH/hCuk0gBlKSPZiBH/9khLZA19KdaebICO72dK
-         36+CA5S54aH2hJtaraXaG8bpOWtldTTVaucUqMqKa6cUlB6LCc4C6xmvSY819timovrU
-         8aYxXVAYaV9V2UxEd7xDUNq34qYfD2JyT0KCCfbJYUfIEifjesj9KSmlxtso954hZ2Nj
-         8MQOZSULS4QCkrktF/EYgSZtduEjx3g2vBDAEqEPi6ssONhK82FHbipHn+Xwn/eJhiE3
-         dxNwyxhchXkwf8YuAFHjJ0eiYHVWX5zJebiklKUkYJkfTcSuggvuCBdeBqMYzSz/d7JW
-         brpg==
-X-Gm-Message-State: AOJu0Yy22eGZP7B8TcvYu3ogQc4fsS1I1PbCeAWCPaaIBWxcYvA0hyvB
-	DOK17dUqUJpfldawpntU+Cejd1poUg==
-X-Google-Smtp-Source: AGHT+IERP02p8mG8jQwC1rb7eQXcVDY+PYIHSHNQTUPah9qW3w7GkcKnL2Mp8Z4hl+R+YXDXxBtwQg==
-X-Received: by 2002:a05:6808:18a9:b0:3af:5fea:2f7b with SMTP id bi41-20020a05680818a900b003af5fea2f7bmr15719454oib.47.1698151720916;
-        Tue, 24 Oct 2023 05:48:40 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bj6-20020a056808198600b003adcaf28f61sm1924931oib.41.2023.10.24.05.48.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 05:48:40 -0700 (PDT)
-Received: (nullmailer pid 3451039 invoked by uid 1000);
-	Tue, 24 Oct 2023 12:48:34 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1698151808; x=1698756608;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=drfWjB6Z+XkamCb0RZVbD4fvzQ6BkCWkgYR2SPLQjDQ=;
+        b=mqYMUOxswC+UtCiUrpQ0mPP7BEeH33tjpZtNGN9ZSDFhDzLcRBLYyuCzXoFNktDBRX
+         FJee7wlnVLvQTy+hfrOZ0CCL4TzhtWN6iro6XjSkTpdJUnuwPqNkirJqztjLx9XwxRq5
+         doMABuCwQLrtWtyX0MI0qyokLBK1UypGzgtdzD550QgwmAFRFib32DqjPelrk03ROfTH
+         SQnpq4MZA0JLJB6Y8o+YVlHJetyACSvCIILC9M5OO/xmFEZGgx9QJ47Tj/yqydkGXW5R
+         DagN/ru8+Jarv/EbEKxCdRB1NCfd/sWLzSGWzwKxwtQ7Hwt837QdjzjmVWMPojx8y2Zo
+         /kzA==
+X-Gm-Message-State: AOJu0YwFOElh7S3tM33k+m47MTklz64M+orzKyrnU0Jtt+j/Q8ean2it
+	RhXl/Tasp3oHdZVjBmWJpcgrtH9V/+oTbZ2SLaB16g==
+X-Google-Smtp-Source: AGHT+IFjIONF78/WztY+ctTp3jQcYaP/sv8H3kp8H8VN9BTRgIwpHhVc5auQGkToBIGdlLssWU70AqKJYsuKK+wEpe4=
+X-Received: by 2002:a0d:dac1:0:b0:598:7836:aac1 with SMTP id
+ c184-20020a0ddac1000000b005987836aac1mr10268798ywe.49.1698151807846; Tue, 24
+ Oct 2023 05:50:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Vladimir Oltean <olteanv@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh+dt@kernel.org>, Eric Dumazet <edumazet@google.com>, Gregory Clement <gregory.clement@bootlin.com>
-In-Reply-To: <20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org>
-References: <20231024-marvell-88e6152-wan-led-v6-0-993ab0949344@linaro.org>
- <20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org>
-Message-Id: <169815156038.3447619.17571704457000261488.robh@kernel.org>
-Subject: Re: [PATCH net-next v6 1/7] dt-bindings: net: dsa: Require ports
- or ethernet-ports
-Date: Tue, 24 Oct 2023 07:48:34 -0500
+References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
+ <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
+ <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
+ <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com> <ZTeyhR7YY7VgWQlU@kernkonzept.com>
+In-Reply-To: <ZTeyhR7YY7VgWQlU@kernkonzept.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 24 Oct 2023 14:49:32 +0200
+Message-ID: <CAPDyKFrcV8iJnJ904j1jkx0E8PaOLmiTZ7CKk7EV8qQ71AZdbA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain devices
+To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Ilia Lin <ilia.lin@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Stephan Gerhold <stephan@gerhold.net>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 24 Oct 2023 at 14:03, Stephan Gerhold
+<stephan.gerhold@kernkonzept.com> wrote:
+>
+> On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
+> > On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > >
+> > > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
+> > > <stephan.gerhold@kernkonzept.com> wrote:
+> > > >
+> > > > The genpd core caches performance state votes from devices that are
+> > > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
+> > > > runtime PM performance state handling"). They get applied once the
+> > > > device becomes active again.
+> > > >
+> > > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
+> > > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
+> > > > devices that use runtime PM only to control the enable and performance
+> > > > state for the attached power domain.
+> > > >
+> > > > However, at the moment nothing ever resumes the virtual devices created
+> > > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
+> > > > means that performance state votes made during cpufreq scaling get
+> > > > always cached and never applied to the hardware.
+> > > >
+> > > > Fix this by enabling the devices after attaching them and use
+> > > > dev_pm_syscore_device() to ensure the power domains also stay on when
+> > > > going to suspend. Since it supplies the CPU we can never turn it off
+> > > > from Linux. There are other mechanisms to turn it off when needed,
+> > > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
+> > >
+> > > I believe we discussed using dev_pm_syscore_device() for the previous
+> > > version. It's not intended to be used for things like the above.
+> > >
+> > > Moreover, I was under the impression that it wasn't really needed. In
+> > > fact, I would think that this actually breaks things for system
+> > > suspend/resume, as in this case the cpr driver's genpd
+> > > ->power_on|off() callbacks are no longer getting called due this,
+> > > which means that the cpr state machine isn't going to be restored
+> > > properly. Or did I get this wrong?
+> >
+> > BTW, if you really need something like the above, the proper way to do
+> > it would instead be to call device_set_awake_path() for the device.
+> >
+>
+> Unfortunately this does not work correctly. When I use
+> device_set_awake_path() it does set dev->power.wakeup_path = true.
+> However, this flag is cleared again in device_prepare() when entering
+> suspend. To me it looks a bit like wakeup_path is not supposed to be set
+> directly by drivers? Before and after your commit 8512220c5782 ("PM /
+> core: Assign the wakeup_path status flag in __device_prepare()") it
+> seems to be internally bound to device_may_wakeup().
+>
+> It works if I make device_may_wakeup() return true, with
+>
+>         device_set_wakeup_capable(dev, true);
+>         device_wakeup_enable(dev);
+>
+> but that also allows *disabling* the wakeup from sysfs which doesn't
+> really make sense for the CPU.
+>
+> Any ideas?
 
-On Tue, 24 Oct 2023 11:24:53 +0200, Linus Walleij wrote:
-> Bindings using dsa.yaml#/$defs/ethernet-ports specify that
-> a DSA switch node need to have a ports or ethernet-ports
-> subnode, and that is actually required, so add requirements
-> using oneOf.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+The device_set_awake_path() should be called from a system suspend
+callback. So you need to add that callback for the cpufreq driver.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Sorry, if that wasn't clear.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/dsa.yaml:60:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa.yaml:62:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231024-marvell-88e6152-wan-led-v6-1-993ab0949344@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Kind regards
+Uffe
 
