@@ -1,220 +1,144 @@
-Return-Path: <devicetree+bounces-11308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC267D516D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:21:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF38D7D51A3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CAD22811F5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:21:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68DC4281109
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96C22B5F8;
-	Tue, 24 Oct 2023 13:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1535829404;
+	Tue, 24 Oct 2023 13:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IFf5k+VO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eE2CDSZe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07302B5DE
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:20:44 +0000 (UTC)
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72D612C
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:20:40 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507a55302e0so6043871e87.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:20:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFEB11CB9
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:23:00 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 320293596
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:22:16 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-991c786369cso663597266b.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698153639; x=1698758439; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IpZ8b7O2cRe1OvuYy4CjSC9AKU1bWUMAZ3eqzNW29dM=;
-        b=IFf5k+VOFbXindKp11L+8xfJZdZX8KIsLMPpYcuaPCeI3dS6gwGel/I8D4zfhUW+RT
-         FtaSr05apHp1DC7bv2xr5THYhPQlLEbXLhXW+/jRJTdVpFWC4X3SfaNUQmg3VOu5NO9L
-         e/uwwiw0vR2dw09qK2iEKLu4Sj7AV+JeStNcQNLslZljVMERi1haXCvmuWiosf4GeFkH
-         DBaIyZeLeiK/kVopGzxFKX7b/ITfJPHRYyq+8RmVi1T6BDszdpK0ThsY/UUnr6m6qZNT
-         XZOaqMMWzi5K2rmynEOVKvMTauceqqBWCEd8VOfP52EEwunntCfyemziFWkIexR0EKEl
-         eLaw==
+        d=linaro.org; s=google; t=1698153733; x=1698758533; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h+l8luI5NHY4c+fzH6QLo6wJqojZbE1nL34Ixm7aS9s=;
+        b=eE2CDSZen3pJYkZUaSSSq1hCcvDmgiG848DRXtvn9kyfJRh836w9TQLejFR8sjPkuc
+         sMoupESO75rLTqdjl+KYpWHXHXQ6gqnIa3Bh++nUiagSbVb+WcyAezyHcB34dpz1r7OY
+         LPHM82LHA+U8hw791FYsnBB6aBl4JL6hzaadsirxqZLrDgC9cM1ogq2OEL23AGz8MJou
+         9676hZSWiI0f8K+L2ViZCZusyLAUfi6cfVYI643+Jpa7Wvfv7Y97pU8xzAMgtE1KxMQk
+         DZ1u3A8DILFD59yti/3utv1EEVWm0FLri/opPz1Uviz+U3yyxJ/43MIpYUQRkiqoDdOR
+         KTNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698153639; x=1698758439;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IpZ8b7O2cRe1OvuYy4CjSC9AKU1bWUMAZ3eqzNW29dM=;
-        b=R8vjhAyxPEgUaRHBO8+sdVMS9AV/zqjSR9pKGxegTGze7KQNXi40KFJxCYg4emgPdF
-         kiaSafax67Y9BZE2uL/HKM3fz8vfPhxfqU3GxQtW0ulsouClMzMpsv/TBnzSsSR5+il1
-         YNhlE2Pu0qTTvH5bWR72mriD7/5Bn8CT/9iPbxO8RDSqQAdl404B0ZEgBfWgtVZrPU58
-         G84jmJFynlc1fIaAETwjmgE/NelYIPK/ml33wQJC92+2Nh6Y7HYDquLG9gwogcvdtWB1
-         Bj+tzo/M3MXSExluedbmu2Dvjfl90Ez82xdq7UzmLyzLOkGg4p06FqtnXpJ1QC52P8rg
-         +Z7w==
-X-Gm-Message-State: AOJu0Yz2xqqDuCfOfYv7hwYtx8gku/cuQeygIaiaPN9juPgMLIMz8cvY
-	HF+w3KczzpZrjUbdXLiS7HHT7Q==
-X-Google-Smtp-Source: AGHT+IE42ZwxuiLGgEP6CY50vZPuTWFatHkn0sPZUAo9tit11mSOsxO/4Gi/5hxrfG8TnIW9Qz6dpw==
-X-Received: by 2002:ac2:4183:0:b0:507:9f51:acee with SMTP id z3-20020ac24183000000b005079f51aceemr7796503lfh.22.1698153638918;
-        Tue, 24 Oct 2023 06:20:38 -0700 (PDT)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id d5-20020a193845000000b00507ab956ab9sm2147365lfj.147.2023.10.24.06.20.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 06:20:38 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 24 Oct 2023 15:20:33 +0200
-Subject: [PATCH net-next v7 7/7] dt-bindings: marvell: Add Marvell
- MV88E6060 DSA schema
+        d=1e100.net; s=20230601; t=1698153733; x=1698758533;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h+l8luI5NHY4c+fzH6QLo6wJqojZbE1nL34Ixm7aS9s=;
+        b=d7KyOuwz1Q65cjjz+Biy8p68xP2NF6VQ5nlkqd0vbd3/O8/X5FpfIK/QrFLNQ5UlCa
+         7eh3FSe7qSfy2bczgWmMpx+SQoZQOKvpWkxm+2Uz+fYpydChzgCzaI9ZmHnkpSub3QBy
+         g68dkk+hxc0uJLO2fozjUazxkMTD2XJ5G+YI5Umje+n81Cva9RLnqonxQ1i1HrJBij+U
+         F9T64yoJRtUdJ338Mwae1JElH3EWTUDuprMLBUdnq6B2T+lJHbW6/pJ84D1jwt5tM9mt
+         41OU9GorcvURb7G9Ac207qZ21/P7uNTGXKcSQHsptYTsey7PujDJcrr+L9IxZLoItkUg
+         d81Q==
+X-Gm-Message-State: AOJu0YwY3/M/90C8ldhacKjoXV2fmU8ggyZ3TqpdCzBoyMaT8iMi+JtJ
+	G4NqooXBjLkMfFJH0sfHsYjckA==
+X-Google-Smtp-Source: AGHT+IHlVfngVoz59SJI1dPd8TOZf+tdvamGv47VbjkyU6UjhRSeRsdHkxz8vfVTS0ZeJX75dRpJ+w==
+X-Received: by 2002:a17:907:988:b0:9c4:eefa:b6aa with SMTP id bf8-20020a170907098800b009c4eefab6aamr8153445ejc.42.1698153733152;
+        Tue, 24 Oct 2023 06:22:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id hb13-20020a170906b88d00b009c46445fcc7sm8350880ejb.33.2023.10.24.06.22.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Oct 2023 06:22:12 -0700 (PDT)
+Message-ID: <063436ab-5946-479f-81dc-c8e835962abb@linaro.org>
+Date: Tue, 24 Oct 2023 15:22:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] ARM: dts: samsung: exynos4412-midas: fix key-ok
+ event code
+Content-Language: en-US
+To: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: alim.akhtar@samsung.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ robh+dt@kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20231017101402.62740-1-raymondhackley@protonmail.com>
+ <20231017101636.62755-1-raymondhackley@protonmail.com>
+ <bc5bbf47-7bcb-4fc6-a88b-b92d74803a7a@linaro.org>
+ <20231024123415.2009-1-raymondhackley@protonmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231024123415.2009-1-raymondhackley@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231024-marvell-88e6152-wan-led-v7-7-2869347697d1@linaro.org>
-References: <20231024-marvell-88e6152-wan-led-v7-0-2869347697d1@linaro.org>
-In-Reply-To: <20231024-marvell-88e6152-wan-led-v7-0-2869347697d1@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, Rob Herring <robh@kernel.org>
-X-Mailer: b4 0.12.4
 
-The Marvell MV88E6060 is one of the oldest DSA switches from
-Marvell, and it has DT bindings used in the wild. Let's define
-them properly.
+On 24/10/2023 14:37, Raymond Hackley wrote:
+> Hi Krzysztof,
+> 
+> This key-ok is the hardware middle button on midas, and there is also
+> touchkey, which already provides <KEY_BACK KEY_MENU>, so I assume the other
+> KEY_MENU in key-ok is duplicated. Fixing it with KEY_OK as the node name
+> implies would make more sense.
 
-It is different enough from the rest of the MV88E6xxx switches
-that it deserves its own binding.
+Ah, ok, that makes sense.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/dsa/marvell,mv88e6060.yaml        | 88 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 89 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-new file mode 100644
-index 000000000000..4f1adf00431a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/marvell,mv88e6060.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell MV88E6060 DSA switch
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+description:
-+  The Marvell MV88E6060 switch has been produced and sold by Marvell
-+  since at least 2008. The switch has one pin ADDR4 that controls the
-+  MDIO address of the switch to be 0x10 or 0x00, and on the MDIO bus
-+  connected to the switch, the PHYs inside the switch appear as
-+  independent devices on address 0x00-0x04 or 0x10-0x14, so in difference
-+  from many other DSA switches this switch does not have an internal
-+  MDIO bus for the PHY devices.
-+
-+properties:
-+  compatible:
-+    const: marvell,mv88e6060
-+    description:
-+      The MV88E6060 is the oldest Marvell DSA switch product, and
-+      as such a bit limited in features compared to later hardware.
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      GPIO to be used to reset the whole device
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: dsa.yaml#/$defs/ethernet-ports
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-switch@16 {
-+            compatible = "marvell,mv88e6060";
-+            reg = <16>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                ethernet-port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                };
-+                ethernet-port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                };
-+                ethernet-port@2 {
-+                    reg = <2>;
-+                    label = "lan3";
-+                };
-+                ethernet-port@3 {
-+                    reg = <3>;
-+                    label = "lan4";
-+                };
-+                ethernet-port@5 {
-+                    reg = <5>;
-+                    phy-mode = "rev-mii";
-+                    ethernet = <&ethc>;
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1b4475254d27..4c933a2a56ad 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12625,6 +12625,7 @@ MARVELL 88E6XXX ETHERNET SWITCH FABRIC DRIVER
- M:	Andrew Lunn <andrew@lunn.ch>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6060.yaml
- F:	Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
- F:	Documentation/networking/devlink/mv88e6xxx.rst
- F:	drivers/net/dsa/mv88e6xxx/
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
