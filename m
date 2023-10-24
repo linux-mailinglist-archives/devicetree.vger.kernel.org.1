@@ -1,209 +1,112 @@
-Return-Path: <devicetree+bounces-11438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7327D5C97
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8152C7D5CA2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:54:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE24D2819AB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:47:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C550281A28
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D711024A09;
-	Tue, 24 Oct 2023 20:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315D139956;
+	Tue, 24 Oct 2023 20:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="F+VkOaZX"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="X94BXjcT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FEC1173A
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 20:47:23 +0000 (UTC)
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2081.outbound.protection.outlook.com [40.92.46.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1544010CE;
-	Tue, 24 Oct 2023 13:47:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GGujnBWBtAl9td4ghMdigk2SixFQKmeMukPcw14ANkpgPoqFECsl9hJ9pi6IVh5eevaVPFRMAjSAexA6zKmDeTFEAOBOq3tQTA7L5cQG6Y3eWTrg6bdALCoF0mHdmlxhrU7NW/GWCKSuZMKEg94Es0sp5p9S2C0hJ9hT+wW4mVolAzJeHHuYB9VMoa9KOOTbpmLRnii0wiHCzI4DMTwoNfPFtxMFGWTxNmU2w6FyG5iSbNMSjNwR3bSwXonTaqrtw4SD/IIZIbLAKhCxHZUIwPvOdmo3aeqMa5GUlRjTS9jEUHAItDgnuE5ruS/cAI6AcR1uxjtIqAB5O9bFScF0jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g/CC8eZ10WUhdA2EXZhDI0IFzxIgJDZx2RVdgLZdIRw=;
- b=h1oyy09kxoayZ5PidPIA8qb2b/i1m9EgVSiR11RCoVPQVAB/ITPjZ39Asi029iweyKVAOqBp3ZXC6b6IP5crQfSwOiP15d13o2/PbI/NnCmxb/VBZMRfWxZFo9GXV3u4PgJT8hmg9a2Yt2g8WvPC3k32JSWtAj2w0rNYaEceg1aC0wY3GtqI5AGBZXPDxUibWZ8Foi20RsjnUVUotZ/qrCjlCBsqJRe9IULPdVwe8iRoNBsvu06zArVIy/C96O2IQFwuwTFXEJotCEjb8toVkVLVmLDa+j2Ych0RqnVhoZN+uS2Vp8R2M+YyYFgCdfn7KbfKore1iQTpSyYWqteqfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g/CC8eZ10WUhdA2EXZhDI0IFzxIgJDZx2RVdgLZdIRw=;
- b=F+VkOaZXSm+iaKV2UeahrPQjoHTBuXVSaKDEeZqqgqs3YRQ6Zj4Kafy0SCOQf0cIJswV9BKcjqmGka2Tyuf2CVRmkr2xpF28Q7MtWjD9ixuF9zTcQiZwDaMaYcVSwj3J2lrVMWT1dVHzHtlwsuTTCzCt9+OYRjsjJNf85Z6Pdlf1mFgR1QfbZi3EaPobO7f60hheAviTPNjn/wMu4BRDMXwnX5TrBu3HQAtAjEywbZ/40tipRiqn9ASfvWsjO/cUT+aedEL4CCI4Wg7g9kGHOdGxBz5Us1EA9HqXRosY3zDrfTFbZjBwAQjYBMJQfLVGUmXssoZfICQH6AhtntAlcQ==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA0PR06MB6761.namprd06.prod.outlook.com (2603:10b6:806:c0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Tue, 24 Oct
- 2023 20:47:16 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6863.032; Tue, 24 Oct 2023
- 20:47:15 +0000
-Date: Tue, 24 Oct 2023 15:47:11 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com, sboyd@kernel.org,
-	mturquette@baylibre.com, daniel@ffwll.ch, airlied@gmail.com,
-	sam@ravnborg.org, neil.armstrong@linaro.org, heiko@sntech.de,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: Update NewVision
- NV3051D compatibles
-Message-ID:
- <SN6PR06MB5342DB69A98959C9D5D275E9A5DFA@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <20231018161848.346947-2-macroalpha82@gmail.com>
- <e684983a-9399-4fd7-8fe5-41faeabbfab1@linaro.org>
- <SN6PR06MB534271680DB8A3A3F0A1A31CA5D4A@SN6PR06MB5342.namprd06.prod.outlook.com>
- <20231024182755.GA215478-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024182755.GA215478-robh@kernel.org>
-X-TMN: [OFs7ACKd2LOOUegdBZd37n2gO+77QOKH]
-X-ClientProxiedBy: SA1P222CA0162.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:3c3::13) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZTgtT5NLlQmqA2eP@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C971BDE8
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 20:54:09 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AE710D4
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:54:07 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id EC38D2C0405;
+	Wed, 25 Oct 2023 09:54:05 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1698180845;
+	bh=fLHqJdJd48UyHWtd0EGaU7vVHXl/x/Z3zkyLMQrEvpc=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=X94BXjcT3SRvVZs6KmmyrTjJ+57ri2e8sCXX9Ky0nQE3Vk9YW7/BWjiDAFkwzmx49
+	 EL2ImCEY/0h1yFbtcfR4khUxH6J8kzRoTuMWuzXrNt1cdUuyX0DXzItaIo3duX2Fc2
+	 rDOQqA/ahw+BbweV0RTxYktDf163kFSwy0Ga8teZ+gCzxvHPCtn2tgKFwmf7I0V4SB
+	 IeO52Zuy7dGxxIsF3+z/4Vsy4ysGyyDVMFsK3lIokq16CTzXzw/h36mv5VMLiRQiRC
+	 cwy1O7iFqWBU7NlOPCYM0PfvwAA9Z+N1NrlF6KsmyByvZl8gu/VY+7Sn2Hln2cQVV9
+	 ci30cRrmaScOQ==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65382eed0002>; Wed, 25 Oct 2023 09:54:05 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Wed, 25 Oct 2023 09:54:05 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.039; Wed, 25 Oct 2023 09:54:05 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Andi Shyti <andi.shyti@kernel.org>
+CC: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] i2c: mv64xxx: add an optional reset-gpios property
+Thread-Topic: [PATCH v3 2/2] i2c: mv64xxx: add an optional reset-gpios
+ property
+Thread-Index: AQHaAgcy5mKiozoBFUuv9b6R9rUkyLBYf5+AgAAPnoCAAAaKgIAABK+A
+Date: Tue, 24 Oct 2023 20:54:05 +0000
+Message-ID: <61593e5f-5d54-4e33-8926-ef68e7fba49e@alliedtelesis.co.nz>
+References: <20231018210805.1569987-1-chris.packham@alliedtelesis.co.nz>
+ <20231018210805.1569987-3-chris.packham@alliedtelesis.co.nz>
+ <20231024191801.kofb6cbczswp7xxn@zenone.zhora.eu>
+ <4b548124-d1d5-4746-a5bd-03757013282d@alliedtelesis.co.nz>
+ <20231024203719.bbk7g4q7e4mzar36@zenone.zhora.eu>
+In-Reply-To: <20231024203719.bbk7g4q7e4mzar36@zenone.zhora.eu>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [10.33.22.30]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E22D3B47BCDFFF4782BFCC81DA2D87CE@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA0PR06MB6761:EE_
-X-MS-Office365-Filtering-Correlation-Id: b20d3043-bbd8-471e-8db5-08dbd4d26786
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	P23mG/nfm3vBMXmdjuAhx6w2gQB4/DWO2TGGrHh3hYb/qsZac99mkMtiZPsdGwvBC/Dvk9iLEnpv2dt33wAOMdm0ZfyVZPQCzTW5TsT0JB2ArlY00+7Les4cC/Q+hGRreMYskxAh85U1JylB/PKzvD+AsCpaqBuENwfM2Pooh6fVZUSe/awrK86yU6u7qROrCgzXyv+XffzfWIkaWqsBH46ub6lkv6NfoPuLL4LTe+tFBga/hScMek8U41W3VDnVoiwCk/7J07Zlw6fR+UUnnxVitjT3totc9NnzZZt3oEHAZhkeXYG9Vc6bnAgSXIE/+2GG+DHqu/0GIMi5Zo3PwaLXsGEiiEGhIf5SvH98AhsBtibq/FoOJy5usP0bPKUf2Y6gatwS4pGuj2LtMRrLFFo0r82+jF52XHRXeLV8KsHfHZc3QZrKsrYYANquIJIS0P7RTkGo6yaZWEAqwCgfAtYvdiaC68Fk5ZKZbuJyVZGng8dMRN6yiCokZfPoTxKNHXi9GouAe6GH4c3PVkhnZxAJA4mi2vri3erbfHxdcqQHbiqOAT4tDQmvnkAUeQvT
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?pWJKjUzxXq8DND91cu/gF6BjjocBGv2s8cAZI43H5OA51OTNEDRMVujLdSiY?=
- =?us-ascii?Q?bePC8VtC3/LXM5iQ93J1F8cgxcYgyFMaLXPBnjn9cf6TgacpS4glumnVSt50?=
- =?us-ascii?Q?aX1bY6Xa8zJLHmarhxq0Al98ZqcqJiYWPskq074JIiu3ui3Ze41sOLBGS3tV?=
- =?us-ascii?Q?bcAq2/RUxVjMK9A8OS2PS4vLtK5em8KuFLHM8uxhgkU2lzkg7QfKckv1Dndb?=
- =?us-ascii?Q?7gF/i4fp8Vv8yxejPrOWiHB4kj6CwXMlduFodYc51HWmmGMd3BT+5nIF/HUd?=
- =?us-ascii?Q?q9fewT9Y58Fbx0RDw9Bjsx7Lrujd0DQMTFDWJOTIRF953ewEZKX80sJkd721?=
- =?us-ascii?Q?VTA8WFV9Lida4tWzY30haOACUV5zxSNrEc0OjdAcDg0ct2ybmpZfft2EpUjC?=
- =?us-ascii?Q?BrSxLQSqyVApM9W5fhyL7sFsCzUutnl989TTF4H423p8LxxX29VCcwDQSJMn?=
- =?us-ascii?Q?60fx8x56nvl1O/XEdIYTYqHsbDG2F1dpL7L6rFkpT9J8CscuwDhje42VWa+E?=
- =?us-ascii?Q?ZxvQb5AjXIDi3Y8GTVeumFP3WsCdLMdXArxU3ikORsDxd7XeHTVkgXq6ffp4?=
- =?us-ascii?Q?Js97kk+78pZxb4oNbbknPOVSo4QNlbHIxHi6m3/OC/7xgmVkBo06+yLl5+r/?=
- =?us-ascii?Q?QtALNyS1MLZjps4q9YlEdcnMKPPRGmas5+tvPDpT3pudujypXHbbQjcLsj2Q?=
- =?us-ascii?Q?xxGpvIK2glT93hXEcseaaR+GpMAyvD3e2Ync31vLaEOPvyiol+YCAbgKXEqQ?=
- =?us-ascii?Q?u/8trQjPco75FVJrrRVxFkdjy0088ykvgFvyT3C5IE/elDShosusVkug7c+/?=
- =?us-ascii?Q?8PX7pLBb93CD6QN+yGQho4RVK3ttuJXdPDgwA/06SMzwS1zfSxs15QYRM9+j?=
- =?us-ascii?Q?n1QZIFqLbdKYoMv8XAhI4M49wj3Iz0ff05arUJtcFmuq828x0+mYtyMJLw8o?=
- =?us-ascii?Q?u2lo3JkZGFLDuOalfdTGdKZWaXDaZ0OVuGgPSKxz5saBmayxEDMVywvA//Da?=
- =?us-ascii?Q?qHJnq7fj75WSxb745ApvgPBZquEIxv03ZBHlk1XBdJnHtH+MJOM12ciTjSw+?=
- =?us-ascii?Q?OC07LRgbPIczUW1p8YzsrsXlitBsGvnIrfjRzJN02dHdKQp2xPzxccH5S29E?=
- =?us-ascii?Q?59PcjaIa3lXZlH/PF7sbCYBgyJGoBYtePpOa9Y/naP5fjna2q+cDC7ysHTN8?=
- =?us-ascii?Q?Ty6uoPi3tvx/Uew1fSXWc6Nh83oEqhH6YLHs/XK6ux+M8H0u+A5B5ymyYZ8?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: b20d3043-bbd8-471e-8db5-08dbd4d26786
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2023 20:47:15.9294
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR06MB6761
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=j4pAPGAPlXPPLMPtUHsA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-On Tue, Oct 24, 2023 at 01:27:55PM -0500, Rob Herring wrote:
-> On Thu, Oct 19, 2023 at 09:50:38AM -0500, Chris Morgan wrote:
-> > On Thu, Oct 19, 2023 at 11:22:19AM +0200, Krzysztof Kozlowski wrote:
-> > > On 18/10/2023 18:18, Chris Morgan wrote:
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > 
-> > > > Update the NewVision NV3051D compatible strings by adding a new panel,
-> > > > the powkiddy,rk2023-panel, and removing another entry, the
-> > > > anbernic,rg353v-panel. The rg353v-panel is exactly identical to the
-> > > > rg353p-panel and is not currently in use by any existing device tree.
-> > > > The rk2023-panel is similar to the rg353p-panel but has slightly
-> > > > different timings.
-> > > 
-> > > This still does not explain me why do you want to remove old panel.
-> > 
-> > When I originally wrote the driver I only had one piece of hardware
-> > and I set the compatible string in the driver as newvision,nv3051d.
-> > Unfortunately since then I've found 2 more devices in use that are
-> > *just* different enough to require the driver to do things a bit
-> > differently. In the case of the anbernic,rg351v-panel I need to
-> > enable a new DSI flag; in the case of the powkiddy,rk2023-panel I need
-> > to decrease the vertical back porch and drop the higher frequency
-> > timings.
-> > 
-> > The best way to accomplish this was to change the strategy from having
-> > a single binding in the driver of newvision,nv3051d to a binding for
-> > each distinct hardware where the differences apply. 
-> 
-> Exactly why the DT maintainers annoyingly ask for specific compatible 
-> strings which may not be used immediately.
-
-You're not wrong. Sorry for making this difficult. I should have done
-it this way from the start.
-
-> 
-> > Note that I've
-> > looked at querying the DSI panel ID, but for each device the value
-> > is identical (so it can't be used to differentiate the hardware sadly).
-> > So the driver now has 3 different compatible strings. I could in this
-> > case add a 4th compatible string of anbernic,rg353v-panel but it would
-> > be identical to anbernic,rg353p-panel. For the moment we are using
-> > anbernic,rg353p-panel everywhere (including the rg353v), so it makes
-> > sense to drop this unused value while we can, at least to me.
-> 
-> Your reasoning is the compatible string is unused, so remove it. 
-> 
-> If there's some reasoning about how the 2 panels are the same hardware 
-> or the rg353v is never going to be used or show up at some point, then 
-> that would be a reason to remove.
-
-The compatible string of 353v-panel is unused, and the hardware is
-identical to the 353p-panel (so only one string is necessary). Sorry
-if that wasn't clear.
-
-Panel 1 - The original anbernic,rg353p-panel which is also
-anbernic,rg353v-panel.
-
-Panel 2 - anbernic,rg351v-panel. This is almost identical to Panel 1
-except it requires an additional flag.
-
-Panel 3 - powkiddy,rk2023-panel. This is almost identical to Panel 1
-except it requires a change to the VBP timing parameter and isn't
-tolerant of speeds much higher than 60hz.
-
-The issue I had is I originally wrote the driver checking for the
-newvision,nv3051d compatible string which worked fine when there was
-only 1 panel type. When I added support for the 351v-panel I *should*
-have changed how the compatible string was handled, but instead I
-simply added a check in the probe function to look for the secondary
-string of "anbernic,rg351v-panel". When the 3rd panel type of
-"powkiddy,rk2023-panel" was needed I took this time to correct the
-driver and do it the right way by checking for the specific
-compatibles.
-
-Thank you, and sorry for the headaches this caused you.
-Chris
-
-> 
-> You could also say the rg353v is just wrong because it should have a 
-> fallback compatible to rg353p and rather than fix it, just remove it 
-> for now since there are no known users of it.
-> 
-> Rob
+DQpPbiAyNS8xMC8yMyAwOTozNywgQW5kaSBTaHl0aSB3cm90ZToNCj4gSGkgQ2hyaXMsDQo+DQo+
+Pj4gYXMgeW91IGFyZSB3b3JraW5nIG9uIHRoZSB2NC4uLg0KPj4+DQo+Pj4gLi4uDQo+Pj4NCj4+
+Pj4gKwlpZiAoZHJ2X2RhdGEtPnJlc2V0X2dwaW8pIHsNCj4+Pj4gKwkJdXNsZWVwX3JhbmdlKHJl
+c2V0X2R1cmF0aW9uLCByZXNldF9kdXJhdGlvbiArIDEwKTsNCj4+PiBJJ20gbm90IGFnYWluc3Qg
+dGhpcywgYnV0IGl0J3Mgbm90IG9wdGltYWwgdW5sZXNzIHdlIGtub3cgbW9yZSBvcg0KPj4+IGxl
+c3Mgd2hhdCB0byBleHBlY3QgZnJvbSByZXNldF9kdXJhdGlvbi4NCj4+Pg0KPj4+IERvIHdlIGhh
+dmUgYSByb3VnaCBpZGVhIG9mIHdoYXQgcmVzZXRfZHVyYXRpb24gaXM/IElmIHdlIGRvbid0DQo+
+Pj4gdGhlbiB5b3UgY291bGQgY29uc2lkZXIgdXNpbmcgYSBnZW5lcmljICJmc2xlZXAocmVzZXRf
+ZHVyYXRpb24pOyINCj4+PiBXb3VsZCBpdCB3b3JrPw0KPj4gZmxzZWVwKCkgd291bGQgd29yayBm
+b3IgbWUuIEFsbCBvZiB0aGUgZGV2aWNlcyBJJ20gdGVzdGluZyB3aXRoIHNlZW0gdG8NCj4+IGJl
+IGZpbmUgd2l0aCBhIHZlcnkgc2hvcnQgcmVzZXQgcHVsc2UsIHRoZXknZCBwcm9iYWJseSBiZSBm
+aW5lIHdpdGggbm8NCj4+IGRlbGF5IGF0IGFsbC4NCj4geW91IGtub3cgdGhpcyBiZXR0ZXIgdGhh
+biBtZSA6LSkNCj4gSWYgeW91IHNheSB0aGF0IGEgZGVsYXkgaXMgbm90IG5lY2Vzc2FyeSwgdGhl
+biBJJ20gYWxzbyBmaW5lLg0KPg0KPiBJbiBhbnkgY2FzZSwgd2UgYXJlIGluIHByb2JlIGFuZCBJ
+IGRvbid0IHRoaW5rIGl0J3MgdGltZQ0KPiBjcml0aWNhbCwgc28gdGhhdCBhIGxpdHRsZSBkZWxh
+eSB3b3VsZG4ndCBodXJ0IGFuZCBtYWtlIGV2ZXJ5b25lDQo+IGhhcHB5Lg0KPg0KPiBFaXRoZXIg
+d2F5IEknbSBmaW5lIGFzIGxvbmcgYXMgeW91IHVzZSB0aGUgY29ycmVjdCBzbGVlcGluZw0KPiBm
+dW5jdGlvbi4NCg0KTXkgcGFydGljdWxhciBoYXJkd2FyZSBkb2Vzbid0IG5lZWQgaXQgYnV0IGZv
+ciB0aGlzIHRvIGJlIGdlbmVyYWxseSANCnVzYWJsZSBJIHRoaW5rIGl0IGlzIG5lY2Vzc2FyeSB0
+byBwcm92aWRlIHRoZSBjYXBhYmlsaXR5IGZvciBzb21lIGtpbmQgDQpvZiBoYXJkd2FyZSBzcGVj
+aWZpYyByZXNldC1kdXJhdGlvbi4gSSdsbCBsb29rIGF0IGZzbGVlcCgpIGZvciB2NCAob3IgDQpz
+YXkgd2h5IEkndmUgc3R1Y2sgd2l0aCB1c2xlZXBfcmFuZ2UoKSBpbiB0aGUgY2hhbmdlbG9nKS4N
+Cg0KPiBBbmRp
 
