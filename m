@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-11254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C512B7D4F74
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 996E37D4F78
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDB2DB20E62
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:07:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39B90B20E30
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95853262AE;
-	Tue, 24 Oct 2023 12:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5C626E03;
+	Tue, 24 Oct 2023 12:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Z8ToVP4Y"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="gaZ0qE5e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369605CBE
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:07:30 +0000 (UTC)
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63E5D68
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:07:28 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-5ac87af634aso2602425a12.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:07:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAF15CBE
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:08:41 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F6F111
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:08:40 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6b5af4662b7so3620405b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:08:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698149248; x=1698754048; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1698149320; x=1698754120; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fnbQ6Q2EDEmeDrsBAt+FskdauroAd8IioN5ZwkR9W1E=;
-        b=Z8ToVP4YdGc/2ZIa7dKHtDbq3o5iYB93FcJ955m/jR+4ZFG9BZ2pDVZOWevPLLIxLR
-         72Q00xewF8LcZybXSDwEK12lSPK7Z6UHFZFsCJsjtMOwuqN7MfnN7CphIVPa8P3BrHaP
-         kakWlChh7qkQVb4Ak0+Rm6zAMHBjaXcLRg7X0prRxG9dGGvcInGW+Dg6RaAB+xRWygRq
-         hgTqbaVLLI1nzUjBUNtoOgbkMV48SU3I4vkwAifvErV/HuRHG5NJOAm1kOuDMzzIVHOK
-         gUyVWBQVVr5ZN51Fy2JYNJXYmzi6GCIB+DyBVXhMJ4gqDfOXfd0bBglXOeFkVaHM1Zyi
-         5v/g==
+        bh=YMK1b0C/L5gsGLFeXRamJpztKKQzm+CIlOPG1sOdW0o=;
+        b=gaZ0qE5eA/5N9XyHas6AG+0zpwNE94cgLrm79DCrEQD9YyMLHBuhqpT64VMXQbg3ad
+         Cc8eiD+ABe2qworMHpL7pAVsjPXR5dfXuK9m5y7z9vZCDjqiXIbdq/fM2w9d0SmIhIKh
+         znv2Y5DxEFnXemz/uQq9oTCx9puATNc5RmgtOo+p2dj+lEt9JxsOrXrhc8CcxNZf0qpB
+         faHa6NZ+NrxcvlS/FtVvxJ1qzUiB9Lz2Pimpgy0MSsQeENPw1/uisiKMcW2L7IfAeL+Q
+         oCInm5k+YJkXhbTtKWpamnis0Vg7WgWCYQV/RXXYWF4nxgofn/NBensjzSBlvv3SF41c
+         Wwww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698149248; x=1698754048;
+        d=1e100.net; s=20230601; t=1698149320; x=1698754120;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fnbQ6Q2EDEmeDrsBAt+FskdauroAd8IioN5ZwkR9W1E=;
-        b=XhrGuSUJJD8UvnFJBodPKG7C3B/RXhhawulzjyT8TGJtHce9fNOs3s8bBraP/zdqYL
-         Iyej3Iu87efBCx+N45tMHaWe3F4Bhffm3LWDipVflzvfvZtsAzR4BRPf2Qf+tIw6SmIh
-         f2vK2/U9Rj1A41c2MUordWr2NY+44RH0y6DBSFJliCKiLGOXBoBZrh4PmpijIvbZBh5Z
-         6TC/2s9ubyjuI8wD6gY1x6YaTAlqAsZ+RP/jNQ7mrG6c8oaqVXl8enOXG9x77HVMoazx
-         HE7EDs26cTA4Vjaivz8dSDPPRnab91mvtyWbHy+hc/+jrBp3qYvSGP7adxDmGy6Rl++j
-         VY4g==
-X-Gm-Message-State: AOJu0YxN5QnGde68P5F8q6JbZsezY1rp8khiEV8MBL6dwvCnkHF/7dMQ
-	c3yExGQYb2ELGyLd55FYjMxHZhKpjcSTCwH+m6XCaQ==
-X-Google-Smtp-Source: AGHT+IG0RTgNFoEme/gXUtHy69ZlWk+VDdfjWqZ9EjZXIbatFOkLD9Eb6PUwQTRfBjWAxVZwmGXX+UlFPH+OLG/I4So=
-X-Received: by 2002:a05:6a20:e109:b0:163:2da1:387f with SMTP id
- kr9-20020a056a20e10900b001632da1387fmr3054954pzb.50.1698149247695; Tue, 24
- Oct 2023 05:07:27 -0700 (PDT)
+        bh=YMK1b0C/L5gsGLFeXRamJpztKKQzm+CIlOPG1sOdW0o=;
+        b=gcfp8ofk72cpsaVZJ76FsMHsz/D2br6Eo7dDoold3EhjjaeL7v9CPcXGSPd64BXXpK
+         +pCgT/4YYPzymFMEj/JgIbqvSKuraxTyaZ5VZhPVhOE0lCl9qYPXRTa/FR64jg6GDCKa
+         grzd0lGv9SJIZi6LvyU3ZUVq5E774Hpv4fXMe+aF5US+pJB3iGSStPjDfc6luoiX4/ly
+         iywLpaXAo29StXLzX/N2BllDnVoa0ZH154RI3xTBd4bOACTRmi4kAghzqurYRy3yXRN4
+         zArNwQDVYhw70ndsMXCVxUBm/1y3cvWuq2ieqC7KVWQ5AUiapXgRHda7w9GhVcGcFAVU
+         +Oaw==
+X-Gm-Message-State: AOJu0Yyc8KDQEkjdmlirj8ZYljdJh5E7is1CxZwuwO9DNFVLMAtH4yR1
+	/h4ucqGS+qoabmiz/wiWiEw9E6nDHDV4vLbOrA5j5g==
+X-Google-Smtp-Source: AGHT+IFf5XQ1QrXyWpn6fYdMoI3iDWgIsJGguKE6SezMge8SlFoUeS1mh1uQTHY/nYilct4uGjuRE5tSWIeQFzBQE0E=
+X-Received: by 2002:a05:6a00:194a:b0:690:bdda:7c35 with SMTP id
+ s10-20020a056a00194a00b00690bdda7c35mr10133732pfk.1.1698149319657; Tue, 24
+ Oct 2023 05:08:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,55 +62,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-2-apatel@ventanamicro.com> <87h6mgs09f.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <87h6mgs09f.fsf@all.your.base.are.belong.to.us>
+ <20231023172800.315343-8-apatel@ventanamicro.com> <20231024-arbitrate-glitter-2053d17d7260@spud>
+In-Reply-To: <20231024-arbitrate-glitter-2053d17d7260@spud>
 From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 24 Oct 2023 17:37:16 +0530
-Message-ID: <CAK9=C2U7nRc95-DoxesfOzBBat8wNMhTqi4NTJWgJjQYd9NZow@mail.gmail.com>
-Subject: Re: [PATCH v11 01/14] RISC-V: Don't fail in riscv_of_parent_hartid()
- for disabled HARTs
-To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+Date: Tue, 24 Oct 2023 17:38:28 +0530
+Message-ID: <CAK9=C2UxD1uKCvg26xzevtm4MAeGix-qS9PM296uCg3NqSyTaA@mail.gmail.com>
+Subject: Re: [PATCH v11 07/14] irqchip: Add RISC-V incoming MSI controller
+ early driver
+To: Conor Dooley <conor@kernel.org>
 Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
 	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
 	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
 	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
 	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Atish Patra <atishp@rivosinc.com>
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 24, 2023 at 5:25=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
-.org> wrote:
+On Tue, Oct 24, 2023 at 2:55=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> Anup Patel <apatel@ventanamicro.com> writes:
+> On Mon, Oct 23, 2023 at 10:57:53PM +0530, Anup Patel wrote:
 >
-> > The riscv_of_processor_hartid() used by riscv_of_parent_hartid() fails
-> > for HARTs disabled in the DT. This results in the following warning
-> > thrown by the RISC-V INTC driver for the E-core on SiFive boards:
-> >
-> > [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/inter=
-rupt-controller
-> >
-> > The riscv_of_parent_hartid() is only expected to read the hartid from
-> > the DT so we should directly call of_get_cpu_hwid() instead of calling
-> > riscv_of_processor_hartid().
-> >
-> > Fixes: ad635e723e17 ("riscv: cpu: Add 64bit hartid support on RV64")
+> > +#ifdef CONFIG_GENERIC_IRQ_DEBUGFS
+> > +void imsic_vector_debug_show(struct seq_file *m,
+> > +                          struct imsic_vector *vec, int ind)
+> > +{
+> > +     unsigned int mcpu =3D 0, mlocal_id =3D 0;
+> > +     struct imsic_local_priv *lpriv;
+> > +     bool move_in_progress =3D false;
+> > +     struct imsic_vector *mvec;
+> > +     bool is_enabled =3D false;
+> > +     unsigned long flags;
+> > +
+> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+> > +     if (WARN_ON(&lpriv->vectors[vec->local_id] !=3D vec))
+> > +             return;
+> > +
+> > +     raw_spin_lock_irqsave(&lpriv->ids_lock, flags);
+> > +     if (test_bit(vec->local_id, lpriv->ids_enabled_bitmap))
+> > +             is_enabled =3D true;
+> > +     mvec =3D lpriv->ids_move[vec->local_id];
+> > +     if (mvec) {
+> > +             move_in_progress =3D true;
+> > +             mcpu =3D mvec->cpu;
+> > +             mlocal_id =3D mvec->local_id;
+> > +     }
+> > +     raw_spin_unlock_irqrestore(&lpriv->ids_lock, flags);
+> > +
+> > +     seq_printf(m, "%*starget_cpu      : %5u\n", ind, "", vec->cpu);
+> > +     seq_printf(m, "%*starget_local_id : %5u\n", ind, "", vec->local_i=
+d);
+> > +     seq_printf(m, "%*sis_reserved     : %5u\n", ind, "",
+> > +                (vec->local_id <=3D IMSIC_IPI_ID) ? 1 : 0);
 >
-> Patch 1 and 3: These fixes are stand alone, and doesn't have to be part
-> of the series.
+> > +     seq_printf(m, "%*sis_enabled      : %5u\n", ind, "",
+> > +                (move_in_progress) ? 1 : 0);
 >
-> Wouldn't it be better to pull these out of the long-going series, and
-> try to get in the fixes ASAP?
+> gcc & clang report:
+> drivers/irqchip/irq-riscv-imsic-state.c:288:14: warning: variable 'is_ena=
+bled' set but not used [-Wunused-but-set-variable]
+>
+> This looks to be a copy-pasta issue, and the move_in_progress here
+> should be is_enabled?
 
-Yes, that is correct. In fact, PATCH2 can also be taken for Linux-6.7.
+Thanks for catching. Strangely,  I did not see this warning with
+the toolchain which I use.
 
-I suggest PATCH1 to PATCH3 (3 patches) be taken for Linux-6.7
-since the merge window is pretty close.
+I will fix it in the next patch revision.
 
 Regards,
 Anup
+
+>
+> > +     seq_printf(m, "%*sis_move_pending : %5u\n", ind, "",
+> > +                (move_in_progress) ? 1 : 0);
+> > +     if (move_in_progress) {
+> > +             seq_printf(m, "%*smove_cpu        : %5u\n", ind, "", mcpu=
+);
+> > +             seq_printf(m, "%*smove_local_id   : %5u\n", ind, "", mloc=
+al_id);
+> > +     }
+> > +}
 
