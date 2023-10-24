@@ -1,156 +1,103 @@
-Return-Path: <devicetree+bounces-11257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864807D4F9B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:16:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCD57D4FA2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:17:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE60E1F2227A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:16:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5102D281960
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE32E262AE;
-	Tue, 24 Oct 2023 12:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A1826E29;
+	Tue, 24 Oct 2023 12:17:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="GCdzVcMD"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="k1wMLfrI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C337914F82
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:16:34 +0000 (UTC)
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AD9A2
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:16:32 -0700 (PDT)
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 419ED420AE
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:16:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1698149788;
-	bh=thwvxYYMUVPSY3nzBc7xApM08Kssn5NAFL9o/BCJG0g=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=GCdzVcMDl3yKio9zf1Tcxxo++Xsyf51R6f64l9afkdGXMSmsknkrIw6/Zpjx/eAWr
-	 B8439IsTEVfwGmDsq/d90xFfI1+zc68fZNX5GD939TEB2w49o27YQB14ZZJL/dsC4j
-	 ldGO87BBz6/fajM4weA1XZZ2GYh39tzkLGSrJC9IpWXbHrhaunUqN6UdiWtx24gmhK
-	 s48TKR8diJpujTWT5cEJC6APhwU+vKePQN1PZsN7aVTqFQnN03jBKg4SoDWRwLDUH9
-	 Kg9cF0lw8bewqoHWibF7ZVMGAUXW6S8KptvzqWRmAAPXJEwMXIG9bD6EyILtw/6zzr
-	 0xs8eBnqPzusQ==
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-41cc72fca99so59999961cf.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:16:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676AF14F82
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:17:38 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A7A122
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:17:35 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso69586401fa.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:17:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1698149854; x=1698754654; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ywtG2aeiT8ekMrOBNJIRKZ2eAujslOOqomAOrufM1SU=;
+        b=k1wMLfrIdkE6GXBBoWRlTFzU2BJVrSzy/l6w4wEagHDHkcFTQAjwgY4m7GNH7oySB3
+         JaDYJRo121rKHEODJt4i0hXLW7D/m2c+J6D6AO0rwxFM7hqnnv9LYIvebRkK8gsrpHnF
+         Gu/Z5OwHZuwM2gShw8bP06ifZf3qZSM4d365zFZWaucx91Rp3del9gDUGBux1GmP3lyK
+         gSBdmd5alvGnHAE9YFPT7au+3WQLe7qBAtEAWzdGwz+MsdA9KWGvAVzFFeRkCTII+uvU
+         006zBgU0zy4YyxVLoYWIonEyP+IiqWpqvTQIa9+ZYLRr4KelDCeObUcr6BObA+ljT/bR
+         i9Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698149786; x=1698754586;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=thwvxYYMUVPSY3nzBc7xApM08Kssn5NAFL9o/BCJG0g=;
-        b=GOQh3y0tnH3Xc7g8ltFnI82XMEWIhoA+tD3rCIdXEx8eShkSKpMl7NxstxxH4jAIsx
-         tfrm2Sxn53h9m8DaeROqJ9w3RJjtSvlQKEt5L3IO2AtPCVlNHbG0gQii8QsG78ndXhyC
-         BVSHoJikat4c2MfA/cLXWZKYIjBWyrZW5vm1X/7y2xpNvXwFldq8bjuEITdecxknNmAA
-         QS8Am2rK3c1Hcxle69TK+NihoKaSZ2vm49HXXCoCFHUZUVSqHaik25GNpm0YJALmNNyM
-         OpchHjPrG9pkq0CYO+0+1A3SysLEeuCs0Xv40HQdnl+ZJGMyicj7yuYjQjsbJ8hj2K/1
-         pBeQ==
-X-Gm-Message-State: AOJu0Ywk/wDSGBbXM83oQHYbsjsn75Orxmw3syhOwN6sneipMG3Efar8
-	GUQcbQ/p4+2ia6bUsT/9NeYlpwm7NEHVv2mA9j7RPZ5LXB/OPkRzmL75CZfEtxr+WJ7yf2HLiuM
-	xSH8QjYTEm9IFHJznz5Gfxn+n9EnW84KpfHQv7QEF/R0QTdYzm95Dwc4=
-X-Received: by 2002:a05:622a:2d2:b0:418:152d:bf4 with SMTP id a18-20020a05622a02d200b00418152d0bf4mr13460081qtx.51.1698149786495;
-        Tue, 24 Oct 2023 05:16:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEOE0qGS2pSUMsJf2A8W5Ex0DMIs+jJV1IcL5+p/qejHg+bJIzitFRzRk24ZJkjngpmMhUlqv5mwknRsepuX1A=
-X-Received: by 2002:a05:622a:2d2:b0:418:152d:bf4 with SMTP id
- a18-20020a05622a02d200b00418152d0bf4mr13460067qtx.51.1698149786276; Tue, 24
- Oct 2023 05:16:26 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 24 Oct 2023 05:16:25 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231023-th1520-mmc-v3-6-abc5e7491166@baylibre.com>
-References: <20231023-th1520-mmc-v3-0-abc5e7491166@baylibre.com> <20231023-th1520-mmc-v3-6-abc5e7491166@baylibre.com>
+        d=1e100.net; s=20230601; t=1698149854; x=1698754654;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ywtG2aeiT8ekMrOBNJIRKZ2eAujslOOqomAOrufM1SU=;
+        b=vgcJPFD94MJKvaY1fE32hQI+wluk09saeOXBr9Fa5uTR+7z5ZefyrYrCaZ4P0G8jTV
+         mMuj0BGqsEunN05kMN0l4uXEgD4vErNK0hirtjl/ZH05btU2wundvyzaRkPmyWteIJ8A
+         R3Ityr4KrupcMZ0OARDFkPelYbTmlRqhUXGC1JcYWv/f/4KYiYOM+Ergxo0wsIh97NIj
+         z2exuGSZl/vOZ6iu5dlpabAHYVCsZWjRjtUo6+VvFJaoUfAmKkThOQZybKxdswwtAOdJ
+         Qlq7ox1czH0vi9Ps8gs9OI0LCCg3gZqX/wu3OqN+SC6nAELzx/fNmmtrPmTCa51VhF5z
+         VRyA==
+X-Gm-Message-State: AOJu0YzYFA9kTeEkYMJvcIRbgFIsLVJWGw1EtBNFE0LfZjD2EdO4qDRf
+	g8v7yL16NU8jHcpHg/6Tn50HIQ==
+X-Google-Smtp-Source: AGHT+IE6d/oSgQ9Dz+s2s/99KBYyI90JUkFW07BAyv9IhWTLc2F/oa76kzHgi2ODHuo+aGO9M6mljQ==
+X-Received: by 2002:a05:651c:1699:b0:2c0:cfa:a1a0 with SMTP id bd25-20020a05651c169900b002c00cfaa1a0mr8057527ljb.46.1698149854070;
+        Tue, 24 Oct 2023 05:17:34 -0700 (PDT)
+Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
+        by smtp.gmail.com with ESMTPSA id o12-20020a05600c4fcc00b0040775501256sm11871874wmq.16.2023.10.24.05.17.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 05:17:33 -0700 (PDT)
+Date: Tue, 24 Oct 2023 14:17:32 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Atish Patra <atishp@atishpatra.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 05/14] irqchip/riscv-intc: Add support for RISC-V AIA
+Message-ID: <20231024-4aa004731cc3edf5f6e51031@orel>
+References: <20231023172800.315343-1-apatel@ventanamicro.com>
+ <20231023172800.315343-6-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Tue, 24 Oct 2023 05:16:25 -0700
-Message-ID: <CAJM55Z-OBUsnybSLTxB8RHwsYuWhsMKVH3x8ana4=LeZ98Yv1Q@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
-To: Drew Fustini <dfustini@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, Han Gao <gaohan@iscas.ac.cn>, 
-	linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Robert Nelson <robertcnelson@beagleboard.org>, Jason Kridner <jkridner@beagleboard.org>, 
-	Xi Ruoyao <xry111@xry111.site>, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231023172800.315343-6-apatel@ventanamicro.com>
 
-Drew Fustini wrote:
-> Add mmc0 properties for the eMMC device and add mmc1 properties for
-> the microSD slot. Set the frequency for the sdhci clock.
->
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+On Mon, Oct 23, 2023 at 10:57:51PM +0530, Anup Patel wrote:
+> The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+> local interrupts in following ways:
+> 1. Minimum 64 local interrupts for both RV32 and RV64
+> 2. Ability to process multiple pending local interrupts in same
+>    interrupt handler
+> 3. Priority configuration for each local interrupts
+> 4. Special CSRs to configure/access the per-HART MSI controller
+> 
+> We add support for #1 and #2 described above in the RISC-V intc driver.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+>  drivers/irqchip/irq-riscv-intc.c | 34 ++++++++++++++++++++++++++------
+>  1 file changed, 28 insertions(+), 6 deletions(-)
 >
-> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> index 70e8042c8304..c4e748827889 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> @@ -52,6 +52,10 @@ &uart_sclk {
->  	clock-frequency = <100000000>;
->  };
->
-> +&sdhci_clk {
-> +	clock-frequency = <198000000>;
-> +};
-> +
->  &dmac0 {
->  	status = "okay";
->  };
-> @@ -59,3 +63,19 @@ &dmac0 {
->  &uart0 {
->  	status = "okay";
->  };
-> +
-> +&mmc0 {
-> +	bus-width = <8>;
-> +	max-frequency = <198000000>;
-> +	mmc-hs400-1_8v;
-> +	non-removable;
-> +	no-sdio;
-> +	no-sd;
-> +	status = "okay";
-> +};
-> +
-> +&mmc1 {
-> +	max-frequency = <198000000>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
 
-Hi Drew,
-
-For the StarFive device tree files we've agreed on sorting by / node, clock
-references, and then other node references alphabetically. I'm not
-insisting you should do the same, but it would be nice with some system to make
-it clear where new node refences should go. Or maybe I'm just not seeing the
-system you're already following.
-
-/Emil
-
->
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
