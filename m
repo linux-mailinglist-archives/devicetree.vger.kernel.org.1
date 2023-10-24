@@ -1,416 +1,151 @@
-Return-Path: <devicetree+bounces-11340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCB97D549F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:03:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DAA7D54B8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7B4C1F22827
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:03:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 323E6B20E53
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113842510D;
-	Tue, 24 Oct 2023 15:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4CA2B776;
+	Tue, 24 Oct 2023 15:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KMUkGJTr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CgZv75zm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7F413FED
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:03:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9C9111;
-	Tue, 24 Oct 2023 08:03:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698159798; x=1729695798;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=r47g194hEkB5Z9PKa+y8DVJGAzdshQtZiIXJLW56A0E=;
-  b=KMUkGJTrWEJy4S5SRml2QtKxO6DyKAac1HQxqsV2qfO+oeD1l5js9N87
-   C0XMRRQsOVu0HK6Ta2m0+sVr2RA1WOWQvc6BZGQTjCgLqp4RUhsY3VSK2
-   LcdNCHLNGXWTsiupw1P5GZqMQgUs1xxCFuAdp4nSCLXoccyd8uyVvSJIA
-   qjSJKmDXRLEvnif+tsqROWWX0/c8kYVOdRmPo2E8JR0GPKTPhcKWcZ4sP
-   6etVQVxVnqsitHCjxTHSWWGE9A0rMEgIsiwX13Q9s5p8BW3pG4c5CflUf
-   nvYx83CYdflW9uqmEdjLrpSAZ4EeOEbA45awbc1vnyKIGy8N/G6apTD0a
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="389927615"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="389927615"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 08:02:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="1089849125"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="1089849125"
-Received: from nkraljev-mobl.ger.corp.intel.com ([10.249.41.91])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 08:02:14 -0700
-Date: Tue, 24 Oct 2023 18:02:12 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-cc: git@amd.com, michal.simek@amd.com, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, robh+dt@kernel.org, 
-    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, Jiri Slaby <jirislaby@kernel.org>, 
-    linux-arm-kernel@lists.infradead.org, radhey.shyam.pandey@amd.com, 
-    srinivas.goud@amd.com, shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-Subject: Re: [PATCH V3 2/2] tty: serial: uartps: Add rs485 support to uartps
- driver
-In-Reply-To: <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-Message-ID: <f48b4dda-f78e-ce2b-39dd-af82db4b84@linux.intel.com>
-References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com> <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B468A13FED
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:09:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 740BAC433C7;
+	Tue, 24 Oct 2023 15:08:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698160141;
+	bh=WjZOHjehQIEdnvElJew7f9x5ZqLGCeUVjwRuHOMlEjk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CgZv75zmnuoQ3ekkikQC5x9qSL7DET36FFJXesbijJrWTAliIFHfRSIjF6/JXUDQ0
+	 d+cP6SIFduzbCM5SmWKiaiRL18S85MiUGZ8OX1xnjboThQELef/voEBlHUIIa4Yc80
+	 0P++v7esCbdc9Z1jAU+oRLa52c7PCgm+7OaJJG19BLbu2WUUIDxnUugkzoKgEgtHig
+	 xbqa1LPQHGhx0lPElbc/GcNikq8DiiOhwHgeUguRliY3sJJiAYe+wSeAuj/zX1NwXL
+	 s9T/KMpbHqCf2cLHEaSW4y52qBo5mgOAtijYPOOu3uxicZgzGpkSpEPL5Unstd12Hi
+	 /HclSTJxGaD5w==
+Date: Tue, 24 Oct 2023 16:08:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Flavio Suligoi <f.suligoi@asem.it>
+Cc: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: backlight: mp3309c: remove two required
+ properties
+Message-ID: <20231024-paddling-spongy-be82eae03228@spud>
+References: <20231020135434.2598578-1-f.suligoi@asem.it>
+ <20231020135434.2598578-2-f.suligoi@asem.it>
+ <20231020-moonrise-senate-86d0edb2d404@spud>
+ <DU2PR01MB803498DFD93E82DD3947D72DF9D8A@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
+ <20231023-anybody-silver-4548023f8f26@spud>
+ <DU2PR01MB8034CF8EE4358B9446809AA2F9DFA@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8Q3LPtznJIWd+xHE"
+Content-Disposition: inline
+In-Reply-To: <DU2PR01MB8034CF8EE4358B9446809AA2F9DFA@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
 
-On Tue, 24 Oct 2023, Manikanta Guntupalli wrote:
 
-> Add rs485 support to uartps driver. Use either rts-gpios or RTS
-> to control RS485 phy as driver or a receiver.
-> 
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> ---
-> Changes for V2:
-> Modify optional gpio name to xlnx,phy-ctrl-gpios.
-> Update commit description.
-> Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
-> Changes for V3:
-> Modify optional gpio name to rts-gpios.
-> Update commit description.
-> Move cdns_uart_tx_empty function to avoid prototype statement.
-> Remove assignment of struct serial_rs485 to port->rs485 as
-> serial core performs that.
-> Switch to native RTS in non GPIO case.
-> Handle rs485 during stop tx.
-> Remove explicit calls to configure gpio direction and value,
-> as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument.
-> Update implementation to support configuration of GPIO/RTS value
-> based on user configuration of SER_RS485_RTS_ON_SEND and
-> SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx.
-> ---
->  drivers/tty/serial/xilinx_uartps.c | 180 ++++++++++++++++++++++++++---
->  1 file changed, 165 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
-> index 9c13dac1d4d1..32229cf5c508 100644
-> --- a/drivers/tty/serial/xilinx_uartps.c
-> +++ b/drivers/tty/serial/xilinx_uartps.c
-> @@ -23,6 +23,9 @@
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/iopoll.h>
-> +#include <linux/gpio.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/delay.h>
->  
->  #define CDNS_UART_TTY_NAME	"ttyPS"
->  #define CDNS_UART_NAME		"xuartps"
-> @@ -193,6 +196,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
->   * @clk_rate_change_nb:	Notifier block for clock changes
->   * @quirks:		Flags for RXBS support.
->   * @cts_override:	Modem control state override
-> + * @gpiod:		Pointer to the gpio descriptor
->   */
->  struct cdns_uart {
->  	struct uart_port	*port;
-> @@ -203,10 +207,19 @@ struct cdns_uart {
->  	struct notifier_block	clk_rate_change_nb;
->  	u32			quirks;
->  	bool cts_override;
-> +	struct gpio_desc	*gpiod;
->  };
->  struct cdns_platform_data {
->  	u32 quirks;
->  };
-> +
-> +struct serial_rs485 cdns_rs485_supported = {
-> +	.flags = SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-> +		 SER_RS485_RTS_AFTER_SEND,
-> +	.delay_rts_before_send = 1,
-> +	.delay_rts_after_send = 1,
-> +};
-> +
->  #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
->  		clk_rate_change_nb)
->  
-> @@ -305,6 +318,79 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
->  	tty_flip_buffer_push(&port->state->port);
->  }
->  
-> +/**
-> + * cdns_rs485_config_gpio_rts_high - Configure GPIO/RTS to high
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_high(struct cdns_uart *cdns_uart)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 1);
-> +	} else {
-> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val &= ~CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_config_gpio_rts_low - Configure GPIO/RTS to low
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_low(struct cdns_uart *cdns_uart)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 0);
-> +	} else {
-> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val |= CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_tx_setup - Tx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-> +
-> +/**
-> + * cdns_rs485_rx_setup - Rx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-> +
-> +/**
-> + * cdns_uart_tx_empty -  Check whether TX is empty
-> + * @port: Handle to the uart port structure
-> + *
-> + * Return: TIOCSER_TEMT on success, 0 otherwise
-> + */
-> +static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> +{
-> +	unsigned int status;
-> +
-> +	status = readl(port->membase + CDNS_UART_SR) &
-> +		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
+--8Q3LPtznJIWd+xHE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Split to two lines since you need two lines anyway.
+On Tue, Oct 24, 2023 at 07:53:38AM +0000, Flavio Suligoi wrote:
+> > On Mon, Oct 23, 2023 at 09:28:03AM +0000, Flavio Suligoi wrote:
+> > > > On Fri, Oct 20, 2023 at 03:54:33PM +0200, Flavio Suligoi wrote:
+> > > > > The two properties:
+> > > > >
+> > > > > - max-brightness
+> > > > > - default brightness
+> > > > >
+> > > > > are not really required, so they can be removed from the "require=
+d"
+> > > > > section.
+> > > >
+> > > > Why are they not required? You need to provide an explanation.
+> > >
+> > > The "max-brightness" is not more used now in the driver (I used it in
+> > > the first version of the driver).
+> >=20
+> > If it is not used any more, what happens when someone passes an old
+> > devicetree to the kernel, that contains max-brightness, but not any of =
+your
+> > new properties?
+>=20
+> This is not a problem, because the device driver has not yet been include=
+d in any kernel.
+> My patch for the device driver is still being analyzed by the maintainers.
+> Only this dt-binding yaml file is already included in the "for-backlight-=
+next" branch
+> of the "backlight" kernel repository.
+> At the moment, this driver is used only in a i.MX8MM board produced in my=
+ company,
+> under my full control. No other developer is using it now.
 
-> +	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> +}
-> +
->  /**
->   * cdns_uart_handle_tx - Handle the bytes to be Txed.
->   * @dev_id: Id of the UART port
-> @@ -571,6 +657,8 @@ static int cdns_uart_clk_notifier_cb(struct notifier_block *nb,
->  static void cdns_uart_start_tx(struct uart_port *port)
->  {
->  	unsigned int status;
-> +	unsigned long time_out;
-> +	struct cdns_uart *cdns_uart = port->private_data;
->  
->  	if (uart_tx_stopped(port))
->  		return;
-> @@ -589,8 +677,31 @@ static void cdns_uart_start_tx(struct uart_port *port)
->  
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
->  
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		cdns_rs485_tx_setup(cdns_uart);
-> +		if (cdns_uart->port->rs485.delay_rts_before_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_before_send);
-> +	}
-> +
->  	cdns_uart_handle_tx(port);
->  
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		time_out = jiffies + usecs_to_jiffies(TX_TIMEOUT);
-> +		/* Wait for tx completion */
-> +		while ((cdns_uart_tx_empty(cdns_uart->port) != TIOCSER_TEMT) &&
-> +		       time_before(jiffies, time_out))
-> +			cpu_relax();
+Right. This is exactly the sort of commentary that you need to provide
+up front, to have us spent a bunch of time going back and forth to
+figure out :(
 
-Use iopoll.h helper instead of handcrafted delay loop ?
+> > > The "default-brightness", if omitted in the DT, is managed by the
+> > > device driver, using a default value. This depends on the dimming mode
+> > used:
+> >=20
+> > For default-brightness, has here always been support in the driver for =
+the
+> > property being omitted, or is this newly added?
+>=20
+> In the first version of the driver this property was a "required property=
+",
+> but nobody has used this driver before, so this should be not a problem.
 
-> +
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		/*
-> +		 * Default Rx should be setup, because RX signaling path
-> +		 * need to enable to receive data.
-> +		 */
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
-> +
->  	/* Enable the TX Empty interrupt */
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
->  }
-> @@ -602,6 +713,14 @@ static void cdns_uart_start_tx(struct uart_port *port)
->  static void cdns_uart_stop_tx(struct uart_port *port)
->  {
->  	unsigned int regval;
-> +	struct cdns_uart *cdns_uart = port->private_data;
-> +
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
->  
->  	regval = readl(port->membase + CDNS_UART_CR);
->  	regval |= CDNS_UART_CR_TX_DIS;
-> @@ -626,21 +745,6 @@ static void cdns_uart_stop_rx(struct uart_port *port)
->  	writel(regval, port->membase + CDNS_UART_CR);
->  }
->  
-> -/**
-> - * cdns_uart_tx_empty -  Check whether TX is empty
-> - * @port: Handle to the uart port structure
-> - *
-> - * Return: TIOCSER_TEMT on success, 0 otherwise
-> - */
-> -static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> -{
-> -	unsigned int status;
-> -
-> -	status = readl(port->membase + CDNS_UART_SR) &
-> -		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-> -	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> -}
+> > What I would like is an explanation in the commit message as to why the
+> > revised example is more helpful than the existing (and
+> > must-remain-valid) one.
+>=20
+> As said before, no one may have ever used this device driver,
+> so I would leave only this new version of the example.
 
-This is just a relocation of code? Move it in another patch in the 
-series, don't put it within the feature patch..
+Okay. Please improve the commit message explaining why it is okay to
+make these changes & send a v2.
+The alternative is that Lee drops the dt-binding patch & you submit a
+revised version of the binding alongside the next iteration of the
+driver.
 
-> -
->  /**
->   * cdns_uart_break_ctl - Based on the input ctl we have to start or stop
->   *			transmitting char breaks
-> @@ -829,6 +933,9 @@ static int cdns_uart_startup(struct uart_port *port)
->  		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
->  		cpu_relax();
->  
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +
->  	/*
->  	 * Clear the RX disable bit and then set the RX enable bit to enable
->  	 * the receiver.
-> @@ -1455,6 +1562,23 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
->  /* Temporary variable for storing number of instances */
->  static int instances;
->  
-> +/**
-> + * cdns_rs485_config - Called when an application calls TIOCSRS485 ioctl.
-> + * @port: Pointer to the uart_port structure
-> + * @termios: Pointer to the ktermios structure
-> + * @rs485: Pointer to the serial_rs485 structure
-> + *
-> + * Return: 0
-> + */
-> +static int cdns_rs485_config(struct uart_port *port, struct ktermios *termios,
-> +			     struct serial_rs485 *rs485)
-> +{
-> +	if (rs485->flags & SER_RS485_ENABLED)
-> +		dev_dbg(port->dev, "Setting UART to RS485\n");
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * cdns_uart_probe - Platform driver probe
->   * @pdev: Pointer to the platform device structure
-> @@ -1463,6 +1587,7 @@ static int instances;
->   */
->  static int cdns_uart_probe(struct platform_device *pdev)
->  {
-> +	u32 val;
->  	int rc, id, irq;
->  	struct uart_port *port;
->  	struct resource *res;
-> @@ -1597,9 +1722,23 @@ static int cdns_uart_probe(struct platform_device *pdev)
->  	port->private_data = cdns_uart_data;
->  	port->read_status_mask = CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRIG |
->  			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-> +	port->rs485_config = cdns_rs485_config;
-> +	port->rs485_supported = cdns_rs485_supported;
->  	cdns_uart_data->port = port;
->  	platform_set_drvdata(pdev, port);
->  
-> +	rc = uart_get_rs485_mode(port);
-> +	if (rc)
-> +		goto err_out_clk_notifier;
-> +
-> +	cdns_uart_data->gpiod = devm_gpiod_get_optional(&pdev->dev, "rts",
-> +							GPIOD_OUT_LOW);
-> +	if (IS_ERR(cdns_uart_data->gpiod)) {
-> +		rc = PTR_ERR(cdns_uart_data->gpiod);
-> +		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
-> +		goto err_out_clk_notifier;
-> +	}
-> +
->  	pm_runtime_use_autosuspend(&pdev->dev);
->  	pm_runtime_set_autosuspend_delay(&pdev->dev, UART_AUTOSUSPEND_TIMEOUT);
->  	pm_runtime_set_active(&pdev->dev);
-> @@ -1638,6 +1777,16 @@ static int cdns_uart_probe(struct platform_device *pdev)
->  	cdns_uart_data->cts_override = of_property_read_bool(pdev->dev.of_node,
->  							     "cts-override");
->  
-> +	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (!cdns_uart_data->gpiod) {
+Cheers,
+Conor.
 
-Combine the if conditions into a single if.
+--8Q3LPtznJIWd+xHE
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +			val = readl(cdns_uart_data->port->membase
-> +				    + CDNS_UART_MODEMCR);
+-----BEGIN PGP SIGNATURE-----
 
-One line.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTfeCAAKCRB4tDGHoIJi
+0iFhAP9S/FlnjK5C6KCH6pLyfeeCD1U8XFRW7kZPbpJplU8SCAD/bkAcQQd5VU9d
+3r2f744R9Cw33bKy5n99PAJBaey2KwU=
+=8wm8
+-----END PGP SIGNATURE-----
 
-> +			val |= CDNS_UART_MODEMCR_RTS;
-> +			writel(val, cdns_uart_data->port->membase
-> +			       + CDNS_UART_MODEMCR);
-
-Ditto.
-
-> +		}
-> +	}
-> +
->  	instances++;
->  
->  	return 0;
-> @@ -1646,6 +1795,7 @@ static int cdns_uart_probe(struct platform_device *pdev)
->  	pm_runtime_disable(&pdev->dev);
->  	pm_runtime_set_suspended(&pdev->dev);
->  	pm_runtime_dont_use_autosuspend(&pdev->dev);
-> +err_out_clk_notifier:
->  #ifdef CONFIG_COMMON_CLK
->  	clk_notifier_unregister(cdns_uart_data->uartclk,
->  			&cdns_uart_data->clk_rate_change_nb);
-> 
-
--- 
- i.
-
+--8Q3LPtznJIWd+xHE--
 
