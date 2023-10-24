@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-11428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA5F7D5C06
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:00:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E9E7D5C0E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09D8BB20F82
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:59:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63CE1C20A4E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6903D988;
-	Tue, 24 Oct 2023 19:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9F03D997;
+	Tue, 24 Oct 2023 20:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A593B2B4
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:59:52 +0000 (UTC)
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A010210C9;
-	Tue, 24 Oct 2023 12:59:50 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6c7b3adbeb6so3199443a34.0;
-        Tue, 24 Oct 2023 12:59:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0B92420F;
+	Tue, 24 Oct 2023 20:02:18 +0000 (UTC)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D65510D0;
+	Tue, 24 Oct 2023 13:02:17 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b3f55e1bbbso2857032b6e.2;
+        Tue, 24 Oct 2023 13:02:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698177590; x=1698782390;
+        d=1e100.net; s=20230601; t=1698177736; x=1698782536;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=X34cwpBpiuP3aqf5QjDCKfEoi+InD6TZZpa1Cm188qc=;
-        b=Pv2pZVK+Je40RwnG8Ae1km7ocgLJvXvhzpRBZcwBbMvD+/78oK+wUydfKathlhsROV
-         8+PN2h7cQ6tHT5xwoSqe/4iHflrkYy4VX+w0rG1oPGpTku9LKlh95rjtM2chomxsLRfB
-         S7chYLHLx0Rt5nkN7yHLSYJkdqM2K8IBxCAwXaHCGnx/2rTRdXs7GEwAQMee9iTov0LO
-         vkTfYv+Yo+p0IVtnsHY5KdnoI0WUTKYmvbHlVpyFfMBChpWP3jNfbkn5dUSzKLGQIFZ/
-         ewWjQYl39ifGznDDBxfyfT6JuLq8JnPe5F7I+wlq0kLtHoJMyJi/ejI4MLkUDKTAgVw4
-         yKXQ==
-X-Gm-Message-State: AOJu0YyoORVT2IKYK9eAjxvimho2w/ctT6xiu4YZd7ftsk71MHMa2aoB
-	utUdfOgxELX1zcgabHgUsQ==
-X-Google-Smtp-Source: AGHT+IHIr4W8mfEnqO6DkV45UgvYeE2TGYjTXkCq8izEC3MLiXPtFc1Gm393ANejfie00c/rIq/f4w==
-X-Received: by 2002:a9d:6286:0:b0:6bd:152f:9918 with SMTP id x6-20020a9d6286000000b006bd152f9918mr14956463otk.14.1698177589921;
-        Tue, 24 Oct 2023 12:59:49 -0700 (PDT)
+        bh=b7LBP+4sNuVtjoSJxOmRVrbomzzhTqa06ogPkpyg6vM=;
+        b=oEIErysNNDDqu0YlPHs0gd8BClXWZOXLTkInam2pFTMvUwZ/E8Sqww5GkvwQefZlmL
+         qSTzdOqD9pKaladpKeIE3Vq2qf92iE7H2IcdKe3ESxiajXej+mCbyIOHr+w67nPDLZFz
+         God20EB0JDHz8TMHQXFqfRGC/rhte7biTsdDDMjL3SsL2H0uj/YXgxQXOYVHQ0GnpZjE
+         FjxLOJo97M/AEZl8+ybdqFO15QHKyumwBOyx4VAAuANINAtesyfi99kX+UJQ30pqoCGz
+         jIYzUnzFBjnkOQ1iyCthG3NAz7QavUFqCm88p1PN0/0LP8EE38xKFOd3xVUBw1YW6msq
+         JJIQ==
+X-Gm-Message-State: AOJu0YyOWhiPYa88CHFgaiWG8mltzVP2md/7Ah0A1RgAKXBxYziXkE3U
+	ZKZ7kAd+ZlPAoqjTcE7LjmZPHwgOQA==
+X-Google-Smtp-Source: AGHT+IH4hYt3JNOvk2IbMB7aYMfLDffQfXMNQ/OGQJ8ue/Mw0Ee4HGPBn95Yvl/2SYp5Y2S4brH6OA==
+X-Received: by 2002:a05:6808:2005:b0:3ae:b06:2131 with SMTP id q5-20020a056808200500b003ae0b062131mr16665647oiw.0.1698177736277;
+        Tue, 24 Oct 2023 13:02:16 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q13-20020a9d57cd000000b006ce2f4861c5sm1961116oti.62.2023.10.24.12.59.48
+        by smtp.gmail.com with ESMTPSA id b2-20020a056808010200b003b2e4754cc2sm2052808oie.26.2023.10.24.13.02.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 12:59:49 -0700 (PDT)
-Received: (nullmailer pid 465614 invoked by uid 1000);
-	Tue, 24 Oct 2023 19:59:48 -0000
-Date: Tue, 24 Oct 2023 14:59:48 -0500
+        Tue, 24 Oct 2023 13:02:15 -0700 (PDT)
+Received: (nullmailer pid 471601 invoked by uid 1000);
+	Tue, 24 Oct 2023 20:02:12 -0000
+Date: Tue, 24 Oct 2023 15:02:12 -0500
 From: Rob Herring <robh@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: brcm,kona-ccu: convert to YAML
-Message-ID: <20231024195948.GA459344-robh@kernel.org>
-References: <ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP>
- <3df06d79-ea51-4202-8cc8-468f741603bf@linaro.org>
- <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: Vegard Nossum <vegard.nossum@oracle.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH] dt-bindings: usb: rockchip,dwc3: fix reference to
+ nonexistent file
+Message-ID: <20231024200212.GA465811-robh@kernel.org>
+References: <20231022185150.919293-1-vegard.nossum@oracle.com>
+ <6ea02e5e-bc95-48b5-d6e3-15338ebd0a4d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,134 +64,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
+In-Reply-To: <6ea02e5e-bc95-48b5-d6e3-15338ebd0a4d@gmail.com>
 
-On Mon, Oct 23, 2023 at 10:17:22PM +0200, Stanislav Jakubek wrote:
-> On Mon, Oct 23, 2023 at 09:54:49AM +0200, Krzysztof Kozlowski wrote:
-> > On 22/10/2023 13:31, Stanislav Jakubek wrote:
-> > > Convert Broadcom Kona family clock controller unit (CCU) bindings
-> > > to DT schema.
-> > > 
-> > > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+On Sun, Oct 22, 2023 at 10:44:10PM +0200, Johan Jonker wrote:
+> 
+> 
+> On 10/22/23 20:51, Vegard Nossum wrote:
+> > This file was renamed but left a dangling reference. Fix it.
 > > 
-> > Thank you for your patch. There is something to discuss/improve.
-> > 
-> > > +description:
-> > > +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
-> > > +  manages a set of clock signals.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - brcm,bcm11351-aon-ccu
-> > > +      - brcm,bcm11351-hub-ccu
-> > > +      - brcm,bcm11351-master-ccu
-> > > +      - brcm,bcm11351-root-ccu
-> > > +      - brcm,bcm11351-slave-ccu
-> > > +      - brcm,bcm21664-aon-ccu
-> > > +      - brcm,bcm21664-master-ccu
-> > > +      - brcm,bcm21664-root-ccu
-> > > +      - brcm,bcm21664-slave-ccu
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#clock-cells':
-> > > +    const: 1
-> > > +
-> > > +  clock-output-names:
-> > > +    minItems: 1
-> > > +    maxItems: 10
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - brcm,bcm11351-aon-ccu
-> > > +              - brcm,bcm11351-hub-ccu
-> > > +              - brcm,bcm11351-master-ccu
-> > > +              - brcm,bcm11351-root-ccu
-> > > +              - brcm,bcm11351-slave-ccu
-> > > +    then:
-> > > +      properties:
-> > > +        clock-output-names:
-> > > +          description: |
-> > > +            The following table defines the set of CCUs and clock specifiers
-> > > +            for BCM281XX family clocks.
-> > > +            These clock specifiers are defined in:
-> > > +                "include/dt-bindings/clock/bcm281xx.h"
-> > > +
-> > > +            CCU     Clock        Type  Index  Specifier
-> > > +            ---     -----        ----  -----  ---------
-> > > +            root    frac_1m      peri    0    BCM281XX_ROOT_CCU_FRAC_1M
-> > > +
-> > > +            aon     hub_timer    peri    0    BCM281XX_AON_CCU_HUB_TIMER
-> > > +            aon     pmu_bsc      peri    1    BCM281XX_AON_CCU_PMU_BSC
-> > > +            aon     pmu_bsc_var  peri    2    BCM281XX_AON_CCU_PMU_BSC_VAR
-> > > +
-> > > +            hub     tmon_1m      peri    0    BCM281XX_HUB_CCU_TMON_1M
-> > > +
-> > > +            master  sdio1        peri    0    BCM281XX_MASTER_CCU_SDIO1
-> > > +            master  sdio2        peri    1    BCM281XX_MASTER_CCU_SDIO2
-> > > +            master  sdio3        peri    2    BCM281XX_MASTER_CCU_SDIO3
-> > > +            master  sdio4        peri    3    BCM281XX_MASTER_CCU_SDIO4
-> > > +            master  dmac         peri    4    BCM281XX_MASTER_CCU_DMAC
-> > > +            master  usb_ic       peri    5    BCM281XX_MASTER_CCU_USB_IC
-> > > +            master  hsic2_48m    peri    6    BCM281XX_MASTER_CCU_HSIC_48M
-> > > +            master  hsic2_12m    peri    7    BCM281XX_MASTER_CCU_HSIC_12M
-> > > +
-> > > +            slave   uartb        peri    0    BCM281XX_SLAVE_CCU_UARTB
-> > > +            slave   uartb2       peri    1    BCM281XX_SLAVE_CCU_UARTB2
-> > > +            slave   uartb3       peri    2    BCM281XX_SLAVE_CCU_UARTB3
-> > > +            slave   uartb4       peri    3    BCM281XX_SLAVE_CCU_UARTB4
-> > > +            slave   ssp0         peri    4    BCM281XX_SLAVE_CCU_SSP0
-> > > +            slave   ssp2         peri    5    BCM281XX_SLAVE_CCU_SSP2
-> > > +            slave   bsc1         peri    6    BCM281XX_SLAVE_CCU_BSC1
-> > > +            slave   bsc2         peri    7    BCM281XX_SLAVE_CCU_BSC2
-> > > +            slave   bsc3         peri    8    BCM281XX_SLAVE_CCU_BSC3
-> > > +            slave   pwm          peri    9    BCM281XX_SLAVE_CCU_PWM
-> > 
-> > I don't really understand why this is in the binding schema. I guess you
-> > wanted to copy it from the old binding, but, unless there is real reason
-> > for it, don't. The clock IDs should be in the header file and that's it.
-> > Nothing here.
+> > Fixes: 0f48b0ed356d ("dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml")
 > 
-> Hi Krzysztof, you're correct that I just copied this from the old bindings.
-> brcm,iproc-clocks.yaml has a similar table, so I thought this would be fine.
-> I'm OK with dropping it, but how should I document the clock-output-names
-> values then? A bunch of if-then blocks (per compatible)? Or should I not even
-> bother and just keep minItems/maxItems without documenting the values?
+> > Cc: Johan Jonker <jbx6244@gmail.com>
 > 
-> > 
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - brcm,bcm21664-aon-ccu
-> > > +              - brcm,bcm21664-master-ccu
-> > > +              - brcm,bcm21664-root-ccu
-> > > +              - brcm,bcm21664-slave-ccu
-> > > +    then:
-> > > +      properties:
-> > > +        clock-output-names:
-> > > +          maxItems: 8
+> [PATCH v1] dt-bindings: usb: rockchip,dwc3: update inno usb2 phy binding name
+> https://lore.kernel.org/linux-rockchip/f8747552-d23b-c4cd-cb17-5033fb7f8eb6@gmail.com/
 > 
-> I've also noticed that dtbs_check gives out warnings(?) like this for
-> bcm21664 ccu nodes:
-> 
-> /arch/arm/boot/dts/broadcom/bcm21664-garnet.dtb:
->     root_ccu@35001000: clock-output-names: ['frac_1m'] is too short
->     from schema $id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
-> 
-> and this maxItems:8 seems to me like the culprit (since the bcm11351 if-then
-> doesn't have that). Seems to me like it also overrides the minItems to be 8
-> as well. I don't understand why it would do that though.
+> Already Acked.
 
-Indeed it does. That should be fixed soon such that minItems/maxItems 
-will never be added implicitly to if/then/else schemas.
+I was assuming Greg would pick that up. I've applied the linked patch 
+now.
 
 Rob
 
