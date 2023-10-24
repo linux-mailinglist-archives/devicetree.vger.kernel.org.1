@@ -1,107 +1,100 @@
-Return-Path: <devicetree+bounces-11325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A807D53A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:06:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE817D53A8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18C7EB20BE4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:06:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2CC8281555
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A02C2B75C;
-	Tue, 24 Oct 2023 14:06:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164662B77D;
+	Tue, 24 Oct 2023 14:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2wTaohei"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9B129437
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:06:45 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E875A4
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:06:44 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvI3H-00020n-B2; Tue, 24 Oct 2023 16:06:35 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvI3G-003xaj-Oc; Tue, 24 Oct 2023 16:06:34 +0200
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvI3G-00G8pr-MF; Tue, 24 Oct 2023 16:06:34 +0200
-Date: Tue, 24 Oct 2023 16:06:34 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF3129437;
+	Tue, 24 Oct 2023 14:08:45 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1193A3;
+	Tue, 24 Oct 2023 07:08:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eDhesMhiwtf5oRFEe0tcbmQl0LJ8NdA55Y6empsfy2E=; b=2wTaoheinvFFan+20dLH3nGj5o
+	mtfWlWEKM8LyBNDOp+/JH7uDIycqEZtgXmeSlPZk3qP5zsH7TMOjFNf4ytimoM16XLKvRbaSVybhL
+	3ojnbBDMDu0/yiXSz7A5Xgu/xZi7OwNLheXWaf/4b7wdxXlzWMd9ZrOUMM17ZI35SsPY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qvI59-0004xO-Ki; Tue, 24 Oct 2023 16:08:31 +0200
+Date: Tue, 24 Oct 2023 16:08:31 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] regulator: fixed: add support for under-voltage
- IRQ
-Message-ID: <20231024140634.GD3803936@pengutronix.de>
-References: <20231024130842.2483208-1-o.rempel@pengutronix.de>
- <20231024130842.2483208-3-o.rempel@pengutronix.de>
- <471281bf-4126-496b-93ef-0807f4910ce7@sirena.org.uk>
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS
+ driver
+Message-ID: <932bef01-b498-4c1a-a7f4-3357fe94e883@lunn.ch>
+References: <20231023155013.512999-1-romain.gantois@bootlin.com>
+ <20231023155013.512999-4-romain.gantois@bootlin.com>
+ <b8ac3558-b6f0-4658-b406-8ceba062a52c@lunn.ch>
+ <f4e6dcee-23cf-bf29-deef-cf876e63bb8a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <471281bf-4126-496b-93ef-0807f4910ce7@sirena.org.uk>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <f4e6dcee-23cf-bf29-deef-cf876e63bb8a@bootlin.com>
 
-On Tue, Oct 24, 2023 at 02:26:24PM +0100, Mark Brown wrote:
-> On Tue, Oct 24, 2023 at 03:08:42PM +0200, Oleksij Rempel wrote:
-> 
-> > Add interrupt support for under-voltage notification. This functionality
-> > can be used on systems capable to detect under-voltage state and having
-> > enough capacity to let the SoC do some emergency preparation.
+> > > +	for (c = 0; c < priv->info->mib_count; c++) {
+> > > +		mib = &ar8327_mib[c];
+> > > +		reg = QCA8K_PORT_MIB_COUNTER(port->index) + mib->offset;
+> > > +
+> > > +		ret = qca8k_read(priv, reg, &val);
+> > > +		if (ret < 0)
+> > > +			continue;
 > > 
-> > This change enforce default policy to shutdown system as soon as
-> > interrupt is triggered.
+> > Given the switch is built in, is this fast? The 8k driver avoids doing
+> > register reads for this.
 > 
-> ...
-> 
-> > +static irqreturn_t reg_fixed_under_voltage_irq_handler(int irq, void *data)
-> > +{
-> > +	hw_protection_shutdown("Critical voltage drop reached",
-> > +			       FV_DEF_EMERG_SHUTDWN_TMO);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> 
-> We need a bit more policy here - the regulator could be critical to
-> system function but it could also be well isolated and just affecting
-> whatever device it's directly supplying in a way that the system can
-> tolerate and might even want to (eg, for something like a SD card or USB
-> port where end users are plugging in external hardware).
+> Sorry, I don't quite understand what you mean. Are you referring to the existing 
+> QCA8k DSA driver? From what I've seen, it calls qca8k_get_ethtool_stats defined 
+> in qca8k-common.c and this uses the same register read.
 
-Hm, how about devicetree property to indicate system critical nature of
-the regulator. For example "system-critical-regulator" or
-"system-critical-undervoltage-interrupt" ?
+It should actually build an Ethernet frame containing a command to get
+most of the statistics in one operation. That frame is sent to the
+switch over the SoCs ethernet interface. The switch replies with a
+frame containing the statistics. This should be faster than doing lots
+of register reads over a slow MDIO bus.
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Now, given that this switch is built into the SoC, i assume the MDIO
+bus is gone, so register access is fast. So you don't need to use
+Ethernet frames.
+
+	 Andrew
 
