@@ -1,174 +1,139 @@
-Return-Path: <devicetree+bounces-11370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51497D57C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:16:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607BF7D5816
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 209AEB20CF5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:16:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B50E281AA8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EDFF2C866;
-	Tue, 24 Oct 2023 16:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4D039957;
+	Tue, 24 Oct 2023 16:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="k4MIVHE+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9326F266C4
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:16:49 +0000 (UTC)
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD202E8;
-	Tue, 24 Oct 2023 09:16:47 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6c7c2c428c1so2744901a34.0;
-        Tue, 24 Oct 2023 09:16:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698164206; x=1698769006;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B0D38DEC
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:24:12 +0000 (UTC)
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01AAB111
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:24:09 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-6b26a3163acso3671110b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:24:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1698164649; x=1698769449; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RXPrvqhlemMI7g9xIhmWAAMr6+6qbQ1ZU0REA78QcHI=;
-        b=CZZzCXRTp+5Kkrc6PLfrFzeQ5/QACxIJoJD9vR3KY3i2ZUBlUz2+eNVKl3a2k5b8+z
-         kfpn6UM+pQ1ofREpxO6CK+HqJ6IlbS/MxOweL4kuwtbhy7pLhFPgFL9QS4G/73Jdqg02
-         ksYoOy/DLA1PfeZSpLLn7Vgo9LbfDozxvtTiUoGtAlbvLnUeNl23puJNRwKC/NdV1taW
-         eoOo4AgR9Waj96pv0M8fE2VV8mI+g2jLhnjFwLy1SiTUqPZ9xVcDBjduVGv15WxAFlcR
-         nLoPmPKS3wqWoYCSJX45ak64DI87aV5nMNrNwOaqRsBTJjWu6K1OcOUmy1AADez1/J59
-         ZbIg==
-X-Gm-Message-State: AOJu0Yw4Gk/WYQ1kpTOAmrH9a7NybjuYTlLmkUTJWsMk5QeXo4aWvwKk
-	fMC76YAxZlzYRqAMxNYp7g==
-X-Google-Smtp-Source: AGHT+IHcKt9w7bZiBt4/3rwDVdR83Ok9yFwzHM6Yw+yCPtpOKiwL2Yodvx6SUVggzi+iygsVFKZgpg==
-X-Received: by 2002:a05:6808:1306:b0:3b2:e379:c11d with SMTP id y6-20020a056808130600b003b2e379c11dmr10337541oiv.22.1698164206547;
-        Tue, 24 Oct 2023 09:16:46 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k2-20020a544702000000b003b2f2724c48sm1975040oik.11.2023.10.24.09.16.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 09:16:45 -0700 (PDT)
-Received: (nullmailer pid 4031785 invoked by uid 1000);
-	Tue, 24 Oct 2023 16:16:44 -0000
-Date: Tue, 24 Oct 2023 11:16:44 -0500
-From: Rob Herring <robh@kernel.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>, Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: binman-partition: Add binman
- compatibles
-Message-ID: <20231024161644.GB3707756-robh@kernel.org>
-References: <20231009220436.2164245-1-sjg@chromium.org>
- <20231009220436.2164245-2-sjg@chromium.org>
+        bh=ZKTm1mrgyLc1h8Vt1hMbh4XUq9UQSm1P9ND6vgHtPB4=;
+        b=k4MIVHE+0PbeZIPTGn5y3n93OW81aHxr2DHqvg+mjJpDYtKmt+bhBwWyYLEdpkvpQ4
+         qeDKwvVdjsxLw1u72xTXBHq0Ev/DT0c61BuiyOaKlHruXjyaBe61Ls/UXghY67A1UnRo
+         Riy4CrAoHEHn0uqUUcMqaQ/+RMev2zIZ6AxVokNe48o5mlFQq8GaG/pYpY4i4st7dDE9
+         6Yxlty5xikWBvI7WUCrMQwnIbiQdAS23IcSH+Wxt3iaq8V8OBjxXY7MpcZNHkCBPvSug
+         8JR62EOTJ+x21AtT8YmylanyYYBhJlgKc/vIu4RWTTuxTGvCTfSCikRh1kMGh4pAXfbK
+         xGRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698164649; x=1698769449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZKTm1mrgyLc1h8Vt1hMbh4XUq9UQSm1P9ND6vgHtPB4=;
+        b=AWQrxy89nkOTrx15+szLWVba5uQUqOhxH305Aw+4NrtMdX+p/cTGXM5ZErkPtxEcGb
+         1CC/V7xOCvC2C28sPlgiqMUkQGRqueyFYWpTj8b21i1WoQkQA0Jstcu0VVvLcOL6D6ep
+         V3BDPcOzjKNuwIp3x6tf+D1ERWSYL3wEVZwkuHkfL/IxIgbkDZgn5gIcEelE6hBMIaUR
+         YFYEoYOOlcC4+Nn1C6g1tJzNs0kXaBT1jgZmg2du3XOcpixdvVV2wD4EVHJE46MG0HvD
+         nvkIT2oqgtm7SLgdktOfh8kObGOSEV0vWWTI+oYPSfOF+rtcdwfZHlISgJuLWSVTkBrM
+         Q4WA==
+X-Gm-Message-State: AOJu0Yw66P0NMFl/qDTVWsMjQLTswVgrEZN4JzRTNbl3olX+TKaCIfN6
+	Wnncg0eAkYa5/Rqv53iqXR6DgrGRnNglA6012hfYPA==
+X-Google-Smtp-Source: AGHT+IEAI9u7l/s4QVSYjQHbkLLuhBrDpPV96Xch65PsfjSchtzTZm58WnDeu2X2ZQ59ZzT2bUYsOjtfY4Tuo1cd9lw=
+X-Received: by 2002:a05:6a00:c8d:b0:6bc:635a:aad3 with SMTP id
+ a13-20020a056a000c8d00b006bc635aaad3mr10680827pfv.9.1698164649373; Tue, 24
+ Oct 2023 09:24:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231009220436.2164245-2-sjg@chromium.org>
+References: <20231023155013.512999-1-romain.gantois@bootlin.com>
+ <20231023155013.512999-4-romain.gantois@bootlin.com> <b8ac3558-b6f0-4658-b406-8ceba062a52c@lunn.ch>
+ <f4e6dcee-23cf-bf29-deef-cf876e63bb8a@bootlin.com> <932bef01-b498-4c1a-a7f4-3357fe94e883@lunn.ch>
+In-Reply-To: <932bef01-b498-4c1a-a7f4-3357fe94e883@lunn.ch>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Tue, 24 Oct 2023 18:23:58 +0200
+Message-ID: <CA+HBbNHb2RF3tfDYRTG6AndhmW1U4tvFmiC+rhYwH8SCLqSUzw@mail.gmail.com>
+Subject: Re: [PATCH net-next 3/5] net: ipqess: introduce the Qualcomm IPQESS driver
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jakub Kicinski <kuba@kernel.org>, 
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	thomas.petazzoni@bootlin.com, Florian Fainelli <f.fainelli@gmail.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Vladimir Oltean <vladimir.oltean@nxp.com>, Luka Perkov <luka.perkov@sartura.hr>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@somainline.org>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 09, 2023 at 04:04:14PM -0600, Simon Glass wrote:
-> Add two compatible for binman entries, as a starting point for the
-> schema.
-> 
-> Note that, after discussion on v2, we decided to keep the existing
-> meaning of label so as not to require changes to existing userspace
-> software when moving to use binman nodes to specify the firmware
-> layout.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
-> Changes in v4:
-> - Correct selection of multiple compatible strings
-> 
-> Changes in v3:
-> - Drop fixed-partitions from the example
-> - Use compatible instead of label
-> 
-> Changes in v2:
-> - Use plain partition@xxx for the node name
-> 
->  .../mtd/partitions/binman-partition.yaml      | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> new file mode 100644
-> index 000000000000..35a320359ec1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Google LLC
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/binman-partition.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binman partition
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +
-> +select: false
+On Tue, Oct 24, 2023 at 4:08=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > > > + for (c =3D 0; c < priv->info->mib_count; c++) {
+> > > > +         mib =3D &ar8327_mib[c];
+> > > > +         reg =3D QCA8K_PORT_MIB_COUNTER(port->index) + mib->offset=
+;
+> > > > +
+> > > > +         ret =3D qca8k_read(priv, reg, &val);
+> > > > +         if (ret < 0)
+> > > > +                 continue;
+> > >
+> > > Given the switch is built in, is this fast? The 8k driver avoids doin=
+g
+> > > register reads for this.
+> >
+> > Sorry, I don't quite understand what you mean. Are you referring to the=
+ existing
+> > QCA8k DSA driver? From what I've seen, it calls qca8k_get_ethtool_stats=
+ defined
+> > in qca8k-common.c and this uses the same register read.
+>
+> It should actually build an Ethernet frame containing a command to get
+> most of the statistics in one operation. That frame is sent to the
+> switch over the SoCs ethernet interface. The switch replies with a
+> frame containing the statistics. This should be faster than doing lots
+> of register reads over a slow MDIO bus.
+>
+> Now, given that this switch is built into the SoC, i assume the MDIO
+> bus is gone, so register access is fast. So you don't need to use
+> Ethernet frames.
 
-So this schema is never used. 'select: false' is only useful if 
-something else if referencing the schema.
+It is being accessed as regular MMIO so the MDIO bottleneck is not present,
+so we never tried if the special ethernet packets are even support, especia=
+lly
+since the tag is completely different from that in regular qca8k switches.
 
-> +
-> +description: |
-> +  This corresponds to a binman 'entry'. It is a single partition which holds
-> +  data of a defined type.
-> +
-> +allOf:
-> +  - $ref: /schemas/mtd/partitions/partition.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: binman,entry     # generic binman entry
-
-'binman' is not a vendor. You could add it if you think that's useful. 
-Probably not with only 1 case...
-
-> +      - items:
-> +          - const: u-boot       # u-boot.bin from U-Boot project
-> +          - const: atf-bl31     # bl31.bin or bl31.elf from TF-A project
-
-Probably should use the new 'tfa' rather than old 'atf'. Is this the 
-only binary for TFA? The naming seems inconsistent in that every image 
-goes in (or can go in) a bl?? section. Why does TFA have it but u-boot 
-doesn't? Perhaps BL?? is orthogonal to defining what is in each 
-partition. Perhaps someone more familar with all this than I am can 
-comment.
-
-Once you actually test this, you'll find you are specifying:
-
-compatible = "u-boot", "atf-bl31";
+Regards,
+Robert
+>
+>          Andrew
 
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible = "binman";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        partition@100000 {
-> +            compatible = "u-boot";
-> +            reg = <0x100000 0xf00000>;
-> +        };
-> +
-> +        partition@200000 {
-> +            compatible = "atf-bl31";
-> +            reg = <0x200000 0x100000>;
-> +        };
-> +    };
-> -- 
-> 2.42.0.609.gbb76f46606-goog
-> 
+
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
