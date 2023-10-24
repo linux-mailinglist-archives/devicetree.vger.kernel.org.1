@@ -1,456 +1,443 @@
-Return-Path: <devicetree+bounces-11389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06537D5906
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EEF97D590B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F2DD1C20BCB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:44:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E6181C20A48
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBEC2B75D;
-	Tue, 24 Oct 2023 16:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2AE2C85A;
+	Tue, 24 Oct 2023 16:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjtMEDC1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Huq/8BTC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF3F3A28E
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:44:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA18BC433C8;
-	Tue, 24 Oct 2023 16:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698165845;
-	bh=r07UHKkl86rdMpQ7rTOkyf3+czc76gYAgS9XGHFVCgs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BjtMEDC1HKl7I9RiMkoZqP1/cuqwYFg0wcLdGPwf0n6F6QOL7EvTLUWXvIe4J/H78
-	 dHiEXAYnptg3E/wOLz3X9l0vMkoYOhkajpfiFDhUYxReRg6SwY/43tV8QPorP3uFgZ
-	 8YbdvvYI283Spzw16g73UC1ShiPp53IT9yf3nksBSaOEUTDm80B7oyKW+BNpAYUOjv
-	 sfL91f+jMRTVwCebNLllgnI4idwMyB+/NZP2nf3wI/Kf21PLwaftd61sIGzjFwPY5E
-	 tYs3GrHMpmBhsHtnD+hQwvQ9tGgcZr9mpGro1YkE0+5Rsj/xUxuP6ZgolbfjrrjvYV
-	 0slMjgarQG4AQ==
-Date: Tue, 24 Oct 2023 17:44:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDB53B292
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:45:28 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBB5DA;
+	Tue, 24 Oct 2023 09:45:25 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-53e2dc8fa02so7240994a12.2;
+        Tue, 24 Oct 2023 09:45:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698165924; x=1698770724; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jxuGhpNGtJ+zqgKLXgyAMQpaTE0+UJFO6HlZOAzBPzY=;
+        b=Huq/8BTCkcLQFgIArsWadX0JleXLOOiik7dQEesUMZkgFzmPo/+BETtVdYzsfuMoav
+         MsSSA7NW/4QJcuFE7qy0JD65ZYXTYL9/FlfuIzksTEGQsd1+WS5f1Yi/oTuIcpU14IVA
+         LKm3yCfvuKgpPoLWb8ajnOfauRAXvBlaq2PqMm2ELe6FFVqcY6vX1K0RAqhz7cTyYWIW
+         KeC/A91tcnyiHtoaSxLGHGMfjqHrDBE2uJlUnIFHzvOM5+fac8CAmehNZPT+6vdb1XGt
+         ZsNNjZiRMqwk308JLAkunde6HPWhtR0EsYZnNxH0fRVpgEsavAZBUQmHZXtP6pn525f0
+         Uw1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698165924; x=1698770724;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jxuGhpNGtJ+zqgKLXgyAMQpaTE0+UJFO6HlZOAzBPzY=;
+        b=C7YjJDxFu8Zsm+rPkO2jgyzF/cm+M6MtckoxmRo0dXZ2VnPNCXqv+CTblOGtO3jAAo
+         8go6AC4edbh7tjfR8v2U4GpivbGjjMgBjbuMhn0EPf7zXtbXRxBo/kcvWpP/vghpEYOv
+         1VRWJw1QFNI5EqSYxRcgvwc2CFg/iyvdo1jezuejwJEuiHhI3xdCBSNLd+kF26k/3dD6
+         0Gt2+AEEqxVbgvD0lN/1xYpAtHcUNtD96yPTUR+zSVMAX8QNFdSYY77nIpTNrKH8zUDS
+         x7+r8fI2qsPlVPiUQXKbqkdal16uJNo1x2m5qI6dyWMXxb/mVsb5C7SFpyKhLOZ/e+f5
+         xMNA==
+X-Gm-Message-State: AOJu0YwlD3vQt+5NRbr+zmP0oc2V61OcttSgWx8awBHJAAaANOxBBlWL
+	Z3SWgWaBflWr/l3exgnQoio=
+X-Google-Smtp-Source: AGHT+IHZwL8TzHQ/L9zgOe1NM7uItN4foeM7z/EgDSYCD31DpN8Jj8yw4VgMQ8AVq046TwBDofvVkg==
+X-Received: by 2002:a17:907:a0c:b0:9bf:b129:5984 with SMTP id bb12-20020a1709070a0c00b009bfb1295984mr7936137ejc.77.1698165924141;
+        Tue, 24 Oct 2023 09:45:24 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id j12-20020a170906050c00b00977eec7b7e8sm8455084eja.68.2023.10.24.09.45.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 09:45:23 -0700 (PDT)
+Date: Tue, 24 Oct 2023 18:45:21 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-demux-pinctrl: Convert to
- json-schema
-Message-ID: <20231024-extinct-mummy-d015dad84a9d@spud>
-References: <28c173dfbbc17403b0c5a6f27661d7bd33a86f84.1698068607.git.geert+renesas@glider.be>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Message-ID: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hNENZ+3onzk9rqVp"
-Content-Disposition: inline
-In-Reply-To: <28c173dfbbc17403b0c5a6f27661d7bd33a86f84.1698068607.git.geert+renesas@glider.be>
-
-
---hNENZ+3onzk9rqVp
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 23, 2023 at 03:53:00PM +0200, Geert Uytterhoeven wrote:
-> Convert the pinctrl-based I2C bus demultiplexer Device Tree binding
-> documentation to json-schema.
->=20
-> Update the example to match reality.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Convert Broadcom Kona family clock controller unit (CCU) bindings
+to DT schema.
 
-This conversion seems fine to me.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Changes during conversion:
+  - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+    it is not used in DT nor the dt-bindings
+  - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+    it is not used in DT nor the dt-bindings
 
-Thanks,
-Conor.
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
 
-> ---
-> The example includes changes from "[PATCH 0/3] dts: renesas: Fix I2C bus
-> demux node names and ADV751[13] power supplies"
-> (https://lore.kernel.org/r/cover.1698068646.git.geert+renesas@glider.be)
->=20
->  .../bindings/i2c/i2c-demux-pinctrl.txt        | 135 --------------
->  .../bindings/i2c/i2c-demux-pinctrl.yaml       | 172 ++++++++++++++++++
->  2 files changed, 172 insertions(+), 135 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-demux-pinct=
-rl.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-demux-pinct=
-rl.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt =
-b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt
-> deleted file mode 100644
-> index 86b2e433a969013c..0000000000000000
-> --- a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.txt
-> +++ /dev/null
-> @@ -1,135 +0,0 @@
-> -Pinctrl-based I2C Bus DeMux
-> -
-> -This binding describes an I2C bus demultiplexer that uses pin multiplexi=
-ng to
-> -route the I2C signals, and represents the pin multiplexing configuration=
- using
-> -the pinctrl device tree bindings. This may be used to select one I2C IP =
-core at
-> -runtime which may have a better feature set for a given task than anothe=
-r I2C
-> -IP core on the SoC. The most simple example is to fall back to GPIO bitb=
-anging
-> -if your current runtime configuration hits an errata of the internal IP =
-core.
-> -
-> -    +-------------------------------+
-> -    | SoC                           |
-> -    |                               |   +-----+  +-----+
-> -    |   +------------+              |   | dev |  | dev |
-> -    |   |I2C IP Core1|--\           |   +-----+  +-----+
-> -    |   +------------+   \-------+  |      |        |
-> -    |                    |Pinctrl|--|------+--------+
-> -    |   +------------+   +-------+  |
-> -    |   |I2C IP Core2|--/           |
-> -    |   +------------+              |
-> -    |                               |
-> -    +-------------------------------+
-> -
-> -Required properties:
-> -- compatible: "i2c-demux-pinctrl"
-> -- i2c-parent: List of phandles of I2C masters available for selection. T=
-he first
-> -	      one will be used as default.
-> -- i2c-bus-name: The name of this bus. Also needed as pinctrl-name for th=
-e I2C
-> -		parents.
-> -
-> -Furthermore, I2C mux properties and child nodes. See i2c-mux.yaml in this
-> -directory.
-> -
-> -Example:
-> -
-> -Here is a snipplet for a bus to be demuxed. It contains various i2c clie=
-nts for
-> -HDMI, so the bus is named "i2c-hdmi":
-> -
-> -	i2chdmi: i2c@8 {
-> -
-> -		compatible =3D "i2c-demux-pinctrl";
-> -		i2c-parent =3D <&gpioi2c>, <&iic2>, <&i2c2>;
-> -		i2c-bus-name =3D "i2c-hdmi";
-> -		#address-cells =3D <1>;
-> -		#size-cells =3D <0>;
-> -
-> -		ak4643: sound-codec@12 {
-> -			compatible =3D "asahi-kasei,ak4643";
-> -
-> -			#sound-dai-cells =3D <0>;
-> -			reg =3D <0x12>;
-> -		};
-> -
-> -		composite-in@20 {
-> -			compatible =3D "adi,adv7180";
-> -			reg =3D <0x20>;
-> -			remote =3D <&vin1>;
-> -
-> -			port {
-> -				adv7180: endpoint {
-> -					bus-width =3D <8>;
-> -					remote-endpoint =3D <&vin1ep0>;
-> -				};
-> -			};
-> -		};
-> -
-> -		hdmi@39 {
-> -			compatible =3D "adi,adv7511w";
-> -			reg =3D <0x39>;
-> -			interrupt-parent =3D <&gpio1>;
-> -			interrupts =3D <15 IRQ_TYPE_LEVEL_LOW>;
-> -
-> -			adi,input-depth =3D <8>;
-> -			adi,input-colorspace =3D "rgb";
-> -			adi,input-clock =3D "1x";
-> -			adi,input-style =3D <1>;
-> -			adi,input-justification =3D "evenly";
-> -
-> -			ports {
-> -				#address-cells =3D <1>;
-> -				#size-cells =3D <0>;
-> -
-> -				port@0 {
-> -					reg =3D <0>;
-> -					adv7511_in: endpoint {
-> -						remote-endpoint =3D <&du_out_lvds0>;
-> -					};
-> -				};
-> -
-> -				port@1 {
-> -					reg =3D <1>;
-> -					adv7511_out: endpoint {
-> -						remote-endpoint =3D <&hdmi_con>;
-> -					};
-> -				};
-> -			};
-> -		};
-> -	};
-> -
-> -And for clarification, here are the snipplets for the i2c-parents:
-> -
-> -	gpioi2c: i2c@9 {
-> -		#address-cells =3D <1>;
-> -		#size-cells =3D <0>;
-> -		compatible =3D "i2c-gpio";
-> -		gpios =3D <&gpio5 6 GPIO_ACTIVE_HIGH /* sda */
-> -			 &gpio5 5 GPIO_ACTIVE_HIGH /* scl */
-> -			>;
-> -		i2c-gpio,delay-us =3D <5>;
-> -	};
-> -
-> -...
-> -
-> -&i2c2	{
-> -	pinctrl-0 =3D <&i2c2_pins>;
-> -	pinctrl-names =3D "i2c-hdmi";
-> -
-> -	clock-frequency =3D <100000>;
-> -};
-> -
-> -...
-> -
-> -&iic2	{
-> -	pinctrl-0 =3D <&iic2_pins>;
-> -	pinctrl-names =3D "i2c-hdmi";
-> -
-> -	clock-frequency =3D <100000>;
-> -};
-> -
-> -Please note:
-> -
-> -- pinctrl properties for the parent I2C controllers need a pinctrl state
-> -  with the same name as i2c-bus-name, not "default"!
-> -
-> -- the i2c masters must have their status "disabled". This driver will
-> -  enable them at runtime when needed.
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml=
- b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml
-> new file mode 100644
-> index 0000000000000000..2c08f2a7cf1ee28c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.yaml
-> @@ -0,0 +1,172 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/i2c-demux-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Pinctrl-based I2C Bus Demultiplexer
-> +
-> +maintainers:
-> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-> +
-> +description: |
-> +  This binding describes an I2C bus demultiplexer that uses pin multiple=
-xing to
-> +  route the I2C signals, and represents the pin multiplexing configurati=
-on
-> +  using the pinctrl device tree bindings.  This may be used to select on=
-e I2C
-> +  IP core at runtime which may have a better feature set for a given tas=
-k than
-> +  another I2C IP core on the SoC.  The most simple example is to fall ba=
-ck to
-> +  GPIO bitbanging if your current runtime configuration hits an errata o=
-f the
-> +  internal IP core.
-> +
-> +      +-------------------------------+
-> +      | SoC                           |
-> +      |                               |   +-----+  +-----+
-> +      |   +------------+              |   | dev |  | dev |
-> +      |   |I2C IP Core1|--\           |   +-----+  +-----+
-> +      |   +------------+   \-------+  |      |        |
-> +      |                    |Pinctrl|--|------+--------+
-> +      |   +------------+   +-------+  |
-> +      |   |I2C IP Core2|--/           |
-> +      |   +------------+              |
-> +      |                               |
-> +      +-------------------------------+
-> +
-> +allOf:
-> +  - $ref: i2c-mux.yaml
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: i2c-demux-pinctrl
-> +
-> +  i2c-parent:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      List of phandles of I2C masters available for selection.  The firs=
-t one
-> +      will be used as default.
-> +
-> +  i2c-bus-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      The name of this bus.  Also needed as pinctrl-name for the I2C par=
-ents.
-> +
-> +required:
-> +  - compatible
-> +  - i2c-parent
-> +  - i2c-bus-name
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    gpioi2c2: i2c-9 {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        compatible =3D "i2c-gpio";
-> +        scl-gpios =3D <&gpio5 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +        sda-gpios =3D <&gpio5 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +        i2c-gpio,delay-us =3D <5>;
-> +
-> +        // The I2C controller must have its status "disabled".  The I2C =
-bus
-> +        // demultiplexer will enable it at runtime when needed.
-> +        status =3D "disabled";
-> +    };
-> +
-> +    iic2: i2c@e6520000 {
-> +        reg =3D <0xe6520000 0x425>;
-> +        pinctrl-0 =3D <&iic2_pins>;
-> +        // The pinctrl property for the parent I2C controller needs a pi=
-nctrl
-> +        // state with the same name as i2c-bus-name in the I2C bus demul=
-tiplexer
-> +        // node, not "default"!
-> +        pinctrl-names =3D "i2c-hdmi";
-> +
-> +        clock-frequency =3D <100000>;
-> +
-> +        // The I2C controller must have its status "disabled".  The I2C =
-bus
-> +        // demultiplexer will enable it at runtime when needed.
-> +        status =3D "disabled";
-> +    };
-> +
-> +    i2c2: i2c@e6530000 {
-> +        reg =3D <0 0xe6530000 0 0x40>;
-> +        pinctrl-0 =3D <&i2c2_pins>;
-> +        // The pinctrl property for the parent I2C controller needs a pi=
-nctrl
-> +        // state with the same name as i2c-bus-name in the I2C bus demul=
-tiplexer
-> +        // node, not "default"!
-> +        pinctrl-names =3D "i2c-hdmi";
-> +
-> +        clock-frequency =3D <100000>;
-> +
-> +        // The I2C controller must have its status "disabled".  The I2C =
-bus
-> +        // demultiplexer will enable it at runtime when needed.
-> +        status =3D "disabled";
-> +    };
-> +
-> +    // Example for a bus to be demuxed.  It contains various I2C clients=
- for
-> +    // HDMI, so the bus is named "i2c-hdmi":
-> +    i2chdmi: i2c-mux3 {
-> +            compatible =3D "i2c-demux-pinctrl";
-> +            i2c-parent =3D <&iic2>, <&i2c2>, <&gpioi2c2>;
-> +            i2c-bus-name =3D "i2c-hdmi";
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            ak4643: codec@12 {
-> +                    compatible =3D "asahi-kasei,ak4643";
-> +                    #sound-dai-cells =3D <0>;
-> +                    reg =3D <0x12>;
-> +            };
-> +
-> +            composite-in@20 {
-> +                    compatible =3D "adi,adv7180";
-> +                    reg =3D <0x20>;
-> +
-> +                    port {
-> +                            adv7180: endpoint {
-> +                                    bus-width =3D <8>;
-> +                                    remote-endpoint =3D <&vin1ep0>;
-> +                            };
-> +                    };
-> +            };
-> +
-> +            hdmi@39 {
-> +                    compatible =3D "adi,adv7511w";
-> +                    reg =3D <0x39>;
-> +                    interrupt-parent =3D <&gpio1>;
-> +                    interrupts =3D <15 IRQ_TYPE_LEVEL_LOW>;
-> +                    clocks =3D <&cec_clock>;
-> +                    clock-names =3D "cec";
-> +
-> +                    avdd-supply =3D <&fixedregulator1v8>;
-> +                    dvdd-supply =3D <&fixedregulator1v8>;
-> +                    pvdd-supply =3D <&fixedregulator1v8>;
-> +                    dvdd-3v-supply =3D <&fixedregulator3v3>;
-> +                    bgvdd-supply =3D <&fixedregulator1v8>;
-> +
-> +                    adi,input-depth =3D <8>;
-> +                    adi,input-colorspace =3D "rgb";
-> +                    adi,input-clock =3D "1x";
-> +
-> +                    ports {
-> +                            #address-cells =3D <1>;
-> +                            #size-cells =3D <0>;
-> +
-> +                            port@0 {
-> +                                    reg =3D <0>;
-> +                                    adv7511_in: endpoint {
-> +                                            remote-endpoint =3D <&lvds0_=
-out>;
-> +                                    };
-> +                            };
-> +
-> +                            port@1 {
-> +                                    reg =3D <1>;
-> +                                    adv7511_out: endpoint {
-> +                                            remote-endpoint =3D <&hdmi_c=
-on_out>;
-> +                                    };
-> +                            };
-> +                    };
-> +            };
-> +    };
-> --=20
-> 2.34.1
->=20
+Changes in V2:
+  - remove the table copied from the old txt bindings, replace it with if-then
+    blocks individually listing the allowed clock-output-names per compatible
+  - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+    it is not used in DT nor the dt-bindings
+  - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+    it is not used in DT nor the dt-bindings
+  - move allOf: after required:
+  - Link to V1: https://lore.kernel.org/lkml/ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP/
 
---hNENZ+3onzk9rqVp
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/clock/brcm,kona-ccu.txt          | 138 -------------
+ .../bindings/clock/brcm,kona-ccu.yaml         | 181 ++++++++++++++++++
+ 2 files changed, 181 insertions(+), 138 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
 
------BEGIN PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
+deleted file mode 100644
+index 8e5a7d868557..000000000000
+--- a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
++++ /dev/null
+@@ -1,138 +0,0 @@
+-Broadcom Kona Family Clocks
+-
+-This binding is associated with Broadcom SoCs having "Kona" style
+-clock control units (CCUs).  A CCU is a clock provider that manages
+-a set of clock signals.  Each CCU is represented by a node in the
+-device tree.
+-
+-This binding uses the common clock binding:
+-    Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Required properties:
+-- compatible
+-	Shall have a value of the form "brcm,<model>-<which>-ccu",
+-	where <model> is a Broadcom SoC model number and <which> is
+-	the name of a defined CCU.  For example:
+-	    "brcm,bcm11351-root-ccu"
+-	The compatible strings used for each supported SoC family
+-	are defined below.
+-- reg
+-	Shall define the base and range of the address space
+-	containing clock control registers
+-- #clock-cells
+-	Shall have value <1>.  The permitted clock-specifier values
+-	are defined below.
+-- clock-output-names
+-	Shall be an ordered list of strings defining the names of
+-	the clocks provided by the CCU.
+-
+-Device tree example:
+-
+-	slave_ccu: slave_ccu {
+-		compatible = "brcm,bcm11351-slave-ccu";
+-		reg = <0x3e011000 0x0f00>;
+-		#clock-cells = <1>;
+-		clock-output-names = "uartb",
+-				     "uartb2",
+-				     "uartb3",
+-				     "uartb4";
+-	};
+-
+-	ref_crystal_clk: ref_crystal {
+-		#clock-cells = <0>;
+-		compatible = "fixed-clock";
+-		clock-frequency = <26000000>;
+-	};
+-
+-	uart@3e002000 {
+-		compatible = "brcm,bcm11351-dw-apb-uart", "snps,dw-apb-uart";
+-		reg = <0x3e002000 0x1000>;
+-		clocks = <&slave_ccu BCM281XX_SLAVE_CCU_UARTB3>;
+-		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+-		reg-shift = <2>;
+-		reg-io-width = <4>;
+-	};
+-
+-BCM281XX family
+----------------
+-CCU compatible string values for SoCs in the BCM281XX family are:
+-    "brcm,bcm11351-root-ccu"
+-    "brcm,bcm11351-aon-ccu"
+-    "brcm,bcm11351-hub-ccu"
+-    "brcm,bcm11351-master-ccu"
+-    "brcm,bcm11351-slave-ccu"
+-
+-The following table defines the set of CCUs and clock specifiers for
+-BCM281XX family clocks.  When a clock consumer references a clocks,
+-its symbolic specifier (rather than its numeric index value) should
+-be used.  These specifiers are defined in:
+-    "include/dt-bindings/clock/bcm281xx.h"
+-
+-    CCU     Clock           Type    Index   Specifier
+-    ---     -----           ----    -----   ---------
+-    root    frac_1m         peri      0     BCM281XX_ROOT_CCU_FRAC_1M
+-
+-    aon     hub_timer       peri      0     BCM281XX_AON_CCU_HUB_TIMER
+-    aon     pmu_bsc         peri      1     BCM281XX_AON_CCU_PMU_BSC
+-    aon     pmu_bsc_var     peri      2     BCM281XX_AON_CCU_PMU_BSC_VAR
+-
+-    hub     tmon_1m         peri      0     BCM281XX_HUB_CCU_TMON_1M
+-
+-    master  sdio1           peri      0     BCM281XX_MASTER_CCU_SDIO1
+-    master  sdio2           peri      1     BCM281XX_MASTER_CCU_SDIO2
+-    master  sdio3           peri      2     BCM281XX_MASTER_CCU_SDIO3
+-    master  sdio4           peri      3     BCM281XX_MASTER_CCU_SDIO4
+-    master  dmac            peri      4     BCM281XX_MASTER_CCU_DMAC
+-    master  usb_ic          peri      5     BCM281XX_MASTER_CCU_USB_IC
+-    master  hsic2_48m       peri      6     BCM281XX_MASTER_CCU_HSIC_48M
+-    master  hsic2_12m       peri      7     BCM281XX_MASTER_CCU_HSIC_12M
+-
+-    slave   uartb           peri      0     BCM281XX_SLAVE_CCU_UARTB
+-    slave   uartb2          peri      1     BCM281XX_SLAVE_CCU_UARTB2
+-    slave   uartb3          peri      2     BCM281XX_SLAVE_CCU_UARTB3
+-    slave   uartb4          peri      3     BCM281XX_SLAVE_CCU_UARTB4
+-    slave   ssp0            peri      4     BCM281XX_SLAVE_CCU_SSP0
+-    slave   ssp2            peri      5     BCM281XX_SLAVE_CCU_SSP2
+-    slave   bsc1            peri      6     BCM281XX_SLAVE_CCU_BSC1
+-    slave   bsc2            peri      7     BCM281XX_SLAVE_CCU_BSC2
+-    slave   bsc3            peri      8     BCM281XX_SLAVE_CCU_BSC3
+-    slave   pwm             peri      9     BCM281XX_SLAVE_CCU_PWM
+-
+-
+-BCM21664 family
+----------------
+-CCU compatible string values for SoCs in the BCM21664 family are:
+-    "brcm,bcm21664-root-ccu"
+-    "brcm,bcm21664-aon-ccu"
+-    "brcm,bcm21664-master-ccu"
+-    "brcm,bcm21664-slave-ccu"
+-
+-The following table defines the set of CCUs and clock specifiers for
+-BCM21664 family clocks.  When a clock consumer references a clocks,
+-its symbolic specifier (rather than its numeric index value) should
+-be used.  These specifiers are defined in:
+-    "include/dt-bindings/clock/bcm21664.h"
+-
+-    CCU     Clock           Type    Index   Specifier
+-    ---     -----           ----    -----   ---------
+-    root    frac_1m         peri      0     BCM21664_ROOT_CCU_FRAC_1M
+-
+-    aon     hub_timer       peri      0     BCM21664_AON_CCU_HUB_TIMER
+-
+-    master  sdio1           peri      0     BCM21664_MASTER_CCU_SDIO1
+-    master  sdio2           peri      1     BCM21664_MASTER_CCU_SDIO2
+-    master  sdio3           peri      2     BCM21664_MASTER_CCU_SDIO3
+-    master  sdio4           peri      3     BCM21664_MASTER_CCU_SDIO4
+-    master  sdio1_sleep     peri      4     BCM21664_MASTER_CCU_SDIO1_SLEEP
+-    master  sdio2_sleep     peri      5     BCM21664_MASTER_CCU_SDIO2_SLEEP
+-    master  sdio3_sleep     peri      6     BCM21664_MASTER_CCU_SDIO3_SLEEP
+-    master  sdio4_sleep     peri      7     BCM21664_MASTER_CCU_SDIO4_SLEEP
+-
+-    slave   uartb           peri      0     BCM21664_SLAVE_CCU_UARTB
+-    slave   uartb2          peri      1     BCM21664_SLAVE_CCU_UARTB2
+-    slave   uartb3          peri      2     BCM21664_SLAVE_CCU_UARTB3
+-    slave   uartb4          peri      3     BCM21664_SLAVE_CCU_UARTB4
+-    slave   bsc1            peri      4     BCM21664_SLAVE_CCU_BSC1
+-    slave   bsc2            peri      5     BCM21664_SLAVE_CCU_BSC2
+-    slave   bsc3            peri      6     BCM21664_SLAVE_CCU_BSC3
+-    slave   bsc4            peri      7     BCM21664_SLAVE_CCU_BSC4
+diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
+new file mode 100644
+index 000000000000..e5656950b3bd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
+@@ -0,0 +1,181 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona family clock control units (CCU)
++
++maintainers:
++  - Florian Fainelli <florian.fainelli@broadcom.com>
++  - Ray Jui <rjui@broadcom.com>
++  - Scott Branden <sbranden@broadcom.com>
++
++description: |
++  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
++  manages a set of clock signals.
++
++  All available clock IDs are defined in
++  - include/dt-bindings/clock/bcm281xx.h for BCM281XX family
++  - include/dt-bindings/clock/bcm21664.h for BCM21664 family
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm11351-aon-ccu
++      - brcm,bcm11351-hub-ccu
++      - brcm,bcm11351-master-ccu
++      - brcm,bcm11351-root-ccu
++      - brcm,bcm11351-slave-ccu
++      - brcm,bcm21664-aon-ccu
++      - brcm,bcm21664-master-ccu
++      - brcm,bcm21664-root-ccu
++      - brcm,bcm21664-slave-ccu
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  clock-output-names:
++    minItems: 1
++    maxItems: 10
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - clock-output-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm11351-aon-ccu
++    then:
++      properties:
++        clock-output-names:
++          items:
++            - const: hub_timer
++            - const: pmu_bsc
++            - const: pmu_bsc_var
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm11351-hub-ccu
++    then:
++      properties:
++        clock-output-names:
++          const: tmon_1m
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm11351-master-ccu
++    then:
++      properties:
++        clock-output-names:
++          items:
++            - const: sdio1
++            - const: sdio2
++            - const: sdio3
++            - const: sdio4
++            - const: usb_ic
++            - const: hsic2_48m
++            - const: hsic2_12m
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - brcm,bcm11351-root-ccu
++              - brcm,bcm21664-root-ccu
++    then:
++      properties:
++        clock-output-names:
++          const: frac_1m
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm11351-slave-ccu
++    then:
++      properties:
++        clock-output-names:
++          items:
++            - const: uartb
++            - const: uartb2
++            - const: uartb3
++            - const: uartb4
++            - const: ssp0
++            - const: ssp2
++            - const: bsc1
++            - const: bsc2
++            - const: bsc3
++            - const: pwm
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm21664-aon-ccu
++    then:
++      properties:
++        clock-output-names:
++          const: hub_timer
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm21664-master-ccu
++    then:
++      properties:
++        clock-output-names:
++          items:
++            - const: sdio1
++            - const: sdio2
++            - const: sdio3
++            - const: sdio4
++            - const: sdio1_sleep
++            - const: sdio2_sleep
++            - const: sdio3_sleep
++            - const: sdio4_sleep
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm21664-slave-ccu
++    then:
++      properties:
++        clock-output-names:
++          items:
++            - const: uartb
++            - const: uartb2
++            - const: uartb3
++            - const: bsc1
++            - const: bsc2
++            - const: bsc3
++            - const: bsc4
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@3e011000 {
++      compatible = "brcm,bcm11351-slave-ccu";
++      reg = <0x3e011000 0x0f00>;
++      #clock-cells = <1>;
++      clock-output-names = "uartb",
++                           "uartb2",
++                           "uartb3",
++                           "uartb4",
++                           "ssp0",
++                           "ssp2",
++                           "bsc1",
++                           "bsc2",
++                           "bsc3",
++                           "pwm";
++    };
++...
+-- 
+2.34.1
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTf0UQAKCRB4tDGHoIJi
-0rIYAP9mphufOriWvXiRrx0VtN5ljnDxao9zO6Um/QraSH2usAD/X+YQaZjZSX1X
-PNyswoJxGeUxK6gHYtX/Rl7FE8hs2Qw=
-=x4F7
------END PGP SIGNATURE-----
-
---hNENZ+3onzk9rqVp--
 
