@@ -1,61 +1,95 @@
-Return-Path: <devicetree+bounces-11402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83CE37D5A7F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:30:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459557D5A96
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 129CBB20F17
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:30:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9DB7281A27
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310FA3CCF2;
-	Tue, 24 Oct 2023 18:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFFC30FAB;
+	Tue, 24 Oct 2023 18:35:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="jnmZicsf";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="NVJPYMG7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6390B2E62F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:30:22 +0000 (UTC)
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1865C129;
-	Tue, 24 Oct 2023 11:30:17 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6ce2d4567caso3243575a34.2;
-        Tue, 24 Oct 2023 11:30:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698172216; x=1698777016;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vnP3eRYhK+qkeq8kCtjms76zvb6GVa1n6rL36FXwPWs=;
-        b=jFZ+HDj3+AhAZdb+ahwlxI44X4PQHBOVEu85+ZFngLecXyKfqummnMXBbSRisQZ0k7
-         hmwEzrnw/dDpOd2QYv7A0hBxnujw2ze4UvPsciCehjixMKdLorvUZwmN1JAyg3dONkGy
-         uQPiCgCkVI1SDv6ZScrne4vgg8hMD8Bf1yFjk6GgX+H7UI7kPLRdYsU5H/6YnIFxdF4V
-         7XUtQ3Wdg4b7Dx8bFNQoPiLEdGhaJCe1ginmpp08RyK3zZPHAk3ZMEjMt7KARgbgxCNn
-         fvrC+cHPUFJnCtn9JthviF4rcum/MKv+SBOglddM5CC+bYuYKyQdxTrtYz0GEgPq8wCy
-         CB3A==
-X-Gm-Message-State: AOJu0Yz8PJSpjOceiSFkSu+RX1gpFy3vppm/fx4RK7xIG6CtDvyUSVgT
-	xv6Mmkz71aNNWPdHYD4yPg==
-X-Google-Smtp-Source: AGHT+IF62KygVK5CdR46X6iPh8K58aYkieAnOXIu/QCrpVTZJoDQpjSnO7sejz/lAfguZYXrsptPgA==
-X-Received: by 2002:a05:6830:4492:b0:6bd:b0c9:a89 with SMTP id r18-20020a056830449200b006bdb0c90a89mr16702513otv.2.1698172216197;
-        Tue, 24 Oct 2023 11:30:16 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05683004a600b006c6311b15f6sm1919958otd.38.2023.10.24.11.30.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 11:30:15 -0700 (PDT)
-Received: (nullmailer pid 246522 invoked by uid 1000);
-	Tue, 24 Oct 2023 18:30:14 -0000
-Date: Tue, 24 Oct 2023 13:30:14 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: lee@kernel.org, pavel@ucw.cz, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andy.shevchenko@gmail.com, kernel@sberdevices.ru, rockosov@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 03/11] dt-bindings: leds: aw200xx: introduce optional
- hwen-gpios property
-Message-ID: <20231024183014.GA243505-robh@kernel.org>
-References: <20231018182943.18700-1-ddrokosov@salutedevices.com>
- <20231018182943.18700-4-ddrokosov@salutedevices.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146E43CCF2
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:35:42 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090769F;
+	Tue, 24 Oct 2023 11:35:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698172537; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=JOi7zEdl6i/B/DH1FqnymWly4M+XR05uQDqLnykXdPHkigpIY9795qQGNyYPAxVv4m
+    AEGwUj3GCwAW9mk7SRcjSAa9nzGLSf/a3Re7Oc5LKQe/eIdj+DLVs5uYZCuU7y0OJobg
+    Dzo4QB4Lm/8TNPGAO8LXrLTqElye6zln4RQARNXI7D6yD8lJmywvQii8gRVH0Y+xWBFg
+    hMklyhKr9V+T+Tg/FiXKMicOLjUynZpqRHcQjGJUEjyD5d0Irl0GGQb82Ul++bOnegi5
+    kssPkscmGV7soRh9g2E8pxvHB9hyLV/ixP7OQOSYPgcJ7BM9KzKz8fwr8QPhfOSCWfiX
+    rM5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698172537;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=ZhyaPj2qq7l4XRxCAh7rMgoC4OVkj1DXYeH9isKDKq4=;
+    b=PnhbRX60J+Od0IR7AyQKEd6+gc1lTwpvUqIHE8a3zk/Yu2p7PgngA828Pe9B0HlHMI
+    3i20S4xBCFrnMMxwiwfTQdM3UbgozhAvRgxFcnSE9h7APEMANZUounbk9OuKP5zc0TYT
+    Jl5T9ccPmO5cAZCyYHPdpo69m6PmkH5aCfwczC9mzOQdjkkH0SgdRiP5+3VIRDZT6DSN
+    jQLFMSFeK5sgRrQRiYufpj9nxsYat4Q8B0OOWySZomqudY/iYXHHg26VowV90rZf46/2
+    gYFaNs77rq0MvqQe2Q//at4ntItXwifGWRu4hB9yXQlMtDCELVTXFFRiD13780NMRDRE
+    gejg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698172537;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=ZhyaPj2qq7l4XRxCAh7rMgoC4OVkj1DXYeH9isKDKq4=;
+    b=jnmZicsfgfoW0zdQL6YjNmZptR9RhpRzMNpx9OjdHQupgi2Dl/idOSdSNtPrAiNfTp
+    UlT0X3iioI3P5Je1wZRmo1dWzPBnq4ls5HrQRZCessY82iHTuGS8mA9tyq/i2XGBvLSM
+    nsIf00d1ZLSdSw7vwnZYdym7YLJVv265BouwuYTiNhShvexFcNj1uqSvcghhQUFLiEwu
+    1DugMoaXbBvYTtgUpH3htuvm4kcywTXAfEQ8tWmiQngc9U+Gjfr5s/49ShNBOa1xqr8B
+    LWgdpWDHfYrp1janE8c8sdKUgsnoyqDMx0MUWBY0b5OV/EA2mF4faR7BUN4Fdzu2txYJ
+    zIGA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698172537;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=ZhyaPj2qq7l4XRxCAh7rMgoC4OVkj1DXYeH9isKDKq4=;
+    b=NVJPYMG7OzsRPW776iS1dZlrmLce2AHI/DqDzAXXfDyedbKnFlusvNDZpLxieoN548
+    7NRmNgfUYMknVcJYyrBQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z+P1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
+    with ESMTPSA id j34a49z9OIZbRxe
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Oct 2023 20:35:37 +0200 (CEST)
+Date: Tue, 24 Oct 2023 20:35:29 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH v2 2/2] Input: add Himax HX852x(ES) touchscreen driver
+Message-ID: <ZTgOcXMKVY2o_ikx@gerhold.net>
+References: <20230930-hx852x-v2-0-c5821947b225@gerhold.net>
+ <20230930-hx852x-v2-2-c5821947b225@gerhold.net>
+ <ZTVoiklUJaDn5576@nixie71>
+ <ZTVuqW7oU5BmPzTS@gerhold.net>
+ <ZTcPrC+0K1unNPIv@nixie71>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +98,140 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231018182943.18700-4-ddrokosov@salutedevices.com>
+In-Reply-To: <ZTcPrC+0K1unNPIv@nixie71>
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 18, 2023 at 09:29:35PM +0300, Dmitry Rokosov wrote:
-> Property 'hwen-gpios' is optional, it can be used by the board
-> developer to connect AW200XX LED controller with appropriate poweron
-> GPIO pad.
-> 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> index feb5febaf361..255eb0563737 100644
-> --- a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> +++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> @@ -41,6 +41,9 @@ properties:
->      description:
->        Leds matrix size
->  
-> +  hwen-gpios:
-> +    maxItems: 1
+Hi Jeff,
 
-The standard enable-gpios or powerdown-gpios don't work for you?
+On Mon, Oct 23, 2023 at 07:28:28PM -0500, Jeff LaBundy wrote:
+> On Sun, Oct 22, 2023 at 08:49:13PM +0200, Stephan Gerhold wrote:
+> > > > +static int hx852x_read_config(struct hx852x *hx)
+> > > > +{
+> > > > +	struct device *dev = &hx->client->dev;
+> > > > +	struct hx852x_config conf;
+> > > > +	int x_res, y_res;
+> > > > +	int error;
+> > > > +
+> > > > +	error = hx852x_power_on(hx);
+> > > > +	if (error)
+> > > > +		return error;
+> > > > +
+> > > > +	/* Sensing must be turned on briefly to load the config */
+> > > > +	error = hx852x_start(hx);
+> > > > +	if (error)
+> > > > +		goto err_power_off;
+> > > > +
+> > > > +	error = hx852x_stop(hx);
+> > > > +	if (error)
+> > > > +		goto err_power_off;
+> > > > +
+> > > > +	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH,
+> > > > +					  HX852X_SRAM_SWITCH_TEST_MODE);
+> > > > +	if (error)
+> > > > +		goto err_power_off;
+> > > > +
+> > > > +	error = i2c_smbus_write_word_data(hx->client, HX852X_REG_SRAM_ADDR,
+> > > > +					  HX852X_SRAM_ADDR_CONFIG);
+> > > > +	if (error)
+> > > > +		goto err_test_mode;
+> > > > +
+> > > > +	error = hx852x_i2c_read(hx, HX852X_REG_FLASH_RPLACE, &conf, sizeof(conf));
+> > > > +	if (error)
+> > > > +		goto err_test_mode;
+> > > > +
+> > > > +	x_res = be16_to_cpu(conf.x_res);
+> > > > +	y_res = be16_to_cpu(conf.y_res);
+> > > > +	hx->max_fingers = (conf.max_pt & 0xf0) >> 4;
+> > > > +	dev_dbg(dev, "x res: %u, y res: %u, max fingers: %u\n",
+> > > > +		x_res, y_res, hx->max_fingers);
+> > > > +
+> > > > +	if (hx->max_fingers > HX852X_MAX_FINGERS) {
+> > > > +		dev_err(dev, "max supported fingers: %u, found: %u\n",
+> > > > +			HX852X_MAX_FINGERS, hx->max_fingers);
+> > > > +		error = -EINVAL;
+> > > > +		goto err_test_mode;
+> > > > +	}
+> > > > +
+> > > > +	if (x_res && y_res) {
+> > > > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_X, 0, x_res - 1, 0, 0);
+> > > > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_Y, 0, y_res - 1, 0, 0);
+> > > > +	}
+> > > > +
+> > > > +	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
+> > > > +	if (error)
+> > > > +		goto err_power_off;
+> > > > +
+> > > > +	return hx852x_power_off(hx);
+> > > > +
+> > > > +err_test_mode:
+> > > > +	i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
+> > > > +err_power_off:
+> > > > +	hx852x_power_off(hx);
+> > > > +	return error;
+> > > 
+> > > Your new version is an improvement, but maybe we can remove duplicate
+> > > code by introducing some helper variables:
+> > > 
+> > > 	int error, error2 = 0, error3;
+> > > 
+> > > 	/* ... */
+> > > 
+> > > err_test_mode:
+> > > 	error2 = i2c_smbus_write_byte_data(...);
+> > > 
+> > > err_power_off:
+> > > 	error3 = hx852x_power_off(...);
+> > > 
+> > > 	if (error)
+> > > 		return error;
+> > > 
+> > > 	return error2 ? : error3;
+> > > 
+> > > In this case we achieve our goal of attempting to return the device to a
+> > > safe state in both passing and failing cases. In the event of multiple
+> > > errors, we return the first to occur.
+> > > 
+> > 
+> > Right, this would work as well. Personally I think my solution is
+> > slightly easier to read though. In your version my eyes somewhat
+> > "stumble" over the multiple "error" variables and then about the purpose
+> > of the "? : " construction. This is probably highly subjective. :-)
+> 
+> Agreed, my suggestion is a bit unwieldy, and prone to uninitialized
+> variable bugs. However, I feel that duplicate code, especially side
+> by side like this, is also confusing and prone to bugs in case the
+> sequence must be updated in the future. As a compromise, how about
+> something closer to my first idea:
+> 
+> err_test_mode:
+> 	error = i2c_smbus_write_byte_data(...) ? : error;
+> 
+> err_power_off:
+> 	return hx852x_power_off(...) ? : error;
+> 
+> This is nice and compact, and ensures that errors returned by the two
+> functions are reported no matter the flow. The only functional change
+> is that the _last_ error takes priority; but in practice this does not
+> really matter. Normally if one I2C write fails, all subsequent writes
+> will fail with the same return code until the hardware is recovered
+> somehow.
+> 
+> For the corner case where the code jumps to exit_test_mode with error
+> equal to -EINVAL, and i2c_smbus_write_byte_data() then fails and changes
+> error to something like -EIO, I don't think we care. After the HW issue
+> is fixed and all I2C writes succeed, the developer will then see that
+> the number of contacts reported by the FW is invalid anyway :)
+> 
+> Side note: the '? :' syntax is just a shortcut that sets error equal
+> to the return value of i2c_smbus_write_byte_data() if true (failure)
+> without having to declare a temporary variable. If false (no failure),
+> error is assigned to itself. It is perfectly legal.
+> 
+
+Thanks a lot for your detailed review and explanations!
+
+In v3 I have changed the code to your suggestion above and also
+addressed your other comments in the initial reply. :)
+
+Stephan
 
