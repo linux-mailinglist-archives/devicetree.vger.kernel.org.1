@@ -1,228 +1,90 @@
-Return-Path: <devicetree+bounces-11472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5502F7D5E2D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 00:29:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2988D7D5E34
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 00:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 135A52812F4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:29:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5213B20FF8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047FA43ABF;
-	Tue, 24 Oct 2023 22:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076552100;
+	Tue, 24 Oct 2023 22:31:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="uzFlkGFQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26BB942909
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:28:57 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF5CB10DE;
-	Tue, 24 Oct 2023 15:26:39 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C5FB2F4;
-	Tue, 24 Oct 2023 15:27:07 -0700 (PDT)
-Received: from [10.57.5.249] (unknown [10.57.5.249])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 22CAF3F762;
-	Tue, 24 Oct 2023 15:26:23 -0700 (PDT)
-Message-ID: <56bbb2ad-5cea-46ad-83be-d6d7fd9bbfde@arm.com>
-Date: Tue, 24 Oct 2023 23:26:22 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F411BDC7
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:31:15 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5663840
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:30:42 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5208C2C02E0;
+	Wed, 25 Oct 2023 11:30:35 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1698186635;
+	bh=BJyb8WCZNp/Hae7wlZqfwiEnwQZsmQKh19okRh+cMxw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uzFlkGFQrkoMNSt/vOaQDLPxO9T1c/ee5kk4Z+BU6meMvLYLVnvIVKkyXSomppUZR
+	 nC2G8VxoVyAQgYByl/0Dcr4/LnqUa/5qfua4dELW+gsWbIYABTSBVnZ3a1ScSqY9oC
+	 lwglbP6bM+QbsMFtS9KX2o2hFG4AwiEn6kPvQZYp4TW3s2mPl164gwn22RlBv98ru7
+	 oLzOvXRlvZ6wnyEi08HFXRiixHA6fn5+b6MGfyVkIVVJWCMG+8kNm1HDhaS+s3svjO
+	 0pW9CobR+5bhSB0yQC8F+3mx8RJTn2txowcJGA0tFjo4NaT3+/JiyLBw6zNP9IJ1bD
+	 h/49+hUZwgSCQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6538458b0000>; Wed, 25 Oct 2023 11:30:35 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 1363413EDA9;
+	Wed, 25 Oct 2023 11:30:35 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 0EF36280F0D; Wed, 25 Oct 2023 11:30:35 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: gregory.clement@bootlin.com,
+	andi.shyti@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v4 0/2] i2c: mv64xxx: reset-gpios
+Date: Wed, 25 Oct 2023 11:30:30 +1300
+Message-ID: <20231024223032.3387487-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: iommu: Add Translation Buffer Unit
- bindings
-To: Rob Herring <robh@kernel.org>, Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
- joro@8bytes.org, devicetree@vger.kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
- quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com,
- djakov@kernel.org
-References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
- <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
- <20231024184248.GA252155-robh@kernel.org>
-Content-Language: en-GB
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20231024184248.GA252155-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=bhdUkHdE2iEA:10 a=DesYK6339MVhjp1_Vu4A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On 2023-10-24 19:42, Rob Herring wrote:
-> On Wed, Oct 18, 2023 at 07:19:18PM -0700, Georgi Djakov wrote:
->> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
->> of the ARM SMMU-500, that consists of a single TCU (Translation Control
->> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
->> being described in the ARM SMMU DT schema. Add also bindings for the
->> TBUs so that we can describe their properties.
-> 
-> Arm SMMU-500 is an implementation, too. Is QCom's a modified
-> implementation or you are just the first to want to control TBU
-> resources?
+This series adds the ability to associate a gpio with an I2C bus so that
+downstream devices can be brought out of reset when the host controller i=
+s
+probed.
 
-It's very very modified. The stock MMU-500 has very few 
-microarchitectural registers[1], they all live within the regular SMMU 
-address space, are all Secure-only by default, and don't do anything 
-like the shenanigans here.
+Chris Packham (2):
+  dt-bindings: i2c: mv64xxx: add reset-gpios property
+  i2c: mv64xxx: add an optional reset-gpios property
 
-That said, looking at patch #3, I don't really understand why we need 
-any of this stuff upstream... AFAICS it's doing an insane amount of work 
-to use complicated imp-def debug functionality to duplicate things that 
-the main driver can already do far more efficiently. Sure, in general it 
-seems like it could potentially be useful stuff for bringing up and 
-debugging a new driver, but the Linux SMMUv2 driver is mature and 
-frankly already closer to being obsolete than to being new...
+ .../bindings/i2c/marvell,mv64xxx-i2c.yaml        | 10 ++++++++++
+ drivers/i2c/busses/i2c-mv64xxx.c                 | 16 ++++++++++++++++
+ 2 files changed, 26 insertions(+)
 
-[ digression since I can't be bothered to split this discussion by 
-replying separately to patch #3: ]
+--=20
+2.42.0
 
-I mean, just looking at qsmmuv500_iova_to_phys(), you do realise that 
-that's going to be called potentially multiple times by iommu-dma for 
-*every* dma_sync and dma_unmap call and really wants to be fast, right? 
-This brings to mind all the work I did a couple of years back[2] because 
-strict TLB invalidation on unmap was considered too slow for certain 
-devices on QCom platforms by ChromeOS, yet what this achieves looks like 
-it could easily be up to an order of magnitude slower again :(
-
-> You need to split this into what could be any SMMU-500 implementation
-> and what is truly QCom specific (i.e. modified). Unlike some licensed IP
-> that's a free-for-all on DT resources, Arm IP has public specs so we
-> don't have to guess.
-> 
->> In this DT schema, the TBUs are modelled as a child devices of the TCU
->> and each of them is described with it's own resources such as clocks,
->> power domains, interconnects etc.
->>
->> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
->> ---
->>   .../devicetree/bindings/iommu/arm,smmu.yaml   | 13 ++++
->>   .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 67 +++++++++++++++++++
->>   2 files changed, 80 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index cf29ab10501c..afc323b4bbc5 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -230,6 +230,19 @@ properties:
->>         enabled for any given device.
->>       $ref: /schemas/types.yaml#/definitions/phandle
->>   
->> +  '#address-cells':
->> +    const: 2
->> +
->> +  '#size-cells':
->> +    const: 2
->> +
->> +  ranges: true
->> +
->> +patternProperties:
->> +  "^tbu@[0-9a-f]+$":
->> +    $ref: qcom,qsmmuv500-tbu.yaml
-> 
-> Generic SMMU binding includes something QCom specific. That's not right.
-> 
-> 
->> +    description: The SMMU may include Translation Buffer Units (TBU) as subnodes
->> +
->>   required:
->>     - compatible
->>     - reg
->> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->> new file mode 100644
->> index 000000000000..4baba7397e90
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
->> @@ -0,0 +1,67 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm TBU (Translation Buffer Unit)
->> +
->> +maintainers:
->> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
->> +
->> +description:
->> +  TBU nodes represent Translation Buffer Units in an ARM SMMU. Each TBU node
->> +  should be a child node of the SMMU in the device tree.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,qsmmuv500-tbu
->> +
->> +  reg:
->> +    items:
->> +      - description: Address and size of the TBU's register space.
->> +
->> +  reg-names:
->> +    items:
->> +      - const: base
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  interconnects:
->> +    maxItems: 1
-
-What does this interconnect represent? MMU-500 TBUs don't access memory 
-themselves[3], they only have an internal AXI Stream interface to the 
-TCU to request translations.
-
-Thanks,
-Robin.
-
-[1] 
-https://developer.arm.com/documentation/ddi0517/f/programmers-model/memory-model
-[2] 
-https://lore.kernel.org/all/d652966348c78457c38bf18daf369272a4ebc2c9.1628682049.git.robin.murphy@arm.com/
-[3] Yeah yeah, other than the special case of TBU0 issuing pagetable 
-walks on behalf of the TCU when it's not configured with its own 
-dedicated PTW interface, I know :P
-
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  qcom,stream-id-range:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: Stream ID range (address and size) that is assigned by the TBU
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interconnects
->> +  - qcom,stream-id-range
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
->> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +
->> +    tbu@150e1000 {
->> +        compatible = "qcom,qsmmuv500-tbu";
->> +        reg = <0x150e1000 0x1000>;
->> +        reg-names = "base";
->> +        clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
->> +        power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
->> +        interconnects = <&system_noc MASTER_GNOC_SNOC 0 &config_noc SLAVE_IMEM_CFG 0>;
->> +        qcom,stream-id-range = <0x1c00 0x400>;
->> +    };
->> +
->> +...
 
