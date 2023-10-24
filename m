@@ -1,107 +1,176 @@
-Return-Path: <devicetree+bounces-11382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86CF47D5893
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:36:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4F67D58A9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26333B20BF9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:36:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55940281A7A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB282B76C;
-	Tue, 24 Oct 2023 16:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF8430FB3;
+	Tue, 24 Oct 2023 16:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QHOmlLya"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="lVOXQsbs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06F713A268;
-	Tue, 24 Oct 2023 16:36:40 +0000 (UTC)
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D32DA;
-	Tue, 24 Oct 2023 09:36:39 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-41b7ec4cceeso29502671cf.1;
-        Tue, 24 Oct 2023 09:36:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE043A29F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:37:57 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A68118
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:37:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507e85ebf50so5110443e87.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:37:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698165398; x=1698770198; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JvTKMURH52PMu+L5w2Of9mflbcwT1+fb5UT7Km5ZrRA=;
-        b=QHOmlLya9Sw4BfT92FP+/boLKEgbSyE8tf+FGQdnKeffb06klcOKd5RJBgGQGmrW6k
-         R7s8iB84ATb/sh+wUPordJX9L8Jev5kaUrKGZ8snCXGqrDSoXfyFUAPxRYXfhviSS6H9
-         5dDnea3ly6RLSc3qO2Gn5yyS+UM9/3qsn4220AcTQ2wCtupBeG2frq28SWEyrfUbTuIz
-         KYTDqZlkroBtl6uGKC75ekY7YpZs+yK5VvTNgB4lGUdCmKi7GckaJ1SQ2Kd2d+RyhlhS
-         ORNS+9c4wp6u6rlcahbokQVvZai1vgIvpYf5r1M2ymIWOWkQiK2qiB12hD2r5Wtxnp/a
-         A8xQ==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1698165474; x=1698770274; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HQ00iT5MBLthBXpEW1UVbJpzOdfkXUyxCtvUUc+C6ro=;
+        b=lVOXQsbsoLo4Tc5Cjs3xTpMdldD1eRpUaUvmdLtuCDqQUxrmgdSPiLtyheha7Oy0I+
+         D67g/qeYZjTe2S9ZbwVYwDKwEQH2r1tTvoVF0N+lLo58+afjhq0vknX2bmPUY9KDXhZO
+         jH3hIikXoHyC5e2jCsAEWfq2cC5d3Z5LugHiRhg93yrUnOyuLj1+jBKXRbGZGHClQ0ob
+         pbLXmTx42ldtP9w/O3ssd1I5gi2MdvGsR98KKTcvUuAneJ0vbU8v9YOa1Z/LHLEnksM2
+         7et0pWQILrJ2+cwa1eGXW8Z6mTuj6CTSXxn4ePkpkEbU+Ffzbh2a9tc3kydkAnUWyblC
+         1Rqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698165398; x=1698770198;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JvTKMURH52PMu+L5w2Of9mflbcwT1+fb5UT7Km5ZrRA=;
-        b=XX0E7buKJ4wCa0LRaOX7KAoVgMD1IuAqheRNXAXXXqRAoG43LKH8+lmeEpJ0ZDGfJ+
-         XF3TSlfQEy0ViG9oBAvuOj2y/K991Ff5cSU0YAKLg0NKPcL6wPcUZrA1nxG0OwTbqoJ0
-         lCEJyQ7ihMqfT5/AGDfGlRGX+rt/v0+8Y1N87RVBM8X0qeZPNa60leYZbA/Satub5mCS
-         7ZWYiC5JPXjjhQ5ET8YADS3FAbenfSS8FWwtIgZVjxXfGoZ3jIZ6PLfjansi3Z0kBNJq
-         Ulc5EzGiRJsmQnRX02/kOEXoUm30lwOWxDODVbFiScn/PhifiDA8Z60BS7CK9uAOzrW5
-         e6zg==
-X-Gm-Message-State: AOJu0YyUu69N4AssqC9bYdaShor6i211Ll3Q/O+zHZCL4daUneAUD8OR
-	VTgwuSprdl3ZlgYBc7lt9+TkLdo3a1k=
-X-Google-Smtp-Source: AGHT+IF5c1R2mVDESBuxmE8cWZg8DgJbJQU8a+DvBNUq+xlwThchQXQ4SQDmphZ8OCPgi+xTSxuQXA==
-X-Received: by 2002:ac8:5785:0:b0:41e:2d77:c727 with SMTP id v5-20020ac85785000000b0041e2d77c727mr1914748qta.29.1698165398545;
-        Tue, 24 Oct 2023 09:36:38 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h21-20020ac87455000000b00419b094537esm3590812qtr.59.2023.10.24.09.36.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 09:36:37 -0700 (PDT)
-Message-ID: <83819717-22ea-4cdc-a112-f3c5c482690b@gmail.com>
-Date: Tue, 24 Oct 2023 09:36:35 -0700
+        d=1e100.net; s=20230601; t=1698165474; x=1698770274;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HQ00iT5MBLthBXpEW1UVbJpzOdfkXUyxCtvUUc+C6ro=;
+        b=V28YpUFb3lxR1vHMXU8FdEupnZk1LHdDYqa+5ajKBKNA6+svla7xLdnWOr1C6WI3wS
+         UPdZ4HI18U/79cf2KL2479SHZEPQ7zagwmVoH1tt272G7xtbDaUzLi3RRlMMkkTKbmAD
+         q0LOKzjy1jrcEajtsM3PC32p0hbvTK4ru1HB+TaCZdx9e8IUwI03fWSb7yOWeIaVGTt/
+         hsMOD39bKYu2rz7jxPNb6/cKT8AR9aRalFp0gK+iBAoPngUvIE2LamQ8m0FA6qg4KVEt
+         WckIom1CtD85/P43uDxKMdkspwN0J5fLu36Ihbh0Q378et9eDQcQswWNWSZFGKBzdORY
+         KEVA==
+X-Gm-Message-State: AOJu0Ywm/l1V6Goyxo3ANbr58+HExaFQCmd9t8aLRoX851Jtr/2jChSH
+	/Wa0C8yi3cZuQ0LqBuaoC7Vf/846q845mhugY1eOiw==
+X-Google-Smtp-Source: AGHT+IHU0SuW8qIrTkg9+1VPEqjIrc2hDcfHXiQbZ/0vtxjVpobAABBwhRBFea6xvpHVBg9QxcWjpITCntgT0kGXieE=
+X-Received: by 2002:ac2:5104:0:b0:507:b17a:709e with SMTP id
+ q4-20020ac25104000000b00507b17a709emr9561597lfb.1.1698165473946; Tue, 24 Oct
+ 2023 09:37:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 4/7] ARM: dts: nxp: Fix some common switch
- mistakes
-Content-Language: en-US
-To: Linus Walleij <linus.walleij@linaro.org>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <20231024-marvell-88e6152-wan-led-v7-0-2869347697d1@linaro.org>
- <20231024-marvell-88e6152-wan-led-v7-4-2869347697d1@linaro.org>
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20231024-marvell-88e6152-wan-led-v7-4-2869347697d1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20231017131456.2053396-1-cleger@rivosinc.com> <20231017131456.2053396-3-cleger@rivosinc.com>
+ <CALs-HssmufWCKzaGy7BwWz4n4hfwV9NjjRD-O_JeupM-p=Ov+w@mail.gmail.com>
+ <d0ea4996-5c48-47b4-99b0-f4211276e0b2@rivosinc.com> <56f6af04-bdf4-4b85-99dc-9eb4f391d7ad@rivosinc.com>
+In-Reply-To: <56f6af04-bdf4-4b85-99dc-9eb4f391d7ad@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Tue, 24 Oct 2023 09:37:17 -0700
+Message-ID: <CALs-Hsvy411MnHQXHLK8u4JmM+LO5R2tuCxY6zQco7BKJONqPA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/19] riscv: add ISA extension parsing for scalar crypto
+To: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jonathan Corbet <corbet@lwn.net>, Andrew Jones <ajones@ventanamicro.com>, 
+	Conor Dooley <conor@kernel.org>, Samuel Ortiz <sameo@rivosinc.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/24/23 06:20, Linus Walleij wrote:
-> Fix some errors in the Marvell MV88E6xxx switch descriptions:
-> - switch0@0 is not OK, should be ethernet-switch@0
-> - ports should be ethernet-ports
-> - port should be ethernet-port
-> - phy should be ethernet-phy
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+On Tue, Oct 24, 2023 at 2:30=E2=80=AFAM Cl=C3=A9ment L=C3=A9ger <cleger@riv=
+osinc.com> wrote:
+>
+>
+>
+> On 24/10/2023 09:18, Cl=C3=A9ment L=C3=A9ger wrote:
+> >
+> >
+> > On 23/10/2023 18:21, Evan Green wrote:
+> >> On Tue, Oct 17, 2023 at 6:15=E2=80=AFAM Cl=C3=A9ment L=C3=A9ger <clege=
+r@rivosinc.com> wrote:
+> >>>
+> >>> From: Evan Green <evan@rivosinc.com>
+> >>>
+> >>> The Scalar Crypto specification defines Zk as a shorthand for the
+> >>> Zkn, Zkr and Zkt extensions. The same follows for both Zkn, Zks and Z=
+bk,
+> >>> which are all shorthands for various other extensions. The detailed
+> >>> breakdown can be found in their dt-binding entries.
+> >>>
+> >>> Since Zkn also implies the Zbkb, Zbkc and Zbkx extensions, simply pas=
+sing
+> >>> "zk" through a DT should enable all of Zbkb, Zbkc, Zbkx, Zkn, Zkr and=
+ Zkt.
+> >>> For example, setting the "riscv,isa" DT property to "rv64imafdc_zk"
+> >>> should generate the following cpuinfo output:
+> >>> "rv64imafdc_zicntr_zicsr_zifencei_zihpm_zbkb_zbkc_zbkx_zknd_zkne_zknh=
+_zkr_zkt"
+> >>>
+> >>> riscv_isa_ext_data grows a pair of new members, to permit setting the
+> >>> relevant bits for "bundled" extensions, both while parsing the ISA st=
+ring
+> >>> and the new dedicated extension properties
+> >>>
+> >>> Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
+> >>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >>> Signed-off-by: Evan Green <evan@rivosinc.com>
+> >>> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <cleger@rivosinc.com>
+> >>
+> >> My tree might be out of sync, but in my search for riscv_isa_ext, I
+> >> also found a use in print_isa() (cpu.c) where we're reaching into
+> >> riscv_isa_ext[].id and assuming it's always valid. If that's still in
+> >> there we'll want to fix up that spot too, since now with bundles .id
+> >> may or may not be valid.
+> >
+> > Oh indeed, the array is visible outside of this compilation unit :/.
+> > I'll check that before sending V3.
+>
+> After looking a bit more at that, it actually seems that id is used in
+> cpuinfo to determine which extensions are present which means you are
+> right, bundle_size needs to be accounted for.
+>
+> Looking at it also raises the question (again) of exposing the "bundles"
+> extensions themselves or not in cpuinfo output. With the current setup,
+> the bundles extensions won't be visible in cpuinfo output. For instance
+> if Zk was in the isa string, then it will not be visible in the cpuinfo
+> output, only the child extensions. One solution would be to always have
+> a valid id for each extension. So we would have one for Zk for instance.
+>
+> We would then have a similar setup for all "bundles" or "subset"
+> extensions, they would have a id for all of them. For instance, Zk would
+> become:
+>
+> __RISCV_ISA_EXT_DATA_BUNDLE(zk, RISCV_ISA_EXT_ZK, riscv_zk_bundled_exts)
+>
+> Same would go for zvbb (riscv_zvbb_subset_exts would only contain Zvkb):
+>
+> __RISCV_ISA_EXT_DATA_BUNDLE(zk, RISCV_ISA_EXT_ZVBB, riscv_zvbb_subset_ext=
+s)
+>
+> For the sake of completeness, I feel like it would be good to have all
+> the extensions (bundles or not) visible in the riscv_isa_ext.
+>
+> Any objection ?
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+I could be persuaded that it's a good idea, but there are arguments to
+be made for not defining them as separate bits:
 
+1. Having two (sets of) bits that mean the same thing means usermode
+now has to decide which one to query, or query both. Multiple values
+that mean the same thing is always something that makes me nervous.
+2. To avoid these two sets having different answers, we'd have to
+solve the reverse problem too: If all of the bundled extensions that
+make up Zk are on, we'd need to detect that and turn Zk on as well.
+That code would also need to know the difference between a pure lasso
+like Zk, where you should flip it on if its components are on, and the
+loose change variant we were discussing on the other thread (Zvkb?),
+where you cannot.
+
+Pretending pure lasso extensions didn't exist on their own was a way
+to sidestep the problem.
+-Evan
 
