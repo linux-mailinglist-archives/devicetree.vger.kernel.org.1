@@ -1,187 +1,166 @@
-Return-Path: <devicetree+bounces-11329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1DA7D53D5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:24:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781FA7D53DC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ED04B20F32
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:24:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9B081C20868
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FC82C85D;
-	Tue, 24 Oct 2023 14:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="foxNKOQ9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05C02C85E;
+	Tue, 24 Oct 2023 14:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FCF9FBFB
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:24:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D89129
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:24:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698157455; x=1729693455;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=L++4CmKz6BsAhZ7VdgtQs3hUhOH7wFF41ckdSy07qs0=;
-  b=foxNKOQ9XSgDXH2qrCErY2/3Ci/lW5zuIHEirgV7KlSEUHl1OCS9iaM3
-   i4hePmDRbjtPwAar0gf5/1xLdmX7EBKhpKbGFy06dLpOQDKlsLyxHukIo
-   hU8EytsyaJbec4O+PK3l4z1HaDVAoOveKaSXtSxO9+e9EuLZAfaYWF0wh
-   KWc0D0iWCqgwhUqluzyIllWcgA8eKOGFe5+DGGNCJlfSi+uolWbMokhXI
-   vhdZEsN0CQS1zgkKHMMJVMxsXrgcKnhyEonuXuz/QiBn41agirpSgp7XX
-   7JF86zws7nsS9HutL2FrwPk6IvTu7oIi+5lmiMzC3g+wEEYWTuPTkzL3P
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="386873692"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="386873692"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 07:24:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758491431"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="758491431"
-Received: from pwali-mobl.amr.corp.intel.com (HELO [10.209.188.4]) ([10.209.188.4])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 07:24:05 -0700
-Message-ID: <3ce60545-ba2b-48cc-903d-288d761f2fe3@linux.intel.com>
-Date: Tue, 24 Oct 2023 09:24:05 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE18BFBFB
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:24:33 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9773310A
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:24:31 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvIKZ-0003p9-WC; Tue, 24 Oct 2023 16:24:28 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvIKY-003y1U-PT; Tue, 24 Oct 2023 16:24:26 +0200
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvIKY-00G8uT-MW; Tue, 24 Oct 2023 16:24:26 +0200
+Date: Tue, 24 Oct 2023 16:24:26 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: UNGLinuxDriver@microchip.com, andrew@lunn.ch, conor+dt@kernel.org,
+	davem@davemloft.net, devicetree@vger.kernel.org,
+	edumazet@google.com, f.fainelli@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
+	olteanv@gmail.com, pabeni@redhat.com, robh+dt@kernel.org,
+	woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
+Message-ID: <20231024142426.GE3803936@pengutronix.de>
+References: <20231024100915.GC3803936@pengutronix.de>
+ <20231024130832.13596-1-ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] ASoC: makes CPU/Codec channel connection map more
- generic
-Content-Language: en-US
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Mark Brown <broonie@kernel.org>, Bard Liao
- <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-References: <874jihlx44.wl-kuninori.morimoto.gx@renesas.com>
- <8734y1lx3m.wl-kuninori.morimoto.gx@renesas.com>
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <8734y1lx3m.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231024130832.13596-1-ante.knezic@helmholz.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-
-On 10/23/23 00:35, Kuninori Morimoto wrote:
-> Current ASoC CPU:Codec = N:M connection is using connection mapping idea,
-> but it is used for N < M case only. We want to use it for any case.
+On Tue, Oct 24, 2023 at 03:08:32PM +0200, Ante Knezic wrote:
+> On Tue, 24 Oct 2023 12:09:15 +0200, Oleksij Rampel wrote:
 > 
-> By this patch, not only N:M connection, but all existing connection
-> (1:1, 1:N, N:N) will use same connection mapping. Then, because it will
-> use default mapping, no conversion patch is needed to exising drivers.
+> > > As you suggested, it looks like KSZ9897 clocking mode depends on RMII interface
+> > > mode (with strapping pins), but I don't see this for KSZ8863. The PHY/MAC mode
+> > > is selected with Register 0x35 bit 7 and the clocking mode is selected via
+> > > strapping pins EN_REFCLKO and SMTXD32 (and additional register 0xC6 bit 3).
+> > > I guess its possible for the KSZ8863 to be the clock provider/consumer
+> > > regardless of PHY/MAC mode?
+> >
+> >Register 0x35 bit 7 is for MII mode
+> >Register 0xC6 bit 3 is for RMII mode
+> >
+> >MII != RMII
 > 
-> More over, CPU:Codec = N:M (N > M) also supported in the same time.
+> Yes, right you are. Looks like I got lost in the datasheets...
 > 
-> ch_maps array will has CPU/Codec index by this patch.
+> > > Table 3-5: RMII CLOCK SETTING of KSZ8863 datasheet describes the available
+> > > clocking modes. If we try to create a relation between KSZ9897 and KSZ8863:
+> > >
+> > > KSZ9897 "Normal Mode" is equivalent to KSZ8863 mode described in first column
+> > > of table 3-5:
+> > > - EN_REFCLKO = 0, 0xC6(3) = 0 -> external 50Mhz OSC input to REFCLKI and X1
+> > >   pin directly
+> > >
+> > > KSZ9897 "Clock Mode" is equivalent to KSZ8863 mode described in fourth/fifth
+> > > column (difference is only clock frequency) of table 3-5:
+> > > - EN_REFCLKO = 1, 0xC6(3) = 1 -> 50/25Mhz on X1 pin, 50/25Mhz RMII clock goes
+> > >   to REFCLKI internally. REFCLKI can be pulled down by resistor.
+> > >
+> > > That leaves us with additional columns 2 and 3 of table 3-5 for KSZ8863, that
+> > > are similar to KSZ9897 Clock mode, but REFCLKI needs to be fed externally from
+> > > REFCLKO.
+> > 
+> > All of 5 variants described in "Table 3-5: RMII CLOCK SETTING of KSZ8863"
+> > can be boiled down to two main configurations:
+> > 
+> > REFCLKI is used as clock source for internal MAC == Normal Mode or
+> > RevRMII mode.
+> > REFCLKI is not used as clock source for internal MAC == Clock Mode or
+> > RMII mode.
+> > 
+> > Variants 1, 2, 3 describe only how can we feed REFCLKI from outside of
+> > the chip. Even variant 2 and 3 make the switch to be an actually
+> > physical clock provider, we still need to use REFCLKI and wire it
+> > outside of the chip which make it practically a Normal Mode or RevRMII mode.
 > 
-> Image
-> 	CPU0 <---> Codec0
-> 	CPU1 <-+-> Codec1
-> 	CPU2 <-/
+> That is correct, I guess its a matter of nomenclature, but how do you 
+> "tell" the switch whether it has REFCLKI routed externally or not if not by 
+> setting the 0xC6 bit 3? Is there another way to achieve this?
+
+I do not see any other way to "tell" it. The only thing to change in you
+patches is a different way to tell it to the kernel.
+Instead of introducing a new devicetree property, you need to reuse
+phy-mode property.
+
+> > > > I already did some work to configure CPU interface, where which can be at least
+> > > > partially reused for your work:
+> > > > https://lore.kernel.org/all/20230517121034.3801640-2-o.rempel@pengutronix.de/
+> > > > (Looks I forgot to complete mainlining for this patch)
+> > > >
+> > > > If implanted as described, no new devicetree properties will be needed.
+> > >
+> > > I don't quite get how the proposed patch might effect this topic?
+> > 
+> > You will need to add ksz8_phylink_mac_link_up() as this patch already
+> > dose.
+> > 
+> > > By setting PHY/MAC mode? As noted, I dont see the same relation between clock and
+> > > MII mode for KSZ8863 as for KSZ9897?
+> > 
+> > I hope current mail will clear it.
 > 
-> ch_map
-> 	ch_map[0].cpu = 0	ch_map[0].codec = 0
-> 	ch_map[1].cpu = 1	ch_map[1].codec = 1
-> 	ch_map[2].cpu = 2	ch_map[2].codec = 1
-> 
-> Link: https://lore.kernel.org/r/87fs6wuszr.wl-kuninori.morimoto.gx@renesas.com
-> Link: https://lore.kernel.org/r/878r7yqeo4.wl-kuninori.morimoto.gx@renesas.com
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> I tried your patch but it does not do it for me. As stated, my hw platform does
+> not have REFCLKI routed externally so a state at column 4/5 is expected.
 
-The Intel CI did not detect any issues with this patch, see
-https://github.com/thesofproject/linux/pull/4632, so
+My patches do not address your problem. It is just example which already creates
+ksz8_phylink_mac_link_up() and do some CPU port configuration, which you
+will need do too, but for other registers. Or just for get it to avoid
+confusion.
 
-Tested-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+What you need is to set 0xC6 bit 3 for PHY_INTERFACE_MODE_REVRMII and 
+clear it for PHY_INTERFACE_MODE_RMII.
 
-Note however the -W1 error below
+Since phy-mode for RMII was never set correctly, it will most probably
+break every single devicetree using KSZ switches. It is the price of fixing
+things :/
 
-
-> +static int snd_soc_compensate_channel_connection_map(struct snd_soc_card *card,
-> +						     struct snd_soc_dai_link *dai_link)
-> +{
-> +	struct snd_soc_dai_link_ch_map *ch_maps;
-> +	int i, max;
-
-sound/soc/soc-core.c: In function
-‘snd_soc_compensate_channel_connection_map’:
-sound/soc/soc-core.c:1050:16: error: variable ‘max’ set but not used
-[-Werror=unused-but-set-variable]
- 1050 |         int i, max;
-      |                ^~~
-
-> +	/*
-> +	 * dai_link->ch_maps indicates how CPU/Codec are connected.
-> +	 * It will be a map seen from a larger number of DAI.
-> +	 * see
-> +	 *	soc.h :: [dai_link->ch_maps Image sample]
-> +	 */
-> +
-> +	/* it should have ch_maps if connection was N:M */
-> +	if (dai_link->num_cpus > 1 && dai_link->num_codecs > 1 &&
-> +	    dai_link->num_cpus != dai_link->num_codecs && !dai_link->ch_maps) {
-> +		dev_err(card->dev, "need to have ch_maps when N:M connction (%s)",
-> +			dai_link->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* do nothing if it has own maps */
-> +	if (dai_link->ch_maps)
-> +		goto sanity_check;
-> +
-> +	/* check default map size */
-> +	if (dai_link->num_cpus   > MAX_DEFAULT_CH_MAP_SIZE ||
-> +	    dai_link->num_codecs > MAX_DEFAULT_CH_MAP_SIZE) {
-> +		dev_err(card->dev, "soc-core.c needs update default_connection_maps");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Compensate missing map for ... */
-> +	if (dai_link->num_cpus == dai_link->num_codecs)
-> +		dai_link->ch_maps = default_ch_map_sync;	/* for 1:1 or N:N */
-> +	else if (dai_link->num_cpus <  dai_link->num_codecs)
-> +		dai_link->ch_maps = default_ch_map_1cpu;	/* for 1:N */
-> +	else
-> +		dai_link->ch_maps = default_ch_map_1codec;	/* for N:1 */
-> +
-> +sanity_check:
-> +	max = min(dai_link->num_cpus, dai_link->num_codecs);
-
-sound/soc/soc-core.c: In function
-‘snd_soc_compensate_channel_connection_map’:
-sound/soc/soc-core.c:1050:16: error: variable ‘max’ set but not used
-[-Werror=unused-but-set-variable]
- 1050 |         int i, max;
-      |                ^~~
-> +
-> +	dev_dbg(card->dev, "dai_link %s\n", dai_link->stream_name);
-> +	for_each_link_ch_maps(dai_link, i, ch_maps) {
-> +		if ((ch_maps->cpu   >= dai_link->num_cpus) ||
-> +		    (ch_maps->codec >= dai_link->num_codecs)) {
-> +			dev_err(card->dev,
-> +				"unexpected dai_link->ch_maps[%d] index (cpu(%d/%d) codec(%d/%d))",
-> +				i,
-> +				ch_maps->cpu,	dai_link->num_cpus,
-> +				ch_maps->codec,	dai_link->num_codecs);
-> +			return -EINVAL;
-> +		}
-> +
-> +		dev_dbg(card->dev, "  [%d] cpu%d <-> codec%d\n",
-> +			i, ch_maps->cpu, ch_maps->codec);
-> +	}
-> +
-> +	return 0;
-> +}
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
