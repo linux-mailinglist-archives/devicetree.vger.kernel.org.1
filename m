@@ -1,180 +1,162 @@
-Return-Path: <devicetree+bounces-11430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372357D5C24
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:10:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB7F77D5C2E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:11:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D31DE2819A4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:10:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE9FA1C209E0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BFAB3D99C;
-	Tue, 24 Oct 2023 20:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E0F3E01E;
+	Tue, 24 Oct 2023 20:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="nXmdQ7Tv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OQWuoUwl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F39224EB
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 20:10:19 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4C8A2
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:10:17 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3A6952C0405;
-	Wed, 25 Oct 2023 09:10:15 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1698178215;
-	bh=sRJk5n3pDGUzZ7KoQFWruh7Nt5D3oxQPGHbRvhP453U=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=nXmdQ7TvG6V6Ot3G5CaopLK7k3M1R0/NvY4x601JHyx2ThNoxsIg4ZadcuuuhJKgv
-	 hDeHHGFi/j2gbtvDFjsVM9SdGL1JCsB8T5lhwD3ZNSMtzAy8dJ+OVCpZ+8HdoHVdzn
-	 CsR9RCtcZZj1wEJMH3XJXRy11UlNOHrnBKvsyH5rp9oaxM8+6JxWkRtbeJpuvVhRo2
-	 wTeX8WCfE+b/9k+M6wxwgUOT/z7kNMw9phTrYXiomfMKJtP+HFEBf4Va2RZYJfqPYz
-	 rMNkAHqRo5xP/cuX398jiqlqYHH2s+8PslqiAFdCgCseuSvLDC3ocw7AYS+s+y5l6o
-	 Hj2XbUApSuKog==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B653824a70001>; Wed, 25 Oct 2023 09:10:15 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.39; Wed, 25 Oct 2023 09:10:15 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Wed, 25 Oct 2023 09:10:14 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.039; Wed, 25 Oct 2023 09:10:14 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Vladimir Oltean <olteanv@gmail.com>, Linus Walleij
-	<linus.walleij@linaro.org>, =?utf-8?B?UGFsaSBSb2jDoXI=?= <pali@kernel.org>,
-	Enrico Mioso <mrkiko.rs@gmail.com>, Robert Marko <robert.marko@sartura.hr>,
-	Russell King <linux@armlinux.org.uk>
-CC: Andrew Lunn <andrew@lunn.ch>, Gregory Clement
-	<gregory.clement@bootlin.com>, Sebastian Hesselbarth
-	<sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	=?utf-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, Christian Marangi
-	<ansuelsmth@gmail.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>
-Subject: Re: [PATCH net-next v7 5/7] ARM64: dts: marvell: Fix some common
- switch mistakes
-Thread-Topic: [PATCH net-next v7 5/7] ARM64: dts: marvell: Fix some common
- switch mistakes
-Thread-Index: AQHaBqfxy3RLBZSJF0yAzYSe+JPbArBYhPQA
-Date: Tue, 24 Oct 2023 20:10:14 +0000
-Message-ID: <1dff08d1-339b-4d5a-9dd4-6a6daca1dbde@alliedtelesis.co.nz>
-References: <20231024-marvell-88e6152-wan-led-v7-0-2869347697d1@linaro.org>
- <20231024-marvell-88e6152-wan-led-v7-5-2869347697d1@linaro.org>
- <20231024182842.flxrg3hjm3scnhjo@skbuf>
-In-Reply-To: <20231024182842.flxrg3hjm3scnhjo@skbuf>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DE27B8B2EB580E4F8B2132384250D130@atlnz.lc>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE332420F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 20:11:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233B4A2;
+	Tue, 24 Oct 2023 13:11:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698178286; x=1729714286;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YudBLGZr0gCql3V9cMN5cR9Flg1k4kS3Q1phrCfKcdY=;
+  b=OQWuoUwldmufqpZwmOzRG4P8Ysr5GxzwGivehvxjkwGbppRF6TcbLHpT
+   LC+8/yrSRq4vNAsRC7g53Z6MIF6+uU/rTAf9/N+TS3hIBu0WQXekvstRA
+   z18ohjCyC8CkYZom2XlTzi6XqUdA4BbCsVOF5g+QdrfrAkIeGJifPyFlb
+   Rz2EwZIP5dzLEzeogPsF4kCEgHy8SCB3F5pAJUDQFFEzhnECsrIRvYX3q
+   PEyajSluIwLLVotHDrU0W4C6Zb48hZ32hTj9/koMeeH2G3VbCDLSyoPk6
+   X1/dm1TeYVajpqFUxCcl5vm/HV706ZENvg04vY9CEwfldgFDqoNTtnuU+
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="451386634"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="451386634"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 13:11:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="932152965"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="932152965"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 24 Oct 2023 13:11:22 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qvNkG-0008Er-21;
+	Tue, 24 Oct 2023 20:11:20 +0000
+Date: Wed, 25 Oct 2023 04:10:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Guo Mengqi <guomengqi3@huawei.com>, vkoul@kernel.org,
+	dmaengine@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, xuqiang36@huawei.com,
+	chenweilong@huawei.com, guomengqi3@huawei.com
+Subject: Re: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine
+ support
+Message-ID: <202310250352.srnfVXxw-lkp@intel.com>
+References: <20231021093454.39822-2-guomengqi3@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=KKAkSRfTAAAA:8 a=Nrzf15qNN39qzBdrCVAA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
-X-SEG-SpamProfiler-Score: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231021093454.39822-2-guomengqi3@huawei.com>
 
-SGkgQWxsLA0KDQpPbiAyNS8xMC8yMyAwNzoyOCwgVmxhZGltaXIgT2x0ZWFuIHdyb3RlOg0KPiBM
-aW51cywNCj4NCj4gT24gVHVlLCBPY3QgMjQsIDIwMjMgYXQgMDM6MjA6MzFQTSArMDIwMCwgTGlu
-dXMgV2FsbGVpaiB3cm90ZToNCj4+IEZpeCBzb21lIGVycm9ycyBpbiB0aGUgTWFydmVsbCBNVjg4
-RTZ4eHggc3dpdGNoIGRlc2NyaXB0aW9uczoNCj4+IC0gVGhlIHRvcCBub2RlIGhhZCBubyBhZGRy
-ZXNzIHNpemUgb3IgY2VsbHMuDQo+PiAtIHN3aXRjaDBAMCBpcyBub3QgT0ssIHNob3VsZCBiZSBl
-dGhlcm5ldC1zd2l0Y2hAMC4NCj4+IC0gcG9ydHMgc2hvdWxkIGJlIGV0aGVybmV0LXBvcnRzDQo+
-PiAtIHBvcnRAMCBzaG91bGQgYmUgZXRoZXJuZXQtcG9ydEAwDQo+PiAtIFBIWXMgc2hvdWxkIGJl
-IG5hbWVkIGV0aGVybmV0LXBoeUANCj4+DQo+PiBSZXZpZXdlZC1ieTogQW5kcmV3IEx1bm4gPGFu
-ZHJld0BsdW5uLmNoPg0KPj4gU2lnbmVkLW9mZi1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2Fs
-bGVpakBsaW5hcm8ub3JnPg0KPHNuaXA+DQo+PiAtLS0NCj4+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMwLWNyYi5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0
-cy9tYXJ2ZWxsL2NuOTEzMC1jcmIuZHRzaQ0KPj4gaW5kZXggMzJjZmIzZTJlZmMzLi43NTM4ZWQ1
-NjA1M2IgMTAwNjQ0DQo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMw
-LWNyYi5kdHNpDQo+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMwLWNy
-Yi5kdHNpDQo+PiBAQCAtMjA3LDExICsyMDcsOSBAQCBwaHkwOiBldGhlcm5ldC1waHlAMCB7DQo+
-PiAgIAkJcmVnID0gPDA+Ow0KPj4gICAJfTsNCj4+ICAgDQo+PiAtCXN3aXRjaDY6IHN3aXRjaDBA
-NiB7DQo+PiArCXN3aXRjaDY6IGV0aGVybmV0LXN3aXRjaEA2IHsNCj4+ICAgCQkvKiBBY3R1YWwg
-ZGV2aWNlIGlzIE1WODhFNjM5M1ggKi8NCj4+ICAgCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY4
-OGU2MTkwIjsNCj4+IC0JCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gLQkJI3NpemUtY2VsbHMg
-PSA8MD47DQo+PiAgIAkJcmVnID0gPDY+Ow0KPj4gICAJCWludGVycnVwdC1wYXJlbnQgPSA8JmNw
-MF9ncGlvMT47DQo+PiAgIAkJaW50ZXJydXB0cyA9IDwyOCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0K
-Pj4gQEAgLTIyMCw1OSArMjE4LDU5IEBAIHN3aXRjaDY6IHN3aXRjaDBANiB7DQo+PiAgIA0KPj4g
-ICAJCWRzYSxtZW1iZXIgPSA8MCAwPjsNCj4+ICAgDQo+PiAtCQlwb3J0cyB7DQo+PiArCQlldGhl
-cm5ldC1wb3J0cyB7DQo+PiAgIAkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gICAJCQkjc2l6
-ZS1jZWxscyA9IDwwPjsNCj4+ICAgDQo+PiAtCQkJcG9ydEAxIHsNCj4+ICsJCQlldGhlcm5ldC1w
-b3J0QDEgew0KPj4gICAJCQkJcmVnID0gPDE+Ow0KPj4gICAJCQkJbGFiZWwgPSAicDEiOw0KPj4g
-ICAJCQkJcGh5LWhhbmRsZSA9IDwmc3dpdGNoMHBoeTE+Ow0KPj4gICAJCQl9Ow0KPj4gICANCj4+
-IC0JCQlwb3J0QDIgew0KPj4gKwkJCWV0aGVybmV0LXBvcnRAMiB7DQo+PiAgIAkJCQlyZWcgPSA8
-Mj47DQo+PiAgIAkJCQlsYWJlbCA9ICJwMiI7DQo+PiAgIAkJCQlwaHktaGFuZGxlID0gPCZzd2l0
-Y2gwcGh5Mj47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXBvcnRAMyB7DQo+PiArCQkJZXRo
-ZXJuZXQtcG9ydEAzIHsNCj4+ICAgCQkJCXJlZyA9IDwzPjsNCj4+ICAgCQkJCWxhYmVsID0gInAz
-IjsNCj4+ICAgCQkJCXBoeS1oYW5kbGUgPSA8JnN3aXRjaDBwaHkzPjsNCj4+ICAgCQkJfTsNCj4+
-ICAgDQo+PiAtCQkJcG9ydEA0IHsNCj4+ICsJCQlldGhlcm5ldC1wb3J0QDQgew0KPj4gICAJCQkJ
-cmVnID0gPDQ+Ow0KPj4gICAJCQkJbGFiZWwgPSAicDQiOw0KPj4gICAJCQkJcGh5LWhhbmRsZSA9
-IDwmc3dpdGNoMHBoeTQ+Ow0KPj4gICAJCQl9Ow0KPj4gICANCj4+IC0JCQlwb3J0QDUgew0KPj4g
-KwkJCWV0aGVybmV0LXBvcnRANSB7DQo+PiAgIAkJCQlyZWcgPSA8NT47DQo+PiAgIAkJCQlsYWJl
-bCA9ICJwNSI7DQo+PiAgIAkJCQlwaHktaGFuZGxlID0gPCZzd2l0Y2gwcGh5NT47DQo+PiAgIAkJ
-CX07DQo+PiAgIA0KPj4gLQkJCXBvcnRANiB7DQo+PiArCQkJZXRoZXJuZXQtcG9ydEA2IHsNCj4+
-ICAgCQkJCXJlZyA9IDw2PjsNCj4+ICAgCQkJCWxhYmVsID0gInA2IjsNCj4+ICAgCQkJCXBoeS1o
-YW5kbGUgPSA8JnN3aXRjaDBwaHk2PjsNCj4+ICAgCQkJfTsNCj4+ICAgDQo+PiAtCQkJcG9ydEA3
-IHsNCj4+ICsJCQlldGhlcm5ldC1wb3J0QDcgew0KPj4gICAJCQkJcmVnID0gPDc+Ow0KPj4gICAJ
-CQkJbGFiZWwgPSAicDciOw0KPj4gICAJCQkJcGh5LWhhbmRsZSA9IDwmc3dpdGNoMHBoeTc+Ow0K
-Pj4gICAJCQl9Ow0KPj4gICANCj4+IC0JCQlwb3J0QDggew0KPj4gKwkJCWV0aGVybmV0LXBvcnRA
-OCB7DQo+PiAgIAkJCQlyZWcgPSA8OD47DQo+PiAgIAkJCQlsYWJlbCA9ICJwOCI7DQo+PiAgIAkJ
-CQlwaHktaGFuZGxlID0gPCZzd2l0Y2gwcGh5OD47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJ
-CXBvcnRAOSB7DQo+PiArCQkJZXRoZXJuZXQtcG9ydEA5IHsNCj4+ICAgCQkJCXJlZyA9IDw5PjsN
-Cj4+ICAgCQkJCWxhYmVsID0gInA5IjsNCj4+ICAgCQkJCXBoeS1tb2RlID0gIjEwZ2Jhc2UtciI7
-DQo+PiBAQCAtMjgwLDcgKzI3OCw3IEBAIHBvcnRAOSB7DQo+PiAgIAkJCQltYW5hZ2VkID0gImlu
-LWJhbmQtc3RhdHVzIjsNCj4+ICAgCQkJfTsNCj4+ICAgDQo+PiAtCQkJcG9ydEBhIHsNCj4+ICsJ
-CQlldGhlcm5ldC1wb3J0QGEgew0KPj4gICAJCQkJcmVnID0gPDEwPjsNCj4+ICAgCQkJCWV0aGVy
-bmV0ID0gPCZjcDBfZXRoMD47DQo+PiAgIAkJCQlwaHktbW9kZSA9ICIxMGdiYXNlLXIiOw0KPj4g
-QEAgLTI5MywzNSArMjkxLDM1IEBAIG1kaW8gew0KPj4gICAJCQkjYWRkcmVzcy1jZWxscyA9IDwx
-PjsNCj4+ICAgCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+PiAgIA0KPj4gLQkJCXN3aXRjaDBwaHkx
-OiBzd2l0Y2gwcGh5MUAxIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MTogZXRoZXJuZXQtcGh5QDEgew0K
-Pj4gICAJCQkJcmVnID0gPDB4MT47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3aXRjaDBw
-aHkyOiBzd2l0Y2gwcGh5MkAyIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MjogZXRoZXJuZXQtcGh5QDIg
-ew0KPj4gICAJCQkJcmVnID0gPDB4Mj47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3aXRj
-aDBwaHkzOiBzd2l0Y2gwcGh5M0AzIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MzogZXRoZXJuZXQtcGh5
-QDMgew0KPj4gICAJCQkJcmVnID0gPDB4Mz47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3
-aXRjaDBwaHk0OiBzd2l0Y2gwcGh5NEA0IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NDogZXRoZXJuZXQt
-cGh5QDQgew0KPj4gICAJCQkJcmVnID0gPDB4ND47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJ
-CXN3aXRjaDBwaHk1OiBzd2l0Y2gwcGh5NUA1IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NTogZXRoZXJu
-ZXQtcGh5QDUgew0KPj4gICAJCQkJcmVnID0gPDB4NT47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4g
-LQkJCXN3aXRjaDBwaHk2OiBzd2l0Y2gwcGh5NkA2IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NjogZXRo
-ZXJuZXQtcGh5QDYgew0KPj4gICAJCQkJcmVnID0gPDB4Nj47DQo+PiAgIAkJCX07DQo+PiAgIA0K
-Pj4gLQkJCXN3aXRjaDBwaHk3OiBzd2l0Y2gwcGh5N0A3IHsNCj4+ICsJCQlzd2l0Y2gwcGh5Nzog
-ZXRoZXJuZXQtcGh5QDcgew0KPj4gICAJCQkJcmVnID0gPDB4Nz47DQo+PiAgIAkJCX07DQo+PiAg
-IA0KPj4gLQkJCXN3aXRjaDBwaHk4OiBzd2l0Y2gwcGh5OEA4IHsNCj4+ICsJCQlzd2l0Y2gwcGh5
-ODogZXRoZXJuZXQtcGh5QDggew0KPj4gICAJCQkJcmVnID0gPDB4OD47DQo+PiAgIAkJCX07DQo+
-PiAgIAkJfTsNCj4gQ2hyaXMsIGRvZXMgdGhpcyBsb29rIG9rYXk/DQoNClRoZXJlJ3Mgbm90aGlu
-ZyBpbiB0aGUgdS1ib290IGNvZGUgZm9yIHRoZSBDTjkxMzAtQ1JCIHRoYXQgY2FyZXMgYWJvdXQg
-DQp0aGUgc3dpdGNoIHNvIEkgZG9uJ3QgdGhpbmsgdGhlcmUncyBhbnkgaXNzdWUgQUJJIHdpc2Uu
-IFdlIGFyZSB3b3JraW5nIA0Kb24gb3VyIG93biBDTjkxMzAgYmFzZWQgcm91dGVyIHdpdGggYSBM
-MiBzd2l0Y2ggYnV0IGl0J3MgYXQgYSBwb2ludCB3ZSANCmNhbiBmb2xsb3cgd2hhdGV2ZXIgdXBz
-dHJlYW0gZGVjaWRlIGlzIHRoZSBmaW5hbCBzY2hlbWEuDQoNCkluIHRlcm1zIG9mIG15IHBlcnNv
-bmFsIHByZWZlcmVuY2UgdGhlIHNjaGVtYSBxdW90ZWQgdXAgdGhyZWFkIGhhcyB0aGUgDQpwYXR0
-ZXJuwqAgJ14oZXRoZXJuZXQtKT9zd2l0Y2goQC4qKT8kJyAoaS5lLiB0aGUgJ2V0aGVybmV0LScg
-cGFydCBpcyANCm9wdGlvbmFsKSBzbyBJJ2QgcGVyc29uYWxseSBwcmVmZXIgc3dpdGNoMEA2IC0+
-IHN3aXRjaEA2IGJ1dCB0aGF0J3Mgb25seSANCmEgc2xpZ2h0IHByZWZlcmVuY2UgYmVjYXVzZSBJ
-IGRlYWwgd2l0aCBFdGhlcm5ldCBzd2l0Y2hlcyBkYXkgaW4gZGF5IG91dC4NCg==
+Hi Guo,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on linus/master v6.6-rc7 next-20231024]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Guo-Mengqi/dmaengine-Add-HiSilicon-Ascend-SDMA-engine-support/20231021-174034
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20231021093454.39822-2-guomengqi3%40huawei.com
+patch subject: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine support
+config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20231025/202310250352.srnfVXxw-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231025/202310250352.srnfVXxw-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310250352.srnfVXxw-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/dmaengine.h:8,
+                    from drivers/dma/hisi-ascend-sdma.c:6:
+   drivers/dma/hisi-ascend-sdma.c: In function 'of_sdma_collect_info':
+>> drivers/dma/hisi-ascend-sdma.c:683:31: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 3 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
+     683 |                 dev_warn(dev, "reg size %#llx check failed, use %#x\n",
+         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:146:61: note: in expansion of macro 'dev_fmt'
+     146 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                             ^~~~~~~
+   drivers/dma/hisi-ascend-sdma.c:683:17: note: in expansion of macro 'dev_warn'
+     683 |                 dev_warn(dev, "reg size %#llx check failed, use %#x\n",
+         |                 ^~~~~~~~
+   drivers/dma/hisi-ascend-sdma.c:683:45: note: format string is defined here
+     683 |                 dev_warn(dev, "reg size %#llx check failed, use %#x\n",
+         |                                         ~~~~^
+         |                                             |
+         |                                             long long unsigned int
+         |                                         %#x
+
+
+vim +683 drivers/dma/hisi-ascend-sdma.c
+
+   658	
+   659	static int of_sdma_collect_info(struct platform_device *pdev, struct sdma_hardware_info *info)
+   660	{
+   661		int ret;
+   662		u32 chan_mask[2] = {0};
+   663		struct resource res;
+   664		struct device *dev = &pdev->dev;
+   665		struct device_node *np = pdev->dev.of_node;
+   666	
+   667		ret = of_property_read_variable_u32_array(np, "dma-channel-mask",
+   668				chan_mask, 1, 2);
+   669		if (ret < 0) {
+   670			dev_err(dev, "get dma channel mask from dtb failed, %d\n", ret);
+   671			return ret;
+   672		}
+   673		bitmap_from_arr32(&info->channel_map, chan_mask, SDMA_MAX_CHANNEL_NUM);
+   674	
+   675		ret = of_address_to_resource(np, 0, &res);
+   676		if (ret < 0) {
+   677			dev_err(dev, "get io_base info from dtb failed, %d\n", ret);
+   678			return ret;
+   679		}
+   680	
+   681		info->base_addr = res.start;
+   682		if (resource_size(&res) != SDMA_IOMEM_SIZE)
+ > 683			dev_warn(dev, "reg size %#llx check failed, use %#x\n",
+   684					resource_size(&res), SDMA_IOMEM_SIZE);
+   685	
+   686		return 0;
+   687	}
+   688	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
