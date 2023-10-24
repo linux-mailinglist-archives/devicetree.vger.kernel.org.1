@@ -1,189 +1,166 @@
-Return-Path: <devicetree+bounces-11243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F30E7D4E4F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B687D4E56
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 709661C208E1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E8D81C2098F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8412241E4;
-	Tue, 24 Oct 2023 10:55:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OpIoz1Mx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A801A250F4;
+	Tue, 24 Oct 2023 10:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A485133D0
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:54:59 +0000 (UTC)
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE65C10C3
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 03:54:57 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso3098385f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 03:54:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698144896; x=1698749696; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gBjIA3JIo1sy3RNrJcAV6N9d4U3rcdnIefv5ozmPc9A=;
-        b=OpIoz1Mx+isVH6wKqBhVZycmI8OhjaHCPvMd2YIalwrQvvXLVRoL8ONiVyWW75q69T
-         WJUIVsaTFAu0KGurWkoJJDrSJEJ9QLCJujGwJ3/bWfEpb0IRTo+diWL0YIVffbs+WsYP
-         coHhgb6fAEu9CJNgwxdC50eeYhsAHjDQELVJK+h6jQ7YN+gvF5w8e+Vc4tZD2yuiUvIO
-         Nb9xcMWNIoAEt2mUuXolLMzXZdX8XHB2EMwbKA1a9cItJGYDeqBbcDu2gd0Xd+RdiCLY
-         CJ5ELqURQfM3W9eGG4t19Yc/+SyGCncLVMlN4GI/0kJwQtxwOPReifTR0bNmiYIVHZju
-         jNDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698144896; x=1698749696;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gBjIA3JIo1sy3RNrJcAV6N9d4U3rcdnIefv5ozmPc9A=;
-        b=rqHSfbBDp+CA7k76xsJH1sdDs1pyWr0JYxcttpUo96SZHzPreBMTLSFFjWFy+cVmSX
-         W7v7ehvrA5nRy5utlJGhjyQ1CjjRHhrqIFVlviZGNN+iZZallZLduu/msBgOiJmlzr5o
-         5yWxcsg8uT3+T6Z+GCazkdO0Idx8u8YQB8itMWaRCWdiNI+EmzV3b5407JW3qpZTLBqG
-         UKDv8qw93FfPhY6FwEX947V2ZheaVTufwHyRDelJXGxksGTfypfT8unY8oFTIhvpFW9i
-         zD3lailol9CgErJ9Np9d4VXO8MZhe3YrzxktKNHhdHzxs6ci2mQTbC1RdVqDSBxnNbw8
-         ZBkQ==
-X-Gm-Message-State: AOJu0YxN7oEWqz61fN7mNUrfBX/kXvtyoKjZ3vR6o4+xkr9oxaNG0cB9
-	5uAOQ+rYAWPyIrNLz1+rO36UHA==
-X-Google-Smtp-Source: AGHT+IEIoCUddSBcnlQQLdnnNbyiMdjN0h2DsjSQPEvT41D9C5/jVn3Y3SRUs9EjNpIKK7a70ECbJA==
-X-Received: by 2002:a05:6000:1741:b0:316:efb9:101d with SMTP id m1-20020a056000174100b00316efb9101dmr8646715wrf.25.1698144896276;
-        Tue, 24 Oct 2023 03:54:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id a3-20020a5d4d43000000b003196b1bb528sm9640030wru.64.2023.10.24.03.54.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 03:54:55 -0700 (PDT)
-Message-ID: <7018bf8b-1f89-408e-8649-3788a28f3b1a@linaro.org>
-Date: Tue, 24 Oct 2023 12:54:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451EF23755
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:55:57 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 93F06D7A;
+	Tue, 24 Oct 2023 03:55:55 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D0DE2F4;
+	Tue, 24 Oct 2023 03:56:36 -0700 (PDT)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E12D63F64C;
+	Tue, 24 Oct 2023 03:55:53 -0700 (PDT)
+Date: Tue, 24 Oct 2023 11:55:48 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
+ generic gpio driver
+Message-ID: <ZTeitAqfwyse9Vkj@pluto>
+References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
+ <20231005025843.508689-6-takahiro.akashi@linaro.org>
+ <20231006132346.GA3426353-robh@kernel.org>
+ <CACRpkdaLsfSBEG-h9ZNT2_Lm8tW8AZO7tedDVNeuZoQAqSkyjw@mail.gmail.com>
+ <ZSTgTC4cFFpofYAk@octopus>
+ <CACRpkdYD6pkccYoy90AfzV3KT7oYkBPD2_4ZW-AXzT1eUVpchA@mail.gmail.com>
+ <ZS3yK/f12Mxw9rXe@octopus>
+ <CACRpkdarDrVkPmyDawhZ+H94S4F=dtDSDVuKegi-eNfQNDY3rg@mail.gmail.com>
+ <ZTduWx7CH1ifI5Uc@octopus>
+ <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/5] net: dt-bindings: Introduce the Qualcomm
- IPQESS Ethernet switch
-Content-Language: en-US
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Luka Perkov <luka.perkov@sartura.hr>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Russell King <linux@armlinux.org.uk>, Andy Gross <agross@kernel.org>,
- davem@davemloft.net, thomas.petazzoni@bootlin.com,
- Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-kernel@vger.kernel.org,
- Eric Dumazet <edumazet@google.com>, Bjorn Andersson <andersson@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Robert Marko
- <robert.marko@sartura.hr>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>
-References: <20231023155013.512999-1-romain.gantois@bootlin.com>
- <20231023155013.512999-2-romain.gantois@bootlin.com>
- <169808266457.861402.14537617078362005098.robh@kernel.org>
- <35ec9e4b-21ee-1436-da00-02e11effdc23@bootlin.com>
- <550cba92-39dc-4e45-beb3-c714d14d9d85@linaro.org>
- <498ee025-b1b7-eafc-3758-993c5d564f67@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <498ee025-b1b7-eafc-3758-993c5d564f67@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdba=echR=rZYKVbROfaOp4mzjTQ9RphHFyzqSNgE1jZqg@mail.gmail.com>
 
-On 24/10/2023 12:05, Romain Gantois wrote:
-> On Tue, 24 Oct 2023, Krzysztof Kozlowski wrote:
-> 
->> On 24/10/2023 11:54, Romain Gantois wrote:
->>> Hello Rob,
->>>
->>> On Mon, 23 Oct 2023, Rob Herring wrote:
->>>
->>>> pip3 install dtschema --upgrade
->>>>
->>>> Please check and re-submit after running the above command yourself. Note
->>>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->>>> your schema. However, it must be unset to test all examples with your schema.
->>>>
->>>>
->>>
->>> Even after upgrading dtschema to 2023.9, installing yamllint 1.32.0 and running 
->>> without DT_SCHEMA_FILES, I can't seem to reproduce this error. I've also tried 
->>> rebasing on v6.5-rc1 which didn't show it either. However, It seems like 
->>
->> v6.5-rc1 is some ancient version, so how can you rebase on top of it?
-> I just cherry-picked this patch series on v6.5-rc1. I also tried v6.6-rc1. Since 
-> Rob mentionned basing his series on rc1 in his last message, I inferred that he 
-> compiled the dtb checks on the last kernel rc1, but maybe I misunderstood what 
-> he meant. 
-> 
->>
->> Which commit this is based on?
-> 
-> This patch series was based on:
-> 
-> 6e7ce2d71bb9 net: lan966x: remove useless code in lan966x_xtr_irq_handler
-> 
-> which was the latest commit in net-next/main at the time. Essentially, the patch 
-> series is meant to be based on net-next.
+On Tue, Oct 24, 2023 at 11:40:00AM +0200, Linus Walleij wrote:
+> Hi Takahiro,
 > 
 
-Ah, ok.
+Hi,
 
-Rob's bot might be using not-yet-released dtschema from main branch,
-thus the error. However the error is true: you added a custom field
-without type. That's why I asked: where is it defined?
+> On Tue, Oct 24, 2023 at 9:12 AM AKASHI Takahiro
+> <takahiro.akashi@linaro.org> wrote:
+> 
+> > > I think it is better of the pin controller just parse and add any
+> > > subdevices (GPIO or other) using of_platform_default_populate()
+> > > (just grep for this function and you will see how many device
+> > > drivers use that).
+> >
+> > IICU, then, we will have to add a "compatible" to pinctrl node
+> > to make of_platform_default_populate() work as expected. That is:
+> >
+> > scmi {
+> >     ...
+> >     protocol@19 {
+> >         compatible = "simple-bus"; // <- added
+> 
+> Hm right, but you could also use
+> of_platform_populate(np, NULL, NULL, dev);
+> 
+> Then the compatible match is of no concern.
+> 
+> Sorry for my lack of attention to details :/
+> 
+> If you want to restrict the population to a few select compatibles
+> (maybe only "pin-control-gpio") then you can do
+> that with
+> 
+> const struct of_device_id of_scmi_protocol_19_match_table[] = {
+>         { .compatible = "pin-control-gpio", },
+>         {}
+> };
+> of_platform_populate(np, of_scmi_protocol_19_match_table, NULL, dev);
+> 
+> > Is this what you meant?
+> > In this case, however, "protocol@19" has a mixture of sub-nodes,
+> > most are pinconf definitions which are the properties of the pin
+> > controller, while "scmi_gpio" is a separate device.
+> 
+> That looks good to me, it makes sense to have the GPIO as a subnode
+> here and mandate it with a compatible to match.
+> 
+> > The code will work, but is it sane from DT binding pov?
+> 
+> Let's let the DT people jump in on that.
+> 
+> > > Instead just call gpiochip_add_pin_range() directly in Linux
+> > > after adding the pin controller and gpio_chip.
+> > > C.f. drivers/pinctrl/pinctrl-sx150x.c for an example of a driver
+> > > doing this. In this case the SX150X is hot-plugged (on a slow
+> > > bus) so it needs to figure out all ranges at runtime anyway.
+> >
+> > Are you suggesting implementing a custom function for parsing "gpio-ranges"
+> > and calling it in pin_control_gpio_probe() instead of a generic helper?
+> 
+> The generic helper will always be attempted but if there are
+> no ranges in the device tree, it will just continue without adding
+> any ranges. I suggest putting *no* ranges into the device tree.
+> 
+> > Or do you want to always map all the pin controller's pins to
+> > gpio pins as sx150x does?
+> 
+> I think since the SCMI firmware knows about the available line
+> and pins etc, it makes sense that the driver comes up with the
+> applicable ranges on its own (derived from the information froms
+> the SCMI firmware) and add them, instead of trying to put that
+> information into the device tree at all. Just omit it, and make your
+> own ranges, and add them in the Linux driver with
+> gpiochip_add_pin_range() without involving DT at all when defining
+> the ranges.
+> 
+> I'm sorry if I'm unclear sometimes.
 
-Best regards,
-Krzysztof
+...a maybe dumb question from my side, BUT does the SCMI Pinctrl carry
+enough information as it stands for the driver to derive autonomously
+and efficently the possible/applicable gpio ranges ?
 
+Are they (GPIOs) all the remaining unassociated pins ?
+If this is the case note that the SCMI Pinctrl lets you query the
+associations in groups or functions and this is generally now done
+only lazily on-demand when specific pins/groups/funcs are requested
+by the parsed DT confs: IOW, in order to derive GPIOs from the set
+of unassociated ones, you will have to at first add some new full-lookup
+pinctrl_ops to query upfront all existing associations (avoiding, at will,
+the lazy querying adopted now) and then singling-out the non-associated
+ones from the lists of all possible group/funcs associations.
+
+Moreover, should we allow anyway the optional possibility to forcibly
+restrict the available gpios from the DT, or we can just assume that
+those un-available (map out as above) wont just be exposed by the
+SCMI server ?
+
+..again sorry if I am missing something crucial here and just talking
+non-sense but I have limited familiarity with Pinctrl/GPIOs usage.
+
+Thanks
+Cristian
 
