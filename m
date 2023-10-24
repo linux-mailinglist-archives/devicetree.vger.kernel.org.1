@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803AA7D55D4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:21:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 364DD7D55F0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:22:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20B82B20FF9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:21:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9F092811FA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798F936AF1;
-	Tue, 24 Oct 2023 15:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FD036AF1;
+	Tue, 24 Oct 2023 15:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rj8MI070"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yx3q8hWp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB116FBD
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:21:28 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CF6469D
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:21:13 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9936b3d0286so697161666b.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:21:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC35C6FBD
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:22:07 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E004C03
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:22:05 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53d8320f0easo7150253a12.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:22:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698160871; x=1698765671; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698160924; x=1698765724; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wTdO2bwcmB9lYlvex/v8irD1Z/qXj6h+zhKj6aeNxjE=;
-        b=rj8MI070d3MRaF3Rx+c5gQzVuiTJxS+eTrP+smO51WruK61DkzJMuiBxGut+ZAu2m6
-         WCLcaFonDh7mXP7gaVVnFoTkRJryVl/pnYXXcXmdv0cvFTls2+XGYEh+kVUxjPPmUE+G
-         IcKKYhHuNW6SFtFyzH6IKlcKDOiAappnYdLQOLkluQebI7RVwGGNkZjTSTIM9E5m41yj
-         XOo+8IOo3bkB3RxBPva0bCllMJtR6Ligvxf9XJrEQXh/4yRVoVr2jA6WVDcphEY93PtI
-         0HbYFCnuo8g9l8JR78hUxRtgcPfUcknu92G+QaVe/tDrcm69YW3NiS/AU9s6xrbG409R
-         /+Mg==
+        bh=CrLguzqmsBX1wh2886rw/oRPFldPzwSDNCeDBDlDpbk=;
+        b=Yx3q8hWpsLt432pvcR7GdOZa+xP1KQjkzqTBPPY8asoF25Pvn3CfVnvTW0TP8dRzC9
+         AjZzU7AmTvwUSZDGzl3AUq7JRTfk1ePJJPVvQJb+Q7Sj4tJvUyHbEOs1NrGzrWEFkyF7
+         RKF6ft0Aw2YjuISoSrlK2UIlQbD9/y+sIeRwrJPAdpyeRlnRsxog1lhGXHJbcubY9hsf
+         MEMg3SZHxGR/ShSm2+sVh49va5TfaL3hcryslf/UbDbLZjq4sfTrE1PEhGeCBPFB8UOM
+         VpP6lJugN5dMs2Bd3+XoypTc8EStPr718a9RAL/KPHGvm8vEhw7fU1+RZdKPTcDDwUlz
+         AvWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698160871; x=1698765671;
+        d=1e100.net; s=20230601; t=1698160924; x=1698765724;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTdO2bwcmB9lYlvex/v8irD1Z/qXj6h+zhKj6aeNxjE=;
-        b=MD2hHXMqdgSFaXe8zl60FdSiIr1rWIoWimao5TSVRaQ3CHFfHhVhlOffqsmP+7cJv9
-         KxLqEQ/spxo1PSr0Y75xjVDBXFpIsrE45boXXkmdliWGqI7NVmCERoBzlkZfKYaRzzts
-         swsDIp6J7zo7vLm8lUG/lcdLnAXdVcXwKi4EU05E7W9DvGLdmPiQNoBINi70iVEdpHbt
-         wZce1byesv4L8rHy33BXj0DD0WqpADucDs4xSU8e2YE6VPEAXCl3W2u7zBvtiAmoRQLl
-         AvEYVB4+VKcCOCo/pWz0Yw9+IQNItjHZpMrudmiME/oH4Wy2D0jDIvZzxjD9S/OL72qQ
-         V8BQ==
-X-Gm-Message-State: AOJu0Yx1a/16VIJIYW9dtSRX5uJ7YDB+4etZ9FYIBggB8qB3A8orIJHi
-	RSspT8p/6GtNbHEYY2ywFg3O5g==
-X-Google-Smtp-Source: AGHT+IGJvICTlih/IQgT9bU7ZF9jpMZEmwZ5YEul1Gj+xewH/MJCPF+oJmRnccdYIuc61kE2u8i3zA==
-X-Received: by 2002:a17:907:9618:b0:9af:4561:591d with SMTP id gb24-20020a170907961800b009af4561591dmr9682642ejc.18.1698160871622;
-        Tue, 24 Oct 2023 08:21:11 -0700 (PDT)
+        bh=CrLguzqmsBX1wh2886rw/oRPFldPzwSDNCeDBDlDpbk=;
+        b=MNUdoMK+ZLHdv6nM/hLYNf7jxt86KdKTPs/XbQBjzo1xAmcBTX/Fn1FIPYfjGmVg0S
+         iaehiJQ2/J7KgW89oGfGRTAJpwFXMahol+0q9vurap+QDN1LX2GBiaORka63ZXOh7E8o
+         I5tms+E/djRSDl/R7+CDYaQh5/bEPs14HsESF4v14ZqfEwbyuScdKGjUmFJMfzf7Y7nD
+         FbZy3G1fXxx3zMahR1gTAfJoHj9cb2FHbn68yj6c1vG5pRSxDegA0AXV3acmCZMFj4hx
+         s4OWLS4J/h8m/qAGoPXomzkyfOp7tXBTGDCWv4unbXWLeAvJeFBr/5yG6oN8DuTCx5SH
+         +xog==
+X-Gm-Message-State: AOJu0Yzy7BGepyvRA7rTyJnZ0+Fy7KI0A3uSggdfOSuChOfIaK1auH5W
+	F1Fswq7U8gGNrWMK7cqQvBu0dQ==
+X-Google-Smtp-Source: AGHT+IF+njeaPb0/PHYDKAchULPofnaS00XxZyQKvP8VftgcuCv2zu93TrgOHMJ5K3IjvdfOu4p3sA==
+X-Received: by 2002:a17:907:72d0:b0:99d:e617:abeb with SMTP id du16-20020a17090772d000b0099de617abebmr9565488ejc.23.1698160923908;
+        Tue, 24 Oct 2023 08:22:03 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ze15-20020a170906ef8f00b009bf7a4d591bsm8335546ejb.45.2023.10.24.08.21.09
+        by smtp.gmail.com with ESMTPSA id ze15-20020a170906ef8f00b009bf7a4d591bsm8335546ejb.45.2023.10.24.08.22.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 08:21:10 -0700 (PDT)
-Message-ID: <53e9351a-87ca-42f1-b0a5-624c1fd86623@linaro.org>
-Date: Tue, 24 Oct 2023 17:21:09 +0200
+        Tue, 24 Oct 2023 08:22:03 -0700 (PDT)
+Message-ID: <97679363-2544-4d96-b382-e81917853ff5@linaro.org>
+Date: Tue, 24 Oct 2023 17:22:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: mt8183: Add jacuzzi pico/pico6 board
+Subject: Re: [PATCH 4/6] arm64: dts: mt8183: Add jacuzzi makomo board
 Content-Language: en-US
 To: Hsin-Yi Wang <hsinyi@chromium.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
@@ -81,7 +81,7 @@ Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
 References: <20231024000724.57714-1-hsinyi@chromium.org>
- <20231024000724.57714-7-hsinyi@chromium.org>
+ <20231024000724.57714-5-hsinyi@chromium.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,30 +127,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231024000724.57714-7-hsinyi@chromium.org>
+In-Reply-To: <20231024000724.57714-5-hsinyi@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 24/10/2023 02:02, Hsin-Yi Wang wrote:
-> pico is also known as Acer Chromebook Spin 311.
+> makomo is also known as Lenovo 100e Chromebook 2nd Gen MTK 2.
 > 
 > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
+>  .../mt8183-kukui-jacuzzi-makomo-sku0.dts      | 25 +++++++++++++++++++
+>  .../mt8183-kukui-jacuzzi-makomo-sku1.dts      | 25 +++++++++++++++++++
+>  2 files changed, 50 insertions(+)
 
-...
 
-> +&wifi_pwrseq {
-> +	post-power-on-delay-ms = <50>;
 > +
-> +	/* Toggle WIFI_ENABLE to reset the chip. */
-> +	reset-gpios = <&pio 8 1>;
-
-Use proper defines.
-
+> +&qca_wifi {
+> +	qcom,ath10k-calibration-variant = "GO_FENNEL14";
 > +};
 > +
-> +&wifi_pins_pwrseq {
-> +	pins_wifi_enable {
+> +&mmc1_pins_uhs {
+> +	pins_clk {
 
 No underscores in node names.
 
