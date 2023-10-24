@@ -1,243 +1,296 @@
-Return-Path: <devicetree+bounces-11160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40097D48DA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:44:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BF67D490B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 888651F22415
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:44:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5523D2817DD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB0714AA1;
-	Tue, 24 Oct 2023 07:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D4214A92;
+	Tue, 24 Oct 2023 07:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iE9JU0nx"
+	dkim=pass (1024-bit key) header.d=asem.it header.i=@asem.it header.b="VajzmsHv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7802D3FE1
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:44:12 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5829B7
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:44:09 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9c5b313b3ffso588347266b.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:44:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698133448; x=1698738248; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WVYOASIzuBFwi1QKSZbJjKhuUaXTStfsDMB+e6q2nnY=;
-        b=iE9JU0nxRBMhkJ7kU6gDKtYFd19Tm4TXjOnY7lx6qFNjJwFKdYt+dZxjwoKYAptEJr
-         1Z7uNRA/dzwqfFN/L90LnONf4t64OmsfHAswuVWGKXyYzxP961rQWgvIwIYsK5/yX1K7
-         EHxSSr0fmxI/BWSvNRQg+hL1nN0Epht4ID5Y6uPsApJz5GW1S7fJ+tz2VnCxFiPYU3U7
-         iexYB5Tfi5HlxpSvgiGGGLGgTqWfvNxJc0fz8aVOPjxOQ3grFObyPlVmQONv9ADgjQs6
-         tKws5wZ+f2LxD8JdZPBV5PN2XSYojeMS+oj1YWcx+UtBS0Om9ZoAGSpwM9RN85uOZs6E
-         rjCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698133448; x=1698738248;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WVYOASIzuBFwi1QKSZbJjKhuUaXTStfsDMB+e6q2nnY=;
-        b=G4PxKrCAujfdfUYVYzFq6UOvvqGs/lPA+AhD2KIxhwcOr4rerRh8S/khwGGneQhOgZ
-         +PUkFtPKFsD+2t/Zg7c2cZUtnhSvSF9DuvbgdKy2ahn5R45q8qe3PNhoYpPxt4ei20Tn
-         9NCzYhweuOxXxQs20bI/zmRdL1nV1/uXdKCxnzA3Fsbw4gZgYfHIN/SzffzMkIT0pone
-         j6flt2rl86GCZJ6nyNvImV05YbDbsCEEbMp93CIv2Fy6W6e87vnxqjEVh7RP9afv7Dyg
-         zxKRl0WBGnDBJuCUPZVEqM/MxgEYVX4JtJ+wkw9zoCDgM7gnzO8gFCRdJnwD0yrC1UnO
-         gqpw==
-X-Gm-Message-State: AOJu0YyQyNAMdNI9yiY0lqZEkhIdmuMUZxscWcYW8gROq52jveuG6U3q
-	WVFI9X+QraO8fhtb98ND7fESqA==
-X-Google-Smtp-Source: AGHT+IGQvoCfOIWz1cYhl/5uGXpvVsy/kTAD3TJhvpApW36moJG1M+i7L+yv28Xs600nYHlierB77w==
-X-Received: by 2002:a17:907:9302:b0:9bf:f20:876d with SMTP id bu2-20020a170907930200b009bf0f20876dmr8432467ejc.75.1698133448052;
-        Tue, 24 Oct 2023 00:44:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id e27-20020a170906749b00b0097404f4a124sm7850389ejl.2.2023.10.24.00.44.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 00:44:07 -0700 (PDT)
-Message-ID: <478c0e7e-bdff-41af-a12f-f9930f1c665a@linaro.org>
-Date: Tue, 24 Oct 2023 09:44:04 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53F83FE1
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:53:46 +0000 (UTC)
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2044.outbound.protection.outlook.com [40.107.104.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B3CE8;
+	Tue, 24 Oct 2023 00:53:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IZ4DMiL8MDikIFL5YpF3o9t+tTHmMZuNTkQzC2RX6SUm7JSaJ/SwmsqOSgiAb8VYaiBOI0dC5dqm6On7HFT0Bd+0M3RFhdOSNwbRvA+YLcevDruYVGghri1heuKTqaN+sKxyWs11VpeBgilEThz2kZPXs+2l5tT95SZEJwS/aLb7DshkvMBOc4lqi5rcLNd4fqhus073694JmIltiyVukGpTVEaOXYJECLRdmgJbplGerWmtsoguptY5vHBzHVY9X7FO1nzfajj1MdVdmud7mh271wuiFKd4luARgjFim9q8yEBym1uTAsQmN62pD97D0Wq9OHE98CAou8qeDP1lrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BYC4gXUapCd9Z0fR61JtnrX4Tkcoc8jdmUIcOTsbrY0=;
+ b=SXYfsWZCXkD+AJU2+B/2Z3EpxMzmMPS209o6EyKu1qyo2cgv66PpIwQmuJNDmWNOgJmPtSFHkWkLNjoQr+IsSKabTJrhwnxkrFrSYVOMXCJ11gvUlr2qU3GDI/kaOMJqSS/kZyx1jODZJykLbefTigIR1S17rboYCJ4XqhyfFW6xZFAcoXi7L/bvurUpVWQKBxEnEzxS084r/Wal8yQaqr3chHFHb3Ph2XHaviR35yO4qmfTG2fs2lcGGlQwdMuAz+hY9oEgOkqjvTGAqiStsFlC7JNiroomp2tFM2waTBD4314nyVRAOhv9RyKiJNRDyRQtbMfDDNxiR70wZtKuAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=asem.it; dmarc=pass action=none header.from=asem.it; dkim=pass
+ header.d=asem.it; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BYC4gXUapCd9Z0fR61JtnrX4Tkcoc8jdmUIcOTsbrY0=;
+ b=VajzmsHvIzr1huWSP2w+Zs9pfsNvttWoD6dvWuO+/eOwyn7DftG1e+TA4qpN5qOYsDXaj9JPJlw7BCYFVx2pgw09fzrUvOwXlBjNE5OHwUGhE1MP4wvpefvSPbViRnXQVPQEznlqT92P5ha2loQw4Ksv3NmX2MKLCeb5MUhK1x4=
+Received: from DU2PR01MB8034.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:273::14) by DU5PR01MB10437.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:51c::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Tue, 24 Oct
+ 2023 07:53:39 +0000
+Received: from DU2PR01MB8034.eurprd01.prod.exchangelabs.com
+ ([fe80::ad2b:a1e7:8828:ba2f]) by DU2PR01MB8034.eurprd01.prod.exchangelabs.com
+ ([fe80::ad2b:a1e7:8828:ba2f%7]) with mapi id 15.20.6907.032; Tue, 24 Oct 2023
+ 07:53:39 +0000
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Conor Dooley <conor@kernel.org>
+CC: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, Pavel Machek
+	<pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/1] dt-bindings: backlight: mp3309c: remove two required
+ properties
+Thread-Topic: [PATCH 1/1] dt-bindings: backlight: mp3309c: remove two required
+ properties
+Thread-Index: AQHaA10IhwE5ZkDArkS4RoPMFlMBm7BS1g+AgARFCACAAHpeAIAA+0AQ
+Date: Tue, 24 Oct 2023 07:53:38 +0000
+Message-ID:
+ <DU2PR01MB8034CF8EE4358B9446809AA2F9DFA@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
+References: <20231020135434.2598578-1-f.suligoi@asem.it>
+ <20231020135434.2598578-2-f.suligoi@asem.it>
+ <20231020-moonrise-senate-86d0edb2d404@spud>
+ <DU2PR01MB803498DFD93E82DD3947D72DF9D8A@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
+ <20231023-anybody-silver-4548023f8f26@spud>
+In-Reply-To: <20231023-anybody-silver-4548023f8f26@spud>
+Accept-Language: it-IT, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=asem.it;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU2PR01MB8034:EE_|DU5PR01MB10437:EE_
+x-ms-office365-filtering-correlation-id: 61f1a778-2b52-4e1e-a847-08dbd4665584
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 8SqwiEzDN4yTM3ylh4hwMdtNKMG1R2RDeNhC9o+eIdn5/3/jOXh3lbbOuWfGXWa2FCyDell0UBxSbL8t/3QQb6cK/j6HO9xpy3EGNovvbf5s9stPLXjXZCE6v8lyiLmFdGM5yIv3065/HDNU3ZKDSfZpQbaJHdGIRdXP2mFSmRS0CS7fOeupE2qzWUsVXqNF8/PGmRpQsZZtKXN+f6ycWLIxkz8c2e4hk6vY8ygZVvrnKnkseWQyCgDYOChxC2oS+R2wL/2NEXOQMFqiNWd/EdzWGI8IDrrZgb2XqVfwhmOg8n1bITUTzAdOgSVOdlJqsKHNHOfveb7OQlH2gcd69GJVgR+s7k4bq3/IxpSm3VykrmsmahkrAIqbTlPHf/FZPf6D6hVIFeZoeT1aNi5j85j/dOes1zo1jBj01aHgT1hBQJSJ5FZQ5zmUURLIiMm+GVNJ2VWuaRswIppx+YeTqOVXszSBYOanj24Gcmlh+utEOjdZqxasKHhxi559Vyh9CQISjCr8IBKNrZLAvWnkWdTtu7gnPzZGg9cP+Y9j9CdeqHQ/Xq7GP0wihgbX4nyTMmwmRdaOkhX1b2xfx8OBnZLEdqVyKyJIErw9okwSD+I=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR01MB8034.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39850400004)(396003)(346002)(136003)(376002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(86362001)(55016003)(2906002)(38100700002)(54906003)(122000001)(66476007)(76116006)(316002)(66946007)(66556008)(6916009)(66446008)(7696005)(478600001)(71200400001)(6506007)(9686003)(966005)(83380400001)(64756008)(4326008)(41300700001)(52536014)(5660300002)(7416002)(33656002)(8676002)(8936002)(26005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?eTdYAe98Ptx3BfIQCc5GgZBJ0ElOdhCrWJ9HGFE+wdGBUvUe9ll6LjYNRBax?=
+ =?us-ascii?Q?iYqObZlGpaa8L9OeBcbc419TBnEkO5upi34lsCDQXEx6McrFz/TFil0lcYue?=
+ =?us-ascii?Q?WT8UUg7M80fx+/hII7c+divAK3ln23TuWdN068rgKwPGqY+0LLeHZWVrRa6a?=
+ =?us-ascii?Q?7x3bccuE5T6S8MUnt+XEgcoq/0/poI8eTSYCYRop8aIdzq8+5V0CmF1BpGrs?=
+ =?us-ascii?Q?zrFsUVII99nf3imAG0wZz2PDOrGLN7V+WS89VEjgoWM5uUrGutMhRY1dScqS?=
+ =?us-ascii?Q?M4H7tyn8A9ypHkG8SBq0Iz1kWkx4OYG7tNHTQ1qHHMNX9I6uRgGRFt2z64N0?=
+ =?us-ascii?Q?Toq/2QmHegrI160EVkATu/gyv4f5N/vPMfBMxOg0nq5EIC9t6oDl9MJumJu5?=
+ =?us-ascii?Q?aIZJ2jkpAIlQg3Cdp9J1ioJxSlL+LuRqUpOndvaJeq8q2VEHN2xsHu5NpHCO?=
+ =?us-ascii?Q?CdjIJnsw+gywtrFEcdJIQldb89jQWCv2QbAiaZB3fjV7GJGnbj32g8wTOtGk?=
+ =?us-ascii?Q?RjcD7n9TAYKDFoYIXFz/6GTLkaRlI3Imj9fBZUpwmoe8+00YSbmum4NKa+Uj?=
+ =?us-ascii?Q?ycoxXWCauF6cPd+G1CFc3Y23l+iFGZGCkmRAmrJ5/GLmq7TWYKGTV15OOSba?=
+ =?us-ascii?Q?PtUaJHGCxjFy+mPfZkYC0FEyc4b6xy1KqvgMDibSus00zBE/YepS0piCp40J?=
+ =?us-ascii?Q?aIZNlb14XO1zcEuDoCCtu/RhaM1p/WvKhmQUe1tBjTz2gw4ij+kZvpgGwTHt?=
+ =?us-ascii?Q?/xI1xWjFynX5Rc3aAJYB9y57sZrnRT0w4CGGweA/YF/r4FuOWwmg38i8KHJf?=
+ =?us-ascii?Q?Pwhv45fMqb38f8QpzqfTYHub0J3fZl1WdJKahck/PsJwn+B10Hr6VyP7YkFc?=
+ =?us-ascii?Q?rO5CeDqePgDzSHsKMEulv8aRedI8vXEW0pVa5Z3y4iRJ1w0ckCuNDFwLbqzx?=
+ =?us-ascii?Q?EeIwz3ooOSAP2edgU1/CZ4YlhGV05Ezi43gRVxXIL2At0KGUIrJIFz9m+BKm?=
+ =?us-ascii?Q?LBWK55MnBPwo4shVN/afRIVT0xkbR55NHE4vcBrjgvA5M8h5uEE8VXxlDvii?=
+ =?us-ascii?Q?zEBZcVr3i5JtGn5Y+n29pBKlCUSWWuuukCS4AvA1hyfMcwN/4vp0QVabXupM?=
+ =?us-ascii?Q?1o7X++eKwzXG46D8eYWFioVhS0RCDuoahjzcMRSYZG7O/GObtgIHFC6JuUHF?=
+ =?us-ascii?Q?3+NRKqfGpWQQYWxTLXKQL0GtoIOXcImTsb/iBPBFQuFJN3lGhHrXBni26znw?=
+ =?us-ascii?Q?08KPtbn1N7T6/w4hyBTQmsNo+OvPXfEdbfc36S5yGBd7NdYHg0zwt/5aVx5m?=
+ =?us-ascii?Q?cuGPxIA38gD4pAvrSfoarTL/d+JfuTSmdPXS9fqkyo0DnJ4hFnOVTGuLlIQq?=
+ =?us-ascii?Q?PqdJHnbfxn31lmpf6f6JJDDEA0LKV2ud++wGkNZIZhyEuzSGeJPFo41S06r2?=
+ =?us-ascii?Q?lpueSYeZmM4QY0zsrUXMp8KjmK/jWe24YbShRNsIHWR5mg7KehAtLnXBmKqD?=
+ =?us-ascii?Q?XOGz3WDoTPm9HHmcUrlajGik89M7QSJZfMTb+02sXOn2k+m6PwVKyiBkJV/q?=
+ =?us-ascii?Q?gIBJs6M7F6a8wxps9Do=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 4/9] dt-bindings: net: add OPEN Alliance
- 10BASE-T1x MAC-PHY Serial Interface
-Content-Language: en-US
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, corbet@lwn.net, steen.hegelund@microchip.com,
- rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
- andrew@lunn.ch
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
- Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
- Thorsten.Kummermehr@microchip.com
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-5-Parthiban.Veerasooran@microchip.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231023154649.45931-5-Parthiban.Veerasooran@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: asem.it
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR01MB8034.eurprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61f1a778-2b52-4e1e-a847-08dbd4665584
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2023 07:53:38.9415
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Zn7Ihj5jUvFsPcsKbU7uKFAhPS3VFhYMJ8qWNIS34BkQ++RuFBLZV4k2jVZaCriKZwHuxGNxZ2o/c2bZMLb1gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU5PR01MB10437
 
-On 23/10/2023 17:46, Parthiban Veerasooran wrote:
-> Add DT bindings OPEN Alliance 10BASE-T1x MACPHY Serial Interface
-> parameters. These are generic properties that can apply to any 10BASE-T1x
-> MAC-PHY which uses OPEN Alliance TC6 specification.
+Hi Conor,
 
-Except that it was not tested at all few more issues.
+...
 
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-> ---
->  .../devicetree/bindings/net/oa-tc6.yaml       | 72 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/oa-tc6.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/oa-tc6.yaml b/Documentation/devicetree/bindings/net/oa-tc6.yaml
-> new file mode 100644
-> index 000000000000..9f442fa6cace
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/oa-tc6.yaml
+> On Mon, Oct 23, 2023 at 09:28:03AM +0000, Flavio Suligoi wrote:
+> > > On Fri, Oct 20, 2023 at 03:54:33PM +0200, Flavio Suligoi wrote:
+> > > > The two properties:
+> > > >
+> > > > - max-brightness
+> > > > - default brightness
+> > > >
+> > > > are not really required, so they can be removed from the "required"
+> > > > section.
+> > >
+> > > Why are they not required? You need to provide an explanation.
+> >
+> > The "max-brightness" is not more used now in the driver (I used it in
+> > the first version of the driver).
+>=20
+> If it is not used any more, what happens when someone passes an old
+> devicetree to the kernel, that contains max-brightness, but not any of yo=
+ur
+> new properties?
 
-Filename based on compatible.
+This is not a problem, because the device driver has not yet been included =
+in any kernel.
+My patch for the device driver is still being analyzed by the maintainers.
+Only this dt-binding yaml file is already included in the "for-backlight-ne=
+xt" branch
+of the "backlight" kernel repository.
+At the moment, this driver is used only in a i.MX8MM board produced in my c=
+ompany,
+under my full control. No other developer is using it now.
 
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/oa-tc6.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OPEN Alliance 10BASE-T1x MAC-PHY Specification Common Properties
-> +
-> +maintainers:
-> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
-> +
-> +description:
-> +  These are generic properties that can apply to any 10BASE-T1x MAC-PHY
-> +  which uses OPEN Alliance TC6 specification.
-> +
-> +  10BASE-T1x MAC-PHY Serial Interface Specification can be found at:
-> +    https://opensig.org/about/specifications/
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^oa-tc6(@.*)?"
+> > The "default-brightness", if omitted in the DT, is managed by the
+> > device driver, using a default value. This depends on the dimming mode
+> used:
+>=20
+> For default-brightness, has here always been support in the driver for th=
+e
+> property being omitted, or is this newly added?
 
-Drop
+In the first version of the driver this property was a "required property",
+but nobody has used this driver before, so this should be not a problem.
 
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
+>=20
+> > - for the "analog mode", via I2C commands, this value is fixed by
+> > hardware (=3D31)
+> > - while in case of pwm mode the default used is the last value of the
+> >   brightness-levels array.
+> >
+> > Also the brightness-levels array is not required; if it is omitted,
+> > the driver uses a default array of 0..255 and the "default-brightness" =
+is the
+> last one, which is "255".
+>=20
+> Firstly, this is the sort of rationale that needs to be put into your com=
+mit
+> messages, rather than bullet pointed lists of what you have done.
 
-Why?
+You are absolutely right, I'll include these details in the next commit mes=
+sage.
 
-> +
-> +  oa-cps:
-> +    maxItems: 1
-> +    description:
-> +      Chunk Payload Size. Configures the data chunk payload size to 2^N,
-> +      where N is the value of this bitfield. The minimum possible data
-> +      chunk payload size is 8 bytes or N = 3. The default data chunk
-> +      payload size is 64 bytes, or N = 6. The minimum supported data chunk
-> +      payload size for this MAC-PHY device is indicated in the CPSMIN
-> +      field of the CAPABILITY register. Valid values for this parameter
-> +      are 8, 16, 32 and 64. All other values are reserved.
-> +
-> +  oa-txcte:
-> +    maxItems: 1
-> +    description:
-> +      Transmit Cut-Through Enable. When supported by this MAC-PHY device,
-> +      this bit enables the cut-through mode of frame transfer through the
-> +      MAC-PHY device from the SPI host to the network.
-> +
-> +  oa-rxcte:
-> +    maxItems: 1
-> +    description:
-> +      Receive Cut-Through Enable. When supported by this MAC-PHY device,
-> +      this bit enables the cut-through mode of frame transfer through the
-> +      MAC-PHY device from the network to the SPI host.
-> +
-> +  oa-prote:
-> +    maxItems: 1
-> +    description:
-> +      Control data read/write Protection Enable. When set, all control
-> +      data written to and read from the MAC-PHY will be transferred with
-> +      its complement for detection of bit errors.
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    oa-tc6 {
-> +        #address-cells = <1>;
-> +	#size-cells = <0>;
+>=20
+> Secondly, what about other operating systems etc, do any of those support
+> this platform and depend on presence of these properties?
 
-That's some total mess in indentation.
+I used this backlight driver in our i.MX8MM board only, with Linux only.
 
-> +	oa-cps = <64>;
-> +	oa-txcte;
-> +	oa-rxcte;
-> +	oa-prote;
-> +    };
-Best regards,
-Krzysztof
+>=20
+> >
+> > > > Other changes:
+> > > >
+> > > > - improve the backlight working mode description, in the "descripti=
+on"
+> > > >   section
+> > >
+> > > > - update the example, removing the "max-brightness" and introducing
+> the
+> > > >   "brightess-levels" property
+> > >
+> > > Why is this more useful?
+> >
+> > I introduced the "brightness-levels" instead of "max-brightness" for
+> > homogeneity, since the "analog mode" dimming has a brightness-levels ar=
+ray
+> fixed by hardware (0..31).
+> > In this way also the "pwm" mode can use the same concepts of array of
+> levels.
+>=20
+> What I would like is an explanation in the commit message as to why the
+> revised example is more helpful than the existing (and
+> must-remain-valid) one.
 
+As said before, no one may have ever used this device driver,
+so I would leave only this new version of the example.
+
+>=20
+> Cheers,
+> Conor.
+
+Thanks for your help and best regards,
+Flavio.
+
+>=20
+> > >
+> > > >
+> > > > Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+> > > > ---
+> > > >  .../bindings/leds/backlight/mps,mp3309c.yaml           | 10 ++++--=
+----
+> > > >  1 file changed, 4 insertions(+), 6 deletions(-)
+> > > >
+> > > > diff --git
+> > > a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > > index 4191e33626f5..527a37368ed7 100644
+> > > > ---
+> > > a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > > +++
+> > > b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+> > > > @@ -14,8 +14,8 @@ description: |
+> > > >    programmable switching frequency to optimize efficiency.
+> > > >    It supports two different dimming modes:
+> > > >
+> > > > -  - analog mode, via I2C commands (default)
+> > > > -  - PWM controlled mode.
+> > > > +  - analog mode, via I2C commands, as default mode (32 dimming
+> > > > + levels)
+> > > > +  - PWM controlled mode (optional)
+> > > >
+> > > >    The datasheet is available at:
+> > > >    https://www.monolithicpower.com/en/mp3309c.html
+> > > > @@ -50,8 +50,6 @@ properties:
+> > > >  required:
+> > > >    - compatible
+> > > >    - reg
+> > > > -  - max-brightness
+> > > > -  - default-brightness
+> > > >
+> > > >  unevaluatedProperties: false
+> > > >
+> > > > @@ -66,8 +64,8 @@ examples:
+> > > >              compatible =3D "mps,mp3309c";
+> > > >              reg =3D <0x17>;
+> > > >              pwms =3D <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*=
+10^9 */
+> > > > -            max-brightness =3D <100>;
+> > > > -            default-brightness =3D <80>;
+> > > > +            brightness-levels =3D <0 4 8 16 32 64 128 255>;
+> > > > +            default-brightness =3D <6>;
+> > > >              mps,overvoltage-protection-microvolt =3D <24000000>;
+> > > >          };
+> > > >      };
+> > > > --
+> > > > 2.34.1
+> > > >
 
