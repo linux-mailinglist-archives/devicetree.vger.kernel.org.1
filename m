@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-11233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 446B97D4D51
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:08:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF407D4D58
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2048281882
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:08:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2967FB20D31
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 266CC2421D;
-	Tue, 24 Oct 2023 10:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF73250EE;
+	Tue, 24 Oct 2023 10:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690161FDF
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:08:32 +0000 (UTC)
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B53DA;
-	Tue, 24 Oct 2023 03:08:30 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6ce2c71c61fso2537693a34.1;
-        Tue, 24 Oct 2023 03:08:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698142109; x=1698746909;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fgLdb8aZYAs0Y0vcAtZXYMnjVSNSuVBAYZU46oMnylE=;
-        b=vwrkjQTjaojTWw7p75D+HbOiDJpgkiM8+oe3JjT24O1jhS5a9lYFnJ+lMNWHPYStXG
-         CDUJ0ZSGG9s85FtDib4VwFubUbzyM9+6NwPN/bYhcDd25yTIc+27n7f9IxEEfsfAWmw+
-         iHd19rZCxu7aNt5iIB/d2tBCygFjzlQTCC05ZqZWUY+8r9ZeX7mmQVbLkLbpy5X0MtJE
-         arFsDYOomgwDTi5AcTnZH/FG8Hv0T89SkUyxAc42mefDmPMhWzcUnzqTCzswJmZWQbQC
-         frP5iwk5/TiZxhwMMEnHLhy9WMQLad7LAcfOlvW1mYvstZvFV/AZDmK73RS6KiFbwCU2
-         PE/Q==
-X-Gm-Message-State: AOJu0YzJ6gJZT1XZDGBeVbxDyzutw+UhR+S8c4okP4MYsupTaRBFPOpG
-	0utpiZrgH5Y+ZB/14SVh5CAZi6ajEaV5IQ==
-X-Google-Smtp-Source: AGHT+IFwbmfZEtB6EjV7plAjBjiMSKS8WA0uiSTZMc8xtF5/VyWVAhFyE31uIrTnpoR2++LVtkQnkw==
-X-Received: by 2002:a05:6830:6b45:b0:6c4:e8ff:9e7d with SMTP id dc5-20020a0568306b4500b006c4e8ff9e7dmr10664744otb.23.1698142109494;
-        Tue, 24 Oct 2023 03:08:29 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id b190-20020a0dd9c7000000b005a23ab90366sm3924244ywe.11.2023.10.24.03.08.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 03:08:28 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso3950886276.2;
-        Tue, 24 Oct 2023 03:08:28 -0700 (PDT)
-X-Received: by 2002:a25:b9cf:0:b0:d9a:5908:a29 with SMTP id
- y15-20020a25b9cf000000b00d9a59080a29mr10249227ybj.64.1698142108080; Tue, 24
- Oct 2023 03:08:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EA8250F0
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 10:09:24 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B45810A
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 03:09:22 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvELd-0007oV-5Y; Tue, 24 Oct 2023 12:09:17 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvELb-003vF3-LM; Tue, 24 Oct 2023 12:09:15 +0200
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvELb-00G6XA-IY; Tue, 24 Oct 2023 12:09:15 +0200
+Date: Tue, 24 Oct 2023 12:09:15 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: UNGLinuxDriver@microchip.com, andrew@lunn.ch, conor+dt@kernel.org,
+	davem@davemloft.net, devicetree@vger.kernel.org,
+	edumazet@google.com, f.fainelli@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
+	olteanv@gmail.com, pabeni@redhat.com, robh+dt@kernel.org,
+	woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
+Message-ID: <20231024100915.GC3803936@pengutronix.de>
+References: <20231023143635.GD3787187@pengutronix.de>
+ <20231024075643.25519-1-ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
- <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
-In-Reply-To: <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 24 Oct 2023 12:08:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
-Message-ID: <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
-Subject: Re: [GIT PULL v2] drm: renesas: shmobile: Atomic conversion + DT
- support (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion
- + DT support)
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	DRI Development <dri-devel@lists.freedesktop.org>, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	Linux Media Mailing List <linux-media@vger.kernel.org>, 
-	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231024075643.25519-1-ante.knezic@helmholz.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Oct 16, 2023 at 11:59=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
->         Hi David, Daniel,
->
-> The following changes since commit 389af786f92ecdff35883551d54bf4e507ffcc=
-cb:
->
->   Merge tag 'drm-intel-next-2023-09-29' of
-> git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-10-04
-> 13:55:19 +1000)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
-> tags/shmob-drm-atomic-dt-tag2
->
-> for you to fetch changes up to 1399ebacbf590dfbac4fbba181dd1595b2fa10ba:
->
->   drm: renesas: shmobile: Add DT support (2023-10-16 11:47:48 +0200)
->
-> ----------------------------------------------------------------
-> drm: renesas: shmobile: Atomic conversion + DT support
->
-> Currently, there are two drivers for the LCD controller on Renesas
-> SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
->   1. sh_mobile_lcdcfb, using the fbdev framework,
->   2. shmob_drm, using the DRM framework.
-> However, only the former driver is used, as all platform support
-> integrates the former.  None of these drivers support DT-based systems.
->
-> Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
-> support, complemented by the customary set of fixes and improvements.
->
-> Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider=
-.be/
->
-> Changes compared to v1:
->   - Rebase to drm-next,
->   - Add Acked-by.
->
-> Thanks for pulling!
+On Tue, Oct 24, 2023 at 09:56:43AM +0200, Ante Knezic wrote:
+> On Mon, 23 Oct 2023 16:36:35 +0200, Oleksij Rempel wrote:
+> > If I see it correctly, in both cases there is only one bit to configure
+> > direction. The code need to support two interface modes:
+> > - PHY_INTERFACE_MODE_RMII (MAC mode) PLL is the clock provider. REFCLKO
+> >  is used.
+> > - PHY_INTERFACE_MODE_REVRMII (PHY mode) PLL is not used, REFCLKI is the
+>    clock provider.
+> 
+> As you suggested, it looks like KSZ9897 clocking mode depends on RMII interface
+> mode (with strapping pins), but I don't see this for KSZ8863. The PHY/MAC mode
+> is selected with Register 0x35 bit 7 and the clocking mode is selected via
+> strapping pins EN_REFCLKO and SMTXD32 (and additional register 0xC6 bit 3).
+> I guess its possible for the KSZ8863 to be the clock provider/consumer
+> regardless of PHY/MAC mode?
 
-Ping?
-Thanks!
+Register 0x35 bit 7 is for MII mode
+Register 0xC6 bit 3 is for RMII mode
 
-Gr{oetje,eeting}s,
+MII != RMII
 
-                        Geert
+> Table 3-5: RMII CLOCK SETTING of KSZ8863 datasheet describes the available 
+> clocking modes. If we try to create a relation between KSZ9897 and KSZ8863:
+> 
+> KSZ9897 "Normal Mode" is equivalent to KSZ8863 mode described in first column
+> of table 3-5: 
+> - EN_REFCLKO = 0, 0xC6(3) = 0 -> external 50Mhz OSC input to REFCLKI and X1 
+>   pin directly
+> 
+> KSZ9897 "Clock Mode" is equivalent to KSZ8863 mode described in fourth/fifth 
+> column (difference is only clock frequency) of table 3-5:
+> - EN_REFCLKO = 1, 0xC6(3) = 1 -> 50/25Mhz on X1 pin, 50/25Mhz RMII clock goes
+>   to REFCLKI internally. REFCLKI can be pulled down by resistor.
+> 
+> That leaves us with additional columns 2 and 3 of table 3-5 for KSZ8863, that
+> are similar to KSZ9897 Clock mode, but REFCLKI needs to be fed externally from
+> REFCLKO.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+All of 5 variants described in "Table 3-5: RMII CLOCK SETTING of KSZ8863"
+can be boiled down to two main configurations:
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+REFCLKI is used as clock source for internal MAC == Normal Mode or
+RevRMII mode.
+REFCLKI is not used as clock source for internal MAC == Clock Mode or
+RMII mode.
+
+Variants 1, 2, 3 describe only how can we feed REFCLKI from outside of
+the chip. Even variant 2 and 3 make the switch to be an actually
+physical clock provider, we still need to use REFCLKI and wire it
+outside of the chip which make it practically a Normal Mode or RevRMII mode.
+
+> > I already did some work to configure CPU interface, where which can be at least
+> > partially reused for your work:
+> > https://lore.kernel.org/all/20230517121034.3801640-2-o.rempel@pengutronix.de/
+> > (Looks I forgot to complete mainlining for this patch)
+> > 
+> > If implanted as described, no new devicetree properties will be needed.
+> 
+> I don't quite get how the proposed patch might effect this topic?
+
+You will need to add ksz8_phylink_mac_link_up() as this patch already
+dose.
+
+> By setting PHY/MAC mode? As noted, I dont see the same relation between clock and
+> MII mode for KSZ8863 as for KSZ9897? 
+
+I hope current mail will clear it.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
